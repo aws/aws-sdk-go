@@ -822,7 +822,7 @@
         "accountId":{"shape":"AwsAccountId"},
         "externalId":{"shape":"SafeString"},
         "sourceTypes":{"shape":"SourceTypeList"},
-        "subscriberDescription":{"shape":"SafeString"},
+        "subscriberDescription":{"shape":"DescriptionString"},
         "subscriberName":{"shape":"CreateSubscriberRequestSubscriberNameString"}
       }
     },
@@ -988,6 +988,10 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DescriptionString":{
+      "type":"string",
+      "pattern":"^[\\\\\\w\\s\\-_:/,.@=+]*$"
     },
     "Dimension":{
       "type":"string",
@@ -1248,7 +1252,7 @@
           "locationName":"maxResults"
         },
         "nextToken":{
-          "shape":"SafeString",
+          "shape":"String",
           "location":"querystring",
           "locationName":"nextToken"
         }
@@ -1258,7 +1262,7 @@
       "type":"structure",
       "required":["subscribers"],
       "members":{
-        "nextToken":{"shape":"SafeString"},
+        "nextToken":{"shape":"String"},
         "subscribers":{"shape":"SubscriberList"}
       }
     },
@@ -1594,7 +1598,10 @@
     },
     "UpdateSubscriberRequest":{
       "type":"structure",
-      "required":["id"],
+      "required":[
+        "id",
+        "sourceTypes"
+      ],
       "members":{
         "externalId":{"shape":"SafeString"},
         "id":{
@@ -1603,7 +1610,7 @@
           "locationName":"id"
         },
         "sourceTypes":{"shape":"SourceTypeList"},
-        "subscriberDescription":{"shape":"SafeString"},
+        "subscriberDescription":{"shape":"DescriptionString"},
         "subscriberName":{"shape":"UpdateSubscriberRequestSubscriberNameString"}
       }
     },

@@ -1,3 +1,9 @@
+Release v1.44.172 (2023-01-03)
+===
+
+### Service Client Updates
+* `service/securitylake`: Updates service API and documentation
+
 Release v1.44.171 (2022-12-30)
 ===
 

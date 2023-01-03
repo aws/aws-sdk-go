@@ -21,9 +21,9 @@ const (
 	// ErrCodeAccountNotFoundException for service response error code
 	// "AccountNotFoundException".
 	//
-	// Amazon Security Lake can't find an Amazon Web Services account with the accountID
-	// that you specified, or the account whose credentials you used to make this
-	// request isn't a member of an organization.
+	// Amazon Security Lake cannot find an Amazon Web Services account with the
+	// accountID that you specified, or the account whose credentials you used to
+	// make this request isn't a member of an organization.
 	ErrCodeAccountNotFoundException = "AccountNotFoundException"
 
 	// ErrCodeBucketNotFoundException for service response error code
@@ -77,8 +77,8 @@ const (
 	// ErrCodeInvalidInputException for service response error code
 	// "InvalidInputException".
 	//
-	// The request was rejected because an invalid or out-of-range value was supplied
-	// for an input parameter.
+	// The request was rejected because a value that's not valid or is out of range
+	// was supplied for an input parameter.
 	ErrCodeInvalidInputException = "InvalidInputException"
 
 	// ErrCodeResourceNotFoundException for service response error code
@@ -92,9 +92,9 @@ const (
 	//
 	// Provides an extension of the AmazonServiceException for errors reported by
 	// Amazon S3 while processing a request. In particular, this class provides
-	// access to Amazon S3's extended request ID. This ID is required debugging
-	// information in the case the user needs to contact Amazon about an issue where
-	// Amazon S3 is incorrectly handling a request.
+	// access to the Amazon S3 extended request ID. If Amazon S3 is incorrectly
+	// handling a request and you need to contact Amazon, this extended request
+	// ID may provide useful debugging information.
 	ErrCodeS3Exception = "S3Exception"
 
 	// ErrCodeServiceQuotaExceededException for service response error code

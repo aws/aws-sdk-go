@@ -56,24 +56,25 @@ func (c *SecurityLake) CreateAwsLogSourceRequest(input *CreateAwsLogSourceInput)
 
 // CreateAwsLogSource API operation for Amazon Security Lake.
 //
-// Adds a natively-supported Amazon Web Services service as a Security Lake
-// source. Enables source types for member accounts in required Regions, based
-// on specified parameters. You can choose any source type in any Region for
-// accounts that are either part of a trusted organization or standalone accounts.
-// At least one of the three dimensions is a mandatory input to this API. However,
-// any combination of the three dimensions can be supplied to this API.
+// Adds a natively supported Amazon Web Service as an Amazon Security Lake source.
+// Enables source types for member accounts in required Amazon Web Services
+// Regions, based on the parameters you specify. You can choose any source type
+// in any Region for either accounts that are part of a trusted organization
+// or standalone accounts. At least one of the three dimensions is a mandatory
+// input to this API. However, you can supply any combination of the three dimensions
+// to this API.
 //
-// By default, dimension refers to the entire set. When you don't provide a
-// dimension, Security Lake assumes that the missing dimension refers to the
+// By default, a dimension refers to the entire set. When you don't provide
+// a dimension, Security Lake assumes that the missing dimension refers to the
 // entire set. This is overridden when you supply any one of the inputs. For
-// instance, when members is not specified, the API disables all Security Lake
-// member accounts for sources. Similarly, when Regions are not specified, Security
-// Lake is disabled for all the Regions where Security Lake is available as
-// a service.
+// instance, when you do not specify members, the API enables all Security Lake
+// member accounts for all sources. Similarly, when you do not specify Regions,
+// Security Lake is enabled for all the Regions where Security Lake is available
+// as a service.
 //
-// You can use this API only to enable a natively-supported Amazon Web Services
-// services as a source. Use CreateCustomLogSource to enable data collection
-// from a custom source.
+// You can use this API only to enable natively supported Amazon Web Services
+// as a source. Use CreateCustomLogSource to enable data collection from a custom
+// source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -94,9 +95,9 @@ func (c *SecurityLake) CreateAwsLogSourceRequest(input *CreateAwsLogSourceInput)
 //   - S3Exception
 //     Provides an extension of the AmazonServiceException for errors reported by
 //     Amazon S3 while processing a request. In particular, this class provides
-//     access to Amazon S3's extended request ID. This ID is required debugging
-//     information in the case the user needs to contact Amazon about an issue where
-//     Amazon S3 is incorrectly handling a request.
+//     access to the Amazon S3 extended request ID. If Amazon S3 is incorrectly
+//     handling a request and you need to contact Amazon, this extended request
+//     ID may provide useful debugging information.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action. Access denied errors
@@ -109,9 +110,9 @@ func (c *SecurityLake) CreateAwsLogSourceRequest(input *CreateAwsLogSourceInput)
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateAwsLogSource
 func (c *SecurityLake) CreateAwsLogSource(input *CreateAwsLogSourceInput) (*CreateAwsLogSourceOutput, error) {
@@ -178,13 +179,13 @@ func (c *SecurityLake) CreateCustomLogSourceRequest(input *CreateCustomLogSource
 
 // CreateCustomLogSource API operation for Amazon Security Lake.
 //
-// Adds a third-party custom source in Amazon Security Lake, from the Region
-// where you want to create a custom source. Security Lake can collect logs
-// and events from third-party custom sources. After creating the appropriate
-// API roles, use this API to add a custom source name in Security Lake. This
-// operation creates a partition in the Security Lake S3 bucket as the target
-// location for log files from the custom source, an associated Glue table,
-// and an Glue crawler.
+// Adds a third-party custom source in Amazon Security Lake, from the Amazon
+// Web Services Region where you want to create a custom source. Security Lake
+// can collect logs and events from third-party custom sources. After creating
+// the appropriate IAM role to invoke Glue crawler, use this API to add a custom
+// source name in Security Lake. This operation creates a partition in the Amazon
+// S3 bucket for Security Lake as the target location for log files from the
+// custom source in addition to an associated Glue table and an Glue crawler.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -221,9 +222,9 @@ func (c *SecurityLake) CreateCustomLogSourceRequest(input *CreateCustomLogSource
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateCustomLogSource
 func (c *SecurityLake) CreateCustomLogSource(input *CreateCustomLogSourceInput) (*CreateCustomLogSourceOutput, error) {
@@ -292,22 +293,24 @@ func (c *SecurityLake) CreateDatalakeRequest(input *CreateDatalakeInput) (req *r
 // CreateDatalake API operation for Amazon Security Lake.
 //
 // Initializes an Amazon Security Lake instance with the provided (or default)
-// configuration. You can enable Security Lake in Regions with customized settings
-// in advance before enabling log collection in Regions. You can either use
-// the enableAll parameter to specify all Regions or you can specify the Regions
-// you want to enable Security Lake using the Regions parameter and configure
-// these Regions using the configurations parameter. When the CreateDataLake
-// API is called multiple times, if that Region is already enabled, it will
-// update the Region if configuration for that Region is provided. If that Region
-// is a new Region, it will be set up with the customized configurations if
-// it is specified.
+// configuration. You can enable Security Lake in Amazon Web Services Regions
+// with customized settings before enabling log collection in Regions. You can
+// either use the enableAll parameter to specify all Regions or specify the
+// Regions where you want to enable Security Lake. To specify particular Regions,
+// use the Regions parameter and then configure these Regions using the configurations
+// parameter. If you have already enabled Security Lake in a Region when you
+// call this command, the command will update the Region if you provide new
+// configuration parameters. If you have not already enabled Security Lake in
+// the Region when you call this API, it will set up the data lake in the Region
+// with the specified configurations.
 //
 // When you enable Security Lake, it starts ingesting security data after the
 // CreateAwsLogSource call. This includes ingesting security data from sources,
 // storing data, and making data accessible to subscribers. Security Lake also
 // enables all the existing settings and resources that it stores or maintains
-// for your account in the current Region, including security log and event
-// data. For more information, see the Amazon Security Lake User Guide.
+// for your Amazon Web Services account in the current Region, including security
+// log and event data. For more information, see the Amazon Security Lake User
+// Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -415,11 +418,9 @@ func (c *SecurityLake) CreateDatalakeAutoEnableRequest(input *CreateDatalakeAuto
 
 // CreateDatalakeAutoEnable API operation for Amazon Security Lake.
 //
-// Automatically enable Security Lake in the specified Regions to begin ingesting
-// security data. When you choose to enable organization accounts automatically,
-// then Security Lake begins to enable new accounts as member accounts as they
-// are added to the organization. Security Lake does not enable existing organization
-// accounts that are not yet enabled.
+// Automatically enables Amazon Security Lake for new member accounts in your
+// organization. Security Lake is not automatically enabled for any existing
+// member accounts in your organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -445,9 +446,9 @@ func (c *SecurityLake) CreateDatalakeAutoEnableRequest(input *CreateDatalakeAuto
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeAutoEnable
 func (c *SecurityLake) CreateDatalakeAutoEnable(input *CreateDatalakeAutoEnableInput) (*CreateDatalakeAutoEnableOutput, error) {
@@ -515,9 +516,10 @@ func (c *SecurityLake) CreateDatalakeDelegatedAdminRequest(input *CreateDatalake
 
 // CreateDatalakeDelegatedAdmin API operation for Amazon Security Lake.
 //
-// Designates the Security Lake administrator account for the organization.
-// This API can only be called by the organization management account. The organization
-// management account cannot be the delegated administrator account.
+// Designates the Amazon Security Lake delegated administrator account for the
+// organization. This API can only be called by the organization management
+// account. The organization management account cannot be the delegated administrator
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -611,8 +613,8 @@ func (c *SecurityLake) CreateDatalakeExceptionsSubscriptionRequest(input *Create
 
 // CreateDatalakeExceptionsSubscription API operation for Amazon Security Lake.
 //
-// Creates the specified notification subscription in Security Lake. Creates
-// the specified subscription notifications in the specified organization.
+// Creates the specified notification subscription in Amazon Security Lake for
+// the organization you specify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -638,9 +640,9 @@ func (c *SecurityLake) CreateDatalakeExceptionsSubscriptionRequest(input *Create
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateDatalakeExceptionsSubscription
 func (c *SecurityLake) CreateDatalakeExceptionsSubscription(input *CreateDatalakeExceptionsSubscriptionInput) (*CreateDatalakeExceptionsSubscriptionOutput, error) {
@@ -708,7 +710,8 @@ func (c *SecurityLake) CreateSubscriberRequest(input *CreateSubscriberInput) (re
 // CreateSubscriber API operation for Amazon Security Lake.
 //
 // Creates a subscription permission for accounts that are already enabled in
-// Security Lake.
+// Amazon Security Lake. You can create a subscriber with access to data in
+// the current Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -744,13 +747,13 @@ func (c *SecurityLake) CreateSubscriberRequest(input *CreateSubscriberInput) (re
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateSubscriber
 func (c *SecurityLake) CreateSubscriber(input *CreateSubscriberInput) (*CreateSubscriberOutput, error) {
@@ -817,8 +820,8 @@ func (c *SecurityLake) CreateSubscriptionNotificationConfigurationRequest(input 
 
 // CreateSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
 //
-// Creates the specified notification subscription in Security Lake. Creates
-// the specified subscription notifications from the specified organization.
+// Notifies the subscriber when new data is written to the data lake for the
+// sources that the subscriber consumes in Security Lake.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -850,13 +853,13 @@ func (c *SecurityLake) CreateSubscriptionNotificationConfigurationRequest(input 
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/CreateSubscriptionNotificationConfiguration
 func (c *SecurityLake) CreateSubscriptionNotificationConfiguration(input *CreateSubscriptionNotificationConfigurationInput) (*CreateSubscriptionNotificationConfigurationOutput, error) {
@@ -923,25 +926,22 @@ func (c *SecurityLake) DeleteAwsLogSourceRequest(input *DeleteAwsLogSourceInput)
 
 // DeleteAwsLogSource API operation for Amazon Security Lake.
 //
-// Removes a natively-supported Amazon Web Services service as a Amazon Security
-// Lake source. When you remove the source, Security Lake stops collecting data
-// from that source, and subscribers can no longer consume new data from the
-// source. Subscribers can still consume data that Amazon Security Lake collected
-// from the source before disablement.
+// Removes a natively supported Amazon Web Service as an Amazon Security Lake
+// source. When you remove the source, Security Lake stops collecting data from
+// that source, and subscribers can no longer consume new data from the source.
+// Subscribers can still consume data that Security Lake collected from the
+// source before disablement.
 //
-// You can choose any source type in any Region for accounts that are either
-// part of a trusted organization or standalone accounts. At least one of the
-// three dimensions is a mandatory input to this API. However, any combination
-// of the three dimensions can be supplied to this API.
+// You can choose any source type in any Amazon Web Services Region for either
+// accounts that are part of a trusted organization or standalone accounts.
+// At least one of the three dimensions is a mandatory input to this API. However,
+// you can supply any combination of the three dimensions to this API.
 //
-// By default, dimension refers to the entire set. This is overridden when you
-// supply any one of the inputs. For instance, when members is not specified,
+// By default, a dimension refers to the entire set. This is overridden when
+// you supply any one of the inputs. For instance, when you do not specify members,
 // the API disables all Security Lake member accounts for sources. Similarly,
-// when Regions are not specified, Security Lake is disabled for all the Regions
+// when you do not specify Regions, Security Lake is disabled for all the Regions
 // where Security Lake is available as a service.
-//
-// You can use this API to remove a natively-supported Amazon Web Services service
-// as a source. Use DeregisterCustomData to remove a custom source.
 //
 // When you don't provide a dimension, Security Lake assumes that the missing
 // dimension refers to the entire set. For example, if you don't provide specific
@@ -971,9 +971,9 @@ func (c *SecurityLake) DeleteAwsLogSourceRequest(input *DeleteAwsLogSourceInput)
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteAwsLogSource
 func (c *SecurityLake) DeleteAwsLogSource(input *DeleteAwsLogSourceInput) (*DeleteAwsLogSourceOutput, error) {
@@ -1040,7 +1040,7 @@ func (c *SecurityLake) DeleteCustomLogSourceRequest(input *DeleteCustomLogSource
 
 // DeleteCustomLogSource API operation for Amazon Security Lake.
 //
-// Removes a custom log source from Security Lake.
+// Removes a custom log source from Amazon Security Lake.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1077,9 +1077,9 @@ func (c *SecurityLake) DeleteCustomLogSourceRequest(input *DeleteCustomLogSource
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteCustomLogSource
 func (c *SecurityLake) DeleteCustomLogSource(input *DeleteCustomLogSourceInput) (*DeleteCustomLogSourceOutput, error) {
@@ -1148,14 +1148,16 @@ func (c *SecurityLake) DeleteDatalakeRequest(input *DeleteDatalakeInput) (req *r
 // DeleteDatalake API operation for Amazon Security Lake.
 //
 // When you delete Amazon Security Lake from your account, Security Lake is
-// disabled in all Regions. Also, this API automatically performs the off-boarding
-// steps to off-board the account from Security Lake . This includes ingesting
-// security data from sources, storing data, and making data accessible to subscribers.
-// Security Lake also deletes all the existing settings and resources that it
-// stores or maintains for your account in the current Region, including security
-// log and event data. DeleteDatalake does not delete the S3 bucket which is
-// owned by the Amazon Web Services account. For more information, see the Amazon
-// Security Lake User Guide.
+// disabled in all Amazon Web Services Regions. Also, this API automatically
+// takes steps to remove the account from Security Lake .
+//
+// This operation disables security data collection from sources, deletes data
+// stored, and stops making data accessible to subscribers. Security Lake also
+// deletes all the existing settings and resources that it stores or maintains
+// for your Amazon Web Services account in the current Region, including security
+// log and event data. The DeleteDatalake operation does not delete the Amazon
+// S3 bucket, which is owned by your Amazon Web Services account. For more information,
+// see the Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1263,15 +1265,18 @@ func (c *SecurityLake) DeleteDatalakeAutoEnableRequest(input *DeleteDatalakeAuto
 
 // DeleteDatalakeAutoEnable API operation for Amazon Security Lake.
 //
-// Automatically delete Security Lake in the specified Regions to stop ingesting
-// security data. When you delete Amazon Security Lake from your account, Security
-// Lake is disabled in all Regions. Also, this API automatically performs the
-// off-boarding steps to off-board the account from Security Lake . This includes
-// ingesting security data from sources, storing data, and making data accessible
-// to subscribers. Security Lake also deletes all the existing settings and
-// resources that it stores or maintains for your account in the current Region,
-// including security log and event data. For more information, see the Amazon
-// Security Lake User Guide.
+// Automatically deletes Amazon Security Lake to stop collecting security data.
+// When you delete Amazon Security Lake from your account, Security Lake is
+// disabled in all Regions. Also, this API automatically takes steps to remove
+// the account from Security Lake .
+//
+// This operation disables security data collection from sources, deletes data
+// stored, and stops making data accessible to subscribers. Security Lake also
+// deletes all the existing settings and resources that it stores or maintains
+// for your Amazon Web Services account in the current Region, including security
+// log and event data. The DeleteDatalake operation does not delete the Amazon
+// S3 bucket, which is owned by your Amazon Web Services account. For more information,
+// see the Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1297,9 +1302,9 @@ func (c *SecurityLake) DeleteDatalakeAutoEnableRequest(input *DeleteDatalakeAuto
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeAutoEnable
 func (c *SecurityLake) DeleteDatalakeAutoEnable(input *DeleteDatalakeAutoEnableInput) (*DeleteDatalakeAutoEnableOutput, error) {
@@ -1367,9 +1372,10 @@ func (c *SecurityLake) DeleteDatalakeDelegatedAdminRequest(input *DeleteDatalake
 
 // DeleteDatalakeDelegatedAdmin API operation for Amazon Security Lake.
 //
-// Deletes the Security Lake administrator account for the organization. This
-// API can only be called by the organization management account. The organization
-// management account cannot be the delegated administrator account.
+// Deletes the Amazon Security Lake delegated administrator account for the
+// organization. This API can only be called by the organization management
+// account. The organization management account cannot be the delegated administrator
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1462,8 +1468,8 @@ func (c *SecurityLake) DeleteDatalakeExceptionsSubscriptionRequest(input *Delete
 
 // DeleteDatalakeExceptionsSubscription API operation for Amazon Security Lake.
 //
-// Deletes the specified notification subscription in Security Lake. Deletes
-// the specified subscription notifications in the specified organization.
+// Deletes the specified notification subscription in Amazon Security Lake for
+// the organization you specify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1489,9 +1495,9 @@ func (c *SecurityLake) DeleteDatalakeExceptionsSubscriptionRequest(input *Delete
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteDatalakeExceptionsSubscription
 func (c *SecurityLake) DeleteDatalakeExceptionsSubscription(input *DeleteDatalakeExceptionsSubscriptionInput) (*DeleteDatalakeExceptionsSubscriptionOutput, error) {
@@ -1559,8 +1565,9 @@ func (c *SecurityLake) DeleteSubscriberRequest(input *DeleteSubscriberInput) (re
 
 // DeleteSubscriber API operation for Amazon Security Lake.
 //
-// Deletes the specified subscription permissions to Security Lake. Deletes
-// the specified subscription permissions from the specified organization.
+// Deletes the subscription permission for accounts that are already enabled
+// in Amazon Security Lake. You can delete a subscriber and remove access to
+// data in the current Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1596,13 +1603,13 @@ func (c *SecurityLake) DeleteSubscriberRequest(input *DeleteSubscriberInput) (re
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteSubscriber
 func (c *SecurityLake) DeleteSubscriber(input *DeleteSubscriberInput) (*DeleteSubscriberOutput, error) {
@@ -1670,8 +1677,8 @@ func (c *SecurityLake) DeleteSubscriptionNotificationConfigurationRequest(input 
 
 // DeleteSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
 //
-// Deletes the specified notification subscription in Security Lake. Deletes
-// the specified subscription notifications from the specified organization.
+// Deletes the specified notification subscription in Amazon Security Lake for
+// the organization you specify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1703,13 +1710,13 @@ func (c *SecurityLake) DeleteSubscriptionNotificationConfigurationRequest(input 
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/DeleteSubscriptionNotificationConfiguration
 func (c *SecurityLake) DeleteSubscriptionNotificationConfiguration(input *DeleteSubscriptionNotificationConfigurationInput) (*DeleteSubscriptionNotificationConfigurationOutput, error) {
@@ -1776,8 +1783,10 @@ func (c *SecurityLake) GetDatalakeRequest(input *GetDatalakeInput) (req *request
 
 // GetDatalake API operation for Amazon Security Lake.
 //
-// Retrieve the Security Lake configuration object for the specified account
-// ID. This API does not take input parameters.
+// Retrieves the Amazon Security Lake configuration object for the specified
+// Amazon Web Services account ID. You can use the GetDatalake API to know whether
+// Security Lake is enabled for the current Region. This API does not take input
+// parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1806,9 +1815,9 @@ func (c *SecurityLake) GetDatalakeRequest(input *GetDatalakeInput) (req *request
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalake
 func (c *SecurityLake) GetDatalake(input *GetDatalakeInput) (*GetDatalakeOutput, error) {
@@ -1876,7 +1885,7 @@ func (c *SecurityLake) GetDatalakeAutoEnableRequest(input *GetDatalakeAutoEnable
 // GetDatalakeAutoEnable API operation for Amazon Security Lake.
 //
 // Retrieves the configuration that will be automatically set up for accounts
-// added to the organization after the organization has on boarded to Amazon
+// added to the organization after the organization has onboarded to Amazon
 // Security Lake. This API does not take input parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1903,9 +1912,9 @@ func (c *SecurityLake) GetDatalakeAutoEnableRequest(input *GetDatalakeAutoEnable
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeAutoEnable
 func (c *SecurityLake) GetDatalakeAutoEnable(input *GetDatalakeAutoEnableInput) (*GetDatalakeAutoEnableOutput, error) {
@@ -1973,9 +1982,9 @@ func (c *SecurityLake) GetDatalakeExceptionsExpiryRequest(input *GetDatalakeExce
 // GetDatalakeExceptionsExpiry API operation for Amazon Security Lake.
 //
 // Retrieves the expiration period and time-to-live (TTL) for which the exception
-// message will remain. Exceptions are stored by default, for a 2 week period
-// of time from when a record was created in Security Lake. This API does not
-// take input parameters. This API does not take input parameters.
+// message will remain. Exceptions are stored by default, for 2 weeks from when
+// a record was created in Amazon Security Lake. This API does not take input
+// parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2001,9 +2010,9 @@ func (c *SecurityLake) GetDatalakeExceptionsExpiryRequest(input *GetDatalakeExce
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeExceptionsExpiry
 func (c *SecurityLake) GetDatalakeExceptionsExpiry(input *GetDatalakeExceptionsExpiryInput) (*GetDatalakeExceptionsExpiryOutput, error) {
@@ -2097,9 +2106,9 @@ func (c *SecurityLake) GetDatalakeExceptionsSubscriptionRequest(input *GetDatala
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeExceptionsSubscription
 func (c *SecurityLake) GetDatalakeExceptionsSubscription(input *GetDatalakeExceptionsSubscriptionInput) (*GetDatalakeExceptionsSubscriptionOutput, error) {
@@ -2172,8 +2181,9 @@ func (c *SecurityLake) GetDatalakeStatusRequest(input *GetDatalakeStatusInput) (
 
 // GetDatalakeStatus API operation for Amazon Security Lake.
 //
-// Retrieve the Security Lake configuration object for the specified account
-// ID. This API does not take input parameters.
+// Retrieves a snapshot of the current Region, including whether Amazon Security
+// Lake is enabled for those accounts and which sources Security Lake is collecting
+// data from.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2199,9 +2209,9 @@ func (c *SecurityLake) GetDatalakeStatusRequest(input *GetDatalakeStatusInput) (
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetDatalakeStatus
 func (c *SecurityLake) GetDatalakeStatus(input *GetDatalakeStatusInput) (*GetDatalakeStatusOutput, error) {
@@ -2319,7 +2329,8 @@ func (c *SecurityLake) GetSubscriberRequest(input *GetSubscriberInput) (req *req
 
 // GetSubscriber API operation for Amazon Security Lake.
 //
-// Retrieves subscription information for the specified subscription ID.
+// Retrieves the subscription information for the specified subscription ID.
+// You can get information about a specific subscriber.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2345,13 +2356,13 @@ func (c *SecurityLake) GetSubscriberRequest(input *GetSubscriberInput) (req *req
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/GetSubscriber
 func (c *SecurityLake) GetSubscriber(input *GetSubscriberInput) (*GetSubscriberOutput, error) {
@@ -2424,7 +2435,7 @@ func (c *SecurityLake) ListDatalakeExceptionsRequest(input *ListDatalakeExceptio
 
 // ListDatalakeExceptions API operation for Amazon Security Lake.
 //
-// List the Amazon Security Lake exceptions that you can use to find the source
+// Lists the Amazon Security Lake exceptions that you can use to find the source
 // of problems and fix them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2451,9 +2462,9 @@ func (c *SecurityLake) ListDatalakeExceptionsRequest(input *ListDatalakeExceptio
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListDatalakeExceptions
 func (c *SecurityLake) ListDatalakeExceptions(input *ListDatalakeExceptionsInput) (*ListDatalakeExceptionsOutput, error) {
@@ -2577,7 +2588,7 @@ func (c *SecurityLake) ListLogSourcesRequest(input *ListLogSourcesInput) (req *r
 
 // ListLogSources API operation for Amazon Security Lake.
 //
-// Lists the log sources in the current region.
+// Retrieves the log sources in the current Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2606,9 +2617,9 @@ func (c *SecurityLake) ListLogSourcesRequest(input *ListLogSourcesInput) (req *r
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListLogSources
 func (c *SecurityLake) ListLogSources(input *ListLogSourcesInput) (*ListLogSourcesOutput, error) {
@@ -2732,7 +2743,9 @@ func (c *SecurityLake) ListSubscribersRequest(input *ListSubscribersInput) (req 
 
 // ListSubscribers API operation for Amazon Security Lake.
 //
-// List all subscribers for the specific Security Lake account ID.
+// List all subscribers for the specific Amazon Security Lake account ID. You
+// can retrieve a list of subscriptions associated with a specific organization
+// or Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2761,13 +2774,13 @@ func (c *SecurityLake) ListSubscribersRequest(input *ListSubscribersInput) (req 
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/ListSubscribers
 func (c *SecurityLake) ListSubscribers(input *ListSubscribersInput) (*ListSubscribersOutput, error) {
@@ -2886,12 +2899,8 @@ func (c *SecurityLake) UpdateDatalakeRequest(input *UpdateDatalakeInput) (req *r
 
 // UpdateDatalake API operation for Amazon Security Lake.
 //
-// Amazon Security Lake allows you to specify where to store your security data
-// and for how long. You can specify a rollup Region to consolidate data from
-// multiple regions.
-//
-// You can update the properties of a Region or source. Input can either be
-// directly specified to the API.
+// Specifies where to store your security data and for how long. You can add
+// a rollup Region to consolidate data from multiple Amazon Web Services Regions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2990,8 +2999,8 @@ func (c *SecurityLake) UpdateDatalakeExceptionsExpiryRequest(input *UpdateDatala
 //
 // Update the expiration period for the exception message to your preferred
 // time, and control the time-to-live (TTL) for the exception message to remain.
-// Exceptions are stored by default, for a 2 week period of time from when a
-// record was created in Security Lake.
+// Exceptions are stored by default for 2 weeks from when a record was created
+// in Amazon Security Lake.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3017,9 +3026,9 @@ func (c *SecurityLake) UpdateDatalakeExceptionsExpiryRequest(input *UpdateDatala
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalakeExceptionsExpiry
 func (c *SecurityLake) UpdateDatalakeExceptionsExpiry(input *UpdateDatalakeExceptionsExpiryInput) (*UpdateDatalakeExceptionsExpiryOutput, error) {
@@ -3087,7 +3096,8 @@ func (c *SecurityLake) UpdateDatalakeExceptionsSubscriptionRequest(input *Update
 
 // UpdateDatalakeExceptionsSubscription API operation for Amazon Security Lake.
 //
-// Update the subscription notification for exception notification.
+// Updates the specified notification subscription in Amazon Security Lake for
+// the organization you specify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3113,9 +3123,9 @@ func (c *SecurityLake) UpdateDatalakeExceptionsSubscriptionRequest(input *Update
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateDatalakeExceptionsSubscription
 func (c *SecurityLake) UpdateDatalakeExceptionsSubscription(input *UpdateDatalakeExceptionsSubscriptionInput) (*UpdateDatalakeExceptionsSubscriptionOutput, error) {
@@ -3182,7 +3192,9 @@ func (c *SecurityLake) UpdateSubscriberRequest(input *UpdateSubscriberInput) (re
 
 // UpdateSubscriber API operation for Amazon Security Lake.
 //
-// Update the subscription permission for the given Security Lake account ID.
+// Updates an existing subscription for the given Amazon Security Lake account
+// ID. You can update a subscriber by changing the sources that the subscriber
+// consumes data from.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3214,13 +3226,13 @@ func (c *SecurityLake) UpdateSubscriberRequest(input *UpdateSubscriberInput) (re
 //     there is no applicable Deny statement and also no applicable Allow statement.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateSubscriber
 func (c *SecurityLake) UpdateSubscriber(input *UpdateSubscriberInput) (*UpdateSubscriberOutput, error) {
@@ -3287,8 +3299,8 @@ func (c *SecurityLake) UpdateSubscriptionNotificationConfigurationRequest(input 
 
 // UpdateSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
 //
-// Create a new subscription notification or add the existing subscription notification
-// setting for the specified subscription ID.
+// Creates a new subscription notification or adds the existing subscription
+// notification setting for the specified subscription ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3320,13 +3332,13 @@ func (c *SecurityLake) UpdateSubscriptionNotificationConfigurationRequest(input 
 //     The resource could not be found.
 //
 //   - AccountNotFoundException
-//     Amazon Security Lake can't find an Amazon Web Services account with the accountID
-//     that you specified, or the account whose credentials you used to make this
-//     request isn't a member of an organization.
+//     Amazon Security Lake cannot find an Amazon Web Services account with the
+//     accountID that you specified, or the account whose credentials you used to
+//     make this request isn't a member of an organization.
 //
 //   - InvalidInputException
-//     The request was rejected because an invalid or out-of-range value was supplied
-//     for an input parameter.
+//     The request was rejected because a value that's not valid or is out of range
+//     was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securitylake-2018-05-10/UpdateSubscriptionNotificationConfiguration
 func (c *SecurityLake) UpdateSubscriptionNotificationConfiguration(input *UpdateSubscriptionNotificationConfigurationInput) (*UpdateSubscriptionNotificationConfigurationOutput, error) {
@@ -3418,9 +3430,9 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Amazon Security Lake can't find an Amazon Web Services account with the accountID
-// that you specified, or the account whose credentials you used to make this
-// request isn't a member of an organization.
+// Amazon Security Lake cannot find an Amazon Web Services account with the
+// accountID that you specified, or the account whose credentials you used to
+// make this request isn't a member of an organization.
 type AccountNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3484,12 +3496,13 @@ func (s *AccountNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Security Lake can collect logs and events from supported Amazon Web Services
-// services and custom sources.
+// Amazon Security Lake collects logs and events from supported Amazon Web Services
+// and custom sources. For the list of supported Amazon Web Services, see the
+// Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
 type AccountSources struct {
 	_ struct{} `type:"structure"`
 
-	// Account ID of the Security Lake account for which logs are collected.
+	// The ID of the Security Lake account for which logs are collected.
 	//
 	// Account is a required field
 	Account *string `locationName:"account" type:"string" required:"true"`
@@ -3497,13 +3510,12 @@ type AccountSources struct {
 	// Initializes a new instance of the Event class.
 	EventClass *string `locationName:"eventClass" type:"string" enum:"OcsfEventClass"`
 
-	// Log status for the Security Lake account.
+	// The log status for the Security Lake account.
 	LogsStatus []*LogsStatus `locationName:"logsStatus" type:"list"`
 
-	// The supported Amazon Web Services services from which logs and events are
-	// collected. Amazon Security Lake supports logs and events collection for natively-supported
-	// Amazon Web Services services. For more information, see the Amazon Security
-	// Lake User Guide.
+	// The supported Amazon Web Services from which logs and events are collected.
+	// Amazon Security Lake supports log and event collection for natively supported
+	// Amazon Web Services.
 	//
 	// SourceType is a required field
 	SourceType *string `locationName:"sourceType" type:"string" required:"true"`
@@ -3551,17 +3563,18 @@ func (s *AccountSources) SetSourceType(v string) *AccountSources {
 	return s
 }
 
-// Automatically enable new organization accounts as member accounts from a
-// Security Lake administrator account.
+// Automatically enable new organization accounts as member accounts from an
+// Amazon Security Lake administrator account.
 type AutoEnableNewRegionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Regions where Security Lake is auto enabled
+	// The Amazon Web Services Regions where Security Lake is automatically enabled.
 	//
 	// Region is a required field
 	Region *string `locationName:"region" type:"string" required:"true" enum:"Region"`
 
-	// The Amazon Web Services sources which are auto enabled in Security Lake.
+	// The Amazon Web Services sources that are automatically enabled in Security
+	// Lake.
 	//
 	// Sources is a required field
 	Sources []*string `locationName:"sources" type:"list" required:"true" enum:"AwsLogSourceType"`
@@ -3951,16 +3964,19 @@ func (s *ConflictSubscriptionException) RequestID() string {
 type CreateAwsLogSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enables specific sources in all Regions and source types.
+	// Enables data collection from specific Amazon Web Services sources in all
+	// specific accounts and specific Regions.
 	EnableAllDimensions map[string]map[string][]*string `locationName:"enableAllDimensions" type:"map"`
 
-	// Enables all sources in specific accounts or Regions.
+	// Enables data collection from all Amazon Web Services sources in specific
+	// accounts or Regions.
 	EnableSingleDimension []*string `locationName:"enableSingleDimension" type:"list"`
 
-	// Enables specific service sources in specific accounts or Regions.
+	// Enables data collection from specific Amazon Web Services sources in specific
+	// accounts or Regions.
 	EnableTwoDimensions map[string][]*string `locationName:"enableTwoDimensions" type:"map"`
 
-	// Specifies the input order to enable dimensions in Security Lake, namely region,
+	// Specifies the input order to enable dimensions in Security Lake, namely Region,
 	// source type, and member account.
 	//
 	// InputOrder is a required field
@@ -4025,13 +4041,13 @@ func (s *CreateAwsLogSourceInput) SetInputOrder(v []*string) *CreateAwsLogSource
 type CreateAwsLogSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of all accounts in which enabling a natively-supported Amazon Web Services
-	// service as a Security Lake failed. The failure occurred as these accounts
+	// Lists all accounts in which enabling a natively supported Amazon Web Service
+	// as a Security Lake source failed. The failure occurred as these accounts
 	// are not part of an organization.
 	Failed []*string `locationName:"failed" type:"list"`
 
-	// List of all accounts which are in the process of enabling a natively-supported
-	// Amazon Web Services service as a Security Lake.
+	// Lists the accounts that are in the process of enabling a natively supported
+	// Amazon Web Service as a Security Lake source.
 	Processing []*string `locationName:"processing" type:"list"`
 }
 
@@ -4068,28 +4084,30 @@ func (s *CreateAwsLogSourceOutput) SetProcessing(v []*string) *CreateAwsLogSourc
 type CreateCustomLogSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The custom source name for a third-party custom source.
+	// The name for a third-party custom source. This must be a Regionally unique
+	// value.
 	//
 	// CustomSourceName is a required field
 	CustomSourceName *string `locationName:"customSourceName" type:"string" required:"true"`
 
-	// The Open Cybersecurity Schema Framework (OCSF) event class.
+	// The Open Cybersecurity Schema Framework (OCSF) event class which describes
+	// the type of data that the custom source will send to Security Lake.
 	//
 	// EventClass is a required field
 	EventClass *string `locationName:"eventClass" type:"string" required:"true" enum:"OcsfEventClass"`
 
-	// The IAM Role ARN to be used by the Glue Crawler. The recommended IAM policies
-	// are:
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role to be used by the Glue crawler. The recommended IAM policies are:
 	//
 	//    * The managed policy AWSGlueServiceRole
 	//
-	//    * A custom policy granting access to your S3 Data Lake
+	//    * A custom policy granting access to your Amazon S3 Data Lake
 	//
 	// GlueInvocationRoleArn is a required field
 	GlueInvocationRoleArn *string `locationName:"glueInvocationRoleArn" type:"string" required:"true"`
 
-	// The Account ID that will assume the above Role to put logs into the Data
-	// Lake.
+	// The Amazon Web Services account ID of the custom source that will write logs
+	// and events into the Amazon S3 Data Lake.
 	//
 	// LogProviderAccountId is a required field
 	LogProviderAccountId *string `locationName:"logProviderAccountId" min:"12" type:"string" required:"true"`
@@ -4165,7 +4183,7 @@ func (s *CreateCustomLogSourceInput) SetLogProviderAccountId(v string) *CreateCu
 type CreateCustomLogSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The location of the partition in the Security Lake S3 bucket.
+	// The location of the partition in the Amazon S3 bucket for Security Lake.
 	//
 	// CustomDataLocation is a required field
 	CustomDataLocation *string `locationName:"customDataLocation" type:"string" required:"true"`
@@ -4185,11 +4203,11 @@ type CreateCustomLogSourceOutput struct {
 	// GlueTableName is a required field
 	GlueTableName *string `locationName:"glueTableName" type:"string" required:"true"`
 
-	// IAM Role ARN to be used by the entity putting logs into your Custom Source
-	// partition. Security Lake will apply the correct access policies to this Role,
-	// but this Role must have the trust policy created manually. This Role's name
-	// must start with the text 'Security Lake'. It must trust the logProviderAccountId
-	// to assume it.
+	// The ARN of the IAM role to be used by the entity putting logs into your custom
+	// source partition. Security Lake will apply the correct access policies to
+	// this role, but you must first manually create the trust policy for this role.
+	// The IAM role name must start with the text 'Security Lake'. The IAM role
+	// must trust the logProviderAccountId to assume the role.
 	//
 	// LogProviderAccessRoleArn is a required field
 	LogProviderAccessRoleArn *string `locationName:"logProviderAccessRoleArn" type:"string" required:"true"`
@@ -4246,8 +4264,8 @@ func (s *CreateCustomLogSourceOutput) SetLogProviderAccessRoleArn(v string) *Cre
 type CreateDatalakeAutoEnableInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enable Amazon Security Lake with the specified configurations settings to
-	// begin ingesting security data for new accounts in Security Lake.
+	// Enable Security Lake with the specified configuration settings to begin collecting
+	// security data for new accounts in your organization.
 	//
 	// ConfigurationForNewAccounts is a required field
 	ConfigurationForNewAccounts []*AutoEnableNewRegionConfiguration `locationName:"configurationForNewAccounts" type:"list" required:"true"`
@@ -4325,7 +4343,7 @@ func (s CreateDatalakeAutoEnableOutput) GoString() string {
 type CreateDatalakeDelegatedAdminInput struct {
 	_ struct{} `type:"structure"`
 
-	// Account ID of the Security Lake delegated administrator.
+	// The Amazon Web Services account ID of the Security Lake delegated administrator.
 	//
 	// Account is a required field
 	Account *string `locationName:"account" type:"string" required:"true"`
@@ -4393,12 +4411,12 @@ func (s CreateDatalakeDelegatedAdminOutput) GoString() string {
 type CreateDatalakeExceptionsSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The account in which the exception notifications subscription is created.
+	// The Amazon Web Services account where you want to receive exception notifications.
 	//
 	// NotificationEndpoint is a required field
 	NotificationEndpoint *string `locationName:"notificationEndpoint" type:"string" required:"true"`
 
-	// The subscription protocol to which exception messages are posted.
+	// The subscription protocol to which exception notifications are posted.
 	//
 	// SubscriptionProtocol is a required field
 	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string" required:"true" enum:"SubscriptionProtocolType"`
@@ -4475,22 +4493,21 @@ func (s CreateDatalakeExceptionsSubscriptionOutput) GoString() string {
 type CreateDatalakeInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enable Security Lake with the specified configurations settings to begin
-	// ingesting security data.
+	// Specify the Region or Regions that will contribute data to the rollup region.
 	Configurations map[string]*LakeConfigurationRequest `locationName:"configurations" type:"map"`
 
-	// Enable Security Lake in all Regions to begin ingesting security data.
+	// Enable Security Lake in all Regions.
 	EnableAll *bool `locationName:"enableAll" type:"boolean"`
 
-	// The Role ARN used to create and update the Glue table with partitions generated
-	// by ingestion and normalization of Amazon Web Services log sources and custom
-	// sources.
+	// The Amazon Resource Name (ARN) used to create and update the Glue table.
+	// This table contains partitions generated by the ingestion and normalization
+	// of Amazon Web Services log sources and custom sources.
 	MetaStoreManagerRoleArn *string `locationName:"metaStoreManagerRoleArn" type:"string"`
 
-	// Enable Security Lake in the specified Regions to begin ingesting security
-	// data. To enable Security Lake in specific Amazon Web Services Regions, such
-	// as us-east-1 or ap-northeast-3, provide the Region codes. For a list of Region
-	// codes, see Region codes (https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints)
+	// Enable Security Lake in the specified Regions. To enable Security Lake in
+	// specific Amazon Web Services Regions, such as us-east-1 or ap-northeast-3,
+	// provide the Region codes. For a list of Region codes, see Amazon Security
+	// Lake endpoints (https://docs.aws.amazon.com/general/latest/gr/securitylake.html)
 	// in the Amazon Web Services General Reference.
 	Regions []*string `locationName:"regions" type:"list" enum:"Region"`
 }
@@ -4585,31 +4602,30 @@ type CreateSubscriberInput struct {
 	// The Amazon S3 or Lake Formation access type.
 	AccessTypes []*string `locationName:"accessTypes" type:"list" enum:"AccessType"`
 
-	// The third party Amazon Web Services account ID used to access your data.
+	// The Amazon Web Services account ID used to access your data.
 	//
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
 
-	// The external ID of the subscriber. External ID allows the user that is assuming
-	// the role to assert the circumstances in which they are operating. It also
-	// provides a way for the account owner to permit the role to be assumed only
-	// under specific circumstances.
+	// The external ID of the subscriber. This lets the user that is assuming the
+	// role assert the circumstances in which they are operating. It also provides
+	// a way for the account owner to permit the role to be assumed only under specific
+	// circumstances.
 	//
 	// ExternalId is a required field
 	ExternalId *string `locationName:"externalId" type:"string" required:"true"`
 
-	// The supported Amazon Web Services services from which logs and events are
-	// collected. Amazon Security Lake supports logs and events collection for natively-supported
-	// Amazon Web Services services.
+	// The supported Amazon Web Services from which logs and events are collected.
+	// Security Lake supports log and event collection for natively supported Amazon
+	// Web Services.
 	//
 	// SourceTypes is a required field
 	SourceTypes []*SourceType `locationName:"sourceTypes" type:"list" required:"true"`
 
-	// The subscriber descriptions for the subscriber account in Amazon Security
-	// Lake.
+	// The description for your subscriber account in Security Lake.
 	SubscriberDescription *string `locationName:"subscriberDescription" type:"string"`
 
-	// The name of your Amazon Security Lake subscriber account.
+	// The name of your Security Lake subscriber account.
 	//
 	// SubscriberName is a required field
 	SubscriberName *string `locationName:"subscriberName" type:"string" required:"true"`
@@ -4697,18 +4713,18 @@ func (s *CreateSubscriberInput) SetSubscriberName(v string) *CreateSubscriberInp
 type CreateSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) created by the user to provide to the subscriber.
+	// The Amazon Resource Name (ARN) created by you to provide to the subscriber.
 	// For more information about ARNs and how to use them in policies, see IAM
-	// identifiers in the IAM User Guide.
+	// identifiers in the Identity and Access Management (IAM) User Guide (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html). .
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) for the Amazon S3 bucket.
+	// The ARN for the Amazon S3 bucket.
 	S3BucketArn *string `locationName:"s3BucketArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) for the Amazon Simple Notification Service.
+	// The ARN for the Amazon Simple Notification Service.
 	SnsArn *string `locationName:"snsArn" type:"string"`
 
-	// The subscriptionId that was created by the CreateSubscriber API call.
+	// The subscriptionId created by the CreateSubscriber API call.
 	//
 	// SubscriptionId is a required field
 	SubscriptionId *string `locationName:"subscriptionId" type:"string" required:"true"`
@@ -4759,26 +4775,27 @@ func (s *CreateSubscriberOutput) SetSubscriptionId(v string) *CreateSubscriberOu
 type CreateSubscriptionNotificationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Create a new subscription notification for the specified subscription ID
-	// in Security Lake.
+	// Create an Amazon Simple Queue Service queue.
 	CreateSqs *bool `locationName:"createSqs" type:"boolean"`
 
-	// The key name for the subscription notification.
+	// The key name for the notification subscription.
 	HttpsApiKeyName *string `locationName:"httpsApiKeyName" type:"string"`
 
-	// The key value for the subscription notification.
+	// The key value for the notification subscription.
 	HttpsApiKeyValue *string `locationName:"httpsApiKeyValue" type:"string"`
 
-	// The HTTPS method used for the subscription notification.
+	// The HTTPS method used for the notification subscription.
 	HttpsMethod *string `locationName:"httpsMethod" type:"string" enum:"HttpsMethod"`
 
-	// The Amazon Resource Name (ARN) specifying the role of the subscriber.
+	// The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role
+	// that you created.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
-	// The subscription endpoint in Security Lake.
+	// The subscription endpoint in Security Lake. If you prefer notification with
+	// an HTTPs endpoint, populate this field.
 	SubscriptionEndpoint *string `locationName:"subscriptionEndpoint" type:"string"`
 
-	// The subscription ID for which the subscription notification is specified.
+	// The subscription ID for the notification subscription/
 	//
 	// SubscriptionId is a required field
 	SubscriptionId *string `location:"uri" locationName:"subscriptionId" type:"string" required:"true"`
@@ -4863,7 +4880,7 @@ func (s *CreateSubscriptionNotificationConfigurationInput) SetSubscriptionId(v s
 type CreateSubscriptionNotificationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the Amazon resource name (ARN) of the queue.
+	// Returns the Amazon Resource Name (ARN) of the queue.
 	QueueArn *string `locationName:"queueArn" type:"string"`
 }
 
@@ -4894,8 +4911,8 @@ func (s *CreateSubscriptionNotificationConfigurationOutput) SetQueueArn(v string
 type DeleteAwsLogSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Removes the specific Amazon Web Services sources from all Regions and source
-	// types.
+	// Removes the specific Amazon Web Services sources from specific accounts and
+	// specific Regions.
 	DisableAllDimensions map[string]map[string][]*string `locationName:"disableAllDimensions" type:"map"`
 
 	// Removes all Amazon Web Services sources from specific accounts or Regions.
@@ -4904,8 +4921,9 @@ type DeleteAwsLogSourceInput struct {
 	// Remove a specific Amazon Web Services source from specific accounts or Regions.
 	DisableTwoDimensions map[string][]*string `locationName:"disableTwoDimensions" type:"map"`
 
-	// This is a mandatory input. Specifies the input order to disable dimensions
-	// in Security Lake, namely Region, source type, and member.
+	// This is a mandatory input. Specify the input order to disable dimensions
+	// in Security Lake, namely Region (Amazon Web Services Region code, source
+	// type, and member (account ID of a specific Amazon Web Services account).
 	//
 	// InputOrder is a required field
 	InputOrder []*string `locationName:"inputOrder" type:"list" required:"true" enum:"Dimension"`
@@ -4973,7 +4991,7 @@ type DeleteAwsLogSourceOutput struct {
 	// a part of the organization.
 	Failed []*string `locationName:"failed" type:"list"`
 
-	// Deletion of the Amazon Web Services sources is in-progress.
+	// Deletion of the Amazon Web Services sources is in progress.
 	Processing []*string `locationName:"processing" type:"list"`
 }
 
@@ -5010,7 +5028,7 @@ func (s *DeleteAwsLogSourceOutput) SetProcessing(v []*string) *DeleteAwsLogSourc
 type DeleteCustomLogSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The custom source name for the custome log source.
+	// The custom source name for the custom log source.
 	//
 	// CustomSourceName is a required field
 	CustomSourceName *string `location:"querystring" locationName:"customSourceName" type:"string" required:"true"`
@@ -5056,7 +5074,7 @@ func (s *DeleteCustomLogSourceInput) SetCustomSourceName(v string) *DeleteCustom
 type DeleteCustomLogSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The location of the partition in the Security Lake S3 bucket.
+	// The location of the partition in the Amazon S3 bucket for Security Lake.
 	//
 	// CustomDataLocation is a required field
 	CustomDataLocation *string `locationName:"customDataLocation" type:"string" required:"true"`
@@ -5089,7 +5107,7 @@ func (s *DeleteCustomLogSourceOutput) SetCustomDataLocation(v string) *DeleteCus
 type DeleteDatalakeAutoEnableInput struct {
 	_ struct{} `type:"structure"`
 
-	// Delete Amazon Security Lake with the specified configurations settings to
+	// Delete Amazon Security Lake with the specified configuration settings to
 	// stop ingesting security data for new accounts in Security Lake.
 	//
 	// RemoveFromConfigurationForNewAccounts is a required field
@@ -5168,7 +5186,7 @@ func (s DeleteDatalakeAutoEnableOutput) GoString() string {
 type DeleteDatalakeDelegatedAdminInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Account ID the Security Lake delegated administrator.
+	// The account ID the Security Lake delegated administrator.
 	//
 	// Account is a required field
 	Account *string `location:"uri" locationName:"account" type:"string" required:"true"`
@@ -5407,7 +5425,7 @@ func (s DeleteSubscriberOutput) GoString() string {
 type DeleteSubscriptionNotificationConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The subscription ID of the Amazon Security Lake subscriber account.
+	// The ID of the Security Lake subscriber account.
 	//
 	// SubscriptionId is a required field
 	SubscriptionId *string `location:"uri" locationName:"subscriptionId" type:"string" required:"true"`
@@ -5596,7 +5614,7 @@ func (s *Failures) SetTimestamp(v time.Time) *Failures {
 	return s
 }
 
-// Response element for actions which make changes namely create, update, or
+// Response element for actions that make changes, namely create, update, or
 // delete actions.
 type FailuresResponse struct {
 	_ struct{} `type:"structure"`
@@ -5604,7 +5622,7 @@ type FailuresResponse struct {
 	// List of all failures.
 	Failures []*Failures `locationName:"failures" type:"list"`
 
-	// List of Regions where the failure occurred.
+	// List of Amazon Web Services Regions where the failure occurred.
 	Region *string `locationName:"region" type:"string"`
 }
 
@@ -5861,19 +5879,21 @@ func (s *GetDatalakeOutput) SetConfigurations(v map[string]*LakeConfigurationRes
 type GetDatalakeStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The account IDs for which a static snapshot of the current Region, including
-	// enabled accounts and log sources is retrieved.
+	// The Amazon Web Services account ID for which a static snapshot of the current
+	// Amazon Web Services Region, including enabled accounts and log sources, is
+	// retrieved.
 	AccountSet []*string `locationName:"accountSet" type:"list"`
 
 	// The maximum limit of accounts for which the static snapshot of the current
-	// Region including enabled accounts and log sources is retrieved.
+	// Region, including enabled accounts and log sources, is retrieved.
 	MaxAccountResults *int64 `locationName:"maxAccountResults" type:"integer"`
 
-	// If nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
-	// using the returned token to retrieve the next page. Keep all other arguments
-	// unchanged. Each pagination token expires after 24 hours. Using an expired
-	// pagination token will return an HTTP 400 InvalidToken error.
+	// Lists if there are more results available. The value of nextToken is a unique
+	// pagination token for each page. Repeat the call using the returned token
+	// to retrieve the next page. Keep all other arguments unchanged.
+	//
+	// Each pagination token expires after 24 hours. Using an expired pagination
+	// token will return an HTTP 400 InvalidToken error.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5921,11 +5941,12 @@ type GetDatalakeStatusOutput struct {
 	// AccountSourcesList is a required field
 	AccountSourcesList []*AccountSources `locationName:"accountSourcesList" type:"list" required:"true"`
 
-	// If nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
-	// using the returned token to retrieve the next page. Keep all other arguments
-	// unchanged. Each pagination token expires after 24 hours. Using an expired
-	// pagination token will return an HTTP 400 InvalidToken error.
+	// Lists if there are more results available. The value of nextToken is a unique
+	// pagination token for each page. Repeat the call using the returned token
+	// to retrieve the next page. Keep all other arguments unchanged.
+	//
+	// Each pagination token expires after 24 hours. Using an expired pagination
+	// token will return an HTTP 400 InvalidToken error.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5962,7 +5983,7 @@ func (s *GetDatalakeStatusOutput) SetNextToken(v string) *GetDatalakeStatusOutpu
 type GetSubscriberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A value created by Security Lake that uniquely identifies your GetSubscriber
+	// A value created by Amazon Security Lake that uniquely identifies your GetSubscriber
 	// API request.
 	//
 	// Id is a required field
@@ -6012,7 +6033,7 @@ func (s *GetSubscriberInput) SetId(v string) *GetSubscriberInput {
 type GetSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Subscription information for the specified subscription ID
+	// The subscription information for the specified subscription ID.
 	Subscriber *SubscriberResource `locationName:"subscriber" type:"structure"`
 }
 
@@ -6108,8 +6129,8 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request was rejected because an invalid or out-of-range value was supplied
-// for an input parameter.
+// The request was rejected because a value that's not valid or is out of range
+// was supplied for an input parameter.
 type InvalidInputException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6173,12 +6194,12 @@ func (s *InvalidInputException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides details of lake configuration object in Amazon Security Lake.
+// Provides details of Amazon Security Lake configuration object.
 type LakeConfigurationRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The type of encryption key used by Security Lake to encrypt the lake configuration
-	// object.
+	// The type of encryption key used by Amazon Security Lake to encrypt the Security
+	// Lake configuration object.
 	EncryptionKey *string `locationName:"encryptionKey" type:"string"`
 
 	// Replication enables automatic, asynchronous copying of objects across Amazon
@@ -6192,9 +6213,9 @@ type LakeConfigurationRequest struct {
 	// should contribute to the central rollup Region.
 	ReplicationDestinationRegions []*string `locationName:"replicationDestinationRegions" type:"list" enum:"Region"`
 
-	// Replication settings for the Amazon S3 buckets. This parameter uses the IAM
-	// role created by you that is managed by Security Lake, to ensure the replication
-	// setting is correct.
+	// Replication settings for the Amazon S3 buckets. This parameter uses the Identity
+	// and Access Management (IAM) role you created that is managed by Security
+	// Lake, to ensure the replication setting is correct.
 	ReplicationRoleArn *string `locationName:"replicationRoleArn" type:"string"`
 
 	// Retention settings for the destination Amazon S3 buckets.
@@ -6273,26 +6294,27 @@ func (s *LakeConfigurationRequest) SetTagsMap(v map[string]*string) *LakeConfigu
 	return s
 }
 
-// Provides details of lake configuration object in Amazon Security Lake.
+// Provides details of Amazon Security Lake lake configuration object.
 type LakeConfigurationResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The type of encryption key used by Security Lake to encrypt the lake configuration
+	// The type of encryption key used by secure the Security Lake configuration
+	// object.
 	EncryptionKey *string `locationName:"encryptionKey" type:"string"`
 
 	// Replication enables automatic, asynchronous copying of objects across Amazon
 	// S3 buckets. Amazon S3 buckets that are configured for object replication
-	// can be owned by the same AWS account or by different accounts. You can replicate
-	// objects to a single destination bucket or to multiple destination buckets.
-	// The destination buckets can be in different Amazon Web Services Regions or
-	// within the same Region as the source bucket.
+	// can be owned by the same Amazon Web Services account or by different accounts.
+	// You can replicate objects to a single destination bucket or to multiple destination
+	// buckets. The destination buckets can be in different Amazon Web Services
+	// Regions or within the same Region as the source bucket.
 	//
 	// Set up one or more rollup Regions by providing the Region or Regions that
 	// should contribute to the central rollup Region.
 	ReplicationDestinationRegions []*string `locationName:"replicationDestinationRegions" type:"list" enum:"Region"`
 
 	// Replication settings for the Amazon S3 buckets. This parameter uses the IAM
-	// role created by you that is managed by Security Lake, to ensure the replication
+	// role you created that is managed by Security Lake, to ensure the replication
 	// setting is correct.
 	ReplicationRoleArn *string `locationName:"replicationRoleArn" type:"string"`
 
@@ -6380,11 +6402,15 @@ type ListDatalakeExceptionsInput struct {
 	// List the maximum number of failures in Security Lake.
 	MaxFailures *int64 `locationName:"maxFailures" type:"integer"`
 
-	// List if there are more results available. if nextToken is returned, You can
-	// make the call again using the returned token to retrieve the next page
+	// List if there are more results available. The value of nextToken is a unique
+	// pagination token for each page. Repeat the call using the returned token
+	// to retrieve the next page. Keep all other arguments unchanged.
+	//
+	// Each pagination token expires after 24 hours. Using an expired pagination
+	// token will return an HTTP 400 InvalidToken error.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// List the regions from which exceptions are retrieved.
+	// List the Amazon Web Services Regions from which exceptions are retrieved.
 	RegionSet []*string `locationName:"regionSet" type:"list" enum:"Region"`
 }
 
@@ -6427,11 +6453,15 @@ func (s *ListDatalakeExceptionsInput) SetRegionSet(v []*string) *ListDatalakeExc
 type ListDatalakeExceptionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List if there are more results available. if nextToken is returned, You can
-	// make the call again using the returned token to retrieve the next page
+	// List if there are more results available. The value of nextToken is a unique
+	// pagination token for each page. Repeat the call using the returned token
+	// to retrieve the next page. Keep all other arguments unchanged.
+	//
+	// Each pagination token expires after 24 hours. Using an expired pagination
+	// token will return an HTTP 400 InvalidToken error.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Lists the non-retryable failures in the current region.
+	// Lists the failures that cannot be retried in the current Region.
 	//
 	// NonRetryableFailures is a required field
 	NonRetryableFailures []*FailuresResponse `locationName:"nonRetryableFailures" type:"list" required:"true"`
@@ -6474,23 +6504,24 @@ type ListLogSourcesInput struct {
 	// account.
 	InputOrder []*string `locationName:"inputOrder" type:"list" enum:"Dimension"`
 
-	// List the view of log sources for enabled Security Lake accounts in all Regions
-	// and source types.
+	// List the view of log sources for enabled Amazon Security Lake accounts for
+	// specific Amazon Web Services sources from specific accounts and specific
+	// Regions.
 	ListAllDimensions map[string]map[string][]*string `locationName:"listAllDimensions" type:"map"`
 
-	// List the view of log sources for enabled Security Lake accounts for the entire
-	// region.
+	// List the view of log sources for enabled Security Lake accounts for all Amazon
+	// Web Services sources from specific accounts or specific Regions.
 	ListSingleDimension []*string `locationName:"listSingleDimension" type:"list"`
 
-	// Lists the log sources for the specified source types in enabled Security
-	// Lake accounts for the entire Region, for selected member accounts.
+	// Lists the view of log sources for enabled Security Lake accounts for specific
+	// Amazon Web Services sources from specific accounts or specific Regions.
 	ListTwoDimensions map[string][]*string `locationName:"listTwoDimensions" type:"map"`
 
-	// The maximum number of accounts for which the configuration is displayed.
+	// The maximum number of accounts for which the log sources are displayed.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// If nextToken is returned, there are more results available. You can make
-	// the call again using the returned token to retrieve the next page.
+	// If nextToken is returned, there are more results available. You can repeat
+	// the call using the returned token to retrieve the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -6551,11 +6582,11 @@ func (s *ListLogSourcesInput) SetNextToken(v string) *ListLogSourcesInput {
 type ListLogSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If nextToken is returned, there are more results available. You can make
-	// the call again using the returned token to retrieve the next page.
+	// If nextToken is returned, there are more results available. You can repeat
+	// the call using the returned token to retrieve the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Lists the log sources in the Regions for enabled Security Lake accounts.
+	// Lists the log sources by Regions for enabled Security Lake accounts.
 	//
 	// RegionSourceTypesAccountsList is a required field
 	RegionSourceTypesAccountsList []map[string]map[string][]*string `locationName:"regionSourceTypesAccountsList" type:"list" required:"true"`
@@ -6597,8 +6628,8 @@ type ListSubscribersInput struct {
 	// The maximum number of accounts for which the configuration is displayed.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// If nextToken is returned, there are more results available. You can make
-	// the call again using the returned token to retrieve the next page.
+	// If nextToken is returned, there are more results available. You can repeat
+	// the call using the returned token to retrieve the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -6635,11 +6666,11 @@ func (s *ListSubscribersInput) SetNextToken(v string) *ListSubscribersInput {
 type ListSubscribersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If nextToken is returned, there are more results available. You can make
-	// the call again using the returned token to retrieve the next page.
+	// If nextToken is returned, there are more results available. You can repeat
+	// the call using the returned token to retrieve the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The subscribers available in the specified Security Lake account ID.
+	// The subscribers available for the specified Security Lake account ID.
 	//
 	// Subscribers is a required field
 	Subscribers []*SubscriberResource `locationName:"subscribers" type:"list" required:"true"`
@@ -6675,11 +6706,11 @@ func (s *ListSubscribersOutput) SetSubscribers(v []*SubscriberResource) *ListSub
 	return s
 }
 
-// Log status for the Security Lake account.
+// Retrieves the Logs status for the Amazon Security Lake account.
 type LogsStatus struct {
 	_ struct{} `type:"structure"`
 
-	// Health status of services including error codes and patterns.
+	// The health status of services, including error codes and patterns.
 	//
 	// HealthStatus is a required field
 	HealthStatus *string `locationName:"healthStatus" type:"string" required:"true" enum:"SourceStatus"`
@@ -6721,12 +6752,12 @@ func (s *LogsStatus) SetPathToLogs(v string) *LogsStatus {
 	return s
 }
 
-// Notifications in Security Lake which dictates how notifications are posted
-// at the endpoint.
+// Protocol used in Amazon Security Lake that dictates how notifications are
+// posted at the endpoint.
 type ProtocolAndNotificationEndpoint struct {
 	_ struct{} `type:"structure"`
 
-	// The account which is subscribed to receive exception notifications.
+	// The account that is subscribed to receive exception notifications.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
 	// The protocol to which notification messages are posted.
@@ -6837,13 +6868,14 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Retention settings for the destination Amazon S3 buckets in Security Lake.
+// Retention settings for the destination Amazon S3 buckets in Amazon Security
+// Lake.
 type RetentionSetting struct {
 	_ struct{} `type:"structure"`
 
 	// The retention period specifies a fixed period of time during which the Security
-	// Lake object remains locked. You can specify the retention period for one
-	// or more source in days.
+	// Lake object remains locked. You can specify the retention period in days
+	// for one or more sources.
 	RetentionPeriod *int64 `locationName:"retentionPeriod" min:"1" type:"integer"`
 
 	// The range of storage classes that you can choose from based on the data access,
@@ -6896,9 +6928,9 @@ func (s *RetentionSetting) SetStorageClass(v string) *RetentionSetting {
 
 // Provides an extension of the AmazonServiceException for errors reported by
 // Amazon S3 while processing a request. In particular, this class provides
-// access to Amazon S3's extended request ID. This ID is required debugging
-// information in the case the user needs to contact Amazon about an issue where
-// Amazon S3 is incorrectly handling a request.
+// access to the Amazon S3 extended request ID. If Amazon S3 is incorrectly
+// handling a request and you need to contact Amazon, this extended request
+// ID may provide useful debugging information.
 type S3Exception struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7050,17 +7082,17 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 }
 
 // The supported source types from which logs and events are collected in Amazon
-// Security Lake.
+// Security Lake. For the list of supported Amazon Web Services, see the Amazon
+// Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
 type SourceType struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Security Lake supports logs and events collection for natively-supported
-	// Amazon Web Services services. For more information, see the Amazon Security
-	// Lake User Guide.
+	// Amazon Security Lake supports log and event collection for natively supported
+	// Amazon Web Services.
 	AwsSourceType *string `locationName:"awsSourceType" type:"string" enum:"AwsLogSourceType"`
 
-	// Amazon Security Lake supports custom source types. For the detailed list,
-	// see the Amazon Security Lake User Guide.
+	// Amazon Security Lake supports custom source types. For a detailed list, see
+	// the Amazon Security Lake User Guide.
 	CustomSourceType *string `locationName:"customSourceType" type:"string"`
 }
 
@@ -7094,9 +7126,9 @@ func (s *SourceType) SetCustomSourceType(v string) *SourceType {
 	return s
 }
 
-// Provides details of the Amazon Security Lake account subscription. Subscribers
+// Provides details about the Amazon Security Lake account subscription. Subscribers
 // are notified of new objects for a source as the data is written to your Amazon
-// Security Lake S3 bucket.
+// S3 bucket for Security Lake.
 type SubscriberResource struct {
 	_ struct{} `type:"structure"`
 
@@ -7105,12 +7137,12 @@ type SubscriberResource struct {
 	// provided by the subscriber.
 	//
 	// Subscribers can consume data by directly querying Lake Formation tables in
-	// your S3 bucket via services like Amazon Athena. This subscription type is
-	// defined as LAKEFORMATION.
+	// your Amazon S3 bucket through services like Amazon Athena. This subscription
+	// type is defined as LAKEFORMATION.
 	AccessTypes []*string `locationName:"accessTypes" type:"list" enum:"AccessType"`
 
-	// The Amazon Web Services account ID of the account that you are using to create
-	// your Amazon Security Lake account.
+	// The Amazon Web Services account ID you are using to create your Amazon Security
+	// Lake account.
 	//
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -7118,24 +7150,24 @@ type SubscriberResource struct {
 	// The date and time when the subscription was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The external ID of the subscriber. External ID allows the user that is assuming
-	// the role to assert the circumstances in which they are operating. It also
-	// provides a way for the account owner to permit the role to be assumed only
-	// under specific circumstances.
+	// The external ID of the subscriber. The external ID lets the user that is
+	// assuming the role assert the circumstances in which they are operating. It
+	// also provides a way for the account owner to permit the role to be assumed
+	// only under specific circumstances.
 	ExternalId *string `locationName:"externalId" type:"string"`
 
 	// The Amazon Resource Name (ARN) specifying the role of the subscriber.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) for the Amazon S3 bucket.
+	// The ARN for the Amazon S3 bucket.
 	S3BucketArn *string `locationName:"s3BucketArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) for the Amazon Simple Notification Service.
+	// The ARN for the Amazon Simple Notification Service.
 	SnsArn *string `locationName:"snsArn" type:"string"`
 
-	// Amazon Security Lake supports logs and events collection for the natively-supported
-	// Amazon Web Services services. For more information, see the Amazon Security
-	// Lake User Guide.
+	// Amazon Security Lake supports log and event collection for natively supported
+	// Amazon Web Services. For more information, see the Amazon Security Lake User
+	// Guide.
 	//
 	// SourceTypes is a required field
 	SourceTypes []*SourceType `locationName:"sourceTypes" type:"list" required:"true"`
@@ -7158,7 +7190,7 @@ type SubscriberResource struct {
 	// The subscription protocol to which exception messages are posted.
 	SubscriptionProtocol *string `locationName:"subscriptionProtocol" type:"string" enum:"EndpointProtocol"`
 
-	// Subscription status of the Amazon Security Lake subscriber account.
+	// The subscription status of the Amazon Security Lake subscriber account.
 	SubscriptionStatus *string `locationName:"subscriptionStatus" type:"string" enum:"SubscriptionStatus"`
 
 	// The date and time when the subscription was created.
@@ -7421,7 +7453,7 @@ func (s UpdateDatalakeExceptionsExpiryOutput) GoString() string {
 type UpdateDatalakeExceptionsSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The account which is subscribed to receive exception notifications.
+	// The account that is subscribed to receive exception notifications.
 	//
 	// NotificationEndpoint is a required field
 	NotificationEndpoint *string `locationName:"notificationEndpoint" type:"string" required:"true"`
@@ -7503,7 +7535,7 @@ func (s UpdateDatalakeExceptionsSubscriptionOutput) GoString() string {
 type UpdateDatalakeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration object
+	// Specify the Region or Regions that will contribute data to the rollup region.
 	//
 	// Configurations is a required field
 	Configurations map[string]*LakeConfigurationRequest `locationName:"configurations" type:"map" required:"true"`
@@ -7581,25 +7613,25 @@ func (s UpdateDatalakeOutput) GoString() string {
 type UpdateSubscriberInput struct {
 	_ struct{} `type:"structure"`
 
-	// External ID of the Security Lake account.
+	// The external ID of the Security Lake account.
 	ExternalId *string `locationName:"externalId" type:"string"`
 
-	// A value created by Security Lake that uniquely identifies your UpdateSubscriber
-	// API request.
+	// A value created by Security Lake that uniquely identifies your subscription.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 
-	// The supported Amazon Web Services services from which logs and events are
-	// collected. Amazon Security Lake supports logs and events collection for the
-	// following natively-supported Amazon Web Services services. For more information,
-	// see the Amazon Security Lake User Guide.
-	SourceTypes []*SourceType `locationName:"sourceTypes" type:"list"`
+	// The supported Amazon Web Services from which logs and events are collected.
+	// For the list of supported Amazon Web Services, see the Amazon Security Lake
+	// User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html).
+	//
+	// SourceTypes is a required field
+	SourceTypes []*SourceType `locationName:"sourceTypes" type:"list" required:"true"`
 
-	// Description of the Security Lake account subscriber.
+	// The description of the Security Lake account subscriber.
 	SubscriberDescription *string `locationName:"subscriberDescription" type:"string"`
 
-	// Name of the Security Lake account subscriber.
+	// The name of the Security Lake account subscriber.
 	SubscriberName *string `locationName:"subscriberName" type:"string"`
 }
 
@@ -7629,6 +7661,9 @@ func (s *UpdateSubscriberInput) Validate() error {
 	}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.SourceTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceTypes"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7670,7 +7705,7 @@ func (s *UpdateSubscriberInput) SetSubscriberName(v string) *UpdateSubscriberInp
 type UpdateSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The account subscriber in Amazon Security Lake.
+	// The account of the subscriber.
 	Subscriber *SubscriberResource `locationName:"subscriber" type:"structure"`
 }
 
@@ -7702,7 +7737,7 @@ type UpdateSubscriptionNotificationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Create a new subscription notification for the specified subscription ID
-	// in Security Lake.
+	// in Amazon Security Lake.
 	CreateSqs *bool `locationName:"createSqs" type:"boolean"`
 
 	// The key name for the subscription notification.
@@ -7805,7 +7840,7 @@ func (s *UpdateSubscriptionNotificationConfigurationInput) SetSubscriptionId(v s
 type UpdateSubscriptionNotificationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the Amazon resource name (ARN) of the queue.
+	// Returns the ARN of the queue.
 	QueueArn *string `locationName:"queueArn" type:"string"`
 }
 
@@ -7905,7 +7940,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The input fails to meet the constraints specified in Amazon Security Lake
+// The input fails to meet the constraints specified in Amazon Security Lake.
 type ValidationExceptionField struct {
 	_ struct{} `type:"structure"`
 
