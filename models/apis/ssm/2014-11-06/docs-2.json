@@ -2621,6 +2621,7 @@
         "DocumentDefaultVersionDescription$DefaultVersionName": "<p>The default version of the artifact associated with the document.</p>",
         "DocumentDescription$VersionName": "<p>The version of the artifact associated with the document.</p>",
         "DocumentIdentifier$VersionName": "<p>An optional field specifying the version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and can't be changed.</p>",
+        "DocumentRequires$VersionName": "<p>An optional field specifying the version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and can't be changed.</p>",
         "DocumentVersionInfo$VersionName": "<p>The version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and can't be changed.</p>",
         "GetDocumentRequest$VersionName": "<p>An optional field specifying the version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document and can't be changed.</p>",
         "GetDocumentResult$VersionName": "<p>The version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and can't be changed.</p>",
@@ -6743,6 +6744,12 @@
     "RemoveTagsFromResourceResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "RequireType": {
+      "base": null,
+      "refs": {
+        "DocumentRequires$RequireType": "<p>The document type of the required SSM document.</p>"
       }
     },
     "ResetServiceSettingRequest": {

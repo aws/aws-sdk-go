@@ -1,3 +1,13 @@
+Release v1.44.173 (2023-01-04)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/logs`: Updates service documentation
+  * Update to remove sequenceToken as a required field in PutLogEvents calls.
+* `service/ssm`: Updates service API and documentation
+  * Adding support for QuickSetup Document Type in Systems Manager
+
 Release v1.44.172 (2023-01-03)
 ===
 

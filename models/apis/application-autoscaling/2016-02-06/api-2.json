@@ -299,7 +299,8 @@
         "ResourceId":{"shape":"ResourceIdMaxLen1600"},
         "ScalableDimension":{"shape":"ScalableDimension"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"XmlString"}
+        "NextToken":{"shape":"XmlString"},
+        "IncludeNotScaledActivities":{"shape":"IncludeNotScaledActivities"}
       }
     },
     "DescribeScalingActivitiesResponse":{
@@ -356,6 +357,7 @@
       },
       "exception":true
     },
+    "IncludeNotScaledActivities":{"type":"boolean"},
     "InternalServiceException":{
       "type":"structure",
       "members":{
@@ -444,6 +446,20 @@
     },
     "MetricUnit":{"type":"string"},
     "MinAdjustmentMagnitude":{"type":"integer"},
+    "NotScaledReason":{
+      "type":"structure",
+      "required":["Code"],
+      "members":{
+        "Code":{"shape":"XmlString"},
+        "MaxCapacity":{"shape":"ResourceCapacity"},
+        "MinCapacity":{"shape":"ResourceCapacity"},
+        "CurrentCapacity":{"shape":"ResourceCapacity"}
+      }
+    },
+    "NotScaledReasons":{
+      "type":"list",
+      "member":{"shape":"NotScaledReason"}
+    },
     "ObjectNotFoundException":{
       "type":"structure",
       "members":{
@@ -651,7 +667,8 @@
         "EndTime":{"shape":"TimestampType"},
         "StatusCode":{"shape":"ScalingActivityStatusCode"},
         "StatusMessage":{"shape":"XmlString"},
-        "Details":{"shape":"XmlString"}
+        "Details":{"shape":"XmlString"},
+        "NotScaledReasons":{"shape":"NotScaledReasons"}
       }
     },
     "ScalingActivityStatusCode":{

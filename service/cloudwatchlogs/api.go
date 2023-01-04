@@ -3669,11 +3669,6 @@ func (c *CloudWatchLogs) PutDestinationPolicyRequest(input *PutDestinationPolicy
 // that is used to authorize claims to register a subscription filter against
 // a given destination.
 //
-// If multiple Amazon Web Services accounts are sending logs to this destination,
-// each sender account must be listed separately in the policy. The policy does
-// not support specifying * as the Principal or the use of the aws:PrincipalOrgId
-// global key.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3759,12 +3754,10 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //
 // Uploads a batch of log events to the specified log stream.
 //
-// You must include the sequence token obtained from the response of the previous
-// call. An upload in a newly created log stream does not require a sequence
-// token. You can also get the sequence token in the expectedSequenceToken field
-// from InvalidSequenceTokenException. If you call PutLogEvents twice within
-// a narrow time period using the same value for sequenceToken, both calls might
-// be successful or one might be rejected.
+// The sequence token is now ignored in PutLogEvents actions. PutLogEvents actions
+// are always accepted and never return InvalidSequenceTokenException or DataAlreadyAcceptedException
+// even if the sequence token is not valid. You can use parallel PutLogEvents
+// actions on the same log stream.
 //
 // The batch of events must satisfy the following constraints:
 //
@@ -3790,8 +3783,10 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //
 //   - The maximum number of log events in a batch is 10,000.
 //
-//   - There is a quota of five requests per second per log stream. Additional
-//     requests are throttled. This quota can't be changed.
+//   - The quota of five requests per second per log stream has been removed.
+//     Instead, PutLogEvents actions are throttled based on a per-second per-account
+//     quota. You can request an increase to the per-second throttling quota
+//     by using the Service Quotas service.
 //
 // If a call to PutLogEvents returns "UnrecognizedClientException" the most
 // likely cause is a non-valid Amazon Web Services access key ID or secret key.
@@ -3812,8 +3807,14 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //     The sequence token is not valid. You can get the correct sequence token in
 //     the expectedSequenceToken field in the InvalidSequenceTokenException message.
 //
+//     PutLogEvents actions are now always accepted and never return InvalidSequenceTokenException
+//     regardless of receiving an invalid sequence token.
+//
 //   - DataAlreadyAcceptedException
 //     The event was already logged.
+//
+//     PutLogEvents actions are now always accepted and never return DataAlreadyAcceptedException
+//     regardless of whether a given batch of log events has already been accepted.
 //
 //   - ResourceNotFoundException
 //     The specified resource does not exist.
@@ -5567,6 +5568,9 @@ func (s CreateLogStreamOutput) GoString() string {
 }
 
 // The event was already logged.
+//
+// PutLogEvents actions are now always accepted and never return DataAlreadyAcceptedException
+// regardless of whether a given batch of log events has already been accepted.
 type DataAlreadyAcceptedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8977,6 +8981,9 @@ func (s *InvalidParameterException) RequestID() string {
 
 // The sequence token is not valid. You can get the correct sequence token in
 // the expectedSequenceToken field in the InvalidSequenceTokenException message.
+//
+// PutLogEvents actions are now always accepted and never return InvalidSequenceTokenException
+// regardless of receiving an invalid sequence token.
 type InvalidSequenceTokenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9444,7 +9451,9 @@ type LogStream struct {
 	LastEventTimestamp *int64 `locationName:"lastEventTimestamp" type:"long"`
 
 	// The ingestion time, expressed as the number of milliseconds after Jan 1,
-	// 1970 00:00:00 UTC.
+	// 1970 00:00:00 UTC The lastIngestionTime value updates on an eventual consistency
+	// basis. It typically updates in less than an hour after ingestion, but in
+	// rare situations might take longer.
 	LastIngestionTime *int64 `locationName:"lastIngestionTime" type:"long"`
 
 	// The name of the log stream.
@@ -9460,6 +9469,10 @@ type LogStream struct {
 	StoredBytes *int64 `locationName:"storedBytes" deprecated:"true" type:"long"`
 
 	// The sequence token.
+	//
+	// The sequence token is now ignored in PutLogEvents actions. PutLogEvents actions
+	// are always accepted regardless of receiving an invalid sequence token. You
+	// don't need to obtain uploadSequenceToken to use a PutLogEvents action.
 	UploadSequenceToken *string `locationName:"uploadSequenceToken" min:"1" type:"string"`
 }
 
@@ -10353,10 +10366,11 @@ type PutLogEventsInput struct {
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 
 	// The sequence token obtained from the response of the previous PutLogEvents
-	// call. An upload in a newly created log stream does not require a sequence
-	// token. You can also get the sequence token using DescribeLogStreams (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogStreams.html).
-	// If you call PutLogEvents twice within a narrow time period using the same
-	// value for sequenceToken, both calls might be successful or one might be rejected.
+	// call.
+	//
+	// The sequenceToken parameter is now ignored in PutLogEvents actions. PutLogEvents
+	// actions are now accepted and never return InvalidSequenceTokenException or
+	// DataAlreadyAcceptedException even if the sequence token is not valid.
 	SequenceToken *string `locationName:"sequenceToken" min:"1" type:"string"`
 }
 
@@ -10447,6 +10461,14 @@ type PutLogEventsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The next sequence token.
+	//
+	// This field has been deprecated.
+	//
+	// The sequence token is now ignored in PutLogEvents actions. PutLogEvents actions
+	// are always accepted even if the sequence token is not valid. You can use
+	// parallel PutLogEvents actions on the same log stream and you do not need
+	// to wait for the response of a previous PutLogEvents action to obtain the
+	// nextSequenceToken value.
 	NextSequenceToken *string `locationName:"nextSequenceToken" min:"1" type:"string"`
 
 	// The rejected events.
