@@ -4807,7 +4807,9 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"DocumentARN"},
-        "Version":{"shape":"DocumentVersion"}
+        "Version":{"shape":"DocumentVersion"},
+        "RequireType":{"shape":"RequireType"},
+        "VersionName":{"shape":"DocumentVersionName"}
       }
     },
     "DocumentRequiresList":{
@@ -4901,7 +4903,8 @@
         "ProblemAnalysis",
         "ProblemAnalysisTemplate",
         "CloudFormation",
-        "ConformancePackTemplate"
+        "ConformancePackTemplate",
+        "QuickSetup"
       ]
     },
     "DocumentVersion":{
@@ -9218,6 +9221,11 @@
       "members":{
       }
     },
+    "RequireType":{
+      "type":"string",
+      "max":128,
+      "pattern":"^[a-zA-Z0-9_\\-.]{1,128}$"
+    },
     "ResetServiceSettingRequest":{
       "type":"structure",
       "required":["SettingId"],
@@ -10199,7 +10207,7 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":1,
+      "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "Target":{

@@ -519,6 +519,9 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *Describ
 //
 // You can filter the results using ResourceId and ScalableDimension.
 //
+// For information about viewing scaling activities using the Amazon Web Services
+// CLI, see Scaling activities for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scaling-activities.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1234,16 +1237,22 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 
 // RegisterScalableTarget API operation for Application Auto Scaling.
 //
-// Registers or updates a scalable target.
+// Registers or updates a scalable target, the resource that you want to scale.
 //
-// A scalable target is a resource that Application Auto Scaling can scale out
-// and scale in. Scalable targets are uniquely identified by the combination
-// of resource ID, scalable dimension, and namespace.
+// Scalable targets are uniquely identified by the combination of resource ID,
+// scalable dimension, and namespace, which represents some capacity dimension
+// of the underlying service.
 //
-// When you register a new scalable target, you must specify values for minimum
-// and maximum capacity. Current capacity will be adjusted within the specified
-// range when scaling starts. Application Auto Scaling scaling policies will
-// not scale capacity to values that are outside of this range.
+// When you register a new scalable target, you must specify values for the
+// minimum and maximum capacity. If the specified resource is not active in
+// the target service, this operation does not change the resource's current
+// capacity. Otherwise, it changes the resource's current capacity to a value
+// that is inside of this range.
+//
+// If you choose to add a scaling policy, current capacity is adjustable within
+// the specified range when scaling starts. Application Auto Scaling scaling
+// policies will not scale capacity to values that are outside of the minimum
+// and maximum range.
 //
 // After you register a scalable target, you do not need to register it again
 // to use other Application Auto Scaling operations. To see which resources
@@ -1425,7 +1434,7 @@ func (s *ConcurrentUpdateException) RequestID() string {
 // policy to use with Application Auto Scaling.
 //
 // For information about the available metrics for a service, see Amazon Web
-// Services Services That Publish CloudWatch Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+// Services services that publish CloudWatch metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
 // in the Amazon CloudWatch User Guide.
 //
 // To create your customized metric specification:
@@ -1433,7 +1442,7 @@ func (s *ConcurrentUpdateException) RequestID() string {
 //   - Add values for each required parameter from CloudWatch. You can use
 //     an existing metric, or a new metric that you create. To use your own metric,
 //     you must first publish the metric to CloudWatch. For more information,
-//     see Publish Custom Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
+//     see Publish custom metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
 //     in the Amazon CloudWatch User Guide.
 //
 //   - Choose a metric that changes proportionally with capacity. The value
@@ -1441,7 +1450,16 @@ func (s *ConcurrentUpdateException) RequestID() string {
 //     number of capacity units. That is, the value of the metric should decrease
 //     when capacity increases, and increase when capacity decreases.
 //
-// For more information about CloudWatch, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
+// For an example of how creating new metrics can be useful, see Scaling based
+// on Amazon SQS (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html)
+// in the Amazon EC2 Auto Scaling User Guide. This topic mentions Auto Scaling
+// groups, but the same scenario for Amazon SQS can apply to the target tracking
+// scaling policies that you create for a Spot Fleet by using the Application
+// Auto Scaling API.
+//
+// For more information about the CloudWatch terminology below, see Amazon CloudWatch
+// concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
+// in the Amazon CloudWatch User Guide.
 type CustomizedMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -1451,7 +1469,9 @@ type CustomizedMetricSpecification struct {
 	// the same dimensions in your scaling policy.
 	Dimensions []*MetricDimension `type:"list"`
 
-	// The name of the metric.
+	// The name of the metric. To get the exact metric name, namespace, and dimensions,
+	// inspect the Metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html)
+	// object that is returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
 	//
 	// MetricName is a required field
 	MetricName *string `type:"string" required:"true"`
@@ -1466,7 +1486,9 @@ type CustomizedMetricSpecification struct {
 	// Statistic is a required field
 	Statistic *string `type:"string" required:"true" enum:"MetricStatistic"`
 
-	// The unit of the metric.
+	// The unit of the metric. For a complete list of the units that CloudWatch
+	// supports, see the MetricDatum (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+	// data type in the Amazon CloudWatch API Reference.
 	Unit *string `type:"string"`
 }
 
@@ -1644,7 +1666,7 @@ type DeleteScalingPolicyInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -1872,7 +1894,7 @@ type DeleteScheduledActionInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2105,7 +2127,7 @@ type DeregisterScalableTargetInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2332,7 +2354,7 @@ type DescribeScalableTargetsInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2479,6 +2501,13 @@ func (s *DescribeScalableTargetsOutput) SetScalableTargets(v []*ScalableTarget) 
 type DescribeScalingActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether to include activities that aren't scaled (not scaled activities)
+	// in the response. Not scaled activities are activities that aren't completed
+	// or started for various reasons, such as preventing infinite scaling loops.
+	// For help interpreting the not scaled reason details in the response, see
+	// Scaling activities for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scaling-activities.html).
+	IncludeNotScaledActivities *bool `type:"boolean"`
+
 	// The maximum number of scalable targets. This value can be between 1 and 50.
 	// The default value is 50.
 	//
@@ -2579,7 +2608,7 @@ type DescribeScalingActivitiesInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2653,6 +2682,12 @@ func (s *DescribeScalingActivitiesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIncludeNotScaledActivities sets the IncludeNotScaledActivities field's value.
+func (s *DescribeScalingActivitiesInput) SetIncludeNotScaledActivities(v bool) *DescribeScalingActivitiesInput {
+	s.IncludeNotScaledActivities = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -2832,7 +2867,7 @@ type DescribeScalingPoliciesInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -3088,7 +3123,7 @@ type DescribeScheduledActionsInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -3567,6 +3602,81 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 	return s
 }
 
+// Describes the reason for an activity that isn't scaled (not scaled activity),
+// in machine-readable format. For help interpreting the not scaled reason details,
+// see Scaling activities for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scaling-activities.html).
+type NotScaledReason struct {
+	_ struct{} `type:"structure"`
+
+	// A code that represents the reason for not scaling.
+	//
+	// Valid values:
+	//
+	//    * AutoScalingAnticipatedFlapping
+	//
+	//    * TargetServicePutResourceAsUnscalable
+	//
+	//    * AlreadyAtMaxCapacity
+	//
+	//    * AlreadyAtMinCapacity
+	//
+	//    * AlreadyAtDesiredCapacity
+	//
+	// Code is a required field
+	Code *string `type:"string" required:"true"`
+
+	// The current capacity.
+	CurrentCapacity *int64 `type:"integer"`
+
+	// The maximum capacity.
+	MaxCapacity *int64 `type:"integer"`
+
+	// The minimum capacity.
+	MinCapacity *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotScaledReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotScaledReason) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *NotScaledReason) SetCode(v string) *NotScaledReason {
+	s.Code = &v
+	return s
+}
+
+// SetCurrentCapacity sets the CurrentCapacity field's value.
+func (s *NotScaledReason) SetCurrentCapacity(v int64) *NotScaledReason {
+	s.CurrentCapacity = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *NotScaledReason) SetMaxCapacity(v int64) *NotScaledReason {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetMinCapacity sets the MinCapacity field's value.
+func (s *NotScaledReason) SetMinCapacity(v int64) *NotScaledReason {
+	s.MinCapacity = &v
+	return s
+}
+
 // The specified object could not be found. For any operation that depends on
 // the existence of a scalable target, this exception is thrown if the scalable
 // target with the specified service namespace, resource ID, and scalable dimension
@@ -3647,14 +3757,14 @@ type PredefinedMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The metric type. The ALBRequestCountPerTarget metric type applies only to
-	// Spot Fleet requests and ECS services.
+	// Spot Fleets and ECS services.
 	//
 	// PredefinedMetricType is a required field
 	PredefinedMetricType *string `type:"string" required:"true" enum:"MetricType"`
 
 	// Identifies the resource associated with the metric type. You can't specify
 	// a resource label unless the metric type is ALBRequestCountPerTarget and there
-	// is a target group attached to the Spot Fleet request or ECS service.
+	// is a target group attached to the Spot Fleet or ECS service.
 	//
 	// You create the resource label by appending the final portion of the load
 	// balancer ARN and the final portion of the target group ARN into a single
@@ -3730,11 +3840,15 @@ type PutScalingPolicyInput struct {
 
 	// The name of the scaling policy.
 	//
+	// You cannot change the name of a scaling policy, but you can delete the original
+	// scaling policy and create a new scaling policy with the same settings and
+	// a different name.
+	//
 	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	// The policy type. This parameter is required if you are creating a scaling
-	// policy.
+	// The scaling policy type. This parameter is required if you are creating a
+	// scaling policy.
 	//
 	// The following policy types are supported:
 	//
@@ -3837,7 +3951,7 @@ type PutScalingPolicyInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4129,7 +4243,7 @@ type PutScheduledActionInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4364,7 +4478,7 @@ type RegisterScalableTargetInput struct {
 	// maximum capacity of the resource. If you want to specify a higher limit,
 	// you can request an increase. For more information, consult the documentation
 	// for that service. For information about the default quotas for each service,
-	// see Service Endpoints and Quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
+	// see Service endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
 	// in the Amazon Web Services General Reference.
 	MaxCapacity *int64 `type:"integer"`
 
@@ -4373,10 +4487,32 @@ type RegisterScalableTargetInput struct {
 	// the minimum capacity limit in response to changing demand. This property
 	// is required when registering a new scalable target.
 	//
-	// For certain resources, the minimum value allowed is 0. This includes Lambda
-	// provisioned concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR
-	// clusters, and custom resources. For all other resources, the minimum value
-	// allowed is 1.
+	// For the following resources, the minimum value allowed is 0.
+	//
+	//    * AppStream 2.0 fleets
+	//
+	//    * Aurora DB clusters
+	//
+	//    * ECS services
+	//
+	//    * EMR clusters
+	//
+	//    * Lambda provisioned concurrency
+	//
+	//    * SageMaker endpoint variants
+	//
+	//    * Spot Fleets
+	//
+	//    * custom resources
+	//
+	// It's strongly recommended that you specify a value greater than 0. A value
+	// greater than 0 means that data points are continuously reported to CloudWatch
+	// that scaling policies can use to scale on a metric like average CPU utilization.
+	//
+	// For all other resources, the minimum allowed value depends on the type of
+	// resource that you are using. If you provide a value that is lower than what
+	// a resource can accept, an error occurs. In which case, the error message
+	// will provide the minimum value that the resource can accept.
 	MinCapacity *int64 `type:"integer"`
 
 	// The identifier of the resource that is associated with the scalable target.
@@ -4477,7 +4613,7 @@ type RegisterScalableTargetInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4762,7 +4898,7 @@ type ScalableTarget struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4886,16 +5022,15 @@ type ScalableTargetAction struct {
 	// maximum capacity of the resource. If you want to specify a higher limit,
 	// you can request an increase. For more information, consult the documentation
 	// for that service. For information about the default quotas for each service,
-	// see Service Endpoints and Quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
+	// see Service endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
 	// in the Amazon Web Services General Reference.
 	MaxCapacity *int64 `type:"integer"`
 
 	// The minimum capacity.
 	//
-	// For certain resources, the minimum value allowed is 0. This includes Lambda
-	// provisioned concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR
-	// clusters, and custom resources. For all other resources, the minimum value
-	// allowed is 1.
+	// When the scheduled action runs, the resource will have at least this much
+	// capacity, but it might have more depending on other settings, such as the
+	// target utilization level of a target tracking scaling policy.
 	MinCapacity *int64 `type:"integer"`
 }
 
@@ -4953,6 +5088,11 @@ type ScalingActivity struct {
 
 	// The Unix timestamp for when the scaling activity ended.
 	EndTime *time.Time `type:"timestamp"`
+
+	// Machine-readable data that describes the reason for a not scaled activity.
+	// Only available when DescribeScalingActivities (https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DescribeScalingActivities.html)
+	// includes not scaled activities.
+	NotScaledReasons []*NotScaledReason `type:"list"`
 
 	// The identifier of the resource associated with the scaling activity. This
 	// string consists of the resource type and unique identifier.
@@ -5043,7 +5183,7 @@ type ScalingActivity struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -5147,6 +5287,12 @@ func (s *ScalingActivity) SetEndTime(v time.Time) *ScalingActivity {
 	return s
 }
 
+// SetNotScaledReasons sets the NotScaledReasons field's value.
+func (s *ScalingActivity) SetNotScaledReasons(v []*NotScaledReason) *ScalingActivity {
+	s.NotScaledReasons = v
+	return s
+}
+
 // SetResourceId sets the ResourceId field's value.
 func (s *ScalingActivity) SetResourceId(v string) *ScalingActivity {
 	s.ResourceId = &v
@@ -5186,7 +5332,8 @@ func (s *ScalingActivity) SetStatusMessage(v string) *ScalingActivity {
 // Represents a scaling policy to use with Application Auto Scaling.
 //
 // For more information about configuring scaling policies for a specific service,
-// see Getting started with Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/getting-started.html)
+// see Amazon Web Services services that you can use with Application Auto Scaling
+// (https://docs.aws.amazon.com/autoscaling/application/userguide/integrated-services-list.html)
 // in the Application Auto Scaling User Guide.
 type ScalingPolicy struct {
 	_ struct{} `type:"structure"`
@@ -5210,6 +5357,13 @@ type ScalingPolicy struct {
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The scaling policy type.
+	//
+	// The following policy types are supported:
+	//
+	// TargetTrackingScaling—Not supported for Amazon EMR
+	//
+	// StepScaling—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon
+	// Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune.
 	//
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"PolicyType"`
@@ -5303,7 +5457,7 @@ type ScalingPolicy struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -5531,7 +5685,7 @@ type ScheduledAction struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an SageMaker model endpoint variant.
+	//    for a SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -6142,6 +6296,10 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	// number based on the choice of metric. For example, if the metric is CPU utilization,
 	// then the target value is a percent value that represents how much of the
 	// CPU can be used before scaling out.
+	//
+	// If the scaling policy specifies the ALBRequestCountPerTarget predefined metric,
+	// specify the target utilization as the optimal average request count per target
+	// during any one-minute interval.
 	//
 	// TargetValue is a required field
 	TargetValue *float64 `type:"double" required:"true"`
