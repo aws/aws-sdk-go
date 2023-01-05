@@ -1376,7 +1376,7 @@ func (c *AmplifyBackend) GetBackendAPIModelsRequest(input *GetBackendAPIModelsIn
 
 // GetBackendAPIModels API operation for AmplifyBackend.
 //
-// Generates a model schema for existing backend API resource.
+// Gets a model introspection schema for an existing backend API resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6170,11 +6170,18 @@ func (s *GetBackendAPIModelsInput) SetResourceName(v string) *GetBackendAPIModel
 	return s
 }
 
+// The response object for this operation.
 type GetBackendAPIModelsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Stringified JSON of the model introspection schema for an existing backend
+	// API resource.
+	ModelIntrospectionSchema *string `locationName:"modelIntrospectionSchema" type:"string"`
+
+	// Stringified JSON of the datastore model.
 	Models *string `locationName:"models" type:"string"`
 
+	// The current status of the request.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
 }
 
@@ -6194,6 +6201,12 @@ func (s GetBackendAPIModelsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetBackendAPIModelsOutput) GoString() string {
 	return s.String()
+}
+
+// SetModelIntrospectionSchema sets the ModelIntrospectionSchema field's value.
+func (s *GetBackendAPIModelsOutput) SetModelIntrospectionSchema(v string) *GetBackendAPIModelsOutput {
+	s.ModelIntrospectionSchema = &v
+	return s
 }
 
 // SetModels sets the Models field's value.

@@ -50070,6 +50070,12 @@ const (
 
 	// ContactInitiationMethodApi is a ContactInitiationMethod enum value
 	ContactInitiationMethodApi = "API"
+
+	// ContactInitiationMethodDisconnect is a ContactInitiationMethod enum value
+	ContactInitiationMethodDisconnect = "DISCONNECT"
+
+	// ContactInitiationMethodMonitor is a ContactInitiationMethod enum value
+	ContactInitiationMethodMonitor = "MONITOR"
 )
 
 // ContactInitiationMethod_Values returns all elements of the ContactInitiationMethod enum
@@ -50081,6 +50087,8 @@ func ContactInitiationMethod_Values() []string {
 		ContactInitiationMethodQueueTransfer,
 		ContactInitiationMethodCallback,
 		ContactInitiationMethodApi,
+		ContactInitiationMethodDisconnect,
+		ContactInitiationMethodMonitor,
 	}
 }
 

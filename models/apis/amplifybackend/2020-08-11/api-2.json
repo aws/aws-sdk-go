@@ -2131,19 +2131,6 @@
         }
       }
     },
-    "GetBackendAPICodegenRespObj" : {
-      "type" : "structure",
-      "members" : {
-        "Models" : {
-          "shape" : "__string",
-          "locationName" : "models"
-        },
-        "Status" : {
-          "shape" : "Status",
-          "locationName" : "status"
-        }
-      }
-    },
     "GetBackendAPIModelsRequest" : {
       "type" : "structure",
       "members" : {
@@ -2174,6 +2161,10 @@
         "Status" : {
           "shape" : "Status",
           "locationName" : "status"
+        },
+        "ModelIntrospectionSchema" : {
+          "shape" : "__string",
+          "locationName" : "modelIntrospectionSchema"
         }
       }
     },

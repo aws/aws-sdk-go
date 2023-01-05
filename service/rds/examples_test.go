@@ -551,6 +551,8 @@ func ExampleRDS_CreateDBInstance_shared00() {
 				fmt.Println(rds.ErrCodeBackupPolicyNotFoundFault, aerr.Error())
 			case rds.ErrCodeNetworkTypeNotSupported:
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
+			case rds.ErrCodeCertificateNotFoundFault:
+				fmt.Println(rds.ErrCodeCertificateNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

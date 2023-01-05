@@ -319,6 +319,34 @@
         "StartJobRunRequest$executionRoleArn": "<p>The execution role ARN for the job run.</p>"
       }
     },
+    "ImageConfiguration": {
+      "base": "<p>The applied image configuration.</p>",
+      "refs": {
+        "Application$imageConfiguration": "<p>The image configuration applied to all worker types.</p>",
+        "WorkerTypeSpecification$imageConfiguration": "<p>The image configuration for a worker type.</p>"
+      }
+    },
+    "ImageConfigurationInput": {
+      "base": "<p>The image configuration.</p>",
+      "refs": {
+        "CreateApplicationRequest$imageConfiguration": "<p>The image configuration for all worker types. You can either set this parameter or <code>imageConfiguration</code> for each worker type in <code>workerTypeSpecifications</code>.</p>",
+        "UpdateApplicationRequest$imageConfiguration": "<p>The image configuration to be used for all worker types. You can either set this parameter or <code>imageConfiguration</code> for each worker type in <code>WorkerTypeSpecificationInput</code>.</p>",
+        "WorkerTypeSpecificationInput$imageConfiguration": "<p>The image configuration for a worker type.</p>"
+      }
+    },
+    "ImageDigest": {
+      "base": "<p>Image Digest</p>",
+      "refs": {
+        "ImageConfiguration$resolvedImageDigest": "<p>The SHA256 digest of the image URI. This indicates which specific image the application is configured for. The image digest doesn't exist until an application has started.</p>"
+      }
+    },
+    "ImageUri": {
+      "base": "<p>Image URI</p>",
+      "refs": {
+        "ImageConfiguration$imageUri": "<p>The image URI.</p>",
+        "ImageConfigurationInput$imageUri": "<p>The URI of an image in the Amazon ECR registry. This field is required when you create a new application. If you leave this field blank in an update, Amazon EMR will remove the image configuration.</p>"
+      }
+    },
     "InitScriptPath": {
       "base": null,
       "refs": {
@@ -511,11 +539,11 @@
     "ReleaseLabel": {
       "base": null,
       "refs": {
-        "Application$releaseLabel": "<p>The EMR release version associated with the application.</p>",
-        "ApplicationSummary$releaseLabel": "<p>The EMR release version associated with the application.</p>",
-        "CreateApplicationRequest$releaseLabel": "<p>The EMR release version associated with the application.</p>",
-        "JobRun$releaseLabel": "<p>The EMR release version associated with the application your job is running on.</p>",
-        "JobRunSummary$releaseLabel": "<p>The EMR release version associated with the application your job is running on.</p>"
+        "Application$releaseLabel": "<p>The EMR release associated with the application.</p>",
+        "ApplicationSummary$releaseLabel": "<p>The EMR release associated with the application.</p>",
+        "CreateApplicationRequest$releaseLabel": "<p>The EMR release associated with the application.</p>",
+        "JobRun$releaseLabel": "<p>The EMR release associated with the application your job is running on.</p>",
+        "JobRunSummary$releaseLabel": "<p>The EMR release associated with the application your job is running on.</p>"
       }
     },
     "RequestIdentityUserArn": {
@@ -741,10 +769,37 @@
         "InitialCapacityConfig$workerConfiguration": "<p>The resource configuration of the initial capacity configuration.</p>"
       }
     },
+    "WorkerTypeSpecification": {
+      "base": "<p>The specifications for a worker type.</p>",
+      "refs": {
+        "WorkerTypeSpecificationMap$value": null
+      }
+    },
+    "WorkerTypeSpecificationInput": {
+      "base": "<p>The specifications for a worker type.</p>",
+      "refs": {
+        "WorkerTypeSpecificationInputMap$value": null
+      }
+    },
+    "WorkerTypeSpecificationInputMap": {
+      "base": null,
+      "refs": {
+        "CreateApplicationRequest$workerTypeSpecifications": "<p>The key-value pairs that specify worker type to <code>WorkerTypeSpecificationInput</code>. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include <code>Driver</code> and <code>Executor</code> for Spark applications and <code>HiveDriver</code> and <code>TezTask</code> for Hive applications. You can either set image details in this parameter for each worker type, or in <code>imageConfiguration</code> for all worker types.</p>",
+        "UpdateApplicationRequest$workerTypeSpecifications": "<p>The key-value pairs that specify worker type to <code>WorkerTypeSpecificationInput</code>. This parameter must contain all valid worker types for a Spark or Hive application. Valid worker types include <code>Driver</code> and <code>Executor</code> for Spark applications and <code>HiveDriver</code> and <code>TezTask</code> for Hive applications. You can either set image details in this parameter for each worker type, or in <code>imageConfiguration</code> for all worker types.</p>"
+      }
+    },
+    "WorkerTypeSpecificationMap": {
+      "base": null,
+      "refs": {
+        "Application$workerTypeSpecifications": "<p>The specification applied to each worker type.</p>"
+      }
+    },
     "WorkerTypeString": {
       "base": null,
       "refs": {
-        "InitialCapacityConfigMap$key": null
+        "InitialCapacityConfigMap$key": null,
+        "WorkerTypeSpecificationInputMap$key": null,
+        "WorkerTypeSpecificationMap$key": null
       }
     }
   }

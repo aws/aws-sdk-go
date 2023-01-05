@@ -1,3 +1,17 @@
+Release v1.44.174 (2023-01-05)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service API and documentation
+* `service/apprunner`: Updates service API and documentation
+* `service/connect`: Updates service API
+* `service/emr-serverless`: Updates service API and documentation
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Amazon Lightsail.
+* `service/mwaa`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for specifying which certificate authority (CA) to use for a DB instance's server certificate during DB instance creation, as well as other CA enhancements.
+
 Release v1.44.173 (2023-01-04)
 ===
 
