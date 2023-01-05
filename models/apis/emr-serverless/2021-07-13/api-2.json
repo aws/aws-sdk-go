@@ -39,6 +39,7 @@
       "output":{"shape":"CreateApplicationResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ConflictException"}
       ],
@@ -273,7 +274,9 @@
         "autoStartConfiguration":{"shape":"AutoStartConfig"},
         "autoStopConfiguration":{"shape":"AutoStopConfig"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
-        "architecture":{"shape":"Architecture"}
+        "architecture":{"shape":"Architecture"},
+        "imageConfiguration":{"shape":"ImageConfiguration"},
+        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationMap"}
       }
     },
     "ApplicationArn":{
@@ -467,7 +470,9 @@
         "autoStartConfiguration":{"shape":"AutoStartConfig"},
         "autoStopConfiguration":{"shape":"AutoStopConfig"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
-        "architecture":{"shape":"Architecture"}
+        "architecture":{"shape":"Architecture"},
+        "imageConfiguration":{"shape":"ImageConfigurationInput"},
+        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"}
       }
     },
     "CreateApplicationResponse":{
@@ -633,6 +638,30 @@
       "max":2048,
       "min":20,
       "pattern":"arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)"
+    },
+    "ImageConfiguration":{
+      "type":"structure",
+      "required":["imageUri"],
+      "members":{
+        "imageUri":{"shape":"ImageUri"},
+        "resolvedImageDigest":{"shape":"ImageDigest"}
+      }
+    },
+    "ImageConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "imageUri":{"shape":"ImageUri"}
+      }
+    },
+    "ImageDigest":{
+      "type":"string",
+      "pattern":"sha256:[0-9a-f]{64}"
+    },
+    "ImageUri":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"([a-z0-9]+[a-z0-9-.]*)\\/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*\\/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(?:\\:([a-zA-Z0-9_][a-zA-Z0-9-._]{0,299})|@(sha256:[0-9a-f]{64}))"
     },
     "InitScriptPath":{
       "type":"string",
@@ -1211,7 +1240,9 @@
         "autoStartConfiguration":{"shape":"AutoStartConfig"},
         "autoStopConfiguration":{"shape":"AutoStopConfig"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
-        "architecture":{"shape":"Architecture"}
+        "architecture":{"shape":"Architecture"},
+        "imageConfiguration":{"shape":"ImageConfigurationInput"},
+        "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"}
       }
     },
     "UpdateApplicationResponse":{
@@ -1260,6 +1291,28 @@
         "memory":{"shape":"MemorySize"},
         "disk":{"shape":"DiskSize"}
       }
+    },
+    "WorkerTypeSpecification":{
+      "type":"structure",
+      "members":{
+        "imageConfiguration":{"shape":"ImageConfiguration"}
+      }
+    },
+    "WorkerTypeSpecificationInput":{
+      "type":"structure",
+      "members":{
+        "imageConfiguration":{"shape":"ImageConfigurationInput"}
+      }
+    },
+    "WorkerTypeSpecificationInputMap":{
+      "type":"map",
+      "key":{"shape":"WorkerTypeString"},
+      "value":{"shape":"WorkerTypeSpecificationInput"}
+    },
+    "WorkerTypeSpecificationMap":{
+      "type":"map",
+      "key":{"shape":"WorkerTypeString"},
+      "value":{"shape":"WorkerTypeSpecification"}
     },
     "WorkerTypeString":{
       "type":"string",

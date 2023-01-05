@@ -155,6 +155,9 @@ func (c *EMRServerless) CreateApplicationRequest(input *CreateApplicationInput) 
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by an AWS service.
 //
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
 //   - InternalServerException
 //     Request processing failed because of an error or failure with the service.
 //
@@ -1448,6 +1451,9 @@ type Application struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
 
+	// The image configuration applied to all worker types.
+	ImageConfiguration *ImageConfiguration `locationName:"imageConfiguration" type:"structure"`
+
 	// The initial capacity of the application.
 	InitialCapacity map[string]*InitialCapacityConfig `locationName:"initialCapacity" type:"map"`
 
@@ -1462,7 +1468,7 @@ type Application struct {
 	// The network configuration for customer VPC connectivity for the application.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
-	// The EMR release version associated with the application.
+	// The EMR release associated with the application.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -1487,6 +1493,9 @@ type Application struct {
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+
+	// The specification applied to each worker type.
+	WorkerTypeSpecifications map[string]*WorkerTypeSpecification `locationName:"workerTypeSpecifications" type:"map"`
 }
 
 // String returns the string representation.
@@ -1540,6 +1549,12 @@ func (s *Application) SetAutoStopConfiguration(v *AutoStopConfig) *Application {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *Application) SetCreatedAt(v time.Time) *Application {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetImageConfiguration sets the ImageConfiguration field's value.
+func (s *Application) SetImageConfiguration(v *ImageConfiguration) *Application {
+	s.ImageConfiguration = v
 	return s
 }
 
@@ -1603,6 +1618,12 @@ func (s *Application) SetUpdatedAt(v time.Time) *Application {
 	return s
 }
 
+// SetWorkerTypeSpecifications sets the WorkerTypeSpecifications field's value.
+func (s *Application) SetWorkerTypeSpecifications(v map[string]*WorkerTypeSpecification) *Application {
+	s.WorkerTypeSpecifications = v
+	return s
+}
+
 // The summary of attributes associated with an application.
 type ApplicationSummary struct {
 	_ struct{} `type:"structure"`
@@ -1628,7 +1649,7 @@ type ApplicationSummary struct {
 	// The name of the application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The EMR release version associated with the application.
+	// The EMR release associated with the application.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -2163,6 +2184,10 @@ type CreateApplicationInput struct {
 	// be unique for each request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The image configuration for all worker types. You can either set this parameter
+	// or imageConfiguration for each worker type in workerTypeSpecifications.
+	ImageConfiguration *ImageConfigurationInput_ `locationName:"imageConfiguration" type:"structure"`
+
 	// The capacity to initialize when the application is created.
 	InitialCapacity map[string]*InitialCapacityConfig `locationName:"initialCapacity" type:"map"`
 
@@ -2178,7 +2203,7 @@ type CreateApplicationInput struct {
 	// The network configuration for customer VPC connectivity.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
-	// The EMR release version associated with the application.
+	// The EMR release associated with the application.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -2190,6 +2215,14 @@ type CreateApplicationInput struct {
 	//
 	// Type is a required field
 	Type *string `locationName:"type" min:"1" type:"string" required:"true"`
+
+	// The key-value pairs that specify worker type to WorkerTypeSpecificationInput.
+	// This parameter must contain all valid worker types for a Spark or Hive application.
+	// Valid worker types include Driver and Executor for Spark applications and
+	// HiveDriver and TezTask for Hive applications. You can either set image details
+	// in this parameter for each worker type, or in imageConfiguration for all
+	// worker types.
+	WorkerTypeSpecifications map[string]*WorkerTypeSpecificationInput_ `locationName:"workerTypeSpecifications" type:"map"`
 }
 
 // String returns the string representation.
@@ -2236,6 +2269,11 @@ func (s *CreateApplicationInput) Validate() error {
 			invalidParams.AddNested("AutoStopConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImageConfiguration != nil {
+		if err := s.ImageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ImageConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InitialCapacity != nil {
 		for i, v := range s.InitialCapacity {
 			if v == nil {
@@ -2249,6 +2287,16 @@ func (s *CreateApplicationInput) Validate() error {
 	if s.MaximumCapacity != nil {
 		if err := s.MaximumCapacity.Validate(); err != nil {
 			invalidParams.AddNested("MaximumCapacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WorkerTypeSpecifications != nil {
+		for i, v := range s.WorkerTypeSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WorkerTypeSpecifications", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -2279,6 +2327,12 @@ func (s *CreateApplicationInput) SetAutoStopConfiguration(v *AutoStopConfig) *Cr
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateApplicationInput) SetClientToken(v string) *CreateApplicationInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetImageConfiguration sets the ImageConfiguration field's value.
+func (s *CreateApplicationInput) SetImageConfiguration(v *ImageConfigurationInput_) *CreateApplicationInput {
+	s.ImageConfiguration = v
 	return s
 }
 
@@ -2321,6 +2375,12 @@ func (s *CreateApplicationInput) SetTags(v map[string]*string) *CreateApplicatio
 // SetType sets the Type field's value.
 func (s *CreateApplicationInput) SetType(v string) *CreateApplicationInput {
 	s.Type = &v
+	return s
+}
+
+// SetWorkerTypeSpecifications sets the WorkerTypeSpecifications field's value.
+func (s *CreateApplicationInput) SetWorkerTypeSpecifications(v map[string]*WorkerTypeSpecificationInput_) *CreateApplicationInput {
+	s.WorkerTypeSpecifications = v
 	return s
 }
 
@@ -2812,6 +2872,98 @@ func (s *Hive) SetQuery(v string) *Hive {
 	return s
 }
 
+// The applied image configuration.
+type ImageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The image URI.
+	//
+	// ImageUri is a required field
+	ImageUri *string `locationName:"imageUri" min:"1" type:"string" required:"true"`
+
+	// The SHA256 digest of the image URI. This indicates which specific image the
+	// application is configured for. The image digest doesn't exist until an application
+	// has started.
+	ResolvedImageDigest *string `locationName:"resolvedImageDigest" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *ImageConfiguration) SetImageUri(v string) *ImageConfiguration {
+	s.ImageUri = &v
+	return s
+}
+
+// SetResolvedImageDigest sets the ResolvedImageDigest field's value.
+func (s *ImageConfiguration) SetResolvedImageDigest(v string) *ImageConfiguration {
+	s.ResolvedImageDigest = &v
+	return s
+}
+
+// The image configuration.
+type ImageConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The URI of an image in the Amazon ECR registry. This field is required when
+	// you create a new application. If you leave this field blank in an update,
+	// Amazon EMR will remove the image configuration.
+	ImageUri *string `locationName:"imageUri" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImageConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImageConfigurationInput_"}
+	if s.ImageUri != nil && len(*s.ImageUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageUri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *ImageConfigurationInput_) SetImageUri(v string) *ImageConfigurationInput_ {
+	s.ImageUri = &v
+	return s
+}
+
 // The initial capacity configuration per worker.
 type InitialCapacityConfig struct {
 	_ struct{} `type:"structure"`
@@ -3051,8 +3203,7 @@ type JobRun struct {
 	// The network configuration for customer VPC connectivity.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
-	// The EMR release version associated with the application your job is running
-	// on.
+	// The EMR release associated with the application your job is running on.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -3242,8 +3393,7 @@ type JobRunSummary struct {
 	// The optional job run name. This doesn't have to be unique.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The EMR release version associated with the application your job is running
-	// on.
+	// The EMR release associated with the application your job is running on.
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
@@ -4787,6 +4937,10 @@ type UpdateApplicationInput struct {
 	// be unique for each request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The image configuration to be used for all worker types. You can either set
+	// this parameter or imageConfiguration for each worker type in WorkerTypeSpecificationInput.
+	ImageConfiguration *ImageConfigurationInput_ `locationName:"imageConfiguration" type:"structure"`
+
 	// The capacity to initialize when the application is updated.
 	InitialCapacity map[string]*InitialCapacityConfig `locationName:"initialCapacity" type:"map"`
 
@@ -4798,6 +4952,14 @@ type UpdateApplicationInput struct {
 
 	// The network configuration for customer VPC connectivity.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
+
+	// The key-value pairs that specify worker type to WorkerTypeSpecificationInput.
+	// This parameter must contain all valid worker types for a Spark or Hive application.
+	// Valid worker types include Driver and Executor for Spark applications and
+	// HiveDriver and TezTask for Hive applications. You can either set image details
+	// in this parameter for each worker type, or in imageConfiguration for all
+	// worker types.
+	WorkerTypeSpecifications map[string]*WorkerTypeSpecificationInput_ `locationName:"workerTypeSpecifications" type:"map"`
 }
 
 // String returns the string representation.
@@ -4835,6 +4997,11 @@ func (s *UpdateApplicationInput) Validate() error {
 			invalidParams.AddNested("AutoStopConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImageConfiguration != nil {
+		if err := s.ImageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ImageConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InitialCapacity != nil {
 		for i, v := range s.InitialCapacity {
 			if v == nil {
@@ -4848,6 +5015,16 @@ func (s *UpdateApplicationInput) Validate() error {
 	if s.MaximumCapacity != nil {
 		if err := s.MaximumCapacity.Validate(); err != nil {
 			invalidParams.AddNested("MaximumCapacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WorkerTypeSpecifications != nil {
+		for i, v := range s.WorkerTypeSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WorkerTypeSpecifications", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -4887,6 +5064,12 @@ func (s *UpdateApplicationInput) SetClientToken(v string) *UpdateApplicationInpu
 	return s
 }
 
+// SetImageConfiguration sets the ImageConfiguration field's value.
+func (s *UpdateApplicationInput) SetImageConfiguration(v *ImageConfigurationInput_) *UpdateApplicationInput {
+	s.ImageConfiguration = v
+	return s
+}
+
 // SetInitialCapacity sets the InitialCapacity field's value.
 func (s *UpdateApplicationInput) SetInitialCapacity(v map[string]*InitialCapacityConfig) *UpdateApplicationInput {
 	s.InitialCapacity = v
@@ -4902,6 +5085,12 @@ func (s *UpdateApplicationInput) SetMaximumCapacity(v *MaximumAllowedResources) 
 // SetNetworkConfiguration sets the NetworkConfiguration field's value.
 func (s *UpdateApplicationInput) SetNetworkConfiguration(v *NetworkConfiguration) *UpdateApplicationInput {
 	s.NetworkConfiguration = v
+	return s
+}
+
+// SetWorkerTypeSpecifications sets the WorkerTypeSpecifications field's value.
+func (s *UpdateApplicationInput) SetWorkerTypeSpecifications(v map[string]*WorkerTypeSpecificationInput_) *UpdateApplicationInput {
+	s.WorkerTypeSpecifications = v
 	return s
 }
 
@@ -5079,6 +5268,85 @@ func (s *WorkerResourceConfig) SetDisk(v string) *WorkerResourceConfig {
 // SetMemory sets the Memory field's value.
 func (s *WorkerResourceConfig) SetMemory(v string) *WorkerResourceConfig {
 	s.Memory = &v
+	return s
+}
+
+// The specifications for a worker type.
+type WorkerTypeSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The image configuration for a worker type.
+	ImageConfiguration *ImageConfiguration `locationName:"imageConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkerTypeSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkerTypeSpecification) GoString() string {
+	return s.String()
+}
+
+// SetImageConfiguration sets the ImageConfiguration field's value.
+func (s *WorkerTypeSpecification) SetImageConfiguration(v *ImageConfiguration) *WorkerTypeSpecification {
+	s.ImageConfiguration = v
+	return s
+}
+
+// The specifications for a worker type.
+type WorkerTypeSpecificationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The image configuration for a worker type.
+	ImageConfiguration *ImageConfigurationInput_ `locationName:"imageConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkerTypeSpecificationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkerTypeSpecificationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkerTypeSpecificationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkerTypeSpecificationInput_"}
+	if s.ImageConfiguration != nil {
+		if err := s.ImageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ImageConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageConfiguration sets the ImageConfiguration field's value.
+func (s *WorkerTypeSpecificationInput_) SetImageConfiguration(v *ImageConfigurationInput_) *WorkerTypeSpecificationInput_ {
+	s.ImageConfiguration = v
 	return s
 }
 

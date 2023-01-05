@@ -52,15 +52,6 @@
                                     "ref": "Endpoint"
                                 }
                             ]
-                        },
-                        {
-                            "fn": "parseURL",
-                            "argv": [
-                                {
-                                    "ref": "Endpoint"
-                                }
-                            ],
-                            "assign": "url"
                         }
                     ],
                     "type": "tree",
@@ -175,7 +166,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://emr-serverless-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://amplifybackend-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -231,7 +222,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://emr-serverless-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://amplifybackend-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -285,7 +276,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://emr-serverless.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://amplifybackend.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -303,7 +294,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://emr-serverless.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://amplifybackend.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

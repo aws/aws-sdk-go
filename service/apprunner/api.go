@@ -4259,9 +4259,23 @@ type CodeConfigurationValues struct {
 	// Runtime is a required field
 	Runtime *string `type:"string" required:"true" enum:"Runtime"`
 
+	// An array of key-value pairs representing the secrets and parameters that
+	// get referenced to your service as an environment variable. The supported
+	// values are either the full Amazon Resource Name (ARN) of the Secrets Manager
+	// secret or the full ARN of the parameter in the Amazon Web Services Systems
+	// Manager Parameter Store.
+	//
+	//    * If the Amazon Web Services Systems Manager Parameter Store parameter
+	//    exists in the same Amazon Web Services Region as the service that you're
+	//    launching, you can use either the full ARN or name of the secret. If the
+	//    parameter exists in a different Region, then the full ARN must be specified.
+	//
+	//    * Currently, cross account referencing of Amazon Web Services Systems
+	//    Manager Parameter Store parameter is not supported.
+	RuntimeEnvironmentSecrets map[string]*string `type:"map"`
+
 	// The environment variables that are available to your running App Runner service.
-	// An array of key-value pairs. Keys with a prefix of AWSAPPRUNNER are reserved
-	// for system use and aren't valid.
+	// An array of key-value pairs.
 	RuntimeEnvironmentVariables map[string]*string `type:"map"`
 
 	// The command App Runner runs to start your application.
@@ -4318,6 +4332,12 @@ func (s *CodeConfigurationValues) SetPort(v string) *CodeConfigurationValues {
 // SetRuntime sets the Runtime field's value.
 func (s *CodeConfigurationValues) SetRuntime(v string) *CodeConfigurationValues {
 	s.Runtime = &v
+	return s
+}
+
+// SetRuntimeEnvironmentSecrets sets the RuntimeEnvironmentSecrets field's value.
+func (s *CodeConfigurationValues) SetRuntimeEnvironmentSecrets(v map[string]*string) *CodeConfigurationValues {
+	s.RuntimeEnvironmentSecrets = v
 	return s
 }
 
@@ -7020,9 +7040,23 @@ type ImageConfiguration struct {
 	// Default: 8080
 	Port *string `type:"string"`
 
+	// An array of key-value pairs representing the secrets and parameters that
+	// get referenced to your service as an environment variable. The supported
+	// values are either the full Amazon Resource Name (ARN) of the Secrets Manager
+	// secret or the full ARN of the parameter in the Amazon Web Services Systems
+	// Manager Parameter Store.
+	//
+	//    * If the Amazon Web Services Systems Manager Parameter Store parameter
+	//    exists in the same Amazon Web Services Region as the service that you're
+	//    launching, you can use either the full ARN or name of the secret. If the
+	//    parameter exists in a different Region, then the full ARN must be specified.
+	//
+	//    * Currently, cross account referencing of Amazon Web Services Systems
+	//    Manager Parameter Store parameter is not supported.
+	RuntimeEnvironmentSecrets map[string]*string `type:"map"`
+
 	// Environment variables that are available to your running App Runner service.
-	// An array of key-value pairs. Keys with a prefix of AWSAPPRUNNER are reserved
-	// for system use and aren't valid.
+	// An array of key-value pairs.
 	RuntimeEnvironmentVariables map[string]*string `type:"map"`
 
 	// An optional command that App Runner runs to start the application in the
@@ -7056,6 +7090,12 @@ func (s ImageConfiguration) GoString() string {
 // SetPort sets the Port field's value.
 func (s *ImageConfiguration) SetPort(v string) *ImageConfiguration {
 	s.Port = &v
+	return s
+}
+
+// SetRuntimeEnvironmentSecrets sets the RuntimeEnvironmentSecrets field's value.
+func (s *ImageConfiguration) SetRuntimeEnvironmentSecrets(v map[string]*string) *ImageConfiguration {
+	s.RuntimeEnvironmentSecrets = v
 	return s
 }
 

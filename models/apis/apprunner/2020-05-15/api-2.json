@@ -648,7 +648,8 @@
         "BuildCommand":{"shape":"BuildCommand"},
         "StartCommand":{"shape":"StartCommand"},
         "Port":{"shape":"String"},
-        "RuntimeEnvironmentVariables":{"shape":"RuntimeEnvironmentVariables"}
+        "RuntimeEnvironmentVariables":{"shape":"RuntimeEnvironmentVariables"},
+        "RuntimeEnvironmentSecrets":{"shape":"RuntimeEnvironmentSecrets"}
       }
     },
     "CodeRepository":{
@@ -1165,7 +1166,8 @@
       "members":{
         "RuntimeEnvironmentVariables":{"shape":"RuntimeEnvironmentVariables"},
         "StartCommand":{"shape":"StartCommand"},
-        "Port":{"shape":"String"}
+        "Port":{"shape":"String"},
+        "RuntimeEnvironmentSecrets":{"shape":"RuntimeEnvironmentSecrets"}
       }
     },
     "ImageIdentifier":{
@@ -1542,6 +1544,23 @@
         "PHP_81",
         "RUBY_31"
       ]
+    },
+    "RuntimeEnvironmentSecrets":{
+      "type":"map",
+      "key":{"shape":"RuntimeEnvironmentSecretsName"},
+      "value":{"shape":"RuntimeEnvironmentSecretsValue"}
+    },
+    "RuntimeEnvironmentSecretsName":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "sensitive":true
+    },
+    "RuntimeEnvironmentSecretsValue":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "sensitive":true
     },
     "RuntimeEnvironmentVariables":{
       "type":"map",

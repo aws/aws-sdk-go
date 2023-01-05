@@ -391,7 +391,8 @@
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DomainNotFoundFault"},
         {"shape":"BackupPolicyNotFoundFault"},
-        {"shape":"NetworkTypeNotSupported"}
+        {"shape":"NetworkTypeNotSupported"},
+        {"shape":"CertificateNotFoundFault"}
       ]
     },
     "CreateDBInstanceReadReplica":{
@@ -2843,6 +2844,10 @@
       "min":3,
       "pattern":".*"
     },
+    "CACertificateIdentifiersList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "CancelExportTaskMessage":{
       "type":"structure",
       "required":["ExportTaskIdentifier"],
@@ -2863,6 +2868,13 @@
         "CustomerOverrideValidTill":{"shape":"TStamp"}
       },
       "wrapper":true
+    },
+    "CertificateDetails":{
+      "type":"structure",
+      "members":{
+        "CAIdentifier":{"shape":"String"},
+        "ValidTill":{"shape":"TStamp"}
+      }
     },
     "CertificateList":{
       "type":"list",
@@ -3268,7 +3280,8 @@
         "NetworkType":{"shape":"String"},
         "StorageThroughput":{"shape":"IntegerOptional"},
         "ManageMasterUserPassword":{"shape":"BooleanOptional"},
-        "MasterUserSecretKmsKeyId":{"shape":"String"}
+        "MasterUserSecretKmsKeyId":{"shape":"String"},
+        "CACertificateIdentifier":{"shape":"String"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -4076,7 +4089,9 @@
         "CreateTime":{"shape":"TStamp"},
         "TagList":{"shape":"TagList"},
         "SupportsBabelfish":{"shape":"Boolean"},
-        "CustomDBEngineVersionManifest":{"shape":"CustomDBEngineVersionManifest"}
+        "CustomDBEngineVersionManifest":{"shape":"CustomDBEngineVersionManifest"},
+        "SupportsCertificateRotationWithoutRestart":{"shape":"BooleanOptional"},
+        "SupportedCACertificateIdentifiers":{"shape":"CACertificateIdentifiersList"}
       }
     },
     "DBEngineVersionList":{
@@ -4174,7 +4189,8 @@
         "ActivityStreamPolicyStatus":{"shape":"ActivityStreamPolicyStatus"},
         "StorageThroughput":{"shape":"IntegerOptional"},
         "DBSystemId":{"shape":"String"},
-        "MasterUserSecret":{"shape":"MasterUserSecret"}
+        "MasterUserSecret":{"shape":"MasterUserSecret"},
+        "CertificateDetails":{"shape":"CertificateDetails"}
       },
       "wrapper":true
     },

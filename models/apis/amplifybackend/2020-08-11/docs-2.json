@@ -17,7 +17,7 @@
     "GenerateBackendAPIModels" : "<p>Generates a model schema for an existing backend API resource.</p>",
     "GetBackend" : "<p>Provides project-level details for your Amplify UI project.</p>",
     "GetBackendAPI" : "<p>Gets the details for a backend API.</p>",
-    "GetBackendAPIModels" : "<p>Generates a model schema for existing backend API resource.</p>",
+    "GetBackendAPIModels" : "<p>Gets a model introspection schema for an existing backend API resource.</p>",
     "GetBackendAuth" : "<p>Gets a backend auth details.</p>",
     "GetBackendJob" : "<p>Returns information about a specific job.</p>",
     "GetBackendStorage" : "<p>Gets details for a backend storage resource.</p>",
@@ -258,7 +258,7 @@
       "base" : "<p>An error returned if there's a temporary issue with the service.</p>",
       "refs" : { }
     },
-    "GetBackendAPICodegenRespObj" : {
+    "GetBackendAPIModelsResponse" : {
       "base" : "<p>The response object for this operation.</p>",
       "refs" : { }
     },
@@ -450,7 +450,7 @@
     "Status" : {
       "base" : null,
       "refs" : {
-        "GetBackendAPICodegenRespObj$Status" : "<p>The current status of the request.</p>"
+        "GetBackendAPIModelsResponse$Status" : "<p>The current status of the request.</p>"
       }
     },
     "TooManyRequestsException" : {
@@ -750,7 +750,8 @@
         "DeleteBackendRespObj$Status" : "<p>The current status of the request.</p>",
         "EmailSettings$EmailMessage" : "<p>The contents of the email message.</p>",
         "EmailSettings$EmailSubject" : "<p>The contents of the subject line of the email message.</p>",
-        "GetBackendAPICodegenRespObj$Models" : "<p>Stringified JSON of the datastore model.</p>",
+        "GetBackendAPIModelsResponse$ModelIntrospectionSchema" : "<p>Stringified JSON of the model introspection schema for an existing backend API resource.</p>",
+        "GetBackendAPIModelsResponse$Models" : "<p>Stringified JSON of the datastore model.</p>",
         "GetBackendAPIRespObj$AppId" : "<p>The app ID.</p>",
         "GetBackendAPIRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
         "GetBackendAPIRespObj$Error" : "<p>If the request fails, this error is returned.</p>",
