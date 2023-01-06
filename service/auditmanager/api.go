@@ -57,7 +57,7 @@ func (c *AuditManager) AssociateAssessmentReportEvidenceFolderRequest(input *Ass
 
 // AssociateAssessmentReportEvidenceFolder API operation for AWS Audit Manager.
 //
-// Associates an evidence folder to an assessment report in a Audit Manager
+// Associates an evidence folder to an assessment report in an Audit Manager
 // assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1479,36 +1479,13 @@ func (c *AuditManager) DeregisterAccountRequest(input *DeregisterAccountInput) (
 //
 // Deregisters an account in Audit Manager.
 //
-// When you deregister your account from Audit Manager, your data isn’t deleted.
-// If you want to delete your resource data, you must perform that task separately
-// before you deregister your account. Either, you can do this in the Audit
-// Manager console. Or, you can use one of the delete API operations that are
-// provided by Audit Manager.
+// Before you deregister, you can use the UpdateSettings (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateSettings.html)
+// API operation to set your preferred data retention policy. By default, Audit
+// Manager retains your data. If you want to delete your data, you can use the
+// DeregistrationPolicy attribute to request the deletion of your data.
 //
-// To delete your Audit Manager resource data, see the following instructions:
-//
-//   - DeleteAssessment (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.html)
-//     (see also: Deleting an assessment (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-assessment.html)
-//     in the Audit Manager User Guide)
-//
-//   - DeleteAssessmentFramework (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.html)
-//     (see also: Deleting a custom framework (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-custom-framework.html)
-//     in the Audit Manager User Guide)
-//
-//   - DeleteAssessmentFrameworkShare (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.html)
-//     (see also: Deleting a share request (https://docs.aws.amazon.com/audit-manager/latest/userguide/deleting-shared-framework-requests.html)
-//     in the Audit Manager User Guide)
-//
-//   - DeleteAssessmentReport (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.html)
-//     (see also: Deleting an assessment report (https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#delete-assessment-report-steps)
-//     in the Audit Manager User Guide)
-//
-//   - DeleteControl (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.html)
-//     (see also: Deleting a custom control (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html)
-//     in the Audit Manager User Guide)
-//
-// At this time, Audit Manager doesn't provide an option to delete evidence.
-// All available delete operations are listed above.
+// For more information about data retention, see Data Protection (https://docs.aws.amazon.com/audit-manager/latest/userguide/data-protection.html)
+// in the Audit Manager User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1605,7 +1582,7 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 // When you remove a delegated administrator from your Audit Manager settings,
 // you continue to have access to the evidence that you previously collected
 // under that account. This is also the case when you deregister a delegated
-// administrator from Organizations. However, Audit Manager will stop collecting
+// administrator from Organizations. However, Audit Manager stops collecting
 // and attaching evidence to that delegated administrator account moving forward.
 //
 // Keep in mind the following cleanup task if you use evidence finder:
@@ -1617,10 +1594,10 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 // enabled evidence finder. If this task isn’t completed, the event data store
 // remains in their account. In this case, we recommend that the original delegated
 // administrator goes to CloudTrail Lake and manually deletes the event data
-// store (https://docs.aws.amazon.com/userguide/awscloudtrail/latest/userguide/query-eds-disable-termination.html).
+// store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-eds-disable-termination.html).
 //
 // This cleanup task is necessary to ensure that you don't end up with multiple
-// event data stores. Audit Manager will ignore an unused event data store after
+// event data stores. Audit Manager ignores an unused event data store after
 // you remove or change a delegated administrator account. However, the unused
 // event data store continues to incur storage costs from CloudTrail Lake if
 // you don't delete it.
@@ -1654,8 +1631,10 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 //     (see also: Deleting a custom control (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html)
 //     in the Audit Manager User Guide)
 //
-// At this time, Audit Manager doesn't provide an option to delete evidence.
-// All available delete operations are listed above.
+// At this time, Audit Manager doesn't provide an option to delete evidence
+// for a specific delegated administrator. Instead, when your management account
+// deregisters Audit Manager, we perform a cleanup for the current delegated
+// administrator account at the time of deregistration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3048,7 +3027,7 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlRequest(input *GetEv
 // GetEvidenceFoldersByAssessmentControl API operation for AWS Audit Manager.
 //
 // Returns a list of evidence folders that are associated with a specified control
-// of an assessment in Audit Manager.
+// in an Audit Manager assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6854,7 +6833,7 @@ type AssessmentControl struct {
 	// The description of the control.
 	Description *string `locationName:"description" type:"string"`
 
-	// The amount of evidence that's generated for the control.
+	// The amount of evidence that's collected for the control.
 	EvidenceCount *int64 `locationName:"evidenceCount" type:"integer"`
 
 	// The list of data sources for the evidence.
@@ -6969,7 +6948,7 @@ type AssessmentControlSet struct {
 	// The roles that are associated with the control set.
 	Roles []*Role `locationName:"roles" type:"list"`
 
-	// Specifies the current status of the control set.
+	// The current status of the control set.
 	Status *string `locationName:"status" type:"string" enum:"ControlSetStatus"`
 
 	// The total number of evidence objects that are retrieved automatically for
@@ -7312,7 +7291,7 @@ type AssessmentFrameworkMetadata struct {
 	// The number of controls that are associated with the framework.
 	ControlsCount *int64 `locationName:"controlsCount" type:"integer"`
 
-	// Specifies when the framework was created.
+	// The time when the framework was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The description of the framework.
@@ -7321,7 +7300,7 @@ type AssessmentFrameworkMetadata struct {
 	// The unique identifier for the framework.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// Specifies when the framework was most recently updated.
+	// The time when the framework was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The logo that's associated with the framework.
@@ -9029,7 +9008,7 @@ type Control struct {
 	// from for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
-	// Specifies when the control was created.
+	// The time when the control was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The IAM user or role that created the control.
@@ -9041,7 +9020,7 @@ type Control struct {
 	// The unique identifier for the control.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// Specifies when the control was most recently updated.
+	// The time when the control was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The IAM user or role that most recently updated the control.
@@ -9475,7 +9454,7 @@ type ControlMappingSource struct {
 	// collection is automated or manual.
 	SourceSetUpOption *string `locationName:"sourceSetUpOption" type:"string" enum:"SourceSetUpOption"`
 
-	// Specifies one of the five types of data sources for evidence collection.
+	// Specifies one of the five data source types for evidence collection.
 	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
 
 	// The instructions for troubleshooting the control.
@@ -9580,13 +9559,13 @@ type ControlMetadata struct {
 	// for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
-	// Specifies when the control was created.
+	// The time when the control was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The unique identifier for the control.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// Specifies when the control was most recently updated.
+	// The time when the control was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The name of the control.
@@ -10163,15 +10142,15 @@ type CreateAssessmentReportInput struct {
 	// the results of an evidence finder search query. When you use this parameter,
 	// Audit Manager generates a one-time report using only the evidence from the
 	// query output. This report does not include any assessment evidence that was
-	// manually added to a report using the console (https://docs.aws.amazon.com/userguide/generate-assessment-report.html#generate-assessment-report-include-evidence),
-	// or associated with a report using the API (https://docs.aws.amazon.com/APIReference-evidenceFinder/API_BatchAssociateAssessmentReportEvidence.html).
+	// manually added to a report using the console (https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#generate-assessment-report-include-evidence),
+	// or associated with a report using the API (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchAssociateAssessmentReportEvidence.html).
 	//
-	// To use this parameter, the enablementStatus (https://docs.aws.amazon.com/APIReference-evidenceFinder/API_EvidenceFinderSetup.html#auditmanager-Type-EvidenceFinderSetup-enablementStatus)
+	// To use this parameter, the enablementStatus (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_EvidenceFinderEnablement.html#auditmanager-Type-EvidenceFinderEnablement-enablementStatus)
 	// of evidence finder must be ENABLED.
 	//
 	// For examples and help resolving queryStatement validation exceptions, see
 	// Troubleshooting evidence finder issues (https://docs.aws.amazon.com/audit-manager/latest/userguide/evidence-finder-issues.html#querystatement-exceptions)
-	// in the AWS Audit Manager User Guide.
+	// in the Audit Manager User Guide.
 	QueryStatement *string `locationName:"queryStatement" min:"1" type:"string"`
 }
 
@@ -11346,6 +11325,64 @@ func (s DeregisterOrganizationAdminAccountOutput) GoString() string {
 	return s.String()
 }
 
+// The deregistration policy for the data that's stored in Audit Manager. You
+// can use this attribute to determine how your data is handled when you deregister
+// Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregisterAccount.html).
+//
+// By default, Audit Manager retains evidence data for two years from the time
+// of its creation. Other Audit Manager resources (including assessments, custom
+// controls, and custom frameworks) remain in Audit Manager indefinitely, and
+// are available if you re-register Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_RegisterAccount.html)
+// in the future. For more information about data retention, see Data Protection
+// (https://docs.aws.amazon.com/audit-manager/latest/userguide/data-protection.html)
+// in the Audit Manager User Guide.
+//
+// If you choose to delete all data, this action permanently deletes all evidence
+// data in your account within seven days. It also deletes all of the Audit
+// Manager resources that you created, including assessments, custom controls,
+// and custom frameworks. Your data will not be available if you re-register
+// Audit Manager in the future.
+type DeregistrationPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies which Audit Manager data will be deleted when you deregister Audit
+	// Manager.
+	//
+	//    * If you set the value to ALL, all of your data is deleted within seven
+	//    days of deregistration.
+	//
+	//    * If you set the value to DEFAULT, none of your data is deleted at the
+	//    time of deregistration. However, keep in mind that the Audit Manager data
+	//    retention policy still applies. As a result, any evidence data will be
+	//    deleted two years after its creation date. Your other Audit Manager resources
+	//    will continue to exist indefinitely.
+	DeleteResources *string `locationName:"deleteResources" type:"string" enum:"DeleteResources"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregistrationPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregistrationPolicy) GoString() string {
+	return s.String()
+}
+
+// SetDeleteResources sets the DeleteResources field's value.
+func (s *DeregistrationPolicy) SetDeleteResources(v string) *DeregistrationPolicy {
+	s.DeleteResources = &v
+	return s
+}
+
 type DisassociateAssessmentReportEvidenceFolderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11436,7 +11473,7 @@ func (s DisassociateAssessmentReportEvidenceFolderOutput) GoString() string {
 
 // A record that contains the information needed to demonstrate compliance with
 // the requirements specified by a control. Examples of evidence include change
-// activity triggered by a user, or a system configuration snapshot.
+// activity invoked by a user, or a system configuration snapshot.
 type Evidence struct {
 	_ struct{} `type:"structure"`
 
@@ -11621,13 +11658,13 @@ type EvidenceFinderEnablement struct {
 	// The current status of the evidence data backfill process.
 	//
 	// The backfill starts after you enable evidence finder. During this task, Audit
-	// Manager populates an event data store with your past evidence data so that
-	// your evidence can be queried.
+	// Manager populates an event data store with your past two years’ worth of
+	// evidence data so that your evidence can be queried.
 	//
 	//    * NOT_STARTED means that the backfill hasn’t started yet.
 	//
 	//    * IN_PROGRESS means that the backfill is in progress. This can take up
-	//    to 24 hours to complete, depending on the amount of evidence data.
+	//    to 7 days to complete, depending on the amount of evidence data.
 	//
 	//    * COMPLETED means that the backfill is complete. All of your past evidence
 	//    is now queryable.
@@ -11641,10 +11678,10 @@ type EvidenceFinderEnablement struct {
 	//    queries.
 	//
 	//    * ENABLED means that an event data store was successfully created and
-	//    evidence finder is enabled. We recommend that you wait 24 hours until
-	//    the event data store is backfilled with your past evidence data. You can
-	//    use evidence finder in the meantime, but not all data might be available
-	//    until the backfill is complete.
+	//    evidence finder is enabled. We recommend that you wait 7 days until the
+	//    event data store is backfilled with your past two years’ worth of evidence
+	//    data. You can use evidence finder in the meantime, but not all data might
+	//    be available until the backfill is complete.
 	//
 	//    * DISABLE_IN_PROGRESS means that you requested to disable evidence finder,
 	//    and your request is pending the deletion of the event data store.
@@ -11785,7 +11822,7 @@ type Framework struct {
 	// The sources that Audit Manager collects evidence from for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
-	// Specifies when the framework was created.
+	// The time when the framework was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The IAM user or role that created the framework.
@@ -11797,7 +11834,7 @@ type Framework struct {
 	// The unique identifier for the framework.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// Specifies when the framework was most recently updated.
+	// The time when the framework was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The IAM user or role that most recently updated the framework.
@@ -13244,7 +13281,7 @@ func (s *GetEvidenceInput) SetEvidenceId(v string) *GetEvidenceInput {
 type GetEvidenceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The evidence that the GetEvidenceResponse API returned.
+	// The evidence that the GetEvidence API returned.
 	Evidence *Evidence `locationName:"evidence" type:"structure"`
 }
 
@@ -13523,7 +13560,7 @@ func (s *GetServicesInScopeOutput) SetServiceMetadata(v []*ServiceMetadata) *Get
 type GetSettingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The list of SettingAttribute enum values.
+	// The list of setting attribute enum values.
 	//
 	// Attribute is a required field
 	Attribute *string `location:"uri" locationName:"attribute" type:"string" required:"true" enum:"SettingAttribute"`
@@ -15918,6 +15955,10 @@ type Settings struct {
 	// The designated default audit owners.
 	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
 
+	// The deregistration policy for your Audit Manager data. You can use this attribute
+	// to determine how your data is handled when you deregister Audit Manager.
+	DeregistrationPolicy *DeregistrationPolicy `locationName:"deregistrationPolicy" type:"structure"`
+
 	// The current evidence finder status and event data store details.
 	EvidenceFinderEnablement *EvidenceFinderEnablement `locationName:"evidenceFinderEnablement" type:"structure"`
 
@@ -15958,6 +15999,12 @@ func (s *Settings) SetDefaultAssessmentReportsDestination(v *AssessmentReportsDe
 // SetDefaultProcessOwners sets the DefaultProcessOwners field's value.
 func (s *Settings) SetDefaultProcessOwners(v []*Role) *Settings {
 	s.DefaultProcessOwners = v
+	return s
+}
+
+// SetDeregistrationPolicy sets the DeregistrationPolicy field's value.
+func (s *Settings) SetDeregistrationPolicy(v *DeregistrationPolicy) *Settings {
+	s.DeregistrationPolicy = v
 	return s
 }
 
@@ -17205,8 +17252,8 @@ func (s *UpdateAssessmentInput) SetScope(v *Scope) *UpdateAssessmentInput {
 type UpdateAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The response object for the UpdateAssessmentRequest API. This is the name
-	// of the updated assessment.
+	// The response object for the UpdateAssessment API. This is the name of the
+	// updated assessment.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
 }
 
@@ -17497,6 +17544,10 @@ type UpdateSettingsInput struct {
 	// A list of the default audit owners.
 	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
 
+	// The deregistration policy for your Audit Manager data. You can use this attribute
+	// to determine how your data is handled when you deregister Audit Manager.
+	DeregistrationPolicy *DeregistrationPolicy `locationName:"deregistrationPolicy" type:"structure"`
+
 	// Specifies whether the evidence finder feature is enabled. Change this attribute
 	// to enable or disable evidence finder.
 	//
@@ -17506,10 +17557,6 @@ type UpdateSettingsInput struct {
 	// alternative is to deregister (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregisterAccount.html)
 	// and then re-register (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_RegisterAccount.html)
 	// Audit Manager.
-	//
-	// Disabling evidence finder is permanent, so consider this decision carefully
-	// before you proceed. If you’re using Audit Manager as a delegated administrator,
-	// keep in mind that this action applies to all member accounts in your organization.
 	EvidenceFinderEnabled *bool `locationName:"evidenceFinderEnabled" type:"boolean"`
 
 	// The KMS key details.
@@ -17578,6 +17625,12 @@ func (s *UpdateSettingsInput) SetDefaultAssessmentReportsDestination(v *Assessme
 // SetDefaultProcessOwners sets the DefaultProcessOwners field's value.
 func (s *UpdateSettingsInput) SetDefaultProcessOwners(v []*Role) *UpdateSettingsInput {
 	s.DefaultProcessOwners = v
+	return s
+}
+
+// SetDeregistrationPolicy sets the DeregistrationPolicy field's value.
+func (s *UpdateSettingsInput) SetDeregistrationPolicy(v *DeregistrationPolicy) *UpdateSettingsInput {
+	s.DeregistrationPolicy = v
 	return s
 }
 
@@ -18072,6 +18125,22 @@ func DelegationStatus_Values() []string {
 }
 
 const (
+	// DeleteResourcesAll is a DeleteResources enum value
+	DeleteResourcesAll = "ALL"
+
+	// DeleteResourcesDefault is a DeleteResources enum value
+	DeleteResourcesDefault = "DEFAULT"
+)
+
+// DeleteResources_Values returns all elements of the DeleteResources enum
+func DeleteResources_Values() []string {
+	return []string{
+		DeleteResourcesAll,
+		DeleteResourcesDefault,
+	}
+}
+
+const (
 	// EvidenceFinderBackfillStatusNotStarted is a EvidenceFinderBackfillStatus enum value
 	EvidenceFinderBackfillStatusNotStarted = "NOT_STARTED"
 
@@ -18205,6 +18274,9 @@ const (
 
 	// SettingAttributeEvidenceFinderEnablement is a SettingAttribute enum value
 	SettingAttributeEvidenceFinderEnablement = "EVIDENCE_FINDER_ENABLEMENT"
+
+	// SettingAttributeDeregistrationPolicy is a SettingAttribute enum value
+	SettingAttributeDeregistrationPolicy = "DEREGISTRATION_POLICY"
 )
 
 // SettingAttribute_Values returns all elements of the SettingAttribute enum
@@ -18216,6 +18288,7 @@ func SettingAttribute_Values() []string {
 		SettingAttributeDefaultAssessmentReportsDestination,
 		SettingAttributeDefaultProcessOwners,
 		SettingAttributeEvidenceFinderEnablement,
+		SettingAttributeDeregistrationPolicy,
 	}
 }
 

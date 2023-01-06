@@ -1,3 +1,10 @@
+Release v1.44.175 (2023-01-06)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/auditmanager`: Updates service API and documentation
+
 Release v1.44.174 (2023-01-05)
 ===
 

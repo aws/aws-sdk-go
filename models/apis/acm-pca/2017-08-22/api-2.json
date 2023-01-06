@@ -583,6 +583,12 @@
       "max":20,
       "min":1
     },
+    "CnameString":{
+      "type":"string",
+      "max":253,
+      "min":0,
+      "pattern":"^[-a-zA-Z0-9;/?:@&=+$,%_.!~*()']*$"
+    },
     "ConcurrentModificationException":{
       "type":"structure",
       "members":{
@@ -664,8 +670,8 @@
           "shape":"Integer1To5000",
           "box":true
         },
-        "CustomCname":{"shape":"String253"},
-        "S3BucketName":{"shape":"String3To255"},
+        "CustomCname":{"shape":"CnameString"},
+        "S3BucketName":{"shape":"S3BucketName3To255"},
         "S3ObjectAcl":{"shape":"S3ObjectAcl"}
       }
     },
@@ -1136,7 +1142,7 @@
           "shape":"Boolean",
           "box":true
         },
-        "OcspCustomCname":{"shape":"String253"}
+        "OcspCustomCname":{"shape":"CnameString"}
       }
     },
     "OtherName":{
@@ -1315,6 +1321,12 @@
       "max":63,
       "min":3
     },
+    "S3BucketName3To255":{
+      "type":"string",
+      "max":255,
+      "min":3,
+      "pattern":"^[-a-zA-Z0-9._/]+$"
+    },
     "S3Key":{
       "type":"string",
       "max":1024
@@ -1372,11 +1384,6 @@
       "type":"string",
       "max":39,
       "min":0
-    },
-    "String3To255":{
-      "type":"string",
-      "max":255,
-      "min":3
     },
     "String40":{
       "type":"string",

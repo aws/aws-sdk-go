@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "service": "<p>Welcome to the Audit Manager API reference. This guide is for developers who need detailed information about the Audit Manager API operations, data types, and errors. </p> <p>Audit Manager is a service that provides automated evidence collection so that you can continually audit your Amazon Web Services usage. You can use it to assess the effectiveness of your controls, manage risk, and simplify compliance.</p> <p>Audit Manager provides prebuilt frameworks that structure and automate assessments for a given compliance standard. Frameworks include a prebuilt collection of controls with descriptions and testing procedures. These controls are grouped according to the requirements of the specified compliance standard or regulation. You can also customize frameworks and controls to support internal audits with specific requirements. </p> <p>Use the following links to get started with the Audit Manager API:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all Audit Manager API operations.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Types.html\">Data types</a>: An alphabetical list of all Audit Manager data types.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonParameters.html\">Common parameters</a>: Parameters that all Query operations can use.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonErrors.html\">Common errors</a>: Client and server errors that all operations can return.</p> </li> </ul> <p>If you're new to Audit Manager, we recommend that you review the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html\"> Audit Manager User Guide</a>.</p>",
+  "service": "<p>Welcome to the Audit Manager API reference. This guide is for developers who need detailed information about the Audit Manager API operations, data types, and errors. </p> <p>Audit Manager is a service that provides automated evidence collection so that you can continually audit your Amazon Web Services usage. You can use it to assess the effectiveness of your controls, manage risk, and simplify compliance.</p> <p>Audit Manager provides prebuilt frameworks that structure and automate assessments for a given compliance standard. Frameworks include a prebuilt collection of controls with descriptions and testing procedures. These controls are grouped according to the requirements of the specified compliance standard or regulation. You can also customize frameworks and controls to support internal audits with specific requirements. </p> <p>Use the following links to get started with the Audit Manager API:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all Audit Manager API operations.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Types.html\">Data types</a>: An alphabetical list of all Audit Manager data types.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonParameters.html\">Common parameters</a>: Parameters that all operations can use.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonErrors.html\">Common errors</a>: Client and server errors that all operations can return.</p> </li> </ul> <p>If you're new to Audit Manager, we recommend that you review the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html\"> Audit Manager User Guide</a>.</p>",
   "operations": {
-    "AssociateAssessmentReportEvidenceFolder": "<p> Associates an evidence folder to an assessment report in a Audit Manager assessment. </p>",
+    "AssociateAssessmentReportEvidenceFolder": "<p> Associates an evidence folder to an assessment report in an Audit Manager assessment. </p>",
     "BatchAssociateAssessmentReportEvidence": "<p> Associates a list of evidence to an assessment report in an Audit Manager assessment. </p>",
     "BatchCreateDelegationByAssessment": "<p> Creates a batch of delegations for an assessment in Audit Manager. </p>",
     "BatchDeleteDelegationByAssessment": "<p> Deletes a batch of delegations for an assessment in Audit Manager. </p>",
@@ -17,8 +17,8 @@
     "DeleteAssessmentFrameworkShare": "<p> Deletes a share request for a custom framework in Audit Manager. </p>",
     "DeleteAssessmentReport": "<p>Deletes an assessment report in Audit Manager. </p> <p>When you run the <code>DeleteAssessmentReport</code> operation, Audit Manager attempts to delete the following data:</p> <ol> <li> <p>The specified assessment report that’s stored in your S3 bucket</p> </li> <li> <p>The associated metadata that’s stored in Audit Manager</p> </li> </ol> <p>If Audit Manager can’t access the assessment report in your S3 bucket, the report isn’t deleted. In this event, the <code>DeleteAssessmentReport</code> operation doesn’t fail. Instead, it proceeds to delete the associated metadata only. You must then delete the assessment report from the S3 bucket yourself. </p> <p>This scenario happens when Audit Manager receives a <code>403 (Forbidden)</code> or <code>404 (Not Found)</code> error from Amazon S3. To avoid this, make sure that your S3 bucket is available, and that you configured the correct permissions for Audit Manager to delete resources in your S3 bucket. For an example permissions policy that you can use, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/security_iam_id-based-policy-examples.html#full-administrator-access-assessment-report-destination\">Assessment report destination permissions</a> in the <i>Audit Manager User Guide</i>. For information about the issues that could cause a <code>403 (Forbidden)</code> or <code>404 (Not Found</code>) error from Amazon S3, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList\">List of Error Codes</a> in the <i>Amazon Simple Storage Service API Reference</i>. </p>",
     "DeleteControl": "<p> Deletes a custom control in Audit Manager. </p>",
-    "DeregisterAccount": "<p> Deregisters an account in Audit Manager. </p> <note> <p>When you deregister your account from Audit Manager, your data isn’t deleted. If you want to delete your resource data, you must perform that task separately before you deregister your account. Either, you can do this in the Audit Manager console. Or, you can use one of the delete API operations that are provided by Audit Manager. </p> <p>To delete your Audit Manager resource data, see the following instructions: </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.html\">DeleteAssessment</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-assessment.html\">Deleting an assessment</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.html\">DeleteAssessmentFramework</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-custom-framework.html\">Deleting a custom framework</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.html\">DeleteAssessmentFrameworkShare</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/deleting-shared-framework-requests.html\">Deleting a share request</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.html\">DeleteAssessmentReport</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#delete-assessment-report-steps\">Deleting an assessment report</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.html\">DeleteControl</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html\">Deleting a custom control</a> in the <i>Audit Manager User Guide</i>)</p> </li> </ul> <p>At this time, Audit Manager doesn't provide an option to delete evidence. All available delete operations are listed above.</p> </note>",
-    "DeregisterOrganizationAdminAccount": "<p>Removes the specified Amazon Web Services account as a delegated administrator for Audit Manager. </p> <p>When you remove a delegated administrator from your Audit Manager settings, you continue to have access to the evidence that you previously collected under that account. This is also the case when you deregister a delegated administrator from Organizations. However, Audit Manager will stop collecting and attaching evidence to that delegated administrator account moving forward.</p> <important> <p>Keep in mind the following cleanup task if you use evidence finder:</p> <p>Before you use your management account to remove a delegated administrator, make sure that the current delegated administrator account signs in to Audit Manager and disables evidence finder first. Disabling evidence finder automatically deletes the event data store that was created in their account when they enabled evidence finder. If this task isn’t completed, the event data store remains in their account. In this case, we recommend that the original delegated administrator goes to CloudTrail Lake and manually <a href=\"https://docs.aws.amazon.com/userguide/awscloudtrail/latest/userguide/query-eds-disable-termination.html\">deletes the event data store</a>.</p> <p>This cleanup task is necessary to ensure that you don't end up with multiple event data stores. Audit Manager will ignore an unused event data store after you remove or change a delegated administrator account. However, the unused event data store continues to incur storage costs from CloudTrail Lake if you don't delete it.</p> </important> <p>When you deregister a delegated administrator account for Audit Manager, the data for that account isn’t deleted. If you want to delete resource data for a delegated administrator account, you must perform that task separately before you deregister the account. Either, you can do this in the Audit Manager console. Or, you can use one of the delete API operations that are provided by Audit Manager. </p> <p>To delete your Audit Manager resource data, see the following instructions: </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.html\">DeleteAssessment</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-assessment.html\">Deleting an assessment</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.html\">DeleteAssessmentFramework</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-custom-framework.html\">Deleting a custom framework</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.html\">DeleteAssessmentFrameworkShare</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/deleting-shared-framework-requests.html\">Deleting a share request</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.html\">DeleteAssessmentReport</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#delete-assessment-report-steps\">Deleting an assessment report</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.html\">DeleteControl</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html\">Deleting a custom control</a> in the <i>Audit Manager User Guide</i>)</p> </li> </ul> <p>At this time, Audit Manager doesn't provide an option to delete evidence. All available delete operations are listed above.</p>",
+    "DeregisterAccount": "<p> Deregisters an account in Audit Manager. </p> <note> <p>Before you deregister, you can use the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateSettings.html\">UpdateSettings</a> API operation to set your preferred data retention policy. By default, Audit Manager retains your data. If you want to delete your data, you can use the <code>DeregistrationPolicy</code> attribute to request the deletion of your data. </p> <p>For more information about data retention, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/data-protection.html\">Data Protection</a> in the <i>Audit Manager User Guide</i>. </p> </note>",
+    "DeregisterOrganizationAdminAccount": "<p>Removes the specified Amazon Web Services account as a delegated administrator for Audit Manager. </p> <p>When you remove a delegated administrator from your Audit Manager settings, you continue to have access to the evidence that you previously collected under that account. This is also the case when you deregister a delegated administrator from Organizations. However, Audit Manager stops collecting and attaching evidence to that delegated administrator account moving forward.</p> <important> <p>Keep in mind the following cleanup task if you use evidence finder:</p> <p>Before you use your management account to remove a delegated administrator, make sure that the current delegated administrator account signs in to Audit Manager and disables evidence finder first. Disabling evidence finder automatically deletes the event data store that was created in their account when they enabled evidence finder. If this task isn’t completed, the event data store remains in their account. In this case, we recommend that the original delegated administrator goes to CloudTrail Lake and manually <a href=\"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-eds-disable-termination.html\">deletes the event data store</a>.</p> <p>This cleanup task is necessary to ensure that you don't end up with multiple event data stores. Audit Manager ignores an unused event data store after you remove or change a delegated administrator account. However, the unused event data store continues to incur storage costs from CloudTrail Lake if you don't delete it.</p> </important> <p>When you deregister a delegated administrator account for Audit Manager, the data for that account isn’t deleted. If you want to delete resource data for a delegated administrator account, you must perform that task separately before you deregister the account. Either, you can do this in the Audit Manager console. Or, you can use one of the delete API operations that are provided by Audit Manager. </p> <p>To delete your Audit Manager resource data, see the following instructions: </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.html\">DeleteAssessment</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-assessment.html\">Deleting an assessment</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.html\">DeleteAssessmentFramework</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-custom-framework.html\">Deleting a custom framework</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.html\">DeleteAssessmentFrameworkShare</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/deleting-shared-framework-requests.html\">Deleting a share request</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.html\">DeleteAssessmentReport</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#delete-assessment-report-steps\">Deleting an assessment report</a> in the <i>Audit Manager User Guide</i>)</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.html\">DeleteControl</a> (see also: <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html\">Deleting a custom control</a> in the <i>Audit Manager User Guide</i>)</p> </li> </ul> <p>At this time, Audit Manager doesn't provide an option to delete evidence for a specific delegated administrator. Instead, when your management account deregisters Audit Manager, we perform a cleanup for the current delegated administrator account at the time of deregistration.</p>",
     "DisassociateAssessmentReportEvidenceFolder": "<p> Disassociates an evidence folder from the specified assessment report in Audit Manager. </p>",
     "GetAccountStatus": "<p> Returns the registration status of an account in Audit Manager. </p>",
     "GetAssessment": "<p>Returns an assessment from Audit Manager. </p>",
@@ -31,7 +31,7 @@
     "GetEvidenceByEvidenceFolder": "<p> Returns all evidence from a specified evidence folder in Audit Manager. </p>",
     "GetEvidenceFolder": "<p> Returns an evidence folder from the specified assessment in Audit Manager. </p>",
     "GetEvidenceFoldersByAssessment": "<p> Returns the evidence folders from a specified assessment in Audit Manager. </p>",
-    "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders that are associated with a specified control of an assessment in Audit Manager. </p>",
+    "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders that are associated with a specified control in an Audit Manager assessment. </p>",
     "GetInsights": "<p>Gets the latest analytics data for all your current active assessments. </p>",
     "GetInsightsByAssessment": "<p>Gets the latest analytics data for a specific active assessment. </p>",
     "GetOrganizationAdminAccount": "<p> Returns the name of the delegated Amazon Web Services administrator account for the organization. </p>",
@@ -161,7 +161,7 @@
       "refs": {
         "CreateAssessmentResponse$assessment": null,
         "GetAssessmentResponse$assessment": null,
-        "UpdateAssessmentResponse$assessment": "<p> The response object for the <code>UpdateAssessmentRequest</code> API. This is the name of the updated assessment.</p>",
+        "UpdateAssessmentResponse$assessment": "<p> The response object for the <code>UpdateAssessment</code> API. This is the name of the updated assessment.</p>",
         "UpdateAssessmentStatusResponse$assessment": "<p> The name of the updated assessment that the <code>UpdateAssessmentStatus</code> API returned. </p>"
       }
     },
@@ -471,7 +471,7 @@
       "base": null,
       "refs": {
         "Settings$isAwsOrgEnabled": "<p> Specifies whether Organizations is enabled. </p>",
-        "UpdateSettingsRequest$evidenceFinderEnabled": "<p>Specifies whether the evidence finder feature is enabled. Change this attribute to enable or disable evidence finder.</p> <important> <p>When you use this attribute to disable evidence finder, Audit Manager deletes the event data store that’s used to query your evidence data. As a result, you can’t re-enable evidence finder and use the feature again. Your only alternative is to <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregisterAccount.html\">deregister</a> and then <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_RegisterAccount.html\">re-register</a> Audit Manager. </p> <p>Disabling evidence finder is permanent, so consider this decision carefully before you proceed. If you’re using Audit Manager as a delegated administrator, keep in mind that this action applies to all member accounts in your organization.</p> </important>",
+        "UpdateSettingsRequest$evidenceFinderEnabled": "<p>Specifies whether the evidence finder feature is enabled. Change this attribute to enable or disable evidence finder.</p> <important> <p>When you use this attribute to disable evidence finder, Audit Manager deletes the event data store that’s used to query your evidence data. As a result, you can’t re-enable evidence finder and use the feature again. Your only alternative is to <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregisterAccount.html\">deregister</a> and then <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_RegisterAccount.html\">re-register</a> Audit Manager. </p> </important>",
         "ValidateAssessmentReportIntegrityResponse$signatureValid": "<p> Specifies whether the signature key is valid. </p>"
       }
     },
@@ -657,7 +657,7 @@
     "ControlSetStatus": {
       "base": null,
       "refs": {
-        "AssessmentControlSet$status": "<p> Specifies the current status of the control set. </p>",
+        "AssessmentControlSet$status": "<p> The current status of the control set. </p>",
         "UpdateAssessmentControlSetStatusRequest$status": "<p> The status of the control set that's being updated. </p>"
       }
     },
@@ -903,6 +903,12 @@
       "refs": {
       }
     },
+    "DeleteResources": {
+      "base": null,
+      "refs": {
+        "DeregistrationPolicy$deleteResources": "<p>Specifies which Audit Manager data will be deleted when you deregister Audit Manager.</p> <ul> <li> <p>If you set the value to <code>ALL</code>, all of your data is deleted within seven days of deregistration.</p> </li> <li> <p>If you set the value to <code>DEFAULT</code>, none of your data is deleted at the time of deregistration. However, keep in mind that the Audit Manager data retention policy still applies. As a result, any evidence data will be deleted two years after its creation date. Your other Audit Manager resources will continue to exist indefinitely.</p> </li> </ul>"
+      }
+    },
     "DeregisterAccountRequest": {
       "base": null,
       "refs": {
@@ -921,6 +927,13 @@
     "DeregisterOrganizationAdminAccountResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeregistrationPolicy": {
+      "base": "<p>The deregistration policy for the data that's stored in Audit Manager. You can use this attribute to determine how your data is handled when you <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregisterAccount.html\">deregister Audit Manager</a>.</p> <p>By default, Audit Manager retains evidence data for two years from the time of its creation. Other Audit Manager resources (including assessments, custom controls, and custom frameworks) remain in Audit Manager indefinitely, and are available if you <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_RegisterAccount.html\">re-register Audit Manager</a> in the future. For more information about data retention, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/data-protection.html\">Data Protection</a> in the <i>Audit Manager User Guide</i>.</p> <important> <p>If you choose to delete all data, this action permanently deletes all evidence data in your account within seven days. It also deletes all of the Audit Manager resources that you created, including assessments, custom controls, and custom frameworks. Your data will not be available if you re-register Audit Manager in the future.</p> </important>",
+      "refs": {
+        "Settings$deregistrationPolicy": "<p>The deregistration policy for your Audit Manager data. You can use this attribute to determine how your data is handled when you deregister Audit Manager.</p>",
+        "UpdateSettingsRequest$deregistrationPolicy": "<p>The deregistration policy for your Audit Manager data. You can use this attribute to determine how your data is handled when you deregister Audit Manager.</p>"
       }
     },
     "DisassociateAssessmentReportEvidenceFolderRequest": {
@@ -965,10 +978,10 @@
       }
     },
     "Evidence": {
-      "base": "<p> A record that contains the information needed to demonstrate compliance with the requirements specified by a control. Examples of evidence include change activity triggered by a user, or a system configuration snapshot. </p>",
+      "base": "<p> A record that contains the information needed to demonstrate compliance with the requirements specified by a control. Examples of evidence include change activity invoked by a user, or a system configuration snapshot. </p>",
       "refs": {
         "EvidenceList$member": null,
-        "GetEvidenceResponse$evidence": "<p> The evidence that the <code>GetEvidenceResponse</code> API returned. </p>"
+        "GetEvidenceResponse$evidence": "<p> The evidence that the <code>GetEvidence</code> API returned. </p>"
       }
     },
     "EvidenceAttributeKey": {
@@ -992,7 +1005,7 @@
     "EvidenceFinderBackfillStatus": {
       "base": null,
       "refs": {
-        "EvidenceFinderEnablement$backfillStatus": "<p>The current status of the evidence data backfill process. </p> <p>The backfill starts after you enable evidence finder. During this task, Audit Manager populates an event data store with your past evidence data so that your evidence can be queried.</p> <ul> <li> <p> <code>NOT_STARTED</code> means that the backfill hasn’t started yet. </p> </li> <li> <p> <code>IN_PROGRESS</code> means that the backfill is in progress. This can take up to 24 hours to complete, depending on the amount of evidence data. </p> </li> <li> <p> <code>COMPLETED</code> means that the backfill is complete. All of your past evidence is now queryable. </p> </li> </ul>"
+        "EvidenceFinderEnablement$backfillStatus": "<p>The current status of the evidence data backfill process. </p> <p>The backfill starts after you enable evidence finder. During this task, Audit Manager populates an event data store with your past two years’ worth of evidence data so that your evidence can be queried.</p> <ul> <li> <p> <code>NOT_STARTED</code> means that the backfill hasn’t started yet. </p> </li> <li> <p> <code>IN_PROGRESS</code> means that the backfill is in progress. This can take up to 7 days to complete, depending on the amount of evidence data. </p> </li> <li> <p> <code>COMPLETED</code> means that the backfill is complete. All of your past evidence is now queryable. </p> </li> </ul>"
       }
     },
     "EvidenceFinderEnablement": {
@@ -1004,7 +1017,7 @@
     "EvidenceFinderEnablementStatus": {
       "base": null,
       "refs": {
-        "EvidenceFinderEnablement$enablementStatus": "<p>The current status of the evidence finder feature and the related event data store. </p> <ul> <li> <p> <code>ENABLE_IN_PROGRESS</code> means that you requested to enable evidence finder. An event data store is currently being created to support evidence finder queries.</p> </li> <li> <p> <code>ENABLED</code> means that an event data store was successfully created and evidence finder is enabled. We recommend that you wait 24 hours until the event data store is backfilled with your past evidence data. You can use evidence finder in the meantime, but not all data might be available until the backfill is complete.</p> </li> <li> <p> <code>DISABLE_IN_PROGRESS</code> means that you requested to disable evidence finder, and your request is pending the deletion of the event data store.</p> </li> <li> <p> <code>DISABLED</code> means that you have permanently disabled evidence finder and the event data store has been deleted. You can't re-enable evidence finder after this point.</p> </li> </ul>"
+        "EvidenceFinderEnablement$enablementStatus": "<p>The current status of the evidence finder feature and the related event data store. </p> <ul> <li> <p> <code>ENABLE_IN_PROGRESS</code> means that you requested to enable evidence finder. An event data store is currently being created to support evidence finder queries.</p> </li> <li> <p> <code>ENABLED</code> means that an event data store was successfully created and evidence finder is enabled. We recommend that you wait 7 days until the event data store is backfilled with your past two years’ worth of evidence data. You can use evidence finder in the meantime, but not all data might be available until the backfill is complete.</p> </li> <li> <p> <code>DISABLE_IN_PROGRESS</code> means that you requested to disable evidence finder, and your request is pending the deletion of the event data store.</p> </li> <li> <p> <code>DISABLED</code> means that you have permanently disabled evidence finder and the event data store has been deleted. You can't re-enable evidence finder after this point.</p> </li> </ul>"
       }
     },
     "EvidenceIds": {
@@ -1300,7 +1313,7 @@
     "Integer": {
       "base": null,
       "refs": {
-        "AssessmentControl$evidenceCount": "<p> The amount of evidence that's generated for the control. </p>",
+        "AssessmentControl$evidenceCount": "<p> The amount of evidence that's collected for the control. </p>",
         "AssessmentControl$assessmentReportEvidenceCount": "<p> The amount of evidence in the assessment report. </p>",
         "AssessmentControlSet$systemEvidenceCount": "<p> The total number of evidence objects that are retrieved automatically for the control set. </p>",
         "AssessmentControlSet$manualEvidenceCount": "<p> The total number of evidence objects that are uploaded manually to the control set. </p>",
@@ -1578,7 +1591,7 @@
     "QueryStatement": {
       "base": null,
       "refs": {
-        "CreateAssessmentReportRequest$queryStatement": "<p>A SQL statement that represents an evidence finder query.</p> <p>Provide this parameter when you want to generate an assessment report from the results of an evidence finder search query. When you use this parameter, Audit Manager generates a one-time report using only the evidence from the query output. This report does not include any assessment evidence that was manually <a href=\"https://docs.aws.amazon.com/userguide/generate-assessment-report.html#generate-assessment-report-include-evidence\">added to a report using the console</a>, or <a href=\"https://docs.aws.amazon.com/APIReference-evidenceFinder/API_BatchAssociateAssessmentReportEvidence.html\">associated with a report using the API</a>. </p> <p>To use this parameter, the <a href=\"https://docs.aws.amazon.com/APIReference-evidenceFinder/API_EvidenceFinderSetup.html#auditmanager-Type-EvidenceFinderSetup-enablementStatus\">enablementStatus</a> of evidence finder must be <code>ENABLED</code>. </p> <p> For examples and help resolving <code>queryStatement</code> validation exceptions, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/evidence-finder-issues.html#querystatement-exceptions\">Troubleshooting evidence finder issues</a> in the AWS Audit Manager User Guide. </p>"
+        "CreateAssessmentReportRequest$queryStatement": "<p>A SQL statement that represents an evidence finder query.</p> <p>Provide this parameter when you want to generate an assessment report from the results of an evidence finder search query. When you use this parameter, Audit Manager generates a one-time report using only the evidence from the query output. This report does not include any assessment evidence that was manually <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#generate-assessment-report-include-evidence\">added to a report using the console</a>, or <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchAssociateAssessmentReportEvidence.html\">associated with a report using the API</a>. </p> <p>To use this parameter, the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_EvidenceFinderEnablement.html#auditmanager-Type-EvidenceFinderEnablement-enablementStatus\">enablementStatus</a> of evidence finder must be <code>ENABLED</code>. </p> <p> For examples and help resolving <code>queryStatement</code> validation exceptions, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/evidence-finder-issues.html#querystatement-exceptions\">Troubleshooting evidence finder issues</a> in the <i>Audit Manager User Guide.</i> </p>"
       }
     },
     "Region": {
@@ -1694,7 +1707,7 @@
     "SettingAttribute": {
       "base": null,
       "refs": {
-        "GetSettingsRequest$attribute": "<p> The list of <code>SettingAttribute</code> enum values. </p>"
+        "GetSettingsRequest$attribute": "<p> The list of setting attribute enum values. </p>"
       }
     },
     "Settings": {
@@ -1775,7 +1788,7 @@
     "SourceType": {
       "base": null,
       "refs": {
-        "ControlMappingSource$sourceType": "<p> Specifies one of the five types of data sources for evidence collection. </p>",
+        "ControlMappingSource$sourceType": "<p> Specifies one of the five data source types for evidence collection. </p>",
         "CreateControlMappingSource$sourceType": "<p> Specifies one of the five types of data sources for evidence collection. </p>",
         "ListKeywordsForDataSourceRequest$source": "<p> The control mapping data source that the keywords apply to. </p>"
       }
@@ -1877,8 +1890,8 @@
       "base": null,
       "refs": {
         "AssessmentEvidenceFolder$date": "<p> The date when the first evidence was added to the evidence folder. </p>",
-        "AssessmentFrameworkMetadata$createdAt": "<p> Specifies when the framework was created. </p>",
-        "AssessmentFrameworkMetadata$lastUpdatedAt": "<p> Specifies when the framework was most recently updated. </p>",
+        "AssessmentFrameworkMetadata$createdAt": "<p> The time when the framework was created. </p>",
+        "AssessmentFrameworkMetadata$lastUpdatedAt": "<p> The time when the framework was most recently updated. </p>",
         "AssessmentFrameworkShareRequest$expirationTime": "<p> The time when the share request expires. </p>",
         "AssessmentFrameworkShareRequest$creationTime": "<p> The time when the share request was created. </p>",
         "AssessmentFrameworkShareRequest$lastUpdated": "<p> Specifies when the share request was last updated. </p>",
@@ -1889,20 +1902,20 @@
         "AssessmentReport$creationTime": "<p> Specifies when the assessment report was created. </p>",
         "AssessmentReportMetadata$creationTime": "<p> Specifies when the assessment report was created. </p>",
         "ChangeLog$createdAt": "<p> The time when the action was performed and the changelog record was created. </p>",
-        "Control$createdAt": "<p> Specifies when the control was created. </p>",
-        "Control$lastUpdatedAt": "<p> Specifies when the control was most recently updated. </p>",
+        "Control$createdAt": "<p> The time when the control was created. </p>",
+        "Control$lastUpdatedAt": "<p> The time when the control was most recently updated. </p>",
         "ControlComment$postedDate": "<p> The time when the comment was posted. </p>",
         "ControlDomainInsights$lastUpdated": "<p>The time when the control domain insights were last updated. </p>",
         "ControlInsightsMetadataByAssessmentItem$lastUpdated": "<p>The time when the assessment control insights were last updated. </p>",
         "ControlInsightsMetadataItem$lastUpdated": "<p>The time when the control insights were last updated. </p>",
-        "ControlMetadata$createdAt": "<p> Specifies when the control was created. </p>",
-        "ControlMetadata$lastUpdatedAt": "<p> Specifies when the control was most recently updated. </p>",
+        "ControlMetadata$createdAt": "<p> The time when the control was created. </p>",
+        "ControlMetadata$lastUpdatedAt": "<p> The time when the control was most recently updated. </p>",
         "Delegation$creationTime": "<p> Specifies when the delegation was created. </p>",
         "Delegation$lastUpdated": "<p> Specifies when the delegation was last updated. </p>",
         "DelegationMetadata$creationTime": "<p> Specifies when the delegation was created. </p>",
         "Evidence$time": "<p> The timestamp that represents when the evidence was collected. </p>",
-        "Framework$createdAt": "<p> Specifies when the framework was created. </p>",
-        "Framework$lastUpdatedAt": "<p> Specifies when the framework was most recently updated. </p>",
+        "Framework$createdAt": "<p> The time when the framework was created. </p>",
+        "Framework$lastUpdatedAt": "<p> The time when the framework was most recently updated. </p>",
         "Insights$lastUpdated": "<p>The time when the cross-assessment insights were last updated. </p>",
         "InsightsByAssessment$lastUpdated": "<p>The time when the assessment insights were last updated.</p>",
         "Notification$eventTime": "<p> The time when the notification was sent. </p>"
