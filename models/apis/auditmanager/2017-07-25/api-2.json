@@ -1956,6 +1956,13 @@
       "members":{
       }
     },
+    "DeleteResources":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "DEFAULT"
+      ]
+    },
     "DeregisterAccountRequest":{
       "type":"structure",
       "members":{
@@ -1976,6 +1983,12 @@
     "DeregisterOrganizationAdminAccountResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeregistrationPolicy":{
+      "type":"structure",
+      "members":{
+        "deleteResources":{"shape":"DeleteResources"}
       }
     },
     "DisassociateAssessmentReportEvidenceFolderRequest":{
@@ -3138,7 +3151,8 @@
         "SNS_TOPIC",
         "DEFAULT_ASSESSMENT_REPORTS_DESTINATION",
         "DEFAULT_PROCESS_OWNERS",
-        "EVIDENCE_FINDER_ENABLEMENT"
+        "EVIDENCE_FINDER_ENABLEMENT",
+        "DEREGISTRATION_POLICY"
       ]
     },
     "Settings":{
@@ -3149,7 +3163,8 @@
         "defaultAssessmentReportsDestination":{"shape":"AssessmentReportsDestination"},
         "defaultProcessOwners":{"shape":"Roles"},
         "kmsKey":{"shape":"KmsKey"},
-        "evidenceFinderEnablement":{"shape":"EvidenceFinderEnablement"}
+        "evidenceFinderEnablement":{"shape":"EvidenceFinderEnablement"},
+        "deregistrationPolicy":{"shape":"DeregistrationPolicy"}
       }
     },
     "ShareRequestAction":{
@@ -3584,7 +3599,8 @@
         "defaultAssessmentReportsDestination":{"shape":"AssessmentReportsDestination"},
         "defaultProcessOwners":{"shape":"Roles"},
         "kmsKey":{"shape":"KmsKey"},
-        "evidenceFinderEnabled":{"shape":"Boolean"}
+        "evidenceFinderEnabled":{"shape":"Boolean"},
+        "deregistrationPolicy":{"shape":"DeregistrationPolicy"}
       }
     },
     "UpdateSettingsResponse":{

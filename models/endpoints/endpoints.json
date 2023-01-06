@@ -17022,6 +17022,11 @@
           "cn-northwest-1" : { }
         }
       },
+      "kinesisvideo" : {
+        "endpoints" : {
+          "cn-north-1" : { }
+        }
+      },
       "kms" : {
         "endpoints" : {
           "cn-north-1" : { },

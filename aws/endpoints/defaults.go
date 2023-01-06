@@ -29108,6 +29108,13 @@ var awscnPartition = partition{
 				}: endpoint{},
 			},
 		},
+		"kinesisvideo": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "cn-north-1",
+				}: endpoint{},
+			},
+		},
 		"kms": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{
