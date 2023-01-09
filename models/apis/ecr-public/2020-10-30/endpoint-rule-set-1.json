@@ -52,6 +52,15 @@
                                     "ref": "Endpoint"
                                 }
                             ]
+                        },
+                        {
+                            "fn": "parseURL",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ],
+                            "assign": "url"
                         }
                     ],
                     "type": "tree",
@@ -166,7 +175,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://workspaces-web-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://api.ecr-public-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -217,18 +226,12 @@
                             "rules": [
                                 {
                                     "conditions": [],
-                                    "type": "tree",
-                                    "rules": [
-                                        {
-                                            "conditions": [],
-                                            "endpoint": {
-                                                "url": "https://workspaces-web-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        }
-                                    ]
+                                    "endpoint": {
+                                        "url": "https://api.ecr-public-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 }
                             ]
                         },
@@ -276,7 +279,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://workspaces-web.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://api.ecr-public.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -294,7 +297,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://workspaces-web.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://api.ecr-public.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

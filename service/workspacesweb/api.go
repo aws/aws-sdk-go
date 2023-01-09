@@ -6565,6 +6565,21 @@ type CreatePortalInput struct {
 	// The additional encryption context of the portal.
 	AdditionalEncryptionContext map[string]*string `locationName:"additionalEncryptionContext" type:"map"`
 
+	// The type of authentication integration points used when signing into the
+	// web portal. Defaults to Standard.
+	//
+	// Standard web portals are authenticated directly through your identity provider.
+	// You need to call CreateIdentityProvider to integrate your identity provider
+	// with your web portal. User and group access to your web portal is controlled
+	// through your identity provider.
+	//
+	// IAM_Identity_Center web portals are authenticated through AWS IAM Identity
+	// Center (successor to AWS Single Sign-On). They provide additional features,
+	// such as IdP-initiated authentication. Identity sources (including external
+	// identity provider integration), plus user and group access to your web portal,
+	// can be configured in the IAM Identity Center.
+	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
+
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. Idempotency ensures that an API request completes only once.
 	// With an idempotent request, if the original request completes successfully,
@@ -6640,6 +6655,12 @@ func (s *CreatePortalInput) Validate() error {
 // SetAdditionalEncryptionContext sets the AdditionalEncryptionContext field's value.
 func (s *CreatePortalInput) SetAdditionalEncryptionContext(v map[string]*string) *CreatePortalInput {
 	s.AdditionalEncryptionContext = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *CreatePortalInput) SetAuthenticationType(v string) *CreatePortalInput {
+	s.AuthenticationType = &v
 	return s
 }
 
@@ -9974,6 +9995,21 @@ func (s *NetworkSettingsSummary) SetVpcId(v string) *NetworkSettingsSummary {
 type Portal struct {
 	_ struct{} `type:"structure"`
 
+	// The type of authentication integration points used when signing into the
+	// web portal. Defaults to Standard.
+	//
+	// Standard web portals are authenticated directly through your identity provider.
+	// You need to call CreateIdentityProvider to integrate your identity provider
+	// with your web portal. User and group access to your web portal is controlled
+	// through your identity provider.
+	//
+	// IAM_Identity_Center web portals are authenticated through AWS IAM Identity
+	// Center (successor to AWS Single Sign-On). They provide additional features,
+	// such as IdP-initiated authentication. Identity sources (including external
+	// identity provider integration), plus user and group access to your web portal,
+	// can be configured in the IAM Identity Center.
+	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
+
 	// The ARN of the browser settings that is associated with this web portal.
 	BrowserSettingsArn *string `locationName:"browserSettingsArn" min:"20" type:"string"`
 
@@ -10036,6 +10072,12 @@ func (s Portal) String() string {
 // value will be replaced with "sensitive".
 func (s Portal) GoString() string {
 	return s.String()
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *Portal) SetAuthenticationType(v string) *Portal {
+	s.AuthenticationType = &v
+	return s
 }
 
 // SetBrowserSettingsArn sets the BrowserSettingsArn field's value.
@@ -10120,6 +10162,21 @@ func (s *Portal) SetUserSettingsArn(v string) *Portal {
 type PortalSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The type of authentication integration points used when signing into the
+	// web portal. Defaults to Standard.
+	//
+	// Standard web portals are authenticated directly through your identity provider.
+	// You need to call CreateIdentityProvider to integrate your identity provider
+	// with your web portal. User and group access to your web portal is controlled
+	// through your identity provider.
+	//
+	// IAM_Identity_Center web portals are authenticated through AWS IAM Identity
+	// Center (successor to AWS Single Sign-On). They provide additional features,
+	// such as IdP-initiated authentication. Identity sources (including external
+	// identity provider integration), plus user and group access to your web portal,
+	// can be configured in the IAM Identity Center.
+	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
+
 	// The ARN of the browser settings that is associated with the web portal.
 	BrowserSettingsArn *string `locationName:"browserSettingsArn" min:"20" type:"string"`
 
@@ -10179,6 +10236,12 @@ func (s PortalSummary) String() string {
 // value will be replaced with "sensitive".
 func (s PortalSummary) GoString() string {
 	return s.String()
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *PortalSummary) SetAuthenticationType(v string) *PortalSummary {
+	s.AuthenticationType = &v
+	return s
 }
 
 // SetBrowserSettingsArn sets the BrowserSettingsArn field's value.
@@ -11305,6 +11368,21 @@ func (s *UpdateNetworkSettingsOutput) SetNetworkSettings(v *NetworkSettings) *Up
 type UpdatePortalInput struct {
 	_ struct{} `type:"structure"`
 
+	// The type of authentication integration points used when signing into the
+	// web portal. Defaults to Standard.
+	//
+	// Standard web portals are authenticated directly through your identity provider.
+	// You need to call CreateIdentityProvider to integrate your identity provider
+	// with your web portal. User and group access to your web portal is controlled
+	// through your identity provider.
+	//
+	// IAM_Identity_Center web portals are authenticated through AWS IAM Identity
+	// Center (successor to AWS Single Sign-On). They provide additional features,
+	// such as IdP-initiated authentication. Identity sources (including external
+	// identity provider integration), plus user and group access to your web portal,
+	// can be configured in the IAM Identity Center.
+	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
+
 	// The name of the web portal. This is not visible to users who log into the
 	// web portal.
 	//
@@ -11354,6 +11432,12 @@ func (s *UpdatePortalInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *UpdatePortalInput) SetAuthenticationType(v string) *UpdatePortalInput {
+	s.AuthenticationType = &v
+	return s
 }
 
 // SetDisplayName sets the DisplayName field's value.
@@ -12224,6 +12308,22 @@ func (s *ValidationExceptionField) SetMessage(v string) *ValidationExceptionFiel
 func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	s.Name = &v
 	return s
+}
+
+const (
+	// AuthenticationTypeStandard is a AuthenticationType enum value
+	AuthenticationTypeStandard = "Standard"
+
+	// AuthenticationTypeIamIdentityCenter is a AuthenticationType enum value
+	AuthenticationTypeIamIdentityCenter = "IAM_Identity_Center"
+)
+
+// AuthenticationType_Values returns all elements of the AuthenticationType enum
+func AuthenticationType_Values() []string {
+	return []string{
+		AuthenticationTypeStandard,
+		AuthenticationTypeIamIdentityCenter,
+	}
 }
 
 const (

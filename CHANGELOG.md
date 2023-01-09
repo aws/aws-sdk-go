@@ -1,3 +1,13 @@
+Release v1.44.176 (2023-01-09)
+===
+
+### Service Client Updates
+* `service/ecr-public`: Updates service API and documentation
+* `service/kendra-ranking`: Adds new service
+* `service/network-firewall`: Updates service API and documentation
+* `service/ram`: Adds new service
+* `service/workspaces-web`: Updates service API and documentation
+
 Release v1.44.175 (2023-01-06)
 ===
 

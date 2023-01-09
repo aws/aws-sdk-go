@@ -26,7 +26,8 @@
         {"shape":"RepositoryNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ServerException"},
-        {"shape":"RegistryNotFoundException"}
+        {"shape":"RegistryNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "BatchDeleteImage":{
@@ -40,7 +41,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "CompleteLayerUpload":{
@@ -78,7 +80,8 @@
         {"shape":"InvalidTagParameterException"},
         {"shape":"TooManyTagsException"},
         {"shape":"RepositoryAlreadyExistsException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "DeleteRepository":{
@@ -93,7 +96,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"RepositoryNotEmptyException"}
+        {"shape":"RepositoryNotEmptyException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "DeleteRepositoryPolicy":{
@@ -108,7 +112,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"RepositoryPolicyNotFoundException"}
+        {"shape":"RepositoryPolicyNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "DescribeImageTags":{
@@ -122,7 +127,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "DescribeImages":{
@@ -137,7 +143,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"ImageNotFoundException"}
+        {"shape":"ImageNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "DescribeRegistries":{
@@ -165,7 +172,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "GetAuthorizationToken":{
@@ -178,7 +186,8 @@
       "output":{"shape":"GetAuthorizationTokenResponse"},
       "errors":[
         {"shape":"ServerException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "GetRegistryCatalogData":{
@@ -205,7 +214,9 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryCatalogDataNotFoundException"},
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "GetRepositoryPolicy":{
@@ -220,7 +231,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"RepositoryPolicyNotFoundException"}
+        {"shape":"RepositoryPolicyNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "InitiateLayerUpload":{
@@ -250,6 +262,7 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"},
         {"shape":"ServerException"}
       ]
     },
@@ -300,7 +313,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "SetRepositoryPolicy":{
@@ -314,7 +328,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"}
       ]
     },
     "TagResource":{
@@ -330,6 +345,7 @@
         {"shape":"InvalidTagParameterException"},
         {"shape":"TooManyTagsException"},
         {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"},
         {"shape":"ServerException"}
       ]
     },
@@ -346,6 +362,7 @@
         {"shape":"InvalidTagParameterException"},
         {"shape":"TooManyTagsException"},
         {"shape":"RepositoryNotFoundException"},
+        {"shape":"UnsupportedCommandException"},
         {"shape":"ServerException"}
       ]
     },
@@ -372,7 +389,7 @@
   "shapes":{
     "AboutText":{
       "type":"string",
-      "max":10240
+      "max":25600
     },
     "Architecture":{
       "type":"string",
@@ -384,7 +401,11 @@
       "member":{"shape":"Architecture"},
       "max":50
     },
-    "Arn":{"type":"string"},
+    "Arn":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "AuthorizationData":{
       "type":"structure",
       "members":{
@@ -1076,8 +1097,8 @@
     },
     "RegistryIdOrAlias":{
       "type":"string",
-      "max":256,
-      "min":1
+      "max":50,
+      "min":2
     },
     "RegistryList":{
       "type":"list",
@@ -1130,6 +1151,13 @@
         "aboutText":{"shape":"AboutText"},
         "usageText":{"shape":"UsageText"}
       }
+    },
+    "RepositoryCatalogDataNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
     },
     "RepositoryDescription":{
       "type":"string",
@@ -1326,7 +1354,7 @@
     "Url":{"type":"string"},
     "UsageText":{
       "type":"string",
-      "max":10240
+      "max":25600
     }
   }
 }

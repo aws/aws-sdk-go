@@ -10063,6 +10063,13 @@ type StatefulRule struct {
 	//    traffic. You can enable the rule with ALERT action, verify in the logs
 	//    that the rule is filtering as you want, then change the action to DROP.
 	//
+	//    * REJECT - Drops TCP traffic that matches the conditions of the stateful
+	//    rule, and sends a TCP reset packet back to sender of the packet. A TCP
+	//    reset packet is a packet with no payload and a RST bit contained in the
+	//    TCP header flags. Also sends an alert log mesage if alert logging is configured
+	//    in the Firewall LoggingConfiguration. REJECT isn't currently available
+	//    for use with IMAP and FTP protocols.
+	//
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"StatefulAction"`
 
@@ -12814,6 +12821,9 @@ const (
 
 	// StatefulActionAlert is a StatefulAction enum value
 	StatefulActionAlert = "ALERT"
+
+	// StatefulActionReject is a StatefulAction enum value
+	StatefulActionReject = "REJECT"
 )
 
 // StatefulAction_Values returns all elements of the StatefulAction enum
@@ -12822,6 +12832,7 @@ func StatefulAction_Values() []string {
 		StatefulActionPass,
 		StatefulActionDrop,
 		StatefulActionAlert,
+		StatefulActionReject,
 	}
 }
 
