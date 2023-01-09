@@ -1080,6 +1080,13 @@
         "userSettingsArn":{"shape":"ARN"}
       }
     },
+    "AuthenticationType":{
+      "type":"string",
+      "enum":[
+        "Standard",
+        "IAM_Identity_Center"
+      ]
+    },
     "BrowserPolicy":{
       "type":"string",
       "max":131072,
@@ -1250,6 +1257,7 @@
       "type":"structure",
       "members":{
         "additionalEncryptionContext":{"shape":"EncryptionContextMap"},
+        "authenticationType":{"shape":"AuthenticationType"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -2036,6 +2044,7 @@
     "Portal":{
       "type":"structure",
       "members":{
+        "authenticationType":{"shape":"AuthenticationType"},
         "browserSettingsArn":{"shape":"ARN"},
         "browserType":{"shape":"BrowserType"},
         "creationDate":{"shape":"Timestamp"},
@@ -2072,6 +2081,7 @@
     "PortalSummary":{
       "type":"structure",
       "members":{
+        "authenticationType":{"shape":"AuthenticationType"},
         "browserSettingsArn":{"shape":"ARN"},
         "browserType":{"shape":"BrowserType"},
         "creationDate":{"shape":"Timestamp"},
@@ -2377,6 +2387,7 @@
       "type":"structure",
       "required":["portalArn"],
       "members":{
+        "authenticationType":{"shape":"AuthenticationType"},
         "displayName":{"shape":"DisplayName"},
         "portalArn":{
           "shape":"ARN",
