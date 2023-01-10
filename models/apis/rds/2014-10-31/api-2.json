@@ -3326,7 +3326,8 @@
         "CustomIamInstanceProfile":{"shape":"String"},
         "NetworkType":{"shape":"String"},
         "StorageThroughput":{"shape":"IntegerOptional"},
-        "EnableCustomerOwnedIp":{"shape":"BooleanOptional"}
+        "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
+        "AllocatedStorage":{"shape":"IntegerOptional"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{
@@ -7920,7 +7921,8 @@
         "BackupTarget":{"shape":"String"},
         "NetworkType":{"shape":"String"},
         "StorageThroughput":{"shape":"IntegerOptional"},
-        "DBClusterSnapshotIdentifier":{"shape":"String"}
+        "DBClusterSnapshotIdentifier":{"shape":"String"},
+        "AllocatedStorage":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
@@ -8038,7 +8040,8 @@
         "CustomIamInstanceProfile":{"shape":"String"},
         "BackupTarget":{"shape":"String"},
         "NetworkType":{"shape":"String"},
-        "StorageThroughput":{"shape":"IntegerOptional"}
+        "StorageThroughput":{"shape":"IntegerOptional"},
+        "AllocatedStorage":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{

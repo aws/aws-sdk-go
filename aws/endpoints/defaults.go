@@ -14004,11 +14004,6 @@ var awsPartition = partition{
 					Hostname: "kendra-ranking.ap-east-1.api.aws",
 				},
 				endpointKey{
-					Region: "ap-northeast-1",
-				}: endpoint{
-					Hostname: "kendra-ranking.ap-northeast-1.api.aws",
-				},
-				endpointKey{
 					Region: "ap-northeast-2",
 				}: endpoint{
 					Hostname: "kendra-ranking.ap-northeast-2.api.aws",
@@ -14017,11 +14012,6 @@ var awsPartition = partition{
 					Region: "ap-northeast-3",
 				}: endpoint{
 					Hostname: "kendra-ranking.ap-northeast-3.api.aws",
-				},
-				endpointKey{
-					Region: "ap-south-1",
-				}: endpoint{
-					Hostname: "kendra-ranking.ap-south-1.api.aws",
 				},
 				endpointKey{
 					Region: "ap-south-2",
@@ -24801,6 +24791,9 @@ var awsPartition = partition{
 		},
 		"ssm-sap": service{
 			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "ap-southeast-2",
+				}: endpoint{},
 				endpointKey{
 					Region: "us-east-1",
 				}: endpoint{},

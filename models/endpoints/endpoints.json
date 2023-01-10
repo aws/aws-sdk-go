@@ -8151,17 +8151,11 @@
           "ap-east-1" : {
             "hostname" : "kendra-ranking.ap-east-1.api.aws"
           },
-          "ap-northeast-1" : {
-            "hostname" : "kendra-ranking.ap-northeast-1.api.aws"
-          },
           "ap-northeast-2" : {
             "hostname" : "kendra-ranking.ap-northeast-2.api.aws"
           },
           "ap-northeast-3" : {
             "hostname" : "kendra-ranking.ap-northeast-3.api.aws"
-          },
-          "ap-south-1" : {
-            "hostname" : "kendra-ranking.ap-south-1.api.aws"
           },
           "ap-south-2" : {
             "hostname" : "kendra-ranking.ap-south-2.api.aws"
@@ -14403,6 +14397,7 @@
       },
       "ssm-sap" : {
         "endpoints" : {
+          "ap-southeast-2" : { },
           "us-east-1" : { }
         }
       },
