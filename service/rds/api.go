@@ -14518,8 +14518,11 @@ func (c *RDS) StartActivityStreamRequest(input *StartActivityStreamInput) (req *
 // StartActivityStream API operation for Amazon Relational Database Service.
 //
 // Starts a database activity stream to monitor activity on the database. For
-// more information, see Database Activity Streams (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
-// in the Amazon Aurora User Guide.
+// more information, see Monitoring Amazon Aurora with Database Activity Streams
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
+// in the Amazon Aurora User Guide or Monitoring Amazon RDS with Database Activity
+// Streams (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/DBActivityStreams.html)
+// in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15045,8 +15048,11 @@ func (c *RDS) StopActivityStreamRequest(input *StopActivityStreamInput) (req *re
 // console, the start-activity-stream CLI command, or the StartActivityStream
 // action.
 //
-// For more information, see Database Activity Streams (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
-// in the Amazon Aurora User Guide.
+// For more information, see Monitoring Amazon Aurora with Database Activity
+// Streams (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
+// in the Amazon Aurora User Guide or Monitoring Amazon RDS with Database Activity
+// Streams (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/DBActivityStreams.html)
+// in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22319,6 +22325,14 @@ func (s *CreateDBInstanceOutput) SetDBInstance(v *DBInstance) *CreateDBInstanceO
 type CreateDBInstanceReadReplicaInput struct {
 	_ struct{} `type:"structure"`
 
+	// The amount of storage (in gibibytes) to allocate initially for the read replica.
+	// Follow the allocation rules specified in CreateDBInstance.
+	//
+	// Be sure to allocate enough memory for your read replica so that the create
+	// operation can succeed. You can also allocate additional memory for future
+	// growth.
+	AllocatedStorage *int64 `type:"integer"`
+
 	// A value that indicates whether minor engine upgrades are applied automatically
 	// to the read replica during the maintenance window.
 	//
@@ -22833,6 +22847,12 @@ func (s *CreateDBInstanceReadReplicaInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetAllocatedStorage(v int64) *CreateDBInstanceReadReplicaInput {
+	s.AllocatedStorage = &v
+	return s
 }
 
 // SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
@@ -48744,6 +48764,14 @@ func (s *RestoreDBClusterToPointInTimeOutput) SetDBCluster(v *DBCluster) *Restor
 type RestoreDBInstanceFromDBSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
+	// The amount of storage (in gibibytes) to allocate initially for the DB instance.
+	// Follow the allocation rules specified in CreateDBInstance.
+	//
+	// Be sure to allocate enough memory for your new DB instance so that the restore
+	// operation can succeed. You can also allocate additional memory for future
+	// growth.
+	AllocatedStorage *int64 `type:"integer"`
+
 	// A value that indicates whether minor version upgrades are applied automatically
 	// to the DB instance during the maintenance window.
 	//
@@ -49146,6 +49174,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetAllocatedStorage(v int64) *RestoreDBInstanceFromDBSnapshotInput {
+	s.AllocatedStorage = &v
+	return s
+}
+
 // SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetAutoMinorVersionUpgrade(v bool) *RestoreDBInstanceFromDBSnapshotInput {
 	s.AutoMinorVersionUpgrade = &v
@@ -49389,7 +49423,7 @@ func (s *RestoreDBInstanceFromDBSnapshotOutput) SetDBInstance(v *DBInstance) *Re
 type RestoreDBInstanceFromS3Input struct {
 	_ struct{} `type:"structure"`
 
-	// The amount of storage (in gigabytes) to allocate initially for the DB instance.
+	// The amount of storage (in gibibytes) to allocate initially for the DB instance.
 	// Follow the allocation rules specified in CreateDBInstance.
 	//
 	// Be sure to allocate enough memory for your new DB instance so that the restore
@@ -50195,6 +50229,14 @@ func (s *RestoreDBInstanceFromS3Output) SetDBInstance(v *DBInstance) *RestoreDBI
 type RestoreDBInstanceToPointInTimeInput struct {
 	_ struct{} `type:"structure"`
 
+	// The amount of storage (in gibibytes) to allocate initially for the DB instance.
+	// Follow the allocation rules specified in CreateDBInstance.
+	//
+	// Be sure to allocate enough memory for your new DB instance so that the restore
+	// operation can succeed. You can also allocate additional memory for future
+	// growth.
+	AllocatedStorage *int64 `type:"integer"`
+
 	// A value that indicates whether minor version upgrades are applied automatically
 	// to the DB instance during the maintenance window.
 	//
@@ -50587,6 +50629,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetAllocatedStorage(v int64) *RestoreDBInstanceToPointInTimeInput {
+	s.AllocatedStorage = &v
+	return s
 }
 
 // SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.

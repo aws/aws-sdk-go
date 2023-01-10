@@ -1,3 +1,11 @@
+Release v1.44.177 (2023-01-10)
+===
+
+### Service Client Updates
+* `service/location`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for configuring allocated storage on the CreateDBInstanceReadReplica, RestoreDBInstanceFromDBSnapshot, and RestoreDBInstanceToPointInTime APIs.
+
 Release v1.44.176 (2023-01-09)
 ===
 

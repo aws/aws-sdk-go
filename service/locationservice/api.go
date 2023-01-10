@@ -1051,6 +1051,11 @@ func (c *LocationService) CreateGeofenceCollectionRequest(input *CreateGeofenceC
 //   - ValidationException
 //     The input failed to meet the constraints specified by the AWS service.
 //
+//   - ServiceQuotaExceededException
+//     The operation was denied because the request would exceed the maximum quota
+//     (https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html)
+//     set for Amazon Location Service.
+//
 //   - ThrottlingException
 //     The request was denied because of request throttling.
 //
@@ -1125,7 +1130,7 @@ func (c *LocationService) CreateMapRequest(input *CreateMapInput) (req *request.
 // styles sourced from global location data providers.
 //
 // If your application is tracking or routing assets you use in your business,
-// such as delivery vehicles or employees, you may only use HERE as your geolocation
+// such as delivery vehicles or employees, you must not use Esri as your geolocation
 // provider. See section 82 of the AWS service terms (http://aws.amazon.com/service-terms)
 // for more details.
 //
@@ -1151,6 +1156,11 @@ func (c *LocationService) CreateMapRequest(input *CreateMapInput) (req *request.
 //
 //   - ValidationException
 //     The input failed to meet the constraints specified by the AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The operation was denied because the request would exceed the maximum quota
+//     (https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html)
+//     set for Amazon Location Service.
 //
 //   - ThrottlingException
 //     The request was denied because of request throttling.
@@ -1229,7 +1239,7 @@ func (c *LocationService) CreatePlaceIndexRequest(input *CreatePlaceIndexInput) 
 // operation.
 //
 // If your application is tracking or routing assets you use in your business,
-// such as delivery vehicles or employees, you may only use HERE as your geolocation
+// such as delivery vehicles or employees, you must not use Esri as your geolocation
 // provider. See section 82 of the AWS service terms (http://aws.amazon.com/service-terms)
 // for more details.
 //
@@ -1255,6 +1265,11 @@ func (c *LocationService) CreatePlaceIndexRequest(input *CreatePlaceIndexInput) 
 //
 //   - ValidationException
 //     The input failed to meet the constraints specified by the AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The operation was denied because the request would exceed the maximum quota
+//     (https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html)
+//     set for Amazon Location Service.
 //
 //   - ThrottlingException
 //     The request was denied because of request throttling.
@@ -1333,7 +1348,7 @@ func (c *LocationService) CreateRouteCalculatorRequest(input *CreateRouteCalcula
 // network data from your chosen data provider.
 //
 // If your application is tracking or routing assets you use in your business,
-// such as delivery vehicles or employees, you may only use HERE as your geolocation
+// such as delivery vehicles or employees, you must not use Esri as your geolocation
 // provider. See section 82 of the AWS service terms (http://aws.amazon.com/service-terms)
 // for more details.
 //
@@ -1359,6 +1374,11 @@ func (c *LocationService) CreateRouteCalculatorRequest(input *CreateRouteCalcula
 //
 //   - ValidationException
 //     The input failed to meet the constraints specified by the AWS service.
+//
+//   - ServiceQuotaExceededException
+//     The operation was denied because the request would exceed the maximum quota
+//     (https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html)
+//     set for Amazon Location Service.
 //
 //   - ThrottlingException
 //     The request was denied because of request throttling.
@@ -5141,15 +5161,17 @@ func (c *LocationService) TagResourceRequest(input *TagResourceInput) (req *requ
 // Assigns one or more tags (key-value pairs) to the specified Amazon Location
 // Service resource.
 //
-//	<p>Tags can help you organize and categorize your resources. You can also
-//	use them to scope user permissions, by granting a user permission to access
-//	or change only resources with certain tag values.</p> <p>You can use the
-//	<code>TagResource</code> operation with an Amazon Location Service resource
-//	that already has tags. If you specify a new tag key for the resource,
-//	this tag is appended to the tags already associated with the resource.
-//	If you specify a tag key that's already associated with the resource,
-//	the new tag value that you specify replaces the previous value for that
-//	tag. </p> <p>You can associate up to 50 tags with a resource.</p>
+// Tags can help you organize and categorize your resources. You can also use
+// them to scope user permissions, by granting a user permission to access or
+// change only resources with certain tag values.
+//
+// You can use the TagResource operation with an Amazon Location Service resource
+// that already has tags. If you specify a new tag key for the resource, this
+// tag is appended to the tags already associated with the resource. If you
+// specify a tag key that's already associated with the resource, the new tag
+// value that you specify replaces the previous value for that tag.
+//
+// You can associate up to 50 tags with a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7188,8 +7210,17 @@ type CalculateRouteInput struct {
 	IncludeLegGeometry *bool `type:"boolean"`
 
 	// Specifies the mode of transport when calculating a route. Used in estimating
-	// the speed of travel and road compatibility. You can choose Car, Truck, or
-	// Walking as options for the TravelMode.
+	// the speed of travel and road compatibility. You can choose Car, Truck, Walking,
+	// Bicycle or Motorcycle as options for the TravelMode.
+	//
+	// Bicycle and Motorcycle are only valid when using Grab as a data provider,
+	// and only within Southeast Asia.
+	//
+	// Truck is not available for Grab.
+	//
+	// For more details on the using Grab for routing, including areas of coverage,
+	// see GrabMaps (https://docs.aws.amazon.com/location/latest/developerguide/grab.html)
+	// in the Amazon Location Service Developer Guide.
 	//
 	// The TravelMode you specify also determines how you specify route preferences:
 	//
@@ -7426,6 +7457,14 @@ type CalculateRouteMatrixInput struct {
 	//
 	//    * If traveling by Truck use the TruckModeOptions parameter.
 	//
+	// Bicycle or Motorcycle are only valid when using Grab as a data provider,
+	// and only within Southeast Asia.
+	//
+	// Truck is not available for Grab.
+	//
+	// For more information about using Grab as a data provider, see GrabMaps (https://docs.aws.amazon.com/location/latest/developerguide/grab.html)
+	// in the Amazon Location Service Developer Guide.
+	//
 	// Default Value: Car
 	TravelMode *string `type:"string" enum:"TravelMode"`
 
@@ -7617,6 +7656,8 @@ type CalculateRouteMatrixSummary struct {
 	//
 	//    * Esri
 	//
+	//    * Grab
+	//
 	//    * Here
 	//
 	// For more information about data providers, see Amazon Location Service data
@@ -7759,6 +7800,8 @@ type CalculateRouteSummary struct {
 	// route. Indicates one of the available providers:
 	//
 	//    * Esri
+	//
+	//    * Grab
 	//
 	//    * Here
 	//
@@ -8458,6 +8501,10 @@ type CreatePlaceIndexInput struct {
 	//    coverage in your region of interest, see Esri details on geocoding coverage
 	//    (https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm).
 	//
+	//    * Grab – Grab provides place index functionality for Southeast Asia.
+	//    For additional information about GrabMaps (https://docs.aws.amazon.com/location/latest/developerguide/grab.html)'
+	//    coverage, see GrabMaps countries and areas covered (https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area).
+	//
 	//    * Here – For additional information about HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)'
 	//    coverage in your region of interest, see HERE details on goecoding coverage
 	//    (https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html).
@@ -8671,14 +8718,19 @@ type CreateRouteCalculatorInput struct {
 	// Specifies the data provider of traffic and road network data.
 	//
 	// This field is case-sensitive. Enter the valid values as shown. For example,
-	// entering HERE returns an error. Route calculators that use Esri as a data
-	// source only calculate routes that are shorter than 400 km.
+	// entering HERE returns an error.
 	//
 	// Valid values include:
 	//
 	//    * Esri – For additional information about Esri (https://docs.aws.amazon.com/location/latest/developerguide/esri.html)'s
 	//    coverage in your region of interest, see Esri details on street networks
 	//    and traffic coverage (https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm).
+	//    Route calculators that use Esri as a data source only calculate routes
+	//    that are shorter than 400 km.
+	//
+	//    * Grab – Grab provides routing functionality for Southeast Asia. For
+	//    additional information about GrabMaps (https://docs.aws.amazon.com/location/latest/developerguide/grab.html)'
+	//    coverage, see GrabMaps countries and areas covered (https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area).
 	//
 	//    * Here – For additional information about HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)'
 	//    coverage in your region of interest, see HERE car routing coverage (https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html)
@@ -9889,6 +9941,8 @@ type DescribePlaceIndexOutput struct {
 	//
 	//    * Esri
 	//
+	//    * Grab
+	//
 	//    * Here
 	//
 	// For more information about data providers, see Amazon Location Service data
@@ -10084,6 +10138,8 @@ type DescribeRouteCalculatorOutput struct {
 	// available providers:
 	//
 	//    * Esri
+	//
+	//    * Grab
 	//
 	//    * Here
 	//
@@ -11264,6 +11320,12 @@ type GetMapGlyphsInput struct {
 	//    * VectorHereExplore, VectorHereExploreTruck, HybridHereExploreSatellite
 	//    – Fira GO Italic | Fira GO Map | Fira GO Map Bold | Noto Sans CJK JP
 	//    Bold | Noto Sans CJK JP Light | Noto Sans CJK JP Regular
+	//
+	// Valid font stacks for GrabMaps (https://docs.aws.amazon.com/location/latest/developerguide/grab.html)
+	// styles:
+	//
+	//    * VectorGrabStandardLight, VectorGrabStandardDark – Noto Sans Regular
+	//    | Noto Sans Medium | Noto Sans Bold
 	//
 	// Valid font stacks for Open Data (Preview) (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html)
 	// styles:
@@ -13031,6 +13093,8 @@ type ListPlaceIndexesResponseEntry struct {
 	//
 	//    * Esri
 	//
+	//    * Grab
+	//
 	//    * Here
 	//
 	// For more information about data providers, see Amazon Location Service data
@@ -13240,6 +13304,8 @@ type ListRouteCalculatorsResponseEntry struct {
 	// available providers:
 	//
 	//    * Esri
+	//
+	//    * Grab
 	//
 	//    * Here
 	//
@@ -13786,6 +13852,19 @@ type MapConfiguration struct {
 	//    more tiles are retrieved than when using either vector or raster tiles
 	//    alone. Your charges will include all tiles retrieved.
 	//
+	// Valid GrabMaps map styles (https://docs.aws.amazon.com/location/latest/developerguide/grab.html):
+	//
+	//    * VectorGrabStandardLight – The Grab Standard Light map style provides
+	//    a basemap with detailed land use coloring, area names, roads, landmarks,
+	//    and points of interest covering Southeast Asia.
+	//
+	//    * VectorGrabStandardDark – The Grab Standard Dark map style provides
+	//    a dark variation of the standard basemap covering Southeast Asia.
+	//
+	// Grab provides maps only for countries in Southeast Asia, and is only available
+	// in the Asia Pacific (Singapore) Region (ap-southeast-1). For more information,
+	// see GrabMaps countries and area covered (https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area).
+	//
 	// Valid Open Data (Preview) map styles (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html):
 	//
 	//    * VectorOpenDataStandardLight – The Open Data Standard Light (preview)
@@ -13893,8 +13972,7 @@ type Place struct {
 	// Street.
 	Street *string `type:"string"`
 
-	// A country, or an area that's part of a larger region. For example, Metro
-	// Vancouver.
+	// A county, or an area that's part of a larger region. For example, Metro Vancouver.
 	SubRegion *string `type:"string"`
 
 	// The time zone in which the Place is located. Returned only when using HERE
@@ -14451,7 +14529,7 @@ type SearchForPositionResult struct {
 	// to find the place again later.
 	//
 	// For SearchPlaceIndexForPosition operations, the PlaceId is returned only
-	// by place indexes that use HERE as a data provider.
+	// by place indexes that use HERE or Grab as a data provider.
 	PlaceId *string `type:"string"`
 }
 
@@ -14500,7 +14578,7 @@ type SearchForSuggestionsResult struct {
 	// to find the place again later.
 	//
 	// For SearchPlaceIndexForSuggestions operations, the PlaceId is returned by
-	// place indexes that use HERE or Esri as data providers.
+	// place indexes that use Esri, Grab, or HERE as data providers.
 	PlaceId *string `type:"string"`
 
 	// The text of the place suggestion, typically formatted as an address string.
@@ -14561,7 +14639,7 @@ type SearchForTextResult struct {
 	// to find the place again later.
 	//
 	// For SearchPlaceIndexForText operations, the PlaceId is returned only by place
-	// indexes that use HERE as a data provider.
+	// indexes that use HERE or Grab as a data provider.
 	PlaceId *string `type:"string"`
 
 	// The relative confidence in the match for a result among the results returned.
@@ -14569,7 +14647,7 @@ type SearchForTextResult struct {
 	// street, city, country/region, and postal code), the relevance score is closer
 	// to 1.
 	//
-	// Returned only when the partner selected is Esri.
+	// Returned only when the partner selected is Esri or Grab.
 	Relevance *float64 `type:"double"`
 }
 
@@ -14788,6 +14866,8 @@ type SearchPlaceIndexForPositionSummary struct {
 	// in the request. Values can be one of the following:
 	//
 	//    * Esri
+	//
+	//    * Grab
 	//
 	//    * Here
 	//
@@ -15115,6 +15195,8 @@ type SearchPlaceIndexForSuggestionsSummary struct {
 	// in the request. Values can be one of the following:
 	//
 	//    * Esri
+	//
+	//    * Grab
 	//
 	//    * Here
 	//
@@ -15473,6 +15555,8 @@ type SearchPlaceIndexForTextSummary struct {
 	// in the request. Values can be one of the following:
 	//
 	//    * Esri
+	//
+	//    * Grab
 	//
 	//    * Here
 	//
@@ -17161,6 +17245,12 @@ const (
 
 	// TravelModeWalking is a TravelMode enum value
 	TravelModeWalking = "Walking"
+
+	// TravelModeBicycle is a TravelMode enum value
+	TravelModeBicycle = "Bicycle"
+
+	// TravelModeMotorcycle is a TravelMode enum value
+	TravelModeMotorcycle = "Motorcycle"
 )
 
 // TravelMode_Values returns all elements of the TravelMode enum
@@ -17169,6 +17259,8 @@ func TravelMode_Values() []string {
 		TravelModeCar,
 		TravelModeTruck,
 		TravelModeWalking,
+		TravelModeBicycle,
+		TravelModeMotorcycle,
 	}
 }
 
