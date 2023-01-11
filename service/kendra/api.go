@@ -5709,7 +5709,7 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 //
 //   - Relevant documents
 //
-// You can specify that the query return only one type of result using the QueryResultTypeConfig
+// You can specify that the query return only one type of result using the QueryResultTypeFilter
 // parameter.
 //
 // Each query returns the 100 most relevant results.
@@ -10013,7 +10013,7 @@ func (s *ConfluencePageConfiguration) SetPageFieldMappings(v []*ConfluencePageTo
 	return s
 }
 
-// >Maps attributes or field names of Confluence pages to Amazon Kendra index
+// Maps attributes or field names of Confluence pages to Amazon Kendra index
 // field names. To create custom fields, use the UpdateIndex API before you
 // map to Confluence fields. For more information, see Mapping data source fields
 // (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
@@ -10199,7 +10199,7 @@ func (s *ConfluenceSpaceConfiguration) SetSpaceFieldMappings(v []*ConfluenceSpac
 	return s
 }
 
-// >Maps attributes or field names of Confluence spaces to Amazon Kendra index
+// Maps attributes or field names of Confluence spaces to Amazon Kendra index
 // field names. To create custom fields, use the UpdateIndex API before you
 // map to Confluence fields. For more information, see Mapping data source fields
 // (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
@@ -19339,9 +19339,7 @@ type JiraConfiguration struct {
 	// one or more of these options to crawl.
 	IssueType []*string `type:"list"`
 
-	// The URL of the Jira account. For example, company.atlassian.net or https://jira.company.com.
-	// You can find your Jira account URL in the URL of your profile page for Jira
-	// desktop.
+	// The URL of the Jira account. For example, company.atlassian.net.
 	//
 	// JiraAccountUrl is a required field
 	JiraAccountUrl *string `min:"1" type:"string" required:"true"`
@@ -19361,10 +19359,10 @@ type JiraConfiguration struct {
 	// key-value pairs required to connect to your Jira data source. The secret
 	// must contain a JSON structure with the following keys:
 	//
-	//    * jiraId—The Jira username.
+	//    * jiraId—The Jira user name or email.
 	//
-	//    * jiraCredentials—The Jira API token. For more information on creating
-	//    an API token in Jira, see Using a Jira data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html).
+	//    * jiraCredentials—The Jira API token. For more information, see Using
+	//    a Jira data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -19380,7 +19378,7 @@ type JiraConfiguration struct {
 	UseChangeLog *bool `type:"boolean"`
 
 	// Configuration information for an Amazon Virtual Private Cloud to connect
-	// to your Jira. Your Jira account must reside inside your VPC.
+	// to your Jira. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 
 	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
@@ -21470,7 +21468,7 @@ type OneDriveConfiguration struct {
 	OneDriveUsers *OneDriveUsers `type:"structure" required:"true"`
 
 	// The Amazon Resource Name (ARN) of an Secrets Managersecret that contains
-	// the user name and password to connect to OneDrive. The user namd should be
+	// the user name and password to connect to OneDrive. The user name should be
 	// the application ID for the OneDrive application, and the password is the
 	// application key for the OneDrive application.
 	//
@@ -29282,6 +29280,27 @@ const (
 
 	// ContentTypePpt is a ContentType enum value
 	ContentTypePpt = "PPT"
+
+	// ContentTypeRtf is a ContentType enum value
+	ContentTypeRtf = "RTF"
+
+	// ContentTypeXml is a ContentType enum value
+	ContentTypeXml = "XML"
+
+	// ContentTypeXslt is a ContentType enum value
+	ContentTypeXslt = "XSLT"
+
+	// ContentTypeMsExcel is a ContentType enum value
+	ContentTypeMsExcel = "MS_EXCEL"
+
+	// ContentTypeCsv is a ContentType enum value
+	ContentTypeCsv = "CSV"
+
+	// ContentTypeJson is a ContentType enum value
+	ContentTypeJson = "JSON"
+
+	// ContentTypeMd is a ContentType enum value
+	ContentTypeMd = "MD"
 )
 
 // ContentType_Values returns all elements of the ContentType enum
@@ -29292,6 +29311,13 @@ func ContentType_Values() []string {
 		ContentTypeMsWord,
 		ContentTypePlainText,
 		ContentTypePpt,
+		ContentTypeRtf,
+		ContentTypeXml,
+		ContentTypeXslt,
+		ContentTypeMsExcel,
+		ContentTypeCsv,
+		ContentTypeJson,
+		ContentTypeMd,
 	}
 }
 

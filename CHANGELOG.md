@@ -1,3 +1,10 @@
+Release v1.44.178 (2023-01-11)
+===
+
+### Service Client Updates
+* `service/kendra`: Updates service API and documentation
+  * This release adds support to new document types - RTF, XML, XSLT, MS_EXCEL, CSV, JSON, MD
+
 Release v1.44.177 (2023-01-10)
 ===
 
