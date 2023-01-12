@@ -100,6 +100,7 @@
           "LastChangedDate": 1523477145.729,
           "LastRotatedDate": 1525747253.72,
           "Name": "MyTestDatabaseSecret",
+          "NextRotationDate": "1665165599",
           "RotationEnabled": true,
           "RotationLambdaARN": "arn:aws:lambda:us-west-2:123456789012:function:MyTestRotationLambda",
           "RotationRules": {
