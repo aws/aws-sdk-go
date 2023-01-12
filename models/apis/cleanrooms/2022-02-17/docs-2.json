@@ -1,0 +1,1350 @@
+{
+  "version": "2.0",
+  "service": "<note> <p>AWS Clean Rooms is in preview release and is subject to change.</p> </note> <p>Welcome to the <i>AWS Clean Rooms API Reference</i>.</p> <p>AWS Clean Rooms is an AWS service that helps multiple parties to join their data together in a secure collaboration workspace. In the collaboration, members who can query and receive results can get insights into the combined data without either party getting access to the other party's raw data.</p> <p>To learn more about AWS Clean Rooms concepts, procedures, and best practices, see the <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/what-is.html\">AWS Clean Rooms User Guide</a>.</p>",
+  "operations": {
+    "BatchGetSchema": "<p>Retrieves multiple schemas by their identifiers.</p>",
+    "CreateCollaboration": "<p>Creates a new collaboration.</p>",
+    "CreateConfiguredTable": "<p>Creates a new configured table resource.</p>",
+    "CreateConfiguredTableAnalysisRule": "<p>Creates a new analysis rule for a configured table. Currently, only one analysis rule can be created for a given configured table.</p>",
+    "CreateConfiguredTableAssociation": "<p>Creates a configured table association. A configured table association links a configured table with a collaboration.</p>",
+    "CreateMembership": "<p>Creates a membership for a specific collaboration identifier and joins the collaboration.</p>",
+    "DeleteCollaboration": "<p>Deletes a collaboration. It can only be called by the collaboration owner.</p>",
+    "DeleteConfiguredTable": "<p>Deletes a configured table.</p>",
+    "DeleteConfiguredTableAnalysisRule": "<p>Deletes a configured table analysis rule.</p>",
+    "DeleteConfiguredTableAssociation": "<p>Deletes a configured table association.</p>",
+    "DeleteMember": "<p>Removes the specified member from a collaboration. The removed member is placed in the Removed status and can't interact with the collaboration. The removed member's data is inaccessible to active members of the collaboration.</p>",
+    "DeleteMembership": "<p>Deletes a specified membership. All resources under a membership must be deleted.</p>",
+    "GetCollaboration": "<p>Returns metadata about a collaboration.</p>",
+    "GetConfiguredTable": "<p>Retrieves a configured table.</p>",
+    "GetConfiguredTableAnalysisRule": "<p>Retrieves a configured table analysis rule.</p>",
+    "GetConfiguredTableAssociation": "<p>Retrieves a configured table association.</p>",
+    "GetMembership": "<p>Retrieves a specified membership for an identifier.</p>",
+    "GetProtectedQuery": "<p>Returns query processing metadata.</p>",
+    "GetSchema": "<p>Retrieves the schema for a relation within a collaboration.</p>",
+    "GetSchemaAnalysisRule": "<p>Retrieves a schema analysis rule.</p>",
+    "ListCollaborations": "<p>Lists collaborations the caller owns, is active in, or has been invited to.</p>",
+    "ListConfiguredTableAssociations": "<p>Lists configured table associations for a membership.</p>",
+    "ListConfiguredTables": "<p>Lists configured tables.</p>",
+    "ListMembers": "<p>Lists all members within a collaboration.</p>",
+    "ListMemberships": "<p>Lists all memberships resources within the caller's account.</p>",
+    "ListProtectedQueries": "<p>Lists protected queries, sorted by the most recent query.</p>",
+    "ListSchemas": "<p>Lists the schemas for relations within a collaboration.</p>",
+    "StartProtectedQuery": "<p>Creates a protected query that is started by AWS Clean Rooms.</p>",
+    "UpdateCollaboration": "<p>Updates collaboration metadata and can only be called by the collaboration owner.</p>",
+    "UpdateConfiguredTable": "<p>Updates a configured table.</p>",
+    "UpdateConfiguredTableAnalysisRule": "<p>Updates a configured table analysis rule.</p>",
+    "UpdateConfiguredTableAssociation": "<p>Updates a configured table association.</p>",
+    "UpdateMembership": "<p>Updates a membership.</p>",
+    "UpdateProtectedQuery": "<p>Updates the processing of a currently running query.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>Caller does not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "AccessDeniedExceptionReason": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$reason": "<p>A reason code for the exception.</p>"
+      }
+    },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "Collaboration$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports AWS account ID.</p>",
+        "CollaborationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports AWS Account ID.</p>",
+        "DeleteMemberInput$accountId": "<p>The account ID of the member to remove.</p>",
+        "MemberSpecification$accountId": "<p>The identifier used to reference members of the collaboration. Currently only supports AWS Account ID.</p>",
+        "MemberSummary$accountId": "<p>The identifier used to reference members of the collaboration. Currently only supports AWS Account ID.</p>",
+        "Membership$collaborationCreatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports AWS account ID.</p>",
+        "MembershipSummary$collaborationCreatorAccountId": "<p>The identifier of the AWS principal that created the collaboration. Currently only supports AWS account ID.</p>",
+        "Schema$creatorAccountId": "<p>The unique account ID for the AWS account that owns the schema.</p>",
+        "SchemaSummary$creatorAccountId": "<p>The unique account ID for the AWS account that owns the schema.</p>"
+      }
+    },
+    "AggregateColumn": {
+      "base": "<p>Column in configured table that can be used in aggregate function in query.</p>",
+      "refs": {
+        "AnalysisRuleAggregationAggregateColumnsList$member": null
+      }
+    },
+    "AggregateColumnColumnNamesList": {
+      "base": null,
+      "refs": {
+        "AggregateColumn$columnNames": "<p>Column names in configured table of aggregate columns.</p>"
+      }
+    },
+    "AggregateFunctionName": {
+      "base": null,
+      "refs": {
+        "AggregateColumn$function": "<p>Aggregation function that can be applied to aggregate column in query.</p>"
+      }
+    },
+    "AggregationConstraint": {
+      "base": "<p>Constraint on query output removing output rows that do not meet a minimum number of distinct values of a specified column.</p>",
+      "refs": {
+        "AggregationConstraints$member": null
+      }
+    },
+    "AggregationConstraintMinimumInteger": {
+      "base": null,
+      "refs": {
+        "AggregationConstraint$minimum": "<p>The minimum number of distinct values that an output row must be an aggregation of. Minimum threshold of distinct values for a specified column that must exist in an output row for it to be in the query output.</p>"
+      }
+    },
+    "AggregationConstraints": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleAggregation$outputConstraints": "<p>Columns that must meet a specific threshold value (after an aggregation function is applied to it) for each output row to be returned.</p>"
+      }
+    },
+    "AggregationType": {
+      "base": null,
+      "refs": {
+        "AggregationConstraint$type": "<p>The type of aggregation the constraint allows. The only valid value is currently `COUNT_DISTINCT`.</p>"
+      }
+    },
+    "AllowedColumnList": {
+      "base": null,
+      "refs": {
+        "ConfiguredTable$allowedColumns": "<p>The columns within the underlying AWS Glue table that can be utilized within collaborations.</p>",
+        "CreateConfiguredTableInput$allowedColumns": "<p>The columns of the underlying table that can be used by collaborations or analysis rules.</p>"
+      }
+    },
+    "AnalysisMethod": {
+      "base": null,
+      "refs": {
+        "ConfiguredTable$analysisMethod": "<p>The analysis method for the configured table. The only valid value is currently `DIRECT_QUERY`.</p>",
+        "ConfiguredTableSummary$analysisMethod": "<p>The analysis method for the configured tables. The only valid value is currently `DIRECT_QUERY`.</p>",
+        "CreateConfiguredTableInput$analysisMethod": "<p>The analysis method for the configured tables. The only valid value is currently `DIRECT_QUERY`.</p>",
+        "Schema$analysisMethod": "<p>The analysis method for the schema. The only valid value is currently DIRECT_QUERY.</p>",
+        "SchemaSummary$analysisMethod": "<p>The analysis method for the associated schema. The only valid value is currently `DIRECT_QUERY`.</p>"
+      }
+    },
+    "AnalysisRule": {
+      "base": "<p>A specification about how data from the configured table can be used in a query.</p>",
+      "refs": {
+        "GetSchemaAnalysisRuleOutput$analysisRule": "<p>A specification about how data from the configured table can be used.</p>"
+      }
+    },
+    "AnalysisRuleAggregation": {
+      "base": "<p>Enables query structure and specified queries that product aggregate statistics.</p>",
+      "refs": {
+        "AnalysisRulePolicyV1$aggregation": "<p>Analysis rule type that enables only aggregation queries on a configured table.</p>",
+        "ConfiguredTableAnalysisRulePolicyV1$aggregation": "<p>Analysis rule type that enables only aggregation queries on a configured table.</p>"
+      }
+    },
+    "AnalysisRuleAggregationAggregateColumnsList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleAggregation$aggregateColumns": "<p>The columns that query runners are allowed to use in aggregation queries.</p>"
+      }
+    },
+    "AnalysisRuleColumnList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleAggregation$joinColumns": "<p>Columns in configured table that can be used in join statements and/or as aggregate columns. They can never be outputted directly.</p>",
+        "AnalysisRuleAggregation$dimensionColumns": "<p>The columns that query runners are allowed to select, group by, or filter by.</p>",
+        "AnalysisRuleList$listColumns": "<p>Columns that can be listed in the output.</p>"
+      }
+    },
+    "AnalysisRuleColumnName": {
+      "base": null,
+      "refs": {
+        "AggregateColumnColumnNamesList$member": null,
+        "AggregationConstraint$columnName": "<p>Column in aggregation constraint for which there must be a minimum number of distinct values in an output row for it to be in the query output.</p>",
+        "AnalysisRuleColumnList$member": null,
+        "AnalysisRuleListJoinColumnsList$member": null
+      }
+    },
+    "AnalysisRuleList": {
+      "base": "<p>A type of analysis rule that enables row-level analysis.</p>",
+      "refs": {
+        "AnalysisRulePolicyV1$list": "<p>Analysis rule type that enables only list queries on a configured table.</p>",
+        "ConfiguredTableAnalysisRulePolicyV1$list": "<p>Analysis rule type that enables only list queries on a configured table.</p>"
+      }
+    },
+    "AnalysisRuleListJoinColumnsList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleList$joinColumns": "<p>Columns that can be used to join a configured table with the table of the member who can query and another members' configured tables.</p>"
+      }
+    },
+    "AnalysisRulePolicy": {
+      "base": "<p>Controls on the query specifications that can be run on configured table..</p>",
+      "refs": {
+        "AnalysisRule$policy": "<p>A policy that describes the associated data usage limitations.</p>"
+      }
+    },
+    "AnalysisRulePolicyV1": {
+      "base": "<p>Controls on the query specifications that can be run on configured table..</p>",
+      "refs": {
+        "AnalysisRulePolicy$v1": "<p>Controls on the query specifications that can be run on configured table..</p>"
+      }
+    },
+    "AnalysisRuleType": {
+      "base": null,
+      "refs": {
+        "AnalysisRule$type": "<p>The type of analysis rule. Valid values are `AGGREGATION` and `LIST`.</p>",
+        "AnalysisRuleTypeList$member": null,
+        "GetSchemaAnalysisRuleInput$type": "<p>The type of the schema analysis rule to retrieve. Schema analysis rules are uniquely identified by a combination of the collaboration, the schema name, and their type.</p>"
+      }
+    },
+    "AnalysisRuleTypeList": {
+      "base": null,
+      "refs": {
+        "Schema$analysisRuleTypes": "<p>The analysis rule types associated with the schema. Valued values are LIST and AGGREGATION. Currently, only one entry is present.</p>",
+        "SchemaSummary$analysisRuleTypes": "<p>The types of analysis rules that are associated with this schema object.</p>"
+      }
+    },
+    "BatchGetSchemaError": {
+      "base": "<p>An error describing why a schema could not be fetched.</p>",
+      "refs": {
+        "BatchGetSchemaErrorList$member": null
+      }
+    },
+    "BatchGetSchemaErrorList": {
+      "base": null,
+      "refs": {
+        "BatchGetSchemaOutput$errors": "<p>Error reasons for schemas that could not be retrieved. One error is returned for every schema that could not be retrieved.</p>"
+      }
+    },
+    "BatchGetSchemaInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetSchemaOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "DataEncryptionMetadata$allowCleartext": "<p>Indicates whether encrypted tables can contain cleartext data (true) or are to cryptographically process every column (false).</p>",
+        "DataEncryptionMetadata$allowDuplicates": "<p>Indicates whether Fingerprint columns can contain duplicate entries (true) or are to contain only non-repeated values (false).</p>",
+        "DataEncryptionMetadata$allowJoinsOnColumnsWithDifferentNames": "<p>Indicates whether Fingerprint columns can be joined on any other Fingerprint column with a different name (true) or can only be joined on Fingerprint columns of the same name (false).</p>",
+        "DataEncryptionMetadata$preserveNulls": "<p>Indicates whether NULL values are to be copied as NULL to encrypted tables (true) or cryptographically processed (false).</p>"
+      }
+    },
+    "Collaboration": {
+      "base": "<p>The multi-party data share environment. The collaboration contains metadata about its purpose and participants.</p>",
+      "refs": {
+        "CreateCollaborationOutput$collaboration": "<p>The entire created collaboration object.</p>",
+        "GetCollaborationOutput$collaboration": "<p>The entire collaboration for this identifier.</p>",
+        "UpdateCollaborationOutput$collaboration": "<p>The entire collaboration that has been updated.</p>"
+      }
+    },
+    "CollaborationArn": {
+      "base": null,
+      "refs": {
+        "Collaboration$arn": "<p>The unique ARN for the collaboration.</p>",
+        "CollaborationSummary$arn": "<p>The ARN of the collaboration.</p>",
+        "Membership$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
+        "MembershipSummary$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
+        "Schema$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>",
+        "SchemaSummary$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>"
+      }
+    },
+    "CollaborationDescription": {
+      "base": null,
+      "refs": {
+        "Collaboration$description": "<p>A description of the collaboration provided by the collaboration owner.</p>",
+        "CreateCollaborationInput$description": "<p>A description of the collaboration provided by the collaboration owner.</p>",
+        "UpdateCollaborationInput$description": "<p>A description of the collaboration.</p>"
+      }
+    },
+    "CollaborationIdentifier": {
+      "base": null,
+      "refs": {
+        "AnalysisRule$collaborationId": "<p>The unique ID for the associated collaboration.</p>",
+        "BatchGetSchemaInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schemas belong to. Currently accepts collaboration ID.</p>",
+        "CreateMembershipInput$collaborationIdentifier": "<p>The unique ID for the associated collaboration.</p>",
+        "DeleteCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
+        "DeleteMemberInput$collaborationIdentifier": "<p>The unique identifier for the associated collaboration.</p>",
+        "GetCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
+        "GetSchemaAnalysisRuleInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
+        "GetSchemaInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
+        "ListMembersInput$collaborationIdentifier": "<p>The identifier of the collaboration in which the members are listed.</p>",
+        "ListSchemasInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
+        "MembershipSummary$collaborationId": "<p>The unique ID for the membership's collaboration.</p>",
+        "UpdateCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>"
+      }
+    },
+    "CollaborationName": {
+      "base": null,
+      "refs": {
+        "Collaboration$name": "<p>A human-readable identifier provided by the collaboration owner. Display names are not unique.</p>",
+        "CollaborationSummary$name": "<p>A human-readable identifier provided by the collaboration owner. Display names are not unique.</p>",
+        "CreateCollaborationInput$name": "<p>The display name for a collaboration.</p>",
+        "Membership$collaborationName": "<p>The name of the membership's collaboration.</p>",
+        "MembershipSummary$collaborationName": "<p>The name for the membership's collaboration.</p>",
+        "UpdateCollaborationInput$name": "<p>A human-readable identifier provided by the collaboration owner. Display names are not unique.</p>"
+      }
+    },
+    "CollaborationQueryLogStatus": {
+      "base": null,
+      "refs": {
+        "Collaboration$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>",
+        "CreateCollaborationInput$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>"
+      }
+    },
+    "CollaborationSummary": {
+      "base": "<p>The metadata of the collaboration.</p>",
+      "refs": {
+        "CollaborationSummaryList$member": null
+      }
+    },
+    "CollaborationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListCollaborationsOutput$collaborationList": "<p>The list of collaborations.</p>"
+      }
+    },
+    "Column": {
+      "base": "<p>A column within a schema relation, derived from the underlying AWS Glue table.</p>",
+      "refs": {
+        "ColumnList$member": null
+      }
+    },
+    "ColumnList": {
+      "base": null,
+      "refs": {
+        "Schema$columns": "<p>The columns for the relation this schema represents.</p>",
+        "Schema$partitionKeys": "<p>The partition keys for the data set underlying this schema.</p>"
+      }
+    },
+    "ColumnName": {
+      "base": null,
+      "refs": {
+        "AllowedColumnList$member": null,
+        "Column$name": "<p>The name of the column.</p>"
+      }
+    },
+    "ColumnTypeString": {
+      "base": null,
+      "refs": {
+        "Column$type": "<p>The type of the column.</p>"
+      }
+    },
+    "ConfiguredTable": {
+      "base": "<p>A table that has been configured for use in a collaboration.</p>",
+      "refs": {
+        "CreateConfiguredTableOutput$configuredTable": "<p>The created configured table.</p>",
+        "GetConfiguredTableOutput$configuredTable": "<p>The retrieved configured table.</p>",
+        "UpdateConfiguredTableOutput$configuredTable": "<p>The updated configured table.</p>"
+      }
+    },
+    "ConfiguredTableAnalysisRule": {
+      "base": "<p>A configured table analysis rule, which limits how data for this table can be used.</p>",
+      "refs": {
+        "CreateConfiguredTableAnalysisRuleOutput$analysisRule": "<p>The entire created analysis rule.</p>",
+        "GetConfiguredTableAnalysisRuleOutput$analysisRule": "<p>The entire analysis rule output.</p>",
+        "UpdateConfiguredTableAnalysisRuleOutput$analysisRule": "<p>The entire updated analysis rule.</p>"
+      }
+    },
+    "ConfiguredTableAnalysisRulePolicy": {
+      "base": "<p>Controls on the query specifications that can be run on a configured table.</p>",
+      "refs": {
+        "ConfiguredTableAnalysisRule$policy": "<p>The policy that controls SQL query rules.</p>",
+        "CreateConfiguredTableAnalysisRuleInput$analysisRulePolicy": "<p>The entire created configured table analysis rule object.</p>",
+        "UpdateConfiguredTableAnalysisRuleInput$analysisRulePolicy": "<p>The new analysis rule policy for the configured table analysis rule.</p>"
+      }
+    },
+    "ConfiguredTableAnalysisRulePolicyV1": {
+      "base": "<p>Controls on the query specifications that can be run on a configured table.</p>",
+      "refs": {
+        "ConfiguredTableAnalysisRulePolicy$v1": "<p>Controls on the query specifications that can be run on a configured table.</p>"
+      }
+    },
+    "ConfiguredTableAnalysisRuleType": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAnalysisRule$type": "<p>The type of configured table analysis rule. Valid values are `AGGREGATION` and `LIST`.</p>",
+        "ConfiguredTableAnalysisRuleTypeList$member": null,
+        "CreateConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The type of analysis rule. Valid values are AGGREGATION and LIST.</p>",
+        "DeleteConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The analysis rule type to be deleted. Configured table analysis rules are uniquely identified by their configured table identifier and analysis rule type.</p>",
+        "GetConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The analysis rule to be retrieved. Configured table analysis rules are uniquely identified by their configured table identifier and analysis rule type.</p>",
+        "UpdateConfiguredTableAnalysisRuleInput$analysisRuleType": "<p>The analysis rule type to be updated. Configured table analysis rules are uniquely identified by their configured table identifier and analysis rule type.</p>"
+      }
+    },
+    "ConfiguredTableAnalysisRuleTypeList": {
+      "base": null,
+      "refs": {
+        "ConfiguredTable$analysisRuleTypes": "<p>The types of analysis rules associated with this configured table. Valid values are `AGGREGATION` and `LIST`. Currently, only one analysis rule may be associated with a configured table.</p>",
+        "ConfiguredTableSummary$analysisRuleTypes": "<p>The types of analysis rules associated with this configured table.</p>"
+      }
+    },
+    "ConfiguredTableArn": {
+      "base": null,
+      "refs": {
+        "ConfiguredTable$arn": "<p>The unique ARN for the configured table.</p>",
+        "ConfiguredTableAnalysisRule$configuredTableArn": "<p>The unique ARN for the configured table.</p>",
+        "ConfiguredTableAssociation$configuredTableArn": "<p>The unique ARN for the configured table that the association refers to.</p>",
+        "ConfiguredTableSummary$arn": "<p>The unique ARN of the configured table.</p>"
+      }
+    },
+    "ConfiguredTableAssociation": {
+      "base": "<p>A configured table association links a configured table to a collaboration.</p>",
+      "refs": {
+        "CreateConfiguredTableAssociationOutput$configuredTableAssociation": "<p>The entire configured table association object.</p>",
+        "GetConfiguredTableAssociationOutput$configuredTableAssociation": "<p>The entire configured table association object.</p>",
+        "UpdateConfiguredTableAssociationOutput$configuredTableAssociation": "<p>The entire updated configured table association.</p>"
+      }
+    },
+    "ConfiguredTableAssociationArn": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAssociation$arn": "<p>The unique ARN for the configured table association.</p>",
+        "ConfiguredTableAssociationSummary$arn": "<p>The unique ARN for the configured table association.</p>"
+      }
+    },
+    "ConfiguredTableAssociationIdentifier": {
+      "base": null,
+      "refs": {
+        "DeleteConfiguredTableAssociationInput$configuredTableAssociationIdentifier": "<p>The unique ID for the configured table association to be deleted. Currently accepts the configured table ID.</p>",
+        "GetConfiguredTableAssociationInput$configuredTableAssociationIdentifier": "<p>The unique ID for the configured table association to retrieve. Currently accepts the configured table ID.</p>",
+        "UpdateConfiguredTableAssociationInput$configuredTableAssociationIdentifier": "<p>The unique identifier for the configured table association to update. Currently accepts the configured table association ID.</p>"
+      }
+    },
+    "ConfiguredTableAssociationSummary": {
+      "base": "<p>The configured table association summary for the objects listed by the request.</p>",
+      "refs": {
+        "ConfiguredTableAssociationSummaryList$member": null
+      }
+    },
+    "ConfiguredTableAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListConfiguredTableAssociationsOutput$configuredTableAssociationSummaries": "<p>The retrieved list of configured table associations.</p>"
+      }
+    },
+    "ConfiguredTableIdentifier": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableSummary$id": "<p>The unique ID of the configured table.</p>",
+        "CreateConfiguredTableAnalysisRuleInput$configuredTableIdentifier": "<p>The identifier for the configured table to create the analysis rule for. Currently accepts the configured table ID. </p>",
+        "CreateConfiguredTableAssociationInput$configuredTableIdentifier": "<p>A unique identifier for the configured table to be associated to. Currently accepts a configured table ID.</p>",
+        "DeleteConfiguredTableAnalysisRuleInput$configuredTableIdentifier": "<p>The unique identifier for the configured table that the analysis rule applies to. Currently accepts the configured table ID.</p>",
+        "DeleteConfiguredTableInput$configuredTableIdentifier": "<p>The unique ID for the configured table to delete.</p>",
+        "GetConfiguredTableAnalysisRuleInput$configuredTableIdentifier": "<p>The unique identifier for the configured table to retrieve. Currently accepts the configured table ID.</p>",
+        "GetConfiguredTableInput$configuredTableIdentifier": "<p>The unique ID for the configured table to retrieve.</p>",
+        "UpdateConfiguredTableAnalysisRuleInput$configuredTableIdentifier": "<p>The unique identifier for the configured table that the analysis rule applies to. Currently accepts the configured table ID.</p>",
+        "UpdateConfiguredTableInput$configuredTableIdentifier": "<p>The identifier for the configured table to update. Currently accepts the configured table ID.</p>"
+      }
+    },
+    "ConfiguredTableSummary": {
+      "base": "<p>The configured table summary for the objects listed by the request.</p>",
+      "refs": {
+        "ConfiguredTableSummaryList$member": "<p>The member of the configured table summary list.</p>"
+      }
+    },
+    "ConfiguredTableSummaryList": {
+      "base": null,
+      "refs": {
+        "ListConfiguredTablesOutput$configuredTableSummaries": "<p>The configured tables listed by the request.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
+      "refs": {
+      }
+    },
+    "ConflictExceptionReason": {
+      "base": null,
+      "refs": {
+        "ConflictException$reason": "<p>A reason code for the exception.</p>"
+      }
+    },
+    "CreateCollaborationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCollaborationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableAnalysisRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMembershipInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMembershipOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DataEncryptionMetadata": {
+      "base": "<p>The settings for client-side encryption for cryptographic computing.</p>",
+      "refs": {
+        "Collaboration$dataEncryptionMetadata": "<p>The settings for client-side encryption for cryptographic computing.</p>",
+        "CreateCollaborationInput$dataEncryptionMetadata": "<p>The settings for client-side encryption with Cryptographic Computing for Clean Rooms.</p>"
+      }
+    },
+    "DeleteCollaborationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCollaborationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableAnalysisRuleOutput": {
+      "base": "<p>An empty response that indicates a successful delete.</p>",
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableOutput": {
+      "base": "<p>The empty output for a successful deletion.</p>",
+      "refs": {
+      }
+    },
+    "DeleteMemberInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMemberOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMembershipInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMembershipOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisplayName": {
+      "base": null,
+      "refs": {
+        "Collaboration$creatorDisplayName": "<p>A display name of the collaboration creator.</p>",
+        "CollaborationSummary$creatorDisplayName": "<p>The display name of the collaboration creator.</p>",
+        "ConfiguredTable$name": "<p>A name for the configured table.</p>",
+        "ConfiguredTableSummary$name": "<p>The name of the configured table.</p>",
+        "CreateCollaborationInput$creatorDisplayName": "<p>The display name of the collaboration creator.</p>",
+        "CreateConfiguredTableInput$name": "<p>The name of the configured table.</p>",
+        "MemberSpecification$displayName": "<p>The member's display name.</p>",
+        "MemberSummary$displayName": "<p>The member's display name.</p>",
+        "Membership$collaborationCreatorDisplayName": "<p>The display name of the collaboration creator.</p>",
+        "MembershipSummary$collaborationCreatorDisplayName": "<p>The display name of the collaboration creator.</p>",
+        "UpdateConfiguredTableInput$name": "<p>A new name for the configured table.</p>"
+      }
+    },
+    "Double": {
+      "base": null,
+      "refs": {
+        "ServiceQuotaExceededException$quotaValue": "<p>The value of the quota.</p>"
+      }
+    },
+    "FilterableMemberStatus": {
+      "base": null,
+      "refs": {
+        "ListCollaborationsInput$memberStatus": "<p>The caller's status in a collaboration.</p>"
+      }
+    },
+    "GetCollaborationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableAnalysisRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMembershipInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMembershipOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetProtectedQueryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetProtectedQueryOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaAnalysisRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GlueResourceName": {
+      "base": null,
+      "refs": {
+        "GlueTableReference$tableName": "<p>The name of the AWS Glue table.</p>",
+        "GlueTableReference$databaseName": "<p>The name of the database the AWS Glue table belongs to.</p>"
+      }
+    },
+    "GlueTableReference": {
+      "base": "<p>A reference to a table within an AWS Glue data catalog.</p>",
+      "refs": {
+        "TableReference$glue": "<p>If present, a reference to the AWS Glue table referred to by this table reference.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>Unexpected error during processing of request.</p>",
+      "refs": {
+      }
+    },
+    "JoinRequiredOption": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleAggregation$joinRequired": "<p>Control that requires member who runs query to do a join with their configured table and/or other configured table in query</p>"
+      }
+    },
+    "KeyPrefix": {
+      "base": null,
+      "refs": {
+        "ProtectedQueryS3OutputConfiguration$keyPrefix": "<p>The S3 prefix to unload the protected query results.</p>"
+      }
+    },
+    "ListCollaborationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfiguredTableAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfiguredTableAssociationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfiguredTablesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfiguredTablesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMembersInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMembersOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMembershipsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMembershipsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProtectedQueriesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProtectedQueriesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchemasInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchemasOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Long": {
+      "base": null,
+      "refs": {
+        "ProtectedQueryStatistics$totalDurationInMillis": "<p>The duration of the Protected Query, from creation until query completion.</p>"
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListCollaborationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListConfiguredTableAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListConfiguredTablesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListMembersInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListMembershipsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListProtectedQueriesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service can return a nextToken even if the maximum results has not been met. </p>",
+        "ListSchemasInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>"
+      }
+    },
+    "MemberAbilities": {
+      "base": null,
+      "refs": {
+        "CreateCollaborationInput$creatorMemberAbilities": "<p>The abilities granted to the collaboration creator.</p>",
+        "MemberSpecification$memberAbilities": "<p>The abilities granted to the collaboration member.</p>",
+        "MemberSummary$abilities": "<p>The abilities granted to the collaboration member.</p>",
+        "Membership$memberAbilities": "<p>The abilities granted to the collaboration member.</p>",
+        "MembershipSummary$memberAbilities": "<p>The abilities granted to the collaboration member.</p>"
+      }
+    },
+    "MemberAbility": {
+      "base": null,
+      "refs": {
+        "MemberAbilities$member": null
+      }
+    },
+    "MemberList": {
+      "base": null,
+      "refs": {
+        "CreateCollaborationInput$members": "<p>A list of initial members, not including the creator. This list is immutable.</p>"
+      }
+    },
+    "MemberSpecification": {
+      "base": "<p>Basic metadata used to construct a new member.</p>",
+      "refs": {
+        "MemberList$member": null
+      }
+    },
+    "MemberStatus": {
+      "base": null,
+      "refs": {
+        "Collaboration$memberStatus": "<p>The status of a member in a collaboration.</p>",
+        "CollaborationSummary$memberStatus": "<p>The status of a member in a collaboration.</p>",
+        "MemberSummary$status": "<p>The status of the member. Valid values are `INVITED`, `ACTIVE`, `LEFT`, and `REMOVED`.</p>"
+      }
+    },
+    "MemberSummary": {
+      "base": "<p>The member object listed by the request.</p>",
+      "refs": {
+        "MemberSummaryList$member": null
+      }
+    },
+    "MemberSummaryList": {
+      "base": null,
+      "refs": {
+        "ListMembersOutput$memberSummaries": "<p>The list of members returned by the ListMembers operation.</p>"
+      }
+    },
+    "Membership": {
+      "base": "<p>The membership object.</p>",
+      "refs": {
+        "CreateMembershipOutput$membership": "<p>The membership that was created.</p>",
+        "GetMembershipOutput$membership": "<p>The membership retrieved for the provided identifier.</p>",
+        "UpdateMembershipOutput$membership": null
+      }
+    },
+    "MembershipArn": {
+      "base": null,
+      "refs": {
+        "Collaboration$membershipArn": "<p>The unique ARN for your membership within the collaboration.</p>",
+        "CollaborationSummary$membershipArn": "<p>The ARN of a member in a collaboration.</p>",
+        "ConfiguredTableAssociation$membershipArn": "<p>The unique ARN for the membership this configured table association belongs to.</p>",
+        "ConfiguredTableAssociationSummary$membershipArn": "<p>The unique ARN for the membership that the configured table association belongs to.</p>",
+        "MemberSummary$membershipArn": "<p>The unique ARN for the member's associated membership, if present.</p>",
+        "Membership$arn": "<p>The unique ARN for the membership.</p>",
+        "MembershipSummary$arn": "<p>The unique ARN for the membership.</p>",
+        "ProtectedQuery$membershipArn": "<p>The ARN of the membership.</p>",
+        "ProtectedQuerySummary$membershipArn": "<p>The unique ARN for the membership that initiated the protected query.</p>"
+      }
+    },
+    "MembershipIdentifier": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAssociationSummary$membershipId": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
+        "CreateConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured table is associated to the collaboration that this membership belongs to. Currently accepts a membership ID.</p>",
+        "DeleteConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
+        "DeleteMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "GetConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
+        "GetMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "GetProtectedQueryInput$membershipIdentifier": "<p>The identifier for a membership in a protected query instance.</p>",
+        "ListConfiguredTableAssociationsInput$membershipIdentifier": "<p>A unique identifier for the membership to list configured table associations for. Currently accepts the membership ID.</p>",
+        "ListProtectedQueriesInput$membershipIdentifier": "<p>The identifier for the membership in the collaboration.</p>",
+        "StartProtectedQueryInput$membershipIdentifier": "<p>A unique identifier for the membership to run this query against. Currently accepts a membership ID.</p>",
+        "UpdateConfiguredTableAssociationInput$membershipIdentifier": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
+        "UpdateMembershipInput$membershipIdentifier": "<p>The unique identifier of the membership.</p>",
+        "UpdateProtectedQueryInput$membershipIdentifier": "<p>The identifier for a member of a protected query instance.</p>"
+      }
+    },
+    "MembershipQueryLogStatus": {
+      "base": null,
+      "refs": {
+        "CreateMembershipInput$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>",
+        "Membership$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>",
+        "UpdateMembershipInput$queryLogStatus": "<p>An indicator as to whether query logging has been enabled or disabled for the collaboration.</p>"
+      }
+    },
+    "MembershipStatus": {
+      "base": null,
+      "refs": {
+        "ListMembershipsInput$status": "<p>A filter which will return only memberships in the specified status.</p>",
+        "Membership$status": "<p>The status of the membership. Valid values are `ACTIVE`, `REMOVED`, and `COLLABORATION_DELETED`.</p>",
+        "MembershipSummary$status": "<p>The status of the membership. Valid values are `ACTIVE`, `REMOVED`, and `COLLABORATION_DELETED`.</p>"
+      }
+    },
+    "MembershipSummary": {
+      "base": "<p>The membership object listed by the request.</p>",
+      "refs": {
+        "MembershipSummaryList$member": null
+      }
+    },
+    "MembershipSummaryList": {
+      "base": null,
+      "refs": {
+        "ListMembershipsOutput$membershipSummaries": "<p>The list of memberships returned from the ListMemberships operation.</p>"
+      }
+    },
+    "PaginationToken": {
+      "base": null,
+      "refs": {
+        "ListCollaborationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredTableAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredTableAssociationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredTablesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredTablesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListMembersInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListMembersOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListMembershipsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListMembershipsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListProtectedQueriesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListProtectedQueriesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListSchemasInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListSchemasOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>"
+      }
+    },
+    "ProtectedQuery": {
+      "base": "<p>The parameters for an AWS Clean Rooms protected query.</p>",
+      "refs": {
+        "GetProtectedQueryOutput$protectedQuery": "<p>The query processing metadata.</p>",
+        "StartProtectedQueryOutput$protectedQuery": "<p>The protected query.</p>",
+        "UpdateProtectedQueryOutput$protectedQuery": "<p>The protected query output.</p>"
+      }
+    },
+    "ProtectedQueryError": {
+      "base": "<p>Details of errors thrown by the protected query.</p>",
+      "refs": {
+        "ProtectedQuery$error": "<p>An error thrown by the protected query.</p>"
+      }
+    },
+    "ProtectedQueryIdentifier": {
+      "base": null,
+      "refs": {
+        "GetProtectedQueryInput$protectedQueryIdentifier": "<p>The identifier for a protected query instance.</p>",
+        "UpdateProtectedQueryInput$protectedQueryIdentifier": "<p>The identifier for a protected query instance.</p>"
+      }
+    },
+    "ProtectedQueryOutput": {
+      "base": "<p>Contains details about the protected query output.</p>",
+      "refs": {
+        "ProtectedQueryResult$output": "<p>The output of the protected query.</p>"
+      }
+    },
+    "ProtectedQueryOutputConfiguration": {
+      "base": "<p>Contains configuration details for protected query output.</p>",
+      "refs": {
+        "ProtectedQueryResultConfiguration$outputConfiguration": "<p>Configuration for protected query results.</p>"
+      }
+    },
+    "ProtectedQueryResult": {
+      "base": "<p>Details about the query results.</p>",
+      "refs": {
+        "ProtectedQuery$result": "<p>The result of the protected query.</p>"
+      }
+    },
+    "ProtectedQueryResultConfiguration": {
+      "base": "<p>Contains configurations for protected query results.</p>",
+      "refs": {
+        "ProtectedQuery$resultConfiguration": "<p>Contains any details needed to write the query results.</p>",
+        "StartProtectedQueryInput$resultConfiguration": "<p>The details needed to write the query results.</p>"
+      }
+    },
+    "ProtectedQueryS3Output": {
+      "base": "<p>Contains output information for protected queries with an S3 output type.</p>",
+      "refs": {
+        "ProtectedQueryOutput$s3": "<p>If present, the output for a protected query with an `S3` output type.</p>"
+      }
+    },
+    "ProtectedQueryS3OutputConfiguration": {
+      "base": "<p>Contains the configuration to write the query results to S3.</p>",
+      "refs": {
+        "ProtectedQueryOutputConfiguration$s3": "<p>Required configuration for a protected query with an `S3` output type.</p>"
+      }
+    },
+    "ProtectedQueryS3OutputConfigurationBucketString": {
+      "base": null,
+      "refs": {
+        "ProtectedQueryS3OutputConfiguration$bucket": "<p>The S3 bucket to unload the protected query results.</p>"
+      }
+    },
+    "ProtectedQuerySQLParameters": {
+      "base": "<p>The parameters for the SQL type Protected Query.</p>",
+      "refs": {
+        "ProtectedQuery$sqlParameters": "<p>The protected query SQL parameters.</p>",
+        "StartProtectedQueryInput$sqlParameters": "<p>The protected SQL query parameters.</p>"
+      }
+    },
+    "ProtectedQuerySQLParametersQueryStringString": {
+      "base": null,
+      "refs": {
+        "ProtectedQuerySQLParameters$queryString": "<p>The query string to be submitted.</p>"
+      }
+    },
+    "ProtectedQueryStatistics": {
+      "base": "<p>Contains statistics about the execution of the protected query.</p>",
+      "refs": {
+        "ProtectedQuery$statistics": "<p>Statistics about protected query execution.</p>"
+      }
+    },
+    "ProtectedQueryStatus": {
+      "base": null,
+      "refs": {
+        "ListProtectedQueriesInput$status": "<p>A filter on the status of the protected query.</p>",
+        "ProtectedQuery$status": "<p>The status of the query.</p>",
+        "ProtectedQuerySummary$status": "<p>The status of the protected query. Value values are `SUBMITTED`, `STARTED`, `CANCELLED`, `CANCELLING`, `FAILED`, `SUCCESS`, `TIMED_OUT`.</p>"
+      }
+    },
+    "ProtectedQuerySummary": {
+      "base": "<p>The protected query summary for the objects listed by the request.</p>",
+      "refs": {
+        "ProtectedQuerySummaryList$member": null
+      }
+    },
+    "ProtectedQuerySummaryList": {
+      "base": null,
+      "refs": {
+        "ListProtectedQueriesOutput$protectedQueries": "<p>A list of protected queries.</p>"
+      }
+    },
+    "ProtectedQueryType": {
+      "base": null,
+      "refs": {
+        "StartProtectedQueryInput$type": "<p>The type of the protected query to be started.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>Request references a resource which does not exist.</p>",
+      "refs": {
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "ConflictException$resourceType": "<p>The type of the conflicting resource.</p>",
+        "ResourceNotFoundException$resourceType": "<p>The type of the missing resource.</p>"
+      }
+    },
+    "ResultFormat": {
+      "base": null,
+      "refs": {
+        "ProtectedQueryS3OutputConfiguration$resultFormat": "<p>Intended file format of the result.</p>"
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAssociation$roleArn": "<p>The service will assume this role to access catalog metadata and query the table.</p>",
+        "CreateConfiguredTableAssociationInput$roleArn": "<p>The service will assume this role to access catalog metadata and query the table.</p>",
+        "UpdateConfiguredTableAssociationInput$roleArn": "<p>The service will assume this role to access catalog metadata and query the table.</p>"
+      }
+    },
+    "ScalarFunctions": {
+      "base": null,
+      "refs": {
+        "ScalarFunctionsList$member": null
+      }
+    },
+    "ScalarFunctionsList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleAggregation$scalarFunctions": "<p>Set of scalar functions that are allowed to be used on dimension columns and the output of aggregation of metrics.</p>"
+      }
+    },
+    "Schema": {
+      "base": "<p>A schema is a relation within a collaboration.</p>",
+      "refs": {
+        "GetSchemaOutput$schema": "<p>The entire schema object.</p>",
+        "SchemaList$member": null
+      }
+    },
+    "SchemaList": {
+      "base": null,
+      "refs": {
+        "BatchGetSchemaOutput$schemas": "<p>The retrieved list of schemas.</p>"
+      }
+    },
+    "SchemaSummary": {
+      "base": "<p>The schema summary for the objects listed by the request.</p>",
+      "refs": {
+        "SchemaSummaryList$member": null
+      }
+    },
+    "SchemaSummaryList": {
+      "base": null,
+      "refs": {
+        "ListSchemasOutput$schemaSummaries": "<p>The retrieved list of schemas.</p>"
+      }
+    },
+    "SchemaType": {
+      "base": null,
+      "refs": {
+        "ListSchemasInput$schemaType": "<p>If present, filter schemas by schema type. The only valid schema type is currently `TABLE`.</p>",
+        "Schema$type": "<p>The type of schema. The only valid value is currently `TABLE`.</p>",
+        "SchemaSummary$type": "<p>The type of schema object. The only valid schema type is currently `TABLE`.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>Request denied because service quota has been exceeded.</p>",
+      "refs": {
+      }
+    },
+    "StartProtectedQueryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartProtectedQueryOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": null,
+        "BatchGetSchemaError$code": "<p>An error code for the error. </p>",
+        "BatchGetSchemaError$message": "<p>An error message for the error.</p>",
+        "ConflictException$message": null,
+        "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
+        "InternalServerException$message": null,
+        "ProtectedQueryError$message": "<p>A description of why the query failed.</p>",
+        "ProtectedQueryError$code": "<p>An error code for the error.</p>",
+        "ProtectedQueryS3Output$location": "<p>The S3 location of the result.</p>",
+        "ResourceNotFoundException$message": null,
+        "ResourceNotFoundException$resourceId": "<p>The Id of the missing resource.</p>",
+        "ServiceQuotaExceededException$message": null,
+        "ServiceQuotaExceededException$quotaName": "<p>The name of the quota.</p>",
+        "ThrottlingException$message": null,
+        "ValidationException$message": null,
+        "ValidationExceptionField$name": "<p>The name of the input parameter.</p>",
+        "ValidationExceptionField$message": "<p>A message for the input validation error.</p>"
+      }
+    },
+    "TableAlias": {
+      "base": null,
+      "refs": {
+        "AnalysisRule$name": "<p>The name for the analysis rule.</p>",
+        "BatchGetSchemaError$name": "<p>An error name for the error.</p>",
+        "ConfiguredTableAssociation$name": "<p>The name of the configured table association, in lowercase. The table is identified by this name when running protected queries against the underlying data.</p>",
+        "ConfiguredTableAssociationSummary$name": "<p>The name of the configured table association. The table is identified by this name when running Protected Queries against the underlying data.</p>",
+        "CreateConfiguredTableAssociationInput$name": "<p>The name of the configured table association. This name is used to query the underlying configured table.</p>",
+        "GetSchemaAnalysisRuleInput$name": "<p>The name of the schema to retrieve the analysis rule for.</p>",
+        "GetSchemaInput$name": "<p>The name of the relation to retrieve the schema for.</p>",
+        "Schema$name": "<p>A name for the schema. The schema relation is referred to by this name when queried by a protected query.</p>",
+        "SchemaSummary$name": "<p>The name for the schema object.</p>",
+        "TableAliasList$member": null
+      }
+    },
+    "TableAliasList": {
+      "base": null,
+      "refs": {
+        "BatchGetSchemaInput$names": "<p>The names for the schema objects to retrieve.&gt;</p>"
+      }
+    },
+    "TableDescription": {
+      "base": null,
+      "refs": {
+        "ConfiguredTable$description": "<p>A description for the configured table.</p>",
+        "ConfiguredTableAssociation$description": "<p>A description of the configured table association.</p>",
+        "CreateConfiguredTableAssociationInput$description": "<p>A description for the configured table association.</p>",
+        "CreateConfiguredTableInput$description": "<p>A description for the configured table.</p>",
+        "Schema$description": "<p>A description for the schema.</p>",
+        "UpdateConfiguredTableAssociationInput$description": "<p>A new description for the configured table association.</p>",
+        "UpdateConfiguredTableInput$description": "<p>A new description for the configured table.</p>"
+      }
+    },
+    "TableReference": {
+      "base": "<p>A pointer to the data set that underlies this table. Currently, this can only be an AWS Glue table.</p>",
+      "refs": {
+        "ConfiguredTable$tableReference": "<p>The AWS Glue table that this configured table represents.</p>",
+        "CreateConfiguredTableInput$tableReference": "<p>A reference to the AWS Glue table being configured.</p>"
+      }
+    },
+    "TargetProtectedQueryStatus": {
+      "base": null,
+      "refs": {
+        "UpdateProtectedQueryInput$targetStatus": "<p>The target status of a query. Used to update the execution status of a currently running query.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>Request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "AnalysisRule$createTime": "<p>The time the analysis rule was created.</p>",
+        "AnalysisRule$updateTime": "<p>The time the analysis rule was last updated.</p>",
+        "Collaboration$createTime": "<p>The time when the collaboration was created.</p>",
+        "Collaboration$updateTime": "<p>The time the collaboration metadata was last updated.</p>",
+        "CollaborationSummary$createTime": "<p>The time when the collaboration was created.</p>",
+        "CollaborationSummary$updateTime": "<p>The time the collaboration metadata was last updated.</p>",
+        "ConfiguredTable$createTime": "<p>The time the configured table was created.</p>",
+        "ConfiguredTable$updateTime": "<p>The time the configured table was last updated</p>",
+        "ConfiguredTableAnalysisRule$createTime": "<p>The time the configured table analysis rule was created.</p>",
+        "ConfiguredTableAnalysisRule$updateTime": "<p>The time the configured table analysis rule was last updated.</p>",
+        "ConfiguredTableAssociation$createTime": "<p>The time the configured table association was created.</p>",
+        "ConfiguredTableAssociation$updateTime": "<p>The time the configured table association was last updated.</p>",
+        "ConfiguredTableAssociationSummary$createTime": "<p>The time the configured table association was created.</p>",
+        "ConfiguredTableAssociationSummary$updateTime": "<p>The time the configured table association was last updated.</p>",
+        "ConfiguredTableSummary$createTime": "<p>The time the configured table was created.</p>",
+        "ConfiguredTableSummary$updateTime": "<p>The time the configured table was last updated.</p>",
+        "MemberSummary$createTime": "<p>The time when the member was created.</p>",
+        "MemberSummary$updateTime": "<p>The time the member metadata was last updated.</p>",
+        "Membership$createTime": "<p>The time when the membership was created.</p>",
+        "Membership$updateTime": "<p>The time the membership metadata was last updated.</p>",
+        "MembershipSummary$createTime": "<p>The time when the membership was created.</p>",
+        "MembershipSummary$updateTime": "<p>The time the membership metadata was last updated.</p>",
+        "ProtectedQuery$createTime": "<p>The time at which the protected query was created.</p>",
+        "ProtectedQuerySummary$createTime": "<p>The time the protected query was created.</p>",
+        "Schema$createTime": "<p>The time the schema was created.</p>",
+        "Schema$updateTime": "<p>The time the schema was last updated.</p>",
+        "SchemaSummary$createTime": "<p>The time the schema object was created.</p>",
+        "SchemaSummary$updateTime": "<p>The time the schema object was last updated.</p>"
+      }
+    },
+    "UUID": {
+      "base": null,
+      "refs": {
+        "Collaboration$id": "<p>The unique ID for the collaboration.</p>",
+        "Collaboration$membershipId": "<p>The unique ID for your membership within the collaboration.</p>",
+        "CollaborationSummary$id": "<p>The identifier for the collaboration.</p>",
+        "CollaborationSummary$membershipId": "<p>The identifier of a member in a collaboration.</p>",
+        "ConfiguredTable$id": "<p>The unique ID for the configured table.</p>",
+        "ConfiguredTableAnalysisRule$configuredTableId": "<p>The unique ID for the configured table.</p>",
+        "ConfiguredTableAssociation$id": "<p>The unique ID for the configured table association.</p>",
+        "ConfiguredTableAssociation$configuredTableId": "<p>The unique ID for the configured table that the association refers to.</p>",
+        "ConfiguredTableAssociation$membershipId": "<p>The unique ID for the membership this configured table association belongs to.</p>",
+        "ConfiguredTableAssociationSummary$configuredTableId": "<p>The unique configured table ID that this configured table association refers to.</p>",
+        "ConfiguredTableAssociationSummary$id": "<p>The unique ID for the configured table association.</p>",
+        "MemberSummary$membershipId": "<p>The unique ID for the member's associated membership, if present.</p>",
+        "Membership$id": "<p>The unique ID of the membership.</p>",
+        "Membership$collaborationId": "<p>The unique ID for the membership's collaboration.</p>",
+        "MembershipSummary$id": "<p>The unique ID for the membership's collaboration.</p>",
+        "ProtectedQuery$id": "<p>The identifier for a protected query instance.</p>",
+        "ProtectedQuery$membershipId": "<p>The identifier for the membership.</p>",
+        "ProtectedQuerySummary$id": "<p>The unique ID of the protected query.</p>",
+        "ProtectedQuerySummary$membershipId": "<p>The unique ID for the membership that initiated the protected query.</p>",
+        "Schema$collaborationId": "<p>The unique ID for the collaboration that the schema belongs to.</p>",
+        "SchemaSummary$collaborationId": "<p>The unique ID for the collaboration that the schema belongs to.</p>"
+      }
+    },
+    "UpdateCollaborationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCollaborationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableAnalysisRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMembershipInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMembershipOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProtectedQueryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProtectedQueryOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The input fails to satisfy the specified constraints.</p>",
+      "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p>Describes validation errors for specific input parameters.</p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": null,
+      "refs": {
+        "ValidationException$fieldList": "<p>Validation errors for specific input parameters.</p>"
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": null,
+      "refs": {
+        "ValidationException$reason": "<p>A reason code for the exception.</p>"
+      }
+    }
+  }
+}

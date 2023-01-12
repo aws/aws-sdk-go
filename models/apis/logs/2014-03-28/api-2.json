@@ -935,7 +935,6 @@
     },
     "DescribeLogStreamsRequest":{
       "type":"structure",
-      "required":["logGroupName"],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
         "logGroupIdentifier":{"shape":"LogGroupIdentifier"},
@@ -1170,7 +1169,6 @@
     "FilterCount":{"type":"integer"},
     "FilterLogEventsRequest":{
       "type":"structure",
-      "required":["logGroupName"],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
         "logGroupIdentifier":{"shape":"LogGroupIdentifier"},
@@ -1240,10 +1238,7 @@
     },
     "GetLogEventsRequest":{
       "type":"structure",
-      "required":[
-        "logGroupName",
-        "logStreamName"
-      ],
+      "required":["logStreamName"],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
         "logGroupIdentifier":{"shape":"LogGroupIdentifier"},
@@ -1266,7 +1261,6 @@
     },
     "GetLogGroupFieldsRequest":{
       "type":"structure",
-      "required":["logGroupName"],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
         "time":{"shape":"Timestamp"},

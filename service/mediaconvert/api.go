@@ -3929,6 +3929,12 @@ type AudioNormalizationSettings struct {
 	// choose for Algorithm (algorithm). If you choose algorithm 1770-1, the encoder
 	// will choose -24 LKFS; otherwise, the encoder will choose -23 LKFS.
 	TargetLkfs *float64 `locationName:"targetLkfs" type:"double"`
+
+	// Specify the True-peak limiter threshold in decibels relative to full scale
+	// (dBFS). The peak inter-audio sample loudness in your output will be limited
+	// to the value that you specify, without affecting the overall target LKFS.
+	// Enter a value from 0 to -20. Leave blank to use the default value 0.
+	TruePeakLimiterThreshold *float64 `locationName:"truePeakLimiterThreshold" type:"double"`
 }
 
 // String returns the string representation.
@@ -3995,6 +4001,12 @@ func (s *AudioNormalizationSettings) SetPeakCalculation(v string) *AudioNormaliz
 // SetTargetLkfs sets the TargetLkfs field's value.
 func (s *AudioNormalizationSettings) SetTargetLkfs(v float64) *AudioNormalizationSettings {
 	s.TargetLkfs = &v
+	return s
+}
+
+// SetTruePeakLimiterThreshold sets the TruePeakLimiterThreshold field's value.
+func (s *AudioNormalizationSettings) SetTruePeakLimiterThreshold(v float64) *AudioNormalizationSettings {
+	s.TruePeakLimiterThreshold = &v
 	return s
 }
 
@@ -6318,6 +6330,105 @@ func (s *ChannelMapping) SetOutputChannels(v []*OutputChannelMapping) *ChannelMa
 	return s
 }
 
+// Specify YUV limits and RGB tolerances when you set Sample range conversion
+// to Limited range clip.
+type ClipLimits struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the Maximum RGB color sample range tolerance for your output. MediaConvert
+	// corrects any YUV values that, when converted to RGB, would be outside the
+	// upper tolerance that you specify. Enter an integer from 90 to 105 as an offset
+	// percentage to the maximum possible value. Leave blank to use the default
+	// value 100. When you specify a value for Maximum RGB tolerance, you must set
+	// Sample range conversion to Limited range clip.
+	MaximumRGBTolerance *int64 `locationName:"maximumRGBTolerance" min:"90" type:"integer"`
+
+	// Specify the Maximum YUV color sample limit. MediaConvert conforms any pixels
+	// in your input above the value that you specify to typical limited range bounds.
+	// Enter an integer from 920 to 1023. Leave blank to use the default value 940.
+	// The value that you enter applies to 10-bit ranges. For 8-bit ranges, MediaConvert
+	// automatically scales this value down. When you specify a value for Maximum
+	// YUV, you must set Sample range conversion to Limited range clip.
+	MaximumYUV *int64 `locationName:"maximumYUV" min:"920" type:"integer"`
+
+	// Specify the Minimum RGB color sample range tolerance for your output. MediaConvert
+	// corrects any YUV values that, when converted to RGB, would be outside the
+	// lower tolerance that you specify. Enter an integer from -5 to 10 as an offset
+	// percentage to the minimum possible value. Leave blank to use the default
+	// value 0. When you specify a value for Minimum RGB tolerance, you must set
+	// Sample range conversion to Limited range clip.
+	MinimumRGBTolerance *int64 `locationName:"minimumRGBTolerance" type:"integer"`
+
+	// Specify the Minimum YUV color sample limit. MediaConvert conforms any pixels
+	// in your input below the value that you specify to typical limited range bounds.
+	// Enter an integer from 0 to 128. Leave blank to use the default value 64.
+	// The value that you enter applies to 10-bit ranges. For 8-bit ranges, MediaConvert
+	// automatically scales this value down. When you specify a value for Minumum
+	// YUV, you must set Sample range conversion to Limited range clip.
+	MinimumYUV *int64 `locationName:"minimumYUV" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClipLimits) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClipLimits) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClipLimits) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClipLimits"}
+	if s.MaximumRGBTolerance != nil && *s.MaximumRGBTolerance < 90 {
+		invalidParams.Add(request.NewErrParamMinValue("MaximumRGBTolerance", 90))
+	}
+	if s.MaximumYUV != nil && *s.MaximumYUV < 920 {
+		invalidParams.Add(request.NewErrParamMinValue("MaximumYUV", 920))
+	}
+	if s.MinimumRGBTolerance != nil && *s.MinimumRGBTolerance < -5 {
+		invalidParams.Add(request.NewErrParamMinValue("MinimumRGBTolerance", -5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaximumRGBTolerance sets the MaximumRGBTolerance field's value.
+func (s *ClipLimits) SetMaximumRGBTolerance(v int64) *ClipLimits {
+	s.MaximumRGBTolerance = &v
+	return s
+}
+
+// SetMaximumYUV sets the MaximumYUV field's value.
+func (s *ClipLimits) SetMaximumYUV(v int64) *ClipLimits {
+	s.MaximumYUV = &v
+	return s
+}
+
+// SetMinimumRGBTolerance sets the MinimumRGBTolerance field's value.
+func (s *ClipLimits) SetMinimumRGBTolerance(v int64) *ClipLimits {
+	s.MinimumRGBTolerance = &v
+	return s
+}
+
+// SetMinimumYUV sets the MinimumYUV field's value.
+func (s *ClipLimits) SetMinimumYUV(v int64) *ClipLimits {
+	s.MinimumYUV = &v
+	return s
+}
+
 // Specify the details for each pair of HLS and DASH additional manifests that
 // you want the service to generate for this CMAF output group. Each pair of
 // manifests can reference a different subset of outputs in the group.
@@ -6507,6 +6618,15 @@ type CmafGroupSettings struct {
 	// Specification to use (RFC-6381 or the default RFC-4281) during m3u8 playlist
 	// generation.
 	CodecSpecification *string `locationName:"codecSpecification" type:"string" enum:"CmafCodecSpecification"`
+
+	// Specify how MediaConvert writes SegmentTimeline in your output DASH manifest.
+	// To write a SegmentTimeline in each video Representation: Keep the default
+	// value, Basic. To write a common SegmentTimeline in the video AdaptationSet:
+	// Choose Compact. Note that MediaConvert will still write a SegmentTimeline
+	// in any Representation that does not share a common timeline. To write a video
+	// AdaptationSet for each different output framerate, and a common SegmentTimeline
+	// in each AdaptationSet: Choose Distinct.
+	DashManifestStyle *string `locationName:"dashManifestStyle" type:"string" enum:"DashManifestStyle"`
 
 	// Use Destination (Destination) to specify the S3 output location and the output
 	// filename base. Destination accepts format identifiers. If you do not specify
@@ -6728,6 +6848,12 @@ func (s *CmafGroupSettings) SetClientCache(v string) *CmafGroupSettings {
 // SetCodecSpecification sets the CodecSpecification field's value.
 func (s *CmafGroupSettings) SetCodecSpecification(v string) *CmafGroupSettings {
 	s.CodecSpecification = &v
+	return s
+}
+
+// SetDashManifestStyle sets the DashManifestStyle field's value.
+func (s *CmafGroupSettings) SetDashManifestStyle(v string) *CmafGroupSettings {
+	s.DashManifestStyle = &v
 	return s
 }
 
@@ -7069,7 +7195,9 @@ type CmfcSettings struct {
 	// that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
 	// the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
 	// To leave these elements out of your output MPD manifest, set Manifest metadata
-	// signaling to Disabled.
+	// signaling to Disabled. To enable Manifest metadata signaling, you must also
+	// set SCTE-35 source to Passthrough, ESAM SCTE-35 to insert, or ID3 metadata
+	// (TimedMetadata) to Passthrough.
 	ManifestMetadataSignaling *string `locationName:"manifestMetadataSignaling" type:"string" enum:"CmfcManifestMetadataSignaling"`
 
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
@@ -7220,6 +7348,10 @@ type ColorCorrector struct {
 	// Brightness level.
 	Brightness *int64 `locationName:"brightness" min:"1" type:"integer"`
 
+	// Specify YUV limits and RGB tolerances when you set Sample range conversion
+	// to Limited range clip.
+	ClipLimits *ClipLimits `locationName:"clipLimits" type:"structure"`
+
 	// Specify the color space you want for this output. The service supports conversion
 	// between HDR formats, between SDR formats, from SDR to HDR, and from HDR to
 	// SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
@@ -7251,16 +7383,20 @@ type ColorCorrector struct {
 	// Hue in degrees.
 	Hue *int64 `locationName:"hue" type:"integer"`
 
-	// Specify the video color sample range for this output. To create a full range
-	// output, you must start with a full range YUV input and keep the default value,
-	// None (NONE). To create a limited range output from a full range input, choose
-	// Limited range (LIMITED_RANGE_SQUEEZE). With RGB inputs, your output is always
-	// limited range, regardless of your choice here. When you create a limited
-	// range output from a full range input, MediaConvert limits the active pixel
-	// values in a way that depends on the output's bit depth: 8-bit outputs contain
-	// only values from 16 through 235 and 10-bit outputs contain only values from
-	// 64 through 940. With this conversion, MediaConvert also changes the output
-	// metadata to note the limited range.
+	// Specify how MediaConvert limits the color sample range for this output. To
+	// create a limited range output from a full range input: Choose Limited range
+	// squeeze. For full range inputs, MediaConvert performs a linear offset to
+	// color samples equally across all pixels and frames. Color samples in 10-bit
+	// outputs are limited to 64 through 940, and 8-bit outputs are limited to 16
+	// through 235. Note: For limited range inputs, values for color samples are
+	// passed through to your output unchanged. MediaConvert does not limit the
+	// sample range. To correct pixels in your input that are out of range or out
+	// of gamut: Choose Limited range clip. Use for broadcast applications. MediaConvert
+	// conforms any pixels outside of the values that you specify under Minimum
+	// YUV and Maximum YUV to limited range bounds. MediaConvert also corrects any
+	// YUV values that, when converted to RGB, would be outside the bounds you specify
+	// under Minimum RGB tolerance and Maximum RGB tolerance. With either limited
+	// range conversion, MediaConvert writes the sample range metadata in the output.
 	SampleRangeConversion *string `locationName:"sampleRangeConversion" type:"string" enum:"SampleRangeConversion"`
 
 	// Saturation level.
@@ -7314,6 +7450,11 @@ func (s *ColorCorrector) Validate() error {
 	if s.SdrReferenceWhiteLevel != nil && *s.SdrReferenceWhiteLevel < 100 {
 		invalidParams.Add(request.NewErrParamMinValue("SdrReferenceWhiteLevel", 100))
 	}
+	if s.ClipLimits != nil {
+		if err := s.ClipLimits.Validate(); err != nil {
+			invalidParams.AddNested("ClipLimits", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7324,6 +7465,12 @@ func (s *ColorCorrector) Validate() error {
 // SetBrightness sets the Brightness field's value.
 func (s *ColorCorrector) SetBrightness(v int64) *ColorCorrector {
 	s.Brightness = &v
+	return s
+}
+
+// SetClipLimits sets the ClipLimits field's value.
+func (s *ColorCorrector) SetClipLimits(v *ClipLimits) *ColorCorrector {
+	s.ClipLimits = v
 	return s
 }
 
@@ -7588,7 +7735,11 @@ type CreateJobInput struct {
 	// for this field, your job outputs will appear on the billing report unsorted.
 	BillingTagsSource *string `locationName:"billingTagsSource" type:"string" enum:"BillingTagsSource"`
 
-	// Optional. Idempotency token for CreateJob operation.
+	// Prevent duplicate jobs from being created and ensure idempotency for your
+	// requests. A client request token can be any string that includes up to 64
+	// ASCII characters. If you reuse a client request token within one minute of
+	// a successful request, the API returns the job details of the original request
+	// instead. For more information see https://docs.aws.amazon.com/mediaconvert/latest/apireference/idempotency.html.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
 
 	// Optional. Use queue hopping to avoid overly long waits in the backlog of
@@ -8437,6 +8588,15 @@ type DashIsoGroupSettings struct {
 	// URL than the manifest file.
 	BaseUrl *string `locationName:"baseUrl" type:"string"`
 
+	// Specify how MediaConvert writes SegmentTimeline in your output DASH manifest.
+	// To write a SegmentTimeline in each video Representation: Keep the default
+	// value, Basic. To write a common SegmentTimeline in the video AdaptationSet:
+	// Choose Compact. Note that MediaConvert will still write a SegmentTimeline
+	// in any Representation that does not share a common timeline. To write a video
+	// AdaptationSet for each different output framerate, and a common SegmentTimeline
+	// in each AdaptationSet: Choose Distinct.
+	DashManifestStyle *string `locationName:"dashManifestStyle" type:"string" enum:"DashManifestStyle"`
+
 	// Use Destination (Destination) to specify the S3 output location and the output
 	// filename base. Destination accepts format identifiers. If you do not specify
 	// the base filename in the URI, the service will use the filename of the input
@@ -8622,6 +8782,12 @@ func (s *DashIsoGroupSettings) SetAudioChannelConfigSchemeIdUri(v string) *DashI
 // SetBaseUrl sets the BaseUrl field's value.
 func (s *DashIsoGroupSettings) SetBaseUrl(v string) *DashIsoGroupSettings {
 	s.BaseUrl = &v
+	return s
+}
+
+// SetDashManifestStyle sets the DashManifestStyle field's value.
+func (s *DashIsoGroupSettings) SetDashManifestStyle(v string) *DashIsoGroupSettings {
+	s.DashManifestStyle = &v
 	return s
 }
 
@@ -19247,7 +19413,9 @@ type MpdSettings struct {
 	// that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
 	// the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
 	// To leave these elements out of your output MPD manifest, set Manifest metadata
-	// signaling to Disabled.
+	// signaling to Disabled. To enable Manifest metadata signaling, you must also
+	// set SCTE-35 source to Passthrough, ESAM SCTE-35 to insert, or ID3 metadata
+	// (TimedMetadata) to Passthrough.
 	ManifestMetadataSignaling *string `locationName:"manifestMetadataSignaling" type:"string" enum:"MpdManifestMetadataSignaling"`
 
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
@@ -28963,7 +29131,9 @@ func CmfcKlvMetadata_Values() []string {
 // that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
 // the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
 // To leave these elements out of your output MPD manifest, set Manifest metadata
-// signaling to Disabled.
+// signaling to Disabled. To enable Manifest metadata signaling, you must also
+// set SCTE-35 source to Passthrough, ESAM SCTE-35 to insert, or ID3 metadata
+// (TimedMetadata) to Passthrough.
 const (
 	// CmfcManifestMetadataSignalingEnabled is a CmfcManifestMetadataSignaling enum value
 	CmfcManifestMetadataSignalingEnabled = "ENABLED"
@@ -29550,6 +29720,33 @@ func DashIsoWriteSegmentTimelineInRepresentation_Values() []string {
 	return []string{
 		DashIsoWriteSegmentTimelineInRepresentationEnabled,
 		DashIsoWriteSegmentTimelineInRepresentationDisabled,
+	}
+}
+
+// Specify how MediaConvert writes SegmentTimeline in your output DASH manifest.
+// To write a SegmentTimeline in each video Representation: Keep the default
+// value, Basic. To write a common SegmentTimeline in the video AdaptationSet:
+// Choose Compact. Note that MediaConvert will still write a SegmentTimeline
+// in any Representation that does not share a common timeline. To write a video
+// AdaptationSet for each different output framerate, and a common SegmentTimeline
+// in each AdaptationSet: Choose Distinct.
+const (
+	// DashManifestStyleBasic is a DashManifestStyle enum value
+	DashManifestStyleBasic = "BASIC"
+
+	// DashManifestStyleCompact is a DashManifestStyle enum value
+	DashManifestStyleCompact = "COMPACT"
+
+	// DashManifestStyleDistinct is a DashManifestStyle enum value
+	DashManifestStyleDistinct = "DISTINCT"
+)
+
+// DashManifestStyle_Values returns all elements of the DashManifestStyle enum
+func DashManifestStyle_Values() []string {
+	return []string{
+		DashManifestStyleBasic,
+		DashManifestStyleCompact,
+		DashManifestStyleDistinct,
 	}
 }
 
@@ -34635,7 +34832,9 @@ func MpdKlvMetadata_Values() []string {
 // that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
 // the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
 // To leave these elements out of your output MPD manifest, set Manifest metadata
-// signaling to Disabled.
+// signaling to Disabled. To enable Manifest metadata signaling, you must also
+// set SCTE-35 source to Passthrough, ESAM SCTE-35 to insert, or ID3 metadata
+// (TimedMetadata) to Passthrough.
 const (
 	// MpdManifestMetadataSignalingEnabled is a MpdManifestMetadataSignaling enum value
 	MpdManifestMetadataSignalingEnabled = "ENABLED"
@@ -36142,22 +36341,29 @@ func S3ServerSideEncryptionType_Values() []string {
 	}
 }
 
-// Specify the video color sample range for this output. To create a full range
-// output, you must start with a full range YUV input and keep the default value,
-// None (NONE). To create a limited range output from a full range input, choose
-// Limited range (LIMITED_RANGE_SQUEEZE). With RGB inputs, your output is always
-// limited range, regardless of your choice here. When you create a limited
-// range output from a full range input, MediaConvert limits the active pixel
-// values in a way that depends on the output's bit depth: 8-bit outputs contain
-// only values from 16 through 235 and 10-bit outputs contain only values from
-// 64 through 940. With this conversion, MediaConvert also changes the output
-// metadata to note the limited range.
+// Specify how MediaConvert limits the color sample range for this output. To
+// create a limited range output from a full range input: Choose Limited range
+// squeeze. For full range inputs, MediaConvert performs a linear offset to
+// color samples equally across all pixels and frames. Color samples in 10-bit
+// outputs are limited to 64 through 940, and 8-bit outputs are limited to 16
+// through 235. Note: For limited range inputs, values for color samples are
+// passed through to your output unchanged. MediaConvert does not limit the
+// sample range. To correct pixels in your input that are out of range or out
+// of gamut: Choose Limited range clip. Use for broadcast applications. MediaConvert
+// conforms any pixels outside of the values that you specify under Minimum
+// YUV and Maximum YUV to limited range bounds. MediaConvert also corrects any
+// YUV values that, when converted to RGB, would be outside the bounds you specify
+// under Minimum RGB tolerance and Maximum RGB tolerance. With either limited
+// range conversion, MediaConvert writes the sample range metadata in the output.
 const (
 	// SampleRangeConversionLimitedRangeSqueeze is a SampleRangeConversion enum value
 	SampleRangeConversionLimitedRangeSqueeze = "LIMITED_RANGE_SQUEEZE"
 
 	// SampleRangeConversionNone is a SampleRangeConversion enum value
 	SampleRangeConversionNone = "NONE"
+
+	// SampleRangeConversionLimitedRangeClip is a SampleRangeConversion enum value
+	SampleRangeConversionLimitedRangeClip = "LIMITED_RANGE_CLIP"
 )
 
 // SampleRangeConversion_Values returns all elements of the SampleRangeConversion enum
@@ -36165,6 +36371,7 @@ func SampleRangeConversion_Values() []string {
 	return []string{
 		SampleRangeConversionLimitedRangeSqueeze,
 		SampleRangeConversionNone,
+		SampleRangeConversionLimitedRangeClip,
 	}
 }
 

@@ -1418,7 +1418,8 @@
         "SelfManagedEventSource":{"shape":"SelfManagedEventSource"},
         "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
         "AmazonManagedKafkaEventSourceConfig":{"shape":"AmazonManagedKafkaEventSourceConfig"},
-        "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"}
+        "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"},
+        "ScalingConfig":{"shape":"ScalingConfig"}
       }
     },
     "CreateFunctionRequest":{
@@ -1841,7 +1842,8 @@
         "TumblingWindowInSeconds":{"shape":"TumblingWindowInSeconds"},
         "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
         "AmazonManagedKafkaEventSourceConfig":{"shape":"AmazonManagedKafkaEventSourceConfig"},
-        "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"}
+        "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"},
+        "ScalingConfig":{"shape":"ScalingConfig"}
       }
     },
     "EventSourceMappingsList":{
@@ -3122,6 +3124,11 @@
       "max":300,
       "min":0
     },
+    "MaximumConcurrency":{
+      "type":"integer",
+      "max":1000,
+      "min":2
+    },
     "MaximumEventAgeInSeconds":{
       "type":"integer",
       "max":21600,
@@ -3600,6 +3607,12 @@
       "max":1024,
       "min":1
     },
+    "ScalingConfig":{
+      "type":"structure",
+      "members":{
+        "MaximumConcurrency":{"shape":"MaximumConcurrency"}
+      }
+    },
     "SecurityGroupId":{"type":"string"},
     "SecurityGroupIds":{
       "type":"list",
@@ -3984,7 +3997,8 @@
         "ParallelizationFactor":{"shape":"ParallelizationFactor"},
         "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"},
         "TumblingWindowInSeconds":{"shape":"TumblingWindowInSeconds"},
-        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"}
+        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
+        "ScalingConfig":{"shape":"ScalingConfig"}
       }
     },
     "UpdateFunctionCodeRequest":{
