@@ -1314,6 +1314,11 @@
       "refs": {
       }
     },
+    "DeleteContactFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteHoursOfOperationRequest": {
       "base": null,
       "refs": {
@@ -4889,7 +4894,17 @@
       "refs": {
       }
     },
+    "UpdateContactFlowContentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateContactFlowMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactFlowMetadataResponse": {
       "base": null,
       "refs": {
       }
@@ -4915,6 +4930,11 @@
       }
     },
     "UpdateContactFlowNameRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactFlowNameResponse": {
       "base": null,
       "refs": {
       }

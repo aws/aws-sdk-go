@@ -1,3 +1,13 @@
+Release v1.44.180 (2023-01-13)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service documentation
+  * Documentation updates for EC2.
+* `service/outposts`: Updates service API
+* `service/resource-groups`: Updates service API and documentation
+
 Release v1.44.179 (2023-01-12)
 ===
 

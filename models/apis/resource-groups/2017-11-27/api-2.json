@@ -45,6 +45,21 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "GetAccountSettings":{
+      "name":"GetAccountSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/get-account-settings"
+      },
+      "output":{"shape":"GetAccountSettingsOutput"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "GetGroup":{
       "name":"GetGroup",
       "http":{
@@ -250,6 +265,22 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "UpdateAccountSettings":{
+      "name":"UpdateAccountSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/update-account-settings"
+      },
+      "input":{"shape":"UpdateAccountSettingsInput"},
+      "output":{"shape":"UpdateAccountSettingsOutput"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "UpdateGroup":{
       "name":"UpdateGroup",
       "http":{
@@ -286,6 +317,14 @@
     }
   },
   "shapes":{
+    "AccountSettings":{
+      "type":"structure",
+      "members":{
+        "GroupLifecycleEventsDesiredStatus":{"shape":"GroupLifecycleEventsDesiredStatus"},
+        "GroupLifecycleEventsStatus":{"shape":"GroupLifecycleEventsStatus"},
+        "GroupLifecycleEventsStatusMessage":{"shape":"GroupLifecycleEventsStatusMessage"}
+      }
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -333,7 +372,7 @@
     },
     "Description":{
       "type":"string",
-      "max":512,
+      "max":1024,
       "pattern":"[\\sa-zA-Z0-9_\\.-]*"
     },
     "ErrorCode":{
@@ -365,6 +404,12 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "GetAccountSettingsOutput":{
+      "type":"structure",
+      "members":{
+        "AccountSettings":{"shape":"AccountSettings"}
+      }
     },
     "GetGroupConfigurationInput":{
       "type":"structure",
@@ -446,7 +491,7 @@
       "type":"string",
       "max":1600,
       "min":12,
-      "pattern":"arn:aws(-[a-z]+)*:resource-groups:[a-z]{2}(-[a-z]+)+-\\d{1}:[0-9]{12}:group/[a-zA-Z0-9_\\.-]{1,128}"
+      "pattern":"arn:aws(-[a-z]+)*:resource-groups:[a-z]{2}(-[a-z]+)+-\\d{1}:[0-9]{12}:group/[a-zA-Z0-9_\\.-]{1,300}"
     },
     "GroupConfiguration":{
       "type":"structure",
@@ -489,7 +534,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"[a-zA-Z0-9:_-]+"
+      "pattern":"[a-zA-Z0-9:\\/\\._-]+"
     },
     "GroupConfigurationParameterValueList":{
       "type":"list",
@@ -553,13 +598,34 @@
       "type":"list",
       "member":{"shape":"GroupIdentifier"}
     },
+    "GroupLifecycleEventsDesiredStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "GroupLifecycleEventsStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE",
+        "IN_PROGRESS",
+        "ERROR"
+      ]
+    },
+    "GroupLifecycleEventsStatusMessage":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "GroupList":{
       "type":"list",
       "member":{"shape":"Group"}
     },
     "GroupName":{
       "type":"string",
-      "max":128,
+      "max":300,
       "min":1,
       "pattern":"[a-zA-Z0-9_\\.-]+"
     },
@@ -601,7 +667,7 @@
       "type":"string",
       "max":1600,
       "min":1,
-      "pattern":"(arn:aws(-[a-z]+)*:resource-groups:[a-z]{2}(-[a-z]+)+-\\d{1}:[0-9]{12}:group/)?[a-zA-Z0-9_\\.-]{1,128}"
+      "pattern":"(arn:aws(-[a-z]+)*:resource-groups:[a-z]{2}(-[a-z]+)+-\\d{1}:[0-9]{12}:group/)?[a-zA-Z0-9_\\.-]{1,300}"
     },
     "InternalServerErrorException":{
       "type":"structure",
@@ -742,7 +808,8 @@
       "type":"string",
       "enum":[
         "CLOUDFORMATION_STACK_INACTIVE",
-        "CLOUDFORMATION_STACK_NOT_EXISTING"
+        "CLOUDFORMATION_STACK_NOT_EXISTING",
+        "CLOUDFORMATION_STACK_UNASSUMABLE_ROLE"
       ]
     },
     "QueryErrorList":{
@@ -952,6 +1019,18 @@
       "members":{
         "Arn":{"shape":"GroupArn"},
         "Keys":{"shape":"TagKeyList"}
+      }
+    },
+    "UpdateAccountSettingsInput":{
+      "type":"structure",
+      "members":{
+        "GroupLifecycleEventsDesiredStatus":{"shape":"GroupLifecycleEventsDesiredStatus"}
+      }
+    },
+    "UpdateAccountSettingsOutput":{
+      "type":"structure",
+      "members":{
+        "AccountSettings":{"shape":"AccountSettings"}
       }
     },
     "UpdateGroupInput":{
