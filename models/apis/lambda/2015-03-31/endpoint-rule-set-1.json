@@ -52,6 +52,15 @@
                                     "ref": "Endpoint"
                                 }
                             ]
+                        },
+                        {
+                            "fn": "parseURL",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ],
+                            "assign": "url"
                         }
                     ],
                     "type": "tree",

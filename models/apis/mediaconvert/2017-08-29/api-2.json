@@ -1527,10 +1527,6 @@
         "TargetLkfs": {
           "shape": "__doubleMinNegative59Max0",
           "locationName": "targetLkfs"
-        },
-        "TruePeakLimiterThreshold": {
-          "shape": "__doubleMinNegative20Max0",
-          "locationName": "truePeakLimiterThreshold"
         }
       }
     },
@@ -2323,27 +2319,6 @@
         }
       }
     },
-    "ClipLimits": {
-      "type": "structure",
-      "members": {
-        "MaximumRGBTolerance": {
-          "shape": "__integerMin90Max105",
-          "locationName": "maximumRGBTolerance"
-        },
-        "MaximumYUV": {
-          "shape": "__integerMin920Max1023",
-          "locationName": "maximumYUV"
-        },
-        "MinimumRGBTolerance": {
-          "shape": "__integerMinNegative5Max10",
-          "locationName": "minimumRGBTolerance"
-        },
-        "MinimumYUV": {
-          "shape": "__integerMin0Max128",
-          "locationName": "minimumYUV"
-        }
-      }
-    },
     "CmafAdditionalManifest": {
       "type": "structure",
       "members": {
@@ -2425,10 +2400,6 @@
         "CodecSpecification": {
           "shape": "CmafCodecSpecification",
           "locationName": "codecSpecification"
-        },
-        "DashManifestStyle": {
-          "shape": "DashManifestStyle",
-          "locationName": "dashManifestStyle"
         },
         "Destination": {
           "shape": "__stringPatternS3",
@@ -2808,10 +2779,6 @@
         "Brightness": {
           "shape": "__integerMin1Max100",
           "locationName": "brightness"
-        },
-        "ClipLimits": {
-          "shape": "ClipLimits",
-          "locationName": "clipLimits"
         },
         "ColorSpaceConversion": {
           "shape": "ColorSpaceConversion",
@@ -3220,10 +3187,6 @@
           "shape": "__string",
           "locationName": "baseUrl"
         },
-        "DashManifestStyle": {
-          "shape": "DashManifestStyle",
-          "locationName": "dashManifestStyle"
-        },
         "Destination": {
           "shape": "__stringPatternS3",
           "locationName": "destination"
@@ -3400,14 +3363,6 @@
       "enum": [
         "ENABLED",
         "DISABLED"
-      ]
-    },
-    "DashManifestStyle": {
-      "type": "string",
-      "enum": [
-        "BASIC",
-        "COMPACT",
-        "DISTINCT"
       ]
     },
     "DecryptionMode": {
@@ -9222,8 +9177,7 @@
       "type": "string",
       "enum": [
         "LIMITED_RANGE_SQUEEZE",
-        "NONE",
-        "LIMITED_RANGE_CLIP"
+        "NONE"
       ]
     },
     "ScalingBehavior": {
@@ -10666,9 +10620,6 @@
     "__doubleMin0Max2147483647": {
       "type": "double"
     },
-    "__doubleMinNegative20Max0": {
-      "type": "double"
-    },
     "__doubleMinNegative59Max0": {
       "type": "double"
     },
@@ -11107,16 +11058,6 @@
       "min": 8,
       "max": 4096
     },
-    "__integerMin90Max105": {
-      "type": "integer",
-      "min": 90,
-      "max": 105
-    },
-    "__integerMin920Max1023": {
-      "type": "integer",
-      "min": 920,
-      "max": 1023
-    },
     "__integerMin96Max600": {
       "type": "integer",
       "min": 96,
@@ -11156,11 +11097,6 @@
       "type": "integer",
       "min": -50,
       "max": 50
-    },
-    "__integerMinNegative5Max10": {
-      "type": "integer",
-      "min": -5,
-      "max": 10
     },
     "__integerMinNegative5Max5": {
       "type": "integer",

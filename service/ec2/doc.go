@@ -16,17 +16,17 @@
 //
 // To learn more, see the following resources:
 //
-//   - Amazon EC2: Amazon EC2 product page (http://aws.amazon.com/ec2), Amazon
-//     EC2 documentation (https://docs.aws.amazon.com/ec2/index.html)
+//   - Amazon EC2: AmazonEC2 product page (http://aws.amazon.com/ec2), Amazon
+//     EC2 documentation (http://aws.amazon.com/documentation/ec2)
 //
 //   - Amazon EBS: Amazon EBS product page (http://aws.amazon.com/ebs), Amazon
-//     EBS documentation (https://docs.aws.amazon.com/ebs/index.html)
+//     EBS documentation (http://aws.amazon.com/documentation/ebs)
 //
 //   - Amazon VPC: Amazon VPC product page (http://aws.amazon.com/vpc), Amazon
-//     VPC documentation (https://docs.aws.amazon.com/vpc/index.html)
+//     VPC documentation (http://aws.amazon.com/documentation/vpc)
 //
-//   - VPN: VPN product page (http://aws.amazon.com/vpn), VPN documentation
-//     (https://docs.aws.amazon.com/vpn/index.html)
+//   - Amazon Web Services VPN: Amazon Web Services VPN product page (http://aws.amazon.com/vpn),
+//     Amazon Web Services VPN documentation (http://aws.amazon.com/documentation/vpn)
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15 for more information on this service.
 //

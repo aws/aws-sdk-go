@@ -7716,9 +7716,6 @@ const (
 
 	// PowerDrawKvaPower15Kva is a PowerDrawKva enum value
 	PowerDrawKvaPower15Kva = "POWER_15_KVA"
-
-	// PowerDrawKvaPower30Kva is a PowerDrawKva enum value
-	PowerDrawKvaPower30Kva = "POWER_30_KVA"
 )
 
 // PowerDrawKva_Values returns all elements of the PowerDrawKva enum
@@ -7727,7 +7724,6 @@ func PowerDrawKva_Values() []string {
 		PowerDrawKvaPower5Kva,
 		PowerDrawKvaPower10Kva,
 		PowerDrawKvaPower15Kva,
-		PowerDrawKvaPower30Kva,
 	}
 }
 

@@ -1,33 +1,8 @@
-Release v1.44.180 (2023-01-13)
-===
-
-### Service Client Updates
-* `service/connect`: Updates service API and documentation
-* `service/ec2`: Updates service documentation
-  * Documentation updates for EC2.
-* `service/outposts`: Updates service API
-* `service/resource-groups`: Updates service API and documentation
-
-Release v1.44.179 (2023-01-12)
-===
-
-### Service Client Updates
-* `service/cleanrooms`: Adds new service
-* `service/lambda`: Updates service API and documentation
-  * Add support for MaximumConcurrency parameter for SQS event source. Customers can now limit the maximum concurrent invocations for their SQS Event Source Mapping.
-* `service/logs`: Updates service API and documentation
-  * Bug fix: logGroupName is now not a required field in GetLogEvents, FilterLogEvents, GetLogGroupFields, and DescribeLogStreams APIs as logGroupIdentifier can be provided instead
-* `service/mediaconvert`: Updates service API and documentation
-  * The AWS Elemental MediaConvert SDK has added support for compact DASH manifest generation, audio normalization using TruePeak measurements, and the ability to clip the sample range in the color corrector.
-* `service/secretsmanager`: Updates service documentation and examples
-  * Update documentation for new ListSecrets and DescribeSecret parameters
-
 Release v1.44.178 (2023-01-11)
 ===
 
 ### Service Client Updates
-* `service/kendra`: Updates service API and documentation
-  * This release adds support to new document types - RTF, XML, XSLT, MS_EXCEL, CSV, JSON, MD
+* `service/cloudtrail-data`: Adds new service
 
 Release v1.44.177 (2023-01-10)
 ===

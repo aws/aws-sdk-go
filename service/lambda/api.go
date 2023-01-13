@@ -487,21 +487,21 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 // The following error handling options are available only for stream sources
 // (DynamoDB and Kinesis):
 //
-//   - BisectBatchOnFunctionError – If the function returns an error, split
+//   - BisectBatchOnFunctionError - If the function returns an error, split
 //     the batch in two and retry.
 //
-//   - DestinationConfig – Send discarded records to an Amazon SQS queue
-//     or Amazon SNS topic.
+//   - DestinationConfig - Send discarded records to an Amazon SQS queue or
+//     Amazon SNS topic.
 //
-//   - MaximumRecordAgeInSeconds – Discard records older than the specified
+//   - MaximumRecordAgeInSeconds - Discard records older than the specified
 //     age. The default value is infinite (-1). When set to infinite (-1), failed
 //     records are retried until the record expires
 //
-//   - MaximumRetryAttempts – Discard records after the specified number
-//     of retries. The default value is infinite (-1). When set to infinite (-1),
+//   - MaximumRetryAttempts - Discard records after the specified number of
+//     retries. The default value is infinite (-1). When set to infinite (-1),
 //     failed records are retried until the record expires.
 //
-//   - ParallelizationFactor – Process multiple batches from each shard concurrently.
+//   - ParallelizationFactor - Process multiple batches from each shard concurrently.
 //
 // For information about which configuration parameters apply to each event
 // source, see the following topics.
@@ -6370,21 +6370,21 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 // The following error handling options are available only for stream sources
 // (DynamoDB and Kinesis):
 //
-//   - BisectBatchOnFunctionError – If the function returns an error, split
+//   - BisectBatchOnFunctionError - If the function returns an error, split
 //     the batch in two and retry.
 //
-//   - DestinationConfig – Send discarded records to an Amazon SQS queue
-//     or Amazon SNS topic.
+//   - DestinationConfig - Send discarded records to an Amazon SQS queue or
+//     Amazon SNS topic.
 //
-//   - MaximumRecordAgeInSeconds – Discard records older than the specified
+//   - MaximumRecordAgeInSeconds - Discard records older than the specified
 //     age. The default value is infinite (-1). When set to infinite (-1), failed
 //     records are retried until the record expires
 //
-//   - MaximumRetryAttempts – Discard records after the specified number
-//     of retries. The default value is infinite (-1). When set to infinite (-1),
+//   - MaximumRetryAttempts - Discard records after the specified number of
+//     retries. The default value is infinite (-1). When set to infinite (-1),
 //     failed records are retried until the record expires.
 //
-//   - ParallelizationFactor – Process multiple batches from each shard concurrently.
+//   - ParallelizationFactor - Process multiple batches from each shard concurrently.
 //
 // For information about which configuration parameters apply to each event
 // source, see the following topics.
@@ -8270,18 +8270,18 @@ type CreateEventSourceMappingInput struct {
 	// the batch to the function in a single call, up to the payload limit for synchronous
 	// invocation (6 MB).
 	//
-	//    * Amazon Kinesis – Default 100. Max 10,000.
+	//    * Amazon Kinesis - Default 100. Max 10,000.
 	//
-	//    * Amazon DynamoDB Streams – Default 100. Max 10,000.
+	//    * Amazon DynamoDB Streams - Default 100. Max 10,000.
 	//
-	//    * Amazon Simple Queue Service – Default 10. For standard queues the
-	//    max is 10,000. For FIFO queues the max is 10.
+	//    * Amazon Simple Queue Service - Default 10. For standard queues the max
+	//    is 10,000. For FIFO queues the max is 10.
 	//
-	//    * Amazon Managed Streaming for Apache Kafka – Default 100. Max 10,000.
+	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
-	//    * Self-managed Apache Kafka – Default 100. Max 10,000.
+	//    * Self-managed Apache Kafka - Default 100. Max 10,000.
 	//
-	//    * Amazon MQ (ActiveMQ and RabbitMQ) – Default 100. Max 10,000.
+	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -8300,15 +8300,15 @@ type CreateEventSourceMappingInput struct {
 
 	// The Amazon Resource Name (ARN) of the event source.
 	//
-	//    * Amazon Kinesis – The ARN of the data stream or a stream consumer.
+	//    * Amazon Kinesis - The ARN of the data stream or a stream consumer.
 	//
-	//    * Amazon DynamoDB Streams – The ARN of the stream.
+	//    * Amazon DynamoDB Streams - The ARN of the stream.
 	//
-	//    * Amazon Simple Queue Service – The ARN of the queue.
+	//    * Amazon Simple Queue Service - The ARN of the queue.
 	//
-	//    * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster.
+	//    * Amazon Managed Streaming for Apache Kafka - The ARN of the cluster.
 	//
-	//    * Amazon MQ – The ARN of the broker.
+	//    * Amazon MQ - The ARN of the broker.
 	EventSourceArn *string `type:"string"`
 
 	// An object that defines the filter criteria that determine whether Lambda
@@ -8320,13 +8320,13 @@ type CreateEventSourceMappingInput struct {
 	//
 	// Name formats
 	//
-	//    * Function name – MyFunction.
+	//    * Function name - MyFunction.
 	//
-	//    * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
 	//
-	//    * Version or Alias ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.
+	//    * Version or Alias ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.
 	//
-	//    * Partial ARN – 123456789012:function:MyFunction.
+	//    * Partial ARN - 123456789012:function:MyFunction.
 	//
 	// The length constraint applies only to the full ARN. If you specify only the
 	// function name, it's limited to 64 characters in length.
@@ -8369,11 +8369,6 @@ type CreateEventSourceMappingInput struct {
 
 	// (MQ) The name of the Amazon MQ broker destination queue to consume.
 	Queues []*string `min:"1" type:"list"`
-
-	// (Amazon SQS only) The scaling configuration for the event source. For more
-	// information, see Configuring maximum concurrency for Amazon SQS event sources
-	// (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency).
-	ScalingConfig *ScalingConfig `type:"structure"`
 
 	// The self-managed Apache Kafka cluster to receive records from.
 	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
@@ -8449,11 +8444,6 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 	if s.AmazonManagedKafkaEventSourceConfig != nil {
 		if err := s.AmazonManagedKafkaEventSourceConfig.Validate(); err != nil {
 			invalidParams.AddNested("AmazonManagedKafkaEventSourceConfig", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.ScalingConfig != nil {
-		if err := s.ScalingConfig.Validate(); err != nil {
-			invalidParams.AddNested("ScalingConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SelfManagedEventSource != nil {
@@ -8564,12 +8554,6 @@ func (s *CreateEventSourceMappingInput) SetParallelizationFactor(v int64) *Creat
 // SetQueues sets the Queues field's value.
 func (s *CreateEventSourceMappingInput) SetQueues(v []*string) *CreateEventSourceMappingInput {
 	s.Queues = v
-	return s
-}
-
-// SetScalingConfig sets the ScalingConfig field's value.
-func (s *CreateEventSourceMappingInput) SetScalingConfig(v *ScalingConfig) *CreateEventSourceMappingInput {
-	s.ScalingConfig = v
 	return s
 }
 
@@ -10852,11 +10836,6 @@ type EventSourceMappingConfiguration struct {
 	// (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.
 	Queues []*string `min:"1" type:"list"`
 
-	// (Amazon SQS only) The scaling configuration for the event source. For more
-	// information, see Configuring maximum concurrency for Amazon SQS event sources
-	// (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency).
-	ScalingConfig *ScalingConfig `type:"structure"`
-
 	// The self-managed Apache Kafka cluster for your event source.
 	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
 
@@ -10999,12 +10978,6 @@ func (s *EventSourceMappingConfiguration) SetParallelizationFactor(v int64) *Eve
 // SetQueues sets the Queues field's value.
 func (s *EventSourceMappingConfiguration) SetQueues(v []*string) *EventSourceMappingConfiguration {
 	s.Queues = v
-	return s
-}
-
-// SetScalingConfig sets the ScalingConfig field's value.
-func (s *EventSourceMappingConfiguration) SetScalingConfig(v *ScalingConfig) *EventSourceMappingConfiguration {
-	s.ScalingConfig = v
 	return s
 }
 
@@ -11446,7 +11419,7 @@ type FunctionConfiguration struct {
 
 	// Set ApplyOn to PublishedVersions to create a snapshot of the initialized
 	// execution environment when you publish a function version. For more information,
-	// see Improving startup performance with Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html).
+	// see Reducing startup time with Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html).
 	SnapStart *SnapStartResponse `type:"structure"`
 
 	// The current state of the function. When the state is Inactive, you can reactivate
@@ -15327,28 +15300,28 @@ type ListEventSourceMappingsInput struct {
 
 	// The Amazon Resource Name (ARN) of the event source.
 	//
-	//    * Amazon Kinesis – The ARN of the data stream or a stream consumer.
+	//    * Amazon Kinesis - The ARN of the data stream or a stream consumer.
 	//
-	//    * Amazon DynamoDB Streams – The ARN of the stream.
+	//    * Amazon DynamoDB Streams - The ARN of the stream.
 	//
-	//    * Amazon Simple Queue Service – The ARN of the queue.
+	//    * Amazon Simple Queue Service - The ARN of the queue.
 	//
-	//    * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster.
+	//    * Amazon Managed Streaming for Apache Kafka - The ARN of the cluster.
 	//
-	//    * Amazon MQ – The ARN of the broker.
+	//    * Amazon MQ - The ARN of the broker.
 	EventSourceArn *string `location:"querystring" locationName:"EventSourceArn" type:"string"`
 
 	// The name of the Lambda function.
 	//
 	// Name formats
 	//
-	//    * Function name – MyFunction.
+	//    * Function name - MyFunction.
 	//
-	//    * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
 	//
-	//    * Version or Alias ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.
+	//    * Version or Alias ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.
 	//
-	//    * Partial ARN – 123456789012:function:MyFunction.
+	//    * Partial ARN - 123456789012:function:MyFunction.
 	//
 	// The length constraint applies only to the full ARN. If you specify only the
 	// function name, it's limited to 64 characters in length.
@@ -18345,53 +18318,6 @@ func (s *ResourceNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// (Amazon SQS only) The scaling configuration for the event source. To remove
-// the configuration, pass an empty value.
-type ScalingConfig struct {
-	_ struct{} `type:"structure"`
-
-	// Limits the number of concurrent instances that the Amazon SQS event source
-	// can invoke.
-	MaximumConcurrency *int64 `min:"2" type:"integer"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ScalingConfig) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ScalingConfig) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ScalingConfig) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ScalingConfig"}
-	if s.MaximumConcurrency != nil && *s.MaximumConcurrency < 2 {
-		invalidParams.Add(request.NewErrParamMinValue("MaximumConcurrency", 2))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetMaximumConcurrency sets the MaximumConcurrency field's value.
-func (s *ScalingConfig) SetMaximumConcurrency(v int64) *ScalingConfig {
-	s.MaximumConcurrency = &v
-	return s
-}
-
 // The self-managed Apache Kafka cluster for your event source.
 type SelfManagedEventSource struct {
 	_ struct{} `type:"structure"`
@@ -18552,12 +18478,10 @@ func (s *ServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The function's Lambda SnapStart setting. Set ApplyOn to PublishedVersions
-// to create a snapshot of the initialized execution environment when you publish
-// a function version.
-//
-// SnapStart is supported with the java11 runtime. For more information, see
-// Improving startup performance with Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html).
+// The function's SnapStart setting. Set ApplyOn to PublishedVersions to create
+// a snapshot of the initialized execution environment when you publish a function
+// version. For more information, see Reducing startup time with Lambda SnapStart
+// (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html).
 type SnapStart struct {
 	_ struct{} `type:"structure"`
 
@@ -18844,39 +18768,39 @@ type SourceAccessConfiguration struct {
 	// The type of authentication protocol, VPC components, or virtual host for
 	// your event source. For example: "Type":"SASL_SCRAM_512_AUTH".
 	//
-	//    * BASIC_AUTH – (Amazon MQ) The Secrets Manager secret that stores your
+	//    * BASIC_AUTH - (Amazon MQ) The Secrets Manager secret that stores your
 	//    broker credentials.
 	//
-	//    * BASIC_AUTH – (Self-managed Apache Kafka) The Secrets Manager ARN of
+	//    * BASIC_AUTH - (Self-managed Apache Kafka) The Secrets Manager ARN of
 	//    your secret key used for SASL/PLAIN authentication of your Apache Kafka
 	//    brokers.
 	//
-	//    * VPC_SUBNET – (Self-managed Apache Kafka) The subnets associated with
+	//    * VPC_SUBNET - (Self-managed Apache Kafka) The subnets associated with
 	//    your VPC. Lambda connects to these subnets to fetch data from your self-managed
 	//    Apache Kafka cluster.
 	//
-	//    * VPC_SECURITY_GROUP – (Self-managed Apache Kafka) The VPC security
-	//    group used to manage access to your self-managed Apache Kafka brokers.
+	//    * VPC_SECURITY_GROUP - (Self-managed Apache Kafka) The VPC security group
+	//    used to manage access to your self-managed Apache Kafka brokers.
 	//
-	//    * SASL_SCRAM_256_AUTH – (Self-managed Apache Kafka) The Secrets Manager
+	//    * SASL_SCRAM_256_AUTH - (Self-managed Apache Kafka) The Secrets Manager
 	//    ARN of your secret key used for SASL SCRAM-256 authentication of your
 	//    self-managed Apache Kafka brokers.
 	//
-	//    * SASL_SCRAM_512_AUTH – (Amazon MSK, Self-managed Apache Kafka) The
-	//    Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication
+	//    * SASL_SCRAM_512_AUTH - (Amazon MSK, Self-managed Apache Kafka) The Secrets
+	//    Manager ARN of your secret key used for SASL SCRAM-512 authentication
 	//    of your self-managed Apache Kafka brokers.
 	//
-	//    * VIRTUAL_HOST –- (RabbitMQ) The name of the virtual host in your RabbitMQ
+	//    * VIRTUAL_HOST - (RabbitMQ) The name of the virtual host in your RabbitMQ
 	//    broker. Lambda uses this RabbitMQ host as the event source. This property
 	//    cannot be specified in an UpdateEventSourceMapping API call.
 	//
-	//    * CLIENT_CERTIFICATE_TLS_AUTH – (Amazon MSK, self-managed Apache Kafka)
+	//    * CLIENT_CERTIFICATE_TLS_AUTH - (Amazon MSK, self-managed Apache Kafka)
 	//    The Secrets Manager ARN of your secret key containing the certificate
 	//    chain (X.509 PEM), private key (PKCS#8 PEM), and private key password
 	//    (optional) used for mutual TLS authentication of your MSK/Apache Kafka
 	//    brokers.
 	//
-	//    * SERVER_ROOT_CA_CERTIFICATE – (Self-managed Apache Kafka) The Secrets
+	//    * SERVER_ROOT_CA_CERTIFICATE - (Self-managed Apache Kafka) The Secrets
 	//    Manager ARN of your secret key containing the root CA certificate (X.509
 	//    PEM) used for TLS encryption of your Apache Kafka brokers.
 	Type *string `type:"string" enum:"SourceAccessType"`
@@ -19610,18 +19534,18 @@ type UpdateEventSourceMappingInput struct {
 	// the batch to the function in a single call, up to the payload limit for synchronous
 	// invocation (6 MB).
 	//
-	//    * Amazon Kinesis – Default 100. Max 10,000.
+	//    * Amazon Kinesis - Default 100. Max 10,000.
 	//
-	//    * Amazon DynamoDB Streams – Default 100. Max 10,000.
+	//    * Amazon DynamoDB Streams - Default 100. Max 10,000.
 	//
-	//    * Amazon Simple Queue Service – Default 10. For standard queues the
-	//    max is 10,000. For FIFO queues the max is 10.
+	//    * Amazon Simple Queue Service - Default 10. For standard queues the max
+	//    is 10,000. For FIFO queues the max is 10.
 	//
-	//    * Amazon Managed Streaming for Apache Kafka – Default 100. Max 10,000.
+	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
-	//    * Self-managed Apache Kafka – Default 100. Max 10,000.
+	//    * Self-managed Apache Kafka - Default 100. Max 10,000.
 	//
-	//    * Amazon MQ (ActiveMQ and RabbitMQ) – Default 100. Max 10,000.
+	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -19647,13 +19571,13 @@ type UpdateEventSourceMappingInput struct {
 	//
 	// Name formats
 	//
-	//    * Function name – MyFunction.
+	//    * Function name - MyFunction.
 	//
-	//    * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
 	//
-	//    * Version or Alias ARN – arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.
+	//    * Version or Alias ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.
 	//
-	//    * Partial ARN – 123456789012:function:MyFunction.
+	//    * Partial ARN - 123456789012:function:MyFunction.
 	//
 	// The length constraint applies only to the full ARN. If you specify only the
 	// function name, it's limited to 64 characters in length.
@@ -19691,11 +19615,6 @@ type UpdateEventSourceMappingInput struct {
 
 	// (Streams only) The number of batches to process from each shard concurrently.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
-
-	// (Amazon SQS only) The scaling configuration for the event source. For more
-	// information, see Configuring maximum concurrency for Amazon SQS event sources
-	// (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency).
-	ScalingConfig *ScalingConfig `type:"structure"`
 
 	// An array of authentication protocols or VPC components required to secure
 	// your event source.
@@ -19752,11 +19671,6 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	}
 	if s.UUID != nil && len(*s.UUID) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UUID", 1))
-	}
-	if s.ScalingConfig != nil {
-		if err := s.ScalingConfig.Validate(); err != nil {
-			invalidParams.AddNested("ScalingConfig", err.(request.ErrInvalidParams))
-		}
 	}
 	if s.SourceAccessConfigurations != nil {
 		for i, v := range s.SourceAccessConfigurations {
@@ -19838,12 +19752,6 @@ func (s *UpdateEventSourceMappingInput) SetMaximumRetryAttempts(v int64) *Update
 // SetParallelizationFactor sets the ParallelizationFactor field's value.
 func (s *UpdateEventSourceMappingInput) SetParallelizationFactor(v int64) *UpdateEventSourceMappingInput {
 	s.ParallelizationFactor = &v
-	return s
-}
-
-// SetScalingConfig sets the ScalingConfig field's value.
-func (s *UpdateEventSourceMappingInput) SetScalingConfig(v *ScalingConfig) *UpdateEventSourceMappingInput {
-	s.ScalingConfig = v
 	return s
 }
 
