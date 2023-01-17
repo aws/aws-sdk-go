@@ -166,7 +166,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://cloud9-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://imagebuilder-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -217,18 +217,12 @@
                             "rules": [
                                 {
                                     "conditions": [],
-                                    "type": "tree",
-                                    "rules": [
-                                        {
-                                            "conditions": [],
-                                            "endpoint": {
-                                                "url": "https://cloud9-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        }
-                                    ]
+                                    "endpoint": {
+                                        "url": "https://imagebuilder-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 }
                             ]
                         },
@@ -276,7 +270,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://cloud9.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://imagebuilder.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -294,7 +288,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://cloud9.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://imagebuilder.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

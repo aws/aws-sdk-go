@@ -1,3 +1,13 @@
+Release v1.44.181 (2023-01-17)
+===
+
+### Service Client Updates
+* `service/billingconductor`: Updates service API and documentation
+* `service/cloud9`: Updates service API
+  * Added minimum value to AutomaticStopTimeMinutes parameter.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/network-firewall`: Updates service API and documentation
+
 Release v1.44.180 (2023-01-13)
 ===
 

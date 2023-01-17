@@ -959,7 +959,9 @@
         "Service":{"shape":"Service"},
         "Tags":{"shape":"TagMap"},
         "BillingEntity":{"shape":"BillingEntity"},
-        "Tiering":{"shape":"CreateTieringInput"}
+        "Tiering":{"shape":"CreateTieringInput"},
+        "UsageType":{"shape":"UsageType"},
+        "Operation":{"shape":"Operation"}
       }
     },
     "CreatePricingRuleOutput":{
@@ -1586,6 +1588,12 @@
       "type":"long",
       "min":0
     },
+    "Operation":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"\\S+"
+    },
     "PricingPlanArn":{
       "type":"string",
       "pattern":"(arn:aws(-cn)?:billingconductor::[0-9]{12}:pricingplan/)?[a-zA-Z0-9]{10}"
@@ -1963,7 +1971,9 @@
         "AssociatedPricingPlanCount":{"shape":"NumberOfPricingPlansAssociatedWith"},
         "LastModifiedTime":{"shape":"Instant"},
         "BillingEntity":{"shape":"BillingEntity"},
-        "Tiering":{"shape":"UpdateTieringInput"}
+        "Tiering":{"shape":"UpdateTieringInput"},
+        "UsageType":{"shape":"UsageType"},
+        "Operation":{"shape":"Operation"}
       }
     },
     "UpdateTieringInput":{
@@ -1972,6 +1982,12 @@
       "members":{
         "FreeTier":{"shape":"UpdateFreeTierConfig"}
       }
+    },
+    "UsageType":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"\\S+"
     },
     "ValidationException":{
       "type":"structure",

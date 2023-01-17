@@ -31,15 +31,15 @@
     "ImportComponent": "<p>Imports a component and transforms its data into a component document.</p>",
     "ImportVmImage": "<p>When you export your virtual machine (VM) from its virtualization environment, that process creates a set of one or more disk container files that act as snapshots of your VM’s environment, settings, and data. The Amazon EC2 API <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportImage.html\">ImportImage</a> action uses those files to import your VM and create an AMI. To import using the CLI command, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html\">import-image</a> </p> <p>You can reference the task ID from the VM import to pull in the AMI that the import created as the base image for your Image Builder recipe.</p>",
     "ListComponentBuildVersions": "<p> Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
-    "ListComponents": "<p>Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+    "ListComponents": "<p>Returns the list of components that can be filtered by name, or by using the listed <code>filters</code> to streamline results. Newly created components can take up to two minutes to appear in the ListComponents API Results.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
     "ListContainerRecipes": "<p>Returns a list of container recipes.</p>",
     "ListDistributionConfigurations": "<p>Returns a list of distribution configurations.</p>",
     "ListImageBuildVersions": "<p> Returns a list of image build versions.</p>",
     "ListImagePackages": "<p>List the Packages that are associated with an Image Build Version, as determined by Amazon Web Services Systems Manager Inventory at build time.</p>",
-    "ListImagePipelineImages": "<p> Returns a list of images created by the specified pipeline.</p>",
+    "ListImagePipelineImages": "<p>Returns a list of images created by the specified pipeline.</p>",
     "ListImagePipelines": "<p>Returns a list of image pipelines.</p>",
     "ListImageRecipes": "<p> Returns a list of image recipes.</p>",
-    "ListImages": "<p> Returns the list of images that you have access to.</p>",
+    "ListImages": "<p>Returns the list of images that you have access to. Newly created images can take up to two minutes to appear in the ListImages API Results.</p>",
     "ListInfrastructureConfigurations": "<p> Returns a list of infrastructure configurations.</p>",
     "ListTagsForResource": "<p> Returns the list of tags for the specified resource.</p>",
     "PutComponentPolicy": "<p> Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
@@ -70,7 +70,7 @@
       }
     },
     "AdditionalInstanceConfiguration": {
-      "base": "<p>In addition to your infrastruction configuration, these settings provide an extra layer of control over your build instances. For instances where Image Builder installs the Systems Manager agent, you can choose whether to keep it for the AMI that you create. You can also specify commands to run on launch for all of your build instances.</p>",
+      "base": "<p>In addition to your infrastructure configuration, these settings provide an extra layer of control over your build instances. You can also specify commands to run on launch for all of your build instances.</p> <p>Image Builder does not automatically install the Systems Manager agent on Windows instances. If your base image includes the Systems Manager agent, then the AMI that you create will also include the agent. For Linux instances, if the base image does not already include the Systems Manager agent, Image Builder installs it. For Linux instances where Image Builder installs the Systems Manager agent, you can choose whether to keep it for the AMI that you create.</p>",
       "refs": {
         "CreateImageRecipeRequest$additionalInstanceConfiguration": "<p>Specify additional settings and launch scripts for your build instances.</p>",
         "ImageRecipe$additionalInstanceConfiguration": "<p>Before you create a new AMI, Image Builder launches temporary Amazon EC2 instances to build and test your image configuration. Instance configuration adds a layer of control over those instances. You can define settings and add scripts to run when an instance is launched from your AMI.</p>"
@@ -114,9 +114,11 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "Component$obfuscate": "<p>Indicates whether component source is hidden from view in the console, and from component detail results for API, CLI, or SDK operations.</p>",
+        "ComponentSummary$obfuscate": "<p>Indicates whether component source is hidden from view in the console, and from component detail results for API, CLI, or SDK operations.</p>",
         "FastLaunchConfiguration$enabled": "<p>A Boolean that represents the current state of faster launching for the Windows AMI. Set to <code>true</code> to start using Windows faster launching, or <code>false</code> to stop using it.</p>",
         "LaunchTemplateConfiguration$setDefaultVersion": "<p>Set the specified Amazon EC2 launch template as the default launch template for the specified account.</p>",
-        "ListComponentsRequest$byName": "<p>Returns the list of component build versions for the specified name.</p>",
+        "ListComponentsRequest$byName": "<p>Returns the list of components for the specified name.</p>",
         "ListImagesRequest$byName": "<p>Requests a list of images with a specific recipe name.</p>"
       }
     },
@@ -208,10 +210,10 @@
     "ComponentConfigurationList": {
       "base": null,
       "refs": {
-        "ContainerRecipe$components": "<p>Components for build and test that are included in the container recipe.</p>",
-        "CreateContainerRecipeRequest$components": "<p>Components for build and test that are included in the container recipe.</p>",
-        "CreateImageRecipeRequest$components": "<p>The components of the image recipe.</p>",
-        "ImageRecipe$components": "<p>The components of the image recipe.</p>"
+        "ContainerRecipe$components": "<p>Build and test components that are included in the container recipe. Recipes require a minimum of one build component, and can have a maximum of 20 build and test components in any combination.</p>",
+        "CreateContainerRecipeRequest$components": "<p>Components for build and test that are included in the container recipe. Recipes require a minimum of one build component, and can have a maximum of 20 build and test components in any combination.</p>",
+        "CreateImageRecipeRequest$components": "<p>The components included in the image recipe.</p>",
+        "ImageRecipe$components": "<p>The components that are included in the image recipe. Recipes require a minimum of one build component, and can have a maximum of 20 build and test components in any combination.</p>"
       }
     },
     "ComponentData": {
@@ -247,13 +249,13 @@
     "ComponentParameterDetailList": {
       "base": null,
       "refs": {
-        "Component$parameters": "<p>Contains parameter details for each of the parameters that are defined for the component.</p>"
+        "Component$parameters": "<p>Contains parameter details for each of the parameters that the component document defined for the component.</p>"
       }
     },
     "ComponentParameterList": {
       "base": null,
       "refs": {
-        "ComponentConfiguration$parameters": "<p>A group of parameter settings that are used to configure the component for a specific recipe.</p>"
+        "ComponentConfiguration$parameters": "<p>A group of parameter settings that Image Builder uses to configure the component for a specific recipe.</p>"
       }
     },
     "ComponentParameterName": {
@@ -310,8 +312,8 @@
     "ComponentType": {
       "base": null,
       "refs": {
-        "Component$type": "<p>The type of the component denotes whether the component is used to build the image or only to test it.</p>",
-        "ComponentSummary$type": "<p>The type of the component denotes whether the component is used to build the image or only to test it.</p>",
+        "Component$type": "<p>The component type specifies whether Image Builder uses the component to build the image or only to test it.</p>",
+        "ComponentSummary$type": "<p>The component type specifies whether Image Builder uses the component to build the image or only to test it.</p>",
         "ComponentVersion$type": "<p>The type of the component denotes whether the component is used to build the image or only to test it.</p>",
         "ImportComponentRequest$type": "<p>The type of the component denotes whether the component is used to build the image, or only to test it.</p>"
       }
@@ -363,7 +365,7 @@
       "base": "<p>A container recipe.</p>",
       "refs": {
         "GetContainerRecipeResponse$containerRecipe": "<p>The container recipe object that is returned.</p>",
-        "Image$containerRecipe": "<p>The recipe that is used to create an Image Builder container image.</p>"
+        "Image$containerRecipe": "<p>For container images, this is the container recipe that Image Builder used to create the image. For images that distribute an AMI, this is empty.</p>"
       }
     },
     "ContainerRecipeArn": {
@@ -480,8 +482,8 @@
     "DateTime": {
       "base": null,
       "refs": {
-        "Component$dateCreated": "<p>The date that the component was created.</p>",
-        "ComponentSummary$dateCreated": "<p>The date that the component was created.</p>",
+        "Component$dateCreated": "<p>The date that Image Builder created the component.</p>",
+        "ComponentSummary$dateCreated": "<p>The original creation date of the component.</p>",
         "ComponentVersion$dateCreated": "<p>The date that the component was created.</p>",
         "ContainerRecipe$dateCreated": "<p>The date when this container recipe was created.</p>",
         "ContainerRecipeSummary$dateCreated": "<p>The date when this container recipe was created.</p>",
@@ -489,14 +491,14 @@
         "DistributionConfiguration$dateUpdated": "<p>The date on which this distribution configuration was last updated.</p>",
         "DistributionConfigurationSummary$dateCreated": "<p>The date on which the distribution configuration was created.</p>",
         "DistributionConfigurationSummary$dateUpdated": "<p>The date on which the distribution configuration was updated.</p>",
-        "Image$dateCreated": "<p>The date on which this image was created.</p>",
+        "Image$dateCreated": "<p>The date on which Image Builder created this image.</p>",
         "ImagePipeline$dateCreated": "<p>The date on which this image pipeline was created.</p>",
         "ImagePipeline$dateUpdated": "<p>The date on which this image pipeline was last updated.</p>",
-        "ImagePipeline$dateLastRun": "<p>The date on which this image pipeline was last run.</p>",
-        "ImagePipeline$dateNextRun": "<p>The date on which this image pipeline will next be run.</p>",
+        "ImagePipeline$dateLastRun": "<p>This is no longer supported, and does not return a value.</p>",
+        "ImagePipeline$dateNextRun": "<p>This is no longer supported, and does not return a value.</p>",
         "ImageRecipe$dateCreated": "<p>The date on which this image recipe was created.</p>",
         "ImageRecipeSummary$dateCreated": "<p>The date on which this image recipe was created.</p>",
-        "ImageSummary$dateCreated": "<p>The date on which this image was created.</p>",
+        "ImageSummary$dateCreated": "<p>The date on which Image Builder created this image.</p>",
         "ImageVersion$dateCreated": "<p>The date on which this specific version of the Image Builder image was created.</p>",
         "InfrastructureConfiguration$dateCreated": "<p>The date on which the infrastructure configuration was created.</p>",
         "InfrastructureConfiguration$dateUpdated": "<p>The date on which the infrastructure configuration was last updated.</p>",
@@ -590,7 +592,7 @@
       "base": "<p>A distribution configuration.</p>",
       "refs": {
         "GetDistributionConfigurationResponse$distributionConfiguration": "<p>The distribution configuration object.</p>",
-        "Image$distributionConfiguration": "<p>The distribution configuration used when creating this image.</p>"
+        "Image$distributionConfiguration": "<p>The distribution configuration that Image Builder used to create this image.</p>"
       }
     },
     "DistributionConfigurationArn": {
@@ -877,7 +879,7 @@
     "HttpPutResponseHopLimit": {
       "base": null,
       "refs": {
-        "InstanceMetadataOptions$httpPutResponseHopLimit": "<p>Limit the number of hops that an instance metadata request can traverse to reach its destination.</p>"
+        "InstanceMetadataOptions$httpPutResponseHopLimit": "<p>Limit the number of hops that an instance metadata request can traverse to reach its destination. The default is one hop. However, if HTTP tokens are required, container image builds need a minimum of two hops.</p>"
       }
     },
     "HttpTokens": {
@@ -977,7 +979,7 @@
       "base": "<p>An image recipe.</p>",
       "refs": {
         "GetImageRecipeResponse$imageRecipe": "<p>The image recipe object.</p>",
-        "Image$imageRecipe": "<p>The image recipe used when creating the image.</p>"
+        "Image$imageRecipe": "<p>For images that distribute an AMI, this is the image recipe that Image Builder used to create the image. For container images, this is empty.</p>"
       }
     },
     "ImageRecipeArn": {
@@ -1005,6 +1007,14 @@
       "base": null,
       "refs": {
         "ListImageRecipesResponse$imageRecipeSummaryList": "<p>The list of image pipelines.</p>"
+      }
+    },
+    "ImageSource": {
+      "base": null,
+      "refs": {
+        "Image$imageSource": "<p>The origin of the base image that Image Builder used to build this image.</p>",
+        "ImageSummary$imageSource": "<p>The origin of the base image that Image Builder used to build this image.</p>",
+        "ImageVersion$imageSource": "<p>The origin of the base image that Image Builder used to build this image.</p>"
       }
     },
     "ImageState": {
@@ -1039,7 +1049,7 @@
       "refs": {
         "CreateImagePipelineRequest$imageTestsConfiguration": "<p> The image test configuration of the image pipeline.</p>",
         "CreateImageRequest$imageTestsConfiguration": "<p> The image tests configuration of the image.</p>",
-        "Image$imageTestsConfiguration": "<p>The image tests configuration used when creating this image.</p>",
+        "Image$imageTestsConfiguration": "<p>The image tests that ran when that Image Builder created this image.</p>",
         "ImagePipeline$imageTestsConfiguration": "<p>The image tests configuration of the image pipeline.</p>",
         "UpdateImagePipelineRequest$imageTestsConfiguration": "<p>The image test configuration of the image pipeline.</p>"
       }
@@ -1047,16 +1057,16 @@
     "ImageTestsTimeoutMinutes": {
       "base": null,
       "refs": {
-        "ImageTestsConfiguration$timeoutMinutes": "<p>The maximum time in minutes that tests are permitted to run.</p>"
+        "ImageTestsConfiguration$timeoutMinutes": "<p>The maximum time in minutes that tests are permitted to run.</p> <note> <p>The timeoutMinutes attribute is not currently active. This value is ignored.</p> </note>"
       }
     },
     "ImageType": {
       "base": null,
       "refs": {
-        "Image$type": "<p>Specifies whether this is an AMI or container image.</p>",
+        "Image$type": "<p>Specifies whether this image produces an AMI or a container image.</p>",
         "ImageRecipe$type": "<p>Specifies which type of image is created by the recipe - an AMI or a container image.</p>",
-        "ImageSummary$type": "<p>Specifies whether this is an AMI or container image.</p>",
-        "ImageVersion$type": "<p>Specifies whether this image is an AMI or a container image.</p>"
+        "ImageSummary$type": "<p>Specifies whether this image produces an AMI or a container image.</p>",
+        "ImageVersion$type": "<p>Specifies whether this image produces an AMI or a container image.</p>"
       }
     },
     "ImageVersion": {
@@ -1107,7 +1117,7 @@
       "base": "<p>Details of the infrastructure configuration.</p>",
       "refs": {
         "GetInfrastructureConfigurationResponse$infrastructureConfiguration": "<p>The infrastructure configuration object.</p>",
-        "Image$infrastructureConfiguration": "<p>The infrastructure used when creating this image.</p>"
+        "Image$infrastructureConfiguration": "<p>The infrastructure that Image Builder used to create this image.</p>"
       }
     },
     "InfrastructureConfigurationArn": {
@@ -1417,10 +1427,12 @@
         "Component$changeDescription": "<p>The change description of the component.</p>",
         "Component$owner": "<p>The owner of the component.</p>",
         "Component$kmsKeyId": "<p>The KMS key identifier used to encrypt the component.</p>",
+        "Component$publisher": "<p>Contains the name of the publisher if this is a third-party component. Otherwise, this property is empty.</p>",
         "ComponentState$reason": "<p>Describes how or why the component changed state.</p>",
         "ComponentSummary$owner": "<p>The owner of the component.</p>",
         "ComponentSummary$description": "<p>The description of the component.</p>",
-        "ComponentSummary$changeDescription": "<p>The change description of the component.</p>",
+        "ComponentSummary$changeDescription": "<p>The change description for the current version of the component.</p>",
+        "ComponentSummary$publisher": "<p>Contains the name of the publisher if this is a third-party component. Otherwise, this property is empty.</p>",
         "ComponentVersion$description": "<p>The description of the component.</p>",
         "ComponentVersion$owner": "<p>The owner of the component.</p>",
         "Container$region": "<p>Containers and container images are Region-specific. This is the Region context for the container.</p>",
@@ -1432,9 +1444,9 @@
         "ContainerRecipe$workingDirectory": "<p>The working directory for use during build and test workflows.</p>",
         "ContainerRecipeSummary$owner": "<p>The owner of the container recipe.</p>",
         "ContainerRecipeSummary$parentImage": "<p>The base image for the container recipe.</p>",
-        "CreateComponentRequest$description": "<p>The description of the component. Describes the contents of the component.</p>",
+        "CreateComponentRequest$description": "<p>Describes the contents of the component.</p>",
         "CreateComponentRequest$changeDescription": "<p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.</p>",
-        "CreateComponentRequest$kmsKeyId": "<p>The ID of the KMS key that should be used to encrypt this component.</p>",
+        "CreateComponentRequest$kmsKeyId": "<p>The ID of the KMS key that is used to encrypt this component.</p>",
         "CreateComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateContainerRecipeRequest$description": "<p>The description of the container recipe.</p>",
         "CreateContainerRecipeRequest$imageOsVersionOverride": "<p>Specifies the operating system version for the base image.</p>",
@@ -1557,7 +1569,7 @@
         "CreateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>",
         "EbsInstanceBlockDeviceSpecification$encrypted": "<p>Use to configure device encryption.</p>",
         "EbsInstanceBlockDeviceSpecification$deleteOnTermination": "<p>Use to configure delete on termination of the associated device.</p>",
-        "Image$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
+        "Image$enhancedImageMetadataEnabled": "<p>Indicates whether Image Builder collects additional information about the image, such as the operating system (OS) version and package list.</p>",
         "ImagePipeline$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
         "ImageTestsConfiguration$imageTestsEnabled": "<p>Determines if tests should run after building the image. Image Builder defaults to enable tests to run following the image build, before image distribution.</p>",
         "InfrastructureConfiguration$terminateInstanceOnFailure": "<p>The terminate instance on failure configuration of the infrastructure configuration.</p>",
@@ -1594,8 +1606,8 @@
     "OsVersion": {
       "base": null,
       "refs": {
-        "Image$osVersion": "<p>The operating system version of the instance. For example, Amazon Linux 2, Ubuntu 18, or Microsoft Windows Server 2019.</p>",
-        "ImageSummary$osVersion": "<p>The operating system version of the instance. For example, Amazon Linux 2, Ubuntu 18, or Microsoft Windows Server 2019.</p>",
+        "Image$osVersion": "<p>The operating system version for instances that launch from this image. For example, Amazon Linux 2, Ubuntu 18, or Microsoft Windows Server 2019.</p>",
+        "ImageSummary$osVersion": "<p>The operating system version of the instances that launch from this image. For example, Amazon Linux 2, Ubuntu 18, or Microsoft Windows Server 2019.</p>",
         "ImageVersion$osVersion": "<p>The operating system version of the Amazon EC2 build instance. For example, Amazon Linux 2, Ubuntu 18, or Microsoft Windows Server 2019.</p>",
         "ImportVmImageRequest$osVersion": "<p>The operating system version for the imported VM.</p>",
         "OsVersionList$member": null
@@ -1604,8 +1616,8 @@
     "OsVersionList": {
       "base": null,
       "refs": {
-        "Component$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>",
-        "ComponentSummary$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>",
+        "Component$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, Image Builder performs a prefix match against the base image OS version during image recipe creation.</p>",
+        "ComponentSummary$supportedOsVersions": "<p>The operating system (OS) version that the component supports. If the OS information is available, Image Builder performs a prefix match against the base image OS version during image recipe creation.</p>",
         "ComponentVersion$supportedOsVersions": "<p>he operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>",
         "CreateComponentRequest$supportedOsVersions": "<p> The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>"
       }
@@ -1613,14 +1625,14 @@
     "OutputResources": {
       "base": "<p>The resources produced by this image.</p>",
       "refs": {
-        "Image$outputResources": "<p>The output resources produced when creating this image.</p>",
-        "ImageSummary$outputResources": "<p>The output resources produced when creating this image.</p>"
+        "Image$outputResources": "<p>The output resources that Image Builder produces for this image.</p>",
+        "ImageSummary$outputResources": "<p>The output resources that Image Builder produced when it created this image.</p>"
       }
     },
     "Ownership": {
       "base": null,
       "refs": {
-        "ListComponentsRequest$owner": "<p>The owner defines which components you want to list. By default, this request will only show components owned by your account. You can use this field to specify if you want to view components owned by yourself, by Amazon, or those components that have been shared with you by other customers.</p>",
+        "ListComponentsRequest$owner": "<p>Filters results based on the type of owner for the component. By default, this request returns a list of components that your account owns. To see results for other types of owners, you can specify components that Amazon manages, third party components, or components that other accounts have shared with you.</p>",
         "ListContainerRecipesRequest$owner": "<p>Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account.</p>",
         "ListImageRecipesRequest$owner": "<p>The owner defines which image recipes you want to list. By default, this request will only show image recipes owned by your account. You can use this field to specify if you want to view image recipes owned by yourself, by Amazon, or those image recipes that have been shared with you by other customers.</p>",
         "ListImagesRequest$owner": "<p>The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers.</p>"
@@ -1668,19 +1680,19 @@
     "Platform": {
       "base": null,
       "refs": {
-        "Component$platform": "<p>The platform of the component.</p>",
-        "ComponentSummary$platform": "<p>The platform of the component.</p>",
+        "Component$platform": "<p>The operating system platform of the component.</p>",
+        "ComponentSummary$platform": "<p>The operating system platform of the component.</p>",
         "ComponentVersion$platform": "<p>The platform of the component.</p>",
         "ContainerRecipe$platform": "<p>The system platform for the container, such as Windows or Linux.</p>",
         "ContainerRecipeSummary$platform": "<p>The system platform for the container, such as Windows or Linux.</p>",
-        "CreateComponentRequest$platform": "<p>The platform of the component.</p>",
+        "CreateComponentRequest$platform": "<p>The operating system platform of the component.</p>",
         "CreateContainerRecipeRequest$platformOverride": "<p>Specifies the operating system platform when you use a custom base image.</p>",
-        "Image$platform": "<p>The platform of the image.</p>",
+        "Image$platform": "<p>The image operating system platform, such as Linux or Windows.</p>",
         "ImagePipeline$platform": "<p>The platform of the image pipeline.</p>",
         "ImageRecipe$platform": "<p>The platform of the image recipe.</p>",
         "ImageRecipeSummary$platform": "<p>The platform of the image recipe.</p>",
-        "ImageSummary$platform": "<p>The platform of the image.</p>",
-        "ImageVersion$platform": "<p>The platform of the image version, for example \"Windows\" or \"Linux\".</p>",
+        "ImageSummary$platform": "<p>The image operating system platform, such as Linux or Windows.</p>",
+        "ImageVersion$platform": "<p>The operating system platform of the image version, for example \"Windows\" or \"Linux\".</p>",
         "ImportComponentRequest$platform": "<p>The platform of the component.</p>",
         "ImportVmImageRequest$platform": "<p>The operating system platform for the imported VM.</p>"
       }
@@ -1909,11 +1921,11 @@
       "base": null,
       "refs": {
         "AmiDistributionConfiguration$amiTags": "<p>The tags to apply to AMIs distributed to this Region.</p>",
-        "Component$tags": "<p>The tags associated with the component.</p>",
-        "ComponentSummary$tags": "<p>The tags associated with the component.</p>",
+        "Component$tags": "<p>The tags that apply to the component.</p>",
+        "ComponentSummary$tags": "<p>The tags that apply to the component.</p>",
         "ContainerRecipe$tags": "<p>Tags that are attached to the container recipe.</p>",
         "ContainerRecipeSummary$tags": "<p>Tags that are attached to the container recipe.</p>",
-        "CreateComponentRequest$tags": "<p>The tags of the component.</p>",
+        "CreateComponentRequest$tags": "<p>The tags that apply to the component.</p>",
         "CreateContainerRecipeRequest$tags": "<p>Tags that are attached to the container recipe.</p>",
         "CreateDistributionConfigurationRequest$tags": "<p> The tags of the distribution configuration.</p>",
         "CreateImagePipelineRequest$tags": "<p> The tags of the image pipeline.</p>",
@@ -1922,11 +1934,11 @@
         "CreateInfrastructureConfigurationRequest$tags": "<p>The tags of the infrastructure configuration.</p>",
         "DistributionConfiguration$tags": "<p>The tags of the distribution configuration.</p>",
         "DistributionConfigurationSummary$tags": "<p>The tags associated with the distribution configuration.</p>",
-        "Image$tags": "<p>The tags of the image.</p>",
+        "Image$tags": "<p>The tags that apply to this image.</p>",
         "ImagePipeline$tags": "<p>The tags of this image pipeline.</p>",
         "ImageRecipe$tags": "<p>The tags of the image recipe.</p>",
         "ImageRecipeSummary$tags": "<p>The tags of the image recipe.</p>",
-        "ImageSummary$tags": "<p>The tags of the image.</p>",
+        "ImageSummary$tags": "<p>The tags that apply to this image.</p>",
         "ImportComponentRequest$tags": "<p>The tags of the component.</p>",
         "ImportVmImageRequest$tags": "<p>Tags that are attached to the import resources.</p>",
         "InfrastructureConfiguration$tags": "<p>The tags of the infrastructure configuration.</p>",

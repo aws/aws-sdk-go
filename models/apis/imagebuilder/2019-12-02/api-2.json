@@ -1048,7 +1048,9 @@
         "kmsKeyId":{"shape":"NonEmptyString"},
         "encrypted":{"shape":"NullableBoolean"},
         "dateCreated":{"shape":"DateTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "publisher":{"shape":"NonEmptyString"},
+        "obfuscate":{"shape":"Boolean"}
       }
     },
     "ComponentBuildVersionArn":{
@@ -1158,7 +1160,9 @@
         "description":{"shape":"NonEmptyString"},
         "changeDescription":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "publisher":{"shape":"NonEmptyString"},
+        "obfuscate":{"shape":"Boolean"}
       }
     },
     "ComponentSummaryList":{
@@ -2038,7 +2042,8 @@
         "dateCreated":{"shape":"DateTime"},
         "outputResources":{"shape":"OutputResources"},
         "tags":{"shape":"TagMap"},
-        "buildType":{"shape":"BuildType"}
+        "buildType":{"shape":"BuildType"},
+        "imageSource":{"shape":"ImageSource"}
       }
     },
     "ImageBuildVersionArn":{
@@ -2129,6 +2134,15 @@
       "type":"list",
       "member":{"shape":"ImageRecipeSummary"}
     },
+    "ImageSource":{
+      "type":"string",
+      "enum":[
+        "AMAZON_MANAGED",
+        "AWS_MARKETPLACE",
+        "IMPORTED",
+        "CUSTOM"
+      ]
+    },
     "ImageState":{
       "type":"structure",
       "members":{
@@ -2166,7 +2180,8 @@
         "dateCreated":{"shape":"DateTime"},
         "outputResources":{"shape":"OutputResources"},
         "tags":{"shape":"TagMap"},
-        "buildType":{"shape":"BuildType"}
+        "buildType":{"shape":"BuildType"},
+        "imageSource":{"shape":"ImageSource"}
       }
     },
     "ImageSummaryList":{
@@ -2203,7 +2218,8 @@
         "osVersion":{"shape":"OsVersion"},
         "owner":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"},
-        "buildType":{"shape":"BuildType"}
+        "buildType":{"shape":"BuildType"},
+        "imageSource":{"shape":"ImageSource"}
       }
     },
     "ImageVersionArn":{
@@ -2762,7 +2778,8 @@
       "enum":[
         "Self",
         "Shared",
-        "Amazon"
+        "Amazon",
+        "ThirdParty"
       ]
     },
     "PaginationToken":{
