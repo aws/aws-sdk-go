@@ -5086,14 +5086,22 @@ type CreatePricingRuleInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// Operation is the specific Amazon Web Services action covered by this line
+	// item. This describes the specific usage of the line item.
+	//
+	// If the Scope attribute is set to SKU, this attribute indicates which operation
+	// the PricingRule is modifying. For example, a value of RunInstances:0202 indicates
+	// the operation of running an Amazon EC2 instance.
+	Operation *string `min:"1" type:"string"`
+
 	// The scope of pricing rule that indicates if it's globally applicable, or
 	// it's service-specific.
 	//
 	// Scope is a required field
 	Scope *string `type:"string" required:"true" enum:"PricingRuleScope"`
 
-	// If the Scope attribute is set to SERVICE, the attribute indicates which service
-	// the PricingRule is applicable for.
+	// If the Scope attribute is set to SERVICE or SKU, the attribute indicates
+	// which service the PricingRule is applicable for.
 	Service *string `min:"1" type:"string"`
 
 	// A map that contains tag keys and tag values that are attached to a pricing
@@ -5107,6 +5115,10 @@ type CreatePricingRuleInput struct {
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"PricingRuleType"`
+
+	// Usage type is the unit that each service uses to measure the usage of a specific
+	// type of resource.
+	UsageType *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -5139,6 +5151,9 @@ func (s *CreatePricingRuleInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Operation != nil && len(*s.Operation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Operation", 1))
+	}
 	if s.Scope == nil {
 		invalidParams.Add(request.NewErrParamRequired("Scope"))
 	}
@@ -5150,6 +5165,9 @@ func (s *CreatePricingRuleInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.UsageType != nil && len(*s.UsageType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UsageType", 1))
 	}
 	if s.Tiering != nil {
 		if err := s.Tiering.Validate(); err != nil {
@@ -5193,6 +5211,12 @@ func (s *CreatePricingRuleInput) SetName(v string) *CreatePricingRuleInput {
 	return s
 }
 
+// SetOperation sets the Operation field's value.
+func (s *CreatePricingRuleInput) SetOperation(v string) *CreatePricingRuleInput {
+	s.Operation = &v
+	return s
+}
+
 // SetScope sets the Scope field's value.
 func (s *CreatePricingRuleInput) SetScope(v string) *CreatePricingRuleInput {
 	s.Scope = &v
@@ -5220,6 +5244,12 @@ func (s *CreatePricingRuleInput) SetTiering(v *CreateTieringInput_) *CreatePrici
 // SetType sets the Type field's value.
 func (s *CreatePricingRuleInput) SetType(v string) *CreatePricingRuleInput {
 	s.Type = &v
+	return s
+}
+
+// SetUsageType sets the UsageType field's value.
+func (s *CreatePricingRuleInput) SetUsageType(v string) *CreatePricingRuleInput {
+	s.UsageType = &v
 	return s
 }
 
@@ -9951,6 +9981,14 @@ type UpdatePricingRuleOutput struct {
 	// String and GoString methods.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 
+	// Operation refers to the specific Amazon Web Services covered by this line
+	// item. This describes the specific usage of the line item.
+	//
+	// If the Scope attribute is set to SKU, this attribute indicates which operation
+	// the PricingRule is modifying. For example, a value of RunInstances:0202 indicates
+	// the operation of running an Amazon EC2 instance.
+	Operation *string `min:"1" type:"string"`
+
 	// The scope of pricing rule that indicates if it's globally applicable, or
 	// it's service-specific.
 	Scope *string `type:"string" enum:"PricingRuleScope"`
@@ -9964,6 +10002,15 @@ type UpdatePricingRuleOutput struct {
 
 	// The new pricing rule type.
 	Type *string `type:"string" enum:"PricingRuleType"`
+
+	// Usage type is the unit that each service uses to measure the usage of a specific
+	// type of resource.
+	//
+	// If the Scope attribute is set to SKU, this attribute indicates which usage
+	// type the PricingRule is modifying. For example, USW2-BoxUsage:m2.2xlarge
+	// describes an M2 High Memory Double Extra Large instance in the US West (Oregon)
+	// Region.
+	UsageType *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -10026,6 +10073,12 @@ func (s *UpdatePricingRuleOutput) SetName(v string) *UpdatePricingRuleOutput {
 	return s
 }
 
+// SetOperation sets the Operation field's value.
+func (s *UpdatePricingRuleOutput) SetOperation(v string) *UpdatePricingRuleOutput {
+	s.Operation = &v
+	return s
+}
+
 // SetScope sets the Scope field's value.
 func (s *UpdatePricingRuleOutput) SetScope(v string) *UpdatePricingRuleOutput {
 	s.Scope = &v
@@ -10047,6 +10100,12 @@ func (s *UpdatePricingRuleOutput) SetTiering(v *UpdateTieringInput_) *UpdatePric
 // SetType sets the Type field's value.
 func (s *UpdatePricingRuleOutput) SetType(v string) *UpdatePricingRuleOutput {
 	s.Type = &v
+	return s
+}
+
+// SetUsageType sets the UsageType field's value.
+func (s *UpdatePricingRuleOutput) SetUsageType(v string) *UpdatePricingRuleOutput {
+	s.UsageType = &v
 	return s
 }
 

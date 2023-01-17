@@ -3099,7 +3099,9 @@ func (c *Imagebuilder) ListComponentsRequest(input *ListComponentsInput) (req *r
 
 // ListComponents API operation for EC2 Image Builder.
 //
-// Returns the list of component build versions for the specified semantic version.
+// Returns the list of components that can be filtered by name, or by using
+// the listed filters to streamline results. Newly created components can take
+// up to two minutes to appear in the ListComponents API Results.
 //
 // The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You
 // can assign values for the first three, and can filter on all of them.
@@ -4362,7 +4364,8 @@ func (c *Imagebuilder) ListImagesRequest(input *ListImagesInput) (req *request.R
 
 // ListImages API operation for EC2 Image Builder.
 //
-// Returns the list of images that you have access to.
+// Returns the list of images that you have access to. Newly created images
+// can take up to two minutes to appear in the ListImages API Results.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5743,11 +5746,17 @@ func (c *Imagebuilder) UpdateInfrastructureConfigurationWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
-// In addition to your infrastruction configuration, these settings provide
-// an extra layer of control over your build instances. For instances where
-// Image Builder installs the Systems Manager agent, you can choose whether
-// to keep it for the AMI that you create. You can also specify commands to
-// run on launch for all of your build instances.
+// In addition to your infrastructure configuration, these settings provide
+// an extra layer of control over your build instances. You can also specify
+// commands to run on launch for all of your build instances.
+//
+// Image Builder does not automatically install the Systems Manager agent on
+// Windows instances. If your base image includes the Systems Manager agent,
+// then the AMI that you create will also include the agent. For Linux instances,
+// if the base image does not already include the Systems Manager agent, Image
+// Builder installs it. For Linux instances where Image Builder installs the
+// Systems Manager agent, you can choose whether to keep it for the AMI that
+// you create.
 type AdditionalInstanceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6255,7 +6264,7 @@ type Component struct {
 	// Component data contains the YAML document content for the component.
 	Data *string `locationName:"data" type:"string"`
 
-	// The date that the component was created.
+	// The date that Image Builder created the component.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
 
 	// The description of the component.
@@ -6270,30 +6279,38 @@ type Component struct {
 	// The name of the component.
 	Name *string `locationName:"name" type:"string"`
 
+	// Indicates whether component source is hidden from view in the console, and
+	// from component detail results for API, CLI, or SDK operations.
+	Obfuscate *bool `locationName:"obfuscate" type:"boolean"`
+
 	// The owner of the component.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// Contains parameter details for each of the parameters that are defined for
-	// the component.
+	// Contains parameter details for each of the parameters that the component
+	// document defined for the component.
 	Parameters []*ComponentParameterDetail `locationName:"parameters" type:"list"`
 
-	// The platform of the component.
+	// The operating system platform of the component.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
+
+	// Contains the name of the publisher if this is a third-party component. Otherwise,
+	// this property is empty.
+	Publisher *string `locationName:"publisher" min:"1" type:"string"`
 
 	// Describes the current status of the component. This is used for components
 	// that are no longer active.
 	State *ComponentState `locationName:"state" type:"structure"`
 
 	// The operating system (OS) version supported by the component. If the OS information
-	// is available, a prefix match is performed against the base image OS version
-	// during image recipe creation.
+	// is available, Image Builder performs a prefix match against the base image
+	// OS version during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
 
-	// The tags associated with the component.
+	// The tags that apply to the component.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// The type of the component denotes whether the component is used to build
-	// the image or only to test it.
+	// The component type specifies whether Image Builder uses the component to
+	// build the image or only to test it.
 	Type *string `locationName:"type" type:"string" enum:"ComponentType"`
 
 	// The version of the component.
@@ -6366,6 +6383,12 @@ func (s *Component) SetName(v string) *Component {
 	return s
 }
 
+// SetObfuscate sets the Obfuscate field's value.
+func (s *Component) SetObfuscate(v bool) *Component {
+	s.Obfuscate = &v
+	return s
+}
+
 // SetOwner sets the Owner field's value.
 func (s *Component) SetOwner(v string) *Component {
 	s.Owner = &v
@@ -6381,6 +6404,12 @@ func (s *Component) SetParameters(v []*ComponentParameterDetail) *Component {
 // SetPlatform sets the Platform field's value.
 func (s *Component) SetPlatform(v string) *Component {
 	s.Platform = &v
+	return s
+}
+
+// SetPublisher sets the Publisher field's value.
+func (s *Component) SetPublisher(v string) *Component {
+	s.Publisher = &v
 	return s
 }
 
@@ -6423,8 +6452,8 @@ type ComponentConfiguration struct {
 	// ComponentArn is a required field
 	ComponentArn *string `locationName:"componentArn" type:"string" required:"true"`
 
-	// A group of parameter settings that are used to configure the component for
-	// a specific recipe.
+	// A group of parameter settings that Image Builder uses to configure the component
+	// for a specific recipe.
 	Parameters []*ComponentParameter `locationName:"parameters" min:"1" type:"list"`
 }
 
@@ -6662,10 +6691,10 @@ type ComponentSummary struct {
 	// The Amazon Resource Name (ARN) of the component.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The change description of the component.
+	// The change description for the current version of the component.
 	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
 
-	// The date that the component was created.
+	// The original creation date of the component.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
 
 	// The description of the component.
@@ -6674,25 +6703,33 @@ type ComponentSummary struct {
 	// The name of the component.
 	Name *string `locationName:"name" type:"string"`
 
+	// Indicates whether component source is hidden from view in the console, and
+	// from component detail results for API, CLI, or SDK operations.
+	Obfuscate *bool `locationName:"obfuscate" type:"boolean"`
+
 	// The owner of the component.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// The platform of the component.
+	// The operating system platform of the component.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
+
+	// Contains the name of the publisher if this is a third-party component. Otherwise,
+	// this property is empty.
+	Publisher *string `locationName:"publisher" min:"1" type:"string"`
 
 	// Describes the current status of the component.
 	State *ComponentState `locationName:"state" type:"structure"`
 
-	// The operating system (OS) version supported by the component. If the OS information
-	// is available, a prefix match is performed against the base image OS version
-	// during image recipe creation.
+	// The operating system (OS) version that the component supports. If the OS
+	// information is available, Image Builder performs a prefix match against the
+	// base image OS version during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
 
-	// The tags associated with the component.
+	// The tags that apply to the component.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// The type of the component denotes whether the component is used to build
-	// the image or only to test it.
+	// The component type specifies whether Image Builder uses the component to
+	// build the image or only to test it.
 	Type *string `locationName:"type" type:"string" enum:"ComponentType"`
 
 	// The version of the component.
@@ -6747,6 +6784,12 @@ func (s *ComponentSummary) SetName(v string) *ComponentSummary {
 	return s
 }
 
+// SetObfuscate sets the Obfuscate field's value.
+func (s *ComponentSummary) SetObfuscate(v bool) *ComponentSummary {
+	s.Obfuscate = &v
+	return s
+}
+
 // SetOwner sets the Owner field's value.
 func (s *ComponentSummary) SetOwner(v string) *ComponentSummary {
 	s.Owner = &v
@@ -6756,6 +6799,12 @@ func (s *ComponentSummary) SetOwner(v string) *ComponentSummary {
 // SetPlatform sets the Platform field's value.
 func (s *ComponentSummary) SetPlatform(v string) *ComponentSummary {
 	s.Platform = &v
+	return s
+}
+
+// SetPublisher sets the Publisher field's value.
+func (s *ComponentSummary) SetPublisher(v string) *ComponentSummary {
+	s.Publisher = &v
 	return s
 }
 
@@ -7061,7 +7110,9 @@ type ContainerRecipe struct {
 	// a specific version of an object.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// Components for build and test that are included in the container recipe.
+	// Build and test components that are included in the container recipe. Recipes
+	// require a minimum of one build component, and can have a maximum of 20 build
+	// and test components in any combination.
 	Components []*ComponentConfiguration `locationName:"components" min:"1" type:"list"`
 
 	// Specifies the type of container, such as Docker.
@@ -7364,10 +7415,10 @@ type CreateComponentInput struct {
 	// you cannot specify both properties.
 	Data *string `locationName:"data" min:"1" type:"string"`
 
-	// The description of the component. Describes the contents of the component.
+	// Describes the contents of the component.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The ID of the KMS key that should be used to encrypt this component.
+	// The ID of the KMS key that is used to encrypt this component.
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
 
 	// The name of the component.
@@ -7375,7 +7426,7 @@ type CreateComponentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The platform of the component.
+	// The operating system platform of the component.
 	//
 	// Platform is a required field
 	Platform *string `locationName:"platform" type:"string" required:"true" enum:"Platform"`
@@ -7403,7 +7454,7 @@ type CreateComponentInput struct {
 	// during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
 
-	// The tags of the component.
+	// The tags that apply to the component.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The uri of a YAML component document file. This must be an S3 URL (s3://bucket/key),
@@ -7597,6 +7648,8 @@ type CreateContainerRecipeInput struct {
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Components for build and test that are included in the container recipe.
+	// Recipes require a minimum of one build component, and can have a maximum
+	// of 20 build and test components in any combination.
 	//
 	// Components is a required field
 	Components []*ComponentConfiguration `locationName:"components" min:"1" type:"list" required:"true"`
@@ -8478,7 +8531,7 @@ type CreateImageRecipeInput struct {
 	// The idempotency token used to make this request idempotent.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The components of the image recipe.
+	// The components included in the image recipe.
 	//
 	// Components is a required field
 	Components []*ComponentConfiguration `locationName:"components" min:"1" type:"list" required:"true"`
@@ -11437,41 +11490,44 @@ type Image struct {
 	//    the recipe.
 	BuildType *string `locationName:"buildType" type:"string" enum:"BuildType"`
 
-	// The recipe that is used to create an Image Builder container image.
+	// For container images, this is the container recipe that Image Builder used
+	// to create the image. For images that distribute an AMI, this is empty.
 	ContainerRecipe *ContainerRecipe `locationName:"containerRecipe" type:"structure"`
 
-	// The date on which this image was created.
+	// The date on which Image Builder created this image.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
 
-	// The distribution configuration used when creating this image.
+	// The distribution configuration that Image Builder used to create this image.
 	DistributionConfiguration *DistributionConfiguration `locationName:"distributionConfiguration" type:"structure"`
 
-	// Collects additional information about the image being created, including
-	// the operating system (OS) version and package list. This information is used
-	// to enhance the overall experience of using EC2 Image Builder. Enabled by
-	// default.
+	// Indicates whether Image Builder collects additional information about the
+	// image, such as the operating system (OS) version and package list.
 	EnhancedImageMetadataEnabled *bool `locationName:"enhancedImageMetadataEnabled" type:"boolean"`
 
-	// The image recipe used when creating the image.
+	// For images that distribute an AMI, this is the image recipe that Image Builder
+	// used to create the image. For container images, this is empty.
 	ImageRecipe *ImageRecipe `locationName:"imageRecipe" type:"structure"`
 
-	// The image tests configuration used when creating this image.
+	// The origin of the base image that Image Builder used to build this image.
+	ImageSource *string `locationName:"imageSource" type:"string" enum:"ImageSource"`
+
+	// The image tests that ran when that Image Builder created this image.
 	ImageTestsConfiguration *ImageTestsConfiguration `locationName:"imageTestsConfiguration" type:"structure"`
 
-	// The infrastructure used when creating this image.
+	// The infrastructure that Image Builder used to create this image.
 	InfrastructureConfiguration *InfrastructureConfiguration `locationName:"infrastructureConfiguration" type:"structure"`
 
 	// The name of the image.
 	Name *string `locationName:"name" type:"string"`
 
-	// The operating system version of the instance. For example, Amazon Linux 2,
-	// Ubuntu 18, or Microsoft Windows Server 2019.
+	// The operating system version for instances that launch from this image. For
+	// example, Amazon Linux 2, Ubuntu 18, or Microsoft Windows Server 2019.
 	OsVersion *string `locationName:"osVersion" min:"1" type:"string"`
 
-	// The output resources produced when creating this image.
+	// The output resources that Image Builder produces for this image.
 	OutputResources *OutputResources `locationName:"outputResources" type:"structure"`
 
-	// The platform of the image.
+	// The image operating system platform, such as Linux or Windows.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
 	// The Amazon Resource Name (ARN) of the image pipeline that created this image.
@@ -11483,10 +11539,10 @@ type Image struct {
 	// The state of the image.
 	State *ImageState `locationName:"state" type:"structure"`
 
-	// The tags of the image.
+	// The tags that apply to this image.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// Specifies whether this is an AMI or container image.
+	// Specifies whether this image produces an AMI or a container image.
 	Type *string `locationName:"type" type:"string" enum:"ImageType"`
 
 	// The semantic version of the image.
@@ -11567,6 +11623,12 @@ func (s *Image) SetEnhancedImageMetadataEnabled(v bool) *Image {
 // SetImageRecipe sets the ImageRecipe field's value.
 func (s *Image) SetImageRecipe(v *ImageRecipe) *Image {
 	s.ImageRecipe = v
+	return s
+}
+
+// SetImageSource sets the ImageSource field's value.
+func (s *Image) SetImageSource(v string) *Image {
+	s.ImageSource = &v
 	return s
 }
 
@@ -11697,10 +11759,10 @@ type ImagePipeline struct {
 	// The date on which this image pipeline was created.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
 
-	// The date on which this image pipeline was last run.
+	// This is no longer supported, and does not return a value.
 	DateLastRun *string `locationName:"dateLastRun" type:"string"`
 
-	// The date on which this image pipeline will next be run.
+	// This is no longer supported, and does not return a value.
 	DateNextRun *string `locationName:"dateNextRun" type:"string"`
 
 	// The date on which this image pipeline was last updated.
@@ -11882,7 +11944,9 @@ type ImageRecipe struct {
 	// The block device mappings to apply when creating images from this recipe.
 	BlockDeviceMappings []*InstanceBlockDeviceMapping `locationName:"blockDeviceMappings" type:"list"`
 
-	// The components of the image recipe.
+	// The components that are included in the image recipe. Recipes require a minimum
+	// of one build component, and can have a maximum of 20 build and test components
+	// in any combination.
 	Components []*ComponentConfiguration `locationName:"components" min:"1" type:"list"`
 
 	// The date on which this image recipe was created.
@@ -12165,32 +12229,35 @@ type ImageSummary struct {
 	//    the recipe.
 	BuildType *string `locationName:"buildType" type:"string" enum:"BuildType"`
 
-	// The date on which this image was created.
+	// The date on which Image Builder created this image.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
+
+	// The origin of the base image that Image Builder used to build this image.
+	ImageSource *string `locationName:"imageSource" type:"string" enum:"ImageSource"`
 
 	// The name of the image.
 	Name *string `locationName:"name" type:"string"`
 
-	// The operating system version of the instance. For example, Amazon Linux 2,
-	// Ubuntu 18, or Microsoft Windows Server 2019.
+	// The operating system version of the instances that launch from this image.
+	// For example, Amazon Linux 2, Ubuntu 18, or Microsoft Windows Server 2019.
 	OsVersion *string `locationName:"osVersion" min:"1" type:"string"`
 
-	// The output resources produced when creating this image.
+	// The output resources that Image Builder produced when it created this image.
 	OutputResources *OutputResources `locationName:"outputResources" type:"structure"`
 
 	// The owner of the image.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// The platform of the image.
+	// The image operating system platform, such as Linux or Windows.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
 	// The state of the image.
 	State *ImageState `locationName:"state" type:"structure"`
 
-	// The tags of the image.
+	// The tags that apply to this image.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// Specifies whether this is an AMI or container image.
+	// Specifies whether this image produces an AMI or a container image.
 	Type *string `locationName:"type" type:"string" enum:"ImageType"`
 
 	// The version of the image.
@@ -12230,6 +12297,12 @@ func (s *ImageSummary) SetBuildType(v string) *ImageSummary {
 // SetDateCreated sets the DateCreated field's value.
 func (s *ImageSummary) SetDateCreated(v string) *ImageSummary {
 	s.DateCreated = &v
+	return s
+}
+
+// SetImageSource sets the ImageSource field's value.
+func (s *ImageSummary) SetImageSource(v string) *ImageSummary {
+	s.ImageSource = &v
 	return s
 }
 
@@ -12298,6 +12371,8 @@ type ImageTestsConfiguration struct {
 	ImageTestsEnabled *bool `locationName:"imageTestsEnabled" type:"boolean"`
 
 	// The maximum time in minutes that tests are permitted to run.
+	//
+	// The timeoutMinutes attribute is not currently active. This value is ignored.
 	TimeoutMinutes *int64 `locationName:"timeoutMinutes" min:"60" type:"integer"`
 }
 
@@ -12379,6 +12454,9 @@ type ImageVersion struct {
 	// The date on which this specific version of the Image Builder image was created.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
 
+	// The origin of the base image that Image Builder used to build this image.
+	ImageSource *string `locationName:"imageSource" type:"string" enum:"ImageSource"`
+
 	// The name of this specific version of an Image Builder image.
 	Name *string `locationName:"name" type:"string"`
 
@@ -12389,10 +12467,11 @@ type ImageVersion struct {
 	// The owner of the image version.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// The platform of the image version, for example "Windows" or "Linux".
+	// The operating system platform of the image version, for example "Windows"
+	// or "Linux".
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
-	// Specifies whether this image is an AMI or a container image.
+	// Specifies whether this image produces an AMI or a container image.
 	Type *string `locationName:"type" type:"string" enum:"ImageType"`
 
 	// Details for a specific version of an Image Builder image. This version follows
@@ -12450,6 +12529,12 @@ func (s *ImageVersion) SetBuildType(v string) *ImageVersion {
 // SetDateCreated sets the DateCreated field's value.
 func (s *ImageVersion) SetDateCreated(v string) *ImageVersion {
 	s.DateCreated = &v
+	return s
+}
+
+// SetImageSource sets the ImageSource field's value.
+func (s *ImageVersion) SetImageSource(v string) *ImageVersion {
+	s.ImageSource = &v
 	return s
 }
 
@@ -13383,7 +13468,8 @@ type InstanceMetadataOptions struct {
 	_ struct{} `type:"structure"`
 
 	// Limit the number of hops that an instance metadata request can traverse to
-	// reach its destination.
+	// reach its destination. The default is one hop. However, if HTTP tokens are
+	// required, container image builds need a minimum of two hops.
 	HttpPutResponseHopLimit *int64 `locationName:"httpPutResponseHopLimit" min:"1" type:"integer"`
 
 	// Indicates whether a signed token header is required for instance metadata
@@ -14108,7 +14194,7 @@ func (s *ListComponentBuildVersionsOutput) SetRequestId(v string) *ListComponent
 type ListComponentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the list of component build versions for the specified name.
+	// Returns the list of components for the specified name.
 	ByName *bool `locationName:"byName" type:"boolean"`
 
 	// Use the following filters to streamline results:
@@ -14133,10 +14219,11 @@ type ListComponentsInput struct {
 	// a previously truncated response.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// The owner defines which components you want to list. By default, this request
-	// will only show components owned by your account. You can use this field to
-	// specify if you want to view components owned by yourself, by Amazon, or those
-	// components that have been shared with you by other customers.
+	// Filters results based on the type of owner for the component. By default,
+	// this request returns a list of components that your account owns. To see
+	// results for other types of owners, you can specify components that Amazon
+	// manages, third party components, or components that other accounts have shared
+	// with you.
 	Owner *string `locationName:"owner" type:"string" enum:"Ownership"`
 }
 
@@ -18000,6 +18087,30 @@ func EbsVolumeType_Values() []string {
 }
 
 const (
+	// ImageSourceAmazonManaged is a ImageSource enum value
+	ImageSourceAmazonManaged = "AMAZON_MANAGED"
+
+	// ImageSourceAwsMarketplace is a ImageSource enum value
+	ImageSourceAwsMarketplace = "AWS_MARKETPLACE"
+
+	// ImageSourceImported is a ImageSource enum value
+	ImageSourceImported = "IMPORTED"
+
+	// ImageSourceCustom is a ImageSource enum value
+	ImageSourceCustom = "CUSTOM"
+)
+
+// ImageSource_Values returns all elements of the ImageSource enum
+func ImageSource_Values() []string {
+	return []string{
+		ImageSourceAmazonManaged,
+		ImageSourceAwsMarketplace,
+		ImageSourceImported,
+		ImageSourceCustom,
+	}
+}
+
+const (
 	// ImageStatusPending is a ImageStatus enum value
 	ImageStatusPending = "PENDING"
 
@@ -18076,6 +18187,9 @@ const (
 
 	// OwnershipAmazon is a Ownership enum value
 	OwnershipAmazon = "Amazon"
+
+	// OwnershipThirdParty is a Ownership enum value
+	OwnershipThirdParty = "ThirdParty"
 )
 
 // Ownership_Values returns all elements of the Ownership enum
@@ -18084,6 +18198,7 @@ func Ownership_Values() []string {
 		OwnershipSelf,
 		OwnershipShared,
 		OwnershipAmazon,
+		OwnershipThirdParty,
 	}
 }
 

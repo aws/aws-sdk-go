@@ -1106,6 +1106,13 @@
         "DestinationPort":{"shape":"Port"}
       }
     },
+    "IPAddressType":{
+      "type":"string",
+      "enum":[
+        "DUALSTACK",
+        "IPV4"
+      ]
+    },
     "IPSet":{
       "type":"structure",
       "required":["Definition"],
@@ -1808,7 +1815,8 @@
       "type":"structure",
       "required":["SubnetId"],
       "members":{
-        "SubnetId":{"shape":"CollectionMember_String"}
+        "SubnetId":{"shape":"CollectionMember_String"},
+        "IPAddressType":{"shape":"IPAddressType"}
       }
     },
     "SubnetMappings":{

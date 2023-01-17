@@ -3551,7 +3551,7 @@ type Address struct {
 
 	// Specify an IP address or a block of IP addresses in Classless Inter-Domain
 	// Routing (CIDR) notation. Network Firewall supports all address ranges for
-	// IPv4.
+	// IPv4 and IPv6.
 	//
 	// Examples:
 	//
@@ -3560,6 +3560,12 @@ type Address struct {
 	//
 	//    * To configure Network Firewall to inspect for IP addresses from 192.0.2.0
 	//    to 192.0.2.255, specify 192.0.2.0/24.
+	//
+	//    * To configure Network Firewall to inspect for the IP address 1111:0000:0000:0000:0000:0000:0000:0111,
+	//    specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
+	//
+	//    * To configure Network Firewall to inspect for IP addresses from 1111:0000:0000:0000:0000:0000:0000:0000
+	//    to 1111:0000:0000:0000:ffff:ffff:ffff:ffff, specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -7050,7 +7056,7 @@ type Header struct {
 	//
 	// Specify an IP address or a block of IP addresses in Classless Inter-Domain
 	// Routing (CIDR) notation. Network Firewall supports all address ranges for
-	// IPv4.
+	// IPv4 and IPv6.
 	//
 	// Examples:
 	//
@@ -7059,6 +7065,12 @@ type Header struct {
 	//
 	//    * To configure Network Firewall to inspect for IP addresses from 192.0.2.0
 	//    to 192.0.2.255, specify 192.0.2.0/24.
+	//
+	//    * To configure Network Firewall to inspect for the IP address 1111:0000:0000:0000:0000:0000:0000:0111,
+	//    specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
+	//
+	//    * To configure Network Firewall to inspect for IP addresses from 1111:0000:0000:0000:0000:0000:0000:0000
+	//    to 1111:0000:0000:0000:ffff:ffff:ffff:ffff, specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -7092,7 +7104,7 @@ type Header struct {
 	//
 	// Specify an IP address or a block of IP addresses in Classless Inter-Domain
 	// Routing (CIDR) notation. Network Firewall supports all address ranges for
-	// IPv4.
+	// IPv4 and IPv6.
 	//
 	// Examples:
 	//
@@ -7101,6 +7113,12 @@ type Header struct {
 	//
 	//    * To configure Network Firewall to inspect for IP addresses from 192.0.2.0
 	//    to 192.0.2.255, specify 192.0.2.0/24.
+	//
+	//    * To configure Network Firewall to inspect for the IP address 1111:0000:0000:0000:0000:0000:0000:0111,
+	//    specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
+	//
+	//    * To configure Network Firewall to inspect for IP addresses from 1111:0000:0000:0000:0000:0000:0000:0000
+	//    to 1111:0000:0000:0000:ffff:ffff:ffff:ffff, specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -10552,6 +10570,10 @@ func (s *StatelessRulesAndCustomActions) SetStatelessRules(v []*StatelessRule) *
 type SubnetMapping struct {
 	_ struct{} `type:"structure"`
 
+	// The subnet's IP address type. You can't change the IP address type after
+	// you create the subnet.
+	IPAddressType *string `type:"string" enum:"IPAddressType"`
+
 	// The unique identifier for the subnet.
 	//
 	// SubnetId is a required field
@@ -10587,6 +10609,12 @@ func (s *SubnetMapping) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIPAddressType sets the IPAddressType field's value.
+func (s *SubnetMapping) SetIPAddressType(v string) *SubnetMapping {
+	s.IPAddressType = &v
+	return s
 }
 
 // SetSubnetId sets the SubnetId field's value.
@@ -12661,6 +12689,22 @@ func GeneratedRulesType_Values() []string {
 	return []string{
 		GeneratedRulesTypeAllowlist,
 		GeneratedRulesTypeDenylist,
+	}
+}
+
+const (
+	// IPAddressTypeDualstack is a IPAddressType enum value
+	IPAddressTypeDualstack = "DUALSTACK"
+
+	// IPAddressTypeIpv4 is a IPAddressType enum value
+	IPAddressTypeIpv4 = "IPV4"
+)
+
+// IPAddressType_Values returns all elements of the IPAddressType enum
+func IPAddressType_Values() []string {
+	return []string{
+		IPAddressTypeDualstack,
+		IPAddressTypeIpv4,
 	}
 }
 
