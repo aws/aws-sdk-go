@@ -1,3 +1,14 @@
+Release v1.44.182 (2023-01-18)
+===
+
+### Service Client Updates
+* `service/elasticfilesystem`: Updates service documentation
+  * Documentation updates for EFS access points limit increase
+* `service/ivschat`: Updates service API
+* `service/monitoring`: Updates service API and documentation
+  * Enable cross-account streams in CloudWatch Metric Streams via Observability Access Manager.
+* `service/wafv2`: Updates service documentation
+
 Release v1.44.181 (2023-01-17)
 ===
 

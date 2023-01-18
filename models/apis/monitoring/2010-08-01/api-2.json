@@ -1349,7 +1349,8 @@
         "CreationDate":{"shape":"Timestamp"},
         "LastUpdateDate":{"shape":"Timestamp"},
         "OutputFormat":{"shape":"MetricStreamOutputFormat"},
-        "StatisticsConfigurations":{"shape":"MetricStreamStatisticsConfigurations"}
+        "StatisticsConfigurations":{"shape":"MetricStreamStatisticsConfigurations"},
+        "IncludeLinkedAccountsMetrics":{"shape":"IncludeLinkedAccountsMetrics"}
       }
     },
     "GetMetricWidgetImageInput":{
@@ -1385,6 +1386,7 @@
       "min":1
     },
     "IncludeLinkedAccounts":{"type":"boolean"},
+    "IncludeLinkedAccountsMetrics":{"type":"boolean"},
     "InsightRule":{
       "type":"structure",
       "required":[
@@ -2208,7 +2210,8 @@
         "RoleArn":{"shape":"AmazonResourceName"},
         "OutputFormat":{"shape":"MetricStreamOutputFormat"},
         "Tags":{"shape":"TagList"},
-        "StatisticsConfigurations":{"shape":"MetricStreamStatisticsConfigurations"}
+        "StatisticsConfigurations":{"shape":"MetricStreamStatisticsConfigurations"},
+        "IncludeLinkedAccountsMetrics":{"shape":"IncludeLinkedAccountsMetrics"}
       }
     },
     "PutMetricStreamOutput":{

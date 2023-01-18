@@ -4373,6 +4373,17 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 // Enables the specified LoggingConfiguration, to start logging from a web ACL,
 // according to the configuration provided.
 //
+// This operation completely replaces any mutable specifications that you already
+// have for a logging configuration with the ones that you provide to this call.
+//
+// To modify an existing logging configuration, do the following:
+//
+// # Retrieve it by calling GetLoggingConfiguration
+//
+// # Update its settings as needed
+//
+// # Provide the complete logging configuration specification to this call
+//
 // You can define one logging destination per web ACL.
 //
 // You can access information about the traffic that WAF inspects using the
@@ -4403,12 +4414,6 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 // For additional information about web ACL logging, see Logging web ACL traffic
 // information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 // in the WAF Developer Guide.
-//
-// This operation completely replaces the mutable specifications that you already
-// have for the logging configuration with the ones that you provide to this
-// call. To modify the logging configuration, retrieve it by calling GetLoggingConfiguration,
-// update the settings as needed, and then provide the complete logging configuration
-// specification to this call.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5045,9 +5050,15 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 // Updates the specified IPSet.
 //
 // This operation completely replaces the mutable specifications that you already
-// have for the IP set with the ones that you provide to this call. To modify
-// the IP set, retrieve it by calling GetIPSet, update the settings as needed,
-// and then provide the complete IP set specification to this call.
+// have for the IP set with the ones that you provide to this call.
+//
+// To modify an IP set, do the following:
+//
+// # Retrieve it by calling GetIPSet
+//
+// # Update its settings as needed
+//
+// # Provide the complete IP set specification to this call
 //
 // When you make changes to web ACLs or web ACL components, like rules and rule
 // groups, WAF propagates the changes everywhere that the web ACL and its components
@@ -5303,9 +5314,14 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 //
 // This operation completely replaces the mutable specifications that you already
 // have for the regex pattern set with the ones that you provide to this call.
-// To modify the regex pattern set, retrieve it by calling GetRegexPatternSet,
-// update the settings as needed, and then provide the complete regex pattern
-// set specification to this call.
+//
+// To modify a regex pattern set, do the following:
+//
+// # Retrieve it by calling GetRegexPatternSet
+//
+// # Update its settings as needed
+//
+// # Provide the complete regex pattern set specification to this call
 //
 // When you make changes to web ACLs or web ACL components, like rules and rule
 // groups, WAF propagates the changes everywhere that the web ACL and its components
@@ -5440,10 +5456,15 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 // Updates the specified RuleGroup.
 //
 // This operation completely replaces the mutable specifications that you already
-// have for the rule group with the ones that you provide to this call. To modify
-// the rule group, retrieve it by calling GetRuleGroup, update the settings
-// as needed, and then provide the complete rule group specification to this
-// call.
+// have for the rule group with the ones that you provide to this call.
+//
+// To modify a rule group, do the following:
+//
+// # Retrieve it by calling GetRuleGroup
+//
+// # Update its settings as needed
+//
+// # Provide the complete rule group specification to this call
 //
 // When you make changes to web ACLs or web ACL components, like rules and rule
 // groups, WAF propagates the changes everywhere that the web ACL and its components
@@ -5609,6 +5630,17 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 // Updates the specified WebACL. While updating a web ACL, WAF provides continuous
 // coverage to the resources that you have associated with the web ACL.
 //
+// This operation completely replaces the mutable specifications that you already
+// have for the web ACL with the ones that you provide to this call.
+//
+// To modify a web ACL, do the following:
+//
+// # Retrieve it by calling GetWebACL
+//
+// # Update its settings as needed
+//
+// # Provide the complete web ACL specification to this call
+//
 // When you make changes to web ACLs or web ACL components, like rules and rule
 // groups, WAF propagates the changes everywhere that the web ACL and its components
 // are stored and used. Your changes are applied within seconds, but there might
@@ -5621,11 +5653,6 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 // with an Amazon Web Services resource and when you change a web ACL that is
 // already associated with a resource. Generally, any inconsistencies of this
 // type last only a few seconds.
-//
-// This operation completely replaces the mutable specifications that you already
-// have for the web ACL with the ones that you provide to this call. To modify
-// the web ACL, retrieve it by calling GetWebACL, update the settings as needed,
-// and then provide the complete web ACL specification to this call.
 //
 // A web ACL defines a collection of rules to use to inspect and control web
 // requests. Each rule has an action defined (allow, block, or count) for requests
@@ -11357,8 +11384,8 @@ type GetSampledRequestsInput struct {
 	// MaxItems is a required field
 	MaxItems *int64 `min:"1" type:"long" required:"true"`
 
-	// The metric name assigned to the Rule or RuleGroup for which you want a sample
-	// of requests.
+	// The metric name assigned to the Rule or RuleGroup dimension for which you
+	// want a sample of requests.
 	//
 	// RuleMetricName is a required field
 	RuleMetricName *string `min:"1" type:"string" required:"true"`
@@ -20436,10 +20463,10 @@ type VisibilityConfig struct {
 	// CloudWatchMetricsEnabled is a required field
 	CloudWatchMetricsEnabled *bool `type:"boolean" required:"true"`
 
-	// A name of the Amazon CloudWatch metric. The name can contain only the characters:
-	// A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can be from one to
-	// 128 characters long. It can't contain whitespace or metric names reserved
-	// for WAF, for example All and Default_Action.
+	// A name of the Amazon CloudWatch metric dimension. The name can contain only
+	// the characters: A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can
+	// be from one to 128 characters long. It can't contain whitespace or metric
+	// names that are reserved for WAF, for example All and Default_Action.
 	//
 	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
