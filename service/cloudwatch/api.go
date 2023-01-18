@@ -3666,6 +3666,11 @@ func (c *CloudWatch) PutMetricStreamRequest(input *PutMetricStreamInput) (req *r
 // created in the running state. If you use it to update an existing stream,
 // the state of the stream is not changed.
 //
+// If you are using CloudWatch cross-account observability and you create a
+// metric stream in a monitoring account, you can choose whether to include
+// metrics from source accounts in the stream. For more information, see CloudWatch
+// cross-account observability (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7423,6 +7428,11 @@ type GetMetricStreamOutput struct {
 	// the only metric namespaces that are streamed by this metric stream.
 	IncludeFilters []*MetricStreamFilter `type:"list"`
 
+	// If this is true and this metric stream is in a monitoring account, then the
+	// stream includes metrics from source accounts that the monitoring account
+	// is linked to.
+	IncludeLinkedAccountsMetrics *bool `type:"boolean"`
+
 	// The date of the most recent update to the metric stream's configuration.
 	LastUpdateDate *time.Time `type:"timestamp"`
 
@@ -7491,6 +7501,12 @@ func (s *GetMetricStreamOutput) SetFirehoseArn(v string) *GetMetricStreamOutput 
 // SetIncludeFilters sets the IncludeFilters field's value.
 func (s *GetMetricStreamOutput) SetIncludeFilters(v []*MetricStreamFilter) *GetMetricStreamOutput {
 	s.IncludeFilters = v
+	return s
+}
+
+// SetIncludeLinkedAccountsMetrics sets the IncludeLinkedAccountsMetrics field's value.
+func (s *GetMetricStreamOutput) SetIncludeLinkedAccountsMetrics(v bool) *GetMetricStreamOutput {
+	s.IncludeLinkedAccountsMetrics = &v
 	return s
 }
 
@@ -11559,6 +11575,10 @@ type PutMetricStreamInput struct {
 	// You cannot include IncludeFilters and ExcludeFilters in the same operation.
 	IncludeFilters []*MetricStreamFilter `type:"list"`
 
+	// If you are creating a metric stream in a monitoring account, specify true
+	// to include metrics from source accounts in the metric stream.
+	IncludeLinkedAccountsMetrics *bool `type:"boolean"`
+
 	// If you are creating a new metric stream, this is the name for the new stream.
 	// The name must be different than the names of other metric streams in this
 	// account and Region.
@@ -11725,6 +11745,12 @@ func (s *PutMetricStreamInput) SetFirehoseArn(v string) *PutMetricStreamInput {
 // SetIncludeFilters sets the IncludeFilters field's value.
 func (s *PutMetricStreamInput) SetIncludeFilters(v []*MetricStreamFilter) *PutMetricStreamInput {
 	s.IncludeFilters = v
+	return s
+}
+
+// SetIncludeLinkedAccountsMetrics sets the IncludeLinkedAccountsMetrics field's value.
+func (s *PutMetricStreamInput) SetIncludeLinkedAccountsMetrics(v bool) *PutMetricStreamInput {
+	s.IncludeLinkedAccountsMetrics = &v
 	return s
 }
 

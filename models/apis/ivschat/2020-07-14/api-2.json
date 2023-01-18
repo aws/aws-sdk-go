@@ -798,7 +798,7 @@
     },
     "RoomMaxMessageRatePerSecond":{
       "type":"integer",
-      "max":10,
+      "max":100,
       "min":1
     },
     "RoomName":{
