@@ -10226,7 +10226,8 @@
         "LaunchTemplateName":{"shape":"LaunchTemplateName"},
         "SourceVersion":{"shape":"String"},
         "VersionDescription":{"shape":"VersionDescription"},
-        "LaunchTemplateData":{"shape":"RequestLaunchTemplateData"}
+        "LaunchTemplateData":{"shape":"RequestLaunchTemplateData"},
+        "ResolveAlias":{"shape":"Boolean"}
       }
     },
     "CreateLaunchTemplateVersionResult":{
@@ -15602,7 +15603,8 @@
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
-        }
+        },
+        "ResolveAlias":{"shape":"Boolean"}
       }
     },
     "DescribeLaunchTemplateVersionsResult":{

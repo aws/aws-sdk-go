@@ -139,6 +139,10 @@ type OpenSearchServiceAPI interface {
 	DescribeDomainsWithContext(aws.Context, *opensearchservice.DescribeDomainsInput, ...request.Option) (*opensearchservice.DescribeDomainsOutput, error)
 	DescribeDomainsRequest(*opensearchservice.DescribeDomainsInput) (*request.Request, *opensearchservice.DescribeDomainsOutput)
 
+	DescribeDryRunProgress(*opensearchservice.DescribeDryRunProgressInput) (*opensearchservice.DescribeDryRunProgressOutput, error)
+	DescribeDryRunProgressWithContext(aws.Context, *opensearchservice.DescribeDryRunProgressInput, ...request.Option) (*opensearchservice.DescribeDryRunProgressOutput, error)
+	DescribeDryRunProgressRequest(*opensearchservice.DescribeDryRunProgressInput) (*request.Request, *opensearchservice.DescribeDryRunProgressOutput)
+
 	DescribeInboundConnections(*opensearchservice.DescribeInboundConnectionsInput) (*opensearchservice.DescribeInboundConnectionsOutput, error)
 	DescribeInboundConnectionsWithContext(aws.Context, *opensearchservice.DescribeInboundConnectionsInput, ...request.Option) (*opensearchservice.DescribeInboundConnectionsOutput, error)
 	DescribeInboundConnectionsRequest(*opensearchservice.DescribeInboundConnectionsInput) (*request.Request, *opensearchservice.DescribeInboundConnectionsOutput)

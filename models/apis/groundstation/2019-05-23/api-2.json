@@ -673,6 +673,8 @@
       "type":"structure",
       "required":["endpointDetails"],
       "members":{
+        "contactPostPassDurationSeconds":{"shape":"DataflowEndpointGroupDurationInSeconds"},
+        "contactPrePassDurationSeconds":{"shape":"DataflowEndpointGroupDurationInSeconds"},
         "endpointDetails":{"shape":"EndpointDetailsList"},
         "tags":{"shape":"TagsMap"}
       }
@@ -764,6 +766,12 @@
       }
     },
     "DataflowEndpointGroupArn":{"type":"string"},
+    "DataflowEndpointGroupDurationInSeconds":{
+      "type":"integer",
+      "box":true,
+      "max":480,
+      "min":120
+    },
     "DataflowEndpointGroupIdResponse":{
       "type":"structure",
       "members":{
@@ -1168,6 +1176,8 @@
     "GetDataflowEndpointGroupResponse":{
       "type":"structure",
       "members":{
+        "contactPostPassDurationSeconds":{"shape":"DataflowEndpointGroupDurationInSeconds"},
+        "contactPrePassDurationSeconds":{"shape":"DataflowEndpointGroupDurationInSeconds"},
         "dataflowEndpointGroupArn":{"shape":"DataflowEndpointGroupArn"},
         "dataflowEndpointGroupId":{"shape":"Uuid"},
         "endpointsDetails":{"shape":"EndpointDetailsList"},

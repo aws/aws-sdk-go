@@ -6743,14 +6743,12 @@ type DescribeLogStreamsInput struct {
 	// is in a source account and you are using a monitoring account, you must use
 	// the log group ARN.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupIdentifier *string `locationName:"logGroupIdentifier" min:"1" type:"string"`
 
 	// The name of the log group.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
 	// The prefix to match.
@@ -7882,14 +7880,12 @@ type FilterLogEventsInput struct {
 	// If the log group is in a source account and you are using a monitoring account,
 	// you must use the log group ARN.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupIdentifier *string `locationName:"logGroupIdentifier" min:"1" type:"string"`
 
 	// The name of the log group to search.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
 	// Filters the results to include only events from log streams that have names
@@ -8275,14 +8271,12 @@ type GetLogEventsInput struct {
 	// log group is in a source account and you are using a monitoring account,
 	// you must use the log group ARN.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupIdentifier *string `locationName:"logGroupIdentifier" min:"1" type:"string"`
 
 	// The name of the log group.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
 	// The name of the log stream.
@@ -8476,14 +8470,12 @@ type GetLogGroupFieldsInput struct {
 	// is in a source account and you are using a monitoring account, you must specify
 	// the ARN.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupIdentifier *string `locationName:"logGroupIdentifier" min:"1" type:"string"`
 
 	// The name of the log group to search.
 	//
-	// If you specify values for both logGroupName and logGroupIdentifier, the action
-	// returns an InvalidParameterException error.
+	// You must include either logGroupIdentifier or logGroupName, but not both.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
 	// The time to set as the center of the query. If you specify time, the 15 minutes

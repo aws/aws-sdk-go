@@ -20632,6 +20632,10 @@ type Contact struct {
 	// If this contact was queued, this contains information about the queue.
 	QueueInfo *QueueInfo `type:"structure"`
 
+	// The contactId that is related (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid)
+	// to this contact.
+	RelatedContactId *string `min:"1" type:"string"`
+
 	// The timestamp, in Unix epoch time format, at which to start running the inbound
 	// flow.
 	ScheduledTimestamp *time.Time `type:"timestamp"`
@@ -20730,6 +20734,12 @@ func (s *Contact) SetPreviousContactId(v string) *Contact {
 // SetQueueInfo sets the QueueInfo field's value.
 func (s *Contact) SetQueueInfo(v *QueueInfo) *Contact {
 	s.QueueInfo = v
+	return s
+}
+
+// SetRelatedContactId sets the RelatedContactId field's value.
+func (s *Contact) SetRelatedContactId(v string) *Contact {
+	s.RelatedContactId = &v
 	return s
 }
 
@@ -37267,6 +37277,76 @@ func (s *ParticipantTimerValue) SetParticipantTimerDurationInMinutes(v int64) *P
 	return s
 }
 
+// Enable persistent chats. For more information about enabling persistent chat,
+// and for example use cases and how to configure for them, see Enable persistent
+// chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html).
+type PersistentChat struct {
+	_ struct{} `type:"structure"`
+
+	// The contactId that is used for rehydration depends on the rehydration type.
+	// RehydrationType is required for persistent chat.
+	//
+	//    * ENTIRE_PAST_SESSION: Rehydrates a chat from the most recently terminated
+	//    past chat contact of the specified past ended chat session. To use this
+	//    type, provide the initialContactId of the past ended chat session in the
+	//    sourceContactId field. In this type, Amazon Connect determines the most
+	//    recent chat contact on the specified chat session that has ended, and
+	//    uses it to start a persistent chat.
+	//
+	//    * FROM_SEGMENT: Rehydrates a chat from the past chat contact that is specified
+	//    in the sourceContactId field.
+	//
+	// The actual contactId used for rehydration is provided in the response of
+	// this API.
+	RehydrationType *string `type:"string" enum:"RehydrationType"`
+
+	// The contactId from which a persistent chat session must be started.
+	SourceContactId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PersistentChat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PersistentChat) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PersistentChat) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PersistentChat"}
+	if s.SourceContactId != nil && len(*s.SourceContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceContactId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRehydrationType sets the RehydrationType field's value.
+func (s *PersistentChat) SetRehydrationType(v string) *PersistentChat {
+	s.RehydrationType = &v
+	return s
+}
+
+// SetSourceContactId sets the SourceContactId field's value.
+func (s *PersistentChat) SetSourceContactId(v string) *PersistentChat {
+	s.SourceContactId = &v
+	return s
+}
+
 // Contains information about a phone number for a quick connect.
 type PhoneNumberQuickConnectConfig struct {
 	_ struct{} `type:"structure"`
@@ -41737,6 +41817,11 @@ type StartChatContactInput struct {
 	// ParticipantDetails is a required field
 	ParticipantDetails *ParticipantDetails `type:"structure" required:"true"`
 
+	// Enable persistent chats. For more information about enabling persistent chat,
+	// and for example use cases and how to configure for them, see Enable persistent
+	// chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html).
+	PersistentChat *PersistentChat `type:"structure"`
+
 	// The supported chat message content types. Content types must always contain
 	// text/plain. You can then put any other supported type in the list. For example,
 	// all the following lists are valid because they contain text/plain: [text/plain,
@@ -41791,6 +41876,11 @@ func (s *StartChatContactInput) Validate() error {
 			invalidParams.AddNested("ParticipantDetails", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PersistentChat != nil {
+		if err := s.PersistentChat.Validate(); err != nil {
+			invalidParams.AddNested("PersistentChat", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -41840,6 +41930,12 @@ func (s *StartChatContactInput) SetParticipantDetails(v *ParticipantDetails) *St
 	return s
 }
 
+// SetPersistentChat sets the PersistentChat field's value.
+func (s *StartChatContactInput) SetPersistentChat(v *PersistentChat) *StartChatContactInput {
+	s.PersistentChat = v
+	return s
+}
+
 // SetSupportedMessagingContentTypes sets the SupportedMessagingContentTypes field's value.
 func (s *StartChatContactInput) SetSupportedMessagingContentTypes(v []*string) *StartChatContactInput {
 	s.SupportedMessagingContentTypes = v
@@ -41851,6 +41947,10 @@ type StartChatContactOutput struct {
 
 	// The identifier of this contact within the Amazon Connect instance.
 	ContactId *string `min:"1" type:"string"`
+
+	// The contactId from which a persistent chat session is started. This field
+	// is populated only for persistent chats.
+	ContinuedFromContactId *string `min:"1" type:"string"`
 
 	// The identifier for a chat participant. The participantId for a chat participant
 	// is the same throughout the chat lifecycle.
@@ -41883,6 +41983,12 @@ func (s StartChatContactOutput) GoString() string {
 // SetContactId sets the ContactId field's value.
 func (s *StartChatContactOutput) SetContactId(v string) *StartChatContactOutput {
 	s.ContactId = &v
+	return s
+}
+
+// SetContinuedFromContactId sets the ContinuedFromContactId field's value.
+func (s *StartChatContactOutput) SetContinuedFromContactId(v string) *StartChatContactOutput {
+	s.ContinuedFromContactId = &v
 	return s
 }
 
@@ -51799,6 +51905,22 @@ func ReferenceType_Values() []string {
 		ReferenceTypeString,
 		ReferenceTypeDate,
 		ReferenceTypeEmail,
+	}
+}
+
+const (
+	// RehydrationTypeEntirePastSession is a RehydrationType enum value
+	RehydrationTypeEntirePastSession = "ENTIRE_PAST_SESSION"
+
+	// RehydrationTypeFromSegment is a RehydrationType enum value
+	RehydrationTypeFromSegment = "FROM_SEGMENT"
+)
+
+// RehydrationType_Values returns all elements of the RehydrationType enum
+func RehydrationType_Values() []string {
+	return []string{
+		RehydrationTypeEntirePastSession,
+		RehydrationTypeFromSegment,
 	}
 }
 

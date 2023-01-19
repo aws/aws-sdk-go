@@ -3303,7 +3303,8 @@
         "InitiationTimestamp":{"shape":"timestamp"},
         "DisconnectTimestamp":{"shape":"timestamp"},
         "LastUpdateTimestamp":{"shape":"timestamp"},
-        "ScheduledTimestamp":{"shape":"timestamp"}
+        "ScheduledTimestamp":{"shape":"timestamp"},
+        "RelatedContactId":{"shape":"ContactId"}
       }
     },
     "ContactFilter":{
@@ -7242,6 +7243,13 @@
       "member":{"shape":"SecurityProfilePermission"},
       "max":500
     },
+    "PersistentChat":{
+      "type":"structure",
+      "members":{
+        "RehydrationType":{"shape":"RehydrationType"},
+        "SourceContactId":{"shape":"ContactId"}
+      }
+    },
     "PhoneNumber":{
       "type":"string",
       "pattern":"\\\\+[1-9]\\\\d{1,14}$"
@@ -7930,6 +7938,13 @@
       "max":4096,
       "min":0
     },
+    "RehydrationType":{
+      "type":"string",
+      "enum":[
+        "ENTIRE_PAST_SESSION",
+        "FROM_SEGMENT"
+      ]
+    },
     "ReleasePhoneNumberRequest":{
       "type":"structure",
       "required":["PhoneNumberId"],
@@ -8601,7 +8616,8 @@
           "idempotencyToken":true
         },
         "ChatDurationInMinutes":{"shape":"ChatDurationInMinutes"},
-        "SupportedMessagingContentTypes":{"shape":"SupportedMessagingContentTypes"}
+        "SupportedMessagingContentTypes":{"shape":"SupportedMessagingContentTypes"},
+        "PersistentChat":{"shape":"PersistentChat"}
       }
     },
     "StartChatContactResponse":{
@@ -8609,7 +8625,8 @@
       "members":{
         "ContactId":{"shape":"ContactId"},
         "ParticipantId":{"shape":"ParticipantId"},
-        "ParticipantToken":{"shape":"ParticipantToken"}
+        "ParticipantToken":{"shape":"ParticipantToken"},
+        "ContinuedFromContactId":{"shape":"ContactId"}
       }
     },
     "StartContactRecordingRequest":{

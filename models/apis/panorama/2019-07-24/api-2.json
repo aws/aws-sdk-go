@@ -2124,6 +2124,7 @@
       "type":"structure",
       "required":["ImageVersion"],
       "members":{
+        "AllowMajorVersionUpdate":{"shape":"Boolean"},
         "ImageVersion":{"shape":"ImageVersion"}
       }
     },

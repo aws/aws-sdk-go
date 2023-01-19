@@ -9459,6 +9459,10 @@
           "shape": "__string",
           "locationName": "scte35Pid"
         },
+        "Scte35PrerollPullupMilliseconds": {
+          "shape": "__doubleMin0Max5000",
+          "locationName": "scte35PrerollPullupMilliseconds"
+        },
         "SegmentationMarkers": {
           "shape": "M2tsSegmentationMarkers",
           "locationName": "segmentationMarkers"
@@ -13416,6 +13420,9 @@
       "type": "double"
     },
     "__doubleMin0Max100": {
+      "type": "double"
+    },
+    "__doubleMin0Max5000": {
       "type": "double"
     },
     "__doubleMin1": {

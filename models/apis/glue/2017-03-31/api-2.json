@@ -3939,6 +3939,21 @@
       "max":100,
       "min":1
     },
+    "CatalogHudiSource":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Database",
+        "Table"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Database":{"shape":"EnclosedInStringProperty"},
+        "Table":{"shape":"EnclosedInStringProperty"},
+        "AdditionalHudiOptions":{"shape":"AdditionalOptions"},
+        "OutputSchemas":{"shape":"GlueSchemas"}
+      }
+    },
     "CatalogIdString":{
       "type":"string",
       "max":255,
@@ -4145,7 +4160,12 @@
         "OracleSQLCatalogTarget":{"shape":"OracleSQLCatalogTarget"},
         "PostgreSQLCatalogTarget":{"shape":"PostgreSQLCatalogTarget"},
         "DynamicTransform":{"shape":"DynamicTransform"},
-        "EvaluateDataQuality":{"shape":"EvaluateDataQuality"}
+        "EvaluateDataQuality":{"shape":"EvaluateDataQuality"},
+        "S3CatalogHudiSource":{"shape":"S3CatalogHudiSource"},
+        "CatalogHudiSource":{"shape":"CatalogHudiSource"},
+        "S3HudiSource":{"shape":"S3HudiSource"},
+        "S3HudiCatalogTarget":{"shape":"S3HudiCatalogTarget"},
+        "S3HudiDirectTarget":{"shape":"S3HudiDirectTarget"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -7932,6 +7952,15 @@
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "HudiTargetCompressionType":{
+      "type":"string",
+      "enum":[
+        "gzip",
+        "lzo",
+        "uncompressed",
+        "snappy"
+      ]
+    },
     "IdString":{
       "type":"string",
       "max":255,
@@ -9985,6 +10014,21 @@
         "Id":{"shape":"IntegerValue"}
       }
     },
+    "S3CatalogHudiSource":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Database",
+        "Table"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Database":{"shape":"EnclosedInStringProperty"},
+        "Table":{"shape":"EnclosedInStringProperty"},
+        "AdditionalHudiOptions":{"shape":"AdditionalOptions"},
+        "OutputSchemas":{"shape":"GlueSchemas"}
+      }
+    },
     "S3CatalogSource":{
       "type":"structure",
       "required":[
@@ -10107,6 +10151,60 @@
         "Path":{"shape":"EnclosedInStringProperty"},
         "Compression":{"shape":"ParquetCompressionType"},
         "SchemaChangePolicy":{"shape":"DirectSchemaChangePolicy"}
+      }
+    },
+    "S3HudiCatalogTarget":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Inputs",
+        "Table",
+        "Database",
+        "AdditionalOptions"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Inputs":{"shape":"OneInput"},
+        "PartitionKeys":{"shape":"GlueStudioPathList"},
+        "Table":{"shape":"EnclosedInStringProperty"},
+        "Database":{"shape":"EnclosedInStringProperty"},
+        "AdditionalOptions":{"shape":"AdditionalOptions"},
+        "SchemaChangePolicy":{"shape":"CatalogSchemaChangePolicy"}
+      }
+    },
+    "S3HudiDirectTarget":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Inputs",
+        "Path",
+        "Compression",
+        "Format",
+        "AdditionalOptions"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Inputs":{"shape":"OneInput"},
+        "Path":{"shape":"EnclosedInStringProperty"},
+        "Compression":{"shape":"HudiTargetCompressionType"},
+        "PartitionKeys":{"shape":"GlueStudioPathList"},
+        "Format":{"shape":"TargetFormat"},
+        "AdditionalOptions":{"shape":"AdditionalOptions"},
+        "SchemaChangePolicy":{"shape":"DirectSchemaChangePolicy"}
+      }
+    },
+    "S3HudiSource":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Paths"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Paths":{"shape":"EnclosedInStringProperties"},
+        "AdditionalHudiOptions":{"shape":"AdditionalOptions"},
+        "AdditionalOptions":{"shape":"S3DirectSourceAdditionalOptions"},
+        "OutputSchemas":{"shape":"GlueSchemas"}
       }
     },
     "S3JsonSource":{
@@ -11172,7 +11270,8 @@
         "csv",
         "avro",
         "orc",
-        "parquet"
+        "parquet",
+        "hudi"
       ]
     },
     "TaskRun":{

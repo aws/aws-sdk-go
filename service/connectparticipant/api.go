@@ -476,6 +476,8 @@ func (c *ConnectParticipant) GetTranscriptRequest(input *GetTranscriptInput) (re
 // GetTranscript API operation for Amazon Connect Participant Service.
 //
 // Retrieves a transcript of the session, including details about any attachments.
+// For information about accessing past chat contact transcripts for a persistent
+// chat, see Enable persistent chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html).
 //
 // ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
@@ -1751,6 +1753,10 @@ type Item struct {
 	// Provides information about the attachments.
 	Attachments []*AttachmentItem `type:"list"`
 
+	// The contactId on which the transcript item was originally sent. This field
+	// is populated only when the transcript item is from the current chat session.
+	ContactId *string `min:"1" type:"string"`
+
 	// The content of the message or event.
 	Content *string `min:"1" type:"string"`
 
@@ -1772,6 +1778,11 @@ type Item struct {
 
 	// The role of the sender. For example, is it a customer, agent, or system.
 	ParticipantRole *string `type:"string" enum:"ParticipantRole"`
+
+	// The contactId on which the transcript item was originally sent. This field
+	// is only populated for persistent chats when the transcript item is from the
+	// past chat session. For more information, see Enable persistent chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html).
+	RelatedContactId *string `min:"1" type:"string"`
 
 	// Type of the item: message or event.
 	Type *string `type:"string" enum:"ChatItemType"`
@@ -1804,6 +1815,12 @@ func (s *Item) SetAbsoluteTime(v string) *Item {
 // SetAttachments sets the Attachments field's value.
 func (s *Item) SetAttachments(v []*AttachmentItem) *Item {
 	s.Attachments = v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *Item) SetContactId(v string) *Item {
+	s.ContactId = &v
 	return s
 }
 
@@ -1846,6 +1863,12 @@ func (s *Item) SetParticipantId(v string) *Item {
 // SetParticipantRole sets the ParticipantRole field's value.
 func (s *Item) SetParticipantRole(v string) *Item {
 	s.ParticipantRole = &v
+	return s
+}
+
+// SetRelatedContactId sets the RelatedContactId field's value.
+func (s *Item) SetRelatedContactId(v string) *Item {
+	s.RelatedContactId = &v
 	return s
 }
 

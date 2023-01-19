@@ -21920,6 +21920,14 @@ type M2tsSettings struct {
 	// (or 0x1ff6).
 	Scte35Pid *string `locationName:"scte35Pid" type:"string"`
 
+	// Defines the amount SCTE-35 preroll will be increased (in milliseconds) on
+	// the output. Preroll is the amount of time between the presence of a SCTE-35
+	// indication in a transport stream and the PTS of the video frame it references.
+	// Zero means don't add pullup (it doesn't mean set the preroll to zero). Negative
+	// pullup is not supported, which means that you can't make the preroll shorter.
+	// Be aware that latency in the output will increase by the pullup amount.
+	Scte35PrerollPullupMilliseconds *float64 `locationName:"scte35PrerollPullupMilliseconds" type:"double"`
+
 	// Inserts segmentation markers at each segmentationTime period. raiSegstart
 	// sets the Random Access Indicator bit in the adaptation field. raiAdapt sets
 	// the RAI bit and adds the current timecode in the private data bytes. psiSegstart
@@ -22244,6 +22252,12 @@ func (s *M2tsSettings) SetScte35Control(v string) *M2tsSettings {
 // SetScte35Pid sets the Scte35Pid field's value.
 func (s *M2tsSettings) SetScte35Pid(v string) *M2tsSettings {
 	s.Scte35Pid = &v
+	return s
+}
+
+// SetScte35PrerollPullupMilliseconds sets the Scte35PrerollPullupMilliseconds field's value.
+func (s *M2tsSettings) SetScte35PrerollPullupMilliseconds(v float64) *M2tsSettings {
+	s.Scte35PrerollPullupMilliseconds = &v
 	return s
 }
 

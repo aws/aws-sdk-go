@@ -234,7 +234,12 @@
     "AdditionalOptions": {
       "base": null,
       "refs": {
+        "CatalogHudiSource$AdditionalHudiOptions": "<p>Specifies additional connection options.</p>",
         "JDBCConnectorTarget$AdditionalOptions": "<p>Additional connection options for the connector.</p>",
+        "S3CatalogHudiSource$AdditionalHudiOptions": "<p>Specifies additional connection options.</p>",
+        "S3HudiCatalogTarget$AdditionalOptions": "<p>Specifies additional connection options for the connector.</p>",
+        "S3HudiDirectTarget$AdditionalOptions": null,
+        "S3HudiSource$AdditionalHudiOptions": "<p>Specifies additional connection options.</p>",
         "SparkConnectorSource$AdditionalOptions": "<p>Additional connection options for the connector.</p>",
         "SparkConnectorTarget$AdditionalOptions": "<p>Additional connection options for the connector.</p>"
       }
@@ -887,6 +892,12 @@
         "GetUserDefinedFunctionsRequest$MaxResults": "<p>The maximum number of functions to return in one response.</p>"
       }
     },
+    "CatalogHudiSource": {
+      "base": "<p>Specifies a Hudi data source that is registered in the Glue Data Catalog.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$CatalogHudiSource": "<p>Specifies a Hudi data source that is registered in the Glue Data Catalog.</p>"
+      }
+    },
     "CatalogIdString": {
       "base": null,
       "refs": {
@@ -972,7 +983,8 @@
       "base": "<p>A policy that specifies update behavior for the crawler.</p>",
       "refs": {
         "GovernedCatalogTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the governed catalog.</p>",
-        "S3CatalogTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>"
+        "S3CatalogTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>",
+        "S3HudiCatalogTarget$SchemaChangePolicy": null
       }
     },
     "CatalogSource": {
@@ -2546,7 +2558,8 @@
       "base": "<p>A policy that specifies update behavior for the crawler.</p>",
       "refs": {
         "S3DirectTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>",
-        "S3GlueParquetTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>"
+        "S3GlueParquetTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>",
+        "S3HudiDirectTarget$SchemaChangePolicy": null
       }
     },
     "Double": {
@@ -2648,6 +2661,7 @@
         "RenameField$TargetPath": "<p>A JSON path to a variable in the data structure for the target data.</p>",
         "S3CsvSource$Paths": "<p>A list of the Amazon S3 paths to read from.</p>",
         "S3CsvSource$Exclusions": "<p>A string containing a JSON list of Unix-style glob patterns to exclude. For example, \"[\\\"**.pdf\\\"]\" excludes all PDF files. </p>",
+        "S3HudiSource$Paths": "<p>A list of the Amazon S3 paths to read from.</p>",
         "S3JsonSource$Paths": "<p>A list of the Amazon S3 paths to read from.</p>",
         "S3JsonSource$Exclusions": "<p>A string containing a JSON list of Unix-style glob patterns to exclude. For example, \"[\\\"**.pdf\\\"]\" excludes all PDF files. </p>",
         "S3ParquetSource$Paths": "<p>A list of the Amazon S3 paths to read from.</p>",
@@ -2672,6 +2686,8 @@
         "AthenaConnectorSource$SchemaName": "<p>The name of the Cloudwatch log group to read from. For example, <code>/aws-glue/jobs/output</code>.</p>",
         "BasicCatalogTarget$Database": "<p>The database that contains the table you want to use as the target. This database must already exist in the Data Catalog.</p>",
         "BasicCatalogTarget$Table": "<p>The table that defines the schema of your output data. This table must already exist in the Data Catalog.</p>",
+        "CatalogHudiSource$Database": "<p>The name of the database to read from.</p>",
+        "CatalogHudiSource$Table": "<p>The name of the table in the database to read from.</p>",
         "CatalogKafkaSource$Table": "<p>The name of the table in the database to read from.</p>",
         "CatalogKafkaSource$Database": "<p>The name of the database to read from.</p>",
         "CatalogKinesisSource$Table": "<p>The name of the table in the database to read from.</p>",
@@ -2756,6 +2772,8 @@
         "RedshiftTarget$TmpDirIAMRole": "<p>The IAM role with permissions.</p>",
         "RelationalCatalogSource$Database": "<p>The name of the database to read from.</p>",
         "RelationalCatalogSource$Table": "<p>The name of the table in the database to read from.</p>",
+        "S3CatalogHudiSource$Database": "<p>The name of the database to read from.</p>",
+        "S3CatalogHudiSource$Table": "<p>The name of the table in the database to read from.</p>",
         "S3CatalogSource$Database": "<p>The database to read from.</p>",
         "S3CatalogSource$Table": "<p>The database table to read from.</p>",
         "S3CatalogSource$PartitionPredicate": "<p>Partitions satisfying this predicate are deleted. Files within the retention period in these partitions are not deleted. Set to <code>\"\"</code> – empty by default.</p>",
@@ -2767,6 +2785,9 @@
         "S3DirectTarget$Path": "<p>A single Amazon S3 path to write to.</p>",
         "S3DirectTarget$Compression": "<p>Specifies how the data is compressed. This is generally not necessary if the data has a standard file extension. Possible values are <code>\"gzip\"</code> and <code>\"bzip\"</code>).</p>",
         "S3GlueParquetTarget$Path": "<p>A single Amazon S3 path to write to.</p>",
+        "S3HudiCatalogTarget$Table": "<p>The name of the table in the database to write to.</p>",
+        "S3HudiCatalogTarget$Database": "<p>The name of the database to write to.</p>",
+        "S3HudiDirectTarget$Path": "<p>The Amazon S3 path of your Hudi data source to write to.</p>",
         "S3JsonSource$GroupSize": "<p>The target group size in bytes. The default is computed based on the input data size and the size of your cluster. When there are fewer than 50,000 input files, <code>\"groupFiles\"</code> must be set to <code>\"inPartition\"</code> for this to take effect.</p>",
         "S3JsonSource$GroupFiles": "<p>Grouping files is turned on by default when the input contains more than 50,000 files. To turn on grouping with fewer than 50,000 files, set this parameter to \"inPartition\". To disable grouping when there are more than 50,000 files, set this parameter to <code>\"none\"</code>.</p>",
         "S3JsonSource$JsonPath": "<p>A JsonPath string defining the JSON data.</p>",
@@ -3921,10 +3942,13 @@
       "base": null,
       "refs": {
         "AthenaConnectorSource$OutputSchemas": "<p>Specifies the data schema for the custom Athena source.</p>",
+        "CatalogHudiSource$OutputSchemas": "<p>Specifies the data schema for the Hudi source.</p>",
         "CustomCode$OutputSchemas": "<p>Specifies the data schema for the custom code transform.</p>",
         "JDBCConnectorSource$OutputSchemas": "<p>Specifies the data schema for the custom JDBC source.</p>",
         "JDBCConnectorTarget$OutputSchemas": "<p>Specifies the data schema for the JDBC target.</p>",
+        "S3CatalogHudiSource$OutputSchemas": "<p>Specifies the data schema for the Hudi source.</p>",
         "S3CsvSource$OutputSchemas": "<p>Specifies the data schema for the S3 CSV source.</p>",
+        "S3HudiSource$OutputSchemas": "<p>Specifies the data schema for the Hudi source.</p>",
         "S3JsonSource$OutputSchemas": "<p>Specifies the data schema for the S3 JSON source.</p>",
         "S3ParquetSource$OutputSchemas": "<p>Specifies the data schema for the S3 Parquet source.</p>",
         "SparkConnectorSource$OutputSchemas": "<p>Specifies data schema for the custom spark source.</p>",
@@ -3949,6 +3973,8 @@
         "S3CatalogTarget$PartitionKeys": "<p>Specifies native partitioning using a sequence of keys.</p>",
         "S3DirectTarget$PartitionKeys": "<p>Specifies native partitioning using a sequence of keys.</p>",
         "S3GlueParquetTarget$PartitionKeys": "<p>Specifies native partitioning using a sequence of keys.</p>",
+        "S3HudiCatalogTarget$PartitionKeys": "<p>Specifies native partitioning using a sequence of keys.</p>",
+        "S3HudiDirectTarget$PartitionKeys": "<p>Specifies native partitioning using a sequence of keys.</p>",
         "SelectFields$Paths": "<p>A JSON path to a variable in the data structure.</p>",
         "SplitFields$Paths": "<p>A JSON path to a variable in the data structure.</p>"
       }
@@ -4096,6 +4122,12 @@
         "TransformIdList$member": null,
         "UpdateMLTransformRequest$TransformId": "<p>A unique identifier that was generated when the transform was created.</p>",
         "UpdateMLTransformResponse$TransformId": "<p>The unique identifier for the transform that was updated.</p>"
+      }
+    },
+    "HudiTargetCompressionType": {
+      "base": null,
+      "refs": {
+        "S3HudiDirectTarget$Compression": "<p>Specifies how the data is compressed. This is generally not necessary if the data has a standard file extension. Possible values are <code>\"gzip\"</code> and <code>\"bzip\"</code>).</p>"
       }
     },
     "IdString": {
@@ -5398,6 +5430,7 @@
         "ApplyMapping$Name": "<p>The name of the transform node.</p>",
         "AthenaConnectorSource$Name": "<p>The name of the data source.</p>",
         "BasicCatalogTarget$Name": "<p>The name of your data target.</p>",
+        "CatalogHudiSource$Name": "<p>The name of the Hudi data source.</p>",
         "CatalogKafkaSource$Name": "<p>The name of the data store.</p>",
         "CatalogKinesisSource$Name": "<p>The name of the data source.</p>",
         "CatalogSource$Name": "<p>The name of the data store.</p>",
@@ -5430,11 +5463,15 @@
         "RedshiftTarget$Name": "<p>The name of the data target.</p>",
         "RelationalCatalogSource$Name": "<p>The name of the data source.</p>",
         "RenameField$Name": "<p>The name of the transform node.</p>",
+        "S3CatalogHudiSource$Name": "<p>The name of the Hudi data source.</p>",
         "S3CatalogSource$Name": "<p>The name of the data store.</p>",
         "S3CatalogTarget$Name": "<p>The name of the data target.</p>",
         "S3CsvSource$Name": "<p>The name of the data store.</p>",
         "S3DirectTarget$Name": "<p>The name of the data target.</p>",
         "S3GlueParquetTarget$Name": "<p>The name of the data target.</p>",
+        "S3HudiCatalogTarget$Name": "<p>The name of the data target.</p>",
+        "S3HudiDirectTarget$Name": "<p>The name of the data target.</p>",
+        "S3HudiSource$Name": "<p>The name of the Hudi source.</p>",
         "S3JsonSource$Name": "<p>The name of the data store.</p>",
         "S3ParquetSource$Name": "<p>The name of the data store.</p>",
         "SelectFields$Name": "<p>The name of the transform node.</p>",
@@ -5643,6 +5680,8 @@
         "S3CatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "S3DirectTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "S3GlueParquetTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
+        "S3HudiCatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
+        "S3HudiDirectTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
         "SelectFields$Inputs": "<p>The data inputs identified by their node names.</p>",
         "SelectFromCollection$Inputs": "<p>The data inputs identified by their node names.</p>",
         "SparkConnectorTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
@@ -6417,6 +6456,12 @@
       "refs": {
       }
     },
+    "S3CatalogHudiSource": {
+      "base": "<p>Specifies a Hudi data source that is registered in the Glue Data Catalog. The Hudi data source must be stored in Amazon S3.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$S3CatalogHudiSource": "<p>Specifies a Hudi data source that is registered in the Glue Data Catalog. The Hudi data source must be stored in Amazon S3.</p>"
+      }
+    },
     "S3CatalogSource": {
       "base": "<p>Specifies an Amazon S3 data store in the Glue Data Catalog.</p>",
       "refs": {
@@ -6439,6 +6484,7 @@
       "base": "<p>Specifies additional connection options for the Amazon S3 data store.</p>",
       "refs": {
         "S3CsvSource$AdditionalOptions": "<p>Specifies additional connection options.</p>",
+        "S3HudiSource$AdditionalOptions": null,
         "S3JsonSource$AdditionalOptions": "<p>Specifies additional connection options.</p>",
         "S3ParquetSource$AdditionalOptions": "<p>Specifies additional connection options.</p>"
       }
@@ -6471,6 +6517,24 @@
       "base": "<p>Specifies a data target that writes to Amazon S3 in Apache Parquet columnar storage.</p>",
       "refs": {
         "CodeGenConfigurationNode$S3GlueParquetTarget": "<p>Specifies a data target that writes to Amazon S3 in Apache Parquet columnar storage.</p>"
+      }
+    },
+    "S3HudiCatalogTarget": {
+      "base": "<p>Specifies a target that writes to a Hudi data source in the Glue Data Catalog.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$S3HudiCatalogTarget": "<p>Specifies a target that writes to a Hudi data source in the Glue Data Catalog.</p>"
+      }
+    },
+    "S3HudiDirectTarget": {
+      "base": "<p>Specifies a target that writes to a Hudi data source in Amazon S3.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$S3HudiDirectTarget": "<p>Specifies a target that writes to a Hudi data source in Amazon S3.</p>"
+      }
+    },
+    "S3HudiSource": {
+      "base": "<p>Specifies a Hudi data source stored in Amazon S3.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$S3HudiSource": "<p>Specifies a Hudi data source stored in Amazon S3.</p>"
       }
     },
     "S3JsonSource": {
@@ -7345,7 +7409,8 @@
     "TargetFormat": {
       "base": null,
       "refs": {
-        "S3DirectTarget$Format": "<p>Specifies the data output format for the target.</p>"
+        "S3DirectTarget$Format": "<p>Specifies the data output format for the target.</p>",
+        "S3HudiDirectTarget$Format": "<p>Specifies the data output format for the target.</p>"
       }
     },
     "TaskRun": {

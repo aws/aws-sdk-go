@@ -302,6 +302,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeDryRunProgress":{
+      "name":"DescribeDryRunProgress",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/dryRun"
+      },
+      "input":{"shape":"DescribeDryRunProgressRequest"},
+      "output":{"shape":"DescribeDryRunProgressResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "DescribeInboundConnections":{
       "name":"DescribeInboundConnections",
       "http":{
@@ -1500,6 +1516,35 @@
         "DomainStatusList":{"shape":"DomainStatusList"}
       }
     },
+    "DescribeDryRunProgressRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "DryRunId":{
+          "shape":"GUID",
+          "location":"querystring",
+          "locationName":"dryRunId"
+        },
+        "LoadDryRunConfig":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"loadDryRunConfig"
+        }
+      }
+    },
+    "DescribeDryRunProgressResponse":{
+      "type":"structure",
+      "members":{
+        "DryRunProgressStatus":{"shape":"DryRunProgressStatus"},
+        "DryRunConfig":{"shape":"DomainStatus"},
+        "DryRunResults":{"shape":"DryRunResults"}
+      }
+    },
     "DescribeInboundConnectionsRequest":{
       "type":"structure",
       "members":{
@@ -1863,6 +1908,29 @@
     },
     "Double":{"type":"double"},
     "DryRun":{"type":"boolean"},
+    "DryRunMode":{
+      "type":"string",
+      "enum":[
+        "Basic",
+        "Verbose"
+      ]
+    },
+    "DryRunProgressStatus":{
+      "type":"structure",
+      "required":[
+        "DryRunId",
+        "DryRunStatus",
+        "CreationDate",
+        "UpdateDate"
+      ],
+      "members":{
+        "DryRunId":{"shape":"GUID"},
+        "DryRunStatus":{"shape":"String"},
+        "CreationDate":{"shape":"String"},
+        "UpdateDate":{"shape":"String"},
+        "ValidationFailures":{"shape":"ValidationFailures"}
+      }
+    },
     "DryRunResults":{
       "type":"structure",
       "members":{
@@ -3137,7 +3205,8 @@
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptions"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
         "AutoTuneOptions":{"shape":"AutoTuneOptions"},
-        "DryRun":{"shape":"DryRun"}
+        "DryRun":{"shape":"DryRun"},
+        "DryRunMode":{"shape":"DryRunMode"}
       }
     },
     "UpdateDomainConfigResponse":{
@@ -3145,7 +3214,8 @@
       "required":["DomainConfig"],
       "members":{
         "DomainConfig":{"shape":"DomainConfig"},
-        "DryRunResults":{"shape":"DryRunResults"}
+        "DryRunResults":{"shape":"DryRunResults"},
+        "DryRunProgressStatus":{"shape":"DryRunProgressStatus"}
       }
     },
     "UpdatePackageRequest":{
@@ -3300,6 +3370,17 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ValidationFailure":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"String"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "ValidationFailures":{
+      "type":"list",
+      "member":{"shape":"ValidationFailure"}
     },
     "ValueStringList":{
       "type":"list",

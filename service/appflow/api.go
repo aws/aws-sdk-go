@@ -3731,6 +3731,9 @@ type ConnectorMetadata struct {
 	// The connector metadata specific to Marketo.
 	Marketo *MarketoMetadata `type:"structure"`
 
+	// The connector metadata specific to Salesforce Pardot.
+	Pardot *PardotMetadata `type:"structure"`
+
 	// The connector metadata specific to Amazon Redshift.
 	Redshift *RedshiftMetadata `type:"structure"`
 
@@ -3837,6 +3840,12 @@ func (s *ConnectorMetadata) SetInforNexus(v *InforNexusMetadata) *ConnectorMetad
 // SetMarketo sets the Marketo field's value.
 func (s *ConnectorMetadata) SetMarketo(v *MarketoMetadata) *ConnectorMetadata {
 	s.Marketo = v
+	return s
+}
+
+// SetPardot sets the Pardot field's value.
+func (s *ConnectorMetadata) SetPardot(v *PardotMetadata) *ConnectorMetadata {
+	s.Pardot = v
 	return s
 }
 
@@ -3981,6 +3990,9 @@ type ConnectorOperator struct {
 	// The operation to be performed on the provided Marketo source fields.
 	Marketo *string `type:"string" enum:"MarketoConnectorOperator"`
 
+	// The operation to be performed on the provided Salesforce Pardot source fields.
+	Pardot *string `type:"string" enum:"PardotConnectorOperator"`
+
 	// The operation to be performed on the provided Amazon S3 source fields.
 	S3 *string `type:"string" enum:"S3ConnectorOperator"`
 
@@ -4066,6 +4078,12 @@ func (s *ConnectorOperator) SetInforNexus(v string) *ConnectorOperator {
 // SetMarketo sets the Marketo field's value.
 func (s *ConnectorOperator) SetMarketo(v string) *ConnectorOperator {
 	s.Marketo = &v
+	return s
+}
+
+// SetPardot sets the Pardot field's value.
+func (s *ConnectorOperator) SetPardot(v string) *ConnectorOperator {
+	s.Pardot = &v
 	return s
 }
 
@@ -4337,6 +4355,9 @@ type ConnectorProfileCredentials struct {
 	// The connector-specific credentials required when using Marketo.
 	Marketo *MarketoConnectorProfileCredentials `type:"structure"`
 
+	// The connector-specific credentials required when using Salesforce Pardot.
+	Pardot *PardotConnectorProfileCredentials `type:"structure"`
+
 	// The connector-specific credentials required when using Amazon Redshift.
 	Redshift *RedshiftConnectorProfileCredentials `type:"structure"`
 
@@ -4422,6 +4443,11 @@ func (s *ConnectorProfileCredentials) Validate() error {
 	if s.Marketo != nil {
 		if err := s.Marketo.Validate(); err != nil {
 			invalidParams.AddNested("Marketo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Pardot != nil {
+		if err := s.Pardot.Validate(); err != nil {
+			invalidParams.AddNested("Pardot", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SAPOData != nil {
@@ -4524,6 +4550,12 @@ func (s *ConnectorProfileCredentials) SetMarketo(v *MarketoConnectorProfileCrede
 	return s
 }
 
+// SetPardot sets the Pardot field's value.
+func (s *ConnectorProfileCredentials) SetPardot(v *PardotConnectorProfileCredentials) *ConnectorProfileCredentials {
+	s.Pardot = v
+	return s
+}
+
 // SetRedshift sets the Redshift field's value.
 func (s *ConnectorProfileCredentials) SetRedshift(v *RedshiftConnectorProfileCredentials) *ConnectorProfileCredentials {
 	s.Redshift = v
@@ -4611,6 +4643,9 @@ type ConnectorProfileProperties struct {
 
 	// The connector-specific properties required by Marketo.
 	Marketo *MarketoConnectorProfileProperties `type:"structure"`
+
+	// The connector-specific properties required by Salesforce Pardot.
+	Pardot *PardotConnectorProfileProperties `type:"structure"`
 
 	// The connector-specific properties required by Amazon Redshift.
 	Redshift *RedshiftConnectorProfileProperties `type:"structure"`
@@ -4776,6 +4811,12 @@ func (s *ConnectorProfileProperties) SetInforNexus(v *InforNexusConnectorProfile
 // SetMarketo sets the Marketo field's value.
 func (s *ConnectorProfileProperties) SetMarketo(v *MarketoConnectorProfileProperties) *ConnectorProfileProperties {
 	s.Marketo = v
+	return s
+}
+
+// SetPardot sets the Pardot field's value.
+func (s *ConnectorProfileProperties) SetPardot(v *PardotConnectorProfileProperties) *ConnectorProfileProperties {
+	s.Pardot = v
 	return s
 }
 
@@ -10392,6 +10433,212 @@ func (s *OAuthProperties) SetTokenUrl(v string) *OAuthProperties {
 	return s
 }
 
+// The connector-specific profile credentials required when using Salesforce
+// Pardot.
+type PardotConnectorProfileCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The credentials used to access protected Salesforce Pardot resources.
+	//
+	// AccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PardotConnectorProfileCredentials's
+	// String and GoString methods.
+	AccessToken *string `locationName:"accessToken" type:"string" sensitive:"true"`
+
+	// The secret manager ARN, which contains the client ID and client secret of
+	// the connected app.
+	//
+	// ClientCredentialsArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PardotConnectorProfileCredentials's
+	// String and GoString methods.
+	ClientCredentialsArn *string `locationName:"clientCredentialsArn" min:"20" type:"string" sensitive:"true"`
+
+	// Used by select connectors for which the OAuth workflow is supported, such
+	// as Salesforce, Google Analytics, Marketo, Zendesk, and Slack.
+	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
+
+	// The credentials used to acquire new access tokens.
+	RefreshToken *string `locationName:"refreshToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotConnectorProfileCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotConnectorProfileCredentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PardotConnectorProfileCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PardotConnectorProfileCredentials"}
+	if s.ClientCredentialsArn != nil && len(*s.ClientCredentialsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientCredentialsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessToken sets the AccessToken field's value.
+func (s *PardotConnectorProfileCredentials) SetAccessToken(v string) *PardotConnectorProfileCredentials {
+	s.AccessToken = &v
+	return s
+}
+
+// SetClientCredentialsArn sets the ClientCredentialsArn field's value.
+func (s *PardotConnectorProfileCredentials) SetClientCredentialsArn(v string) *PardotConnectorProfileCredentials {
+	s.ClientCredentialsArn = &v
+	return s
+}
+
+// SetOAuthRequest sets the OAuthRequest field's value.
+func (s *PardotConnectorProfileCredentials) SetOAuthRequest(v *ConnectorOAuthRequest) *PardotConnectorProfileCredentials {
+	s.OAuthRequest = v
+	return s
+}
+
+// SetRefreshToken sets the RefreshToken field's value.
+func (s *PardotConnectorProfileCredentials) SetRefreshToken(v string) *PardotConnectorProfileCredentials {
+	s.RefreshToken = &v
+	return s
+}
+
+// The connector-specific profile properties required when using Salesforce
+// Pardot.
+type PardotConnectorProfileProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The business unit id of Salesforce Pardot instance.
+	BusinessUnitId *string `locationName:"businessUnitId" type:"string"`
+
+	// The location of the Salesforce Pardot resource.
+	InstanceUrl *string `locationName:"instanceUrl" type:"string"`
+
+	// Indicates whether the connector profile applies to a sandbox or production
+	// environment.
+	IsSandboxEnvironment *bool `locationName:"isSandboxEnvironment" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotConnectorProfileProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotConnectorProfileProperties) GoString() string {
+	return s.String()
+}
+
+// SetBusinessUnitId sets the BusinessUnitId field's value.
+func (s *PardotConnectorProfileProperties) SetBusinessUnitId(v string) *PardotConnectorProfileProperties {
+	s.BusinessUnitId = &v
+	return s
+}
+
+// SetInstanceUrl sets the InstanceUrl field's value.
+func (s *PardotConnectorProfileProperties) SetInstanceUrl(v string) *PardotConnectorProfileProperties {
+	s.InstanceUrl = &v
+	return s
+}
+
+// SetIsSandboxEnvironment sets the IsSandboxEnvironment field's value.
+func (s *PardotConnectorProfileProperties) SetIsSandboxEnvironment(v bool) *PardotConnectorProfileProperties {
+	s.IsSandboxEnvironment = &v
+	return s
+}
+
+// The connector metadata specific to Salesforce Pardot.
+type PardotMetadata struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotMetadata) GoString() string {
+	return s.String()
+}
+
+// The properties that are applied when Salesforce Pardot is being used as a
+// source.
+type PardotSourceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The object specified in the Salesforce Pardot flow source.
+	//
+	// Object is a required field
+	Object *string `locationName:"object" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotSourceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PardotSourceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PardotSourceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PardotSourceProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetObject sets the Object field's value.
+func (s *PardotSourceProperties) SetObject(v string) *PardotSourceProperties {
+	s.Object = &v
+	return s
+}
+
 // Specifies elements that Amazon AppFlow includes in the file and folder names
 // in the flow destination.
 type PrefixConfig struct {
@@ -13175,6 +13422,9 @@ type SourceConnectorProperties struct {
 	// Specifies the information that is required for querying Marketo.
 	Marketo *MarketoSourceProperties `type:"structure"`
 
+	// Specifies the information that is required for querying Salesforce Pardot.
+	Pardot *PardotSourceProperties `type:"structure"`
+
 	// Specifies the information that is required for querying Amazon S3.
 	S3 *S3SourceProperties `type:"structure"`
 
@@ -13257,6 +13507,11 @@ func (s *SourceConnectorProperties) Validate() error {
 	if s.Marketo != nil {
 		if err := s.Marketo.Validate(); err != nil {
 			invalidParams.AddNested("Marketo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Pardot != nil {
+		if err := s.Pardot.Validate(); err != nil {
+			invalidParams.AddNested("Pardot", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.S3 != nil {
@@ -13345,6 +13600,12 @@ func (s *SourceConnectorProperties) SetInforNexus(v *InforNexusSourceProperties)
 // SetMarketo sets the Marketo field's value.
 func (s *SourceConnectorProperties) SetMarketo(v *MarketoSourceProperties) *SourceConnectorProperties {
 	s.Marketo = v
+	return s
+}
+
+// SetPardot sets the Pardot field's value.
+func (s *SourceConnectorProperties) SetPardot(v *PardotSourceProperties) *SourceConnectorProperties {
+	s.Pardot = v
 	return s
 }
 
@@ -15877,6 +16138,9 @@ const (
 
 	// ConnectorTypeCustomConnector is a ConnectorType enum value
 	ConnectorTypeCustomConnector = "CustomConnector"
+
+	// ConnectorTypePardot is a ConnectorType enum value
+	ConnectorTypePardot = "Pardot"
 )
 
 // ConnectorType_Values returns all elements of the ConnectorType enum
@@ -15905,6 +16169,7 @@ func ConnectorType_Values() []string {
 		ConnectorTypeCustomerProfiles,
 		ConnectorTypeSapodata,
 		ConnectorTypeCustomConnector,
+		ConnectorTypePardot,
 	}
 }
 
@@ -16577,6 +16842,70 @@ func Operators_Values() []string {
 		OperatorsValidateNonNegative,
 		OperatorsValidateNumeric,
 		OperatorsNoOp,
+	}
+}
+
+const (
+	// PardotConnectorOperatorProjection is a PardotConnectorOperator enum value
+	PardotConnectorOperatorProjection = "PROJECTION"
+
+	// PardotConnectorOperatorEqualTo is a PardotConnectorOperator enum value
+	PardotConnectorOperatorEqualTo = "EQUAL_TO"
+
+	// PardotConnectorOperatorNoOp is a PardotConnectorOperator enum value
+	PardotConnectorOperatorNoOp = "NO_OP"
+
+	// PardotConnectorOperatorAddition is a PardotConnectorOperator enum value
+	PardotConnectorOperatorAddition = "ADDITION"
+
+	// PardotConnectorOperatorMultiplication is a PardotConnectorOperator enum value
+	PardotConnectorOperatorMultiplication = "MULTIPLICATION"
+
+	// PardotConnectorOperatorDivision is a PardotConnectorOperator enum value
+	PardotConnectorOperatorDivision = "DIVISION"
+
+	// PardotConnectorOperatorSubtraction is a PardotConnectorOperator enum value
+	PardotConnectorOperatorSubtraction = "SUBTRACTION"
+
+	// PardotConnectorOperatorMaskAll is a PardotConnectorOperator enum value
+	PardotConnectorOperatorMaskAll = "MASK_ALL"
+
+	// PardotConnectorOperatorMaskFirstN is a PardotConnectorOperator enum value
+	PardotConnectorOperatorMaskFirstN = "MASK_FIRST_N"
+
+	// PardotConnectorOperatorMaskLastN is a PardotConnectorOperator enum value
+	PardotConnectorOperatorMaskLastN = "MASK_LAST_N"
+
+	// PardotConnectorOperatorValidateNonNull is a PardotConnectorOperator enum value
+	PardotConnectorOperatorValidateNonNull = "VALIDATE_NON_NULL"
+
+	// PardotConnectorOperatorValidateNonZero is a PardotConnectorOperator enum value
+	PardotConnectorOperatorValidateNonZero = "VALIDATE_NON_ZERO"
+
+	// PardotConnectorOperatorValidateNonNegative is a PardotConnectorOperator enum value
+	PardotConnectorOperatorValidateNonNegative = "VALIDATE_NON_NEGATIVE"
+
+	// PardotConnectorOperatorValidateNumeric is a PardotConnectorOperator enum value
+	PardotConnectorOperatorValidateNumeric = "VALIDATE_NUMERIC"
+)
+
+// PardotConnectorOperator_Values returns all elements of the PardotConnectorOperator enum
+func PardotConnectorOperator_Values() []string {
+	return []string{
+		PardotConnectorOperatorProjection,
+		PardotConnectorOperatorEqualTo,
+		PardotConnectorOperatorNoOp,
+		PardotConnectorOperatorAddition,
+		PardotConnectorOperatorMultiplication,
+		PardotConnectorOperatorDivision,
+		PardotConnectorOperatorSubtraction,
+		PardotConnectorOperatorMaskAll,
+		PardotConnectorOperatorMaskFirstN,
+		PardotConnectorOperatorMaskLastN,
+		PardotConnectorOperatorValidateNonNull,
+		PardotConnectorOperatorValidateNonZero,
+		PardotConnectorOperatorValidateNonNegative,
+		PardotConnectorOperatorValidateNumeric,
 	}
 }
 
