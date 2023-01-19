@@ -411,7 +411,9 @@
         "DisplayName":{"shape":"DisplayName"},
         "ParticipantRole":{"shape":"ParticipantRole"},
         "Attachments":{"shape":"Attachments"},
-        "MessageMetadata":{"shape":"MessageMetadata"}
+        "MessageMetadata":{"shape":"MessageMetadata"},
+        "RelatedContactId":{"shape":"ContactId"},
+        "ContactId":{"shape":"ContactId"}
       }
     },
     "MaxResults":{

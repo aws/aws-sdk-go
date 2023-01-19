@@ -200,6 +200,9 @@ type GroundStationAPI interface {
 	UpdateMissionProfile(*groundstation.UpdateMissionProfileInput) (*groundstation.UpdateMissionProfileOutput, error)
 	UpdateMissionProfileWithContext(aws.Context, *groundstation.UpdateMissionProfileInput, ...request.Option) (*groundstation.UpdateMissionProfileOutput, error)
 	UpdateMissionProfileRequest(*groundstation.UpdateMissionProfileInput) (*request.Request, *groundstation.UpdateMissionProfileOutput)
+
+	WaitUntilContactScheduled(*groundstation.DescribeContactInput) error
+	WaitUntilContactScheduledWithContext(aws.Context, *groundstation.DescribeContactInput, ...request.WaiterOption) error
 }
 
 var _ GroundStationAPI = (*groundstation.GroundStation)(nil)

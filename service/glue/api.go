@@ -24318,6 +24318,109 @@ func (s *CatalogEntry) SetTableName(v string) *CatalogEntry {
 	return s
 }
 
+// Specifies a Hudi data source that is registered in the Glue Data Catalog.
+type CatalogHudiSource struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies additional connection options.
+	AdditionalHudiOptions map[string]*string `type:"map"`
+
+	// The name of the database to read from.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// The name of the Hudi data source.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies the data schema for the Hudi source.
+	OutputSchemas []*GlueSchema `type:"list"`
+
+	// The name of the table in the database to read from.
+	//
+	// Table is a required field
+	Table *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CatalogHudiSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CatalogHudiSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CatalogHudiSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CatalogHudiSource"}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Table == nil {
+		invalidParams.Add(request.NewErrParamRequired("Table"))
+	}
+	if s.OutputSchemas != nil {
+		for i, v := range s.OutputSchemas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSchemas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalHudiOptions sets the AdditionalHudiOptions field's value.
+func (s *CatalogHudiSource) SetAdditionalHudiOptions(v map[string]*string) *CatalogHudiSource {
+	s.AdditionalHudiOptions = v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *CatalogHudiSource) SetDatabase(v string) *CatalogHudiSource {
+	s.Database = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CatalogHudiSource) SetName(v string) *CatalogHudiSource {
+	s.Name = &v
+	return s
+}
+
+// SetOutputSchemas sets the OutputSchemas field's value.
+func (s *CatalogHudiSource) SetOutputSchemas(v []*GlueSchema) *CatalogHudiSource {
+	s.OutputSchemas = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *CatalogHudiSource) SetTable(v string) *CatalogHudiSource {
+	s.Table = &v
+	return s
+}
+
 // A structure containing migration status information.
 type CatalogImportStatus struct {
 	_ struct{} `type:"structure"`
@@ -25042,6 +25145,9 @@ type CodeGenConfigurationNode struct {
 	// Specifies a connector to an Amazon Athena data source.
 	AthenaConnectorSource *AthenaConnectorSource `type:"structure"`
 
+	// Specifies a Hudi data source that is registered in the Glue Data Catalog.
+	CatalogHudiSource *CatalogHudiSource `type:"structure"`
+
 	// Specifies an Apache Kafka data store in the Data Catalog.
 	CatalogKafkaSource *CatalogKafkaSource `type:"structure"`
 
@@ -25158,6 +25264,10 @@ type CodeGenConfigurationNode struct {
 	// Specifies a transform that renames a single data property key.
 	RenameField *RenameField `type:"structure"`
 
+	// Specifies a Hudi data source that is registered in the Glue Data Catalog.
+	// The Hudi data source must be stored in Amazon S3.
+	S3CatalogHudiSource *S3CatalogHudiSource `type:"structure"`
+
 	// Specifies an Amazon S3 data store in the Glue Data Catalog.
 	S3CatalogSource *S3CatalogSource `type:"structure"`
 
@@ -25173,6 +25283,15 @@ type CodeGenConfigurationNode struct {
 	// Specifies a data target that writes to Amazon S3 in Apache Parquet columnar
 	// storage.
 	S3GlueParquetTarget *S3GlueParquetTarget `type:"structure"`
+
+	// Specifies a target that writes to a Hudi data source in the Glue Data Catalog.
+	S3HudiCatalogTarget *S3HudiCatalogTarget `type:"structure"`
+
+	// Specifies a target that writes to a Hudi data source in Amazon S3.
+	S3HudiDirectTarget *S3HudiDirectTarget `type:"structure"`
+
+	// Specifies a Hudi data source stored in Amazon S3.
+	S3HudiSource *S3HudiSource `type:"structure"`
 
 	// Specifies a JSON data store stored in Amazon S3.
 	S3JsonSource *S3JsonSource `type:"structure"`
@@ -25245,6 +25364,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.AthenaConnectorSource != nil {
 		if err := s.AthenaConnectorSource.Validate(); err != nil {
 			invalidParams.AddNested("AthenaConnectorSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CatalogHudiSource != nil {
+		if err := s.CatalogHudiSource.Validate(); err != nil {
+			invalidParams.AddNested("CatalogHudiSource", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.CatalogKafkaSource != nil {
@@ -25417,6 +25541,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 			invalidParams.AddNested("RenameField", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.S3CatalogHudiSource != nil {
+		if err := s.S3CatalogHudiSource.Validate(); err != nil {
+			invalidParams.AddNested("S3CatalogHudiSource", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3CatalogSource != nil {
 		if err := s.S3CatalogSource.Validate(); err != nil {
 			invalidParams.AddNested("S3CatalogSource", err.(request.ErrInvalidParams))
@@ -25440,6 +25569,21 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.S3GlueParquetTarget != nil {
 		if err := s.S3GlueParquetTarget.Validate(); err != nil {
 			invalidParams.AddNested("S3GlueParquetTarget", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3HudiCatalogTarget != nil {
+		if err := s.S3HudiCatalogTarget.Validate(); err != nil {
+			invalidParams.AddNested("S3HudiCatalogTarget", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3HudiDirectTarget != nil {
+		if err := s.S3HudiDirectTarget.Validate(); err != nil {
+			invalidParams.AddNested("S3HudiDirectTarget", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3HudiSource != nil {
+		if err := s.S3HudiSource.Validate(); err != nil {
+			invalidParams.AddNested("S3HudiSource", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.S3JsonSource != nil {
@@ -25514,6 +25658,12 @@ func (s *CodeGenConfigurationNode) SetApplyMapping(v *ApplyMapping) *CodeGenConf
 // SetAthenaConnectorSource sets the AthenaConnectorSource field's value.
 func (s *CodeGenConfigurationNode) SetAthenaConnectorSource(v *AthenaConnectorSource) *CodeGenConfigurationNode {
 	s.AthenaConnectorSource = v
+	return s
+}
+
+// SetCatalogHudiSource sets the CatalogHudiSource field's value.
+func (s *CodeGenConfigurationNode) SetCatalogHudiSource(v *CatalogHudiSource) *CodeGenConfigurationNode {
+	s.CatalogHudiSource = v
 	return s
 }
 
@@ -25721,6 +25871,12 @@ func (s *CodeGenConfigurationNode) SetRenameField(v *RenameField) *CodeGenConfig
 	return s
 }
 
+// SetS3CatalogHudiSource sets the S3CatalogHudiSource field's value.
+func (s *CodeGenConfigurationNode) SetS3CatalogHudiSource(v *S3CatalogHudiSource) *CodeGenConfigurationNode {
+	s.S3CatalogHudiSource = v
+	return s
+}
+
 // SetS3CatalogSource sets the S3CatalogSource field's value.
 func (s *CodeGenConfigurationNode) SetS3CatalogSource(v *S3CatalogSource) *CodeGenConfigurationNode {
 	s.S3CatalogSource = v
@@ -25748,6 +25904,24 @@ func (s *CodeGenConfigurationNode) SetS3DirectTarget(v *S3DirectTarget) *CodeGen
 // SetS3GlueParquetTarget sets the S3GlueParquetTarget field's value.
 func (s *CodeGenConfigurationNode) SetS3GlueParquetTarget(v *S3GlueParquetTarget) *CodeGenConfigurationNode {
 	s.S3GlueParquetTarget = v
+	return s
+}
+
+// SetS3HudiCatalogTarget sets the S3HudiCatalogTarget field's value.
+func (s *CodeGenConfigurationNode) SetS3HudiCatalogTarget(v *S3HudiCatalogTarget) *CodeGenConfigurationNode {
+	s.S3HudiCatalogTarget = v
+	return s
+}
+
+// SetS3HudiDirectTarget sets the S3HudiDirectTarget field's value.
+func (s *CodeGenConfigurationNode) SetS3HudiDirectTarget(v *S3HudiDirectTarget) *CodeGenConfigurationNode {
+	s.S3HudiDirectTarget = v
+	return s
+}
+
+// SetS3HudiSource sets the S3HudiSource field's value.
+func (s *CodeGenConfigurationNode) SetS3HudiSource(v *S3HudiSource) *CodeGenConfigurationNode {
+	s.S3HudiSource = v
 	return s
 }
 
@@ -58007,6 +58181,110 @@ func (s *RunStatementOutput) SetId(v int64) *RunStatementOutput {
 	return s
 }
 
+// Specifies a Hudi data source that is registered in the Glue Data Catalog.
+// The Hudi data source must be stored in Amazon S3.
+type S3CatalogHudiSource struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies additional connection options.
+	AdditionalHudiOptions map[string]*string `type:"map"`
+
+	// The name of the database to read from.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// The name of the Hudi data source.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies the data schema for the Hudi source.
+	OutputSchemas []*GlueSchema `type:"list"`
+
+	// The name of the table in the database to read from.
+	//
+	// Table is a required field
+	Table *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3CatalogHudiSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3CatalogHudiSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3CatalogHudiSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3CatalogHudiSource"}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Table == nil {
+		invalidParams.Add(request.NewErrParamRequired("Table"))
+	}
+	if s.OutputSchemas != nil {
+		for i, v := range s.OutputSchemas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSchemas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalHudiOptions sets the AdditionalHudiOptions field's value.
+func (s *S3CatalogHudiSource) SetAdditionalHudiOptions(v map[string]*string) *S3CatalogHudiSource {
+	s.AdditionalHudiOptions = v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *S3CatalogHudiSource) SetDatabase(v string) *S3CatalogHudiSource {
+	s.Database = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *S3CatalogHudiSource) SetName(v string) *S3CatalogHudiSource {
+	s.Name = &v
+	return s
+}
+
+// SetOutputSchemas sets the OutputSchemas field's value.
+func (s *S3CatalogHudiSource) SetOutputSchemas(v []*GlueSchema) *S3CatalogHudiSource {
+	s.OutputSchemas = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *S3CatalogHudiSource) SetTable(v string) *S3CatalogHudiSource {
+	s.Table = &v
+	return s
+}
+
 // Specifies an Amazon S3 data store in the Glue Data Catalog.
 type S3CatalogSource struct {
 	_ struct{} `type:"structure"`
@@ -58798,6 +59076,365 @@ func (s *S3GlueParquetTarget) SetPath(v string) *S3GlueParquetTarget {
 // SetSchemaChangePolicy sets the SchemaChangePolicy field's value.
 func (s *S3GlueParquetTarget) SetSchemaChangePolicy(v *DirectSchemaChangePolicy) *S3GlueParquetTarget {
 	s.SchemaChangePolicy = v
+	return s
+}
+
+// Specifies a target that writes to a Hudi data source in the Glue Data Catalog.
+type S3HudiCatalogTarget struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies additional connection options for the connector.
+	//
+	// AdditionalOptions is a required field
+	AdditionalOptions map[string]*string `type:"map" required:"true"`
+
+	// The name of the database to write to.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// The nodes that are inputs to the data target.
+	//
+	// Inputs is a required field
+	Inputs []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the data target.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies native partitioning using a sequence of keys.
+	PartitionKeys [][]*string `type:"list"`
+
+	// A policy that specifies update behavior for the crawler.
+	SchemaChangePolicy *CatalogSchemaChangePolicy `type:"structure"`
+
+	// The name of the table in the database to write to.
+	//
+	// Table is a required field
+	Table *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3HudiCatalogTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3HudiCatalogTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3HudiCatalogTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3HudiCatalogTarget"}
+	if s.AdditionalOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdditionalOptions"))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Inputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Inputs"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Table == nil {
+		invalidParams.Add(request.NewErrParamRequired("Table"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalOptions sets the AdditionalOptions field's value.
+func (s *S3HudiCatalogTarget) SetAdditionalOptions(v map[string]*string) *S3HudiCatalogTarget {
+	s.AdditionalOptions = v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *S3HudiCatalogTarget) SetDatabase(v string) *S3HudiCatalogTarget {
+	s.Database = &v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *S3HudiCatalogTarget) SetInputs(v []*string) *S3HudiCatalogTarget {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *S3HudiCatalogTarget) SetName(v string) *S3HudiCatalogTarget {
+	s.Name = &v
+	return s
+}
+
+// SetPartitionKeys sets the PartitionKeys field's value.
+func (s *S3HudiCatalogTarget) SetPartitionKeys(v [][]*string) *S3HudiCatalogTarget {
+	s.PartitionKeys = v
+	return s
+}
+
+// SetSchemaChangePolicy sets the SchemaChangePolicy field's value.
+func (s *S3HudiCatalogTarget) SetSchemaChangePolicy(v *CatalogSchemaChangePolicy) *S3HudiCatalogTarget {
+	s.SchemaChangePolicy = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *S3HudiCatalogTarget) SetTable(v string) *S3HudiCatalogTarget {
+	s.Table = &v
+	return s
+}
+
+// Specifies a target that writes to a Hudi data source in Amazon S3.
+type S3HudiDirectTarget struct {
+	_ struct{} `type:"structure"`
+
+	// AdditionalOptions is a required field
+	AdditionalOptions map[string]*string `type:"map" required:"true"`
+
+	// Specifies how the data is compressed. This is generally not necessary if
+	// the data has a standard file extension. Possible values are "gzip" and "bzip").
+	//
+	// Compression is a required field
+	Compression *string `type:"string" required:"true" enum:"HudiTargetCompressionType"`
+
+	// Specifies the data output format for the target.
+	//
+	// Format is a required field
+	Format *string `type:"string" required:"true" enum:"TargetFormat"`
+
+	// The nodes that are inputs to the data target.
+	//
+	// Inputs is a required field
+	Inputs []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the data target.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies native partitioning using a sequence of keys.
+	PartitionKeys [][]*string `type:"list"`
+
+	// The Amazon S3 path of your Hudi data source to write to.
+	//
+	// Path is a required field
+	Path *string `type:"string" required:"true"`
+
+	// A policy that specifies update behavior for the crawler.
+	SchemaChangePolicy *DirectSchemaChangePolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3HudiDirectTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3HudiDirectTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3HudiDirectTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3HudiDirectTarget"}
+	if s.AdditionalOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdditionalOptions"))
+	}
+	if s.Compression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Compression"))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Inputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Inputs"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("Path"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalOptions sets the AdditionalOptions field's value.
+func (s *S3HudiDirectTarget) SetAdditionalOptions(v map[string]*string) *S3HudiDirectTarget {
+	s.AdditionalOptions = v
+	return s
+}
+
+// SetCompression sets the Compression field's value.
+func (s *S3HudiDirectTarget) SetCompression(v string) *S3HudiDirectTarget {
+	s.Compression = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *S3HudiDirectTarget) SetFormat(v string) *S3HudiDirectTarget {
+	s.Format = &v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *S3HudiDirectTarget) SetInputs(v []*string) *S3HudiDirectTarget {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *S3HudiDirectTarget) SetName(v string) *S3HudiDirectTarget {
+	s.Name = &v
+	return s
+}
+
+// SetPartitionKeys sets the PartitionKeys field's value.
+func (s *S3HudiDirectTarget) SetPartitionKeys(v [][]*string) *S3HudiDirectTarget {
+	s.PartitionKeys = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *S3HudiDirectTarget) SetPath(v string) *S3HudiDirectTarget {
+	s.Path = &v
+	return s
+}
+
+// SetSchemaChangePolicy sets the SchemaChangePolicy field's value.
+func (s *S3HudiDirectTarget) SetSchemaChangePolicy(v *DirectSchemaChangePolicy) *S3HudiDirectTarget {
+	s.SchemaChangePolicy = v
+	return s
+}
+
+// Specifies a Hudi data source stored in Amazon S3.
+type S3HudiSource struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies additional connection options.
+	AdditionalHudiOptions map[string]*string `type:"map"`
+
+	// Specifies additional connection options for the Amazon S3 data store.
+	AdditionalOptions *S3DirectSourceAdditionalOptions `type:"structure"`
+
+	// The name of the Hudi source.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies the data schema for the Hudi source.
+	OutputSchemas []*GlueSchema `type:"list"`
+
+	// A list of the Amazon S3 paths to read from.
+	//
+	// Paths is a required field
+	Paths []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3HudiSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3HudiSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3HudiSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3HudiSource"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Paths == nil {
+		invalidParams.Add(request.NewErrParamRequired("Paths"))
+	}
+	if s.OutputSchemas != nil {
+		for i, v := range s.OutputSchemas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSchemas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalHudiOptions sets the AdditionalHudiOptions field's value.
+func (s *S3HudiSource) SetAdditionalHudiOptions(v map[string]*string) *S3HudiSource {
+	s.AdditionalHudiOptions = v
+	return s
+}
+
+// SetAdditionalOptions sets the AdditionalOptions field's value.
+func (s *S3HudiSource) SetAdditionalOptions(v *S3DirectSourceAdditionalOptions) *S3HudiSource {
+	s.AdditionalOptions = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *S3HudiSource) SetName(v string) *S3HudiSource {
+	s.Name = &v
+	return s
+}
+
+// SetOutputSchemas sets the OutputSchemas field's value.
+func (s *S3HudiSource) SetOutputSchemas(v []*GlueSchema) *S3HudiSource {
+	s.OutputSchemas = v
+	return s
+}
+
+// SetPaths sets the Paths field's value.
+func (s *S3HudiSource) SetPaths(v []*string) *S3HudiSource {
+	s.Paths = v
 	return s
 }
 
@@ -70746,6 +71383,30 @@ func GlueRecordType_Values() []string {
 }
 
 const (
+	// HudiTargetCompressionTypeGzip is a HudiTargetCompressionType enum value
+	HudiTargetCompressionTypeGzip = "gzip"
+
+	// HudiTargetCompressionTypeLzo is a HudiTargetCompressionType enum value
+	HudiTargetCompressionTypeLzo = "lzo"
+
+	// HudiTargetCompressionTypeUncompressed is a HudiTargetCompressionType enum value
+	HudiTargetCompressionTypeUncompressed = "uncompressed"
+
+	// HudiTargetCompressionTypeSnappy is a HudiTargetCompressionType enum value
+	HudiTargetCompressionTypeSnappy = "snappy"
+)
+
+// HudiTargetCompressionType_Values returns all elements of the HudiTargetCompressionType enum
+func HudiTargetCompressionType_Values() []string {
+	return []string{
+		HudiTargetCompressionTypeGzip,
+		HudiTargetCompressionTypeLzo,
+		HudiTargetCompressionTypeUncompressed,
+		HudiTargetCompressionTypeSnappy,
+	}
+}
+
+const (
 	// JDBCDataTypeArray is a JDBCDataType enum value
 	JDBCDataTypeArray = "ARRAY"
 
@@ -71692,6 +72353,9 @@ const (
 
 	// TargetFormatParquet is a TargetFormat enum value
 	TargetFormatParquet = "parquet"
+
+	// TargetFormatHudi is a TargetFormat enum value
+	TargetFormatHudi = "hudi"
 )
 
 // TargetFormat_Values returns all elements of the TargetFormat enum
@@ -71702,6 +72366,7 @@ func TargetFormat_Values() []string {
 		TargetFormatAvro,
 		TargetFormatOrc,
 		TargetFormatParquet,
+		TargetFormatHudi,
 	}
 }
 

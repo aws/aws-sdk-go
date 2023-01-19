@@ -664,7 +664,7 @@ func (c *CodeArtifact) DeletePackageVersionsRequest(input *DeletePackageVersions
 // be restored in your repository. If you want to remove a package version from
 // your repository and be able to restore it later, set its status to Archived.
 // Archived packages cannot be downloaded from a repository and don't show up
-// with list package APIs (for example, ListackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)),
+// with list package APIs (for example, ListPackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)),
 // but you can restore them using UpdatePackageVersionsStatus (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1853,10 +1853,7 @@ func (c *CodeArtifact) GetPackageVersionReadmeRequest(input *GetPackageVersionRe
 
 // GetPackageVersionReadme API operation for CodeArtifact.
 //
-// Gets the readme file or descriptive text for a package version. For packages
-// that do not contain a readme file, CodeArtifact extracts a description from
-// a metadata file. For example, from the <description> element in the pom.xml
-// file of a Maven package.
+// Gets the readme file or descriptive text for a package version.
 //
 // The returned text might contain formatting. For example, it might contain
 // formatting for Markdown or reStructuredText.
@@ -4032,6 +4029,8 @@ type AssociateExternalConnectionInput struct {
 	// values are supported:
 	//
 	//    * public:npmjs - for the npm public repository.
+	//
+	//    * public:nuget-org - for the NuGet Gallery.
 	//
 	//    * public:pypi - for the Python Package Index.
 	//
@@ -6991,6 +6990,9 @@ type GetPackageVersionReadmeInput struct {
 	// A format that specifies the type of the package version with the requested
 	// readme file.
 	//
+	// Although maven is listed as a valid value, CodeArtifact does not support
+	// displaying readme files for Maven packages.
+	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -8476,9 +8478,12 @@ type ListPackagesInput struct {
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace used to filter requested packages. Only packages with the provided
-	// namespace will be returned. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace prefix used to filter requested packages. Only packages with
+	// a namespace that starts with the provided string value are returned. Note
+	// that although this option is called --namespace and not --namespace-prefix,
+	// it has prefix-matching behavior.
+	//
+	// Each package format uses namespace as follows:
 	//
 	//    * The namespace of a Maven package is its groupId.
 	//
@@ -9017,8 +9022,18 @@ type PackageDependency struct {
 	_ struct{} `type:"structure"`
 
 	// The type of a package dependency. The possible values depend on the package
-	// type. Example types are compile, runtime, and test for Maven packages, and
-	// dev, prod, and optional for npm packages.
+	// type.
+	//
+	//    * npm: regular, dev, peer, optional
+	//
+	//    * maven: optional, parent, compile, runtime, test, system, provided. Note
+	//    that parent is not a regular Maven dependency type; instead this is extracted
+	//    from the <parent> element if one is defined in the package version's POM
+	//    file.
+	//
+	//    * nuget: The dependencyType field is never set for NuGet packages.
+	//
+	//    * pypi: Requires-Dist
 	DependencyType *string `locationName:"dependencyType" type:"string"`
 
 	// The namespace of the package that this package depends on. The package component

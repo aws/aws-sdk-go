@@ -3581,6 +3581,12 @@
         "CaptionRectangle$Width": "See the description in leftOffset.\nFor width, specify the entire width of the rectangle as a percentage of the underlying frame width. For example, \\\"80\\\" means the rectangle width is 80% of the underlying frame width. The leftOffset and rectangleWidth must add up to 100% or less.\nThis field corresponds to tts:extent - X in the TTML standard."
       }
     },
+    "__doubleMin0Max5000": {
+      "base": null,
+      "refs": {
+        "M2tsSettings$Scte35PrerollPullupMilliseconds": "Defines the amount SCTE-35 preroll will be increased (in milliseconds) on the output. Preroll is the amount of time between the presence of a SCTE-35 indication in a transport stream and the PTS of the video frame it references. Zero means don't add pullup (it doesn't mean set the preroll to zero). Negative pullup is not supported, which means that you can't make the preroll shorter. Be aware that latency in the output will increase by the pullup amount."
+      }
+    },
     "__doubleMin1": {
       "base": null,
       "refs": {

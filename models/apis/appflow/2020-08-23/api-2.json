@@ -559,6 +559,11 @@
       "max":512,
       "pattern":".*"
     },
+    "BusinessUnitId":{
+      "type":"string",
+      "max":18,
+      "pattern":"\\S+"
+    },
     "CatalogType":{
       "type":"string",
       "enum":["GLUE"]
@@ -743,7 +748,8 @@
         "Upsolver":{"shape":"UpsolverMetadata"},
         "CustomerProfiles":{"shape":"CustomerProfilesMetadata"},
         "Honeycode":{"shape":"HoneycodeMetadata"},
-        "SAPOData":{"shape":"SAPODataMetadata"}
+        "SAPOData":{"shape":"SAPODataMetadata"},
+        "Pardot":{"shape":"PardotMetadata"}
       }
     },
     "ConnectorMode":{
@@ -785,7 +791,8 @@
         "Veeva":{"shape":"VeevaConnectorOperator"},
         "Zendesk":{"shape":"ZendeskConnectorOperator"},
         "SAPOData":{"shape":"SAPODataConnectorOperator"},
-        "CustomConnector":{"shape":"Operator"}
+        "CustomConnector":{"shape":"Operator"},
+        "Pardot":{"shape":"PardotConnectorOperator"}
       }
     },
     "ConnectorOwner":{
@@ -841,7 +848,8 @@
         "Veeva":{"shape":"VeevaConnectorProfileCredentials"},
         "Zendesk":{"shape":"ZendeskConnectorProfileCredentials"},
         "SAPOData":{"shape":"SAPODataConnectorProfileCredentials"},
-        "CustomConnector":{"shape":"CustomConnectorProfileCredentials"}
+        "CustomConnector":{"shape":"CustomConnectorProfileCredentials"},
+        "Pardot":{"shape":"PardotConnectorProfileCredentials"}
       }
     },
     "ConnectorProfileDetailList":{
@@ -879,7 +887,8 @@
         "Veeva":{"shape":"VeevaConnectorProfileProperties"},
         "Zendesk":{"shape":"ZendeskConnectorProfileProperties"},
         "SAPOData":{"shape":"SAPODataConnectorProfileProperties"},
-        "CustomConnector":{"shape":"CustomConnectorProfileProperties"}
+        "CustomConnector":{"shape":"CustomConnectorProfileProperties"},
+        "Pardot":{"shape":"PardotConnectorProfileProperties"}
       }
     },
     "ConnectorProvisioningConfig":{
@@ -964,7 +973,8 @@
         "Honeycode",
         "CustomerProfiles",
         "SAPOData",
-        "CustomConnector"
+        "CustomConnector",
+        "Pardot"
       ]
     },
     "ConnectorTypeList":{
@@ -2235,6 +2245,54 @@
         "NO_OP"
       ]
     },
+    "PardotConnectorOperator":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "EQUAL_TO",
+        "NO_OP",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC"
+      ]
+    },
+    "PardotConnectorProfileCredentials":{
+      "type":"structure",
+      "members":{
+        "accessToken":{"shape":"AccessToken"},
+        "refreshToken":{"shape":"RefreshToken"},
+        "oAuthRequest":{"shape":"ConnectorOAuthRequest"},
+        "clientCredentialsArn":{"shape":"ClientCredentialsArn"}
+      }
+    },
+    "PardotConnectorProfileProperties":{
+      "type":"structure",
+      "members":{
+        "instanceUrl":{"shape":"InstanceUrl"},
+        "isSandboxEnvironment":{"shape":"Boolean"},
+        "businessUnitId":{"shape":"BusinessUnitId"}
+      }
+    },
+    "PardotMetadata":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PardotSourceProperties":{
+      "type":"structure",
+      "required":["object"],
+      "members":{
+        "object":{"shape":"Object"}
+      }
+    },
     "Password":{
       "type":"string",
       "max":512,
@@ -2960,7 +3018,8 @@
         "Veeva":{"shape":"VeevaSourceProperties"},
         "Zendesk":{"shape":"ZendeskSourceProperties"},
         "SAPOData":{"shape":"SAPODataSourceProperties"},
-        "CustomConnector":{"shape":"CustomConnectorSourceProperties"}
+        "CustomConnector":{"shape":"CustomConnectorSourceProperties"},
+        "Pardot":{"shape":"PardotSourceProperties"}
       }
     },
     "SourceFieldProperties":{

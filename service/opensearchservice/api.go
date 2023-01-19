@@ -148,8 +148,8 @@ func (c *OpenSearchService) AddTagsRequest(input *AddTagsInput) (req *request.Re
 // AddTags API operation for Amazon OpenSearch Service.
 //
 // Attaches tags to an existing Amazon OpenSearch Service domain. Tags are a
-// set of case-sensitive key-value pairs. An domain can have up to 10 tags.
-// For more information, see Tagging Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging).
+// set of case-sensitive key-value pairs. A domain can have up to 10 tags. For
+// more information, see Tagging Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1872,6 +1872,104 @@ func (c *OpenSearchService) DescribeDomains(input *DescribeDomainsInput) (*Descr
 // for more information on using Contexts.
 func (c *OpenSearchService) DescribeDomainsWithContext(ctx aws.Context, input *DescribeDomainsInput, opts ...request.Option) (*DescribeDomainsOutput, error) {
 	req, out := c.DescribeDomainsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDryRunProgress = "DescribeDryRunProgress"
+
+// DescribeDryRunProgressRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDryRunProgress operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDryRunProgress for more information on using the DescribeDryRunProgress
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDryRunProgressRequest method.
+//	req, resp := client.DescribeDryRunProgressRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDryRunProgress
+func (c *OpenSearchService) DescribeDryRunProgressRequest(input *DescribeDryRunProgressInput) (req *request.Request, output *DescribeDryRunProgressOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDryRunProgress,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/dryRun",
+	}
+
+	if input == nil {
+		input = &DescribeDryRunProgressInput{}
+	}
+
+	output = &DescribeDryRunProgressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDryRunProgress API operation for Amazon OpenSearch Service.
+//
+// Describes the progress of a pre-update dry run analysis on an Amazon OpenSearch
+// Service domain. For more information, see Determining whether a change will
+// cause a blue/green deployment (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-configuration-changes#dryrun).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation DescribeDryRunProgress for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist. Gives
+//     http status code of 400.
+//
+//   - ValidationException
+//     An exception for missing / invalid input fields. Gives http status code of
+//     400.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDryRunProgress
+func (c *OpenSearchService) DescribeDryRunProgress(input *DescribeDryRunProgressInput) (*DescribeDryRunProgressOutput, error) {
+	req, out := c.DescribeDryRunProgressRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDryRunProgressWithContext is the same as DescribeDryRunProgress with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDryRunProgress for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) DescribeDryRunProgressWithContext(ctx aws.Context, input *DescribeDryRunProgressInput, opts ...request.Option) (*DescribeDryRunProgressOutput, error) {
+	req, out := c.DescribeDryRunProgressRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8142,7 +8240,7 @@ type CreateVpcEndpointInput struct {
 	// Unique, case-sensitive identifier to ensure idempotency of the request.
 	ClientToken *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the domain to grant access to.
+	// The Amazon Resource Name (ARN) of the domain to create the endpoint for.
 	//
 	// DomainArn is a required field
 	DomainArn *string `min:"1" type:"string" required:"true"`
@@ -9121,6 +9219,126 @@ func (s DescribeDomainsOutput) GoString() string {
 // SetDomainStatusList sets the DomainStatusList field's value.
 func (s *DescribeDomainsOutput) SetDomainStatusList(v []*DomainStatus) *DescribeDomainsOutput {
 	s.DomainStatusList = v
+	return s
+}
+
+type DescribeDryRunProgressInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+
+	// The unique identifier of the dry run.
+	DryRunId *string `location:"querystring" locationName:"dryRunId" min:"36" type:"string"`
+
+	// Whether to include the configuration of the dry run in the response. The
+	// configuration specifies the updates that you're planning to make on the domain.
+	LoadDryRunConfig *bool `location:"querystring" locationName:"loadDryRunConfig" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDryRunProgressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDryRunProgressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDryRunProgressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDryRunProgressInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.DryRunId != nil && len(*s.DryRunId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("DryRunId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DescribeDryRunProgressInput) SetDomainName(v string) *DescribeDryRunProgressInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetDryRunId sets the DryRunId field's value.
+func (s *DescribeDryRunProgressInput) SetDryRunId(v string) *DescribeDryRunProgressInput {
+	s.DryRunId = &v
+	return s
+}
+
+// SetLoadDryRunConfig sets the LoadDryRunConfig field's value.
+func (s *DescribeDryRunProgressInput) SetLoadDryRunConfig(v bool) *DescribeDryRunProgressInput {
+	s.LoadDryRunConfig = &v
+	return s
+}
+
+type DescribeDryRunProgressOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the changes you're planning to make on the domain.
+	DryRunConfig *DomainStatus `type:"structure"`
+
+	// The current status of the dry run, including any validation errors.
+	DryRunProgressStatus *DryRunProgressStatus `type:"structure"`
+
+	// The results of the dry run.
+	DryRunResults *DryRunResults `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDryRunProgressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDryRunProgressOutput) GoString() string {
+	return s.String()
+}
+
+// SetDryRunConfig sets the DryRunConfig field's value.
+func (s *DescribeDryRunProgressOutput) SetDryRunConfig(v *DomainStatus) *DescribeDryRunProgressOutput {
+	s.DryRunConfig = v
+	return s
+}
+
+// SetDryRunProgressStatus sets the DryRunProgressStatus field's value.
+func (s *DescribeDryRunProgressOutput) SetDryRunProgressStatus(v *DryRunProgressStatus) *DescribeDryRunProgressOutput {
+	s.DryRunProgressStatus = v
+	return s
+}
+
+// SetDryRunResults sets the DryRunResults field's value.
+func (s *DescribeDryRunProgressOutput) SetDryRunResults(v *DryRunResults) *DescribeDryRunProgressOutput {
+	s.DryRunResults = v
 	return s
 }
 
@@ -10850,6 +11068,82 @@ func (s *DomainStatus) SetUpgradeProcessing(v bool) *DomainStatus {
 // SetVPCOptions sets the VPCOptions field's value.
 func (s *DomainStatus) SetVPCOptions(v *VPCDerivedInfo) *DomainStatus {
 	s.VPCOptions = v
+	return s
+}
+
+// Information about the progress of a pre-upgrade dry run analysis.
+type DryRunProgressStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the dry run was initiated.
+	//
+	// CreationDate is a required field
+	CreationDate *string `type:"string" required:"true"`
+
+	// The unique identifier of the dry run.
+	//
+	// DryRunId is a required field
+	DryRunId *string `min:"36" type:"string" required:"true"`
+
+	// The current status of the dry run.
+	//
+	// DryRunStatus is a required field
+	DryRunStatus *string `type:"string" required:"true"`
+
+	// The timestamp when the dry run was last updated.
+	//
+	// UpdateDate is a required field
+	UpdateDate *string `type:"string" required:"true"`
+
+	// Any validation failures that occurred as a result of the dry run.
+	ValidationFailures []*ValidationFailure `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunProgressStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunProgressStatus) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *DryRunProgressStatus) SetCreationDate(v string) *DryRunProgressStatus {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDryRunId sets the DryRunId field's value.
+func (s *DryRunProgressStatus) SetDryRunId(v string) *DryRunProgressStatus {
+	s.DryRunId = &v
+	return s
+}
+
+// SetDryRunStatus sets the DryRunStatus field's value.
+func (s *DryRunProgressStatus) SetDryRunStatus(v string) *DryRunProgressStatus {
+	s.DryRunStatus = &v
+	return s
+}
+
+// SetUpdateDate sets the UpdateDate field's value.
+func (s *DryRunProgressStatus) SetUpdateDate(v string) *DryRunProgressStatus {
+	s.UpdateDate = &v
+	return s
+}
+
+// SetValidationFailures sets the ValidationFailures field's value.
+func (s *DryRunProgressStatus) SetValidationFailures(v []*ValidationFailure) *DryRunProgressStatus {
+	s.ValidationFailures = v
 	return s
 }
 
@@ -15460,8 +15754,18 @@ type UpdateDomainConfigInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
 	// This flag, when set to True, specifies whether the UpdateDomain request should
-	// return the results of validation check without actually applying the change.
+	// return the results of a dry run analysis without actually applying the change.
+	// A dry run determines what type of deployment the update will cause.
 	DryRun *bool `type:"boolean"`
+
+	// The type of dry run to perform.
+	//
+	//    * Basic only returns the type of deployment (blue/green or dynamic) that
+	//    the update will cause.
+	//
+	//    * Verbose runs an additional check to validate the changes you're making.
+	//    For more information, see Validating a domain update (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-configuration-changes#validation-check).
+	DryRunMode *string `type:"string" enum:"DryRunMode"`
 
 	// The type and size of the EBS volume to attach to instances in the domain.
 	EBSOptions *EBSOptions `type:"structure"`
@@ -15613,6 +15917,12 @@ func (s *UpdateDomainConfigInput) SetDryRun(v bool) *UpdateDomainConfigInput {
 	return s
 }
 
+// SetDryRunMode sets the DryRunMode field's value.
+func (s *UpdateDomainConfigInput) SetDryRunMode(v string) *UpdateDomainConfigInput {
+	s.DryRunMode = &v
+	return s
+}
+
 // SetEBSOptions sets the EBSOptions field's value.
 func (s *UpdateDomainConfigInput) SetEBSOptions(v *EBSOptions) *UpdateDomainConfigInput {
 	s.EBSOptions = v
@@ -15659,7 +15969,10 @@ type UpdateDomainConfigOutput struct {
 	// DomainConfig is a required field
 	DomainConfig *DomainConfig `type:"structure" required:"true"`
 
-	// Results of a dry run performed in an update domain request.
+	// The status of the dry run being performed on the domain, if any.
+	DryRunProgressStatus *DryRunProgressStatus `type:"structure"`
+
+	// Results of the dry run performed in the update domain request.
 	DryRunResults *DryRunResults `type:"structure"`
 }
 
@@ -15684,6 +15997,12 @@ func (s UpdateDomainConfigOutput) GoString() string {
 // SetDomainConfig sets the DomainConfig field's value.
 func (s *UpdateDomainConfigOutput) SetDomainConfig(v *DomainConfig) *UpdateDomainConfigOutput {
 	s.DomainConfig = v
+	return s
+}
+
+// SetDryRunProgressStatus sets the DryRunProgressStatus field's value.
+func (s *UpdateDomainConfigOutput) SetDryRunProgressStatus(v *DryRunProgressStatus) *UpdateDomainConfigOutput {
+	s.DryRunProgressStatus = v
 	return s
 }
 
@@ -16439,6 +16758,48 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A validation failure that occurred as the result of a pre-update validation
+// check (verbose dry run) on a domain.
+type ValidationFailure struct {
+	_ struct{} `type:"structure"`
+
+	// The error code of the failure.
+	Code *string `type:"string"`
+
+	// A message corresponding to the failure.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationFailure) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationFailure) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ValidationFailure) SetCode(v string) *ValidationFailure {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ValidationFailure) SetMessage(v string) *ValidationFailure {
+	s.Message = &v
+	return s
+}
+
 // The status of the the OpenSearch or Elasticsearch version options for the
 // specified Amazon OpenSearch Service domain.
 type VersionStatus struct {
@@ -16857,6 +17218,22 @@ func DomainPackageStatus_Values() []string {
 		DomainPackageStatusActive,
 		DomainPackageStatusDissociating,
 		DomainPackageStatusDissociationFailed,
+	}
+}
+
+const (
+	// DryRunModeBasic is a DryRunMode enum value
+	DryRunModeBasic = "Basic"
+
+	// DryRunModeVerbose is a DryRunMode enum value
+	DryRunModeVerbose = "Verbose"
+)
+
+// DryRunMode_Values returns all elements of the DryRunMode enum
+func DryRunMode_Values() []string {
+	return []string{
+		DryRunModeBasic,
+		DryRunModeVerbose,
 	}
 }
 

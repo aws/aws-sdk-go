@@ -3846,6 +3846,16 @@ func (s *CreateConfigOutput) SetConfigType(v string) *CreateConfigOutput {
 type CreateDataflowEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// Amount of time, in seconds, after a contact ends for the contact to remain
+	// in a POSTPASS state. A CloudWatch event is emitted when the contact enters
+	// and exits the POSTPASS state.
+	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" min:"120" type:"integer"`
+
+	// Amount of time, in seconds, prior to contact start for the contact to remain
+	// in a PREPASS state. A CloudWatch event is emitted when the contact enters
+	// and exits the PREPASS state.
+	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" min:"120" type:"integer"`
+
 	// Endpoint details of each endpoint in the dataflow endpoint group.
 	//
 	// EndpointDetails is a required field
@@ -3876,6 +3886,12 @@ func (s CreateDataflowEndpointGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDataflowEndpointGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDataflowEndpointGroupInput"}
+	if s.ContactPostPassDurationSeconds != nil && *s.ContactPostPassDurationSeconds < 120 {
+		invalidParams.Add(request.NewErrParamMinValue("ContactPostPassDurationSeconds", 120))
+	}
+	if s.ContactPrePassDurationSeconds != nil && *s.ContactPrePassDurationSeconds < 120 {
+		invalidParams.Add(request.NewErrParamMinValue("ContactPrePassDurationSeconds", 120))
+	}
 	if s.EndpointDetails == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndpointDetails"))
 	}
@@ -3894,6 +3910,18 @@ func (s *CreateDataflowEndpointGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetContactPostPassDurationSeconds sets the ContactPostPassDurationSeconds field's value.
+func (s *CreateDataflowEndpointGroupInput) SetContactPostPassDurationSeconds(v int64) *CreateDataflowEndpointGroupInput {
+	s.ContactPostPassDurationSeconds = &v
+	return s
+}
+
+// SetContactPrePassDurationSeconds sets the ContactPrePassDurationSeconds field's value.
+func (s *CreateDataflowEndpointGroupInput) SetContactPrePassDurationSeconds(v int64) *CreateDataflowEndpointGroupInput {
+	s.ContactPrePassDurationSeconds = &v
+	return s
 }
 
 // SetEndpointDetails sets the EndpointDetails field's value.
@@ -6296,6 +6324,16 @@ func (s *GetDataflowEndpointGroupInput) SetDataflowEndpointGroupId(v string) *Ge
 type GetDataflowEndpointGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Amount of time, in seconds, after a contact ends for the contact to remain
+	// in a POSTPASS state. A CloudWatch event is emitted when the contact enters
+	// and exits the POSTPASS state.
+	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" min:"120" type:"integer"`
+
+	// Amount of time, in seconds, prior to contact start for the contact to remain
+	// in a PREPASS state. A CloudWatch event is emitted when the contact enters
+	// and exits the PREPASS state.
+	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" min:"120" type:"integer"`
+
 	// ARN of a dataflow endpoint group.
 	DataflowEndpointGroupArn *string `locationName:"dataflowEndpointGroupArn" type:"string"`
 
@@ -6325,6 +6363,18 @@ func (s GetDataflowEndpointGroupOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetDataflowEndpointGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetContactPostPassDurationSeconds sets the ContactPostPassDurationSeconds field's value.
+func (s *GetDataflowEndpointGroupOutput) SetContactPostPassDurationSeconds(v int64) *GetDataflowEndpointGroupOutput {
+	s.ContactPostPassDurationSeconds = &v
+	return s
+}
+
+// SetContactPrePassDurationSeconds sets the ContactPrePassDurationSeconds field's value.
+func (s *GetDataflowEndpointGroupOutput) SetContactPrePassDurationSeconds(v int64) *GetDataflowEndpointGroupOutput {
+	s.ContactPrePassDurationSeconds = &v
+	return s
 }
 
 // SetDataflowEndpointGroupArn sets the DataflowEndpointGroupArn field's value.

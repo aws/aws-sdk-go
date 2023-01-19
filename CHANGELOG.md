@@ -1,3 +1,25 @@
+Release v1.44.183 (2023-01-19)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/codeartifact`: Updates service documentation
+* `service/connect`: Updates service API and documentation
+* `service/connectparticipant`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Adds SSM Parameter Resource Aliasing support to EC2 Launch Templates. Launch Templates can now store parameter aliases in place of AMI Resource IDs. CreateLaunchTemplateVersion and DescribeLaunchTemplateVersions now support a convenience flag, ResolveAlias, to return the resolved parameter value.
+* `service/glue`: Updates service API and documentation
+  * Release Glue Studio Hudi Data Lake Format for SDK/CLI
+* `service/groundstation`: Updates service API, documentation, and waiters
+* `service/logs`: Updates service API and documentation
+  * Bug fix - Removed the regex pattern validation from CoralModel to avoid potential security issue.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive adds support for SCTE 35 preRollMilliSeconds.
+* `service/opensearch`: Updates service API and documentation
+* `service/panorama`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * HyperParameterTuningJobs now allow passing environment variables into the corresponding TrainingJobs
+
 Release v1.44.182 (2023-01-18)
 ===
 

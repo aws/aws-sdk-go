@@ -959,15 +959,18 @@
         "Contact$Id": "<p>The identifier for the contact.</p>",
         "Contact$InitialContactId": "<p>If this contact is related to other contacts, this is the ID of the initial contact.</p>",
         "Contact$PreviousContactId": "<p>If this contact is not the first contact, this is the ID of the previous contact.</p>",
+        "Contact$RelatedContactId": "<p>The contactId that is <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid\">related</a> to this contact.</p>",
         "DescribeContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "DismissUserContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "GetContactAttributesRequest$InitialContactId": "<p>The identifier of the initial contact.</p>",
         "ListContactReferencesRequest$ContactId": "<p>The identifier of the initial contact.</p>",
         "MonitorContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "MonitorContactResponse$ContactId": "<p>The identifier of the contact.</p>",
+        "PersistentChat$SourceContactId": "<p>The contactId from which a persistent chat session must be started.</p>",
         "ResumeContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "ResumeContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "StartChatContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance. </p>",
+        "StartChatContactResponse$ContinuedFromContactId": "<p>The contactId from which a persistent chat session is started. This field is populated only for persistent chats.</p>",
         "StartContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "StartContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "StartContactStreamingRequest$ContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
@@ -3273,6 +3276,12 @@
         "UpdateSecurityProfileRequest$Permissions": "<p>The permissions granted to a security profile. For a list of valid permissions, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html\">List of security profile permissions</a>.</p>"
       }
     },
+    "PersistentChat": {
+      "base": "<p>Enable persistent chats. For more information about enabling persistent chat, and for example use cases and how to configure for them, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html\">Enable persistent chat</a>.</p>",
+      "refs": {
+        "StartChatContactRequest$PersistentChat": "<p>Enable persistent chats. For more information about enabling persistent chat, and for example use cases and how to configure for them, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html\">Enable persistent chat</a>.</p>"
+      }
+    },
     "PhoneNumber": {
       "base": null,
       "refs": {
@@ -3778,6 +3787,12 @@
         "Reference$Value": "<p>A valid value for the reference. For example, for a URL reference, a formatted URL that is displayed to an agent in the Contact Control Panel (CCP).</p>",
         "StringReference$Value": "<p>A valid string.</p>",
         "UrlReference$Value": "<p>A valid URL.</p>"
+      }
+    },
+    "RehydrationType": {
+      "base": null,
+      "refs": {
+        "PersistentChat$RehydrationType": "<p>The contactId that is used for rehydration depends on the rehydration type. RehydrationType is required for persistent chat. </p> <ul> <li> <p> <code>ENTIRE_PAST_SESSION</code>: Rehydrates a chat from the most recently terminated past chat contact of the specified past ended chat session. To use this type, provide the <code>initialContactId</code> of the past ended chat session in the <code>sourceContactId</code> field. In this type, Amazon Connect determines the most recent chat contact on the specified chat session that has ended, and uses it to start a persistent chat. </p> </li> <li> <p> <code>FROM_SEGMENT</code>: Rehydrates a chat from the past chat contact that is specified in the <code>sourceContactId</code> field. </p> </li> </ul> <p>The actual contactId used for rehydration is provided in the response of this API. </p>"
       }
     },
     "ReleasePhoneNumberRequest": {

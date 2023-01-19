@@ -144,8 +144,8 @@ func (c *Panorama) CreateJobForDevicesRequest(input *CreateJobForDevicesInput) (
 
 // CreateJobForDevices API operation for AWS Panorama.
 //
-// Creates a job to run on one or more devices. A job can update a device's
-// software or reboot it.
+// Creates a job to run on a device. A job can update a device's software or
+// reboot it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4066,7 +4066,7 @@ func (s *CreateApplicationInstanceOutput) SetApplicationInstanceId(v string) *Cr
 type CreateJobForDevicesInput struct {
 	_ struct{} `type:"structure"`
 
-	// IDs of target devices.
+	// ID of target device.
 	//
 	// DeviceIds is a required field
 	DeviceIds []*string `min:"1" type:"list" required:"true"`
@@ -9170,6 +9170,9 @@ func (s *NtpStatus) SetNtpServerName(v string) *NtpStatus {
 type OTAJobConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Whether to apply the update if it is a major version change.
+	AllowMajorVersionUpdate *bool `type:"boolean"`
+
 	// The target version of the device software.
 	//
 	// ImageVersion is a required field
@@ -9208,6 +9211,12 @@ func (s *OTAJobConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowMajorVersionUpdate sets the AllowMajorVersionUpdate field's value.
+func (s *OTAJobConfig) SetAllowMajorVersionUpdate(v bool) *OTAJobConfig {
+	s.AllowMajorVersionUpdate = &v
+	return s
 }
 
 // SetImageVersion sets the ImageVersion field's value.

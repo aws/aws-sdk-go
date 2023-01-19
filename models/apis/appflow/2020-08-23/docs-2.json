@@ -59,6 +59,7 @@
         "MarketoConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Marketo resources. </p>",
         "OAuth2Credentials$accessToken": "<p>The access token used to access the connector on your behalf.</p>",
         "OAuthCredentials$accessToken": "<p> The access token used to access protected SAPOData resources. </p>",
+        "PardotConnectorProfileCredentials$accessToken": "<p>The credentials used to access protected Salesforce Pardot resources.</p>",
         "SalesforceConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Salesforce resources. </p>",
         "SlackConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Slack resources. </p>",
         "ZendeskConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Zendesk resources. </p>"
@@ -251,6 +252,7 @@
         "ErrorHandlingConfig$failOnFirstDestinationError": "<p> Specifies if the flow should fail after the first instance of a failure when attempting to place data in the destination. </p>",
         "OAuth2CustomParameter$isRequired": "<p>Indicates whether the custom parameter for OAuth 2.0 authentication is required.</p>",
         "OAuth2CustomParameter$isSensitiveField": "<p>Indicates whether this authentication custom parameter is a sensitive field.</p>",
+        "PardotConnectorProfileProperties$isSandboxEnvironment": "<p>Indicates whether the connector profile applies to a sandbox or production environment.</p>",
         "RedshiftConnectorProfileProperties$isRedshiftServerless": "<p>Indicates whether the connector profile defines a connection to an Amazon Redshift Serverless data warehouse.</p>",
         "SalesforceConnectorProfileProperties$isSandboxEnvironment": "<p> Indicates whether the connector profile applies to a sandbox or production environment. </p>",
         "SalesforceSourceProperties$enableDynamicFieldUpdate": "<p> The flag that enables dynamic fetching of new (recently added) fields in the Salesforce objects while running a flow. </p>",
@@ -291,6 +293,12 @@
         "UpsolverDestinationProperties$bucketPrefix": "<p> The object key for the destination Upsolver Amazon S3 bucket in which Amazon AppFlow places the files. </p>"
       }
     },
+    "BusinessUnitId": {
+      "base": null,
+      "refs": {
+        "PardotConnectorProfileProperties$businessUnitId": "<p>The business unit id of Salesforce Pardot instance.</p>"
+      }
+    },
     "CatalogType": {
       "base": null,
       "refs": {
@@ -300,6 +308,7 @@
     "ClientCredentialsArn": {
       "base": null,
       "refs": {
+        "PardotConnectorProfileCredentials$clientCredentialsArn": "<p>The secret manager ARN, which contains the client ID and client secret of the connected app.</p>",
         "SalesforceConnectorProfileCredentials$clientCredentialsArn": "<p> The secret manager ARN, which contains the client ID and client secret of the connected app. </p>"
       }
     },
@@ -468,6 +477,7 @@
         "MarketoConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "OAuth2Credentials$oAuthRequest": null,
         "OAuthCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
+        "PardotConnectorProfileCredentials$oAuthRequest": null,
         "SalesforceConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "SlackConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "ZendeskConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>"
@@ -1368,6 +1378,7 @@
         "DynatraceConnectorProfileProperties$instanceUrl": "<p> The location of the Dynatrace resource. </p>",
         "InforNexusConnectorProfileProperties$instanceUrl": "<p> The location of the Infor Nexus resource. </p>",
         "MarketoConnectorProfileProperties$instanceUrl": "<p> The location of the Marketo resource. </p>",
+        "PardotConnectorProfileProperties$instanceUrl": "<p>The location of the Salesforce Pardot resource.</p>",
         "SalesforceConnectorProfileProperties$instanceUrl": "<p> The location of the Salesforce resource. </p>",
         "ServiceNowConnectorProfileProperties$instanceUrl": "<p> The location of the ServiceNow resource. </p>",
         "SlackConnectorProfileProperties$instanceUrl": "<p> The location of the Slack resource. </p>",
@@ -1683,6 +1694,7 @@
         "InforNexusSourceProperties$object": "<p> The object specified in the Infor Nexus flow source. </p>",
         "MarketoDestinationProperties$object": "<p>The object specified in the Marketo flow destination.</p>",
         "MarketoSourceProperties$object": "<p> The object specified in the Marketo flow source. </p>",
+        "PardotSourceProperties$object": "<p>The object specified in the Salesforce Pardot flow source.</p>",
         "RedshiftDestinationProperties$object": "<p> The object specified in the Amazon Redshift flow destination. </p>",
         "SAPODataDestinationProperties$objectPath": "<p>The object path specified in the SAPOData flow destination.</p>",
         "SAPODataSourceProperties$objectPath": "<p> The object path specified in the SAPOData flow source. </p>",
@@ -1721,6 +1733,36 @@
       "base": null,
       "refs": {
         "SupportedOperatorList$member": null
+      }
+    },
+    "PardotConnectorOperator": {
+      "base": null,
+      "refs": {
+        "ConnectorOperator$Pardot": "<p>The operation to be performed on the provided Salesforce Pardot source fields.</p>"
+      }
+    },
+    "PardotConnectorProfileCredentials": {
+      "base": "<p>The connector-specific profile credentials required when using Salesforce Pardot.</p>",
+      "refs": {
+        "ConnectorProfileCredentials$Pardot": "<p>The connector-specific credentials required when using Salesforce Pardot.</p>"
+      }
+    },
+    "PardotConnectorProfileProperties": {
+      "base": "<p>The connector-specific profile properties required when using Salesforce Pardot.</p>",
+      "refs": {
+        "ConnectorProfileProperties$Pardot": "<p>The connector-specific properties required by Salesforce Pardot.</p>"
+      }
+    },
+    "PardotMetadata": {
+      "base": "<p>The connector metadata specific to Salesforce Pardot.</p>",
+      "refs": {
+        "ConnectorMetadata$Pardot": "<p>The connector metadata specific to Salesforce Pardot.</p>"
+      }
+    },
+    "PardotSourceProperties": {
+      "base": "<p>The properties that are applied when Salesforce Pardot is being used as a source.</p>",
+      "refs": {
+        "SourceConnectorProperties$Pardot": "<p>Specifies the information that is required for querying Salesforce Pardot.</p>"
       }
     },
     "Password": {
@@ -1869,6 +1911,7 @@
         "HoneycodeConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. </p>",
         "OAuth2Credentials$refreshToken": "<p>The refresh token used to refresh an expired access token.</p>",
         "OAuthCredentials$refreshToken": "<p> The refresh token used to refresh expired access token. </p>",
+        "PardotConnectorProfileCredentials$refreshToken": "<p>The credentials used to acquire new access tokens.</p>",
         "SalesforceConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. </p>"
       }
     },

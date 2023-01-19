@@ -3,7 +3,7 @@
   "service": "<p><fullname>AWS Panorama</fullname> <p> <b>Overview</b> </p> <p>This is the <i>AWS Panorama API Reference</i>. For an introduction to the service, see <a href=\"https://docs.aws.amazon.com/panorama/latest/dev/panorama-welcome.html\">What is AWS Panorama?</a> in the <i>AWS Panorama Developer Guide</i>.</p></p>",
   "operations": {
     "CreateApplicationInstance": "<p>Creates an application instance and deploys it to a device.</p>",
-    "CreateJobForDevices": "<p>Creates a job to run on one or more devices. A job can update a device's software or reboot it.</p>",
+    "CreateJobForDevices": "<p>Creates a job to run on a device. A job can update a device's software or reboot it.</p>",
     "CreateNodeFromTemplateJob": "<p>Creates a camera stream node.</p>",
     "CreatePackage": "<p>Creates a package and storage location in an Amazon S3 access point.</p>",
     "CreatePackageImportJob": "<p>Imports a node package.</p>",
@@ -127,7 +127,8 @@
       "base": null,
       "refs": {
         "DeletePackageRequest$ForceDelete": "<p>Delete the package even if it has artifacts stored in its access point. Deletes the package's artifacts from Amazon S3.</p>",
-        "DescribePackageVersionResponse$IsLatestPatch": "<p>Whether the version is the latest available.</p>"
+        "DescribePackageVersionResponse$IsLatestPatch": "<p>Whether the version is the latest available.</p>",
+        "OTAJobConfig$AllowMajorVersionUpdate": "<p>Whether to apply the update if it is a major version change.</p>"
       }
     },
     "Bucket": {
@@ -465,7 +466,7 @@
     "DeviceIdList": {
       "base": null,
       "refs": {
-        "CreateJobForDevicesRequest$DeviceIds": "<p>IDs of target devices.</p>"
+        "CreateJobForDevicesRequest$DeviceIds": "<p>ID of target device.</p>"
       }
     },
     "DeviceJob": {
