@@ -4731,6 +4731,15 @@
         "ExportHiddenFieldsOption":{"shape":"ExportHiddenFieldsOption"}
       }
     },
+    "DataBarsOptions":{
+      "type":"structure",
+      "required":["FieldId"],
+      "members":{
+        "FieldId":{"shape":"FieldId"},
+        "PositiveColor":{"shape":"HexColor"},
+        "NegativeColor":{"shape":"HexColor"}
+      }
+    },
     "DataColor":{
       "type":"structure",
       "members":{
@@ -11298,7 +11307,7 @@
     "PivotMeasureFieldList":{
       "type":"list",
       "member":{"shape":"MeasureField"},
-      "max":20
+      "max":40
     },
     "PivotTableAggregatedFieldWells":{
       "type":"structure",
@@ -11375,7 +11384,7 @@
     "PivotTableDimensionList":{
       "type":"list",
       "member":{"shape":"DimensionField"},
-      "max":20
+      "max":40
     },
     "PivotTableFieldOption":{
       "type":"structure",
@@ -13235,7 +13244,8 @@
         "TableOptions":{"shape":"TableOptions"},
         "TotalOptions":{"shape":"TotalOptions"},
         "FieldOptions":{"shape":"TableFieldOptions"},
-        "PaginatedReportOptions":{"shape":"TablePaginatedReportOptions"}
+        "PaginatedReportOptions":{"shape":"TablePaginatedReportOptions"},
+        "TableInlineVisualizations":{"shape":"TableInlineVisualizationList"}
       }
     },
     "TableFieldCustomIconContent":{
@@ -13321,6 +13331,17 @@
         "TableAggregatedFieldWells":{"shape":"TableAggregatedFieldWells"},
         "TableUnaggregatedFieldWells":{"shape":"TableUnaggregatedFieldWells"}
       }
+    },
+    "TableInlineVisualization":{
+      "type":"structure",
+      "members":{
+        "DataBars":{"shape":"DataBarsOptions"}
+      }
+    },
+    "TableInlineVisualizationList":{
+      "type":"list",
+      "member":{"shape":"TableInlineVisualization"},
+      "max":200
     },
     "TableOptions":{
       "type":"structure",

@@ -4964,6 +4964,9 @@ var awsPartition = partition{
 					Region: "eu-west-3",
 				}: endpoint{},
 				endpointKey{
+					Region: "me-central-1",
+				}: endpoint{},
+				endpointKey{
 					Region: "me-south-1",
 				}: endpoint{},
 				endpointKey{
@@ -9395,6 +9398,15 @@ var awsPartition = partition{
 					Hostname: "elasticfilesystem-fips.eu-south-1.amazonaws.com",
 				},
 				endpointKey{
+					Region: "eu-south-2",
+				}: endpoint{},
+				endpointKey{
+					Region:  "eu-south-2",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "elasticfilesystem-fips.eu-south-2.amazonaws.com",
+				},
+				endpointKey{
 					Region: "eu-west-1",
 				}: endpoint{},
 				endpointKey{
@@ -9544,6 +9556,15 @@ var awsPartition = partition{
 					Hostname: "elasticfilesystem-fips.eu-south-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "eu-south-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region: "fips-eu-south-2",
+				}: endpoint{
+					Hostname: "elasticfilesystem-fips.eu-south-2.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-south-2",
 					},
 					Deprecated: boxedTrue,
 				},
@@ -31586,8 +31607,23 @@ var awsusgovPartition = partition{
 		"databrew": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{
+					Region: "fips-us-gov-west-1",
+				}: endpoint{
+					Hostname: "databrew.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
 					Region: "us-gov-west-1",
 				}: endpoint{},
+				endpointKey{
+					Region:  "us-gov-west-1",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "databrew.us-gov-west-1.amazonaws.com",
+				},
 			},
 		},
 		"datasync": service{

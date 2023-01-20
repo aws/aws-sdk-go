@@ -3015,7 +3015,7 @@ func (s *BatchGetChannelOutput) SetErrors(v []*BatchError) *BatchGetChannelOutpu
 type BatchGetStreamKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Array of ARNs, one per channel.
+	// Array of ARNs, one per stream key.
 	//
 	// Arns is a required field
 	Arns []*string `locationName:"arns" min:"1" type:"list" required:"true"`
@@ -3130,8 +3130,8 @@ type Channel struct {
 	// that recording is enabled. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -3317,8 +3317,8 @@ type ChannelSummary struct {
 	// that recording is enabled. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -5533,6 +5533,9 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value).
+	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
@@ -5640,8 +5643,8 @@ type PlaybackKeyPair struct {
 	// Playback-key-pair name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -5700,8 +5703,8 @@ type PlaybackKeyPairSummary struct {
 	// Playback-key-pair name. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -5866,8 +5869,8 @@ type RecordingConfiguration struct {
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"RecordingConfigurationState"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -5963,8 +5966,8 @@ type RecordingConfigurationSummary struct {
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"RecordingConfigurationState"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -6458,8 +6461,8 @@ type StreamKey struct {
 	// Channel ARN for the stream.
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -6525,8 +6528,8 @@ type StreamKeySummary struct {
 	// Channel ARN for the stream.
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
-	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.
@@ -6878,11 +6881,11 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// Array of tags to be added or updated. See Tagging Amazon Web Services Resources
-	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) for more
-	// information, including restrictions that apply to tags and "Tag naming limits
-	// and requirements"; Amazon IVS has no service-specific constraints beyond
-	// what is documented there.
+	// Array of tags to be added or updated. Array of maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -7096,7 +7099,8 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// Array of tags to be removed. See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// Array of tags to be removed. Array of maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
 	// naming limits and requirements"; Amazon IVS has no service-specific constraints
 	// beyond what is documented there.

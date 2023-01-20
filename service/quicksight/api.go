@@ -10370,8 +10370,16 @@ func (c *QuickSight) RegisterUserRequest(input *RegisterUserInput) (req *request
 
 // RegisterUser API operation for Amazon QuickSight.
 //
-// Creates an Amazon QuickSight user, whose identity is associated with the
-// Identity and Access Management (IAM) identity or role specified in the request.
+// Creates an Amazon QuickSight user whose identity is associated with the Identity
+// and Access Management (IAM) identity or role specified in the request. When
+// you register a new user from the Amazon QuickSight API, Amazon QuickSight
+// generates a registration URL. The user accesses this registration URL to
+// create their account. Amazon QuickSight doesn't send a registration email
+// to users who are registered from the Amazon QuickSight API. If you want new
+// users to receive a registration email, then add those users in the Amazon
+// QuickSight console. For more information on registering a new user in the
+// Amazon QuickSight console, see Inviting users to access Amazon QuickSight
+// (https://docs.aws.amazon.com/quicksight/latest/user/managing-users.html#inviting-users).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -27572,6 +27580,74 @@ func (s DashboardVisualPublishOptions) GoString() string {
 // SetExportHiddenFieldsOption sets the ExportHiddenFieldsOption field's value.
 func (s *DashboardVisualPublishOptions) SetExportHiddenFieldsOption(v *ExportHiddenFieldsOption) *DashboardVisualPublishOptions {
 	s.ExportHiddenFieldsOption = v
+	return s
+}
+
+// The options for data bars.
+type DataBarsOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The field ID for the data bars options.
+	//
+	// FieldId is a required field
+	FieldId *string `min:"1" type:"string" required:"true"`
+
+	// The color of the negative data bar.
+	NegativeColor *string `type:"string"`
+
+	// The color of the positive data bar.
+	PositiveColor *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataBarsOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataBarsOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataBarsOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataBarsOptions"}
+	if s.FieldId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldId"))
+	}
+	if s.FieldId != nil && len(*s.FieldId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldId sets the FieldId field's value.
+func (s *DataBarsOptions) SetFieldId(v string) *DataBarsOptions {
+	s.FieldId = &v
+	return s
+}
+
+// SetNegativeColor sets the NegativeColor field's value.
+func (s *DataBarsOptions) SetNegativeColor(v string) *DataBarsOptions {
+	s.NegativeColor = &v
+	return s
+}
+
+// SetPositiveColor sets the PositiveColor field's value.
+func (s *DataBarsOptions) SetPositiveColor(v string) *DataBarsOptions {
+	s.PositiveColor = &v
 	return s
 }
 
@@ -53615,7 +53691,8 @@ type LogicalTable struct {
 	// Alias is a required field
 	Alias *string `min:"1" type:"string" required:"true"`
 
-	// Transform operations that act on this logical table.
+	// Transform operations that act on this logical table. For this structure to
+	// be valid, only one of the attributes can be non-null.
 	DataTransforms []*TransformOperation `min:"1" type:"list"`
 
 	// Source of this logical table.
@@ -67936,6 +68013,9 @@ type TableConfiguration struct {
 	// The sort configuration for a TableVisual.
 	SortConfiguration *TableSortConfiguration `type:"structure"`
 
+	// A collection of inline visualizations to display within a chart.
+	TableInlineVisualizations []*TableInlineVisualization `type:"list"`
+
 	// The table options for a table visual.
 	TableOptions *TableOptions `type:"structure"`
 
@@ -67979,6 +68059,16 @@ func (s *TableConfiguration) Validate() error {
 			invalidParams.AddNested("SortConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.TableInlineVisualizations != nil {
+		for i, v := range s.TableInlineVisualizations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TableInlineVisualizations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.TableOptions != nil {
 		if err := s.TableOptions.Validate(); err != nil {
 			invalidParams.AddNested("TableOptions", err.(request.ErrInvalidParams))
@@ -68017,6 +68107,12 @@ func (s *TableConfiguration) SetPaginatedReportOptions(v *TablePaginatedReportOp
 // SetSortConfiguration sets the SortConfiguration field's value.
 func (s *TableConfiguration) SetSortConfiguration(v *TableSortConfiguration) *TableConfiguration {
 	s.SortConfiguration = v
+	return s
+}
+
+// SetTableInlineVisualizations sets the TableInlineVisualizations field's value.
+func (s *TableConfiguration) SetTableInlineVisualizations(v []*TableInlineVisualization) *TableConfiguration {
+	s.TableInlineVisualizations = v
 	return s
 }
 
@@ -68549,6 +68645,53 @@ func (s *TableFieldWells) SetTableAggregatedFieldWells(v *TableAggregatedFieldWe
 // SetTableUnaggregatedFieldWells sets the TableUnaggregatedFieldWells field's value.
 func (s *TableFieldWells) SetTableUnaggregatedFieldWells(v *TableUnaggregatedFieldWells) *TableFieldWells {
 	s.TableUnaggregatedFieldWells = v
+	return s
+}
+
+// The inline visualization of a specific type to display within a chart.
+type TableInlineVisualization struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of the inline visualization of the data bars within a chart.
+	DataBars *DataBarsOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableInlineVisualization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableInlineVisualization) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TableInlineVisualization) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TableInlineVisualization"}
+	if s.DataBars != nil {
+		if err := s.DataBars.Validate(); err != nil {
+			invalidParams.AddNested("DataBars", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataBars sets the DataBars field's value.
+func (s *TableInlineVisualization) SetDataBars(v *DataBarsOptions) *TableInlineVisualization {
+	s.DataBars = v
 	return s
 }
 
@@ -69503,6 +69646,7 @@ type TemplateError struct {
 	// Type of error.
 	Type *string `type:"string" enum:"TemplateErrorType"`
 
+	// An error path that shows which entities caused the template error.
 	ViolatedEntities []*Entity `type:"list"`
 }
 
@@ -69829,7 +69973,21 @@ type TemplateVersion struct {
 	// create this template.
 	SourceEntityArn *string `type:"string"`
 
-	// The HTTP status of the request.
+	// The status that is associated with the template.
+	//
+	//    * CREATION_IN_PROGRESS
+	//
+	//    * CREATION_SUCCESSFUL
+	//
+	//    * CREATION_FAILED
+	//
+	//    * UPDATE_IN_PROGRESS
+	//
+	//    * UPDATE_SUCCESSFUL
+	//
+	//    * UPDATE_FAILED
+	//
+	//    * DELETED
 	Status *string `type:"string" enum:"ResourceStatus"`
 
 	// The ARN of the theme associated with this version of the template.
