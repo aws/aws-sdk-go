@@ -2711,6 +2711,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-central-1" : { },
           "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : {
@@ -5353,6 +5354,12 @@
               "tags" : [ "fips" ]
             } ]
           },
+          "eu-south-2" : {
+            "variants" : [ {
+              "hostname" : "elasticfilesystem-fips.eu-south-2.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
           "eu-west-1" : {
             "variants" : [ {
               "hostname" : "elasticfilesystem-fips.eu-west-1.amazonaws.com",
@@ -5468,6 +5475,13 @@
             },
             "deprecated" : true,
             "hostname" : "elasticfilesystem-fips.eu-south-1.amazonaws.com"
+          },
+          "fips-eu-south-2" : {
+            "credentialScope" : {
+              "region" : "eu-south-2"
+            },
+            "deprecated" : true,
+            "hostname" : "elasticfilesystem-fips.eu-south-2.amazonaws.com"
           },
           "fips-eu-west-1" : {
             "credentialScope" : {
@@ -18732,7 +18746,19 @@
       },
       "databrew" : {
         "endpoints" : {
-          "us-gov-west-1" : { }
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "deprecated" : true,
+            "hostname" : "databrew.us-gov-west-1.amazonaws.com"
+          },
+          "us-gov-west-1" : {
+            "variants" : [ {
+              "hostname" : "databrew.us-gov-west-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          }
         }
       },
       "datasync" : {

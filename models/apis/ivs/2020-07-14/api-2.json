@@ -941,7 +941,8 @@
     "PaginationToken":{
       "type":"string",
       "max":1024,
-      "min":0
+      "min":0,
+      "pattern":"^[a-zA-Z0-9+/=_-]*$"
     },
     "PendingVerification":{
       "type":"structure",

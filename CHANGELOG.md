@@ -1,3 +1,13 @@
+Release v1.44.184 (2023-01-20)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * C6in, M6in, M6idn, R6in and R6idn instances are powered by 3rd Generation Intel Xeon Scalable processors (code named Ice Lake) with an all-core turbo frequency of 3.5 GHz.
+* `service/ivs`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * This release adds support for data bars in QuickSight table and increases pivot table field well limit.
+
 Release v1.44.183 (2023-01-19)
 ===
 
