@@ -30,7 +30,7 @@ var lastModifiedTime = time.Date(2009, 11, 23, 0, 0, 0, 0, time.UTC)
 func TestCopyObjectNoError(t *testing.T) {
 	const successMsg = `
 <?xml version="1.0" encoding="UTF-8"?>
-<CopyObjectResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><LastModified>2009-11-23T0:00:00Z</LastModified><ETag>&quot;1da64c7f13d1e8dbeaea40b905fd586c&quot;</ETag></CopyObjectResult>`
+<CopyObjectResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><LastModified>2009-11-23T00:00:00Z</LastModified><ETag>&quot;1da64c7f13d1e8dbeaea40b905fd586c&quot;</ETag></CopyObjectResult>`
 
 	var responseBodyClosed bool
 	res, err := newCopyTestSvc(successMsg, &responseBodyClosed).CopyObject(&s3.CopyObjectInput{
@@ -80,7 +80,7 @@ func TestCopyObjectError(t *testing.T) {
 func TestUploadPartCopySuccess(t *testing.T) {
 	const successMsg = `
 <?xml version="1.0" encoding="UTF-8"?>
-<UploadPartCopyResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><LastModified>2009-11-23T0:00:00Z</LastModified><ETag>&quot;1da64c7f13d1e8dbeaea40b905fd586c&quot;</ETag></UploadPartCopyResult>`
+<UploadPartCopyResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><LastModified>2009-11-23T00:00:00Z</LastModified><ETag>&quot;1da64c7f13d1e8dbeaea40b905fd586c&quot;</ETag></UploadPartCopyResult>`
 
 	var responseBodyClosed bool
 	res, err := newCopyTestSvc(successMsg, &responseBodyClosed).UploadPartCopy(&s3.UploadPartCopyInput{
