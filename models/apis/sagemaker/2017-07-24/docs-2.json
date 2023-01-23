@@ -10638,13 +10638,13 @@
         "DescribeEndpointOutput$ProductionVariants": "<p>An array of <a>ProductionVariantSummary</a> objects, one for each model hosted behind this endpoint.</p>",
         "DescribeEndpointOutput$ShadowProductionVariants": "<p>An array of <a>ProductionVariantSummary</a> objects, one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.</p>",
         "Endpoint$ProductionVariants": "<p>A list of the production variants hosted on the endpoint. Each production variant is a model.</p>",
-        "Endpoint$ShadowProductionVariants": "<p>A list of the shadow variants hosted on the endpoint. Each shadow variant is a model in shadow mode with production traffic replicated from the proudction variant.</p>"
+        "Endpoint$ShadowProductionVariants": "<p>A list of the shadow variants hosted on the endpoint. Each shadow variant is a model in shadow mode with production traffic replicated from the production variant.</p>"
       }
     },
     "ProductionVariantVolumeSizeInGB": {
       "base": null,
       "refs": {
-        "ProductionVariant$VolumeSizeInGB": "<p>The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Currenly only Amazon EBS gp2 storage volumes are supported.</p>"
+        "ProductionVariant$VolumeSizeInGB": "<p>The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Currently only Amazon EBS gp2 storage volumes are supported.</p>"
       }
     },
     "ProfilerConfig": {

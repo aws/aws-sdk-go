@@ -221,8 +221,8 @@ const (
 	// ErrCodeSnapStartException for service response error code
 	// "SnapStartException".
 	//
-	// The runtime restore hook encountered an error. For more information, check
-	// the Amazon CloudWatch logs.
+	// The afterRestore() runtime hook (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html)
+	// encountered an error. For more information, check the Amazon CloudWatch logs.
 	ErrCodeSnapStartException = "SnapStartException"
 
 	// ErrCodeSnapStartNotReadyException for service response error code
@@ -236,7 +236,7 @@ const (
 	// ErrCodeSnapStartTimeoutException for service response error code
 	// "SnapStartTimeoutException".
 	//
-	// The runtime restore hook failed to complete within the timeout limit (2 seconds).
+	// Lambda couldn't restore the snapshot within the timeout limit.
 	ErrCodeSnapStartTimeoutException = "SnapStartTimeoutException"
 
 	// ErrCodeSubnetIPAddressLimitReachedException for service response error code

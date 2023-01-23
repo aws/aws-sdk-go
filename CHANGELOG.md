@@ -1,3 +1,12 @@
+Release v1.44.185 (2023-01-23)
+===
+
+### Service Client Updates
+* `service/lambda`: Updates service API and documentation
+  * Release Lambda RuntimeManagementConfig, enabling customers to better manage runtime updates to their Lambda functions. This release adds two new APIs, GetRuntimeManagementConfig and PutRuntimeManagementConfig, as well as support on existing Create/Get/Update function APIs.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Inference now supports P4de instance types.
+
 Release v1.44.184 (2023-01-20)
 ===
 

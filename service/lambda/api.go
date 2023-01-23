@@ -284,7 +284,7 @@ func (c *Lambda) CreateAliasRequest(input *CreateAliasInput) (req *request.Reque
 
 // CreateAlias API operation for AWS Lambda.
 //
-// Creates an alias (https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html)
+// Creates an alias (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
 // for a Lambda function version. Use aliases to provide clients with a function
 // identifier that you can update to invoke a different version.
 //
@@ -868,7 +868,7 @@ func (c *Lambda) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Reque
 
 // DeleteAlias API operation for AWS Lambda.
 //
-// Deletes a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html).
+// Deletes a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1883,7 +1883,7 @@ func (c *Lambda) GetAliasRequest(input *GetAliasInput) (req *request.Request, ou
 
 // GetAlias API operation for AWS Lambda.
 //
-// Returns details about a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html).
+// Returns details about a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3102,6 +3102,99 @@ func (c *Lambda) GetProvisionedConcurrencyConfigWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opGetRuntimeManagementConfig = "GetRuntimeManagementConfig"
+
+// GetRuntimeManagementConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetRuntimeManagementConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRuntimeManagementConfig for more information on using the GetRuntimeManagementConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetRuntimeManagementConfigRequest method.
+//	req, resp := client.GetRuntimeManagementConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetRuntimeManagementConfig
+func (c *Lambda) GetRuntimeManagementConfigRequest(input *GetRuntimeManagementConfigInput) (req *request.Request, output *GetRuntimeManagementConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetRuntimeManagementConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-07-20/functions/{FunctionName}/runtime-management-config",
+	}
+
+	if input == nil {
+		input = &GetRuntimeManagementConfigInput{}
+	}
+
+	output = &GetRuntimeManagementConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRuntimeManagementConfig API operation for AWS Lambda.
+//
+// Retrieves the runtime management configuration for a function's version.
+// If the runtime update mode is Manual, this includes the ARN of the runtime
+// version and the runtime update mode. If the runtime update mode is Auto or
+// Function update, this includes the runtime update mode and null is returned
+// for the ARN. For more information, see Runtime updates (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation GetRuntimeManagementConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     The Lambda service encountered an internal error.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
+//
+//   - InvalidParameterValueException
+//     One of the parameters in the request is not valid.
+//
+//   - TooManyRequestsException
+//     The request throughput limit was exceeded. For more information, see Lambda
+//     quotas (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetRuntimeManagementConfig
+func (c *Lambda) GetRuntimeManagementConfig(input *GetRuntimeManagementConfigInput) (*GetRuntimeManagementConfigOutput, error) {
+	req, out := c.GetRuntimeManagementConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetRuntimeManagementConfigWithContext is the same as GetRuntimeManagementConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRuntimeManagementConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) GetRuntimeManagementConfigWithContext(ctx aws.Context, input *GetRuntimeManagementConfigInput, opts ...request.Option) (*GetRuntimeManagementConfigOutput, error) {
+	req, out := c.GetRuntimeManagementConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opInvoke = "Invoke"
 
 // InvokeRequest generates a "aws/request.Request" representing the
@@ -3246,11 +3339,11 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //     An error occurred when reading from or writing to a connected file system.
 //
 //   - SnapStartException
-//     The runtime restore hook encountered an error. For more information, check
-//     the Amazon CloudWatch logs.
+//     The afterRestore() runtime hook (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html)
+//     encountered an error. For more information, check the Amazon CloudWatch logs.
 //
 //   - SnapStartTimeoutException
-//     The runtime restore hook failed to complete within the timeout limit (2 seconds).
+//     Lambda couldn't restore the snapshot within the timeout limit.
 //
 //   - SnapStartNotReadyException
 //     Lambda is initializing your function. You can invoke the function when the
@@ -3473,7 +3566,7 @@ func (c *Lambda) ListAliasesRequest(input *ListAliasesInput) (req *request.Reque
 
 // ListAliases API operation for AWS Lambda.
 //
-// Returns a list of aliases (https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html)
+// Returns a list of aliases (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
 // for a Lambda function.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4210,8 +4303,8 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *request.R
 //
 // The ListFunctions operation returns a subset of the FunctionConfiguration
 // fields. To get the additional fields (State, StateReasonCode, StateReason,
-// LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode) for
-// a function or version, use GetFunction.
+// LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig)
+// for a function or version, use GetFunction.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5741,6 +5834,99 @@ func (c *Lambda) PutProvisionedConcurrencyConfigWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opPutRuntimeManagementConfig = "PutRuntimeManagementConfig"
+
+// PutRuntimeManagementConfigRequest generates a "aws/request.Request" representing the
+// client's request for the PutRuntimeManagementConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutRuntimeManagementConfig for more information on using the PutRuntimeManagementConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutRuntimeManagementConfigRequest method.
+//	req, resp := client.PutRuntimeManagementConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutRuntimeManagementConfig
+func (c *Lambda) PutRuntimeManagementConfigRequest(input *PutRuntimeManagementConfigInput) (req *request.Request, output *PutRuntimeManagementConfigOutput) {
+	op := &request.Operation{
+		Name:       opPutRuntimeManagementConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2021-07-20/functions/{FunctionName}/runtime-management-config",
+	}
+
+	if input == nil {
+		input = &PutRuntimeManagementConfigInput{}
+	}
+
+	output = &PutRuntimeManagementConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutRuntimeManagementConfig API operation for AWS Lambda.
+//
+// Sets the runtime management configuration for a function's version. For more
+// information, see Runtime updates (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation PutRuntimeManagementConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     The Lambda service encountered an internal error.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request does not exist.
+//
+//   - ResourceConflictException
+//     The resource already exists, or another operation is in progress.
+//
+//   - InvalidParameterValueException
+//     One of the parameters in the request is not valid.
+//
+//   - TooManyRequestsException
+//     The request throughput limit was exceeded. For more information, see Lambda
+//     quotas (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutRuntimeManagementConfig
+func (c *Lambda) PutRuntimeManagementConfig(input *PutRuntimeManagementConfigInput) (*PutRuntimeManagementConfigOutput, error) {
+	req, out := c.PutRuntimeManagementConfigRequest(input)
+	return out, req.Send()
+}
+
+// PutRuntimeManagementConfigWithContext is the same as PutRuntimeManagementConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutRuntimeManagementConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) PutRuntimeManagementConfigWithContext(ctx aws.Context, input *PutRuntimeManagementConfigInput, opts ...request.Option) (*PutRuntimeManagementConfigOutput, error) {
+	req, out := c.PutRuntimeManagementConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRemoveLayerVersionPermission = "RemoveLayerVersionPermission"
 
 // RemoveLayerVersionPermissionRequest generates a "aws/request.Request" representing the
@@ -6166,7 +6352,7 @@ func (c *Lambda) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Reque
 
 // UpdateAlias API operation for AWS Lambda.
 //
-// Updates the configuration of a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html).
+// Updates the configuration of a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7411,7 +7597,7 @@ func (s *AddPermissionOutput) SetStatement(v string) *AddPermissionOutput {
 	return s
 }
 
-// Provides configuration information about a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html).
+// Provides configuration information about a Lambda function alias (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html).
 type AliasConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -11438,6 +11624,9 @@ type FunctionConfiguration struct {
 	// The runtime environment for the Lambda function.
 	Runtime *string `type:"string" enum:"Runtime"`
 
+	// The ARN of the runtime and any errors that occured.
+	RuntimeVersionConfig *RuntimeVersionConfig `type:"structure"`
+
 	// The ARN of the signing job.
 	SigningJobArn *string `type:"string"`
 
@@ -11633,6 +11822,12 @@ func (s *FunctionConfiguration) SetRole(v string) *FunctionConfiguration {
 // SetRuntime sets the Runtime field's value.
 func (s *FunctionConfiguration) SetRuntime(v string) *FunctionConfiguration {
 	s.Runtime = &v
+	return s
+}
+
+// SetRuntimeVersionConfig sets the RuntimeVersionConfig field's value.
+func (s *FunctionConfiguration) SetRuntimeVersionConfig(v *RuntimeVersionConfig) *FunctionConfiguration {
+	s.RuntimeVersionConfig = v
 	return s
 }
 
@@ -13552,6 +13747,121 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatus(v string) *GetProvisio
 // SetStatusReason sets the StatusReason field's value.
 func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetProvisionedConcurrencyConfigOutput {
 	s.StatusReason = &v
+	return s
+}
+
+type GetRuntimeManagementConfigInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the Lambda function.
+	//
+	// Name formats
+	//
+	//    * Function name – my-function.
+	//
+	//    * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.
+	//
+	//    * Partial ARN – 123456789012:function:my-function.
+	//
+	// The length constraint applies only to the full ARN. If you specify only the
+	// function name, it is limited to 64 characters in length.
+	//
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+
+	// Specify a version of the function. This can be $LATEST or a published version
+	// number. If no value is specified, the configuration for the $LATEST version
+	// is returned.
+	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRuntimeManagementConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRuntimeManagementConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRuntimeManagementConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRuntimeManagementConfigInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.Qualifier != nil && len(*s.Qualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *GetRuntimeManagementConfigInput) SetFunctionName(v string) *GetRuntimeManagementConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+// SetQualifier sets the Qualifier field's value.
+func (s *GetRuntimeManagementConfigInput) SetQualifier(v string) *GetRuntimeManagementConfigInput {
+	s.Qualifier = &v
+	return s
+}
+
+type GetRuntimeManagementConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the runtime the function is configured to use. If the runtime
+	// update mode is Manual, the ARN is returned, otherwise null is returned.
+	RuntimeVersionArn *string `min:"26" type:"string"`
+
+	// The current runtime update mode of the function.
+	UpdateRuntimeOn *string `type:"string" enum:"UpdateRuntimeOn"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRuntimeManagementConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRuntimeManagementConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetRuntimeVersionArn sets the RuntimeVersionArn field's value.
+func (s *GetRuntimeManagementConfigOutput) SetRuntimeVersionArn(v string) *GetRuntimeManagementConfigOutput {
+	s.RuntimeVersionArn = &v
+	return s
+}
+
+// SetUpdateRuntimeOn sets the UpdateRuntimeOn field's value.
+func (s *GetRuntimeManagementConfigOutput) SetUpdateRuntimeOn(v string) *GetRuntimeManagementConfigOutput {
+	s.UpdateRuntimeOn = &v
 	return s
 }
 
@@ -17771,6 +18081,181 @@ func (s *PutProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *PutPr
 	return s
 }
 
+type PutRuntimeManagementConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Lambda function.
+	//
+	// Name formats
+	//
+	//    * Function name – my-function.
+	//
+	//    * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.
+	//
+	//    * Partial ARN – 123456789012:function:my-function.
+	//
+	// The length constraint applies only to the full ARN. If you specify only the
+	// function name, it is limited to 64 characters in length.
+	//
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+
+	// Specify a version of the function. This can be $LATEST or a published version
+	// number. If no value is specified, the configuration for the $LATEST version
+	// is returned.
+	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
+
+	// The ARN of the runtime version you want the function to use.
+	//
+	// This is only required if you're using the Manual runtime update mode.
+	RuntimeVersionArn *string `min:"26" type:"string"`
+
+	// Specify the runtime update mode.
+	//
+	//    * Auto (default) - Automatically update to the most recent and secure
+	//    runtime version using a Two-phase runtime version rollout (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html#runtime-management-two-phase).
+	//    This is the best choice for most customers to ensure they always benefit
+	//    from runtime updates.
+	//
+	//    * Function update - Lambda updates the runtime of your function to the
+	//    most recent and secure runtime version when you update your function.
+	//    This approach synchronizes runtime updates with function deployments,
+	//    giving you control over when runtime updates are applied and allowing
+	//    you to detect and mitigate rare runtime update incompatibilities early.
+	//    When using this setting, you need to regularly update your functions to
+	//    keep their runtime up-to-date.
+	//
+	//    * Manual - You specify a runtime version in your function configuration.
+	//    The function will use this runtime version indefinitely. In the rare case
+	//    where a new runtime version is incompatible with an existing function,
+	//    this allows you to roll back your function to an earlier runtime version.
+	//    For more information, see Roll back a runtime version (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html#runtime-management-rollback).
+	//
+	// UpdateRuntimeOn is a required field
+	UpdateRuntimeOn *string `type:"string" required:"true" enum:"UpdateRuntimeOn"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuntimeManagementConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuntimeManagementConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRuntimeManagementConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRuntimeManagementConfigInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.Qualifier != nil && len(*s.Qualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualifier", 1))
+	}
+	if s.RuntimeVersionArn != nil && len(*s.RuntimeVersionArn) < 26 {
+		invalidParams.Add(request.NewErrParamMinLen("RuntimeVersionArn", 26))
+	}
+	if s.UpdateRuntimeOn == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateRuntimeOn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *PutRuntimeManagementConfigInput) SetFunctionName(v string) *PutRuntimeManagementConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+// SetQualifier sets the Qualifier field's value.
+func (s *PutRuntimeManagementConfigInput) SetQualifier(v string) *PutRuntimeManagementConfigInput {
+	s.Qualifier = &v
+	return s
+}
+
+// SetRuntimeVersionArn sets the RuntimeVersionArn field's value.
+func (s *PutRuntimeManagementConfigInput) SetRuntimeVersionArn(v string) *PutRuntimeManagementConfigInput {
+	s.RuntimeVersionArn = &v
+	return s
+}
+
+// SetUpdateRuntimeOn sets the UpdateRuntimeOn field's value.
+func (s *PutRuntimeManagementConfigInput) SetUpdateRuntimeOn(v string) *PutRuntimeManagementConfigInput {
+	s.UpdateRuntimeOn = &v
+	return s
+}
+
+type PutRuntimeManagementConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the function
+	//
+	// FunctionArn is a required field
+	FunctionArn *string `type:"string" required:"true"`
+
+	// The ARN of the runtime the function is configured to use. If the runtime
+	// update mode is manual, the ARN is returned, otherwise null is returned.
+	RuntimeVersionArn *string `min:"26" type:"string"`
+
+	// The runtime update mode.
+	//
+	// UpdateRuntimeOn is a required field
+	UpdateRuntimeOn *string `type:"string" required:"true" enum:"UpdateRuntimeOn"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuntimeManagementConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuntimeManagementConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *PutRuntimeManagementConfigOutput) SetFunctionArn(v string) *PutRuntimeManagementConfigOutput {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetRuntimeVersionArn sets the RuntimeVersionArn field's value.
+func (s *PutRuntimeManagementConfigOutput) SetRuntimeVersionArn(v string) *PutRuntimeManagementConfigOutput {
+	s.RuntimeVersionArn = &v
+	return s
+}
+
+// SetUpdateRuntimeOn sets the UpdateRuntimeOn field's value.
+func (s *PutRuntimeManagementConfigOutput) SetUpdateRuntimeOn(v string) *PutRuntimeManagementConfigOutput {
+	s.UpdateRuntimeOn = &v
+	return s
+}
+
 type RemoveLayerVersionPermissionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -18345,6 +18830,94 @@ func (s *ResourceNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The ARN of the runtime and any errors that occured.
+type RuntimeVersionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Error response when Lambda is unable to retrieve the runtime version for
+	// a function.
+	Error *RuntimeVersionError `type:"structure"`
+
+	// The ARN of the runtime version you want the function to use.
+	RuntimeVersionArn *string `min:"26" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeVersionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeVersionConfig) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *RuntimeVersionConfig) SetError(v *RuntimeVersionError) *RuntimeVersionConfig {
+	s.Error = v
+	return s
+}
+
+// SetRuntimeVersionArn sets the RuntimeVersionArn field's value.
+func (s *RuntimeVersionConfig) SetRuntimeVersionArn(v string) *RuntimeVersionConfig {
+	s.RuntimeVersionArn = &v
+	return s
+}
+
+// Any error returned when the runtime version information for the function
+// could not be retrieved.
+type RuntimeVersionError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	ErrorCode *string `type:"string"`
+
+	// The error message.
+	//
+	// Message is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RuntimeVersionError's
+	// String and GoString methods.
+	Message *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeVersionError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeVersionError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *RuntimeVersionError) SetErrorCode(v string) *RuntimeVersionError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *RuntimeVersionError) SetMessage(v string) *RuntimeVersionError {
+	s.Message = &v
+	return s
+}
+
 // (Amazon SQS only) The scaling configuration for the event source. To remove
 // the configuration, pass an empty value.
 type ScalingConfig struct {
@@ -18590,8 +19163,8 @@ func (s *SnapStart) SetApplyOn(v string) *SnapStart {
 	return s
 }
 
-// The runtime restore hook encountered an error. For more information, check
-// the Amazon CloudWatch logs.
+// The afterRestore() runtime hook (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html)
+// encountered an error. For more information, check the Amazon CloudWatch logs.
 type SnapStartException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18770,7 +19343,7 @@ func (s *SnapStartResponse) SetOptimizationStatus(v string) *SnapStartResponse {
 	return s
 }
 
-// The runtime restore hook failed to complete within the timeout limit (2 seconds).
+// Lambda couldn't restore the snapshot within the timeout limit.
 type SnapStartTimeoutException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21417,5 +21990,25 @@ func TracingMode_Values() []string {
 	return []string{
 		TracingModeActive,
 		TracingModePassThrough,
+	}
+}
+
+const (
+	// UpdateRuntimeOnAuto is a UpdateRuntimeOn enum value
+	UpdateRuntimeOnAuto = "Auto"
+
+	// UpdateRuntimeOnManual is a UpdateRuntimeOn enum value
+	UpdateRuntimeOnManual = "Manual"
+
+	// UpdateRuntimeOnFunctionUpdate is a UpdateRuntimeOn enum value
+	UpdateRuntimeOnFunctionUpdate = "FunctionUpdate"
+)
+
+// UpdateRuntimeOn_Values returns all elements of the UpdateRuntimeOn enum
+func UpdateRuntimeOn_Values() []string {
+	return []string{
+		UpdateRuntimeOnAuto,
+		UpdateRuntimeOnManual,
+		UpdateRuntimeOnFunctionUpdate,
 	}
 }

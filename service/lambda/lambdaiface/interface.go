@@ -188,6 +188,10 @@ type LambdaAPI interface {
 	GetProvisionedConcurrencyConfigWithContext(aws.Context, *lambda.GetProvisionedConcurrencyConfigInput, ...request.Option) (*lambda.GetProvisionedConcurrencyConfigOutput, error)
 	GetProvisionedConcurrencyConfigRequest(*lambda.GetProvisionedConcurrencyConfigInput) (*request.Request, *lambda.GetProvisionedConcurrencyConfigOutput)
 
+	GetRuntimeManagementConfig(*lambda.GetRuntimeManagementConfigInput) (*lambda.GetRuntimeManagementConfigOutput, error)
+	GetRuntimeManagementConfigWithContext(aws.Context, *lambda.GetRuntimeManagementConfigInput, ...request.Option) (*lambda.GetRuntimeManagementConfigOutput, error)
+	GetRuntimeManagementConfigRequest(*lambda.GetRuntimeManagementConfigInput) (*request.Request, *lambda.GetRuntimeManagementConfigOutput)
+
 	Invoke(*lambda.InvokeInput) (*lambda.InvokeOutput, error)
 	InvokeWithContext(aws.Context, *lambda.InvokeInput, ...request.Option) (*lambda.InvokeOutput, error)
 	InvokeRequest(*lambda.InvokeInput) (*request.Request, *lambda.InvokeOutput)
@@ -300,6 +304,10 @@ type LambdaAPI interface {
 	PutProvisionedConcurrencyConfig(*lambda.PutProvisionedConcurrencyConfigInput) (*lambda.PutProvisionedConcurrencyConfigOutput, error)
 	PutProvisionedConcurrencyConfigWithContext(aws.Context, *lambda.PutProvisionedConcurrencyConfigInput, ...request.Option) (*lambda.PutProvisionedConcurrencyConfigOutput, error)
 	PutProvisionedConcurrencyConfigRequest(*lambda.PutProvisionedConcurrencyConfigInput) (*request.Request, *lambda.PutProvisionedConcurrencyConfigOutput)
+
+	PutRuntimeManagementConfig(*lambda.PutRuntimeManagementConfigInput) (*lambda.PutRuntimeManagementConfigOutput, error)
+	PutRuntimeManagementConfigWithContext(aws.Context, *lambda.PutRuntimeManagementConfigInput, ...request.Option) (*lambda.PutRuntimeManagementConfigOutput, error)
+	PutRuntimeManagementConfigRequest(*lambda.PutRuntimeManagementConfigInput) (*request.Request, *lambda.PutRuntimeManagementConfigOutput)
 
 	RemoveLayerVersionPermission(*lambda.RemoveLayerVersionPermissionInput) (*lambda.RemoveLayerVersionPermissionOutput, error)
 	RemoveLayerVersionPermissionWithContext(aws.Context, *lambda.RemoveLayerVersionPermissionInput, ...request.Option) (*lambda.RemoveLayerVersionPermissionOutput, error)

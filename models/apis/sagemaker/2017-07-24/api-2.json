@@ -16673,7 +16673,8 @@
         "ml.r6gd.4xlarge",
         "ml.r6gd.8xlarge",
         "ml.r6gd.12xlarge",
-        "ml.r6gd.16xlarge"
+        "ml.r6gd.16xlarge",
+        "ml.p4de.24xlarge"
       ]
     },
     "ProductionVariantList":{
