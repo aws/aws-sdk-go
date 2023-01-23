@@ -529,6 +529,22 @@
         {"shape":"ProvisionedConcurrencyConfigNotFoundException"}
       ]
     },
+    "GetRuntimeManagementConfig":{
+      "name":"GetRuntimeManagementConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-07-20/functions/{FunctionName}/runtime-management-config",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRuntimeManagementConfigRequest"},
+      "output":{"shape":"GetRuntimeManagementConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "Invoke":{
       "name":"Invoke",
       "http":{
@@ -876,6 +892,23 @@
         {"shape":"ResourceConflictException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ServiceException"}
+      ]
+    },
+    "PutRuntimeManagementConfig":{
+      "name":"PutRuntimeManagementConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2021-07-20/functions/{FunctionName}/runtime-management-config",
+        "responseCode":200
+      },
+      "input":{"shape":"PutRuntimeManagementConfigRequest"},
+      "output":{"shape":"PutRuntimeManagementConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "RemoveLayerVersionPermission":{
@@ -1964,7 +1997,8 @@
         "SigningJobArn":{"shape":"Arn"},
         "Architectures":{"shape":"ArchitecturesList"},
         "EphemeralStorage":{"shape":"EphemeralStorage"},
-        "SnapStart":{"shape":"SnapStartResponse"}
+        "SnapStart":{"shape":"SnapStartResponse"},
+        "RuntimeVersionConfig":{"shape":"RuntimeVersionConfig"}
       }
     },
     "FunctionEventInvokeConfig":{
@@ -2356,6 +2390,29 @@
         "Status":{"shape":"ProvisionedConcurrencyStatusEnum"},
         "StatusReason":{"shape":"String"},
         "LastModified":{"shape":"Timestamp"}
+      }
+    },
+    "GetRuntimeManagementConfigRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
+      }
+    },
+    "GetRuntimeManagementConfigResponse":{
+      "type":"structure",
+      "members":{
+        "UpdateRuntimeOn":{"shape":"UpdateRuntimeOn"},
+        "RuntimeVersionArn":{"shape":"RuntimeVersionArn"}
       }
     },
     "Handler":{
@@ -3424,6 +3481,39 @@
         "LastModified":{"shape":"Timestamp"}
       }
     },
+    "PutRuntimeManagementConfigRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "UpdateRuntimeOn"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        },
+        "UpdateRuntimeOn":{"shape":"UpdateRuntimeOn"},
+        "RuntimeVersionArn":{"shape":"RuntimeVersionArn"}
+      }
+    },
+    "PutRuntimeManagementConfigResponse":{
+      "type":"structure",
+      "required":[
+        "UpdateRuntimeOn",
+        "FunctionArn"
+      ],
+      "members":{
+        "UpdateRuntimeOn":{"shape":"UpdateRuntimeOn"},
+        "FunctionArn":{"shape":"FunctionArn"},
+        "RuntimeVersionArn":{"shape":"RuntimeVersionArn"}
+      }
+    },
     "Qualifier":{
       "type":"string",
       "max":128,
@@ -3590,6 +3680,26 @@
         "provided.al2",
         "nodejs18.x"
       ]
+    },
+    "RuntimeVersionArn":{
+      "type":"string",
+      "max":2048,
+      "min":26,
+      "pattern":"^arn:(aws[a-zA-Z-]*):lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}::runtime:.+$"
+    },
+    "RuntimeVersionConfig":{
+      "type":"structure",
+      "members":{
+        "RuntimeVersionArn":{"shape":"RuntimeVersionArn"},
+        "Error":{"shape":"RuntimeVersionError"}
+      }
+    },
+    "RuntimeVersionError":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "Message":{"shape":"SensitiveString"}
+      }
     },
     "S3Bucket":{
       "type":"string",
@@ -4103,6 +4213,14 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"}
       }
+    },
+    "UpdateRuntimeOn":{
+      "type":"string",
+      "enum":[
+        "Auto",
+        "Manual",
+        "FunctionUpdate"
+      ]
     },
     "Version":{
       "type":"string",
