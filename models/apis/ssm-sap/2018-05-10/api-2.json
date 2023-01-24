@@ -158,6 +158,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListOperations":{
+      "name":"ListOperations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-operations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListOperationsInput"},
+      "output":{"shape":"ListOperationsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -470,11 +484,49 @@
       "members":{
       }
     },
+    "Filter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value",
+        "Operator"
+      ],
+      "members":{
+        "Name":{"shape":"FilterName"},
+        "Value":{"shape":"FilterValue"},
+        "Operator":{"shape":"FilterOperator"}
+      }
+    },
+    "FilterList":{
+      "type":"list",
+      "member":{"shape":"Filter"},
+      "max":10,
+      "min":1
+    },
+    "FilterName":{
+      "type":"string",
+      "max":32,
+      "min":1
+    },
+    "FilterOperator":{
+      "type":"string",
+      "enum":[
+        "Equals",
+        "GreaterThanOrEquals",
+        "LessThanOrEquals"
+      ]
+    },
+    "FilterValue":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "GetApplicationInput":{
       "type":"structure",
       "members":{
         "ApplicationId":{"shape":"ApplicationId"},
-        "ApplicationArn":{"shape":"SsmSapArn"}
+        "ApplicationArn":{"shape":"SsmSapArn"},
+        "AppRegistryArn":{"shape":"AppRegistryArn"}
       }
     },
     "GetApplicationOutput":{
@@ -643,6 +695,26 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListOperationsInput":{
+      "type":"structure",
+      "required":["ApplicationId"],
+      "members":{
+        "ApplicationId":{"shape":"ApplicationId"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"FilterList"}
+      }
+    },
+    "ListOperationsOutput":{
+      "type":"structure",
+      "members":{
+        "Operations":{"shape":"OperationList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -692,6 +764,10 @@
     "OperationIdList":{
       "type":"list",
       "member":{"shape":"OperationId"}
+    },
+    "OperationList":{
+      "type":"list",
+      "member":{"shape":"Operation"}
     },
     "OperationProperties":{
       "type":"map",

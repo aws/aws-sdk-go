@@ -1,3 +1,12 @@
+Release v1.44.186 (2023-01-24)
+===
+
+### Service Client Updates
+* `service/databrew`: Adds new service
+* `service/route53`: Updates service API
+  * Amazon Route 53 now supports the Asia Pacific (Melbourne) Region (ap-southeast-4) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/ssm-sap`: Updates service API, documentation, and paginators
+
 Release v1.44.185 (2023-01-23)
 ===
 
