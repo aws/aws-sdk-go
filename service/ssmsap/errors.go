@@ -10,18 +10,26 @@ const (
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
+	//
+	// A conflict has occurred.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
+	//
+	// An internal error has occurred.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
+	//
+	// The resource is not available.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
+	//
+	// The input fails to satisfy the constraints specified by an AWS service.
 	ErrCodeValidationException = "ValidationException"
 )
 

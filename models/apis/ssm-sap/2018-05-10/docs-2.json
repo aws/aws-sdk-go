@@ -12,29 +12,31 @@
     "ListApplications": "<p>Lists all the applications registered with AWS Systems Manager for SAP.</p>",
     "ListComponents": "<p>Lists all the components registered with AWS Systems Manager for SAP.</p>",
     "ListDatabases": "<p>Lists the SAP HANA databases of an application registered with AWS Systems Manager for SAP.</p>",
+    "ListOperations": "<p>Lists the operations performed by AWS Systems Manager for SAP.</p>",
     "ListTagsForResource": "<p>Lists all tags on an SAP HANA application and/or database registered with AWS Systems Manager for SAP.</p>",
     "PutResourcePermission": "<p>Adds permissions to the target database.</p>",
     "RegisterApplication": "<p>Register an SAP application with AWS Systems Manager for SAP. You must meet the following requirements before registering. </p> <p>The SAP application you want to register with AWS Systems Manager for SAP is running on Amazon EC2.</p> <p>AWS Systems Manager Agent must be setup on an Amazon EC2 instance along with the required IAM permissions.</p> <p>Amazon EC2 instance(s) must have access to the secrets created in AWS Secrets Manager to manage SAP applications and components.</p>",
     "TagResource": "<p>Creates tag for a resource by specifying the ARN.</p>",
     "UntagResource": "<p>Delete the tags for a resource.</p>",
-    "UpdateApplicationSettings": "<p/>"
+    "UpdateApplicationSettings": "<p>Updates the settings of an application registered with AWS Systems Manager for SAP.</p>"
   },
   "shapes": {
     "AppRegistryArn": {
       "base": null,
       "refs": {
-        "Application$AppRegistryArn": "<p/>"
+        "Application$AppRegistryArn": "<p>The Amazon Resource Name (ARN) of the Application Registry.</p>",
+        "GetApplicationInput$AppRegistryArn": "<p>The Amazon Resource Name (ARN) of the application registry.</p>"
       }
     },
     "Application": {
-      "base": "<p/>",
+      "base": "<p>An SAP application registered with AWS Systems Manager for SAP.</p>",
       "refs": {
-        "GetApplicationOutput$Application": "<p/>",
-        "RegisterApplicationOutput$Application": "<p/>"
+        "GetApplicationOutput$Application": "<p>Returns all of the metadata of an application registered with AWS Systems Manager for SAP.</p>",
+        "RegisterApplicationOutput$Application": "<p>The application registered with AWS Systems Manager for SAP.</p>"
       }
     },
     "ApplicationCredential": {
-      "base": "<p/>",
+      "base": "<p>The credentials of your SAP application.</p>",
       "refs": {
         "ApplicationCredentialList$member": null
       }
@@ -42,39 +44,40 @@
     "ApplicationCredentialList": {
       "base": null,
       "refs": {
-        "Database$Credentials": "<p/>",
-        "RegisterApplicationInput$Credentials": "<p/>",
-        "UpdateApplicationSettingsInput$CredentialsToAddOrUpdate": "<p/>",
-        "UpdateApplicationSettingsInput$CredentialsToRemove": "<p/>"
+        "Database$Credentials": "<p>The credentials of the database.</p>",
+        "RegisterApplicationInput$Credentials": "<p>The credentials of the SAP application.</p>",
+        "UpdateApplicationSettingsInput$CredentialsToAddOrUpdate": "<p>The credentials to be added or updated.</p>",
+        "UpdateApplicationSettingsInput$CredentialsToRemove": "<p>The credentials to be removed.</p>"
       }
     },
     "ApplicationId": {
       "base": null,
       "refs": {
-        "Application$Id": "<p/>",
-        "ApplicationSummary$Id": "<p/>",
-        "Component$ApplicationId": "<p/>",
-        "ComponentSummary$ApplicationId": "<p/>",
-        "Database$ApplicationId": "<p/>",
-        "DatabaseSummary$ApplicationId": "<p/>",
-        "DeregisterApplicationInput$ApplicationId": "<p/>",
-        "GetApplicationInput$ApplicationId": "<p/>",
-        "GetComponentInput$ApplicationId": "<p/>",
-        "GetDatabaseInput$ApplicationId": "<p/>",
-        "ListComponentsInput$ApplicationId": "<p/>",
-        "ListDatabasesInput$ApplicationId": "<p/>",
-        "RegisterApplicationInput$ApplicationId": "<p/>",
-        "UpdateApplicationSettingsInput$ApplicationId": "<p/>"
+        "Application$Id": "<p>The ID of the application.</p>",
+        "ApplicationSummary$Id": "<p>The ID of the application.</p>",
+        "Component$ApplicationId": "<p>The ID of the application.</p>",
+        "ComponentSummary$ApplicationId": "<p>The ID of the application.</p>",
+        "Database$ApplicationId": "<p>The ID of the application.</p>",
+        "DatabaseSummary$ApplicationId": "<p>The ID of the application.</p>",
+        "DeregisterApplicationInput$ApplicationId": "<p>The ID of the application.</p>",
+        "GetApplicationInput$ApplicationId": "<p>The ID of the application.</p>",
+        "GetComponentInput$ApplicationId": "<p>The ID of the application.</p>",
+        "GetDatabaseInput$ApplicationId": "<p>The ID of the application.</p>",
+        "ListComponentsInput$ApplicationId": "<p>The ID of the application.</p>",
+        "ListDatabasesInput$ApplicationId": "<p>The ID of the application.</p>",
+        "ListOperationsInput$ApplicationId": "<p>The ID of the application.</p>",
+        "RegisterApplicationInput$ApplicationId": "<p>The ID of the application.</p>",
+        "UpdateApplicationSettingsInput$ApplicationId": "<p>The ID of the application.</p>"
       }
     },
     "ApplicationStatus": {
       "base": null,
       "refs": {
-        "Application$Status": "<p/>"
+        "Application$Status": "<p>The status of the application.</p>"
       }
     },
     "ApplicationSummary": {
-      "base": "<p/>",
+      "base": "<p>The summary of the SAP application registered with AWS Systems Manager for SAP. </p>",
       "refs": {
         "ApplicationSummaryList$member": null
       }
@@ -82,61 +85,61 @@
     "ApplicationSummaryList": {
       "base": null,
       "refs": {
-        "ListApplicationsOutput$Applications": "<p/>"
+        "ListApplicationsOutput$Applications": "<p>The applications registered with AWS Systems Manager for SAP.</p>"
       }
     },
     "ApplicationType": {
       "base": null,
       "refs": {
-        "Application$Type": "<p/>",
-        "ApplicationSummary$Type": "<p/>",
-        "RegisterApplicationInput$ApplicationType": "<p/>"
+        "Application$Type": "<p>The type of the application.</p>",
+        "ApplicationSummary$Type": "<p>The type of the application.</p>",
+        "RegisterApplicationInput$ApplicationType": "<p>The type of the application.</p>"
       }
     },
     "Arn": {
       "base": null,
       "refs": {
-        "DeleteResourcePermissionInput$SourceResourceArn": "<p/>",
-        "DeleteResourcePermissionInput$ResourceArn": "<p/>",
-        "GetResourcePermissionInput$ResourceArn": "<p/>",
-        "Operation$ResourceArn": "<p/>",
+        "DeleteResourcePermissionInput$SourceResourceArn": "<p>The Amazon Resource Name (ARN) of the source resource.</p>",
+        "DeleteResourcePermissionInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "GetResourcePermissionInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "Operation$ResourceArn": "<p>The Amazon Resource Name (ARN) of the operation.</p>",
         "PutResourcePermissionInput$SourceResourceArn": "<p/>",
         "PutResourcePermissionInput$ResourceArn": "<p/>"
       }
     },
     "Component": {
-      "base": "<p/>",
+      "base": "<p>The SAP component of your application.</p>",
       "refs": {
-        "GetComponentOutput$Component": "<p/>"
+        "GetComponentOutput$Component": "<p>The component of an application registered with AWS Systems Manager for SAP.</p>"
       }
     },
     "ComponentId": {
       "base": null,
       "refs": {
-        "Component$ComponentId": "<p/>",
+        "Component$ComponentId": "<p>The ID of the component.</p>",
         "ComponentIdList$member": null,
-        "ComponentSummary$ComponentId": "<p/>",
-        "Database$ComponentId": "<p/>",
-        "DatabaseSummary$ComponentId": "<p/>",
-        "GetComponentInput$ComponentId": "<p/>",
-        "GetDatabaseInput$ComponentId": "<p/>",
-        "ListDatabasesInput$ComponentId": "<p/>"
+        "ComponentSummary$ComponentId": "<p>The ID of the component.</p>",
+        "Database$ComponentId": "<p>The ID of the component.</p>",
+        "DatabaseSummary$ComponentId": "<p>The ID of the component.</p>",
+        "GetComponentInput$ComponentId": "<p>The ID of the component.</p>",
+        "GetDatabaseInput$ComponentId": "<p>The ID of the component.</p>",
+        "ListDatabasesInput$ComponentId": "<p>The ID of the component.</p>"
       }
     },
     "ComponentIdList": {
       "base": null,
       "refs": {
-        "Application$Components": "<p/>"
+        "Application$Components": "<p>The components of the application.</p>"
       }
     },
     "ComponentStatus": {
       "base": null,
       "refs": {
-        "Component$Status": "<p/>"
+        "Component$Status": "<p>The status of the component.</p>"
       }
     },
     "ComponentSummary": {
-      "base": "<p/>",
+      "base": "<p>The summary of the component.</p>",
       "refs": {
         "ComponentSummaryList$member": null
       }
@@ -144,62 +147,62 @@
     "ComponentSummaryList": {
       "base": null,
       "refs": {
-        "ListComponentsOutput$Components": "<p/>"
+        "ListComponentsOutput$Components": "<p>List of components registered with AWS System Manager for SAP.</p>"
       }
     },
     "ComponentType": {
       "base": null,
       "refs": {
-        "Component$ComponentType": "<p/>",
-        "ComponentSummary$ComponentType": "<p/>"
+        "Component$ComponentType": "<p>The type of the component.</p>",
+        "ComponentSummary$ComponentType": "<p>The type of the component.</p>"
       }
     },
     "ConflictException": {
-      "base": "<p/>",
+      "base": "<p>A conflict has occurred.</p>",
       "refs": {
       }
     },
     "CredentialType": {
       "base": null,
       "refs": {
-        "ApplicationCredential$CredentialType": "<p/>"
+        "ApplicationCredential$CredentialType": "<p>The type of the application credentials. </p>"
       }
     },
     "Database": {
-      "base": "<p/>",
+      "base": "<p>The SAP HANA database of the application registered with AWS Systems Manager for SAP.</p>",
       "refs": {
-        "GetDatabaseOutput$Database": "<p/>"
+        "GetDatabaseOutput$Database": "<p>The SAP HANA database of an application registered with AWS Systems Manager for SAP.</p>"
       }
     },
     "DatabaseId": {
       "base": null,
       "refs": {
-        "Database$DatabaseId": "<p/>",
+        "Database$DatabaseId": "<p>The ID of the SAP HANA database.</p>",
         "DatabaseIdList$member": null,
-        "DatabaseSummary$DatabaseId": "<p/>",
-        "GetDatabaseInput$DatabaseId": "<p/>"
+        "DatabaseSummary$DatabaseId": "<p>The ID of the database.</p>",
+        "GetDatabaseInput$DatabaseId": "<p>The ID of the database.</p>"
       }
     },
     "DatabaseIdList": {
       "base": null,
       "refs": {
-        "Component$Databases": "<p/>"
+        "Component$Databases": "<p>The SAP HANA databases of the component.</p>"
       }
     },
     "DatabaseName": {
       "base": null,
       "refs": {
-        "ApplicationCredential$DatabaseName": "<p/>"
+        "ApplicationCredential$DatabaseName": "<p>The name of the SAP HANA database.</p>"
       }
     },
     "DatabaseStatus": {
       "base": null,
       "refs": {
-        "Database$Status": "<p/>"
+        "Database$Status": "<p>The status of the database.</p>"
       }
     },
     "DatabaseSummary": {
-      "base": "<p/>",
+      "base": "<p>The summary of the database.</p>",
       "refs": {
         "DatabaseSummaryList$member": null
       }
@@ -207,14 +210,14 @@
     "DatabaseSummaryList": {
       "base": null,
       "refs": {
-        "ListDatabasesOutput$Databases": "<p/>"
+        "ListDatabasesOutput$Databases": "<p>The SAP HANA databases of an application.</p>"
       }
     },
     "DatabaseType": {
       "base": null,
       "refs": {
-        "Database$DatabaseType": "<p/>",
-        "DatabaseSummary$DatabaseType": "<p/>"
+        "Database$DatabaseType": "<p>The type of the database.</p>",
+        "DatabaseSummary$DatabaseType": "<p>The type of the database.</p>"
       }
     },
     "DeleteResourcePermissionInput": {
@@ -235,6 +238,36 @@
     "DeregisterApplicationOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "Filter": {
+      "base": "<p>A specific result obtained by specifying the name, value, and operator. </p>",
+      "refs": {
+        "FilterList$member": null
+      }
+    },
+    "FilterList": {
+      "base": null,
+      "refs": {
+        "ListOperationsInput$Filters": "<p>The filters of an operation.</p>"
+      }
+    },
+    "FilterName": {
+      "base": null,
+      "refs": {
+        "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive. </p>"
+      }
+    },
+    "FilterOperator": {
+      "base": null,
+      "refs": {
+        "Filter$Operator": "<p>The operator for the filter. </p>"
+      }
+    },
+    "FilterValue": {
+      "base": null,
+      "refs": {
+        "Filter$Value": "<p>The filter values. Filter values are case-sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values</p>"
       }
     },
     "GetApplicationInput": {
@@ -288,7 +321,7 @@
       }
     },
     "Host": {
-      "base": "<p/>",
+      "base": "<p>Describes the properties of the Dedicated Host. </p>",
       "refs": {
         "HostList$member": null
       }
@@ -296,13 +329,13 @@
     "HostList": {
       "base": null,
       "refs": {
-        "Component$Hosts": "<p/>"
+        "Component$Hosts": "<p>The hosts of the component.</p>"
       }
     },
     "HostRole": {
       "base": null,
       "refs": {
-        "Host$HostRole": "<p/>"
+        "Host$HostRole": "<p>The role of the Dedicated Host.</p>"
       }
     },
     "InstanceId": {
@@ -314,17 +347,17 @@
     "InstanceList": {
       "base": null,
       "refs": {
-        "RegisterApplicationInput$Instances": "<p/>"
+        "RegisterApplicationInput$Instances": "<p>The Amazon EC2 instances on which your SAP application is running.</p>"
       }
     },
     "Integer": {
       "base": null,
       "refs": {
-        "Database$SQLPort": "<p/>"
+        "Database$SQLPort": "<p>The SQL port of the database.</p>"
       }
     },
     "InternalServerException": {
-      "base": "<p/>",
+      "base": "<p>An internal error has occurred.</p>",
       "refs": {
       }
     },
@@ -358,6 +391,16 @@
       "refs": {
       }
     },
+    "ListOperationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOperationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -371,65 +414,75 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListApplicationsInput$MaxResults": "<p/>",
-        "ListComponentsInput$MaxResults": "<p/>",
-        "ListDatabasesInput$MaxResults": "<p/>"
+        "ListApplicationsInput$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. </p>",
+        "ListComponentsInput$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p> <p>If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>",
+        "ListDatabasesInput$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>",
+        "ListOperationsInput$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value. If you do not specify a value for MaxResults, the request returns 50 items per page by default.</p>"
       }
     },
     "NextToken": {
       "base": null,
       "refs": {
-        "ListApplicationsInput$NextToken": "<p/>",
-        "ListApplicationsOutput$NextToken": "<p/>",
-        "ListComponentsInput$NextToken": "<p/>",
-        "ListComponentsOutput$NextToken": "<p/>",
-        "ListDatabasesInput$NextToken": "<p/>",
-        "ListDatabasesOutput$NextToken": "<p/>"
+        "ListApplicationsInput$NextToken": "<p>The token for the next page of results.</p>",
+        "ListApplicationsOutput$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
+        "ListComponentsInput$NextToken": "<p>The token for the next page of results.</p>",
+        "ListComponentsOutput$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
+        "ListDatabasesInput$NextToken": "<p>The token for the next page of results. </p>",
+        "ListDatabasesOutput$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
+        "ListOperationsInput$NextToken": "<p>The token for the next page of results. </p>",
+        "ListOperationsOutput$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>"
       }
     },
     "Operation": {
-      "base": "<p/>",
+      "base": "<p>The operations performed by AWS Systems Manager for SAP.</p>",
       "refs": {
-        "GetOperationOutput$Operation": "<p/>"
+        "GetOperationOutput$Operation": "<p>Returns the details of an operation.</p>",
+        "OperationList$member": null
       }
     },
     "OperationId": {
       "base": null,
       "refs": {
-        "GetOperationInput$OperationId": "<p/>",
-        "Operation$Id": "<p/>",
+        "GetOperationInput$OperationId": "<p>The ID of the operation.</p>",
+        "Operation$Id": "<p>The ID of the operation.</p>",
         "OperationIdList$member": null,
-        "RegisterApplicationOutput$OperationId": "<p/>"
+        "RegisterApplicationOutput$OperationId": "<p>The ID of the operation.</p>"
       }
     },
     "OperationIdList": {
       "base": null,
       "refs": {
-        "UpdateApplicationSettingsOutput$OperationIds": "<p/>"
+        "UpdateApplicationSettingsOutput$OperationIds": "<p>The IDs of the operations.</p>"
+      }
+    },
+    "OperationList": {
+      "base": null,
+      "refs": {
+        "ListOperationsOutput$Operations": "<p>List of operations performed by AWS Systems Manager for SAP.</p>"
       }
     },
     "OperationProperties": {
       "base": null,
       "refs": {
-        "Operation$Properties": "<p/>"
+        "Operation$Properties": "<p>The properties of the operation.</p>"
       }
     },
     "OperationStatus": {
       "base": null,
       "refs": {
-        "Operation$Status": "<p/>"
+        "Operation$Status": "<p>The status of the operation.</p>"
       }
     },
     "OperationType": {
       "base": null,
       "refs": {
-        "Operation$Type": "<p/>"
+        "Operation$Type": "<p>The type of the operation.</p>"
       }
     },
     "PermissionActionType": {
       "base": null,
       "refs": {
-        "DeleteResourcePermissionInput$ActionType": "<p/>",
+        "DeleteResourcePermissionInput$ActionType": "<p>Delete or restore the permissions on the target database.</p>",
         "GetResourcePermissionInput$ActionType": "<p/>",
         "PutResourcePermissionInput$ActionType": "<p/>"
       }
@@ -457,72 +510,72 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "Operation$ResourceId": "<p/>"
+        "Operation$ResourceId": "<p>The resource ID of the operation.</p>"
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p/>",
+      "base": "<p>The resource is not available.</p>",
       "refs": {
       }
     },
     "ResourceType": {
       "base": null,
       "refs": {
-        "Operation$ResourceType": "<p/>"
+        "Operation$ResourceType": "<p>The resource type of the operation.</p>"
       }
     },
     "SAPInstanceNumber": {
       "base": null,
       "refs": {
-        "RegisterApplicationInput$SapInstanceNumber": "<p/>"
+        "RegisterApplicationInput$SapInstanceNumber": "<p>The SAP instance number of the application.</p>"
       }
     },
     "SID": {
       "base": null,
       "refs": {
-        "RegisterApplicationInput$Sid": "<p/>"
+        "RegisterApplicationInput$Sid": "<p>The System ID of the application.</p>"
       }
     },
     "SecretId": {
       "base": null,
       "refs": {
-        "ApplicationCredential$SecretId": "<p/>"
+        "ApplicationCredential$SecretId": "<p>The secret ID created in AWS Secrets Manager to store the credentials of the SAP application. </p>"
       }
     },
     "SsmSapArn": {
       "base": null,
       "refs": {
-        "Application$Arn": "<p/>",
-        "ApplicationSummary$Arn": "<p/>",
-        "Database$Arn": "<p/>",
-        "DatabaseSummary$Arn": "<p/>",
-        "GetApplicationInput$ApplicationArn": "<p/>",
-        "GetDatabaseInput$DatabaseArn": "<p/>",
-        "ListTagsForResourceRequest$resourceArn": "<p/>",
-        "TagResourceRequest$resourceArn": "<p/>",
-        "UntagResourceRequest$resourceArn": "<p/>"
+        "Application$Arn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
+        "ApplicationSummary$Arn": "<p>The Amazon Resource Name (ARN) of the application.</p>",
+        "Database$Arn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
+        "DatabaseSummary$Arn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
+        "GetApplicationInput$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the application. </p>",
+        "GetDatabaseInput$DatabaseArn": "<p>The Amazon Resource Name (ARN) of the database.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
       }
     },
     "String": {
       "base": null,
       "refs": {
-        "Application$StatusMessage": "<p/>",
-        "Component$PrimaryHost": "<p/>",
+        "Application$StatusMessage": "<p>The status message.</p>",
+        "Component$PrimaryHost": "<p>The primary host of the component.</p>",
         "ConflictException$Message": null,
-        "Database$DatabaseName": "<p/>",
-        "Database$PrimaryHost": "<p/>",
-        "DeleteResourcePermissionOutput$Policy": "<p/>",
+        "Database$DatabaseName": "<p>The name of the database.</p>",
+        "Database$PrimaryHost": "<p>The primary host of the database.</p>",
+        "DeleteResourcePermissionOutput$Policy": "<p>The policy that removes permissions on the target database.</p>",
         "GetResourcePermissionOutput$Policy": "<p/>",
-        "Host$HostName": "<p/>",
-        "Host$HostIp": "<p/>",
-        "Host$InstanceId": "<p/>",
+        "Host$HostName": "<p>The name of the Dedicated Host.</p>",
+        "Host$HostIp": "<p>The IP address of the Dedicated Host. </p>",
+        "Host$InstanceId": "<p>The instance ID of the instance on the Dedicated Host.</p>",
         "InternalServerException$Message": null,
-        "Operation$StatusMessage": "<p/>",
+        "Operation$StatusMessage": "<p>The status message of the operation.</p>",
         "OperationProperties$key": null,
         "OperationProperties$value": null,
         "PutResourcePermissionOutput$Policy": "<p/>",
         "ResourceNotFoundException$Message": null,
-        "UpdateApplicationSettingsOutput$Message": "<p/>",
+        "UpdateApplicationSettingsOutput$Message": "<p>The update message.</p>",
         "ValidationException$Message": null
       }
     },
@@ -542,14 +595,14 @@
     "TagMap": {
       "base": null,
       "refs": {
-        "ApplicationSummary$Tags": "<p/>",
-        "ComponentSummary$Tags": "<p/>",
-        "DatabaseSummary$Tags": "<p/>",
-        "GetApplicationOutput$Tags": "<p/>",
-        "GetDatabaseOutput$Tags": "<p/>",
+        "ApplicationSummary$Tags": "<p>The tags on the application.</p>",
+        "ComponentSummary$Tags": "<p>The tags of the component.</p>",
+        "DatabaseSummary$Tags": "<p>The tags of the database.</p>",
+        "GetApplicationOutput$Tags": "<p>The tags of a registered application.</p>",
+        "GetDatabaseOutput$Tags": "<p>The tags of a database.</p>",
         "ListTagsForResourceResponse$tags": "<p/>",
-        "RegisterApplicationInput$Tags": "<p/>",
-        "TagResourceRequest$tags": "<p/>"
+        "RegisterApplicationInput$Tags": "<p>The tags to be attached to the SAP application.</p>",
+        "TagResourceRequest$tags": "<p>The tags on a resource.</p>"
       }
     },
     "TagResourceRequest": {
@@ -571,12 +624,12 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "Application$LastUpdated": "<p/>",
-        "Component$LastUpdated": "<p/>",
-        "Database$LastUpdated": "<p/>",
-        "Operation$StartTime": "<p/>",
-        "Operation$EndTime": "<p/>",
-        "Operation$LastUpdatedTime": "<p/>"
+        "Application$LastUpdated": "<p>The time at which the application was last updated.</p>",
+        "Component$LastUpdated": "<p>The time at which the component was last updated.</p>",
+        "Database$LastUpdated": "<p>The time at which the database was last updated.</p>",
+        "Operation$StartTime": "<p>The start time of the operation.</p>",
+        "Operation$EndTime": "<p>The end time of the operation.</p>",
+        "Operation$LastUpdatedTime": "<p>The time at which the operation was last updated.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -600,7 +653,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p/>",
+      "base": "<p>The input fails to satisfy the constraints specified by an AWS service. </p>",
       "refs": {
       }
     }

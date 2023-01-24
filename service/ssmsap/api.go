@@ -68,10 +68,13 @@ func (c *SsmSap) DeleteResourcePermissionRequest(input *DeleteResourcePermission
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/DeleteResourcePermission
 func (c *SsmSap) DeleteResourcePermission(input *DeleteResourcePermissionInput) (*DeleteResourcePermissionOutput, error) {
@@ -152,8 +155,10 @@ func (c *SsmSap) DeregisterApplicationRequest(input *DeregisterApplicationInput)
 // Returned Error Types:
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/DeregisterApplication
 func (c *SsmSap) DeregisterApplication(input *DeregisterApplicationInput) (*DeregisterApplicationOutput, error) {
@@ -233,8 +238,10 @@ func (c *SsmSap) GetApplicationRequest(input *GetApplicationInput) (req *request
 // Returned Error Types:
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetApplication
 func (c *SsmSap) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -314,8 +321,10 @@ func (c *SsmSap) GetComponentRequest(input *GetComponentInput) (req *request.Req
 // Returned Error Types:
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetComponent
 func (c *SsmSap) GetComponent(input *GetComponentInput) (*GetComponentOutput, error) {
@@ -395,8 +404,10 @@ func (c *SsmSap) GetDatabaseRequest(input *GetDatabaseInput) (req *request.Reque
 // Returned Error Types:
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetDatabase
 func (c *SsmSap) GetDatabase(input *GetDatabaseInput) (*GetDatabaseOutput, error) {
@@ -475,8 +486,10 @@ func (c *SsmSap) GetOperationRequest(input *GetOperationInput) (req *request.Req
 // Returned Error Types:
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetOperation
 func (c *SsmSap) GetOperation(input *GetOperationInput) (*GetOperationOutput, error) {
@@ -555,10 +568,13 @@ func (c *SsmSap) GetResourcePermissionRequest(input *GetResourcePermissionInput)
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetResourcePermission
 func (c *SsmSap) GetResourcePermission(input *GetResourcePermissionInput) (*GetResourcePermissionOutput, error) {
@@ -643,10 +659,13 @@ func (c *SsmSap) ListApplicationsRequest(input *ListApplicationsInput) (req *req
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListApplications
 func (c *SsmSap) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
@@ -782,10 +801,13 @@ func (c *SsmSap) ListComponentsRequest(input *ListComponentsInput) (req *request
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListComponents
 func (c *SsmSap) ListComponents(input *ListComponentsInput) (*ListComponentsOutput, error) {
@@ -922,10 +944,13 @@ func (c *SsmSap) ListDatabasesRequest(input *ListDatabasesInput) (req *request.R
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListDatabases
 func (c *SsmSap) ListDatabases(input *ListDatabasesInput) (*ListDatabasesOutput, error) {
@@ -1000,6 +1025,145 @@ func (c *SsmSap) ListDatabasesPagesWithContext(ctx aws.Context, input *ListDatab
 	return p.Err()
 }
 
+const opListOperations = "ListOperations"
+
+// ListOperationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOperations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOperations for more information on using the ListOperations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListOperationsRequest method.
+//	req, resp := client.ListOperationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperations
+func (c *SsmSap) ListOperationsRequest(input *ListOperationsInput) (req *request.Request, output *ListOperationsOutput) {
+	op := &request.Operation{
+		Name:       opListOperations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-operations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOperationsInput{}
+	}
+
+	output = &ListOperationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOperations API operation for AWS Systems Manager for SAP.
+//
+// Lists the operations performed by AWS Systems Manager for SAP.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager for SAP's
+// API operation ListOperations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperations
+func (c *SsmSap) ListOperations(input *ListOperationsInput) (*ListOperationsOutput, error) {
+	req, out := c.ListOperationsRequest(input)
+	return out, req.Send()
+}
+
+// ListOperationsWithContext is the same as ListOperations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOperations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SsmSap) ListOperationsWithContext(ctx aws.Context, input *ListOperationsInput, opts ...request.Option) (*ListOperationsOutput, error) {
+	req, out := c.ListOperationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOperationsPages iterates over the pages of a ListOperations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOperations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListOperations operation.
+//	pageNum := 0
+//	err := client.ListOperationsPages(params,
+//	    func(page *ssmsap.ListOperationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SsmSap) ListOperationsPages(input *ListOperationsInput, fn func(*ListOperationsOutput, bool) bool) error {
+	return c.ListOperationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOperationsPagesWithContext same as ListOperationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SsmSap) ListOperationsPagesWithContext(ctx aws.Context, input *ListOperationsInput, fn func(*ListOperationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOperationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOperationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOperationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -1056,10 +1220,13 @@ func (c *SsmSap) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - ConflictException
+//     A conflict has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListTagsForResource
 func (c *SsmSap) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1138,10 +1305,13 @@ func (c *SsmSap) PutResourcePermissionRequest(input *PutResourcePermissionInput)
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/PutResourcePermission
 func (c *SsmSap) PutResourcePermission(input *PutResourcePermissionInput) (*PutResourcePermissionOutput, error) {
@@ -1230,10 +1400,13 @@ func (c *SsmSap) RegisterApplicationRequest(input *RegisterApplicationInput) (re
 // Returned Error Types:
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - ConflictException
+//     A conflict has occurred.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/RegisterApplication
 func (c *SsmSap) RegisterApplication(input *RegisterApplicationInput) (*RegisterApplicationOutput, error) {
@@ -1313,10 +1486,13 @@ func (c *SsmSap) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - ConflictException
+//     A conflict has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/TagResource
 func (c *SsmSap) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1396,10 +1572,13 @@ func (c *SsmSap) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - ConflictException
+//     A conflict has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/UntagResource
 func (c *SsmSap) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1466,6 +1645,9 @@ func (c *SsmSap) UpdateApplicationSettingsRequest(input *UpdateApplicationSettin
 
 // UpdateApplicationSettings API operation for AWS Systems Manager for SAP.
 //
+// Updates the settings of an application registered with AWS Systems Manager
+// for SAP.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1476,10 +1658,13 @@ func (c *SsmSap) UpdateApplicationSettingsRequest(input *UpdateApplicationSettin
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
+//     The resource is not available.
 //
 //   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 //   - InternalServerException
+//     An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/UpdateApplicationSettings
 func (c *SsmSap) UpdateApplicationSettings(input *UpdateApplicationSettingsInput) (*UpdateApplicationSettingsOutput, error) {
@@ -1503,23 +1688,32 @@ func (c *SsmSap) UpdateApplicationSettingsWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+// An SAP application registered with AWS Systems Manager for SAP.
 type Application struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the Application Registry.
 	AppRegistryArn *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the application.
 	Arn *string `type:"string"`
 
+	// The components of the application.
 	Components []*string `type:"list"`
 
+	// The ID of the application.
 	Id *string `type:"string"`
 
+	// The time at which the application was last updated.
 	LastUpdated *time.Time `type:"timestamp"`
 
+	// The status of the application.
 	Status *string `type:"string" enum:"ApplicationStatus"`
 
+	// The status message.
 	StatusMessage *string `type:"string"`
 
+	// The type of the application.
 	Type *string `type:"string" enum:"ApplicationType"`
 }
 
@@ -1589,18 +1783,27 @@ func (s *Application) SetType(v string) *Application {
 	return s
 }
 
+// The credentials of your SAP application.
 type ApplicationCredential struct {
 	_ struct{} `type:"structure"`
 
+	// The type of the application credentials.
+	//
 	// CredentialType is a required field
 	CredentialType *string `type:"string" required:"true" enum:"CredentialType"`
 
+	// The name of the SAP HANA database.
+	//
 	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
+	// The secret ID created in AWS Secrets Manager to store the credentials of
+	// the SAP application.
+	//
 	// SecretId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ApplicationCredential's
 	// String and GoString methods.
+	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
@@ -1666,15 +1869,21 @@ func (s *ApplicationCredential) SetSecretId(v string) *ApplicationCredential {
 	return s
 }
 
+// The summary of the SAP application registered with AWS Systems Manager for
+// SAP.
 type ApplicationSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the application.
 	Arn *string `type:"string"`
 
+	// The ID of the application.
 	Id *string `type:"string"`
 
+	// The tags on the application.
 	Tags map[string]*string `type:"map"`
 
+	// The type of the application.
 	Type *string `type:"string" enum:"ApplicationType"`
 }
 
@@ -1720,23 +1929,32 @@ func (s *ApplicationSummary) SetType(v string) *ApplicationSummary {
 	return s
 }
 
+// The SAP component of your application.
 type Component struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 
+	// The ID of the component.
 	ComponentId *string `type:"string"`
 
+	// The type of the component.
 	ComponentType *string `type:"string" enum:"ComponentType"`
 
+	// The SAP HANA databases of the component.
 	Databases []*string `type:"list"`
 
+	// The hosts of the component.
 	Hosts []*Host `type:"list"`
 
+	// The time at which the component was last updated.
 	LastUpdated *time.Time `type:"timestamp"`
 
+	// The primary host of the component.
 	PrimaryHost *string `type:"string"`
 
+	// The status of the component.
 	Status *string `type:"string" enum:"ComponentStatus"`
 }
 
@@ -1806,15 +2024,20 @@ func (s *Component) SetStatus(v string) *Component {
 	return s
 }
 
+// The summary of the component.
 type ComponentSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 
+	// The ID of the component.
 	ComponentId *string `type:"string"`
 
+	// The type of the component.
 	ComponentType *string `type:"string" enum:"ComponentType"`
 
+	// The tags of the component.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -1860,6 +2083,7 @@ func (s *ComponentSummary) SetTags(v map[string]*string) *ComponentSummary {
 	return s
 }
 
+// A conflict has occurred.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1923,29 +2147,42 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The SAP HANA database of the application registered with AWS Systems Manager
+// for SAP.
 type Database struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the database.
 	Arn *string `type:"string"`
 
+	// The ID of the component.
 	ComponentId *string `type:"string"`
 
+	// The credentials of the database.
 	Credentials []*ApplicationCredential `min:"1" type:"list"`
 
+	// The ID of the SAP HANA database.
 	DatabaseId *string `type:"string"`
 
+	// The name of the database.
 	DatabaseName *string `type:"string"`
 
+	// The type of the database.
 	DatabaseType *string `type:"string" enum:"DatabaseType"`
 
+	// The time at which the database was last updated.
 	LastUpdated *time.Time `type:"timestamp"`
 
+	// The primary host of the database.
 	PrimaryHost *string `type:"string"`
 
+	// The SQL port of the database.
 	SQLPort *int64 `type:"integer"`
 
+	// The status of the database.
 	Status *string `type:"string" enum:"DatabaseStatus"`
 }
 
@@ -2033,19 +2270,26 @@ func (s *Database) SetStatus(v string) *Database {
 	return s
 }
 
+// The summary of the database.
 type DatabaseSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the database.
 	Arn *string `type:"string"`
 
+	// The ID of the component.
 	ComponentId *string `type:"string"`
 
+	// The ID of the database.
 	DatabaseId *string `type:"string"`
 
+	// The type of the database.
 	DatabaseType *string `type:"string" enum:"DatabaseType"`
 
+	// The tags of the database.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -2106,11 +2350,15 @@ func (s *DatabaseSummary) SetTags(v map[string]*string) *DatabaseSummary {
 type DeleteResourcePermissionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Delete or restore the permissions on the target database.
 	ActionType *string `type:"string" enum:"PermissionActionType"`
 
+	// The Amazon Resource Name (ARN) of the resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the source resource.
 	SourceResourceArn *string `type:"string"`
 }
 
@@ -2166,6 +2414,7 @@ func (s *DeleteResourcePermissionInput) SetSourceResourceArn(v string) *DeleteRe
 type DeleteResourcePermissionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The policy that removes permissions on the target database.
 	Policy *string `type:"string"`
 }
 
@@ -2196,6 +2445,8 @@ func (s *DeleteResourcePermissionOutput) SetPolicy(v string) *DeleteResourcePerm
 type DeregisterApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
+	//
 	// ApplicationId is a required field
 	ApplicationId *string `type:"string" required:"true"`
 }
@@ -2259,11 +2510,99 @@ func (s DeregisterApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// A specific result obtained by specifying the name, value, and operator.
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter. Filter names are case-sensitive.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The operator for the filter.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"FilterOperator"`
+
+	// The filter values. Filter values are case-sensitive. If you specify multiple
+	// values for a filter, the values are joined with an OR, and the request returns
+	// all results that match any of the specified values
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Filter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Filter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *Filter) SetOperator(v string) *Filter {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Filter) SetValue(v string) *Filter {
+	s.Value = &v
+	return s
+}
+
 type GetApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the application registry.
+	AppRegistryArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the application.
 	ApplicationArn *string `type:"string"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 }
 
@@ -2285,6 +2624,12 @@ func (s GetApplicationInput) GoString() string {
 	return s.String()
 }
 
+// SetAppRegistryArn sets the AppRegistryArn field's value.
+func (s *GetApplicationInput) SetAppRegistryArn(v string) *GetApplicationInput {
+	s.AppRegistryArn = &v
+	return s
+}
+
 // SetApplicationArn sets the ApplicationArn field's value.
 func (s *GetApplicationInput) SetApplicationArn(v string) *GetApplicationInput {
 	s.ApplicationArn = &v
@@ -2300,8 +2645,11 @@ func (s *GetApplicationInput) SetApplicationId(v string) *GetApplicationInput {
 type GetApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns all of the metadata of an application registered with AWS Systems
+	// Manager for SAP.
 	Application *Application `type:"structure"`
 
+	// The tags of a registered application.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -2338,9 +2686,13 @@ func (s *GetApplicationOutput) SetTags(v map[string]*string) *GetApplicationOutp
 type GetComponentInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
+	//
 	// ApplicationId is a required field
 	ApplicationId *string `type:"string" required:"true"`
 
+	// The ID of the component.
+	//
 	// ComponentId is a required field
 	ComponentId *string `type:"string" required:"true"`
 }
@@ -2394,6 +2746,7 @@ func (s *GetComponentInput) SetComponentId(v string) *GetComponentInput {
 type GetComponentOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The component of an application registered with AWS Systems Manager for SAP.
 	Component *Component `type:"structure"`
 }
 
@@ -2424,12 +2777,16 @@ func (s *GetComponentOutput) SetComponent(v *Component) *GetComponentOutput {
 type GetDatabaseInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 
+	// The ID of the component.
 	ComponentId *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the database.
 	DatabaseArn *string `type:"string"`
 
+	// The ID of the database.
 	DatabaseId *string `type:"string"`
 }
 
@@ -2478,8 +2835,11 @@ func (s *GetDatabaseInput) SetDatabaseId(v string) *GetDatabaseInput {
 type GetDatabaseOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The SAP HANA database of an application registered with AWS Systems Manager
+	// for SAP.
 	Database *Database `type:"structure"`
 
+	// The tags of a database.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -2516,6 +2876,8 @@ func (s *GetDatabaseOutput) SetTags(v map[string]*string) *GetDatabaseOutput {
 type GetOperationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the operation.
+	//
 	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
@@ -2560,6 +2922,7 @@ func (s *GetOperationInput) SetOperationId(v string) *GetOperationInput {
 type GetOperationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the details of an operation.
 	Operation *Operation `type:"structure"`
 }
 
@@ -2592,6 +2955,8 @@ type GetResourcePermissionInput struct {
 
 	ActionType *string `type:"string" enum:"PermissionActionType"`
 
+	// The Amazon Resource Name (ARN) of the resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 }
@@ -2669,15 +3034,20 @@ func (s *GetResourcePermissionOutput) SetPolicy(v string) *GetResourcePermission
 	return s
 }
 
+// Describes the properties of the Dedicated Host.
 type Host struct {
 	_ struct{} `type:"structure"`
 
+	// The IP address of the Dedicated Host.
 	HostIp *string `type:"string"`
 
+	// The name of the Dedicated Host.
 	HostName *string `type:"string"`
 
+	// The role of the Dedicated Host.
 	HostRole *string `type:"string" enum:"HostRole"`
 
+	// The instance ID of the instance on the Dedicated Host.
 	InstanceId *string `type:"string"`
 }
 
@@ -2723,6 +3093,7 @@ func (s *Host) SetInstanceId(v string) *Host {
 	return s
 }
 
+// An internal error has occurred.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2789,8 +3160,11 @@ func (s *InternalServerException) RequestID() string {
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The token for the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -2840,8 +3214,11 @@ func (s *ListApplicationsInput) SetNextToken(v string) *ListApplicationsInput {
 type ListApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The applications registered with AWS Systems Manager for SAP.
 	Applications []*ApplicationSummary `type:"list"`
 
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `type:"string"`
 }
 
@@ -2878,10 +3255,17 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 type ListComponentsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	//
+	// If you do not specify a value for MaxResults, the request returns 50 items
+	// per page by default.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The token for the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -2937,8 +3321,11 @@ func (s *ListComponentsInput) SetNextToken(v string) *ListComponentsInput {
 type ListComponentsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// List of components registered with AWS System Manager for SAP.
 	Components []*ComponentSummary `type:"list"`
 
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `type:"string"`
 }
 
@@ -2975,12 +3362,19 @@ func (s *ListComponentsOutput) SetNextToken(v string) *ListComponentsOutput {
 type ListDatabasesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
 	ApplicationId *string `type:"string"`
 
+	// The ID of the component.
 	ComponentId *string `type:"string"`
 
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value. If
+	// you do not specify a value for MaxResults, the request returns 50 items per
+	// page by default.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The token for the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -3042,8 +3436,11 @@ func (s *ListDatabasesInput) SetNextToken(v string) *ListDatabasesInput {
 type ListDatabasesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The SAP HANA databases of an application.
 	Databases []*DatabaseSummary `type:"list"`
 
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `type:"string"`
 }
 
@@ -3077,9 +3474,144 @@ func (s *ListDatabasesOutput) SetNextToken(v string) *ListDatabasesOutput {
 	return s
 }
 
+type ListOperationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the application.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `type:"string" required:"true"`
+
+	// The filters of an operation.
+	Filters []*Filter `min:"1" type:"list"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value. If
+	// you do not specify a value for MaxResults, the request returns 50 items per
+	// page by default.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOperationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOperationsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ListOperationsInput) SetApplicationId(v string) *ListOperationsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListOperationsInput) SetFilters(v []*Filter) *ListOperationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOperationsInput) SetMaxResults(v int64) *ListOperationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOperationsInput) SetNextToken(v string) *ListOperationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListOperationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `type:"string"`
+
+	// List of operations performed by AWS Systems Manager for SAP.
+	Operations []*Operation `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOperationsOutput) SetNextToken(v string) *ListOperationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOperations sets the Operations field's value.
+func (s *ListOperationsOutput) SetOperations(v []*Operation) *ListOperationsOutput {
+	s.Operations = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Amazon Resource Name (ARN) of the resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
@@ -3154,29 +3686,41 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// The operations performed by AWS Systems Manager for SAP.
 type Operation struct {
 	_ struct{} `type:"structure"`
 
+	// The end time of the operation.
 	EndTime *time.Time `type:"timestamp"`
 
+	// The ID of the operation.
 	Id *string `type:"string"`
 
+	// The time at which the operation was last updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
+	// The properties of the operation.
 	Properties map[string]*string `type:"map"`
 
+	// The Amazon Resource Name (ARN) of the operation.
 	ResourceArn *string `type:"string"`
 
+	// The resource ID of the operation.
 	ResourceId *string `min:"1" type:"string"`
 
+	// The resource type of the operation.
 	ResourceType *string `min:"1" type:"string"`
 
+	// The start time of the operation.
 	StartTime *time.Time `type:"timestamp"`
 
+	// The status of the operation.
 	Status *string `type:"string" enum:"OperationStatus"`
 
+	// The status message of the operation.
 	StatusMessage *string `type:"string"`
 
+	// The type of the operation.
 	Type *string `type:"string"`
 }
 
@@ -3365,22 +3909,33 @@ func (s *PutResourcePermissionOutput) SetPolicy(v string) *PutResourcePermission
 type RegisterApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
+	//
 	// ApplicationId is a required field
 	ApplicationId *string `type:"string" required:"true"`
 
+	// The type of the application.
+	//
 	// ApplicationType is a required field
 	ApplicationType *string `type:"string" required:"true" enum:"ApplicationType"`
 
+	// The credentials of the SAP application.
+	//
 	// Credentials is a required field
 	Credentials []*ApplicationCredential `min:"1" type:"list" required:"true"`
 
+	// The Amazon EC2 instances on which your SAP application is running.
+	//
 	// Instances is a required field
 	Instances []*string `min:"1" type:"list" required:"true"`
 
+	// The SAP instance number of the application.
 	SapInstanceNumber *string `type:"string"`
 
+	// The System ID of the application.
 	Sid *string `type:"string"`
 
+	// The tags to be attached to the SAP application.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -3485,8 +4040,10 @@ func (s *RegisterApplicationInput) SetTags(v map[string]*string) *RegisterApplic
 type RegisterApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The application registered with AWS Systems Manager for SAP.
 	Application *Application `type:"structure"`
 
+	// The ID of the operation.
 	OperationId *string `type:"string"`
 }
 
@@ -3520,6 +4077,7 @@ func (s *RegisterApplicationOutput) SetOperationId(v string) *RegisterApplicatio
 	return s
 }
 
+// The resource is not available.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3586,9 +4144,13 @@ func (s *ResourceNotFoundException) RequestID() string {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
+	// The tags on a resource.
+	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
@@ -3667,6 +4229,8 @@ func (s TagResourceOutput) GoString() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Amazon Resource Name (ARN) of the resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
@@ -3751,11 +4315,15 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateApplicationSettingsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application.
+	//
 	// ApplicationId is a required field
 	ApplicationId *string `type:"string" required:"true"`
 
+	// The credentials to be added or updated.
 	CredentialsToAddOrUpdate []*ApplicationCredential `min:"1" type:"list"`
 
+	// The credentials to be removed.
 	CredentialsToRemove []*ApplicationCredential `min:"1" type:"list"`
 }
 
@@ -3837,8 +4405,10 @@ func (s *UpdateApplicationSettingsInput) SetCredentialsToRemove(v []*Application
 type UpdateApplicationSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The update message.
 	Message *string `type:"string"`
 
+	// The IDs of the operations.
 	OperationIds []*string `type:"list"`
 }
 
@@ -3872,6 +4442,7 @@ func (s *UpdateApplicationSettingsOutput) SetOperationIds(v []*string) *UpdateAp
 	return s
 }
 
+// The input fails to satisfy the constraints specified by an AWS service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4064,6 +4635,26 @@ func DatabaseType_Values() []string {
 	return []string{
 		DatabaseTypeSystem,
 		DatabaseTypeTenant,
+	}
+}
+
+const (
+	// FilterOperatorEquals is a FilterOperator enum value
+	FilterOperatorEquals = "Equals"
+
+	// FilterOperatorGreaterThanOrEquals is a FilterOperator enum value
+	FilterOperatorGreaterThanOrEquals = "GreaterThanOrEquals"
+
+	// FilterOperatorLessThanOrEquals is a FilterOperator enum value
+	FilterOperatorLessThanOrEquals = "LessThanOrEquals"
+)
+
+// FilterOperator_Values returns all elements of the FilterOperator enum
+func FilterOperator_Values() []string {
+	return []string{
+		FilterOperatorEquals,
+		FilterOperatorGreaterThanOrEquals,
+		FilterOperatorLessThanOrEquals,
 	}
 }
 

@@ -109,6 +109,13 @@ type SsmSapAPI interface {
 	ListDatabasesPages(*ssmsap.ListDatabasesInput, func(*ssmsap.ListDatabasesOutput, bool) bool) error
 	ListDatabasesPagesWithContext(aws.Context, *ssmsap.ListDatabasesInput, func(*ssmsap.ListDatabasesOutput, bool) bool, ...request.Option) error
 
+	ListOperations(*ssmsap.ListOperationsInput) (*ssmsap.ListOperationsOutput, error)
+	ListOperationsWithContext(aws.Context, *ssmsap.ListOperationsInput, ...request.Option) (*ssmsap.ListOperationsOutput, error)
+	ListOperationsRequest(*ssmsap.ListOperationsInput) (*request.Request, *ssmsap.ListOperationsOutput)
+
+	ListOperationsPages(*ssmsap.ListOperationsInput, func(*ssmsap.ListOperationsOutput, bool) bool) error
+	ListOperationsPagesWithContext(aws.Context, *ssmsap.ListOperationsInput, func(*ssmsap.ListOperationsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*ssmsap.ListTagsForResourceInput) (*ssmsap.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *ssmsap.ListTagsForResourceInput, ...request.Option) (*ssmsap.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*ssmsap.ListTagsForResourceInput) (*request.Request, *ssmsap.ListTagsForResourceOutput)
