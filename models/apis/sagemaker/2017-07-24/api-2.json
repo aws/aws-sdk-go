@@ -2266,7 +2266,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListInferenceRecommendationsJobStepsRequest"},
-      "output":{"shape":"ListInferenceRecommendationsJobStepsResponse"}
+      "output":{"shape":"ListInferenceRecommendationsJobStepsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "ListInferenceRecommendationsJobs":{
       "name":"ListInferenceRecommendationsJobs",
@@ -11626,7 +11629,8 @@
       "members":{
         "Metrics":{"shape":"RecommendationMetrics"},
         "EndpointConfiguration":{"shape":"EndpointOutputConfiguration"},
-        "ModelConfiguration":{"shape":"ModelConfiguration"}
+        "ModelConfiguration":{"shape":"ModelConfiguration"},
+        "RecommendationId":{"shape":"String"}
       }
     },
     "InferenceRecommendations":{
@@ -14335,7 +14339,8 @@
       "type":"structure",
       "members":{
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
-        "EnvironmentParameters":{"shape":"EnvironmentParameters"}
+        "EnvironmentParameters":{"shape":"EnvironmentParameters"},
+        "CompilationJobName":{"shape":"RecommendationJobCompilationJobName"}
       }
     },
     "ModelDashboardEndpoint":{
@@ -17125,6 +17130,12 @@
       "max":256,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:inference-recommendations-job/.*"
     },
+    "RecommendationJobCompilationJobName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$"
+    },
     "RecommendationJobCompiledOutputConfig":{
       "type":"structure",
       "members":{
@@ -17140,8 +17151,15 @@
         "FrameworkVersion":{"shape":"String"},
         "PayloadConfig":{"shape":"RecommendationJobPayloadConfig"},
         "NearestModelName":{"shape":"String"},
-        "SupportedInstanceTypes":{"shape":"RecommendationJobSupportedInstanceTypes"}
+        "SupportedInstanceTypes":{"shape":"RecommendationJobSupportedInstanceTypes"},
+        "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"}
       }
+    },
+    "RecommendationJobDataInputConfig":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\S\\s]+"
     },
     "RecommendationJobDescription":{
       "type":"string",
@@ -17159,7 +17177,6 @@
     },
     "RecommendationJobInputConfig":{
       "type":"structure",
-      "required":["ModelPackageVersionArn"],
       "members":{
         "ModelPackageVersionArn":{"shape":"ModelPackageArn"},
         "JobDurationInSeconds":{"shape":"JobDurationInSeconds"},
@@ -17169,7 +17186,8 @@
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "ContainerConfig":{"shape":"RecommendationJobContainerConfig"},
         "Endpoints":{"shape":"Endpoints"},
-        "VpcConfig":{"shape":"RecommendationJobVpcConfig"}
+        "VpcConfig":{"shape":"RecommendationJobVpcConfig"},
+        "ModelName":{"shape":"ModelName"}
       }
     },
     "RecommendationJobName":{
@@ -17277,7 +17295,9 @@
         "CostPerHour":{"shape":"Float"},
         "CostPerInference":{"shape":"Float"},
         "MaxInvocations":{"shape":"Integer"},
-        "ModelLatency":{"shape":"Integer"}
+        "ModelLatency":{"shape":"Integer"},
+        "CpuUtilization":{"shape":"UtilizationMetric"},
+        "MemoryUtilization":{"shape":"UtilizationMetric"}
       }
     },
     "RecommendationStepType":{
@@ -20192,6 +20212,10 @@
         "RSessionAppSettings":{"shape":"RSessionAppSettings"},
         "CanvasAppSettings":{"shape":"CanvasAppSettings"}
       }
+    },
+    "UtilizationMetric":{
+      "type":"float",
+      "min":0.0
     },
     "ValidationFraction":{
       "type":"float",

@@ -1,3 +1,22 @@
+Release v1.44.187 (2023-01-25)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Adds new service
+  * Enabled FIPS aws-us-gov endpoints in SDK.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds new functionality that allows customers to provision IPv6 CIDR blocks through Amazon VPC IP Address Manager (IPAM) as well as allowing customers to utilize IPAM Resource Discovery APIs.
+* `service/m2`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Add 5 new neural voices - Sergio (es-ES), Andres (es-MX), Remi (fr-FR), Adriano (it-IT) and Thiago (pt-BR).
+* `service/redshift-serverless`: Updates service documentation
+* `service/s3control`: Updates service API
+  * Add additional endpoint tests for S3 Control. Fix missing endpoint parameters for PutBucketVersioning and GetBucketVersioning. Prior to this fix, those operations may have resulted in an invalid endpoint being resolved.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now decouples from Model Registry and could accept Model Name to invoke inference recommendations job; Inference Recommender now provides CPU/Memory Utilization metrics data in recommendation output.
+* `service/sts`: Updates service documentation
+  * Doc only change to update wording in a key topic
+
 Release v1.44.186 (2023-01-24)
 ===
 

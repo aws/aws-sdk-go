@@ -729,11 +729,13 @@
       ],
       "members":{
         "applicationId":{"shape":"Identifier"},
+        "batchJobIdentifier":{"shape":"BatchJobIdentifier"},
         "endTime":{"shape":"Timestamp"},
         "executionId":{"shape":"Identifier"},
         "jobId":{"shape":"String100"},
         "jobName":{"shape":"String100"},
         "jobType":{"shape":"BatchJobType"},
+        "returnCode":{"shape":"String"},
         "startTime":{"shape":"Timestamp"},
         "status":{"shape":"BatchJobExecutionStatus"}
       }
@@ -1424,12 +1426,14 @@
       ],
       "members":{
         "applicationId":{"shape":"Identifier"},
+        "batchJobIdentifier":{"shape":"BatchJobIdentifier"},
         "endTime":{"shape":"Timestamp"},
         "executionId":{"shape":"Identifier"},
         "jobId":{"shape":"String100"},
         "jobName":{"shape":"String100"},
         "jobType":{"shape":"BatchJobType"},
         "jobUser":{"shape":"String100"},
+        "returnCode":{"shape":"String"},
         "startTime":{"shape":"Timestamp"},
         "status":{"shape":"BatchJobExecutionStatus"},
         "statusReason":{"shape":"String"}

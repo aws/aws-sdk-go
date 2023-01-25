@@ -243,6 +243,18 @@
       "output_token": "NextToken",
       "result_key": "IpamPools"
     },
+    "DescribeIpamResourceDiscoveries": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamResourceDiscoveries"
+    },
+    "DescribeIpamResourceDiscoveryAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamResourceDiscoveryAssociations"
+    },
     "DescribeIpamScopes": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -718,6 +730,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "HistoryRecords"
+    },
+    "GetIpamDiscoveredAccounts": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamDiscoveredAccounts"
+    },
+    "GetIpamDiscoveredResourceCidrs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamDiscoveredResourceCidrs"
     },
     "GetIpamPoolAllocations": {
       "input_token": "NextToken",

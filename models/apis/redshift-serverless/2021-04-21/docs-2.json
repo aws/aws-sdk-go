@@ -34,14 +34,14 @@
     "PutResourcePolicy": "<p>Creates or updates a resource policy. Currently, you can use policies to share snapshots across Amazon Web Services accounts.</p>",
     "RestoreFromRecoveryPoint": "<p>Restore the data from a recovery point.</p>",
     "RestoreFromSnapshot": "<p>Restores a namespace from a snapshot.</p>",
-    "RestoreTableFromSnapshot": "<p>Restores a table from a snapshot to your Amazon Redshift Serverless instance.</p>",
+    "RestoreTableFromSnapshot": "<p>Restores a table from a snapshot to your Amazon Redshift Serverless instance. You can't use this operation to restore tables with <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html#t_Sorting_data-interleaved\">interleaved sort keys</a>.</p>",
     "TagResource": "<p>Assigns one or more tags to a resource.</p>",
     "UntagResource": "<p>Removes a tag or set of tags from a resource.</p>",
     "UpdateEndpointAccess": "<p>Updates an Amazon Redshift Serverless managed endpoint.</p>",
-    "UpdateNamespace": "<p>Updates a namespace with the specified settings.</p>",
+    "UpdateNamespace": "<p>Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both <code>adminUsername</code> and <code>adminUserPassword</code> to update either field, but you can't update both <code>kmsKeyId</code> and <code>logExports</code> in a single request.</p>",
     "UpdateSnapshot": "<p>Updates a snapshot.</p>",
     "UpdateUsageLimit": "<p>Update a usage limit in Amazon Redshift Serverless. You can't update the usage type or period of a usage limit.</p>",
-    "UpdateWorkgroup": "<p>Updates a workgroup with the specified configuration settings.</p>"
+    "UpdateWorkgroup": "<p>Updates a workgroup with the specified configuration settings. You can't update multiple parameters in one request. For example, you can update <code>baseCapacity</code> or <code>port</code> in a single request, but you can't update both in the same request.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -87,9 +87,9 @@
     "ConfigParameterList": {
       "base": null,
       "refs": {
-        "CreateWorkgroupRequest$configParameters": "<p>An array of parameters to set for more control over a serverless database. The options are <code>datestyle</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and <code>max_query_execution_time</code>.</p>",
-        "UpdateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>datestyle</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and <code>max_query_execution_time</code>.</p>",
-        "Workgroup$configParameters": "<p>An array of parameters to set for finer control over a database. The options are <code>datestyle</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and <code>max_query_execution_time</code>.</p>"
+        "CreateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
+        "UpdateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
+        "Workgroup$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, , <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
       }
     },
     "ConflictException": {
@@ -168,7 +168,7 @@
       "refs": {
         "CreateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace.</p>",
         "GetCredentialsResponse$dbPassword": "<p>A temporary password that authorizes the user name returned by <code>DbUser</code> to log on to the database <code>DbName</code>.</p>",
-        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace.</p>"
+        "UpdateNamespaceRequest$adminUserPassword": "<p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p>"
       }
     },
     "DbUser": {
@@ -177,7 +177,7 @@
         "CreateNamespaceRequest$adminUsername": "<p>The username of the administrator for the first database created in the namespace.</p>",
         "GetCredentialsResponse$dbUser": "<p>A database user name that is authorized to log on to the database <code>DbName</code> using the password <code>DbPassword</code>. If the specified <code>DbUser</code> exists in the database, the new user name has the same database privileges as the the user named in <code>DbUser</code>. By default, the user is added to PUBLIC.</p>",
         "Namespace$adminUsername": "<p>The username of the administrator for the first database created in the namespace.</p>",
-        "UpdateNamespaceRequest$adminUsername": "<p>The username of the administrator for the first database created in the namespace.</p>"
+        "UpdateNamespaceRequest$adminUsername": "<p>The username of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUserPassword</code>.</p>"
       }
     },
     "DeleteEndpointAccessRequest": {
@@ -373,7 +373,7 @@
       "refs": {
         "CreateNamespaceRequest$iamRoles": "<p>A list of IAM roles to associate with the namespace.</p>",
         "Namespace$iamRoles": "<p>A list of IAM roles to associate with the namespace.</p>",
-        "UpdateNamespaceRequest$iamRoles": "<p>A list of IAM roles to associate with the namespace.</p>"
+        "UpdateNamespaceRequest$iamRoles": "<p>A list of IAM roles to associate with the namespace. This parameter must be updated together with <code>defaultIamRoleArn</code>.</p>"
       }
     },
     "InsufficientCapacityException": {
@@ -595,7 +595,7 @@
         "RecoveryPoint$namespaceName": "<p>The name of the namespace the recovery point is associated with.</p>",
         "RestoreFromRecoveryPointRequest$namespaceName": "<p>The name of the namespace to restore data into.</p>",
         "RestoreFromSnapshotRequest$namespaceName": "<p>The name of the namespace to restore the snapshot to.</p>",
-        "UpdateNamespaceRequest$namespaceName": "<p>The name of the namespace.</p>"
+        "UpdateNamespaceRequest$namespaceName": "<p>The name of the namespace to update. You can't update the name of a namespace once it is created.</p>"
       }
     },
     "NamespaceStatus": {
@@ -628,7 +628,7 @@
     "ParameterKey": {
       "base": null,
       "refs": {
-        "ConfigParameter$parameterKey": "<p>The key of the parameter. The options are <code>datestyle</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and <code>max_query_execution_time</code>.</p>"
+        "ConfigParameter$parameterKey": "<p>The key of the parameter. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\">Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
       }
     },
     "ParameterValue": {
@@ -857,7 +857,7 @@
         "ThrottlingException$message": null,
         "TooManyTagsException$message": null,
         "UpdateEndpointAccessRequest$endpointName": "<p>The name of the VPC endpoint to update.</p>",
-        "UpdateNamespaceRequest$defaultIamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace.</p>",
+        "UpdateNamespaceRequest$defaultIamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace. This parameter must be updated together with <code>iamRoles</code>.</p>",
         "UpdateNamespaceRequest$kmsKeyId": "<p>The ID of the Amazon Web Services Key Management Service key used to encrypt your data.</p>",
         "UpdateSnapshotRequest$snapshotName": "<p>The name of the snapshot.</p>",
         "UpdateUsageLimitRequest$usageLimitId": "<p>The identifier of the usage limit to update.</p>",
@@ -1151,7 +1151,7 @@
         "RecoveryPoint$workgroupName": "<p>The name of the workgroup the recovery point is associated with.</p>",
         "RestoreFromRecoveryPointRequest$workgroupName": "<p>The name of the workgroup used to restore data.</p>",
         "RestoreFromSnapshotRequest$workgroupName": "<p>The name of the workgroup used to restore the snapshot.</p>",
-        "UpdateWorkgroupRequest$workgroupName": "<p>The name of the workgroup to update.</p>",
+        "UpdateWorkgroupRequest$workgroupName": "<p>The name of the workgroup to update. You can't update the name of a workgroup once it is created.</p>",
         "Workgroup$workgroupName": "<p>The name of the workgroup.</p>"
       }
     },

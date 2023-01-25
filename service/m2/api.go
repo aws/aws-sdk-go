@@ -3920,6 +3920,9 @@ type BatchJobExecutionSummary struct {
 	// ApplicationId is a required field
 	ApplicationId *string `locationName:"applicationId" type:"string" required:"true"`
 
+	// Identifies a specific batch job.
+	BatchJobIdentifier *BatchJobIdentifier `locationName:"batchJobIdentifier" type:"structure"`
+
 	// The timestamp when this batch job execution ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
@@ -3936,6 +3939,8 @@ type BatchJobExecutionSummary struct {
 
 	// The type of a particular batch job execution.
 	JobType *string `locationName:"jobType" type:"string" enum:"BatchJobType"`
+
+	ReturnCode *string `locationName:"returnCode" type:"string"`
 
 	// The timestamp when a particular batch job execution started.
 	//
@@ -3972,6 +3977,12 @@ func (s *BatchJobExecutionSummary) SetApplicationId(v string) *BatchJobExecution
 	return s
 }
 
+// SetBatchJobIdentifier sets the BatchJobIdentifier field's value.
+func (s *BatchJobExecutionSummary) SetBatchJobIdentifier(v *BatchJobIdentifier) *BatchJobExecutionSummary {
+	s.BatchJobIdentifier = v
+	return s
+}
+
 // SetEndTime sets the EndTime field's value.
 func (s *BatchJobExecutionSummary) SetEndTime(v time.Time) *BatchJobExecutionSummary {
 	s.EndTime = &v
@@ -3999,6 +4010,12 @@ func (s *BatchJobExecutionSummary) SetJobName(v string) *BatchJobExecutionSummar
 // SetJobType sets the JobType field's value.
 func (s *BatchJobExecutionSummary) SetJobType(v string) *BatchJobExecutionSummary {
 	s.JobType = &v
+	return s
+}
+
+// SetReturnCode sets the ReturnCode field's value.
+func (s *BatchJobExecutionSummary) SetReturnCode(v string) *BatchJobExecutionSummary {
+	s.ReturnCode = &v
 	return s
 }
 
@@ -6872,6 +6889,9 @@ type GetBatchJobExecutionOutput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `locationName:"applicationId" type:"string" required:"true"`
 
+	// Identifies a specific batch job.
+	BatchJobIdentifier *BatchJobIdentifier `locationName:"batchJobIdentifier" type:"structure"`
+
 	// The timestamp when the batch job execution ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
@@ -6891,6 +6911,8 @@ type GetBatchJobExecutionOutput struct {
 
 	// The user for the job.
 	JobUser *string `locationName:"jobUser" type:"string"`
+
+	ReturnCode *string `locationName:"returnCode" type:"string"`
 
 	// The timestamp when the batch job execution started.
 	//
@@ -6930,6 +6952,12 @@ func (s *GetBatchJobExecutionOutput) SetApplicationId(v string) *GetBatchJobExec
 	return s
 }
 
+// SetBatchJobIdentifier sets the BatchJobIdentifier field's value.
+func (s *GetBatchJobExecutionOutput) SetBatchJobIdentifier(v *BatchJobIdentifier) *GetBatchJobExecutionOutput {
+	s.BatchJobIdentifier = v
+	return s
+}
+
 // SetEndTime sets the EndTime field's value.
 func (s *GetBatchJobExecutionOutput) SetEndTime(v time.Time) *GetBatchJobExecutionOutput {
 	s.EndTime = &v
@@ -6963,6 +6991,12 @@ func (s *GetBatchJobExecutionOutput) SetJobType(v string) *GetBatchJobExecutionO
 // SetJobUser sets the JobUser field's value.
 func (s *GetBatchJobExecutionOutput) SetJobUser(v string) *GetBatchJobExecutionOutput {
 	s.JobUser = &v
+	return s
+}
+
+// SetReturnCode sets the ReturnCode field's value.
+func (s *GetBatchJobExecutionOutput) SetReturnCode(v string) *GetBatchJobExecutionOutput {
+	s.ReturnCode = &v
 	return s
 }
 
