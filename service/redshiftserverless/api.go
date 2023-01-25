@@ -3308,6 +3308,8 @@ func (c *RedshiftServerless) RestoreTableFromSnapshotRequest(input *RestoreTable
 // RestoreTableFromSnapshot API operation for Redshift Serverless.
 //
 // Restores a table from a snapshot to your Amazon Redshift Serverless instance.
+// You can't use this operation to restore tables with interleaved sort keys
+// (https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html#t_Sorting_data-interleaved).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3671,7 +3673,10 @@ func (c *RedshiftServerless) UpdateNamespaceRequest(input *UpdateNamespaceInput)
 
 // UpdateNamespace API operation for Redshift Serverless.
 //
-// Updates a namespace with the specified settings.
+// Updates a namespace with the specified settings. Unless required, you can't
+// update multiple parameters in one request. For example, you must specify
+// both adminUsername and adminUserPassword to update either field, but you
+// can't update both kmsKeyId and logExports in a single request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3939,7 +3944,9 @@ func (c *RedshiftServerless) UpdateWorkgroupRequest(input *UpdateWorkgroupInput)
 
 // UpdateWorkgroup API operation for Redshift Serverless.
 //
-// Updates a workgroup with the specified configuration settings.
+// Updates a workgroup with the specified configuration settings. You can't
+// update multiple parameters in one request. For example, you can update baseCapacity
+// or port in a single request, but you can't update both in the same request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4059,8 +4066,11 @@ func (s *AccessDeniedException) RequestID() string {
 type ConfigParameter struct {
 	_ struct{} `type:"structure"`
 
-	// The key of the parameter. The options are datestyle, enable_user_activity_logging,
-	// query_group, search_path, and max_query_execution_time.
+	// The key of the parameter. The options are auto_mv, datestyle, enable_case_sensitivity_identifier,
+	// enable_user_activity_logging, query_group, search_path, and query monitoring
+	// metrics that let you define performance boundaries. For more information
+	// about query monitoring rules and available metrics, see Query monitoring
+	// metrics for Amazon Redshift Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ParameterKey *string `locationName:"parameterKey" type:"string"`
 
 	// The value of the parameter to set.
@@ -4829,9 +4839,12 @@ type CreateWorkgroupInput struct {
 	// Units (RPUs).
 	BaseCapacity *int64 `locationName:"baseCapacity" type:"integer"`
 
-	// An array of parameters to set for more control over a serverless database.
-	// The options are datestyle, enable_user_activity_logging, query_group, search_path,
-	// and max_query_execution_time.
+	// An array of parameters to set for advanced control over a database. The options
+	// are auto_mv, datestyle, enable_case_sensitivity_identifier, enable_user_activity_logging,
+	// query_group, search_path, and query monitoring metrics that let you define
+	// performance boundaries. For more information about query monitoring rules
+	// and available metrics, see Query monitoring metrics for Amazon Redshift Serverless
+	// (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ConfigParameters []*ConfigParameter `locationName:"configParameters" type:"list"`
 
 	// The value that specifies whether to turn on enhanced virtual private cloud
@@ -9378,6 +9391,7 @@ type UpdateNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The password of the administrator for the first database created in the namespace.
+	// This parameter must be updated together with adminUsername.
 	//
 	// AdminUserPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateNamespaceInput's
@@ -9385,6 +9399,7 @@ type UpdateNamespaceInput struct {
 	AdminUserPassword *string `locationName:"adminUserPassword" type:"string" sensitive:"true"`
 
 	// The username of the administrator for the first database created in the namespace.
+	// This parameter must be updated together with adminUserPassword.
 	//
 	// AdminUsername is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateNamespaceInput's
@@ -9392,10 +9407,11 @@ type UpdateNamespaceInput struct {
 	AdminUsername *string `locationName:"adminUsername" type:"string" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to set as a default in the
-	// namespace.
+	// namespace. This parameter must be updated together with iamRoles.
 	DefaultIamRoleArn *string `locationName:"defaultIamRoleArn" type:"string"`
 
-	// A list of IAM roles to associate with the namespace.
+	// A list of IAM roles to associate with the namespace. This parameter must
+	// be updated together with defaultIamRoleArn.
 	IamRoles []*string `locationName:"iamRoles" type:"list"`
 
 	// The ID of the Amazon Web Services Key Management Service key used to encrypt
@@ -9406,7 +9422,8 @@ type UpdateNamespaceInput struct {
 	// connectionlog, and useractivitylog.
 	LogExports []*string `locationName:"logExports" type:"list" enum:"LogExport"`
 
-	// The name of the namespace.
+	// The name of the namespace to update. You can't update the name of a namespace
+	// once it is created.
 	//
 	// NamespaceName is a required field
 	NamespaceName *string `locationName:"namespaceName" min:"3" type:"string" required:"true"`
@@ -9712,8 +9729,11 @@ type UpdateWorkgroupInput struct {
 	BaseCapacity *int64 `locationName:"baseCapacity" type:"integer"`
 
 	// An array of parameters to set for advanced control over a database. The options
-	// are datestyle, enable_user_activity_logging, query_group, search_path, and
-	// max_query_execution_time.
+	// are auto_mv, datestyle, enable_case_sensitivity_identifier, enable_user_activity_logging,
+	// query_group, search_path, and query monitoring metrics that let you define
+	// performance boundaries. For more information about query monitoring rules
+	// and available metrics, see Query monitoring metrics for Amazon Redshift Serverless
+	// (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ConfigParameters []*ConfigParameter `locationName:"configParameters" type:"list"`
 
 	// The value that specifies whether to turn on enhanced virtual private cloud
@@ -9735,7 +9755,8 @@ type UpdateWorkgroupInput struct {
 	// An array of VPC subnet IDs to associate with the workgroup.
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
 
-	// The name of the workgroup to update.
+	// The name of the workgroup to update. You can't update the name of a workgroup
+	// once it is created.
 	//
 	// WorkgroupName is a required field
 	WorkgroupName *string `locationName:"workgroupName" min:"3" type:"string" required:"true"`
@@ -10112,9 +10133,12 @@ type Workgroup struct {
 	// Units (RPUs).
 	BaseCapacity *int64 `locationName:"baseCapacity" type:"integer"`
 
-	// An array of parameters to set for finer control over a database. The options
-	// are datestyle, enable_user_activity_logging, query_group, search_path, and
-	// max_query_execution_time.
+	// An array of parameters to set for advanced control over a database. The options
+	// are auto_mv, datestyle, enable_case_sensitivity_identifier, enable_user_activity_logging,
+	// query_group, , search_path, and query monitoring metrics that let you define
+	// performance boundaries. For more information about query monitoring rules
+	// and available metrics, see Query monitoring metrics for Amazon Redshift Serverless
+	// (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ConfigParameters []*ConfigParameter `locationName:"configParameters" type:"list"`
 
 	// The creation date of the workgroup.

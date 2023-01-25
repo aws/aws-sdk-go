@@ -156,6 +156,8 @@
     "BatchJobIdentifier": {
       "base": "<p>Identifies a specific batch job.</p>",
       "refs": {
+        "BatchJobExecutionSummary$batchJobIdentifier": null,
+        "GetBatchJobExecutionResponse$batchJobIdentifier": null,
         "StartBatchJobRequest$batchJobIdentifier": "<p>The unique identifier of the batch job.</p>"
       }
     },
@@ -953,6 +955,7 @@
         "AccessDeniedException$message": null,
         "AlternateKey$name": "<p>The name of the alternate key.</p>",
         "ApplicationVersionSummary$statusReason": "<p>The reason for the reported status.</p>",
+        "BatchJobExecutionSummary$returnCode": "<p/>",
         "ConflictException$message": null,
         "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
         "ConflictException$resourceType": "<p>The type of the conflicting resource.</p>",
@@ -977,6 +980,7 @@
         "GetApplicationResponse$kmsKeyId": "<p>The identifier of a customer managed key.</p>",
         "GetApplicationResponse$statusReason": "<p>The reason for the reported status.</p>",
         "GetApplicationVersionResponse$statusReason": "<p>The reason for the reported status.</p>",
+        "GetBatchJobExecutionResponse$returnCode": "<p/>",
         "GetBatchJobExecutionResponse$statusReason": "<p>The reason for the reported status.</p>",
         "GetDeploymentResponse$statusReason": "<p>The reason for the reported status.</p>",
         "GetEnvironmentResponse$kmsKeyId": "<p>The identifier of a customer managed key.</p>",

@@ -8564,6 +8564,7 @@
         "ModelVariantConfig$ModelName": "<p>The name of the Amazon SageMaker Model entity.</p>",
         "ModelVariantConfigSummary$ModelName": "<p>The name of the Amazon SageMaker Model entity.</p>",
         "ProductionVariant$ModelName": "<p>The name of the model that you want to host. This is the name that you specified when creating the model.</p>",
+        "RecommendationJobInputConfig$ModelName": "<p>The name of the created model.</p>",
         "TransformJob$ModelName": "<p>The name of the model associated with the transform job.</p>"
       }
     },
@@ -10983,6 +10984,12 @@
         "InferenceRecommendationsJob$JobArn": "<p>The Amazon Resource Name (ARN) of the recommendation job.</p>"
       }
     },
+    "RecommendationJobCompilationJobName": {
+      "base": null,
+      "refs": {
+        "ModelConfiguration$CompilationJobName": "<p>The name of the compilation job used to create the recommended model artifacts.</p>"
+      }
+    },
     "RecommendationJobCompiledOutputConfig": {
       "base": "<p>Provides information about the output configuration for the compiled model.</p>",
       "refs": {
@@ -10993,6 +11000,12 @@
       "base": "<p>Specifies mandatory fields for running an Inference Recommender job directly in the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceRecommendationsJob.html\">CreateInferenceRecommendationsJob</a> API. The fields specified in <code>ContainerConfig</code> override the corresponding fields in the model package. Use <code>ContainerConfig</code> if you want to specify these fields for the recommendation job but don't want to edit them in your model package.</p>",
       "refs": {
         "RecommendationJobInputConfig$ContainerConfig": "<p>Specifies mandatory fields for running an Inference Recommender job. The fields specified in <code>ContainerConfig</code> override the corresponding fields in the model package.</p>"
+      }
+    },
+    "RecommendationJobDataInputConfig": {
+      "base": null,
+      "refs": {
+        "RecommendationJobContainerConfig$DataInputConfig": "<p>Specifies the name and shape of the expected data inputs for your trained model with a JSON dictionary form. This field is used for optimizing your model using SageMaker Neo. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InputConfig.html#sagemaker-Type-InputConfig-DataInputConfig\">DataInputConfig</a>.</p>"
       }
     },
     "RecommendationJobDescription": {
@@ -12277,6 +12290,7 @@
         "EnvironmentParameter$Key": "<p>The environment key suggested by the Amazon SageMaker Inference Recommender.</p>",
         "EnvironmentParameter$ValueType": "<p>The value type suggested by the Amazon SageMaker Inference Recommender.</p>",
         "EnvironmentParameter$Value": "<p>The value suggested by the Amazon SageMaker Inference Recommender.</p>",
+        "InferenceRecommendation$RecommendationId": "<p>The recommendation ID which uniquely identifies each recommendation.</p>",
         "ListProcessingJobsRequest$NameContains": "<p>A string in the processing job name. This filter returns only processing jobs whose name contains the specified string.</p>",
         "ModelCard$ModelId": "<p>The unique name (ID) of the model.</p>",
         "ModelCard$RiskRating": "<p>The risk rating of the model. Different organizations might have different criteria for model card risk ratings. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards-risk-rating.html\">Risk ratings</a>.</p>",
@@ -14250,6 +14264,13 @@
         "DescribeUserProfileResponse$UserSettings": "<p>A collection of settings.</p>",
         "UpdateDomainRequest$DefaultUserSettings": "<p>A collection of settings.</p>",
         "UpdateUserProfileRequest$UserSettings": "<p>A collection of settings.</p>"
+      }
+    },
+    "UtilizationMetric": {
+      "base": null,
+      "refs": {
+        "RecommendationMetrics$CpuUtilization": "<p>The expected CPU utilization at maximum invocations per minute for the instance.</p> <p> <code>NaN</code> indicates that the value is not available.</p>",
+        "RecommendationMetrics$MemoryUtilization": "<p>The expected memory utilization at maximum invocations per minute for the instance.</p> <p> <code>NaN</code> indicates that the value is not available.</p>"
       }
     },
     "ValidationFraction": {
