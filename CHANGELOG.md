@@ -1,3 +1,12 @@
+Release v1.44.188 (2023-01-26)
+===
+
+### Service Client Updates
+* `service/eventbridge`: Updates service documentation
+* `service/iotfleetwise`: Updates service API
+* `service/s3`: Updates service examples
+  * Allow FIPS to be used with path-style URLs.
+
 Release v1.44.187 (2023-01-25)
 ===
 

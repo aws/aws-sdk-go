@@ -2824,7 +2824,8 @@
     },
     "createVehicleRequestItems":{
       "type":"list",
-      "member":{"shape":"CreateVehicleRequestItem"}
+      "member":{"shape":"CreateVehicleRequestItem"},
+      "min":1
     },
     "createVehicleResponses":{
       "type":"list",
@@ -2940,7 +2941,8 @@
     },
     "updateVehicleRequestItems":{
       "type":"list",
-      "member":{"shape":"UpdateVehicleRequestItem"}
+      "member":{"shape":"UpdateVehicleRequestItem"},
+      "min":1
     },
     "updateVehicleResponseItems":{
       "type":"list",

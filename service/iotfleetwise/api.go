@@ -6023,7 +6023,7 @@ type BatchCreateVehicleInput struct {
 	// see the API data type.
 	//
 	// Vehicles is a required field
-	Vehicles []*CreateVehicleRequestItem `locationName:"vehicles" type:"list" required:"true"`
+	Vehicles []*CreateVehicleRequestItem `locationName:"vehicles" min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -6049,6 +6049,9 @@ func (s *BatchCreateVehicleInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchCreateVehicleInput"}
 	if s.Vehicles == nil {
 		invalidParams.Add(request.NewErrParamRequired("Vehicles"))
+	}
+	if s.Vehicles != nil && len(s.Vehicles) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Vehicles", 1))
 	}
 	if s.Vehicles != nil {
 		for i, v := range s.Vehicles {
@@ -6122,7 +6125,7 @@ type BatchUpdateVehicleInput struct {
 	// see the API data type.
 	//
 	// Vehicles is a required field
-	Vehicles []*UpdateVehicleRequestItem `locationName:"vehicles" type:"list" required:"true"`
+	Vehicles []*UpdateVehicleRequestItem `locationName:"vehicles" min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -6148,6 +6151,9 @@ func (s *BatchUpdateVehicleInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateVehicleInput"}
 	if s.Vehicles == nil {
 		invalidParams.Add(request.NewErrParamRequired("Vehicles"))
+	}
+	if s.Vehicles != nil && len(s.Vehicles) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Vehicles", 1))
 	}
 	if s.Vehicles != nil {
 		for i, v := range s.Vehicles {
