@@ -179,10 +179,10 @@ func (c *SageMakerRuntime) InvokeEndpointAsyncRequest(input *InvokeEndpointAsync
 // at the specified endpoint in an asynchronous manner.
 //
 // Inference requests sent to this API are enqueued for asynchronous processing.
-// The processing of the inference request may or may not complete before the
-// you receive a response from this API. The response from this API will not
-// contain the result of the inference request but contain information about
-// where you can locate it.
+// The processing of the inference request may or may not complete before you
+// receive a response from this API. The response from this API will not contain
+// the result of the inference request but contain information about where you
+// can locate it.
 //
 // Amazon SageMaker strips all POST headers except those supported by the API.
 // Amazon SageMaker might add additional headers. You should not rely on the
@@ -190,7 +190,7 @@ func (c *SageMakerRuntime) InvokeEndpointAsyncRequest(input *InvokeEndpointAsync
 //
 // Calls to InvokeEndpointAsync are authenticated by using Amazon Web Services
 // Signature Version 4. For information, see Authenticating Requests (Amazon
-// Web Services Signature Version 4) (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
+// Web Services Signature Version 4) (https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
 // in the Amazon S3 API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -410,6 +410,10 @@ type InvokeEndpointAsyncInput struct {
 	// InputLocation is a required field
 	InputLocation *string `location:"header" locationName:"X-Amzn-SageMaker-InputLocation" min:"1" type:"string" required:"true"`
 
+	// Maximum amount of time in seconds a request can be processed before it is
+	// marked as expired.
+	InvocationTimeoutSeconds *int64 `location:"header" locationName:"X-Amzn-SageMaker-InvocationTimeoutSeconds" min:"1" type:"integer"`
+
 	// Maximum age in seconds a request can be in the queue before it is marked
 	// as expired.
 	RequestTTLSeconds *int64 `location:"header" locationName:"X-Amzn-SageMaker-RequestTTLSeconds" min:"60" type:"integer"`
@@ -450,6 +454,9 @@ func (s *InvokeEndpointAsyncInput) Validate() error {
 	}
 	if s.InputLocation != nil && len(*s.InputLocation) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InputLocation", 1))
+	}
+	if s.InvocationTimeoutSeconds != nil && *s.InvocationTimeoutSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("InvocationTimeoutSeconds", 1))
 	}
 	if s.RequestTTLSeconds != nil && *s.RequestTTLSeconds < 60 {
 		invalidParams.Add(request.NewErrParamMinValue("RequestTTLSeconds", 60))
@@ -494,6 +501,12 @@ func (s *InvokeEndpointAsyncInput) SetInferenceId(v string) *InvokeEndpointAsync
 // SetInputLocation sets the InputLocation field's value.
 func (s *InvokeEndpointAsyncInput) SetInputLocation(v string) *InvokeEndpointAsyncInput {
 	s.InputLocation = &v
+	return s
+}
+
+// SetInvocationTimeoutSeconds sets the InvocationTimeoutSeconds field's value.
+func (s *InvokeEndpointAsyncInput) SetInvocationTimeoutSeconds(v int64) *InvokeEndpointAsyncInput {
+	s.InvocationTimeoutSeconds = &v
 	return s
 }
 
@@ -591,7 +604,7 @@ type InvokeEndpointInput struct {
 	CustomAttributes *string `location:"header" locationName:"X-Amzn-SageMaker-Custom-Attributes" type:"string" sensitive:"true"`
 
 	// An optional JMESPath expression used to override the EnableExplanations parameter
-	// of the ClarifyExplainerConfig API. See the EnableExplanations (https://docs.aws.amazon.com/clarify-online-explainability-create-endpoint.html#clarify-online-exaplainability-create-endpoint-enable)
+	// of the ClarifyExplainerConfig API. See the EnableExplanations (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable)
 	// section in the developer guide for more information.
 	EnableExplanations *string `location:"header" locationName:"X-Amzn-SageMaker-Enable-Explanations" min:"1" type:"string"`
 

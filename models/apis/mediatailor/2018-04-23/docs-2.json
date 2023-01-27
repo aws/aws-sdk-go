@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Use the AWS Elemental MediaTailor SDKs and CLI to configure scalable ad insertion and linear channels. With MediaTailor, you can assemble existing content into a linear stream and serve targeted ads to viewers while maintaining broadcast quality in over-the-top (OTT) video applications. For information about using the service, including detailed information about the settings covered in this guide, see the <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/\">AWS Elemental MediaTailor User Guide</a>.</p> <p>Through the SDKs and the CLI you manage AWS Elemental MediaTailor configurations and channels the same as you do through the console. For example, you specify ad insertion behavior and mapping information for the origin server and the ad decision server (ADS).</p>",
   "operations": {
+    "ConfigureLogsForChannel": "<p>Configures Amazon CloudWatch log settings for a channel.</p>",
     "ConfigureLogsForPlaybackConfiguration": "<p>Amazon CloudWatch log settings for a playback configuration.</p>",
     "CreateChannel": "<p>Creates a channel. For information about MediaTailor channels, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html\">Working with channels</a> in the <i>MediaTailor User Guide</i>.</p>",
     "CreateLiveSource": "<p>The live source configuration.</p>",
@@ -145,6 +146,16 @@
         "GetPlaybackConfigurationResponse$ConfigurationAliases": "<p>The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>.</p>",
         "PlaybackConfiguration$ConfigurationAliases": "<p>The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>.</p>",
         "PutPlaybackConfigurationResponse$ConfigurationAliases": "<p>The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>.</p>"
+      }
+    },
+    "ConfigureLogsForChannelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ConfigureLogsForChannelResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ConfigureLogsForPlaybackConfigurationRequest": {
@@ -581,6 +592,27 @@
         "GetPlaybackConfigurationResponse$LogConfiguration": "<p>The Amazon CloudWatch log settings for a playback configuration.</p>",
         "PlaybackConfiguration$LogConfiguration": "<p>The Amazon CloudWatch log settings for a playback configuration.</p>",
         "PutPlaybackConfigurationResponse$LogConfiguration": "<p>The Amazon CloudWatch log settings for a playback configuration.</p>"
+      }
+    },
+    "LogConfigurationForChannel": {
+      "base": "<p>The log configuration for the channel.</p>",
+      "refs": {
+        "Channel$LogConfiguration": "<p>The log configuration.</p>",
+        "DescribeChannelResponse$LogConfiguration": "<p>The log configuration for the channel.</p>"
+      }
+    },
+    "LogType": {
+      "base": null,
+      "refs": {
+        "LogTypes$member": null
+      }
+    },
+    "LogTypes": {
+      "base": null,
+      "refs": {
+        "ConfigureLogsForChannelRequest$LogTypes": "<p>The types of logs to collect.</p>",
+        "ConfigureLogsForChannelResponse$LogTypes": "<p>The types of logs collected.</p>",
+        "LogConfigurationForChannel$LogTypes": "<p>The log types.</p>"
       }
     },
     "ManifestProcessingRules": {
@@ -1086,6 +1118,8 @@
         "Channel$Tier": "<p>The tier for this channel. STANDARD tier channels can contain live programs.</p>",
         "ConfigurationAliasesRequest$key": "<p>The dynamic variable that has aliases.</p>",
         "ConfigurationAliasesResponse$key": "<p>The dynamic variable that has aliases.</p>",
+        "ConfigureLogsForChannelRequest$ChannelName": "<p>The name of the channel.</p>",
+        "ConfigureLogsForChannelResponse$ChannelName": "<p>The name of the channel.</p>",
         "ConfigureLogsForPlaybackConfigurationRequest$PlaybackConfigurationName": "<p>The name of the playback configuration.</p>",
         "ConfigureLogsForPlaybackConfigurationResponse$PlaybackConfigurationName": "<p>The name of the playback configuration.</p>",
         "CreateChannelRequest$ChannelName": "<p>The name of the channel.</p>",

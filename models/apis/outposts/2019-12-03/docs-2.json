@@ -821,7 +821,8 @@
     "PaymentTerm": {
       "base": null,
       "refs": {
-        "CreateOrderInput$PaymentTerm": "<p>The payment terms.</p>"
+        "CreateOrderInput$PaymentTerm": "<p>The payment terms.</p>",
+        "Order$PaymentTerm": "<p>The payment term.</p>"
       }
     },
     "PostalCode": {

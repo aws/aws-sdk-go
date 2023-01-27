@@ -13,6 +13,16 @@
     "uid":"mediatailor-2018-04-23"
   },
   "operations":{
+    "ConfigureLogsForChannel":{
+      "name":"ConfigureLogsForChannel",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/configureLogs/channel",
+        "responseCode":200
+      },
+      "input":{"shape":"ConfigureLogsForChannelRequest"},
+      "output":{"shape":"ConfigureLogsForChannelResponse"}
+    },
     "ConfigureLogsForPlaybackConfiguration":{
       "name":"ConfigureLogsForPlaybackConfiguration",
       "http":{
@@ -562,6 +572,7 @@
         "Arn",
         "ChannelName",
         "ChannelState",
+        "LogConfiguration",
         "Outputs",
         "PlaybackMode",
         "Tier"
@@ -573,6 +584,7 @@
         "CreationTime":{"shape":"__timestampUnix"},
         "FillerSlate":{"shape":"SlateSource"},
         "LastModifiedTime":{"shape":"__timestampUnix"},
+        "LogConfiguration":{"shape":"LogConfigurationForChannel"},
         "Outputs":{"shape":"ResponseOutputs"},
         "PlaybackMode":{"shape":"__string"},
         "Tags":{
@@ -598,6 +610,24 @@
       "type":"map",
       "key":{"shape":"__string"},
       "value":{"shape":"__mapOf__string"}
+    },
+    "ConfigureLogsForChannelRequest":{
+      "type":"structure",
+      "required":[
+        "ChannelName",
+        "LogTypes"
+      ],
+      "members":{
+        "ChannelName":{"shape":"__string"},
+        "LogTypes":{"shape":"LogTypes"}
+      }
+    },
+    "ConfigureLogsForChannelResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelName":{"shape":"__string"},
+        "LogTypes":{"shape":"LogTypes"}
+      }
     },
     "ConfigureLogsForPlaybackConfigurationRequest":{
       "type":"structure",
@@ -1056,6 +1086,7 @@
     },
     "DescribeChannelResponse":{
       "type":"structure",
+      "required":["LogConfiguration"],
       "members":{
         "Arn":{"shape":"__string"},
         "ChannelName":{"shape":"__string"},
@@ -1063,6 +1094,7 @@
         "CreationTime":{"shape":"__timestampUnix"},
         "FillerSlate":{"shape":"SlateSource"},
         "LastModifiedTime":{"shape":"__timestampUnix"},
+        "LogConfiguration":{"shape":"LogConfigurationForChannel"},
         "Outputs":{"shape":"ResponseOutputs"},
         "PlaybackMode":{"shape":"__string"},
         "Tags":{
@@ -1584,6 +1616,20 @@
       "members":{
         "PercentEnabled":{"shape":"__integer"}
       }
+    },
+    "LogConfigurationForChannel":{
+      "type":"structure",
+      "members":{
+        "LogTypes":{"shape":"LogTypes"}
+      }
+    },
+    "LogType":{
+      "type":"string",
+      "enum":["AS_RUN"]
+    },
+    "LogTypes":{
+      "type":"list",
+      "member":{"shape":"LogType"}
     },
     "ManifestProcessingRules":{
       "type":"structure",
