@@ -1336,7 +1336,8 @@
         "LineItems":{"shape":"LineItemListDefinition"},
         "PaymentOption":{"shape":"PaymentOption"},
         "OrderSubmissionDate":{"shape":"ISO8601Timestamp"},
-        "OrderFulfilledDate":{"shape":"ISO8601Timestamp"}
+        "OrderFulfilledDate":{"shape":"ISO8601Timestamp"},
+        "PaymentTerm":{"shape":"PaymentTerm"}
       }
     },
     "OrderId":{

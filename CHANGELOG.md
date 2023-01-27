@@ -1,3 +1,25 @@
+Release v1.44.189 (2023-01-27)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Adds new service
+* `service/appstream`: Updates service waiters
+  * Fixing the issue where Appstream waiters hang for fleet_started and fleet_stopped.
+* `service/elasticbeanstalk`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* `service/fis`: Adds new service
+* `service/glacier`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* `service/greengrass`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* `service/greengrassv2`: Adds new service
+* `service/mediatailor`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release supports running SageMaker Training jobs with container images that are in a private Docker registry.
+* `service/serverlessrepo`: Adds new service
+
 Release v1.44.188 (2023-01-26)
 ===
 

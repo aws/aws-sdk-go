@@ -105,6 +105,11 @@
       "fault":true,
       "synthetic":true
     },
+    "InvocationTimeoutSecondsHeader":{
+      "type":"integer",
+      "max":3600,
+      "min":1
+    },
     "InvokeEndpointAsyncInput":{
       "type":"structure",
       "required":[
@@ -146,6 +151,11 @@
           "shape":"RequestTTLSecondsHeader",
           "location":"header",
           "locationName":"X-Amzn-SageMaker-RequestTTLSeconds"
+        },
+        "InvocationTimeoutSeconds":{
+          "shape":"InvocationTimeoutSecondsHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-InvocationTimeoutSeconds"
         }
       }
     },

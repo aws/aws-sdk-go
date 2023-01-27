@@ -13,6 +13,79 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opConfigureLogsForChannel = "ConfigureLogsForChannel"
+
+// ConfigureLogsForChannelRequest generates a "aws/request.Request" representing the
+// client's request for the ConfigureLogsForChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ConfigureLogsForChannel for more information on using the ConfigureLogsForChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ConfigureLogsForChannelRequest method.
+//	req, resp := client.ConfigureLogsForChannelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ConfigureLogsForChannel
+func (c *MediaTailor) ConfigureLogsForChannelRequest(input *ConfigureLogsForChannelInput) (req *request.Request, output *ConfigureLogsForChannelOutput) {
+	op := &request.Operation{
+		Name:       opConfigureLogsForChannel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/configureLogs/channel",
+	}
+
+	if input == nil {
+		input = &ConfigureLogsForChannelInput{}
+	}
+
+	output = &ConfigureLogsForChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ConfigureLogsForChannel API operation for AWS MediaTailor.
+//
+// Configures Amazon CloudWatch log settings for a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ConfigureLogsForChannel for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ConfigureLogsForChannel
+func (c *MediaTailor) ConfigureLogsForChannel(input *ConfigureLogsForChannelInput) (*ConfigureLogsForChannelOutput, error) {
+	req, out := c.ConfigureLogsForChannelRequest(input)
+	return out, req.Send()
+}
+
+// ConfigureLogsForChannelWithContext is the same as ConfigureLogsForChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ConfigureLogsForChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ConfigureLogsForChannelWithContext(ctx aws.Context, input *ConfigureLogsForChannelInput, opts ...request.Option) (*ConfigureLogsForChannelOutput, error) {
+	req, out := c.ConfigureLogsForChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opConfigureLogsForPlaybackConfiguration = "ConfigureLogsForPlaybackConfiguration"
 
 // ConfigureLogsForPlaybackConfigurationRequest generates a "aws/request.Request" representing the
@@ -4204,6 +4277,11 @@ type Channel struct {
 	// The timestamp of when the channel was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The log configuration.
+	//
+	// LogConfiguration is a required field
+	LogConfiguration *LogConfigurationForChannel `type:"structure" required:"true"`
+
 	// The channel's output properties.
 	//
 	// Outputs is a required field
@@ -4285,6 +4363,12 @@ func (s *Channel) SetLastModifiedTime(v time.Time) *Channel {
 	return s
 }
 
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *Channel) SetLogConfiguration(v *LogConfigurationForChannel) *Channel {
+	s.LogConfiguration = v
+	return s
+}
+
 // SetOutputs sets the Outputs field's value.
 func (s *Channel) SetOutputs(v []*ResponseOutputItem) *Channel {
 	s.Outputs = v
@@ -4306,6 +4390,106 @@ func (s *Channel) SetTags(v map[string]*string) *Channel {
 // SetTier sets the Tier field's value.
 func (s *Channel) SetTier(v string) *Channel {
 	s.Tier = &v
+	return s
+}
+
+type ConfigureLogsForChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the channel.
+	//
+	// ChannelName is a required field
+	ChannelName *string `type:"string" required:"true"`
+
+	// The types of logs to collect.
+	//
+	// LogTypes is a required field
+	LogTypes []*string `type:"list" required:"true" enum:"LogType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigureLogsForChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigureLogsForChannelInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.LogTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogTypes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *ConfigureLogsForChannelInput) SetChannelName(v string) *ConfigureLogsForChannelInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetLogTypes sets the LogTypes field's value.
+func (s *ConfigureLogsForChannelInput) SetLogTypes(v []*string) *ConfigureLogsForChannelInput {
+	s.LogTypes = v
+	return s
+}
+
+type ConfigureLogsForChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the channel.
+	ChannelName *string `type:"string"`
+
+	// The types of logs collected.
+	LogTypes []*string `type:"list" enum:"LogType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *ConfigureLogsForChannelOutput) SetChannelName(v string) *ConfigureLogsForChannelOutput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetLogTypes sets the LogTypes field's value.
+func (s *ConfigureLogsForChannelOutput) SetLogTypes(v []*string) *ConfigureLogsForChannelOutput {
+	s.LogTypes = v
 	return s
 }
 
@@ -6619,6 +6803,11 @@ type DescribeChannelOutput struct {
 	// The timestamp of when the channel was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The log configuration for the channel.
+	//
+	// LogConfiguration is a required field
+	LogConfiguration *LogConfigurationForChannel `type:"structure" required:"true"`
+
 	// The channel's output properties.
 	Outputs []*ResponseOutputItem `type:"list"`
 
@@ -6686,6 +6875,12 @@ func (s *DescribeChannelOutput) SetFillerSlate(v *SlateSource) *DescribeChannelO
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribeChannelOutput) SetLastModifiedTime(v time.Time) *DescribeChannelOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *DescribeChannelOutput) SetLogConfiguration(v *LogConfigurationForChannel) *DescribeChannelOutput {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -9207,6 +9402,38 @@ func (s LogConfiguration) GoString() string {
 // SetPercentEnabled sets the PercentEnabled field's value.
 func (s *LogConfiguration) SetPercentEnabled(v int64) *LogConfiguration {
 	s.PercentEnabled = &v
+	return s
+}
+
+// The log configuration for the channel.
+type LogConfigurationForChannel struct {
+	_ struct{} `type:"structure"`
+
+	// The log types.
+	LogTypes []*string `type:"list" enum:"LogType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogConfigurationForChannel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogConfigurationForChannel) GoString() string {
+	return s.String()
+}
+
+// SetLogTypes sets the LogTypes field's value.
+func (s *LogConfigurationForChannel) SetLogTypes(v []*string) *LogConfigurationForChannel {
+	s.LogTypes = v
 	return s
 }
 
@@ -12419,6 +12646,18 @@ func ChannelState_Values() []string {
 	return []string{
 		ChannelStateRunning,
 		ChannelStateStopped,
+	}
+}
+
+const (
+	// LogTypeAsRun is a LogType enum value
+	LogTypeAsRun = "AS_RUN"
+)
+
+// LogType_Values returns all elements of the LogType enum
+func LogType_Values() []string {
+	return []string{
+		LogTypeAsRun,
 	}
 }
 

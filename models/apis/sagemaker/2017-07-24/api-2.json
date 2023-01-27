@@ -3528,7 +3528,8 @@
         "MetricDefinitions":{"shape":"MetricDefinitionList"},
         "EnableSageMakerMetricsTimeSeries":{"shape":"Boolean"},
         "ContainerEntrypoint":{"shape":"TrainingContainerEntrypoint"},
-        "ContainerArguments":{"shape":"TrainingContainerArguments"}
+        "ContainerArguments":{"shape":"TrainingContainerArguments"},
+        "TrainingImageConfig":{"shape":"TrainingImageConfig"}
       }
     },
     "AlgorithmStatus":{
@@ -18871,6 +18872,14 @@
       "max":512,
       "pattern":"[\\S\\s]*"
     },
+    "TrainingImageConfig":{
+      "type":"structure",
+      "required":["TrainingRepositoryAccessMode"],
+      "members":{
+        "TrainingRepositoryAccessMode":{"shape":"TrainingRepositoryAccessMode"},
+        "TrainingRepositoryAuthConfig":{"shape":"TrainingRepositoryAuthConfig"}
+      }
+    },
     "TrainingInputMode":{
       "type":"string",
       "enum":[
@@ -19079,6 +19088,26 @@
         "TrainingJobStatus":{"shape":"TrainingJobStatus"},
         "WarmPoolStatus":{"shape":"WarmPoolStatus"}
       }
+    },
+    "TrainingRepositoryAccessMode":{
+      "type":"string",
+      "enum":[
+        "Platform",
+        "Vpc"
+      ]
+    },
+    "TrainingRepositoryAuthConfig":{
+      "type":"structure",
+      "required":["TrainingRepositoryCredentialsProviderArn"],
+      "members":{
+        "TrainingRepositoryCredentialsProviderArn":{"shape":"TrainingRepositoryCredentialsProviderArn"}
+      }
+    },
+    "TrainingRepositoryCredentialsProviderArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:[\\p{Alnum}\\-]+:lambda:[\\p{Alnum}\\-]+:[0-9]{12}:function:.*"
     },
     "TrainingSpecification":{
       "type":"structure",

@@ -5756,6 +5756,9 @@ type Order struct {
 	// The payment option for the order.
 	PaymentOption *string `type:"string" enum:"PaymentOption"`
 
+	// The payment term.
+	PaymentTerm *string `type:"string" enum:"PaymentTerm"`
+
 	// The status of the order.
 	//
 	//    * PREPARING - Order is received and being prepared.
@@ -5825,6 +5828,12 @@ func (s *Order) SetOutpostId(v string) *Order {
 // SetPaymentOption sets the PaymentOption field's value.
 func (s *Order) SetPaymentOption(v string) *Order {
 	s.PaymentOption = &v
+	return s
+}
+
+// SetPaymentTerm sets the PaymentTerm field's value.
+func (s *Order) SetPaymentTerm(v string) *Order {
+	s.PaymentTerm = &v
 	return s
 }
 
