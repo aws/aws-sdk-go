@@ -6566,8 +6566,8 @@
     "AssociateEnclaveCertificateIamRoleRequest":{
       "type":"structure",
       "members":{
-        "CertificateArn":{"shape":"ResourceArn"},
-        "RoleArn":{"shape":"ResourceArn"},
+        "CertificateArn":{"shape":"CertificateId"},
+        "RoleArn":{"shape":"RoleId"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -8487,6 +8487,7 @@
         "ClientRootCertificateChainArn":{"shape":"String"}
       }
     },
+    "CertificateId":{"type":"string"},
     "CidrAuthorizationContext":{
       "type":"structure",
       "required":[
@@ -10384,16 +10385,14 @@
     },
     "CreateLocalGatewayRouteRequest":{
       "type":"structure",
-      "required":[
-        "DestinationCidrBlock",
-        "LocalGatewayRouteTableId"
-      ],
+      "required":["LocalGatewayRouteTableId"],
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
         "LocalGatewayVirtualInterfaceGroupId":{"shape":"LocalGatewayVirtualInterfaceGroupId"},
         "DryRun":{"shape":"Boolean"},
-        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"}
+        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"},
+        "DestinationPrefixListId":{"shape":"PrefixListResourceId"}
       }
     },
     "CreateLocalGatewayRouteResult":{
@@ -12797,14 +12796,12 @@
     },
     "DeleteLocalGatewayRouteRequest":{
       "type":"structure",
-      "required":[
-        "DestinationCidrBlock",
-        "LocalGatewayRouteTableId"
-      ],
+      "required":["LocalGatewayRouteTableId"],
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "DestinationPrefixListId":{"shape":"PrefixListResourceId"}
       }
     },
     "DeleteLocalGatewayRouteResult":{
@@ -13261,7 +13258,7 @@
       "type":"structure",
       "required":["TrafficMirrorFilterRuleId"],
       "members":{
-        "TrafficMirrorFilterRuleId":{"shape":"TrafficMirrorFilterRuleId"},
+        "TrafficMirrorFilterRuleId":{"shape":"TrafficMirrorFilterRuleIdWithResolver"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -19155,8 +19152,8 @@
     "DisassociateEnclaveCertificateIamRoleRequest":{
       "type":"structure",
       "members":{
-        "CertificateArn":{"shape":"ResourceArn"},
-        "RoleArn":{"shape":"ResourceArn"},
+        "CertificateArn":{"shape":"CertificateId"},
+        "RoleArn":{"shape":"RoleId"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -21866,7 +21863,7 @@
     "GetAssociatedEnclaveCertificateIamRolesRequest":{
       "type":"structure",
       "members":{
-        "CertificateArn":{"shape":"ResourceArn"},
+        "CertificateArn":{"shape":"CertificateId"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -25166,6 +25163,7 @@
         "locationName":"InstanceId"
       }
     },
+    "InstanceIdWithVolumeResolver":{"type":"string"},
     "InstanceIdsSet":{
       "type":"list",
       "member":{
@@ -25789,8 +25787,9 @@
     },
     "InstanceSpecification":{
       "type":"structure",
+      "required":["InstanceId"],
       "members":{
-        "InstanceId":{"shape":"InstanceId"},
+        "InstanceId":{"shape":"InstanceIdWithVolumeResolver"},
         "ExcludeBootVolume":{"shape":"Boolean"},
         "ExcludeDataVolumeIds":{
           "shape":"VolumeIdStringList",
@@ -29430,6 +29429,10 @@
         "NetworkInterfaceId":{
           "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
+        },
+        "DestinationPrefixListId":{
+          "shape":"PrefixListResourceId",
+          "locationName":"destinationPrefixListId"
         }
       }
     },
@@ -30639,16 +30642,14 @@
     },
     "ModifyLocalGatewayRouteRequest":{
       "type":"structure",
-      "required":[
-        "DestinationCidrBlock",
-        "LocalGatewayRouteTableId"
-      ],
+      "required":["LocalGatewayRouteTableId"],
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
         "LocalGatewayVirtualInterfaceGroupId":{"shape":"LocalGatewayVirtualInterfaceGroupId"},
         "NetworkInterfaceId":{"shape":"NetworkInterfaceId"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "DestinationPrefixListId":{"shape":"PrefixListResourceId"}
       }
     },
     "ModifyLocalGatewayRouteResult":{
@@ -30918,7 +30919,7 @@
       "type":"structure",
       "required":["TrafficMirrorFilterRuleId"],
       "members":{
-        "TrafficMirrorFilterRuleId":{"shape":"TrafficMirrorFilterRuleId"},
+        "TrafficMirrorFilterRuleId":{"shape":"TrafficMirrorFilterRuleIdWithResolver"},
         "TrafficDirection":{"shape":"TrafficDirection"},
         "RuleNumber":{"shape":"Integer"},
         "RuleAction":{"shape":"TrafficMirrorRuleAction"},
@@ -36564,6 +36565,7 @@
         }
       }
     },
+    "RoleId":{"type":"string"},
     "RootDeviceType":{
       "type":"string",
       "enum":[
@@ -39934,7 +39936,7 @@
       "type":"list",
       "member":{"shape":"TrafficMirrorFilterRuleField"}
     },
-    "TrafficMirrorFilterRuleId":{"type":"string"},
+    "TrafficMirrorFilterRuleIdWithResolver":{"type":"string"},
     "TrafficMirrorFilterRuleList":{
       "type":"list",
       "member":{

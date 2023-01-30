@@ -1,3 +1,23 @@
+Release v1.44.190 (2023-01-30)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* `service/cloudformation`: Updates service API and documentation
+  * This feature provides a method of obtaining which regions a stackset has stack instances deployed in.
+* `service/discovery`: Updates service API
+  * Update ImportName validation to 255 from the current length of 100
+* `service/dlm`: Adds new service
+* `service/ec2`: Updates service API and documentation
+  * We add Prefix Lists as a new route destination option for LocalGatewayRoutes. This will allow customers to create routes to Prefix Lists. Prefix List routes will allow customers to group individual CIDR routes with the same target into a single route.
+* `service/imagebuilder`: Adds new service
+* `service/kafka`: Adds new service
+* `service/mediaconvert`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* `service/swf`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+
 Release v1.44.189 (2023-01-27)
 ===
 
