@@ -19391,6 +19391,8 @@ type StackSet struct {
 	//    more information, see Grant Service-Managed Stack Set Permissions (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-service-managed.html).
 	PermissionModel *string `type:"string" enum:"PermissionModels"`
 
+	Regions []*string `type:"list"`
+
 	// The Amazon Resource Name (ARN) of the stack set.
 	StackSetARN *string `type:"string"`
 
@@ -19488,6 +19490,12 @@ func (s *StackSet) SetParameters(v []*Parameter) *StackSet {
 // SetPermissionModel sets the PermissionModel field's value.
 func (s *StackSet) SetPermissionModel(v string) *StackSet {
 	s.PermissionModel = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *StackSet) SetRegions(v []*string) *StackSet {
+	s.Regions = v
 	return s
 }
 

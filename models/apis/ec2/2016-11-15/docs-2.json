@@ -3205,6 +3205,14 @@
         "ClientVpnAuthenticationRequest$MutualAuthentication": "<p>Information about the authentication certificates to be used, if applicable. You must provide this information if <b>Type</b> is <code>certificate-authentication</code>.</p>"
       }
     },
+    "CertificateId": {
+      "base": null,
+      "refs": {
+        "AssociateEnclaveCertificateIamRoleRequest$CertificateArn": "<p>The ARN of the ACM certificate with which to associate the IAM role.</p>",
+        "DisassociateEnclaveCertificateIamRoleRequest$CertificateArn": "<p>The ARN of the ACM certificate from which to disassociate the IAM role.</p>",
+        "GetAssociatedEnclaveCertificateIamRolesRequest$CertificateArn": "<p>The ARN of the ACM certificate for which to view the associated IAM roles, encryption keys, and Amazon S3 object information.</p>"
+      }
+    },
     "CidrAuthorizationContext": {
       "base": "<p>Provides authorization for Amazon to bring a specific IP address range to a specific Amazon Web Services account using bring your own IP addresses (BYOIP). For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#prepare-for-byoip\">Configuring your BYOIP address range</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
@@ -8957,7 +8965,7 @@
         "GetTransitGatewayPrefixListReferencesRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>attachment.resource-id</code> - The ID of the resource for the attachment.</p> </li> <li> <p> <code>attachment.resource-type</code> - The type of resource for the attachment. Valid values are <code>vpc</code> | <code>vpn</code> | <code>direct-connect-gateway</code> | <code>peering</code>.</p> </li> <li> <p> <code>attachment.transit-gateway-attachment-id</code> - The ID of the attachment.</p> </li> <li> <p> <code>is-blackhole</code> - Whether traffic matching the route is blocked (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>prefix-list-id</code> - The ID of the prefix list.</p> </li> <li> <p> <code>prefix-list-owner-id</code> - The ID of the owner of the prefix list.</p> </li> <li> <p> <code>state</code> - The state of the prefix list reference (<code>pending</code> | <code>available</code> | <code>modifying</code> | <code>deleting</code>).</p> </li> </ul>",
         "GetTransitGatewayRouteTableAssociationsRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>resource-id</code> - The ID of the resource.</p> </li> <li> <p> <code>resource-type</code> - The resource type. Valid values are <code>vpc</code> | <code>vpn</code> | <code>direct-connect-gateway</code> | <code>peering</code> | <code>connect</code>.</p> </li> <li> <p> <code>transit-gateway-attachment-id</code> - The ID of the attachment.</p> </li> </ul>",
         "GetTransitGatewayRouteTablePropagationsRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>resource-id</code> - The ID of the resource.</p> </li> <li> <p> <code>resource-type</code> - The resource type. Valid values are <code>vpc</code> | <code>vpn</code> | <code>direct-connect-gateway</code> | <code>peering</code> | <code>connect</code>.</p> </li> <li> <p> <code>transit-gateway-attachment-id</code> - The ID of the attachment.</p> </li> </ul>",
-        "SearchLocalGatewayRoutesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>route-search.exact-match</code> - The exact match of the specified filter.</p> </li> <li> <p> <code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p> </li> <li> <p> <code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p> </li> <li> <p> <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify <code>supernet-of-match</code> as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p> </li> <li> <p> <code>state</code> - The state of the route.</p> </li> <li> <p> <code>type</code> - The route type.</p> </li> </ul>",
+        "SearchLocalGatewayRoutesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>prefix-list-id</code> - The ID of the prefix list.</p> </li> <li> <p> <code>route-search.exact-match</code> - The exact match of the specified filter.</p> </li> <li> <p> <code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p> </li> <li> <p> <code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p> </li> <li> <p> <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify <code>supernet-of-match</code> as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p> </li> <li> <p> <code>state</code> - The state of the route.</p> </li> <li> <p> <code>type</code> - The route type.</p> </li> </ul>",
         "SearchTransitGatewayMulticastGroupsRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>group-ip-address</code> - The IP address of the transit gateway multicast group.</p> </li> <li> <p> <code>is-group-member</code> - The resource is a group member. Valid values are <code>true</code> | <code>false</code>.</p> </li> <li> <p> <code>is-group-source</code> - The resource is a group source. Valid values are <code>true</code> | <code>false</code>.</p> </li> <li> <p> <code>member-type</code> - The member type. Valid values are <code>igmp</code> | <code>static</code>.</p> </li> <li> <p> <code>resource-id</code> - The ID of the resource.</p> </li> <li> <p> <code>resource-type</code> - The type of resource. Valid values are <code>vpc</code> | <code>vpn</code> | <code>direct-connect-gateway</code> | <code>tgw-peering</code>.</p> </li> <li> <p> <code>source-type</code> - The source type. Valid values are <code>igmp</code> | <code>static</code>.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet.</p> </li> <li> <p> <code>transit-gateway-attachment-id</code> - The id of the transit gateway attachment.</p> </li> </ul>",
         "SearchTransitGatewayRoutesRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>attachment.transit-gateway-attachment-id</code>- The id of the transit gateway attachment.</p> </li> <li> <p> <code>attachment.resource-id</code> - The resource id of the transit gateway attachment.</p> </li> <li> <p> <code>attachment.resource-type</code> - The attachment resource type. Valid values are <code>vpc</code> | <code>vpn</code> | <code>direct-connect-gateway</code> | <code>peering</code> | <code>connect</code>.</p> </li> <li> <p> <code>prefix-list-id</code> - The ID of the prefix list.</p> </li> <li> <p> <code>route-search.exact-match</code> - The exact match of the specified filter.</p> </li> <li> <p> <code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p> </li> <li> <p> <code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p> </li> <li> <p> <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p> </li> <li> <p> <code>state</code> - The state of the route (<code>active</code> | <code>blackhole</code>).</p> </li> <li> <p> <code>type</code> - The type of route (<code>propagated</code> | <code>static</code>).</p> </li> </ul>"
       }
@@ -10743,7 +10751,6 @@
         "InstanceIdSet$member": null,
         "InstanceIdStringList$member": null,
         "InstanceIdsSet$member": null,
-        "InstanceSpecification$InstanceId": "<p>The instance to specify which volumes should be snapshotted.</p>",
         "ModifyInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ModifyInstanceCapacityReservationAttributesRequest$InstanceId": "<p>The ID of the instance to be modified.</p>",
         "ModifyInstanceEventStartTimeRequest$InstanceId": "<p>The ID of the instance with the scheduled event.</p>",
@@ -10791,6 +10798,12 @@
         "StopInstancesRequest$InstanceIds": "<p>The IDs of the instances.</p>",
         "TerminateInstancesRequest$InstanceIds": "<p>The IDs of the instances.</p> <p>Constraints: Up to 1000 instance IDs. We recommend breaking up this request into smaller batches.</p>",
         "UnmonitorInstancesRequest$InstanceIds": "<p>The IDs of the instances.</p>"
+      }
+    },
+    "InstanceIdWithVolumeResolver": {
+      "base": null,
+      "refs": {
+        "InstanceSpecification$InstanceId": "<p>The instance to specify which volumes should be snapshotted.</p>"
       }
     },
     "InstanceIdsSet": {
@@ -15458,14 +15471,18 @@
     "PrefixListResourceId": {
       "base": null,
       "refs": {
+        "CreateLocalGatewayRouteRequest$DestinationPrefixListId": "<p> The ID of the prefix list. Use a prefix list in place of <code>DestinationCidrBlock</code>. You cannot use <code>DestinationPrefixListId</code> and <code>DestinationCidrBlock</code> in the same request. </p>",
         "CreateRouteRequest$DestinationPrefixListId": "<p>The ID of a prefix list used for the destination match.</p>",
         "CreateTransitGatewayPrefixListReferenceRequest$PrefixListId": "<p>The ID of the prefix list that is used for destination matches.</p>",
+        "DeleteLocalGatewayRouteRequest$DestinationPrefixListId": "<p> Use a prefix list in place of <code>DestinationCidrBlock</code>. You cannot use <code>DestinationPrefixListId</code> and <code>DestinationCidrBlock</code> in the same request. </p>",
         "DeleteManagedPrefixListRequest$PrefixListId": "<p>The ID of the prefix list.</p>",
         "DeleteRouteRequest$DestinationPrefixListId": "<p>The ID of the prefix list for the route.</p>",
         "DeleteTransitGatewayPrefixListReferenceRequest$PrefixListId": "<p>The ID of the prefix list.</p>",
         "GetManagedPrefixListAssociationsRequest$PrefixListId": "<p>The ID of the prefix list.</p>",
         "GetManagedPrefixListEntriesRequest$PrefixListId": "<p>The ID of the prefix list.</p>",
+        "LocalGatewayRoute$DestinationPrefixListId": "<p> The ID of the prefix list. </p>",
         "ManagedPrefixList$PrefixListId": "<p>The ID of the prefix list.</p>",
+        "ModifyLocalGatewayRouteRequest$DestinationPrefixListId": "<p> The ID of the prefix list. Use a prefix list in place of <code>DestinationCidrBlock</code>. You cannot use <code>DestinationPrefixListId</code> and <code>DestinationCidrBlock</code> in the same request. </p>",
         "ModifyManagedPrefixListRequest$PrefixListId": "<p>The ID of the prefix list.</p>",
         "ModifyTransitGatewayPrefixListReferenceRequest$PrefixListId": "<p>The ID of the prefix list.</p>",
         "PrefixListResourceIdStringList$member": null,
@@ -16531,14 +16548,9 @@
       "base": null,
       "refs": {
         "ArnList$member": null,
-        "AssociateEnclaveCertificateIamRoleRequest$CertificateArn": "<p>The ARN of the ACM certificate with which to associate the IAM role.</p>",
-        "AssociateEnclaveCertificateIamRoleRequest$RoleArn": "<p>The ARN of the IAM role to associate with the ACM certificate. You can associate up to 16 IAM roles with an ACM certificate.</p>",
         "AssociatedRole$AssociatedRoleArn": "<p>The ARN of the associated IAM role.</p>",
         "CoipPool$PoolArn": "<p>The ARN of the address pool.</p>",
-        "DisassociateEnclaveCertificateIamRoleRequest$CertificateArn": "<p>The ARN of the ACM certificate from which to disassociate the IAM role.</p>",
-        "DisassociateEnclaveCertificateIamRoleRequest$RoleArn": "<p>The ARN of the IAM role to disassociate.</p>",
         "Explanation$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
-        "GetAssociatedEnclaveCertificateIamRolesRequest$CertificateArn": "<p>The ARN of the ACM certificate for which to view the associated IAM roles, encryption keys, and Amazon S3 object information.</p>",
         "Ipam$IpamArn": "<p>The Amazon Resource Name (ARN) of the IPAM.</p>",
         "IpamPool$IpamPoolArn": "<p>The Amazon Resource Name (ARN) of the IPAM pool.</p>",
         "IpamPool$IpamScopeArn": "<p>The ARN of the scope of the IPAM pool.</p>",
@@ -16720,6 +16732,13 @@
     "RevokeSecurityGroupIngressResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "RoleId": {
+      "base": null,
+      "refs": {
+        "AssociateEnclaveCertificateIamRoleRequest$RoleArn": "<p>The ARN of the IAM role to associate with the ACM certificate. You can associate up to 16 IAM roles with an ACM certificate.</p>",
+        "DisassociateEnclaveCertificateIamRoleRequest$RoleArn": "<p>The ARN of the IAM role to disassociate.</p>"
       }
     },
     "RootDeviceType": {
@@ -20491,7 +20510,7 @@
         "ModifyTrafficMirrorFilterRuleRequest$RemoveFields": "<p>The properties that you want to remove from the Traffic Mirror filter rule.</p> <p>When you remove a property from a Traffic Mirror filter rule, the property is set to the default.</p>"
       }
     },
-    "TrafficMirrorFilterRuleId": {
+    "TrafficMirrorFilterRuleIdWithResolver": {
       "base": null,
       "refs": {
         "DeleteTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>",
