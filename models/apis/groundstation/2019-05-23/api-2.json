@@ -183,6 +183,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetAgentConfiguration":{
+      "name":"GetAgentConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/agent/{agentId}/configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAgentConfigurationRequest"},
+      "output":{"shape":"GetAgentConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetConfig":{
       "name":"GetConfig",
       "http":{
@@ -378,6 +393,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "RegisterAgent":{
+      "name":"RegisterAgent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/agent",
+        "responseCode":200
+      },
+      "input":{"shape":"RegisterAgentRequest"},
+      "output":{"shape":"RegisterAgentResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ReserveContact":{
       "name":"ReserveContact",
       "http":{
@@ -417,6 +447,22 @@
       },
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateAgentStatus":{
+      "name":"UpdateAgentStatus",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agent/{agentId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAgentStatusRequest"},
+      "output":{"shape":"UpdateAgentStatusResponse"},
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"DependencyException"},
@@ -480,6 +526,40 @@
       "min":1,
       "pattern":"^[\\w-]+$"
     },
+    "AgentDetails":{
+      "type":"structure",
+      "required":[
+        "agentVersion",
+        "componentVersions",
+        "instanceId",
+        "instanceType",
+        "reservedCpuCores"
+      ],
+      "members":{
+        "agentVersion":{"shape":"VersionString"},
+        "componentVersions":{"shape":"ComponentVersionList"},
+        "instanceId":{"shape":"InstanceId"},
+        "instanceType":{"shape":"InstanceType"},
+        "reservedCpuCores":{"shape":"ReservedCpuCoresList"}
+      }
+    },
+    "AgentStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "FAILED",
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "AggregateStatus":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "signatureMap":{"shape":"SignatureMap"},
+        "status":{"shape":"AgentStatus"}
+      }
+    },
     "AngleUnits":{
       "type":"string",
       "enum":[
@@ -531,6 +611,28 @@
       "min":5,
       "pattern":"^(arn:aws:)[\\s\\S]{0,1024}$"
     },
+    "AuditResults":{
+      "type":"string",
+      "enum":[
+        "HEALTHY",
+        "UNHEALTHY"
+      ]
+    },
+    "AwsGroundStationAgentEndpoint":{
+      "type":"structure",
+      "required":[
+        "egressAddress",
+        "ingressAddress",
+        "name"
+      ],
+      "members":{
+        "agentStatus":{"shape":"AgentStatus"},
+        "auditResults":{"shape":"AuditResults"},
+        "egressAddress":{"shape":"ConnectionDetails"},
+        "ingressAddress":{"shape":"RangedConnectionDetails"},
+        "name":{"shape":"SafeName"}
+      }
+    },
     "BandwidthUnits":{
       "type":"string",
       "enum":[
@@ -554,6 +656,62 @@
           "locationName":"contactId"
         }
       }
+    },
+    "CapabilityArn":{"type":"string"},
+    "CapabilityArnList":{
+      "type":"list",
+      "member":{"shape":"CapabilityArn"},
+      "max":20,
+      "min":1
+    },
+    "ComponentStatusData":{
+      "type":"structure",
+      "required":[
+        "capabilityArn",
+        "componentType",
+        "dataflowId",
+        "status"
+      ],
+      "members":{
+        "bytesReceived":{"shape":"Long"},
+        "bytesSent":{"shape":"Long"},
+        "capabilityArn":{"shape":"CapabilityArn"},
+        "componentType":{"shape":"ComponentType"},
+        "dataflowId":{"shape":"Uuid"},
+        "packetsDropped":{"shape":"Long"},
+        "status":{"shape":"AgentStatus"}
+      }
+    },
+    "ComponentStatusList":{
+      "type":"list",
+      "member":{"shape":"ComponentStatusData"},
+      "max":20,
+      "min":1
+    },
+    "ComponentType":{
+      "type":"string",
+      "enum":[
+        "LAMINAR_FLOW",
+        "PRISM",
+        "DIGITIZER"
+      ]
+    },
+    "ComponentVersion":{
+      "type":"structure",
+      "required":[
+        "componentType",
+        "versions"
+      ],
+      "members":{
+        "componentType":{"shape":"ComponentType"},
+        "versions":{"shape":"VersionStringList"}
+      }
+    },
+    "ComponentVersionList":{
+      "type":"list",
+      "member":{"shape":"ComponentVersion"},
+      "max":20,
+      "min":1
     },
     "ConfigArn":{"type":"string"},
     "ConfigCapabilityType":{
@@ -610,6 +768,14 @@
         "uplinkEchoConfig":{"shape":"UplinkEchoConfig"}
       },
       "union":true
+    },
+    "ConnectionDetails":{
+      "type":"structure",
+      "required":["socketAddress"],
+      "members":{
+        "mtu":{"shape":"Integer"},
+        "socketAddress":{"shape":"SocketAddress"}
+      }
     },
     "ContactData":{
       "type":"structure",
@@ -710,6 +876,8 @@
         "dataflowEdges":{"shape":"DataflowEdgeList"},
         "minimumViableContactDurationSeconds":{"shape":"PositiveDurationInSeconds"},
         "name":{"shape":"SafeName"},
+        "streamsKmsKey":{"shape":"KmsKey"},
+        "streamsKmsRole":{"shape":"RoleArn"},
         "tags":{"shape":"TagsMap"},
         "trackingConfigArn":{"shape":"ConfigArn"}
       }
@@ -940,6 +1108,19 @@
         "dataflowDestinationRegion":{"shape":"String"}
       }
     },
+    "DiscoveryData":{
+      "type":"structure",
+      "required":[
+        "capabilityArns",
+        "privateIpAddresses",
+        "publicIpAddresses"
+      ],
+      "members":{
+        "capabilityArns":{"shape":"CapabilityArnList"},
+        "privateIpAddresses":{"shape":"IpAddressList"},
+        "publicIpAddresses":{"shape":"IpAddressList"}
+      }
+    },
     "Double":{
       "type":"double",
       "box":true
@@ -979,6 +1160,7 @@
     "EndpointDetails":{
       "type":"structure",
       "members":{
+        "awsGroundStationAgentEndpoint":{"shape":"AwsGroundStationAgentEndpoint"},
         "endpoint":{"shape":"DataflowEndpoint"},
         "securityDetails":{"shape":"SecurityDetails"}
       }
@@ -1126,6 +1308,24 @@
         "kHz"
       ]
     },
+    "GetAgentConfigurationRequest":{
+      "type":"structure",
+      "required":["agentId"],
+      "members":{
+        "agentId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"agentId"
+        }
+      }
+    },
+    "GetAgentConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "agentId":{"shape":"Uuid"},
+        "taskingDocument":{"shape":"String"}
+      }
+    },
     "GetConfigRequest":{
       "type":"structure",
       "required":[
@@ -1227,6 +1427,8 @@
         "missionProfileId":{"shape":"Uuid"},
         "name":{"shape":"SafeName"},
         "region":{"shape":"AWSRegion"},
+        "streamsKmsKey":{"shape":"KmsKey"},
+        "streamsKmsRole":{"shape":"RoleArn"},
         "tags":{"shape":"TagsMap"},
         "trackingConfigArn":{"shape":"ConfigArn"}
       }
@@ -1276,9 +1478,32 @@
       "min":4,
       "pattern":"^[ a-zA-Z0-9-._:=]{4,256}$"
     },
+    "InstanceId":{
+      "type":"string",
+      "max":64,
+      "min":10,
+      "pattern":"^[a-z0-9-]{10,64}$"
+    },
+    "InstanceType":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-z0-9.-]{1,64}$"
+    },
     "Integer":{
       "type":"integer",
       "box":true
+    },
+    "IntegerRange":{
+      "type":"structure",
+      "required":[
+        "maximum",
+        "minimum"
+      ],
+      "members":{
+        "maximum":{"shape":"Integer"},
+        "minimum":{"shape":"Integer"}
+      }
     },
     "InvalidParameterException":{
       "type":"structure",
@@ -1292,13 +1517,39 @@
       },
       "exception":true
     },
+    "IpAddressList":{
+      "type":"list",
+      "member":{"shape":"IpV4Address"},
+      "max":20,
+      "min":1
+    },
+    "IpV4Address":{
+      "type":"string",
+      "max":16,
+      "min":7,
+      "pattern":"^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$"
+    },
     "JsonString":{
       "type":"string",
       "max":8192,
       "min":2,
       "pattern":"^[{}\\[\\]:.,\"0-9A-z\\-_\\s]{2,8192}$"
     },
+    "KeyAliasArn":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^arn:aws[a-zA-Z-]{0,16}:kms:[a-z]{2}(-[a-z]{1,16}){1,3}-\\d{1}:\\d{12}:((alias/[a-zA-Z0-9:/_-]{1,256}))$"
+    },
     "KeyArn":{"type":"string"},
+    "KmsKey":{
+      "type":"structure",
+      "members":{
+        "kmsAliasArn":{"shape":"KeyAliasArn"},
+        "kmsKeyArn":{"shape":"KeyArn"}
+      },
+      "union":true
+    },
     "ListConfigsRequest":{
       "type":"structure",
       "members":{
@@ -1487,6 +1738,10 @@
         "tags":{"shape":"TagsMap"}
       }
     },
+    "Long":{
+      "type":"long",
+      "box":true
+    },
     "MissionProfileArn":{"type":"string"},
     "MissionProfileIdResponse":{
       "type":"structure",
@@ -1546,6 +1801,48 @@
       "max":21600,
       "min":1
     },
+    "RangedConnectionDetails":{
+      "type":"structure",
+      "required":["socketAddress"],
+      "members":{
+        "mtu":{"shape":"RangedConnectionDetailsMtuInteger"},
+        "socketAddress":{"shape":"RangedSocketAddress"}
+      }
+    },
+    "RangedConnectionDetailsMtuInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1500,
+      "min":1400
+    },
+    "RangedSocketAddress":{
+      "type":"structure",
+      "required":[
+        "name",
+        "portRange"
+      ],
+      "members":{
+        "name":{"shape":"IpV4Address"},
+        "portRange":{"shape":"IntegerRange"}
+      }
+    },
+    "RegisterAgentRequest":{
+      "type":"structure",
+      "required":[
+        "agentDetails",
+        "discoveryData"
+      ],
+      "members":{
+        "agentDetails":{"shape":"AgentDetails"},
+        "discoveryData":{"shape":"DiscoveryData"}
+      }
+    },
+    "RegisterAgentResponse":{
+      "type":"structure",
+      "members":{
+        "agentId":{"shape":"Uuid"}
+      }
+    },
     "ReserveContactRequest":{
       "type":"structure",
       "required":[
@@ -1563,6 +1860,12 @@
         "startTime":{"shape":"Timestamp"},
         "tags":{"shape":"TagsMap"}
       }
+    },
+    "ReservedCpuCoresList":{
+      "type":"list",
+      "member":{"shape":"Integer"},
+      "max":256,
+      "min":1
     },
     "ResourceLimitExceededException":{
       "type":"structure",
@@ -1675,6 +1978,11 @@
     "SecurityGroupIdList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "SignatureMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"Boolean"}
     },
     "SocketAddress":{
       "type":"structure",
@@ -1836,6 +2144,32 @@
       "members":{
       }
     },
+    "UpdateAgentStatusRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "aggregateStatus",
+        "componentStatuses",
+        "taskId"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "aggregateStatus":{"shape":"AggregateStatus"},
+        "componentStatuses":{"shape":"ComponentStatusList"},
+        "taskId":{"shape":"Uuid"}
+      }
+    },
+    "UpdateAgentStatusResponse":{
+      "type":"structure",
+      "required":["agentId"],
+      "members":{
+        "agentId":{"shape":"Uuid"}
+      }
+    },
     "UpdateConfigRequest":{
       "type":"structure",
       "required":[
@@ -1890,6 +2224,8 @@
           "locationName":"missionProfileId"
         },
         "name":{"shape":"SafeName"},
+        "streamsKmsKey":{"shape":"KmsKey"},
+        "streamsKmsRole":{"shape":"RoleArn"},
         "trackingConfigArn":{"shape":"ConfigArn"}
       }
     },
@@ -1917,6 +2253,18 @@
       "max":128,
       "min":1,
       "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "VersionString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^(0|[1-9]\\d*)(\\.(0|[1-9]\\d*))*$"
+    },
+    "VersionStringList":{
+      "type":"list",
+      "member":{"shape":"VersionString"},
+      "max":20,
+      "min":1
     },
     "Year":{
       "type":"integer",

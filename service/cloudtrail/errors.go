@@ -15,6 +15,13 @@ const (
 	// is not valid. The following is the format of a trail ARN.
 	//
 	// arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+	//
+	// This exception is also thrown when you call AddTags or RemoveTags on a trail,
+	// event data store, or channel with a resource ARN that is not valid.
+	//
+	// The following is the format of an event data store ARN: arn:aws:cloudtrail:us-east-2:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
+	//
+	// The following is the format of a channel ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890
 	ErrCodeARNInvalidException = "CloudTrailARNInvalidException"
 
 	// ErrCodeAccessNotEnabledException for service response error code
@@ -36,8 +43,8 @@ const (
 	// ErrCodeAccountNotFoundException for service response error code
 	// "AccountNotFoundException".
 	//
-	// This exception is thrown when when the specified account is not found or
-	// not part of an organization.
+	// This exception is thrown when the specified account is not found or not part
+	// of an organization.
 	ErrCodeAccountNotFoundException = "AccountNotFoundException"
 
 	// ErrCodeAccountNotRegisteredException for service response error code
@@ -67,10 +74,29 @@ const (
 	// This exception is thrown when the specified value of ChannelARN is not valid.
 	ErrCodeChannelARNInvalidException = "ChannelARNInvalidException"
 
+	// ErrCodeChannelAlreadyExistsException for service response error code
+	// "ChannelAlreadyExistsException".
+	//
+	// This exception is thrown when the provided channel already exists.
+	ErrCodeChannelAlreadyExistsException = "ChannelAlreadyExistsException"
+
+	// ErrCodeChannelExistsForEDSException for service response error code
+	// "ChannelExistsForEDSException".
+	//
+	// This exception is thrown when the specified event data store cannot yet be
+	// deleted because it is in use by a channel.
+	ErrCodeChannelExistsForEDSException = "ChannelExistsForEDSException"
+
+	// ErrCodeChannelMaxLimitExceededException for service response error code
+	// "ChannelMaxLimitExceededException".
+	//
+	// This exception is thrown when the maximum number of channels limit is exceeded.
+	ErrCodeChannelMaxLimitExceededException = "ChannelMaxLimitExceededException"
+
 	// ErrCodeChannelNotFoundException for service response error code
 	// "ChannelNotFoundException".
 	//
-	// The specified channel was not found.
+	// This exception is thrown when CloudTrail cannot find the specified channel.
 	ErrCodeChannelNotFoundException = "ChannelNotFoundException"
 
 	// ErrCodeCloudTrailInvalidClientTokenIdException for service response error code
@@ -93,8 +119,9 @@ const (
 	//
 	// This exception is thrown when the specified resource is not ready for an
 	// operation. This can occur when you try to run an operation on a resource
-	// before CloudTrail has time to fully load the resource. If this exception
-	// occurs, wait a few minutes, and then try the operation again.
+	// before CloudTrail has time to fully load the resource, or because another
+	// operation is modifying the resource. If this exception occurs, wait a few
+	// minutes, and then try the operation again.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeDelegatedAdminAccountLimitExceededException for service response error code
@@ -360,6 +387,12 @@ const (
 	// This exception is thrown when the provided SNS topic name is not valid.
 	ErrCodeInvalidSnsTopicNameException = "InvalidSnsTopicNameException"
 
+	// ErrCodeInvalidSourceException for service response error code
+	// "InvalidSourceException".
+	//
+	// This exception is thrown when the specified value of Source is not valid.
+	ErrCodeInvalidSourceException = "InvalidSourceException"
+
 	// ErrCodeInvalidTagParameterException for service response error code
 	// "InvalidTagParameterException".
 	//
@@ -485,11 +518,42 @@ const (
 	// The query ID does not exist or does not map to a query.
 	ErrCodeQueryIdNotFoundException = "QueryIdNotFoundException"
 
+	// ErrCodeResourceARNNotValidException for service response error code
+	// "ResourceARNNotValidException".
+	//
+	// This exception is thrown when the provided resource does not exist, or the
+	// ARN format of the resource is not valid. The following is the valid format
+	// for a resource ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/MyChannel.
+	ErrCodeResourceARNNotValidException = "ResourceARNNotValidException"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
 	// This exception is thrown when the specified resource is not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeResourcePolicyNotFoundException for service response error code
+	// "ResourcePolicyNotFoundException".
+	//
+	// This exception is thrown when the specified resource policy is not found.
+	ErrCodeResourcePolicyNotFoundException = "ResourcePolicyNotFoundException"
+
+	// ErrCodeResourcePolicyNotValidException for service response error code
+	// "ResourcePolicyNotValidException".
+	//
+	// This exception is thrown when the resouce-based policy has syntax errors,
+	// or contains a principal that is not valid.
+	//
+	// The following are requirements for the resource policy:
+	//
+	//    * Contains only one action: cloudtrail-data:PutAuditEvents
+	//
+	//    * Contains at least one statement. The policy can have a maximum of 20
+	//    statements.
+	//
+	//    * Each statement contains at least one principal. A statement can have
+	//    a maximum of 50 principals.
+	ErrCodeResourcePolicyNotValidException = "ResourcePolicyNotValidException"
 
 	// ErrCodeResourceTypeNotSupportedException for service response error code
 	// "ResourceTypeNotSupportedException".
@@ -507,8 +571,8 @@ const (
 	// ErrCodeTagsLimitExceededException for service response error code
 	// "TagsLimitExceededException".
 	//
-	// The number of tags per trail has exceeded the permitted amount. Currently,
-	// the limit is 50.
+	// The number of tags per trail, event data store, or channel has exceeded the
+	// permitted amount. Currently, the limit is 50.
 	ErrCodeTagsLimitExceededException = "TagsLimitExceededException"
 
 	// ErrCodeTrailAlreadyExistsException for service response error code
@@ -545,6 +609,9 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccountRegisteredException":                             newErrorAccountRegisteredException,
 	"CannotDelegateManagementAccountException":               newErrorCannotDelegateManagementAccountException,
 	"ChannelARNInvalidException":                             newErrorChannelARNInvalidException,
+	"ChannelAlreadyExistsException":                          newErrorChannelAlreadyExistsException,
+	"ChannelExistsForEDSException":                           newErrorChannelExistsForEDSException,
+	"ChannelMaxLimitExceededException":                       newErrorChannelMaxLimitExceededException,
 	"ChannelNotFoundException":                               newErrorChannelNotFoundException,
 	"CloudTrailInvalidClientTokenIdException":                newErrorCloudTrailInvalidClientTokenIdException,
 	"CloudWatchLogsDeliveryUnavailableException":             newErrorCloudWatchLogsDeliveryUnavailableException,
@@ -585,6 +652,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidS3BucketNameException":                           newErrorInvalidS3BucketNameException,
 	"InvalidS3PrefixException":                               newErrorInvalidS3PrefixException,
 	"InvalidSnsTopicNameException":                           newErrorInvalidSnsTopicNameException,
+	"InvalidSourceException":                                 newErrorInvalidSourceException,
 	"InvalidTagParameterException":                           newErrorInvalidTagParameterException,
 	"InvalidTimeRangeException":                              newErrorInvalidTimeRangeException,
 	"InvalidTokenException":                                  newErrorInvalidTokenException,
@@ -601,7 +669,10 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"OrganizationNotInAllFeaturesModeException":              newErrorOrganizationNotInAllFeaturesModeException,
 	"OrganizationsNotInUseException":                         newErrorOrganizationsNotInUseException,
 	"QueryIdNotFoundException":                               newErrorQueryIdNotFoundException,
+	"ResourceARNNotValidException":                           newErrorResourceARNNotValidException,
 	"ResourceNotFoundException":                              newErrorResourceNotFoundException,
+	"ResourcePolicyNotFoundException":                        newErrorResourcePolicyNotFoundException,
+	"ResourcePolicyNotValidException":                        newErrorResourcePolicyNotValidException,
 	"ResourceTypeNotSupportedException":                      newErrorResourceTypeNotSupportedException,
 	"S3BucketDoesNotExistException":                          newErrorS3BucketDoesNotExistException,
 	"TagsLimitExceededException":                             newErrorTagsLimitExceededException,

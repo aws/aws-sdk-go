@@ -4464,6 +4464,12 @@
         "EndTimeOffset":{"shape":"MonitoringTimeOffsetString"}
       }
     },
+    "BestObjectiveNotImproving":{
+      "type":"structure",
+      "members":{
+        "MaxNumberOfTrainingJobsNotImproving":{"shape":"MaxNumberOfTrainingJobsNotImproving"}
+      }
+    },
     "Bias":{
       "type":"structure",
       "members":{
@@ -5212,6 +5218,13 @@
       "min":3,
       "pattern":".*"
     },
+    "CompleteOnConvergence":{
+      "type":"string",
+      "enum":[
+        "Disabled",
+        "Enabled"
+      ]
+    },
     "CompressionType":{
       "type":"string",
       "enum":[
@@ -5397,6 +5410,12 @@
       "member":{"shape":"ContinuousParameterRange"},
       "max":30,
       "min":0
+    },
+    "ConvergenceDetected":{
+      "type":"structure",
+      "members":{
+        "CompleteOnConvergence":{"shape":"CompleteOnConvergence"}
+      }
     },
     "CreateActionRequest":{
       "type":"structure",
@@ -8198,7 +8217,9 @@
         "BestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
         "OverallBestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
         "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
-        "FailureReason":{"shape":"FailureReason"}
+        "FailureReason":{"shape":"FailureReason"},
+        "TuningJobCompletionDetails":{"shape":"HyperParameterTuningJobCompletionDetails"},
+        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"}
       }
     },
     "DescribeImageRequest":{
@@ -11105,6 +11126,13 @@
       "max":256,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:hyper-parameter-tuning-job/.*"
     },
+    "HyperParameterTuningJobCompletionDetails":{
+      "type":"structure",
+      "members":{
+        "NumberOfTrainingJobsObjectiveNotImproving":{"shape":"Integer"},
+        "ConvergenceDetectedTime":{"shape":"Timestamp"}
+      }
+    },
     "HyperParameterTuningJobConfig":{
       "type":"structure",
       "required":[
@@ -11120,6 +11148,12 @@
         "TrainingJobEarlyStoppingType":{"shape":"TrainingJobEarlyStoppingType"},
         "TuningJobCompletionCriteria":{"shape":"TuningJobCompletionCriteria"},
         "RandomSeed":{"shape":"RandomSeed"}
+      }
+    },
+    "HyperParameterTuningJobConsumedResources":{
+      "type":"structure",
+      "members":{
+        "RuntimeInSeconds":{"shape":"Integer"}
       }
     },
     "HyperParameterTuningJobName":{
@@ -11168,7 +11202,9 @@
         "OverallBestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
         "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
         "FailureReason":{"shape":"FailureReason"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "TuningJobCompletionDetails":{"shape":"HyperParameterTuningJobCompletionDetails"},
+        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"}
       }
     },
     "HyperParameterTuningJobSortByOptions":{
@@ -11249,6 +11285,11 @@
         "IdenticalDataAndAlgorithm",
         "TransferLearning"
       ]
+    },
+    "HyperParameterTuningMaxRuntimeInSeconds":{
+      "type":"integer",
+      "max":15768000,
+      "min":120
     },
     "HyperParameterTuningResourceConfig":{
       "type":"structure",
@@ -13916,6 +13957,10 @@
     "MaxNumberOfTrainingJobs":{
       "type":"integer",
       "min":1
+    },
+    "MaxNumberOfTrainingJobsNotImproving":{
+      "type":"integer",
+      "min":3
     },
     "MaxParallelExecutionSteps":{
       "type":"integer",
@@ -17526,7 +17571,8 @@
       "required":["MaxParallelTrainingJobs"],
       "members":{
         "MaxNumberOfTrainingJobs":{"shape":"MaxNumberOfTrainingJobs"},
-        "MaxParallelTrainingJobs":{"shape":"MaxParallelTrainingJobs"}
+        "MaxParallelTrainingJobs":{"shape":"MaxParallelTrainingJobs"},
+        "MaxRuntimeInSeconds":{"shape":"HyperParameterTuningMaxRuntimeInSeconds"}
       }
     },
     "ResourceNotFound":{
@@ -19560,9 +19606,10 @@
     },
     "TuningJobCompletionCriteria":{
       "type":"structure",
-      "required":["TargetObjectiveMetricValue"],
       "members":{
-        "TargetObjectiveMetricValue":{"shape":"TargetObjectiveMetricValue"}
+        "TargetObjectiveMetricValue":{"shape":"TargetObjectiveMetricValue"},
+        "BestObjectiveNotImproving":{"shape":"BestObjectiveNotImproving"},
+        "ConvergenceDetected":{"shape":"ConvergenceDetected"}
       }
     },
     "TuningJobStepMetaData":{

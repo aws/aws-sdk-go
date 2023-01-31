@@ -117,6 +117,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DeletePackage":{
+      "name":"DeletePackage",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/package"
+      },
+      "input":{"shape":"DeletePackageRequest"},
+      "output":{"shape":"DeletePackageResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DeletePackageVersions":{
       "name":"DeletePackageVersions",
       "http":{
@@ -883,6 +900,53 @@
       "type":"structure",
       "members":{
         "domain":{"shape":"DomainDescription"}
+      }
+    },
+    "DeletePackageRequest":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "repository",
+        "format",
+        "package"
+      ],
+      "members":{
+        "domain":{
+          "shape":"DomainName",
+          "location":"querystring",
+          "locationName":"domain"
+        },
+        "domainOwner":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"domain-owner"
+        },
+        "repository":{
+          "shape":"RepositoryName",
+          "location":"querystring",
+          "locationName":"repository"
+        },
+        "format":{
+          "shape":"PackageFormat",
+          "location":"querystring",
+          "locationName":"format"
+        },
+        "namespace":{
+          "shape":"PackageNamespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "package":{
+          "shape":"PackageName",
+          "location":"querystring",
+          "locationName":"package"
+        }
+      }
+    },
+    "DeletePackageResult":{
+      "type":"structure",
+      "members":{
+        "deletedPackage":{"shape":"PackageSummary"}
       }
     },
     "DeletePackageVersionsRequest":{

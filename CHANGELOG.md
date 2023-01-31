@@ -1,3 +1,31 @@
+Release v1.44.191 (2023-01-31)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Adds new service
+* `service/appsync`: Updates service API and documentation
+* `service/cloudtrail`: Updates service API and documentation
+  * Add new "Channel" APIs to enable users to manage channels used for CloudTrail Lake integrations, and "Resource Policy" APIs to enable users to manage the resource-based permissions policy attached to a channel.
+* `service/cloudtrail-data`: Adds new service
+* `service/codeartifact`: Updates service API and documentation
+* `service/connectparticipant`: Adds new service
+* `service/ec2`: Updates service API and documentation
+  * This launch allows customers to associate up to 8 IP addresses to their NAT Gateways to increase the limit on concurrent connections to a single destination by eight times from 55K to 440K.
+* `service/groundstation`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * Added support for IoT Rules Engine Cloudwatch Logs action batch mode.
+* `service/kinesis`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* `service/opensearch`: Updates service API and documentation
+* `service/outposts`: Adds new service
+* `service/polly`: Updates service API
+  * Amazon Polly adds two new neural American English voices - Ruth, Stephen
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Automatic Model Tuning now supports more completion criteria for Hyperparameter Optimization.
+* `service/securityhub`: Updates service API and documentation
+* `service/support`: Adds new service
+  * This fixes incorrect endpoint construction when a customer is explicitly setting a region.
+
 Release v1.44.190 (2023-01-30)
 ===
 

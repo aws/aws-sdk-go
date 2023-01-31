@@ -8,7 +8,8 @@
     "CreateRepository": "<p> Creates a repository. </p>",
     "DeleteDomain": "<p> Deletes a domain. You cannot delete a domain that contains repositories. If you want to delete a domain with repositories, first delete its repositories. </p>",
     "DeleteDomainPermissionsPolicy": "<p> Deletes the resource policy set on a domain. </p>",
-    "DeletePackageVersions": "<p> Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to <code>Archived</code>. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html\">ListPackageVersions</a>), but you can restore them using <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html\">UpdatePackageVersionsStatus</a>. </p>",
+    "DeletePackage": "<p>Deletes a package and all associated package versions. A deleted package cannot be restored. To delete one or more package versions, use the <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeletePackageVersions.html\">DeletePackageVersions</a> API.</p>",
+    "DeletePackageVersions": "<p> Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to <code>Archived</code>. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html\">ListackageVersions</a>), but you can restore them using <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html\">UpdatePackageVersionsStatus</a>. </p>",
     "DeleteRepository": "<p> Deletes a repository. </p>",
     "DeleteRepositoryPermissionsPolicy": "<p> Deletes the resource policy that is set on a repository. After a resource policy is deleted, the permissions allowed and denied by the deleted policy are removed. The effect of deleting a resource policy might not be immediate. </p> <important> <p> Use <code>DeleteRepositoryPermissionsPolicy</code> with caution. After a policy is deleted, Amazon Web Services users, roles, and accounts lose permissions to perform the repository actions granted by the deleted policy. </p> </important>",
     "DescribeDomain": "<p> Returns a <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DomainDescription.html\">DomainDescription</a> object that contains information about the requested domain. </p>",
@@ -26,7 +27,7 @@
     "ListDomains": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html\">DomainSummary</a> objects for all domains owned by the Amazon Web Services account that makes this call. Each returned <code>DomainSummary</code> object contains information about a domain. </p>",
     "ListPackageVersionAssets": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html\">AssetSummary</a> objects for assets in a package version. </p>",
     "ListPackageVersionDependencies": "<p> Returns the direct dependencies for a package version. The dependencies are returned as <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html\">PackageDependency</a> objects. CodeArtifact extracts the dependencies for a package version from the metadata file for the package format (for example, the <code>package.json</code> file for npm packages and the <code>pom.xml</code> file for Maven). Any package version dependencies that are not listed in the configuration file are not returned. </p>",
-    "ListPackageVersions": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html\">PackageVersionSummary</a> objects for package versions in a repository that match the request parameters. </p>",
+    "ListPackageVersions": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html\">PackageVersionSummary</a> objects for package versions in a repository that match the request parameters. Package versions of all statuses will be returned by default when calling <code>list-package-versions</code> with no <code>--status</code> parameter. </p>",
     "ListPackages": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html\">PackageSummary</a> objects for packages in a repository that match the request parameters. </p>",
     "ListRepositories": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\">RepositorySummary</a> objects. Each <code>RepositorySummary</code> contains information about a repository in the specified Amazon Web Services account and that matches the input parameters. </p>",
     "ListRepositoriesInDomain": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\">RepositorySummary</a> objects. Each <code>RepositorySummary</code> contains information about a repository in the specified domain and that matches the input parameters. </p>",
@@ -53,6 +54,7 @@
         "CreateRepositoryRequest$domainOwner": "<p> The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. </p>",
         "DeleteDomainPermissionsPolicyRequest$domainOwner": "<p> The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. </p>",
         "DeleteDomainRequest$domainOwner": "<p> The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. </p>",
+        "DeletePackageRequest$domainOwner": "<p> The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. </p>",
         "DeletePackageVersionsRequest$domainOwner": "<p> The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. </p>",
         "DeleteRepositoryPermissionsPolicyRequest$domainOwner": "<p> The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. </p>",
         "DeleteRepositoryRequest$domainOwner": "<p> The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. </p>",
@@ -228,6 +230,16 @@
       "refs": {
       }
     },
+    "DeletePackageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePackageResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeletePackageVersionsRequest": {
       "base": null,
       "refs": {
@@ -350,6 +362,7 @@
         "CreateRepositoryRequest$domain": "<p> The name of the domain that contains the created repository. </p>",
         "DeleteDomainPermissionsPolicyRequest$domain": "<p> The name of the domain associated with the resource policy to be deleted. </p>",
         "DeleteDomainRequest$domain": "<p> The name of the domain to delete. </p>",
+        "DeletePackageRequest$domain": "<p>The name of the domain that contains the package to delete.</p>",
         "DeletePackageVersionsRequest$domain": "<p> The name of the domain that contains the package to delete. </p>",
         "DeleteRepositoryPermissionsPolicyRequest$domain": "<p> The name of the domain that contains the repository associated with the resource policy to be deleted. </p>",
         "DeleteRepositoryRequest$domain": "<p> The name of the domain that contains the repository to delete. </p>",
@@ -666,6 +679,7 @@
       "base": null,
       "refs": {
         "CopyPackageVersionsRequest$format": "<p> The format of the package versions to be copied. </p>",
+        "DeletePackageRequest$format": "<p>The format of the requested package to delete.</p>",
         "DeletePackageVersionsRequest$format": "<p> The format of the package versions to delete. </p>",
         "DescribePackageRequest$format": "<p>A format that specifies the type of the requested package.</p>",
         "DescribePackageVersionRequest$format": "<p> A format that specifies the type of the requested package version. </p>",
@@ -693,6 +707,7 @@
       "base": null,
       "refs": {
         "CopyPackageVersionsRequest$package": "<p> The name of the package that contains the versions to be copied. </p>",
+        "DeletePackageRequest$package": "<p>The name of the package to delete.</p>",
         "DeletePackageVersionsRequest$package": "<p> The name of the package with the versions to delete. </p>",
         "DescribePackageRequest$package": "<p>The name of the requested package.</p>",
         "DescribePackageVersionRequest$package": "<p> The name of the requested package version. </p>",
@@ -719,6 +734,7 @@
       "base": null,
       "refs": {
         "CopyPackageVersionsRequest$namespace": "<p>The namespace of the package versions to be copied. The package version component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package version is its <code>groupId</code>. The namespace is required when copying Maven package versions. </p> </li> <li> <p> The namespace of an npm package version is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace. </p> </li> </ul>",
+        "DeletePackageRequest$namespace": "<p>The namespace of the package to delete. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. The namespace is required when deleting Maven package versions. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain corresponding components, packages of those formats do not have a namespace. </p> </li> </ul>",
         "DeletePackageVersionsRequest$namespace": "<p>The namespace of the package versions to be deleted. The package version component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package version is its <code>groupId</code>. The namespace is required when deleting Maven package versions. </p> </li> <li> <p> The namespace of an npm package version is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace. </p> </li> </ul>",
         "DescribePackageRequest$namespace": "<p>The namespace of the requested package. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. The namespace is required when requesting Maven packages. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
         "DescribePackageVersionRequest$namespace": "<p>The namespace of the requested package version. The package version component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package version is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package version is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace. </p> </li> </ul>",
@@ -732,7 +748,7 @@
         "ListPackageVersionDependenciesResult$namespace": "<p>The namespace of the package version that contains the returned dependencies. The package version component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package version is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package version is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace. </p> </li> </ul>",
         "ListPackageVersionsRequest$namespace": "<p>The namespace of the package that contains the requested package versions. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
         "ListPackageVersionsResult$namespace": "<p>The namespace of the package that contains the requested package versions. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
-        "ListPackagesRequest$namespace": "<p>The namespace prefix used to filter requested packages. Only packages with a namespace that starts with the provided string value are returned. Note that although this option is called <code>--namespace</code> and not <code>--namespace-prefix</code>, it has prefix-matching behavior.</p> <p>Each package format uses namespace as follows:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
+        "ListPackagesRequest$namespace": "<p>The namespace used to filter requested packages. Only packages with the provided namespace will be returned. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
         "PackageDependency$namespace": "<p>The namespace of the package that this package depends on. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
         "PackageDescription$namespace": "<p>The namespace of the package. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
         "PackageSummary$namespace": "<p>The namespace of the package. The package component that specifies its namespace depends on its type. For example:</p> <ul> <li> <p> The namespace of a Maven package is its <code>groupId</code>. </p> </li> <li> <p> The namespace of an npm package is its <code>scope</code>. </p> </li> <li> <p> Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace. </p> </li> </ul>",
@@ -757,8 +773,9 @@
       }
     },
     "PackageSummary": {
-      "base": "<p> Details about a package, including its format, namespace, and name. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html\">ListPackages</a> operation returns a list of <code>PackageSummary</code> objects. </p>",
+      "base": "<p> Details about a package, including its format, namespace, and name. </p>",
       "refs": {
+        "DeletePackageResult$deletedPackage": null,
         "PackageSummaryList$member": null
       }
     },
@@ -988,6 +1005,7 @@
         "CopyPackageVersionsRequest$sourceRepository": "<p> The name of the repository that contains the package versions to be copied. </p>",
         "CopyPackageVersionsRequest$destinationRepository": "<p> The name of the repository into which package versions are copied. </p>",
         "CreateRepositoryRequest$repository": "<p> The name of the repository to create. </p>",
+        "DeletePackageRequest$repository": "<p>The name of the repository that contains the package to delete.</p>",
         "DeletePackageVersionsRequest$repository": "<p> The name of the repository that contains the package versions to delete. </p>",
         "DeleteRepositoryPermissionsPolicyRequest$repository": "<p> The name of the repository that is associated with the resource policy to be deleted </p>",
         "DeleteRepositoryRequest$repository": "<p> The name of the repository to delete. </p>",
@@ -1077,7 +1095,7 @@
         "InternalServerException$message": null,
         "LicenseInfo$name": "<p> Name of the license. </p>",
         "LicenseInfo$url": "<p> The URL for license data. </p>",
-        "PackageDependency$dependencyType": "<p> The type of a package dependency. The possible values depend on the package type.</p> <ul> <li> <p>npm: <code>regular</code>, <code>dev</code>, <code>peer</code>, <code>optional</code> </p> </li> <li> <p>maven: <code>optional</code>, <code>parent</code>, <code>compile</code>, <code>runtime</code>, <code>test</code>, <code>system</code>, <code>provided</code>.</p> <note> <p>Note that <code>parent</code> is not a regular Maven dependency type; instead this is extracted from the <code>&lt;parent&gt;</code> element if one is defined in the package version's POM file.</p> </note> </li> <li> <p>nuget: The <code>dependencyType</code> field is never set for NuGet packages.</p> </li> <li> <p>pypi: <code>Requires-Dist</code> </p> </li> </ul>",
+        "PackageDependency$dependencyType": "<p> The type of a package dependency. The possible values depend on the package type. Example types are <code>compile</code>, <code>runtime</code>, and <code>test</code> for Maven packages, and <code>dev</code>, <code>prod</code>, and <code>optional</code> for npm packages. </p>",
         "PackageDependency$versionRequirement": "<p> The required version, or version range, of the package that this package depends on. The version format is specific to the package type. For example, the following are possible valid required versions: <code>1.2.3</code>, <code>^2.3.4</code>, or <code>4.x</code>. </p>",
         "PackageVersionDescription$summary": "<p> A summary of the package version. The summary is extracted from the package. The information in and detail level of the summary depends on the package version's format. </p>",
         "PackageVersionDescription$homePage": "<p> The homepage associated with the package. </p>",

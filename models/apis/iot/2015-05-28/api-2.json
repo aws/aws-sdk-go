@@ -5133,7 +5133,8 @@
       ],
       "members":{
         "roleArn":{"shape":"AwsArn"},
-        "logGroupName":{"shape":"LogGroupName"}
+        "logGroupName":{"shape":"LogGroupName"},
+        "batchMode":{"shape":"BatchMode"}
       }
     },
     "CloudwatchMetricAction":{

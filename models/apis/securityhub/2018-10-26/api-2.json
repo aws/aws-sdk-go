@@ -1041,6 +1041,16 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "AssociatedStandard":{
+      "type":"structure",
+      "members":{
+        "StandardsId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AssociatedStandardsList":{
+      "type":"list",
+      "member":{"shape":"AssociatedStandard"}
+    },
     "AutoEnableStandards":{
       "type":"string",
       "enum":[
@@ -5444,7 +5454,9 @@
         "FindingProviderFieldsSeverityLabel":{"shape":"StringFilterList"},
         "FindingProviderFieldsSeverityOriginal":{"shape":"StringFilterList"},
         "FindingProviderFieldsTypes":{"shape":"StringFilterList"},
-        "Sample":{"shape":"BooleanFilterList"}
+        "Sample":{"shape":"BooleanFilterList"},
+        "ComplianceSecurityControlId":{"shape":"StringFilterList"},
+        "ComplianceAssociatedStandardsId":{"shape":"StringFilterList"}
       }
     },
     "AwsSecurityFindingIdentifier":{
@@ -6040,7 +6052,9 @@
       "members":{
         "Status":{"shape":"ComplianceStatus"},
         "RelatedRequirements":{"shape":"RelatedRequirementsList"},
-        "StatusReasons":{"shape":"StatusReasonsList"}
+        "StatusReasons":{"shape":"StatusReasonsList"},
+        "SecurityControlId":{"shape":"NonEmptyString"},
+        "AssociatedStandards":{"shape":"AssociatedStandardsList"}
       }
     },
     "ComplianceStatus":{

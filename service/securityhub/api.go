@@ -6927,6 +6927,42 @@ func (s *AdminAccount) SetStatus(v string) *AdminAccount {
 	return s
 }
 
+// Information about an enabled security standard in which a security control
+// is enabled.
+type AssociatedStandard struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of a standard in which a control is enabled. This field
+	// consists of the resource portion of the Amazon Resource Name (ARN) returned
+	// for a standard in the DescribeStandards (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html)
+	// API response.
+	StandardsId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatedStandard) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatedStandard) GoString() string {
+	return s.String()
+}
+
+// SetStandardsId sets the StandardsId field's value.
+func (s *AssociatedStandard) SetStandardsId(v string) *AssociatedStandard {
+	s.StandardsId = &v
+	return s
+}
+
 // Information about an Availability Zone.
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
@@ -33696,7 +33732,7 @@ type AwsSageMakerNotebookInstanceDetails struct {
 
 	// An array of up to three Git repositories associated with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// your account, or the URL of Git repositories in CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. These repositories are cloned at the same
 	// level as the default repository of your notebook instance. For more information,
 	// see Associating Git repositories with SageMaker notebook instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html)
@@ -33705,7 +33741,7 @@ type AwsSageMakerNotebookInstanceDetails struct {
 
 	// The Git repository associated with the notebook instance as its default code
 	// repository. This can be either the name of a Git repository stored as a resource
-	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// in your account, or the URL of a Git repository in CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
 	// Associating Git repositories with SageMaker notebook instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html)
@@ -34677,6 +34713,16 @@ type AwsSecurityFindingFilters struct {
 	// that generates findings.
 	CompanyName []*StringFilter `type:"list"`
 
+	// The unique identifier of a standard in which a control is enabled. This field
+	// consists of the resource portion of the Amazon Resource Name (ARN) returned
+	// for a standard in the DescribeStandards (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html)
+	// API response.
+	ComplianceAssociatedStandardsId []*StringFilter `type:"list"`
+
+	// The unique identifier of a control across standards. Values for this field
+	// typically consist of an Amazon Web Service and a number, such as APIGateway.5.
+	ComplianceSecurityControlId []*StringFilter `type:"list"`
+
 	// Exclusive to findings that are generated as the result of a check run against
 	// a specific rule in a supported standard, such as CIS Amazon Web Services
 	// Foundations. Contains security standard-related finding details.
@@ -35062,6 +35108,18 @@ func (s *AwsSecurityFindingFilters) SetAwsAccountId(v []*StringFilter) *AwsSecur
 // SetCompanyName sets the CompanyName field's value.
 func (s *AwsSecurityFindingFilters) SetCompanyName(v []*StringFilter) *AwsSecurityFindingFilters {
 	s.CompanyName = v
+	return s
+}
+
+// SetComplianceAssociatedStandardsId sets the ComplianceAssociatedStandardsId field's value.
+func (s *AwsSecurityFindingFilters) SetComplianceAssociatedStandardsId(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.ComplianceAssociatedStandardsId = v
+	return s
+}
+
+// SetComplianceSecurityControlId sets the ComplianceSecurityControlId field's value.
+func (s *AwsSecurityFindingFilters) SetComplianceSecurityControlId(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.ComplianceSecurityControlId = v
 	return s
 }
 
@@ -37858,8 +37916,8 @@ func (s *AwsWafv2RulesActionDetails) SetCount(v *AwsWafv2RulesActionCountDetails
 
 // Provides details about rules in a rule group. A rule identifies web requests
 // that you want to allow, block, or count. Each rule includes one top-level
-// Statement that AWS WAF uses to identify matching web requests, and parameters
-// that govern how AWS WAF handles them.
+// Statement that WAF uses to identify matching web requests, and parameters
+// that govern how WAF handles them.
 type AwsWafv2RulesDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -39188,10 +39246,17 @@ func (s *ClassificationStatus) SetReason(v string) *ClassificationStatus {
 type Compliance struct {
 	_ struct{} `type:"structure"`
 
+	// The enabled security standards in which a security control is currently enabled.
+	AssociatedStandards []*AssociatedStandard `type:"list"`
+
 	// For a control, the industry or regulatory framework requirements that are
 	// related to the control. The check for that control is aligned with these
 	// requirements.
 	RelatedRequirements []*string `type:"list"`
+
+	// The unique identifier of a control across standards. Values for this field
+	// typically consist of an Amazon Web Service and a number, such as APIGateway.5.
+	SecurityControlId *string `type:"string"`
 
 	// The result of a standards check.
 	//
@@ -39251,9 +39316,21 @@ func (s *Compliance) Validate() error {
 	return nil
 }
 
+// SetAssociatedStandards sets the AssociatedStandards field's value.
+func (s *Compliance) SetAssociatedStandards(v []*AssociatedStandard) *Compliance {
+	s.AssociatedStandards = v
+	return s
+}
+
 // SetRelatedRequirements sets the RelatedRequirements field's value.
 func (s *Compliance) SetRelatedRequirements(v []*string) *Compliance {
 	s.RelatedRequirements = v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *Compliance) SetSecurityControlId(v string) *Compliance {
+	s.SecurityControlId = &v
 	return s
 }
 
@@ -44761,26 +44838,26 @@ type Member struct {
 	//
 	// The status can have one of the following values:
 	//
-	//    * CREATED - Indicates that the administrator account added the member
+	//    * Created - Indicates that the administrator account added the member
 	//    account, but has not yet invited the member account.
 	//
-	//    * INVITED - Indicates that the administrator account invited the member
+	//    * Invited - Indicates that the administrator account invited the member
 	//    account. The member account has not yet responded to the invitation.
 	//
-	//    * ENABLED - Indicates that the member account is currently active. For
+	//    * Enabled - Indicates that the member account is currently active. For
 	//    manually invited member accounts, indicates that the member account accepted
 	//    the invitation.
 	//
-	//    * REMOVED - Indicates that the administrator account disassociated the
+	//    * Removed - Indicates that the administrator account disassociated the
 	//    member account.
 	//
-	//    * RESIGNED - Indicates that the member account disassociated themselves
+	//    * Resigned - Indicates that the member account disassociated themselves
 	//    from the administrator account.
 	//
-	//    * DELETED - Indicates that the administrator account deleted the member
+	//    * Deleted - Indicates that the administrator account deleted the member
 	//    account.
 	//
-	//    * ACCOUNT_SUSPENDED - Indicates that an organization account was suspended
+	//    * AccountSuspended - Indicates that an organization account was suspended
 	//    from Amazon Web Services at the same time that the administrator account
 	//    tried to enable the organization account as a member account.
 	MemberStatus *string `type:"string"`

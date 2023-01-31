@@ -617,6 +617,105 @@ func (c *CodeArtifact) DeleteDomainPermissionsPolicyWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opDeletePackage = "DeletePackage"
+
+// DeletePackageRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePackage for more information on using the DeletePackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePackageRequest method.
+//	req, resp := client.DeletePackageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/DeletePackage
+func (c *CodeArtifact) DeletePackageRequest(input *DeletePackageInput) (req *request.Request, output *DeletePackageOutput) {
+	op := &request.Operation{
+		Name:       opDeletePackage,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/package",
+	}
+
+	if input == nil {
+		input = &DeletePackageInput{}
+	}
+
+	output = &DeletePackageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeletePackage API operation for CodeArtifact.
+//
+// Deletes a package and all associated package versions. A deleted package
+// cannot be restored. To delete one or more package versions, use the DeletePackageVersions
+// (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeletePackageVersions.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for CodeArtifact's
+// API operation DeletePackage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The operation did not succeed because of an unauthorized access attempt.
+//
+//   - ConflictException
+//     The operation did not succeed because prerequisites are not met.
+//
+//   - InternalServerException
+//     The operation did not succeed because of an error that occurred inside CodeArtifact.
+//
+//   - ResourceNotFoundException
+//     The operation did not succeed because the resource requested is not found
+//     in the service.
+//
+//   - ThrottlingException
+//     The operation did not succeed because too many requests are sent to the service.
+//
+//   - ValidationException
+//     The operation did not succeed because a parameter in the request was sent
+//     with an invalid value.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/DeletePackage
+func (c *CodeArtifact) DeletePackage(input *DeletePackageInput) (*DeletePackageOutput, error) {
+	req, out := c.DeletePackageRequest(input)
+	return out, req.Send()
+}
+
+// DeletePackageWithContext is the same as DeletePackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeArtifact) DeletePackageWithContext(ctx aws.Context, input *DeletePackageInput, opts ...request.Option) (*DeletePackageOutput, error) {
+	req, out := c.DeletePackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeletePackageVersions = "DeletePackageVersions"
 
 // DeletePackageVersionsRequest generates a "aws/request.Request" representing the
@@ -664,7 +763,7 @@ func (c *CodeArtifact) DeletePackageVersionsRequest(input *DeletePackageVersions
 // be restored in your repository. If you want to remove a package version from
 // your repository and be able to restore it later, set its status to Archived.
 // Archived packages cannot be downloaded from a repository and don't show up
-// with list package APIs (for example, ListPackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)),
+// with list package APIs (for example, ListackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)),
 // but you can restore them using UpdatePackageVersionsStatus (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2550,6 +2649,8 @@ func (c *CodeArtifact) ListPackageVersionsRequest(input *ListPackageVersionsInpu
 //
 // Returns a list of PackageVersionSummary (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html)
 // objects for package versions in a repository that match the request parameters.
+// Package versions of all statuses will be returned by default when calling
+// list-package-versions with no --status parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4957,6 +5058,168 @@ func (s DeleteDomainPermissionsPolicyOutput) GoString() string {
 // SetPolicy sets the Policy field's value.
 func (s *DeleteDomainPermissionsPolicyOutput) SetPolicy(v *ResourcePolicy) *DeleteDomainPermissionsPolicyOutput {
 	s.Policy = v
+	return s
+}
+
+type DeletePackageInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the domain that contains the package to delete.
+	//
+	// Domain is a required field
+	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
+
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
+	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
+
+	// The format of the requested package to delete.
+	//
+	// Format is a required field
+	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
+
+	// The namespace of the package to delete. The package component that specifies
+	// its namespace depends on its type. For example:
+	//
+	//    * The namespace of a Maven package is its groupId. The namespace is required
+	//    when deleting Maven package versions.
+	//
+	//    * The namespace of an npm package is its scope.
+	//
+	//    * Python and NuGet packages do not contain corresponding components, packages
+	//    of those formats do not have a namespace.
+	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
+
+	// The name of the package to delete.
+	//
+	// Package is a required field
+	Package *string `location:"querystring" locationName:"package" min:"1" type:"string" required:"true"`
+
+	// The name of the repository that contains the package to delete.
+	//
+	// Repository is a required field
+	Repository *string `location:"querystring" locationName:"repository" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePackageInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 2))
+	}
+	if s.DomainOwner != nil && len(*s.DomainOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainOwner", 12))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Package == nil {
+		invalidParams.Add(request.NewErrParamRequired("Package"))
+	}
+	if s.Package != nil && len(*s.Package) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Package", 1))
+	}
+	if s.Repository == nil {
+		invalidParams.Add(request.NewErrParamRequired("Repository"))
+	}
+	if s.Repository != nil && len(*s.Repository) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Repository", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DeletePackageInput) SetDomain(v string) *DeletePackageInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainOwner sets the DomainOwner field's value.
+func (s *DeletePackageInput) SetDomainOwner(v string) *DeletePackageInput {
+	s.DomainOwner = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *DeletePackageInput) SetFormat(v string) *DeletePackageInput {
+	s.Format = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DeletePackageInput) SetNamespace(v string) *DeletePackageInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPackage sets the Package field's value.
+func (s *DeletePackageInput) SetPackage(v string) *DeletePackageInput {
+	s.Package = &v
+	return s
+}
+
+// SetRepository sets the Repository field's value.
+func (s *DeletePackageInput) SetRepository(v string) *DeletePackageInput {
+	s.Repository = &v
+	return s
+}
+
+type DeletePackageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about a package, including its format, namespace, and name.
+	DeletedPackage *PackageSummary `locationName:"deletedPackage" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePackageOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeletedPackage sets the DeletedPackage field's value.
+func (s *DeletePackageOutput) SetDeletedPackage(v *PackageSummary) *DeletePackageOutput {
+	s.DeletedPackage = v
 	return s
 }
 
@@ -8478,12 +8741,9 @@ type ListPackagesInput struct {
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace prefix used to filter requested packages. Only packages with
-	// a namespace that starts with the provided string value are returned. Note
-	// that although this option is called --namespace and not --namespace-prefix,
-	// it has prefix-matching behavior.
-	//
-	// Each package format uses namespace as follows:
+	// The namespace used to filter requested packages. Only packages with the provided
+	// namespace will be returned. The package component that specifies its namespace
+	// depends on its type. For example:
 	//
 	//    * The namespace of a Maven package is its groupId.
 	//
@@ -9022,18 +9282,8 @@ type PackageDependency struct {
 	_ struct{} `type:"structure"`
 
 	// The type of a package dependency. The possible values depend on the package
-	// type.
-	//
-	//    * npm: regular, dev, peer, optional
-	//
-	//    * maven: optional, parent, compile, runtime, test, system, provided. Note
-	//    that parent is not a regular Maven dependency type; instead this is extracted
-	//    from the <parent> element if one is defined in the package version's POM
-	//    file.
-	//
-	//    * nuget: The dependencyType field is never set for NuGet packages.
-	//
-	//    * pypi: Requires-Dist
+	// type. Example types are compile, runtime, and test for Maven packages, and
+	// dev, prod, and optional for npm packages.
 	DependencyType *string `locationName:"dependencyType" type:"string"`
 
 	// The namespace of the package that this package depends on. The package component
@@ -9263,9 +9513,7 @@ func (s *PackageOriginRestrictions) SetUpstream(v string) *PackageOriginRestrict
 	return s
 }
 
-// Details about a package, including its format, namespace, and name. The ListPackages
-// (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html)
-// operation returns a list of PackageSummary objects.
+// Details about a package, including its format, namespace, and name.
 type PackageSummary struct {
 	_ struct{} `type:"structure"`
 
