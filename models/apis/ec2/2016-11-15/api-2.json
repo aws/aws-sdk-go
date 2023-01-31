@@ -138,6 +138,15 @@
       "input":{"shape":"AssignPrivateIpAddressesRequest"},
       "output":{"shape":"AssignPrivateIpAddressesResult"}
     },
+    "AssignPrivateNatGatewayAddress":{
+      "name":"AssignPrivateNatGatewayAddress",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssignPrivateNatGatewayAddressRequest"},
+      "output":{"shape":"AssignPrivateNatGatewayAddressResult"}
+    },
     "AssociateAddress":{
       "name":"AssociateAddress",
       "http":{
@@ -199,6 +208,15 @@
       },
       "input":{"shape":"AssociateIpamResourceDiscoveryRequest"},
       "output":{"shape":"AssociateIpamResourceDiscoveryResult"}
+    },
+    "AssociateNatGatewayAddress":{
+      "name":"AssociateNatGatewayAddress",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateNatGatewayAddressRequest"},
+      "output":{"shape":"AssociateNatGatewayAddressResult"}
     },
     "AssociateRouteTable":{
       "name":"AssociateRouteTable",
@@ -3408,6 +3426,15 @@
       "input":{"shape":"DisassociateIpamResourceDiscoveryRequest"},
       "output":{"shape":"DisassociateIpamResourceDiscoveryResult"}
     },
+    "DisassociateNatGatewayAddress":{
+      "name":"DisassociateNatGatewayAddress",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateNatGatewayAddressRequest"},
+      "output":{"shape":"DisassociateNatGatewayAddressResult"}
+    },
     "DisassociateRouteTable":{
       "name":"DisassociateRouteTable",
       "http":{
@@ -5185,6 +5212,15 @@
       },
       "input":{"shape":"UnassignPrivateIpAddressesRequest"}
     },
+    "UnassignPrivateNatGatewayAddress":{
+      "name":"UnassignPrivateNatGatewayAddress",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UnassignPrivateNatGatewayAddressRequest"},
+      "output":{"shape":"UnassignPrivateNatGatewayAddressResult"}
+    },
     "UnmonitorInstances":{
       "name":"UnmonitorInstances",
       "http":{
@@ -6470,6 +6506,32 @@
         }
       }
     },
+    "AssignPrivateNatGatewayAddressRequest":{
+      "type":"structure",
+      "required":["NatGatewayId"],
+      "members":{
+        "NatGatewayId":{"shape":"NatGatewayId"},
+        "PrivateIpAddresses":{
+          "shape":"IpList",
+          "locationName":"PrivateIpAddress"
+        },
+        "PrivateIpAddressCount":{"shape":"PrivateIpAddressCount"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "AssignPrivateNatGatewayAddressResult":{
+      "type":"structure",
+      "members":{
+        "NatGatewayId":{
+          "shape":"NatGatewayId",
+          "locationName":"natGatewayId"
+        },
+        "NatGatewayAddresses":{
+          "shape":"NatGatewayAddressList",
+          "locationName":"natGatewayAddressSet"
+        }
+      }
+    },
     "AssignedPrivateIpAddress":{
       "type":"structure",
       "members":{
@@ -6655,6 +6717,38 @@
         "IpamResourceDiscoveryAssociation":{
           "shape":"IpamResourceDiscoveryAssociation",
           "locationName":"ipamResourceDiscoveryAssociation"
+        }
+      }
+    },
+    "AssociateNatGatewayAddressRequest":{
+      "type":"structure",
+      "required":[
+        "NatGatewayId",
+        "AllocationIds"
+      ],
+      "members":{
+        "NatGatewayId":{"shape":"NatGatewayId"},
+        "AllocationIds":{
+          "shape":"AllocationIdList",
+          "locationName":"AllocationId"
+        },
+        "PrivateIpAddresses":{
+          "shape":"IpList",
+          "locationName":"PrivateIpAddress"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "AssociateNatGatewayAddressResult":{
+      "type":"structure",
+      "members":{
+        "NatGatewayId":{
+          "shape":"NatGatewayId",
+          "locationName":"natGatewayId"
+        },
+        "NatGatewayAddresses":{
+          "shape":"NatGatewayAddressList",
+          "locationName":"natGatewayAddressSet"
         }
       }
     },
@@ -9415,7 +9509,7 @@
           "locationName":"kmsKeyId"
         },
         "PresignedUrl":{
-          "shape":"String",
+          "shape":"CopySnapshotRequestPSU",
           "locationName":"presignedUrl"
         },
         "SourceRegion":{"shape":"String"},
@@ -9429,6 +9523,10 @@
           "locationName":"dryRun"
         }
       }
+    },
+    "CopySnapshotRequestPSU":{
+      "type":"string",
+      "sensitive":true
     },
     "CopySnapshotResult":{
       "type":"structure",
@@ -10527,7 +10625,16 @@
           "locationName":"TagSpecification"
         },
         "ConnectivityType":{"shape":"ConnectivityType"},
-        "PrivateIpAddress":{"shape":"String"}
+        "PrivateIpAddress":{"shape":"String"},
+        "SecondaryAllocationIds":{
+          "shape":"AllocationIdList",
+          "locationName":"SecondaryAllocationId"
+        },
+        "SecondaryPrivateIpAddresses":{
+          "shape":"IpList",
+          "locationName":"SecondaryPrivateIpAddress"
+        },
+        "SecondaryPrivateIpAddressCount":{"shape":"PrivateIpAddressCount"}
       }
     },
     "CreateNatGatewayResult":{
@@ -19220,6 +19327,35 @@
         }
       }
     },
+    "DisassociateNatGatewayAddressRequest":{
+      "type":"structure",
+      "required":[
+        "NatGatewayId",
+        "AssociationIds"
+      ],
+      "members":{
+        "NatGatewayId":{"shape":"NatGatewayId"},
+        "AssociationIds":{
+          "shape":"EipAssociationIdList",
+          "locationName":"AssociationId"
+        },
+        "MaxDrainDurationSeconds":{"shape":"DrainSeconds"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisassociateNatGatewayAddressResult":{
+      "type":"structure",
+      "members":{
+        "NatGatewayId":{
+          "shape":"NatGatewayId",
+          "locationName":"natGatewayId"
+        },
+        "NatGatewayAddresses":{
+          "shape":"NatGatewayAddressList",
+          "locationName":"natGatewayAddressSet"
+        }
+      }
+    },
     "DisassociateRouteTableRequest":{
       "type":"structure",
       "required":["AssociationId"],
@@ -19557,6 +19693,11 @@
       "max":99.999,
       "min":0.001
     },
+    "DrainSeconds":{
+      "type":"integer",
+      "max":4000,
+      "min":1
+    },
     "DynamicRoutingValue":{
       "type":"string",
       "enum":[
@@ -19751,6 +19892,13 @@
       "type":"list",
       "member":{
         "shape":"EgressOnlyInternetGateway",
+        "locationName":"item"
+      }
+    },
+    "EipAssociationIdList":{
+      "type":"list",
+      "member":{
+        "shape":"ElasticIpAssociationId",
         "locationName":"item"
       }
     },
@@ -26928,6 +27076,13 @@
         "ipv6"
       ]
     },
+    "IpList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
     "IpPermission":{
       "type":"structure",
       "members":{
@@ -31836,6 +31991,22 @@
         "PublicIp":{
           "shape":"String",
           "locationName":"publicIp"
+        },
+        "AssociationId":{
+          "shape":"String",
+          "locationName":"associationId"
+        },
+        "IsPrimary":{
+          "shape":"Boolean",
+          "locationName":"isPrimary"
+        },
+        "FailureMessage":{
+          "shape":"String",
+          "locationName":"failureMessage"
+        },
+        "Status":{
+          "shape":"NatGatewayAddressStatus",
+          "locationName":"status"
         }
       }
     },
@@ -31845,6 +32016,17 @@
         "shape":"NatGatewayAddress",
         "locationName":"item"
       }
+    },
+    "NatGatewayAddressStatus":{
+      "type":"string",
+      "enum":[
+        "assigning",
+        "unassigning",
+        "associating",
+        "disassociating",
+        "succeeded",
+        "failed"
+      ]
     },
     "NatGatewayId":{"type":"string"},
     "NatGatewayIdStringList":{
@@ -33880,6 +34062,11 @@
         "shape":"ScheduledInstancesPrivateIpAddressConfig",
         "locationName":"PrivateIpAddressConfigSet"
       }
+    },
+    "PrivateIpAddressCount":{
+      "type":"integer",
+      "max":7,
+      "min":1
     },
     "PrivateIpAddressSpecification":{
       "type":"structure",
@@ -41763,6 +41950,35 @@
         "Ipv4Prefixes":{
           "shape":"IpPrefixList",
           "locationName":"Ipv4Prefix"
+        }
+      }
+    },
+    "UnassignPrivateNatGatewayAddressRequest":{
+      "type":"structure",
+      "required":[
+        "NatGatewayId",
+        "PrivateIpAddresses"
+      ],
+      "members":{
+        "NatGatewayId":{"shape":"NatGatewayId"},
+        "PrivateIpAddresses":{
+          "shape":"IpList",
+          "locationName":"PrivateIpAddress"
+        },
+        "MaxDrainDurationSeconds":{"shape":"DrainSeconds"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "UnassignPrivateNatGatewayAddressResult":{
+      "type":"structure",
+      "members":{
+        "NatGatewayId":{
+          "shape":"NatGatewayId",
+          "locationName":"natGatewayId"
+        },
+        "NatGatewayAddresses":{
+          "shape":"NatGatewayAddressList",
+          "locationName":"natGatewayAddressSet"
         }
       }
     },

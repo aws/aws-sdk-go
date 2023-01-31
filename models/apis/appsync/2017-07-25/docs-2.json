@@ -433,7 +433,7 @@
       "base": null,
       "refs": {
         "CreateDataSourceRequest$type": "<p>The type of the <code>DataSource</code>.</p>",
-        "DataSource$type": "<p>The type of the data source.</p> <ul> <li> <p> <b>AWS_LAMBDA</b>: The data source is an Lambda function.</p> </li> <li> <p> <b>AMAZON_DYNAMODB</b>: The data source is an Amazon DynamoDB table.</p> </li> <li> <p> <b>AMAZON_ELASTICSEARCH</b>: The data source is an Amazon OpenSearch Service domain.</p> </li> <li> <p> <b>AMAZON_OPENSEARCH_SERVICE</b>: The data source is an Amazon OpenSearch Service domain.</p> </li> <li> <p> <b>NONE</b>: There is no data source. Use this type when you want to invoke a GraphQL operation without connecting to a data source, such as when you're performing data transformation with resolvers or invoking a subscription from a mutation.</p> </li> <li> <p> <b>HTTP</b>: The data source is an HTTP endpoint.</p> </li> <li> <p> <b>RELATIONAL_DATABASE</b>: The data source is a relational database.</p> </li> </ul>",
+        "DataSource$type": "<p>The type of the data source.</p> <ul> <li> <p> <b>AWS_LAMBDA</b>: The data source is an Lambda function.</p> </li> <li> <p> <b>AMAZON_DYNAMODB</b>: The data source is an Amazon DynamoDB table.</p> </li> <li> <p> <b>AMAZON_ELASTICSEARCH</b>: The data source is an Amazon OpenSearch Service domain.</p> </li> <li> <p> <b>AMAZON_OPENSEARCH_SERVICE</b>: The data source is an Amazon OpenSearch Service domain.</p> </li> <li> <p> <b>AMAZON_EVENTBRIDGE</b>: The data source is an Amazon EventBridge configuration.</p> </li> <li> <p> <b>NONE</b>: There is no data source. Use this type when you want to invoke a GraphQL operation without connecting to a data source, such as when you're performing data transformation with resolvers or invoking a subscription from a mutation.</p> </li> <li> <p> <b>HTTP</b>: The data source is an HTTP endpoint.</p> </li> <li> <p> <b>RELATIONAL_DATABASE</b>: The data source is a relational database.</p> </li> </ul>",
         "UpdateDataSourceRequest$type": "<p>The new data source type.</p>"
       }
     },
@@ -645,6 +645,14 @@
       "refs": {
         "EvaluateCodeResponse$evaluationResult": "<p>The result of the evaluation operation.</p>",
         "EvaluateMappingTemplateResponse$evaluationResult": "<p>The mapping template; this can be a request or response template.</p>"
+      }
+    },
+    "EventBridgeDataSourceConfig": {
+      "base": "<p>Describes an Amazon EventBridge bus data source configuration.</p>",
+      "refs": {
+        "CreateDataSourceRequest$eventBridgeConfig": "<p>Amazon EventBridge settings.</p>",
+        "DataSource$eventBridgeConfig": "<p>Amazon EventBridge settings.</p>",
+        "UpdateDataSourceRequest$eventBridgeConfig": "<p>The new Amazon EventBridge settings.</p>"
       }
     },
     "FieldLogLevel": {
@@ -1236,6 +1244,7 @@
         "ElasticsearchDataSourceConfig$endpoint": "<p>The endpoint.</p>",
         "ElasticsearchDataSourceConfig$awsRegion": "<p>The Amazon Web Services Region.</p>",
         "EvaluateCodeRequest$function": "<p>The function within the code to be evaluated. If provided, the valid values are <code>request</code> and <code>response</code>.</p>",
+        "EventBridgeDataSourceConfig$eventBusArn": "<p>The ARN of the event bus. For more information about event buses, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html\">Amazon EventBridge event buses</a>.</p>",
         "FlushApiCacheRequest$apiId": "<p>The API ID.</p>",
         "FunctionConfiguration$functionId": "<p>A unique ID representing the <code>Function</code> object.</p>",
         "FunctionConfiguration$functionArn": "<p>The Amazon Resource Name (ARN) of the <code>Function</code> object.</p>",

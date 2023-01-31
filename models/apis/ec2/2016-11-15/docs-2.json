@@ -16,6 +16,7 @@
     "ApplySecurityGroupsToClientVpnTargetNetwork": "<p>Applies a security group to the association between the target network and the Client VPN endpoint. This action replaces the existing security groups with the specified security groups.</p>",
     "AssignIpv6Addresses": "<p>Assigns one or more IPv6 addresses to the specified network interface. You can specify one or more specific IPv6 addresses, or you can specify the number of IPv6 addresses to be automatically assigned from within the subnet's IPv6 CIDR block range. You can assign as many IPv6 addresses to a network interface as you can assign private IPv4 addresses, and the limit varies per instance type. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI\">IP Addresses Per Network Interface Per Instance Type</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You must specify either the IPv6 addresses or the IPv6 address count in the request. </p> <p>You can optionally use Prefix Delegation on the network interface. You must specify either the IPV6 Prefix Delegation prefixes, or the IPv6 Prefix Delegation count. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html\"> Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AssignPrivateIpAddresses": "<p>Assigns one or more secondary private IP addresses to the specified network interface.</p> <p>You can specify one or more specific secondary IP addresses, or you can specify the number of secondary IP addresses to be automatically assigned within the subnet's CIDR block range. The number of secondary IP addresses that you can assign to an instance varies by instance type. For information about instance types, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about Elastic IP addresses, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you move a secondary private IP address to another network interface, any Elastic IP address that is associated with the IP address is also moved.</p> <p>Remapping an IP address is an asynchronous operation. When you move an IP address from one network interface to another, check <code>network/interfaces/macs/mac/local-ipv4s</code> in the instance metadata to confirm that the remapping is complete.</p> <p>You must specify either the IP addresses or the IP address count in the request.</p> <p>You can optionally use Prefix Delegation on the network interface. You must specify either the IPv4 Prefix Delegation prefixes, or the IPv4 Prefix Delegation count. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html\"> Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "AssignPrivateNatGatewayAddress": "<p>Assigns one or more private IPv4 addresses to a private NAT gateway. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with\">Work with NAT gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateAddress": "<p>Associates an Elastic IP address, or carrier IP address (for instances that are in subnets in Wavelength Zones) with an instance or a network interface. Before you can use an Elastic IP address, you must allocate it to your account.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance. If you associate an Elastic IP address with an instance that has an existing Elastic IP address, the existing address is disassociated from the instance, but remains allocated to your account.</p> <p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation. You cannot associate an Elastic IP address with an instance or network interface that has an existing Elastic IP address.</p> <p>[Subnets in Wavelength Zones] You can associate an IP address from the telecommunication carrier to the instance or network interface. </p> <p>You cannot associate an Elastic IP address with an interface in a different network border group.</p> <important> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error, and you may be charged for each time the Elastic IP address is remapped to the same instance. For more information, see the <i>Elastic IP Addresses</i> section of <a href=\"http://aws.amazon.com/ec2/pricing/\">Amazon EC2 Pricing</a>.</p> </important> <note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note>",
     "AssociateClientVpnTargetNetwork": "<p>Associates a target network with a Client VPN endpoint. A target network is a subnet in a VPC. You can associate multiple subnets from the same VPC with a Client VPN endpoint. You can associate only one subnet in each Availability Zone. We recommend that you associate at least two subnets to provide Availability Zone redundancy.</p> <p>If you specified a VPC when you created the Client VPN endpoint or if you have previous subnet associations, the specified subnet must be in the same VPC. To specify a subnet that's in a different VPC, you must first modify the Client VPN endpoint (<a>ModifyClientVpnEndpoint</a>) and change the VPC that's associated with it.</p>",
     "AssociateDhcpOptions": "<p>Associates a set of DHCP options (that you've previously created) with the specified VPC, or associates no DHCP options with the VPC.</p> <p>After you associate the options with the VPC, any existing instances and all new instances that you launch in that VPC use the options. You don't need to restart or relaunch the instances. They automatically pick up the changes within a few hours, depending on how frequently the instance renews its DHCP lease. You can explicitly renew the lease using the operating system on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP options sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -23,6 +24,7 @@
     "AssociateIamInstanceProfile": "<p>Associates an IAM instance profile with a running or stopped instance. You cannot associate more than one IAM instance profile with an instance.</p>",
     "AssociateInstanceEventWindow": "<p>Associates one or more targets with an event window. Only one type of target (instance IDs, Dedicated Host IDs, or tags) can be specified with an event window.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "AssociateIpamResourceDiscovery": "<p>Associates an IPAM resource discovery with an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM Service to manage and monitor resources that belong to the owning account.</p>",
+    "AssociateNatGatewayAddress": "<p>Associates Elastic IP addresses (EIPs) and private IPv4 addresses with a public NAT gateway. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with\">Work with NAT gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>By default, you can associate up to 2 Elastic IP addresses per public NAT gateway. You can increase the limit by requesting a quota adjustment. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-eips\">Elastic IP address quotas</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateRouteTable": "<p>Associates a subnet in your VPC or an internet gateway or virtual private gateway attached to your VPC with a route table in your VPC. This association causes traffic from the subnet or gateway to be routed according to the routes in the route table. The action returns an association ID, which you need in order to disassociate the route table later. A route table can be associated with multiple subnets.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateSubnetCidrBlock": "<p>Associates a CIDR block with your subnet. You can only associate a single IPv6 CIDR block with your subnet. An IPv6 CIDR block must have a prefix length of /64.</p>",
     "AssociateTransitGatewayMulticastDomain": "<p>Associates the specified subnets and transit gateway attachments with the specified transit gateway multicast domain.</p> <p>The transit gateway attachment must be in the available state before you can add a resource. Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html\">DescribeTransitGatewayAttachments</a> to see the state of the attachment.</p>",
@@ -383,6 +385,7 @@
     "DisassociateIamInstanceProfile": "<p>Disassociates an IAM instance profile from a running or stopped instance.</p> <p>Use <a>DescribeIamInstanceProfileAssociations</a> to get the association ID.</p>",
     "DisassociateInstanceEventWindow": "<p>Disassociates one or more targets from an event window.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DisassociateIpamResourceDiscovery": "<p>Disassociates a resource discovery from an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM Service to manage and monitor resources that belong to the owning account.</p>",
+    "DisassociateNatGatewayAddress": "<p>Disassociates secondary Elastic IP addresses (EIPs) from a public NAT gateway. You cannot disassociate your primary EIP. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-edit-secondary\">Edit secondary IP address associations</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>While disassociating is in progress, you cannot associate/disassociate additional EIPs while the connections are being drained. You are, however, allowed to delete the NAT gateway.</p> <p>An EIP will only be released at the end of MaxDrainDurationSeconds. The EIPs stay associated and support the existing connections but do not support any new connections (new connections are distributed across the remaining associated EIPs). As the existing connections drain out, the EIPs (and the corresponding private IPs mapped to them) get released.</p>",
     "DisassociateRouteTable": "<p>Disassociates a subnet or gateway from a route table.</p> <p>After you perform this action, the subnet no longer uses the routes in the route table. Instead, it uses the routes in the VPC's main route table. For more information about route tables, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DisassociateSubnetCidrBlock": "<p>Disassociates a CIDR block from a subnet. Currently, you can disassociate an IPv6 CIDR block only. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p>",
     "DisassociateTransitGatewayMulticastDomain": "<p>Disassociates the specified subnets from the transit gateway multicast domain. </p>",
@@ -583,6 +586,7 @@
     "TerminateInstances": "<p>Shuts down the specified instances. This operation is idempotent; if you terminate an instance more than once, each call succeeds. </p> <p>If you specify multiple instances and the request fails (for example, because of a single incorrect instance ID), none of the instances are terminated.</p> <p>If you terminate multiple instances across multiple Availability Zones, and one or more of the specified instances are enabled for termination protection, the request fails with the following results:</p> <ul> <li> <p>The specified instances that are in the same Availability Zone as the protected instance are not terminated.</p> </li> <li> <p>The specified instances that are in different Availability Zones, where no other specified instances are protected, are successfully terminated.</p> </li> </ul> <p>For example, say you have the following instances:</p> <ul> <li> <p>Instance A: <code>us-east-1a</code>; Not protected</p> </li> <li> <p>Instance B: <code>us-east-1a</code>; Not protected</p> </li> <li> <p>Instance C: <code>us-east-1b</code>; Protected</p> </li> <li> <p>Instance D: <code>us-east-1b</code>; not protected</p> </li> </ul> <p>If you attempt to terminate all of these instances in the same request, the request reports failure with the following results:</p> <ul> <li> <p>Instance A and Instance B are successfully terminated because none of the specified instances in <code>us-east-1a</code> are enabled for termination protection.</p> </li> <li> <p>Instance C and Instance D fail to terminate because at least one of the specified instances in <code>us-east-1b</code> (Instance C) is enabled for termination protection.</p> </li> </ul> <p>Terminated instances remain visible after termination (for approximately one hour).</p> <p>By default, Amazon EC2 deletes all EBS volumes that were attached when the instance launched. Volumes attached after instance launch continue running.</p> <p>You can stop, start, and terminate EBS-backed instances. You can only terminate instance store-backed instances. What happens to an instance differs if you stop it or terminate it. For example, when you stop an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, any attached EBS volumes with the <code>DeleteOnTermination</code> block device mapping parameter set to <code>true</code> are automatically deleted. For more information about the differences between stopping and terminating instances, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance lifecycle</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html\">Troubleshooting terminating your instance</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "UnassignIpv6Addresses": "<p>Unassigns one or more IPv6 addresses IPv4 Prefix Delegation prefixes from a network interface.</p>",
     "UnassignPrivateIpAddresses": "<p>Unassigns one or more secondary private IP addresses, or IPv4 Prefix Delegation prefixes from a network interface.</p>",
+    "UnassignPrivateNatGatewayAddress": "<p>Unassigns secondary private NAT gateway IPv4 addresses from a private NAT gateway. You cannot unassign your primary private IP. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-edit-secondary\">Edit secondary IP address associations</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>While unassigning is in progress, you cannot assign/unassign additional IP addresses while the connections are being drained. You are, however, allowed to delete the NAT gateway.</p> <p>A private IP address will only be released at the end of MaxDrainDurationSeconds. The private IP addresses stay associated and support the existing connections but do not support any new connections (new connections are distributed across the remaining assigned private IP address). After the existing connections drain out, the private IP addresses get released. </p> <p/> <p/>",
     "UnmonitorInstances": "<p>Disables detailed monitoring for a running instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring your instances and volumes</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "UpdateSecurityGroupRuleDescriptionsEgress": "<p>[VPC only] Updates the description of an egress (outbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously. You can remove a description for a security group rule by omitting the description parameter in the request.</p>",
     "UpdateSecurityGroupRuleDescriptionsIngress": "<p>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously. You can remove a description for a security group rule by omitting the description parameter in the request.</p>",
@@ -998,6 +1002,8 @@
     "AllocationIdList": {
       "base": null,
       "refs": {
+        "AssociateNatGatewayAddressRequest$AllocationIds": "<p>The allocation IDs of EIPs that you want to associate with your NAT gateway.</p>",
+        "CreateNatGatewayRequest$SecondaryAllocationIds": "<p>Secondary EIP allocation IDs. For more information about secondary addresses, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating\">Create a NAT gateway</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
         "DescribeAddressTransfersRequest$AllocationIds": "<p>The allocation IDs of Elastic IP addresses.</p>",
         "DescribeAddressesRequest$AllocationIds": "<p>[EC2-VPC] Information about the allocation IDs.</p>"
       }
@@ -1240,6 +1246,16 @@
       "refs": {
       }
     },
+    "AssignPrivateNatGatewayAddressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssignPrivateNatGatewayAddressResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssignedPrivateIpAddress": {
       "base": "<p>Describes the private IP addresses assigned to a network interface.</p>",
       "refs": {
@@ -1313,6 +1329,16 @@
       }
     },
     "AssociateIpamResourceDiscoveryResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateNatGatewayAddressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateNatGatewayAddressResult": {
       "base": null,
       "refs": {
       }
@@ -1828,6 +1854,7 @@
         "AnalysisAclRule$Egress": "<p>Indicates whether the rule is an outbound rule.</p>",
         "ApplySecurityGroupsToClientVpnTargetNetworkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssignPrivateIpAddressesRequest$AllowReassignment": "<p>Indicates whether to allow an IP address that is already assigned to another network interface or instance to be reassigned to the specified network interface.</p>",
+        "AssignPrivateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateAddressRequest$AllowReassociation": "<p>[EC2-VPC] For a VPC in an EC2-Classic account, specify true to allow an Elastic IP address that is already associated with an instance or network interface to be reassociated with the specified instance or network interface. Otherwise, the operation fails. In a VPC in an EC2-VPC-only account, reassociation is automatic, therefore you can specify false to ensure the operation fails if the Elastic IP address is already associated with another resource.</p>",
         "AssociateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateClientVpnTargetNetworkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1835,6 +1862,7 @@
         "AssociateEnclaveCertificateIamRoleRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateInstanceEventWindowRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateIpamResourceDiscoveryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "AssociateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateTransitGatewayMulticastDomainRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateTransitGatewayPolicyTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2257,6 +2285,7 @@
         "DisassociateEnclaveCertificateIamRoleResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "DisassociateInstanceEventWindowRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateIpamResourceDiscoveryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisassociateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateTransitGatewayMulticastDomainRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateTransitGatewayPolicyTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2506,6 +2535,7 @@
         "MonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveAddressToVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveByoipCidrToIpamRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "NatGatewayAddress$IsPrimary": "<p>Defines if the IP address is the primary address.</p>",
         "NetworkAcl$IsDefault": "<p>Indicates whether this is the default network ACL for the VPC.</p>",
         "NetworkAclEntry$Egress": "<p>Indicates whether the rule is an egress rule (applied to traffic leaving the subnet).</p>",
         "NetworkInsightsAnalysis$NetworkPathFound": "<p>Indicates whether the destination is reachable from the source.</p>",
@@ -2660,6 +2690,7 @@
         "TransitGatewayPrefixListReference$Blackhole": "<p>Indicates whether traffic that matches this route is dropped.</p>",
         "TransitGatewayRouteTable$DefaultAssociationRouteTable": "<p>Indicates whether this is the default association route table for the transit gateway.</p>",
         "TransitGatewayRouteTable$DefaultPropagationRouteTable": "<p>Indicates whether this is the default propagation route table for the transit gateway.</p>",
+        "UnassignPrivateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UnmonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsEgressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsEgressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
@@ -3702,6 +3733,12 @@
     "CopySnapshotRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "CopySnapshotRequestPSU": {
+      "base": null,
+      "refs": {
+        "CopySnapshotRequest$PresignedUrl": "<p>When you copy an encrypted source snapshot using the Amazon EC2 Query API, you must supply a pre-signed URL. This parameter is optional for unencrypted snapshots. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html\">Query requests</a>.</p> <p>The <code>PresignedUrl</code> should use the snapshot source endpoint, the <code>CopySnapshot</code> action, and include the <code>SourceRegion</code>, <code>SourceSnapshotId</code>, and <code>DestinationRegion</code> parameters. The <code>PresignedUrl</code> must be signed using Amazon Web Services Signature Version 4. Because EBS snapshots are stored in Amazon S3, the signing algorithm for this parameter uses the same logic that is described in <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html\">Authenticating Requests: Using Query Parameters (Amazon Web Services Signature Version 4)</a> in the <i>Amazon Simple Storage Service API Reference</i>. An invalid or improperly signed <code>PresignedUrl</code> will cause the copy operation to fail asynchronously, and the snapshot will move to an <code>error</code> state.</p>"
       }
     },
     "CopySnapshotResult": {
@@ -7825,6 +7862,16 @@
       "refs": {
       }
     },
+    "DisassociateNatGatewayAddressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateNatGatewayAddressResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateRouteTableRequest": {
       "base": null,
       "refs": {
@@ -8076,6 +8123,13 @@
         "ReservationFleetInstanceSpecification$Weight": "<p>The number of capacity units provided by the specified instance type. This value, together with the total target capacity that you specify for the Fleet determine the number of instances for which the Fleet reserves capacity. Both values are based on units that make sense for your workload. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>"
       }
     },
+    "DrainSeconds": {
+      "base": null,
+      "refs": {
+        "DisassociateNatGatewayAddressRequest$MaxDrainDurationSeconds": "<p>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</p>",
+        "UnassignPrivateNatGatewayAddressRequest$MaxDrainDurationSeconds": "<p>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</p>"
+      }
+    },
     "DynamicRoutingValue": {
       "base": null,
       "refs": {
@@ -8170,6 +8224,12 @@
       "base": null,
       "refs": {
         "DescribeEgressOnlyInternetGatewaysResult$EgressOnlyInternetGateways": "<p>Information about the egress-only internet gateways.</p>"
+      }
+    },
+    "EipAssociationIdList": {
+      "base": null,
+      "refs": {
+        "DisassociateNatGatewayAddressRequest$AssociationIds": "<p>The association IDs of EIPs that have been associated with the NAT gateway.</p>"
       }
     },
     "ElasticGpuAssociation": {
@@ -8291,7 +8351,8 @@
     "ElasticIpAssociationId": {
       "base": null,
       "refs": {
-        "DisassociateAddressRequest$AssociationId": "<p>[EC2-VPC] The association ID. Required for EC2-VPC.</p>"
+        "DisassociateAddressRequest$AssociationId": "<p>[EC2-VPC] The association ID. Required for EC2-VPC.</p>",
+        "EipAssociationIdList$member": null
       }
     },
     "EnaSrdSpecification": {
@@ -11710,6 +11771,15 @@
         "VpcEndpointConnection$IpAddressType": "<p>The IP address type for the endpoint.</p>"
       }
     },
+    "IpList": {
+      "base": null,
+      "refs": {
+        "AssignPrivateNatGatewayAddressRequest$PrivateIpAddresses": "<p>The private IPv4 addresses you want to assign to the private NAT gateway.</p>",
+        "AssociateNatGatewayAddressRequest$PrivateIpAddresses": "<p>The private IPv4 addresses that you want to assign to the NAT gateway.</p>",
+        "CreateNatGatewayRequest$SecondaryPrivateIpAddresses": "<p>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating\">Create a NAT gateway</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+        "UnassignPrivateNatGatewayAddressRequest$PrivateIpAddresses": "<p>The private IPv4 addresses you want to unassign.</p>"
+      }
+    },
     "IpPermission": {
       "base": "<p>Describes a set of permissions for a security group rule.</p>",
       "refs": {
@@ -14327,16 +14397,34 @@
     "NatGatewayAddressList": {
       "base": null,
       "refs": {
-        "NatGateway$NatGatewayAddresses": "<p>Information about the IP addresses and network interface associated with the NAT gateway.</p>"
+        "AssignPrivateNatGatewayAddressResult$NatGatewayAddresses": "<p>NAT gateway IP addresses.</p>",
+        "AssociateNatGatewayAddressResult$NatGatewayAddresses": "<p>The IP addresses.</p>",
+        "DisassociateNatGatewayAddressResult$NatGatewayAddresses": "<p>Information about the NAT gateway IP addresses.</p>",
+        "NatGateway$NatGatewayAddresses": "<p>Information about the IP addresses and network interface associated with the NAT gateway.</p>",
+        "UnassignPrivateNatGatewayAddressResult$NatGatewayAddresses": "<p>Information about the NAT gateway IP addresses.</p>"
+      }
+    },
+    "NatGatewayAddressStatus": {
+      "base": null,
+      "refs": {
+        "NatGatewayAddress$Status": "<p>The address status.</p>"
       }
     },
     "NatGatewayId": {
       "base": null,
       "refs": {
+        "AssignPrivateNatGatewayAddressRequest$NatGatewayId": "<p>The NAT gateway ID.</p>",
+        "AssignPrivateNatGatewayAddressResult$NatGatewayId": "<p>The NAT gateway ID.</p>",
+        "AssociateNatGatewayAddressRequest$NatGatewayId": "<p>The NAT gateway ID.</p>",
+        "AssociateNatGatewayAddressResult$NatGatewayId": "<p>The NAT gateway ID.</p>",
         "CreateRouteRequest$NatGatewayId": "<p>[IPv4 traffic only] The ID of a NAT gateway.</p>",
         "DeleteNatGatewayRequest$NatGatewayId": "<p>The ID of the NAT gateway.</p>",
+        "DisassociateNatGatewayAddressRequest$NatGatewayId": "<p>The NAT gateway ID.</p>",
+        "DisassociateNatGatewayAddressResult$NatGatewayId": "<p>The NAT gateway ID.</p>",
         "NatGatewayIdStringList$member": null,
-        "ReplaceRouteRequest$NatGatewayId": "<p>[IPv4 traffic only] The ID of a NAT gateway.</p>"
+        "ReplaceRouteRequest$NatGatewayId": "<p>[IPv4 traffic only] The ID of a NAT gateway.</p>",
+        "UnassignPrivateNatGatewayAddressRequest$NatGatewayId": "<p>The NAT gateway ID.</p>",
+        "UnassignPrivateNatGatewayAddressResult$NatGatewayId": "<p>The NAT gateway ID.</p>"
       }
     },
     "NatGatewayIdStringList": {
@@ -15607,6 +15695,13 @@
       "base": null,
       "refs": {
         "ScheduledInstancesNetworkInterface$PrivateIpAddressConfigs": "<p>The private IPv4 addresses.</p>"
+      }
+    },
+    "PrivateIpAddressCount": {
+      "base": null,
+      "refs": {
+        "AssignPrivateNatGatewayAddressRequest$PrivateIpAddressCount": "<p>The number of private IP addresses to assign to the NAT gateway. You can't specify this parameter when also specifying private IP addresses.</p>",
+        "CreateNatGatewayRequest$SecondaryPrivateIpAddressCount": "<p>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating\">Create a NAT gateway</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>"
       }
     },
     "PrivateIpAddressSpecification": {
@@ -18063,7 +18158,6 @@
         "CopySnapshotRequest$Description": "<p>A description for the EBS snapshot.</p>",
         "CopySnapshotRequest$DestinationOutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost to which to copy the snapshot. Only specify this parameter when copying a snapshot from an Amazon Web Services Region to an Outpost. The snapshot must be in the Region for the destination Outpost. You cannot copy a snapshot from an Outpost to a Region, from one Outpost to another, or within the same Outpost.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#copy-snapshots\"> Copy snapshots from an Amazon Web Services Region to an Outpost</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopySnapshotRequest$DestinationRegion": "<p>The destination Region to use in the <code>PresignedUrl</code> parameter of a snapshot copy operation. This parameter is only valid for specifying the destination Region in a <code>PresignedUrl</code> parameter, where it is required.</p> <p>The snapshot copy is sent to the regional endpoint that you sent the HTTP request to (for example, <code>ec2.us-east-1.amazonaws.com</code>). With the CLI, this is specified using the <code>--region</code> parameter or the default Region in your Amazon Web Services configuration file.</p>",
-        "CopySnapshotRequest$PresignedUrl": "<p>When you copy an encrypted source snapshot using the Amazon EC2 Query API, you must supply a pre-signed URL. This parameter is optional for unencrypted snapshots. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html\">Query requests</a>.</p> <p>The <code>PresignedUrl</code> should use the snapshot source endpoint, the <code>CopySnapshot</code> action, and include the <code>SourceRegion</code>, <code>SourceSnapshotId</code>, and <code>DestinationRegion</code> parameters. The <code>PresignedUrl</code> must be signed using Amazon Web Services Signature Version 4. Because EBS snapshots are stored in Amazon S3, the signing algorithm for this parameter uses the same logic that is described in <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html\">Authenticating Requests: Using Query Parameters (Amazon Web Services Signature Version 4)</a> in the <i>Amazon Simple Storage Service API Reference</i>. An invalid or improperly signed <code>PresignedUrl</code> will cause the copy operation to fail asynchronously, and the snapshot will move to an <code>error</code> state.</p>",
         "CopySnapshotRequest$SourceRegion": "<p>The ID of the Region that contains the snapshot to be copied.</p>",
         "CopySnapshotRequest$SourceSnapshotId": "<p>The ID of the EBS snapshot to copy.</p>",
         "CopySnapshotResult$SnapshotId": "<p>The ID of the new snapshot.</p>",
@@ -18859,6 +18953,7 @@
         "InternetGateway$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
         "InternetGateway$OwnerId": "<p>The ID of the Amazon Web Services account that owns the internet gateway.</p>",
         "InternetGatewayAttachment$VpcId": "<p>The ID of the VPC.</p>",
+        "IpList$member": null,
         "IpPermission$IpProtocol": "<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number (see <a href=\"http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers</a>).</p> <p>[VPC only] Use <code>-1</code> to specify all protocols. When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For <code>icmpv6</code>, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>",
         "IpPrefixList$member": null,
         "IpRange$CidrIp": "<p>The IPv4 CIDR range. You can either specify a CIDR range or a source security group, not both. To specify a single IPv4 address, use the /32 prefix length.</p>",
@@ -19112,6 +19207,8 @@
         "NatGatewayAddress$NetworkInterfaceId": "<p>The ID of the network interface associated with the NAT gateway.</p>",
         "NatGatewayAddress$PrivateIp": "<p>The private IP address associated with the NAT gateway.</p>",
         "NatGatewayAddress$PublicIp": "<p>[Public NAT gateway only] The Elastic IP address associated with the NAT gateway.</p>",
+        "NatGatewayAddress$AssociationId": "<p>[Public NAT gateway only] The association ID of the Elastic IP address that's associated with the NAT gateway.</p>",
+        "NatGatewayAddress$FailureMessage": "<p>The address failure message.</p>",
         "NetworkAcl$NetworkAclId": "<p>The ID of the network ACL.</p>",
         "NetworkAcl$VpcId": "<p>The ID of the VPC for the network ACL.</p>",
         "NetworkAcl$OwnerId": "<p>The ID of the Amazon Web Services account that owns the network ACL.</p>",
@@ -19917,7 +20014,7 @@
         "AssociateRouteTableRequest$SubnetId": "<p>The ID of the subnet.</p>",
         "AssociateSubnetCidrBlockRequest$SubnetId": "<p>The ID of your subnet.</p>",
         "CreateClientVpnRouteRequest$TargetVpcSubnetId": "<p>The ID of the subnet through which you want to route traffic. The specified subnet must be an existing target network of the Client VPN endpoint.</p> <p>Alternatively, if you're adding a route for the local network, specify <code>local</code>.</p>",
-        "CreateNatGatewayRequest$SubnetId": "<p>The subnet in which to create the NAT gateway.</p>",
+        "CreateNatGatewayRequest$SubnetId": "<p>The ID of the subnet in which to create the NAT gateway.</p>",
         "CreateNetworkInterfaceRequest$SubnetId": "<p>The ID of the subnet to associate with the network interface.</p>",
         "CreateSubnetCidrReservationRequest$SubnetId": "<p>The ID of the subnet.</p>",
         "CreateVerifiedAccessEndpointSubnetIdList$member": null,
@@ -21492,6 +21589,16 @@
     },
     "UnassignPrivateIpAddressesRequest": {
       "base": "<p>Contains the parameters for UnassignPrivateIpAddresses.</p>",
+      "refs": {
+      }
+    },
+    "UnassignPrivateNatGatewayAddressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UnassignPrivateNatGatewayAddressResult": {
+      "base": null,
       "refs": {
       }
     },

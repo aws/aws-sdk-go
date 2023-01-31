@@ -70,16 +70,14 @@ func (c *OpenSearchService) AcceptInboundConnectionRequest(input *AcceptInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AcceptInboundConnection
 func (c *OpenSearchService) AcceptInboundConnection(input *AcceptInboundConnectionInput) (*AcceptInboundConnectionOutput, error) {
@@ -164,17 +162,15 @@ func (c *OpenSearchService) AddTagsRequest(input *AddTagsInput) (req *request.Re
 //     An error occurred while processing the request.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AddTags
 func (c *OpenSearchService) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
@@ -257,25 +253,21 @@ func (c *OpenSearchService) AssociatePackageRequest(input *AssociatePackageInput
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that is
-//     currently in use. Returns HTTP status code 409.
+//     An error occurred because the client attempts to remove a resource that's
+//     currently in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AssociatePackage
 func (c *OpenSearchService) AssociatePackage(input *AssociatePackageInput) (*AssociatePackageOutput, error) {
@@ -355,25 +347,21 @@ func (c *OpenSearchService) AuthorizeVpcEndpointAccessRequest(input *AuthorizeVp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -461,17 +449,14 @@ func (c *OpenSearchService) CancelServiceSoftwareUpdateRequest(input *CancelServ
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CancelServiceSoftwareUpdate
 func (c *OpenSearchService) CancelServiceSoftwareUpdate(input *CancelServiceSoftwareUpdateInput) (*CancelServiceSoftwareUpdateOutput, error) {
@@ -554,29 +539,25 @@ func (c *OpenSearchService) CreateDomainRequest(input *CreateDomainInput) (req *
 //     An error occurred while processing the request.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - InvalidTypeException
-//     An exception for trying to create or access sub-resource that is either invalid
-//     or not supported. Gives http status code of 409.
+//     An exception for trying to create or access a sub-resource that's either
+//     invalid or not supported.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - ResourceAlreadyExistsException
-//     An exception for creating a resource that already exists. Gives http status
-//     code of 400.
+//     An exception for creating a resource that already exists.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateDomain
 func (c *OpenSearchService) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
@@ -657,21 +638,18 @@ func (c *OpenSearchService) CreateOutboundConnectionRequest(input *CreateOutboun
 // Returned Error Types:
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceAlreadyExistsException
-//     An exception for creating a resource that already exists. Gives http status
-//     code of 400.
+//     An exception for creating a resource that already exists.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateOutboundConnection
 func (c *OpenSearchService) CreateOutboundConnection(input *CreateOutboundConnectionInput) (*CreateOutboundConnectionOutput, error) {
@@ -754,29 +732,25 @@ func (c *OpenSearchService) CreatePackageRequest(input *CreatePackageInput) (req
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - InvalidTypeException
-//     An exception for trying to create or access sub-resource that is either invalid
-//     or not supported. Gives http status code of 409.
+//     An exception for trying to create or access a sub-resource that's either
+//     invalid or not supported.
 //
 //   - ResourceAlreadyExistsException
-//     An exception for creating a resource that already exists. Gives http status
-//     code of 400.
+//     An exception for creating a resource that already exists.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreatePackage
 func (c *OpenSearchService) CreatePackage(input *CreatePackageInput) (*CreatePackageOutput, error) {
@@ -855,25 +829,22 @@ func (c *OpenSearchService) CreateVpcEndpointRequest(input *CreateVpcEndpointInp
 // Returned Error Types:
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that is
-//     currently in use. Returns HTTP status code 409.
+//     An error occurred because the client attempts to remove a resource that's
+//     currently in use.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -959,17 +930,14 @@ func (c *OpenSearchService) DeleteDomainRequest(input *DeleteDomainInput) (req *
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteDomain
 func (c *OpenSearchService) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
@@ -1050,12 +1018,10 @@ func (c *OpenSearchService) DeleteInboundConnectionRequest(input *DeleteInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteInboundConnection
 func (c *OpenSearchService) DeleteInboundConnection(input *DeleteInboundConnectionInput) (*DeleteInboundConnectionOutput, error) {
@@ -1136,12 +1102,10 @@ func (c *OpenSearchService) DeleteOutboundConnectionRequest(input *DeleteOutboun
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteOutboundConnection
 func (c *OpenSearchService) DeleteOutboundConnection(input *DeleteOutboundConnectionInput) (*DeleteOutboundConnectionOutput, error) {
@@ -1224,25 +1188,21 @@ func (c *OpenSearchService) DeletePackageRequest(input *DeletePackageInput) (req
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that is
-//     currently in use. Returns HTTP status code 409.
+//     An error occurred because the client attempts to remove a resource that's
+//     currently in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeletePackage
 func (c *OpenSearchService) DeletePackage(input *DeletePackageInput) (*DeletePackageOutput, error) {
@@ -1321,17 +1281,14 @@ func (c *OpenSearchService) DeleteVpcEndpointRequest(input *DeleteVpcEndpointInp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -1417,17 +1374,14 @@ func (c *OpenSearchService) DescribeDomainRequest(input *DescribeDomainInput) (r
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomain
 func (c *OpenSearchService) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainOutput, error) {
@@ -1517,17 +1471,14 @@ func (c *OpenSearchService) DescribeDomainAutoTunesRequest(input *DescribeDomain
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainAutoTunes
 func (c *OpenSearchService) DescribeDomainAutoTunes(input *DescribeDomainAutoTunesInput) (*DescribeDomainAutoTunesOutput, error) {
@@ -1662,17 +1613,14 @@ func (c *OpenSearchService) DescribeDomainChangeProgressRequest(input *DescribeD
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainChangeProgress
 func (c *OpenSearchService) DescribeDomainChangeProgress(input *DescribeDomainChangeProgressInput) (*DescribeDomainChangeProgressOutput, error) {
@@ -1754,17 +1702,14 @@ func (c *OpenSearchService) DescribeDomainConfigRequest(input *DescribeDomainCon
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainConfig
 func (c *OpenSearchService) DescribeDomainConfig(input *DescribeDomainConfigInput) (*DescribeDomainConfigOutput, error) {
@@ -1847,13 +1792,11 @@ func (c *OpenSearchService) DescribeDomainsRequest(input *DescribeDomainsInput) 
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomains
 func (c *OpenSearchService) DescribeDomains(input *DescribeDomainsInput) (*DescribeDomainsOutput, error) {
@@ -1937,21 +1880,17 @@ func (c *OpenSearchService) DescribeDryRunProgressRequest(input *DescribeDryRunP
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDryRunProgress
 func (c *OpenSearchService) DescribeDryRunProgress(input *DescribeDryRunProgressInput) (*DescribeDryRunProgressOutput, error) {
@@ -2038,12 +1977,11 @@ func (c *OpenSearchService) DescribeInboundConnectionsRequest(input *DescribeInb
 // Returned Error Types:
 //
 //   - InvalidPaginationTokenException
-//     The request processing has failed because of invalid pagination token provided
-//     by customer. Returns an HTTP status code of 400.
+//     The request processing has failed because you provided an invalid pagination
+//     token.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeInboundConnections
 func (c *OpenSearchService) DescribeInboundConnections(input *DescribeInboundConnectionsInput) (*DescribeInboundConnectionsOutput, error) {
@@ -2177,25 +2115,22 @@ func (c *OpenSearchService) DescribeInstanceTypeLimitsRequest(input *DescribeIns
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - InvalidTypeException
-//     An exception for trying to create or access sub-resource that is either invalid
-//     or not supported. Gives http status code of 409.
+//     An exception for trying to create or access a sub-resource that's either
+//     invalid or not supported.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeInstanceTypeLimits
 func (c *OpenSearchService) DescribeInstanceTypeLimits(input *DescribeInstanceTypeLimitsInput) (*DescribeInstanceTypeLimitsOutput, error) {
@@ -2282,12 +2217,11 @@ func (c *OpenSearchService) DescribeOutboundConnectionsRequest(input *DescribeOu
 // Returned Error Types:
 //
 //   - InvalidPaginationTokenException
-//     The request processing has failed because of invalid pagination token provided
-//     by customer. Returns an HTTP status code of 400.
+//     The request processing has failed because you provided an invalid pagination
+//     token.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeOutboundConnections
 func (c *OpenSearchService) DescribeOutboundConnections(input *DescribeOutboundConnectionsInput) (*DescribeOutboundConnectionsOutput, error) {
@@ -2427,21 +2361,17 @@ func (c *OpenSearchService) DescribePackagesRequest(input *DescribePackagesInput
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribePackages
 func (c *OpenSearchService) DescribePackages(input *DescribePackagesInput) (*DescribePackagesOutput, error) {
@@ -2579,21 +2509,17 @@ func (c *OpenSearchService) DescribeReservedInstanceOfferingsRequest(input *Desc
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeReservedInstanceOfferings
 func (c *OpenSearchService) DescribeReservedInstanceOfferings(input *DescribeReservedInstanceOfferingsInput) (*DescribeReservedInstanceOfferingsOutput, error) {
@@ -2731,21 +2657,17 @@ func (c *OpenSearchService) DescribeReservedInstancesRequest(input *DescribeRese
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeReservedInstances
 func (c *OpenSearchService) DescribeReservedInstances(input *DescribeReservedInstancesInput) (*DescribeReservedInstancesOutput, error) {
@@ -2875,17 +2797,14 @@ func (c *OpenSearchService) DescribeVpcEndpointsRequest(input *DescribeVpcEndpoi
 // Returned Error Types:
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -2974,25 +2893,21 @@ func (c *OpenSearchService) DissociatePackageRequest(input *DissociatePackageInp
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that is
-//     currently in use. Returns HTTP status code 409.
+//     An error occurred because the client attempts to remove a resource that's
+//     currently in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DissociatePackage
 func (c *OpenSearchService) DissociatePackage(input *DissociatePackageInput) (*DissociatePackageOutput, error) {
@@ -3075,21 +2990,17 @@ func (c *OpenSearchService) GetCompatibleVersionsRequest(input *GetCompatibleVer
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetCompatibleVersions
 func (c *OpenSearchService) GetCompatibleVersions(input *GetCompatibleVersionsInput) (*GetCompatibleVersionsOutput, error) {
@@ -3179,21 +3090,17 @@ func (c *OpenSearchService) GetPackageVersionHistoryRequest(input *GetPackageVer
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetPackageVersionHistory
 func (c *OpenSearchService) GetPackageVersionHistory(input *GetPackageVersionHistoryInput) (*GetPackageVersionHistoryOutput, error) {
@@ -3333,21 +3240,17 @@ func (c *OpenSearchService) GetUpgradeHistoryRequest(input *GetUpgradeHistoryInp
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetUpgradeHistory
 func (c *OpenSearchService) GetUpgradeHistory(input *GetUpgradeHistoryInput) (*GetUpgradeHistoryOutput, error) {
@@ -3481,21 +3384,17 @@ func (c *OpenSearchService) GetUpgradeStatusRequest(input *GetUpgradeStatusInput
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetUpgradeStatus
 func (c *OpenSearchService) GetUpgradeStatus(input *GetUpgradeStatusInput) (*GetUpgradeStatusOutput, error) {
@@ -3578,8 +3477,7 @@ func (c *OpenSearchService) ListDomainNamesRequest(input *ListDomainNamesInput) 
 //     An error occurred while processing the request.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListDomainNames
 func (c *OpenSearchService) ListDomainNames(input *ListDomainNamesInput) (*ListDomainNamesOutput, error) {
@@ -3668,21 +3566,17 @@ func (c *OpenSearchService) ListDomainsForPackageRequest(input *ListDomainsForPa
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListDomainsForPackage
 func (c *OpenSearchService) ListDomainsForPackage(input *ListDomainsForPackageInput) (*ListDomainsForPackageOutput, error) {
@@ -3822,17 +3716,14 @@ func (c *OpenSearchService) ListInstanceTypeDetailsRequest(input *ListInstanceTy
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListInstanceTypeDetails
 func (c *OpenSearchService) ListInstanceTypeDetails(input *ListInstanceTypeDetailsInput) (*ListInstanceTypeDetailsOutput, error) {
@@ -3972,21 +3863,17 @@ func (c *OpenSearchService) ListPackagesForDomainRequest(input *ListPackagesForD
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListPackagesForDomain
 func (c *OpenSearchService) ListPackagesForDomain(input *ListPackagesForDomainInput) (*ListPackagesForDomainOutput, error) {
@@ -4120,17 +4007,14 @@ func (c *OpenSearchService) ListTagsRequest(input *ListTagsInput) (req *request.
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListTags
 func (c *OpenSearchService) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
@@ -4219,17 +4103,14 @@ func (c *OpenSearchService) ListVersionsRequest(input *ListVersionsInput) (req *
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVersions
 func (c *OpenSearchService) ListVersions(input *ListVersionsInput) (*ListVersionsOutput, error) {
@@ -4361,17 +4242,14 @@ func (c *OpenSearchService) ListVpcEndpointAccessRequest(input *ListVpcEndpointA
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -4454,13 +4332,11 @@ func (c *OpenSearchService) ListVpcEndpointsRequest(input *ListVpcEndpointsInput
 // Returned Error Types:
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -4543,17 +4419,14 @@ func (c *OpenSearchService) ListVpcEndpointsForDomainRequest(input *ListVpcEndpo
 // Returned Error Types:
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -4635,29 +4508,24 @@ func (c *OpenSearchService) PurchaseReservedInstanceOfferingRequest(input *Purch
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ResourceAlreadyExistsException
-//     An exception for creating a resource that already exists. Gives http status
-//     code of 400.
+//     An exception for creating a resource that already exists.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/PurchaseReservedInstanceOffering
 func (c *OpenSearchService) PurchaseReservedInstanceOffering(input *PurchaseReservedInstanceOfferingInput) (*PurchaseReservedInstanceOfferingOutput, error) {
@@ -4737,12 +4605,10 @@ func (c *OpenSearchService) RejectInboundConnectionRequest(input *RejectInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/RejectInboundConnection
 func (c *OpenSearchService) RejectInboundConnection(input *RejectInboundConnectionInput) (*RejectInboundConnectionOutput, error) {
@@ -4826,13 +4692,11 @@ func (c *OpenSearchService) RemoveTagsRequest(input *RemoveTagsInput) (req *requ
 //     An error occurred while processing the request.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/RemoveTags
 func (c *OpenSearchService) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
@@ -4913,21 +4777,17 @@ func (c *OpenSearchService) RevokeVpcEndpointAccessRequest(input *RevokeVpcEndpo
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -5014,17 +4874,14 @@ func (c *OpenSearchService) StartServiceSoftwareUpdateRequest(input *StartServic
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/StartServiceSoftwareUpdate
 func (c *OpenSearchService) StartServiceSoftwareUpdate(input *StartServiceSoftwareUpdateInput) (*StartServiceSoftwareUpdateOutput, error) {
@@ -5107,25 +4964,22 @@ func (c *OpenSearchService) UpdateDomainConfigRequest(input *UpdateDomainConfigI
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - InvalidTypeException
-//     An exception for trying to create or access sub-resource that is either invalid
-//     or not supported. Gives http status code of 409.
+//     An exception for trying to create or access a sub-resource that's either
+//     invalid or not supported.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateDomainConfig
 func (c *OpenSearchService) UpdateDomainConfig(input *UpdateDomainConfigInput) (*UpdateDomainConfigOutput, error) {
@@ -5208,25 +5062,21 @@ func (c *OpenSearchService) UpdatePackageRequest(input *UpdatePackageInput) (req
 //     An error occurred while processing the request.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - LimitExceededException
-//     An exception for trying to create more than allowed resources or sub-resources.
-//     Gives http status code of 409.
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
-//     An error occurred because user does not have permissions to access the resource.
-//     Returns HTTP status code 403.
+//     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdatePackage
 func (c *OpenSearchService) UpdatePackage(input *UpdatePackageInput) (*UpdatePackageOutput, error) {
@@ -5305,25 +5155,21 @@ func (c *OpenSearchService) UpdateVpcEndpointRequest(input *UpdateVpcEndpointInp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that is
-//     currently in use. Returns HTTP status code 409.
+//     An error occurred because the client attempts to remove a resource that's
+//     currently in use.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -5409,25 +5255,20 @@ func (c *OpenSearchService) UpgradeDomainRequest(input *UpgradeDomainInput) (req
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist. Gives
-//     http status code of 400.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ResourceAlreadyExistsException
-//     An exception for creating a resource that already exists. Gives http status
-//     code of 400.
+//     An exception for creating a resource that already exists.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
-//     Gives http status code of 409.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
-//     An exception for missing / invalid input fields. Gives http status code of
-//     400.
+//     An exception for missing or invalid input fields.
 //
 //   - InternalException
-//     The request processing has failed because of an unknown error, exception
-//     or failure (the failure is internal to the service) . Gives http status code
-//     of 500.
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpgradeDomain
 func (c *OpenSearchService) UpgradeDomain(input *UpgradeDomainInput) (*UpgradeDomainOutput, error) {
@@ -5607,8 +5448,7 @@ func (s *AcceptInboundConnectionOutput) SetConnection(v *InboundConnection) *Acc
 	return s
 }
 
-// An error occurred because user does not have permissions to access the resource.
-// Returns HTTP status code 403.
+// An error occurred because you don't have permissions to access the resource.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7581,8 +7421,8 @@ func (s *CompatibleVersionsMap) SetTargetVersions(v []*string) *CompatibleVersio
 	return s
 }
 
-// An error occurred because the client attempts to remove a resource that is
-// currently in use. Returns HTTP status code 409.
+// An error occurred because the client attempts to remove a resource that's
+// currently in use.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7644,6 +7484,38 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The connection properties of an outbound connection.
+type ConnectionProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of the remote domain.
+	Endpoint *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionProperties) GoString() string {
+	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *ConnectionProperties) SetEndpoint(v string) *ConnectionProperties {
+	s.Endpoint = &v
+	return s
 }
 
 type CreateDomainInput struct {
@@ -7961,6 +7833,9 @@ type CreateOutboundConnectionInput struct {
 	// ConnectionAlias is a required field
 	ConnectionAlias *string `min:"2" type:"string" required:"true"`
 
+	// The connection mode.
+	ConnectionMode *string `type:"string" enum:"ConnectionMode"`
+
 	// Name and Region of the source (local) domain.
 	//
 	// LocalDomainInfo is a required field
@@ -8028,6 +7903,12 @@ func (s *CreateOutboundConnectionInput) SetConnectionAlias(v string) *CreateOutb
 	return s
 }
 
+// SetConnectionMode sets the ConnectionMode field's value.
+func (s *CreateOutboundConnectionInput) SetConnectionMode(v string) *CreateOutboundConnectionInput {
+	s.ConnectionMode = &v
+	return s
+}
+
 // SetLocalDomainInfo sets the LocalDomainInfo field's value.
 func (s *CreateOutboundConnectionInput) SetLocalDomainInfo(v *DomainInformationContainer) *CreateOutboundConnectionInput {
 	s.LocalDomainInfo = v
@@ -8051,6 +7932,12 @@ type CreateOutboundConnectionOutput struct {
 	// The unique identifier for the created outbound connection, which is used
 	// for subsequent operations on the connection.
 	ConnectionId *string `min:"10" type:"string"`
+
+	// The connection mode.
+	ConnectionMode *string `type:"string" enum:"ConnectionMode"`
+
+	// The ConnectionProperties for the newly created connection.
+	ConnectionProperties *ConnectionProperties `type:"structure"`
 
 	// The status of the connection.
 	ConnectionStatus *OutboundConnectionStatus `type:"structure"`
@@ -8089,6 +7976,18 @@ func (s *CreateOutboundConnectionOutput) SetConnectionAlias(v string) *CreateOut
 // SetConnectionId sets the ConnectionId field's value.
 func (s *CreateOutboundConnectionOutput) SetConnectionId(v string) *CreateOutboundConnectionOutput {
 	s.ConnectionId = &v
+	return s
+}
+
+// SetConnectionMode sets the ConnectionMode field's value.
+func (s *CreateOutboundConnectionOutput) SetConnectionMode(v string) *CreateOutboundConnectionOutput {
+	s.ConnectionMode = &v
+	return s
+}
+
+// SetConnectionProperties sets the ConnectionProperties field's value.
+func (s *CreateOutboundConnectionOutput) SetConnectionProperties(v *ConnectionProperties) *CreateOutboundConnectionOutput {
+	s.ConnectionProperties = v
 	return s
 }
 
@@ -10138,8 +10037,7 @@ func (s *DescribeVpcEndpointsOutput) SetVpcEndpoints(v []*VpcEndpoint) *Describe
 	return s
 }
 
-// An error occured because the client wanted to access a not supported operation.
-// Gives http status code of 409.
+// An error occured because the client wanted to access an unsupported operation.
 type DisabledOperationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12000,6 +11898,9 @@ type InboundConnection struct {
 	// The unique identifier of the connection.
 	ConnectionId *string `min:"10" type:"string"`
 
+	// The connection mode.
+	ConnectionMode *string `type:"string" enum:"ConnectionMode"`
+
 	// The current status of the connection.
 	ConnectionStatus *InboundConnectionStatus `type:"structure"`
 
@@ -12031,6 +11932,12 @@ func (s InboundConnection) GoString() string {
 // SetConnectionId sets the ConnectionId field's value.
 func (s *InboundConnection) SetConnectionId(v string) *InboundConnection {
 	s.ConnectionId = &v
+	return s
+}
+
+// SetConnectionMode sets the ConnectionMode field's value.
+func (s *InboundConnection) SetConnectionMode(v string) *InboundConnection {
+	s.ConnectionMode = &v
 	return s
 }
 
@@ -12275,9 +12182,8 @@ func (s *InstanceTypeDetails) SetWarmEnabled(v bool) *InstanceTypeDetails {
 	return s
 }
 
-// The request processing has failed because of an unknown error, exception
-// or failure (the failure is internal to the service) . Gives http status code
-// of 500.
+// Request processing failed because of an unknown error, exception, or internal
+// failure.
 type InternalException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12341,8 +12247,8 @@ func (s *InternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request processing has failed because of invalid pagination token provided
-// by customer. Returns an HTTP status code of 400.
+// The request processing has failed because you provided an invalid pagination
+// token.
 type InvalidPaginationTokenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12406,8 +12312,8 @@ func (s *InvalidPaginationTokenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An exception for trying to create or access sub-resource that is either invalid
-// or not supported. Gives http status code of 409.
+// An exception for trying to create or access a sub-resource that's either
+// invalid or not supported.
 type InvalidTypeException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12471,8 +12377,8 @@ func (s *InvalidTypeException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An exception for trying to create more than allowed resources or sub-resources.
-// Gives http status code of 409.
+// An exception for trying to create more than the allowed number of resources
+// or sub-resources.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13814,6 +13720,12 @@ type OutboundConnection struct {
 	// Unique identifier of the connection.
 	ConnectionId *string `min:"10" type:"string"`
 
+	// The connection mode.
+	ConnectionMode *string `type:"string" enum:"ConnectionMode"`
+
+	// Properties for the outbound connection.
+	ConnectionProperties *ConnectionProperties `type:"structure"`
+
 	// Status of the connection.
 	ConnectionStatus *OutboundConnectionStatus `type:"structure"`
 
@@ -13851,6 +13763,18 @@ func (s *OutboundConnection) SetConnectionAlias(v string) *OutboundConnection {
 // SetConnectionId sets the ConnectionId field's value.
 func (s *OutboundConnection) SetConnectionId(v string) *OutboundConnection {
 	s.ConnectionId = &v
+	return s
+}
+
+// SetConnectionMode sets the ConnectionMode field's value.
+func (s *OutboundConnection) SetConnectionMode(v string) *OutboundConnection {
+	s.ConnectionMode = &v
+	return s
+}
+
+// SetConnectionProperties sets the ConnectionProperties field's value.
+func (s *OutboundConnection) SetConnectionProperties(v *ConnectionProperties) *OutboundConnection {
+	s.ConnectionProperties = v
 	return s
 }
 
@@ -14731,8 +14655,7 @@ func (s *ReservedInstanceOffering) SetUsagePrice(v float64) *ReservedInstanceOff
 	return s
 }
 
-// An exception for creating a resource that already exists. Gives http status
-// code of 400.
+// An exception for creating a resource that already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14796,8 +14719,7 @@ func (s *ResourceAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An exception for accessing or deleting a resource that does not exist. Gives
-// http status code of 400.
+// An exception for accessing or deleting a resource that doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16693,8 +16615,7 @@ func (s *VPCOptions) SetSubnetIds(v []*string) *VPCOptions {
 	return s
 }
 
-// An exception for missing / invalid input fields. Gives http status code of
-// 400.
+// An exception for missing or invalid input fields.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17142,6 +17063,28 @@ const (
 func AutoTuneType_Values() []string {
 	return []string{
 		AutoTuneTypeScheduledAction,
+	}
+}
+
+// The connection mode for the cross-cluster connection.
+//
+//   - DIRECT - Used for cross-cluster search or cross-cluster replication.
+//
+//   - VPC_ENDPOINT - Used for remote reindex between Amazon OpenSearch Service
+//     VPC domains.
+const (
+	// ConnectionModeDirect is a ConnectionMode enum value
+	ConnectionModeDirect = "DIRECT"
+
+	// ConnectionModeVpcEndpoint is a ConnectionMode enum value
+	ConnectionModeVpcEndpoint = "VPC_ENDPOINT"
+)
+
+// ConnectionMode_Values returns all elements of the ConnectionMode enum
+func ConnectionMode_Values() []string {
+	return []string{
+		ConnectionModeDirect,
+		ConnectionModeVpcEndpoint,
 	}
 }
 

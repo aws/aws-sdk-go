@@ -1176,7 +1176,8 @@
         "elasticsearchConfig":{"shape":"ElasticsearchDataSourceConfig"},
         "openSearchServiceConfig":{"shape":"OpenSearchServiceDataSourceConfig"},
         "httpConfig":{"shape":"HttpDataSourceConfig"},
-        "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"}
+        "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"},
+        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"}
       }
     },
     "CreateDataSourceResponse":{
@@ -1331,7 +1332,8 @@
         "elasticsearchConfig":{"shape":"ElasticsearchDataSourceConfig"},
         "openSearchServiceConfig":{"shape":"OpenSearchServiceDataSourceConfig"},
         "httpConfig":{"shape":"HttpDataSourceConfig"},
-        "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"}
+        "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"},
+        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"}
       }
     },
     "DataSourceType":{
@@ -1343,7 +1345,8 @@
         "NONE",
         "HTTP",
         "RELATIONAL_DATABASE",
-        "AMAZON_OPENSEARCH_SERVICE"
+        "AMAZON_OPENSEARCH_SERVICE",
+        "AMAZON_EVENTBRIDGE"
       ]
     },
     "DataSources":{
@@ -1666,6 +1669,13 @@
       "max":65536,
       "min":0,
       "pattern":"^[\\s\\S]*$"
+    },
+    "EventBridgeDataSourceConfig":{
+      "type":"structure",
+      "required":["eventBusArn"],
+      "members":{
+        "eventBusArn":{"shape":"String"}
+      }
     },
     "FieldLogLevel":{
       "type":"string",
@@ -2653,7 +2663,8 @@
         "elasticsearchConfig":{"shape":"ElasticsearchDataSourceConfig"},
         "openSearchServiceConfig":{"shape":"OpenSearchServiceDataSourceConfig"},
         "httpConfig":{"shape":"HttpDataSourceConfig"},
-        "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"}
+        "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"},
+        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"}
       }
     },
     "UpdateDataSourceResponse":{

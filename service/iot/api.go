@@ -30292,6 +30292,10 @@ func (s *CloudwatchAlarmAction) SetStateValue(v string) *CloudwatchAlarmAction {
 type CloudwatchLogsAction struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether batches of log records will be extracted and uploaded into
+	// CloudWatch. Values include true or false (default).
+	BatchMode *bool `locationName:"batchMode" type:"boolean"`
+
 	// The CloudWatch log group to which the action sends data.
 	//
 	// LogGroupName is a required field
@@ -30335,6 +30339,12 @@ func (s *CloudwatchLogsAction) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchMode sets the BatchMode field's value.
+func (s *CloudwatchLogsAction) SetBatchMode(v bool) *CloudwatchLogsAction {
+	s.BatchMode = &v
+	return s
 }
 
 // SetLogGroupName sets the LogGroupName field's value.

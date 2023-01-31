@@ -205,6 +205,18 @@
         "GetInsightsRequest$InsightArns": "<p>The ARNs of the insights to describe. If you do not provide any insight ARNs, then <code>GetInsights</code> returns all of your custom insights. It does not return any managed insights.</p>"
       }
     },
+    "AssociatedStandard": {
+      "base": "<p> Information about an enabled security standard in which a security control is enabled. </p>",
+      "refs": {
+        "AssociatedStandardsList$member": null
+      }
+    },
+    "AssociatedStandardsList": {
+      "base": null,
+      "refs": {
+        "Compliance$AssociatedStandards": "<p>The enabled security standards in which a security control is currently enabled. </p>"
+      }
+    },
     "AutoEnableStandards": {
       "base": null,
       "refs": {
@@ -3564,7 +3576,7 @@
       }
     },
     "AwsWafv2RulesDetails": {
-      "base": "<p> Provides details about rules in a rule group. A rule identifies web requests that you want to allow, block, or count. Each rule includes one top-level Statement that AWS WAF uses to identify matching web requests, and parameters that govern how AWS WAF handles them. </p>",
+      "base": "<p> Provides details about rules in a rule group. A rule identifies web requests that you want to allow, block, or count. Each rule includes one top-level Statement that WAF uses to identify matching web requests, and parameters that govern how WAF handles them. </p>",
       "refs": {
         "AwsWafv2RulesList$member": null
       }
@@ -5162,6 +5174,7 @@
         "Adjustment$Reason": "<p>The reason for the adjustment.</p>",
         "AdminAccount$AccountId": "<p>The Amazon Web Services account identifier of the Security Hub administrator account.</p>",
         "ArnList$member": null,
+        "AssociatedStandard$StandardsId": "<p>The unique identifier of a standard in which a control is enabled. This field consists of the resource portion of the Amazon Resource Name (ARN) returned for a standard in the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html\">DescribeStandards</a> API response. </p>",
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZone$SubnetId": "<p>The ID of the subnet. You can specify one subnet per Availability Zone.</p>",
         "AwsApiCallAction$Api": "<p>The name of the API method that was issued.</p>",
@@ -6165,7 +6178,7 @@
         "AwsS3ObjectDetails$ContentType": "<p>A standard MIME type describing the format of the object data.</p>",
         "AwsS3ObjectDetails$ServerSideEncryption": "<p>If the object is stored using server-side encryption, the value of the server-side encryption algorithm used when storing this object in Amazon S3.</p>",
         "AwsS3ObjectDetails$SSEKMSKeyId": "<p>The identifier of the KMS symmetric customer managed key that was used for the object.</p>",
-        "AwsSageMakerNotebookInstanceDetails$DefaultCodeRepository": "<p> The Git repository associated with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker Developer Guide</i>. </p>",
+        "AwsSageMakerNotebookInstanceDetails$DefaultCodeRepository": "<p> The Git repository associated with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">CodeCommit</a> or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker Developer Guide</i>. </p>",
         "AwsSageMakerNotebookInstanceDetails$DirectInternetAccess": "<p> Sets whether SageMaker provides internet access to the notebook instance. If you set this to <code>Disabled</code>, this notebook instance is able to access resources only in your VPC, and is not be able to connect to SageMaker training and endpoint services unless you configure a Network Address Translation (NAT) Gateway in your VPC. </p>",
         "AwsSageMakerNotebookInstanceDetails$FailureReason": "<p> If status of the instance is <code>Failed</code>, the reason it failed. </p>",
         "AwsSageMakerNotebookInstanceDetails$InstanceType": "<p> The type of machine learning (ML) compute instance to launch for the notebook instance. </p>",
@@ -6300,6 +6313,7 @@
         "ClassificationResult$MimeType": "<p>The type of content that the finding applies to.</p>",
         "ClassificationStatus$Code": "<p>The code that represents the status of the sensitive data detection.</p>",
         "ClassificationStatus$Reason": "<p>A longer description of the current status of the sensitive data detection.</p>",
+        "Compliance$SecurityControlId": "<p> The unique identifier of a control across standards. Values for this field typically consist of an Amazon Web Service and a number, such as APIGateway.5. </p>",
         "ContainerDetails$ContainerRuntime": "<p>The runtime of the container. </p>",
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
         "ContainerDetails$ImageId": "<p>The identifier of the container image related to a finding.</p>",
@@ -6397,7 +6411,7 @@
         "Member$Email": "<p>The email address of the member account.</p>",
         "Member$MasterId": "<p>This is replaced by <code>AdministratorID</code>.</p> <p>The Amazon Web Services account ID of the Security Hub administrator account associated with this member account.</p>",
         "Member$AdministratorId": "<p>The Amazon Web Services account ID of the Security Hub administrator account associated with this member account.</p>",
-        "Member$MemberStatus": "<p>The status of the relationship between the member account and its administrator account. </p> <p>The status can have one of the following values:</p> <ul> <li> <p> <code>CREATED</code> - Indicates that the administrator account added the member account, but has not yet invited the member account.</p> </li> <li> <p> <code>INVITED</code> - Indicates that the administrator account invited the member account. The member account has not yet responded to the invitation.</p> </li> <li> <p> <code>ENABLED</code> - Indicates that the member account is currently active. For manually invited member accounts, indicates that the member account accepted the invitation.</p> </li> <li> <p> <code>REMOVED</code> - Indicates that the administrator account disassociated the member account.</p> </li> <li> <p> <code>RESIGNED</code> - Indicates that the member account disassociated themselves from the administrator account.</p> </li> <li> <p> <code>DELETED</code> - Indicates that the administrator account deleted the member account.</p> </li> <li> <p> <code>ACCOUNT_SUSPENDED</code> - Indicates that an organization account was suspended from Amazon Web Services at the same time that the administrator account tried to enable the organization account as a member account.</p> </li> </ul>",
+        "Member$MemberStatus": "<p>The status of the relationship between the member account and its administrator account. </p> <p>The status can have one of the following values:</p> <ul> <li> <p> <code>Created</code> - Indicates that the administrator account added the member account, but has not yet invited the member account.</p> </li> <li> <p> <code>Invited</code> - Indicates that the administrator account invited the member account. The member account has not yet responded to the invitation.</p> </li> <li> <p> <code>Enabled</code> - Indicates that the member account is currently active. For manually invited member accounts, indicates that the member account accepted the invitation.</p> </li> <li> <p> <code>Removed</code> - Indicates that the administrator account disassociated the member account.</p> </li> <li> <p> <code>Resigned</code> - Indicates that the member account disassociated themselves from the administrator account.</p> </li> <li> <p> <code>Deleted</code> - Indicates that the administrator account deleted the member account.</p> </li> <li> <p> <code>AccountSuspended</code> - Indicates that an organization account was suspended from Amazon Web Services at the same time that the administrator account tried to enable the organization account as a member account.</p> </li> </ul>",
         "Network$Protocol": "<p>The protocol of network-related information about a finding.</p>",
         "Network$SourceIpV4": "<p>The source IPv4 address of network-related information about a finding.</p>",
         "Network$SourceIpV6": "<p>The source IPv6 address of network-related information about a finding.</p>",
@@ -6608,7 +6622,7 @@
         "AwsRdsEventSubscriptionDetails$EventCategoriesList": "<p>The list of event categories for the event notification subscription.</p>",
         "AwsRdsEventSubscriptionDetails$SourceIdsList": "<p>A list of source identifiers for the event notification subscription.</p>",
         "AwsSageMakerNotebookInstanceDetails$AcceleratorTypes": "<p> A list of Amazon Elastic Inference instance types to associate with the notebook instance. Currently, only one instance type can be associated with a notebook instance. </p>",
-        "AwsSageMakerNotebookInstanceDetails$AdditionalCodeRepositories": "<p> An array of up to three Git repositories associated with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker Developer Guide</i>. </p>",
+        "AwsSageMakerNotebookInstanceDetails$AdditionalCodeRepositories": "<p> An array of up to three Git repositories associated with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">CodeCommit</a> or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker Developer Guide</i>. </p>",
         "AwsSageMakerNotebookInstanceDetails$SecurityGroups": "<p> The VPC security group IDs. </p>",
         "FirewallPolicyDetails$StatelessDefaultActions": "<p>The actions to take on a packet if it doesn't match any of the stateless rules in the policy.</p> <p>You must specify a standard action (<code>aws:pass</code>, <code>aws:drop</code>, <code>aws:forward_to_sfe</code>), and can optionally include a custom action from <code>StatelessCustomActions</code>. </p>",
         "FirewallPolicyDetails$StatelessFragmentDefaultActions": "<p>The actions to take on a fragmented UDP packet if it doesn't match any of the stateless rules in the policy.</p> <p>You must specify a standard action (<code>aws:pass</code>, <code>aws:drop</code>, <code>aws:forward_to_sfe</code>), and can optionally include a custom action from <code>StatelessCustomActions</code>. </p>",
@@ -7351,7 +7365,9 @@
         "AwsSecurityFindingFilters$FindingProviderFieldsRelatedFindingsProductArn": "<p>The ARN of the solution that generated a related finding that is identified by the finding provider.</p>",
         "AwsSecurityFindingFilters$FindingProviderFieldsSeverityLabel": "<p>The finding provider value for the severity label.</p>",
         "AwsSecurityFindingFilters$FindingProviderFieldsSeverityOriginal": "<p>The finding provider's original value for the severity.</p>",
-        "AwsSecurityFindingFilters$FindingProviderFieldsTypes": "<p>One or more finding types that the finding provider assigned to the finding. Uses the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>"
+        "AwsSecurityFindingFilters$FindingProviderFieldsTypes": "<p>One or more finding types that the finding provider assigned to the finding. Uses the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
+        "AwsSecurityFindingFilters$ComplianceSecurityControlId": "<p> The unique identifier of a control across standards. Values for this field typically consist of an Amazon Web Service and a number, such as APIGateway.5. </p>",
+        "AwsSecurityFindingFilters$ComplianceAssociatedStandardsId": "<p> The unique identifier of a standard in which a control is enabled. This field consists of the resource portion of the Amazon Resource Name (ARN) returned for a standard in the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html\">DescribeStandards</a> API response. </p>"
       }
     },
     "StringList": {

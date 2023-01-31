@@ -90,7 +90,7 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p>An error occurred because user does not have permissions to access the resource. Returns HTTP status code 403.</p>",
+      "base": "<p>An error occurred because you don't have permissions to access the resource.</p>",
       "refs": {
       }
     },
@@ -443,7 +443,7 @@
       }
     },
     "ConflictException": {
-      "base": "<p>An error occurred because the client attempts to remove a resource that is currently in use. Returns HTTP status code 409.</p>",
+      "base": "<p>An error occurred because the client attempts to remove a resource that's currently in use.</p>",
       "refs": {
       }
     },
@@ -465,6 +465,22 @@
         "InboundConnection$ConnectionId": "<p>The unique identifier of the connection.</p>",
         "OutboundConnection$ConnectionId": "<p>Unique identifier of the connection.</p>",
         "RejectInboundConnectionRequest$ConnectionId": "<p>The unique identifier of the inbound connection to reject.</p>"
+      }
+    },
+    "ConnectionMode": {
+      "base": "<p>The connection mode for the cross-cluster connection.</p> <ul> <li> <p> <b>DIRECT</b> - Used for cross-cluster search or cross-cluster replication.</p> </li> <li> <p> <b>VPC_ENDPOINT</b> - Used for remote reindex between Amazon OpenSearch Service VPC domains.</p> </li> </ul>",
+      "refs": {
+        "CreateOutboundConnectionRequest$ConnectionMode": "<p>The connection mode.</p>",
+        "CreateOutboundConnectionResponse$ConnectionMode": "<p>The connection mode.</p>",
+        "InboundConnection$ConnectionMode": "<p>The connection mode.</p>",
+        "OutboundConnection$ConnectionMode": "<p>The connection mode.</p>"
+      }
+    },
+    "ConnectionProperties": {
+      "base": "<p>The connection properties of an outbound connection.</p>",
+      "refs": {
+        "CreateOutboundConnectionResponse$ConnectionProperties": "<p>The <code>ConnectionProperties</code> for the newly created connection.</p>",
+        "OutboundConnection$ConnectionProperties": "<p>Properties for the outbound connection.</p>"
       }
     },
     "ConnectionStatusMessage": {
@@ -762,7 +778,7 @@
       }
     },
     "DisabledOperationException": {
-      "base": "<p>An error occured because the client wanted to access a not supported operation. Gives http status code of 409.</p>",
+      "base": "<p>An error occured because the client wanted to access an unsupported operation.</p>",
       "refs": {
       }
     },
@@ -1002,6 +1018,7 @@
     "Endpoint": {
       "base": null,
       "refs": {
+        "ConnectionProperties$Endpoint": "<p>The endpoint of the remote domain.</p>",
         "VpcEndpoint$Endpoint": "<p>The connection endpoint ID for connecting to the domain.</p>"
       }
     },
@@ -1207,17 +1224,17 @@
       }
     },
     "InternalException": {
-      "base": "<p>The request processing has failed because of an unknown error, exception or failure (the failure is internal to the service) . Gives http status code of 500.</p>",
+      "base": "<p>Request processing failed because of an unknown error, exception, or internal failure.</p>",
       "refs": {
       }
     },
     "InvalidPaginationTokenException": {
-      "base": "<p>The request processing has failed because of invalid pagination token provided by customer. Returns an HTTP status code of 400. </p>",
+      "base": "<p>The request processing has failed because you provided an invalid pagination token.</p>",
       "refs": {
       }
     },
     "InvalidTypeException": {
-      "base": "<p>An exception for trying to create or access sub-resource that is either invalid or not supported. Gives http status code of 409.</p>",
+      "base": "<p>An exception for trying to create or access a sub-resource that's either invalid or not supported.</p>",
       "refs": {
       }
     },
@@ -1248,7 +1265,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>An exception for trying to create more than allowed resources or sub-resources. Gives http status code of 409.</p>",
+      "base": "<p>An exception for trying to create more than the allowed number of resources or sub-resources.</p>",
       "refs": {
       }
     },
@@ -1776,12 +1793,12 @@
       }
     },
     "ResourceAlreadyExistsException": {
-      "base": "<p>An exception for creating a resource that already exists. Gives http status code of 400.</p>",
+      "base": "<p>An exception for creating a resource that already exists.</p>",
       "refs": {
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>An exception for accessing or deleting a resource that does not exist. Gives http status code of 400.</p>",
+      "base": "<p>An exception for accessing or deleting a resource that doesn't exist.</p>",
       "refs": {
       }
     },
@@ -2200,7 +2217,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>An exception for missing / invalid input fields. Gives http status code of 400.</p>",
+      "base": "<p>An exception for missing or invalid input fields.</p>",
       "refs": {
       }
     },

@@ -84,6 +84,10 @@ type CodeArtifactAPI interface {
 	DeleteDomainPermissionsPolicyWithContext(aws.Context, *codeartifact.DeleteDomainPermissionsPolicyInput, ...request.Option) (*codeartifact.DeleteDomainPermissionsPolicyOutput, error)
 	DeleteDomainPermissionsPolicyRequest(*codeartifact.DeleteDomainPermissionsPolicyInput) (*request.Request, *codeartifact.DeleteDomainPermissionsPolicyOutput)
 
+	DeletePackage(*codeartifact.DeletePackageInput) (*codeartifact.DeletePackageOutput, error)
+	DeletePackageWithContext(aws.Context, *codeartifact.DeletePackageInput, ...request.Option) (*codeartifact.DeletePackageOutput, error)
+	DeletePackageRequest(*codeartifact.DeletePackageInput) (*request.Request, *codeartifact.DeletePackageOutput)
+
 	DeletePackageVersions(*codeartifact.DeletePackageVersionsInput) (*codeartifact.DeletePackageVersionsOutput, error)
 	DeletePackageVersionsWithContext(aws.Context, *codeartifact.DeletePackageVersionsInput, ...request.Option) (*codeartifact.DeletePackageVersionsOutput, error)
 	DeletePackageVersionsRequest(*codeartifact.DeletePackageVersionsInput) (*request.Request, *codeartifact.DeletePackageVersionsOutput)

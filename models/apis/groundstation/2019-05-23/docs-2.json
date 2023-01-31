@@ -13,6 +13,7 @@
     "DeleteMissionProfile": "<p>Deletes a mission profile.</p>",
     "DescribeContact": "<p>Describes an existing contact.</p>",
     "DescribeEphemeris": "<p>Describes an existing ephemeris.</p>",
+    "GetAgentConfiguration": "<p>Gets the latest configuration information for a registered agent.</p>",
     "GetConfig": "<p>Returns <code>Config</code> information.</p> <p>Only one <code>Config</code> response can be returned.</p>",
     "GetDataflowEndpointGroup": "<p>Returns the dataflow endpoint group.</p>",
     "GetMinuteUsage": "<p>Returns the number of minutes used by account.</p>",
@@ -26,9 +27,11 @@
     "ListMissionProfiles": "<p>Returns a list of mission profiles.</p>",
     "ListSatellites": "<p>Returns a list of satellites.</p>",
     "ListTagsForResource": "<p>Returns a list of tags for a specified resource.</p>",
+    "RegisterAgent": "<p>Registers a new agent with AWS Groundstation.</p>",
     "ReserveContact": "<p>Reserves a contact using specified parameters.</p>",
     "TagResource": "<p>Assigns a tag to a resource.</p>",
     "UntagResource": "<p>Deassigns a resource tag.</p>",
+    "UpdateAgentStatus": "<p>Update the status of the agent.</p>",
     "UpdateConfig": "<p>Updates the <code>Config</code> used when scheduling contacts.</p> <p>Updating a <code>Config</code> will not update the execution parameters for existing future contacts scheduled with this <code>Config</code>.</p>",
     "UpdateEphemeris": "<p>Updates an existing ephemeris</p>",
     "UpdateMissionProfile": "<p>Updates a mission profile.</p> <p>Updating a mission profile will not update the execution parameters for existing future contacts.</p>"
@@ -40,6 +43,26 @@
         "GetMissionProfileResponse$region": "<p>Region of a mission profile.</p>",
         "GroundStationData$region": "<p>Ground station Region.</p>",
         "MissionProfileListItem$region": "<p>Region of a mission profile.</p>"
+      }
+    },
+    "AgentDetails": {
+      "base": "<p>Detailed information about the agent.</p>",
+      "refs": {
+        "RegisterAgentRequest$agentDetails": "<p>Detailed information about the agent being registered.</p>"
+      }
+    },
+    "AgentStatus": {
+      "base": null,
+      "refs": {
+        "AggregateStatus$status": "<p>Aggregate status.</p>",
+        "AwsGroundStationAgentEndpoint$agentStatus": "<p>The status of AgentEndpoint.</p>",
+        "ComponentStatusData$status": "<p>Component status.</p>"
+      }
+    },
+    "AggregateStatus": {
+      "base": "<p>Aggregate status of Agent components.</p>",
+      "refs": {
+        "UpdateAgentStatusRequest$aggregateStatus": "<p>Aggregate status for agent.</p>"
       }
     },
     "AngleUnits": {
@@ -80,6 +103,18 @@
         "UntagResourceRequest$resourceArn": "<p>ARN of a resource.</p>"
       }
     },
+    "AuditResults": {
+      "base": null,
+      "refs": {
+        "AwsGroundStationAgentEndpoint$auditResults": "<p>The results of the audit.</p>"
+      }
+    },
+    "AwsGroundStationAgentEndpoint": {
+      "base": "<p>Information about AwsGroundStationAgentEndpoint.</p>",
+      "refs": {
+        "EndpointDetails$awsGroundStationAgentEndpoint": "<p>An agent endpoint.</p>"
+      }
+    },
     "BandwidthUnits": {
       "base": null,
       "refs": {
@@ -94,6 +129,7 @@
         "DescribeEphemerisResponse$enabled": "<p>Whether or not the ephemeris is enabled.</p>",
         "EphemerisItem$enabled": "<p>Whether or not the ephemeris is enabled.</p>",
         "GetMinuteUsageResponse$isReservedMinutesCustomer": "<p>Returns whether or not an account has signed up for the reserved minutes pricing plan, specific to the month being requested.</p>",
+        "SignatureMap$value": null,
         "UpdateEphemerisRequest$enabled": "<p>Whether the ephemeris is enabled or not. Changing this value will not require the ephemeris to be re-validated.</p>",
         "UplinkEchoConfig$enabled": "<p>Whether or not an uplink <code>Config</code> is enabled.</p>"
       }
@@ -108,6 +144,50 @@
     "CancelContactRequest": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "CapabilityArn": {
+      "base": null,
+      "refs": {
+        "CapabilityArnList$member": null,
+        "ComponentStatusData$capabilityArn": "<p>Capability ARN of the component.</p>"
+      }
+    },
+    "CapabilityArnList": {
+      "base": null,
+      "refs": {
+        "DiscoveryData$capabilityArns": "<p>List of capabilities to associate with agent.</p>"
+      }
+    },
+    "ComponentStatusData": {
+      "base": "<p>Data on the status of agent components.</p>",
+      "refs": {
+        "ComponentStatusList$member": null
+      }
+    },
+    "ComponentStatusList": {
+      "base": null,
+      "refs": {
+        "UpdateAgentStatusRequest$componentStatuses": "<p>List of component statuses for agent.</p>"
+      }
+    },
+    "ComponentType": {
+      "base": null,
+      "refs": {
+        "ComponentStatusData$componentType": "<p>The Component type.</p>",
+        "ComponentVersion$componentType": "<p>Component type.</p>"
+      }
+    },
+    "ComponentVersion": {
+      "base": "<p>Version information for agent components.</p>",
+      "refs": {
+        "ComponentVersionList$member": null
+      }
+    },
+    "ComponentVersionList": {
+      "base": null,
+      "refs": {
+        "AgentDetails$componentVersions": "<p>List of versions being used by agent components.</p>"
       }
     },
     "ConfigArn": {
@@ -166,6 +246,12 @@
         "CreateConfigRequest$configData": "<p>Parameters of a <code>Config</code>.</p>",
         "GetConfigResponse$configData": "<p>Data elements in a <code>Config</code>.</p>",
         "UpdateConfigRequest$configData": "<p>Parameters of a <code>Config</code>.</p>"
+      }
+    },
+    "ConnectionDetails": {
+      "base": "<p>Egress address of AgentEndpoint with an optional mtu.</p>",
+      "refs": {
+        "AwsGroundStationAgentEndpoint$egressAddress": "<p>The egress address of AgentEndpoint.</p>"
       }
     },
     "ContactData": {
@@ -365,6 +451,12 @@
         "DataflowDetail$destination": null
       }
     },
+    "DiscoveryData": {
+      "base": "<p>Data for agent discovery.</p>",
+      "refs": {
+        "RegisterAgentRequest$discoveryData": "<p>Data for associating and agent with the capabilities it is managing.</p>"
+      }
+    },
     "Double": {
       "base": null,
       "refs": {
@@ -520,6 +612,16 @@
         "Frequency$units": "<p>Frequency units.</p>"
       }
     },
+    "GetAgentConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAgentConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetConfigRequest": {
       "base": "<p/>",
       "refs": {
@@ -599,19 +701,55 @@
         "ReserveContactRequest$groundStation": "<p>Name of a ground station.</p>"
       }
     },
+    "InstanceId": {
+      "base": null,
+      "refs": {
+        "AgentDetails$instanceId": "<p>ID of EC2 instance agent is running on.</p>"
+      }
+    },
+    "InstanceType": {
+      "base": null,
+      "refs": {
+        "AgentDetails$instanceType": "<p>Type of EC2 instance agent is running on.</p>"
+      }
+    },
     "Integer": {
       "base": null,
       "refs": {
+        "ConnectionDetails$mtu": "<p>Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.</p>",
         "GetMinuteUsageResponse$estimatedMinutesRemaining": "<p>Estimated number of minutes remaining for an account, specific to the month being requested.</p>",
         "GetMinuteUsageResponse$totalReservedMinuteAllocation": "<p>Total number of reserved minutes allocated, specific to the month being requested.</p>",
         "GetMinuteUsageResponse$totalScheduledMinutes": "<p>Total scheduled minutes for an account, specific to the month being requested.</p>",
         "GetMinuteUsageResponse$upcomingMinutesScheduled": "<p>Upcoming minutes scheduled for an account, specific to the month being requested.</p>",
+        "IntegerRange$maximum": "<p>A maximum value.</p>",
+        "IntegerRange$minimum": "<p>A minimum value.</p>",
+        "ReservedCpuCoresList$member": null,
         "SocketAddress$port": "<p>Port of a socket address.</p>"
+      }
+    },
+    "IntegerRange": {
+      "base": "<p>An integer range that has a minimum and maximum value.</p>",
+      "refs": {
+        "RangedSocketAddress$portRange": "<p>Port range of a socket address.</p>"
       }
     },
     "InvalidParameterException": {
       "base": "<p>One or more parameters are not valid.</p>",
       "refs": {
+      }
+    },
+    "IpAddressList": {
+      "base": null,
+      "refs": {
+        "DiscoveryData$privateIpAddresses": "<p>List of private IP addresses to associate with agent.</p>",
+        "DiscoveryData$publicIpAddresses": "<p>List of public IP addresses to associate with agent.</p>"
+      }
+    },
+    "IpV4Address": {
+      "base": null,
+      "refs": {
+        "IpAddressList$member": null,
+        "RangedSocketAddress$name": "<p>IPv4 socket address.</p>"
       }
     },
     "JsonString": {
@@ -621,10 +759,25 @@
         "DemodulationConfig$unvalidatedJSON": "<p>Unvalidated JSON of a demodulation <code>Config</code>.</p>"
       }
     },
+    "KeyAliasArn": {
+      "base": null,
+      "refs": {
+        "KmsKey$kmsAliasArn": "<p>KMS Alias Arn.</p>"
+      }
+    },
     "KeyArn": {
       "base": null,
       "refs": {
-        "CreateEphemerisRequest$kmsKeyArn": "<p>The ARN of a KMS key used to encrypt the ephemeris in Ground Station.</p>"
+        "CreateEphemerisRequest$kmsKeyArn": "<p>The ARN of a KMS key used to encrypt the ephemeris in Ground Station.</p>",
+        "KmsKey$kmsKeyArn": "<p>KMS Key Arn.</p>"
+      }
+    },
+    "KmsKey": {
+      "base": "<p>AWS Key Management Service (KMS) Key.</p>",
+      "refs": {
+        "CreateMissionProfileRequest$streamsKmsKey": "<p>KMS key to use for encrypting streams.</p>",
+        "GetMissionProfileResponse$streamsKmsKey": "<p>KMS key to use for encrypting streams.</p>",
+        "UpdateMissionProfileRequest$streamsKmsKey": "<p>KMS key to use for encrypting streams.</p>"
       }
     },
     "ListConfigsRequest": {
@@ -705,6 +858,14 @@
     "ListTagsForResourceResponse": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "Long": {
+      "base": null,
+      "refs": {
+        "ComponentStatusData$bytesReceived": "<p>Bytes received by the component.</p>",
+        "ComponentStatusData$bytesSent": "<p>Bytes sent by the component.</p>",
+        "ComponentStatusData$packetsDropped": "<p>Packets dropped by component.</p>"
       }
     },
     "MissionProfileArn": {
@@ -793,9 +954,43 @@
         "UpdateMissionProfileRequest$minimumViableContactDurationSeconds": "<p>Smallest amount of time in seconds that you’d like to see for an available contact. AWS Ground Station will not present you with contacts shorter than this duration.</p>"
       }
     },
+    "RangedConnectionDetails": {
+      "base": "<p>Ingress address of AgentEndpoint with a port range and an optional mtu.</p>",
+      "refs": {
+        "AwsGroundStationAgentEndpoint$ingressAddress": "<p>The ingress address of AgentEndpoint.</p>"
+      }
+    },
+    "RangedConnectionDetailsMtuInteger": {
+      "base": null,
+      "refs": {
+        "RangedConnectionDetails$mtu": "<p>Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.</p>"
+      }
+    },
+    "RangedSocketAddress": {
+      "base": "<p>A socket address with a port range.</p>",
+      "refs": {
+        "RangedConnectionDetails$socketAddress": "<p>A ranged socket address.</p>"
+      }
+    },
+    "RegisterAgentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterAgentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ReserveContactRequest": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "ReservedCpuCoresList": {
+      "base": null,
+      "refs": {
+        "AgentDetails$reservedCpuCores": "<p>Number of Cpu cores reserved for agent.</p>"
       }
     },
     "ResourceLimitExceededException": {
@@ -811,8 +1006,11 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "CreateMissionProfileRequest$streamsKmsRole": "<p>Role to use for encrypting streams with KMS key.</p>",
+        "GetMissionProfileResponse$streamsKmsRole": "<p>Role to use for encrypting streams with KMS key.</p>",
         "S3RecordingConfig$roleArn": "<p>ARN of the role Ground Station assumes to write data to the bucket.</p>",
-        "SecurityDetails$roleArn": "<p>ARN to a role needed for connecting streams to your instances. </p>"
+        "SecurityDetails$roleArn": "<p>ARN to a role needed for connecting streams to your instances. </p>",
+        "UpdateMissionProfileRequest$streamsKmsRole": "<p>Role to use for encrypting streams with KMS key.</p>"
       }
     },
     "S3BucketName": {
@@ -863,6 +1061,7 @@
     "SafeName": {
       "base": null,
       "refs": {
+        "AwsGroundStationAgentEndpoint$name": "<p>Name string associated with AgentEndpoint. Used as a human-readable identifier for AgentEndpoint.</p>",
         "CreateConfigRequest$name": "<p>Name of a <code>Config</code>.</p>",
         "CreateEphemerisRequest$name": "<p>A name string associated with the ephemeris. Used as a human-readable identifier for the ephemeris.</p>",
         "CreateMissionProfileRequest$name": "<p>Name of a mission profile.</p>",
@@ -901,9 +1100,16 @@
         "SecurityDetails$securityGroupIds": "<p>The security groups to attach to the elastic network interfaces.</p>"
       }
     },
+    "SignatureMap": {
+      "base": null,
+      "refs": {
+        "AggregateStatus$signatureMap": "<p>Sparse map of failure signatures.</p>"
+      }
+    },
     "SocketAddress": {
       "base": "<p>Information about the socket address.</p>",
       "refs": {
+        "ConnectionDetails$socketAddress": "<p>A socket address.</p>",
         "DataflowEndpoint$address": "<p>Socket address of a dataflow endpoint.</p>"
       }
     },
@@ -945,6 +1151,7 @@
         "DescribeContactResponse$groundStation": "<p>Ground station for a contact.</p>",
         "DescribeContactResponse$region": "<p>Region of a contact.</p>",
         "Destination$dataflowDestinationRegion": "<p>Region of a dataflow destination.</p>",
+        "GetAgentConfigurationResponse$taskingDocument": "<p>Tasking document for agent.</p>",
         "GetConfigResponse$configId": "<p>UUID of a <code>Config</code>.</p>",
         "GetConfigResponse$name": "<p>Name of a <code>Config</code>.</p>",
         "InvalidParameterException$message": null,
@@ -954,6 +1161,7 @@
         "ResourceNotFoundException$message": null,
         "S3RecordingDetails$keyTemplate": "<p>Key template used for the S3 Recording Configuration</p>",
         "SecurityGroupIdList$member": null,
+        "SignatureMap$key": null,
         "SocketAddress$name": "<p>Name of a socket address.</p>",
         "Source$configId": "<p>UUID of a <code>Config</code>.</p>",
         "Source$dataflowSourceRegion": "<p>Region of a dataflow source.</p>",
@@ -1087,6 +1295,16 @@
       "refs": {
       }
     },
+    "UpdateAgentStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAgentStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateConfigRequest": {
       "base": "<p/>",
       "refs": {
@@ -1118,6 +1336,7 @@
       "base": null,
       "refs": {
         "CancelContactRequest$contactId": "<p>UUID of a contact.</p>",
+        "ComponentStatusData$dataflowId": "<p>Dataflow UUID associated with the component.</p>",
         "ContactData$contactId": "<p>UUID of a contact.</p>",
         "ContactIdResponse$contactId": "<p>UUID of a contact.</p>",
         "CreateEphemerisRequest$satelliteId": "<p>AWS Ground Station satellite ID for this ephemeris.</p>",
@@ -1136,6 +1355,8 @@
         "EphemerisIdResponse$ephemerisId": "<p>The AWS Ground Station ephemeris ID.</p>",
         "EphemerisItem$ephemerisId": "<p>The AWS Ground Station ephemeris ID.</p>",
         "EphemerisMetaData$ephemerisId": "<p>UUID of a customer-provided ephemeris.</p> <p>This field is not populated for default ephemerides from Space Track.</p>",
+        "GetAgentConfigurationRequest$agentId": "<p>UUID of agent to get configuration information for.</p>",
+        "GetAgentConfigurationResponse$agentId": "<p>UUID of agent.</p>",
         "GetConfigRequest$configId": "<p>UUID of a <code>Config</code>.</p>",
         "GetDataflowEndpointGroupRequest$dataflowEndpointGroupId": "<p>UUID of a dataflow endpoint group.</p>",
         "GetDataflowEndpointGroupResponse$dataflowEndpointGroupId": "<p>UUID of a dataflow endpoint group.</p>",
@@ -1147,10 +1368,27 @@
         "ListGroundStationsRequest$satelliteId": "<p>Satellite ID to retrieve on-boarded ground stations.</p>",
         "MissionProfileIdResponse$missionProfileId": "<p>UUID of a mission profile.</p>",
         "MissionProfileListItem$missionProfileId": "<p>UUID of a mission profile.</p>",
+        "RegisterAgentResponse$agentId": "<p>UUID of registered agent.</p>",
         "SatelliteListItem$satelliteId": "<p>UUID of a satellite.</p>",
+        "UpdateAgentStatusRequest$agentId": "<p>UUID of agent to update.</p>",
+        "UpdateAgentStatusRequest$taskId": "<p>GUID of agent task.</p>",
+        "UpdateAgentStatusResponse$agentId": "<p>UUID of updated agent.</p>",
         "UpdateConfigRequest$configId": "<p>UUID of a <code>Config</code>.</p>",
         "UpdateEphemerisRequest$ephemerisId": "<p>The AWS Ground Station ephemeris ID.</p>",
         "UpdateMissionProfileRequest$missionProfileId": "<p>UUID of a mission profile.</p>"
+      }
+    },
+    "VersionString": {
+      "base": null,
+      "refs": {
+        "AgentDetails$agentVersion": "<p>Current agent version.</p>",
+        "VersionStringList$member": null
+      }
+    },
+    "VersionStringList": {
+      "base": null,
+      "refs": {
+        "ComponentVersion$versions": "<p>List of versions.</p>"
       }
     },
     "Year": {

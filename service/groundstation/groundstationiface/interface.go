@@ -104,6 +104,10 @@ type GroundStationAPI interface {
 	DescribeEphemerisWithContext(aws.Context, *groundstation.DescribeEphemerisInput, ...request.Option) (*groundstation.DescribeEphemerisOutput, error)
 	DescribeEphemerisRequest(*groundstation.DescribeEphemerisInput) (*request.Request, *groundstation.DescribeEphemerisOutput)
 
+	GetAgentConfiguration(*groundstation.GetAgentConfigurationInput) (*groundstation.GetAgentConfigurationOutput, error)
+	GetAgentConfigurationWithContext(aws.Context, *groundstation.GetAgentConfigurationInput, ...request.Option) (*groundstation.GetAgentConfigurationOutput, error)
+	GetAgentConfigurationRequest(*groundstation.GetAgentConfigurationInput) (*request.Request, *groundstation.GetAgentConfigurationOutput)
+
 	GetConfig(*groundstation.GetConfigInput) (*groundstation.GetConfigOutput, error)
 	GetConfigWithContext(aws.Context, *groundstation.GetConfigInput, ...request.Option) (*groundstation.GetConfigOutput, error)
 	GetConfigRequest(*groundstation.GetConfigInput) (*request.Request, *groundstation.GetConfigOutput)
@@ -177,6 +181,10 @@ type GroundStationAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *groundstation.ListTagsForResourceInput, ...request.Option) (*groundstation.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*groundstation.ListTagsForResourceInput) (*request.Request, *groundstation.ListTagsForResourceOutput)
 
+	RegisterAgent(*groundstation.RegisterAgentInput) (*groundstation.RegisterAgentOutput, error)
+	RegisterAgentWithContext(aws.Context, *groundstation.RegisterAgentInput, ...request.Option) (*groundstation.RegisterAgentOutput, error)
+	RegisterAgentRequest(*groundstation.RegisterAgentInput) (*request.Request, *groundstation.RegisterAgentOutput)
+
 	ReserveContact(*groundstation.ReserveContactInput) (*groundstation.ReserveContactOutput, error)
 	ReserveContactWithContext(aws.Context, *groundstation.ReserveContactInput, ...request.Option) (*groundstation.ReserveContactOutput, error)
 	ReserveContactRequest(*groundstation.ReserveContactInput) (*request.Request, *groundstation.ReserveContactOutput)
@@ -188,6 +196,10 @@ type GroundStationAPI interface {
 	UntagResource(*groundstation.UntagResourceInput) (*groundstation.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *groundstation.UntagResourceInput, ...request.Option) (*groundstation.UntagResourceOutput, error)
 	UntagResourceRequest(*groundstation.UntagResourceInput) (*request.Request, *groundstation.UntagResourceOutput)
+
+	UpdateAgentStatus(*groundstation.UpdateAgentStatusInput) (*groundstation.UpdateAgentStatusOutput, error)
+	UpdateAgentStatusWithContext(aws.Context, *groundstation.UpdateAgentStatusInput, ...request.Option) (*groundstation.UpdateAgentStatusOutput, error)
+	UpdateAgentStatusRequest(*groundstation.UpdateAgentStatusInput) (*request.Request, *groundstation.UpdateAgentStatusOutput)
 
 	UpdateConfig(*groundstation.UpdateConfigInput) (*groundstation.UpdateConfigOutput, error)
 	UpdateConfigWithContext(aws.Context, *groundstation.UpdateConfigInput, ...request.Option) (*groundstation.UpdateConfigOutput, error)

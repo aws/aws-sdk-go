@@ -6376,6 +6376,9 @@ type CreateDataSourceInput struct {
 	// to create an OpenSearch data source.
 	ElasticsearchConfig *ElasticsearchDataSourceConfig `locationName:"elasticsearchConfig" type:"structure"`
 
+	// Amazon EventBridge settings.
+	EventBridgeConfig *EventBridgeDataSourceConfig `locationName:"eventBridgeConfig" type:"structure"`
+
 	// HTTP endpoint settings.
 	HttpConfig *HttpDataSourceConfig `locationName:"httpConfig" type:"structure"`
 
@@ -6450,6 +6453,11 @@ func (s *CreateDataSourceInput) Validate() error {
 			invalidParams.AddNested("ElasticsearchConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.EventBridgeConfig != nil {
+		if err := s.EventBridgeConfig.Validate(); err != nil {
+			invalidParams.AddNested("EventBridgeConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.HttpConfig != nil {
 		if err := s.HttpConfig.Validate(); err != nil {
 			invalidParams.AddNested("HttpConfig", err.(request.ErrInvalidParams))
@@ -6493,6 +6501,12 @@ func (s *CreateDataSourceInput) SetDynamodbConfig(v *DynamodbDataSourceConfig) *
 // SetElasticsearchConfig sets the ElasticsearchConfig field's value.
 func (s *CreateDataSourceInput) SetElasticsearchConfig(v *ElasticsearchDataSourceConfig) *CreateDataSourceInput {
 	s.ElasticsearchConfig = v
+	return s
+}
+
+// SetEventBridgeConfig sets the EventBridgeConfig field's value.
+func (s *CreateDataSourceInput) SetEventBridgeConfig(v *EventBridgeDataSourceConfig) *CreateDataSourceInput {
+	s.EventBridgeConfig = v
 	return s
 }
 
@@ -7447,6 +7461,9 @@ type DataSource struct {
 	// Amazon OpenSearch Service settings.
 	ElasticsearchConfig *ElasticsearchDataSourceConfig `locationName:"elasticsearchConfig" type:"structure"`
 
+	// Amazon EventBridge settings.
+	EventBridgeConfig *EventBridgeDataSourceConfig `locationName:"eventBridgeConfig" type:"structure"`
+
 	// HTTP endpoint settings.
 	HttpConfig *HttpDataSourceConfig `locationName:"httpConfig" type:"structure"`
 
@@ -7478,6 +7495,8 @@ type DataSource struct {
 	//
 	//    * AMAZON_OPENSEARCH_SERVICE: The data source is an Amazon OpenSearch Service
 	//    domain.
+	//
+	//    * AMAZON_EVENTBRIDGE: The data source is an Amazon EventBridge configuration.
 	//
 	//    * NONE: There is no data source. Use this type when you want to invoke
 	//    a GraphQL operation without connecting to a data source, such as when
@@ -7529,6 +7548,12 @@ func (s *DataSource) SetDynamodbConfig(v *DynamodbDataSourceConfig) *DataSource 
 // SetElasticsearchConfig sets the ElasticsearchConfig field's value.
 func (s *DataSource) SetElasticsearchConfig(v *ElasticsearchDataSourceConfig) *DataSource {
 	s.ElasticsearchConfig = v
+	return s
+}
+
+// SetEventBridgeConfig sets the EventBridgeConfig field's value.
+func (s *DataSource) SetEventBridgeConfig(v *EventBridgeDataSourceConfig) *DataSource {
+	s.EventBridgeConfig = v
 	return s
 }
 
@@ -8928,6 +8953,54 @@ func (s *EvaluateMappingTemplateOutput) SetEvaluationResult(v string) *EvaluateM
 // SetLogs sets the Logs field's value.
 func (s *EvaluateMappingTemplateOutput) SetLogs(v []*string) *EvaluateMappingTemplateOutput {
 	s.Logs = v
+	return s
+}
+
+// Describes an Amazon EventBridge bus data source configuration.
+type EventBridgeDataSourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the event bus. For more information about event buses, see Amazon
+	// EventBridge event buses (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html).
+	//
+	// EventBusArn is a required field
+	EventBusArn *string `locationName:"eventBusArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeDataSourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeDataSourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventBridgeDataSourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventBridgeDataSourceConfig"}
+	if s.EventBusArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventBusArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventBusArn sets the EventBusArn field's value.
+func (s *EventBridgeDataSourceConfig) SetEventBusArn(v string) *EventBridgeDataSourceConfig {
+	s.EventBusArn = &v
 	return s
 }
 
@@ -12974,6 +13047,9 @@ type UpdateDataSourceInput struct {
 	// to update an OpenSearch data source.
 	ElasticsearchConfig *ElasticsearchDataSourceConfig `locationName:"elasticsearchConfig" type:"structure"`
 
+	// The new Amazon EventBridge settings.
+	EventBridgeConfig *EventBridgeDataSourceConfig `locationName:"eventBridgeConfig" type:"structure"`
+
 	// The new HTTP endpoint configuration.
 	HttpConfig *HttpDataSourceConfig `locationName:"httpConfig" type:"structure"`
 
@@ -13046,6 +13122,11 @@ func (s *UpdateDataSourceInput) Validate() error {
 			invalidParams.AddNested("ElasticsearchConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.EventBridgeConfig != nil {
+		if err := s.EventBridgeConfig.Validate(); err != nil {
+			invalidParams.AddNested("EventBridgeConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.HttpConfig != nil {
 		if err := s.HttpConfig.Validate(); err != nil {
 			invalidParams.AddNested("HttpConfig", err.(request.ErrInvalidParams))
@@ -13089,6 +13170,12 @@ func (s *UpdateDataSourceInput) SetDynamodbConfig(v *DynamodbDataSourceConfig) *
 // SetElasticsearchConfig sets the ElasticsearchConfig field's value.
 func (s *UpdateDataSourceInput) SetElasticsearchConfig(v *ElasticsearchDataSourceConfig) *UpdateDataSourceInput {
 	s.ElasticsearchConfig = v
+	return s
+}
+
+// SetEventBridgeConfig sets the EventBridgeConfig field's value.
+func (s *UpdateDataSourceInput) SetEventBridgeConfig(v *EventBridgeDataSourceConfig) *UpdateDataSourceInput {
+	s.EventBridgeConfig = v
 	return s
 }
 
@@ -14368,6 +14455,9 @@ const (
 
 	// DataSourceTypeAmazonOpensearchService is a DataSourceType enum value
 	DataSourceTypeAmazonOpensearchService = "AMAZON_OPENSEARCH_SERVICE"
+
+	// DataSourceTypeAmazonEventbridge is a DataSourceType enum value
+	DataSourceTypeAmazonEventbridge = "AMAZON_EVENTBRIDGE"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -14380,6 +14470,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeHttp,
 		DataSourceTypeRelationalDatabase,
 		DataSourceTypeAmazonOpensearchService,
+		DataSourceTypeAmazonEventbridge,
 	}
 }
 

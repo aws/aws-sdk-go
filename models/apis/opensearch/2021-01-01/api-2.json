@@ -1230,6 +1230,19 @@
       "min":10,
       "pattern":"[a-z][a-z0-9\\-]+"
     },
+    "ConnectionMode":{
+      "type":"string",
+      "enum":[
+        "DIRECT",
+        "VPC_ENDPOINT"
+      ]
+    },
+    "ConnectionProperties":{
+      "type":"structure",
+      "members":{
+        "Endpoint":{"shape":"Endpoint"}
+      }
+    },
     "ConnectionStatusMessage":{"type":"string"},
     "CreateDomainRequest":{
       "type":"structure",
@@ -1269,7 +1282,8 @@
       "members":{
         "LocalDomainInfo":{"shape":"DomainInformationContainer"},
         "RemoteDomainInfo":{"shape":"DomainInformationContainer"},
-        "ConnectionAlias":{"shape":"ConnectionAlias"}
+        "ConnectionAlias":{"shape":"ConnectionAlias"},
+        "ConnectionMode":{"shape":"ConnectionMode"}
       }
     },
     "CreateOutboundConnectionResponse":{
@@ -1279,7 +1293,9 @@
         "RemoteDomainInfo":{"shape":"DomainInformationContainer"},
         "ConnectionAlias":{"shape":"ConnectionAlias"},
         "ConnectionStatus":{"shape":"OutboundConnectionStatus"},
-        "ConnectionId":{"shape":"ConnectionId"}
+        "ConnectionId":{"shape":"ConnectionId"},
+        "ConnectionMode":{"shape":"ConnectionMode"},
+        "ConnectionProperties":{"shape":"ConnectionProperties"}
       }
     },
     "CreatePackageRequest":{
@@ -2135,7 +2151,8 @@
         "LocalDomainInfo":{"shape":"DomainInformationContainer"},
         "RemoteDomainInfo":{"shape":"DomainInformationContainer"},
         "ConnectionId":{"shape":"ConnectionId"},
-        "ConnectionStatus":{"shape":"InboundConnectionStatus"}
+        "ConnectionStatus":{"shape":"InboundConnectionStatus"},
+        "ConnectionMode":{"shape":"ConnectionMode"}
       }
     },
     "InboundConnectionStatus":{
@@ -2690,7 +2707,9 @@
         "RemoteDomainInfo":{"shape":"DomainInformationContainer"},
         "ConnectionId":{"shape":"ConnectionId"},
         "ConnectionAlias":{"shape":"ConnectionAlias"},
-        "ConnectionStatus":{"shape":"OutboundConnectionStatus"}
+        "ConnectionStatus":{"shape":"OutboundConnectionStatus"},
+        "ConnectionMode":{"shape":"ConnectionMode"},
+        "ConnectionProperties":{"shape":"ConnectionProperties"}
       }
     },
     "OutboundConnectionStatus":{
