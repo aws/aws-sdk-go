@@ -407,10 +407,10 @@ func (c *ForecastService) CreateDatasetImportJobRequest(input *CreateDatasetImpo
 // to import the data to.
 //
 // You must specify a DataSource (https://docs.aws.amazon.com/forecast/latest/dg/API_DataSource.html)
-// object that includes an AWS Identity and Access Management (IAM) role that
-// Amazon Forecast can assume to access the data, as Amazon Forecast makes a
-// copy of your data and processes it in an internal AWS system. For more information,
-// see Set up permissions (https://docs.aws.amazon.com/forecast/latest/dg/aws-forecast-iam-roles.html).
+// object that includes an Identity and Access Management (IAM) role that Amazon
+// Forecast can assume to access the data, as Amazon Forecast makes a copy of
+// your data and processes it in an internal Amazon Web Services system. For
+// more information, see Set up permissions (https://docs.aws.amazon.com/forecast/latest/dg/aws-forecast-iam-roles.html).
 //
 // The training data must be in CSV or Parquet format. The delimiter must be
 // a comma (,).
@@ -690,8 +690,8 @@ func (c *ForecastService) CreateExplainabilityExportRequest(input *CreateExplain
 // bucket.
 //
 // You must specify a DataDestination object that includes an Amazon S3 bucket
-// and an AWS Identity and Access Management (IAM) role that Amazon Forecast
-// can assume to access the Amazon S3 bucket. For more information, see aws-forecast-iam-roles.
+// and an Identity and Access Management (IAM) role that Amazon Forecast can
+// assume to access the Amazon S3 bucket. For more information, see aws-forecast-iam-roles.
 //
 // The Status of the export job must be ACTIVE before you can access the export
 // in your Amazon S3 bucket. To get the status, use the DescribeExplainabilityExport
@@ -914,9 +914,9 @@ func (c *ForecastService) CreateForecastExportJobRequest(input *CreateForecastEx
 //
 // where the <ExportTimestamp> component is in Java SimpleDateFormat (yyyy-MM-ddTHH-mm-ssZ).
 //
-// You must specify a DataDestination object that includes an AWS Identity and
-// Access Management (IAM) role that Amazon Forecast can assume to access the
-// Amazon S3 bucket. For more information, see aws-forecast-iam-roles.
+// You must specify a DataDestination object that includes an Identity and Access
+// Management (IAM) role that Amazon Forecast can assume to access the Amazon
+// S3 bucket. For more information, see aws-forecast-iam-roles.
 //
 // For more information, see howitworks-forecast.
 //
@@ -1268,8 +1268,8 @@ func (c *ForecastService) CreatePredictorBacktestExportJobRequest(input *CreateP
 // The <ExportTimestamp> component is in Java SimpleDate format (yyyy-MM-ddTHH-mm-ssZ).
 //
 // You must specify a DataDestination object that includes an Amazon S3 bucket
-// and an AWS Identity and Access Management (IAM) role that Amazon Forecast
-// can assume to access the Amazon S3 bucket. For more information, see aws-forecast-iam-roles.
+// and an Identity and Access Management (IAM) role that Amazon Forecast can
+// assume to access the Amazon S3 bucket. For more information, see aws-forecast-iam-roles.
 //
 // The Status of the export job must be ACTIVE before you can access the export
 // in your Amazon S3 bucket. To get the status, use the DescribePredictorBacktestExportJob
@@ -1375,11 +1375,13 @@ func (c *ForecastService) CreateWhatIfAnalysisRequest(input *CreateWhatIfAnalysi
 // For example, imagine you are a clothing retailer who is considering an end
 // of season sale to clear space for new styles. After creating a baseline forecast,
 // you can use a what-if analysis to investigate how different sales tactics
-// might affect your goals. You could create a scenario where everything is
-// given a 25% markdown and another where everything is given a fixed dollar
-// markdown. You can create a scenario where the sale lasts for 1 week and another
-// where the sale lasts for 1 month. Your what-if analysis enables you to compare
-// many different scenarios against each other.
+// might affect your goals.
+//
+// You could create a scenario where everything is given a 25% markdown, and
+// another where everything is given a fixed dollar markdown. You could create
+// a scenario where the sale lasts for one week and another where the sale lasts
+// for one month. With a what-if analysis, you can compare many different scenarios
+// against each other.
 //
 // Note that a what-if analysis is meant to display what the forecasting model
 // has learned and how it will behave in the scenarios that you are evaluating.
@@ -1584,9 +1586,9 @@ func (c *ForecastService) CreateWhatIfForecastExportRequest(input *CreateWhatIfF
 //
 // The <ExportTimestamp> component is in Java SimpleDateFormat (yyyy-MM-ddTHH-mm-ssZ).
 //
-// You must specify a DataDestination object that includes an AWS Identity and
-// Access Management (IAM) role that Amazon Forecast can assume to access the
-// Amazon S3 bucket. For more information, see aws-forecast-iam-roles.
+// You must specify a DataDestination object that includes an Identity and Access
+// Management (IAM) role that Amazon Forecast can assume to access the Amazon
+// S3 bucket. For more information, see aws-forecast-iam-roles.
 //
 // For more information, see howitworks-forecast.
 //
@@ -7621,7 +7623,7 @@ type CreateAutoPredictorInput struct {
 	// The data configuration for your dataset group and any additional datasets.
 	DataConfig *DataConfig `type:"structure"`
 
-	// An AWS Key Management Service (KMS) key and an AWS Identity and Access Management
+	// An Key Management Service (KMS) key and an Identity and Access Management
 	// (IAM) role that Amazon Forecast can assume to access the key. You can specify
 	// this optional object in the CreateDataset and CreatePredictor requests.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
@@ -7639,10 +7641,27 @@ type CreateAutoPredictorInput struct {
 
 	// The frequency of predictions in a forecast.
 	//
-	// Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min
-	// (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and
-	// 1min (1 minute). For example, "Y" indicates every year and "5min" indicates
-	// every five minutes.
+	// Valid intervals are an integer followed by Y (Year), M (Month), W (Week),
+	// D (Day), H (Hour), and min (Minute). For example, "1D" indicates every day
+	// and "15min" indicates every 15 minutes. You cannot specify a value that would
+	// overlap with the next larger frequency. That means, for example, you cannot
+	// specify a frequency of 60 minutes, because that is equivalent to 1 hour.
+	// The valid values for each frequency are the following:
+	//
+	//    * Minute - 1-59
+	//
+	//    * Hour - 1-23
+	//
+	//    * Day - 1-6
+	//
+	//    * Week - 1-4
+	//
+	//    * Month - 1-11
+	//
+	//    * Year - 1
+	//
+	// Thus, if you want every other week forecasts, specify "2W". Or, if you want
+	// quarterly forecasts, you specify "3M".
 	//
 	// The frequency must be greater than or equal to the TARGET_TIME_SERIES dataset
 	// frequency.
@@ -7961,12 +7980,12 @@ type CreateDatasetGroupInput struct {
 	//    * Tag keys and values are case sensitive.
 	//
 	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
-	//    as a prefix for keys as it is reserved for AWS use. You cannot edit or
-	//    delete tag keys with this prefix. Values can have this prefix. If a tag
-	//    value has aws as its prefix but the key does not, then Forecast considers
-	//    it to be a user tag and will count against the limit of 50 tags. Tags
-	//    with only the key prefix of aws do not count against your tags per resource
-	//    limit.
+	//    as a prefix for keys as it is reserved for Amazon Web Services use. You
+	//    cannot edit or delete tag keys with this prefix. Values can have this
+	//    prefix. If a tag value has aws as its prefix but the key does not, then
+	//    Forecast considers it to be a user tag and will count against the limit
+	//    of 50 tags. Tags with only the key prefix of aws do not count against
+	//    your tags per resource limit.
 	Tags []*Tag `type:"list"`
 }
 
@@ -8075,11 +8094,11 @@ func (s *CreateDatasetGroupOutput) SetDatasetGroupArn(v string) *CreateDatasetGr
 type CreateDatasetImportJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The location of the training data to import and an AWS Identity and Access
-	// Management (IAM) role that Amazon Forecast can assume to access the data.
-	// The training data must be stored in an Amazon S3 bucket.
+	// The location of the training data to import and an Identity and Access Management
+	// (IAM) role that Amazon Forecast can assume to access the data. The training
+	// data must be stored in an Amazon S3 bucket.
 	//
-	// If encryption is used, DataSource must include an AWS Key Management Service
+	// If encryption is used, DataSource must include an Key Management Service
 	// (KMS) key and the IAM role must allow Amazon Forecast permission to access
 	// the key. The KMS key and IAM role must match those specified in the EncryptionConfig
 	// parameter of the CreateDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html)
@@ -8113,6 +8132,11 @@ type CreateDatasetImportJobInput struct {
 	//    ZIP code (Example: US_98121).
 	GeolocationFormat *string `type:"string"`
 
+	// Specifies whether the dataset import job is a FULL or INCREMENTAL import.
+	// A FULL dataset import replaces all of the existing data with the newly imported
+	// data. An INCREMENTAL import appends the imported data to the existing data.
+	ImportMode *string `type:"string" enum:"ImportMode"`
+
 	// The optional metadata that you apply to the dataset import job to help you
 	// categorize and organize them. Each tag consists of a key and an optional
 	// value, both of which you define.
@@ -8136,12 +8160,12 @@ type CreateDatasetImportJobInput struct {
 	//    * Tag keys and values are case sensitive.
 	//
 	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
-	//    as a prefix for keys as it is reserved for AWS use. You cannot edit or
-	//    delete tag keys with this prefix. Values can have this prefix. If a tag
-	//    value has aws as its prefix but the key does not, then Forecast considers
-	//    it to be a user tag and will count against the limit of 50 tags. Tags
-	//    with only the key prefix of aws do not count against your tags per resource
-	//    limit.
+	//    as a prefix for keys as it is reserved for Amazon Web Services use. You
+	//    cannot edit or delete tag keys with this prefix. Values can have this
+	//    prefix. If a tag value has aws as its prefix but the key does not, then
+	//    Forecast considers it to be a user tag and will count against the limit
+	//    of 50 tags. Tags with only the key prefix of aws do not count against
+	//    your tags per resource limit.
 	Tags []*Tag `type:"list"`
 
 	// A single time zone for every item in your dataset. This option is ideal for
@@ -8256,6 +8280,12 @@ func (s *CreateDatasetImportJobInput) SetGeolocationFormat(v string) *CreateData
 	return s
 }
 
+// SetImportMode sets the ImportMode field's value.
+func (s *CreateDatasetImportJobInput) SetImportMode(v string) *CreateDatasetImportJobInput {
+	s.ImportMode = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateDatasetImportJobInput) SetTags(v []*Tag) *CreateDatasetImportJobInput {
 	s.Tags = v
@@ -8317,10 +8347,27 @@ type CreateDatasetInput struct {
 	// The frequency of data collection. This parameter is required for RELATED_TIME_SERIES
 	// datasets.
 	//
-	// Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min
-	// (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and
-	// 1min (1 minute). For example, "D" indicates every day and "15min" indicates
-	// every 15 minutes.
+	// Valid intervals are an integer followed by Y (Year), M (Month), W (Week),
+	// D (Day), H (Hour), and min (Minute). For example, "1D" indicates every day
+	// and "15min" indicates every 15 minutes. You cannot specify a value that would
+	// overlap with the next larger frequency. That means, for example, you cannot
+	// specify a frequency of 60 minutes, because that is equivalent to 1 hour.
+	// The valid values for each frequency are the following:
+	//
+	//    * Minute - 1-59
+	//
+	//    * Hour - 1-23
+	//
+	//    * Day - 1-6
+	//
+	//    * Week - 1-4
+	//
+	//    * Month - 1-11
+	//
+	//    * Year - 1
+	//
+	// Thus, if you want every other week forecasts, specify "2W". Or, if you want
+	// quarterly forecasts, you specify "3M".
 	DataFrequency *string `min:"1" type:"string"`
 
 	// A name for the dataset.
@@ -8347,7 +8394,7 @@ type CreateDatasetInput struct {
 	// Domain is a required field
 	Domain *string `type:"string" required:"true" enum:"Domain"`
 
-	// An AWS Key Management Service (KMS) key and the AWS Identity and Access Management
+	// An Key Management Service (KMS) key and the Identity and Access Management
 	// (IAM) role that Amazon Forecast can assume to access the key.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 
@@ -8383,12 +8430,12 @@ type CreateDatasetInput struct {
 	//    * Tag keys and values are case sensitive.
 	//
 	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
-	//    as a prefix for keys as it is reserved for AWS use. You cannot edit or
-	//    delete tag keys with this prefix. Values can have this prefix. If a tag
-	//    value has aws as its prefix but the key does not, then Forecast considers
-	//    it to be a user tag and will count against the limit of 50 tags. Tags
-	//    with only the key prefix of aws do not count against your tags per resource
-	//    limit.
+	//    as a prefix for keys as it is reserved for Amazon Web Services use. You
+	//    cannot edit or delete tag keys with this prefix. Values can have this
+	//    prefix. If a tag value has aws as its prefix but the key does not, then
+	//    Forecast considers it to be a user tag and will count against the limit
+	//    of 50 tags. Tags with only the key prefix of aws do not count against
+	//    your tags per resource limit.
 	Tags []*Tag `type:"list"`
 }
 
@@ -8534,9 +8581,9 @@ func (s *CreateDatasetOutput) SetDatasetArn(v string) *CreateDatasetOutput {
 type CreateExplainabilityExportInput struct {
 	_ struct{} `type:"structure"`
 
-	// The destination for an export job. Provide an S3 path, an AWS Identity and
-	// Access Management (IAM) role that allows Amazon Forecast to access the location,
-	// and an AWS Key Management Service (KMS) key (optional).
+	// The destination for an export job. Provide an S3 path, an Identity and Access
+	// Management (IAM) role that allows Amazon Forecast to access the location,
+	// and an Key Management Service (KMS) key (optional).
 	//
 	// Destination is a required field
 	Destination *DataDestination `type:"structure" required:"true"`
@@ -8702,12 +8749,13 @@ func (s *CreateExplainabilityExportOutput) SetExplainabilityExportArn(v string) 
 type CreateExplainabilityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The source of your data, an AWS Identity and Access Management (IAM) role
-	// that allows Amazon Forecast to access the data and, optionally, an AWS Key
-	// Management Service (KMS) key.
+	// The source of your data, an Identity and Access Management (IAM) role that
+	// allows Amazon Forecast to access the data and, optionally, an Key Management
+	// Service (KMS) key.
 	DataSource *DataSource `type:"structure"`
 
-	// Create an Explainability visualization that is viewable within the AWS console.
+	// Create an Explainability visualization that is viewable within the Amazon
+	// Web Services console.
 	EnableVisualization *bool `type:"boolean"`
 
 	// If TimePointGranularity is set to SPECIFIC, define the last time point for
@@ -8924,11 +8972,11 @@ func (s *CreateExplainabilityOutput) SetExplainabilityArn(v string) *CreateExpla
 type CreateForecastExportJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The location where you want to save the forecast and an AWS Identity and
-	// Access Management (IAM) role that Amazon Forecast can assume to access the
-	// location. The forecast must be exported to an Amazon S3 bucket.
+	// The location where you want to save the forecast and an Identity and Access
+	// Management (IAM) role that Amazon Forecast can assume to access the location.
+	// The forecast must be exported to an Amazon S3 bucket.
 	//
-	// If encryption is used, Destination must include an AWS Key Management Service
+	// If encryption is used, Destination must include an Key Management Service
 	// (KMS) key. The IAM role must allow Amazon Forecast permission to access the
 	// key.
 	//
@@ -8971,12 +9019,12 @@ type CreateForecastExportJobInput struct {
 	//    * Tag keys and values are case sensitive.
 	//
 	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
-	//    as a prefix for keys as it is reserved for AWS use. You cannot edit or
-	//    delete tag keys with this prefix. Values can have this prefix. If a tag
-	//    value has aws as its prefix but the key does not, then Forecast considers
-	//    it to be a user tag and will count against the limit of 50 tags. Tags
-	//    with only the key prefix of aws do not count against your tags per resource
-	//    limit.
+	//    as a prefix for keys as it is reserved for Amazon Web Services use. You
+	//    cannot edit or delete tag keys with this prefix. Values can have this
+	//    prefix. If a tag value has aws as its prefix but the key does not, then
+	//    Forecast considers it to be a user tag and will count against the limit
+	//    of 50 tags. Tags with only the key prefix of aws do not count against
+	//    your tags per resource limit.
 	Tags []*Tag `type:"list"`
 }
 
@@ -9142,12 +9190,12 @@ type CreateForecastInput struct {
 	//    * Tag keys and values are case sensitive.
 	//
 	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
-	//    as a prefix for keys as it is reserved for AWS use. You cannot edit or
-	//    delete tag keys with this prefix. Values can have this prefix. If a tag
-	//    value has aws as its prefix but the key does not, then Forecast considers
-	//    it to be a user tag and will count against the limit of 50 tags. Tags
-	//    with only the key prefix of aws do not count against your tags per resource
-	//    limit.
+	//    as a prefix for keys as it is reserved for Amazon Web Services use. You
+	//    cannot edit or delete tag keys with this prefix. Values can have this
+	//    prefix. If a tag value has aws as its prefix but the key does not, then
+	//    Forecast considers it to be a user tag and will count against the limit
+	//    of 50 tags. Tags with only the key prefix of aws do not count against
+	//    your tags per resource limit.
 	Tags []*Tag `type:"list"`
 
 	// Defines the set of time series that are used to create the forecasts in a
@@ -9396,9 +9444,9 @@ func (s *CreateMonitorOutput) SetMonitorArn(v string) *CreateMonitorOutput {
 type CreatePredictorBacktestExportJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The destination for an export job. Provide an S3 path, an AWS Identity and
-	// Access Management (IAM) role that allows Amazon Forecast to access the location,
-	// and an AWS Key Management Service (KMS) key (optional).
+	// The destination for an export job. Provide an S3 path, an Identity and Access
+	// Management (IAM) role that allows Amazon Forecast to access the location,
+	// and an Key Management Service (KMS) key (optional).
 	//
 	// Destination is a required field
 	Destination *DataDestination `type:"structure" required:"true"`
@@ -9585,8 +9633,8 @@ type CreatePredictorInput struct {
 
 	//
 	// The LatencyOptimized AutoML override strategy is only available in private
-	// beta. Contact AWS Support or your account manager to learn more about access
-	// privileges.
+	// beta. Contact Amazon Web Services Support or your account manager to learn
+	// more about access privileges.
 	//
 	// Used to overide the default AutoML strategy, which is to optimize predictor
 	// accuracy. To apply an AutoML strategy that minimizes training time, use LatencyOptimized.
@@ -9594,7 +9642,7 @@ type CreatePredictorInput struct {
 	// This parameter is only valid for predictors trained using AutoML.
 	AutoMLOverrideStrategy *string `type:"string" enum:"AutoMLOverrideStrategy"`
 
-	// An AWS Key Management Service (KMS) key and the AWS Identity and Access Management
+	// An Key Management Service (KMS) key and the Identity and Access Management
 	// (IAM) role that Amazon Forecast can assume to access the key.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 
@@ -9706,12 +9754,12 @@ type CreatePredictorInput struct {
 	//    * Tag keys and values are case sensitive.
 	//
 	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
-	//    as a prefix for keys as it is reserved for AWS use. You cannot edit or
-	//    delete tag keys with this prefix. Values can have this prefix. If a tag
-	//    value has aws as its prefix but the key does not, then Forecast considers
-	//    it to be a user tag and will count against the limit of 50 tags. Tags
-	//    with only the key prefix of aws do not count against your tags per resource
-	//    limit.
+	//    as a prefix for keys as it is reserved for Amazon Web Services use. You
+	//    cannot edit or delete tag keys with this prefix. Values can have this
+	//    prefix. If a tag value has aws as its prefix but the key does not, then
+	//    Forecast considers it to be a user tag and will count against the limit
+	//    of 50 tags. Tags with only the key prefix of aws do not count against
+	//    your tags per resource limit.
 	Tags []*Tag `type:"list"`
 
 	// The hyperparameters to override for model training. The hyperparameters that
@@ -10058,11 +10106,11 @@ func (s *CreateWhatIfAnalysisOutput) SetWhatIfAnalysisArn(v string) *CreateWhatI
 type CreateWhatIfForecastExportInput struct {
 	_ struct{} `type:"structure"`
 
-	// The location where you want to save the forecast and an AWS Identity and
-	// Access Management (IAM) role that Amazon Forecast can assume to access the
-	// location. The forecast must be exported to an Amazon S3 bucket.
+	// The location where you want to save the forecast and an Identity and Access
+	// Management (IAM) role that Amazon Forecast can assume to access the location.
+	// The forecast must be exported to an Amazon S3 bucket.
 	//
-	// If encryption is used, Destination must include an AWS Key Management Service
+	// If encryption is used, Destination must include an Key Management Service
 	// (KMS) key. The IAM role must allow Amazon Forecast permission to access the
 	// key.
 	//
@@ -10217,8 +10265,10 @@ type CreateWhatIfForecastInput struct {
 	// to change in the related time series dataset. A replacement time series does
 	// not need to contain all rows that are in the baseline related time series.
 	// Include only the rows (measure-dimension combinations) that you want to include
-	// in the what-if forecast. This dataset is merged with the original time series
-	// to create a transformed dataset that is used for the what-if analysis.
+	// in the what-if forecast.
+	//
+	// This dataset is merged with the original time series to create a transformed
+	// dataset that is used for the what-if analysis.
 	//
 	// This dataset should contain the items to modify (such as item_id or workforce_type),
 	// any relevant dimensions, the timestamp column, and at least one of the related
@@ -10461,9 +10511,9 @@ func (s *DataConfig) SetDatasetGroupArn(v string) *DataConfig {
 	return s
 }
 
-// The destination for an export job. Provide an S3 path, an AWS Identity and
-// Access Management (IAM) role that allows Amazon Forecast to access the location,
-// and an AWS Key Management Service (KMS) key (optional).
+// The destination for an export job. Provide an S3 path, an Identity and Access
+// Management (IAM) role that allows Amazon Forecast to access the location,
+// and an Key Management Service (KMS) key (optional).
 type DataDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -10516,9 +10566,9 @@ func (s *DataDestination) SetS3Config(v *S3Config) *DataDestination {
 	return s
 }
 
-// The source of your data, an AWS Identity and Access Management (IAM) role
-// that allows Amazon Forecast to access the data and, optionally, an AWS Key
-// Management Service (KMS) key.
+// The source of your data, an Identity and Access Management (IAM) role that
+// allows Amazon Forecast to access the data and, optionally, an Key Management
+// Service (KMS) key.
 type DataSource struct {
 	_ struct{} `type:"structure"`
 
@@ -10648,12 +10698,12 @@ type DatasetImportJobSummary struct {
 	// When the dataset import job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The location of the training data to import and an AWS Identity and Access
-	// Management (IAM) role that Amazon Forecast can assume to access the data.
-	// The training data must be stored in an Amazon S3 bucket.
+	// The location of the training data to import and an Identity and Access Management
+	// (IAM) role that Amazon Forecast can assume to access the data. The training
+	// data must be stored in an Amazon S3 bucket.
 	//
-	// If encryption is used, DataSource includes an AWS Key Management Service
-	// (KMS) key.
+	// If encryption is used, DataSource includes an Key Management Service (KMS)
+	// key.
 	DataSource *DataSource `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the dataset import job.
@@ -10661,6 +10711,9 @@ type DatasetImportJobSummary struct {
 
 	// The name of the dataset import job.
 	DatasetImportJobName *string `min:"1" type:"string"`
+
+	// The import mode of the dataset import job, FULL or INCREMENTAL.
+	ImportMode *string `type:"string" enum:"ImportMode"`
 
 	// The last time the resource was modified. The timestamp depends on the status
 	// of the job:
@@ -10730,6 +10783,12 @@ func (s *DatasetImportJobSummary) SetDatasetImportJobArn(v string) *DatasetImpor
 // SetDatasetImportJobName sets the DatasetImportJobName field's value.
 func (s *DatasetImportJobSummary) SetDatasetImportJobName(v string) *DatasetImportJobSummary {
 	s.DatasetImportJobName = &v
+	return s
+}
+
+// SetImportMode sets the ImportMode field's value.
+func (s *DatasetImportJobSummary) SetImportMode(v string) *DatasetImportJobSummary {
+	s.ImportMode = &v
 	return s
 }
 
@@ -11848,7 +11907,7 @@ type DescribeAutoPredictorOutput struct {
 	// for the predictor.
 	DatasetImportJobArns []*string `type:"list"`
 
-	// An AWS Key Management Service (KMS) key and an AWS Identity and Access Management
+	// An Key Management Service (KMS) key and an Identity and Access Management
 	// (IAM) role that Amazon Forecast can assume to access the key. You can specify
 	// this optional object in the CreateDataset and CreatePredictor requests.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
@@ -12263,11 +12322,11 @@ type DescribeDatasetImportJobOutput struct {
 	// The size of the dataset in gigabytes (GB) after the import job has finished.
 	DataSize *float64 `type:"double"`
 
-	// The location of the training data to import and an AWS Identity and Access
-	// Management (IAM) role that Amazon Forecast can assume to access the data.
+	// The location of the training data to import and an Identity and Access Management
+	// (IAM) role that Amazon Forecast can assume to access the data.
 	//
-	// If encryption is used, DataSource includes an AWS Key Management Service
-	// (KMS) key.
+	// If encryption is used, DataSource includes an Key Management Service (KMS)
+	// key.
 	DataSource *DataSource `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the dataset that the training data was
@@ -12291,6 +12350,9 @@ type DescribeDatasetImportJobOutput struct {
 
 	// The format of the geolocation attribute. Valid Values:"LAT_LONG" and "CC_POSTALCODE".
 	GeolocationFormat *string `type:"string"`
+
+	// The import mode of the dataset import job, FULL or INCREMENTAL.
+	ImportMode *string `type:"string" enum:"ImportMode"`
 
 	// The last time the resource was modified. The timestamp depends on the status
 	// of the job:
@@ -12415,6 +12477,12 @@ func (s *DescribeDatasetImportJobOutput) SetGeolocationFormat(v string) *Describ
 	return s
 }
 
+// SetImportMode sets the ImportMode field's value.
+func (s *DescribeDatasetImportJobOutput) SetImportMode(v string) *DescribeDatasetImportJobOutput {
+	s.ImportMode = &v
+	return s
+}
+
 // SetLastModificationTime sets the LastModificationTime field's value.
 func (s *DescribeDatasetImportJobOutput) SetLastModificationTime(v time.Time) *DescribeDatasetImportJobOutput {
 	s.LastModificationTime = &v
@@ -12523,8 +12591,8 @@ type DescribeDatasetOutput struct {
 	// The domain associated with the dataset.
 	Domain *string `type:"string" enum:"Domain"`
 
-	// The AWS Key Management Service (KMS) key and the AWS Identity and Access
-	// Management (IAM) role that Amazon Forecast can assume to access the key.
+	// The Key Management Service (KMS) key and the Identity and Access Management
+	// (IAM) role that Amazon Forecast can assume to access the key.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 
 	// When you create a dataset, LastModificationTime is the same as CreationTime.
@@ -12689,9 +12757,9 @@ type DescribeExplainabilityExportOutput struct {
 	// When the Explainability export was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The destination for an export job. Provide an S3 path, an AWS Identity and
-	// Access Management (IAM) role that allows Amazon Forecast to access the location,
-	// and an AWS Key Management Service (KMS) key (optional).
+	// The destination for an export job. Provide an S3 path, an Identity and Access
+	// Management (IAM) role that allows Amazon Forecast to access the location,
+	// and an Key Management Service (KMS) key (optional).
 	Destination *DataDestination `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Explainability export.
@@ -12859,9 +12927,9 @@ type DescribeExplainabilityOutput struct {
 	// When the Explainability resource was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The source of your data, an AWS Identity and Access Management (IAM) role
-	// that allows Amazon Forecast to access the data and, optionally, an AWS Key
-	// Management Service (KMS) key.
+	// The source of your data, an Identity and Access Management (IAM) role that
+	// allows Amazon Forecast to access the data and, optionally, an Key Management
+	// Service (KMS) key.
 	DataSource *DataSource `type:"structure"`
 
 	// Whether the visualization was enabled for the Explainability resource.
@@ -13607,9 +13675,9 @@ type DescribePredictorBacktestExportJobOutput struct {
 	// When the predictor backtest export job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The destination for an export job. Provide an S3 path, an AWS Identity and
-	// Access Management (IAM) role that allows Amazon Forecast to access the location,
-	// and an AWS Key Management Service (KMS) key (optional).
+	// The destination for an export job. Provide an S3 path, an Identity and Access
+	// Management (IAM) role that allows Amazon Forecast to access the location,
+	// and an Key Management Service (KMS) key (optional).
 	Destination *DataDestination `type:"structure"`
 
 	// The format of the exported data, CSV or PARQUET.
@@ -13783,8 +13851,8 @@ type DescribePredictorOutput struct {
 
 	//
 	// The LatencyOptimized AutoML override strategy is only available in private
-	// beta. Contact AWS Support or your account manager to learn more about access
-	// privileges.
+	// beta. Contact Amazon Web Services Support or your account manager to learn
+	// more about access privileges.
 	//
 	// The AutoML strategy used to train the predictor. Unless LatencyOptimized
 	// is specified, the AutoML strategy optimizes predictor accuracy.
@@ -13799,7 +13867,7 @@ type DescribePredictorOutput struct {
 	// for the predictor.
 	DatasetImportJobArns []*string `type:"list"`
 
-	// An AWS Key Management Service (KMS) key and the AWS Identity and Access Management
+	// An Key Management Service (KMS) key and the Identity and Access Management
 	// (IAM) role that Amazon Forecast can assume to access the key.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 
@@ -14286,9 +14354,9 @@ type DescribeWhatIfForecastExportOutput struct {
 	// When the what-if forecast export was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The destination for an export job. Provide an S3 path, an AWS Identity and
-	// Access Management (IAM) role that allows Amazon Forecast to access the location,
-	// and an AWS Key Management Service (KMS) key (optional).
+	// The destination for an export job. Provide an S3 path, an Identity and Access
+	// Management (IAM) role that allows Amazon Forecast to access the location,
+	// and an Key Management Service (KMS) key (optional).
 	Destination *DataDestination `type:"structure"`
 
 	// The approximate time remaining to complete the what-if forecast export, in
@@ -14475,7 +14543,7 @@ type DescribeWhatIfForecastOutput struct {
 	EstimatedTimeRemainingInMinutes *int64 `type:"long"`
 
 	// The quantiles at which probabilistic forecasts are generated. You can specify
-	// up to 5 quantiles per what-if forecast in the CreateWhatIfForecast operation.
+	// up to five quantiles per what-if forecast in the CreateWhatIfForecast operation.
 	// If you didn't specify quantiles, the default values are ["0.1", "0.5", "0.9"].
 	ForecastTypes []*string `min:"1" type:"list"`
 
@@ -14613,7 +14681,7 @@ func (s *DescribeWhatIfForecastOutput) SetWhatIfForecastName(v string) *Describe
 	return s
 }
 
-// An AWS Key Management Service (KMS) key and an AWS Identity and Access Management
+// An Key Management Service (KMS) key and an Identity and Access Management
 // (IAM) role that Amazon Forecast can assume to access the key. You can specify
 // this optional object in the CreateDataset and CreatePredictor requests.
 type EncryptionConfig struct {
@@ -14624,11 +14692,12 @@ type EncryptionConfig struct {
 	// KMSKeyArn is a required field
 	KMSKeyArn *string `type:"string" required:"true"`
 
-	// The ARN of the IAM role that Amazon Forecast can assume to access the AWS
-	// KMS key.
+	// The ARN of the IAM role that Amazon Forecast can assume to access the KMS
+	// key.
 	//
-	// Passing a role across AWS accounts is not allowed. If you pass a role that
-	// isn't in your account, you get an InvalidInputException error.
+	// Passing a role across Amazon Web Services accounts is not allowed. If you
+	// pass a role that isn't in your account, you get an InvalidInputException
+	// error.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -14934,9 +15003,9 @@ type ExplainabilityExportSummary struct {
 	// When the Explainability was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The destination for an export job. Provide an S3 path, an AWS Identity and
-	// Access Management (IAM) role that allows Amazon Forecast to access the location,
-	// and an AWS Key Management Service (KMS) key (optional).
+	// The destination for an export job. Provide an S3 path, an Identity and Access
+	// Management (IAM) role that allows Amazon Forecast to access the location,
+	// and an Key Management Service (KMS) key (optional).
 	Destination *DataDestination `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Explainability export.
@@ -15340,16 +15409,33 @@ type FeaturizationConfig struct {
 
 	// The frequency of predictions in a forecast.
 	//
-	// Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min
-	// (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and
-	// 1min (1 minute). For example, "Y" indicates every year and "5min" indicates
-	// every five minutes.
+	// Valid intervals are an integer followed by Y (Year), M (Month), W (Week),
+	// D (Day), H (Hour), and min (Minute). For example, "1D" indicates every day
+	// and "15min" indicates every 15 minutes. You cannot specify a value that would
+	// overlap with the next larger frequency. That means, for example, you cannot
+	// specify a frequency of 60 minutes, because that is equivalent to 1 hour.
+	// The valid values for each frequency are the following:
+	//
+	//    * Minute - 1-59
+	//
+	//    * Hour - 1-23
+	//
+	//    * Day - 1-6
+	//
+	//    * Week - 1-4
+	//
+	//    * Month - 1-11
+	//
+	//    * Year - 1
+	//
+	// Thus, if you want every other week forecasts, specify "2W". Or, if you want
+	// quarterly forecasts, you specify "3M".
 	//
 	// The frequency must be greater than or equal to the TARGET_TIME_SERIES dataset
 	// frequency.
 	//
 	// When a RELATED_TIME_SERIES dataset is provided, the frequency must be equal
-	// to the RELATED_TIME_SERIES dataset frequency.
+	// to the TARGET_TIME_SERIES dataset frequency.
 	//
 	// ForecastFrequency is a required field
 	ForecastFrequency *string `min:"1" type:"string" required:"true"`
@@ -15893,8 +15979,8 @@ type GetAccuracyMetricsOutput struct {
 
 	//
 	// The LatencyOptimized AutoML override strategy is only available in private
-	// beta. Contact AWS Support or your account manager to learn more about access
-	// privileges.
+	// beta. Contact Amazon Web Services Support or your account manager to learn
+	// more about access privileges.
 	//
 	// The AutoML strategy used to train the predictor. Unless LatencyOptimized
 	// is specified, the AutoML strategy optimizes predictor accuracy.
@@ -18801,9 +18887,9 @@ type PredictorBacktestExportJobSummary struct {
 	// When the predictor backtest export job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The destination for an export job. Provide an S3 path, an AWS Identity and
-	// Access Management (IAM) role that allows Amazon Forecast to access the location,
-	// and an AWS Key Management Service (KMS) key (optional).
+	// The destination for an export job. Provide an S3 path, an Identity and Access
+	// Management (IAM) role that allows Amazon Forecast to access the location,
+	// and an Key Management Service (KMS) key (optional).
 	Destination *DataDestination `type:"structure"`
 
 	// The last time the resource was modified. The timestamp depends on the status
@@ -19619,14 +19705,14 @@ func (s ResumeResourceOutput) GoString() string {
 }
 
 // The path to the file(s) in an Amazon Simple Storage Service (Amazon S3) bucket,
-// and an AWS Identity and Access Management (IAM) role that Amazon Forecast
-// can assume to access the file(s). Optionally, includes an AWS Key Management
-// Service (KMS) key. This object is part of the DataSource object that is submitted
+// and an Identity and Access Management (IAM) role that Amazon Forecast can
+// assume to access the file(s). Optionally, includes an Key Management Service
+// (KMS) key. This object is part of the DataSource object that is submitted
 // in the CreateDatasetImportJob request, and part of the DataDestination object.
 type S3Config struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key.
+	// The Amazon Resource Name (ARN) of an Key Management Service (KMS) key.
 	KMSKeyArn *string `type:"string"`
 
 	// The path to an Amazon Simple Storage Service (Amazon S3) bucket or file(s)
@@ -19635,12 +19721,13 @@ type S3Config struct {
 	// Path is a required field
 	Path *string `min:"7" type:"string" required:"true"`
 
-	// The ARN of the AWS Identity and Access Management (IAM) role that Amazon
-	// Forecast can assume to access the Amazon S3 bucket or files. If you provide
-	// a value for the KMSKeyArn key, the role must allow access to the key.
+	// The ARN of the Identity and Access Management (IAM) role that Amazon Forecast
+	// can assume to access the Amazon S3 bucket or files. If you provide a value
+	// for the KMSKeyArn key, the role must allow access to the key.
 	//
-	// Passing a role across AWS accounts is not allowed. If you pass a role that
-	// isn't in your account, you get an InvalidInputException error.
+	// Passing a role across Amazon Web Services accounts is not allowed. If you
+	// pass a role that isn't in your account, you get an InvalidInputException
+	// error.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -20273,12 +20360,12 @@ func (s *SupplementaryFeature) SetValue(v string) *SupplementaryFeature {
 //   - Tag keys and values are case sensitive.
 //
 //   - Do not use aws:, AWS:, or any upper or lowercase combination of such
-//     as a prefix for keys as it is reserved for AWS use. You cannot edit or
-//     delete tag keys with this prefix. Values can have this prefix. If a tag
-//     value has aws as its prefix but the key does not, then Forecast considers
-//     it to be a user tag and will count against the limit of 50 tags. Tags
-//     with only the key prefix of aws do not count against your tags per resource
-//     limit.
+//     as a prefix for keys as it is reserved for Amazon Web Services use. You
+//     cannot edit or delete tag keys with this prefix. Values can have this
+//     prefix. If a tag value has aws as its prefix but the key does not, then
+//     Forecast considers it to be a user tag and will count against the limit
+//     of 50 tags. Tags with only the key prefix of aws do not count against
+//     your tags per resource limit.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -20382,12 +20469,12 @@ type TagResourceInput struct {
 	//    * Tag keys and values are case sensitive.
 	//
 	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
-	//    as a prefix for keys as it is reserved for AWS use. You cannot edit or
-	//    delete tag keys with this prefix. Values can have this prefix. If a tag
-	//    value has aws as its prefix but the key does not, then Forecast considers
-	//    it to be a user tag and will count against the limit of 50 tags. Tags
-	//    with only the key prefix of aws do not count against your tags per resource
-	//    limit.
+	//    as a prefix for keys as it is reserved for Amazon Web Services use. You
+	//    cannot edit or delete tag keys with this prefix. Values can have this
+	//    prefix. If a tag value has aws as its prefix but the key does not, then
+	//    Forecast considers it to be a user tag and will count against the limit
+	//    of 50 tags. Tags with only the key prefix of aws do not count against
+	//    your tags per resource limit.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -20708,9 +20795,9 @@ func (s *TimeSeriesCondition) SetCondition(v string) *TimeSeriesCondition {
 type TimeSeriesIdentifiers struct {
 	_ struct{} `type:"structure"`
 
-	// The source of your data, an AWS Identity and Access Management (IAM) role
-	// that allows Amazon Forecast to access the data and, optionally, an AWS Key
-	// Management Service (KMS) key.
+	// The source of your data, an Identity and Access Management (IAM) role that
+	// allows Amazon Forecast to access the data and, optionally, an Key Management
+	// Service (KMS) key.
 	DataSource *DataSource `type:"structure"`
 
 	// The format of the data, either CSV or PARQUET.
@@ -20789,9 +20876,9 @@ type TimeSeriesReplacementsDataSource struct {
 	Format *string `type:"string"`
 
 	// The path to the file(s) in an Amazon Simple Storage Service (Amazon S3) bucket,
-	// and an AWS Identity and Access Management (IAM) role that Amazon Forecast
-	// can assume to access the file(s). Optionally, includes an AWS Key Management
-	// Service (KMS) key. This object is part of the DataSource object that is submitted
+	// and an Identity and Access Management (IAM) role that Amazon Forecast can
+	// assume to access the file(s). Optionally, includes an Key Management Service
+	// (KMS) key. This object is part of the DataSource object that is submitted
 	// in the CreateDatasetImportJob request, and part of the DataDestination object.
 	//
 	// S3Config is a required field
@@ -21837,6 +21924,22 @@ func FilterConditionString_Values() []string {
 	return []string{
 		FilterConditionStringIs,
 		FilterConditionStringIsNot,
+	}
+}
+
+const (
+	// ImportModeFull is a ImportMode enum value
+	ImportModeFull = "FULL"
+
+	// ImportModeIncremental is a ImportMode enum value
+	ImportModeIncremental = "INCREMENTAL"
+)
+
+// ImportMode_Values returns all elements of the ImportMode enum
+func ImportMode_Values() []string {
+	return []string{
+		ImportModeFull,
+		ImportModeIncremental,
 	}
 }
 

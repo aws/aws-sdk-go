@@ -831,6 +831,12 @@
       "refs": {
       }
     },
+    "ListAnomaliesForInsightFilters": {
+      "base": "<p> Specifies one or more service names that are used to list anomalies. </p>",
+      "refs": {
+        "ListAnomaliesForInsightRequest$Filters": "<p> Specifies one or more service names that are used to list anomalies. </p>"
+      }
+    },
     "ListAnomaliesForInsightMaxResults": {
       "base": null,
       "refs": {
@@ -1829,6 +1835,7 @@
     "ServiceCollection": {
       "base": "<p>A collection of the names of Amazon Web Services services.</p>",
       "refs": {
+        "ListAnomaliesForInsightFilters$ServiceCollection": null,
         "ProactiveInsightSummary$ServiceCollection": "<p>A collection of the names of Amazon Web Services services.</p>",
         "ProactiveOrganizationInsightSummary$ServiceCollection": null,
         "ReactiveInsightSummary$ServiceCollection": "<p>A collection of the names of Amazon Web Services services.</p>",

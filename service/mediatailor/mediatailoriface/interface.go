@@ -248,6 +248,10 @@ type MediaTailorAPI interface {
 	UpdateLiveSourceWithContext(aws.Context, *mediatailor.UpdateLiveSourceInput, ...request.Option) (*mediatailor.UpdateLiveSourceOutput, error)
 	UpdateLiveSourceRequest(*mediatailor.UpdateLiveSourceInput) (*request.Request, *mediatailor.UpdateLiveSourceOutput)
 
+	UpdateProgram(*mediatailor.UpdateProgramInput) (*mediatailor.UpdateProgramOutput, error)
+	UpdateProgramWithContext(aws.Context, *mediatailor.UpdateProgramInput, ...request.Option) (*mediatailor.UpdateProgramOutput, error)
+	UpdateProgramRequest(*mediatailor.UpdateProgramInput) (*request.Request, *mediatailor.UpdateProgramOutput)
+
 	UpdateSourceLocation(*mediatailor.UpdateSourceLocationInput) (*mediatailor.UpdateSourceLocationOutput, error)
 	UpdateSourceLocationWithContext(aws.Context, *mediatailor.UpdateSourceLocationInput, ...request.Option) (*mediatailor.UpdateSourceLocationOutput, error)
 	UpdateSourceLocationRequest(*mediatailor.UpdateSourceLocationInput) (*request.Request, *mediatailor.UpdateSourceLocationOutput)

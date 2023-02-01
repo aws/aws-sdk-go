@@ -43,6 +43,7 @@
     "UntagResource": "<p>The resource to untag.</p>",
     "UpdateChannel": "<p>Updates a channel. For information about MediaTailor channels, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html\">Working with channels</a> in the <i>MediaTailor User Guide</i>.</p>",
     "UpdateLiveSource": "<p>Updates a live source's configuration.</p>",
+    "UpdateProgram": "<p>Updates a program within a channel.</p>",
     "UpdateSourceLocation": "<p>Updates a source location. A source location is a container for sources. For more information about source locations, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-source-locations.html\">Working with source locations</a> in the <i>MediaTailor User Guide</i>.</p>",
     "UpdateVodSource": "<p>Updates a VOD source's configuration.</p>"
   },
@@ -132,6 +133,16 @@
         "CreateChannelResponse$ChannelState": "<p>Indicates whether the channel is in a running state or not.</p>",
         "DescribeChannelResponse$ChannelState": "<p>Indicates whether the channel is in a running state or not.</p>",
         "UpdateChannelResponse$ChannelState": "<p>Returns the state whether the channel is running or not.</p>"
+      }
+    },
+    "ClipRange": {
+      "base": "<p>Clip range configuration for the VOD source associated with the program.</p>",
+      "refs": {
+        "CreateProgramResponse$ClipRange": "<p>The clip range configuration settings.</p>",
+        "DescribeProgramResponse$ClipRange": "<p>The clip range configuration settings.</p>",
+        "ScheduleConfiguration$ClipRange": "<p>Program clip range configuration.</p>",
+        "UpdateProgramResponse$ClipRange": "<p>The clip range configuration settings.</p>",
+        "UpdateProgramScheduleConfiguration$ClipRange": "<p>Program clip range configuration.</p>"
       }
     },
     "ConfigurationAliasesRequest": {
@@ -615,6 +626,12 @@
         "LogConfigurationForChannel$LogTypes": "<p>The log types.</p>"
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "DescribeProgramResponse$DurationMillis": "<p>The duration of the live program in milliseconds.</p>"
+      }
+    },
     "ManifestProcessingRules": {
       "base": "<p>The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor.</p>",
       "refs": {
@@ -903,6 +920,28 @@
       "refs": {
       }
     },
+    "UpdateProgramRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProgramResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProgramScheduleConfiguration": {
+      "base": "<p>Schedule configuration parameters.</p>",
+      "refs": {
+        "UpdateProgramRequest$ScheduleConfiguration": "<p>The schedule configuration settings.</p>"
+      }
+    },
+    "UpdateProgramTransition": {
+      "base": "<p>Program transition configuration.</p>",
+      "refs": {
+        "UpdateProgramScheduleConfiguration$Transition": "<p>Program transition configuration.</p>"
+      }
+    },
     "UpdateSourceLocationRequest": {
       "base": null,
       "refs": {
@@ -973,7 +1012,9 @@
       "refs": {
         "CreateProgramRequest$AdBreaks": "<p>The ad break configuration settings.</p>",
         "CreateProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>",
-        "DescribeProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>"
+        "DescribeProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>",
+        "UpdateProgramRequest$AdBreaks": "<p>The ad break configuration settings.</p>",
+        "UpdateProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>"
       }
     },
     "__listOfAlert": {
@@ -1058,10 +1099,15 @@
       "base": null,
       "refs": {
         "AdBreak$OffsetMillis": "<p>How long (in milliseconds) after the beginning of the program that an ad starts. This value must fall within 100ms of a segment boundary, otherwise the ad break will be skipped.</p>",
+        "ClipRange$EndOffsetMillis": "<p>The end offset of the clip range, in milliseconds, starting from the beginning of the VOD source associated with the program.</p>",
+        "CreateProgramResponse$DurationMillis": "<p>The duration of the live program in milliseconds.</p>",
         "ScheduleAdBreak$ApproximateDurationSeconds": "<p>The approximate duration of the ad break, in seconds.</p>",
         "ScheduleEntry$ApproximateDurationSeconds": "<p>The approximate duration of this program, in seconds.</p>",
         "Transition$DurationMillis": "<p>The duration of the live program in seconds.</p>",
-        "Transition$ScheduledStartTimeMillis": "<p>The date and time that the program is scheduled to start, in epoch milliseconds.</p>"
+        "Transition$ScheduledStartTimeMillis": "<p>The date and time that the program is scheduled to start, in epoch milliseconds.</p>",
+        "UpdateProgramResponse$DurationMillis": "<p>The duration of the live program in milliseconds.</p>",
+        "UpdateProgramTransition$DurationMillis": "<p>The duration of the live program in seconds.</p>",
+        "UpdateProgramTransition$ScheduledStartTimeMillis": "<p>The date and time that the program is scheduled to start, in epoch milliseconds.</p>"
       }
     },
     "__mapOf__string": {
@@ -1314,6 +1360,14 @@
         "UpdateLiveSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) associated with this live source.</p>",
         "UpdateLiveSourceResponse$LiveSourceName": "<p>The name of the live source.</p>",
         "UpdateLiveSourceResponse$SourceLocationName": "<p>The name of the source location associated with the live source.</p>",
+        "UpdateProgramRequest$ChannelName": "<p>The name of the channel for this Program.</p>",
+        "UpdateProgramRequest$ProgramName": "<p>The name of the Program.</p>",
+        "UpdateProgramResponse$Arn": "<p>The ARN to assign to the program.</p>",
+        "UpdateProgramResponse$ChannelName": "<p>The name to assign to the channel for this program.</p>",
+        "UpdateProgramResponse$LiveSourceName": "<p>The name of the LiveSource for this Program.</p>",
+        "UpdateProgramResponse$ProgramName": "<p>The name to assign to this program.</p>",
+        "UpdateProgramResponse$SourceLocationName": "<p>The name to assign to the source location for this program.</p>",
+        "UpdateProgramResponse$VodSourceName": "<p>The name that's used to refer to a VOD source.</p>",
         "UpdateSourceLocationRequest$SourceLocationName": "<p>The name of the source location.</p>",
         "UpdateSourceLocationResponse$Arn": "<p>The Amazon Resource Name (ARN) associated with the source location.</p>",
         "UpdateSourceLocationResponse$SourceLocationName": "<p>The name of the source location.</p>",
@@ -1370,6 +1424,8 @@
         "UpdateChannelResponse$LastModifiedTime": "<p>The timestamp that indicates when the channel was last modified.</p>",
         "UpdateLiveSourceResponse$CreationTime": "<p>The timestamp that indicates when the live source was created.</p>",
         "UpdateLiveSourceResponse$LastModifiedTime": "<p>The timestamp that indicates when the live source was last modified.</p>",
+        "UpdateProgramResponse$CreationTime": "<p>The time the program was created.</p>",
+        "UpdateProgramResponse$ScheduledStartTime": "<p>The scheduled start time for this Program.</p>",
         "UpdateSourceLocationResponse$CreationTime": "<p>The timestamp that indicates when the source location was created.</p>",
         "UpdateSourceLocationResponse$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",
         "UpdateVodSourceResponse$CreationTime": "<p>The timestamp that indicates when the VOD source was created.</p>",
