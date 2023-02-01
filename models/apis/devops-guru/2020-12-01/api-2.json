@@ -1334,6 +1334,12 @@
       "exception":true,
       "fault":true
     },
+    "ListAnomaliesForInsightFilters":{
+      "type":"structure",
+      "members":{
+        "ServiceCollection":{"shape":"ServiceCollection"}
+      }
+    },
     "ListAnomaliesForInsightMaxResults":{
       "type":"integer",
       "max":500,
@@ -1351,7 +1357,8 @@
         "StartTimeRange":{"shape":"StartTimeRange"},
         "MaxResults":{"shape":"ListAnomaliesForInsightMaxResults"},
         "NextToken":{"shape":"UuidNextToken"},
-        "AccountId":{"shape":"AwsAccountId"}
+        "AccountId":{"shape":"AwsAccountId"},
+        "Filters":{"shape":"ListAnomaliesForInsightFilters"}
       }
     },
     "ListAnomaliesForInsightResponse":{

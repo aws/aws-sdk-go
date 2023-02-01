@@ -1,3 +1,15 @@
+Release v1.44.192 (2023-02-01)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API and documentation
+* `service/forecast`: Updates service API and documentation
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/mediatailor`: Updates service API and documentation
+* `service/sns`: Updates service documentation
+  * Additional attributes added for set-topic-attributes.
+
 Release v1.44.191 (2023-01-31)
 ===
 

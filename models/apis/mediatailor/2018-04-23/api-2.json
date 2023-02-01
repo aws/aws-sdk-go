@@ -452,6 +452,17 @@
       "output":{"shape":"UpdateLiveSourceResponse"},
       "idempotent":true
     },
+    "UpdateProgram":{
+      "name":"UpdateProgram",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/channel/{ChannelName}/program/{ProgramName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateProgramRequest"},
+      "output":{"shape":"UpdateProgramResponse"},
+      "idempotent":true
+    },
     "UpdateSourceLocation":{
       "name":"UpdateSourceLocation",
       "http":{
@@ -600,6 +611,13 @@
         "RUNNING",
         "STOPPED"
       ]
+    },
+    "ClipRange":{
+      "type":"structure",
+      "required":["EndOffsetMillis"],
+      "members":{
+        "EndOffsetMillis":{"shape":"__long"}
+      }
     },
     "ConfigurationAliasesRequest":{
       "type":"map",
@@ -796,7 +814,9 @@
         "AdBreaks":{"shape":"__listOfAdBreak"},
         "Arn":{"shape":"__string"},
         "ChannelName":{"shape":"__string"},
+        "ClipRange":{"shape":"ClipRange"},
         "CreationTime":{"shape":"__timestampUnix"},
+        "DurationMillis":{"shape":"__long"},
         "LiveSourceName":{"shape":"__string"},
         "ProgramName":{"shape":"__string"},
         "ScheduledStartTime":{"shape":"__timestampUnix"},
@@ -1163,7 +1183,9 @@
         "AdBreaks":{"shape":"__listOfAdBreak"},
         "Arn":{"shape":"__string"},
         "ChannelName":{"shape":"__string"},
+        "ClipRange":{"shape":"ClipRange"},
         "CreationTime":{"shape":"__timestampUnix"},
+        "DurationMillis":{"shape":"Long"},
         "LiveSourceName":{"shape":"__string"},
         "ProgramName":{"shape":"__string"},
         "ScheduledStartTime":{"shape":"__timestampUnix"},
@@ -1631,6 +1653,10 @@
       "type":"list",
       "member":{"shape":"LogType"}
     },
+    "Long":{
+      "type":"long",
+      "box":true
+    },
     "ManifestProcessingRules":{
       "type":"structure",
       "members":{
@@ -1863,6 +1889,7 @@
       "type":"structure",
       "required":["Transition"],
       "members":{
+        "ClipRange":{"shape":"ClipRange"},
         "Transition":{"shape":"Transition"}
       }
     },
@@ -2136,6 +2163,58 @@
           "shape":"__mapOf__string",
           "locationName":"tags"
         }
+      }
+    },
+    "UpdateProgramRequest":{
+      "type":"structure",
+      "required":[
+        "ChannelName",
+        "ProgramName",
+        "ScheduleConfiguration"
+      ],
+      "members":{
+        "AdBreaks":{"shape":"__listOfAdBreak"},
+        "ChannelName":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"ChannelName"
+        },
+        "ProgramName":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"ProgramName"
+        },
+        "ScheduleConfiguration":{"shape":"UpdateProgramScheduleConfiguration"}
+      }
+    },
+    "UpdateProgramResponse":{
+      "type":"structure",
+      "members":{
+        "AdBreaks":{"shape":"__listOfAdBreak"},
+        "Arn":{"shape":"__string"},
+        "ChannelName":{"shape":"__string"},
+        "ClipRange":{"shape":"ClipRange"},
+        "CreationTime":{"shape":"__timestampUnix"},
+        "DurationMillis":{"shape":"__long"},
+        "LiveSourceName":{"shape":"__string"},
+        "ProgramName":{"shape":"__string"},
+        "ScheduledStartTime":{"shape":"__timestampUnix"},
+        "SourceLocationName":{"shape":"__string"},
+        "VodSourceName":{"shape":"__string"}
+      }
+    },
+    "UpdateProgramScheduleConfiguration":{
+      "type":"structure",
+      "members":{
+        "ClipRange":{"shape":"ClipRange"},
+        "Transition":{"shape":"UpdateProgramTransition"}
+      }
+    },
+    "UpdateProgramTransition":{
+      "type":"structure",
+      "members":{
+        "DurationMillis":{"shape":"__long"},
+        "ScheduledStartTimeMillis":{"shape":"__long"}
       }
     },
     "UpdateSourceLocationRequest":{

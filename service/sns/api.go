@@ -5406,13 +5406,6 @@ type CreateTopicInput struct {
 	//    confirmations, or unsubscribe confirmation messages sent by Amazon SNS.
 	//    By default, SignatureVersion is set to 1.
 	//
-	//    * TracingConfig – Tracing mode of an Amazon SNS topic. By default TracingConfig
-	//    is set to PassThrough, and the topic passes through the tracing header
-	//    it receives from an Amazon SNS publisher to its subscriptions. If set
-	//    to Active, Amazon SNS will vend X-Ray segment data to topic owner account
-	//    if the sampled flag in the tracing header is true. This is only supported
-	//    on standard topics.
-	//
 	// The following attribute applies only to server-side encryption (https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html):
 	//
 	//    * KmsMasterKeyId – The ID of an Amazon Web Services managed customer
@@ -6486,13 +6479,6 @@ type GetTopicAttributesOutput struct {
 	//    for the topic.
 	//
 	//    * TopicArn – The topic's ARN.
-	//
-	//    * TracingConfig – Tracing mode of an Amazon SNS topic. By default TracingConfig
-	//    is set to PassThrough, and the topic passes through the tracing header
-	//    it receives from an Amazon SNS publisher to its subscriptions. If set
-	//    to Active, Amazon SNS will vend X-Ray segment data to topic owner account
-	//    if the sampled flag in the tracing header is true. This is only supported
-	//    on standard topics.
 	//
 	// The following attribute applies only to server-side-encryption (https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html):
 	//
@@ -8926,6 +8912,10 @@ type SetTopicAttributesInput struct {
 	// The following lists the names, descriptions, and values of the special request
 	// parameters that the SetTopicAttributes action uses:
 	//
+	//    * ApplicationSuccessFeedbackRoleArn – Indicates failed message delivery
+	//    status for an Amazon SNS topic that is subscribed to a platform application
+	//    endpoint.
+	//
 	//    * DeliveryPolicy – The policy that defines how Amazon SNS retries failed
 	//    deliveries to HTTP/S endpoints.
 	//
@@ -8934,12 +8924,58 @@ type SetTopicAttributesInput struct {
 	//    * Policy – The policy that defines who can access your topic. By default,
 	//    only the topic owner can publish or subscribe to the topic.
 	//
-	//    * TracingConfig – Tracing mode of an Amazon SNS topic. By default TracingConfig
-	//    is set to PassThrough, and the topic passes through the tracing header
-	//    it receives from an Amazon SNS publisher to its subscriptions. If set
-	//    to Active, Amazon SNS will vend X-Ray segment data to topic owner account
-	//    if the sampled flag in the tracing header is true. This is only supported
-	//    on standard topics.
+	//    * HTTP HTTPSuccessFeedbackRoleArn – Indicates successful message delivery
+	//    status for an Amazon SNS topic that is subscribed to an HTTP endpoint.
+	//    HTTPSuccessFeedbackSampleRate – Indicates percentage of successful messages
+	//    to sample for an Amazon SNS topic that is subscribed to an HTTP endpoint.
+	//    HTTPFailureFeedbackRoleArn – Indicates failed message delivery status
+	//    for an Amazon SNS topic that is subscribed to an HTTP endpoint.
+	//
+	//    * Amazon Kinesis Data Firehose FirehoseSuccessFeedbackRoleArn – Indicates
+	//    successful message delivery status for an Amazon SNS topic that is subscribed
+	//    to an Amazon Kinesis Data Firehose endpoint. FirehoseSuccessFeedbackSampleRate
+	//    – Indicates percentage of successful messages to sample for an Amazon
+	//    SNS topic that is subscribed to an Amazon Kinesis Data Firehose endpoint.
+	//    FirehoseFailureFeedbackRoleArn – Indicates failed message delivery status
+	//    for an Amazon SNS topic that is subscribed to an Amazon Kinesis Data Firehose
+	//    endpoint.
+	//
+	//    * Lambda LambdaSuccessFeedbackRoleArn – Indicates successful message
+	//    delivery status for an Amazon SNS topic that is subscribed to an Lambda
+	//    endpoint. LambdaSuccessFeedbackSampleRate – Indicates percentage of
+	//    successful messages to sample for an Amazon SNS topic that is subscribed
+	//    to an Lambda endpoint. LambdaFailureFeedbackRoleArn – Indicates failed
+	//    message delivery status for an Amazon SNS topic that is subscribed to
+	//    an Lambda endpoint.
+	//
+	//    * Platform application endpoint ApplicationSuccessFeedbackRoleArn –
+	//    Indicates successful message delivery status for an Amazon SNS topic that
+	//    is subscribed to an Amazon Web Services application endpoint. ApplicationSuccessFeedbackSampleRate
+	//    – Indicates percentage of successful messages to sample for an Amazon
+	//    SNS topic that is subscribed to an Amazon Web Services application endpoint.
+	//    ApplicationFailureFeedbackRoleArn – Indicates failed message delivery
+	//    status for an Amazon SNS topic that is subscribed to an Amazon Web Services
+	//    application endpoint. In addition to being able to configure topic attributes
+	//    for message delivery status of notification messages sent to Amazon SNS
+	//    application endpoints, you can also configure application attributes for
+	//    the delivery status of push notification messages sent to push notification
+	//    services. For example, For more information, see Using Amazon SNS Application
+	//    Attributes for Message Delivery Status (https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html).
+	//
+	//    * Amazon SQS SQSSuccessFeedbackRoleArn – Indicates successful message
+	//    delivery status for an Amazon SNS topic that is subscribed to an Amazon
+	//    SQS endpoint. SQSSuccessFeedbackSampleRate – Indicates percentage of
+	//    successful messages to sample for an Amazon SNS topic that is subscribed
+	//    to an Amazon SQS endpoint. SQSFailureFeedbackRoleArn – Indicates failed
+	//    message delivery status for an Amazon SNS topic that is subscribed to
+	//    an Amazon SQS endpoint.
+	//
+	// The <ENDPOINT>SuccessFeedbackRoleArn and <ENDPOINT>FailureFeedbackRoleArn
+	// attributes are used to give Amazon SNS write access to use CloudWatch Logs
+	// on your behalf. The <ENDPOINT>SuccessFeedbackSampleRate attribute is for
+	// specifying the sample rate percentage (0-100) of successfully delivered messages.
+	// After you configure the <ENDPOINT>FailureFeedbackRoleArn attribute, then
+	// all failed message deliveries generate CloudWatch Logs.
 	//
 	// The following attribute applies only to server-side-encryption (https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html):
 	//

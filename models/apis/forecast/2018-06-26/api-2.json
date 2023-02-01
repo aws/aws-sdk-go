@@ -1127,7 +1127,8 @@
         "UseGeolocationForTimeZone":{"shape":"UseGeolocationForTimeZone"},
         "GeolocationFormat":{"shape":"GeolocationFormat"},
         "Tags":{"shape":"Tags"},
-        "Format":{"shape":"Format"}
+        "Format":{"shape":"Format"},
+        "ImportMode":{"shape":"ImportMode"}
       }
     },
     "CreateDatasetImportJobResponse":{
@@ -1423,7 +1424,8 @@
         "Status":{"shape":"Status"},
         "Message":{"shape":"ErrorMessage"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModificationTime":{"shape":"Timestamp"}
+        "LastModificationTime":{"shape":"Timestamp"},
+        "ImportMode":{"shape":"ImportMode"}
       }
     },
     "DatasetImportJobs":{
@@ -1643,7 +1645,8 @@
         "Message":{"shape":"Message"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModificationTime":{"shape":"Timestamp"},
-        "Format":{"shape":"Format"}
+        "Format":{"shape":"Format"},
+        "ImportMode":{"shape":"ImportMode"}
       }
     },
     "DescribeDatasetRequest":{
@@ -2195,6 +2198,13 @@
       "members":{
         "ParameterRanges":{"shape":"ParameterRanges"}
       }
+    },
+    "ImportMode":{
+      "type":"string",
+      "enum":[
+        "FULL",
+        "INCREMENTAL"
+      ]
     },
     "InputDataConfig":{
       "type":"structure",

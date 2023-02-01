@@ -7012,11 +7012,46 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies one or more service names that are used to list anomalies.
+type ListAnomaliesForInsightFilters struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesForInsightFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesForInsightFilters) GoString() string {
+	return s.String()
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ListAnomaliesForInsightFilters) SetServiceCollection(v *ServiceCollection) *ListAnomaliesForInsightFilters {
+	s.ServiceCollection = v
+	return s
+}
+
 type ListAnomaliesForInsightInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the Amazon Web Services account.
 	AccountId *string `min:"12" type:"string"`
+
+	// Specifies one or more service names that are used to list anomalies.
+	Filters *ListAnomaliesForInsightFilters `type:"structure"`
 
 	// The ID of the insight. The returned anomalies belong to this insight.
 	//
@@ -7082,6 +7117,12 @@ func (s *ListAnomaliesForInsightInput) Validate() error {
 // SetAccountId sets the AccountId field's value.
 func (s *ListAnomaliesForInsightInput) SetAccountId(v string) *ListAnomaliesForInsightInput {
 	s.AccountId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListAnomaliesForInsightInput) SetFilters(v *ListAnomaliesForInsightFilters) *ListAnomaliesForInsightInput {
+	s.Filters = v
 	return s
 }
 

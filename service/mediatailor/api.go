@@ -3547,6 +3547,79 @@ func (c *MediaTailor) UpdateLiveSourceWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+const opUpdateProgram = "UpdateProgram"
+
+// UpdateProgramRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProgram operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProgram for more information on using the UpdateProgram
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateProgramRequest method.
+//	req, resp := client.UpdateProgramRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateProgram
+func (c *MediaTailor) UpdateProgramRequest(input *UpdateProgramInput) (req *request.Request, output *UpdateProgramOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProgram,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channel/{ChannelName}/program/{ProgramName}",
+	}
+
+	if input == nil {
+		input = &UpdateProgramInput{}
+	}
+
+	output = &UpdateProgramOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateProgram API operation for AWS MediaTailor.
+//
+// Updates a program within a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation UpdateProgram for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateProgram
+func (c *MediaTailor) UpdateProgram(input *UpdateProgramInput) (*UpdateProgramOutput, error) {
+	req, out := c.UpdateProgramRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProgramWithContext is the same as UpdateProgram with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProgram for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) UpdateProgramWithContext(ctx aws.Context, input *UpdateProgramInput, opts ...request.Option) (*UpdateProgramOutput, error) {
+	req, out := c.UpdateProgramRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSourceLocation = "UpdateSourceLocation"
 
 // UpdateSourceLocationRequest generates a "aws/request.Request" representing the
@@ -4390,6 +4463,54 @@ func (s *Channel) SetTags(v map[string]*string) *Channel {
 // SetTier sets the Tier field's value.
 func (s *Channel) SetTier(v string) *Channel {
 	s.Tier = &v
+	return s
+}
+
+// Clip range configuration for the VOD source associated with the program.
+type ClipRange struct {
+	_ struct{} `type:"structure"`
+
+	// The end offset of the clip range, in milliseconds, starting from the beginning
+	// of the VOD source associated with the program.
+	//
+	// EndOffsetMillis is a required field
+	EndOffsetMillis *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClipRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClipRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClipRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClipRange"}
+	if s.EndOffsetMillis == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndOffsetMillis"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndOffsetMillis sets the EndOffsetMillis field's value.
+func (s *ClipRange) SetEndOffsetMillis(v int64) *ClipRange {
+	s.EndOffsetMillis = &v
 	return s
 }
 
@@ -5382,8 +5503,14 @@ type CreateProgramOutput struct {
 	// The name to assign to the channel for this program.
 	ChannelName *string `type:"string"`
 
+	// The clip range configuration settings.
+	ClipRange *ClipRange `type:"structure"`
+
 	// The time the program was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The duration of the live program in milliseconds.
+	DurationMillis *int64 `type:"long"`
 
 	// The name of the LiveSource for this Program.
 	LiveSourceName *string `type:"string"`
@@ -5437,9 +5564,21 @@ func (s *CreateProgramOutput) SetChannelName(v string) *CreateProgramOutput {
 	return s
 }
 
+// SetClipRange sets the ClipRange field's value.
+func (s *CreateProgramOutput) SetClipRange(v *ClipRange) *CreateProgramOutput {
+	s.ClipRange = v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *CreateProgramOutput) SetCreationTime(v time.Time) *CreateProgramOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *CreateProgramOutput) SetDurationMillis(v int64) *CreateProgramOutput {
+	s.DurationMillis = &v
 	return s
 }
 
@@ -7140,8 +7279,14 @@ type DescribeProgramOutput struct {
 	// The name of the channel that the program belongs to.
 	ChannelName *string `type:"string"`
 
+	// The clip range configuration settings.
+	ClipRange *ClipRange `type:"structure"`
+
 	// The timestamp of when the program was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The duration of the live program in milliseconds.
+	DurationMillis *int64 `type:"long"`
 
 	// The name of the LiveSource for this Program.
 	LiveSourceName *string `type:"string"`
@@ -7197,9 +7342,21 @@ func (s *DescribeProgramOutput) SetChannelName(v string) *DescribeProgramOutput 
 	return s
 }
 
+// SetClipRange sets the ClipRange field's value.
+func (s *DescribeProgramOutput) SetClipRange(v *ClipRange) *DescribeProgramOutput {
+	s.ClipRange = v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeProgramOutput) SetCreationTime(v time.Time) *DescribeProgramOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *DescribeProgramOutput) SetDurationMillis(v int64) *DescribeProgramOutput {
+	s.DurationMillis = &v
 	return s
 }
 
@@ -10676,6 +10833,9 @@ func (s *ScheduleAdBreak) SetVodSourceName(v string) *ScheduleAdBreak {
 type ScheduleConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Program clip range configuration.
+	ClipRange *ClipRange `type:"structure"`
+
 	// Program transition configurations.
 	//
 	// Transition is a required field
@@ -10706,6 +10866,11 @@ func (s *ScheduleConfiguration) Validate() error {
 	if s.Transition == nil {
 		invalidParams.Add(request.NewErrParamRequired("Transition"))
 	}
+	if s.ClipRange != nil {
+		if err := s.ClipRange.Validate(); err != nil {
+			invalidParams.AddNested("ClipRange", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Transition != nil {
 		if err := s.Transition.Validate(); err != nil {
 			invalidParams.AddNested("Transition", err.(request.ErrInvalidParams))
@@ -10716,6 +10881,12 @@ func (s *ScheduleConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClipRange sets the ClipRange field's value.
+func (s *ScheduleConfiguration) SetClipRange(v *ClipRange) *ScheduleConfiguration {
+	s.ClipRange = v
+	return s
 }
 
 // SetTransition sets the Transition field's value.
@@ -12134,6 +12305,318 @@ func (s *UpdateLiveSourceOutput) SetSourceLocationName(v string) *UpdateLiveSour
 // SetTags sets the Tags field's value.
 func (s *UpdateLiveSourceOutput) SetTags(v map[string]*string) *UpdateLiveSourceOutput {
 	s.Tags = v
+	return s
+}
+
+type UpdateProgramInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ad break configuration settings.
+	AdBreaks []*AdBreak `type:"list"`
+
+	// The name of the channel for this Program.
+	//
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
+
+	// The name of the Program.
+	//
+	// ProgramName is a required field
+	ProgramName *string `location:"uri" locationName:"ProgramName" type:"string" required:"true"`
+
+	// The schedule configuration settings.
+	//
+	// ScheduleConfiguration is a required field
+	ScheduleConfiguration *UpdateProgramScheduleConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProgramInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProgramInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.ProgramName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProgramName"))
+	}
+	if s.ProgramName != nil && len(*s.ProgramName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProgramName", 1))
+	}
+	if s.ScheduleConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleConfiguration"))
+	}
+	if s.ScheduleConfiguration != nil {
+		if err := s.ScheduleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdBreaks sets the AdBreaks field's value.
+func (s *UpdateProgramInput) SetAdBreaks(v []*AdBreak) *UpdateProgramInput {
+	s.AdBreaks = v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *UpdateProgramInput) SetChannelName(v string) *UpdateProgramInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *UpdateProgramInput) SetProgramName(v string) *UpdateProgramInput {
+	s.ProgramName = &v
+	return s
+}
+
+// SetScheduleConfiguration sets the ScheduleConfiguration field's value.
+func (s *UpdateProgramInput) SetScheduleConfiguration(v *UpdateProgramScheduleConfiguration) *UpdateProgramInput {
+	s.ScheduleConfiguration = v
+	return s
+}
+
+type UpdateProgramOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ad break configuration settings.
+	AdBreaks []*AdBreak `type:"list"`
+
+	// The ARN to assign to the program.
+	Arn *string `type:"string"`
+
+	// The name to assign to the channel for this program.
+	ChannelName *string `type:"string"`
+
+	// The clip range configuration settings.
+	ClipRange *ClipRange `type:"structure"`
+
+	// The time the program was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The duration of the live program in milliseconds.
+	DurationMillis *int64 `type:"long"`
+
+	// The name of the LiveSource for this Program.
+	LiveSourceName *string `type:"string"`
+
+	// The name to assign to this program.
+	ProgramName *string `type:"string"`
+
+	// The scheduled start time for this Program.
+	ScheduledStartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name to assign to the source location for this program.
+	SourceLocationName *string `type:"string"`
+
+	// The name that's used to refer to a VOD source.
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdBreaks sets the AdBreaks field's value.
+func (s *UpdateProgramOutput) SetAdBreaks(v []*AdBreak) *UpdateProgramOutput {
+	s.AdBreaks = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateProgramOutput) SetArn(v string) *UpdateProgramOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *UpdateProgramOutput) SetChannelName(v string) *UpdateProgramOutput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetClipRange sets the ClipRange field's value.
+func (s *UpdateProgramOutput) SetClipRange(v *ClipRange) *UpdateProgramOutput {
+	s.ClipRange = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateProgramOutput) SetCreationTime(v time.Time) *UpdateProgramOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *UpdateProgramOutput) SetDurationMillis(v int64) *UpdateProgramOutput {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetLiveSourceName sets the LiveSourceName field's value.
+func (s *UpdateProgramOutput) SetLiveSourceName(v string) *UpdateProgramOutput {
+	s.LiveSourceName = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *UpdateProgramOutput) SetProgramName(v string) *UpdateProgramOutput {
+	s.ProgramName = &v
+	return s
+}
+
+// SetScheduledStartTime sets the ScheduledStartTime field's value.
+func (s *UpdateProgramOutput) SetScheduledStartTime(v time.Time) *UpdateProgramOutput {
+	s.ScheduledStartTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *UpdateProgramOutput) SetSourceLocationName(v string) *UpdateProgramOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *UpdateProgramOutput) SetVodSourceName(v string) *UpdateProgramOutput {
+	s.VodSourceName = &v
+	return s
+}
+
+// Schedule configuration parameters.
+type UpdateProgramScheduleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Program clip range configuration.
+	ClipRange *ClipRange `type:"structure"`
+
+	// Program transition configuration.
+	Transition *UpdateProgramTransition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramScheduleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramScheduleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProgramScheduleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProgramScheduleConfiguration"}
+	if s.ClipRange != nil {
+		if err := s.ClipRange.Validate(); err != nil {
+			invalidParams.AddNested("ClipRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClipRange sets the ClipRange field's value.
+func (s *UpdateProgramScheduleConfiguration) SetClipRange(v *ClipRange) *UpdateProgramScheduleConfiguration {
+	s.ClipRange = v
+	return s
+}
+
+// SetTransition sets the Transition field's value.
+func (s *UpdateProgramScheduleConfiguration) SetTransition(v *UpdateProgramTransition) *UpdateProgramScheduleConfiguration {
+	s.Transition = v
+	return s
+}
+
+// Program transition configuration.
+type UpdateProgramTransition struct {
+	_ struct{} `type:"structure"`
+
+	// The duration of the live program in seconds.
+	DurationMillis *int64 `type:"long"`
+
+	// The date and time that the program is scheduled to start, in epoch milliseconds.
+	ScheduledStartTimeMillis *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramTransition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProgramTransition) GoString() string {
+	return s.String()
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *UpdateProgramTransition) SetDurationMillis(v int64) *UpdateProgramTransition {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetScheduledStartTimeMillis sets the ScheduledStartTimeMillis field's value.
+func (s *UpdateProgramTransition) SetScheduledStartTimeMillis(v int64) *UpdateProgramTransition {
+	s.ScheduledStartTimeMillis = &v
 	return s
 }
 
