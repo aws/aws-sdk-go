@@ -5,8 +5,8 @@
     "CancelIngestion": "<p>Cancels an ongoing ingestion of data into SPICE.</p>",
     "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html\">DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html\">UpdateThemePermissions</a> </code> API operation. </p>",
     "CreateAccountSubscription": "<p>Creates an Amazon QuickSight account, or subscribes to Amazon QuickSight Q.</p> <p>The Amazon Web Services Region for the account is derived from what is configured in the CLI or SDK. This operation isn't supported in the US East (Ohio) Region, South America (Sao Paulo) Region, or Asia Pacific (Singapore) Region. </p> <p>Before you use this operation, make sure that you can connect to an existing Amazon Web Services account. If you don't have an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/setting-up-aws-sign-up.html\">Sign up for Amazon Web Services</a> in the <i>Amazon QuickSight User Guide</i>. The person who signs up for Amazon QuickSight needs to have the correct Identity and Access Management (IAM) permissions. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/iam-policy-examples.html\">IAM Policy Examples for Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>If your IAM policy includes both the <code>Subscribe</code> and <code>CreateAccountSubscription</code> actions, make sure that both actions are set to <code>Allow</code>. If either action is set to <code>Deny</code>, the <code>Deny</code> action prevails and your API call fails.</p> <p>You can't pass an existing IAM role to access other Amazon Web Services services using this API operation. To pass your existing IAM role to Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html#security-create-iam-role\">Passing IAM roles to Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>You can't set default resource access on the new account from the Amazon QuickSight API. Instead, add default resource access from the Amazon QuickSight console. For more information about setting default resource access to Amazon Web Services services, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/scoping-policies-defaults.html\">Setting default resource access to Amazon Web Services services</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
-    "CreateAnalysis": "<p>Creates an analysis in Amazon QuickSight.</p>",
-    "CreateDashboard": "<p>Creates a dashboard from a template. To first create a template, see the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation.</p> <p>A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account.</p>",
+    "CreateAnalysis": "<p>Creates an analysis in Amazon QuickSight. Analyses can be created either from a template or from an <code>AnalysisDefinition</code>.</p>",
+    "CreateDashboard": "<p>Creates a dashboard from either a template or directly with a <code>DashboardDefinition</code>. To first create a template, see the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation.</p> <p>A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account.</p>",
     "CreateDataSet": "<p>Creates a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>",
     "CreateDataSource": "<p>Creates a data source.</p>",
     "CreateFolder": "<p>Creates an empty shared folder.</p>",
@@ -16,7 +16,7 @@
     "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy, identified by its Amazon Resource Name (ARN). This policy assignment is attached to the specified groups or users of Amazon QuickSight. Assignment names are unique per Amazon Web Services account. To avoid overwriting rules in other namespaces, use assignment names that are unique.</p>",
     "CreateIngestion": "<p>Creates and starts a new SPICE ingestion for a dataset. You can manually refresh datasets in an Enterprise edition account 32 times in a 24-hour period. You can manually refresh datasets in a Standard edition account 8 times in a 24-hour period. Each 24-hour period is measured starting 24 hours before the current date and time.</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"http://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the Amazon Web Services Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
     "CreateNamespace": "<p>(Enterprise edition only) Creates a new namespace for you to use with Amazon QuickSight.</p> <p>A namespace allows you to isolate the Amazon QuickSight users and groups that are registered for that namespace. Users that access the namespace can share assets only with other users or groups in the same namespace. They can't see users and groups in other namespaces. You can create a namespace after your Amazon Web Services account is subscribed to Amazon QuickSight. The namespace must be unique within the Amazon Web Services account. By default, there is a limit of 100 namespaces per Amazon Web Services account. To increase your limit, create a ticket with Amazon Web Services Support. </p>",
-    "CreateTemplate": "<p>Creates a template from an existing Amazon QuickSight analysis or template. You can use the resulting template to create a dashboard.</p> <p>A <i>template</i> is an entity in Amazon QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
+    "CreateTemplate": "<p>Creates a template either from a <code>TemplateDefinition</code> or from an existing Amazon QuickSight analysis or template. You can use the resulting template to create additional dashboards, templates, or analyses.</p> <p>A <i>template</i> is an entity in Amazon QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
     "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
     "CreateTheme": "<p>Creates a theme.</p> <p>A <i>theme</i> is set of configuration options for color and layout. Themes apply to analyses and dashboards. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "CreateThemeAlias": "<p>Creates a theme alias for a theme.</p>",
@@ -261,7 +261,7 @@
     "AnalysisDefinition": {
       "base": "<p>The definition of an analysis.</p>",
       "refs": {
-        "CreateAnalysisRequest$Definition": "<p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>",
+        "CreateAnalysisRequest$Definition": "<p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>",
         "DescribeAnalysisDefinitionResponse$Definition": "<p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>",
         "UpdateAnalysisRequest$Definition": "<p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>"
       }
@@ -316,7 +316,7 @@
     "AnalysisSourceEntity": {
       "base": "<p>The source entity of an analysis.</p>",
       "refs": {
-        "CreateAnalysisRequest$SourceEntity": "<p>A source entity to use for the analysis that you're creating. This metadata structure contains details that describe a source template and one or more datasets.</p>",
+        "CreateAnalysisRequest$SourceEntity": "<p>A source entity to use for the analysis that you're creating. This metadata structure contains details that describe a source template and one or more datasets.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>",
         "UpdateAnalysisRequest$SourceEntity": "<p>A source entity to use for the analysis that you're updating. This metadata structure contains details that describe a source template and one or more datasets.</p>"
       }
     },
@@ -769,6 +769,8 @@
         "HistogramConfiguration$YAxisDisplayOptions": "<p>The options that determine the presentation of the y-axis.</p>",
         "LineChartConfiguration$XAxisDisplayOptions": "<p>The options that determine the presentation of the x-axis.</p>",
         "LineSeriesAxisDisplayOptions$AxisOptions": "<p>The options that determine the presentation of the line series axis.</p>",
+        "RadarChartConfiguration$CategoryAxis": "<p>The category axis of a radar chart.</p>",
+        "RadarChartConfiguration$ColorAxis": "<p>The color axis of a radar chart.</p>",
         "ScatterPlotConfiguration$XAxisDisplayOptions": "<p>The label display options (grid line, range, scale, and axis step) of the scatter plot's x-axis.</p>",
         "ScatterPlotConfiguration$YAxisDisplayOptions": "<p>The label display options (grid line, range, scale, and axis step) of the scatter plot's y-axis.</p>",
         "WaterfallChartConfiguration$CategoryAxisDisplayOptions": "<p>The options that determine the presentation of the category axis.</p>",
@@ -1193,6 +1195,8 @@
         "LineChartConfiguration$SecondaryYAxisLabelOptions": "<p>The options that determine the presentation of the secondary y-axis label.</p>",
         "PieChartConfiguration$CategoryLabelOptions": "<p>The label options of the group/color that is displayed in a pie chart.</p>",
         "PieChartConfiguration$ValueLabelOptions": "<p>The label options for the value that is displayed in a pie chart.</p>",
+        "RadarChartConfiguration$CategoryLabelOptions": "<p>The category label options of a radar chart.</p>",
+        "RadarChartConfiguration$ColorLabelOptions": "<p>The color label options of a radar chart.</p>",
         "ScatterPlotConfiguration$XAxisLabelOptions": "<p>The label options (label text, label visibility, and sort icon visibility) of the scatter plot's x-axis.</p>",
         "ScatterPlotConfiguration$YAxisLabelOptions": "<p>The label options (label text, label visibility, and sort icon visibility) of the scatter plot's y-axis.</p>",
         "TreeMapConfiguration$GroupLabelOptions": "<p>The label options (label text, label visibility) of the groups that are displayed in a tree map.</p>",
@@ -1344,6 +1348,7 @@
         "KPIVisual$ColumnHierarchies": "<p>The column hierarchy that is used during drill-downs and drill-ups.</p>",
         "LineChartVisual$ColumnHierarchies": "<p>The column hierarchy that is used during drill-downs and drill-ups.</p>",
         "PieChartVisual$ColumnHierarchies": "<p>The column hierarchy that is used during drill-downs and drill-ups.</p>",
+        "RadarChartVisual$ColumnHierarchies": "<p>The column hierarchy that is used during drill-downs and drill-ups.</p>",
         "ScatterPlotVisual$ColumnHierarchies": "<p>The column hierarchy that is used during drill-downs and drill-ups.</p>",
         "TreeMapVisual$ColumnHierarchies": "<p>The column hierarchy that is used during drill-downs and drill-ups.</p>",
         "WaterfallVisual$ColumnHierarchies": "<p>The column hierarchy that is used during drill-downs and drill-ups.</p>",
@@ -1963,8 +1968,15 @@
       "base": null,
       "refs": {
         "AdHocFilteringOption$AvailabilityStatus": "<p>Availability status.</p>",
-        "ExportHiddenFieldsOption$AvailabilityStatus": "<p/>",
-        "ExportToCSVOption$AvailabilityStatus": "<p>Availability status.</p>"
+        "DataPointDrillUpDownOption$AvailabilityStatus": "<p>The status of the drill down options of data points.</p>",
+        "DataPointMenuLabelOption$AvailabilityStatus": "<p>The status of the data point menu options.</p>",
+        "DataPointTooltipOption$AvailabilityStatus": "<p>The status of the data point tool tip options.</p>",
+        "ExportHiddenFieldsOption$AvailabilityStatus": "<p>The status of the export hidden fields options of a dashbaord.</p>",
+        "ExportToCSVOption$AvailabilityStatus": "<p>Availability status.</p>",
+        "ExportWithHiddenFieldsOption$AvailabilityStatus": "<p>The status of the export with hidden fields options.</p>",
+        "SheetLayoutElementMaximizationOption$AvailabilityStatus": "<p>The status of the sheet layout maximization options of a dashbaord.</p>",
+        "VisualAxisSortOption$AvailabilityStatus": "<p>The availaiblity status of a visual's axis sort options.</p>",
+        "VisualMenuOption$AvailabilityStatus": "<p>The availaiblity status of a visual's menu options.</p>"
       }
     },
     "DashboardError": {
@@ -2006,6 +2018,7 @@
       "base": "<p>Dashboard publish options.</p>",
       "refs": {
         "CreateDashboardRequest$DashboardPublishOptions": "<p>Options for publishing the dashboard when you create it:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, Amazon QuickSight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .CSV format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default. </p> </li> </ul>",
+        "DescribeDashboardDefinitionResponse$DashboardPublishOptions": "<p>Options for publishing the dashboard:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, Amazon QuickSight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .CSV format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default. </p> </li> </ul>",
         "UpdateDashboardRequest$DashboardPublishOptions": "<p>Options for publishing the dashboard when you create it:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, Amazon QuickSight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .CSV format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default. </p> </li> </ul>"
       }
     },
@@ -2024,7 +2037,7 @@
     "DashboardSourceEntity": {
       "base": "<p>Dashboard source entity.</p>",
       "refs": {
-        "CreateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
+        "CreateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>",
         "UpdateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you update the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>"
       }
     },
@@ -2062,7 +2075,7 @@
     "DashboardVersionDefinition": {
       "base": "<p>The contents of a dashboard.</p>",
       "refs": {
-        "CreateDashboardRequest$Definition": "<p>The definition of a dashboard.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>",
+        "CreateDashboardRequest$Definition": "<p>The definition of a dashboard.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>",
         "DescribeDashboardDefinitionResponse$Definition": "<p>The definition of a dashboard.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>",
         "UpdateDashboardRequest$Definition": "<p>The definition of a dashboard.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>"
       }
@@ -2087,9 +2100,9 @@
       }
     },
     "DashboardVisualPublishOptions": {
-      "base": "<p/>",
+      "base": "<p>The visual publish options of a visual in a dashboard</p>",
       "refs": {
-        "DashboardPublishOptions$VisualPublishOptions": "<p/>"
+        "DashboardPublishOptions$VisualPublishOptions": "<p>The visual publish options of a visual in a dashboard.</p>"
       }
     },
     "DataBarsOptions": {
@@ -2201,6 +2214,24 @@
       "refs": {
         "DataPathSort$SortPaths": "<p>The list of data paths that need to be sorted.</p>",
         "PivotTableDataPathOption$DataPathList": "<p>The list of data path values for the data path options.</p>"
+      }
+    },
+    "DataPointDrillUpDownOption": {
+      "base": "<p>The drill down options for data points in a dashbaord.</p>",
+      "refs": {
+        "DashboardPublishOptions$DataPointDrillUpDownOption": "<p>The drill-down options of data points in a dashboard.</p>"
+      }
+    },
+    "DataPointMenuLabelOption": {
+      "base": "<p>The data point menu options of a dashboard.</p>",
+      "refs": {
+        "DashboardPublishOptions$DataPointMenuLabelOption": "<p>The data point menu label options of a dashboard.</p>"
+      }
+    },
+    "DataPointTooltipOption": {
+      "base": "<p>The data point tooltip options.</p>",
+      "refs": {
+        "DashboardPublishOptions$DataPointTooltipOption": "<p>The data point tool tip options of a dashboard.</p>"
       }
     },
     "DataSet": {
@@ -3121,6 +3152,8 @@
         "PeriodOverPeriodComputation$Time": "<p>The time field that is used in a computation.</p>",
         "PeriodToDateComputation$Time": "<p>The time field that is used in a computation.</p>",
         "PivotTableDimensionList$member": null,
+        "RadarChartCategoryFieldList$member": null,
+        "RadarChartColorFieldList$member": null,
         "SmallMultiplesDimensionFieldList$member": null,
         "TopBottomMoversComputation$Time": "<p>The time field that is used in a computation.</p>",
         "TopBottomMoversComputation$Category": "<p>The category field that is used in a computation.</p>",
@@ -3278,7 +3311,7 @@
       "base": null,
       "refs": {
         "AnalysisError$ViolatedEntities": "<p/>",
-        "DashboardError$ViolatedEntities": "<p/>",
+        "DashboardError$ViolatedEntities": "<p>Lists the violated entities that caused the dashboard error.</p>",
         "TemplateError$ViolatedEntities": "<p>An error path that shows which entities caused the template error.</p>"
       }
     },
@@ -3335,15 +3368,21 @@
       }
     },
     "ExportHiddenFieldsOption": {
-      "base": "<p/>",
+      "base": "<p>Determines if hidden fields are included in an exported dashboard.</p>",
       "refs": {
-        "DashboardVisualPublishOptions$ExportHiddenFieldsOption": "<p/>"
+        "DashboardVisualPublishOptions$ExportHiddenFieldsOption": "<p>Determines if hidden fields are included in an exported dashboard.</p>"
       }
     },
     "ExportToCSVOption": {
       "base": "<p>Export to .csv option.</p>",
       "refs": {
         "DashboardPublishOptions$ExportToCSVOption": "<p>Export to .csv option.</p>"
+      }
+    },
+    "ExportWithHiddenFieldsOption": {
+      "base": "<p>Determines whether or not hidden fields are visible on exported dashbaords.</p>",
+      "refs": {
+        "DashboardPublishOptions$ExportWithHiddenFieldsOption": "<p>Determines if hidden fields are exported with a dashboard.</p>"
       }
     },
     "Expression": {
@@ -3476,6 +3515,8 @@
         "LineChartSortConfiguration$SmallMultiplesSort": "<p>The sort configuration of the small multiples field.</p>",
         "PieChartSortConfiguration$CategorySort": "<p>The sort configuration of the category fields.</p>",
         "PieChartSortConfiguration$SmallMultiplesSort": "<p>The sort configuration of the small multiples field.</p>",
+        "RadarChartSortConfiguration$CategorySort": "<p>The category sort options of a radar chart.</p>",
+        "RadarChartSortConfiguration$ColorSort": "<p>The color sort configuration of a radar chart.</p>",
         "SankeyDiagramSortConfiguration$WeightSort": "<p>The sort configuration of the weight fields.</p>",
         "TreeMapSortConfiguration$TreeMapSort": "<p>The sort configuration of group by fields.</p>",
         "WaterfallChartSortConfiguration$CategorySort": "<p>The sort configuration of the category fields.</p>",
@@ -4427,6 +4468,8 @@
         "FunnelChartDataLabelOptions$LabelColor": "<p>The color of the data label text.</p>",
         "GradientStop$Color": "<p>Determines the color.</p>",
         "LineChartMarkerStyleSettings$MarkerColor": "<p>Color of marker in the series.</p>",
+        "RadarChartConfiguration$AlternateBandEvenColor": "<p>The color of the even-numbered alternate bands of a radar chart.</p>",
+        "RadarChartConfiguration$AlternateBandOddColor": "<p>The color of the odd-numbered alternate bands of a radar chart.</p>",
         "ReferenceLineLabelConfiguration$FontColor": "<p>The font color configuration of the label in a reference line.</p>",
         "ReferenceLineStyleConfiguration$Color": "<p>The hex color of the reference line.</p>",
         "RowAlternateColorList$member": null,
@@ -4816,6 +4859,8 @@
         "LineChartSortConfiguration$SmallMultiplesLimitConfiguration": "<p>The limit on the number of small multiples panels that are displayed.</p>",
         "PieChartSortConfiguration$CategoryItemsLimit": "<p>The limit on the number of categories that are displayed in a pie chart.</p>",
         "PieChartSortConfiguration$SmallMultiplesLimitConfiguration": "<p>The limit on the number of small multiples panels that are displayed.</p>",
+        "RadarChartSortConfiguration$CategoryItemsLimit": "<p>The category items limit for a radar chart.</p>",
+        "RadarChartSortConfiguration$ColorItemsLimit": "<p>The color items limit of a radar chart.</p>",
         "SankeyDiagramSortConfiguration$SourceItemsLimit": "<p>The limit on the number of source nodes that are displayed in a sankey diagram.</p>",
         "SankeyDiagramSortConfiguration$DestinationItemsLimit": "<p>The limit on the number of destination nodes that are displayed in a sankey diagram.</p>",
         "TreeMapSortConfiguration$TreeMapGroupItemsLimitConfiguration": "<p>The limit on the number of groups that are displayed.</p>",
@@ -4965,6 +5010,7 @@
         "HeatMapConfiguration$Legend": "<p>The legend display setup of the visual.</p>",
         "LineChartConfiguration$Legend": "<p>The legend configuration of a line chart.</p>",
         "PieChartConfiguration$Legend": "<p>The legend display setup of the visual.</p>",
+        "RadarChartConfiguration$Legend": "<p>The legend display setup of the visual.</p>",
         "ScatterPlotConfiguration$Legend": "<p>The legend display setup of the visual.</p>",
         "TreeMapConfiguration$Legend": "<p>The legend display setup of the visual.</p>",
         "WaterfallChartConfiguration$Legend": "<p>The legend configuration of a waterfall visual.</p>"
@@ -5499,6 +5545,7 @@
         "PeriodOverPeriodComputation$Value": "<p>The value field that is used in a computation.</p>",
         "PeriodToDateComputation$Value": "<p>The value field that is used in a computation.</p>",
         "PivotMeasureFieldList$member": null,
+        "RadarChartValuesFieldList$member": null,
         "TopBottomMoversComputation$Value": "<p>The value field that is used in a computation.</p>",
         "TopBottomRankedComputation$Value": "<p>The value field that is used in a computation.</p>",
         "TotalAggregationComputation$Value": "<p>The value field that is used in a computation.</p>",
@@ -6457,6 +6504,78 @@
     "QuickSightUserNotFoundException": {
       "base": "<p>The user with the provided name isn't found. This error can happen in any operation that requires finding a user based on a provided user name, such as <code>DeleteUser</code>, <code>DescribeUser</code>, and so on.</p>",
       "refs": {
+      }
+    },
+    "RadarChartAggregatedFieldWells": {
+      "base": "<p>The aggregated field well configuration of a <code>RadarChartVisual</code>.</p>",
+      "refs": {
+        "RadarChartFieldWells$RadarChartAggregatedFieldWells": "<p>The aggregated field wells of a radar chart visual.</p>"
+      }
+    },
+    "RadarChartAreaStyleSettings": {
+      "base": "<p>The configured style settings of a radar chart.</p>",
+      "refs": {
+        "RadarChartSeriesSettings$AreaStyleSettings": "<p>The area style settings of a radar chart.</p>"
+      }
+    },
+    "RadarChartCategoryFieldList": {
+      "base": null,
+      "refs": {
+        "RadarChartAggregatedFieldWells$Category": "<p>The aggregated field well categories of a radar chart.</p>"
+      }
+    },
+    "RadarChartColorFieldList": {
+      "base": null,
+      "refs": {
+        "RadarChartAggregatedFieldWells$Color": "<p>The color that are assigned to the aggregated field wells of a radar chart.</p>"
+      }
+    },
+    "RadarChartConfiguration": {
+      "base": "<p>The configuration of a <code>RadarChartVisual</code>.</p>",
+      "refs": {
+        "RadarChartVisual$ChartConfiguration": "<p>The configuration settings of the visual.</p>"
+      }
+    },
+    "RadarChartFieldWells": {
+      "base": "<p>The field wells of a radar chart visual.</p>",
+      "refs": {
+        "RadarChartConfiguration$FieldWells": "<p>The field well configuration of a <code>RadarChartVisual</code>.</p>"
+      }
+    },
+    "RadarChartSeriesSettings": {
+      "base": "<p>The series settings of a radar chart.</p>",
+      "refs": {
+        "RadarChartConfiguration$BaseSeriesSettings": "<p>The base sreies settings of a radar chart.</p>"
+      }
+    },
+    "RadarChartShape": {
+      "base": null,
+      "refs": {
+        "RadarChartConfiguration$Shape": "<p>The shape of the radar chart.</p>"
+      }
+    },
+    "RadarChartSortConfiguration": {
+      "base": "<p>The sort configuration of a <code>RadarChartVisual</code>.</p>",
+      "refs": {
+        "RadarChartConfiguration$SortConfiguration": "<p>The sort configuration of a <code>RadarChartVisual</code>.</p>"
+      }
+    },
+    "RadarChartStartAngle": {
+      "base": null,
+      "refs": {
+        "RadarChartConfiguration$StartAngle": "<p>The start angle of a radar chart's axis.</p>"
+      }
+    },
+    "RadarChartValuesFieldList": {
+      "base": null,
+      "refs": {
+        "RadarChartAggregatedFieldWells$Values": "<p>The values that are assigned to the aggregated field wells of a radar chart.</p>"
+      }
+    },
+    "RadarChartVisual": {
+      "base": "<p>A radar chart visual.</p>",
+      "refs": {
+        "Visual$RadarChartVisual": "<p>A radar chart visual.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/radar-chart.html\">Using radar charts</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
       }
     },
     "RangeEndsLabelType": {
@@ -7449,6 +7568,12 @@
         "FreeFormLayoutElement$RenderingRules": "<p>The rendering rules that determine when an element should be displayed within a free-form layout.</p>"
       }
     },
+    "SheetLayoutElementMaximizationOption": {
+      "base": "<p>The sheet layout maximization options of a dashbaord.</p>",
+      "refs": {
+        "DashboardPublishOptions$SheetLayoutElementMaximizationOption": "<p>The sheet layout maximization options of a dashbaord.</p>"
+      }
+    },
     "SheetList": {
       "base": null,
       "refs": {
@@ -7631,6 +7756,7 @@
         "PeriodToDateComputation$ComputationId": "<p>The ID for a computation.</p>",
         "PieChartVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers.</p>",
         "PivotTableVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers..</p>",
+        "RadarChartVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers.</p>",
         "RegisteredUserDashboardEmbeddingConfiguration$InitialDashboardId": "<p>The dashboard ID for the dashboard that you want the user to see first. This ID is included in the output URL. When the URL in response is accessed, Amazon QuickSight renders this dashboard if the user has permissions to view it.</p> <p>If the user does not have permission to view this dashboard, they see a permissions error message.</p>",
         "RelativeDatesFilter$FilterId": "<p>An identifier that uniquely identifies a filter within a dashboard, analysis, or template.</p>",
         "RestoreAnalysisRequest$AnalysisId": "<p>The ID of the analysis that you're restoring.</p>",
@@ -8676,7 +8802,7 @@
     "TemplateSourceEntity": {
       "base": "<p>The source entity of the template.</p>",
       "refs": {
-        "CreateTemplateRequest$SourceEntity": "<p>The entity that you are using as a source when you create the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
+        "CreateTemplateRequest$SourceEntity": "<p>The entity that you are using as a source when you create the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>",
         "UpdateTemplateRequest$SourceEntity": "<p>The entity that you are using as a source when you update the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region;. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>"
       }
     },
@@ -8707,7 +8833,7 @@
     "TemplateVersionDefinition": {
       "base": "<p>The detailed definition of a template.</p>",
       "refs": {
-        "CreateTemplateRequest$Definition": "<p>The definition of a template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>",
+        "CreateTemplateRequest$Definition": "<p>The definition of a template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>",
         "DescribeTemplateDefinitionResponse$Definition": "<p>The definition of the template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>",
         "UpdateTemplateRequest$Definition": "<p>The definition of a template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>"
       }
@@ -9650,6 +9776,8 @@
         "PivotTablePaginatedReportOptions$OverflowColumnHeaderVisibility": "<p>The visibility of the repeating header rows on each page.</p>",
         "PivotTotalOptions$TotalsVisibility": "<p>The visibility configuration for the total cells.</p>",
         "ProgressBarOptions$Visibility": "<p>The visibility of the progress bar.</p>",
+        "RadarChartAreaStyleSettings$Visibility": "<p>The visibility settings of a radar chart.</p>",
+        "RadarChartConfiguration$AlternateBandColorsVisibility": "<p>Determines the visibility of the colors of alternatign bands in a radar chart.</p>",
         "RangeEndsLabelType$Visibility": "<p>The visibility of the range ends label.</p>",
         "ScrollBarOptions$Visibility": "<p>The visibility of the data zoom scroll bar.</p>",
         "SecondaryValueOptions$Visibility": "<p>Determines the visibility of the secondary value.</p>",
@@ -9692,6 +9820,12 @@
         "VisualList$member": null
       }
     },
+    "VisualAxisSortOption": {
+      "base": "<p>The axis sort options for a visual.</p>",
+      "refs": {
+        "DashboardPublishOptions$VisualAxisSortOption": "<p>The axis sort options of a dashboard.</p>"
+      }
+    },
     "VisualCustomAction": {
       "base": "<p>A custom action defined on a visual.</p>",
       "refs": {
@@ -9717,6 +9851,7 @@
         "LineChartVisual$Actions": "<p>The list of custom actions that are configured for a visual.</p>",
         "PieChartVisual$Actions": "<p>The list of custom actions that are configured for a visual.</p>",
         "PivotTableVisual$Actions": "<p>The list of custom actions that are configured for a visual.</p>",
+        "RadarChartVisual$Actions": "<p>The list of custom actions that are configured for a visual.</p>",
         "SankeyDiagramVisual$Actions": "<p>The list of custom actions that are configured for a visual.</p>",
         "ScatterPlotVisual$Actions": "<p>The list of custom actions that are configured for a visual.</p>",
         "TableVisual$Actions": "<p>The list of custom actions that are configured for a visual.</p>",
@@ -9755,6 +9890,12 @@
         "SheetDefinition$Visuals": "<p>A list of the visuals that are on a sheet. Visual placement is determined by the layout of the sheet.</p>"
       }
     },
+    "VisualMenuOption": {
+      "base": "<p>The menu options for a visual.</p>",
+      "refs": {
+        "DashboardPublishOptions$VisualMenuOption": "<p>The menu options of a visual in a dashboard.</p>"
+      }
+    },
     "VisualPalette": {
       "base": "<p>The visual display options for the visual palette.</p>",
       "refs": {
@@ -9767,6 +9908,7 @@
         "HistogramConfiguration$VisualPalette": "<p>The visual palette configuration of a histogram.</p>",
         "LineChartConfiguration$VisualPalette": "<p>The visual palette configuration of a line chart.</p>",
         "PieChartConfiguration$VisualPalette": "<p>The palette (chart color) display setup of the visual.</p>",
+        "RadarChartConfiguration$VisualPalette": "<p>The palette (chart color) display setup of the visual.</p>",
         "ScatterPlotConfiguration$VisualPalette": "<p>The palette (chart color) display setup of the visual.</p>",
         "WaterfallChartConfiguration$VisualPalette": "<p>The visual palette configuration of a waterfall visual.</p>"
       }
@@ -9789,6 +9931,7 @@
         "LineChartVisual$Subtitle": "<p>The subtitle that is displayed on the visual.</p>",
         "PieChartVisual$Subtitle": "<p>The subtitle that is displayed on the visual.</p>",
         "PivotTableVisual$Subtitle": "<p>The subtitle that is displayed on the visual.</p>",
+        "RadarChartVisual$Subtitle": "<p>The subtitle that is displayed on the visual.</p>",
         "SankeyDiagramVisual$Subtitle": "<p>The subtitle that is displayed on the visual.</p>",
         "ScatterPlotVisual$Subtitle": "<p>The subtitle that is displayed on the visual.</p>",
         "TableVisual$Subtitle": "<p>The subtitle that is displayed on the visual.</p>",
@@ -9815,6 +9958,7 @@
         "LineChartVisual$Title": "<p>The title that is displayed on the visual.</p>",
         "PieChartVisual$Title": "<p>The title that is displayed on the visual.</p>",
         "PivotTableVisual$Title": "<p>The title that is displayed on the visual.</p>",
+        "RadarChartVisual$Title": "<p>The title that is displayed on the visual.</p>",
         "SankeyDiagramVisual$Title": "<p>The title that is displayed on the visual.</p>",
         "ScatterPlotVisual$Title": "<p>The title that is displayed on the visual.</p>",
         "TableVisual$Title": "<p>The title that is displayed on the visual.</p>",

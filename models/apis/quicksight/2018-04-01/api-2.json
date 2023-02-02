@@ -3163,7 +3163,8 @@
       "type":"structure",
       "required":[
         "FilterId",
-        "Column"
+        "Column",
+        "Configuration"
       ],
       "members":{
         "FilterId":{"shape":"ShortRestrictiveResourceId"},
@@ -4609,7 +4610,18 @@
         "AdHocFilteringOption":{"shape":"AdHocFilteringOption"},
         "ExportToCSVOption":{"shape":"ExportToCSVOption"},
         "SheetControlsOption":{"shape":"SheetControlsOption"},
-        "VisualPublishOptions":{"shape":"DashboardVisualPublishOptions"}
+        "VisualPublishOptions":{
+          "shape":"DashboardVisualPublishOptions",
+          "deprecated":true,
+          "deprecatedMessage":"VisualPublishOptions property will reach its end of standard support in a future release. To perform this action, use ExportWithHiddenFields."
+        },
+        "SheetLayoutElementMaximizationOption":{"shape":"SheetLayoutElementMaximizationOption"},
+        "VisualMenuOption":{"shape":"VisualMenuOption"},
+        "VisualAxisSortOption":{"shape":"VisualAxisSortOption"},
+        "ExportWithHiddenFieldsOption":{"shape":"ExportWithHiddenFieldsOption"},
+        "DataPointDrillUpDownOption":{"shape":"DataPointDrillUpDownOption"},
+        "DataPointMenuLabelOption":{"shape":"DataPointMenuLabelOption"},
+        "DataPointTooltipOption":{"shape":"DataPointTooltipOption"}
       }
     },
     "DashboardSearchFilter":{
@@ -4877,6 +4889,24 @@
       "type":"list",
       "member":{"shape":"DataPathValue"},
       "max":20
+    },
+    "DataPointDrillUpDownOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
+      }
+    },
+    "DataPointMenuLabelOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
+      }
+    },
+    "DataPointTooltipOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
+      }
     },
     "DataSet":{
       "type":"structure",
@@ -6264,7 +6294,8 @@
           "shape":"StatusCode",
           "location":"statusCode"
         },
-        "RequestId":{"shape":"String"}
+        "RequestId":{"shape":"String"},
+        "DashboardPublishOptions":{"shape":"DashboardPublishOptions"}
       }
     },
     "DescribeDashboardPermissionsRequest":{
@@ -7263,6 +7294,12 @@
       }
     },
     "ExportToCSVOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
+      }
+    },
+    "ExportWithHiddenFieldsOption":{
       "type":"structure",
       "members":{
         "AvailabilityStatus":{"shape":"DashboardBehavior"}
@@ -11644,6 +11681,99 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "RadarChartAggregatedFieldWells":{
+      "type":"structure",
+      "members":{
+        "Category":{"shape":"RadarChartCategoryFieldList"},
+        "Color":{"shape":"RadarChartColorFieldList"},
+        "Values":{"shape":"RadarChartValuesFieldList"}
+      }
+    },
+    "RadarChartAreaStyleSettings":{
+      "type":"structure",
+      "members":{
+        "Visibility":{"shape":"Visibility"}
+      }
+    },
+    "RadarChartCategoryFieldList":{
+      "type":"list",
+      "member":{"shape":"DimensionField"},
+      "max":1
+    },
+    "RadarChartColorFieldList":{
+      "type":"list",
+      "member":{"shape":"DimensionField"},
+      "max":1
+    },
+    "RadarChartConfiguration":{
+      "type":"structure",
+      "members":{
+        "FieldWells":{"shape":"RadarChartFieldWells"},
+        "SortConfiguration":{"shape":"RadarChartSortConfiguration"},
+        "Shape":{"shape":"RadarChartShape"},
+        "BaseSeriesSettings":{"shape":"RadarChartSeriesSettings"},
+        "StartAngle":{"shape":"RadarChartStartAngle"},
+        "VisualPalette":{"shape":"VisualPalette"},
+        "AlternateBandColorsVisibility":{"shape":"Visibility"},
+        "AlternateBandEvenColor":{"shape":"HexColor"},
+        "AlternateBandOddColor":{"shape":"HexColor"},
+        "CategoryAxis":{"shape":"AxisDisplayOptions"},
+        "CategoryLabelOptions":{"shape":"ChartAxisLabelOptions"},
+        "ColorAxis":{"shape":"AxisDisplayOptions"},
+        "ColorLabelOptions":{"shape":"ChartAxisLabelOptions"},
+        "Legend":{"shape":"LegendOptions"}
+      }
+    },
+    "RadarChartFieldWells":{
+      "type":"structure",
+      "members":{
+        "RadarChartAggregatedFieldWells":{"shape":"RadarChartAggregatedFieldWells"}
+      }
+    },
+    "RadarChartSeriesSettings":{
+      "type":"structure",
+      "members":{
+        "AreaStyleSettings":{"shape":"RadarChartAreaStyleSettings"}
+      }
+    },
+    "RadarChartShape":{
+      "type":"string",
+      "enum":[
+        "CIRCLE",
+        "POLYGON"
+      ]
+    },
+    "RadarChartSortConfiguration":{
+      "type":"structure",
+      "members":{
+        "CategorySort":{"shape":"FieldSortOptionsList"},
+        "CategoryItemsLimit":{"shape":"ItemsLimitConfiguration"},
+        "ColorSort":{"shape":"FieldSortOptionsList"},
+        "ColorItemsLimit":{"shape":"ItemsLimitConfiguration"}
+      }
+    },
+    "RadarChartStartAngle":{
+      "type":"double",
+      "max":360,
+      "min":-360
+    },
+    "RadarChartValuesFieldList":{
+      "type":"list",
+      "member":{"shape":"MeasureField"},
+      "max":20
+    },
+    "RadarChartVisual":{
+      "type":"structure",
+      "required":["VisualId"],
+      "members":{
+        "VisualId":{"shape":"ShortRestrictiveResourceId"},
+        "Title":{"shape":"VisualTitleLabelOptions"},
+        "Subtitle":{"shape":"VisualSubtitleLabelOptions"},
+        "ChartConfiguration":{"shape":"RadarChartConfiguration"},
+        "Actions":{"shape":"VisualCustomActionList"},
+        "ColumnHierarchies":{"shape":"ColumnHierarchyList"}
+      }
+    },
     "RangeEndsLabelType":{
       "type":"structure",
       "members":{
@@ -12865,6 +12995,12 @@
       "type":"list",
       "member":{"shape":"SheetElementRenderingRule"},
       "max":10000
+    },
+    "SheetLayoutElementMaximizationOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
+      }
     },
     "SheetList":{
       "type":"list",
@@ -15279,7 +15415,14 @@
         "InsightVisual":{"shape":"InsightVisual"},
         "SankeyDiagramVisual":{"shape":"SankeyDiagramVisual"},
         "CustomContentVisual":{"shape":"CustomContentVisual"},
-        "EmptyVisual":{"shape":"EmptyVisual"}
+        "EmptyVisual":{"shape":"EmptyVisual"},
+        "RadarChartVisual":{"shape":"RadarChartVisual"}
+      }
+    },
+    "VisualAxisSortOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
       }
     },
     "VisualCustomAction":{
@@ -15334,6 +15477,12 @@
       "type":"list",
       "member":{"shape":"Visual"},
       "max":30
+    },
+    "VisualMenuOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
+      }
     },
     "VisualPalette":{
       "type":"structure",
