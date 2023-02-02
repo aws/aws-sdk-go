@@ -1,3 +1,19 @@
+Release v1.44.193 (2023-02-02)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/connect`: Adds new service
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for EC2.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/keyspaces`: Adds new service
+* `service/quicksight`: Updates service API and documentation
+  * QuickSight support for Radar Chart and Dashboard Publish Options
+* `service/redshift`: Adds new service
+  * Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* `service/sso-admin`: Adds new service
+
 Release v1.44.192 (2023-02-01)
 ===
 

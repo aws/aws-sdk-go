@@ -145,11 +145,25 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 //
 // Creates a configuration profile, which is information that enables AppConfig
 // to access the configuration source. Valid configuration sources include the
-// AppConfig hosted configuration store, Amazon Web Services Systems Manager
-// (SSM) documents, SSM Parameter Store parameters, Amazon S3 objects, or any
-// integration source action (http://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html#integrations-source)
-// supported by CodePipeline. A configuration profile includes the following
-// information:
+// following:
+//
+//   - Configuration data in YAML, JSON, and other formats stored in the AppConfig
+//     hosted configuration store
+//
+//   - Configuration data stored as objects in an Amazon Simple Storage Service
+//     (Amazon S3) bucket
+//
+//   - Pipelines stored in CodePipeline
+//
+//   - Secrets stored in Secrets Manager
+//
+//   - Standard and secure string parameters stored in Amazon Web Services
+//     Systems Manager Parameter Store
+//
+//   - Configuration data in SSM documents stored in the Systems Manager document
+//     store
+//
+// A configuration profile includes the following information:
 //
 //   - The URI location of the configuration data.
 //
@@ -430,8 +444,8 @@ func (c *AppConfig) CreateExtensionRequest(input *CreateExtensionInput) (req *re
 // logic or behavior at different points during the AppConfig workflow of creating
 // or deploying a configuration.
 //
-// You can create your own extensions or use the Amazon Web Services-authored
-// extensions provided by AppConfig. For most use-cases, to create your own
+// You can create your own extensions or use the Amazon Web Services authored
+// extensions provided by AppConfig. For most use cases, to create your own
 // extension, you must create an Lambda function to perform any computation
 // and processing defined in the extension. For more information about extensions,
 // see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
@@ -526,10 +540,10 @@ func (c *AppConfig) CreateExtensionAssociationRequest(input *CreateExtensionAsso
 
 // CreateExtensionAssociation API operation for Amazon AppConfig.
 //
-// When you create an extension or configure an Amazon Web Services-authored
+// When you create an extension or configure an Amazon Web Services authored
 // extension, you associate the extension with an AppConfig application, environment,
 // or configuration profile. For example, you can choose to run the AppConfig
-// deployment events to Amazon SNS Amazon Web Services-authored extension and
+// deployment events to Amazon SNS Amazon Web Services authored extension and
 // receive notifications on an Amazon SNS topic anytime a configuration deployment
 // is started for a specific application. Defining which extension to associate
 // with an AppConfig resource is called an extension association. An extension
@@ -1439,31 +1453,17 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 
 // GetConfiguration API operation for Amazon AppConfig.
 //
-// Retrieves the latest deployed configuration.
+// (Deprecated) Retrieves the latest deployed configuration.
 //
 // Note the following important information.
 //
-//   - This API action has been deprecated. Calls to receive configuration
-//     data should use the StartConfigurationSession (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_StartConfigurationSession.html)
+//   - This API action is deprecated. Calls to receive configuration data should
+//     use the StartConfigurationSession (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_StartConfigurationSession.html)
 //     and GetLatestConfiguration (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_GetLatestConfiguration.html)
 //     APIs instead.
 //
 //   - GetConfiguration is a priced call. For more information, see Pricing
 //     (https://aws.amazon.com/systems-manager/pricing/).
-//
-//   - AppConfig uses the value of the ClientConfigurationVersion parameter
-//     to identify the configuration version on your clients. If you don’t
-//     send ClientConfigurationVersion with each call to GetConfiguration, your
-//     clients receive the current configuration. You are charged each time your
-//     clients receive a configuration. To avoid excess charges, we recommend
-//     you use the StartConfigurationSession (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/StartConfigurationSession.html)
-//     and GetLatestConfiguration (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/GetLatestConfiguration.html)
-//     APIs, which track the client configuration version on your behalf. If
-//     you choose to continue using GetConfiguration, we recommend that you include
-//     the ClientConfigurationVersion value with every call to GetConfiguration.
-//     The value to use for ClientConfigurationVersion comes from the ConfigurationVersion
-//     attribute returned by GetConfiguration when there is new or updated data,
-//     and should be saved for subsequent calls to GetConfiguration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3025,7 +3025,7 @@ func (c *AppConfig) ListExtensionsRequest(input *ListExtensionsInput) (req *requ
 
 // ListExtensions API operation for Amazon AppConfig.
 //
-// Lists all custom and Amazon Web Services-authored AppConfig extensions in
+// Lists all custom and Amazon Web Services authored AppConfig extensions in
 // the account. For more information about extensions, see Working with AppConfig
 // extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
@@ -4313,8 +4313,8 @@ func (c *AppConfig) ValidateConfigurationWithContext(ctx aws.Context, input *Val
 	return out, req.Send()
 }
 
-// An action defines the tasks the extension performs during the AppConfig workflow.
-// Each action includes an action point such as ON_CREATE_HOSTED_CONFIGURATION,
+// An action defines the tasks that the extension performs during the AppConfig
+// workflow. Each action includes an action point such as ON_CREATE_HOSTED_CONFIGURATION,
 // PRE_DEPLOYMENT, or ON_DEPLOYMENT. Each action also includes a name, a URI
 // to an Lambda function, and an Amazon Resource Name (ARN) for an Identity
 // and Access Management assume role. You specify the name, URI, and ARN for
@@ -4978,14 +4978,23 @@ type CreateConfigurationProfileInput struct {
 	// A description of the configuration profile.
 	Description *string `type:"string"`
 
-	// A URI to locate the configuration. You can specify the AppConfig hosted configuration
-	// store, Systems Manager (SSM) document, an SSM Parameter Store parameter,
-	// or an Amazon S3 object. For the hosted configuration store and for feature
-	// flags, specify hosted. For an SSM document, specify either the document name
-	// in the format ssm-document://<Document_name> or the Amazon Resource Name
-	// (ARN). For a parameter, specify either the parameter name in the format ssm-parameter://<Parameter_name>
-	// or the ARN. For an Amazon S3 object, specify the URI in the following format:
-	// s3://<bucket>/<objectKey> . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
+	// A URI to locate the configuration. You can specify the following:
+	//
+	//    * For the AppConfig hosted configuration store and for feature flags,
+	//    specify hosted.
+	//
+	//    * For an Amazon Web Services Systems Manager Parameter Store parameter,
+	//    specify either the parameter name in the format ssm-parameter://<parameter
+	//    name> or the ARN.
+	//
+	//    * For an Secrets Manager secret, specify the URI in the following format:
+	//    secrets-manager://<secret name>.
+	//
+	//    * For an Amazon S3 object, specify the URI in the following format: s3://<bucket>/<objectKey>
+	//    . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
+	//
+	//    * For an SSM document, specify either the document name in the format
+	//    ssm-document://<document name> or the Amazon Resource Name (ARN).
 	//
 	// LocationUri is a required field
 	LocationUri *string `min:"1" type:"string" required:"true"`
@@ -7433,10 +7442,15 @@ type GetConfigurationInput struct {
 	// with each call to GetConfiguration, your clients receive the current configuration.
 	// You are charged each time your clients receive a configuration.
 	//
-	// To avoid excess charges, we recommend that you include the ClientConfigurationVersion
-	// value with every call to GetConfiguration. This value must be saved on your
-	// client. Subsequent calls to GetConfiguration must pass this value by using
-	// the ClientConfigurationVersion parameter.
+	// To avoid excess charges, we recommend you use the StartConfigurationSession
+	// (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/StartConfigurationSession.html)
+	// and GetLatestConfiguration (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/GetLatestConfiguration.html)
+	// APIs, which track the client configuration version on your behalf. If you
+	// choose to continue using GetConfiguration, we recommend that you include
+	// the ClientConfigurationVersion value with every call to GetConfiguration.
+	// The value to use for ClientConfigurationVersion comes from the ConfigurationVersion
+	// attribute returned by GetConfiguration when there is new or updated data,
+	// and should be saved for subsequent calls to GetConfiguration.
 	//
 	// For more information about working with configurations, see Retrieving the
 	// Configuration (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-retrieving-the-configuration.html)
@@ -7913,6 +7927,17 @@ type GetDeploymentOutput struct {
 	// The algorithm used to define how percentage grew over time.
 	GrowthType *string `type:"string" enum:"GrowthType"`
 
+	// The Amazon Resource Name of the Key Management Service key used to encrypt
+	// configuration data. You can encrypt secrets stored in Secrets Manager, Amazon
+	// Simple Storage Service (Amazon S3) objects encrypted with SSE-KMS, or secure
+	// string parameters stored in Amazon Web Services Systems Manager Parameter
+	// Store.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
+	// ID to encrypt the configuration data using a customer managed key.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
 
@@ -8034,6 +8059,18 @@ func (s *GetDeploymentOutput) SetGrowthFactor(v float64) *GetDeploymentOutput {
 // SetGrowthType sets the GrowthType field's value.
 func (s *GetDeploymentOutput) SetGrowthType(v string) *GetDeploymentOutput {
 	s.GrowthType = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GetDeploymentOutput) SetKmsKeyArn(v string) *GetDeploymentOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *GetDeploymentOutput) SetKmsKeyIdentifier(v string) *GetDeploymentOutput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 
@@ -9769,7 +9806,7 @@ func (s *ListExtensionsInput) SetNextToken(v string) *ListExtensionsInput {
 type ListExtensionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of available extensions. The list includes Amazon Web Services-authored
+	// The list of available extensions. The list includes Amazon Web Services authored
 	// and user-created extensions.
 	Items []*ExtensionSummary `type:"list"`
 
@@ -10363,6 +10400,10 @@ type StartDeploymentInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 
+	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
+	// ID to encrypt the configuration data using a customer managed key.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// Metadata to assign to the deployment. Tags help organize and categorize your
 	// AppConfig resources. Each tag consists of a key and an optional value, both
 	// of which you define.
@@ -10414,6 +10455,9 @@ func (s *StartDeploymentInput) Validate() error {
 	if s.EnvironmentId != nil && len(*s.EnvironmentId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EnvironmentId", 1))
 	}
+	if s.KmsKeyIdentifier != nil && len(*s.KmsKeyIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyIdentifier", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10454,6 +10498,12 @@ func (s *StartDeploymentInput) SetDescription(v string) *StartDeploymentInput {
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *StartDeploymentInput) SetEnvironmentId(v string) *StartDeploymentInput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *StartDeploymentInput) SetKmsKeyIdentifier(v string) *StartDeploymentInput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 
@@ -10518,6 +10568,17 @@ type StartDeploymentOutput struct {
 
 	// The algorithm used to define how percentage grew over time.
 	GrowthType *string `type:"string" enum:"GrowthType"`
+
+	// The Amazon Resource Name of the Key Management Service key used to encrypt
+	// configuration data. You can encrypt secrets stored in Secrets Manager, Amazon
+	// Simple Storage Service (Amazon S3) objects encrypted with SSE-KMS, or secure
+	// string parameters stored in Amazon Web Services Systems Manager Parameter
+	// Store.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
+	// ID to encrypt the configuration data using a customer managed key.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
 
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
@@ -10640,6 +10701,18 @@ func (s *StartDeploymentOutput) SetGrowthFactor(v float64) *StartDeploymentOutpu
 // SetGrowthType sets the GrowthType field's value.
 func (s *StartDeploymentOutput) SetGrowthType(v string) *StartDeploymentOutput {
 	s.GrowthType = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *StartDeploymentOutput) SetKmsKeyArn(v string) *StartDeploymentOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *StartDeploymentOutput) SetKmsKeyIdentifier(v string) *StartDeploymentOutput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 
@@ -10797,6 +10870,17 @@ type StopDeploymentOutput struct {
 	// The algorithm used to define how percentage grew over time.
 	GrowthType *string `type:"string" enum:"GrowthType"`
 
+	// The Amazon Resource Name of the Key Management Service key used to encrypt
+	// configuration data. You can encrypt secrets stored in Secrets Manager, Amazon
+	// Simple Storage Service (Amazon S3) objects encrypted with SSE-KMS, or secure
+	// string parameters stored in Amazon Web Services Systems Manager Parameter
+	// Store.
+	KmsKeyArn *string `min:"20" type:"string"`
+
+	// The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this
+	// ID to encrypt the configuration data using a customer managed key.
+	KmsKeyIdentifier *string `min:"1" type:"string"`
+
 	// The percentage of targets for which the deployment is available.
 	PercentageComplete *float64 `min:"1" type:"float"`
 
@@ -10918,6 +11002,18 @@ func (s *StopDeploymentOutput) SetGrowthFactor(v float64) *StopDeploymentOutput 
 // SetGrowthType sets the GrowthType field's value.
 func (s *StopDeploymentOutput) SetGrowthType(v string) *StopDeploymentOutput {
 	s.GrowthType = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *StopDeploymentOutput) SetKmsKeyArn(v string) *StopDeploymentOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *StopDeploymentOutput) SetKmsKeyIdentifier(v string) *StopDeploymentOutput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 

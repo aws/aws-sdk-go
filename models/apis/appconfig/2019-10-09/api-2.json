@@ -1120,7 +1120,9 @@
         "PercentageComplete":{"shape":"Percentage"},
         "StartedAt":{"shape":"Iso8601DateTime"},
         "CompletedAt":{"shape":"Iso8601DateTime"},
-        "AppliedExtensions":{"shape":"AppliedExtensions"}
+        "AppliedExtensions":{"shape":"AppliedExtensions"},
+        "KmsKeyArn":{"shape":"Arn"},
+        "KmsKeyIdentifier":{"shape":"Identifier"}
       }
     },
     "DeploymentEvent":{
@@ -1937,7 +1939,8 @@
         "ConfigurationProfileId":{"shape":"Id"},
         "ConfigurationVersion":{"shape":"Version"},
         "Description":{"shape":"Description"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "KmsKeyIdentifier":{"shape":"Identifier"}
       }
     },
     "StopDeploymentRequest":{

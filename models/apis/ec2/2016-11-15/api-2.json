@@ -5474,6 +5474,7 @@
     },
     "AcceptVpcPeeringConnectionRequest":{
       "type":"structure",
+      "required":["VpcPeeringConnectionId"],
       "members":{
         "DryRun":{
           "shape":"Boolean",
@@ -6627,6 +6628,10 @@
     },
     "AssociateEnclaveCertificateIamRoleRequest":{
       "type":"structure",
+      "required":[
+        "CertificateArn",
+        "RoleArn"
+      ],
       "members":{
         "CertificateArn":{"shape":"CertificateId"},
         "RoleArn":{"shape":"RoleId"},
@@ -6816,6 +6821,11 @@
     },
     "AssociateTransitGatewayMulticastDomainRequest":{
       "type":"structure",
+      "required":[
+        "TransitGatewayMulticastDomainId",
+        "TransitGatewayAttachmentId",
+        "SubnetIds"
+      ],
       "members":{
         "TransitGatewayMulticastDomainId":{"shape":"TransitGatewayMulticastDomainId"},
         "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
@@ -12110,6 +12120,7 @@
     },
     "CreateVpcPeeringConnectionRequest":{
       "type":"structure",
+      "required":["VpcId"],
       "members":{
         "DryRun":{
           "shape":"Boolean",
@@ -19258,6 +19269,10 @@
     },
     "DisassociateEnclaveCertificateIamRoleRequest":{
       "type":"structure",
+      "required":[
+        "CertificateArn",
+        "RoleArn"
+      ],
       "members":{
         "CertificateArn":{"shape":"CertificateId"},
         "RoleArn":{"shape":"RoleId"},
@@ -19395,6 +19410,11 @@
     },
     "DisassociateTransitGatewayMulticastDomainRequest":{
       "type":"structure",
+      "required":[
+        "TransitGatewayMulticastDomainId",
+        "TransitGatewayAttachmentId",
+        "SubnetIds"
+      ],
       "members":{
         "TransitGatewayMulticastDomainId":{"shape":"TransitGatewayMulticastDomainId"},
         "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
@@ -22010,6 +22030,7 @@
     },
     "GetAssociatedEnclaveCertificateIamRolesRequest":{
       "type":"structure",
+      "required":["CertificateArn"],
       "members":{
         "CertificateArn":{"shape":"CertificateId"},
         "DryRun":{"shape":"Boolean"}
@@ -22892,6 +22913,7 @@
     },
     "GetTransitGatewayMulticastDomainAssociationsRequest":{
       "type":"structure",
+      "required":["TransitGatewayMulticastDomainId"],
       "members":{
         "TransitGatewayMulticastDomainId":{"shape":"TransitGatewayMulticastDomainId"},
         "Filters":{
@@ -25072,6 +25094,7 @@
     },
     "InstanceCreditSpecificationRequest":{
       "type":"structure",
+      "required":["InstanceId"],
       "members":{
         "InstanceId":{"shape":"InstanceId"},
         "CpuCredits":{"shape":"String"}
@@ -30877,6 +30900,7 @@
     },
     "ModifyPrivateDnsNameOptionsRequest":{
       "type":"structure",
+      "required":["InstanceId"],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "InstanceId":{"shape":"InstanceId"},
@@ -34761,6 +34785,10 @@
     },
     "RegisterTransitGatewayMulticastGroupMembersRequest":{
       "type":"structure",
+      "required":[
+        "TransitGatewayMulticastDomainId",
+        "NetworkInterfaceIds"
+      ],
       "members":{
         "TransitGatewayMulticastDomainId":{"shape":"TransitGatewayMulticastDomainId"},
         "GroupIpAddress":{"shape":"String"},
@@ -34779,6 +34807,10 @@
     },
     "RegisterTransitGatewayMulticastGroupSourcesRequest":{
       "type":"structure",
+      "required":[
+        "TransitGatewayMulticastDomainId",
+        "NetworkInterfaceIds"
+      ],
       "members":{
         "TransitGatewayMulticastDomainId":{"shape":"TransitGatewayMulticastDomainId"},
         "GroupIpAddress":{"shape":"String"},
@@ -37495,6 +37527,7 @@
     },
     "SearchTransitGatewayMulticastGroupsRequest":{
       "type":"structure",
+      "required":["TransitGatewayMulticastDomainId"],
       "members":{
         "TransitGatewayMulticastDomainId":{"shape":"TransitGatewayMulticastDomainId"},
         "Filters":{
@@ -37746,6 +37779,7 @@
     },
     "SecurityGroupRuleUpdate":{
       "type":"structure",
+      "required":["SecurityGroupRuleId"],
       "members":{
         "SecurityGroupRuleId":{"shape":"SecurityGroupRuleId"},
         "SecurityGroupRule":{"shape":"SecurityGroupRuleRequest"}

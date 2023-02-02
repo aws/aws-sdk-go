@@ -414,7 +414,8 @@ func (c *QuickSight) CreateAnalysisRequest(input *CreateAnalysisInput) (req *req
 
 // CreateAnalysis API operation for Amazon QuickSight.
 //
-// Creates an analysis in Amazon QuickSight.
+// Creates an analysis in Amazon QuickSight. Analyses can be created either
+// from a template or from an AnalysisDefinition.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -517,8 +518,8 @@ func (c *QuickSight) CreateDashboardRequest(input *CreateDashboardInput) (req *r
 
 // CreateDashboard API operation for Amazon QuickSight.
 //
-// Creates a dashboard from a template. To first create a template, see the
-// CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
+// Creates a dashboard from either a template or directly with a DashboardDefinition.
+// To first create a template, see the CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
 // API operation.
 //
 // A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight
@@ -1611,8 +1612,9 @@ func (c *QuickSight) CreateTemplateRequest(input *CreateTemplateInput) (req *req
 
 // CreateTemplate API operation for Amazon QuickSight.
 //
-// Creates a template from an existing Amazon QuickSight analysis or template.
-// You can use the resulting template to create a dashboard.
+// Creates a template either from a TemplateDefinition or from an existing Amazon
+// QuickSight analysis or template. You can use the resulting template to create
+// additional dashboards, templates, or analyses.
 //
 // A template is an entity in Amazon QuickSight that encapsulates the metadata
 // required to create an analysis and that you can use to create s dashboard.
@@ -18965,7 +18967,9 @@ type CategoryFilter struct {
 	Column *ColumnIdentifier `type:"structure" required:"true"`
 
 	// The configuration for a CategoryFilter.
-	Configuration *CategoryFilterConfiguration `type:"structure"`
+	//
+	// Configuration is a required field
+	Configuration *CategoryFilterConfiguration `type:"structure" required:"true"`
 
 	// An identifier that uniquely identifies a filter within a dashboard, analysis,
 	// or template.
@@ -18997,6 +19001,9 @@ func (s *CategoryFilter) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CategoryFilter"}
 	if s.Column == nil {
 		invalidParams.Add(request.NewErrParamRequired("Column"))
+	}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
 	}
 	if s.FilterId == nil {
 		invalidParams.Add(request.NewErrParamRequired("FilterId"))
@@ -22139,6 +22146,9 @@ type CreateAnalysisInput struct {
 	//
 	// A definition is the data model of all features in a Dashboard, Template,
 	// or Analysis.
+	//
+	// Either a SourceEntity or a Definition must be provided in order for the request
+	// to be valid.
 	Definition *AnalysisDefinition `type:"structure"`
 
 	// A descriptive name for the analysis that you're creating. This name displays
@@ -22162,6 +22172,9 @@ type CreateAnalysisInput struct {
 	// A source entity to use for the analysis that you're creating. This metadata
 	// structure contains details that describe a source template and one or more
 	// datasets.
+	//
+	// Either a SourceEntity or a Definition must be provided in order for the request
+	// to be valid.
 	SourceEntity *AnalysisSourceEntity `type:"structure"`
 
 	// Contains a map of the key-value pairs for the resource tag or tags assigned
@@ -22475,6 +22488,9 @@ type CreateDashboardInput struct {
 	//
 	// A definition is the data model of all features in a Dashboard, Template,
 	// or Analysis.
+	//
+	// Either a SourceEntity or a Definition must be provided in order for the request
+	// to be valid.
 	Definition *DashboardVersionDefinition `type:"structure"`
 
 	// The display name of the dashboard.
@@ -22507,6 +22523,9 @@ type CreateDashboardInput struct {
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
 	// dataset must match its placeholder.
+	//
+	// Either a SourceEntity or a Definition must be provided in order for the request
+	// to be valid.
 	SourceEntity *DashboardSourceEntity `type:"structure"`
 
 	// Contains a map of the key-value pairs for the resource tag or tags assigned
@@ -24776,6 +24795,9 @@ type CreateTemplateInput struct {
 	//
 	// A definition is the data model of all features in a Dashboard, Template,
 	// or Analysis.
+	//
+	// Either a SourceEntity or a Definition must be provided in order for the request
+	// to be valid.
 	Definition *TemplateVersionDefinition `type:"structure"`
 
 	// A display name for the template.
@@ -24795,6 +24817,9 @@ type CreateTemplateInput struct {
 	// Use the DataSetReferences entity within SourceTemplate or SourceAnalysis
 	// to list the replacement datasets for the placeholders listed in the original.
 	// The schema in each dataset must match its placeholder.
+	//
+	// Either a SourceEntity or a Definition must be provided in order for the request
+	// to be valid.
 	SourceEntity *TemplateSourceEntity `type:"structure"`
 
 	// Contains a map of the key-value pairs for the resource tag or tags assigned
@@ -26670,6 +26695,7 @@ type DashboardError struct {
 	// Type.
 	Type *string `type:"string" enum:"DashboardErrorType"`
 
+	// Lists the violated entities that caused the dashboard error.
 	ViolatedEntities []*Entity `type:"list"`
 }
 
@@ -26716,13 +26742,37 @@ type DashboardPublishOptions struct {
 	// Ad hoc (one-time) filtering option.
 	AdHocFilteringOption *AdHocFilteringOption `type:"structure"`
 
+	// The drill-down options of data points in a dashboard.
+	DataPointDrillUpDownOption *DataPointDrillUpDownOption `type:"structure"`
+
+	// The data point menu label options of a dashboard.
+	DataPointMenuLabelOption *DataPointMenuLabelOption `type:"structure"`
+
+	// The data point tool tip options of a dashboard.
+	DataPointTooltipOption *DataPointTooltipOption `type:"structure"`
+
 	// Export to .csv option.
 	ExportToCSVOption *ExportToCSVOption `type:"structure"`
+
+	// Determines if hidden fields are exported with a dashboard.
+	ExportWithHiddenFieldsOption *ExportWithHiddenFieldsOption `type:"structure"`
 
 	// Sheet controls option.
 	SheetControlsOption *SheetControlsOption `type:"structure"`
 
-	VisualPublishOptions *DashboardVisualPublishOptions `type:"structure"`
+	// The sheet layout maximization options of a dashbaord.
+	SheetLayoutElementMaximizationOption *SheetLayoutElementMaximizationOption `type:"structure"`
+
+	// The axis sort options of a dashboard.
+	VisualAxisSortOption *VisualAxisSortOption `type:"structure"`
+
+	// The menu options of a visual in a dashboard.
+	VisualMenuOption *VisualMenuOption `type:"structure"`
+
+	// The visual publish options of a visual in a dashboard.
+	//
+	// Deprecated: VisualPublishOptions property will reach its end of standard support in a future release. To perform this action, use ExportWithHiddenFields.
+	VisualPublishOptions *DashboardVisualPublishOptions `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -26749,15 +26799,57 @@ func (s *DashboardPublishOptions) SetAdHocFilteringOption(v *AdHocFilteringOptio
 	return s
 }
 
+// SetDataPointDrillUpDownOption sets the DataPointDrillUpDownOption field's value.
+func (s *DashboardPublishOptions) SetDataPointDrillUpDownOption(v *DataPointDrillUpDownOption) *DashboardPublishOptions {
+	s.DataPointDrillUpDownOption = v
+	return s
+}
+
+// SetDataPointMenuLabelOption sets the DataPointMenuLabelOption field's value.
+func (s *DashboardPublishOptions) SetDataPointMenuLabelOption(v *DataPointMenuLabelOption) *DashboardPublishOptions {
+	s.DataPointMenuLabelOption = v
+	return s
+}
+
+// SetDataPointTooltipOption sets the DataPointTooltipOption field's value.
+func (s *DashboardPublishOptions) SetDataPointTooltipOption(v *DataPointTooltipOption) *DashboardPublishOptions {
+	s.DataPointTooltipOption = v
+	return s
+}
+
 // SetExportToCSVOption sets the ExportToCSVOption field's value.
 func (s *DashboardPublishOptions) SetExportToCSVOption(v *ExportToCSVOption) *DashboardPublishOptions {
 	s.ExportToCSVOption = v
 	return s
 }
 
+// SetExportWithHiddenFieldsOption sets the ExportWithHiddenFieldsOption field's value.
+func (s *DashboardPublishOptions) SetExportWithHiddenFieldsOption(v *ExportWithHiddenFieldsOption) *DashboardPublishOptions {
+	s.ExportWithHiddenFieldsOption = v
+	return s
+}
+
 // SetSheetControlsOption sets the SheetControlsOption field's value.
 func (s *DashboardPublishOptions) SetSheetControlsOption(v *SheetControlsOption) *DashboardPublishOptions {
 	s.SheetControlsOption = v
+	return s
+}
+
+// SetSheetLayoutElementMaximizationOption sets the SheetLayoutElementMaximizationOption field's value.
+func (s *DashboardPublishOptions) SetSheetLayoutElementMaximizationOption(v *SheetLayoutElementMaximizationOption) *DashboardPublishOptions {
+	s.SheetLayoutElementMaximizationOption = v
+	return s
+}
+
+// SetVisualAxisSortOption sets the VisualAxisSortOption field's value.
+func (s *DashboardPublishOptions) SetVisualAxisSortOption(v *VisualAxisSortOption) *DashboardPublishOptions {
+	s.VisualAxisSortOption = v
+	return s
+}
+
+// SetVisualMenuOption sets the VisualMenuOption field's value.
+func (s *DashboardPublishOptions) SetVisualMenuOption(v *VisualMenuOption) *DashboardPublishOptions {
+	s.VisualMenuOption = v
 	return s
 }
 
@@ -27553,9 +27645,11 @@ func (s *DashboardVisualId) SetVisualId(v string) *DashboardVisualId {
 	return s
 }
 
+// The visual publish options of a visual in a dashboard
 type DashboardVisualPublishOptions struct {
 	_ struct{} `type:"structure"`
 
+	// Determines if hidden fields are included in an exported dashboard.
 	ExportHiddenFieldsOption *ExportHiddenFieldsOption `type:"structure"`
 }
 
@@ -28325,6 +28419,102 @@ func (s *DataPathValue) SetFieldId(v string) *DataPathValue {
 // SetFieldValue sets the FieldValue field's value.
 func (s *DataPathValue) SetFieldValue(v string) *DataPathValue {
 	s.FieldValue = &v
+	return s
+}
+
+// The drill down options for data points in a dashbaord.
+type DataPointDrillUpDownOption struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the drill down options of data points.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPointDrillUpDownOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPointDrillUpDownOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *DataPointDrillUpDownOption) SetAvailabilityStatus(v string) *DataPointDrillUpDownOption {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// The data point menu options of a dashboard.
+type DataPointMenuLabelOption struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the data point menu options.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPointMenuLabelOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPointMenuLabelOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *DataPointMenuLabelOption) SetAvailabilityStatus(v string) *DataPointMenuLabelOption {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// The data point tooltip options.
+type DataPointTooltipOption struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the data point tool tip options.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPointTooltipOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataPointTooltipOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *DataPointTooltipOption) SetAvailabilityStatus(v string) *DataPointTooltipOption {
+	s.AvailabilityStatus = &v
 	return s
 }
 
@@ -34453,6 +34643,21 @@ type DescribeDashboardDefinitionOutput struct {
 	// The ID of the dashboard described.
 	DashboardId *string `min:"1" type:"string"`
 
+	// Options for publishing the dashboard:
+	//
+	//    * AvailabilityStatus for AdHocFilteringOption - This status can be either
+	//    ENABLED or DISABLED. When this is set to DISABLED, Amazon QuickSight disables
+	//    the left filter pane on the published dashboard, which can be used for
+	//    ad hoc (one-time) filtering. This option is ENABLED by default.
+	//
+	//    * AvailabilityStatus for ExportToCSVOption - This status can be either
+	//    ENABLED or DISABLED. The visual option to export data to .CSV format isn't
+	//    enabled when this is set to DISABLED. This option is ENABLED by default.
+	//
+	//    * VisibilityState for SheetControlsOption - This visibility state can
+	//    be either COLLAPSED or EXPANDED. This option is COLLAPSED by default.
+	DashboardPublishOptions *DashboardPublishOptions `type:"structure"`
+
 	// The definition of a dashboard.
 	//
 	// A definition is the data model of all features in a Dashboard, Template,
@@ -34513,6 +34718,12 @@ func (s DescribeDashboardDefinitionOutput) GoString() string {
 // SetDashboardId sets the DashboardId field's value.
 func (s *DescribeDashboardDefinitionOutput) SetDashboardId(v string) *DescribeDashboardDefinitionOutput {
 	s.DashboardId = &v
+	return s
+}
+
+// SetDashboardPublishOptions sets the DashboardPublishOptions field's value.
+func (s *DescribeDashboardDefinitionOutput) SetDashboardPublishOptions(v *DashboardPublishOptions) *DescribeDashboardDefinitionOutput {
+	s.DashboardPublishOptions = v
 	return s
 }
 
@@ -38593,9 +38804,11 @@ func (s *ExplicitHierarchy) SetHierarchyId(v string) *ExplicitHierarchy {
 	return s
 }
 
+// Determines if hidden fields are included in an exported dashboard.
 type ExportHiddenFieldsOption struct {
 	_ struct{} `type:"structure"`
 
+	// The status of the export hidden fields options of a dashbaord.
 	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
 }
 
@@ -38651,6 +38864,38 @@ func (s ExportToCSVOption) GoString() string {
 
 // SetAvailabilityStatus sets the AvailabilityStatus field's value.
 func (s *ExportToCSVOption) SetAvailabilityStatus(v string) *ExportToCSVOption {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// Determines whether or not hidden fields are visible on exported dashbaords.
+type ExportWithHiddenFieldsOption struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the export with hidden fields options.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportWithHiddenFieldsOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportWithHiddenFieldsOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *ExportWithHiddenFieldsOption) SetAvailabilityStatus(v string) *ExportWithHiddenFieldsOption {
 	s.AvailabilityStatus = &v
 	return s
 }
@@ -60186,6 +60431,615 @@ func (s *QueueInfo) SetWaitingOnIngestion(v string) *QueueInfo {
 	return s
 }
 
+// The aggregated field well configuration of a RadarChartVisual.
+type RadarChartAggregatedFieldWells struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregated field well categories of a radar chart.
+	Category []*DimensionField `type:"list"`
+
+	// The color that are assigned to the aggregated field wells of a radar chart.
+	Color []*DimensionField `type:"list"`
+
+	// The values that are assigned to the aggregated field wells of a radar chart.
+	Values []*MeasureField `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartAggregatedFieldWells) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartAggregatedFieldWells) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RadarChartAggregatedFieldWells) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RadarChartAggregatedFieldWells"}
+	if s.Category != nil {
+		for i, v := range s.Category {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Category", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Color != nil {
+		for i, v := range s.Color {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Color", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Values != nil {
+		for i, v := range s.Values {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Values", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategory sets the Category field's value.
+func (s *RadarChartAggregatedFieldWells) SetCategory(v []*DimensionField) *RadarChartAggregatedFieldWells {
+	s.Category = v
+	return s
+}
+
+// SetColor sets the Color field's value.
+func (s *RadarChartAggregatedFieldWells) SetColor(v []*DimensionField) *RadarChartAggregatedFieldWells {
+	s.Color = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *RadarChartAggregatedFieldWells) SetValues(v []*MeasureField) *RadarChartAggregatedFieldWells {
+	s.Values = v
+	return s
+}
+
+// The configured style settings of a radar chart.
+type RadarChartAreaStyleSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The visibility settings of a radar chart.
+	Visibility *string `type:"string" enum:"Visibility"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartAreaStyleSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartAreaStyleSettings) GoString() string {
+	return s.String()
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *RadarChartAreaStyleSettings) SetVisibility(v string) *RadarChartAreaStyleSettings {
+	s.Visibility = &v
+	return s
+}
+
+// The configuration of a RadarChartVisual.
+type RadarChartConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Determines the visibility of the colors of alternatign bands in a radar chart.
+	AlternateBandColorsVisibility *string `type:"string" enum:"Visibility"`
+
+	// The color of the even-numbered alternate bands of a radar chart.
+	AlternateBandEvenColor *string `type:"string"`
+
+	// The color of the odd-numbered alternate bands of a radar chart.
+	AlternateBandOddColor *string `type:"string"`
+
+	// The base sreies settings of a radar chart.
+	BaseSeriesSettings *RadarChartSeriesSettings `type:"structure"`
+
+	// The category axis of a radar chart.
+	CategoryAxis *AxisDisplayOptions `type:"structure"`
+
+	// The category label options of a radar chart.
+	CategoryLabelOptions *ChartAxisLabelOptions `type:"structure"`
+
+	// The color axis of a radar chart.
+	ColorAxis *AxisDisplayOptions `type:"structure"`
+
+	// The color label options of a radar chart.
+	ColorLabelOptions *ChartAxisLabelOptions `type:"structure"`
+
+	// The field well configuration of a RadarChartVisual.
+	FieldWells *RadarChartFieldWells `type:"structure"`
+
+	// The legend display setup of the visual.
+	Legend *LegendOptions `type:"structure"`
+
+	// The shape of the radar chart.
+	Shape *string `type:"string" enum:"RadarChartShape"`
+
+	// The sort configuration of a RadarChartVisual.
+	SortConfiguration *RadarChartSortConfiguration `type:"structure"`
+
+	// The start angle of a radar chart's axis.
+	StartAngle *float64 `type:"double"`
+
+	// The palette (chart color) display setup of the visual.
+	VisualPalette *VisualPalette `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RadarChartConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RadarChartConfiguration"}
+	if s.StartAngle != nil && *s.StartAngle < -360 {
+		invalidParams.Add(request.NewErrParamMinValue("StartAngle", -360))
+	}
+	if s.CategoryLabelOptions != nil {
+		if err := s.CategoryLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("CategoryLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ColorLabelOptions != nil {
+		if err := s.ColorLabelOptions.Validate(); err != nil {
+			invalidParams.AddNested("ColorLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FieldWells != nil {
+		if err := s.FieldWells.Validate(); err != nil {
+			invalidParams.AddNested("FieldWells", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortConfiguration != nil {
+		if err := s.SortConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SortConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VisualPalette != nil {
+		if err := s.VisualPalette.Validate(); err != nil {
+			invalidParams.AddNested("VisualPalette", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlternateBandColorsVisibility sets the AlternateBandColorsVisibility field's value.
+func (s *RadarChartConfiguration) SetAlternateBandColorsVisibility(v string) *RadarChartConfiguration {
+	s.AlternateBandColorsVisibility = &v
+	return s
+}
+
+// SetAlternateBandEvenColor sets the AlternateBandEvenColor field's value.
+func (s *RadarChartConfiguration) SetAlternateBandEvenColor(v string) *RadarChartConfiguration {
+	s.AlternateBandEvenColor = &v
+	return s
+}
+
+// SetAlternateBandOddColor sets the AlternateBandOddColor field's value.
+func (s *RadarChartConfiguration) SetAlternateBandOddColor(v string) *RadarChartConfiguration {
+	s.AlternateBandOddColor = &v
+	return s
+}
+
+// SetBaseSeriesSettings sets the BaseSeriesSettings field's value.
+func (s *RadarChartConfiguration) SetBaseSeriesSettings(v *RadarChartSeriesSettings) *RadarChartConfiguration {
+	s.BaseSeriesSettings = v
+	return s
+}
+
+// SetCategoryAxis sets the CategoryAxis field's value.
+func (s *RadarChartConfiguration) SetCategoryAxis(v *AxisDisplayOptions) *RadarChartConfiguration {
+	s.CategoryAxis = v
+	return s
+}
+
+// SetCategoryLabelOptions sets the CategoryLabelOptions field's value.
+func (s *RadarChartConfiguration) SetCategoryLabelOptions(v *ChartAxisLabelOptions) *RadarChartConfiguration {
+	s.CategoryLabelOptions = v
+	return s
+}
+
+// SetColorAxis sets the ColorAxis field's value.
+func (s *RadarChartConfiguration) SetColorAxis(v *AxisDisplayOptions) *RadarChartConfiguration {
+	s.ColorAxis = v
+	return s
+}
+
+// SetColorLabelOptions sets the ColorLabelOptions field's value.
+func (s *RadarChartConfiguration) SetColorLabelOptions(v *ChartAxisLabelOptions) *RadarChartConfiguration {
+	s.ColorLabelOptions = v
+	return s
+}
+
+// SetFieldWells sets the FieldWells field's value.
+func (s *RadarChartConfiguration) SetFieldWells(v *RadarChartFieldWells) *RadarChartConfiguration {
+	s.FieldWells = v
+	return s
+}
+
+// SetLegend sets the Legend field's value.
+func (s *RadarChartConfiguration) SetLegend(v *LegendOptions) *RadarChartConfiguration {
+	s.Legend = v
+	return s
+}
+
+// SetShape sets the Shape field's value.
+func (s *RadarChartConfiguration) SetShape(v string) *RadarChartConfiguration {
+	s.Shape = &v
+	return s
+}
+
+// SetSortConfiguration sets the SortConfiguration field's value.
+func (s *RadarChartConfiguration) SetSortConfiguration(v *RadarChartSortConfiguration) *RadarChartConfiguration {
+	s.SortConfiguration = v
+	return s
+}
+
+// SetStartAngle sets the StartAngle field's value.
+func (s *RadarChartConfiguration) SetStartAngle(v float64) *RadarChartConfiguration {
+	s.StartAngle = &v
+	return s
+}
+
+// SetVisualPalette sets the VisualPalette field's value.
+func (s *RadarChartConfiguration) SetVisualPalette(v *VisualPalette) *RadarChartConfiguration {
+	s.VisualPalette = v
+	return s
+}
+
+// The field wells of a radar chart visual.
+type RadarChartFieldWells struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregated field wells of a radar chart visual.
+	RadarChartAggregatedFieldWells *RadarChartAggregatedFieldWells `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartFieldWells) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartFieldWells) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RadarChartFieldWells) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RadarChartFieldWells"}
+	if s.RadarChartAggregatedFieldWells != nil {
+		if err := s.RadarChartAggregatedFieldWells.Validate(); err != nil {
+			invalidParams.AddNested("RadarChartAggregatedFieldWells", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRadarChartAggregatedFieldWells sets the RadarChartAggregatedFieldWells field's value.
+func (s *RadarChartFieldWells) SetRadarChartAggregatedFieldWells(v *RadarChartAggregatedFieldWells) *RadarChartFieldWells {
+	s.RadarChartAggregatedFieldWells = v
+	return s
+}
+
+// The series settings of a radar chart.
+type RadarChartSeriesSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The area style settings of a radar chart.
+	AreaStyleSettings *RadarChartAreaStyleSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartSeriesSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartSeriesSettings) GoString() string {
+	return s.String()
+}
+
+// SetAreaStyleSettings sets the AreaStyleSettings field's value.
+func (s *RadarChartSeriesSettings) SetAreaStyleSettings(v *RadarChartAreaStyleSettings) *RadarChartSeriesSettings {
+	s.AreaStyleSettings = v
+	return s
+}
+
+// The sort configuration of a RadarChartVisual.
+type RadarChartSortConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The category items limit for a radar chart.
+	CategoryItemsLimit *ItemsLimitConfiguration `type:"structure"`
+
+	// The category sort options of a radar chart.
+	CategorySort []*FieldSortOptions `type:"list"`
+
+	// The color items limit of a radar chart.
+	ColorItemsLimit *ItemsLimitConfiguration `type:"structure"`
+
+	// The color sort configuration of a radar chart.
+	ColorSort []*FieldSortOptions `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartSortConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartSortConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RadarChartSortConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RadarChartSortConfiguration"}
+	if s.CategorySort != nil {
+		for i, v := range s.CategorySort {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CategorySort", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ColorSort != nil {
+		for i, v := range s.ColorSort {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColorSort", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoryItemsLimit sets the CategoryItemsLimit field's value.
+func (s *RadarChartSortConfiguration) SetCategoryItemsLimit(v *ItemsLimitConfiguration) *RadarChartSortConfiguration {
+	s.CategoryItemsLimit = v
+	return s
+}
+
+// SetCategorySort sets the CategorySort field's value.
+func (s *RadarChartSortConfiguration) SetCategorySort(v []*FieldSortOptions) *RadarChartSortConfiguration {
+	s.CategorySort = v
+	return s
+}
+
+// SetColorItemsLimit sets the ColorItemsLimit field's value.
+func (s *RadarChartSortConfiguration) SetColorItemsLimit(v *ItemsLimitConfiguration) *RadarChartSortConfiguration {
+	s.ColorItemsLimit = v
+	return s
+}
+
+// SetColorSort sets the ColorSort field's value.
+func (s *RadarChartSortConfiguration) SetColorSort(v []*FieldSortOptions) *RadarChartSortConfiguration {
+	s.ColorSort = v
+	return s
+}
+
+// A radar chart visual.
+type RadarChartVisual struct {
+	_ struct{} `type:"structure"`
+
+	// The list of custom actions that are configured for a visual.
+	Actions []*VisualCustomAction `type:"list"`
+
+	// The configuration settings of the visual.
+	ChartConfiguration *RadarChartConfiguration `type:"structure"`
+
+	// The column hierarchy that is used during drill-downs and drill-ups.
+	ColumnHierarchies []*ColumnHierarchy `type:"list"`
+
+	// The subtitle that is displayed on the visual.
+	Subtitle *VisualSubtitleLabelOptions `type:"structure"`
+
+	// The title that is displayed on the visual.
+	Title *VisualTitleLabelOptions `type:"structure"`
+
+	// The unique identifier of a visual. This identifier must be unique within
+	// the context of a dashboard, template, or analysis. Two dashboards, analyses,
+	// or templates can have visuals with the same identifiers.
+	//
+	// VisualId is a required field
+	VisualId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartVisual) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RadarChartVisual) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RadarChartVisual) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RadarChartVisual"}
+	if s.VisualId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VisualId"))
+	}
+	if s.VisualId != nil && len(*s.VisualId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VisualId", 1))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ChartConfiguration != nil {
+		if err := s.ChartConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChartConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ColumnHierarchies != nil {
+		for i, v := range s.ColumnHierarchies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnHierarchies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Subtitle != nil {
+		if err := s.Subtitle.Validate(); err != nil {
+			invalidParams.AddNested("Subtitle", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Title != nil {
+		if err := s.Title.Validate(); err != nil {
+			invalidParams.AddNested("Title", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *RadarChartVisual) SetActions(v []*VisualCustomAction) *RadarChartVisual {
+	s.Actions = v
+	return s
+}
+
+// SetChartConfiguration sets the ChartConfiguration field's value.
+func (s *RadarChartVisual) SetChartConfiguration(v *RadarChartConfiguration) *RadarChartVisual {
+	s.ChartConfiguration = v
+	return s
+}
+
+// SetColumnHierarchies sets the ColumnHierarchies field's value.
+func (s *RadarChartVisual) SetColumnHierarchies(v []*ColumnHierarchy) *RadarChartVisual {
+	s.ColumnHierarchies = v
+	return s
+}
+
+// SetSubtitle sets the Subtitle field's value.
+func (s *RadarChartVisual) SetSubtitle(v *VisualSubtitleLabelOptions) *RadarChartVisual {
+	s.Subtitle = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *RadarChartVisual) SetTitle(v *VisualTitleLabelOptions) *RadarChartVisual {
+	s.Title = v
+	return s
+}
+
+// SetVisualId sets the VisualId field's value.
+func (s *RadarChartVisual) SetVisualId(v string) *RadarChartVisual {
+	s.VisualId = &v
+	return s
+}
+
 // The range ends label type of a data path label.
 type RangeEndsLabelType struct {
 	_ struct{} `type:"structure"`
@@ -66332,6 +67186,38 @@ func (s *SheetElementRenderingRule) SetConfigurationOverrides(v *SheetElementCon
 // SetExpression sets the Expression field's value.
 func (s *SheetElementRenderingRule) SetExpression(v string) *SheetElementRenderingRule {
 	s.Expression = &v
+	return s
+}
+
+// The sheet layout maximization options of a dashbaord.
+type SheetLayoutElementMaximizationOption struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the sheet layout maximization options of a dashbaord.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SheetLayoutElementMaximizationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SheetLayoutElementMaximizationOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *SheetLayoutElementMaximizationOption) SetAvailabilityStatus(v string) *SheetLayoutElementMaximizationOption {
+	s.AvailabilityStatus = &v
 	return s
 }
 
@@ -78688,6 +79574,12 @@ type Visual struct {
 	// in the Amazon QuickSight User Guide.
 	PivotTableVisual *PivotTableVisual `type:"structure"`
 
+	// A radar chart visual.
+	//
+	// For more information, see Using radar charts (https://docs.aws.amazon.com/quicksight/latest/user/radar-chart.html)
+	// in the Amazon QuickSight User Guide.
+	RadarChartVisual *RadarChartVisual `type:"structure"`
+
 	// A sankey diagram.
 	//
 	// For more information, see Using Sankey diagrams (https://docs.aws.amazon.com/quicksight/latest/user/sankey-diagram.html)
@@ -78826,6 +79718,11 @@ func (s *Visual) Validate() error {
 			invalidParams.AddNested("PivotTableVisual", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RadarChartVisual != nil {
+		if err := s.RadarChartVisual.Validate(); err != nil {
+			invalidParams.AddNested("RadarChartVisual", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SankeyDiagramVisual != nil {
 		if err := s.SankeyDiagramVisual.Validate(); err != nil {
 			invalidParams.AddNested("SankeyDiagramVisual", err.(request.ErrInvalidParams))
@@ -78959,6 +79856,12 @@ func (s *Visual) SetPivotTableVisual(v *PivotTableVisual) *Visual {
 	return s
 }
 
+// SetRadarChartVisual sets the RadarChartVisual field's value.
+func (s *Visual) SetRadarChartVisual(v *RadarChartVisual) *Visual {
+	s.RadarChartVisual = v
+	return s
+}
+
 // SetSankeyDiagramVisual sets the SankeyDiagramVisual field's value.
 func (s *Visual) SetSankeyDiagramVisual(v *SankeyDiagramVisual) *Visual {
 	s.SankeyDiagramVisual = v
@@ -78992,6 +79895,38 @@ func (s *Visual) SetWaterfallVisual(v *WaterfallVisual) *Visual {
 // SetWordCloudVisual sets the WordCloudVisual field's value.
 func (s *Visual) SetWordCloudVisual(v *WordCloudVisual) *Visual {
 	s.WordCloudVisual = v
+	return s
+}
+
+// The axis sort options for a visual.
+type VisualAxisSortOption struct {
+	_ struct{} `type:"structure"`
+
+	// The availaiblity status of a visual's axis sort options.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualAxisSortOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualAxisSortOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *VisualAxisSortOption) SetAvailabilityStatus(v string) *VisualAxisSortOption {
+	s.AvailabilityStatus = &v
 	return s
 }
 
@@ -79214,6 +80149,38 @@ func (s *VisualCustomActionOperation) SetSetParametersOperation(v *CustomActionS
 // SetURLOperation sets the URLOperation field's value.
 func (s *VisualCustomActionOperation) SetURLOperation(v *CustomActionURLOperation) *VisualCustomActionOperation {
 	s.URLOperation = v
+	return s
+}
+
+// The menu options for a visual.
+type VisualMenuOption struct {
+	_ struct{} `type:"structure"`
+
+	// The availaiblity status of a visual's menu options.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualMenuOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualMenuOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *VisualMenuOption) SetAvailabilityStatus(v string) *VisualMenuOption {
+	s.AvailabilityStatus = &v
 	return s
 }
 
@@ -83021,6 +83988,22 @@ func PrimaryValueDisplayType_Values() []string {
 		PrimaryValueDisplayTypeHidden,
 		PrimaryValueDisplayTypeComparison,
 		PrimaryValueDisplayTypeActual,
+	}
+}
+
+const (
+	// RadarChartShapeCircle is a RadarChartShape enum value
+	RadarChartShapeCircle = "CIRCLE"
+
+	// RadarChartShapePolygon is a RadarChartShape enum value
+	RadarChartShapePolygon = "POLYGON"
+)
+
+// RadarChartShape_Values returns all elements of the RadarChartShape enum
+func RadarChartShape_Values() []string {
+	return []string{
+		RadarChartShapeCircle,
+		RadarChartShapePolygon,
 	}
 }
 
