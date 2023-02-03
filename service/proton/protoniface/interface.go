@@ -192,6 +192,10 @@ type ProtonAPI interface {
 	GetRepositorySyncStatusWithContext(aws.Context, *proton.GetRepositorySyncStatusInput, ...request.Option) (*proton.GetRepositorySyncStatusOutput, error)
 	GetRepositorySyncStatusRequest(*proton.GetRepositorySyncStatusInput) (*request.Request, *proton.GetRepositorySyncStatusOutput)
 
+	GetResourcesSummary(*proton.GetResourcesSummaryInput) (*proton.GetResourcesSummaryOutput, error)
+	GetResourcesSummaryWithContext(aws.Context, *proton.GetResourcesSummaryInput, ...request.Option) (*proton.GetResourcesSummaryOutput, error)
+	GetResourcesSummaryRequest(*proton.GetResourcesSummaryInput) (*request.Request, *proton.GetResourcesSummaryOutput)
+
 	GetService(*proton.GetServiceInput) (*proton.GetServiceOutput, error)
 	GetServiceWithContext(aws.Context, *proton.GetServiceInput, ...request.Option) (*proton.GetServiceOutput, error)
 	GetServiceRequest(*proton.GetServiceInput) (*request.Request, *proton.GetServiceOutput)

@@ -3335,6 +3335,113 @@ func (c *Proton) GetRepositorySyncStatusWithContext(ctx aws.Context, input *GetR
 	return out, req.Send()
 }
 
+const opGetResourcesSummary = "GetResourcesSummary"
+
+// GetResourcesSummaryRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcesSummary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcesSummary for more information on using the GetResourcesSummary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcesSummaryRequest method.
+//	req, resp := client.GetResourcesSummaryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetResourcesSummary
+func (c *Proton) GetResourcesSummaryRequest(input *GetResourcesSummaryInput) (req *request.Request, output *GetResourcesSummaryOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcesSummary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourcesSummaryInput{}
+	}
+
+	output = &GetResourcesSummaryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcesSummary API operation for AWS Proton.
+//
+// Get counts of Proton resources.
+//
+// For infrastructure-provisioning resources (environments, services, service
+// instances, pipelines), the action returns staleness counts. A resource is
+// stale when it's behind the recommended version of the Proton template that
+// it uses and it needs an update to become current.
+//
+// The action returns staleness counts (counts of resources that are up-to-date,
+// behind a template major version, or behind a template minor version), the
+// total number of resources, and the number of resources that are in a failed
+// state, grouped by resource type. Components, environments, and service templates
+// are exceptions—see the components, environments, and serviceTemplates field
+// descriptions.
+//
+// For context, the action also returns the total number of each type of Proton
+// template in the Amazon Web Services account.
+//
+// For more information, see Proton dashboard (https://docs.aws.amazon.com/proton/latest/userguide/monitoring-dashboard.html)
+// in the Proton User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation GetResourcesSummary for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input is invalid or an out-of-range value was supplied for the input
+//     parameter.
+//
+//   - AccessDeniedException
+//     There isn't sufficient access for performing this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServerException
+//     The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetResourcesSummary
+func (c *Proton) GetResourcesSummary(input *GetResourcesSummaryInput) (*GetResourcesSummaryOutput, error) {
+	req, out := c.GetResourcesSummaryRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcesSummaryWithContext is the same as GetResourcesSummary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcesSummary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) GetResourcesSummaryWithContext(ctx aws.Context, input *GetResourcesSummaryInput, opts ...request.Option) (*GetResourcesSummaryOutput, error) {
+	req, out := c.GetResourcesSummaryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetService = "GetService"
 
 // GetServiceRequest generates a "aws/request.Request" representing the
@@ -9583,6 +9690,101 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Summary counts of each Proton resource type.
+type CountsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of components in the Amazon Web Services account.
+	//
+	// The semantics of the components field are different from the semantics of
+	// results for other infrastructure-provisioning resources. That's because at
+	// this time components don't have associated templates, therefore they don't
+	// have the concept of staleness. The components object will only contain total
+	// and failed members.
+	Components *ResourceCountsSummary `locationName:"components" type:"structure"`
+
+	// The total number of environment templates in the Amazon Web Services account.
+	EnvironmentTemplates *ResourceCountsSummary `locationName:"environmentTemplates" type:"structure"`
+
+	// The staleness counts for Proton environments in the Amazon Web Services account.
+	// The environments object will only contain total members.
+	Environments *ResourceCountsSummary `locationName:"environments" type:"structure"`
+
+	// The staleness counts for Proton pipelines in the Amazon Web Services account.
+	Pipelines *ResourceCountsSummary `locationName:"pipelines" type:"structure"`
+
+	// The staleness counts for Proton service instances in the Amazon Web Services
+	// account.
+	ServiceInstances *ResourceCountsSummary `locationName:"serviceInstances" type:"structure"`
+
+	// The total number of service templates in the Amazon Web Services account.
+	// The serviceTemplates object will only contain total members.
+	ServiceTemplates *ResourceCountsSummary `locationName:"serviceTemplates" type:"structure"`
+
+	// The staleness counts for Proton services in the Amazon Web Services account.
+	Services *ResourceCountsSummary `locationName:"services" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CountsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CountsSummary) GoString() string {
+	return s.String()
+}
+
+// SetComponents sets the Components field's value.
+func (s *CountsSummary) SetComponents(v *ResourceCountsSummary) *CountsSummary {
+	s.Components = v
+	return s
+}
+
+// SetEnvironmentTemplates sets the EnvironmentTemplates field's value.
+func (s *CountsSummary) SetEnvironmentTemplates(v *ResourceCountsSummary) *CountsSummary {
+	s.EnvironmentTemplates = v
+	return s
+}
+
+// SetEnvironments sets the Environments field's value.
+func (s *CountsSummary) SetEnvironments(v *ResourceCountsSummary) *CountsSummary {
+	s.Environments = v
+	return s
+}
+
+// SetPipelines sets the Pipelines field's value.
+func (s *CountsSummary) SetPipelines(v *ResourceCountsSummary) *CountsSummary {
+	s.Pipelines = v
+	return s
+}
+
+// SetServiceInstances sets the ServiceInstances field's value.
+func (s *CountsSummary) SetServiceInstances(v *ResourceCountsSummary) *CountsSummary {
+	s.ServiceInstances = v
+	return s
+}
+
+// SetServiceTemplates sets the ServiceTemplates field's value.
+func (s *CountsSummary) SetServiceTemplates(v *ResourceCountsSummary) *CountsSummary {
+	s.ServiceTemplates = v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *CountsSummary) SetServices(v *ResourceCountsSummary) *CountsSummary {
+	s.Services = v
+	return s
+}
+
 type CreateComponentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14430,6 +14632,61 @@ func (s *GetRepositorySyncStatusOutput) SetLatestSync(v *RepositorySyncAttempt) 
 	return s
 }
 
+type GetResourcesSummaryInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcesSummaryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcesSummaryInput) GoString() string {
+	return s.String()
+}
+
+type GetResourcesSummaryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary counts of each Proton resource type.
+	//
+	// Counts is a required field
+	Counts *CountsSummary `locationName:"counts" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcesSummaryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcesSummaryOutput) GoString() string {
+	return s.String()
+}
+
+// SetCounts sets the Counts field's value.
+func (s *GetResourcesSummaryOutput) SetCounts(v *CountsSummary) *GetResourcesSummaryOutput {
+	s.Counts = v
+	return s
+}
+
 type GetServiceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18217,6 +18474,80 @@ func (s *RepositorySyncEvent) SetTime(v time.Time) *RepositorySyncEvent {
 // SetType sets the Type field's value.
 func (s *RepositorySyncEvent) SetType(v string) *RepositorySyncEvent {
 	s.Type = &v
+	return s
+}
+
+// Summary counts of each Proton resource types.
+type ResourceCountsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The number of resources of this type in the Amazon Web Services account that
+	// need a major template version update.
+	BehindMajor *int64 `locationName:"behindMajor" type:"integer"`
+
+	// The number of resources of this type in the Amazon Web Services account that
+	// need a minor template version update.
+	BehindMinor *int64 `locationName:"behindMinor" type:"integer"`
+
+	// The number of resources of this type in the Amazon Web Services account that
+	// failed to deploy.
+	Failed *int64 `locationName:"failed" type:"integer"`
+
+	// The total number of resources of this type in the Amazon Web Services account.
+	//
+	// Total is a required field
+	Total *int64 `locationName:"total" type:"integer" required:"true"`
+
+	// The number of resources of this type in the Amazon Web Services account that
+	// are up-to-date with their template.
+	UpToDate *int64 `locationName:"upToDate" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceCountsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceCountsSummary) GoString() string {
+	return s.String()
+}
+
+// SetBehindMajor sets the BehindMajor field's value.
+func (s *ResourceCountsSummary) SetBehindMajor(v int64) *ResourceCountsSummary {
+	s.BehindMajor = &v
+	return s
+}
+
+// SetBehindMinor sets the BehindMinor field's value.
+func (s *ResourceCountsSummary) SetBehindMinor(v int64) *ResourceCountsSummary {
+	s.BehindMinor = &v
+	return s
+}
+
+// SetFailed sets the Failed field's value.
+func (s *ResourceCountsSummary) SetFailed(v int64) *ResourceCountsSummary {
+	s.Failed = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *ResourceCountsSummary) SetTotal(v int64) *ResourceCountsSummary {
+	s.Total = &v
+	return s
+}
+
+// SetUpToDate sets the UpToDate field's value.
+func (s *ResourceCountsSummary) SetUpToDate(v int64) *ResourceCountsSummary {
+	s.UpToDate = &v
 	return s
 }
 
