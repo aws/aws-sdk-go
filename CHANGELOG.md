@@ -1,3 +1,11 @@
+Release v1.44.194 (2023-02-03)
+===
+
+### Service Client Updates
+* `service/proton`: Updates service API and documentation
+* `service/redshift`: Updates service documentation
+  * Corrects descriptions of the parameters for the API operations RestoreFromClusterSnapshot, RestoreTableFromClusterSnapshot, and CreateCluster.
+
 Release v1.44.193 (2023-02-02)
 ===
 

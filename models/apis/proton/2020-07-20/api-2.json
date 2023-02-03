@@ -592,6 +592,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetResourcesSummary":{
+      "name":"GetResourcesSummary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcesSummaryInput"},
+      "output":{"shape":"GetResourcesSummaryOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetService":{
       "name":"GetService",
       "http":{
@@ -1494,6 +1509,18 @@
       },
       "exception":true
     },
+    "CountsSummary":{
+      "type":"structure",
+      "members":{
+        "components":{"shape":"ResourceCountsSummary"},
+        "environmentTemplates":{"shape":"ResourceCountsSummary"},
+        "environments":{"shape":"ResourceCountsSummary"},
+        "pipelines":{"shape":"ResourceCountsSummary"},
+        "serviceInstances":{"shape":"ResourceCountsSummary"},
+        "serviceTemplates":{"shape":"ResourceCountsSummary"},
+        "services":{"shape":"ResourceCountsSummary"}
+      }
+    },
     "CreateComponentInput":{
       "type":"structure",
       "required":[
@@ -2335,6 +2362,18 @@
         "latestSync":{"shape":"RepositorySyncAttempt"}
       }
     },
+    "GetResourcesSummaryInput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetResourcesSummaryOutput":{
+      "type":"structure",
+      "required":["counts"],
+      "members":{
+        "counts":{"shape":"CountsSummary"}
+      }
+    },
     "GetServiceInput":{
       "type":"structure",
       "required":["name"],
@@ -2442,6 +2481,10 @@
       "type":"string",
       "max":200,
       "min":1
+    },
+    "Integer":{
+      "type":"integer",
+      "box":true
     },
     "InternalServerException":{
       "type":"structure",
@@ -3082,6 +3125,17 @@
         "FAILED",
         "QUEUED"
       ]
+    },
+    "ResourceCountsSummary":{
+      "type":"structure",
+      "required":["total"],
+      "members":{
+        "behindMajor":{"shape":"Integer"},
+        "behindMinor":{"shape":"Integer"},
+        "failed":{"shape":"Integer"},
+        "total":{"shape":"Integer"},
+        "upToDate":{"shape":"Integer"}
+      }
     },
     "ResourceDeploymentStatus":{
       "type":"string",

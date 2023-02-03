@@ -12338,6 +12338,9 @@ func (c *Redshift) RestoreTableFromClusterSnapshotRequest(input *RestoreTableFro
 // This way, you can replace the original table with the table created from
 // the snapshot.
 //
+// You can't use this operation to restore tables with interleaved sort keys
+// (https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html#t_Sorting_data-interleaved).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -16320,9 +16323,15 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must be 1 - 128 alphanumeric characters. The user name can't be PUBLIC.
+	//    * Must be 1 - 128 alphanumeric characters or hyphens. The user name can't
+	//    be PUBLIC.
 	//
-	//    * First character must be a letter.
+	//    * Must contain only lowercase letters, numbers, underscore, plus sign,
+	//    period (dot), at symbol (@), or hyphen.
+	//
+	//    * The first character must be a letter.
+	//
+	//    * Must not contain a colon (:) or a slash (/).
 	//
 	//    * Cannot be a reserved word. A list of reserved words can be found in
 	//    Reserved Words (https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
@@ -21066,7 +21075,7 @@ type DescribeClusterSecurityGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of a cluster security group for which you are requesting details.
-	// You can specify either the Marker parameter or a ClusterSecurityGroupName
+	// You must specify either the Marker parameter or a ClusterSecurityGroupName
 	// parameter, but not both.
 	//
 	// Example: securitygroup1
@@ -21079,7 +21088,7 @@ type DescribeClusterSecurityGroupsInput struct {
 	// records by providing the returned marker value in the Marker parameter and
 	// retrying the request.
 	//
-	// Constraints: You can specify either the ClusterSecurityGroupName parameter
+	// Constraints: You must specify either the ClusterSecurityGroupName parameter
 	// or the Marker parameter, but not both.
 	Marker *string `type:"string"`
 
@@ -22514,7 +22523,7 @@ func (s *DescribeEndpointAccessOutput) SetMarker(v string) *DescribeEndpointAcce
 type DescribeEndpointAuthorizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AAmazon Web Services account ID of either the cluster owner (grantor)
+	// The Amazon Web Services account ID of either the cluster owner (grantor)
 	// or grantee. If Grantee parameter is true, then the Account value is of the
 	// grantor.
 	Account *string `type:"string"`
@@ -25624,8 +25633,8 @@ type EnableLoggingInput struct {
 	// The log destination type. An enum with possible values of s3 and cloudwatch.
 	LogDestinationType *string `type:"string" enum:"LogDestinationType"`
 
-	// The collection of exported log types. Log types include the connection log,
-	// user log and user activity log.
+	// The collection of exported log types. Possible values are connectionlog,
+	// useractivitylog, and userlog.
 	LogExports []*string `type:"list"`
 
 	// The prefix applied to the log file names.
@@ -27290,8 +27299,8 @@ type LoggingStatus struct {
 	// The log destination type. An enum with possible values of s3 and cloudwatch.
 	LogDestinationType *string `type:"string" enum:"LogDestinationType"`
 
-	// The collection of exported log types. Log types include the connection log,
-	// user log and user activity log.
+	// The collection of exported log types. Possible values are connectionlog,
+	// useractivitylog, and userlog.
 	LogExports []*string `type:"list"`
 
 	// true if logging is on, false if logging is off.
@@ -31744,7 +31753,7 @@ type RestoreFromClusterSnapshotInput struct {
 	ReservedNodeId *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the snapshot associated with the message
-	// to restore from a cluster. You can specify this parameter or snapshotIdentifier,
+	// to restore from a cluster. You must specify this parameter or snapshotIdentifier,
 	// but not both.
 	SnapshotArn *string `type:"string"`
 
@@ -31754,7 +31763,7 @@ type RestoreFromClusterSnapshotInput struct {
 	SnapshotClusterIdentifier *string `type:"string"`
 
 	// The name of the snapshot from which to create the new cluster. This parameter
-	// isn't case sensitive. You can specify this parameter or snapshotArn, but
+	// isn't case sensitive. You must specify this parameter or snapshotArn, but
 	// not both.
 	//
 	// Example: my-snapshot-id
