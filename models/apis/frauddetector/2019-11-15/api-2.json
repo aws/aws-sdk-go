@@ -2673,7 +2673,8 @@
     "OFIModelPerformance":{
       "type":"structure",
       "members":{
-        "auc":{"shape":"float"}
+        "auc":{"shape":"float"},
+        "uncertaintyRange":{"shape":"UncertaintyRange"}
       }
     },
     "OFITrainingMetricsValue":{
@@ -2951,7 +2952,8 @@
     "TFIModelPerformance":{
       "type":"structure",
       "members":{
-        "auc":{"shape":"float"}
+        "auc":{"shape":"float"},
+        "uncertaintyRange":{"shape":"UncertaintyRange"}
       }
     },
     "TFITrainingMetricsValue":{
@@ -3049,12 +3051,24 @@
         "aggregatedVariablesImportanceMetrics":{"shape":"AggregatedVariablesImportanceMetrics"}
       }
     },
+    "UncertaintyRange":{
+      "type":"structure",
+      "required":[
+        "lowerBoundValue",
+        "upperBoundValue"
+      ],
+      "members":{
+        "lowerBoundValue":{"shape":"float"},
+        "upperBoundValue":{"shape":"float"}
+      }
+    },
     "UnlabeledEventsTreatment":{
       "type":"string",
       "enum":[
         "IGNORE",
         "FRAUD",
-        "LEGIT"
+        "LEGIT",
+        "AUTO"
       ]
     },
     "UntagResourceRequest":{

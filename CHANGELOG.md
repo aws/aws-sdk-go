@@ -1,3 +1,14 @@
+Release v1.44.195 (2023-02-06)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API and documentation
+* `service/frauddetector`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * The AWS Elemental MediaConvert SDK has added improved scene change detection capabilities and a bandwidth reduction filter, along with video quality enhancements, to the AVC encoder.
+* `service/outposts`: Updates service API and documentation
+
 Release v1.44.194 (2023-02-03)
 ===
 

@@ -11228,9 +11228,9 @@ func (s *EsamSignalProcessingNotification) SetSccXml(v string) *EsamSignalProces
 type ExtendedDataServices struct {
 	_ struct{} `type:"structure"`
 
-	// The action to take on copy and redistribution control XDS packets. If you
-	// select PASSTHROUGH, packets will not be changed. If you select STRIP, any
-	// packets will be removed in output captions.
+	// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
+	// packets will not be changed. If you select STRIP, any packets will be removed
+	// in output captions.
 	CopyProtectionAction *string `locationName:"copyProtectionAction" type:"string" enum:"CopyProtectionAction"`
 
 	// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
@@ -15051,7 +15051,7 @@ type Input struct {
 	FilterEnable *string `locationName:"filterEnable" type:"string" enum:"InputFilterEnable"`
 
 	// Use Filter strength (FilterStrength) to adjust the magnitude the input filter
-	// settings (Deblock and Denoise). The range is -5 to 5. Default is 0.
+	// settings (Deblock and Denoise). The range is 0 to 5. Default is 0.
 	FilterStrength *int64 `locationName:"filterStrength" type:"integer"`
 
 	// Enable the image inserter feature to include a graphic overlay on your video.
@@ -15158,9 +15158,6 @@ func (s *Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Input"}
 	if s.DolbyVisionMetadataXml != nil && len(*s.DolbyVisionMetadataXml) < 14 {
 		invalidParams.Add(request.NewErrParamMinLen("DolbyVisionMetadataXml", 14))
-	}
-	if s.FilterStrength != nil && *s.FilterStrength < -5 {
-		invalidParams.Add(request.NewErrParamMinValue("FilterStrength", -5))
 	}
 	if s.ProgramNumber != nil && *s.ProgramNumber < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ProgramNumber", 1))
@@ -15563,7 +15560,7 @@ type InputTemplate struct {
 	FilterEnable *string `locationName:"filterEnable" type:"string" enum:"InputFilterEnable"`
 
 	// Use Filter strength (FilterStrength) to adjust the magnitude the input filter
-	// settings (Deblock and Denoise). The range is -5 to 5. Default is 0.
+	// settings (Deblock and Denoise). The range is 0 to 5. Default is 0.
 	FilterStrength *int64 `locationName:"filterStrength" type:"integer"`
 
 	// Enable the image inserter feature to include a graphic overlay on your video.
@@ -15655,9 +15652,6 @@ func (s *InputTemplate) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InputTemplate"}
 	if s.DolbyVisionMetadataXml != nil && len(*s.DolbyVisionMetadataXml) < 14 {
 		invalidParams.Add(request.NewErrParamMinLen("DolbyVisionMetadataXml", 14))
-	}
-	if s.FilterStrength != nil && *s.FilterStrength < -5 {
-		invalidParams.Add(request.NewErrParamMinValue("FilterStrength", -5))
 	}
 	if s.ProgramNumber != nil && *s.ProgramNumber < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ProgramNumber", 1))
@@ -29434,9 +29428,9 @@ func ContainerType_Values() []string {
 	}
 }
 
-// The action to take on copy and redistribution control XDS packets. If you
-// select PASSTHROUGH, packets will not be changed. If you select STRIP, any
-// packets will be removed in output captions.
+// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
+// packets will not be changed. If you select STRIP, any packets will be removed
+// in output captions.
 const (
 	// CopyProtectionActionPassthrough is a CopyProtectionAction enum value
 	CopyProtectionActionPassthrough = "PASSTHROUGH"

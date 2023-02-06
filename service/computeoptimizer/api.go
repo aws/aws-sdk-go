@@ -3517,7 +3517,7 @@ func (s *EBSUtilizationMetric) SetValue(v float64) *EBSUtilizationMetric {
 
 // Describes the projected metrics of an Amazon ECS service recommendation option.
 //
-// To determine the performance difference between your current ECS service
+// To determine the performance difference between your current Amazon ECS service
 // and the recommended option, compare the metric data of your service against
 // its projected metric data.
 type ECSServiceProjectedMetric struct {
@@ -3530,11 +3530,11 @@ type ECSServiceProjectedMetric struct {
 	//
 	// The following metrics are available:
 	//
-	//    * CPU — The percentage of allocated compute units that are currently
-	//    in use on the ECS service tasks.
+	//    * Cpu — The percentage of allocated compute units that are currently
+	//    in use on the service tasks.
 	//
-	//    * Memory — The percentage of memory that is currently in use on the
-	//    ECS service tasks.
+	//    * Memory — The percentage of memory that's currently in use on the service
+	//    tasks.
 	Name *string `locationName:"name" type:"string" enum:"ECSServiceMetricName"`
 
 	// The timestamps of the projected metric.
@@ -3589,7 +3589,7 @@ func (s *ECSServiceProjectedMetric) SetUpperBoundValues(v []*float64) *ECSServic
 // Describes the projected utilization metrics of an Amazon ECS service recommendation
 // option.
 //
-// To determine the performance difference between your current ECS service
+// To determine the performance difference between your current Amazon ECS service
 // and the recommended option, compare the utilization metric data of your service
 // against its projected utilization metric data.
 type ECSServiceProjectedUtilizationMetric struct {
@@ -3602,11 +3602,11 @@ type ECSServiceProjectedUtilizationMetric struct {
 	//
 	// The following utilization metrics are available:
 	//
-	//    * CPU — The percentage of allocated compute units that are currently
-	//    in use on the ECS service tasks.
+	//    * Cpu — The percentage of allocated compute units that are currently
+	//    in use on the service tasks.
 	//
-	//    * Memory — The percentage of memory that is currently in use on the
-	//    ECS service tasks.
+	//    * Memory — The percentage of memory that's currently in use on the service
+	//    tasks.
 	Name *string `locationName:"name" type:"string" enum:"ECSServiceMetricName"`
 
 	// The statistic of the projected utilization metric.
@@ -3674,82 +3674,83 @@ func (s *ECSServiceProjectedUtilizationMetric) SetUpperBoundValue(v float64) *EC
 type ECSServiceRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account ID of the ECS service.
+	// The Amazon Web Services account ID of the Amazon ECS service.
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// The risk of the current ECS service not meeting the performance needs of
-	// its workloads. The higher the risk, the more likely the current service can't
-	// meet the performance requirements of its workload.
+	// The risk of the current Amazon ECS service not meeting the performance needs
+	// of its workloads. The higher the risk, the more likely the current service
+	// can't meet the performance requirements of its workload.
 	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
 
-	// The configuration of the current ECS service.
+	// The configuration of the current Amazon ECS service.
 	CurrentServiceConfiguration *ServiceConfiguration `locationName:"currentServiceConfiguration" type:"structure"`
 
-	// The finding classification of an ECS service.
+	// The finding classification of an Amazon ECS service.
 	//
-	// Findings for ECS services include:
+	// Findings for Amazon ECS services include:
 	//
 	//    * Underprovisioned — When Compute Optimizer detects that there’s not
-	//    enough memory or CPU, an ECS service is considered under-provisioned.
-	//    An under-provisioned ECS service might result in poor application performance.
+	//    enough memory or CPU, an Amazon ECS service is considered under-provisioned.
+	//    An under-provisioned service might result in poor application performance.
 	//
 	//    * Overprovisioned — When Compute Optimizer detects that there’s excessive
-	//    memory or CPU, an ECS service is considered over-provisioned. An over-provisioned
-	//    ECS service might result in additional infrastructure costs.
+	//    memory or CPU, an Amazon ECS service is considered over-provisioned. An
+	//    over-provisioned service might result in additional infrastructure costs.
 	//
-	//    * Optimized — When both the CPU and memory of your ECS service meet
-	//    the performance requirements of your workload, the service is considered
+	//    * Optimized — When both the CPU and memory of your Amazon ECS service
+	//    meet the performance requirements of your workload, the service is considered
 	//    optimized.
 	Finding *string `locationName:"finding" type:"string" enum:"ECSServiceRecommendationFinding"`
 
-	// The reason for the finding classification of an ECS service.
+	// The reason for the finding classification of an Amazon ECS service.
 	//
-	// Finding reason codes for ECS services include:
+	// Finding reason codes for Amazon ECS services include:
 	//
-	//    * CPUUnderprovisioned — The ECS service CPU configuration can be sized
+	//    * CPUUnderprovisioned — The service CPU configuration can be sized up
+	//    to enhance the performance of your workload. This is identified by analyzing
+	//    the CPUUtilization metric of the current service during the look-back
+	//    period.
+	//
+	//    * CPUOverprovisioned — The service CPU configuration can be sized down
+	//    while still meeting the performance requirements of your workload. This
+	//    is identified by analyzing the CPUUtilization metric of the current service
+	//    during the look-back period.
+	//
+	//    * MemoryUnderprovisioned — The service memory configuration can be sized
 	//    up to enhance the performance of your workload. This is identified by
-	//    analyzing the CPUUtilization metric of the current service during the
+	//    analyzing the MemoryUtilization metric of the current service during the
 	//    look-back period.
 	//
-	//    * CPUOverprovisioned — The ECS service CPU configuration can be sized
+	//    * MemoryOverprovisioned — The service memory configuration can be sized
 	//    down while still meeting the performance requirements of your workload.
-	//    This is identified by analyzing the CPUUtilization metric of the current
-	//    service during the look-back period.
-	//
-	//    * MemoryUnderprovisioned — The ECS service memory configuration can
-	//    be sized up to enhance the performance of your workload. This is identified
-	//    by analyzing the MemoryUtilization metric of the current service during
-	//    the look-back period.
-	//
-	//    * MemoryOverprovisioned — The ECS service memory configuration can be
-	//    sized down while still meeting the performance requirements of your workload.
 	//    This is identified by analyzing the MemoryUtilization metric of the current
 	//    service during the look-back period.
 	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list" enum:"ECSServiceRecommendationFindingReasonCode"`
 
-	// The timestamp of when the ECS service recommendation was last generated.
+	// The timestamp of when the Amazon ECS service recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
-	// The launch type the ECS service is using.
+	// The launch type the Amazon ECS service is using.
 	//
 	// Compute Optimizer only supports the Fargate launch type.
 	LaunchType *string `locationName:"launchType" type:"string" enum:"ECSServiceLaunchType"`
 
-	// The number of days the ECS service utilization metrics were analyzed.
+	// The number of days the Amazon ECS service utilization metrics were analyzed.
 	LookbackPeriodInDays *float64 `locationName:"lookbackPeriodInDays" type:"double"`
 
-	// The Amazon Resource Name (ARN) of the current ECS service.
+	// The Amazon Resource Name (ARN) of the current Amazon ECS service.
 	//
 	// The following is the format of the ARN:
 	//
 	// arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name
 	ServiceArn *string `locationName:"serviceArn" type:"string"`
 
-	// An array of objects that describe the recommendation options for the ECS
-	// service.
+	// An array of objects that describe the recommendation options for the Amazon
+	// ECS service.
 	ServiceRecommendationOptions []*ECSServiceRecommendationOption `locationName:"serviceRecommendationOptions" type:"list"`
 
-	// An array of objects that describe the utilization metrics of the ECS service.
+	// An array of objects that describe the utilization metrics of the Amazon ECS
+	// service.
 	UtilizationMetrics []*ECSServiceUtilizationMetric `locationName:"utilizationMetrics" type:"list"`
 }
 
@@ -3897,17 +3898,17 @@ type ECSServiceRecommendationOption struct {
 	_ struct{} `type:"structure"`
 
 	// The CPU and memory size recommendations for the containers within the task
-	// of your ECS service.
+	// of your Amazon ECS service.
 	ContainerRecommendations []*ContainerRecommendation `locationName:"containerRecommendations" type:"list"`
 
-	// The CPU size of the ECS service recommendation option.
+	// The CPU size of the Amazon ECS service recommendation option.
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
-	// The memory size of the ECS service recommendation option.
+	// The memory size of the Amazon ECS service recommendation option.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
 	// An array of objects that describe the projected utilization metrics of the
-	// ECS service recommendation option.
+	// Amazon ECS service recommendation option.
 	ProjectedUtilizationMetrics []*ECSServiceProjectedUtilizationMetric `locationName:"projectedUtilizationMetrics" type:"list"`
 
 	// Describes the savings opportunity for recommendations of a given resource
@@ -3979,7 +3980,7 @@ func (s *ECSServiceRecommendationOption) SetSavingsOpportunity(v *SavingsOpportu
 
 // Describes the projected metrics of an Amazon ECS service recommendation option.
 //
-// To determine the performance difference between your current ECS service
+// To determine the performance difference between your current Amazon ECS service
 // and the recommended option, compare the metric data of your service against
 // its projected metric data.
 type ECSServiceRecommendedOptionProjectedMetric struct {
@@ -3988,10 +3989,10 @@ type ECSServiceRecommendedOptionProjectedMetric struct {
 	// An array of objects that describe the projected metric.
 	ProjectedMetrics []*ECSServiceProjectedMetric `locationName:"projectedMetrics" type:"list"`
 
-	// The recommended CPU size for the ECS service.
+	// The recommended CPU size for the Amazon ECS service.
 	RecommendedCpuUnits *int64 `locationName:"recommendedCpuUnits" type:"integer"`
 
-	// The recommended memory size for the ECS service.
+	// The recommended memory size for the Amazon ECS service.
 	RecommendedMemorySize *int64 `locationName:"recommendedMemorySize" type:"integer"`
 }
 
@@ -4033,7 +4034,7 @@ func (s *ECSServiceRecommendedOptionProjectedMetric) SetRecommendedMemorySize(v 
 
 // Describes the utilization metric of an Amazon ECS service.
 //
-// To determine the performance difference between your current ECS service
+// To determine the performance difference between your current Amazon ECS service
 // and the recommended option, compare the utilization metric data of your service
 // against its projected utilization metric data.
 type ECSServiceUtilizationMetric struct {
@@ -4043,9 +4044,9 @@ type ECSServiceUtilizationMetric struct {
 	//
 	// The following utilization metrics are available:
 	//
-	//    * Cpu — The amount of CPU units that are used in the service.
+	//    * Cpu — The amount of CPU capacity that's used in the service.
 	//
-	//    * Memory — The amount of memory that is used in the service.
+	//    * Memory — The amount of memory that's used in the service.
 	Name *string `locationName:"name" type:"string" enum:"ECSServiceMetricName"`
 
 	// The statistic of the utilization metric.
@@ -4882,7 +4883,7 @@ func (s *ExportEC2InstanceRecommendationsOutput) SetS3Destination(v *S3Destinati
 type ExportECSServiceRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account IDs for the export ECS service recommendations.
+	// The Amazon Web Services account IDs for the export Amazon ECS service recommendations.
 	//
 	// If your account is the management account or the delegated administrator
 	// of an organization, use this parameter to specify the member account you
@@ -4908,7 +4909,7 @@ type ExportECSServiceRecommendationsInput struct {
 	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
 
 	// An array of objects to specify a filter that exports a more specific set
-	// of ECS service recommendations.
+	// of Amazon ECS service recommendations.
 	Filters []*ECSServiceRecommendationFilter `locationName:"filters" type:"list"`
 
 	// If your account is the management account or the delegated administrator
@@ -5957,7 +5958,7 @@ type GetECSServiceRecommendationProjectedMetricsInput struct {
 	// Period is a required field
 	Period *int64 `locationName:"period" type:"integer" required:"true"`
 
-	// The ARN that identifies the ECS service.
+	// The ARN that identifies the Amazon ECS service.
 	//
 	// The following is the format of the ARN:
 	//
@@ -6084,31 +6085,31 @@ func (s *GetECSServiceRecommendationProjectedMetricsOutput) SetRecommendedOption
 type GetECSServiceRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Return the ECS service recommendations to the specified Amazon Web Services
-	// account IDs.
+	// Return the Amazon ECS service recommendations to the specified Amazon Web
+	// Services account IDs.
 	//
 	// If your account is the management account or the delegated administrator
-	// of an organization, use this parameter to return the ECS service recommendations
+	// of an organization, use this parameter to return the Amazon ECS service recommendations
 	// to specific member accounts.
 	//
 	// You can only specify one account ID per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
 	// An array of objects to specify a filter that returns a more specific list
-	// of ECS service recommendations.
+	// of Amazon ECS service recommendations.
 	Filters []*ECSServiceRecommendationFilter `locationName:"filters" type:"list"`
 
-	// The maximum number of ECS service recommendations to return with a single
-	// request.
+	// The maximum number of Amazon ECS service recommendations to return with a
+	// single request.
 	//
 	// To retrieve the remaining results, make another request with the returned
 	// nextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// The token to advance to the next page of ECS service recommendations.
+	// The token to advance to the next page of Amazon ECS service recommendations.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The ARN that identifies the ECS service.
+	// The ARN that identifies the Amazon ECS service.
 	//
 	// The following is the format of the ARN:
 	//
@@ -6167,13 +6168,13 @@ func (s *GetECSServiceRecommendationsInput) SetServiceArns(v []*string) *GetECSS
 type GetECSServiceRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of objects that describe the ECS service recommendations.
+	// An array of objects that describe the Amazon ECS service recommendations.
 	EcsServiceRecommendations []*ECSServiceRecommendation `locationName:"ecsServiceRecommendations" type:"list"`
 
 	// An array of objects that describe errors of the request.
 	Errors []*GetRecommendationError `locationName:"errors" type:"list"`
 
-	// The token to advance to the next page of ECS service recommendations.
+	// The token to advance to the next page of Amazon ECS service recommendations.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -7112,6 +7113,8 @@ type InstanceRecommendation struct {
 	//    * PostgreSql - Infers that PostgreSQL might be running on the instance.
 	//
 	//    * Redis - Infers that Redis might be running on the instance.
+	//
+	//    * Kafka - Infers that Kafka might be running on the instance.
 	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list" enum:"InferredWorkloadType"`
 
 	// The Amazon Resource Name (ARN) of the current instance.
@@ -9281,15 +9284,15 @@ type ServiceConfiguration struct {
 
 	// Describes the Auto Scaling configuration methods for an Amazon ECS service.
 	// This affects the generated recommendations. For example, if Auto Scaling
-	// is configured on a ECS service’s CPU, then Compute Optimizer doesn’t
-	// generate CPU size recommendations.
+	// is configured on a service’s CPU, then Compute Optimizer doesn’t generate
+	// CPU size recommendations.
 	//
 	// The Auto Scaling configuration methods include:
 	//
-	//    * TARGET_TRACKING_SCALING_CPU — If the ECS service is configured to
-	//    use target scaling on CPU, Compute Optimizer doesn't generate CPU recommendations.
+	//    * TARGET_TRACKING_SCALING_CPU — If the Amazon ECS service is configured
+	//    to use target scaling on CPU, Compute Optimizer doesn't generate CPU recommendations.
 	//
-	//    * TARGET_TRACKING_SCALING_MEMORY — If the ECS service is configured
+	//    * TARGET_TRACKING_SCALING_MEMORY — If the Amazon ECS service is configured
 	//    to use target scaling on memory, Compute Optimizer doesn't generate memory
 	//    recommendations.
 	//
@@ -9299,16 +9302,16 @@ type ServiceConfiguration struct {
 	// in the Application Auto Scaling User Guide.
 	AutoScalingConfiguration *string `locationName:"autoScalingConfiguration" type:"string" enum:"AutoScalingConfiguration"`
 
-	// The container configurations within a task of an ECS service.
+	// The container configurations within a task of an Amazon ECS service.
 	ContainerConfigurations []*ContainerConfiguration `locationName:"containerConfigurations" type:"list"`
 
-	// The number of CPU units used by the tasks in the ECS service.
+	// The number of CPU units used by the tasks in the Amazon ECS service.
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
-	// The amount of memory used by the tasks in the ECS service.
+	// The amount of memory used by the tasks in the Amazon ECS service.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
-	// The task definition ARN used by the tasks in the ECS service.
+	// The task definition ARN used by the tasks in the Amazon ECS service.
 	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
 }
 
@@ -11212,6 +11215,9 @@ const (
 
 	// InferredWorkloadTypeRedis is a InferredWorkloadType enum value
 	InferredWorkloadTypeRedis = "Redis"
+
+	// InferredWorkloadTypeKafka is a InferredWorkloadType enum value
+	InferredWorkloadTypeKafka = "Kafka"
 )
 
 // InferredWorkloadType_Values returns all elements of the InferredWorkloadType enum
@@ -11224,6 +11230,7 @@ func InferredWorkloadType_Values() []string {
 		InferredWorkloadTypeNginx,
 		InferredWorkloadTypePostgreSql,
 		InferredWorkloadTypeRedis,
+		InferredWorkloadTypeKafka,
 	}
 }
 

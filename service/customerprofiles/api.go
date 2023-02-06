@@ -5213,7 +5213,7 @@ type CreateProfileInput struct {
 	FirstName *string `min:"1" type:"string"`
 
 	// The gender with which the customer identifies.
-	Gender *string `type:"string" enum:"Gender"`
+	Gender *string `deprecated:"true" type:"string" enum:"Gender"`
 
 	// An alternative to Gender which accepts any string as input.
 	GenderString *string `min:"1" type:"string"`
@@ -5234,7 +5234,7 @@ type CreateProfileInput struct {
 	MobilePhoneNumber *string `min:"1" type:"string"`
 
 	// The type of profile used to describe the customer.
-	PartyType *string `type:"string" enum:"PartyType"`
+	PartyType *string `deprecated:"true" type:"string" enum:"PartyType"`
 
 	// An alternative to PartyType which accepts any string as input.
 	PartyTypeString *string `min:"1" type:"string"`
@@ -7403,9 +7403,9 @@ type GetIntegrationOutput struct {
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
-	// Boolean to indicate if the Flow associated with the Integration is created
-	// via Appflow console or with ObjectTypeName equals _unstructured via API/CLI
-	// in flowDefinition
+	// Boolean that shows if the Flow that's associated with the Integration is
+	// created in Amazon Appflow, or with ObjectTypeName equals _unstructured via
+	// API/CLI in flowDefinition.
 	IsUnstructured *bool `type:"boolean"`
 
 	// The timestamp of when the domain was most recently edited.
@@ -9080,9 +9080,9 @@ type ListIntegrationItem struct {
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
-	// Boolean to indicate if the Flow associated with the Integration is created
-	// via Appflow console or with ObjectTypeName equals _unstructured via API/CLI
-	// in flowDefinition
+	// Boolean that shows if the Flow that's associated with the Integration is
+	// created in Amazon Appflow, or with ObjectTypeName equals _unstructured via
+	// API/CLI in flowDefinition.
 	IsUnstructured *bool `type:"boolean"`
 
 	// The timestamp of when the domain was most recently edited.
@@ -10798,7 +10798,10 @@ type Profile struct {
 	FoundByItems []*FoundByKeyValue `min:"1" type:"list"`
 
 	// The gender with which the customer identifies.
-	Gender *string `type:"string" enum:"Gender"`
+	Gender *string `deprecated:"true" type:"string" enum:"Gender"`
+
+	// An alternative to Gender which accepts any string as input.
+	GenderString *string `min:"1" type:"string"`
 
 	// The customer’s home phone number.
 	HomePhoneNumber *string `min:"1" type:"string"`
@@ -10816,7 +10819,10 @@ type Profile struct {
 	MobilePhoneNumber *string `min:"1" type:"string"`
 
 	// The type of profile used to describe the customer.
-	PartyType *string `type:"string" enum:"PartyType"`
+	PartyType *string `deprecated:"true" type:"string" enum:"PartyType"`
+
+	// An alternative to PartyType which accepts any string as input.
+	PartyTypeString *string `min:"1" type:"string"`
 
 	// The customer’s personal email address.
 	PersonalEmailAddress *string `min:"1" type:"string"`
@@ -10928,6 +10934,12 @@ func (s *Profile) SetGender(v string) *Profile {
 	return s
 }
 
+// SetGenderString sets the GenderString field's value.
+func (s *Profile) SetGenderString(v string) *Profile {
+	s.GenderString = &v
+	return s
+}
+
 // SetHomePhoneNumber sets the HomePhoneNumber field's value.
 func (s *Profile) SetHomePhoneNumber(v string) *Profile {
 	s.HomePhoneNumber = &v
@@ -10961,6 +10973,12 @@ func (s *Profile) SetMobilePhoneNumber(v string) *Profile {
 // SetPartyType sets the PartyType field's value.
 func (s *Profile) SetPartyType(v string) *Profile {
 	s.PartyType = &v
+	return s
+}
+
+// SetPartyTypeString sets the PartyTypeString field's value.
+func (s *Profile) SetPartyTypeString(v string) *Profile {
+	s.PartyTypeString = &v
 	return s
 }
 
@@ -11114,9 +11132,9 @@ type PutIntegrationOutput struct {
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
-	// Boolean to indicate if the Flow associated with the Integration is created
-	// via Appflow console or with ObjectTypeName equals _unstructured via API/CLI
-	// in flowDefinition
+	// Boolean that shows if the Flow that's associated with the Integration is
+	// created in Amazon Appflow, or with ObjectTypeName equals _unstructured via
+	// API/CLI in flowDefinition.
 	IsUnstructured *bool `type:"boolean"`
 
 	// The timestamp of when the domain was most recently edited.
@@ -13339,7 +13357,7 @@ type UpdateProfileInput struct {
 	FirstName *string `type:"string"`
 
 	// The gender with which the customer identifies.
-	Gender *string `type:"string" enum:"Gender"`
+	Gender *string `deprecated:"true" type:"string" enum:"Gender"`
 
 	// An alternative to Gender which accepts any string as input.
 	GenderString *string `type:"string"`
@@ -13360,7 +13378,7 @@ type UpdateProfileInput struct {
 	MobilePhoneNumber *string `type:"string"`
 
 	// The type of profile used to describe the customer.
-	PartyType *string `type:"string" enum:"PartyType"`
+	PartyType *string `deprecated:"true" type:"string" enum:"PartyType"`
 
 	// An alternative to PartyType which accepts any string as input.
 	PartyTypeString *string `type:"string"`

@@ -1455,7 +1455,8 @@
         "Memcached",
         "Nginx",
         "PostgreSql",
-        "Redis"
+        "Redis",
+        "Kafka"
       ]
     },
     "InferredWorkloadTypes":{

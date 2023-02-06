@@ -1429,13 +1429,13 @@
       "base": null,
       "refs": {
         "AutoMerging$Enabled": "<p>The flag that enables the auto-merging of duplicate profiles.</p>",
-        "GetIntegrationResponse$IsUnstructured": "<p>Boolean to indicate if the Flow associated with the Integration is created via Appflow console or with ObjectTypeName equals _unstructured via API/CLI in flowDefinition</p>",
+        "GetIntegrationResponse$IsUnstructured": "<p>Boolean that shows if the Flow that's associated with the Integration is created in Amazon Appflow, or with ObjectTypeName equals _unstructured via API/CLI in flowDefinition.</p>",
         "ListAccountIntegrationsRequest$IncludeHidden": "<p>Boolean to indicate if hidden integration should be returned. Defaults to <code>False</code>.</p>",
-        "ListIntegrationItem$IsUnstructured": "<p>Boolean to indicate if the Flow associated with the Integration is created via Appflow console or with ObjectTypeName equals _unstructured via API/CLI in flowDefinition</p>",
+        "ListIntegrationItem$IsUnstructured": "<p>Boolean that shows if the Flow that's associated with the Integration is created in Amazon Appflow, or with ObjectTypeName equals _unstructured via API/CLI in flowDefinition.</p>",
         "ListIntegrationsRequest$IncludeHidden": "<p>Boolean to indicate if hidden integration should be returned. Defaults to <code>False</code>.</p>",
         "MatchingRequest$Enabled": "<p>The flag that enables the matching process of duplicate profiles.</p>",
         "MatchingResponse$Enabled": "<p>The flag that enables the matching process of duplicate profiles.</p>",
-        "PutIntegrationResponse$IsUnstructured": "<p>Boolean to indicate if the Flow associated with the Integration is created via Appflow console or with ObjectTypeName equals _unstructured via API/CLI in flowDefinition</p>"
+        "PutIntegrationResponse$IsUnstructured": "<p>Boolean that shows if the Flow that's associated with the Integration is created in Amazon Appflow, or with ObjectTypeName equals _unstructured via API/CLI in flowDefinition.</p>"
       }
     },
     "requestValueList": {
@@ -1591,6 +1591,8 @@
         "Profile$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
         "Profile$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
         "Profile$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
+        "Profile$PartyTypeString": "<p>An alternative to PartyType which accepts any string as input.</p>",
+        "Profile$GenderString": "<p>An alternative to Gender which accepts any string as input.</p>",
         "PutIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "PutIntegrationResponse$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "PutIntegrationResponse$WorkflowId": "<p>Unique identifier for the workflow.</p>",
