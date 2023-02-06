@@ -4808,6 +4808,12 @@ type LineItem struct {
 	// The ID of the line item.
 	LineItemId *string `type:"string"`
 
+	// The ID of the previous line item.
+	PreviousLineItemId *string `type:"string"`
+
+	// The ID of the previous order.
+	PreviousOrderId *string `min:"1" type:"string"`
+
 	// The quantity of the line item.
 	Quantity *int64 `min:"1" type:"integer"`
 
@@ -4851,6 +4857,18 @@ func (s *LineItem) SetCatalogItemId(v string) *LineItem {
 // SetLineItemId sets the LineItemId field's value.
 func (s *LineItem) SetLineItemId(v string) *LineItem {
 	s.LineItemId = &v
+	return s
+}
+
+// SetPreviousLineItemId sets the PreviousLineItemId field's value.
+func (s *LineItem) SetPreviousLineItemId(v string) *LineItem {
+	s.PreviousLineItemId = &v
+	return s
+}
+
+// SetPreviousOrderId sets the PreviousOrderId field's value.
+func (s *LineItem) SetPreviousOrderId(v string) *LineItem {
+	s.PreviousOrderId = &v
 	return s
 }
 
@@ -5750,6 +5768,9 @@ type Order struct {
 	// The submission date for the order.
 	OrderSubmissionDate *time.Time `type:"timestamp"`
 
+	// The type of order.
+	OrderType *string `type:"string" enum:"OrderType"`
+
 	// The ID of the Outpost in the order.
 	OutpostId *string `min:"1" type:"string"`
 
@@ -5816,6 +5837,12 @@ func (s *Order) SetOrderId(v string) *Order {
 // SetOrderSubmissionDate sets the OrderSubmissionDate field's value.
 func (s *Order) SetOrderSubmissionDate(v time.Time) *Order {
 	s.OrderSubmissionDate = &v
+	return s
+}
+
+// SetOrderType sets the OrderType field's value.
+func (s *Order) SetOrderType(v string) *Order {
+	s.OrderType = &v
 	return s
 }
 
@@ -7488,6 +7515,9 @@ const (
 
 	// LineItemStatusCancelled is a LineItemStatus enum value
 	LineItemStatusCancelled = "CANCELLED"
+
+	// LineItemStatusReplaced is a LineItemStatus enum value
+	LineItemStatusReplaced = "REPLACED"
 )
 
 // LineItemStatus_Values returns all elements of the LineItemStatus enum
@@ -7501,6 +7531,7 @@ func LineItemStatus_Values() []string {
 		LineItemStatusInstalled,
 		LineItemStatusError,
 		LineItemStatusCancelled,
+		LineItemStatusReplaced,
 	}
 }
 

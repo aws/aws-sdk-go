@@ -1012,7 +1012,9 @@
         "Quantity":{"shape":"LineItemQuantity"},
         "Status":{"shape":"LineItemStatus"},
         "ShipmentInformation":{"shape":"ShipmentInformation"},
-        "AssetInformationList":{"shape":"LineItemAssetInformationList"}
+        "AssetInformationList":{"shape":"LineItemAssetInformationList"},
+        "PreviousLineItemId":{"shape":"LineItemId"},
+        "PreviousOrderId":{"shape":"OrderId"}
       }
     },
     "LineItemAssetInformation":{
@@ -1062,7 +1064,8 @@
         "INSTALLING",
         "INSTALLED",
         "ERROR",
-        "CANCELLED"
+        "CANCELLED",
+        "REPLACED"
       ]
     },
     "LineItemStatusCounts":{
@@ -1337,7 +1340,8 @@
         "PaymentOption":{"shape":"PaymentOption"},
         "OrderSubmissionDate":{"shape":"ISO8601Timestamp"},
         "OrderFulfilledDate":{"shape":"ISO8601Timestamp"},
-        "PaymentTerm":{"shape":"PaymentTerm"}
+        "PaymentTerm":{"shape":"PaymentTerm"},
+        "OrderType":{"shape":"OrderType"}
       }
     },
     "OrderId":{
@@ -1725,7 +1729,7 @@
     },
     "Token":{
       "type":"string",
-      "max":1005,
+      "max":2048,
       "min":1,
       "pattern":"^(\\d+)##(\\S+)$"
     },

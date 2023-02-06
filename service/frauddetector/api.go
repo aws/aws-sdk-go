@@ -15180,6 +15180,21 @@ type LabelSchema struct {
 	LabelMapper map[string][]*string `locationName:"labelMapper" type:"map"`
 
 	// The action to take for unlabeled events.
+	//
+	//    * Use IGNORE if you want the unlabeled events to be ignored. This is recommended
+	//    when the majority of the events in the dataset are labeled.
+	//
+	//    * Use FRAUD if you want to categorize all unlabeled events as “Fraud”.
+	//    This is recommended when most of the events in your dataset are fraudulent.
+	//
+	//    * Use LEGIT f you want to categorize all unlabeled events as “Legit”.
+	//    This is recommended when most of the events in your dataset are legitimate.
+	//
+	//    * Use AUTO if you want Amazon Fraud Detector to decide how to use the
+	//    unlabeled data. This is recommended when there is significant unlabeled
+	//    events in the dataset.
+	//
+	// By default, Amazon Fraud Detector ignores the unlabeled data.
 	UnlabeledEventsTreatment *string `locationName:"unlabeledEventsTreatment" type:"string" enum:"UnlabeledEventsTreatment"`
 }
 
@@ -16316,6 +16331,10 @@ type OFIModelPerformance struct {
 	// The area under the curve (auc). This summarizes the total positive rate (tpr)
 	// and false positive rate (FPR) across all possible model score thresholds.
 	Auc *float64 `locationName:"auc" type:"float"`
+
+	// Indicates the range of area under curve (auc) expected from the OFI model.
+	// A range greater than 0.1 indicates higher model uncertainity.
+	UncertaintyRange *UncertaintyRange `locationName:"uncertaintyRange" type:"structure"`
 }
 
 // String returns the string representation.
@@ -16339,6 +16358,12 @@ func (s OFIModelPerformance) GoString() string {
 // SetAuc sets the Auc field's value.
 func (s *OFIModelPerformance) SetAuc(v float64) *OFIModelPerformance {
 	s.Auc = &v
+	return s
+}
+
+// SetUncertaintyRange sets the UncertaintyRange field's value.
+func (s *OFIModelPerformance) SetUncertaintyRange(v *UncertaintyRange) *OFIModelPerformance {
+	s.UncertaintyRange = v
 	return s
 }
 
@@ -18006,6 +18031,10 @@ type TFIModelPerformance struct {
 	// The area under the curve (auc). This summarizes the total positive rate (tpr)
 	// and false positive rate (FPR) across all possible model score thresholds.
 	Auc *float64 `locationName:"auc" type:"float"`
+
+	// Indicates the range of area under curve (auc) expected from the TFI model.
+	// A range greater than 0.1 indicates higher model uncertainity.
+	UncertaintyRange *UncertaintyRange `locationName:"uncertaintyRange" type:"structure"`
 }
 
 // String returns the string representation.
@@ -18029,6 +18058,12 @@ func (s TFIModelPerformance) GoString() string {
 // SetAuc sets the Auc field's value.
 func (s *TFIModelPerformance) SetAuc(v float64) *TFIModelPerformance {
 	s.Auc = &v
+	return s
+}
+
+// SetUncertaintyRange sets the UncertaintyRange field's value.
+func (s *TFIModelPerformance) SetUncertaintyRange(v *UncertaintyRange) *TFIModelPerformance {
+	s.UncertaintyRange = v
 	return s
 }
 
@@ -18559,6 +18594,53 @@ func (s *TrainingResultV2) SetTrainingMetricsV2(v *TrainingMetricsV2) *TrainingR
 // SetVariableImportanceMetrics sets the VariableImportanceMetrics field's value.
 func (s *TrainingResultV2) SetVariableImportanceMetrics(v *VariableImportanceMetrics) *TrainingResultV2 {
 	s.VariableImportanceMetrics = v
+	return s
+}
+
+// Range of area under curve (auc) expected from the model. A range greater
+// than 0.1 indicates higher model uncertainity. A range is the difference between
+// upper and lower bound of auc.
+type UncertaintyRange struct {
+	_ struct{} `type:"structure"`
+
+	// The lower bound value of the area under curve (auc).
+	//
+	// LowerBoundValue is a required field
+	LowerBoundValue *float64 `locationName:"lowerBoundValue" type:"float" required:"true"`
+
+	// The lower bound value of the area under curve (auc).
+	//
+	// UpperBoundValue is a required field
+	UpperBoundValue *float64 `locationName:"upperBoundValue" type:"float" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UncertaintyRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UncertaintyRange) GoString() string {
+	return s.String()
+}
+
+// SetLowerBoundValue sets the LowerBoundValue field's value.
+func (s *UncertaintyRange) SetLowerBoundValue(v float64) *UncertaintyRange {
+	s.LowerBoundValue = &v
+	return s
+}
+
+// SetUpperBoundValue sets the UpperBoundValue field's value.
+func (s *UncertaintyRange) SetUpperBoundValue(v float64) *UncertaintyRange {
+	s.UpperBoundValue = &v
 	return s
 }
 
@@ -20521,6 +20603,9 @@ const (
 
 	// UnlabeledEventsTreatmentLegit is a UnlabeledEventsTreatment enum value
 	UnlabeledEventsTreatmentLegit = "LEGIT"
+
+	// UnlabeledEventsTreatmentAuto is a UnlabeledEventsTreatment enum value
+	UnlabeledEventsTreatmentAuto = "AUTO"
 )
 
 // UnlabeledEventsTreatment_Values returns all elements of the UnlabeledEventsTreatment enum
@@ -20529,5 +20614,6 @@ func UnlabeledEventsTreatment_Values() []string {
 		UnlabeledEventsTreatmentIgnore,
 		UnlabeledEventsTreatmentFraud,
 		UnlabeledEventsTreatmentLegit,
+		UnlabeledEventsTreatmentAuto,
 	}
 }

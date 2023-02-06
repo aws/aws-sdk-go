@@ -48,7 +48,7 @@
         "AccountEnrollmentStatus$accountId": "<p>The Amazon Web Services account ID.</p>",
         "AccountIds$member": null,
         "AutoScalingGroupRecommendation$accountId": "<p>The Amazon Web Services account ID of the Auto Scaling group.</p>",
-        "ECSServiceRecommendation$accountId": "<p> The Amazon Web Services account ID of the ECS service. </p>",
+        "ECSServiceRecommendation$accountId": "<p> The Amazon Web Services account ID of the Amazon ECS service. </p>",
         "InstanceRecommendation$accountId": "<p>The Amazon Web Services account ID of the instance.</p>",
         "LambdaFunctionRecommendation$accountId": "<p>The Amazon Web Services account ID of the function.</p>",
         "RecommendationSummary$accountId": "<p>The Amazon Web Services account ID of the recommendation summary.</p>",
@@ -61,12 +61,12 @@
         "ExportAutoScalingGroupRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportEBSVolumeRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export Amazon EBS volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
-        "ExportECSServiceRecommendationsRequest$accountIds": "<p> The Amazon Web Services account IDs for the export ECS service recommendations. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to specify the member account you want to export recommendations to.</p> <p>This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>If this parameter or the include member accounts parameter is omitted, the recommendations for member accounts aren't included in the export.</p> <p>You can specify multiple account IDs per request.</p>",
+        "ExportECSServiceRecommendationsRequest$accountIds": "<p> The Amazon Web Services account IDs for the export Amazon ECS service recommendations. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to specify the member account you want to export recommendations to.</p> <p>This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>If this parameter or the include member accounts parameter is omitted, the recommendations for member accounts aren't included in the export.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportLambdaFunctionRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export Lambda function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
         "GetAutoScalingGroupRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return Auto Scaling group recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEBSVolumeRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return volume recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEC2InstanceRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return instance recommendations.</p> <p>Only one account ID can be specified per request.</p>",
-        "GetECSServiceRecommendationsRequest$accountIds": "<p> Return the ECS service recommendations to the specified Amazon Web Services account IDs. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to return the ECS service recommendations to specific member accounts.</p> <p>You can only specify one account ID per request.</p>",
+        "GetECSServiceRecommendationsRequest$accountIds": "<p> Return the Amazon ECS service recommendations to the specified Amazon Web Services account IDs. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to return the Amazon ECS service recommendations to specific member accounts.</p> <p>You can only specify one account ID per request.</p>",
         "GetLambdaFunctionRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return function recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetRecommendationSummariesRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return recommendation summaries.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return recommendation summaries.</p> <p>Only one account ID can be specified per request.</p>"
       }
@@ -74,7 +74,7 @@
     "AutoScalingConfiguration": {
       "base": null,
       "refs": {
-        "ServiceConfiguration$autoScalingConfiguration": "<p> Describes the Auto Scaling configuration methods for an Amazon ECS service. This affects the generated recommendations. For example, if Auto Scaling is configured on a ECS service’s CPU, then Compute Optimizer doesn’t generate CPU size recommendations. </p> <p>The Auto Scaling configuration methods include:</p> <ul> <li> <p> <code>TARGET_TRACKING_SCALING_CPU</code> — If the ECS service is configured to use target scaling on CPU, Compute Optimizer doesn't generate CPU recommendations.</p> </li> <li> <p> <code>TARGET_TRACKING_SCALING_MEMORY</code> — If the ECS service is configured to use target scaling on memory, Compute Optimizer doesn't generate memory recommendations.</p> </li> </ul> <p>For more information about step scaling and target scaling, see <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html\"> Step scaling policies for Application Auto Scaling</a> and <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html\"> Target tracking scaling policies for Application Auto Scaling</a> in the <i>Application Auto Scaling User Guide</i>.</p>"
+        "ServiceConfiguration$autoScalingConfiguration": "<p> Describes the Auto Scaling configuration methods for an Amazon ECS service. This affects the generated recommendations. For example, if Auto Scaling is configured on a service’s CPU, then Compute Optimizer doesn’t generate CPU size recommendations. </p> <p>The Auto Scaling configuration methods include:</p> <ul> <li> <p> <code>TARGET_TRACKING_SCALING_CPU</code> — If the Amazon ECS service is configured to use target scaling on CPU, Compute Optimizer doesn't generate CPU recommendations.</p> </li> <li> <p> <code>TARGET_TRACKING_SCALING_MEMORY</code> — If the Amazon ECS service is configured to use target scaling on memory, Compute Optimizer doesn't generate memory recommendations.</p> </li> </ul> <p>For more information about step scaling and target scaling, see <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html\"> Step scaling policies for Application Auto Scaling</a> and <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html\"> Target tracking scaling policies for Application Auto Scaling</a> in the <i>Application Auto Scaling User Guide</i>.</p>"
       }
     },
     "AutoScalingGroupArn": {
@@ -142,7 +142,7 @@
     "ContainerConfigurations": {
       "base": null,
       "refs": {
-        "ServiceConfiguration$containerConfigurations": "<p> The container configurations within a task of an ECS service. </p>"
+        "ServiceConfiguration$containerConfigurations": "<p> The container configurations within a task of an Amazon ECS service. </p>"
       }
     },
     "ContainerName": {
@@ -161,13 +161,13 @@
     "ContainerRecommendations": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendationOption$containerRecommendations": "<p> The CPU and memory size recommendations for the containers within the task of your ECS service. </p>"
+        "ECSServiceRecommendationOption$containerRecommendations": "<p> The CPU and memory size recommendations for the containers within the task of your Amazon ECS service. </p>"
       }
     },
     "CpuSize": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendedOptionProjectedMetric$recommendedCpuUnits": "<p> The recommended CPU size for the ECS service. </p>"
+        "ECSServiceRecommendedOptionProjectedMetric$recommendedCpuUnits": "<p> The recommended CPU size for the Amazon ECS service. </p>"
       }
     },
     "CpuVendorArchitecture": {
@@ -205,7 +205,7 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$currentPerformanceRisk": "<p>The risk of the current Auto Scaling group not meeting the performance needs of its workloads. The higher the risk, the more likely the current Auto Scaling group configuration has insufficient capacity and cannot meet workload requirements.</p>",
-        "ECSServiceRecommendation$currentPerformanceRisk": "<p> The risk of the current ECS service not meeting the performance needs of its workloads. The higher the risk, the more likely the current service can't meet the performance requirements of its workload. </p>",
+        "ECSServiceRecommendation$currentPerformanceRisk": "<p> The risk of the current Amazon ECS service not meeting the performance needs of its workloads. The higher the risk, the more likely the current service can't meet the performance requirements of its workload. </p>",
         "InstanceRecommendation$currentPerformanceRisk": "<p>The risk of the current instance not meeting the performance needs of its workloads. The higher the risk, the more likely the current instance cannot meet the performance requirements of its workload.</p>",
         "LambdaFunctionRecommendation$currentPerformanceRisk": "<p>The risk of the current Lambda function not meeting the performance needs of its workloads. The higher the risk, the more likely the current Lambda function requires more memory.</p>",
         "VolumeRecommendation$currentPerformanceRisk": "<p>The risk of the current EBS volume not meeting the performance needs of its workloads. The higher the risk, the more likely the current EBS volume doesn't have sufficient capacity.</p>"
@@ -308,15 +308,15 @@
     "ECSServiceLaunchType": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendation$launchType": "<p> The launch type the ECS service is using. </p> <note> <p>Compute Optimizer only supports the Fargate launch type.</p> </note>"
+        "ECSServiceRecommendation$launchType": "<p> The launch type the Amazon ECS service is using. </p> <note> <p>Compute Optimizer only supports the Fargate launch type.</p> </note>"
       }
     },
     "ECSServiceMetricName": {
       "base": null,
       "refs": {
-        "ECSServiceProjectedMetric$name": "<p> The name of the projected metric. </p> <p>The following metrics are available:</p> <ul> <li> <p> <code>CPU</code> — The percentage of allocated compute units that are currently in use on the ECS service tasks.</p> </li> <li> <p> <code>Memory</code> — The percentage of memory that is currently in use on the ECS service tasks.</p> </li> </ul>",
-        "ECSServiceProjectedUtilizationMetric$name": "<p> The name of the projected utilization metric. </p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>CPU</code> — The percentage of allocated compute units that are currently in use on the ECS service tasks.</p> </li> <li> <p> <code>Memory</code> — The percentage of memory that is currently in use on the ECS service tasks.</p> </li> </ul>",
-        "ECSServiceUtilizationMetric$name": "<p> The name of the utilization metric. </p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>Cpu</code> — The amount of CPU units that are used in the service.</p> </li> <li> <p> <code>Memory</code> — The amount of memory that is used in the service.</p> </li> </ul>"
+        "ECSServiceProjectedMetric$name": "<p> The name of the projected metric. </p> <p>The following metrics are available:</p> <ul> <li> <p> <code>Cpu</code> — The percentage of allocated compute units that are currently in use on the service tasks.</p> </li> <li> <p> <code>Memory</code> — The percentage of memory that's currently in use on the service tasks.</p> </li> </ul>",
+        "ECSServiceProjectedUtilizationMetric$name": "<p> The name of the projected utilization metric. </p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>Cpu</code> — The percentage of allocated compute units that are currently in use on the service tasks.</p> </li> <li> <p> <code>Memory</code> — The percentage of memory that's currently in use on the service tasks.</p> </li> </ul>",
+        "ECSServiceUtilizationMetric$name": "<p> The name of the utilization metric. </p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>Cpu</code> — The amount of CPU capacity that's used in the service.</p> </li> <li> <p> <code>Memory</code> — The amount of memory that's used in the service.</p> </li> </ul>"
       }
     },
     "ECSServiceMetricStatistic": {
@@ -327,7 +327,7 @@
       }
     },
     "ECSServiceProjectedMetric": {
-      "base": "<p> Describes the projected metrics of an Amazon ECS service recommendation option. </p> <p>To determine the performance difference between your current ECS service and the recommended option, compare the metric data of your service against its projected metric data.</p>",
+      "base": "<p> Describes the projected metrics of an Amazon ECS service recommendation option. </p> <p>To determine the performance difference between your current Amazon ECS service and the recommended option, compare the metric data of your service against its projected metric data.</p>",
       "refs": {
         "ECSServiceProjectedMetrics$member": null
       }
@@ -339,7 +339,7 @@
       }
     },
     "ECSServiceProjectedUtilizationMetric": {
-      "base": "<p> Describes the projected utilization metrics of an Amazon ECS service recommendation option. </p> <p>To determine the performance difference between your current ECS service and the recommended option, compare the utilization metric data of your service against its projected utilization metric data.</p>",
+      "base": "<p> Describes the projected utilization metrics of an Amazon ECS service recommendation option. </p> <p>To determine the performance difference between your current Amazon ECS service and the recommended option, compare the utilization metric data of your service against its projected utilization metric data.</p>",
       "refs": {
         "ECSServiceProjectedUtilizationMetrics$member": null
       }
@@ -347,7 +347,7 @@
     "ECSServiceProjectedUtilizationMetrics": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendationOption$projectedUtilizationMetrics": "<p> An array of objects that describe the projected utilization metrics of the ECS service recommendation option. </p>"
+        "ECSServiceRecommendationOption$projectedUtilizationMetrics": "<p> An array of objects that describe the projected utilization metrics of the Amazon ECS service recommendation option. </p>"
       }
     },
     "ECSServiceRecommendation": {
@@ -371,14 +371,14 @@
     "ECSServiceRecommendationFilters": {
       "base": null,
       "refs": {
-        "ExportECSServiceRecommendationsRequest$filters": "<p> An array of objects to specify a filter that exports a more specific set of ECS service recommendations. </p>",
-        "GetECSServiceRecommendationsRequest$filters": "<p> An array of objects to specify a filter that returns a more specific list of ECS service recommendations. </p>"
+        "ExportECSServiceRecommendationsRequest$filters": "<p> An array of objects to specify a filter that exports a more specific set of Amazon ECS service recommendations. </p>",
+        "GetECSServiceRecommendationsRequest$filters": "<p> An array of objects to specify a filter that returns a more specific list of Amazon ECS service recommendations. </p>"
       }
     },
     "ECSServiceRecommendationFinding": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendation$finding": "<p> The finding classification of an ECS service. </p> <p>Findings for ECS services include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b> — When Compute Optimizer detects that there’s not enough memory or CPU, an ECS service is considered under-provisioned. An under-provisioned ECS service might result in poor application performance.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b> — When Compute Optimizer detects that there’s excessive memory or CPU, an ECS service is considered over-provisioned. An over-provisioned ECS service might result in additional infrastructure costs. </p> </li> <li> <p> <b> <code>Optimized</code> </b> — When both the CPU and memory of your ECS service meet the performance requirements of your workload, the service is considered optimized.</p> </li> </ul>"
+        "ECSServiceRecommendation$finding": "<p> The finding classification of an Amazon ECS service. </p> <p>Findings for Amazon ECS services include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b> — When Compute Optimizer detects that there’s not enough memory or CPU, an Amazon ECS service is considered under-provisioned. An under-provisioned service might result in poor application performance.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b> — When Compute Optimizer detects that there’s excessive memory or CPU, an Amazon ECS service is considered over-provisioned. An over-provisioned service might result in additional infrastructure costs. </p> </li> <li> <p> <b> <code>Optimized</code> </b> — When both the CPU and memory of your Amazon ECS service meet the performance requirements of your workload, the service is considered optimized.</p> </li> </ul>"
       }
     },
     "ECSServiceRecommendationFindingReasonCode": {
@@ -390,7 +390,7 @@
     "ECSServiceRecommendationFindingReasonCodes": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendation$findingReasonCodes": "<p> The reason for the finding classification of an ECS service. </p> <p>Finding reason codes for ECS services include:</p> <ul> <li> <p> <b> <code>CPUUnderprovisioned</code> </b> — The ECS service CPU configuration can be sized up to enhance the performance of your workload. This is identified by analyzing the <code>CPUUtilization</code> metric of the current service during the look-back period.</p> </li> <li> <p> <b> <code>CPUOverprovisioned</code> </b> — The ECS service CPU configuration can be sized down while still meeting the performance requirements of your workload. This is identified by analyzing the <code>CPUUtilization</code> metric of the current service during the look-back period. </p> </li> <li> <p> <b> <code>MemoryUnderprovisioned</code> </b> — The ECS service memory configuration can be sized up to enhance the performance of your workload. This is identified by analyzing the <code>MemoryUtilization</code> metric of the current service during the look-back period.</p> </li> <li> <p> <b> <code>MemoryOverprovisioned</code> </b> — The ECS service memory configuration can be sized down while still meeting the performance requirements of your workload. This is identified by analyzing the <code>MemoryUtilization</code> metric of the current service during the look-back period.</p> </li> </ul>"
+        "ECSServiceRecommendation$findingReasonCodes": "<p> The reason for the finding classification of an Amazon ECS service. </p> <p>Finding reason codes for Amazon ECS services include:</p> <ul> <li> <p> <b> <code>CPUUnderprovisioned</code> </b> — The service CPU configuration can be sized up to enhance the performance of your workload. This is identified by analyzing the <code>CPUUtilization</code> metric of the current service during the look-back period.</p> </li> <li> <p> <b> <code>CPUOverprovisioned</code> </b> — The service CPU configuration can be sized down while still meeting the performance requirements of your workload. This is identified by analyzing the <code>CPUUtilization</code> metric of the current service during the look-back period. </p> </li> <li> <p> <b> <code>MemoryUnderprovisioned</code> </b> — The service memory configuration can be sized up to enhance the performance of your workload. This is identified by analyzing the <code>MemoryUtilization</code> metric of the current service during the look-back period.</p> </li> <li> <p> <b> <code>MemoryOverprovisioned</code> </b> — The service memory configuration can be sized down while still meeting the performance requirements of your workload. This is identified by analyzing the <code>MemoryUtilization</code> metric of the current service during the look-back period.</p> </li> </ul>"
       }
     },
     "ECSServiceRecommendationOption": {
@@ -402,17 +402,17 @@
     "ECSServiceRecommendationOptions": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendation$serviceRecommendationOptions": "<p> An array of objects that describe the recommendation options for the ECS service. </p>"
+        "ECSServiceRecommendation$serviceRecommendationOptions": "<p> An array of objects that describe the recommendation options for the Amazon ECS service. </p>"
       }
     },
     "ECSServiceRecommendations": {
       "base": null,
       "refs": {
-        "GetECSServiceRecommendationsResponse$ecsServiceRecommendations": "<p> An array of objects that describe the ECS service recommendations. </p>"
+        "GetECSServiceRecommendationsResponse$ecsServiceRecommendations": "<p> An array of objects that describe the Amazon ECS service recommendations. </p>"
       }
     },
     "ECSServiceRecommendedOptionProjectedMetric": {
-      "base": "<p> Describes the projected metrics of an Amazon ECS service recommendation option. </p> <p>To determine the performance difference between your current ECS service and the recommended option, compare the metric data of your service against its projected metric data.</p>",
+      "base": "<p> Describes the projected metrics of an Amazon ECS service recommendation option. </p> <p>To determine the performance difference between your current Amazon ECS service and the recommended option, compare the metric data of your service against its projected metric data.</p>",
       "refs": {
         "ECSServiceRecommendedOptionProjectedMetrics$member": null
       }
@@ -424,7 +424,7 @@
       }
     },
     "ECSServiceUtilizationMetric": {
-      "base": "<p> Describes the utilization metric of an Amazon ECS service. </p> <p>To determine the performance difference between your current ECS service and the recommended option, compare the utilization metric data of your service against its projected utilization metric data.</p>",
+      "base": "<p> Describes the utilization metric of an Amazon ECS service. </p> <p>To determine the performance difference between your current Amazon ECS service and the recommended option, compare the utilization metric data of your service against its projected utilization metric data.</p>",
       "refs": {
         "ECSServiceUtilizationMetrics$member": null
       }
@@ -432,7 +432,7 @@
     "ECSServiceUtilizationMetrics": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendation$utilizationMetrics": "<p> An array of objects that describe the utilization metrics of the ECS service. </p>"
+        "ECSServiceRecommendation$utilizationMetrics": "<p> An array of objects that describe the utilization metrics of the Amazon ECS service. </p>"
       }
     },
     "EffectiveRecommendationPreferences": {
@@ -875,7 +875,7 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$inferredWorkloadTypes": "<p>The applications that might be running on the instances in the Auto Scaling group as inferred by Compute Optimizer.</p> <p>Compute Optimizer can infer if one of the following applications might be running on the instances:</p> <ul> <li> <p> <code>AmazonEmr</code> - Infers that Amazon EMR might be running on the instances.</p> </li> <li> <p> <code>ApacheCassandra</code> - Infers that Apache Cassandra might be running on the instances.</p> </li> <li> <p> <code>ApacheHadoop</code> - Infers that Apache Hadoop might be running on the instances.</p> </li> <li> <p> <code>Memcached</code> - Infers that Memcached might be running on the instances.</p> </li> <li> <p> <code>NGINX</code> - Infers that NGINX might be running on the instances.</p> </li> <li> <p> <code>PostgreSql</code> - Infers that PostgreSQL might be running on the instances.</p> </li> <li> <p> <code>Redis</code> - Infers that Redis might be running on the instances.</p> </li> </ul>",
-        "InstanceRecommendation$inferredWorkloadTypes": "<p>The applications that might be running on the instance as inferred by Compute Optimizer.</p> <p>Compute Optimizer can infer if one of the following applications might be running on the instance:</p> <ul> <li> <p> <code>AmazonEmr</code> - Infers that Amazon EMR might be running on the instance.</p> </li> <li> <p> <code>ApacheCassandra</code> - Infers that Apache Cassandra might be running on the instance.</p> </li> <li> <p> <code>ApacheHadoop</code> - Infers that Apache Hadoop might be running on the instance.</p> </li> <li> <p> <code>Memcached</code> - Infers that Memcached might be running on the instance.</p> </li> <li> <p> <code>NGINX</code> - Infers that NGINX might be running on the instance.</p> </li> <li> <p> <code>PostgreSql</code> - Infers that PostgreSQL might be running on the instance.</p> </li> <li> <p> <code>Redis</code> - Infers that Redis might be running on the instance.</p> </li> </ul>"
+        "InstanceRecommendation$inferredWorkloadTypes": "<p>The applications that might be running on the instance as inferred by Compute Optimizer.</p> <p>Compute Optimizer can infer if one of the following applications might be running on the instance:</p> <ul> <li> <p> <code>AmazonEmr</code> - Infers that Amazon EMR might be running on the instance.</p> </li> <li> <p> <code>ApacheCassandra</code> - Infers that Apache Cassandra might be running on the instance.</p> </li> <li> <p> <code>ApacheHadoop</code> - Infers that Apache Hadoop might be running on the instance.</p> </li> <li> <p> <code>Memcached</code> - Infers that Memcached might be running on the instance.</p> </li> <li> <p> <code>NGINX</code> - Infers that NGINX might be running on the instance.</p> </li> <li> <p> <code>PostgreSql</code> - Infers that PostgreSQL might be running on the instance.</p> </li> <li> <p> <code>Redis</code> - Infers that Redis might be running on the instance.</p> </li> <li> <p> <code>Kafka</code> - Infers that Kafka might be running on the instance.</p> </li> </ul>"
       }
     },
     "InferredWorkloadTypesPreference": {
@@ -1108,7 +1108,7 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the Auto Scaling group recommendation was last generated.</p>",
-        "ECSServiceRecommendation$lastRefreshTimestamp": "<p> The timestamp of when the ECS service recommendation was last generated. </p>",
+        "ECSServiceRecommendation$lastRefreshTimestamp": "<p> The timestamp of when the Amazon ECS service recommendation was last generated. </p>",
         "InstanceRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the instance recommendation was last generated.</p>",
         "LambdaFunctionRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the function recommendation was last generated.</p>",
         "VolumeRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the volume recommendation was last generated.</p>"
@@ -1131,7 +1131,7 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the Auto Scaling group.</p>",
-        "ECSServiceRecommendation$lookbackPeriodInDays": "<p> The number of days the ECS service utilization metrics were analyzed. </p>",
+        "ECSServiceRecommendation$lookbackPeriodInDays": "<p> The number of days the Amazon ECS service utilization metrics were analyzed. </p>",
         "InstanceRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the instance.</p>",
         "LambdaFunctionRecommendation$lookbackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the function.</p>",
         "VolumeRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the volume.</p>"
@@ -1156,7 +1156,7 @@
         "GetAutoScalingGroupRecommendationsRequest$maxResults": "<p>The maximum number of Auto Scaling group recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetEBSVolumeRecommendationsRequest$maxResults": "<p>The maximum number of volume recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetEC2InstanceRecommendationsRequest$maxResults": "<p>The maximum number of instance recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
-        "GetECSServiceRecommendationsRequest$maxResults": "<p> The maximum number of ECS service recommendations to return with a single request. </p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
+        "GetECSServiceRecommendationsRequest$maxResults": "<p> The maximum number of Amazon ECS service recommendations to return with a single request. </p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetEnrollmentStatusesForOrganizationRequest$maxResults": "<p>The maximum number of account enrollment statuses to return with a single request. You can specify up to 100 statuses to return with each request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetLambdaFunctionRecommendationsRequest$maxResults": "<p>The maximum number of function recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetRecommendationPreferencesRequest$maxResults": "<p>The maximum number of recommendation preferences to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
@@ -1184,7 +1184,7 @@
     "MemorySize": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendedOptionProjectedMetric$recommendedMemorySize": "<p> The recommended memory size for the ECS service. </p>",
+        "ECSServiceRecommendedOptionProjectedMetric$recommendedMemorySize": "<p> The recommended memory size for the Amazon ECS service. </p>",
         "LambdaFunctionMemoryRecommendationOption$memorySize": "<p>The memory size, in MB, of the function recommendation option.</p>",
         "LambdaFunctionRecommendation$currentMemorySize": "<p>The amount of memory, in MB, that's allocated to the current function.</p>"
       }
@@ -1272,8 +1272,8 @@
         "GetEBSVolumeRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of volume recommendations.</p> <p>This value is null when there are no more pages of volume recommendations to return.</p>",
         "GetEC2InstanceRecommendationsRequest$nextToken": "<p>The token to advance to the next page of instance recommendations.</p>",
         "GetEC2InstanceRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of instance recommendations.</p> <p>This value is null when there are no more pages of instance recommendations to return.</p>",
-        "GetECSServiceRecommendationsRequest$nextToken": "<p> The token to advance to the next page of ECS service recommendations. </p>",
-        "GetECSServiceRecommendationsResponse$nextToken": "<p> The token to advance to the next page of ECS service recommendations. </p>",
+        "GetECSServiceRecommendationsRequest$nextToken": "<p> The token to advance to the next page of Amazon ECS service recommendations. </p>",
+        "GetECSServiceRecommendationsResponse$nextToken": "<p> The token to advance to the next page of Amazon ECS service recommendations. </p>",
         "GetEnrollmentStatusesForOrganizationRequest$nextToken": "<p>The token to advance to the next page of account enrollment statuses.</p>",
         "GetEnrollmentStatusesForOrganizationResponse$nextToken": "<p>The token to use to advance to the next page of account enrollment statuses.</p> <p>This value is null when there are no more pages of account enrollment statuses to return.</p>",
         "GetLambdaFunctionRecommendationsRequest$nextToken": "<p>The token to advance to the next page of function recommendations.</p>",
@@ -1289,16 +1289,16 @@
       "refs": {
         "ContainerConfiguration$cpu": "<p> The number of CPU units reserved for the container. </p>",
         "ContainerRecommendation$cpu": "<p> The recommended number of CPU units reserved for the container. </p>",
-        "ECSServiceRecommendationOption$cpu": "<p> The CPU size of the ECS service recommendation option. </p>",
-        "ServiceConfiguration$cpu": "<p> The number of CPU units used by the tasks in the ECS service. </p>"
+        "ECSServiceRecommendationOption$cpu": "<p> The CPU size of the Amazon ECS service recommendation option. </p>",
+        "ServiceConfiguration$cpu": "<p> The number of CPU units used by the tasks in the Amazon ECS service. </p>"
       }
     },
     "NullableMemory": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendationOption$memory": "<p> The memory size of the ECS service recommendation option. </p>",
+        "ECSServiceRecommendationOption$memory": "<p> The memory size of the Amazon ECS service recommendation option. </p>",
         "MemorySizeConfiguration$memory": "<p> The amount of memory in the container. </p>",
-        "ServiceConfiguration$memory": "<p> The amount of memory used by the tasks in the ECS service. </p>"
+        "ServiceConfiguration$memory": "<p> The amount of memory used by the tasks in the Amazon ECS service. </p>"
       }
     },
     "NullableMemoryReservation": {
@@ -1592,21 +1592,21 @@
     "ServiceArn": {
       "base": null,
       "refs": {
-        "ECSServiceRecommendation$serviceArn": "<p> The Amazon Resource Name (ARN) of the current ECS service. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code> </p>",
-        "GetECSServiceRecommendationProjectedMetricsRequest$serviceArn": "<p> The ARN that identifies the ECS service. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code> </p>",
+        "ECSServiceRecommendation$serviceArn": "<p> The Amazon Resource Name (ARN) of the current Amazon ECS service. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code> </p>",
+        "GetECSServiceRecommendationProjectedMetricsRequest$serviceArn": "<p> The ARN that identifies the Amazon ECS service. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code> </p>",
         "ServiceArns$member": null
       }
     },
     "ServiceArns": {
       "base": null,
       "refs": {
-        "GetECSServiceRecommendationsRequest$serviceArns": "<p> The ARN that identifies the ECS service. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code> </p>"
+        "GetECSServiceRecommendationsRequest$serviceArns": "<p> The ARN that identifies the Amazon ECS service. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name</code> </p>"
       }
     },
     "ServiceConfiguration": {
       "base": "<p> The Amazon ECS service configurations used for recommendations. </p>",
       "refs": {
-        "ECSServiceRecommendation$currentServiceConfiguration": "<p> The configuration of the current ECS service. </p>"
+        "ECSServiceRecommendation$currentServiceConfiguration": "<p> The configuration of the current Amazon ECS service. </p>"
       }
     },
     "ServiceUnavailableException": {
@@ -1653,7 +1653,7 @@
     "TaskDefinitionArn": {
       "base": null,
       "refs": {
-        "ServiceConfiguration$taskDefinitionArn": "<p> The task definition ARN used by the tasks in the ECS service. </p>"
+        "ServiceConfiguration$taskDefinitionArn": "<p> The task definition ARN used by the tasks in the Amazon ECS service. </p>"
       }
     },
     "ThrottlingException": {

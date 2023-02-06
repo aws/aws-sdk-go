@@ -1233,6 +1233,7 @@
     },
     "Gender":{
       "type":"string",
+      "deprecated":true,
       "enum":[
         "MALE",
         "FEMALE",
@@ -2117,6 +2118,7 @@
     },
     "PartyType":{
       "type":"string",
+      "deprecated":true,
       "enum":[
         "INDIVIDUAL",
         "BUSINESS",
@@ -2148,7 +2150,9 @@
         "MailingAddress":{"shape":"Address"},
         "BillingAddress":{"shape":"Address"},
         "Attributes":{"shape":"Attributes"},
-        "FoundByItems":{"shape":"foundByList"}
+        "FoundByItems":{"shape":"foundByList"},
+        "PartyTypeString":{"shape":"string1To255"},
+        "GenderString":{"shape":"string1To255"}
       }
     },
     "ProfileIdList":{
