@@ -1,3 +1,10 @@
+Release v1.44.196 (2023-02-07)
+===
+
+### Service Client Updates
+* `service/transfer`: Updates service documentation
+  * Updated the documentation for the ImportCertificate API call, and added examples.
+
 Release v1.44.195 (2023-02-06)
 ===
 

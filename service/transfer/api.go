@@ -6289,6 +6289,9 @@ type As2ConnectorConfig struct {
 	Compression *string `type:"string" enum:"CompressionEnum"`
 
 	// The algorithm that is used to encrypt the file.
+	//
+	// You can only specify NONE if the URL for your connector uses HTTPS. This
+	// ensures that no traffic is sent in clear text.
 	EncryptionAlgorithm *string `type:"string" enum:"EncryptionAlg"`
 
 	// A unique identifier for the AS2 local profile.
@@ -6306,7 +6309,7 @@ type As2ConnectorConfig struct {
 
 	// The signing algorithm for the MDN response.
 	//
-	// If set to DEFAULT (or not set at all), the value for SigningAlogorithm is
+	// If set to DEFAULT (or not set at all), the value for SigningAlgorithm is
 	// used.
 	MdnSigningAlgorithm *string `type:"string" enum:"MdnSigningAlg"`
 
@@ -6476,27 +6479,36 @@ func (s *ConflictException) RequestID() string {
 type CopyStepDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the location for the file being copied. Only applicable for Copy
-	// type workflow steps. Use ${Transfer:username} in this field to parametrize
-	// the destination prefix by username.
+	// Specifies the location for the file being copied. Use ${Transfer:username}
+	// or ${Transfer:UploadDate} in this field to parametrize the destination prefix
+	// by username or uploaded date.
+	//
+	//    * Set the value of DestinationFileLocation to ${Transfer:username} to
+	//    copy uploaded files to an Amazon S3 bucket that is prefixed with the name
+	//    of the Transfer Family user that uploaded the file.
+	//
+	//    * Set the value of DestinationFileLocation to ${Transfer:UploadDate} to
+	//    copy uploaded files to an Amazon S3 bucket that is prefixed with the date
+	//    of the upload. The system resolves UploadDate to a date format of YYYY-MM-DD,
+	//    based on the date the file is uploaded.
 	DestinationFileLocation *InputFileLocation `type:"structure"`
 
 	// The name of the step, used as an identifier.
 	Name *string `type:"string"`
 
-	// A flag that indicates whether or not to overwrite an existing file of the
-	// same name. The default is FALSE.
+	// A flag that indicates whether to overwrite an existing file of the same name.
+	// The default is FALSE.
 	OverwriteExisting *string `type:"string" enum:"OverwriteExisting"`
 
 	// Specifies which file to use as input to the workflow step: either the output
 	// from the previous step, or the originally uploaded file for the workflow.
 	//
-	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    * To use the previous file as the input, enter ${previous.file}. In this
 	//    case, this workflow step uses the output file from the previous workflow
 	//    step as input. This is the default value.
 	//
-	//    * Enter ${original.file} to use the originally-uploaded file location
-	//    as input for this step.
+	//    * To use the originally uploaded file location as input for this step,
+	//    enter ${original.file}.
 	SourceFileLocation *string `type:"string"`
 }
 
@@ -6834,7 +6846,7 @@ type CreateAgreementInput struct {
 
 	// The landing directory (folder) for files transferred by using the AS2 protocol.
 	//
-	// A BaseDirectory example is DOC-EXAMPLE-BUCKET/home/mydirectory.
+	// A BaseDirectory example is /DOC-EXAMPLE-BUCKET/home/mydirectory.
 	//
 	// BaseDirectory is a required field
 	BaseDirectory *string `type:"string" required:"true"`
@@ -7416,7 +7428,7 @@ type CreateServerInput struct {
 	// server to a new server, don't update the host key. Accidentally changing
 	// a server's host key can be disruptive.
 	//
-	// For more information, see Update host keys for your SFTP-enabled server (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
+	// For more information, see Manage host keys for your SFTP-enabled server (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
 	// in the Transfer Family User Guide.
 	//
 	// HostKey is a sensitive parameter and its value will be
@@ -7515,12 +7527,14 @@ type CreateServerInput struct {
 	//    to it over FTPS.
 	//
 	//    * If Protocol includes either FTP or FTPS, then the EndpointType must
-	//    be VPC and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
+	//    be VPC and the IdentityProviderType must be either AWS_DIRECTORY_SERVICE,
+	//    AWS_LAMBDA, or API_GATEWAY.
 	//
 	//    * If Protocol includes FTP, then AddressAllocationIds cannot be associated.
 	//
 	//    * If Protocol is set only to SFTP, the EndpointType can be set to PUBLIC
-	//    and the IdentityProviderType can be set to SERVICE_MANAGED.
+	//    and the IdentityProviderType can be set any of the supported identity
+	//    types: SERVICE_MANAGED, AWS_DIRECTORY_SERVICE, AWS_LAMBDA, or API_GATEWAY.
 	//
 	//    * If Protocol includes AS2, then the EndpointType must be VPC, and domain
 	//    must be Amazon S3.
@@ -7535,10 +7549,10 @@ type CreateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -7816,7 +7830,17 @@ type CreateUserInput struct {
 	// The public portion of the Secure Shell (SSH) key used to authenticate the
 	// user to the server.
 	//
+	// The three standard SSH public key format elements are <key type>, <body base64>,
+	// and an optional <comment>, with spaces between each element.
+	//
 	// Transfer Family accepts RSA, ECDSA, and ED25519 keys.
+	//
+	//    * For RSA keys, the key type is ssh-rsa.
+	//
+	//    * For ED25519 keys, the key type is ssh-ed25519.
+	//
+	//    * For ECDSA keys, the key type is either ecdsa-sha2-nistp256, ecdsa-sha2-nistp384,
+	//    or ecdsa-sha2-nistp521, depending on the size of the key you generated.
 	SshPublicKeyBody *string `type:"string"`
 
 	// Key-value pairs that can be used to group and search for users. Tags are
@@ -8033,18 +8057,20 @@ type CreateWorkflowInput struct {
 	// The TYPE specifies which of the following actions is being taken for this
 	// step.
 	//
-	//    * COPY: Copy the file to another location.
+	//    * COPY - Copy the file to another location.
 	//
-	//    * CUSTOM: Perform a custom step with an Lambda function target.
+	//    * CUSTOM - Perform a custom step with an Lambda function target.
 	//
-	//    * DELETE: Delete the file.
+	//    * DECRYPT - Decrypt a file that was encrypted before it was uploaded.
 	//
-	//    * TAG: Add a tag to the file.
+	//    * DELETE - Delete the file.
+	//
+	//    * TAG - Add a tag to the file.
 	//
 	// Currently, copying and tagging are supported only on S3.
 	//
-	// For file location, you specify either the S3 bucket and key, or the EFS file
-	// system ID and path.
+	// For file location, you specify either the Amazon S3 bucket and key, or the
+	// Amazon EFS file system ID and path.
 	//
 	// Steps is a required field
 	Steps []*WorkflowStep `type:"list" required:"true"`
@@ -8185,12 +8211,12 @@ type CustomStepDetails struct {
 	// Specifies which file to use as input to the workflow step: either the output
 	// from the previous step, or the originally uploaded file for the workflow.
 	//
-	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    * To use the previous file as the input, enter ${previous.file}. In this
 	//    case, this workflow step uses the output file from the previous workflow
 	//    step as input. This is the default value.
 	//
-	//    * Enter ${original.file} to use the originally-uploaded file location
-	//    as input for this step.
+	//    * To use the originally uploaded file location as input for this step,
+	//    enter ${original.file}.
 	SourceFileLocation *string `type:"string"`
 
 	// The ARN for the lambda function that is being called.
@@ -8255,21 +8281,35 @@ func (s *CustomStepDetails) SetTimeoutSeconds(v int64) *CustomStepDetails {
 	return s
 }
 
+// Each step type has its own StepDetails structure.
 type DecryptStepDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the location for the file being copied. Only applicable for the
-	// Copy type of workflow steps.
+	// Specifies the location for the file that's being processed.
 	//
 	// DestinationFileLocation is a required field
 	DestinationFileLocation *InputFileLocation `type:"structure" required:"true"`
 
+	// The name of the step, used as an identifier.
 	Name *string `type:"string"`
 
+	// A flag that indicates whether to overwrite an existing file of the same name.
+	// The default is FALSE.
 	OverwriteExisting *string `type:"string" enum:"OverwriteExisting"`
 
+	// Specifies which file to use as input to the workflow step: either the output
+	// from the previous step, or the originally uploaded file for the workflow.
+	//
+	//    * To use the previous file as the input, enter ${previous.file}. In this
+	//    case, this workflow step uses the output file from the previous workflow
+	//    step as input. This is the default value.
+	//
+	//    * To use the originally uploaded file location as input for this step,
+	//    enter ${original.file}.
 	SourceFileLocation *string `type:"string"`
 
+	// The type of encryption used. Currently, this value must be PGP.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"EncryptionType"`
 }
@@ -9022,12 +9062,12 @@ type DeleteStepDetails struct {
 	// Specifies which file to use as input to the workflow step: either the output
 	// from the previous step, or the originally uploaded file for the workflow.
 	//
-	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    * To use the previous file as the input, enter ${previous.file}. In this
 	//    case, this workflow step uses the output file from the previous workflow
 	//    step as input. This is the default value.
 	//
-	//    * Enter ${original.file} to use the originally-uploaded file location
-	//    as input for this step.
+	//    * To use the originally uploaded file location as input for this step,
+	//    enter ${original.file}.
 	SourceFileLocation *string `type:"string"`
 }
 
@@ -11278,12 +11318,14 @@ type DescribedServer struct {
 	//    to it over FTPS.
 	//
 	//    * If Protocol includes either FTP or FTPS, then the EndpointType must
-	//    be VPC and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
+	//    be VPC and the IdentityProviderType must be either AWS_DIRECTORY_SERVICE,
+	//    AWS_LAMBDA, or API_GATEWAY.
 	//
 	//    * If Protocol includes FTP, then AddressAllocationIds cannot be associated.
 	//
 	//    * If Protocol is set only to SFTP, the EndpointType can be set to PUBLIC
-	//    and the IdentityProviderType can be set to SERVICE_MANAGED.
+	//    and the IdentityProviderType can be set any of the supported identity
+	//    types: SERVICE_MANAGED, AWS_DIRECTORY_SERVICE, AWS_LAMBDA, or API_GATEWAY.
 	//
 	//    * If Protocol includes AS2, then the EndpointType must be VPC, and domain
 	//    must be Amazon S3.
@@ -11315,10 +11357,10 @@ type DescribedServer struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -11688,7 +11730,9 @@ func (s *DescribedWorkflow) SetWorkflowId(v string) *DescribedWorkflow {
 	return s
 }
 
-// Reserved for future use.
+// Specifies the details for the file location for the file that's being used
+// in the workflow. Only applicable if you are using Amazon Elastic File Systems
+// (Amazon EFS) for storage.
 type EfsFileLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -11985,13 +12029,15 @@ type ExecutionStepResult struct {
 
 	// One of the available step types.
 	//
-	//    * COPY: Copy the file to another location.
+	//    * COPY - Copy the file to another location.
 	//
-	//    * CUSTOM: Perform a custom step with an Lambda function target.
+	//    * CUSTOM - Perform a custom step with an Lambda function target.
 	//
-	//    * DELETE: Delete the file.
+	//    * DECRYPT - Decrypt a file that was encrypted before it was uploaded.
 	//
-	//    * TAG: Add a tag to the file.
+	//    * DELETE - Delete the file.
+	//
+	//    * TAG - Add a tag to the file.
 	StepType *string `type:"string" enum:"WorkflowStepType"`
 }
 
@@ -12224,7 +12270,12 @@ type ImportCertificateInput struct {
 	// An optional date that specifies when the certificate becomes active.
 	ActiveDate *time.Time `type:"timestamp"`
 
-	// The file that contains the certificate to import.
+	//    * For the CLI, provide a file path for a certificate in URI format. For
+	//    example, --certificate file://encryption-cert.pem. Alternatively, you
+	//    can provide the raw content.
+	//
+	//    * For the SDK, specify the raw content of a certificate file. For example,
+	//    --certificate "`cat encryption-cert.pem`".
 	//
 	// Certificate is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ImportCertificateInput's
@@ -12247,7 +12298,12 @@ type ImportCertificateInput struct {
 	// An optional date that specifies when the certificate becomes inactive.
 	InactiveDate *time.Time `type:"timestamp"`
 
-	// The file that contains the private key for the certificate that's being imported.
+	//    * For the CLI, provide a file path for a private key in URI format.For
+	//    example, --private-key file://encryption-key.pem. Alternatively, you can
+	//    provide the raw content of the private key file.
+	//
+	//    * For the SDK, specify the raw content of a private key file. For example,
+	//    --private-key "`cat encryption-key.pem`"
 	//
 	// PrivateKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ImportCertificateInput's
@@ -12410,7 +12466,7 @@ type ImportHostKeyInput struct {
 	// The text description that identifies this host key.
 	Description *string `type:"string"`
 
-	// The public key portion of an SSH key pair.
+	// The private key portion of an SSH key pair.
 	//
 	// Transfer Family accepts RSA, ECDSA, and ED25519 keys.
 	//
@@ -12688,15 +12744,15 @@ func (s *ImportSshPublicKeyOutput) SetUserName(v string) *ImportSshPublicKeyOutp
 	return s
 }
 
-// Specifies the location for the file being copied. Only applicable for the
-// Copy type of workflow steps.
+// Specifies the location for the file that's being processed.
 type InputFileLocation struct {
 	_ struct{} `type:"structure"`
 
-	// Reserved for future use.
+	// Specifies the details for the Amazon Elastic File System (Amazon EFS) file
+	// that's being decrypted.
 	EfsFileLocation *EfsFileLocation `type:"structure"`
 
-	// Specifies the details for the S3 file being copied.
+	// Specifies the details for the Amazon S3 file that's being copied or decrypted.
 	S3FileLocation *S3InputFileLocation `type:"structure"`
 }
 
@@ -15652,8 +15708,8 @@ func (s *S3FileLocation) SetVersionId(v string) *S3FileLocation {
 	return s
 }
 
-// Specifies the customer input S3 file location. If it is used inside copyStepDetails.DestinationFileLocation,
-// it should be the S3 copy destination.
+// Specifies the customer input Amazon S3 file location. If it is used inside
+// copyStepDetails.DestinationFileLocation, it should be the S3 copy destination.
 //
 // You need to provide the bucket and key. The key can represent either a path
 // or a file. This is determined by whether or not you end the key value with
@@ -16491,12 +16547,12 @@ type TagStepDetails struct {
 	// Specifies which file to use as input to the workflow step: either the output
 	// from the previous step, or the originally uploaded file for the workflow.
 	//
-	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    * To use the previous file as the input, enter ${previous.file}. In this
 	//    case, this workflow step uses the output file from the previous workflow
 	//    step as input. This is the default value.
 	//
-	//    * Enter ${original.file} to use the originally-uploaded file location
-	//    as input for this step.
+	//    * To use the originally uploaded file location as input for this step,
+	//    enter ${original.file}.
 	SourceFileLocation *string `type:"string"`
 
 	// Array that contains from 1 to 10 key/value pairs.
@@ -17888,7 +17944,7 @@ type UpdateServerInput struct {
 	// server to a new server, don't update the host key. Accidentally changing
 	// a server's host key can be disruptive.
 	//
-	// For more information, see Update host keys for your SFTP-enabled server (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
+	// For more information, see Manage host keys for your SFTP-enabled server (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
 	// in the Transfer Family User Guide.
 	//
 	// HostKey is a sensitive parameter and its value will be
@@ -17964,12 +18020,14 @@ type UpdateServerInput struct {
 	//    to it over FTPS.
 	//
 	//    * If Protocol includes either FTP or FTPS, then the EndpointType must
-	//    be VPC and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
+	//    be VPC and the IdentityProviderType must be either AWS_DIRECTORY_SERVICE,
+	//    AWS_LAMBDA, or API_GATEWAY.
 	//
 	//    * If Protocol includes FTP, then AddressAllocationIds cannot be associated.
 	//
 	//    * If Protocol is set only to SFTP, the EndpointType can be set to PUBLIC
-	//    and the IdentityProviderType can be set to SERVICE_MANAGED.
+	//    and the IdentityProviderType can be set any of the supported identity
+	//    types: SERVICE_MANAGED, AWS_DIRECTORY_SERVICE, AWS_LAMBDA, or API_GATEWAY.
 	//
 	//    * If Protocol includes AS2, then the EndpointType must be VPC, and domain
 	//    must be Amazon S3.
@@ -17987,10 +18045,10 @@ type UpdateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	//
 	// To remove an associated workflow from a server, you can provide an empty
 	// OnUpload object, as in the following example.
@@ -18474,10 +18532,10 @@ func (s *UserDetails) SetUserName(v string) *UserDetails {
 // Specifies the workflow ID for the workflow to assign and the execution role
 // that's used for executing the workflow.
 //
-// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-// can also contain a workflow ID (and execution role) for a workflow to execute
-// on partial upload. A partial upload occurs when a file is open when the session
-// disconnects.
+// In addition to a workflow to execute when a file is uploaded completely,
+// WorkflowDetails can also contain a workflow ID (and execution role) for a
+// workflow to execute on partial upload. A partial upload occurs when a file
+// is open when the session disconnects.
 type WorkflowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -18639,17 +18697,33 @@ type WorkflowStep struct {
 	//
 	//    * A description
 	//
-	//    * An S3 location for the destination of the file copy.
+	//    * An Amazon S3 location for the destination of the file copy.
 	//
-	//    * A flag that indicates whether or not to overwrite an existing file of
-	//    the same name. The default is FALSE.
+	//    * A flag that indicates whether to overwrite an existing file of the same
+	//    name. The default is FALSE.
 	CopyStepDetails *CopyStepDetails `type:"structure"`
 
-	// Details for a step that invokes a lambda function.
+	// Details for a step that invokes an Lambda function.
 	//
-	// Consists of the lambda function name, target, and timeout (in seconds).
+	// Consists of the Lambda function's name, target, and timeout (in seconds).
 	CustomStepDetails *CustomStepDetails `type:"structure"`
 
+	// Details for a step that decrypts an encrypted file.
+	//
+	// Consists of the following values:
+	//
+	//    * A descriptive name
+	//
+	//    * An Amazon S3 or Amazon Elastic File System (Amazon EFS) location for
+	//    the source file to decrypt.
+	//
+	//    * An S3 or Amazon EFS location for the destination of the file decryption.
+	//
+	//    * A flag that indicates whether to overwrite an existing file of the same
+	//    name. The default is FALSE.
+	//
+	//    * The type of encryption that's used. Currently, only PGP encryption is
+	//    supported.
 	DecryptStepDetails *DecryptStepDetails `type:"structure"`
 
 	// Details for a step that deletes the file.
@@ -18657,18 +18731,20 @@ type WorkflowStep struct {
 
 	// Details for a step that creates one or more tags.
 	//
-	// You specify one or more tags: each tag contains a key/value pair.
+	// You specify one or more tags. Each tag contains a key-value pair.
 	TagStepDetails *TagStepDetails `type:"structure"`
 
 	// Currently, the following step types are supported.
 	//
-	//    * COPY: Copy the file to another location.
+	//    * COPY - Copy the file to another location.
 	//
-	//    * CUSTOM: Perform a custom step with an Lambda function target.
+	//    * CUSTOM - Perform a custom step with an Lambda function target.
 	//
-	//    * DELETE: Delete the file.
+	//    * DECRYPT - Decrypt a file that was encrypted before it was uploaded.
 	//
-	//    * TAG: Add a tag to the file.
+	//    * DELETE - Delete the file.
+	//
+	//    * TAG - Add a tag to the file.
 	Type *string `type:"string" enum:"WorkflowStepType"`
 }
 
