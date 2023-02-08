@@ -8402,7 +8402,10 @@
         "NumRetries":{"shape":"BoxedNonNegativeInt"},
         "RetryIntervalMs":{"shape":"BoxedNonNegativeLong"},
         "MaxOffsetsPerTrigger":{"shape":"BoxedNonNegativeLong"},
-        "MinPartitions":{"shape":"BoxedNonNegativeInt"}
+        "MinPartitions":{"shape":"BoxedNonNegativeInt"},
+        "IncludeHeaders":{"shape":"BoxedBoolean"},
+        "AddRecordTimestamp":{"shape":"EnclosedInStringProperty"},
+        "EmitConsumerLagMetrics":{"shape":"EnclosedInStringProperty"}
       }
     },
     "KeyList":{
@@ -8452,7 +8455,9 @@
         "AvoidEmptyBatches":{"shape":"BoxedBoolean"},
         "StreamArn":{"shape":"EnclosedInStringProperty"},
         "RoleArn":{"shape":"EnclosedInStringProperty"},
-        "RoleSessionName":{"shape":"EnclosedInStringProperty"}
+        "RoleSessionName":{"shape":"EnclosedInStringProperty"},
+        "AddRecordTimestamp":{"shape":"EnclosedInStringProperty"},
+        "EmitConsumerLagMetrics":{"shape":"EnclosedInStringProperty"}
       }
     },
     "KmsKeyArn":{

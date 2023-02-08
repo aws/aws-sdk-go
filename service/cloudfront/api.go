@@ -2044,12 +2044,11 @@ func (c *CloudFront) CreateOriginAccessControlRequest(input *CreateOriginAccessC
 // access control, you can add it to an origin in a CloudFront distribution
 // so that CloudFront sends authenticated (signed) requests to the origin.
 //
-// For an Amazon S3 origin, this makes it possible to block public access to
-// the Amazon S3 bucket so that viewers (users) can access the content in the
-// bucket only through CloudFront.
+// This makes it possible to block public access to the origin, allowing viewers
+// (users) to access the origin's content only through CloudFront.
 //
 // For more information about using a CloudFront origin access control, see
-// Restricting access to an Amazon S3 origin (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html)
+// Restricting access to an Amazon Web Services origin (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-origin.html)
 // in the Amazon CloudFront Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -26568,8 +26567,7 @@ type OriginAccessControlConfig struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The type of origin that this origin access control is for. The only valid
-	// value is s3.
+	// The type of origin that this origin access control is for.
 	//
 	// OriginAccessControlOriginType is a required field
 	OriginAccessControlOriginType *string `type:"string" required:"true" enum:"OriginAccessControlOriginTypes"`
@@ -26784,8 +26782,7 @@ type OriginAccessControlSummary struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The type of origin that this origin access control is for. The only valid
-	// value is s3.
+	// The type of origin that this origin access control is for.
 	//
 	// OriginAccessControlOriginType is a required field
 	OriginAccessControlOriginType *string `type:"string" required:"true" enum:"OriginAccessControlOriginTypes"`
@@ -35487,12 +35484,16 @@ func MinimumProtocolVersion_Values() []string {
 const (
 	// OriginAccessControlOriginTypesS3 is a OriginAccessControlOriginTypes enum value
 	OriginAccessControlOriginTypesS3 = "s3"
+
+	// OriginAccessControlOriginTypesMediastore is a OriginAccessControlOriginTypes enum value
+	OriginAccessControlOriginTypesMediastore = "mediastore"
 )
 
 // OriginAccessControlOriginTypes_Values returns all elements of the OriginAccessControlOriginTypes enum
 func OriginAccessControlOriginTypes_Values() []string {
 	return []string{
 		OriginAccessControlOriginTypesS3,
+		OriginAccessControlOriginTypesMediastore,
 	}
 }
 

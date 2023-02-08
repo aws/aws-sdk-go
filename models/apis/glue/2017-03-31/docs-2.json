@@ -238,7 +238,7 @@
         "JDBCConnectorTarget$AdditionalOptions": "<p>Additional connection options for the connector.</p>",
         "S3CatalogHudiSource$AdditionalHudiOptions": "<p>Specifies additional connection options.</p>",
         "S3HudiCatalogTarget$AdditionalOptions": "<p>Specifies additional connection options for the connector.</p>",
-        "S3HudiDirectTarget$AdditionalOptions": null,
+        "S3HudiDirectTarget$AdditionalOptions": "<p>Specifies additional connection options for the connector.</p>",
         "S3HudiSource$AdditionalHudiOptions": "<p>Specifies additional connection options.</p>",
         "SparkConnectorSource$AdditionalOptions": "<p>Additional connection options for the connector.</p>",
         "SparkConnectorTarget$AdditionalOptions": "<p>Additional connection options for the connector.</p>"
@@ -747,6 +747,7 @@
         "DirectKinesisSource$DetectSchema": "<p>Whether to automatically determine the schema from the incoming data.</p>",
         "DirectSchemaChangePolicy$EnableUpdateCatalog": "<p>Whether to use the specified update behavior when the crawler finds a changed schema.</p>",
         "FilterExpression$Negated": "<p>Whether the expression is to be negated.</p>",
+        "KafkaStreamingSourceOptions$IncludeHeaders": "<p>Whether to include the Kafka headers. When the option is set to \"true\", the data output will contain an additional column named \"glue_streaming_kafka_headers\" with type <code>Array[Struct(key: String, value: String)]</code>. The default value is \"false\". This option is available in Glue version 3.0 or later only.</p>",
         "KinesisStreamingSourceOptions$AddIdleTimeBetweenReads": "<p>Adds a time delay between two consecutive getRecords operations. The default value is <code>\"False\"</code>. This option is only configurable for Glue version 2.0 and above.</p>",
         "KinesisStreamingSourceOptions$AvoidEmptyBatches": "<p>Avoids creating an empty microbatch job by checking for unread data in the Kinesis data stream before the batch is started. The default value is <code>\"False\"</code>.</p>",
         "Mapping$Dropped": "<p>If true, then the column is removed.</p>",
@@ -984,7 +985,7 @@
       "refs": {
         "GovernedCatalogTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the governed catalog.</p>",
         "S3CatalogTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>",
-        "S3HudiCatalogTarget$SchemaChangePolicy": null
+        "S3HudiCatalogTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>"
       }
     },
     "CatalogSource": {
@@ -2559,7 +2560,7 @@
       "refs": {
         "S3DirectTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>",
         "S3GlueParquetTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>",
-        "S3HudiDirectTarget$SchemaChangePolicy": null
+        "S3HudiDirectTarget$SchemaChangePolicy": "<p>A policy that specifies update behavior for the crawler.</p>"
       }
     },
     "Double": {
@@ -2609,7 +2610,7 @@
     "DynamoDBCatalogSource": {
       "base": "<p>Specifies a DynamoDB data source in the Glue Data Catalog.</p>",
       "refs": {
-        "CodeGenConfigurationNode$DynamoDBCatalogSource": null
+        "CodeGenConfigurationNode$DynamoDBCatalogSource": "<p>Specifies a DynamoDBC Catalog data store in the Glue Data Catalog.</p>"
       }
     },
     "DynamoDBTarget": {
@@ -2734,6 +2735,8 @@
         "KafkaStreamingSourceOptions$Delimiter": "<p>Specifies the delimiter character.</p>",
         "KafkaStreamingSourceOptions$StartingOffsets": "<p>The starting position in the Kafka topic to read data from. The possible values are <code>\"earliest\"</code> or <code>\"latest\"</code>. The default value is <code>\"latest\"</code>.</p>",
         "KafkaStreamingSourceOptions$EndingOffsets": "<p>The end point when a batch query is ended. Possible values are either <code>\"latest\"</code> or a JSON string that specifies an ending offset for each <code>TopicPartition</code>.</p>",
+        "KafkaStreamingSourceOptions$AddRecordTimestamp": "<p>When this option is set to 'true', the data output will contain an additional column named \"__src_timestamp\" that indicates the time when the corresponding record received by the topic. The default value is 'false'. This option is supported in Glue version 4.0 or later.</p>",
+        "KafkaStreamingSourceOptions$EmitConsumerLagMetrics": "<p>When this option is set to 'true', for each batch, it will emit the metrics for the duration between the oldest record received by the topic and the time it arrives in Glue to CloudWatch. The metric's name is \"glue.driver.streaming.maxConsumerLagInMs\". The default value is 'false'. This option is supported in Glue version 4.0 or later.</p>",
         "KinesisStreamingSourceOptions$EndpointUrl": "<p>The URL of the Kinesis endpoint.</p>",
         "KinesisStreamingSourceOptions$StreamName": "<p>The name of the Kinesis data stream.</p>",
         "KinesisStreamingSourceOptions$Classification": "<p>An optional classification.</p>",
@@ -2741,6 +2744,8 @@
         "KinesisStreamingSourceOptions$StreamArn": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream.</p>",
         "KinesisStreamingSourceOptions$RoleArn": "<p>The Amazon Resource Name (ARN) of the role to assume using AWS Security Token Service (AWS STS). This role must have permissions for describe or read record operations for the Kinesis data stream. You must use this parameter when accessing a data stream in a different account. Used in conjunction with <code>\"awsSTSSessionName\"</code>.</p>",
         "KinesisStreamingSourceOptions$RoleSessionName": "<p>An identifier for the session assuming the role using AWS STS. You must use this parameter when accessing a data stream in a different account. Used in conjunction with <code>\"awsSTSRoleARN\"</code>.</p>",
+        "KinesisStreamingSourceOptions$AddRecordTimestamp": "<p>When this option is set to 'true', the data output will contain an additional column named \"__src_timestamp\" that indicates the time when the corresponding record received by the stream. The default value is 'false'. This option is supported in Glue version 4.0 or later.</p>",
+        "KinesisStreamingSourceOptions$EmitConsumerLagMetrics": "<p>When this option is set to 'true', for each batch, it will emit the metrics for the duration between the oldest record received by the stream and the time it arrives in Glue to CloudWatch. The metric's name is \"glue.driver.streaming.maxConsumerLagInMs\". The default value is 'false'. This option is supported in Glue version 4.0 or later.</p>",
         "Mapping$ToKey": "<p>After the apply mapping, what the name of the column should be. Can be the same as <code>FromPath</code>.</p>",
         "Mapping$FromType": "<p>The type of the data to be modified.</p>",
         "Mapping$ToType": "<p>The data type that the data is to be modified to.</p>",
@@ -6308,7 +6313,7 @@
     "RelationalCatalogSource": {
       "base": "<p>Specifies a Relational database data source in the Glue Data Catalog.</p>",
       "refs": {
-        "CodeGenConfigurationNode$RelationalCatalogSource": null
+        "CodeGenConfigurationNode$RelationalCatalogSource": "<p>Specifies a relational catalog data store in the Glue Data Catalog.</p>"
       }
     },
     "RemoveSchemaVersionMetadataInput": {
@@ -6484,7 +6489,7 @@
       "base": "<p>Specifies additional connection options for the Amazon S3 data store.</p>",
       "refs": {
         "S3CsvSource$AdditionalOptions": "<p>Specifies additional connection options.</p>",
-        "S3HudiSource$AdditionalOptions": null,
+        "S3HudiSource$AdditionalOptions": "<p>Specifies additional options for the connector.</p>",
         "S3JsonSource$AdditionalOptions": "<p>Specifies additional connection options.</p>",
         "S3ParquetSource$AdditionalOptions": "<p>Specifies additional connection options.</p>"
       }
