@@ -1184,7 +1184,8 @@
         "BackupOptions":{"shape":"BackupOptions"},
         "BackupType":{"shape":"string"},
         "ParentJobId":{"shape":"string"},
-        "IsParent":{"shape":"boolean"}
+        "IsParent":{"shape":"boolean"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "BackupJobChildJobsInState":{
@@ -1559,7 +1560,8 @@
         "IsParent":{"shape":"boolean"},
         "CompositeMemberIdentifier":{"shape":"string"},
         "NumberOfChildJobs":{"shape":"Long"},
-        "ChildJobsInState":{"shape":"CopyJobChildJobsInState"}
+        "ChildJobsInState":{"shape":"CopyJobChildJobsInState"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "CopyJobChildJobsInState":{
@@ -1907,7 +1909,8 @@
         "ParentJobId":{"shape":"string"},
         "IsParent":{"shape":"boolean"},
         "NumberOfChildJobs":{"shape":"Long"},
-        "ChildJobsInState":{"shape":"BackupJobChildJobsInState"}
+        "ChildJobsInState":{"shape":"BackupJobChildJobsInState"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "DescribeBackupVaultInput":{
@@ -2005,7 +2008,8 @@
       "members":{
         "ResourceArn":{"shape":"ARN"},
         "ResourceType":{"shape":"ResourceType"},
-        "LastBackupTime":{"shape":"timestamp"}
+        "LastBackupTime":{"shape":"timestamp"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "DescribeRecoveryPointInput":{
@@ -2051,7 +2055,8 @@
         "LastRestoreTime":{"shape":"timestamp"},
         "ParentRecoveryPointArn":{"shape":"ARN"},
         "CompositeMemberIdentifier":{"shape":"string"},
-        "IsParent":{"shape":"boolean"}
+        "IsParent":{"shape":"boolean"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "DescribeRegionSettingsInput":{
@@ -3132,7 +3137,8 @@
       "members":{
         "ResourceArn":{"shape":"ARN"},
         "ResourceType":{"shape":"ResourceType"},
-        "LastBackupTime":{"shape":"timestamp"}
+        "LastBackupTime":{"shape":"timestamp"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "ProtectedResourcesList":{
@@ -3205,7 +3211,8 @@
         "LastRestoreTime":{"shape":"timestamp"},
         "ParentRecoveryPointArn":{"shape":"ARN"},
         "CompositeMemberIdentifier":{"shape":"string"},
-        "IsParent":{"shape":"boolean"}
+        "IsParent":{"shape":"boolean"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "RecoveryPointByBackupVaultList":{
@@ -3223,7 +3230,8 @@
         "BackupSizeBytes":{"shape":"Long"},
         "BackupVaultName":{"shape":"BackupVaultName"},
         "IsParent":{"shape":"boolean"},
-        "ParentRecoveryPointArn":{"shape":"ARN"}
+        "ParentRecoveryPointArn":{"shape":"ARN"},
+        "ResourceName":{"shape":"string"}
       }
     },
     "RecoveryPointByResourceList":{

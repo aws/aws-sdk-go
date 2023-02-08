@@ -9881,7 +9881,7 @@ type LFTagPolicyResource struct {
 	// A list of LF-tag conditions that apply to the resource's LF-tag policy.
 	//
 	// Expression is a required field
-	Expression []*LFTag `min:"1" type:"list" required:"true"`
+	Expression []*LFTag `type:"list" required:"true"`
 
 	// The resource type for which the LF-tag policy applies.
 	//
@@ -9915,9 +9915,6 @@ func (s *LFTagPolicyResource) Validate() error {
 	}
 	if s.Expression == nil {
 		invalidParams.Add(request.NewErrParamRequired("Expression"))
-	}
-	if s.Expression != nil && len(s.Expression) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
 	}
 	if s.ResourceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
@@ -12043,7 +12040,7 @@ type SearchDatabasesByLFTagsInput struct {
 	// A list of conditions (LFTag structures) to search for in database resources.
 	//
 	// Expression is a required field
-	Expression []*LFTag `min:"1" type:"list" required:"true"`
+	Expression []*LFTag `type:"list" required:"true"`
 
 	// The maximum number of results to return.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -12078,9 +12075,6 @@ func (s *SearchDatabasesByLFTagsInput) Validate() error {
 	}
 	if s.Expression == nil {
 		invalidParams.Add(request.NewErrParamRequired("Expression"))
-	}
-	if s.Expression != nil && len(s.Expression) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -12178,7 +12172,7 @@ type SearchTablesByLFTagsInput struct {
 	// A list of conditions (LFTag structures) to search for in table resources.
 	//
 	// Expression is a required field
-	Expression []*LFTag `min:"1" type:"list" required:"true"`
+	Expression []*LFTag `type:"list" required:"true"`
 
 	// The maximum number of results to return.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -12213,9 +12207,6 @@ func (s *SearchTablesByLFTagsInput) Validate() error {
 	}
 	if s.Expression == nil {
 		invalidParams.Add(request.NewErrParamRequired("Expression"))
-	}
-	if s.Expression != nil && len(s.Expression) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))

@@ -1,3 +1,14 @@
+Release v1.44.197 (2023-02-08)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront Origin Access Control extends support to AWS Elemental MediaStore origins.
+* `service/glue`: Updates service API and documentation
+  * DirectJDBCSource + Glue 4.0 streaming options
+* `service/lakeformation`: Updates service API
+
 Release v1.44.196 (2023-02-07)
 ===
 

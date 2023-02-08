@@ -6223,8 +6223,10 @@ func (c *Backup) PutBackupVaultLockConfigurationRequest(input *PutBackupVaultLoc
 // Vault Lock enforces a minimum and maximum retention period for future backup
 // and copy jobs that target a backup vault.
 //
-// Backup Vault Lock has yet to receive a third-party assessment for SEC 17a-4(f)
-// and CFTC.
+// Backup Vault Lock has been assessed by Cohasset Associates for use in environments
+// that are subject to SEC 17a-4, CFTC, and FINRA regulations. For more information
+// about how Backup Vault Lock relates to these regulations, see the Cohasset
+// Associates Compliance Assessment. (samples/cohassetreport.zip)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8407,6 +8409,10 @@ type CopyJob struct {
 	// (Amazon RDS) database.
 	ResourceArn *string `type:"string"`
 
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
+
 	// The type of Amazon Web Services resource to be copied; for example, an Amazon
 	// Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
 	// Service (Amazon RDS) database.
@@ -8531,6 +8537,12 @@ func (s *CopyJob) SetParentJobId(v string) *CopyJob {
 // SetResourceArn sets the ResourceArn field's value.
 func (s *CopyJob) SetResourceArn(v string) *CopyJob {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *CopyJob) SetResourceName(v string) *CopyJob {
+	s.ResourceName = &v
 	return s
 }
 
@@ -10527,6 +10539,10 @@ type DescribeBackupJobOutput struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
+
 	// The type of Amazon Web Services resource to be backed up; for example, an
 	// Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
 	// Service (Amazon RDS) database.
@@ -10683,6 +10699,12 @@ func (s *DescribeBackupJobOutput) SetRecoveryPointArn(v string) *DescribeBackupJ
 // SetResourceArn sets the ResourceArn field's value.
 func (s *DescribeBackupJobOutput) SetResourceArn(v string) *DescribeBackupJobOutput {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *DescribeBackupJobOutput) SetResourceName(v string) *DescribeBackupJobOutput {
+	s.ResourceName = &v
 	return s
 }
 
@@ -11289,6 +11311,10 @@ type DescribeProtectedResourceOutput struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
+
 	// The type of Amazon Web Services resource saved as a recovery point; for example,
 	// an Amazon EBS volume or an Amazon RDS database.
 	ResourceType *string `type:"string"`
@@ -11321,6 +11347,12 @@ func (s *DescribeProtectedResourceOutput) SetLastBackupTime(v time.Time) *Descri
 // SetResourceArn sets the ResourceArn field's value.
 func (s *DescribeProtectedResourceOutput) SetResourceArn(v string) *DescribeProtectedResourceOutput {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *DescribeProtectedResourceOutput) SetResourceName(v string) *DescribeProtectedResourceOutput {
+	s.ResourceName = &v
 	return s
 }
 
@@ -11491,6 +11523,10 @@ type DescribeRecoveryPointOutput struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
+
 	// The type of Amazon Web Services resource to save as a recovery point; for
 	// example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational
 	// Database Service (Amazon RDS) database.
@@ -11654,6 +11690,12 @@ func (s *DescribeRecoveryPointOutput) SetRecoveryPointArn(v string) *DescribeRec
 // SetResourceArn sets the ResourceArn field's value.
 func (s *DescribeRecoveryPointOutput) SetResourceArn(v string) *DescribeRecoveryPointOutput {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *DescribeRecoveryPointOutput) SetResourceName(v string) *DescribeRecoveryPointOutput {
+	s.ResourceName = &v
 	return s
 }
 
@@ -13909,6 +13951,10 @@ type Job struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
+
 	// The type of Amazon Web Services resource to be backed up; for example, an
 	// Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
 	// Service (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS)
@@ -14054,6 +14100,12 @@ func (s *Job) SetRecoveryPointArn(v string) *Job {
 // SetResourceArn sets the ResourceArn field's value.
 func (s *Job) SetResourceArn(v string) *Job {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *Job) SetResourceName(v string) *Job {
+	s.ResourceName = &v
 	return s
 }
 
@@ -16908,6 +16960,10 @@ type ProtectedResource struct {
 	// of the ARN depends on the resource type.
 	ResourceArn *string `type:"string"`
 
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
+
 	// The type of Amazon Web Services resource; for example, an Amazon Elastic
 	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
 	// (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS) backups,
@@ -16942,6 +16998,12 @@ func (s *ProtectedResource) SetLastBackupTime(v time.Time) *ProtectedResource {
 // SetResourceArn sets the ResourceArn field's value.
 func (s *ProtectedResource) SetResourceArn(v string) *ProtectedResource {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *ProtectedResource) SetResourceName(v string) *ProtectedResource {
+	s.ResourceName = &v
 	return s
 }
 
@@ -17394,6 +17456,10 @@ type RecoveryPointByBackupVault struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
+
 	// The type of Amazon Web Services resource saved as a recovery point; for example,
 	// an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational
 	// Database Service (Amazon RDS) database. For Windows Volume Shadow Copy Service
@@ -17531,6 +17597,12 @@ func (s *RecoveryPointByBackupVault) SetResourceArn(v string) *RecoveryPointByBa
 	return s
 }
 
+// SetResourceName sets the ResourceName field's value.
+func (s *RecoveryPointByBackupVault) SetResourceName(v string) *RecoveryPointByBackupVault {
+	s.ResourceName = &v
+	return s
+}
+
 // SetResourceType sets the ResourceType field's value.
 func (s *RecoveryPointByBackupVault) SetResourceType(v string) *RecoveryPointByBackupVault {
 	s.ResourceType = &v
@@ -17589,6 +17661,10 @@ type RecoveryPointByResource struct {
 	// An Amazon Resource Name (ARN) that uniquely identifies a recovery point;
 	// for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.
 	RecoveryPointArn *string `type:"string"`
+
+	// This is the non-unique name of the resource that belongs to the specified
+	// backup.
+	ResourceName *string `type:"string"`
 
 	// A status code specifying the state of the recovery point.
 	Status *string `type:"string" enum:"RecoveryPointStatus"`
@@ -17654,6 +17730,12 @@ func (s *RecoveryPointByResource) SetParentRecoveryPointArn(v string) *RecoveryP
 // SetRecoveryPointArn sets the RecoveryPointArn field's value.
 func (s *RecoveryPointByResource) SetRecoveryPointArn(v string) *RecoveryPointByResource {
 	s.RecoveryPointArn = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *RecoveryPointByResource) SetResourceName(v string) *RecoveryPointByResource {
+	s.ResourceName = &v
 	return s
 }
 
@@ -19309,6 +19391,8 @@ type StartBackupJobOutput struct {
 	// backup job.
 	IsParent *bool `type:"boolean"`
 
+	// Note: This field is only returned for Amazon EFS and Advanced DynamoDB resources.
+	//
 	// An ARN that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.
 	RecoveryPointArn *string `type:"string"`
 }

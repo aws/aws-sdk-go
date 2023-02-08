@@ -25187,7 +25187,7 @@ type CodeGenConfigurationNode struct {
 	// Specifies a custom visual transform created by a user.
 	DynamicTransform *DynamicTransform `type:"structure"`
 
-	// Specifies a DynamoDB data source in the Glue Data Catalog.
+	// Specifies a DynamoDBC Catalog data store in the Glue Data Catalog.
 	DynamoDBCatalogSource *DynamoDBCatalogSource `type:"structure"`
 
 	// Specifies your data quality evaluation criteria.
@@ -25258,7 +25258,7 @@ type CodeGenConfigurationNode struct {
 	// Specifies a target that uses Amazon Redshift.
 	RedshiftTarget *RedshiftTarget `type:"structure"`
 
-	// Specifies a Relational database data source in the Glue Data Catalog.
+	// Specifies a relational catalog data store in the Glue Data Catalog.
 	RelationalCatalogSource *RelationalCatalogSource `type:"structure"`
 
 	// Specifies a transform that renames a single data property key.
@@ -50436,6 +50436,12 @@ func (s *JsonClassifier) SetVersion(v int64) *JsonClassifier {
 type KafkaStreamingSourceOptions struct {
 	_ struct{} `type:"structure"`
 
+	// When this option is set to 'true', the data output will contain an additional
+	// column named "__src_timestamp" that indicates the time when the corresponding
+	// record received by the topic. The default value is 'false'. This option is
+	// supported in Glue version 4.0 or later.
+	AddRecordTimestamp *string `type:"string"`
+
 	// The specific TopicPartitions to consume. You must specify at least one of
 	// "topicName", "assign" or "subscribePattern".
 	Assign *string `type:"string"`
@@ -50454,9 +50460,22 @@ type KafkaStreamingSourceOptions struct {
 	// Specifies the delimiter character.
 	Delimiter *string `type:"string"`
 
+	// When this option is set to 'true', for each batch, it will emit the metrics
+	// for the duration between the oldest record received by the topic and the
+	// time it arrives in Glue to CloudWatch. The metric's name is "glue.driver.streaming.maxConsumerLagInMs".
+	// The default value is 'false'. This option is supported in Glue version 4.0
+	// or later.
+	EmitConsumerLagMetrics *string `type:"string"`
+
 	// The end point when a batch query is ended. Possible values are either "latest"
 	// or a JSON string that specifies an ending offset for each TopicPartition.
 	EndingOffsets *string `type:"string"`
+
+	// Whether to include the Kafka headers. When the option is set to "true", the
+	// data output will contain an additional column named "glue_streaming_kafka_headers"
+	// with type Array[Struct(key: String, value: String)]. The default value is
+	// "false". This option is available in Glue version 3.0 or later only.
+	IncludeHeaders *bool `type:"boolean"`
 
 	// The rate limit on the maximum number of offsets that are processed per trigger
 	// interval. The specified total number of offsets is proportionally split across
@@ -50516,6 +50535,12 @@ func (s KafkaStreamingSourceOptions) GoString() string {
 	return s.String()
 }
 
+// SetAddRecordTimestamp sets the AddRecordTimestamp field's value.
+func (s *KafkaStreamingSourceOptions) SetAddRecordTimestamp(v string) *KafkaStreamingSourceOptions {
+	s.AddRecordTimestamp = &v
+	return s
+}
+
 // SetAssign sets the Assign field's value.
 func (s *KafkaStreamingSourceOptions) SetAssign(v string) *KafkaStreamingSourceOptions {
 	s.Assign = &v
@@ -50546,9 +50571,21 @@ func (s *KafkaStreamingSourceOptions) SetDelimiter(v string) *KafkaStreamingSour
 	return s
 }
 
+// SetEmitConsumerLagMetrics sets the EmitConsumerLagMetrics field's value.
+func (s *KafkaStreamingSourceOptions) SetEmitConsumerLagMetrics(v string) *KafkaStreamingSourceOptions {
+	s.EmitConsumerLagMetrics = &v
+	return s
+}
+
 // SetEndingOffsets sets the EndingOffsets field's value.
 func (s *KafkaStreamingSourceOptions) SetEndingOffsets(v string) *KafkaStreamingSourceOptions {
 	s.EndingOffsets = &v
+	return s
+}
+
+// SetIncludeHeaders sets the IncludeHeaders field's value.
+func (s *KafkaStreamingSourceOptions) SetIncludeHeaders(v bool) *KafkaStreamingSourceOptions {
+	s.IncludeHeaders = &v
 	return s
 }
 
@@ -50660,6 +50697,12 @@ type KinesisStreamingSourceOptions struct {
 	// above.
 	AddIdleTimeBetweenReads *bool `type:"boolean"`
 
+	// When this option is set to 'true', the data output will contain an additional
+	// column named "__src_timestamp" that indicates the time when the corresponding
+	// record received by the stream. The default value is 'false'. This option
+	// is supported in Glue version 4.0 or later.
+	AddRecordTimestamp *string `type:"string"`
+
 	// Avoids creating an empty microbatch job by checking for unread data in the
 	// Kinesis data stream before the batch is started. The default value is "False".
 	AvoidEmptyBatches *bool `type:"boolean"`
@@ -50673,6 +50716,13 @@ type KinesisStreamingSourceOptions struct {
 	// The minimum time interval between two ListShards API calls for your script
 	// to consider resharding. The default value is 1s.
 	DescribeShardInterval *int64 `type:"long"`
+
+	// When this option is set to 'true', for each batch, it will emit the metrics
+	// for the duration between the oldest record received by the stream and the
+	// time it arrives in Glue to CloudWatch. The metric's name is "glue.driver.streaming.maxConsumerLagInMs".
+	// The default value is 'false'. This option is supported in Glue version 4.0
+	// or later.
+	EmitConsumerLagMetrics *string `type:"string"`
 
 	// The URL of the Kinesis endpoint.
 	EndpointUrl *string `type:"string"`
@@ -50755,6 +50805,12 @@ func (s *KinesisStreamingSourceOptions) SetAddIdleTimeBetweenReads(v bool) *Kine
 	return s
 }
 
+// SetAddRecordTimestamp sets the AddRecordTimestamp field's value.
+func (s *KinesisStreamingSourceOptions) SetAddRecordTimestamp(v string) *KinesisStreamingSourceOptions {
+	s.AddRecordTimestamp = &v
+	return s
+}
+
 // SetAvoidEmptyBatches sets the AvoidEmptyBatches field's value.
 func (s *KinesisStreamingSourceOptions) SetAvoidEmptyBatches(v bool) *KinesisStreamingSourceOptions {
 	s.AvoidEmptyBatches = &v
@@ -50776,6 +50832,12 @@ func (s *KinesisStreamingSourceOptions) SetDelimiter(v string) *KinesisStreaming
 // SetDescribeShardInterval sets the DescribeShardInterval field's value.
 func (s *KinesisStreamingSourceOptions) SetDescribeShardInterval(v int64) *KinesisStreamingSourceOptions {
 	s.DescribeShardInterval = &v
+	return s
+}
+
+// SetEmitConsumerLagMetrics sets the EmitConsumerLagMetrics field's value.
+func (s *KinesisStreamingSourceOptions) SetEmitConsumerLagMetrics(v string) *KinesisStreamingSourceOptions {
+	s.EmitConsumerLagMetrics = &v
 	return s
 }
 
@@ -59207,6 +59269,8 @@ func (s *S3HudiCatalogTarget) SetTable(v string) *S3HudiCatalogTarget {
 type S3HudiDirectTarget struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies additional connection options for the connector.
+	//
 	// AdditionalOptions is a required field
 	AdditionalOptions map[string]*string `type:"map" required:"true"`
 
@@ -59347,7 +59411,7 @@ type S3HudiSource struct {
 	// Specifies additional connection options.
 	AdditionalHudiOptions map[string]*string `type:"map"`
 
-	// Specifies additional connection options for the Amazon S3 data store.
+	// Specifies additional options for the connector.
 	AdditionalOptions *S3DirectSourceAdditionalOptions `type:"structure"`
 
 	// The name of the Hudi source.
