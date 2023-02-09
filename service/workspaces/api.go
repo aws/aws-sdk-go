@@ -750,7 +750,7 @@ func (c *WorkSpaces) CreateStandbyWorkspacesRequest(input *CreateStandbyWorkspac
 
 // CreateStandbyWorkspaces API operation for Amazon WorkSpaces.
 //
-// Creates a Standby WorkSpace in a secondary region.
+// Creates a standby WorkSpace in a secondary Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -934,7 +934,7 @@ func (c *WorkSpaces) CreateUpdatedWorkspaceImageRequest(input *CreateUpdatedWork
 // To determine which WorkSpace images need to be updated with the latest Amazon
 // WorkSpaces requirements, use DescribeWorkspaceImages (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html).
 //
-//   - Only Windows 10, Windows Sever 2016, and Windows Server 2019 WorkSpace
+//   - Only Windows 10, Windows Server 2016, and Windows Server 2019 WorkSpace
 //     images can be programmatically updated at this time.
 //
 //   - Microsoft Windows updates and other application updates are not included
@@ -3852,11 +3852,11 @@ func (c *WorkSpaces) ImportWorkspaceImageRequest(input *ImportWorkspaceImageInpu
 
 // ImportWorkspaceImage API operation for Amazon WorkSpaces.
 //
-// Imports the specified Windows 10 Bring Your Own License (BYOL) or Windows
-// Server 2016 BYOL image into Amazon WorkSpaces. The image must be an already
-// licensed Amazon EC2 image that is in your Amazon Web Services account, and
-// you must own the image. For more information about creating BYOL images,
-// see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
+// Imports the specified Windows 10 Bring Your Own License (BYOL) image into
+// Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image
+// that is in your Amazon Web Services account, and you must own the image.
+// For more information about creating BYOL images, see Bring Your Own Windows
+// Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7480,7 +7480,7 @@ type CreateStandbyWorkspacesInput struct {
 	// PrimaryRegion is a required field
 	PrimaryRegion *string `min:"1" type:"string" required:"true"`
 
-	// Information about the Standby WorkSpace to be created.
+	// Information about the standby WorkSpace to be created.
 	//
 	// StandbyWorkspaces is a required field
 	StandbyWorkspaces []*StandbyWorkspace `type:"list" required:"true"`
@@ -7548,10 +7548,10 @@ func (s *CreateStandbyWorkspacesInput) SetStandbyWorkspaces(v []*StandbyWorkspac
 type CreateStandbyWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the Standby WorkSpace that could not be created.
+	// Information about the standby WorkSpace that could not be created.
 	FailedStandbyRequests []*FailedCreateStandbyWorkspacesRequest `type:"list"`
 
-	// Information about the Standby WorkSpace that was created.
+	// Information about the standby WorkSpace that was created.
 	PendingStandbyRequests []*PendingCreateStandbyWorkspacesRequest `type:"list"`
 }
 
@@ -11058,18 +11058,18 @@ func (s DisassociateIpGroupsOutput) GoString() string {
 	return s.String()
 }
 
-// Describes the Standby WorkSpace that could not be created.
+// Describes the standby WorkSpace that could not be created.
 type FailedCreateStandbyWorkspacesRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The error code that is returned if the Standby WorkSpace could not be created.
+	// The error code that is returned if the standby WorkSpace could not be created.
 	ErrorCode *string `type:"string"`
 
-	// The text of the error message that is returned if the Standby WorkSpace could
+	// The text of the error message that is returned if the standby WorkSpace could
 	// not be created.
 	ErrorMessage *string `type:"string"`
 
-	// Information about the Standby WorkSpace that could not be created.
+	// Information about the standby WorkSpace that could not be created.
 	StandbyWorkspaceRequest *StandbyWorkspace `type:"structure"`
 }
 
@@ -13327,17 +13327,17 @@ func (s *OperationNotSupportedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the Standby WorkSpace.
+// Information about the standby WorkSpace.
 type PendingCreateStandbyWorkspacesRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory for the Standby WorkSpace.
+	// The identifier of the directory for the standby WorkSpace.
 	DirectoryId *string `min:"10" type:"string"`
 
-	// The operational state of the Standby WorkSpace.
+	// The operational state of the standby WorkSpace.
 	State *string `type:"string" enum:"WorkspaceState"`
 
-	// Describes the Standby WorkSpace that was created.
+	// Describes the standby WorkSpace that was created.
 	//
 	// Because this operation is asynchronous, the identifier returned is not immediately
 	// available for use with other operations. For example, if you call DescribeWorkspaces
@@ -13345,7 +13345,7 @@ type PendingCreateStandbyWorkspacesRequest struct {
 	// before the WorkSpace is created, the information returned can be incomplete.
 	UserName *string `min:"1" type:"string"`
 
-	// The identifier of the Standby WorkSpace.
+	// The identifier of the standby WorkSpace.
 	WorkspaceId *string `type:"string"`
 }
 
@@ -13812,8 +13812,8 @@ func (s RegisterWorkspaceDirectoryOutput) GoString() string {
 	return s.String()
 }
 
-// Describes the related WorkSpace. The related WorkSpace could be a Standby
-// WorkSpace or Primary WorkSpace related to the specified WorkSpace.
+// Describes the related WorkSpace. The related WorkSpace could be a standby
+// WorkSpace or primary WorkSpace related to the specified WorkSpace.
 type RelatedWorkspaceProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -14655,24 +14655,24 @@ func (s *Snapshot) SetSnapshotTime(v time.Time) *Snapshot {
 	return s
 }
 
-// Describes a Standby WorkSpace.
+// Describes a standby WorkSpace.
 type StandbyWorkspace struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory for the Standby WorkSpace.
+	// The identifier of the directory for the standby WorkSpace.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `min:"10" type:"string" required:"true"`
 
-	// The identifier of the Standby WorkSpace.
+	// The identifier of the standby WorkSpace.
 	//
 	// PrimaryWorkspaceId is a required field
 	PrimaryWorkspaceId *string `type:"string" required:"true"`
 
-	// The tags associated with the Standby WorkSpace.
+	// The tags associated with the standby WorkSpace.
 	Tags []*Tag `type:"list"`
 
-	// The volume encryption key of the Standby WorkSpace.
+	// The volume encryption key of the standby WorkSpace.
 	VolumeEncryptionKey *string `type:"string"`
 }
 
@@ -15867,7 +15867,7 @@ type Workspace struct {
 	// The modification states of the WorkSpace.
 	ModificationStates []*ModificationState `type:"list"`
 
-	// The Standby WorkSpace or Primary WorkSpace related to the specified WorkSpace.
+	// The standby WorkSpace or primary WorkSpace related to the specified WorkSpace.
 	RelatedWorkspaces []*RelatedWorkspaceProperties `type:"list"`
 
 	// Indicates whether the data stored on the root volume is encrypted.

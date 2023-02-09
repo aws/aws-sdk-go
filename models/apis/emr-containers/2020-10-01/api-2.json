@@ -764,7 +764,9 @@
         "finishedAt":{"shape":"Date"},
         "stateDetails":{"shape":"String256"},
         "failureReason":{"shape":"FailureReason"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "retryPolicyConfiguration":{"shape":"RetryPolicyConfiguration"},
+        "retryPolicyExecution":{"shape":"RetryPolicyExecution"}
       }
     },
     "JobRunState":{
@@ -1132,6 +1134,20 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "RetryPolicyConfiguration":{
+      "type":"structure",
+      "required":["maxAttempts"],
+      "members":{
+        "maxAttempts":{"shape":"JavaInteger"}
+      }
+    },
+    "RetryPolicyExecution":{
+      "type":"structure",
+      "required":["currentAttemptCount"],
+      "members":{
+        "currentAttemptCount":{"shape":"JavaInteger"}
+      }
+    },
     "RsiArn":{
       "type":"string",
       "max":500,
@@ -1205,7 +1221,8 @@
         "configurationOverrides":{"shape":"ConfigurationOverrides"},
         "tags":{"shape":"TagMap"},
         "jobTemplateId":{"shape":"ResourceIdString"},
-        "jobTemplateParameters":{"shape":"TemplateParameterInputMap"}
+        "jobTemplateParameters":{"shape":"TemplateParameterInputMap"},
+        "retryPolicyConfiguration":{"shape":"RetryPolicyConfiguration"}
       }
     },
     "StartJobRunResponse":{

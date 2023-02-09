@@ -390,7 +390,7 @@
       }
     },
     "AvailabilityZone": {
-      "base": "<p>Describes an Availability Zone.</p>",
+      "base": "<p>Describes an Availability Zone. This is returned only as part of a <code>GetRegions</code> request.</p>",
       "refs": {
         "AvailabilityZoneList$member": null
       }
@@ -885,7 +885,7 @@
       }
     },
     "ContainerServiceRegistryLogin": {
-      "base": "<p>Describes the login information for the container image registry of an Amazon Lightsail account.</p>",
+      "base": "<p>Describes the sign-in credentials for the container image registry of an Amazon Lightsail account.</p>",
       "refs": {
         "CreateContainerServiceRegistryLoginResult$registryLogin": "<p>An object that describes the log in information for the container service registry of your Lightsail account.</p>"
       }
@@ -2652,7 +2652,7 @@
         "ContainerService$createdAt": "<p>The timestamp when the container service was created.</p>",
         "ContainerServiceDeployment$createdAt": "<p>The timestamp when the deployment was created.</p>",
         "ContainerServiceLogEvent$createdAt": "<p>The timestamp when the container service log event was created.</p>",
-        "ContainerServiceRegistryLogin$expiresAt": "<p>The timestamp of when the container image registry username and password expire.</p> <p>The log in credentials expire 12 hours after they are created, at which point you will need to create a new set of log in credentials using the <code>CreateContainerServiceRegistryLogin</code> action.</p>",
+        "ContainerServiceRegistryLogin$expiresAt": "<p>The timestamp of when the container image registry sign-in credentials expire.</p> <p>The log in credentials expire 12 hours after they are created, at which point you will need to create a new set of log in credentials using the <code>CreateContainerServiceRegistryLogin</code> action.</p>",
         "CreateRelationalDatabaseFromSnapshotRequest$restoreTime": "<p>The date and time to restore your database from.</p> <p>Constraints:</p> <ul> <li> <p>Must be before the latest restorable time for the database.</p> </li> <li> <p>Cannot be specified if the <code>use latest restorable time</code> parameter is <code>true</code>.</p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a restore time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the restore time.</p> </li> </ul>",
         "Disk$createdAt": "<p>The date when the disk was created.</p>",
         "DiskSnapshot$createdAt": "<p>The date when the disk snapshot was created.</p>",
@@ -3147,7 +3147,7 @@
         "UnpeerVpcResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "UpdateDistributionBundleResult$operation": "<p>An object that describes the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "UpdateDistributionResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
-        "UpdateInstanceMetadataOptionsResult$operation": null
+        "UpdateInstanceMetadataOptionsResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>"
       }
     },
     "OperationFailureException": {
@@ -3390,7 +3390,7 @@
     "R53HostedZoneDeletionState": {
       "base": "<p>Describes the deletion state of an Amazon Route 53 hosted zone for a domain that is being automatically delegated to an Amazon Lightsail DNS zone.</p>",
       "refs": {
-        "RegisteredDomainDelegationInfo$r53HostedZoneDeletionState": null
+        "RegisteredDomainDelegationInfo$r53HostedZoneDeletionState": "<p>Describes the deletion state of an Amazon Route 53 hosted zone for a domain that is being automatically delegated to an Amazon Lightsail DNS zone.</p>"
       }
     },
     "R53HostedZoneDeletionStateCode": {
@@ -4265,7 +4265,7 @@
         "DiskInfo$isSystemDisk": "<p>A Boolean value indicating whether this disk is a system disk (has an operating system loaded on it).</p>",
         "DiskSnapshot$isFromAutoSnapshot": "<p>A Boolean value indicating whether the snapshot was created from an automatic snapshot.</p>",
         "DistributionBundle$isActive": "<p>Indicates whether the bundle is active, and can be specified for a new or existing distribution.</p>",
-        "DomainEntry$isAlias": "<p>When <code>true</code>, specifies whether the domain entry is an alias used by the Lightsail load balancer. You can include an alias (A type) record in your request, which points to a load balancer DNS name and routes traffic to your load balancer.</p>",
+        "DomainEntry$isAlias": "<p>When <code>true</code>, specifies whether the domain entry is an alias used by the Lightsail load balancer, Lightsail container service, Lightsail content delivery network (CDN) distribution, or another Amazon Web Services resource. You can include an alias (A type) record in your request, which points to the DNS name of a load balancer, container service, CDN distribution, or other Amazon Web Services resource and routes traffic to that resource.</p>",
         "GetBlueprintsRequest$includeInactive": "<p>A Boolean value that indicates whether to include inactive (unavailable) blueprints in the response of your request.</p>",
         "GetBucketBundlesRequest$includeInactive": "<p>A Boolean value that indicates whether to include inactive (unavailable) bundles in the response of your request.</p>",
         "GetBucketsRequest$includeConnectedResources": "<p>A Boolean value that indicates whether to include Lightsail instances that were given access to the bucket using the <a href=\"https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_SetResourceAccessForBucket.html\">SetResourceAccessForBucket</a> action.</p>",

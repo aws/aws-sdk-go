@@ -18194,7 +18194,8 @@ func (s *AutoSnapshotDetails) SetStatus(v string) *AutoSnapshotDetails {
 	return s
 }
 
-// Describes an Availability Zone.
+// Describes an Availability Zone. This is returned only as part of a GetRegions
+// request.
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -20780,13 +20781,12 @@ func (s *ContainerServicePower) SetRamSizeInGb(v float64) *ContainerServicePower
 	return s
 }
 
-// Describes the login information for the container image registry of an Amazon
-// Lightsail account.
+// Describes the sign-in credentials for the container image registry of an
+// Amazon Lightsail account.
 type ContainerServiceRegistryLogin struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp of when the container image registry username and password
-	// expire.
+	// The timestamp of when the container image registry sign-in credentials expire.
 	//
 	// The log in credentials expire 12 hours after they are created, at which point
 	// you will need to create a new set of log in credentials using the CreateContainerServiceRegistryLogin
@@ -27623,9 +27623,11 @@ type DomainEntry struct {
 	Id *string `locationName:"id" type:"string"`
 
 	// When true, specifies whether the domain entry is an alias used by the Lightsail
-	// load balancer. You can include an alias (A type) record in your request,
-	// which points to a load balancer DNS name and routes traffic to your load
-	// balancer.
+	// load balancer, Lightsail container service, Lightsail content delivery network
+	// (CDN) distribution, or another Amazon Web Services resource. You can include
+	// an alias (A type) record in your request, which points to the DNS name of
+	// a load balancer, container service, CDN distribution, or other Amazon Web
+	// Services resource and routes traffic to that resource.
 	IsAlias *bool `locationName:"isAlias" type:"boolean"`
 
 	// The name of the domain.
@@ -43198,7 +43200,9 @@ func (s *UpdateInstanceMetadataOptionsInput) SetInstanceName(v string) *UpdateIn
 type UpdateInstanceMetadataOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the API operation.
+	// An array of objects that describe the result of the action, such as the status
+	// of the request, the timestamp of the request, and the resources affected
+	// by the request.
 	Operation *Operation `locationName:"operation" type:"structure"`
 }
 

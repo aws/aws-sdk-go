@@ -1462,7 +1462,10 @@
     },
     "NetworkFabricType":{
       "type":"string",
-      "enum":["TRANSIT_GATEWAY"]
+      "enum":[
+        "TRANSIT_GATEWAY",
+        "NONE"
+      ]
     },
     "NextToken":{
       "type":"string",

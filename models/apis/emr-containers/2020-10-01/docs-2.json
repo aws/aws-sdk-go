@@ -1,25 +1,25 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon EMR on EKS provides a deployment option for Amazon EMR that allows you to run open-source big data frameworks on Amazon Elastic Kubernetes Service (Amazon EKS). With this deployment option, you can focus on running analytics workloads while Amazon EMR on EKS builds, configures, and manages containers for open-source applications. For more information about Amazon EMR on EKS concepts and tasks, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/emr-eks.html\">What is Amazon EMR on EKS</a>.</p> <p> <i>Amazon EMR containers</i> is the API name for Amazon EMR on EKS. The <code>emr-containers</code> prefix is used in the following scenarios: </p> <ul> <li> <p>It is the prefix in the CLI commands for Amazon EMR on EKS. For example, <code>aws emr-containers start-job-run</code>.</p> </li> <li> <p>It is the prefix before IAM policy actions for Amazon EMR on EKS. For example, <code>\"Action\": [ \"emr-containers:StartJobRun\"]</code>. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions\">Policy actions for Amazon EMR on EKS</a>.</p> </li> <li> <p>It is the prefix used in Amazon EMR on EKS service endpoints. For example, <code>emr-containers.us-east-2.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/service-quotas.html#service-endpoints\">Amazon EMR on EKS Service Endpoints</a>.</p> </li> </ul>",
+  "service": "<p>Amazon EMR on EKS provides a deployment option for Amazon EMR that allows you to run open-source big data frameworks on Amazon Elastic Kubernetes Service (Amazon EKS). With this deployment option, you can focus on running analytics workloads while Amazon EMR on EKS builds, configures, and manages containers for open-source applications. For more information about Amazon EMR on EKS concepts and tasks, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/emr-eks.html\">What is shared id=\"EMR-EKS\"/&gt;</a>.</p> <p> <i>Amazon EMR containers</i> is the API name for Amazon EMR on EKS. The <code>emr-containers</code> prefix is used in the following scenarios: </p> <ul> <li> <p>It is the prefix in the CLI commands for Amazon EMR on EKS. For example, <code>aws emr-containers start-job-run</code>.</p> </li> <li> <p>It is the prefix before IAM policy actions for Amazon EMR on EKS. For example, <code>\"Action\": [ \"emr-containers:StartJobRun\"]</code>. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions\">Policy actions for Amazon EMR on EKS</a>.</p> </li> <li> <p>It is the prefix used in Amazon EMR on EKS service endpoints. For example, <code>emr-containers.us-east-2.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/service-quotas.html#service-endpoints\">Amazon EMR on EKSService Endpoints</a>.</p> </li> </ul>",
   "operations": {
     "CancelJobRun": "<p>Cancels a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
     "CreateJobTemplate": "<p>Creates a job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
-    "CreateManagedEndpoint": "<p>Creates a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
+    "CreateManagedEndpoint": "<p>Creates a managed endpoint. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.</p>",
     "CreateVirtualCluster": "<p>Creates a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
     "DeleteJobTemplate": "<p>Deletes a job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
-    "DeleteManagedEndpoint": "<p>Deletes a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
+    "DeleteManagedEndpoint": "<p>Deletes a managed endpoint. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.</p>",
     "DeleteVirtualCluster": "<p>Deletes a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
     "DescribeJobRun": "<p>Displays detailed information about a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
     "DescribeJobTemplate": "<p>Displays detailed information about a specified job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
-    "DescribeManagedEndpoint": "<p>Displays detailed information about a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
+    "DescribeManagedEndpoint": "<p>Displays detailed information about a managed endpoint. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.</p>",
     "DescribeVirtualCluster": "<p>Displays detailed information about a specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
     "ListJobRuns": "<p>Lists job runs based on a set of parameters. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
     "ListJobTemplates": "<p>Lists job templates based on a set of parameters. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
-    "ListManagedEndpoints": "<p>Lists managed endpoints based on a set of parameters. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
+    "ListManagedEndpoints": "<p>Lists managed endpoints based on a set of parameters. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to the resources.</p>",
     "ListVirtualClusters": "<p>Lists information about the specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
     "StartJobRun": "<p>Starts a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
-    "TagResource": "<p>Assigns tags to resources. A tag is a label that you assign to an AWS resource. Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize your AWS resources by attributes such as purpose, owner, or environment. When you have many resources of the same type, you can quickly identify a specific resource based on the tags you've assigned to it. For example, you can define a set of tags for your Amazon EMR on EKS clusters to help you track each cluster's owner and stack level. We recommend that you devise a consistent set of tag keys for each resource type. You can then search and filter the resources based on the tags that you add.</p>",
+    "TagResource": "<p>Assigns tags to resources. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize your Amazon Web Services resources by attributes such as purpose, owner, or environment. When you have many resources of the same type, you can quickly identify a specific resource based on the tags you've assigned to it. For example, you can define a set of tags for your Amazon EMR on EKS clusters to help you track each cluster's owner and stack level. We recommend that you devise a consistent set of tag keys for each resource type. You can then search and filter the resources based on the tags that you add.</p>",
     "UntagResource": "<p>Removes tags from resources.</p>"
   },
   "shapes": {
@@ -114,8 +114,8 @@
     "ContainerProviderType": {
       "base": null,
       "refs": {
-        "ContainerProvider$type": "<p>The type of the container provider. EKS is the only supported type as of now.</p>",
-        "ListVirtualClustersRequest$containerProviderType": "<p>The container provider type of the virtual cluster. EKS is the only supported type as of now.</p>"
+        "ContainerProvider$type": "<p>The type of the container provider. Amazon EKS is the only supported type as of now.</p>",
+        "ListVirtualClustersRequest$containerProviderType": "<p>The container provider type of the virtual cluster. Amazon EKS is the only supported type as of now.</p>"
       }
     },
     "CreateJobTemplateRequest": {
@@ -238,9 +238,9 @@
       }
     },
     "EksInfo": {
-      "base": "<p>The information about the EKS cluster.</p>",
+      "base": "<p>The information about the Amazon EKS cluster.</p>",
       "refs": {
-        "ContainerInfo$eksInfo": "<p>The information about the EKS cluster.</p>"
+        "ContainerInfo$eksInfo": "<p>The information about the Amazon EKS cluster.</p>"
       }
     },
     "Endpoint": {
@@ -336,7 +336,9 @@
         "ListJobRunsRequest$maxResults": "<p>The maximum number of job runs that can be listed.</p>",
         "ListJobTemplatesRequest$maxResults": "<p> The maximum number of job templates that can be listed.</p>",
         "ListManagedEndpointsRequest$maxResults": "<p>The maximum number of managed endpoints that can be listed.</p>",
-        "ListVirtualClustersRequest$maxResults": "<p>The maximum number of virtual clusters that can be listed.</p>"
+        "ListVirtualClustersRequest$maxResults": "<p>The maximum number of virtual clusters that can be listed.</p>",
+        "RetryPolicyConfiguration$maxAttempts": "<p>The maximum number of attempts on the job's driver.</p>",
+        "RetryPolicyExecution$currentAttemptCount": "<p>The current number of attempts made on the driver of the job.</p>"
       }
     },
     "JobArn": {
@@ -417,7 +419,7 @@
     "KubernetesNamespace": {
       "base": null,
       "refs": {
-        "EksInfo$namespace": "<p>The namespaces of the EKS cluster.</p>"
+        "EksInfo$namespace": "<p>The namespaces of the Amazon EKS cluster.</p>"
       }
     },
     "ListJobRunsRequest": {
@@ -616,6 +618,19 @@
       "refs": {
       }
     },
+    "RetryPolicyConfiguration": {
+      "base": "<p>The configuration of the retry policy that the job runs on.</p>",
+      "refs": {
+        "JobRun$retryPolicyConfiguration": "<p>The configuration of the retry policy that the job runs on.</p>",
+        "StartJobRunRequest$retryPolicyConfiguration": "<p>The retry policy configuration for the job run.</p>"
+      }
+    },
+    "RetryPolicyExecution": {
+      "base": "<p>The current status of the retry policy executed on the job.</p>",
+      "refs": {
+        "JobRun$retryPolicyExecution": "<p>The current status of the retry policy executed on the job.</p>"
+      }
+    },
     "RsiArn": {
       "base": null,
       "refs": {
@@ -774,7 +789,7 @@
     "TemplateParameterDataType": {
       "base": null,
       "refs": {
-        "TemplateParameterConfiguration$type": "<p>The type of the job template parameter. Allowed values are: ‘String’, ‘Number’.</p>"
+        "TemplateParameterConfiguration$type": "<p>The type of the job template parameter. Allowed values are: ‘STRING’, ‘NUMBER’.</p>"
       }
     },
     "TemplateParameterInputMap": {
@@ -814,7 +829,7 @@
       }
     },
     "VirtualCluster": {
-      "base": "<p>This entity describes a virtual cluster. A virtual cluster is a Kubernetes namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters to run jobs and host endpoints. Multiple virtual clusters can be backed by the same physical cluster. However, each virtual cluster maps to one namespace on an EKS cluster. Virtual clusters do not create any active resources that contribute to your bill or that require lifecycle management outside the service.</p>",
+      "base": "<p>This entity describes a virtual cluster. A virtual cluster is a Kubernetes namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters to run jobs and host endpoints. Multiple virtual clusters can be backed by the same physical cluster. However, each virtual cluster maps to one namespace on an Amazon EKS cluster. Virtual clusters do not create any active resources that contribute to your bill or that require lifecycle management outside the service.</p>",
       "refs": {
         "DescribeVirtualClusterResponse$virtualCluster": "<p>This output displays information about the specified virtual cluster.</p>",
         "VirtualClusters$member": null

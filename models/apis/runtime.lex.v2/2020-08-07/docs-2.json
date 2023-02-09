@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p/>",
+  "service": "<p>This section contains documentation for the Amazon Lex V2 Runtime V2 API operations.</p>",
   "operations": {
     "DeleteSession": "<p>Removes session information for a specified bot, alias, and user ID. </p> <p>You can use this operation to restart a conversation with a bot. When you remove a session, the entire history of the session is removed so that you can start again.</p> <p>You don't need to delete a session. Sessions have a time limit and will expire. Set the session time limit when you create the bot. The default is 5 minutes, but you can specify anything between 1 minute and 24 hours.</p> <p>If you specify a bot or alias ID that doesn't exist, you receive a <code>BadRequestException.</code> </p> <p>If the locale doesn't exist in the bot, or if the locale hasn't been enables for the alias, you receive a <code>BadRequestException</code>.</p>",
     "GetSession": "<p>Returns session information for a specified bot, alias, and user.</p> <p>For example, you can use this operation to retrieve session information for a user that has left a long-running session in use.</p> <p>If the bot, alias, or session identifier doesn't exist, Amazon Lex V2 returns a <code>BadRequestException</code>. If the locale doesn't exist or is not enabled for the alias, you receive a <code>BadRequestException</code>.</p>",
@@ -131,6 +131,7 @@
         "PutSessionRequest$botId": "<p>The identifier of the bot that receives the session data.</p>",
         "RecognizeTextRequest$botId": "<p>The identifier of the bot that processes the request.</p>",
         "RecognizeUtteranceRequest$botId": "<p>The identifier of the bot that should receive the request.</p>",
+        "RecognizedBotMember$botId": "<p>The identifier of the bot member that processes the request.</p>",
         "StartConversationRequest$botId": "<p>The identifier of the bot to process the request.</p>"
       }
     },
@@ -384,6 +385,7 @@
     "Name": {
       "base": null,
       "refs": {
+        "RecognizedBotMember$botName": "<p>The name of the bot member that processes the request.</p>",
         "SlotHintsIntentMap$key": null,
         "SlotHintsSlotMap$key": null
       }
@@ -404,7 +406,7 @@
         "PutSessionResponse$sessionState": "<p>Represents the current state of the dialog between the user and the bot.</p> <p>Use this to determine the progress of the conversation and what the next action may be.</p>",
         "PutSessionResponse$requestAttributes": "<p>Request-specific information passed between the client application and Amazon Lex V2. These are the same as the <code>requestAttribute</code> parameter in the call to the <code>PutSession</code> operation.</p>",
         "RecognizeUtteranceRequest$requestContentType": "<p>Indicates the format for audio input or that the content is text. The header must start with one of the following prefixes:</p> <ul> <li> <p>PCM format, audio data must be in little-endian byte order.</p> <ul> <li> <p>audio/l16; rate=16000; channels=1</p> </li> <li> <p>audio/x-l16; sample-rate=16000; channel-count=1</p> </li> <li> <p>audio/lpcm; sample-rate=8000; sample-size-bits=16; channel-count=1; is-big-endian=false</p> </li> </ul> </li> <li> <p>Opus format</p> <ul> <li> <p>audio/x-cbr-opus-with-preamble;preamble-size=0;bit-rate=256000;frame-size-milliseconds=4</p> </li> </ul> </li> <li> <p>Text format</p> <ul> <li> <p>text/plain; charset=utf-8</p> </li> </ul> </li> </ul>",
-        "RecognizeUtteranceRequest$responseContentType": "<p>The message that Amazon Lex V2 returns in the response can be either text or speech based on the <code>responseContentType</code> value.</p> <ul> <li> <p>If the value is <code>text/plain;charset=utf-8</code>, Amazon Lex V2 returns text in the response.</p> </li> <li> <p>If the value begins with <code>audio/</code>, Amazon Lex V2 returns speech in the response. Amazon Lex V2 uses Amazon Polly to generate the speech using the configuration that you specified in the <code>requestContentType</code> parameter. For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex V2 returns speech in the MPEG format.</p> </li> <li> <p>If the value is <code>audio/pcm</code>, the speech returned is <code>audio/pcm</code> at 16 KHz in 16-bit, little-endian format.</p> </li> <li> <p>The following are the accepted values:</p> <ul> <li> <p>audio/mpeg</p> </li> <li> <p>audio/ogg</p> </li> <li> <p>audio/pcm (16 KHz)</p> </li> <li> <p>audio/* (defaults to mpeg)</p> </li> <li> <p>text/plain; charset=utf-8</p> </li> </ul> </li> </ul>",
+        "RecognizeUtteranceRequest$responseContentType": "<p>The message that Amazon Lex V2 returns in the response can be either text or speech based on the <code>responseContentType</code> value.</p> <ul> <li> <p>If the value is <code>text/plain;charset=utf-8</code>, Amazon Lex V2 returns text in the response.</p> </li> <li> <p>If the value begins with <code>audio/</code>, Amazon Lex V2 returns speech in the response. Amazon Lex V2 uses Amazon Polly to generate the speech using the configuration that you specified in the <code>responseContentType</code> parameter. For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex V2 returns speech in the MPEG format.</p> </li> <li> <p>If the value is <code>audio/pcm</code>, the speech returned is <code>audio/pcm</code> at 16 KHz in 16-bit, little-endian format.</p> </li> <li> <p>The following are the accepted values:</p> <ul> <li> <p>audio/mpeg</p> </li> <li> <p>audio/ogg</p> </li> <li> <p>audio/pcm (16 KHz)</p> </li> <li> <p>audio/* (defaults to mpeg)</p> </li> <li> <p>text/plain; charset=utf-8</p> </li> </ul> </li> </ul>",
         "RecognizeUtteranceResponse$inputMode": "<p>Indicates whether the input mode to the operation was text or speech. </p>",
         "RecognizeUtteranceResponse$contentType": "<p>Content type as specified in the <code>responseContentType</code> in the request.</p>",
         "RecognizeUtteranceResponse$messages": "<p>A list of messages that were last sent to the user. The messages are ordered based on the order that you returned the messages from your Lambda function or the order that the messages are defined in the bot.</p> <p>The <code>messages</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents. See the example for a simple function to decode and decompress the contents.</p>",
@@ -412,6 +414,7 @@
         "RecognizeUtteranceResponse$sessionState": "<p>Represents the current state of the dialog between the user and the bot.</p> <p>Use this to determine the progress of the conversation and what the next action might be.</p> <p>The <code>sessionState</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents. See the example for a simple function to decode and decompress the contents.</p>",
         "RecognizeUtteranceResponse$requestAttributes": "<p>The attributes sent in the request.</p> <p>The <code>requestAttributes</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents.</p>",
         "RecognizeUtteranceResponse$inputTranscript": "<p>The text used to process the request.</p> <p>If the input was an audio stream, the <code>inputTranscript</code> field contains the text extracted from the audio stream. This is the text that is actually processed to recognize intents and slot values. You can use this information to determine if Amazon Lex V2 is correctly processing the audio that you send.</p> <p>The <code>inputTranscript</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents. See the example for a simple function to decode and decompress the contents.</p>",
+        "RecognizeUtteranceResponse$recognizedBotMember": "<p>The bot member that recognized the utterance.</p>",
         "SessionState$originatingRequestId": "<p>A unique identifier for a specific request.</p>",
         "Slots$key": null,
         "StringList$member": null,
@@ -472,6 +475,13 @@
     "RecognizeUtteranceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "RecognizedBotMember": {
+      "base": "<p>The bot member that processes the request.</p>",
+      "refs": {
+        "IntentResultEvent$recognizedBotMember": "<p>The bot member that is processing the intent.</p>",
+        "RecognizeTextResponse$recognizedBotMember": "<p>The bot member that recognized the text.</p>"
       }
     },
     "ResourceNotFoundException": {

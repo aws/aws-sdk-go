@@ -2888,6 +2888,9 @@ type IntentResultEvent struct {
 	// sentiment response that indicates the sentiment expressed in the utterance.
 	Interpretations []*Interpretation `locationName:"interpretations" type:"list"`
 
+	// The bot member that is processing the intent.
+	RecognizedBotMember *RecognizedBotMember `locationName:"recognizedBotMember" type:"structure"`
+
 	// The attributes sent in the request.
 	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map"`
 
@@ -2931,6 +2934,12 @@ func (s *IntentResultEvent) SetInputMode(v string) *IntentResultEvent {
 // SetInterpretations sets the Interpretations field's value.
 func (s *IntentResultEvent) SetInterpretations(v []*Interpretation) *IntentResultEvent {
 	s.Interpretations = v
+	return s
+}
+
+// SetRecognizedBotMember sets the RecognizedBotMember field's value.
+func (s *IntentResultEvent) SetRecognizedBotMember(v *RecognizedBotMember) *IntentResultEvent {
+	s.RecognizedBotMember = v
 	return s
 }
 
@@ -3793,6 +3802,9 @@ type RecognizeTextOutput struct {
 	// the order that the messages are defined in the bot.
 	Messages []*Message `locationName:"messages" type:"list"`
 
+	// The bot member that recognized the text.
+	RecognizedBotMember *RecognizedBotMember `locationName:"recognizedBotMember" type:"structure"`
+
 	// The attributes sent in the request.
 	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map"`
 
@@ -3833,6 +3845,12 @@ func (s *RecognizeTextOutput) SetInterpretations(v []*Interpretation) *Recognize
 // SetMessages sets the Messages field's value.
 func (s *RecognizeTextOutput) SetMessages(v []*Message) *RecognizeTextOutput {
 	s.Messages = v
+	return s
+}
+
+// SetRecognizedBotMember sets the RecognizedBotMember field's value.
+func (s *RecognizeTextOutput) SetRecognizedBotMember(v *RecognizedBotMember) *RecognizeTextOutput {
+	s.RecognizedBotMember = v
 	return s
 }
 
@@ -3917,7 +3935,7 @@ type RecognizeUtteranceInput struct {
 	//
 	//    * If the value begins with audio/, Amazon Lex V2 returns speech in the
 	//    response. Amazon Lex V2 uses Amazon Polly to generate the speech using
-	//    the configuration that you specified in the requestContentType parameter.
+	//    the configuration that you specified in the responseContentType parameter.
 	//    For example, if you specify audio/mpeg as the value, Amazon Lex V2 returns
 	//    speech in the MPEG format.
 	//
@@ -4116,6 +4134,9 @@ type RecognizeUtteranceOutput struct {
 	// the contents.
 	Messages *string `location:"header" locationName:"x-amz-lex-messages" min:"1" type:"string"`
 
+	// The bot member that recognized the utterance.
+	RecognizedBotMember *string `location:"header" locationName:"x-amz-lex-recognized-bot-member" min:"1" type:"string"`
+
 	// The attributes sent in the request.
 	//
 	// The requestAttributes field is compressed with gzip and then base64 encoded.
@@ -4192,6 +4213,12 @@ func (s *RecognizeUtteranceOutput) SetMessages(v string) *RecognizeUtteranceOutp
 	return s
 }
 
+// SetRecognizedBotMember sets the RecognizedBotMember field's value.
+func (s *RecognizeUtteranceOutput) SetRecognizedBotMember(v string) *RecognizeUtteranceOutput {
+	s.RecognizedBotMember = &v
+	return s
+}
+
 // SetRequestAttributes sets the RequestAttributes field's value.
 func (s *RecognizeUtteranceOutput) SetRequestAttributes(v string) *RecognizeUtteranceOutput {
 	s.RequestAttributes = &v
@@ -4207,6 +4234,49 @@ func (s *RecognizeUtteranceOutput) SetSessionId(v string) *RecognizeUtteranceOut
 // SetSessionState sets the SessionState field's value.
 func (s *RecognizeUtteranceOutput) SetSessionState(v string) *RecognizeUtteranceOutput {
 	s.SessionState = &v
+	return s
+}
+
+// The bot member that processes the request.
+type RecognizedBotMember struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the bot member that processes the request.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The name of the bot member that processes the request.
+	BotName *string `locationName:"botName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecognizedBotMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecognizedBotMember) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *RecognizedBotMember) SetBotId(v string) *RecognizedBotMember {
+	s.BotId = &v
+	return s
+}
+
+// SetBotName sets the BotName field's value.
+func (s *RecognizedBotMember) SetBotName(v string) *RecognizedBotMember {
+	s.BotName = &v
 	return s
 }
 

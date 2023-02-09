@@ -425,6 +425,10 @@ func mockStartConversationReadEvents() (
 					},
 				},
 			},
+			RecognizedBotMember: &RecognizedBotMember{
+				BotId:   aws.String("string value goes here"),
+				BotName: aws.String("string value goes here"),
+			},
 			RequestAttributes: map[string]*string{
 				"a": aws.String("string value goes here"),
 				"b": aws.String("string value goes here"),

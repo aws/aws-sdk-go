@@ -165,18 +165,12 @@
                             "rules": [
                                 {
                                     "conditions": [],
-                                    "type": "tree",
-                                    "rules": [
-                                        {
-                                            "conditions": [],
-                                            "endpoint": {
-                                                "url": "https://emr-containers-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        }
-                                    ]
+                                    "endpoint": {
+                                        "url": "https://runtime-v2-lex-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 }
                             ]
                         },
@@ -228,7 +222,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://emr-containers-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://runtime-v2-lex-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -281,18 +275,12 @@
                             "rules": [
                                 {
                                     "conditions": [],
-                                    "type": "tree",
-                                    "rules": [
-                                        {
-                                            "conditions": [],
-                                            "endpoint": {
-                                                "url": "https://emr-containers.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        }
-                                    ]
+                                    "endpoint": {
+                                        "url": "https://runtime-v2-lex.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 }
                             ]
                         },
@@ -305,18 +293,12 @@
                 },
                 {
                     "conditions": [],
-                    "type": "tree",
-                    "rules": [
-                        {
-                            "conditions": [],
-                            "endpoint": {
-                                "url": "https://emr-containers.{Region}.{PartitionResult#dnsSuffix}",
-                                "properties": {},
-                                "headers": {}
-                            },
-                            "type": "endpoint"
-                        }
-                    ]
+                    "endpoint": {
+                        "url": "https://runtime-v2-lex.{Region}.{PartitionResult#dnsSuffix}",
+                        "properties": {},
+                        "headers": {}
+                    },
+                    "type": "endpoint"
                 }
             ]
         }

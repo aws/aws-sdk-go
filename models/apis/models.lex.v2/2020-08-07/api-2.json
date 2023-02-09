@@ -1551,6 +1551,12 @@
       "value":{"shape":"BotAliasLocaleSettings"},
       "min":1
     },
+    "BotAliasName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^(\\bAmazonLexTestAlias\\b|[0-9a-zA-Z][_-]?)+$"
+    },
     "BotAliasStatus":{
       "type":"string",
       "enum":[
@@ -1602,19 +1608,23 @@
     },
     "BotFilterName":{
       "type":"string",
-      "enum":["BotName"]
+      "enum":[
+        "BotName",
+        "BotType"
+      ]
     },
     "BotFilterOperator":{
       "type":"string",
       "enum":[
         "CO",
-        "EQ"
+        "EQ",
+        "NE"
       ]
     },
     "BotFilters":{
       "type":"list",
       "member":{"shape":"BotFilter"},
-      "max":1,
+      "max":2,
       "min":1
     },
     "BotImportSpecification":{
@@ -1751,6 +1761,29 @@
       "type":"list",
       "member":{"shape":"BotLocaleSummary"}
     },
+    "BotMember":{
+      "type":"structure",
+      "required":[
+        "botMemberId",
+        "botMemberName",
+        "botMemberAliasId",
+        "botMemberAliasName",
+        "botMemberVersion"
+      ],
+      "members":{
+        "botMemberId":{"shape":"Id"},
+        "botMemberName":{"shape":"Name"},
+        "botMemberAliasId":{"shape":"BotAliasId"},
+        "botMemberAliasName":{"shape":"BotAliasName"},
+        "botMemberVersion":{"shape":"BotVersion"}
+      }
+    },
+    "BotMembers":{
+      "type":"list",
+      "member":{"shape":"BotMember"},
+      "max":10,
+      "min":0
+    },
     "BotRecommendationResultStatistics":{
       "type":"structure",
       "members":{
@@ -1821,7 +1854,8 @@
         "Deleting",
         "Failed",
         "Versioning",
-        "Importing"
+        "Importing",
+        "Updating"
       ]
     },
     "BotSummary":{
@@ -1832,12 +1866,20 @@
         "description":{"shape":"Description"},
         "botStatus":{"shape":"BotStatus"},
         "latestBotVersion":{"shape":"NumericalBotVersion"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "botType":{"shape":"BotType"}
       }
     },
     "BotSummaryList":{
       "type":"list",
       "member":{"shape":"BotSummary"}
+    },
+    "BotType":{
+      "type":"string",
+      "enum":[
+        "Bot",
+        "BotNetwork"
+      ]
     },
     "BotVersion":{
       "type":"string",
@@ -2248,7 +2290,9 @@
         "dataPrivacy":{"shape":"DataPrivacy"},
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botTags":{"shape":"TagMap"},
-        "testBotAliasTags":{"shape":"TagMap"}
+        "testBotAliasTags":{"shape":"TagMap"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "CreateBotResponse":{
@@ -2263,7 +2307,9 @@
         "botStatus":{"shape":"BotStatus"},
         "creationDateTime":{"shape":"Timestamp"},
         "botTags":{"shape":"TagMap"},
-        "testBotAliasTags":{"shape":"TagMap"}
+        "testBotAliasTags":{"shape":"TagMap"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "CreateBotVersionRequest":{
@@ -3087,7 +3133,8 @@
         "botAliasStatus":{"shape":"BotAliasStatus"},
         "botId":{"shape":"Id"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "parentBotNetworks":{"shape":"ParentBotNetworks"}
       }
     },
     "DescribeBotLocaleRequest":{
@@ -3205,7 +3252,10 @@
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botStatus":{"shape":"BotStatus"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"},
+        "failureReasons":{"shape":"FailureReasons"}
       }
     },
     "DescribeBotVersionRequest":{
@@ -3239,7 +3289,10 @@
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botStatus":{"shape":"BotStatus"},
         "failureReasons":{"shape":"FailureReasons"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "parentBotNetworks":{"shape":"ParentBotNetworks"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "DescribeCustomVocabularyMetadataRequest":{
@@ -4737,6 +4790,23 @@
       "max":10,
       "min":0
     },
+    "ParentBotNetwork":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"}
+      }
+    },
+    "ParentBotNetworks":{
+      "type":"list",
+      "member":{"shape":"ParentBotNetwork"},
+      "max":30,
+      "min":0
+    },
     "PathFormat":{
       "type":"structure",
       "members":{
@@ -5900,7 +5970,9 @@
         "description":{"shape":"Description"},
         "roleArn":{"shape":"RoleArn"},
         "dataPrivacy":{"shape":"DataPrivacy"},
-        "idleSessionTTLInSeconds":{"shape":"SessionTTL"}
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "UpdateBotResponse":{
@@ -5914,7 +5986,9 @@
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botStatus":{"shape":"BotStatus"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "botType":{"shape":"BotType"},
+        "botMembers":{"shape":"BotMembers"}
       }
     },
     "UpdateCustomVocabularyItemsList":{

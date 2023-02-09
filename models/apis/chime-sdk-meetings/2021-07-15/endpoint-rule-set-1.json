@@ -170,7 +170,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://emr-containers-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://meetings-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -228,7 +228,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://emr-containers-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://meetings-chime-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -286,7 +286,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://emr-containers.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://meetings-chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -310,7 +310,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://emr-containers.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://meetings-chime.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },

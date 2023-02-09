@@ -1,3 +1,20 @@
+Release v1.44.198 (2023-02-09)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service documentation
+* `service/emr-containers`: Updates service API and documentation
+* `service/evidently`: Updates service API and documentation
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/migration-hub-refactor-spaces`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/runtime.lex.v2`: Updates service API and documentation
+* `service/workdocs`: Updates service documentation
+  * Doc only update for the WorkDocs APIs.
+* `service/workspaces`: Updates service documentation
+  * Removed Windows Server 2016 BYOL and made changes based on IAM campaign.
+
 Release v1.44.197 (2023-02-08)
 ===
 

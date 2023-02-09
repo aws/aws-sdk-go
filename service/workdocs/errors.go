@@ -63,7 +63,7 @@ const (
 	// ErrCodeFailedDependencyException for service response error code
 	// "FailedDependencyException".
 	//
-	// The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+	// The Directory Service cannot reach an on-premises instance. Or a dependency
 	// under the control of the organization is failing, such as a connected Active
 	// Directory.
 	ErrCodeFailedDependencyException = "FailedDependencyException"

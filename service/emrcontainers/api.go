@@ -228,8 +228,8 @@ func (c *EMRContainers) CreateManagedEndpointRequest(input *CreateManagedEndpoin
 // CreateManagedEndpoint API operation for Amazon EMR Containers.
 //
 // Creates a managed endpoint. A managed endpoint is a gateway that connects
-// EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your
-// virtual cluster.
+// Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate
+// with your virtual cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -490,8 +490,8 @@ func (c *EMRContainers) DeleteManagedEndpointRequest(input *DeleteManagedEndpoin
 // DeleteManagedEndpoint API operation for Amazon EMR Containers.
 //
 // Deletes a managed endpoint. A managed endpoint is a gateway that connects
-// EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your
-// virtual cluster.
+// Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate
+// with your virtual cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -837,8 +837,8 @@ func (c *EMRContainers) DescribeManagedEndpointRequest(input *DescribeManagedEnd
 // DescribeManagedEndpoint API operation for Amazon EMR Containers.
 //
 // Displays detailed information about a managed endpoint. A managed endpoint
-// is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio
-// can communicate with your virtual cluster.
+// is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that
+// Amazon EMR Studio can communicate with your virtual cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1303,8 +1303,8 @@ func (c *EMRContainers) ListManagedEndpointsRequest(input *ListManagedEndpointsI
 // ListManagedEndpoints API operation for Amazon EMR Containers.
 //
 // Lists managed endpoints based on a set of parameters. A managed endpoint
-// is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio
-// can communicate with your virtual cluster.
+// is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that
+// Amazon EMR Studio can communicate with your virtual cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1753,15 +1753,16 @@ func (c *EMRContainers) TagResourceRequest(input *TagResourceInput) (req *reques
 
 // TagResource API operation for Amazon EMR Containers.
 //
-// Assigns tags to resources. A tag is a label that you assign to an AWS resource.
-// Each tag consists of a key and an optional value, both of which you define.
-// Tags enable you to categorize your AWS resources by attributes such as purpose,
-// owner, or environment. When you have many resources of the same type, you
-// can quickly identify a specific resource based on the tags you've assigned
-// to it. For example, you can define a set of tags for your Amazon EMR on EKS
-// clusters to help you track each cluster's owner and stack level. We recommend
-// that you devise a consistent set of tag keys for each resource type. You
-// can then search and filter the resources based on the tags that you add.
+// Assigns tags to resources. A tag is a label that you assign to an Amazon
+// Web Services resource. Each tag consists of a key and an optional value,
+// both of which you define. Tags enable you to categorize your Amazon Web Services
+// resources by attributes such as purpose, owner, or environment. When you
+// have many resources of the same type, you can quickly identify a specific
+// resource based on the tags you've assigned to it. For example, you can define
+// a set of tags for your Amazon EMR on EKS clusters to help you track each
+// cluster's owner and stack level. We recommend that you devise a consistent
+// set of tag keys for each resource type. You can then search and filter the
+// resources based on the tags that you add.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2256,7 +2257,7 @@ func (s *ConfigurationOverrides) SetMonitoringConfiguration(v *MonitoringConfigu
 type ContainerInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The information about the EKS cluster.
+	// The information about the Amazon EKS cluster.
 	EksInfo *EksInfo `locationName:"eksInfo" type:"structure"`
 }
 
@@ -2311,8 +2312,8 @@ type ContainerProvider struct {
 	// The information about the container cluster.
 	Info *ContainerInfo `locationName:"info" type:"structure"`
 
-	// The type of the container provider. EKS is the only supported type as of
-	// now.
+	// The type of the container provider. Amazon EKS is the only supported type
+	// as of now.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ContainerProviderType"`
@@ -3520,11 +3521,11 @@ func (s *DescribeVirtualClusterOutput) SetVirtualCluster(v *VirtualCluster) *Des
 	return s
 }
 
-// The information about the EKS cluster.
+// The information about the Amazon EKS cluster.
 type EksInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The namespaces of the EKS cluster.
+	// The namespaces of the Amazon EKS cluster.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 }
 
@@ -3923,6 +3924,12 @@ type JobRun struct {
 	// The release version of Amazon EMR.
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string"`
 
+	// The configuration of the retry policy that the job runs on.
+	RetryPolicyConfiguration *RetryPolicyConfiguration `locationName:"retryPolicyConfiguration" type:"structure"`
+
+	// The current status of the retry policy executed on the job.
+	RetryPolicyExecution *RetryPolicyExecution `locationName:"retryPolicyExecution" type:"structure"`
+
 	// The state of the job run.
 	State *string `locationName:"state" type:"string" enum:"JobRunState"`
 
@@ -4023,6 +4030,18 @@ func (s *JobRun) SetName(v string) *JobRun {
 // SetReleaseLabel sets the ReleaseLabel field's value.
 func (s *JobRun) SetReleaseLabel(v string) *JobRun {
 	s.ReleaseLabel = &v
+	return s
+}
+
+// SetRetryPolicyConfiguration sets the RetryPolicyConfiguration field's value.
+func (s *JobRun) SetRetryPolicyConfiguration(v *RetryPolicyConfiguration) *JobRun {
+	s.RetryPolicyConfiguration = v
+	return s
+}
+
+// SetRetryPolicyExecution sets the RetryPolicyExecution field's value.
+func (s *JobRun) SetRetryPolicyExecution(v *RetryPolicyExecution) *JobRun {
+	s.RetryPolicyExecution = v
 	return s
 }
 
@@ -4781,8 +4800,8 @@ type ListVirtualClustersInput struct {
 	// The container provider ID of the virtual cluster.
 	ContainerProviderId *string `location:"querystring" locationName:"containerProviderId" min:"1" type:"string"`
 
-	// The container provider type of the virtual cluster. EKS is the only supported
-	// type as of now.
+	// The container provider type of the virtual cluster. Amazon EKS is the only
+	// supported type as of now.
 	ContainerProviderType *string `location:"querystring" locationName:"containerProviderType" type:"string" enum:"ContainerProviderType"`
 
 	// The date and time after which the virtual clusters are created.
@@ -5298,6 +5317,87 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The configuration of the retry policy that the job runs on.
+type RetryPolicyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of attempts on the job's driver.
+	//
+	// MaxAttempts is a required field
+	MaxAttempts *int64 `locationName:"maxAttempts" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPolicyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPolicyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryPolicyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryPolicyConfiguration"}
+	if s.MaxAttempts == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxAttempts"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxAttempts sets the MaxAttempts field's value.
+func (s *RetryPolicyConfiguration) SetMaxAttempts(v int64) *RetryPolicyConfiguration {
+	s.MaxAttempts = &v
+	return s
+}
+
+// The current status of the retry policy executed on the job.
+type RetryPolicyExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The current number of attempts made on the driver of the job.
+	//
+	// CurrentAttemptCount is a required field
+	CurrentAttemptCount *int64 `locationName:"currentAttemptCount" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPolicyExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPolicyExecution) GoString() string {
+	return s.String()
+}
+
+// SetCurrentAttemptCount sets the CurrentAttemptCount field's value.
+func (s *RetryPolicyExecution) SetCurrentAttemptCount(v int64) *RetryPolicyExecution {
+	s.CurrentAttemptCount = &v
+	return s
+}
+
 // Amazon S3 configuration for monitoring log publishing. You can configure
 // your jobs to send log information to Amazon S3.
 type S3MonitoringConfiguration struct {
@@ -5520,6 +5620,9 @@ type StartJobRunInput struct {
 	// The Amazon EMR release version to use for the job run.
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string"`
 
+	// The retry policy configuration for the job run.
+	RetryPolicyConfiguration *RetryPolicyConfiguration `locationName:"retryPolicyConfiguration" type:"structure"`
+
 	// The tags assigned to job runs.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
@@ -5581,6 +5684,11 @@ func (s *StartJobRunInput) Validate() error {
 			invalidParams.AddNested("JobDriver", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RetryPolicyConfiguration != nil {
+		if err := s.RetryPolicyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RetryPolicyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5633,6 +5741,12 @@ func (s *StartJobRunInput) SetName(v string) *StartJobRunInput {
 // SetReleaseLabel sets the ReleaseLabel field's value.
 func (s *StartJobRunInput) SetReleaseLabel(v string) *StartJobRunInput {
 	s.ReleaseLabel = &v
+	return s
+}
+
+// SetRetryPolicyConfiguration sets the RetryPolicyConfiguration field's value.
+func (s *StartJobRunInput) SetRetryPolicyConfiguration(v *RetryPolicyConfiguration) *StartJobRunInput {
+	s.RetryPolicyConfiguration = v
 	return s
 }
 
@@ -5798,8 +5912,8 @@ type TemplateParameterConfiguration struct {
 	// The default value for the job template parameter.
 	DefaultValue *string `locationName:"defaultValue" min:"1" type:"string"`
 
-	// The type of the job template parameter. Allowed values are: ‘String’,
-	// ‘Number’.
+	// The type of the job template parameter. Allowed values are: ‘STRING’,
+	// ‘NUMBER’.
 	Type *string `locationName:"type" type:"string" enum:"TemplateParameterDataType"`
 }
 
@@ -5999,9 +6113,9 @@ func (s *ValidationException) RequestID() string {
 // namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters
 // to run jobs and host endpoints. Multiple virtual clusters can be backed by
 // the same physical cluster. However, each virtual cluster maps to one namespace
-// on an EKS cluster. Virtual clusters do not create any active resources that
-// contribute to your bill or that require lifecycle management outside the
-// service.
+// on an Amazon EKS cluster. Virtual clusters do not create any active resources
+// that contribute to your bill or that require lifecycle management outside
+// the service.
 type VirtualCluster struct {
 	_ struct{} `type:"structure"`
 

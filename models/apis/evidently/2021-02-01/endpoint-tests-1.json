@@ -4,7 +4,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.ap-northeast-1.amazonaws.com"
+                    "url": "https://evidently.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -14,36 +14,10 @@
             }
         },
         {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://lightsail.ap-northeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-northeast-2",
-                "UseDualStack": false,
-                "UseFIPS": false
-            }
-        },
-        {
-            "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://lightsail.ap-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ap-south-1",
-                "UseDualStack": false,
-                "UseFIPS": false
-            }
-        },
-        {
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.ap-southeast-1.amazonaws.com"
+                    "url": "https://evidently.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +30,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.ap-southeast-2.amazonaws.com"
+                    "url": "https://evidently.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -66,23 +40,10 @@
             }
         },
         {
-            "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://lightsail.ca-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ca-central-1",
-                "UseDualStack": false,
-                "UseFIPS": false
-            }
-        },
-        {
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.eu-central-1.amazonaws.com"
+                    "url": "https://evidently.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -95,7 +56,7 @@
             "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.eu-north-1.amazonaws.com"
+                    "url": "https://evidently.eu-north-1.amazonaws.com"
                 }
             },
             "params": {
@@ -108,7 +69,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.eu-west-1.amazonaws.com"
+                    "url": "https://evidently.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -118,36 +79,10 @@
             }
         },
         {
-            "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://lightsail.eu-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-2",
-                "UseDualStack": false,
-                "UseFIPS": false
-            }
-        },
-        {
-            "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://lightsail.eu-west-3.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "eu-west-3",
-                "UseDualStack": false,
-                "UseFIPS": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-east-1.amazonaws.com"
+                    "url": "https://evidently.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -160,7 +95,7 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-east-2.amazonaws.com"
+                    "url": "https://evidently.us-east-2.amazonaws.com"
                 }
             },
             "params": {
@@ -173,7 +108,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-west-2.amazonaws.com"
+                    "url": "https://evidently.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +121,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.us-east-1.api.aws"
+                    "url": "https://evidently-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -199,7 +134,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.us-east-1.amazonaws.com"
+                    "url": "https://evidently-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -212,7 +147,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-east-1.api.aws"
+                    "url": "https://evidently.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -225,7 +160,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://evidently-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -238,7 +173,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://evidently-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -251,7 +186,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://evidently.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -264,7 +199,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.cn-north-1.amazonaws.com.cn"
+                    "url": "https://evidently.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -277,7 +212,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.us-gov-east-1.api.aws"
+                    "url": "https://evidently-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -290,7 +225,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://evidently-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -303,7 +238,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-gov-east-1.api.aws"
+                    "url": "https://evidently.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -316,7 +251,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-gov-east-1.amazonaws.com"
+                    "url": "https://evidently.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -329,7 +264,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://evidently-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -342,7 +277,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://evidently.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -355,7 +290,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://evidently-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -368,7 +303,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://lightsail.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://evidently.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
