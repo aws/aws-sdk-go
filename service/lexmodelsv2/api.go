@@ -56,8 +56,8 @@ func (c *LexModelsV2) BatchCreateCustomVocabularyItemRequest(input *BatchCreateC
 
 // BatchCreateCustomVocabularyItem API operation for Amazon Lex Model Building V2.
 //
-// Batch create custom vocabulary item for the specified locale in the specified
-// bot.
+// Create a batch of custom vocabulary items for a given bot locale's custom
+// vocabulary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -150,8 +150,8 @@ func (c *LexModelsV2) BatchDeleteCustomVocabularyItemRequest(input *BatchDeleteC
 
 // BatchDeleteCustomVocabularyItem API operation for Amazon Lex Model Building V2.
 //
-// Batch delete custom vocabulary item for the specified locale in the specified
-// bot.
+// Delete a batch of custom vocabulary items for a given bot locale's custom
+// vocabulary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -244,8 +244,8 @@ func (c *LexModelsV2) BatchUpdateCustomVocabularyItemRequest(input *BatchUpdateC
 
 // BatchUpdateCustomVocabularyItem API operation for Amazon Lex Model Building V2.
 //
-// Batch update custom vocabulary item for the specified locale in the specified
-// bot.
+// Update a batch of custom vocabulary items for a given bot locale's custom
+// vocabulary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1883,8 +1883,8 @@ func (c *LexModelsV2) DeleteBotVersionRequest(input *DeleteBotVersionInput) (req
 
 // DeleteBotVersion API operation for Amazon Lex Model Building V2.
 //
-// Deletes a specific version of a bot. To delete all version of a bot, use
-// the DeleteBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_DeleteBot.html)
+// Deletes a specific version of a bot. To delete all versions of a bot, use
+// the DeleteBot (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DeleteBot.html)
 // operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2758,7 +2758,7 @@ func (c *LexModelsV2) DeleteUtterancesRequest(input *DeleteUtterancesInput) (req
 // Deletes stored utterances.
 //
 // Amazon Lex stores the utterances that users send to your bot. Utterances
-// are stored for 15 days for use with the ListAggregatedUtterances (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListAggregatedUtterances.html)
+// are stored for 15 days for use with the ListAggregatedUtterances (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListAggregatedUtterances.html)
 // operation, and then stored indefinitely for use in improving the ability
 // of your bot to respond to user input..
 //
@@ -4872,7 +4872,7 @@ func (c *LexModelsV2) ListBuiltInIntentsRequest(input *ListBuiltInIntentsInput) 
 //
 // To use a built-in intent as a the base for your own intent, include the built-in
 // intent signature in the parentIntentSignature parameter when you call the
-// CreateIntent operation. For more information, see CreateIntent (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateIntent.html).
+// CreateIntent operation. For more information, see CreateIntent (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateIntent.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5164,7 +5164,8 @@ func (c *LexModelsV2) ListCustomVocabularyItemsRequest(input *ListCustomVocabula
 
 // ListCustomVocabularyItems API operation for Amazon Lex Model Building V2.
 //
-// List custom vocabulary items for the specified locale in the specified bot.
+// Paginated list of custom vocabulary items for a given bot locale's custom
+// vocabulary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7272,7 +7273,8 @@ func (c *LexModelsV2) UpdateExportRequest(input *UpdateExportInput) (req *reques
 // The password is not required. If you don't supply a password, Amazon Lex
 // generates a zip file that is not protected by a password. This is the archive
 // that is available at the pre-signed S3 URL provided by the DescribeExport
-// (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html) operation.
+// (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeExport.html)
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8229,7 +8231,7 @@ type AudioLogDestination struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon S3 bucket where the audio log files are stored. The IAM role specified
-	// in the roleArn parameter of the CreateBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html)
+	// in the roleArn parameter of the CreateBot (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html)
 	// operation must have permission to write to this bucket.
 	//
 	// S3Bucket is a required field
@@ -8419,25 +8421,25 @@ func (s *AudioSpecification) SetMaxLengthMs(v int64) *AudioSpecification {
 type BatchCreateCustomVocabularyItemInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to batch create the custom vocabulary item
-	// for.
+	// The identifier of the bot associated with this custom vocabulary.
 	//
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// The bot version of the bot to batch create the custom vocabulary item for.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	//
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
 
-	// The custom vocabulary item list of the bot to batch create the custom vocabulary
-	// item for.
+	// A list of new custom vocabulary items. Each entry must contain a phrase and
+	// can optionally contain a displayAs and/or a weight.
 	//
 	// CustomVocabularyItemList is a required field
 	CustomVocabularyItemList []*NewCustomVocabularyItem `locationName:"customVocabularyItemList" min:"1" type:"list" required:"true"`
 
-	// The unique locale identifier of the bot to batch create the custom vocabulary
-	// item for.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported Languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -8532,24 +8534,23 @@ func (s *BatchCreateCustomVocabularyItemInput) SetLocaleId(v string) *BatchCreat
 type BatchCreateCustomVocabularyItemOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to batch create response for the custom
-	// vocabulary item.
+	// The identifier of the bot associated with this custom vocabulary.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
-	// The bot version of the bot to batch create the custom vocabulary item response
-	// for.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
-	// The errors of the action to batch create the custom vocabulary item response
-	// for a bot.
+	// A list of custom vocabulary items that failed to create during the operation.
+	// The reason for the error is contained within each error object.
 	Errors []*FailedCustomVocabularyItem `locationName:"errors" type:"list"`
 
-	// The unique locale identifier of the bot to batch create the custom vocabulary
-	// item response for.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported Languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	LocaleId *string `locationName:"localeId" type:"string"`
 
-	// The resources of the action to batch create the custom vocabulary item response
-	// for a bot.
+	// A list of custom vocabulary items that were successfully created during the
+	// operation.
 	Resources []*CustomVocabularyItem `locationName:"resources" type:"list"`
 }
 
@@ -8604,26 +8605,25 @@ func (s *BatchCreateCustomVocabularyItemOutput) SetResources(v []*CustomVocabula
 type BatchDeleteCustomVocabularyItemInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to batch delete request for the custom vocabulary
-	// item.
+	// The identifier of the bot associated with this custom vocabulary.
 	//
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// The version of the bot to batch delete request for the custom vocabulary
-	// item.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	//
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
 
-	// The custom vocabulary list to batch delete request for the custom vocabulary
-	// item.
+	// A list of custom vocabulary items requested to be deleted. Each entry must
+	// contain the unique custom vocabulary entry identifier.
 	//
 	// CustomVocabularyItemList is a required field
 	CustomVocabularyItemList []*CustomVocabularyEntryId `locationName:"customVocabularyItemList" min:"1" type:"list" required:"true"`
 
-	// The locale identifier of the bot to batch delete request for the custom vocabulary
-	// item.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported Languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -8718,24 +8718,23 @@ func (s *BatchDeleteCustomVocabularyItemInput) SetLocaleId(v string) *BatchDelet
 type BatchDeleteCustomVocabularyItemOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to batch delete response for the custom
-	// vocabulary item.
+	// The identifier of the bot associated with this custom vocabulary.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
-	// The version of the bot to batch delete response for the custom vocabulary
-	// item.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
-	// The errors of the action to batch delete response for the custom vocabulary
-	// item.
+	// A list of custom vocabulary items that failed to delete during the operation.
+	// The reason for the error is contained within each error object.
 	Errors []*FailedCustomVocabularyItem `locationName:"errors" type:"list"`
 
-	// The locale identifier of the bot to batch delete response for the custom
-	// vocabulary item.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	LocaleId *string `locationName:"localeId" type:"string"`
 
-	// The resources of the action to batch delete response for the custom vocabulary
-	// item.
+	// A list of custom vocabulary items that were successfully deleted during the
+	// operation.
 	Resources []*CustomVocabularyItem `locationName:"resources" type:"list"`
 }
 
@@ -8790,26 +8789,25 @@ func (s *BatchDeleteCustomVocabularyItemOutput) SetResources(v []*CustomVocabula
 type BatchUpdateCustomVocabularyItemInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to the batch update request for the custom
-	// vocabulary item.
+	// The identifier of the bot associated with this custom vocabulary
 	//
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// The bot version of the bot to the batch update request for the custom vocabulary
-	// item.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	//
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
 
-	// The custom vocabulary item list of the bot to the batch update request for
-	// the custom vocabulary item.
+	// A list of custom vocabulary items with updated fields. Each entry must contain
+	// a phrase and can optionally contain a displayAs and/or a weight.
 	//
 	// CustomVocabularyItemList is a required field
 	CustomVocabularyItemList []*CustomVocabularyItem `locationName:"customVocabularyItemList" min:"1" type:"list" required:"true"`
 
-	// The locale identifier of the bot to the batch update request for the custom
-	// vocabulary item.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported Languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -8904,24 +8902,23 @@ func (s *BatchUpdateCustomVocabularyItemInput) SetLocaleId(v string) *BatchUpdat
 type BatchUpdateCustomVocabularyItemOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to the batch update response for the custom
-	// vocabulary item.
+	// The identifier of the bot associated with this custom vocabulary.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
-	// The bot version of the bot to the batch update response for the custom vocabulary
-	// item.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
-	// The errors of the action to batch update response for the custom vocabulary
-	// item.
+	// A list of custom vocabulary items that failed to update during the operation.
+	// The reason for the error is contained within each error object.
 	Errors []*FailedCustomVocabularyItem `locationName:"errors" type:"list"`
 
-	// The locale identifier of the bot to the batch update response for the custom
-	// vocabulary item.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported Languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	LocaleId *string `locationName:"localeId" type:"string"`
 
-	// The resources of the action to batch update response for the custom vocabulary
-	// item.
+	// A list of custom vocabulary items that were successfully updated during the
+	// operation.
 	Resources []*CustomVocabularyItem `locationName:"resources" type:"list"`
 }
 
@@ -9087,13 +9084,13 @@ func (s *BotAliasLocaleSettings) SetEnabled(v bool) *BotAliasLocaleSettings {
 	return s
 }
 
-// Summary information about bot aliases returned from the ListBotAliases (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotAliases.html)
+// Summary information about bot aliases returned from the ListBotAliases (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBotAliases.html)
 // operation.
 type BotAliasSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier assigned to the bot alias. You can use this ID to get
-	// detailed information about the alias using the DescribeBotAlias (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeBotAlias.html)
+	// detailed information about the alias using the DescribeBotAlias (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeBotAlias.html)
 	// operation.
 	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string"`
 
@@ -9848,7 +9845,7 @@ func (s *BotLocaleSortBy) SetOrder(v string) *BotLocaleSortBy {
 	return s
 }
 
-// Summary information about bot locales returned by the ListBotLocales (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotLocales.html)
+// Summary information about bot locales returned by the ListBotLocales (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBotLocales.html)
 // operation.
 type BotLocaleSummary struct {
 	_ struct{} `type:"structure"`
@@ -9924,6 +9921,124 @@ func (s *BotLocaleSummary) SetLocaleId(v string) *BotLocaleSummary {
 // SetLocaleName sets the LocaleName field's value.
 func (s *BotLocaleSummary) SetLocaleName(v string) *BotLocaleSummary {
 	s.LocaleName = &v
+	return s
+}
+
+// A bot that is a member of a network of bots.
+type BotMember struct {
+	_ struct{} `type:"structure"`
+
+	// The alias ID of a bot that is a member of this network of bots.
+	//
+	// BotMemberAliasId is a required field
+	BotMemberAliasId *string `locationName:"botMemberAliasId" min:"10" type:"string" required:"true"`
+
+	// The alias name of a bot that is a member of this network of bots.
+	//
+	// BotMemberAliasName is a required field
+	BotMemberAliasName *string `locationName:"botMemberAliasName" min:"1" type:"string" required:"true"`
+
+	// The unique ID of a bot that is a member of this network of bots.
+	//
+	// BotMemberId is a required field
+	BotMemberId *string `locationName:"botMemberId" min:"10" type:"string" required:"true"`
+
+	// The unique name of a bot that is a member of this network of bots.
+	//
+	// BotMemberName is a required field
+	BotMemberName *string `locationName:"botMemberName" min:"1" type:"string" required:"true"`
+
+	// The version of a bot that is a member of this network of bots.
+	//
+	// BotMemberVersion is a required field
+	BotMemberVersion *string `locationName:"botMemberVersion" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BotMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BotMember) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BotMember) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BotMember"}
+	if s.BotMemberAliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotMemberAliasId"))
+	}
+	if s.BotMemberAliasId != nil && len(*s.BotMemberAliasId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotMemberAliasId", 10))
+	}
+	if s.BotMemberAliasName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotMemberAliasName"))
+	}
+	if s.BotMemberAliasName != nil && len(*s.BotMemberAliasName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotMemberAliasName", 1))
+	}
+	if s.BotMemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotMemberId"))
+	}
+	if s.BotMemberId != nil && len(*s.BotMemberId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotMemberId", 10))
+	}
+	if s.BotMemberName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotMemberName"))
+	}
+	if s.BotMemberName != nil && len(*s.BotMemberName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotMemberName", 1))
+	}
+	if s.BotMemberVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotMemberVersion"))
+	}
+	if s.BotMemberVersion != nil && len(*s.BotMemberVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotMemberVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotMemberAliasId sets the BotMemberAliasId field's value.
+func (s *BotMember) SetBotMemberAliasId(v string) *BotMember {
+	s.BotMemberAliasId = &v
+	return s
+}
+
+// SetBotMemberAliasName sets the BotMemberAliasName field's value.
+func (s *BotMember) SetBotMemberAliasName(v string) *BotMember {
+	s.BotMemberAliasName = &v
+	return s
+}
+
+// SetBotMemberId sets the BotMemberId field's value.
+func (s *BotMember) SetBotMemberId(v string) *BotMember {
+	s.BotMemberId = &v
+	return s
+}
+
+// SetBotMemberName sets the BotMemberName field's value.
+func (s *BotMember) SetBotMemberName(v string) *BotMember {
+	s.BotMemberName = &v
+	return s
+}
+
+// SetBotMemberVersion sets the BotMemberVersion field's value.
+func (s *BotMember) SetBotMemberVersion(v string) *BotMember {
+	s.BotMemberVersion = &v
 	return s
 }
 
@@ -10148,13 +10263,13 @@ func (s *BotSortBy) SetOrder(v string) *BotSortBy {
 	return s
 }
 
-// Summary information about a bot returned by the ListBots (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBots.html)
+// Summary information about a bot returned by the ListBots (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBots.html)
 // operation.
 type BotSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier assigned to the bot. Use this ID to get detailed information
-	// about the bot with the DescribeBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeBot.html)
+	// about the bot with the DescribeBot (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeBot.html)
 	// operation.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
@@ -10164,6 +10279,9 @@ type BotSummary struct {
 	// The current status of the bot. When the status is Available the bot is ready
 	// for use.
 	BotStatus *string `locationName:"botStatus" type:"string" enum:"BotStatus"`
+
+	// The type of the bot.
+	BotType *string `locationName:"botType" type:"string" enum:"BotType"`
 
 	// The description of the bot.
 	Description *string `locationName:"description" type:"string"`
@@ -10208,6 +10326,12 @@ func (s *BotSummary) SetBotName(v string) *BotSummary {
 // SetBotStatus sets the BotStatus field's value.
 func (s *BotSummary) SetBotStatus(v string) *BotSummary {
 	s.BotStatus = &v
+	return s
+}
+
+// SetBotType sets the BotType field's value.
+func (s *BotSummary) SetBotType(v string) *BotSummary {
+	s.BotType = &v
 	return s
 }
 
@@ -10340,7 +10464,7 @@ func (s *BotVersionSortBy) SetOrder(v string) *BotVersionSortBy {
 	return s
 }
 
-// Summary information about a bot version returned by the ListBotVersions (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotVersions.html)
+// Summary information about a bot version returned by the ListBotVersions (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBotVersions.html)
 // operation.
 type BotVersionSummary struct {
 	_ struct{} `type:"structure"`
@@ -10415,7 +10539,7 @@ type BuildBotLocaleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot to build. The identifier is returned in the response
-	// from the CreateBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html)
+	// from the CreateBot (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html)
 	// operation.
 	//
 	// BotId is a required field
@@ -10634,7 +10758,7 @@ func (s *BuiltInIntentSortBy) SetOrder(v string) *BuiltInIntentSortBy {
 }
 
 // Provides summary information about a built-in intent for the ListBuiltInIntents
-// (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBuiltInIntents.html)
+// (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBuiltInIntents.html)
 // operation.
 type BuiltInIntentSummary struct {
 	_ struct{} `type:"structure"`
@@ -10739,7 +10863,7 @@ func (s *BuiltInSlotTypeSortBy) SetOrder(v string) *BuiltInSlotTypeSortBy {
 }
 
 // Provides summary information about a built-in slot type for the ListBuiltInSlotTypes
-// (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBuiltInSlotTypes.html)
+// (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBuiltInSlotTypes.html)
 // operation.
 type BuiltInSlotTypeSummary struct {
 	_ struct{} `type:"structure"`
@@ -11443,8 +11567,8 @@ type CreateBotAliasInput struct {
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
 	// The version of the bot that this alias points to. You can use the UpdateBotAlias
-	// (https://docs.aws.amazon.com/lexv2/latest/dg/API_UpdateBotAlias.html) operation
-	// to change the bot version associated with the alias.
+	// (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_UpdateBotAlias.html)
+	// operation to change the bot version associated with the alias.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
 	// Specifies whether Amazon Lex logs text and audio for a conversation with
@@ -11708,6 +11832,9 @@ func (s *CreateBotAliasOutput) SetTags(v map[string]*string) *CreateBotAliasOutp
 type CreateBotInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of bot members in a network to be created.
+	BotMembers []*BotMember `locationName:"botMembers" type:"list"`
+
 	// The name of the bot. The bot name must be unique in the account that creates
 	// the bot.
 	//
@@ -11718,6 +11845,9 @@ type CreateBotInput struct {
 	// bot. You can't use the UpdateBot operation to update tags. To update tags,
 	// use the TagResource operation.
 	BotTags map[string]*string `locationName:"botTags" type:"map"`
+
+	// The type of a bot to create.
+	BotType *string `locationName:"botType" type:"string" enum:"BotType"`
 
 	// Provides information on additional privacy protections Amazon Lex should
 	// use with the bot's data.
@@ -11795,6 +11925,16 @@ func (s *CreateBotInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
 	}
+	if s.BotMembers != nil {
+		for i, v := range s.BotMembers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BotMembers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.DataPrivacy != nil {
 		if err := s.DataPrivacy.Validate(); err != nil {
 			invalidParams.AddNested("DataPrivacy", err.(request.ErrInvalidParams))
@@ -11807,6 +11947,12 @@ func (s *CreateBotInput) Validate() error {
 	return nil
 }
 
+// SetBotMembers sets the BotMembers field's value.
+func (s *CreateBotInput) SetBotMembers(v []*BotMember) *CreateBotInput {
+	s.BotMembers = v
+	return s
+}
+
 // SetBotName sets the BotName field's value.
 func (s *CreateBotInput) SetBotName(v string) *CreateBotInput {
 	s.BotName = &v
@@ -11816,6 +11962,12 @@ func (s *CreateBotInput) SetBotName(v string) *CreateBotInput {
 // SetBotTags sets the BotTags field's value.
 func (s *CreateBotInput) SetBotTags(v map[string]*string) *CreateBotInput {
 	s.BotTags = v
+	return s
+}
+
+// SetBotType sets the BotType field's value.
+func (s *CreateBotInput) SetBotType(v string) *CreateBotInput {
+	s.BotType = &v
 	return s
 }
 
@@ -12110,16 +12262,22 @@ type CreateBotOutput struct {
 	// when you call other Amazon Lex API operations.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
+	// The list of bots in a network that was created.
+	BotMembers []*BotMember `locationName:"botMembers" type:"list"`
+
 	// The name specified for the bot.
 	BotName *string `locationName:"botName" min:"1" type:"string"`
 
 	// Shows the current status of the bot. The bot is first in the Creating status.
 	// Once the bot is read for use, it changes to the Available status. After the
-	// bot is created, you can use the Draft version of the bot.
+	// bot is created, you can use the DRAFT version of the bot.
 	BotStatus *string `locationName:"botStatus" type:"string" enum:"BotStatus"`
 
 	// A list of tags associated with the bot.
 	BotTags map[string]*string `locationName:"botTags" type:"map"`
+
+	// The type of a bot that was created.
+	BotType *string `locationName:"botType" type:"string" enum:"BotType"`
 
 	// A timestamp indicating the date and time that the bot was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
@@ -12164,6 +12322,12 @@ func (s *CreateBotOutput) SetBotId(v string) *CreateBotOutput {
 	return s
 }
 
+// SetBotMembers sets the BotMembers field's value.
+func (s *CreateBotOutput) SetBotMembers(v []*BotMember) *CreateBotOutput {
+	s.BotMembers = v
+	return s
+}
+
 // SetBotName sets the BotName field's value.
 func (s *CreateBotOutput) SetBotName(v string) *CreateBotOutput {
 	s.BotName = &v
@@ -12179,6 +12343,12 @@ func (s *CreateBotOutput) SetBotStatus(v string) *CreateBotOutput {
 // SetBotTags sets the BotTags field's value.
 func (s *CreateBotOutput) SetBotTags(v map[string]*string) *CreateBotOutput {
 	s.BotTags = v
+	return s
+}
+
+// SetBotType sets the BotType field's value.
+func (s *CreateBotOutput) SetBotType(v string) *CreateBotOutput {
+	s.BotType = &v
 	return s
 }
 
@@ -12479,8 +12649,8 @@ type CreateExportOutput struct {
 	ExportId *string `locationName:"exportId" min:"10" type:"string"`
 
 	// The status of the export. When the status is Completed, you can use the DescribeExport
-	// (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html) operation
-	// to get the pre-signed S3 URL link to your exported bot or bot locale.
+	// (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeExport.html)
+	// operation to get the pre-signed S3 URL link to your exported bot or bot locale.
 	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
 
 	// The file format used for the bot or bot locale definition files.
@@ -14055,7 +14225,8 @@ type CreateUploadUrlOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An identifier for a unique import job. Use it when you call the StartImport
-	// (https://docs.aws.amazon.com/lexv2/latest/dg/API_StartImport.html) operation.
+	// (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_StartImport.html)
+	// operation.
 	ImportId *string `locationName:"importId" min:"10" type:"string"`
 
 	// A pre-signed S3 write URL. Upload the zip archive file that contains the
@@ -14361,7 +14532,7 @@ func (s *CustomVocabularyImportSpecification) SetLocaleId(v string) *CustomVocab
 type CustomVocabularyItem struct {
 	_ struct{} `type:"structure"`
 
-	// The display as value for the custom vocabulary item from the custom vocabulary
+	// The DisplayAs value for the custom vocabulary item from the custom vocabulary
 	// list.
 	DisplayAs *string `locationName:"displayAs" min:"1" type:"string"`
 
@@ -14757,8 +14928,11 @@ type DeleteBotAliasInput struct {
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// When this parameter is true, Amazon Lex doesn't check to see if any other
-	// resource is using the alias before it is deleted.
+	// By default, Amazon Lex checks if any other resource, such as a bot network,
+	// is using the bot alias before it is deleted and throws a ResourceInUseException
+	// exception if the alias is being used by another resource. Set this parameter
+	// to true to skip this check and remove the alias even if it is being used
+	// by another resource.
 	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
 }
 
@@ -14879,8 +15053,11 @@ type DeleteBotInput struct {
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// When true, Amazon Lex doesn't check to see if another resource, such as an
-	// alias, is using the bot before it is deleted.
+	// By default, Amazon Lex checks if any other resource, such as an alias or
+	// bot network, is using the bot version before it is deleted and throws a ResourceInUseException
+	// exception if the bot is being used by another resource. Set this parameter
+	// to true to skip this check and remove the bot even if it is being used by
+	// another resource.
 	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
 }
 
@@ -15129,10 +15306,11 @@ type DeleteBotVersionInput struct {
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
 
-	// By default, the DeleteBotVersion operations throws a ResourceInUseException
-	// exception if you try to delete a bot version that has an alias pointing at
-	// it. Set the skipResourceInUseCheck parameter to true to skip this check and
-	// remove the version even if an alias points to it.
+	// By default, Amazon Lex checks if any other resource, such as an alias or
+	// bot network, is using the bot version before it is deleted and throws a ResourceInUseException
+	// exception if the version is being used by another resource. Set this parameter
+	// to true to skip this check and remove the version even if it is being used
+	// by another resource.
 	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
 }
 
@@ -15442,8 +15620,8 @@ type DeleteExportOutput struct {
 	ExportId *string `locationName:"exportId" min:"10" type:"string"`
 
 	// The current status of the deletion. When the deletion is complete, the export
-	// will no longer be returned by the ListExports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListExports.html)
-	// operation and calls to the DescribeExport (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html)
+	// will no longer be returned by the ListExports (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListExports.html)
+	// operation and calls to the DescribeExport (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeExport.html)
 	// operation with the export identifier will fail.
 	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
 }
@@ -15534,8 +15712,8 @@ type DeleteImportOutput struct {
 	ImportId *string `locationName:"importId" min:"10" type:"string"`
 
 	// The current status of the deletion. When the deletion is complete, the import
-	// will no longer be returned by the ListImports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListImports.html)
-	// operation and calls to the DescribeImport (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeImport.html)
+	// will no longer be returned by the ListImports (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListImports.html)
+	// operation and calls to the DescribeImport (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeImport.html)
 	// operation with the import identifier will fail.
 	ImportStatus *string `locationName:"importStatus" type:"string" enum:"ImportStatus"`
 }
@@ -16222,8 +16400,8 @@ type DeleteUtterancesInput struct {
 	LocaleId *string `location:"querystring" locationName:"localeId" type:"string"`
 
 	// The unique identifier of the session with the user. The ID is returned in
-	// the response from the RecognizeText (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_RecognizeText.html)
-	// and RecognizeUtterance (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_RecognizeUtterance.html)
+	// the response from the RecognizeText (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_runtime_RecognizeText.html)
+	// and RecognizeUtterance (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_runtime_RecognizeUtterance.html)
 	// operations.
 	SessionId *string `location:"querystring" locationName:"sessionId" min:"2" type:"string"`
 }
@@ -16410,6 +16588,9 @@ type DescribeBotAliasOutput struct {
 	// A timestamp of the date and time that the alias was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
+	// A list of the networks to which the bot alias you described belongs.
+	ParentBotNetworks []*ParentBotNetwork `locationName:"parentBotNetworks" type:"list"`
+
 	// Determines whether Amazon Lex will use Amazon Comprehend to detect the sentiment
 	// of user utterances.
 	SentimentAnalysisSettings *SentimentAnalysisSettings `locationName:"sentimentAnalysisSettings" type:"structure"`
@@ -16496,6 +16677,12 @@ func (s *DescribeBotAliasOutput) SetDescription(v string) *DescribeBotAliasOutpu
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *DescribeBotAliasOutput) SetLastUpdatedDateTime(v time.Time) *DescribeBotAliasOutput {
 	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetParentBotNetworks sets the ParentBotNetworks field's value.
+func (s *DescribeBotAliasOutput) SetParentBotNetworks(v []*ParentBotNetwork) *DescribeBotAliasOutput {
+	s.ParentBotNetworks = v
 	return s
 }
 
@@ -16815,12 +17002,18 @@ type DescribeBotOutput struct {
 	// The unique identifier of the bot.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
+	// The list of bots in the network that was described.
+	BotMembers []*BotMember `locationName:"botMembers" type:"list"`
+
 	// The name of the bot.
 	BotName *string `locationName:"botName" min:"1" type:"string"`
 
 	// The current status of the bot. When the status is Available the bot is ready
 	// to be used in conversations with users.
 	BotStatus *string `locationName:"botStatus" type:"string" enum:"BotStatus"`
+
+	// The type of the bot that was described.
+	BotType *string `locationName:"botType" type:"string" enum:"BotType"`
 
 	// A timestamp of the date and time that the bot was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
@@ -16831,6 +17024,10 @@ type DescribeBotOutput struct {
 
 	// The description of the bot.
 	Description *string `locationName:"description" type:"string"`
+
+	// If the botStatus is Failed, this contains a list of reasons that the bot
+	// couldn't be built.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
 	// The maximum time in seconds that Amazon Lex retains the data gathered in
 	// a conversation.
@@ -16868,6 +17065,12 @@ func (s *DescribeBotOutput) SetBotId(v string) *DescribeBotOutput {
 	return s
 }
 
+// SetBotMembers sets the BotMembers field's value.
+func (s *DescribeBotOutput) SetBotMembers(v []*BotMember) *DescribeBotOutput {
+	s.BotMembers = v
+	return s
+}
+
 // SetBotName sets the BotName field's value.
 func (s *DescribeBotOutput) SetBotName(v string) *DescribeBotOutput {
 	s.BotName = &v
@@ -16877,6 +17080,12 @@ func (s *DescribeBotOutput) SetBotName(v string) *DescribeBotOutput {
 // SetBotStatus sets the BotStatus field's value.
 func (s *DescribeBotOutput) SetBotStatus(v string) *DescribeBotOutput {
 	s.BotStatus = &v
+	return s
+}
+
+// SetBotType sets the BotType field's value.
+func (s *DescribeBotOutput) SetBotType(v string) *DescribeBotOutput {
+	s.BotType = &v
 	return s
 }
 
@@ -16895,6 +17104,12 @@ func (s *DescribeBotOutput) SetDataPrivacy(v *DataPrivacy) *DescribeBotOutput {
 // SetDescription sets the Description field's value.
 func (s *DescribeBotOutput) SetDescription(v string) *DescribeBotOutput {
 	s.Description = &v
+	return s
+}
+
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *DescribeBotOutput) SetFailureReasons(v []*string) *DescribeBotOutput {
+	s.FailureReasons = v
 	return s
 }
 
@@ -17216,6 +17431,9 @@ type DescribeBotVersionOutput struct {
 	// The identifier of the bot that contains the version.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
+	// The members of bot network in the version that was described.
+	BotMembers []*BotMember `locationName:"botMembers" type:"list"`
+
 	// The name of the bot that contains the version.
 	BotName *string `locationName:"botName" min:"1" type:"string"`
 
@@ -17223,7 +17441,10 @@ type DescribeBotVersionOutput struct {
 	// is ready for use.
 	BotStatus *string `locationName:"botStatus" type:"string" enum:"BotStatus"`
 
-	// The version of the bot to describe.
+	// The type of the bot in the version that was described.
+	BotType *string `locationName:"botType" type:"string" enum:"BotType"`
+
+	// The version of the bot that was described.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
 	// A timestamp of the date and time that the bot version was created.
@@ -17242,6 +17463,9 @@ type DescribeBotVersionOutput struct {
 	// The number of seconds that a session with the bot remains active before it
 	// is discarded by Amazon Lex.
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer"`
+
+	// A list of the networks to which the bot version you described belongs.
+	ParentBotNetworks []*ParentBotNetwork `locationName:"parentBotNetworks" type:"list"`
 
 	// The Amazon Resource Name (ARN) of an IAM role that has permission to access
 	// the bot version.
@@ -17272,6 +17496,12 @@ func (s *DescribeBotVersionOutput) SetBotId(v string) *DescribeBotVersionOutput 
 	return s
 }
 
+// SetBotMembers sets the BotMembers field's value.
+func (s *DescribeBotVersionOutput) SetBotMembers(v []*BotMember) *DescribeBotVersionOutput {
+	s.BotMembers = v
+	return s
+}
+
 // SetBotName sets the BotName field's value.
 func (s *DescribeBotVersionOutput) SetBotName(v string) *DescribeBotVersionOutput {
 	s.BotName = &v
@@ -17281,6 +17511,12 @@ func (s *DescribeBotVersionOutput) SetBotName(v string) *DescribeBotVersionOutpu
 // SetBotStatus sets the BotStatus field's value.
 func (s *DescribeBotVersionOutput) SetBotStatus(v string) *DescribeBotVersionOutput {
 	s.BotStatus = &v
+	return s
+}
+
+// SetBotType sets the BotType field's value.
+func (s *DescribeBotVersionOutput) SetBotType(v string) *DescribeBotVersionOutput {
+	s.BotType = &v
 	return s
 }
 
@@ -17317,6 +17553,12 @@ func (s *DescribeBotVersionOutput) SetFailureReasons(v []*string) *DescribeBotVe
 // SetIdleSessionTTLInSeconds sets the IdleSessionTTLInSeconds field's value.
 func (s *DescribeBotVersionOutput) SetIdleSessionTTLInSeconds(v int64) *DescribeBotVersionOutput {
 	s.IdleSessionTTLInSeconds = &v
+	return s
+}
+
+// SetParentBotNetworks sets the ParentBotNetworks field's value.
+func (s *DescribeBotVersionOutput) SetParentBotNetworks(v []*ParentBotNetwork) *DescribeBotVersionOutput {
+	s.ParentBotNetworks = v
 	return s
 }
 
@@ -19128,7 +19370,7 @@ func (s *EncryptionSetting) SetKmsKeyArn(v string) *EncryptionSetting {
 	return s
 }
 
-// Filters the response form the ListExports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListExports.html)
+// Filters the response form the ListExports (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListExports.html)
 // operation
 type ExportFilter struct {
 	_ struct{} `type:"structure"`
@@ -20122,7 +20364,7 @@ func (s *ImageResponseCard) SetTitle(v string) *ImageResponseCard {
 	return s
 }
 
-// Filters the response from the ListImports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListImports.html)
+// Filters the response from the ListImports (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListImports.html)
 // operation.
 type ImportFilter struct {
 	_ struct{} `type:"structure"`
@@ -22902,7 +23144,7 @@ func (s *ListBuiltInSlotTypesOutput) SetNextToken(v string) *ListBuiltInSlotType
 type ListCustomVocabularyItemsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to the list custom vocabulary request.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	//
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
@@ -22912,12 +23154,14 @@ type ListCustomVocabularyItemsInput struct {
 	// BotVersion is a required field
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
 
-	// The locale identifier of the bot to the list custom vocabulary request.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
 
-	// The maximum results to the list custom vocabulary request.
+	// The maximum number of items returned by the list operation.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The nextToken identifier to the list custom vocabulary request.
@@ -23006,16 +23250,18 @@ func (s *ListCustomVocabularyItemsInput) SetNextToken(v string) *ListCustomVocab
 type ListCustomVocabularyItemsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the bot to the list custom vocabulary response.
+	// The identifier of the bot associated with this custom vocabulary.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
-	// The bot version of the bot to the list custom vocabulary response.
+	// The identifier of the version of the bot associated with this custom vocabulary.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
 	// The custom vocabulary items from the list custom vocabulary response.
 	CustomVocabularyItems []*CustomVocabularyItem `locationName:"customVocabularyItems" type:"list"`
 
-	// The locale identifier of the bot to the list custom vocabulary response.
+	// The identifier of the language and locale where this custom vocabulary is
+	// used. The string must match one of the supported locales. For more information,
+	// see Supported Languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	LocaleId *string `locationName:"localeId" type:"string"`
 
 	// The nextToken identifier to the list custom vocabulary response.
@@ -24881,6 +25127,51 @@ func (s *OutputContext) SetTimeToLiveInSeconds(v int64) *OutputContext {
 // SetTurnsToLive sets the TurnsToLive field's value.
 func (s *OutputContext) SetTurnsToLive(v int64) *OutputContext {
 	s.TurnsToLive = &v
+	return s
+}
+
+// A network of bots.
+type ParentBotNetwork struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the network of bots assigned by Amazon Lex.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The version of the network of bots.
+	//
+	// BotVersion is a required field
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParentBotNetwork) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParentBotNetwork) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ParentBotNetwork) SetBotId(v string) *ParentBotNetwork {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ParentBotNetwork) SetBotVersion(v string) *ParentBotNetwork {
+	s.BotVersion = &v
 	return s
 }
 
@@ -28235,7 +28526,7 @@ type StartImportInput struct {
 	FilePassword *string `locationName:"filePassword" min:"1" type:"string" sensitive:"true"`
 
 	// The unique identifier for the import. It is included in the response from
-	// the CreateUploadUrl (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateUploadUrl.html)
+	// the CreateUploadUrl (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateUploadUrl.html)
 	// operation.
 	//
 	// ImportId is a required field
@@ -29187,6 +29478,7 @@ type ThrottlingException struct {
 
 	Message_ *string `locationName:"message" type:"string"`
 
+	// The number of seconds after which the user can invoke the API again.
 	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
 }
 
@@ -29712,17 +30004,23 @@ type UpdateBotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the bot to update. This identifier is returned by
-	// the CreateBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html)
+	// the CreateBot (https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html)
 	// operation.
 	//
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The list of bot members in the network associated with the update action.
+	BotMembers []*BotMember `locationName:"botMembers" type:"list"`
 
 	// The new name of the bot. The name must be unique in the account that creates
 	// the bot.
 	//
 	// BotName is a required field
 	BotName *string `locationName:"botName" min:"1" type:"string" required:"true"`
+
+	// The type of the bot to be updated.
+	BotType *string `locationName:"botType" type:"string" enum:"BotType"`
 
 	// Provides information on additional privacy protections Amazon Lex should
 	// use with the bot's data.
@@ -29800,6 +30098,16 @@ func (s *UpdateBotInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
 	}
+	if s.BotMembers != nil {
+		for i, v := range s.BotMembers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BotMembers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.DataPrivacy != nil {
 		if err := s.DataPrivacy.Validate(); err != nil {
 			invalidParams.AddNested("DataPrivacy", err.(request.ErrInvalidParams))
@@ -29818,9 +30126,21 @@ func (s *UpdateBotInput) SetBotId(v string) *UpdateBotInput {
 	return s
 }
 
+// SetBotMembers sets the BotMembers field's value.
+func (s *UpdateBotInput) SetBotMembers(v []*BotMember) *UpdateBotInput {
+	s.BotMembers = v
+	return s
+}
+
 // SetBotName sets the BotName field's value.
 func (s *UpdateBotInput) SetBotName(v string) *UpdateBotInput {
 	s.BotName = &v
+	return s
+}
+
+// SetBotType sets the BotType field's value.
+func (s *UpdateBotInput) SetBotType(v string) *UpdateBotInput {
+	s.BotType = &v
 	return s
 }
 
@@ -30114,6 +30434,9 @@ type UpdateBotOutput struct {
 	// The unique identifier of the bot that was updated.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
+	// The list of bot members in the network that was updated.
+	BotMembers []*BotMember `locationName:"botMembers" type:"list"`
+
 	// The name of the bot after the update.
 	BotName *string `locationName:"botName" min:"1" type:"string"`
 
@@ -30121,6 +30444,9 @@ type UpdateBotOutput struct {
 	// Once the bot is read for use, it changes to the Available status. After the
 	// bot is created, you can use the DRAFT version of the bot.
 	BotStatus *string `locationName:"botStatus" type:"string" enum:"BotStatus"`
+
+	// The type of the bot that was updated.
+	BotType *string `locationName:"botType" type:"string" enum:"BotType"`
 
 	// A timestamp of the date and time that the bot was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
@@ -30166,6 +30492,12 @@ func (s *UpdateBotOutput) SetBotId(v string) *UpdateBotOutput {
 	return s
 }
 
+// SetBotMembers sets the BotMembers field's value.
+func (s *UpdateBotOutput) SetBotMembers(v []*BotMember) *UpdateBotOutput {
+	s.BotMembers = v
+	return s
+}
+
 // SetBotName sets the BotName field's value.
 func (s *UpdateBotOutput) SetBotName(v string) *UpdateBotOutput {
 	s.BotName = &v
@@ -30175,6 +30507,12 @@ func (s *UpdateBotOutput) SetBotName(v string) *UpdateBotOutput {
 // SetBotStatus sets the BotStatus field's value.
 func (s *UpdateBotOutput) SetBotStatus(v string) *UpdateBotOutput {
 	s.BotStatus = &v
+	return s
+}
+
+// SetBotType sets the BotType field's value.
+func (s *UpdateBotOutput) SetBotType(v string) *UpdateBotOutput {
+	s.BotType = &v
 	return s
 }
 
@@ -32323,12 +32661,16 @@ func BotAliasStatus_Values() []string {
 const (
 	// BotFilterNameBotName is a BotFilterName enum value
 	BotFilterNameBotName = "BotName"
+
+	// BotFilterNameBotType is a BotFilterName enum value
+	BotFilterNameBotType = "BotType"
 )
 
 // BotFilterName_Values returns all elements of the BotFilterName enum
 func BotFilterName_Values() []string {
 	return []string{
 		BotFilterNameBotName,
+		BotFilterNameBotType,
 	}
 }
 
@@ -32338,6 +32680,9 @@ const (
 
 	// BotFilterOperatorEq is a BotFilterOperator enum value
 	BotFilterOperatorEq = "EQ"
+
+	// BotFilterOperatorNe is a BotFilterOperator enum value
+	BotFilterOperatorNe = "NE"
 )
 
 // BotFilterOperator_Values returns all elements of the BotFilterOperator enum
@@ -32345,6 +32690,7 @@ func BotFilterOperator_Values() []string {
 	return []string{
 		BotFilterOperatorCo,
 		BotFilterOperatorEq,
+		BotFilterOperatorNe,
 	}
 }
 
@@ -32509,6 +32855,9 @@ const (
 
 	// BotStatusImporting is a BotStatus enum value
 	BotStatusImporting = "Importing"
+
+	// BotStatusUpdating is a BotStatus enum value
+	BotStatusUpdating = "Updating"
 )
 
 // BotStatus_Values returns all elements of the BotStatus enum
@@ -32521,6 +32870,23 @@ func BotStatus_Values() []string {
 		BotStatusFailed,
 		BotStatusVersioning,
 		BotStatusImporting,
+		BotStatusUpdating,
+	}
+}
+
+const (
+	// BotTypeBot is a BotType enum value
+	BotTypeBot = "Bot"
+
+	// BotTypeBotNetwork is a BotType enum value
+	BotTypeBotNetwork = "BotNetwork"
+)
+
+// BotType_Values returns all elements of the BotType enum
+func BotType_Values() []string {
+	return []string{
+		BotTypeBot,
+		BotTypeBotNetwork,
 	}
 }
 

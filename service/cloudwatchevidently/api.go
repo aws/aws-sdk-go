@@ -572,11 +572,13 @@ func (c *CloudWatchEvidently) CreateSegmentRequest(input *CreateSegmentInput) (r
 // launch allows you to define different traffic splits for the different audience
 // segments.
 //
-//	<p>For more information about segment pattern syntax, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html#CloudWatch-Evidently-segments-syntax.html">
-//	Segment rule pattern syntax</a>.</p> <p>The pattern that you define for
-//	a segment is matched against the value of <code>evaluationContext</code>,
-//	which is passed into Evidently in the <a href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_EvaluateFeature.html">EvaluateFeature</a>
-//	operation, when Evidently assigns a feature variation to a user.</p>
+// For more information about segment pattern syntax, see Segment rule pattern
+// syntax (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html#CloudWatch-Evidently-segments-syntax.html).
+//
+// The pattern that you define for a segment is matched against the value of
+// evaluationContext, which is passed into Evidently in the EvaluateFeature
+// (https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_EvaluateFeature.html)
+// operation, when Evidently assigns a feature variation to a user.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1145,26 +1147,32 @@ func (c *CloudWatchEvidently) EvaluateFeatureRequest(input *EvaluateFeatureInput
 // entityID matches an override rule, the user is served the variation specified
 // by that rule.
 //
-//	<p>If there is a current launch with this feature that uses segment overrides,
-//	and if the user session's <code>evaluationContext</code> matches a segment
-//	rule defined in a segment override, the configuration in the segment overrides
-//	is used. For more information about segments, see <a href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_CreateSegment.html">CreateSegment</a>
-//	and <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html">Use
-//	segments to focus your audience</a>.</p> <p>If there is a launch with
-//	no segment overrides, the user might be assigned to a variation in the
-//	launch. The chance of this depends on the percentage of users that are
-//	allocated to that launch. If the user is enrolled in the launch, the variation
-//	they are served depends on the allocation of the various feature variations
-//	used for the launch.</p> <p>If the user is not assigned to a launch, and
-//	there is an ongoing experiment for this feature, the user might be assigned
-//	to a variation in the experiment. The chance of this depends on the percentage
-//	of users that are allocated to that experiment.</p> <p>If the experiment
-//	uses a segment, then only user sessions with <code>evaluationContext</code>
-//	values that match the segment rule are used in the experiment.</p> <p>If
-//	the user is enrolled in the experiment, the variation they are served
-//	depends on the allocation of the various feature variations used for the
-//	experiment. </p> <p>If the user is not assigned to a launch or experiment,
-//	they are served the default variation.</p>
+// If there is a current launch with this feature that uses segment overrides,
+// and if the user session's evaluationContext matches a segment rule defined
+// in a segment override, the configuration in the segment overrides is used.
+// For more information about segments, see CreateSegment (https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_CreateSegment.html)
+// and Use segments to focus your audience (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html).
+//
+// If there is a launch with no segment overrides, the user might be assigned
+// to a variation in the launch. The chance of this depends on the percentage
+// of users that are allocated to that launch. If the user is enrolled in the
+// launch, the variation they are served depends on the allocation of the various
+// feature variations used for the launch.
+//
+// If the user is not assigned to a launch, and there is an ongoing experiment
+// for this feature, the user might be assigned to a variation in the experiment.
+// The chance of this depends on the percentage of users that are allocated
+// to that experiment.
+//
+// If the experiment uses a segment, then only user sessions with evaluationContext
+// values that match the segment rule are used in the experiment.
+//
+// If the user is enrolled in the experiment, the variation they are served
+// depends on the allocation of the various feature variations used for the
+// experiment.
+//
+// If the user is not assigned to a launch or experiment, they are served the
+// default variation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4299,9 +4307,9 @@ type CreateExperimentInput struct {
 	// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
 	// strictly as strings of characters.
 	//
-	//    <p>You can associate as many as 50 tags with an experiment.</p> <p>For
-	//    more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-	//    Amazon Web Services resources</a>.</p>
+	// You can associate as many as 50 tags with an experiment.
+	//
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// An array of structures that describe the configuration of each feature variation
@@ -4525,9 +4533,9 @@ type CreateFeatureInput struct {
 	// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
 	// strictly as strings of characters.
 	//
-	//    <p>You can associate as many as 50 tags with a feature.</p> <p>For more
-	//    information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-	//    Amazon Web Services resources</a>.</p>
+	// You can associate as many as 50 tags with a feature.
+	//
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// An array of structures that contain the configuration of the feature's different
@@ -4720,9 +4728,9 @@ type CreateLaunchInput struct {
 	// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
 	// strictly as strings of characters.
 	//
-	//    <p>You can associate as many as 50 tags with a launch.</p> <p>For more
-	//    information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-	//    Amazon Web Services resources</a>.</p>
+	// You can associate as many as 50 tags with a launch.
+	//
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4918,9 +4926,9 @@ type CreateProjectInput struct {
 	// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
 	// strictly as strings of characters.
 	//
-	//    <p>You can associate as many as 50 tags with a project.</p> <p>For more
-	//    information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-	//    Amazon Web Services resources</a>.</p>
+	// You can associate as many as 50 tags with a project.
+	//
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5052,9 +5060,9 @@ type CreateSegmentInput struct {
 	// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
 	// strictly as strings of characters.
 	//
-	//    <p>You can associate as many as 50 tags with a segment.</p> <p>For more
-	//    information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-	//    Amazon Web Services resources</a>.</p>
+	// You can associate as many as 50 tags with a segment.
+	//
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5576,8 +5584,8 @@ type EvaluateFeatureInput struct {
 	// this value to match user sessions with defined audience segments. For more
 	// information, see Use segments to focus your audience (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently-segments.html).
 	//
-	//    <p>If you include this parameter, the value must be a JSON object. A JSON
-	//    array is not supported.</p>
+	// If you include this parameter, the value must be a JSON object. A JSON array
+	// is not supported.
 	EvaluationContext *string `locationName:"evaluationContext" type:"string"`
 
 	// The name of the feature being evaluated.
@@ -10186,12 +10194,13 @@ type ScheduledSplitConfig struct {
 	// names. The values represent the percentage of traffic to allocate to that
 	// variation during this step.
 	//
-	//    <p>The values is expressed in thousandths of a percent, so assigning a
-	//    weight of 50000 assigns 50% of traffic to that variation.</p> <p>If the
-	//    sum of the weights for all the variations in a segment override does not
-	//    add up to 100,000, then the remaining traffic that matches this segment
-	//    is not assigned by this segment override, and instead moves on to the
-	//    next segment override or the default traffic split.</p>
+	// The values is expressed in thousandths of a percent, so assigning a weight
+	// of 50000 assigns 50% of traffic to that variation.
+	//
+	// If the sum of the weights for all the variations in a segment override does
+	// not add up to 100,000, then the remaining traffic that matches this segment
+	// is not assigned by this segment override, and instead moves on to the next
+	// segment override or the default traffic split.
 	//
 	// GroupWeights is a required field
 	GroupWeights map[string]*int64 `locationName:"groupWeights" type:"map" required:"true"`

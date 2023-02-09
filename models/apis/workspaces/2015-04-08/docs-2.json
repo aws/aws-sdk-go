@@ -9,9 +9,9 @@
     "CreateConnectClientAddIn": "<p>Creates a client-add-in for Amazon Connect within a directory. You can create only one Amazon Connect client add-in within a directory.</p> <p>This client add-in allows WorkSpaces users to seamlessly connect to Amazon Connect.</p>",
     "CreateConnectionAlias": "<p>Creates the specified connection alias for use with cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "CreateIpGroup": "<p>Creates an IP access control group.</p> <p>An IP access control group provides you with the ability to control the IP addresses from which users are allowed to access their WorkSpaces. To specify the CIDR address ranges, add rules to your IP access control group and then associate the group with your directory. You can add rules when you create the group or at any time using <a>AuthorizeIpRules</a>.</p> <p>There is a default IP access control group associated with your directory. If you don't associate an IP access control group with your directory, the default group is used. The default group includes a default rule that allows users to access their WorkSpaces from anywhere. You cannot modify the default IP access control group for your directory.</p>",
-    "CreateStandbyWorkspaces": "<p>Creates a Standby WorkSpace in a secondary region.</p>",
+    "CreateStandbyWorkspaces": "<p>Creates a standby WorkSpace in a secondary Region.</p>",
     "CreateTags": "<p>Creates the specified tags for the specified WorkSpaces resource.</p>",
-    "CreateUpdatedWorkspaceImage": "<p>Creates a new updated WorkSpace image based on the specified source image. The new updated WorkSpace image has the latest drivers and other updates required by the Amazon WorkSpaces components.</p> <p>To determine which WorkSpace images need to be updated with the latest Amazon WorkSpaces requirements, use <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\"> DescribeWorkspaceImages</a>.</p> <note> <ul> <li> <p>Only Windows 10, Windows Sever 2016, and Windows Server 2019 WorkSpace images can be programmatically updated at this time.</p> </li> <li> <p>Microsoft Windows updates and other application updates are not included in the update process.</p> </li> <li> <p>The source WorkSpace image is not deleted. You can delete the source image after you've verified your new updated image and created a new bundle. </p> </li> </ul> </note>",
+    "CreateUpdatedWorkspaceImage": "<p>Creates a new updated WorkSpace image based on the specified source image. The new updated WorkSpace image has the latest drivers and other updates required by the Amazon WorkSpaces components.</p> <p>To determine which WorkSpace images need to be updated with the latest Amazon WorkSpaces requirements, use <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\"> DescribeWorkspaceImages</a>.</p> <note> <ul> <li> <p>Only Windows 10, Windows Server 2016, and Windows Server 2019 WorkSpace images can be programmatically updated at this time.</p> </li> <li> <p>Microsoft Windows updates and other application updates are not included in the update process.</p> </li> <li> <p>The source WorkSpace image is not deleted. You can delete the source image after you've verified your new updated image and created a new bundle. </p> </li> </ul> </note>",
     "CreateWorkspaceBundle": "<p>Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html\"> Create a Custom WorkSpaces Image and Bundle</a>.</p>",
     "CreateWorkspaceImage": "<p>Creates a new WorkSpace image from an existing WorkSpace.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p> <note> <p>The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </note>",
@@ -42,7 +42,7 @@
     "DisassociateConnectionAlias": "<p>Disassociates a connection alias from a directory. Disassociating a connection alias disables cross-Region redirection between two directories in different Regions. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "DisassociateIpGroups": "<p>Disassociates the specified IP access control group from the specified directory.</p>",
     "ImportClientBranding": "<p>Imports client branding. Client branding allows you to customize your WorkSpace's client login portal. You can tailor your login portal company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <p>After you import client branding, the default branding experience for the specified platform type is replaced with the imported experience</p> <note> <ul> <li> <p>You must specify at least one platform type when importing client branding.</p> </li> <li> <p>You can import up to 6 MB of data with each request. If your request exceeds this limit, you can import client branding for different platform types using separate requests.</p> </li> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive. You can specify only one parameter for each platform type, but not both.</p> </li> <li> <p>Imported data can take up to a minute to appear in the WorkSpaces client.</p> </li> </ul> </note>",
-    "ImportWorkspaceImage": "<p>Imports the specified Windows 10 Bring Your Own License (BYOL) or Windows Server 2016 BYOL image into Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image that is in your Amazon Web Services account, and you must own the image. For more information about creating BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p>",
+    "ImportWorkspaceImage": "<p>Imports the specified Windows 10 Bring Your Own License (BYOL) image into Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image that is in your Amazon Web Services account, and you must own the image. For more information about creating BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p>",
     "ListAvailableManagementCidrRanges": "<p>Retrieves a list of IP address ranges, specified as IPv4 CIDR blocks, that you can use for the network management interface when you enable Bring Your Own License (BYOL). </p> <p>This operation can be run only by Amazon Web Services accounts that are enabled for BYOL. If your account isn't enabled for BYOL, you'll receive an <code>AccessDeniedException</code> error.</p> <p>The management network interface is connected to a secure Amazon WorkSpaces management network. It is used for interactive streaming of the WorkSpace desktop to Amazon WorkSpaces clients, and to allow Amazon WorkSpaces to manage the WorkSpace.</p>",
     "MigrateWorkspace": "<p>Migrates a WorkSpace from one operating system or bundle type to another, while retaining the data on the user volume.</p> <p>The migration process recreates the WorkSpace by using a new root volume from the target bundle image and the user volume from the last available snapshot of the original WorkSpace. During migration, the original <code>D:\\Users\\%USERNAME%</code> user profile folder is renamed to <code>D:\\Users\\%USERNAME%MMddyyTHHmmss%.NotMigrated</code>. A new <code>D:\\Users\\%USERNAME%\\</code> folder is generated by the new OS. Certain files in the old user profile are moved to the new user profile.</p> <p>For available migration scenarios, details about what happens during migration, and best practices, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/migrate-workspaces.html\">Migrate a WorkSpace</a>.</p>",
     "ModifyAccount": "<p>Modifies the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
@@ -905,7 +905,7 @@
       "base": null,
       "refs": {
         "AccountModification$ErrorMessage": "<p>The text of the error message that is returned if the configuration of BYOL cannot be modified.</p>",
-        "FailedCreateStandbyWorkspacesRequest$ErrorMessage": "<p>The text of the error message that is returned if the Standby WorkSpace could not be created.</p>",
+        "FailedCreateStandbyWorkspacesRequest$ErrorMessage": "<p>The text of the error message that is returned if the standby WorkSpace could not be created.</p>",
         "FailedCreateWorkspaceRequest$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be created.</p>",
         "FailedWorkspaceChangeRequest$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be rebooted.</p>",
         "Workspace$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be created.</p>",
@@ -933,9 +933,9 @@
         "ModifySelfservicePermissionsRequest$ResourceId": "<p>The identifier of the directory.</p>",
         "ModifyWorkspaceAccessPropertiesRequest$ResourceId": "<p>The identifier of the directory.</p>",
         "ModifyWorkspaceCreationPropertiesRequest$ResourceId": "<p>The identifier of the directory.</p>",
-        "PendingCreateStandbyWorkspacesRequest$DirectoryId": "<p>The identifier of the directory for the Standby WorkSpace.</p>",
+        "PendingCreateStandbyWorkspacesRequest$DirectoryId": "<p>The identifier of the directory for the standby WorkSpace.</p>",
         "RegisterWorkspaceDirectoryRequest$DirectoryId": "<p>The identifier of the directory. You cannot register a directory if it does not have a status of Active. If the directory does not have a status of Active, you will receive an InvalidResourceStateException error. If you have already registered the maximum number of directories that you can register with Amazon WorkSpaces, you will receive a ResourceLimitExceededException error. Deregister directories that you are not using for WorkSpaces, and try again.</p>",
-        "StandbyWorkspace$DirectoryId": "<p>The identifier of the directory for the Standby WorkSpace.</p>",
+        "StandbyWorkspace$DirectoryId": "<p>The identifier of the directory for the standby WorkSpace.</p>",
         "UpdateConnectClientAddInRequest$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
         "Workspace$DirectoryId": "<p>The identifier of the Directory Service directory for the WorkSpace.</p>",
         "WorkspaceDirectory$DirectoryId": "<p>The directory identifier.</p>",
@@ -1025,7 +1025,7 @@
       }
     },
     "FailedCreateStandbyWorkspacesRequest": {
-      "base": "<p>Describes the Standby WorkSpace that could not be created.</p>",
+      "base": "<p>Describes the standby WorkSpace that could not be created.</p>",
       "refs": {
         "FailedCreateStandbyWorkspacesRequestList$member": null
       }
@@ -1033,7 +1033,7 @@
     "FailedCreateStandbyWorkspacesRequestList": {
       "base": null,
       "refs": {
-        "CreateStandbyWorkspacesResult$FailedStandbyRequests": "<p>Information about the Standby WorkSpace that could not be created. </p>"
+        "CreateStandbyWorkspacesResult$FailedStandbyRequests": "<p>Information about the standby WorkSpace that could not be created. </p>"
       }
     },
     "FailedCreateWorkspaceRequest": {
@@ -1491,7 +1491,7 @@
       }
     },
     "PendingCreateStandbyWorkspacesRequest": {
-      "base": "<p>Information about the Standby WorkSpace.</p>",
+      "base": "<p>Information about the standby WorkSpace.</p>",
       "refs": {
         "PendingCreateStandbyWorkspacesRequestList$member": null
       }
@@ -1499,7 +1499,7 @@
     "PendingCreateStandbyWorkspacesRequestList": {
       "base": null,
       "refs": {
-        "CreateStandbyWorkspacesResult$PendingStandbyRequests": "<p>Information about the Standby WorkSpace that was created.</p>"
+        "CreateStandbyWorkspacesResult$PendingStandbyRequests": "<p>Information about the standby WorkSpace that was created.</p>"
       }
     },
     "Protocol": {
@@ -1594,7 +1594,7 @@
       }
     },
     "RelatedWorkspaceProperties": {
-      "base": "<p>Describes the related WorkSpace. The related WorkSpace could be a Standby WorkSpace or Primary WorkSpace related to the specified WorkSpace.</p>",
+      "base": "<p>Describes the related WorkSpace. The related WorkSpace could be a standby WorkSpace or primary WorkSpace related to the specified WorkSpace.</p>",
       "refs": {
         "RelatedWorkspaces$member": null
       }
@@ -1602,7 +1602,7 @@
     "RelatedWorkspaces": {
       "base": null,
       "refs": {
-        "Workspace$RelatedWorkspaces": "<p>The Standby WorkSpace or Primary WorkSpace related to the specified WorkSpace.</p>"
+        "Workspace$RelatedWorkspaces": "<p>The standby WorkSpace or primary WorkSpace related to the specified WorkSpace.</p>"
       }
     },
     "ResourceAlreadyExistsException": {
@@ -1734,9 +1734,9 @@
       }
     },
     "StandbyWorkspace": {
-      "base": "<p>Describes a Standby WorkSpace.</p>",
+      "base": "<p>Describes a standby WorkSpace.</p>",
       "refs": {
-        "FailedCreateStandbyWorkspacesRequest$StandbyWorkspaceRequest": "<p>Information about the Standby WorkSpace that could not be created.</p>",
+        "FailedCreateStandbyWorkspacesRequest$StandbyWorkspaceRequest": "<p>Information about the standby WorkSpace that could not be created.</p>",
         "StandbyWorkspacesList$member": null
       }
     },
@@ -1749,7 +1749,7 @@
     "StandbyWorkspacesList": {
       "base": null,
       "refs": {
-        "CreateStandbyWorkspacesRequest$StandbyWorkspaces": "<p>Information about the Standby WorkSpace to be created.</p>"
+        "CreateStandbyWorkspacesRequest$StandbyWorkspaces": "<p>Information about the standby WorkSpace to be created.</p>"
       }
     },
     "StartRequest": {
@@ -1841,7 +1841,7 @@
         "DescribeTagsResult$TagList": "<p>The tags.</p>",
         "ImportWorkspaceImageRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "RegisterWorkspaceDirectoryRequest$Tags": "<p>The tags associated with the directory.</p>",
-        "StandbyWorkspace$Tags": "<p>The tags associated with the Standby WorkSpace.</p>",
+        "StandbyWorkspace$Tags": "<p>The tags associated with the standby WorkSpace.</p>",
         "WorkspaceRequest$Tags": "<p>The tags for the WorkSpace.</p>"
       }
     },
@@ -1975,7 +1975,7 @@
       "base": null,
       "refs": {
         "DescribeWorkspacesRequest$UserName": "<p>The name of the directory user. You must specify this parameter with <code>DirectoryId</code>.</p>",
-        "PendingCreateStandbyWorkspacesRequest$UserName": "<p>Describes the Standby WorkSpace that was created.</p> <p>Because this operation is asynchronous, the identifier returned is not immediately available for use with other operations. For example, if you call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html\"> DescribeWorkspaces</a> before the WorkSpace is created, the information returned can be incomplete. </p>",
+        "PendingCreateStandbyWorkspacesRequest$UserName": "<p>Describes the standby WorkSpace that was created.</p> <p>Because this operation is asynchronous, the identifier returned is not immediately available for use with other operations. For example, if you call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html\"> DescribeWorkspaces</a> before the WorkSpace is created, the information returned can be incomplete. </p>",
         "Workspace$UserName": "<p>The user for the WorkSpace.</p>",
         "WorkspaceDirectory$CustomerUserName": "<p>The user name for the service account.</p>",
         "WorkspaceRequest$UserName": "<p>The user name of the user for the WorkSpace. This user name must exist in the Directory Service directory for the WorkSpace.</p>"
@@ -1997,7 +1997,7 @@
     "VolumeEncryptionKey": {
       "base": null,
       "refs": {
-        "StandbyWorkspace$VolumeEncryptionKey": "<p>The volume encryption key of the Standby WorkSpace.</p>",
+        "StandbyWorkspace$VolumeEncryptionKey": "<p>The volume encryption key of the standby WorkSpace.</p>",
         "Workspace$VolumeEncryptionKey": "<p>The symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric KMS keys.</p>",
         "WorkspaceRequest$VolumeEncryptionKey": "<p>The symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric KMS keys.</p>"
       }
@@ -2080,7 +2080,7 @@
       "base": null,
       "refs": {
         "AccountModification$ErrorCode": "<p>The error code that is returned if the configuration of BYOL cannot be modified.</p>",
-        "FailedCreateStandbyWorkspacesRequest$ErrorCode": "<p>The error code that is returned if the Standby WorkSpace could not be created.</p>",
+        "FailedCreateStandbyWorkspacesRequest$ErrorCode": "<p>The error code that is returned if the standby WorkSpace could not be created.</p>",
         "Workspace$ErrorCode": "<p>The error code that is returned if the WorkSpace cannot be created.</p>"
       }
     },
@@ -2095,12 +2095,12 @@
         "MigrateWorkspaceResult$TargetWorkspaceId": "<p>The new identifier of the WorkSpace that is being migrated. If the migration does not succeed, the target WorkSpace ID will not be used, and the WorkSpace will still have the original WorkSpace ID.</p>",
         "ModifyWorkspacePropertiesRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "ModifyWorkspaceStateRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
-        "PendingCreateStandbyWorkspacesRequest$WorkspaceId": "<p>The identifier of the Standby WorkSpace.</p>",
+        "PendingCreateStandbyWorkspacesRequest$WorkspaceId": "<p>The identifier of the standby WorkSpace.</p>",
         "RebootRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "RebuildRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "RelatedWorkspaceProperties$WorkspaceId": "<p>The identifier of the related WorkSpace.</p>",
         "RestoreWorkspaceRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
-        "StandbyWorkspace$PrimaryWorkspaceId": "<p>The identifier of the Standby WorkSpace.</p>",
+        "StandbyWorkspace$PrimaryWorkspaceId": "<p>The identifier of the standby WorkSpace.</p>",
         "StartRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "StopRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "TerminateRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
@@ -2233,7 +2233,7 @@
     "WorkspaceState": {
       "base": null,
       "refs": {
-        "PendingCreateStandbyWorkspacesRequest$State": "<p>The operational state of the Standby WorkSpace.</p>",
+        "PendingCreateStandbyWorkspacesRequest$State": "<p>The operational state of the standby WorkSpace.</p>",
         "RelatedWorkspaceProperties$State": "<p>Indicates the state of the WorkSpace.</p>",
         "Workspace$State": "<p>The operational state of the WorkSpace.</p> <note> <p>After a WorkSpace is terminated, the <code>TERMINATED</code> state is returned only briefly before the WorkSpace directory metadata is cleaned up, so this state is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace ID by using <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html\"> DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has been successfully terminated.</p> </note>"
       }

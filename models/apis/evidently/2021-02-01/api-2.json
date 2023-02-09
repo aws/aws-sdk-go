@@ -997,7 +997,7 @@
       "type":"map",
       "key":{"shape":"EntityId"},
       "value":{"shape":"VariationName"},
-      "max":20,
+      "max":2500,
       "min":0
     },
     "ErrorCodeEnum":{

@@ -83,7 +83,7 @@ func (c *WorkDocs) AbortDocumentVersionUploadRequest(input *AbortDocumentVersion
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -179,7 +179,7 @@ func (c *WorkDocs) ActivateUserRequest(input *ActivateUserInput) (req *request.R
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -270,7 +270,7 @@ func (c *WorkDocs) AddResourcePermissionsRequest(input *AddResourcePermissionsIn
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -369,7 +369,7 @@ func (c *WorkDocs) CreateCommentRequest(input *CreateCommentInput) (req *request
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -478,7 +478,7 @@ func (c *WorkDocs) CreateCustomMetadataRequest(input *CreateCustomMetadataInput)
 //     resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -588,7 +588,7 @@ func (c *WorkDocs) CreateFolderRequest(input *CreateFolderInput) (req *request.R
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -682,7 +682,7 @@ func (c *WorkDocs) CreateLabelsRequest(input *CreateLabelsInput) (req *request.R
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -873,7 +873,7 @@ func (c *WorkDocs) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -968,7 +968,7 @@ func (c *WorkDocs) DeactivateUserRequest(input *DeactivateUserInput) (req *reque
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1065,7 +1065,7 @@ func (c *WorkDocs) DeleteCommentRequest(input *DeleteCommentInput) (req *request
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1166,7 +1166,7 @@ func (c *WorkDocs) DeleteCustomMetadataRequest(input *DeleteCustomMetadataInput)
 //     The specified document version is not in the INITIALIZED state.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1274,7 +1274,7 @@ func (c *WorkDocs) DeleteDocumentRequest(input *DeleteDocumentInput) (req *reque
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1347,8 +1347,7 @@ func (c *WorkDocs) DeleteDocumentVersionRequest(input *DeleteDocumentVersionInpu
 
 // DeleteDocumentVersion API operation for Amazon WorkDocs.
 //
-// Deletes a version of an Amazon WorkDocs document. Use the DeletePriorVersions
-// parameter to delete prior versions.
+// Deletes a specific version of a document.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1376,7 +1375,7 @@ func (c *WorkDocs) DeleteDocumentVersionRequest(input *DeleteDocumentVersionInpu
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1487,7 +1486,7 @@ func (c *WorkDocs) DeleteFolderRequest(input *DeleteFolderInput) (req *request.R
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1588,7 +1587,7 @@ func (c *WorkDocs) DeleteFolderContentsRequest(input *DeleteFolderContentsInput)
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1682,7 +1681,7 @@ func (c *WorkDocs) DeleteLabelsRequest(input *DeleteLabelsInput) (req *request.R
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1849,6 +1848,9 @@ func (c *WorkDocs) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 //
 // Deletes the specified user from a Simple AD or Microsoft AD directory.
 //
+// Deleting a user immediately and permanently deletes all content in that user's
+// folder structure. Site retention policies do NOT apply to this type of deletion.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1868,7 +1870,7 @@ func (c *WorkDocs) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -1961,7 +1963,7 @@ func (c *WorkDocs) DescribeActivitiesRequest(input *DescribeActivitiesInput) (re
 //     The pagination marker or limit fields are not valid.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -2057,7 +2059,7 @@ func (c *WorkDocs) DescribeCommentsRequest(input *DescribeCommentsInput) (req *r
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -2161,7 +2163,7 @@ func (c *WorkDocs) DescribeDocumentVersionsRequest(input *DescribeDocumentVersio
 //     The pagination marker or limit fields are not valid.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -2323,7 +2325,7 @@ func (c *WorkDocs) DescribeFolderContentsRequest(input *DescribeFolderContentsIn
 //     The pagination marker or limit fields are not valid.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -2468,7 +2470,7 @@ func (c *WorkDocs) DescribeGroupsRequest(input *DescribeGroupsInput) (req *reque
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -2646,7 +2648,7 @@ func (c *WorkDocs) DescribeResourcePermissionsRequest(input *DescribeResourcePer
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -2747,7 +2749,7 @@ func (c *WorkDocs) DescribeRootFoldersRequest(input *DescribeRootFoldersInput) (
 //     The pagination marker or limit fields are not valid.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -2851,7 +2853,7 @@ func (c *WorkDocs) DescribeUsersRequest(input *DescribeUsersInput) (req *request
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3008,7 +3010,7 @@ func (c *WorkDocs) GetCurrentUserRequest(input *GetCurrentUserInput) (req *reque
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3104,7 +3106,7 @@ func (c *WorkDocs) GetDocumentRequest(input *GetDocumentInput) (req *request.Req
 //     The pagination marker or limit fields are not valid.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3206,7 +3208,7 @@ func (c *WorkDocs) GetDocumentPathRequest(input *GetDocumentPathInput) (req *req
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3299,7 +3301,7 @@ func (c *WorkDocs) GetDocumentVersionRequest(input *GetDocumentVersionInput) (re
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3401,7 +3403,7 @@ func (c *WorkDocs) GetFolderRequest(input *GetFolderInput) (req *request.Request
 //     The pagination marker or limit fields are not valid.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3503,7 +3505,7 @@ func (c *WorkDocs) GetFolderPathRequest(input *GetFolderPathInput) (req *request
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3597,7 +3599,7 @@ func (c *WorkDocs) GetResourcesRequest(input *GetResourcesInput) (req *request.R
 //     The pagination marker or limit fields are not valid.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3713,7 +3715,7 @@ func (c *WorkDocs) InitiateDocumentVersionUploadRequest(input *InitiateDocumentV
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3814,7 +3816,7 @@ func (c *WorkDocs) RemoveAllResourcePermissionsRequest(input *RemoveAllResourceP
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -3905,7 +3907,7 @@ func (c *WorkDocs) RemoveResourcePermissionRequest(input *RemoveResourcePermissi
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -4006,7 +4008,7 @@ func (c *WorkDocs) RestoreDocumentVersionsRequest(input *RestoreDocumentVersions
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -4121,7 +4123,7 @@ func (c *WorkDocs) UpdateDocumentRequest(input *UpdateDocumentInput) (req *reque
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -4228,7 +4230,7 @@ func (c *WorkDocs) UpdateDocumentVersionRequest(input *UpdateDocumentVersionInpu
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -4340,7 +4342,7 @@ func (c *WorkDocs) UpdateFolderRequest(input *UpdateFolderInput) (req *request.R
 //     The caller does not have access to perform the action on the resource.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -4440,7 +4442,7 @@ func (c *WorkDocs) UpdateUserRequest(input *UpdateUserInput) (req *request.Reque
 //     The specified document version is not in the INITIALIZED state.
 //
 //   - FailedDependencyException
-//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     The Directory Service cannot reach an on-premises instance. Or a dependency
 //     under the control of the organization is failing, such as a connected Active
 //     Directory.
 //
@@ -4478,8 +4480,8 @@ func (c *WorkDocs) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput
 type AbortDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AbortDocumentVersionUploadInput's
@@ -4583,8 +4585,8 @@ func (s AbortDocumentVersionUploadOutput) GoString() string {
 type ActivateUserInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ActivateUserInput's
@@ -4791,8 +4793,8 @@ func (s *Activity) SetType(v string) *Activity {
 type AddResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AddResourcePermissionsInput's
@@ -5231,8 +5233,8 @@ func (s *ConflictingOperationException) RequestID() string {
 type CreateCommentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateCommentInput's
@@ -5411,8 +5413,8 @@ func (s *CreateCommentOutput) SetComment(v *Comment) *CreateCommentOutput {
 type CreateCustomMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateCustomMetadataInput's
@@ -5529,8 +5531,8 @@ func (s CreateCustomMetadataOutput) GoString() string {
 type CreateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateFolderInput's
@@ -5638,8 +5640,8 @@ func (s *CreateFolderOutput) SetMetadata(v *FolderMetadata) *CreateFolderOutput 
 type CreateLabelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateLabelsInput's
@@ -5867,8 +5869,8 @@ func (s *CreateNotificationSubscriptionOutput) SetSubscription(v *Subscription) 
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
@@ -6133,8 +6135,8 @@ func (s *CustomMetadataLimitExceededException) RequestID() string {
 type DeactivateUserInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeactivateUserInput's
@@ -6285,8 +6287,8 @@ func (s *DeactivatingLastSystemUserException) RequestID() string {
 type DeleteCommentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteCommentInput's
@@ -6407,8 +6409,8 @@ func (s DeleteCommentOutput) GoString() string {
 type DeleteCustomMetadataInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteCustomMetadataInput's
@@ -6527,8 +6529,8 @@ func (s DeleteCustomMetadataOutput) GoString() string {
 type DeleteDocumentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteDocumentInput's
@@ -6615,26 +6617,25 @@ func (s DeleteDocumentOutput) GoString() string {
 type DeleteDocumentVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteDocumentVersionInput's
 	// String and GoString methods.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
-	// When set to TRUE, deletes the specified version and all prior versions of
-	// a document.
+	// Deletes all versions of a document prior to the current version.
 	//
 	// DeletePriorVersions is a required field
 	DeletePriorVersions *bool `location:"querystring" locationName:"deletePriorVersions" type:"boolean" required:"true"`
 
-	// The ID of a document.
+	// The ID of the document associated with the version being deleted.
 	//
 	// DocumentId is a required field
 	DocumentId *string `location:"uri" locationName:"DocumentId" min:"1" type:"string" required:"true"`
 
-	// The version ID of a document.
+	// The ID of the version being deleted.
 	//
 	// VersionId is a required field
 	VersionId *string `location:"uri" locationName:"VersionId" min:"1" type:"string" required:"true"`
@@ -6735,8 +6736,8 @@ func (s DeleteDocumentVersionOutput) GoString() string {
 type DeleteFolderContentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteFolderContentsInput's
@@ -6823,8 +6824,8 @@ func (s DeleteFolderContentsOutput) GoString() string {
 type DeleteFolderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteFolderInput's
@@ -6911,8 +6912,8 @@ func (s DeleteFolderOutput) GoString() string {
 type DeleteLabelsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteLabelsInput's
@@ -7106,7 +7107,7 @@ type DeleteUserInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// API actions, as in accessing the API using Amazon Web Services credentials.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteUserInput's
@@ -7197,8 +7198,8 @@ type DescribeActivitiesInput struct {
 	// is left empty, all activity types are returned.
 	ActivityTypes *string `location:"querystring" locationName:"activityTypes" min:"1" type:"string"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeActivitiesInput's
@@ -7390,8 +7391,8 @@ func (s *DescribeActivitiesOutput) SetUserActivities(v []*Activity) *DescribeAct
 type DescribeCommentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeCommentsInput's
@@ -7539,8 +7540,8 @@ func (s *DescribeCommentsOutput) SetMarker(v string) *DescribeCommentsOutput {
 type DescribeDocumentVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeDocumentVersionsInput's
@@ -7697,8 +7698,8 @@ func (s *DescribeDocumentVersionsOutput) SetMarker(v string) *DescribeDocumentVe
 type DescribeFolderContentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeFolderContentsInput's
@@ -7877,8 +7878,8 @@ func (s *DescribeFolderContentsOutput) SetMarker(v string) *DescribeFolderConten
 type DescribeGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeGroupsInput's
@@ -8140,8 +8141,8 @@ func (s *DescribeNotificationSubscriptionsOutput) SetSubscriptions(v []*Subscrip
 type DescribeResourcePermissionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeResourcePermissionsInput's
@@ -8402,8 +8403,8 @@ func (s *DescribeRootFoldersOutput) SetMarker(v string) *DescribeRootFoldersOutp
 type DescribeUsersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeUsersInput's
@@ -9117,7 +9118,7 @@ func (s *EntityNotExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+// The Directory Service cannot reach an on-premises instance. Or a dependency
 // under the control of the organization is failing, such as a connected Active
 // Directory.
 type FailedDependencyException struct {
@@ -9392,8 +9393,8 @@ func (s *GetCurrentUserOutput) SetUser(v *User) *GetCurrentUserOutput {
 type GetDocumentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetDocumentInput's
@@ -9507,8 +9508,8 @@ func (s *GetDocumentOutput) SetMetadata(v *DocumentMetadata) *GetDocumentOutput 
 type GetDocumentPathInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetDocumentPathInput's
@@ -9641,8 +9642,8 @@ func (s *GetDocumentPathOutput) SetPath(v *ResourcePath) *GetDocumentPathOutput 
 type GetDocumentVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetDocumentVersionInput's
@@ -9786,8 +9787,8 @@ func (s *GetDocumentVersionOutput) SetMetadata(v *DocumentVersionMetadata) *GetD
 type GetFolderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetFolderInput's
@@ -9901,8 +9902,8 @@ func (s *GetFolderOutput) SetMetadata(v *FolderMetadata) *GetFolderOutput {
 type GetFolderPathInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetFolderPathInput's
@@ -10035,8 +10036,8 @@ func (s *GetFolderPathOutput) SetPath(v *ResourcePath) *GetFolderPathOutput {
 type GetResourcesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// The Amazon WorkDocs authentication token. Not required when using Amazon
+	// Web Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetResourcesInput's
@@ -10286,8 +10287,8 @@ func (s *IllegalUserStateException) RequestID() string {
 type InitiateDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InitiateDocumentVersionUploadInput's
@@ -10779,7 +10780,7 @@ type NotificationOptions struct {
 	// String and GoString methods.
 	EmailMessage *string `type:"string" sensitive:"true"`
 
-	// Boolean value to indicate an email notification should be sent to the receipients.
+	// Boolean value to indicate an email notification should be sent to the recipients.
 	SendEmail *bool `type:"boolean"`
 }
 
@@ -11012,8 +11013,8 @@ func (s *ProhibitedStateException) RequestID() string {
 type RemoveAllResourcePermissionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RemoveAllResourcePermissionsInput's
@@ -11100,8 +11101,8 @@ func (s RemoveAllResourcePermissionsOutput) GoString() string {
 type RemoveResourcePermissionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RemoveResourcePermissionInput's
@@ -11503,8 +11504,8 @@ func (s *ResourcePathComponent) SetName(v string) *ResourcePathComponent {
 type RestoreDocumentVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RestoreDocumentVersionsInput's
@@ -12290,8 +12291,8 @@ func (s *UnauthorizedResourceAccessException) RequestID() string {
 type UpdateDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateDocumentInput's
@@ -12411,8 +12412,8 @@ func (s UpdateDocumentOutput) GoString() string {
 type UpdateDocumentVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateDocumentVersionInput's
@@ -12525,8 +12526,8 @@ func (s UpdateDocumentVersionOutput) GoString() string {
 type UpdateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateFolderInput's
@@ -12647,8 +12648,8 @@ func (s UpdateFolderOutput) GoString() string {
 type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Not required when using AWS administrator
-	// credentials to access the API.
+	// Amazon WorkDocs authentication token. Not required when using Amazon Web
+	// Services administrator credentials to access the API.
 	//
 	// AuthenticationToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateUserInput's
@@ -12658,7 +12659,7 @@ type UpdateUserInput struct {
 	// The given name of the user.
 	GivenName *string `min:"1" type:"string"`
 
-	// Boolean value to determine whether the user is granted Poweruser privileges.
+	// Boolean value to determine whether the user is granted Power user privileges.
 	GrantPoweruserPrivileges *string `type:"string" enum:"BooleanEnumType"`
 
 	// The locale of the user.

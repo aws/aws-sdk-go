@@ -162,7 +162,9 @@ func (c *MigrationHubRefactorSpaces) CreateEnvironmentRequest(input *CreateEnvir
 // services, and routes created within the environment. They are referred to
 // as the environment owner. The environment owner has cross-account visibility
 // and control of Refactor Spaces resources that are added to the environment
-// by other accounts that the environment is shared with. When creating an environment,
+// by other accounts that the environment is shared with.
+//
+// When creating an environment with a network fabric type of TRANSIT_GATEWAY,
 // Refactor Spaces provisions a transit gateway in your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8831,12 +8833,16 @@ func HttpMethod_Values() []string {
 const (
 	// NetworkFabricTypeTransitGateway is a NetworkFabricType enum value
 	NetworkFabricTypeTransitGateway = "TRANSIT_GATEWAY"
+
+	// NetworkFabricTypeNone is a NetworkFabricType enum value
+	NetworkFabricTypeNone = "NONE"
 )
 
 // NetworkFabricType_Values returns all elements of the NetworkFabricType enum
 func NetworkFabricType_Values() []string {
 	return []string{
 		NetworkFabricTypeTransitGateway,
+		NetworkFabricTypeNone,
 	}
 }
 

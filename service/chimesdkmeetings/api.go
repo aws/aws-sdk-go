@@ -1227,7 +1227,14 @@ func (c *ChimeSDKMeetings) StartMeetingTranscriptionRequest(input *StartMeetingT
 
 // StartMeetingTranscription API operation for Amazon Chime SDK Meetings.
 //
-// Starts transcription for the specified meetingId.
+// Starts transcription for the specified meetingId. For more information, refer
+// to Using Amazon Chime SDK live transcription (https://docs.aws.amazon.com/chime-sdk/latest/dg/meeting-transcription.html)
+// in the Amazon Chime SDK Developer Guide.
+//
+// Amazon Chime SDK live transcription is powered by Amazon Transcribe. Use
+// of Amazon Transcribe is subject to the AWS Service Terms (https://aws.amazon.com/service-terms/),
+// including the terms specific to the AWS Machine Learning and Artificial Intelligence
+// Services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1332,7 +1339,14 @@ func (c *ChimeSDKMeetings) StopMeetingTranscriptionRequest(input *StopMeetingTra
 
 // StopMeetingTranscription API operation for Amazon Chime SDK Meetings.
 //
-// Stops transcription for the specified meetingId.
+// Stops transcription for the specified meetingId. For more information, refer
+// to Using Amazon Chime SDK live transcription (https://docs.aws.amazon.com/chime-sdk/latest/dg/meeting-transcription.html)
+// in the Amazon Chime SDK Developer Guide.
+//
+// Amazon Chime SDK live transcription is powered by Amazon Transcribe. Use
+// of Amazon Transcribe is subject to the AWS Service Terms (https://aws.amazon.com/service-terms/),
+// including the terms specific to the AWS Machine Learning and Artificial Intelligence
+// Services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1737,6 +1751,11 @@ type Attendee struct {
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
 	// to an identity managed by a builder application.
+	//
+	// Pattern: [-_&@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*
+	//
+	// Values that begin with aws: are reserved. You can't configure a value that
+	// uses this prefix. Case insensitive.
 	//
 	// ExternalUserId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Attendee's
@@ -2356,6 +2375,11 @@ type CreateAttendeeError struct {
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
 	// to an identity managed by a builder application.
 	//
+	// Pattern: [-_&@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*
+	//
+	// Values that begin with aws: are reserved. You can't configure a value that
+	// uses this prefix. Case insensitive.
+	//
 	// ExternalUserId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAttendeeError's
 	// String and GoString methods.
@@ -2429,6 +2453,11 @@ type CreateAttendeeInput struct {
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
 	// to an identity managed by a builder application.
+	//
+	// Pattern: [-_&@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*
+	//
+	// Values that begin with aws: are reserved. You can't configure a value that
+	// uses this prefix.
 	//
 	// ExternalUserId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAttendeeInput's
@@ -2548,6 +2577,11 @@ type CreateAttendeeRequestItem struct {
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
 	// to an identity managed by a builder application.
 	//
+	// Pattern: [-_&@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*
+	//
+	// Values that begin with aws: are reserved. You can't configure a value that
+	// uses this prefix. Case insensitive.
+	//
 	// ExternalUserId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAttendeeRequestItem's
 	// String and GoString methods.
@@ -2619,6 +2653,11 @@ type CreateMeetingInput struct {
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
 	// The external meeting ID.
+	//
+	// Pattern: [-_&@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*
+	//
+	// Values that begin with aws: are reserved. You can't configure a value that
+	// uses this prefix. Case insensitive.
 	//
 	// ExternalMeetingId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateMeetingInput's
@@ -2873,6 +2912,11 @@ type CreateMeetingWithAttendeesInput struct {
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
 	// The external meeting ID.
+	//
+	// Pattern: [-_&@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*
+	//
+	// Values that begin with aws: are reserved. You can't configure a value that
+	// uses this prefix. Case insensitive.
 	//
 	// ExternalMeetingId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateMeetingWithAttendeesInput's
@@ -4169,6 +4213,11 @@ type Meeting struct {
 
 	// The external meeting ID.
 	//
+	// Pattern: [-_&@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*
+	//
+	// Values that begin with aws: are reserved. You can't configure a value that
+	// uses this prefix. Case insensitive.
+	//
 	// ExternalMeetingId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Meeting's
 	// String and GoString methods.
@@ -4188,7 +4237,7 @@ type Meeting struct {
 	// The ARN of the meeting.
 	MeetingArn *string `min:"1" type:"string"`
 
-	// The features available to a meeting, such as Amazon Voice Focus.
+	// The features available to a meeting, such as echo reduction.
 	MeetingFeatures *MeetingFeaturesConfiguration `type:"structure"`
 
 	// Reserved.
@@ -4280,7 +4329,7 @@ func (s *Meeting) SetTenantIds(v []*string) *Meeting {
 	return s
 }
 
-// The configuration settings of the features available to a meeting.>
+// The configuration settings of the features available to a meeting.
 type MeetingFeaturesConfiguration struct {
 	_ struct{} `type:"structure"`
 

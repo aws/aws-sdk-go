@@ -2,9 +2,9 @@
   "version": "2.0",
   "service": "<p/>",
   "operations": {
-    "BatchCreateCustomVocabularyItem": "<p>Batch create custom vocabulary item for the specified locale in the specified bot.</p>",
-    "BatchDeleteCustomVocabularyItem": "<p>Batch delete custom vocabulary item for the specified locale in the specified bot.</p>",
-    "BatchUpdateCustomVocabularyItem": "<p>Batch update custom vocabulary item for the specified locale in the specified bot.</p>",
+    "BatchCreateCustomVocabularyItem": "<p>Create a batch of custom vocabulary items for a given bot locale's custom vocabulary.</p>",
+    "BatchDeleteCustomVocabularyItem": "<p>Delete a batch of custom vocabulary items for a given bot locale's custom vocabulary.</p>",
+    "BatchUpdateCustomVocabularyItem": "<p>Update a batch of custom vocabulary items for a given bot locale's custom vocabulary.</p>",
     "BuildBotLocale": "<p>Builds a bot, its intents, and its slot types into a specific locale. A bot can be built into multiple locales. At runtime the locale is used to choose a specific build of the bot.</p>",
     "CreateBot": "<p>Creates an Amazon Lex conversational bot. </p>",
     "CreateBotAlias": "<p>Creates an alias for the specified version of a bot. Use an alias to enable you to change the version of a bot without updating applications that use the bot.</p> <p>For example, you can create an alias called \"PROD\" that your applications use to call the Amazon Lex bot. </p>",
@@ -20,7 +20,7 @@
     "DeleteBot": "<p>Deletes all versions of a bot, including the <code>Draft</code> version. To delete a specific version, use the <code>DeleteBotVersion</code> operation.</p> <p>When you delete a bot, all of the resources contained in the bot are also deleted. Deleting a bot removes all locales, intents, slot, and slot types defined for the bot.</p> <p>If a bot has an alias, the <code>DeleteBot</code> operation returns a <code>ResourceInUseException</code> exception. If you want to delete the bot and the alias, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
     "DeleteBotAlias": "<p>Deletes the specified bot alias.</p>",
     "DeleteBotLocale": "<p>Removes a locale from a bot.</p> <p>When you delete a locale, all intents, slots, and slot types defined for the locale are also deleted.</p>",
-    "DeleteBotVersion": "<p>Deletes a specific version of a bot. To delete all version of a bot, use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DeleteBot.html\">DeleteBot</a> operation.</p>",
+    "DeleteBotVersion": "<p>Deletes a specific version of a bot. To delete all versions of a bot, use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DeleteBot.html\">DeleteBot</a> operation.</p>",
     "DeleteCustomVocabulary": "<p>Removes a custom vocabulary from the specified locale in the specified bot.</p>",
     "DeleteExport": "<p>Removes a previous export and the associated files stored in an S3 bucket.</p>",
     "DeleteImport": "<p>Removes a previous import and the associated file stored in an S3 bucket.</p>",
@@ -29,7 +29,7 @@
     "DeleteResourcePolicyStatement": "<p>Deletes a policy statement from a resource policy. If you delete the last statement from a policy, the policy is deleted. If you specify a statement ID that doesn't exist in the policy, or if the bot or bot alias doesn't have a policy attached, Amazon Lex returns an exception.</p>",
     "DeleteSlot": "<p>Deletes the specified slot from an intent.</p>",
     "DeleteSlotType": "<p>Deletes a slot type from a bot locale.</p> <p>If a slot is using the slot type, Amazon Lex throws a <code>ResourceInUseException</code> exception. To avoid the exception, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
-    "DeleteUtterances": "<p>Deletes stored utterances.</p> <p>Amazon Lex stores the utterances that users send to your bot. Utterances are stored for 15 days for use with the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListAggregatedUtterances.html\">ListAggregatedUtterances</a> operation, and then stored indefinitely for use in improving the ability of your bot to respond to user input..</p> <p>Use the <code>DeleteUtterances</code> operation to manually delete utterances for a specific session. When you use the <code>DeleteUtterances</code> operation, utterances stored for improving your bot's ability to respond to user input are deleted immediately. Utterances stored for use with the <code>ListAggregatedUtterances</code> operation are deleted after 15 days.</p>",
+    "DeleteUtterances": "<p>Deletes stored utterances.</p> <p>Amazon Lex stores the utterances that users send to your bot. Utterances are stored for 15 days for use with the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListAggregatedUtterances.html\">ListAggregatedUtterances</a> operation, and then stored indefinitely for use in improving the ability of your bot to respond to user input..</p> <p>Use the <code>DeleteUtterances</code> operation to manually delete utterances for a specific session. When you use the <code>DeleteUtterances</code> operation, utterances stored for improving your bot's ability to respond to user input are deleted immediately. Utterances stored for use with the <code>ListAggregatedUtterances</code> operation are deleted after 15 days.</p>",
     "DescribeBot": "<p>Provides metadata information about a bot. </p>",
     "DescribeBotAlias": "<p>Get information about a specific bot alias.</p>",
     "DescribeBotLocale": "<p>Describes the settings that a bot has for a specific locale. </p>",
@@ -48,9 +48,9 @@
     "ListBotRecommendations": "<p>Get a list of bot recommendations that meet the specified criteria.</p>",
     "ListBotVersions": "<p>Gets information about all of the versions of a bot.</p> <p>The <code>ListBotVersions</code> operation returns a summary of each version of a bot. For example, if a bot has three numbered versions, the <code>ListBotVersions</code> operation returns for summaries, one for each numbered version and one for the <code>DRAFT</code> version.</p> <p>The <code>ListBotVersions</code> operation always returns at least one version, the <code>DRAFT</code> version.</p>",
     "ListBots": "<p>Gets a list of available bots.</p>",
-    "ListBuiltInIntents": "<p>Gets a list of built-in intents provided by Amazon Lex that you can use in your bot. </p> <p>To use a built-in intent as a the base for your own intent, include the built-in intent signature in the <code>parentIntentSignature</code> parameter when you call the <code>CreateIntent</code> operation. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateIntent.html\">CreateIntent</a>.</p>",
+    "ListBuiltInIntents": "<p>Gets a list of built-in intents provided by Amazon Lex that you can use in your bot. </p> <p>To use a built-in intent as a the base for your own intent, include the built-in intent signature in the <code>parentIntentSignature</code> parameter when you call the <code>CreateIntent</code> operation. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateIntent.html\">CreateIntent</a>.</p>",
     "ListBuiltInSlotTypes": "<p>Gets a list of built-in slot types that meet the specified criteria.</p>",
-    "ListCustomVocabularyItems": "<p>List custom vocabulary items for the specified locale in the specified bot.</p>",
+    "ListCustomVocabularyItems": "<p>Paginated list of custom vocabulary items for a given bot locale's custom vocabulary.</p>",
     "ListExports": "<p>Lists the exports for a bot, bot locale, or custom vocabulary. Exports are kept in the list for 7 days.</p>",
     "ListImports": "<p>Lists the imports for a bot, bot locale, or custom vocabulary. Imports are kept in the list for 7 days.</p>",
     "ListIntents": "<p>Get a list of intents that meet the specified criteria.</p>",
@@ -68,7 +68,7 @@
     "UpdateBotAlias": "<p>Updates the configuration of an existing bot alias.</p>",
     "UpdateBotLocale": "<p>Updates the settings that a bot has for a specific locale.</p>",
     "UpdateBotRecommendation": "<p>Updates an existing bot recommendation request.</p>",
-    "UpdateExport": "<p>Updates the password used to protect an export zip archive.</p> <p>The password is not required. If you don't supply a password, Amazon Lex generates a zip file that is not protected by a password. This is the archive that is available at the pre-signed S3 URL provided by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html\">DescribeExport</a> operation.</p>",
+    "UpdateExport": "<p>Updates the password used to protect an export zip archive.</p> <p>The password is not required. If you don't supply a password, Amazon Lex generates a zip file that is not protected by a password. This is the archive that is available at the pre-signed S3 URL provided by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeExport.html\">DescribeExport</a> operation.</p>",
     "UpdateIntent": "<p>Updates the settings for an intent.</p>",
     "UpdateResourcePolicy": "<p>Replaces the existing resource policy for a bot or bot alias with a new one. If the policy doesn't exist, Amazon Lex returns an exception.</p>",
     "UpdateSlot": "<p>Updates the settings for a slot.</p>",
@@ -292,7 +292,8 @@
     "BotAliasId": {
       "base": null,
       "refs": {
-        "BotAliasSummary$botAliasId": "<p>The unique identifier assigned to the bot alias. You can use this ID to get detailed information about the alias using the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeBotAlias.html\">DescribeBotAlias</a> operation.</p>",
+        "BotAliasSummary$botAliasId": "<p>The unique identifier assigned to the bot alias. You can use this ID to get detailed information about the alias using the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeBotAlias.html\">DescribeBotAlias</a> operation.</p>",
+        "BotMember$botMemberAliasId": "<p>The alias ID of a bot that is a member of this network of bots.</p>",
         "CreateBotAliasResponse$botAliasId": "<p>The unique identifier of the bot alias.</p>",
         "DeleteBotAliasRequest$botAliasId": "<p>The unique identifier of the bot alias to delete.</p>",
         "DeleteBotAliasResponse$botAliasId": "<p>The unique identifier of the bot alias to delete.</p>",
@@ -320,6 +321,12 @@
         "UpdateBotAliasResponse$botAliasLocaleSettings": "<p>The updated Lambda functions to use in each locale for the bot alias.</p>"
       }
     },
+    "BotAliasName": {
+      "base": null,
+      "refs": {
+        "BotMember$botMemberAliasName": "<p>The alias name of a bot that is a member of this network of bots.</p>"
+      }
+    },
     "BotAliasStatus": {
       "base": null,
       "refs": {
@@ -331,7 +338,7 @@
       }
     },
     "BotAliasSummary": {
-      "base": "<p>Summary information about bot aliases returned from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotAliases.html\">ListBotAliases</a> operation.</p>",
+      "base": "<p>Summary information about bot aliases returned from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBotAliases.html\">ListBotAliases</a> operation.</p>",
       "refs": {
         "BotAliasSummaryList$member": null
       }
@@ -456,7 +463,7 @@
       }
     },
     "BotLocaleSummary": {
-      "base": "<p>Summary information about bot locales returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotLocales.html\">ListBotLocales</a> operation.</p>",
+      "base": "<p>Summary information about bot locales returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBotLocales.html\">ListBotLocales</a> operation.</p>",
       "refs": {
         "BotLocaleSummaryList$member": null
       }
@@ -465,6 +472,23 @@
       "base": null,
       "refs": {
         "ListBotLocalesResponse$botLocaleSummaries": "<p>Summary information for the locales that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter of the request. If there are more locales available, the <code>nextToken</code> field contains a token to get the next page of results.</p>"
+      }
+    },
+    "BotMember": {
+      "base": "<p>A bot that is a member of a network of bots.</p>",
+      "refs": {
+        "BotMembers$member": null
+      }
+    },
+    "BotMembers": {
+      "base": null,
+      "refs": {
+        "CreateBotRequest$botMembers": "<p>The list of bot members in a network to be created.</p>",
+        "CreateBotResponse$botMembers": "<p>The list of bots in a network that was created.</p>",
+        "DescribeBotResponse$botMembers": "<p>The list of bots in the network that was described.</p>",
+        "DescribeBotVersionResponse$botMembers": "<p>The members of bot network in the version that was described.</p>",
+        "UpdateBotRequest$botMembers": "<p>The list of bot members in the network associated with the update action.</p>",
+        "UpdateBotResponse$botMembers": "<p>The list of bot members in the network that was updated.</p>"
       }
     },
     "BotRecommendationResultStatistics": {
@@ -518,7 +542,7 @@
       "refs": {
         "BotSummary$botStatus": "<p>The current status of the bot. When the status is <code>Available</code> the bot is ready for use.</p>",
         "BotVersionSummary$botStatus": "<p>The status of the bot. When the status is available, the version of the bot is ready for use.</p>",
-        "CreateBotResponse$botStatus": "<p>Shows the current status of the bot. The bot is first in the <code>Creating</code> status. Once the bot is read for use, it changes to the <code>Available</code> status. After the bot is created, you can use the <code>Draft</code> version of the bot.</p>",
+        "CreateBotResponse$botStatus": "<p>Shows the current status of the bot. The bot is first in the <code>Creating</code> status. Once the bot is read for use, it changes to the <code>Available</code> status. After the bot is created, you can use the <code>DRAFT</code> version of the bot.</p>",
         "CreateBotVersionResponse$botStatus": "<p>When you send a request to create or update a bot, Amazon Lex sets the status response element to <code>Creating</code>. After Amazon Lex builds the bot, it sets status to <code>Available</code>. If Amazon Lex can't build the bot, it sets status to <code>Failed</code>.</p>",
         "DeleteBotResponse$botStatus": "<p>The current status of the bot. The status is <code>Deleting</code> while the bot and its associated resources are being deleted.</p>",
         "DeleteBotVersionResponse$botStatus": "<p>The current status of the bot. </p>",
@@ -528,7 +552,7 @@
       }
     },
     "BotSummary": {
-      "base": "<p>Summary information about a bot returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBots.html\">ListBots</a> operation.</p>",
+      "base": "<p>Summary information about a bot returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBots.html\">ListBots</a> operation.</p>",
       "refs": {
         "BotSummaryList$member": null
       }
@@ -539,19 +563,32 @@
         "ListBotsResponse$botSummaries": "<p>Summary information for the bots that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter of the request. If there are more bots available, the <code>nextToken</code> field contains a token to the next page of results.</p>"
       }
     },
+    "BotType": {
+      "base": null,
+      "refs": {
+        "BotSummary$botType": "<p>The type of the bot.</p>",
+        "CreateBotRequest$botType": "<p>The type of a bot to create.</p>",
+        "CreateBotResponse$botType": "<p>The type of a bot that was created.</p>",
+        "DescribeBotResponse$botType": "<p>The type of the bot that was described.</p>",
+        "DescribeBotVersionResponse$botType": "<p>The type of the bot in the version that was described.</p>",
+        "UpdateBotRequest$botType": "<p>The type of the bot to be updated.</p>",
+        "UpdateBotResponse$botType": "<p>The type of the bot that was updated.</p>"
+      }
+    },
     "BotVersion": {
       "base": null,
       "refs": {
-        "BatchCreateCustomVocabularyItemRequest$botVersion": "<p>The bot version of the bot to batch create the custom vocabulary item for.</p>",
-        "BatchCreateCustomVocabularyItemResponse$botVersion": "<p>The bot version of the bot to batch create the custom vocabulary item response for.</p>",
-        "BatchDeleteCustomVocabularyItemRequest$botVersion": "<p>The version of the bot to batch delete request for the custom vocabulary item.</p>",
-        "BatchDeleteCustomVocabularyItemResponse$botVersion": "<p>The version of the bot to batch delete response for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemRequest$botVersion": "<p>The bot version of the bot to the batch update request for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemResponse$botVersion": "<p>The bot version of the bot to the batch update response for the custom vocabulary item.</p>",
+        "BatchCreateCustomVocabularyItemRequest$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
+        "BatchCreateCustomVocabularyItemResponse$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
+        "BatchDeleteCustomVocabularyItemRequest$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
+        "BatchUpdateCustomVocabularyItemRequest$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
         "BotAliasHistoryEvent$botVersion": "<p>The version of the bot that was used in the event. </p>",
         "BotAliasSummary$botVersion": "<p>The version of the bot that the bot alias references.</p>",
         "BotExportSpecification$botVersion": "<p>The version of the bot that was exported. This will be either <code>DRAFT</code> or the version number.</p>",
         "BotLocaleExportSpecification$botVersion": "<p>The version of the bot to export.</p>",
+        "BotMember$botMemberVersion": "<p>The version of a bot that is a member of this network of bots.</p>",
         "BotVersionLocaleDetails$sourceBotVersion": "<p>The version of a bot used for a bot locale.</p>",
         "BotVersionSummary$botVersion": "<p>The numeric version of the bot, or <code>DRAFT</code> to indicate that this is the version of the bot that can be updated..</p>",
         "CustomVocabularyExportSpecification$botVersion": "<p>The version of the bot that contains the custom vocabulary to export.</p>",
@@ -570,7 +607,7 @@
         "ListBotLocalesRequest$botVersion": "<p>The version of the bot to list locales for.</p>",
         "ListBotLocalesResponse$botVersion": "<p>The version of the bot.</p>",
         "ListCustomVocabularyItemsRequest$botVersion": "<p>The bot version of the bot to the list custom vocabulary request.</p>",
-        "ListCustomVocabularyItemsResponse$botVersion": "<p>The bot version of the bot to the list custom vocabulary response.</p>",
+        "ListCustomVocabularyItemsResponse$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
         "ListExportsRequest$botVersion": "<p>The version of the bot to list exports for. </p>",
         "ListExportsResponse$botVersion": "<p>The version of the bot that was exported.</p>",
         "ListIntentsRequest$botVersion": "<p>The version of the bot that contains the intent.</p>",
@@ -579,6 +616,7 @@
         "ListSlotTypesResponse$botVersion": "<p>The version of the bot that contains the slot types.</p>",
         "ListSlotsRequest$botVersion": "<p>The version of the bot that contains the slot.</p>",
         "ListSlotsResponse$botVersion": "<p>The version of the bot that contains the slots.</p>",
+        "ParentBotNetwork$botVersion": "<p>The version of the network of bots.</p>",
         "SearchAssociatedTranscriptsRequest$botVersion": "<p>The version of the bot containing the transcripts that you are searching.</p>",
         "SearchAssociatedTranscriptsResponse$botVersion": "<p>The version of the bot containing the transcripts that you are searching.</p>",
         "UpdateBotAliasRequest$botVersion": "<p>The new bot version to assign to the bot alias.</p>",
@@ -611,7 +649,7 @@
       }
     },
     "BotVersionSummary": {
-      "base": "<p>Summary information about a bot version returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotVersions.html\">ListBotVersions</a> operation.</p>",
+      "base": "<p>Summary information about a bot version returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBotVersions.html\">ListBotVersions</a> operation.</p>",
       "refs": {
         "BotVersionSummaryList$member": null
       }
@@ -669,7 +707,7 @@
       }
     },
     "BuiltInIntentSummary": {
-      "base": "<p>Provides summary information about a built-in intent for the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBuiltInIntents.html\"> ListBuiltInIntents </a> operation.</p>",
+      "base": "<p>Provides summary information about a built-in intent for the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBuiltInIntents.html\"> ListBuiltInIntents </a> operation.</p>",
       "refs": {
         "BuiltInIntentSummaryList$member": null
       }
@@ -706,7 +744,7 @@
       }
     },
     "BuiltInSlotTypeSummary": {
-      "base": "<p>Provides summary information about a built-in slot type for the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBuiltInSlotTypes.html\"> ListBuiltInSlotTypes </a> operation.</p>",
+      "base": "<p>Provides summary information about a built-in slot type for the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListBuiltInSlotTypes.html\"> ListBuiltInSlotTypes </a> operation.</p>",
       "refs": {
         "BuiltInSlotTypeSummaryList$member": null
       }
@@ -948,7 +986,7 @@
     "CreateCustomVocabularyItemsList": {
       "base": null,
       "refs": {
-        "BatchCreateCustomVocabularyItemRequest$customVocabularyItemList": "<p>The custom vocabulary item list of the bot to batch create the custom vocabulary item for.</p>"
+        "BatchCreateCustomVocabularyItemRequest$customVocabularyItemList": "<p>A list of new custom vocabulary items. Each entry must contain a phrase and can optionally contain a displayAs and/or a weight.</p>"
       }
     },
     "CreateExportRequest": {
@@ -1061,9 +1099,9 @@
     "CustomVocabularyItems": {
       "base": null,
       "refs": {
-        "BatchCreateCustomVocabularyItemResponse$resources": "<p>The resources of the action to batch create the custom vocabulary item response for a bot.</p>",
-        "BatchDeleteCustomVocabularyItemResponse$resources": "<p>The resources of the action to batch delete response for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemResponse$resources": "<p>The resources of the action to batch update response for the custom vocabulary item.</p>",
+        "BatchCreateCustomVocabularyItemResponse$resources": "<p>A list of custom vocabulary items that were successfully created during the operation.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$resources": "<p>A list of custom vocabulary items that were successfully deleted during the operation.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$resources": "<p>A list of custom vocabulary items that were successfully updated during the operation.</p>",
         "ListCustomVocabularyItemsResponse$customVocabularyItems": "<p>The custom vocabulary items from the list custom vocabulary response.</p>"
       }
     },
@@ -1154,7 +1192,7 @@
     "DeleteCustomVocabularyItemsList": {
       "base": null,
       "refs": {
-        "BatchDeleteCustomVocabularyItemRequest$customVocabularyItemList": "<p>The custom vocabulary list to batch delete request for the custom vocabulary item.</p>"
+        "BatchDeleteCustomVocabularyItemRequest$customVocabularyItemList": "<p>A list of custom vocabulary items requested to be deleted. Each entry must contain the unique custom vocabulary entry identifier.</p>"
       }
     },
     "DeleteCustomVocabularyRequest": {
@@ -1544,7 +1582,7 @@
       }
     },
     "ExportFilter": {
-      "base": "<p>Filters the response form the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListExports.html\">ListExports</a> operation</p>",
+      "base": "<p>Filters the response form the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListExports.html\">ListExports</a> operation</p>",
       "refs": {
         "ExportFilters$member": null
       }
@@ -1592,8 +1630,8 @@
     "ExportStatus": {
       "base": null,
       "refs": {
-        "CreateExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Completed</code>, you can use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html\">DescribeExport</a> operation to get the pre-signed S3 URL link to your exported bot or bot locale.</p>",
-        "DeleteExportResponse$exportStatus": "<p>The current status of the deletion. When the deletion is complete, the export will no longer be returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListExports.html\">ListExports</a> operation and calls to the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html\"> DescribeExport</a> operation with the export identifier will fail.</p>",
+        "CreateExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Completed</code>, you can use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeExport.html\">DescribeExport</a> operation to get the pre-signed S3 URL link to your exported bot or bot locale.</p>",
+        "DeleteExportResponse$exportStatus": "<p>The current status of the deletion. When the deletion is complete, the export will no longer be returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListExports.html\">ListExports</a> operation and calls to the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeExport.html\"> DescribeExport</a> operation with the export identifier will fail.</p>",
         "DescribeExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Complete</code> the export archive file is available for download.</p>",
         "ExportSummary$exportStatus": "<p>The status of the export. When the status is <code>Completed</code> the export is ready to download.</p>",
         "UpdateExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Completed</code> the export archive is available for download.</p>"
@@ -1630,9 +1668,9 @@
     "FailedCustomVocabularyItems": {
       "base": null,
       "refs": {
-        "BatchCreateCustomVocabularyItemResponse$errors": "<p>The errors of the action to batch create the custom vocabulary item response for a bot.</p>",
-        "BatchDeleteCustomVocabularyItemResponse$errors": "<p>The errors of the action to batch delete response for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemResponse$errors": "<p>The errors of the action to batch update response for the custom vocabulary item.</p>"
+        "BatchCreateCustomVocabularyItemResponse$errors": "<p>A list of custom vocabulary items that failed to create during the operation. The reason for the error is contained within each error object.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$errors": "<p>A list of custom vocabulary items that failed to delete during the operation. The reason for the error is contained within each error object.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$errors": "<p>A list of custom vocabulary items that failed to update during the operation. The reason for the error is contained within each error object.</p>"
       }
     },
     "FailureReason": {
@@ -1646,6 +1684,7 @@
       "refs": {
         "DescribeBotLocaleResponse$failureReasons": "<p>if <code>botLocaleStatus</code> is <code>Failed</code>, Amazon Lex explains why it failed to build the bot.</p>",
         "DescribeBotRecommendationResponse$failureReasons": "<p>If botRecommendationStatus is Failed, Amazon Lex explains why.</p>",
+        "DescribeBotResponse$failureReasons": "<p>If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons that the bot couldn't be built.</p>",
         "DescribeBotVersionResponse$failureReasons": "<p>If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons that the version couldn't be built.</p>",
         "DescribeExportResponse$failureReasons": "<p>If the <code>exportStatus</code> is failed, contains one or more reasons why the export could not be completed.</p>",
         "DescribeImportResponse$failureReasons": "<p>If the <code>importStatus</code> field is <code>Failed</code>, this provides one or more reasons for the failure.</p>",
@@ -1746,18 +1785,19 @@
     "Id": {
       "base": null,
       "refs": {
-        "BatchCreateCustomVocabularyItemRequest$botId": "<p>The unique identifier of the bot to batch create the custom vocabulary item for.</p>",
-        "BatchCreateCustomVocabularyItemResponse$botId": "<p>The unique identifier of the bot to batch create response for the custom vocabulary item.</p>",
-        "BatchDeleteCustomVocabularyItemRequest$botId": "<p>The unique identifier of the bot to batch delete request for the custom vocabulary item.</p>",
-        "BatchDeleteCustomVocabularyItemResponse$botId": "<p>The unique identifier of the bot to batch delete response for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemRequest$botId": "<p>The unique identifier of the bot to the batch update request for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemResponse$botId": "<p>The unique identifier of the bot to the batch update response for the custom vocabulary item.</p>",
+        "BatchCreateCustomVocabularyItemRequest$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
+        "BatchCreateCustomVocabularyItemResponse$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
+        "BatchDeleteCustomVocabularyItemRequest$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
+        "BatchUpdateCustomVocabularyItemRequest$botId": "<p>The identifier of the bot associated with this custom vocabulary</p>",
+        "BatchUpdateCustomVocabularyItemResponse$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
         "BotExportSpecification$botId": "<p>The identifier of the bot assigned by Amazon Lex.</p>",
         "BotLocaleExportSpecification$botId": "<p>The identifier of the bot to create the locale for.</p>",
         "BotLocaleImportSpecification$botId": "<p>The identifier of the bot to import the locale to.</p>",
+        "BotMember$botMemberId": "<p>The unique ID of a bot that is a member of this network of bots.</p>",
         "BotRecommendationSummary$botRecommendationId": "<p>The unique identifier of the bot recommendation to be updated.</p>",
-        "BotSummary$botId": "<p>The unique identifier assigned to the bot. Use this ID to get detailed information about the bot with the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeBot.html\">DescribeBot</a> operation.</p>",
-        "BuildBotLocaleRequest$botId": "<p>The identifier of the bot to build. The identifier is returned in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html\">CreateBot</a> operation.</p>",
+        "BotSummary$botId": "<p>The unique identifier assigned to the bot. Use this ID to get detailed information about the bot with the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeBot.html\">DescribeBot</a> operation.</p>",
+        "BuildBotLocaleRequest$botId": "<p>The identifier of the bot to build. The identifier is returned in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html\">CreateBot</a> operation.</p>",
         "BuildBotLocaleResponse$botId": "<p>The identifier of the specified bot.</p>",
         "CreateBotAliasRequest$botId": "<p>The unique identifier of the bot that the alias applies to.</p>",
         "CreateBotAliasResponse$botId": "<p>The unique identifier of the bot that this alias applies to.</p>",
@@ -1778,7 +1818,7 @@
         "CreateSlotTypeRequest$botId": "<p>The identifier of the bot associated with this slot type.</p>",
         "CreateSlotTypeResponse$slotTypeId": "<p>The unique identifier assigned to the slot type. Use this to identify the slot type in the <code>UpdateSlotType</code> and <code>DeleteSlotType</code> operations.</p>",
         "CreateSlotTypeResponse$botId": "<p>The identifier for the bot associated with the slot type.</p>",
-        "CreateUploadUrlResponse$importId": "<p>An identifier for a unique import job. Use it when you call the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_StartImport.html\">StartImport</a> operation.</p>",
+        "CreateUploadUrlResponse$importId": "<p>An identifier for a unique import job. Use it when you call the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_StartImport.html\">StartImport</a> operation.</p>",
         "CustomVocabularyExportSpecification$botId": "<p>The identifier of the bot that contains the custom vocabulary to export.</p>",
         "CustomVocabularyImportSpecification$botId": "<p>The identifier of the bot to import the custom vocabulary to.</p>",
         "DeleteBotAliasRequest$botId": "<p>The unique identifier of the bot associated with the alias to delete.</p>",
@@ -1848,8 +1888,8 @@
         "ListBotRecommendationsResponse$botId": "<p>The unique identifier of the bot that contains the bot recommendation list.</p>",
         "ListBotVersionsRequest$botId": "<p>The identifier of the bot to list versions for.</p>",
         "ListBotVersionsResponse$botId": "<p>The identifier of the bot to list versions for.</p>",
-        "ListCustomVocabularyItemsRequest$botId": "<p>The unique identifier of the bot to the list custom vocabulary request.</p>",
-        "ListCustomVocabularyItemsResponse$botId": "<p>The unique identifier of the bot to the list custom vocabulary response.</p>",
+        "ListCustomVocabularyItemsRequest$botId": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
+        "ListCustomVocabularyItemsResponse$botId": "<p>The identifier of the bot associated with this custom vocabulary.</p>",
         "ListExportsRequest$botId": "<p>The unique identifier that Amazon Lex assigned to the bot.</p>",
         "ListExportsResponse$botId": "<p>The unique identifier assigned to the bot by Amazon Lex.</p>",
         "ListImportsRequest$botId": "<p>The unique identifier that Amazon Lex assigned to the bot.</p>",
@@ -1866,6 +1906,7 @@
         "ListSlotsRequest$intentId": "<p>The unique identifier of the intent that contains the slot.</p>",
         "ListSlotsResponse$botId": "<p>The identifier of the bot that contains the slots.</p>",
         "ListSlotsResponse$intentId": "<p>The identifier of the intent that contains the slots.</p>",
+        "ParentBotNetwork$botId": "<p>The identifier of the network of bots assigned by Amazon Lex.</p>",
         "RecommendedIntentSummary$intentId": "<p>The unique identifier of a recommended intent associated with the bot recommendation.</p>",
         "SearchAssociatedTranscriptsRequest$botId": "<p>The unique identifier of the bot associated with the transcripts that you are searching.</p>",
         "SearchAssociatedTranscriptsRequest$botRecommendationId": "<p>The unique identifier of the bot recommendation associated with the transcripts to search.</p>",
@@ -1877,7 +1918,7 @@
         "StartBotRecommendationRequest$botId": "<p>The unique identifier of the bot containing the bot recommendation.</p>",
         "StartBotRecommendationResponse$botId": "<p>The unique identifier of the bot containing the bot recommendation.</p>",
         "StartBotRecommendationResponse$botRecommendationId": "<p>The identifier of the bot recommendation that you have created.</p>",
-        "StartImportRequest$importId": "<p>The unique identifier for the import. It is included in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateUploadUrl.html\">CreateUploadUrl</a> operation.</p>",
+        "StartImportRequest$importId": "<p>The unique identifier for the import. It is included in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateUploadUrl.html\">CreateUploadUrl</a> operation.</p>",
         "StartImportResponse$importId": "<p>A unique identifier for the import.</p>",
         "StopBotRecommendationRequest$botId": "<p>The unique identifier of the bot containing the bot recommendation to be stopped.</p>",
         "StopBotRecommendationRequest$botRecommendationId": "<p>The unique identifier of the bot recommendation to be stopped.</p>",
@@ -1891,7 +1932,7 @@
         "UpdateBotRecommendationRequest$botRecommendationId": "<p>The unique identifier of the bot recommendation to be updated.</p>",
         "UpdateBotRecommendationResponse$botId": "<p>The unique identifier of the bot containing the bot recommendation that has been updated.</p>",
         "UpdateBotRecommendationResponse$botRecommendationId": "<p>The unique identifier of the bot recommendation to be updated.</p>",
-        "UpdateBotRequest$botId": "<p>The unique identifier of the bot to update. This identifier is returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html\">CreateBot</a> operation.</p>",
+        "UpdateBotRequest$botId": "<p>The unique identifier of the bot to update. This identifier is returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html\">CreateBot</a> operation.</p>",
         "UpdateBotResponse$botId": "<p>The unique identifier of the bot that was updated.</p>",
         "UpdateExportRequest$exportId": "<p>The unique identifier Amazon Lex assigned to the export.</p>",
         "UpdateExportResponse$exportId": "<p>The unique identifier Amazon Lex assigned to the export.</p>",
@@ -1936,7 +1977,7 @@
       }
     },
     "ImportFilter": {
-      "base": "<p>Filters the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListImports.html\">ListImports</a> operation.</p>",
+      "base": "<p>Filters the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListImports.html\">ListImports</a> operation.</p>",
       "refs": {
         "ImportFilters$member": null
       }
@@ -1988,7 +2029,7 @@
     "ImportStatus": {
       "base": null,
       "refs": {
-        "DeleteImportResponse$importStatus": "<p>The current status of the deletion. When the deletion is complete, the import will no longer be returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_ListImports.html\">ListImports</a> operation and calls to the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeImport.html\">DescribeImport</a> operation with the import identifier will fail.</p>",
+        "DeleteImportResponse$importStatus": "<p>The current status of the deletion. When the deletion is complete, the import will no longer be returned by the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_ListImports.html\">ListImports</a> operation and calls to the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeImport.html\">DescribeImport</a> operation with the import identifier will fail.</p>",
         "DescribeImportResponse$importStatus": "<p>The status of the import process. When the status is <code>Completed</code> the resource is imported and ready for use.</p>",
         "ImportSummary$importStatus": "<p>The status of the resource. When the status is <code>Completed</code> the resource is ready to build.</p>",
         "StartImportResponse$importStatus": "<p>The current status of the import. When the status is <code>Complete</code> the bot, bot alias, or custom vocabulary is ready to use.</p>"
@@ -2351,12 +2392,12 @@
     "LocaleId": {
       "base": null,
       "refs": {
-        "BatchCreateCustomVocabularyItemRequest$localeId": "<p>The unique locale identifier of the bot to batch create the custom vocabulary item for.</p>",
-        "BatchCreateCustomVocabularyItemResponse$localeId": "<p>The unique locale identifier of the bot to batch create the custom vocabulary item response for.</p>",
-        "BatchDeleteCustomVocabularyItemRequest$localeId": "<p>The locale identifier of the bot to batch delete request for the custom vocabulary item.</p>",
-        "BatchDeleteCustomVocabularyItemResponse$localeId": "<p>The locale identifier of the bot to batch delete response for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemRequest$localeId": "<p>The locale identifier of the bot to the batch update request for the custom vocabulary item.</p>",
-        "BatchUpdateCustomVocabularyItemResponse$localeId": "<p>The locale identifier of the bot to the batch update response for the custom vocabulary item.</p>",
+        "BatchCreateCustomVocabularyItemRequest$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
+        "BatchCreateCustomVocabularyItemResponse$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
+        "BatchDeleteCustomVocabularyItemRequest$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).</p>",
+        "BatchUpdateCustomVocabularyItemRequest$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
         "BotAliasLocaleSettingsMap$key": null,
         "BotLocaleExportSpecification$localeId": "<p>The identifier of the language and locale to export. The string must match one of the locales in the bot.</p>",
         "BotLocaleImportSpecification$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
@@ -2402,8 +2443,8 @@
         "ListBuiltInIntentsResponse$localeId": "<p>The language and locale of the intents in the list.</p>",
         "ListBuiltInSlotTypesRequest$localeId": "<p>The identifier of the language and locale of the slot types to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "ListBuiltInSlotTypesResponse$localeId": "<p>The language and locale of the slot types in the list.</p>",
-        "ListCustomVocabularyItemsRequest$localeId": "<p>The locale identifier of the bot to the list custom vocabulary request.</p>",
-        "ListCustomVocabularyItemsResponse$localeId": "<p>The locale identifier of the bot to the list custom vocabulary response.</p>",
+        "ListCustomVocabularyItemsRequest$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).</p>",
+        "ListCustomVocabularyItemsResponse$localeId": "<p>The identifier of the language and locale where this custom vocabulary is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\"> Supported Languages </a>.</p>",
         "ListExportsRequest$localeId": "<p>Specifies the resources that should be exported. If you don't specify a resource type in the <code>filters</code> parameter, both bot locales and custom vocabularies are exported.</p>",
         "ListExportsResponse$localeId": "<p>The locale specified in the request.</p>",
         "ListImportsRequest$localeId": "<p>Specifies the locale that should be present in the list. If you don't specify a resource type in the <code>filters</code> parameter, the list contains both bot locales and custom vocabularies.</p>",
@@ -2459,7 +2500,7 @@
         "ListBotRecommendationsRequest$maxResults": "<p>The maximum number of bot recommendations to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotVersionsRequest$maxResults": "<p>The maximum number of versions to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotsRequest$maxResults": "<p>The maximum number of bots to return in each page of results. If there are fewer results than the maximum page size, only the actual number of results are returned.</p>",
-        "ListCustomVocabularyItemsRequest$maxResults": "<p>The maximum results to the list custom vocabulary request.</p>",
+        "ListCustomVocabularyItemsRequest$maxResults": "<p>The maximum number of items returned by the list operation.</p>",
         "ListExportsRequest$maxResults": "<p>The maximum number of exports to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListImportsRequest$maxResults": "<p>The maximum number of imports to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListIntentsRequest$maxResults": "<p>The maximum number of intents to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
@@ -2541,6 +2582,7 @@
       "refs": {
         "BotAliasSummary$botAliasName": "<p>The name of the bot alias.</p>",
         "BotImportSpecification$botName": "<p>The name that Amazon Lex should use for the bot.</p>",
+        "BotMember$botMemberName": "<p>The unique name of a bot that is a member of this network of bots.</p>",
         "BotSummary$botName": "<p>The name of the bot.</p>",
         "BotVersionSummary$botName": "<p>The name of the bot associated with the version.</p>",
         "ConditionalBranch$name": "<p>The name of the branch. </p>",
@@ -2648,13 +2690,13 @@
       "base": null,
       "refs": {
         "BotSummary$latestBotVersion": "<p>The latest numerical version in use for the bot.</p>",
-        "CreateBotAliasRequest$botVersion": "<p>The version of the bot that this alias points to. You can use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_UpdateBotAlias.html\">UpdateBotAlias</a> operation to change the bot version associated with the alias.</p>",
+        "CreateBotAliasRequest$botVersion": "<p>The version of the bot that this alias points to. You can use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_UpdateBotAlias.html\">UpdateBotAlias</a> operation to change the bot version associated with the alias.</p>",
         "CreateBotAliasResponse$botVersion": "<p>The version of the bot associated with this alias.</p>",
         "CreateBotVersionResponse$botVersion": "<p>The version number assigned to the version.</p>",
         "DeleteBotVersionRequest$botVersion": "<p>The version of the bot to delete.</p>",
         "DeleteBotVersionResponse$botVersion": "<p>The version of the bot that is being deleted.</p>",
         "DescribeBotVersionRequest$botVersion": "<p>The version of the bot to return metadata for.</p>",
-        "DescribeBotVersionResponse$botVersion": "<p>The version of the bot to describe.</p>"
+        "DescribeBotVersionResponse$botVersion": "<p>The version of the bot that was described.</p>"
       }
     },
     "ObfuscationSetting": {
@@ -2714,6 +2756,19 @@
         "UpdateIntentResponse$outputContexts": "<p>The updated list of contexts that Amazon Lex activates when the intent is fulfilled.</p>"
       }
     },
+    "ParentBotNetwork": {
+      "base": "<p>A network of bots.</p>",
+      "refs": {
+        "ParentBotNetworks$member": null
+      }
+    },
+    "ParentBotNetworks": {
+      "base": null,
+      "refs": {
+        "DescribeBotAliasResponse$parentBotNetworks": "<p>A list of the networks to which the bot alias you described belongs.</p>",
+        "DescribeBotVersionResponse$parentBotNetworks": "<p>A list of the networks to which the bot version you described belongs.</p>"
+      }
+    },
     "PathFormat": {
       "base": "<p>The object that contains a path format that will be applied when Amazon Lex reads the transcript file in the bucket you provide. Specify this object if you only want Lex to read a subset of files in your Amazon S3 bucket.</p>",
       "refs": {
@@ -2724,7 +2779,7 @@
       "base": null,
       "refs": {
         "CustomVocabularyItem$phrase": "<p>The unique phrase for the custom vocabulary item from the custom vocabulary list.</p>",
-        "CustomVocabularyItem$displayAs": "<p>The display as value for the custom vocabulary item from the custom vocabulary list.</p>",
+        "CustomVocabularyItem$displayAs": "<p>The DisplayAs value for the custom vocabulary item from the custom vocabulary list.</p>",
         "NewCustomVocabularyItem$phrase": "<p>The unique phrase for the new custom vocabulary item from the custom vocabulary list.</p>",
         "NewCustomVocabularyItem$displayAs": "<p>The display as value assigned to the new custom vocabulary item from the custom vocabulary list.</p>"
       }
@@ -2912,7 +2967,7 @@
     "RetryAfterSeconds": {
       "base": null,
       "refs": {
-        "ThrottlingException$retryAfterSeconds": null
+        "ThrottlingException$retryAfterSeconds": "<p>The number of seconds after which the user can invoke the API again.</p>"
       }
     },
     "RevisionId": {
@@ -2951,7 +3006,7 @@
     "S3BucketLogDestination": {
       "base": "<p>Specifies an Amazon S3 bucket for logging audio conversations</p>",
       "refs": {
-        "AudioLogDestination$s3Bucket": "<p>The Amazon S3 bucket where the audio log files are stored. The IAM role specified in the <code>roleArn</code> parameter of the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html\">CreateBot</a> operation must have permission to write to this bucket.</p>"
+        "AudioLogDestination$s3Bucket": "<p>The Amazon S3 bucket where the audio log files are stored. The IAM role specified in the <code>roleArn</code> parameter of the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateBot.html\">CreateBot</a> operation must have permission to write to this bucket.</p>"
       }
     },
     "S3BucketName": {
@@ -3056,7 +3111,7 @@
     "SessionId": {
       "base": null,
       "refs": {
-        "DeleteUtterancesRequest$sessionId": "<p>The unique identifier of the session with the user. The ID is returned in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_RecognizeText.html\">RecognizeText</a> and <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_RecognizeUtterance.html\">RecognizeUtterance</a> operations.</p>"
+        "DeleteUtterancesRequest$sessionId": "<p>The unique identifier of the session with the user. The ID is returned in the response from the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_runtime_RecognizeText.html\">RecognizeText</a> and <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_runtime_RecognizeUtterance.html\">RecognizeUtterance</a> operations.</p>"
       }
     },
     "SessionTTL": {
@@ -3074,9 +3129,9 @@
     "SkipResourceInUseCheck": {
       "base": null,
       "refs": {
-        "DeleteBotAliasRequest$skipResourceInUseCheck": "<p>When this parameter is true, Amazon Lex doesn't check to see if any other resource is using the alias before it is deleted.</p>",
-        "DeleteBotRequest$skipResourceInUseCheck": "<p>When <code>true</code>, Amazon Lex doesn't check to see if another resource, such as an alias, is using the bot before it is deleted.</p>",
-        "DeleteBotVersionRequest$skipResourceInUseCheck": "<p>By default, the <code>DeleteBotVersion</code> operations throws a <code>ResourceInUseException</code> exception if you try to delete a bot version that has an alias pointing at it. Set the <code>skipResourceInUseCheck</code> parameter to <code>true</code> to skip this check and remove the version even if an alias points to it.</p>",
+        "DeleteBotAliasRequest$skipResourceInUseCheck": "<p>By default, Amazon Lex checks if any other resource, such as a bot network, is using the bot alias before it is deleted and throws a <code>ResourceInUseException</code> exception if the alias is being used by another resource. Set this parameter to <code>true</code> to skip this check and remove the alias even if it is being used by another resource.</p>",
+        "DeleteBotRequest$skipResourceInUseCheck": "<p>By default, Amazon Lex checks if any other resource, such as an alias or bot network, is using the bot version before it is deleted and throws a <code>ResourceInUseException</code> exception if the bot is being used by another resource. Set this parameter to <code>true</code> to skip this check and remove the bot even if it is being used by another resource.</p>",
+        "DeleteBotVersionRequest$skipResourceInUseCheck": "<p>By default, Amazon Lex checks if any other resource, such as an alias or bot network, is using the bot version before it is deleted and throws a <code>ResourceInUseException</code> exception if the version is being used by another resource. Set this parameter to <code>true</code> to skip this check and remove the version even if it is being used by another resource.</p>",
         "DeleteSlotTypeRequest$skipResourceInUseCheck": "<p>By default, the <code>DeleteSlotType</code> operations throws a <code>ResourceInUseException</code> exception if you try to delete a slot type used by a slot. Set the <code>skipResourceInUseCheck</code> parameter to <code>true</code> to skip this check and remove the slot type even if a slot uses it.</p>"
       }
     },
@@ -3713,7 +3768,7 @@
     "UpdateCustomVocabularyItemsList": {
       "base": null,
       "refs": {
-        "BatchUpdateCustomVocabularyItemRequest$customVocabularyItemList": "<p>The custom vocabulary item list of the bot to the batch update request for the custom vocabulary item.</p>"
+        "BatchUpdateCustomVocabularyItemRequest$customVocabularyItemList": "<p>A list of custom vocabulary items with updated fields. Each entry must contain a phrase and can optionally contain a displayAs and/or a weight.</p>"
       }
     },
     "UpdateExportRequest": {

@@ -501,7 +501,8 @@
         "sessionState":{"shape":"SessionState"},
         "requestAttributes":{"shape":"StringMap"},
         "sessionId":{"shape":"SessionId"},
-        "eventId":{"shape":"EventId"}
+        "eventId":{"shape":"EventId"},
+        "recognizedBotMember":{"shape":"RecognizedBotMember"}
       },
       "event":true
     },
@@ -720,7 +721,8 @@
         "sessionState":{"shape":"SessionState"},
         "interpretations":{"shape":"Interpretations"},
         "requestAttributes":{"shape":"StringMap"},
-        "sessionId":{"shape":"SessionId"}
+        "sessionId":{"shape":"SessionId"},
+        "recognizedBotMember":{"shape":"RecognizedBotMember"}
       }
     },
     "RecognizeUtteranceRequest":{
@@ -820,9 +822,22 @@
           "location":"header",
           "locationName":"x-amz-lex-input-transcript"
         },
-        "audioStream":{"shape":"BlobStream"}
+        "audioStream":{"shape":"BlobStream"},
+        "recognizedBotMember":{
+          "shape":"NonEmptyString",
+          "location":"header",
+          "locationName":"x-amz-lex-recognized-bot-member"
+        }
       },
       "payload":"audioStream"
+    },
+    "RecognizedBotMember":{
+      "type":"structure",
+      "required":["botId"],
+      "members":{
+        "botId":{"shape":"BotIdentifier"},
+        "botName":{"shape":"Name"}
+      }
     },
     "ResourceNotFoundException":{
       "type":"structure",
