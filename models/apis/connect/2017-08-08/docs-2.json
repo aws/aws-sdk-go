@@ -7,7 +7,7 @@
     "AssociateDefaultVocabulary": "<p>Associates an existing vocabulary as the default. Contact Lens for Amazon Connect uses the vocabulary in post-call and real-time analysis sessions for the given language.</p>",
     "AssociateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a storage resource type for the first time. You can only associate one type of storage configuration in a single call. This means, for example, that you can't define an instance with multiple S3 buckets for storing chat transcripts.</p> <p>This API does not create a resource that doesn't exist. It only associates it to the instance. Ensure that the resource being specified in the storage configuration, like an S3 bucket, exists when being used for association.</p>",
     "AssociateLambdaFunction": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Allows the specified Amazon Connect instance to access the specified Lambda function.</p>",
-    "AssociateLexBot": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Allows the specified Amazon Connect instance to access the specified Amazon Lex bot.</p>",
+    "AssociateLexBot": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Allows the specified Amazon Connect instance to access the specified Amazon Lex V1 bot. This API only supports the association of Amazon Lex V1 bots.</p>",
     "AssociatePhoneNumberContactFlow": "<p>Associates a flow with a phone number claimed to your Amazon Connect instance.</p> <important> <p>If the number is claimed to a traffic distribution group, and you are calling this API using an instance in the Amazon Web Services Region where the traffic distribution group was created, you can use either a full phone number ARN or UUID value for the <code>PhoneNumberId</code> URI request parameter. However, if the number is claimed to a traffic distribution group and you are calling this API using an instance in the alternate Amazon Web Services Region associated with the traffic distribution group, you must provide a full phone number ARN. If a UUID is provided in this scenario, you will receive a <code>ResourceNotFoundException</code>.</p> </important>",
     "AssociateQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a set of quick connects with a queue.</p>",
     "AssociateRoutingProfileQueues": "<p>Associates a set of queues with a routing profile.</p>",
@@ -256,7 +256,8 @@
         "UserSearchSummary$Arn": "<p>The Amazon Resource Name (ARN) of the user.</p>",
         "UserSummary$Arn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
         "Vocabulary$Arn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
-        "VocabularySummary$Arn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>"
+        "VocabularySummary$Arn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
+        "WisdomInfo$SessionArn": "<p>The Amazon Resource Name (ARN) of the Wisdom session.</p>"
       }
     },
     "AccessDeniedException": {
@@ -3920,7 +3921,7 @@
       "base": null,
       "refs": {
         "AssociateRoutingProfileQueuesRequest$QueueConfigs": "<p>The queues to associate with this routing profile.</p>",
-        "CreateRoutingProfileRequest$QueueConfigs": "<p>The inbound queues associated with the routing profile. If no queue is added, the agent can make only outbound calls.</p>",
+        "CreateRoutingProfileRequest$QueueConfigs": "<p>The inbound queues associated with the routing profile. If no queue is added, the agent can make only outbound calls.</p> <p>The limit of 10 array members applies to the maximum number of <code>RoutingProfileQueueConfig</code> objects that can be passed during a CreateRoutingProfile API request. It is different from the quota of 50 queues per routing profile per instance that is listed in <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect service quotas</a>. </p>",
         "UpdateRoutingProfileQueuesRequest$QueueConfigs": "<p>The queues to be updated for this routing profile. Queues must first be associated to the routing profile. You can do this using AssociateRoutingProfileQueues.</p>"
       }
     },
@@ -5444,6 +5445,12 @@
       "base": null,
       "refs": {
         "VoiceRecordingConfiguration$VoiceRecordingTrack": "<p>Identifies which track is being recorded.</p>"
+      }
+    },
+    "WisdomInfo": {
+      "base": "<p>Information about Amazon Connect Wisdom.</p>",
+      "refs": {
+        "Contact$WisdomInfo": "<p>Information about Amazon Connect Wisdom.</p>"
       }
     },
     "timestamp": {

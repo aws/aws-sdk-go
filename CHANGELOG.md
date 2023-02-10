@@ -1,3 +1,19 @@
+Release v1.44.199 (2023-02-10)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * You can now either terminate/replace, ignore, or wait for EC2 Auto Scaling instances on standby or protected from scale in. Also, you can also roll back changes from a failed instance refresh.
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and waiters
+  * Adds support for waiters that automatically poll for an imported snapshot until it reaches the completed state.
+* `service/polly`: Updates service API
+  * Amazon Polly adds two new neural Japanese voices - Kazuha, Tomoko
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Autopilot adds support for selecting algorithms in CreateAutoMLJob API.
+* `service/sns`: Updates service documentation
+  * This release adds support for SNS X-Ray active tracing as well as other updates.
+
 Release v1.44.198 (2023-02-09)
 ===
 

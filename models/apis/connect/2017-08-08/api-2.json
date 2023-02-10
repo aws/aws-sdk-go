@@ -3304,7 +3304,8 @@
         "DisconnectTimestamp":{"shape":"timestamp"},
         "LastUpdateTimestamp":{"shape":"timestamp"},
         "ScheduledTimestamp":{"shape":"timestamp"},
-        "RelatedContactId":{"shape":"ContactId"}
+        "RelatedContactId":{"shape":"ContactId"},
+        "WisdomInfo":{"shape":"WisdomInfo"}
       }
     },
     "ContactFilter":{
@@ -10389,6 +10390,12 @@
         "TO_AGENT",
         "ALL"
       ]
+    },
+    "WisdomInfo":{
+      "type":"structure",
+      "members":{
+        "SessionArn":{"shape":"ARN"}
+      }
     },
     "timestamp":{"type":"timestamp"}
   }

@@ -4024,6 +4024,37 @@
       ]
     },
     "AutoGenerateEndpointName":{"type":"boolean"},
+    "AutoMLAlgorithm":{
+      "type":"string",
+      "enum":[
+        "xgboost",
+        "linear-learner",
+        "mlp",
+        "lightgbm",
+        "catboost",
+        "randomforest",
+        "extra-trees",
+        "nn-torch",
+        "fastai"
+      ]
+    },
+    "AutoMLAlgorithmConfig":{
+      "type":"structure",
+      "required":["AutoMLAlgorithms"],
+      "members":{
+        "AutoMLAlgorithms":{"shape":"AutoMLAlgorithms"}
+      }
+    },
+    "AutoMLAlgorithms":{
+      "type":"list",
+      "member":{"shape":"AutoMLAlgorithm"},
+      "max":11
+    },
+    "AutoMLAlgorithmsConfig":{
+      "type":"list",
+      "member":{"shape":"AutoMLAlgorithmConfig"},
+      "max":1
+    },
     "AutoMLCandidate":{
       "type":"structure",
       "required":[
@@ -4051,7 +4082,8 @@
     "AutoMLCandidateGenerationConfig":{
       "type":"structure",
       "members":{
-        "FeatureSpecificationS3Uri":{"shape":"S3Uri"}
+        "FeatureSpecificationS3Uri":{"shape":"S3Uri"},
+        "AlgorithmsConfig":{"shape":"AutoMLAlgorithmsConfig"}
       }
     },
     "AutoMLCandidateStep":{
@@ -10423,7 +10455,8 @@
       "members":{
         "Type":{"shape":"AutoMLJobObjectiveType"},
         "MetricName":{"shape":"AutoMLMetricEnum"},
-        "Value":{"shape":"MetricValue"}
+        "Value":{"shape":"MetricValue"},
+        "StandardMetricName":{"shape":"AutoMLMetricEnum"}
       }
     },
     "FinalHyperParameterTuningJobObjectiveMetric":{
@@ -13930,6 +13963,7 @@
     },
     "MaxCandidates":{
       "type":"integer",
+      "max":750,
       "min":1
     },
     "MaxConcurrentInvocationsPerInstance":{

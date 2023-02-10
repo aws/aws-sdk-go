@@ -559,7 +559,7 @@ func (c *Connect) AssociateLexBotRequest(input *AssociateLexBotInput) (req *requ
 // This API is in preview release for Amazon Connect and is subject to change.
 //
 // Allows the specified Amazon Connect instance to access the specified Amazon
-// Lex bot.
+// Lex V1 bot. This API only supports the association of Amazon Lex V1 bots.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20639,6 +20639,9 @@ type Contact struct {
 	// The timestamp, in Unix epoch time format, at which to start running the inbound
 	// flow.
 	ScheduledTimestamp *time.Time `type:"timestamp"`
+
+	// Information about Amazon Connect Wisdom.
+	WisdomInfo *WisdomInfo `type:"structure"`
 }
 
 // String returns the string representation.
@@ -20746,6 +20749,12 @@ func (s *Contact) SetRelatedContactId(v string) *Contact {
 // SetScheduledTimestamp sets the ScheduledTimestamp field's value.
 func (s *Contact) SetScheduledTimestamp(v time.Time) *Contact {
 	s.ScheduledTimestamp = &v
+	return s
+}
+
+// SetWisdomInfo sets the WisdomInfo field's value.
+func (s *Contact) SetWisdomInfo(v *WisdomInfo) *Contact {
+	s.WisdomInfo = v
 	return s
 }
 
@@ -22623,6 +22632,11 @@ type CreateRoutingProfileInput struct {
 
 	// The inbound queues associated with the routing profile. If no queue is added,
 	// the agent can make only outbound calls.
+	//
+	// The limit of 10 array members applies to the maximum number of RoutingProfileQueueConfig
+	// objects that can be passed during a CreateRoutingProfile API request. It
+	// is different from the quota of 50 queues per routing profile per instance
+	// that is listed in Amazon Connect service quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html).
 	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
@@ -49971,6 +49985,38 @@ func (s VoiceRecordingConfiguration) GoString() string {
 // SetVoiceRecordingTrack sets the VoiceRecordingTrack field's value.
 func (s *VoiceRecordingConfiguration) SetVoiceRecordingTrack(v string) *VoiceRecordingConfiguration {
 	s.VoiceRecordingTrack = &v
+	return s
+}
+
+// Information about Amazon Connect Wisdom.
+type WisdomInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Wisdom session.
+	SessionArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WisdomInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WisdomInfo) GoString() string {
+	return s.String()
+}
+
+// SetSessionArn sets the SessionArn field's value.
+func (s *WisdomInfo) SetSessionArn(v string) *WisdomInfo {
+	s.SessionArn = &v
 	return s
 }
 
