@@ -28437,7 +28437,7 @@
       "type":"structure",
       "members":{
         "UserData":{
-          "shape":"String",
+          "shape":"SensitiveUserData",
           "locationName":"userData"
         },
         "SecurityGroups":{
@@ -35597,7 +35597,7 @@
           "locationName":"subnetId"
         },
         "UserData":{
-          "shape":"String",
+          "shape":"SensitiveUserData",
           "locationName":"userData"
         }
       }
@@ -36433,7 +36433,7 @@
           "locationName":"instanceInitiatedShutdownBehavior"
         },
         "UserData":{
-          "shape":"String",
+          "shape":"SensitiveUserData",
           "locationName":"userData"
         },
         "TagSpecifications":{
@@ -37436,7 +37436,8 @@
         },
         "SubnetId":{"shape":"SubnetId"},
         "UserData":{"shape":"String"}
-      }
+      },
+      "sensitive":true
     },
     "ScheduledInstancesMonitoring":{
       "type":"structure",
@@ -38496,7 +38497,7 @@
           "locationName":"subnetId"
         },
         "UserData":{
-          "shape":"String",
+          "shape":"SensitiveUserData",
           "locationName":"userData"
         },
         "WeightedCapacity":{

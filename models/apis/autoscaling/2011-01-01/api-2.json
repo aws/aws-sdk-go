@@ -844,6 +844,24 @@
         {"shape":"ResourceContentionFault"}
       ]
     },
+    "RollbackInstanceRefresh":{
+      "name":"RollbackInstanceRefresh",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RollbackInstanceRefreshType"},
+      "output":{
+        "shape":"RollbackInstanceRefreshAnswer",
+        "resultWrapper":"RollbackInstanceRefreshResult"
+      },
+      "errors":[
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"},
+        {"shape":"ActiveInstanceRefreshNotFoundFault"},
+        {"shape":"IrreversibleInstanceRefreshFault"}
+      ]
+    },
     "SetDesiredCapacity":{
       "name":"SetDesiredCapacity",
       "http":{
@@ -1163,6 +1181,7 @@
         "TrafficSources":{"shape":"TrafficSources"}
       }
     },
+    "AutoRollback":{"type":"boolean"},
     "AutoScalingGroup":{
       "type":"structure",
       "required":[
@@ -2125,7 +2144,8 @@
         "InstancesToUpdate":{"shape":"InstancesToUpdate"},
         "ProgressDetails":{"shape":"InstanceRefreshProgressDetails"},
         "Preferences":{"shape":"RefreshPreferences"},
-        "DesiredConfiguration":{"shape":"DesiredConfiguration"}
+        "DesiredConfiguration":{"shape":"DesiredConfiguration"},
+        "RollbackDetails":{"shape":"RollbackDetails"}
       }
     },
     "InstanceRefreshIds":{
@@ -2166,7 +2186,10 @@
         "Successful",
         "Failed",
         "Cancelling",
-        "Cancelled"
+        "Cancelled",
+        "RollbackInProgress",
+        "RollbackFailed",
+        "RollbackSuccessful"
       ]
     },
     "InstanceRefreshWarmPoolProgress":{
@@ -2249,6 +2272,18 @@
       },
       "error":{
         "code":"InvalidNextToken",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "IrreversibleInstanceRefreshFault":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"XmlStringMaxLen255"}
+      },
+      "error":{
+        "code":"IrreversibleInstanceRefresh",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -3005,7 +3040,10 @@
         "InstanceWarmup":{"shape":"RefreshInstanceWarmup"},
         "CheckpointPercentages":{"shape":"CheckpointPercentages"},
         "CheckpointDelay":{"shape":"CheckpointDelay"},
-        "SkipMatching":{"shape":"SkipMatching"}
+        "SkipMatching":{"shape":"SkipMatching"},
+        "AutoRollback":{"shape":"AutoRollback"},
+        "ScaleInProtectedInstances":{"shape":"ScaleInProtectedInstances"},
+        "StandbyInstances":{"shape":"StandbyInstances"}
       }
     },
     "RefreshStrategy":{
@@ -3044,6 +3082,36 @@
     },
     "ReturnData":{"type":"boolean"},
     "ReuseOnScaleIn":{"type":"boolean"},
+    "RollbackDetails":{
+      "type":"structure",
+      "members":{
+        "RollbackReason":{"shape":"XmlStringMaxLen1023"},
+        "RollbackStartTime":{"shape":"TimestampType"},
+        "PercentageCompleteOnRollback":{"shape":"IntPercent"},
+        "InstancesToUpdateOnRollback":{"shape":"InstancesToUpdate"},
+        "ProgressDetailsOnRollback":{"shape":"InstanceRefreshProgressDetails"}
+      }
+    },
+    "RollbackInstanceRefreshAnswer":{
+      "type":"structure",
+      "members":{
+        "InstanceRefreshId":{"shape":"XmlStringMaxLen255"}
+      }
+    },
+    "RollbackInstanceRefreshType":{
+      "type":"structure",
+      "members":{
+        "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"}
+      }
+    },
+    "ScaleInProtectedInstances":{
+      "type":"string",
+      "enum":[
+        "Refresh",
+        "Ignore",
+        "Wait"
+      ]
+    },
     "ScalingActivityInProgressFault":{
       "type":"structure",
       "members":{
@@ -3222,6 +3290,14 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "StandbyInstances":{
+      "type":"string",
+      "enum":[
+        "Terminate",
+        "Ignore",
+        "Wait"
+      ]
     },
     "StartInstanceRefreshAnswer":{
       "type":"structure",
