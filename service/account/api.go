@@ -116,6 +116,200 @@ func (c *Account) DeleteAlternateContactWithContext(ctx aws.Context, input *Dele
 	return out, req.Send()
 }
 
+const opDisableRegion = "DisableRegion"
+
+// DisableRegionRequest generates a "aws/request.Request" representing the
+// client's request for the DisableRegion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisableRegion for more information on using the DisableRegion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisableRegionRequest method.
+//	req, resp := client.DisableRegionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/DisableRegion
+func (c *Account) DisableRegionRequest(input *DisableRegionInput) (req *request.Request, output *DisableRegionOutput) {
+	op := &request.Operation{
+		Name:       opDisableRegion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/disableRegion",
+	}
+
+	if input == nil {
+		input = &DisableRegionInput{}
+	}
+
+	output = &DisableRegionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisableRegion API operation for AWS Account.
+//
+// Disables (opts-out) a particular Region for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation DisableRegion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation failed because one of the input parameters was invalid.
+//
+//   - ConflictException
+//     The request could not be processed because of a conflict in the current status
+//     of the resource. For example, this happens if you try to enable a Region
+//     that is currently being disabled (in a status of DISABLING).
+//
+//   - AccessDeniedException
+//     The operation failed because the calling identity doesn't have the minimum
+//     required permissions.
+//
+//   - TooManyRequestsException
+//     The operation failed because it was called too frequently and exceeded a
+//     throttle limit.
+//
+//   - InternalServerException
+//     The operation failed because of an error internal to Amazon Web Services.
+//     Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/DisableRegion
+func (c *Account) DisableRegion(input *DisableRegionInput) (*DisableRegionOutput, error) {
+	req, out := c.DisableRegionRequest(input)
+	return out, req.Send()
+}
+
+// DisableRegionWithContext is the same as DisableRegion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisableRegion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) DisableRegionWithContext(ctx aws.Context, input *DisableRegionInput, opts ...request.Option) (*DisableRegionOutput, error) {
+	req, out := c.DisableRegionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opEnableRegion = "EnableRegion"
+
+// EnableRegionRequest generates a "aws/request.Request" representing the
+// client's request for the EnableRegion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See EnableRegion for more information on using the EnableRegion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the EnableRegionRequest method.
+//	req, resp := client.EnableRegionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/EnableRegion
+func (c *Account) EnableRegionRequest(input *EnableRegionInput) (req *request.Request, output *EnableRegionOutput) {
+	op := &request.Operation{
+		Name:       opEnableRegion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/enableRegion",
+	}
+
+	if input == nil {
+		input = &EnableRegionInput{}
+	}
+
+	output = &EnableRegionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// EnableRegion API operation for AWS Account.
+//
+// Enables (opts-in) a particular Region for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation EnableRegion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation failed because one of the input parameters was invalid.
+//
+//   - ConflictException
+//     The request could not be processed because of a conflict in the current status
+//     of the resource. For example, this happens if you try to enable a Region
+//     that is currently being disabled (in a status of DISABLING).
+//
+//   - AccessDeniedException
+//     The operation failed because the calling identity doesn't have the minimum
+//     required permissions.
+//
+//   - TooManyRequestsException
+//     The operation failed because it was called too frequently and exceeded a
+//     throttle limit.
+//
+//   - InternalServerException
+//     The operation failed because of an error internal to Amazon Web Services.
+//     Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/EnableRegion
+func (c *Account) EnableRegion(input *EnableRegionInput) (*EnableRegionOutput, error) {
+	req, out := c.EnableRegionRequest(input)
+	return out, req.Send()
+}
+
+// EnableRegionWithContext is the same as EnableRegion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EnableRegion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) EnableRegionWithContext(ctx aws.Context, input *EnableRegionInput, opts ...request.Option) (*EnableRegionOutput, error) {
+	req, out := c.EnableRegionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAlternateContact = "GetAlternateContact"
 
 // GetAlternateContactRequest generates a "aws/request.Request" representing the
@@ -315,6 +509,246 @@ func (c *Account) GetContactInformationWithContext(ctx aws.Context, input *GetCo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetRegionOptStatus = "GetRegionOptStatus"
+
+// GetRegionOptStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetRegionOptStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRegionOptStatus for more information on using the GetRegionOptStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetRegionOptStatusRequest method.
+//	req, resp := client.GetRegionOptStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/GetRegionOptStatus
+func (c *Account) GetRegionOptStatusRequest(input *GetRegionOptStatusInput) (req *request.Request, output *GetRegionOptStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetRegionOptStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/getRegionOptStatus",
+	}
+
+	if input == nil {
+		input = &GetRegionOptStatusInput{}
+	}
+
+	output = &GetRegionOptStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRegionOptStatus API operation for AWS Account.
+//
+// Retrieves the opt-in status of a particular Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation GetRegionOptStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation failed because one of the input parameters was invalid.
+//
+//   - AccessDeniedException
+//     The operation failed because the calling identity doesn't have the minimum
+//     required permissions.
+//
+//   - TooManyRequestsException
+//     The operation failed because it was called too frequently and exceeded a
+//     throttle limit.
+//
+//   - InternalServerException
+//     The operation failed because of an error internal to Amazon Web Services.
+//     Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/GetRegionOptStatus
+func (c *Account) GetRegionOptStatus(input *GetRegionOptStatusInput) (*GetRegionOptStatusOutput, error) {
+	req, out := c.GetRegionOptStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetRegionOptStatusWithContext is the same as GetRegionOptStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRegionOptStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) GetRegionOptStatusWithContext(ctx aws.Context, input *GetRegionOptStatusInput, opts ...request.Option) (*GetRegionOptStatusOutput, error) {
+	req, out := c.GetRegionOptStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListRegions = "ListRegions"
+
+// ListRegionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRegions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRegions for more information on using the ListRegions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRegionsRequest method.
+//	req, resp := client.ListRegionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/ListRegions
+func (c *Account) ListRegionsRequest(input *ListRegionsInput) (req *request.Request, output *ListRegionsOutput) {
+	op := &request.Operation{
+		Name:       opListRegions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/listRegions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRegionsInput{}
+	}
+
+	output = &ListRegionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRegions API operation for AWS Account.
+//
+// Lists all the Regions for a given account and their respective opt-in statuses.
+// Optionally, this list can be filtered by the region-opt-status-contains parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation ListRegions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation failed because one of the input parameters was invalid.
+//
+//   - AccessDeniedException
+//     The operation failed because the calling identity doesn't have the minimum
+//     required permissions.
+//
+//   - TooManyRequestsException
+//     The operation failed because it was called too frequently and exceeded a
+//     throttle limit.
+//
+//   - InternalServerException
+//     The operation failed because of an error internal to Amazon Web Services.
+//     Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/ListRegions
+func (c *Account) ListRegions(input *ListRegionsInput) (*ListRegionsOutput, error) {
+	req, out := c.ListRegionsRequest(input)
+	return out, req.Send()
+}
+
+// ListRegionsWithContext is the same as ListRegions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRegions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) ListRegionsWithContext(ctx aws.Context, input *ListRegionsInput, opts ...request.Option) (*ListRegionsOutput, error) {
+	req, out := c.ListRegionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRegionsPages iterates over the pages of a ListRegions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRegions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRegions operation.
+//	pageNum := 0
+//	err := client.ListRegionsPages(params,
+//	    func(page *account.ListRegionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Account) ListRegionsPages(input *ListRegionsInput, fn func(*ListRegionsOutput, bool) bool) error {
+	return c.ListRegionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRegionsPagesWithContext same as ListRegionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) ListRegionsPagesWithContext(ctx aws.Context, input *ListRegionsInput, fn func(*ListRegionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRegionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRegionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRegionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPutAlternateContact = "PutAlternateContact"
@@ -662,6 +1096,72 @@ func (s *AlternateContact) SetPhoneNumber(v string) *AlternateContact {
 func (s *AlternateContact) SetTitle(v string) *AlternateContact {
 	s.Title = &v
 	return s
+}
+
+// The request could not be processed because of a conflict in the current status
+// of the resource. For example, this happens if you try to enable a Region
+// that is currently being disabled (in a status of DISABLING).
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Contains the details of the primary contact information associated with an
@@ -1022,6 +1522,211 @@ func (s DeleteAlternateContactOutput) GoString() string {
 	return s.String()
 }
 
+type DisableRegionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. If you don't specify
+	// this parameter, it defaults to the Amazon Web Services account of the identity
+	// used to call the operation. To use this parameter, the caller must be an
+	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must also
+	// be a member account in the same organization. The organization must have
+	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// The management account can't specify its own AccountId. It must call the
+	// operation in standalone context by not including the AccountId parameter.
+	//
+	// To call this operation on an account that is not a member of an organization,
+	// don't specify this parameter. Instead, call the operation using an identity
+	// belonging to the account whose contacts you wish to retrieve or modify.
+	AccountId *string `type:"string"`
+
+	// Specifies the Region-code for a given Region name (for example, af-south-1).
+	// When you disable a Region, AWS performs actions to deactivate that Region
+	// in your account, such as destroying IAM resources in the Region. This process
+	// takes a few minutes for most accounts, but this can take several hours. You
+	// cannot enable the Region until the disabling process is fully completed.
+	//
+	// RegionName is a required field
+	RegionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableRegionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableRegionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableRegionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableRegionInput"}
+	if s.RegionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegionName"))
+	}
+	if s.RegionName != nil && len(*s.RegionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DisableRegionInput) SetAccountId(v string) *DisableRegionInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *DisableRegionInput) SetRegionName(v string) *DisableRegionInput {
+	s.RegionName = &v
+	return s
+}
+
+type DisableRegionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableRegionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableRegionOutput) GoString() string {
+	return s.String()
+}
+
+type EnableRegionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. If you don't specify
+	// this parameter, it defaults to the Amazon Web Services account of the identity
+	// used to call the operation. To use this parameter, the caller must be an
+	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must also
+	// be a member account in the same organization. The organization must have
+	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// The management account can't specify its own AccountId. It must call the
+	// operation in standalone context by not including the AccountId parameter.
+	//
+	// To call this operation on an account that is not a member of an organization,
+	// don't specify this parameter. Instead, call the operation using an identity
+	// belonging to the account whose contacts you wish to retrieve or modify.
+	AccountId *string `type:"string"`
+
+	// Specifies the Region-code for a given Region name (for example, af-south-1).
+	// When you enable a Region, AWS performs actions to prepare your account in
+	// that Region, such as distributing your IAM resources to the Region. This
+	// process takes a few minutes for most accounts, but it can take several hours.
+	// You cannot use the Region until this process is complete. Furthermore, you
+	// cannot disable the Region until the enabling process is fully completed.
+	//
+	// RegionName is a required field
+	RegionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableRegionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableRegionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableRegionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableRegionInput"}
+	if s.RegionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegionName"))
+	}
+	if s.RegionName != nil && len(*s.RegionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *EnableRegionInput) SetAccountId(v string) *EnableRegionInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *EnableRegionInput) SetRegionName(v string) *EnableRegionInput {
+	s.RegionName = &v
+	return s
+}
+
+type EnableRegionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableRegionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableRegionOutput) GoString() string {
+	return s.String()
+}
+
 type GetAlternateContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1210,6 +1915,125 @@ func (s *GetContactInformationOutput) SetContactInformation(v *ContactInformatio
 	return s
 }
 
+type GetRegionOptStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. If you don't specify
+	// this parameter, it defaults to the Amazon Web Services account of the identity
+	// used to call the operation. To use this parameter, the caller must be an
+	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must also
+	// be a member account in the same organization. The organization must have
+	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// The management account can't specify its own AccountId. It must call the
+	// operation in standalone context by not including the AccountId parameter.
+	//
+	// To call this operation on an account that is not a member of an organization,
+	// don't specify this parameter. Instead, call the operation using an identity
+	// belonging to the account whose contacts you wish to retrieve or modify.
+	AccountId *string `type:"string"`
+
+	// Specifies the Region-code for a given Region name (for example, af-south-1).
+	// This function will return the status of whatever Region you pass into this
+	// parameter.
+	//
+	// RegionName is a required field
+	RegionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegionOptStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegionOptStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRegionOptStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRegionOptStatusInput"}
+	if s.RegionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegionName"))
+	}
+	if s.RegionName != nil && len(*s.RegionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetRegionOptStatusInput) SetAccountId(v string) *GetRegionOptStatusInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *GetRegionOptStatusInput) SetRegionName(v string) *GetRegionOptStatusInput {
+	s.RegionName = &v
+	return s
+}
+
+type GetRegionOptStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Region code that was passed in.
+	RegionName *string `min:"1" type:"string"`
+
+	// One of the potential statuses a Region can undergo (Enabled, Enabling, Disabled,
+	// Disabling, Enabled_By_Default).
+	RegionOptStatus *string `type:"string" enum:"RegionOptStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegionOptStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegionOptStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *GetRegionOptStatusOutput) SetRegionName(v string) *GetRegionOptStatusOutput {
+	s.RegionName = &v
+	return s
+}
+
+// SetRegionOptStatus sets the RegionOptStatus field's value.
+func (s *GetRegionOptStatusOutput) SetRegionOptStatus(v string) *GetRegionOptStatusOutput {
+	s.RegionOptStatus = &v
+	return s
+}
+
 // The operation failed because of an error internal to Amazon Web Services.
 // Try your operation again later.
 type InternalServerException struct {
@@ -1273,6 +2097,150 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListRegionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. If you don't specify
+	// this parameter, it defaults to the Amazon Web Services account of the identity
+	// used to call the operation. To use this parameter, the caller must be an
+	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must also
+	// be a member account in the same organization. The organization must have
+	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// The management account can't specify its own AccountId. It must call the
+	// operation in standalone context by not including the AccountId parameter.
+	//
+	// To call this operation on an account that is not a member of an organization,
+	// don't specify this parameter. Instead, call the operation using an identity
+	// belonging to the account whose contacts you wish to retrieve or modify.
+	AccountId *string `type:"string"`
+
+	// The total number of items to return in the command’s output. If the total
+	// number of items available is more than the value specified, a NextToken is
+	// provided in the command’s output. To resume pagination, provide the NextToken
+	// value in the starting-token argument of a subsequent command. Do not use
+	// the NextToken response element directly outside of the Amazon Web Services
+	// CLI. For usage examples, see Pagination (http://docs.aws.amazon.com/cli/latest/userguide/pagination.html)
+	// in the Amazon Web Services Command Line Interface User Guide.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token used to specify where to start paginating. This is the NextToken
+	// from a previously truncated response. For usage examples, see Pagination
+	// (http://docs.aws.amazon.com/cli/latest/userguide/pagination.html) in the
+	// Amazon Web Services Command Line Interface User Guide.
+	NextToken *string `type:"string"`
+
+	// A list of Region statuses (Enabling, Enabled, Disabling, Disabled, Enabled_by_default)
+	// to use to filter the list of Regions for a given account. For example, passing
+	// in a value of ENABLING will only return a list of Regions with a Region status
+	// of ENABLING.
+	RegionOptStatusContains []*string `type:"list" enum:"RegionOptStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRegionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRegionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListRegionsInput) SetAccountId(v string) *ListRegionsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRegionsInput) SetMaxResults(v int64) *ListRegionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRegionsInput) SetNextToken(v string) *ListRegionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegionOptStatusContains sets the RegionOptStatusContains field's value.
+func (s *ListRegionsInput) SetRegionOptStatusContains(v []*string) *ListRegionsInput {
+	s.RegionOptStatusContains = v
+	return s
+}
+
+type ListRegionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there is more data to be returned, this will be populated. It should be
+	// passed into the next-token request parameter of list-regions.
+	NextToken *string `type:"string"`
+
+	// This is a list of Regions for a given account, or if the filtered parameter
+	// was used, a list of Regions that match the filter criteria set in the filter
+	// parameter.
+	Regions []*Region `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRegionsOutput) SetNextToken(v string) *ListRegionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *ListRegionsOutput) SetRegions(v []*Region) *ListRegionsOutput {
+	s.Regions = v
+	return s
 }
 
 type PutAlternateContactInput struct {
@@ -1558,6 +2526,49 @@ func (s PutContactInformationOutput) GoString() string {
 	return s.String()
 }
 
+// This is a structure that expresses the Region for a given account, consisting
+// of a name and opt-in status.
+type Region struct {
+	_ struct{} `type:"structure"`
+
+	// The Region code of a given Region (for example, us-east-1).
+	RegionName *string `min:"1" type:"string"`
+
+	// One of potential statuses a Region can undergo (Enabled, Enabling, Disabled,
+	// Disabling, Enabled_By_Default).
+	RegionOptStatus *string `type:"string" enum:"RegionOptStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Region) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Region) GoString() string {
+	return s.String()
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *Region) SetRegionName(v string) *Region {
+	s.RegionName = &v
+	return s
+}
+
+// SetRegionOptStatus sets the RegionOptStatus field's value.
+func (s *Region) SetRegionOptStatus(v string) *Region {
+	s.RegionOptStatus = &v
+	return s
+}
+
 // The operation failed because it specified a resource that can't be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -1692,7 +2703,18 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"message" type:"string"`
+	// The field where the invalid entry was detected.
+	FieldList []*ValidationExceptionField `locationName:"fieldList" type:"list"`
+
+	// The message that informs you about what was invalid about the request.
+	//
+	// Message_ is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidationException's
+	// String and GoString methods.
+	Message_ *string `locationName:"message" type:"string" sensitive:"true"`
+
+	// The reason that validation failed.
+	Reason *string `locationName:"reason" type:"string" enum:"ValidationExceptionReason"`
 }
 
 // String returns the string representation.
@@ -1738,7 +2760,7 @@ func (s *ValidationException) OrigErr() error {
 }
 
 func (s *ValidationException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -1749,6 +2771,56 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The input failed to meet the constraints specified by the AWS service in
+// a specified field.
+type ValidationExceptionField struct {
+	_ struct{} `type:"structure"`
+
+	// A message about the validation exception.
+	//
+	// Message is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidationExceptionField's
+	// String and GoString methods.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true" sensitive:"true"`
+
+	// The field name where the invalid entry was detected.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationExceptionField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationExceptionField) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ValidationExceptionField) SetMessage(v string) *ValidationExceptionField {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
+	s.Name = &v
+	return s
 }
 
 const (
@@ -1768,5 +2840,49 @@ func AlternateContactType_Values() []string {
 		AlternateContactTypeBilling,
 		AlternateContactTypeOperations,
 		AlternateContactTypeSecurity,
+	}
+}
+
+const (
+	// RegionOptStatusEnabled is a RegionOptStatus enum value
+	RegionOptStatusEnabled = "ENABLED"
+
+	// RegionOptStatusEnabling is a RegionOptStatus enum value
+	RegionOptStatusEnabling = "ENABLING"
+
+	// RegionOptStatusDisabling is a RegionOptStatus enum value
+	RegionOptStatusDisabling = "DISABLING"
+
+	// RegionOptStatusDisabled is a RegionOptStatus enum value
+	RegionOptStatusDisabled = "DISABLED"
+
+	// RegionOptStatusEnabledByDefault is a RegionOptStatus enum value
+	RegionOptStatusEnabledByDefault = "ENABLED_BY_DEFAULT"
+)
+
+// RegionOptStatus_Values returns all elements of the RegionOptStatus enum
+func RegionOptStatus_Values() []string {
+	return []string{
+		RegionOptStatusEnabled,
+		RegionOptStatusEnabling,
+		RegionOptStatusDisabling,
+		RegionOptStatusDisabled,
+		RegionOptStatusEnabledByDefault,
+	}
+}
+
+const (
+	// ValidationExceptionReasonInvalidRegionOptTarget is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidRegionOptTarget = "invalidRegionOptTarget"
+
+	// ValidationExceptionReasonFieldValidationFailed is a ValidationExceptionReason enum value
+	ValidationExceptionReasonFieldValidationFailed = "fieldValidationFailed"
+)
+
+// ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
+func ValidationExceptionReason_Values() []string {
+	return []string{
+		ValidationExceptionReasonInvalidRegionOptTarget,
+		ValidationExceptionReasonFieldValidationFailed,
 	}
 }

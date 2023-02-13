@@ -454,9 +454,6 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //   - Device type: EDGE Capacity: T100 Description: Snowball Edge Storage
 //     Optimized with EC2 Compute
 //
-//   - Device type: V3_5C Capacity: T32 Description: Snowball Edge Compute
-//     Optimized without GPU
-//
 //   - Device type: STANDARD Capacity: T50 Description: Original Snowball device
 //     This device is only available in the Ningxia, Beijing, and Singapore Amazon
 //     Web Services Region
@@ -2244,6 +2241,92 @@ func (c *Snowball) ListLongTermPricingPagesWithContext(ctx aws.Context, input *L
 	return p.Err()
 }
 
+const opListServiceVersions = "ListServiceVersions"
+
+// ListServiceVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListServiceVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListServiceVersions for more information on using the ListServiceVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListServiceVersionsRequest method.
+//	req, resp := client.ListServiceVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListServiceVersions
+func (c *Snowball) ListServiceVersionsRequest(input *ListServiceVersionsInput) (req *request.Request, output *ListServiceVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListServiceVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListServiceVersionsInput{}
+	}
+
+	output = &ListServiceVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListServiceVersions API operation for Amazon Import/Export Snowball.
+//
+// Lists all supported versions for Snow on-device services. Returns an array
+// of ServiceVersion object containing the supported versions for a particular
+// service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation ListServiceVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidNextTokenException
+//     The NextToken string was altered unexpectedly, and the operation has stopped.
+//     Run the operation without changing the NextToken string, and try again.
+//
+//   - InvalidResourceException
+//     The specified resource can't be found. Check the information you provided
+//     in your last request, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListServiceVersions
+func (c *Snowball) ListServiceVersions(input *ListServiceVersionsInput) (*ListServiceVersionsOutput, error) {
+	req, out := c.ListServiceVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListServiceVersionsWithContext is the same as ListServiceVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServiceVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListServiceVersionsWithContext(ctx aws.Context, input *ListServiceVersionsInput, opts ...request.Option) (*ListServiceVersionsOutput, error) {
+	req, out := c.ListServiceVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCluster = "UpdateCluster"
 
 // UpdateClusterRequest generates a "aws/request.Request" representing the
@@ -3634,6 +3717,11 @@ func (s *CreateClusterInput) Validate() error {
 	if s.SnowballType == nil {
 		invalidParams.Add(request.NewErrParamRequired("SnowballType"))
 	}
+	if s.OnDeviceServiceConfiguration != nil {
+		if err := s.OnDeviceServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OnDeviceServiceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
@@ -3912,6 +4000,11 @@ func (s *CreateJobInput) Validate() error {
 	if s.LongTermPricingId != nil && len(*s.LongTermPricingId) < 41 {
 		invalidParams.Add(request.NewErrParamMinLen("LongTermPricingId", 41))
 	}
+	if s.OnDeviceServiceConfiguration != nil {
+		if err := s.OnDeviceServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OnDeviceServiceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
@@ -4065,8 +4158,6 @@ func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 type CreateLongTermPricingInput struct {
 	_ struct{} `type:"structure"`
 
-	// snowballty
-	//
 	// Specifies whether the current long-term pricing type for the device should
 	// be renewed.
 	IsLongTermPricingAutoRenew *bool `type:"boolean"`
@@ -4317,6 +4408,62 @@ func (s *DataTransfer) SetTotalBytes(v int64) *DataTransfer {
 // SetTotalObjects sets the TotalObjects field's value.
 func (s *DataTransfer) SetTotalObjects(v int64) *DataTransfer {
 	s.TotalObjects = &v
+	return s
+}
+
+// The name and version of the service dependant on the requested service.
+type DependentService struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dependent service.
+	ServiceName *string `type:"string" enum:"ServiceName"`
+
+	// The version of the dependent service.
+	ServiceVersion *ServiceVersion `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DependentService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DependentService) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DependentService) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DependentService"}
+	if s.ServiceVersion != nil {
+		if err := s.ServiceVersion.Validate(); err != nil {
+			invalidParams.AddNested("ServiceVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *DependentService) SetServiceName(v string) *DependentService {
+	s.ServiceName = &v
+	return s
+}
+
+// SetServiceVersion sets the ServiceVersion field's value.
+func (s *DependentService) SetServiceVersion(v *ServiceVersion) *DependentService {
+	s.ServiceVersion = v
 	return s
 }
 
@@ -4798,6 +4945,64 @@ func (s DeviceConfiguration) GoString() string {
 // SetSnowconeDeviceConfiguration sets the SnowconeDeviceConfiguration field's value.
 func (s *DeviceConfiguration) SetSnowconeDeviceConfiguration(v *SnowconeDeviceConfiguration) *DeviceConfiguration {
 	s.SnowconeDeviceConfiguration = v
+	return s
+}
+
+// An object representing the metadata and configuration settings of EKS Anywhere
+// on the Snow Family device.
+type EKSOnDeviceServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The version of EKS Anywhere on the Snow Family device.
+	EKSAnywhereVersion *string `min:"1" type:"string"`
+
+	// The Kubernetes version for EKS Anywhere on the Snow Family device.
+	KubernetesVersion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EKSOnDeviceServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EKSOnDeviceServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EKSOnDeviceServiceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EKSOnDeviceServiceConfiguration"}
+	if s.EKSAnywhereVersion != nil && len(*s.EKSAnywhereVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EKSAnywhereVersion", 1))
+	}
+	if s.KubernetesVersion != nil && len(*s.KubernetesVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KubernetesVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEKSAnywhereVersion sets the EKSAnywhereVersion field's value.
+func (s *EKSOnDeviceServiceConfiguration) SetEKSAnywhereVersion(v string) *EKSOnDeviceServiceConfiguration {
+	s.EKSAnywhereVersion = &v
+	return s
+}
+
+// SetKubernetesVersion sets the KubernetesVersion field's value.
+func (s *EKSOnDeviceServiceConfiguration) SetKubernetesVersion(v string) *EKSOnDeviceServiceConfiguration {
+	s.KubernetesVersion = &v
 	return s
 }
 
@@ -6818,6 +7023,157 @@ func (s *ListLongTermPricingOutput) SetNextToken(v string) *ListLongTermPricingO
 	return s
 }
 
+type ListServiceVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of names and versions of dependant services of the requested service.
+	DependentServices []*DependentService `type:"list"`
+
+	// The maximum number of ListServiceVersions objects to return.
+	MaxResults *int64 `type:"integer"`
+
+	// Because HTTP requests are stateless, this is the starting point for the next
+	// list of returned ListServiceVersionsRequest versions.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the service for which you're requesting supported versions.
+	//
+	// ServiceName is a required field
+	ServiceName *string `type:"string" required:"true" enum:"ServiceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListServiceVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListServiceVersionsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.DependentServices != nil {
+		for i, v := range s.DependentServices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DependentServices", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDependentServices sets the DependentServices field's value.
+func (s *ListServiceVersionsInput) SetDependentServices(v []*DependentService) *ListServiceVersionsInput {
+	s.DependentServices = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListServiceVersionsInput) SetMaxResults(v int64) *ListServiceVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServiceVersionsInput) SetNextToken(v string) *ListServiceVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListServiceVersionsInput) SetServiceName(v string) *ListServiceVersionsInput {
+	s.ServiceName = &v
+	return s
+}
+
+type ListServiceVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of names and versions of dependant services of the service for which
+	// the system provided supported versions.
+	DependentServices []*DependentService `type:"list"`
+
+	// Because HTTP requests are stateless, this is the starting point of the next
+	// list of returned ListServiceVersionsResult results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the service for which the system provided supported versions.
+	//
+	// ServiceName is a required field
+	ServiceName *string `type:"string" required:"true" enum:"ServiceName"`
+
+	// A list of supported versions.
+	//
+	// ServiceVersions is a required field
+	ServiceVersions []*ServiceVersion `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDependentServices sets the DependentServices field's value.
+func (s *ListServiceVersionsOutput) SetDependentServices(v []*DependentService) *ListServiceVersionsOutput {
+	s.DependentServices = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServiceVersionsOutput) SetNextToken(v string) *ListServiceVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListServiceVersionsOutput) SetServiceName(v string) *ListServiceVersionsOutput {
+	s.ServiceName = &v
+	return s
+}
+
+// SetServiceVersions sets the ServiceVersions field's value.
+func (s *ListServiceVersionsOutput) SetServiceVersions(v []*ServiceVersion) *ListServiceVersionsOutput {
+	s.ServiceVersions = v
+	return s
+}
+
 // Each LongTermPricingListEntry object contains information about a long-term
 // pricing type.
 type LongTermPricingListEntry struct {
@@ -7047,6 +7403,9 @@ func (s *Notification) SetSnsTopicARN(v string) *Notification {
 type OnDeviceServiceConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration of EKS Anywhere on the Snow Family device.
+	EKSOnDeviceService *EKSOnDeviceServiceConfiguration `type:"structure"`
+
 	// Represents the NFS (Network File System) service on a Snow Family device.
 	NFSOnDeviceService *NFSOnDeviceServiceConfiguration `type:"structure"`
 
@@ -7071,6 +7430,27 @@ func (s OnDeviceServiceConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s OnDeviceServiceConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OnDeviceServiceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OnDeviceServiceConfiguration"}
+	if s.EKSOnDeviceService != nil {
+		if err := s.EKSOnDeviceService.Validate(); err != nil {
+			invalidParams.AddNested("EKSOnDeviceService", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEKSOnDeviceService sets the EKSOnDeviceService field's value.
+func (s *OnDeviceServiceConfiguration) SetEKSOnDeviceService(v *EKSOnDeviceServiceConfiguration) *OnDeviceServiceConfiguration {
+	s.EKSOnDeviceService = v
+	return s
 }
 
 // SetNFSOnDeviceService sets the NFSOnDeviceService field's value.
@@ -7222,6 +7602,51 @@ func (s *S3Resource) SetKeyRange(v *KeyRange) *S3Resource {
 // SetTargetOnDeviceServices sets the TargetOnDeviceServices field's value.
 func (s *S3Resource) SetTargetOnDeviceServices(v []*TargetOnDeviceService) *S3Resource {
 	s.TargetOnDeviceServices = v
+	return s
+}
+
+// The version of the requested service.
+type ServiceVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The version number of the requested service.
+	Version *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceVersion) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceVersion"}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVersion sets the Version field's value.
+func (s *ServiceVersion) SetVersion(v string) *ServiceVersion {
+	s.Version = &v
 	return s
 }
 
@@ -7650,6 +8075,11 @@ func (s *UpdateClusterInput) Validate() error {
 	if s.ForwardingAddressId != nil && len(*s.ForwardingAddressId) < 40 {
 		invalidParams.Add(request.NewErrParamMinLen("ForwardingAddressId", 40))
 	}
+	if s.OnDeviceServiceConfiguration != nil {
+		if err := s.OnDeviceServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OnDeviceServiceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
@@ -7820,6 +8250,11 @@ func (s *UpdateJobInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 39 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 39))
+	}
+	if s.OnDeviceServiceConfiguration != nil {
+		if err := s.OnDeviceServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OnDeviceServiceConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
@@ -8154,11 +8589,11 @@ const (
 	// CapacityT14 is a Capacity enum value
 	CapacityT14 = "T14"
 
-	// CapacityNoPreference is a Capacity enum value
-	CapacityNoPreference = "NoPreference"
-
 	// CapacityT32 is a Capacity enum value
 	CapacityT32 = "T32"
+
+	// CapacityNoPreference is a Capacity enum value
+	CapacityNoPreference = "NoPreference"
 )
 
 // Capacity_Values returns all elements of the Capacity enum
@@ -8171,8 +8606,8 @@ func Capacity_Values() []string {
 		CapacityT98,
 		CapacityT8,
 		CapacityT14,
-		CapacityNoPreference,
 		CapacityT32,
+		CapacityNoPreference,
 	}
 }
 
@@ -8329,6 +8764,22 @@ func RemoteManagement_Values() []string {
 	return []string{
 		RemoteManagementInstalledOnly,
 		RemoteManagementInstalledAutostart,
+	}
+}
+
+const (
+	// ServiceNameKubernetes is a ServiceName enum value
+	ServiceNameKubernetes = "KUBERNETES"
+
+	// ServiceNameEksAnywhere is a ServiceName enum value
+	ServiceNameEksAnywhere = "EKS_ANYWHERE"
+)
+
+// ServiceName_Values returns all elements of the ServiceName enum
+func ServiceName_Values() []string {
+	return []string{
+		ServiceNameKubernetes,
+		ServiceNameEksAnywhere,
 	}
 }
 

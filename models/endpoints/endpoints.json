@@ -3637,6 +3637,7 @@
       "connect-campaigns" : {
         "endpoints" : {
           "ap-southeast-2" : { },
+          "ca-central-1" : { },
           "eu-west-2" : { },
           "fips-us-east-1" : {
             "credentialScope" : {
@@ -20915,6 +20916,7 @@
           } ]
         },
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "variants" : [ {
               "hostname" : "runtime.sagemaker.us-gov-west-1.amazonaws.com",

@@ -1,3 +1,12 @@
+Release v1.44.200 (2023-02-13)
+===
+
+### Service Client Updates
+* `service/account`: Updates service API, documentation, and paginators
+* `service/appconfigdata`: Updates service API and documentation
+* `service/snowball`: Updates service API and documentation
+  * Adds support for EKS Anywhere on Snowball. AWS Snow Family customers can now install EKS Anywhere service on Snowball Edge Compute Optimized devices.
+
 Release v1.44.199 (2023-02-10)
 ===
 
