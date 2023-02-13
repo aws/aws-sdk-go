@@ -99,13 +99,18 @@
           "location":"header",
           "locationName":"Content-Type"
         },
-        "Configuration":{"shape":"SyntheticGetLatestConfigurationResponseBlob"}
+        "Configuration":{"shape":"SensitiveBlob"},
+        "VersionLabel":{
+          "shape":"String",
+          "location":"header",
+          "locationName":"Version-Label"
+        }
       },
       "payload":"Configuration"
     },
     "Identifier":{
       "type":"string",
-      "max":64,
+      "max":128,
       "min":1
     },
     "Integer":{"type":"integer"},
@@ -166,6 +171,10 @@
         "Configuration"
       ]
     },
+    "SensitiveBlob":{
+      "type":"blob",
+      "sensitive":true
+    },
     "StartConfigurationSessionRequest":{
       "type":"structure",
       "required":[
@@ -191,10 +200,6 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"String"}
-    },
-    "SyntheticGetLatestConfigurationResponseBlob":{
-      "type":"blob",
-      "sensitive":true
     },
     "ThrottlingException":{
       "type":"structure",

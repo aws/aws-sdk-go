@@ -6,7 +6,7 @@
     "CancelJob": "<p>Cancels the specified job. You can only cancel a job before its <code>JobState</code> value changes to <code>PreparingAppliance</code>. Requesting the <code>ListJobs</code> or <code>DescribeJob</code> action returns a job's <code>JobState</code> as part of the response element data returned.</p>",
     "CreateAddress": "<p>Creates an address for a Snow device to be shipped to. In most regions, addresses are validated at the time of creation. The address you provide must be located within the serviceable area of your region. If the address is invalid or unsupported, then an exception is thrown.</p>",
     "CreateCluster": "<p>Creates an empty cluster. Each cluster supports five nodes. You use the <a>CreateJob</a> action separately to create the jobs for each of these nodes. The cluster does not ship until these five node jobs have been created.</p>",
-    "CreateJob": "<p>Creates a job to import or export data between Amazon S3 and your on-premises data center. Your Amazon Web Services account must have the right trust policies and permissions in place to create a job for a Snow device. If you're creating a job for a node in a cluster, you only need to provide the <code>clusterId</code> value; the other job attributes are inherited from the cluster. </p> <note> <p>Only the Snowball; Edge device type is supported when ordering clustered jobs.</p> <p>The device capacity is optional.</p> <p>Availability of device types differ by Amazon Web Services Region. For more information about Region availability, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&amp;loc=4\">Amazon Web Services Regional Services</a>.</p> </note> <p/> <p class=\"title\"> <b>Snow Family devices and their capacities.</b> </p> <ul> <li> <p>Snow Family device type: <b>SNC1_SSD</b> </p> <ul> <li> <p>Capacity: T14</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Snow Family device type: <b>SNC1_HDD</b> </p> <ul> <li> <p>Capacity: T8</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_S</b> </p> <ul> <li> <p>Capacity: T98</p> </li> <li> <p>Description: Snowball Edge Storage Optimized for data transfer only </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_CG</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized with GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_C</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE</b> </p> <ul> <li> <p>Capacity: T100</p> </li> <li> <p>Description: Snowball Edge Storage Optimized with EC2 Compute</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>V3_5C</b> </p> <ul> <li> <p>Capacity: T32</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T50</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region </p> </note> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T80</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region. </p> </note> </li> </ul> <p/> </li> </ul>",
+    "CreateJob": "<p>Creates a job to import or export data between Amazon S3 and your on-premises data center. Your Amazon Web Services account must have the right trust policies and permissions in place to create a job for a Snow device. If you're creating a job for a node in a cluster, you only need to provide the <code>clusterId</code> value; the other job attributes are inherited from the cluster. </p> <note> <p>Only the Snowball; Edge device type is supported when ordering clustered jobs.</p> <p>The device capacity is optional.</p> <p>Availability of device types differ by Amazon Web Services Region. For more information about Region availability, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&amp;loc=4\">Amazon Web Services Regional Services</a>.</p> </note> <p/> <p class=\"title\"> <b>Snow Family devices and their capacities.</b> </p> <ul> <li> <p>Snow Family device type: <b>SNC1_SSD</b> </p> <ul> <li> <p>Capacity: T14</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Snow Family device type: <b>SNC1_HDD</b> </p> <ul> <li> <p>Capacity: T8</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_S</b> </p> <ul> <li> <p>Capacity: T98</p> </li> <li> <p>Description: Snowball Edge Storage Optimized for data transfer only </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_CG</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized with GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_C</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE</b> </p> <ul> <li> <p>Capacity: T100</p> </li> <li> <p>Description: Snowball Edge Storage Optimized with EC2 Compute</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T50</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region </p> </note> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T80</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region. </p> </note> </li> </ul> <p/> </li> </ul>",
     "CreateLongTermPricing": "<p>Creates a job with the long-term usage option for a device. The long-term usage is a 1-year or 3-year long-term pricing type for the device. You are billed upfront, and Amazon Web Services provides discounts for long-term pricing. </p>",
     "CreateReturnShippingLabel": "<p>Creates a shipping label that will be used to return the Snow device to Amazon Web Services.</p>",
     "DescribeAddress": "<p>Takes an <code>AddressId</code> and returns specific details about that address in the form of an <code>Address</code> object.</p>",
@@ -23,6 +23,7 @@
     "ListCompatibleImages": "<p>This action returns a list of the different Amazon EC2 Amazon Machine Images (AMIs) that are owned by your Amazon Web Services accountthat would be supported for use on a Snow device. Currently, supported AMIs are based on the CentOS 7 (x86_64) - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu 16.04 LTS - Xenial (HVM) images, available on the Amazon Web Services Marketplace.</p>",
     "ListJobs": "<p>Returns an array of <code>JobListEntry</code> objects of the specified length. Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. Calling this API action in one of the US regions will return jobs from the list of all jobs associated with this account in all US regions.</p>",
     "ListLongTermPricing": "<p>Lists all long-term pricing types.</p>",
+    "ListServiceVersions": "<p>Lists all supported versions for Snow on-device services. Returns an array of <code>ServiceVersion</code> object containing the supported versions for a particular service.</p>",
     "UpdateCluster": "<p>While a cluster's <code>ClusterState</code> value is in the <code>AwaitingQuorum</code> state, you can update some of the information associated with a cluster. Once the cluster changes to a different job state, usually 60 minutes after the cluster being created, this action is no longer available.</p>",
     "UpdateJob": "<p>While a job's <code>JobState</code> value is <code>New</code>, you can update some of the information associated with a job. Once the job changes to a different job state, usually within 60 minutes of the job being created, this action is no longer available.</p>",
     "UpdateJobShipmentState": "<p>Updates the state when a shipment state changes to a different state.</p>",
@@ -211,6 +212,19 @@
         "JobMetadata$DataTransferProgress": "<p>A value that defines the real-time status of a Snow device's data transfer while the device is at Amazon Web Services. This data is only available while a job has a <code>JobState</code> value of <code>InProgress</code>, for both import and export jobs.</p>"
       }
     },
+    "DependentService": {
+      "base": "<p>The name and version of the service dependant on the requested service.</p>",
+      "refs": {
+        "DependentServiceList$member": null
+      }
+    },
+    "DependentServiceList": {
+      "base": null,
+      "refs": {
+        "ListServiceVersionsRequest$DependentServices": "<p>A list of names and versions of dependant services of the requested service.</p>",
+        "ListServiceVersionsResult$DependentServices": "<p>A list of names and versions of dependant services of the service for which the system provided supported versions.</p>"
+      }
+    },
     "DescribeAddressRequest": {
       "base": null,
       "refs": {
@@ -272,6 +286,12 @@
       "base": null,
       "refs": {
         "TargetOnDeviceService$ServiceName": "<p>Specifies the name of the service on the Snow Family device that your transferred data will be exported from or imported into.</p>"
+      }
+    },
+    "EKSOnDeviceServiceConfiguration": {
+      "base": "<p>An object representing the metadata and configuration settings of EKS Anywhere on the Snow Family device.</p>",
+      "refs": {
+        "OnDeviceServiceConfiguration$EKSOnDeviceService": "<p>The configuration of EKS Anywhere on the Snow Family device.</p>"
       }
     },
     "Ec2AmiResource": {
@@ -390,7 +410,7 @@
     "JavaBoolean": {
       "base": null,
       "refs": {
-        "CreateLongTermPricingRequest$IsLongTermPricingAutoRenew": "<p>snowballty</p> <p>Specifies whether the current long-term pricing type for the device should be renewed.</p>",
+        "CreateLongTermPricingRequest$IsLongTermPricingAutoRenew": "<p>Specifies whether the current long-term pricing type for the device should be renewed.</p>",
         "LongTermPricingListEntry$IsLongTermPricingAutoRenew": "<p>If set to <code>true</code>, specifies that the current long-term pricing type for the device should be automatically renewed before the long-term pricing contract expires.</p>",
         "UpdateLongTermPricingRequest$IsLongTermPricingAutoRenew": "<p>If set to <code>true</code>, specifies that the current long-term pricing type for the device should be automatically renewed before the long-term pricing contract expires.</p>"
       }
@@ -561,7 +581,8 @@
         "ListClustersRequest$MaxResults": "<p>The number of <code>ClusterListEntry</code> objects to return.</p>",
         "ListCompatibleImagesRequest$MaxResults": "<p>The maximum number of results for the list of compatible images. Currently, a Snowball Edge device can store 10 AMIs.</p>",
         "ListJobsRequest$MaxResults": "<p>The number of <code>JobListEntry</code> objects to return.</p>",
-        "ListLongTermPricingRequest$MaxResults": "<p>The maximum number of <code>ListLongTermPricing</code> objects to return.</p>"
+        "ListLongTermPricingRequest$MaxResults": "<p>The maximum number of <code>ListLongTermPricing</code> objects to return.</p>",
+        "ListServiceVersionsRequest$MaxResults": "<p>The maximum number of <code>ListServiceVersions</code> objects to return.</p>"
       }
     },
     "ListLongTermPricingRequest": {
@@ -570,6 +591,16 @@
       }
     },
     "ListLongTermPricingResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListServiceVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListServiceVersionsResult": {
       "base": null,
       "refs": {
       }
@@ -690,6 +721,27 @@
         "JobResource$S3Resources": "<p>An array of <code>S3Resource</code> objects.</p>"
       }
     },
+    "ServiceName": {
+      "base": null,
+      "refs": {
+        "DependentService$ServiceName": "<p>The name of the dependent service.</p>",
+        "ListServiceVersionsRequest$ServiceName": "<p>The name of the service for which you're requesting supported versions.</p>",
+        "ListServiceVersionsResult$ServiceName": "<p>The name of the service for which the system provided supported versions.</p>"
+      }
+    },
+    "ServiceVersion": {
+      "base": "<p>The version of the requested service.</p>",
+      "refs": {
+        "DependentService$ServiceVersion": "<p>The version of the dependent service.</p>",
+        "ServiceVersionList$member": null
+      }
+    },
+    "ServiceVersionList": {
+      "base": null,
+      "refs": {
+        "ListServiceVersionsResult$ServiceVersions": "<p>A list of supported versions.</p>"
+      }
+    },
     "Shipment": {
       "base": "<p>The <code>Status</code> and <code>TrackingNumber</code> information for an inbound or outbound shipment.</p>",
       "refs": {
@@ -804,6 +856,8 @@
         "DescribeAddressesRequest$NextToken": "<p>HTTP requests are stateless. To identify what object comes \"next\" in the list of <code>ADDRESS</code> objects, you have the option of specifying a value for <code>NextToken</code> as the starting point for your list of returned addresses.</p>",
         "DescribeAddressesResult$NextToken": "<p>HTTP requests are stateless. If you use the automatically generated <code>NextToken</code> value in your next <code>DescribeAddresses</code> call, your list of returned addresses will start from this point in the array.</p>",
         "DescribeReturnShippingLabelResult$ReturnShippingLabelURI": "<p>The pre-signed Amazon S3 URI used to download the return shipping label.</p>",
+        "EKSOnDeviceServiceConfiguration$KubernetesVersion": "<p>The Kubernetes version for EKS Anywhere on the Snow Family device.</p>",
+        "EKSOnDeviceServiceConfiguration$EKSAnywhereVersion": "<p>The version of EKS Anywhere on the Snow Family device.</p>",
         "Ec2AmiResource$SnowballAmiId": "<p>The ID of the AMI on the Snow device.</p>",
         "Ec2RequestFailedException$Message": null,
         "GetJobManifestResult$ManifestURI": "<p>The Amazon S3 presigned URL for the manifest file associated with the specified <code>JobId</code> value.</p>",
@@ -836,8 +890,11 @@
         "ListJobsResult$NextToken": "<p>HTTP requests are stateless. If you use this automatically generated <code>NextToken</code> value in your next <code>ListJobs</code> call, your returned <code>JobListEntry</code> objects will start from this point in the array.</p>",
         "ListLongTermPricingRequest$NextToken": "<p>Because HTTP requests are stateless, this is the starting point for your next list of <code>ListLongTermPricing</code> to return.</p>",
         "ListLongTermPricingResult$NextToken": "<p>Because HTTP requests are stateless, this is the starting point for your next list of returned <code>ListLongTermPricing</code> list.</p>",
+        "ListServiceVersionsRequest$NextToken": "<p>Because HTTP requests are stateless, this is the starting point for the next list of returned <code>ListServiceVersionsRequest</code> versions.</p>",
+        "ListServiceVersionsResult$NextToken": "<p>Because HTTP requests are stateless, this is the starting point of the next list of returned <code>ListServiceVersionsResult</code> results.</p>",
         "LongTermPricingListEntry$LongTermPricingStatus": "<p>The status of the long-term pricing type.</p>",
         "ReturnShippingLabelAlreadyExistsException$Message": null,
+        "ServiceVersion$Version": "<p>The version number of the requested service.</p>",
         "Shipment$Status": "<p>Status information for a shipment.</p>",
         "Shipment$TrackingNumber": "<p>The tracking number for this job. Using this tracking number with your region's carrier's website, you can track a Snow device as the carrier transports it.</p> <p>For India, the carrier is Amazon Logistics. For all other regions, UPS is the carrier.</p>",
         "UnsupportedAddressException$Message": null,

@@ -29,6 +29,38 @@
       ],
       "idempotent":true
     },
+    "DisableRegion":{
+      "name":"DisableRegion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/disableRegion",
+        "responseCode":200
+      },
+      "input":{"shape":"DisableRegionRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "EnableRegion":{
+      "name":"EnableRegion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/enableRegion",
+        "responseCode":200
+      },
+      "input":{"shape":"EnableRegionRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetAlternateContact":{
       "name":"GetAlternateContact",
       "http":{
@@ -57,6 +89,38 @@
       "output":{"shape":"GetContactInformationResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetRegionOptStatus":{
+      "name":"GetRegionOptStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/getRegionOptStatus",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRegionOptStatusRequest"},
+      "output":{"shape":"GetRegionOptStatusResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListRegions":{
+      "name":"ListRegions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listRegions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRegionsRequest"},
+      "output":{"shape":"ListRegionsResponse"},
+      "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"TooManyRequestsException"},
@@ -149,6 +213,18 @@
       "min":1,
       "sensitive":true
     },
+    "ConflictException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "httpStatusCode":409,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ContactInformation":{
       "type":"structure",
       "required":[
@@ -195,6 +271,14 @@
         "AlternateContactType":{"shape":"AlternateContactType"}
       }
     },
+    "DisableRegionRequest":{
+      "type":"structure",
+      "required":["RegionName"],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "RegionName":{"shape":"RegionName"}
+      }
+    },
     "DistrictOrCounty":{
       "type":"string",
       "max":50,
@@ -207,6 +291,14 @@
       "min":1,
       "pattern":"^[\\s]*[\\w+=.#!&-]+@[\\w.-]+\\.[\\w]+[\\s]*$",
       "sensitive":true
+    },
+    "EnableRegionRequest":{
+      "type":"structure",
+      "required":["RegionName"],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "RegionName":{"shape":"RegionName"}
+      }
     },
     "FullName":{
       "type":"string",
@@ -240,6 +332,21 @@
         "ContactInformation":{"shape":"ContactInformation"}
       }
     },
+    "GetRegionOptStatusRequest":{
+      "type":"structure",
+      "required":["RegionName"],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "RegionName":{"shape":"RegionName"}
+      }
+    },
+    "GetRegionOptStatusResponse":{
+      "type":"structure",
+      "members":{
+        "RegionName":{"shape":"RegionName"},
+        "RegionOptStatus":{"shape":"RegionOptStatus"}
+      }
+    },
     "InternalServerException":{
       "type":"structure",
       "required":["message"],
@@ -250,6 +357,33 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "ListRegionsRequest":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "MaxResults":{"shape":"ListRegionsRequestMaxResultsInteger"},
+        "NextToken":{"shape":"ListRegionsRequestNextTokenString"},
+        "RegionOptStatusContains":{"shape":"RegionOptStatusList"}
+      }
+    },
+    "ListRegionsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
+    "ListRegionsRequestNextTokenString":{
+      "type":"string",
+      "max":1000,
+      "min":0
+    },
+    "ListRegionsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "Regions":{"shape":"RegionOptList"}
+      }
     },
     "Name":{
       "type":"string",
@@ -296,6 +430,36 @@
         "ContactInformation":{"shape":"ContactInformation"}
       }
     },
+    "Region":{
+      "type":"structure",
+      "members":{
+        "RegionName":{"shape":"RegionName"},
+        "RegionOptStatus":{"shape":"RegionOptStatus"}
+      }
+    },
+    "RegionName":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
+    "RegionOptList":{
+      "type":"list",
+      "member":{"shape":"Region"}
+    },
+    "RegionOptStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "ENABLING",
+        "DISABLING",
+        "DISABLED",
+        "ENABLED_BY_DEFAULT"
+      ]
+    },
+    "RegionOptStatusList":{
+      "type":"list",
+      "member":{"shape":"RegionOptStatus"}
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":["message"],
@@ -307,6 +471,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "StateOrRegion":{
       "type":"string",
@@ -338,13 +506,37 @@
       "type":"structure",
       "required":["message"],
       "members":{
-        "message":{"shape":"String"}
+        "fieldList":{"shape":"ValidationExceptionFieldList"},
+        "message":{"shape":"SensitiveString"},
+        "reason":{"shape":"ValidationExceptionReason"}
       },
       "error":{
         "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
+    },
+    "ValidationExceptionField":{
+      "type":"structure",
+      "required":[
+        "message",
+        "name"
+      ],
+      "members":{
+        "message":{"shape":"SensitiveString"},
+        "name":{"shape":"String"}
+      }
+    },
+    "ValidationExceptionFieldList":{
+      "type":"list",
+      "member":{"shape":"ValidationExceptionField"}
+    },
+    "ValidationExceptionReason":{
+      "type":"string",
+      "enum":[
+        "invalidRegionOptTarget",
+        "fieldValidationFailed"
+      ]
     },
     "WebsiteUrl":{
       "type":"string",

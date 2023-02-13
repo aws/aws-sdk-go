@@ -162,6 +162,10 @@ type SnowballAPI interface {
 	ListLongTermPricingPages(*snowball.ListLongTermPricingInput, func(*snowball.ListLongTermPricingOutput, bool) bool) error
 	ListLongTermPricingPagesWithContext(aws.Context, *snowball.ListLongTermPricingInput, func(*snowball.ListLongTermPricingOutput, bool) bool, ...request.Option) error
 
+	ListServiceVersions(*snowball.ListServiceVersionsInput) (*snowball.ListServiceVersionsOutput, error)
+	ListServiceVersionsWithContext(aws.Context, *snowball.ListServiceVersionsInput, ...request.Option) (*snowball.ListServiceVersionsOutput, error)
+	ListServiceVersionsRequest(*snowball.ListServiceVersionsInput) (*request.Request, *snowball.ListServiceVersionsOutput)
+
 	UpdateCluster(*snowball.UpdateClusterInput) (*snowball.UpdateClusterOutput, error)
 	UpdateClusterWithContext(aws.Context, *snowball.UpdateClusterInput, ...request.Option) (*snowball.UpdateClusterOutput, error)
 	UpdateClusterRequest(*snowball.UpdateClusterInput) (*request.Request, *snowball.UpdateClusterOutput)

@@ -287,6 +287,19 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "ListServiceVersions":{
+      "name":"ListServiceVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListServiceVersionsRequest"},
+      "output":{"shape":"ListServiceVersionsResult"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidResourceException"}
+      ]
+    },
     "UpdateCluster":{
       "name":"UpdateCluster",
       "http":{
@@ -593,6 +606,17 @@
         "TotalObjects":{"shape":"Long"}
       }
     },
+    "DependentService":{
+      "type":"structure",
+      "members":{
+        "ServiceName":{"shape":"ServiceName"},
+        "ServiceVersion":{"shape":"ServiceVersion"}
+      }
+    },
+    "DependentServiceList":{
+      "type":"list",
+      "member":{"shape":"DependentService"}
+    },
     "DescribeAddressRequest":{
       "type":"structure",
       "required":["AddressId"],
@@ -674,6 +698,13 @@
         "NFS_ON_DEVICE_SERVICE",
         "S3_ON_DEVICE_SERVICE"
       ]
+    },
+    "EKSOnDeviceServiceConfiguration":{
+      "type":"structure",
+      "members":{
+        "KubernetesVersion":{"shape":"String"},
+        "EKSAnywhereVersion":{"shape":"String"}
+      }
     },
     "Ec2AmiResource":{
       "type":"structure",
@@ -1011,6 +1042,29 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListServiceVersionsRequest":{
+      "type":"structure",
+      "required":["ServiceName"],
+      "members":{
+        "ServiceName":{"shape":"ServiceName"},
+        "DependentServices":{"shape":"DependentServiceList"},
+        "MaxResults":{"shape":"ListLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListServiceVersionsResult":{
+      "type":"structure",
+      "required":[
+        "ServiceVersions",
+        "ServiceName"
+      ],
+      "members":{
+        "ServiceVersions":{"shape":"ServiceVersionList"},
+        "ServiceName":{"shape":"ServiceName"},
+        "DependentServices":{"shape":"DependentServiceList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "Long":{"type":"long"},
     "LongTermPricingAssociatedJobIdList":{
       "type":"list",
@@ -1067,7 +1121,8 @@
       "type":"structure",
       "members":{
         "NFSOnDeviceService":{"shape":"NFSOnDeviceServiceConfiguration"},
-        "TGWOnDeviceService":{"shape":"TGWOnDeviceServiceConfiguration"}
+        "TGWOnDeviceService":{"shape":"TGWOnDeviceServiceConfiguration"},
+        "EKSOnDeviceService":{"shape":"EKSOnDeviceServiceConfiguration"}
       }
     },
     "RemoteManagement":{
@@ -1105,6 +1160,23 @@
     "S3ResourceList":{
       "type":"list",
       "member":{"shape":"S3Resource"}
+    },
+    "ServiceName":{
+      "type":"string",
+      "enum":[
+        "KUBERNETES",
+        "EKS_ANYWHERE"
+      ]
+    },
+    "ServiceVersion":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"String"}
+      }
+    },
+    "ServiceVersionList":{
+      "type":"list",
+      "member":{"shape":"ServiceVersion"}
     },
     "Shipment":{
       "type":"structure",
@@ -1156,8 +1228,8 @@
         "T98",
         "T8",
         "T14",
-        "NoPreference",
-        "T32"
+        "T32",
+        "NoPreference"
       ]
     },
     "SnowballType":{
