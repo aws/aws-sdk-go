@@ -25,7 +25,7 @@ func TestAdd100Continue_Added(t *testing.T) {
 	if err != nil {
 		t.Errorf("expected no error, but received %v", err)
 	}
-	if e, a := "100-Continue", r.HTTPRequest.Header.Get("Expect"); e != a {
+	if e, a := "100-continue", r.HTTPRequest.Header.Get("Expect"); e != a {
 		t.Errorf("expected %s, but received %s", e, a)
 	}
 }
