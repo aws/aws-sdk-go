@@ -1,3 +1,12 @@
+Release v1.44.201 (2023-02-14)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * With this release customers can turn host maintenance on or off when allocating or modifying a supported dedicated host. Host maintenance is turned on by default for supported hosts.
+
 Release v1.44.200 (2023-02-13)
 ===
 

@@ -6093,6 +6093,11 @@ type CreateHostedConfigurationVersionInput struct {
 	// succession, specify the version number of the latest hosted configuration
 	// version.
 	LatestVersionNumber *int64 `location:"header" locationName:"Latest-Version-Number" type:"integer"`
+
+	// An optional, user-defined label for the AppConfig hosted configuration version.
+	// This value must contain at least one non-numeric character. For example,
+	// "v2.2.0".
+	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -6137,6 +6142,9 @@ func (s *CreateHostedConfigurationVersionInput) Validate() error {
 	if s.ContentType != nil && len(*s.ContentType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
 	}
+	if s.VersionLabel != nil && len(*s.VersionLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionLabel", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6180,6 +6188,12 @@ func (s *CreateHostedConfigurationVersionInput) SetLatestVersionNumber(v int64) 
 	return s
 }
 
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *CreateHostedConfigurationVersionInput) SetVersionLabel(v string) *CreateHostedConfigurationVersionInput {
+	s.VersionLabel = &v
+	return s
+}
+
 type CreateHostedConfigurationVersionOutput struct {
 	_ struct{} `type:"structure" payload:"Content"`
 
@@ -6202,6 +6216,9 @@ type CreateHostedConfigurationVersionOutput struct {
 
 	// A description of the configuration.
 	Description *string `location:"header" locationName:"Description" type:"string"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
 
 	// The configuration version.
 	VersionNumber *int64 `location:"header" locationName:"Version-Number" type:"integer"`
@@ -6252,6 +6269,12 @@ func (s *CreateHostedConfigurationVersionOutput) SetContentType(v string) *Creat
 // SetDescription sets the Description field's value.
 func (s *CreateHostedConfigurationVersionOutput) SetDescription(v string) *CreateHostedConfigurationVersionOutput {
 	s.Description = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetVersionLabel(v string) *CreateHostedConfigurationVersionOutput {
+	s.VersionLabel = &v
 	return s
 }
 
@@ -8756,6 +8779,9 @@ type GetHostedConfigurationVersionOutput struct {
 	// A description of the configuration.
 	Description *string `location:"header" locationName:"Description" type:"string"`
 
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `location:"header" locationName:"VersionLabel" min:"1" type:"string"`
+
 	// The configuration version.
 	VersionNumber *int64 `location:"header" locationName:"Version-Number" type:"integer"`
 }
@@ -8808,6 +8834,12 @@ func (s *GetHostedConfigurationVersionOutput) SetDescription(v string) *GetHoste
 	return s
 }
 
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *GetHostedConfigurationVersionOutput) SetVersionLabel(v string) *GetHostedConfigurationVersionOutput {
+	s.VersionLabel = &v
+	return s
+}
+
 // SetVersionNumber sets the VersionNumber field's value.
 func (s *GetHostedConfigurationVersionOutput) SetVersionNumber(v int64) *GetHostedConfigurationVersionOutput {
 	s.VersionNumber = &v
@@ -8830,6 +8862,9 @@ type HostedConfigurationVersionSummary struct {
 
 	// A description of the configuration.
 	Description *string `type:"string"`
+
+	// A user-defined label for an AppConfig hosted configuration version.
+	VersionLabel *string `min:"1" type:"string"`
 
 	// The configuration version.
 	VersionNumber *int64 `type:"integer"`
@@ -8874,6 +8909,12 @@ func (s *HostedConfigurationVersionSummary) SetContentType(v string) *HostedConf
 // SetDescription sets the Description field's value.
 func (s *HostedConfigurationVersionSummary) SetDescription(v string) *HostedConfigurationVersionSummary {
 	s.Description = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *HostedConfigurationVersionSummary) SetVersionLabel(v string) *HostedConfigurationVersionSummary {
+	s.VersionLabel = &v
 	return s
 }
 
@@ -9865,6 +9906,12 @@ type ListHostedConfigurationVersionsInput struct {
 
 	// A token to start the list. Use this token to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+
+	// An optional filter that can be used to specify the version label of an AppConfig
+	// hosted configuration version. This parameter supports filtering by prefix
+	// using a wildcard, for example "v2*". If you don't specify an asterisk at
+	// the end of the value, only an exact match is returned.
+	VersionLabel *string `location:"querystring" locationName:"version_label" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9906,6 +9953,9 @@ func (s *ListHostedConfigurationVersionsInput) Validate() error {
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
+	if s.VersionLabel != nil && len(*s.VersionLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionLabel", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9934,6 +9984,12 @@ func (s *ListHostedConfigurationVersionsInput) SetMaxResults(v int64) *ListHoste
 // SetNextToken sets the NextToken field's value.
 func (s *ListHostedConfigurationVersionsInput) SetNextToken(v string) *ListHostedConfigurationVersionsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *ListHostedConfigurationVersionsInput) SetVersionLabel(v string) *ListHostedConfigurationVersionsInput {
+	s.VersionLabel = &v
 	return s
 }
 
@@ -10382,7 +10438,8 @@ type StartDeploymentInput struct {
 	// ConfigurationProfileId is a required field
 	ConfigurationProfileId *string `type:"string" required:"true"`
 
-	// The configuration version to deploy.
+	// The configuration version to deploy. If deploying an AppConfig hosted configuration
+	// version, you can specify either the version number or version label.
 	//
 	// ConfigurationVersion is a required field
 	ConfigurationVersion *string `min:"1" type:"string" required:"true"`
