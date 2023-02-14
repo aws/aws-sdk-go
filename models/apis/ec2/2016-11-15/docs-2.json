@@ -10034,6 +10034,14 @@
         "DescribeHostsResult$Hosts": "<p>Information about the Dedicated Hosts.</p>"
       }
     },
+    "HostMaintenance": {
+      "base": null,
+      "refs": {
+        "AllocateHostsRequest$HostMaintenance": "<p>Indicates whether to enable or disable host maintenance for the Dedicated Host. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-maintenance.html\"> Host maintenance</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>Default: <code>on</code> </p>",
+        "Host$HostMaintenance": "<p>Indicates whether host maintenance is enabled or disabled for the Dedicated Host.</p>",
+        "ModifyHostsRequest$HostMaintenance": "<p>Indicates whether to enable or disable host maintenance for the Dedicated Host. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-maintenance.html\"> Host maintenance</a> in the <i>Amazon EC2 User Guide</i>.</p>"
+      }
+    },
     "HostOffering": {
       "base": "<p>Details about the Dedicated Host Reservation offering.</p>",
       "refs": {

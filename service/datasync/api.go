@@ -915,10 +915,7 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 // CreateLocationS3 API operation for AWS DataSync.
 //
 // Creates an endpoint for an Amazon S3 bucket that DataSync can access for
-// a transfer.
-//
-// For more information, see Create an Amazon S3 location (https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli)
-// in the DataSync User Guide.
+// a transfer. For more information, see Create an Amazon S3 location (https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1000,8 +997,9 @@ func (c *DataSync) CreateLocationSmbRequest(input *CreateLocationSmbInput) (req 
 
 // CreateLocationSmb API operation for AWS DataSync.
 //
-// Defines a file system on a Server Message Block (SMB) server that can be
-// read from or written to.
+// Creates an endpoint for a Server Message Block (SMB) file server that DataSync
+// can access for a transfer. For more information, see Creating an SMB location
+// (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1421,10 +1419,8 @@ func (c *DataSync) DescribeAgentRequest(input *DescribeAgentInput) (req *request
 
 // DescribeAgent API operation for AWS DataSync.
 //
-// Returns metadata such as the name, the network interfaces, and the status
-// (that is, whether the agent is running or not) for an agent. To specify which
-// agent to describe, use the Amazon Resource Name (ARN) of the agent in your
-// request.
+// Returns metadata about an DataSync agent, such as its name, endpoint type,
+// and status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2507,17 +2503,20 @@ func (c *DataSync) ListAgentsRequest(input *ListAgentsInput) (req *request.Reque
 
 // ListAgents API operation for AWS DataSync.
 //
-// Returns a list of agents owned by an Amazon Web Services account in the Amazon
-// Web Services Region specified in the request. The returned list is ordered
-// by agent Amazon Resource Name (ARN).
+// Returns a list of DataSync agents that belong to an Amazon Web Services account
+// in the Amazon Web Services Region specified in the request.
 //
-// By default, this operation returns a maximum of 100 agents. This operation
-// supports pagination that enables you to optionally reduce the number of agents
-// returned in a response.
+// With pagination, you can reduce the number of agents returned in a response.
+// If you get a truncated list of agents in a response, the response contains
+// a marker that you can specify in your next request to fetch the next page
+// of agents.
 //
-// If you have more agents than are returned in a response (that is, the response
-// returns only a truncated list of your agents), the response contains a marker
-// that you can specify in your next request to fetch the next page of agents.
+// ListAgents is eventually consistent. This means the result of running the
+// operation might not reflect that you just created or deleted an agent. For
+// example, if you create an agent with CreateAgent (https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateAgent.html)
+// and then immediately run ListAgents, that agent might not show up in the
+// list right away. In situations like this, you can always confirm whether
+// an agent has been created (or deleted) by using DescribeAgent (https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeAgent.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4018,19 +4017,20 @@ func (c *DataSync) UpdateTaskExecutionWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
-// Represents a single entry in a list of agents. AgentListEntry returns an
-// array that contains a list of agents when the ListAgents (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListAgents.html)
-// operation is called.
+// Represents a single entry in a list (or array) of DataSync agents when you
+// call the ListAgents (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListAgents.html)
+// operation.
 type AgentListEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the agent.
+	// The Amazon Resource Name (ARN) of a DataSync agent.
 	AgentArn *string `type:"string"`
 
-	// The name of the agent.
+	// The name of an agent.
 	Name *string `min:"1" type:"string"`
 
-	// The status of the agent.
+	// The status of an agent. For more information, see DataSync agent statuses
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/understand-agent-statuses.html).
 	Status *string `type:"string" enum:"AgentStatus"`
 }
 
@@ -4634,14 +4634,17 @@ type CreateLocationFsxOntapInput struct {
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// Specifies the ARN of the storage virtual machine (SVM) on your file system
-	// where you're copying data to or from.
+	// Specifies the ARN of the storage virtual machine (SVM) in your file system
+	// where you want to copy data to or from.
 	//
 	// StorageVirtualMachineArn is a required field
 	StorageVirtualMachineArn *string `type:"string" required:"true"`
 
-	// Specifies the junction path (also known as a mount point) in the SVM volume
-	// where you're copying data to or from (for example, /vol1).
+	// Specifies a path to the file share in the SVM where you'll copy your data.
+	//
+	// You can specify a junction path (also known as a mount point), qtree path
+	// (for NFS file shares), or share name (for SMB file shares). For example,
+	// your mount path might be /vol1, /vol1/tree1, or /share1.
 	//
 	// Don't specify a junction path in the SVM's root volume. For more information,
 	// see Managing FSx for ONTAP storage virtual machines (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html)
@@ -5928,20 +5931,27 @@ func (s *CreateLocationS3Output) SetLocationArn(v string) *CreateLocationS3Outpu
 type CreateLocationSmbInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block
-	// (SMB) location.
+	// Specifies the DataSync agent (or agents) which you want to connect to your
+	// SMB file server. You specify an agent by using its Amazon Resource Name (ARN).
 	//
 	// AgentArns is a required field
 	AgentArns []*string `min:"1" type:"list" required:"true"`
 
-	// The name of the Windows domain that the SMB server belongs to.
+	// Specifies the Windows domain name that your SMB file server belongs to.
+	//
+	// For more information, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
+	// for SMB locations.
 	Domain *string `type:"string"`
 
-	// The mount options used by DataSync to access the SMB server.
+	// Specifies the version of the SMB protocol that DataSync uses to access your
+	// SMB file server.
 	MountOptions *SmbMountOptions `type:"structure"`
 
-	// The password of the user who can mount the share, has the permissions to
-	// access files and folders in the SMB share.
+	// Specifies the password of the user who can mount your SMB file server and
+	// has permission to access the files and folders involved in your transfer.
+	//
+	// For more information, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
+	// for SMB locations.
 	//
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateLocationSmbInput's
@@ -5950,45 +5960,37 @@ type CreateLocationSmbInput struct {
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
-	// The name of the SMB server. This value is the IP address or Domain Name Service
-	// (DNS) name of the SMB server. An agent that is installed on-premises uses
-	// this hostname to mount the SMB server in a network.
+	// Specifies the Domain Name Service (DNS) name or IP address of the SMB file
+	// server that your DataSync agent will mount.
 	//
-	// This name must either be DNS-compliant or must be an IP version 4 (IPv4)
-	// address.
+	// You can't specify an IP version 6 (IPv6) address.
 	//
 	// ServerHostname is a required field
 	ServerHostname *string `type:"string" required:"true"`
 
-	// The subdirectory in the SMB file system that is used to read data from the
-	// SMB source location or write data to the SMB destination. The SMB path should
-	// be a path that's exported by the SMB server, or a subdirectory of that path.
-	// The path should be such that it can be mounted by other SMB clients in your
-	// network.
+	// Specifies the name of the share exported by your SMB file server where DataSync
+	// will read or write data. You can include a subdirectory in the share path
+	// (for example, /path/to/subdirectory). Make sure that other SMB clients in
+	// your network can also mount this path.
 	//
-	// Subdirectory must be specified with forward slashes. For example, /path/to/folder.
-	//
-	// To transfer all the data in the folder you specified, DataSync needs to have
-	// permissions to mount the SMB share, as well as to access all the data in
-	// that share. To ensure this, either ensure that the user/password specified
-	// belongs to the user who can mount the share, and who has the appropriate
-	// permissions for all of the files and directories that you want DataSync to
-	// access, or use credentials of a member of the Backup Operators group to mount
-	// the share. Doing either enables the agent to access the data. For the agent
-	// to access directories, you must additionally enable all execute access.
+	// To copy all data in the specified subdirectory, DataSync must be able to
+	// mount the SMB share and access all of its data. For more information, see
+	// required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
+	// for SMB locations.
 	//
 	// Subdirectory is a required field
 	Subdirectory *string `type:"string" required:"true"`
 
-	// The key-value pair that represents the tag that you want to add to the location.
-	// The value can be an empty string. We recommend using tags to name your resources.
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
+	// location.
 	Tags []*TagListEntry `type:"list"`
 
-	// The user who can mount the share, has the permissions to access files and
-	// folders in the SMB share.
+	// Specifies the user name that can mount your SMB file server and has permission
+	// to access the files and folders involved in your transfer.
 	//
-	// For information about choosing a user name that ensures sufficient permissions
-	// to files, folders, and metadata, see the User setting (create-smb-location.html#SMBuser)
+	// For information about choosing a user with the right level of access for
+	// your transfer, see required permissions (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb-permissions)
 	// for SMB locations.
 	//
 	// User is a required field
@@ -6103,8 +6105,7 @@ func (s *CreateLocationSmbInput) SetUser(v string) *CreateLocationSmbInput {
 type CreateLocationSmbOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the source SMB file system location that
-	// is created.
+	// The ARN of the SMB location that you created.
 	LocationArn *string `type:"string"`
 }
 
@@ -6542,7 +6543,7 @@ func (s DeleteTaskOutput) GoString() string {
 type DescribeAgentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the agent to describe.
+	// Specifies the Amazon Resource Name (ARN) of the DataSync agent to describe.
 	//
 	// AgentArn is a required field
 	AgentArn *string `type:"string" required:"true"`
@@ -6589,7 +6590,7 @@ func (s *DescribeAgentInput) SetAgentArn(v string) *DescribeAgentInput {
 type DescribeAgentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the agent.
+	// The ARN of the agent.
 	AgentArn *string `type:"string"`
 
 	// The time that the agent was activated (that is, created in your account).
@@ -8701,7 +8702,8 @@ type FsxProtocolSmb struct {
 	// Directory that your storage virtual machine (SVM) belongs to.
 	Domain *string `type:"string"`
 
-	// Specifies how DataSync can access a location using the SMB protocol.
+	// Specifies the version of the Server Message Block (SMB) protocol that DataSync
+	// uses to access an SMB file server.
 	MountOptions *SmbMountOptions `type:"structure"`
 
 	// Specifies the password of a user who has permission to access your SVM.
@@ -9011,11 +9013,12 @@ func (s *InvalidRequestException) RequestID() string {
 type ListAgentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of agents to list.
+	// Specifies the maximum number of DataSync agents to list in a response. By
+	// default, a response shows a maximum of 100 agents.
 	MaxResults *int64 `type:"integer"`
 
-	// An opaque string that indicates the position at which to begin the next list
-	// of agents.
+	// Specifies an opaque string that indicates the position to begin the next
+	// list of results in the response.
 	NextToken *string `type:"string"`
 }
 
@@ -9053,11 +9056,13 @@ func (s *ListAgentsInput) SetNextToken(v string) *ListAgentsInput {
 type ListAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of agents in your account.
+	// A list of DataSync agents in your Amazon Web Services account in the Amazon
+	// Web Services Region specified in the request. The list is ordered by the
+	// agents' Amazon Resource Names (ARNs).
 	Agents []*AgentListEntry `type:"list"`
 
-	// An opaque string that indicates the position at which to begin returning
-	// the next list of agents.
+	// The opaque string that indicates the position to begin the next list of results
+	// in the response.
 	NextToken *string `type:"string"`
 }
 
@@ -9878,6 +9883,10 @@ type Options struct {
 	// PRESERVE: Ignore such destination files (recommended).
 	//
 	// REMOVE: Delete destination files that aren’t present in the source.
+	//
+	// If you set this parameter to REMOVE, you can't set TransferMode to ALL. When
+	// you transfer all data, DataSync doesn't scan your destination location and
+	// doesn't know what to delete.
 	PreserveDeletedFiles *string `type:"string" enum:"PreserveDeletedFiles"`
 
 	// Specifies whether DataSync should preserve the metadata of block and character
@@ -10274,13 +10283,33 @@ func (s *S3Config) SetBucketAccessRoleArn(v string) *S3Config {
 	return s
 }
 
-// Specifies how DataSync can access a location using the SMB protocol.
+// Specifies the version of the Server Message Block (SMB) protocol that DataSync
+// uses to access an SMB file server.
 type SmbMountOptions struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the SMB version that you want DataSync to use when mounting your
-	// SMB share. If you don't specify a version, DataSync defaults to AUTOMATIC
-	// and chooses a version based on negotiation with the SMB server.
+	// By default, DataSync automatically chooses an SMB protocol version based
+	// on negotiation with your SMB file server. You also can configure DataSync
+	// to use a specific SMB version, but we recommend doing this only if DataSync
+	// has trouble negotiating with the SMB file server automatically.
+	//
+	// These are the following options for configuring the SMB version:
+	//
+	//    * AUTOMATIC (default): DataSync and the SMB file server negotiate a protocol
+	//    version that they mutually support. (DataSync supports SMB versions 1.0
+	//    and later.) This is the recommended option. If you instead choose a specific
+	//    version that your file server doesn't support, you may get an Operation
+	//    Not Supported error.
+	//
+	//    * SMB3: Restricts the protocol negotiation to only SMB version 3.0.2.
+	//
+	//    * SMB2: Restricts the protocol negotiation to only SMB version 2.1.
+	//
+	//    * SMB2_0: Restricts the protocol negotiation to only SMB version 2.0.
+	//
+	//    * SMB1: Restricts the protocol negotiation to only SMB version 1.0. The
+	//    SMB1 option isn't available when creating an Amazon FSx for NetApp ONTAP
+	//    location (https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationFsxOntap.html).
 	Version *string `type:"string" enum:"SmbVersion"`
 }
 
@@ -11639,7 +11668,8 @@ type UpdateLocationSmbInput struct {
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 
-	// Specifies how DataSync can access a location using the SMB protocol.
+	// Specifies the version of the Server Message Block (SMB) protocol that DataSync
+	// uses to access an SMB file server.
 	MountOptions *SmbMountOptions `type:"structure"`
 
 	// The password of the user who can mount the share has the permissions to access
@@ -12502,6 +12532,12 @@ const (
 
 	// SmbVersionSmb3 is a SmbVersion enum value
 	SmbVersionSmb3 = "SMB3"
+
+	// SmbVersionSmb1 is a SmbVersion enum value
+	SmbVersionSmb1 = "SMB1"
+
+	// SmbVersionSmb20 is a SmbVersion enum value
+	SmbVersionSmb20 = "SMB2_0"
 )
 
 // SmbVersion_Values returns all elements of the SmbVersion enum
@@ -12510,6 +12546,8 @@ func SmbVersion_Values() []string {
 		SmbVersionAutomatic,
 		SmbVersionSmb2,
 		SmbVersionSmb3,
+		SmbVersionSmb1,
+		SmbVersionSmb20,
 	}
 }
 

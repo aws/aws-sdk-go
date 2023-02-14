@@ -855,7 +855,8 @@
     "QueryName": {
       "base": null,
       "refs": {
-        "ListExtensionsRequest$Name": "<p>The extension name.</p>"
+        "ListExtensionsRequest$Name": "<p>The extension name.</p>",
+        "ListHostedConfigurationVersionsRequest$VersionLabel": "<p>An optional filter that can be used to specify the version label of an AppConfig hosted configuration version. This parameter supports filtering by prefix using a wildcard, for example \"v2*\". If you don't specify an asterisk at the end of the value, only an exact match is returned.</p>"
       }
     },
     "ReplicateTo": {
@@ -1078,8 +1079,16 @@
         "Deployment$ConfigurationVersion": "<p>The configuration version that was deployed.</p>",
         "DeploymentSummary$ConfigurationVersion": "<p>The version of the configuration.</p>",
         "GetConfigurationRequest$ClientConfigurationVersion": "<p>The configuration version returned in the most recent <code>GetConfiguration</code> response.</p> <important> <p>AppConfig uses the value of the <code>ClientConfigurationVersion</code> parameter to identify the configuration version on your clients. If you don’t send <code>ClientConfigurationVersion</code> with each call to <code>GetConfiguration</code>, your clients receive the current configuration. You are charged each time your clients receive a configuration.</p> <p>To avoid excess charges, we recommend you use the <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/StartConfigurationSession.html\">StartConfigurationSession</a> and <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/GetLatestConfiguration.html\">GetLatestConfiguration</a> APIs, which track the client configuration version on your behalf. If you choose to continue using <code>GetConfiguration</code>, we recommend that you include the <code>ClientConfigurationVersion</code> value with every call to <code>GetConfiguration</code>. The value to use for <code>ClientConfigurationVersion</code> comes from the <code>ConfigurationVersion</code> attribute returned by <code>GetConfiguration</code> when there is new or updated data, and should be saved for subsequent calls to <code>GetConfiguration</code>.</p> </important> <p>For more information about working with configurations, see <a href=\"http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-retrieving-the-configuration.html\">Retrieving the Configuration</a> in the <i>AppConfig User Guide</i>.</p>",
-        "StartDeploymentRequest$ConfigurationVersion": "<p>The configuration version to deploy.</p>",
+        "StartDeploymentRequest$ConfigurationVersion": "<p>The configuration version to deploy. If deploying an AppConfig hosted configuration version, you can specify either the version number or version label.</p>",
         "ValidateConfigurationRequest$ConfigurationVersion": "<p>The version of the configuration to validate.</p>"
+      }
+    },
+    "VersionLabel": {
+      "base": null,
+      "refs": {
+        "CreateHostedConfigurationVersionRequest$VersionLabel": "<p>An optional, user-defined label for the AppConfig hosted configuration version. This value must contain at least one non-numeric character. For example, \"v2.2.0\".</p>",
+        "HostedConfigurationVersion$VersionLabel": "<p>A user-defined label for an AppConfig hosted configuration version.</p>",
+        "HostedConfigurationVersionSummary$VersionLabel": "<p>A user-defined label for an AppConfig hosted configuration version.</p>"
       }
     }
   }

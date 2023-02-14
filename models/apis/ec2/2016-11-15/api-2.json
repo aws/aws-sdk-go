@@ -5994,7 +5994,8 @@
           "locationName":"TagSpecification"
         },
         "HostRecovery":{"shape":"HostRecovery"},
-        "OutpostArn":{"shape":"String"}
+        "OutpostArn":{"shape":"String"},
+        "HostMaintenance":{"shape":"HostMaintenance"}
       }
     },
     "AllocateHostsResult":{
@@ -23394,6 +23395,10 @@
         "OutpostArn":{
           "shape":"String",
           "locationName":"outpostArn"
+        },
+        "HostMaintenance":{
+          "shape":"HostMaintenance",
+          "locationName":"hostMaintenance"
         }
       }
     },
@@ -23427,6 +23432,13 @@
         "shape":"Host",
         "locationName":"item"
       }
+    },
+    "HostMaintenance":{
+      "type":"string",
+      "enum":[
+        "on",
+        "off"
+      ]
     },
     "HostOffering":{
       "type":"structure",
@@ -30339,7 +30351,8 @@
         },
         "HostRecovery":{"shape":"HostRecovery"},
         "InstanceType":{"shape":"String"},
-        "InstanceFamily":{"shape":"String"}
+        "InstanceFamily":{"shape":"String"},
+        "HostMaintenance":{"shape":"HostMaintenance"}
       }
     },
     "ModifyHostsResult":{
