@@ -4165,7 +4165,8 @@
         "CatalogHudiSource":{"shape":"CatalogHudiSource"},
         "S3HudiSource":{"shape":"S3HudiSource"},
         "S3HudiCatalogTarget":{"shape":"S3HudiCatalogTarget"},
-        "S3HudiDirectTarget":{"shape":"S3HudiDirectTarget"}
+        "S3HudiDirectTarget":{"shape":"S3HudiDirectTarget"},
+        "DirectJDBCSource":{"shape":"DirectJDBCSource"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -6150,6 +6151,24 @@
       "max":25,
       "min":1
     },
+    "DirectJDBCSource":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Database",
+        "Table",
+        "ConnectionName",
+        "ConnectionType"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Database":{"shape":"EnclosedInStringProperty"},
+        "Table":{"shape":"EnclosedInStringProperty"},
+        "ConnectionName":{"shape":"EnclosedInStringProperty"},
+        "ConnectionType":{"shape":"JDBCConnectionType"},
+        "RedshiftTmpDir":{"shape":"EnclosedInStringProperty"}
+      }
+    },
     "DirectKafkaSource":{
       "type":"structure",
       "required":["Name"],
@@ -8043,6 +8062,16 @@
       "exception":true
     },
     "IsVersionValid":{"type":"boolean"},
+    "JDBCConnectionType":{
+      "type":"string",
+      "enum":[
+        "sqlserver",
+        "mysql",
+        "oracle",
+        "postgresql",
+        "redshift"
+      ]
+    },
     "JDBCConnectorOptions":{
       "type":"structure",
       "members":{

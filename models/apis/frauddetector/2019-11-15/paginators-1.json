@@ -40,6 +40,16 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "GetListElements": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "GetListsMetadata": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "GetModels": {
       "input_token": "nextToken",
       "output_token": "nextToken",

@@ -25164,6 +25164,9 @@ type CodeGenConfigurationNode struct {
 	// transformation. The output is a collection of DynamicFrames.
 	CustomCode *CustomCode `type:"structure"`
 
+	// Specifies the direct JDBC source connection.
+	DirectJDBCSource *DirectJDBCSource `type:"structure"`
+
 	// Specifies an Apache Kafka data store.
 	DirectKafkaSource *DirectKafkaSource `type:"structure"`
 
@@ -25394,6 +25397,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.CustomCode != nil {
 		if err := s.CustomCode.Validate(); err != nil {
 			invalidParams.AddNested("CustomCode", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DirectJDBCSource != nil {
+		if err := s.DirectJDBCSource.Validate(); err != nil {
+			invalidParams.AddNested("DirectJDBCSource", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.DirectKafkaSource != nil {
@@ -25694,6 +25702,12 @@ func (s *CodeGenConfigurationNode) SetCatalogTarget(v *BasicCatalogTarget) *Code
 // SetCustomCode sets the CustomCode field's value.
 func (s *CodeGenConfigurationNode) SetCustomCode(v *CustomCode) *CodeGenConfigurationNode {
 	s.CustomCode = v
+	return s
+}
+
+// SetDirectJDBCSource sets the DirectJDBCSource field's value.
+func (s *CodeGenConfigurationNode) SetDirectJDBCSource(v *DirectJDBCSource) *CodeGenConfigurationNode {
+	s.DirectJDBCSource = v
 	return s
 }
 
@@ -37378,6 +37392,118 @@ func (s *DevEndpointCustomLibraries) SetExtraJarsS3Path(v string) *DevEndpointCu
 // SetExtraPythonLibsS3Path sets the ExtraPythonLibsS3Path field's value.
 func (s *DevEndpointCustomLibraries) SetExtraPythonLibsS3Path(v string) *DevEndpointCustomLibraries {
 	s.ExtraPythonLibsS3Path = &v
+	return s
+}
+
+// Specifies the direct JDBC source connection.
+type DirectJDBCSource struct {
+	_ struct{} `type:"structure"`
+
+	// The connection name of the JDBC source.
+	//
+	// ConnectionName is a required field
+	ConnectionName *string `type:"string" required:"true"`
+
+	// The connection type of the JDBC source.
+	//
+	// ConnectionType is a required field
+	ConnectionType *string `type:"string" required:"true" enum:"JDBCConnectionType"`
+
+	// The database of the JDBC source connection.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// The name of the JDBC source connection.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The temp directory of the JDBC Redshift source.
+	RedshiftTmpDir *string `type:"string"`
+
+	// The table of the JDBC source connection.
+	//
+	// Table is a required field
+	Table *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DirectJDBCSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DirectJDBCSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DirectJDBCSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DirectJDBCSource"}
+	if s.ConnectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionName"))
+	}
+	if s.ConnectionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionType"))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Table == nil {
+		invalidParams.Add(request.NewErrParamRequired("Table"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *DirectJDBCSource) SetConnectionName(v string) *DirectJDBCSource {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetConnectionType sets the ConnectionType field's value.
+func (s *DirectJDBCSource) SetConnectionType(v string) *DirectJDBCSource {
+	s.ConnectionType = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *DirectJDBCSource) SetDatabase(v string) *DirectJDBCSource {
+	s.Database = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DirectJDBCSource) SetName(v string) *DirectJDBCSource {
+	s.Name = &v
+	return s
+}
+
+// SetRedshiftTmpDir sets the RedshiftTmpDir field's value.
+func (s *DirectJDBCSource) SetRedshiftTmpDir(v string) *DirectJDBCSource {
+	s.RedshiftTmpDir = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *DirectJDBCSource) SetTable(v string) *DirectJDBCSource {
+	s.Table = &v
 	return s
 }
 
@@ -71467,6 +71593,34 @@ func HudiTargetCompressionType_Values() []string {
 		HudiTargetCompressionTypeLzo,
 		HudiTargetCompressionTypeUncompressed,
 		HudiTargetCompressionTypeSnappy,
+	}
+}
+
+const (
+	// JDBCConnectionTypeSqlserver is a JDBCConnectionType enum value
+	JDBCConnectionTypeSqlserver = "sqlserver"
+
+	// JDBCConnectionTypeMysql is a JDBCConnectionType enum value
+	JDBCConnectionTypeMysql = "mysql"
+
+	// JDBCConnectionTypeOracle is a JDBCConnectionType enum value
+	JDBCConnectionTypeOracle = "oracle"
+
+	// JDBCConnectionTypePostgresql is a JDBCConnectionType enum value
+	JDBCConnectionTypePostgresql = "postgresql"
+
+	// JDBCConnectionTypeRedshift is a JDBCConnectionType enum value
+	JDBCConnectionTypeRedshift = "redshift"
+)
+
+// JDBCConnectionType_Values returns all elements of the JDBCConnectionType enum
+func JDBCConnectionType_Values() []string {
+	return []string{
+		JDBCConnectionTypeSqlserver,
+		JDBCConnectionTypeMysql,
+		JDBCConnectionTypeOracle,
+		JDBCConnectionTypePostgresql,
+		JDBCConnectionTypeRedshift,
 	}
 }
 

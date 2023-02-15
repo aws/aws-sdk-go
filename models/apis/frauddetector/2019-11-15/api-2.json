@@ -122,6 +122,21 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateList":{
+      "name":"CreateList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateListRequest"},
+      "output":{"shape":"CreateListResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateModel":{
       "name":"CreateModel",
       "http":{
@@ -339,6 +354,22 @@
         {"shape":"ConflictException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteList":{
+      "name":"DeleteList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteListRequest"},
+      "output":{"shape":"DeleteListResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
       ]
     },
     "DeleteModel":{
@@ -653,6 +684,38 @@
       },
       "input":{"shape":"GetLabelsRequest"},
       "output":{"shape":"GetLabelsResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetListElements":{
+      "name":"GetListElements",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetListElementsRequest"},
+      "output":{"shape":"GetListElementsResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetListsMetadata":{
+      "name":"GetListsMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetListsMetadataRequest"},
+      "output":{"shape":"GetListsMetadataResult"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -998,6 +1061,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "UpdateList":{
+      "name":"UpdateList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateListRequest"},
+      "output":{"shape":"UpdateListResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "UpdateModel":{
       "name":"UpdateModel",
       "http":{
@@ -1160,6 +1240,22 @@
       "members":{
         "logOddsMetrics":{"shape":"ListOfAggregatedLogOddsMetrics"}
       }
+    },
+    "AllowDenyList":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"noDashIdentifier"},
+        "description":{"shape":"description"},
+        "variableType":{"shape":"variableType"},
+        "createdTime":{"shape":"time"},
+        "updatedTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
+      }
+    },
+    "AllowDenyLists":{
+      "type":"list",
+      "member":{"shape":"AllowDenyList"}
     },
     "AsyncJobStatus":{
       "type":"string",
@@ -1374,6 +1470,22 @@
         "detectorId":{"shape":"identifier"},
         "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "status":{"shape":"DetectorVersionStatus"}
+      }
+    },
+    "CreateListRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"noDashIdentifier"},
+        "elements":{"shape":"ElementsList"},
+        "variableType":{"shape":"variableType"},
+        "description":{"shape":"description"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "CreateListResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "CreateModelRequest":{
@@ -1632,6 +1744,18 @@
       "members":{
       }
     },
+    "DeleteListRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"noDashIdentifier"}
+      }
+    },
+    "DeleteListResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteModelRequest":{
       "type":"structure",
       "required":[
@@ -1784,6 +1908,19 @@
       "box":true,
       "max":10,
       "min":5
+    },
+    "Elements":{
+      "type":"string",
+      "max":320,
+      "min":1,
+      "pattern":"^\\S+( +\\S+)*$",
+      "sensitive":true
+    },
+    "ElementsList":{
+      "type":"list",
+      "member":{"shape":"Elements"},
+      "max":100000,
+      "min":0
     },
     "Entity":{
       "type":"structure",
@@ -2231,6 +2368,37 @@
         "nextToken":{"shape":"string"}
       }
     },
+    "GetListElementsRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"noDashIdentifier"},
+        "nextToken":{"shape":"nextToken"},
+        "maxResults":{"shape":"ListsElementsMaxResults"}
+      }
+    },
+    "GetListElementsResult":{
+      "type":"structure",
+      "members":{
+        "elements":{"shape":"ElementsList"},
+        "nextToken":{"shape":"nextToken"}
+      }
+    },
+    "GetListsMetadataRequest":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"noDashIdentifier"},
+        "nextToken":{"shape":"nextToken"},
+        "maxResults":{"shape":"ListsMetadataMaxResults"}
+      }
+    },
+    "GetListsMetadataResult":{
+      "type":"structure",
+      "members":{
+        "lists":{"shape":"AllowDenyLists"},
+        "nextToken":{"shape":"nextToken"}
+      }
+    },
     "GetModelVersionRequest":{
       "type":"structure",
       "required":[
@@ -2484,6 +2652,26 @@
         "tags":{"shape":"tagList"},
         "nextToken":{"shape":"string"}
       }
+    },
+    "ListUpdateMode":{
+      "type":"string",
+      "enum":[
+        "REPLACE",
+        "APPEND",
+        "REMOVE"
+      ]
+    },
+    "ListsElementsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":5000,
+      "min":500
+    },
+    "ListsMetadataMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":5
     },
     "LogOddsMetric":{
       "type":"structure",
@@ -3166,6 +3354,22 @@
       "members":{
       }
     },
+    "UpdateListRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"noDashIdentifier"},
+        "elements":{"shape":"ElementsList"},
+        "description":{"shape":"description"},
+        "updateMode":{"shape":"ListUpdateMode"},
+        "variableType":{"shape":"variableType"}
+      }
+    },
+    "UpdateListResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateModelRequest":{
       "type":"structure",
       "required":[
@@ -3498,6 +3702,18 @@
       "max":10,
       "min":1
     },
+    "nextToken":{
+      "type":"string",
+      "max":8192,
+      "min":0,
+      "pattern":".*"
+    },
+    "noDashIdentifier":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[0-9a-z_]+$"
+    },
     "ruleExpression":{
       "type":"string",
       "max":4096,
@@ -3558,6 +3774,12 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "variableType":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[A-Z_]{1,64}$"
     },
     "variableValue":{
       "type":"string",

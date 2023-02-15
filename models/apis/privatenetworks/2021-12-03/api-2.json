@@ -134,6 +134,7 @@
       "output":{"shape":"DeleteNetworkResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
@@ -150,6 +151,7 @@
       "output":{"shape":"DeleteNetworkSiteResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
@@ -333,6 +335,22 @@
       "errors":[
         {"shape":"InternalServerException"}
       ]
+    },
+    "StartNetworkResourceUpdate":{
+      "name":"StartNetworkResourceUpdate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/network-resources/update",
+        "responseCode":200
+      },
+      "input":{"shape":"StartNetworkResourceUpdateRequest"},
+      "output":{"shape":"StartNetworkResourceUpdateResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "TagResource":{
       "name":"TagResource",
@@ -857,10 +875,7 @@
       "required":["networkArn"],
       "members":{
         "filters":{"shape":"DeviceIdentifierFilters"},
-        "maxResults":{
-          "shape":"ListDeviceIdentifiersRequestMaxResultsInteger",
-          "box":true
-        },
+        "maxResults":{"shape":"ListDeviceIdentifiersRequestMaxResultsInteger"},
         "networkArn":{"shape":"Arn"},
         "startToken":{"shape":"PaginationToken"}
       }
@@ -883,10 +898,7 @@
       "required":["networkArn"],
       "members":{
         "filters":{"shape":"NetworkResourceFilters"},
-        "maxResults":{
-          "shape":"ListNetworkResourcesRequestMaxResultsInteger",
-          "box":true
-        },
+        "maxResults":{"shape":"ListNetworkResourcesRequestMaxResultsInteger"},
         "networkArn":{"shape":"Arn"},
         "startToken":{"shape":"PaginationToken"}
       }
@@ -909,10 +921,7 @@
       "required":["networkArn"],
       "members":{
         "filters":{"shape":"NetworkSiteFilters"},
-        "maxResults":{
-          "shape":"ListNetworkSitesRequestMaxResultsInteger",
-          "box":true
-        },
+        "maxResults":{"shape":"ListNetworkSitesRequestMaxResultsInteger"},
         "networkArn":{"shape":"Arn"},
         "startToken":{"shape":"PaginationToken"}
       }
@@ -934,10 +943,7 @@
       "type":"structure",
       "members":{
         "filters":{"shape":"NetworkFilters"},
-        "maxResults":{
-          "shape":"ListNetworksRequestMaxResultsInteger",
-          "box":true
-        },
+        "maxResults":{"shape":"ListNetworksRequestMaxResultsInteger"},
         "startToken":{"shape":"PaginationToken"}
       }
     },
@@ -959,10 +965,7 @@
       "required":["networkArn"],
       "members":{
         "filters":{"shape":"OrderFilters"},
-        "maxResults":{
-          "shape":"ListOrdersRequestMaxResultsInteger",
-          "box":true
-        },
+        "maxResults":{"shape":"ListOrdersRequestMaxResultsInteger"},
         "networkArn":{"shape":"Arn"},
         "startToken":{"shape":"PaginationToken"}
       }
@@ -1061,6 +1064,7 @@
         "networkSiteArn":{"shape":"Arn"},
         "orderArn":{"shape":"Arn"},
         "position":{"shape":"Position"},
+        "returnInformation":{"shape":"ReturnInformation"},
         "serialNumber":{"shape":"String"},
         "status":{"shape":"NetworkResourceStatus"},
         "statusReason":{"shape":"String"},
@@ -1126,7 +1130,8 @@
         "AVAILABLE",
         "DELETING",
         "PENDING_RETURN",
-        "DELETED"
+        "DELETED",
+        "CREATING_SHIPPING_LABEL"
       ]
     },
     "NetworkResourceType":{
@@ -1263,11 +1268,44 @@
       },
       "exception":true
     },
+    "ReturnInformation":{
+      "type":"structure",
+      "members":{
+        "replacementOrderArn":{"shape":"Arn"},
+        "returnReason":{"shape":"String"},
+        "shippingAddress":{"shape":"Address"},
+        "shippingLabel":{"shape":"String"}
+      }
+    },
     "SitePlan":{
       "type":"structure",
       "members":{
         "options":{"shape":"Options"},
         "resourceDefinitions":{"shape":"NetworkResourceDefinitions"}
+      }
+    },
+    "StartNetworkResourceUpdateRequest":{
+      "type":"structure",
+      "required":[
+        "networkResourceArn",
+        "updateType"
+      ],
+      "members":{
+        "networkResourceArn":{"shape":"Arn"},
+        "returnReason":{"shape":"StartNetworkResourceUpdateRequestReturnReasonString"},
+        "shippingAddress":{"shape":"Address"},
+        "updateType":{"shape":"UpdateType"}
+      }
+    },
+    "StartNetworkResourceUpdateRequestReturnReasonString":{
+      "type":"string",
+      "max":1000,
+      "min":0
+    },
+    "StartNetworkResourceUpdateResponse":{
+      "type":"structure",
+      "members":{
+        "networkResource":{"shape":"NetworkResource"}
       }
     },
     "String":{"type":"string"},
@@ -1395,6 +1433,13 @@
         "networkSite":{"shape":"NetworkSite"},
         "tags":{"shape":"TagMap"}
       }
+    },
+    "UpdateType":{
+      "type":"string",
+      "enum":[
+        "REPLACE",
+        "RETURN"
+      ]
     },
     "ValidationException":{
       "type":"structure",

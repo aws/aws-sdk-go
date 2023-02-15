@@ -711,8 +711,9 @@ func (c *RDS) CancelExportTaskRequest(input *CancelExportTaskInput) (req *reques
 
 // CancelExportTask API operation for Amazon Relational Database Service.
 //
-// Cancels an export task in progress that is exporting a snapshot to Amazon
-// S3. Any data that has already been written to the S3 bucket isn't removed.
+// Cancels an export task in progress that is exporting a snapshot or cluster
+// to Amazon S3. Any data that has already been written to the S3 bucket isn't
+// removed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -916,8 +917,8 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1512,13 +1513,14 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //
 // You can use the ReplicationSourceIdentifier parameter to create an Amazon
 // Aurora DB cluster as a read replica of another DB cluster or Amazon RDS MySQL
-// or PostgreSQL DB instance.
-//
-// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// or PostgreSQL DB instance. For more information about Amazon Aurora, see
+// What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// You can also use the ReplicationSourceIdentifier parameter to create a Multi-AZ
+// DB cluster read replica with an RDS for PostgreSQL DB instance as the source.
+// For more information about Multi-AZ DB clusters, see Multi-AZ DB cluster
+// deployments (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1790,8 +1792,8 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1880,8 +1882,8 @@ func (c *RDS) CreateDBClusterSnapshotRequest(input *CreateDBClusterSnapshotInput
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3372,8 +3374,8 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3560,8 +3562,8 @@ func (c *RDS) DeleteDBClusterParameterGroupRequest(input *DeleteDBClusterParamet
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3654,8 +3656,8 @@ func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5465,8 +5467,8 @@ func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterPa
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5608,8 +5610,8 @@ func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParamet
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5842,8 +5844,8 @@ func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshot
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5986,8 +5988,8 @@ func (c *RDS) DescribeDBClustersRequest(input *DescribeDBClustersInput) (req *re
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // This operation can also return information for Amazon Neptune DB instances
@@ -8587,8 +8589,8 @@ func (c *RDS) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 
 // DescribeExportTasks API operation for Amazon Relational Database Service.
 //
-// Returns information about a snapshot export to Amazon S3. This API operation
-// supports pagination.
+// Returns information about a snapshot or cluster export to Amazon S3. This
+// API operation supports pagination.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10053,8 +10055,8 @@ func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *requ
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10354,7 +10356,7 @@ func (c *RDS) ModifyActivityStreamRequest(input *ModifyActivityStreamInput) (req
 // Modifying a database activity stream (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/DBActivityStreams.Modifying.html)
 // in the Amazon RDS User Guide.
 //
-// This operation is supported for RDS for Oracle only.
+// This operation is supported for RDS for Oracle and Microsoft SQL Server.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10751,8 +10753,8 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10988,8 +10990,8 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -12524,8 +12526,8 @@ func (c *RDS) RebootDBClusterRequest(input *RebootDBClusterInput) (req *request.
 //
 // Use this operation only for a non-Aurora Multi-AZ DB cluster.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -12916,8 +12918,8 @@ func (c *RDS) RemoveRoleFromDBClusterRequest(input *RemoveRoleFromDBClusterInput
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -13290,8 +13292,8 @@ func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameter
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -13625,8 +13627,8 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -13788,8 +13790,8 @@ func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPoin
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -14932,10 +14934,22 @@ func (c *RDS) StartExportTaskRequest(input *StartExportTaskInput) (req *request.
 
 // StartExportTask API operation for Amazon Relational Database Service.
 //
-// Starts an export of a snapshot to Amazon S3. The provided IAM role must have
-// access to the S3 bucket.
+// Starts an export of DB snapshot or DB cluster data to Amazon S3. The provided
+// IAM role must have access to the S3 bucket.
 //
-// This command doesn't apply to RDS Custom.
+// You can't export snapshot data from RDS Custom DB instances.
+//
+// You can't export cluster data from Multi-AZ DB clusters.
+//
+// For more information on exporting DB snapshot data, see Exporting DB snapshot
+// data to Amazon S3 (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ExportSnapshot.html)
+// in the Amazon RDS User Guide or Exporting DB cluster snapshot data to Amazon
+// S3 (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/aurora-export-snapshot.html)
+// in the Amazon Aurora User Guide.
+//
+// For more information on exporting DB cluster data, see Exporting DB cluster
+// data to Amazon S3 (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/export-cluster-data.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16830,7 +16844,7 @@ func (s *BlueGreenDeploymentTask) SetStatus(v string) *BlueGreenDeploymentTask {
 type CancelExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the snapshot export task to cancel.
+	// The identifier of the snapshot or cluster export task to cancel.
 	//
 	// ExportTaskIdentifier is a required field
 	ExportTaskIdentifier *string `type:"string" required:"true"`
@@ -16873,75 +16887,90 @@ func (s *CancelExportTaskInput) SetExportTaskIdentifier(v string) *CancelExportT
 	return s
 }
 
-// Contains the details of a snapshot export to Amazon S3.
+// Contains the details of a snapshot or cluster export to Amazon S3.
 //
 // This data type is used as a response element in the DescribeExportTasks action.
 type CancelExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The data exported from the snapshot. Valid values are the following:
+	// The data exported from the snapshot or cluster. Valid values are the following:
 	//
 	//    * database - Export all the data from a specified database.
 	//
-	//    * database.table table-name - Export a table of the snapshot. This format
-	//    is valid only for RDS for MySQL, RDS for MariaDB, and Aurora MySQL.
+	//    * database.table table-name - Export a table of the snapshot or cluster.
+	//    This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora
+	//    MySQL.
 	//
-	//    * database.schema schema-name - Export a database schema of the snapshot.
-	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
+	//    * database.schema schema-name - Export a database schema of the snapshot
+	//    or cluster. This format is valid only for RDS for PostgreSQL and Aurora
+	//    PostgreSQL.
 	//
 	//    * database.schema.table table-name - Export a table of the database schema.
 	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
 	ExportOnly []*string `type:"list"`
 
-	// A unique identifier for the snapshot export task. This ID isn't an identifier
-	// for the Amazon S3 bucket where the snapshot is exported to.
+	// A unique identifier for the snapshot or cluster export task. This ID isn't
+	// an identifier for the Amazon S3 bucket where the data is exported.
 	ExportTaskIdentifier *string `type:"string"`
 
 	// The reason the export failed, if it failed.
 	FailureCause *string `type:"string"`
 
 	// The name of the IAM role that is used to write to Amazon S3 when exporting
-	// a snapshot.
+	// a snapshot or cluster.
 	IamRoleArn *string `type:"string"`
 
 	// The key identifier of the Amazon Web Services KMS key that is used to encrypt
-	// the snapshot when it's exported to Amazon S3. The KMS key identifier is its
-	// key ARN, key ID, alias ARN, or alias name. The IAM role used for the snapshot
-	// export must have encryption and decryption permissions to use this KMS key.
+	// the data when it's exported to Amazon S3. The KMS key identifier is its key
+	// ARN, key ID, alias ARN, or alias name. The IAM role used for the export must
+	// have encryption and decryption permissions to use this KMS key.
 	KmsKeyId *string `type:"string"`
 
-	// The progress of the snapshot export task as a percentage.
+	// The progress of the snapshot or cluster export task as a percentage.
 	PercentProgress *int64 `type:"integer"`
 
-	// The Amazon S3 bucket that the snapshot is exported to.
+	// The Amazon S3 bucket that the snapshot or cluster is exported to.
 	S3Bucket *string `type:"string"`
 
 	// The Amazon S3 bucket prefix that is the file name and path of the exported
-	// snapshot.
+	// data.
 	S3Prefix *string `type:"string"`
 
 	// The time that the snapshot was created.
 	SnapshotTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
+	// The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon
+	// S3.
 	SourceArn *string `type:"string"`
 
 	// The type of source for the export.
 	SourceType *string `type:"string" enum:"ExportSourceType"`
 
-	// The progress status of the export task.
+	// The progress status of the export task. The status can be one of the following:
+	//
+	//    * CANCELED
+	//
+	//    * CANCELING
+	//
+	//    * COMPLETE
+	//
+	//    * FAILED
+	//
+	//    * IN_PROGRESS
+	//
+	//    * STARTING
 	Status *string `type:"string"`
 
-	// The time that the snapshot export task completed.
+	// The time that the snapshot or cluster export task ended.
 	TaskEndTime *time.Time `type:"timestamp"`
 
-	// The time that the snapshot export task started.
+	// The time that the snapshot or cluster export task started.
 	TaskStartTime *time.Time `type:"timestamp"`
 
 	// The total amount of data exported, in gigabytes.
 	TotalExtractedDataInGB *int64 `type:"integer"`
 
-	// A warning about the snapshot export task.
+	// A warning about the snapshot or cluster export task.
 	WarningMessage *string `type:"string"`
 }
 
@@ -20161,7 +20190,7 @@ type CreateDBClusterInput struct {
 	// The Amazon Resource Name (ARN) of the source DB instance or DB cluster if
 	// this DB cluster is created as a read replica.
 	//
-	// Valid for: Aurora DB clusters only
+	// Valid for: Aurora DB clusters and RDS for PostgreSQL Multi-AZ DB clusters
 	ReplicationSourceIdentifier *string `type:"string"`
 
 	// For DB clusters in serverless DB engine mode, the scaling properties of the
@@ -22328,8 +22357,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// The amount of storage (in gibibytes) to allocate initially for the read replica.
 	// Follow the allocation rules specified in CreateDBInstance.
 	//
-	// Be sure to allocate enough memory for your read replica so that the create
-	// operation can succeed. You can also allocate additional memory for future
+	// Be sure to allocate enough storage for your read replica so that the create
+	// operation can succeed. You can also allocate additional storage for future
 	// growth.
 	AllocatedStorage *int64 `type:"integer"`
 
@@ -29253,6 +29282,8 @@ type DeleteBlueGreenDeploymentInput struct {
 	BlueGreenDeploymentIdentifier *string `min:"1" type:"string" required:"true"`
 
 	// A value that indicates whether to delete the resources in the green environment.
+	// You can't specify this option if the blue/green deployment status (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_BlueGreenDeployment.html)
+	// is SWITCHOVER_COMPLETED.
 	DeleteTarget *bool `type:"boolean"`
 }
 
@@ -35688,21 +35719,22 @@ func (s *DescribeEventsOutput) SetMarker(v string) *DescribeEventsOutput {
 type DescribeExportTasksInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the snapshot export task to be described.
+	// The identifier of the snapshot or cluster export task to be described.
 	ExportTaskIdentifier *string `type:"string"`
 
-	// Filters specify one or more snapshot exports to describe. The filters are
-	// specified as name-value pairs that define what to include in the output.
-	// Filter names and values are case-sensitive.
+	// Filters specify one or more snapshot or cluster exports to describe. The
+	// filters are specified as name-value pairs that define what to include in
+	// the output. Filter names and values are case-sensitive.
 	//
 	// Supported filters include the following:
 	//
-	//    * export-task-identifier - An identifier for the snapshot export task.
+	//    * export-task-identifier - An identifier for the snapshot or cluster export
+	//    task.
 	//
-	//    * s3-bucket - The Amazon S3 bucket the snapshot is exported to.
+	//    * s3-bucket - The Amazon S3 bucket the data is exported to.
 	//
-	//    * source-arn - The Amazon Resource Name (ARN) of the snapshot exported
-	//    to Amazon S3
+	//    * source-arn - The Amazon Resource Name (ARN) of the snapshot or cluster
+	//    exported to Amazon S3.
 	//
 	//    * status - The status of the export task. Must be lowercase. Valid statuses
 	//    are the following: canceled canceling complete failed in_progress starting
@@ -35723,7 +35755,8 @@ type DescribeExportTasksInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `min:"20" type:"integer"`
 
-	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
+	// The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon
+	// S3.
 	SourceArn *string `type:"string"`
 
 	// The type of source for the export.
@@ -35810,7 +35843,7 @@ func (s *DescribeExportTasksInput) SetSourceType(v string) *DescribeExportTasksI
 type DescribeExportTasksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about an export of a snapshot to Amazon S3.
+	// Information about an export of a snapshot or cluster to Amazon S3.
 	ExportTasks []*ExportTask `locationNameList:"ExportTask" type:"list"`
 
 	// A pagination token that can be used in a later DescribeExportTasks request.
@@ -37990,75 +38023,90 @@ func (s *EventSubscription) SetSubscriptionCreationTime(v string) *EventSubscrip
 	return s
 }
 
-// Contains the details of a snapshot export to Amazon S3.
+// Contains the details of a snapshot or cluster export to Amazon S3.
 //
 // This data type is used as a response element in the DescribeExportTasks action.
 type ExportTask struct {
 	_ struct{} `type:"structure"`
 
-	// The data exported from the snapshot. Valid values are the following:
+	// The data exported from the snapshot or cluster. Valid values are the following:
 	//
 	//    * database - Export all the data from a specified database.
 	//
-	//    * database.table table-name - Export a table of the snapshot. This format
-	//    is valid only for RDS for MySQL, RDS for MariaDB, and Aurora MySQL.
+	//    * database.table table-name - Export a table of the snapshot or cluster.
+	//    This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora
+	//    MySQL.
 	//
-	//    * database.schema schema-name - Export a database schema of the snapshot.
-	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
+	//    * database.schema schema-name - Export a database schema of the snapshot
+	//    or cluster. This format is valid only for RDS for PostgreSQL and Aurora
+	//    PostgreSQL.
 	//
 	//    * database.schema.table table-name - Export a table of the database schema.
 	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
 	ExportOnly []*string `type:"list"`
 
-	// A unique identifier for the snapshot export task. This ID isn't an identifier
-	// for the Amazon S3 bucket where the snapshot is exported to.
+	// A unique identifier for the snapshot or cluster export task. This ID isn't
+	// an identifier for the Amazon S3 bucket where the data is exported.
 	ExportTaskIdentifier *string `type:"string"`
 
 	// The reason the export failed, if it failed.
 	FailureCause *string `type:"string"`
 
 	// The name of the IAM role that is used to write to Amazon S3 when exporting
-	// a snapshot.
+	// a snapshot or cluster.
 	IamRoleArn *string `type:"string"`
 
 	// The key identifier of the Amazon Web Services KMS key that is used to encrypt
-	// the snapshot when it's exported to Amazon S3. The KMS key identifier is its
-	// key ARN, key ID, alias ARN, or alias name. The IAM role used for the snapshot
-	// export must have encryption and decryption permissions to use this KMS key.
+	// the data when it's exported to Amazon S3. The KMS key identifier is its key
+	// ARN, key ID, alias ARN, or alias name. The IAM role used for the export must
+	// have encryption and decryption permissions to use this KMS key.
 	KmsKeyId *string `type:"string"`
 
-	// The progress of the snapshot export task as a percentage.
+	// The progress of the snapshot or cluster export task as a percentage.
 	PercentProgress *int64 `type:"integer"`
 
-	// The Amazon S3 bucket that the snapshot is exported to.
+	// The Amazon S3 bucket that the snapshot or cluster is exported to.
 	S3Bucket *string `type:"string"`
 
 	// The Amazon S3 bucket prefix that is the file name and path of the exported
-	// snapshot.
+	// data.
 	S3Prefix *string `type:"string"`
 
 	// The time that the snapshot was created.
 	SnapshotTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
+	// The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon
+	// S3.
 	SourceArn *string `type:"string"`
 
 	// The type of source for the export.
 	SourceType *string `type:"string" enum:"ExportSourceType"`
 
-	// The progress status of the export task.
+	// The progress status of the export task. The status can be one of the following:
+	//
+	//    * CANCELED
+	//
+	//    * CANCELING
+	//
+	//    * COMPLETE
+	//
+	//    * FAILED
+	//
+	//    * IN_PROGRESS
+	//
+	//    * STARTING
 	Status *string `type:"string"`
 
-	// The time that the snapshot export task completed.
+	// The time that the snapshot or cluster export task ended.
 	TaskEndTime *time.Time `type:"timestamp"`
 
-	// The time that the snapshot export task started.
+	// The time that the snapshot or cluster export task started.
 	TaskStartTime *time.Time `type:"timestamp"`
 
 	// The total amount of data exported, in gigabytes.
 	TotalExtractedDataInGB *int64 `type:"integer"`
 
-	// A warning about the snapshot export task.
+	// A warning about the snapshot or cluster export task.
 	WarningMessage *string `type:"string"`
 }
 
@@ -39002,8 +39050,8 @@ type ModifyActivityStreamInput struct {
 	// activity stream is unlocked or stopped.
 	AuditPolicyState *string `type:"string" enum:"AuditPolicyState"`
 
-	// The Amazon Resource Name (ARN) of the RDS for Oracle DB instance, for example,
-	// arn:aws:rds:us-east-1:12345667890:instance:my-orcl-db.
+	// The Amazon Resource Name (ARN) of the RDS for Oracle or Microsoft SQL Server
+	// DB instance. For example, arn:aws:rds:us-east-1:12345667890:instance:my-orcl-db.
 	ResourceArn *string `type:"string"`
 }
 
@@ -48767,8 +48815,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// The amount of storage (in gibibytes) to allocate initially for the DB instance.
 	// Follow the allocation rules specified in CreateDBInstance.
 	//
-	// Be sure to allocate enough memory for your new DB instance so that the restore
-	// operation can succeed. You can also allocate additional memory for future
+	// Be sure to allocate enough storage for your new DB instance so that the restore
+	// operation can succeed. You can also allocate additional storage for future
 	// growth.
 	AllocatedStorage *int64 `type:"integer"`
 
@@ -48833,8 +48881,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// The identifier for the RDS for MySQL Multi-AZ DB cluster snapshot to restore
 	// from.
 	//
-	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
-	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints:
@@ -49426,8 +49474,8 @@ type RestoreDBInstanceFromS3Input struct {
 	// The amount of storage (in gibibytes) to allocate initially for the DB instance.
 	// Follow the allocation rules specified in CreateDBInstance.
 	//
-	// Be sure to allocate enough memory for your new DB instance so that the restore
-	// operation can succeed. You can also allocate additional memory for future
+	// Be sure to allocate enough storage for your new DB instance so that the restore
+	// operation can succeed. You can also allocate additional storage for future
 	// growth.
 	AllocatedStorage *int64 `type:"integer"`
 
@@ -50232,8 +50280,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// The amount of storage (in gibibytes) to allocate initially for the DB instance.
 	// Follow the allocation rules specified in CreateDBInstance.
 	//
-	// Be sure to allocate enough memory for your new DB instance so that the restore
-	// operation can succeed. You can also allocate additional memory for future
+	// Be sure to allocate enough storage for your new DB instance so that the restore
+	// operation can succeed. You can also allocate additional storage for future
 	// growth.
 	AllocatedStorage *int64 `type:"integer"`
 
@@ -51450,8 +51498,8 @@ type StartActivityStreamInput struct {
 	ApplyImmediately *bool `type:"boolean"`
 
 	// Specifies whether the database activity stream includes engine-native audit
-	// fields. This option only applies to an Oracle DB instance. By default, no
-	// engine-native audit fields are included.
+	// fields. This option applies to an Oracle or Microsoft SQL Server DB instance.
+	// By default, no engine-native audit fields are included.
 	EngineNativeAuditFieldsIncluded *bool `type:"boolean"`
 
 	// The Amazon Web Services KMS key identifier for encrypting messages in the
@@ -51950,38 +51998,40 @@ func (s *StartDBInstanceOutput) SetDBInstance(v *DBInstance) *StartDBInstanceOut
 type StartExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data to be exported from the snapshot. If this parameter is not provided,
-	// all the snapshot data is exported. Valid values are the following:
+	// The data to be exported from the snapshot or cluster. If this parameter is
+	// not provided, all of the data is exported. Valid values are the following:
 	//
 	//    * database - Export all the data from a specified database.
 	//
-	//    * database.table table-name - Export a table of the snapshot. This format
-	//    is valid only for RDS for MySQL, RDS for MariaDB, and Aurora MySQL.
+	//    * database.table table-name - Export a table of the snapshot or cluster.
+	//    This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora
+	//    MySQL.
 	//
-	//    * database.schema schema-name - Export a database schema of the snapshot.
-	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
+	//    * database.schema schema-name - Export a database schema of the snapshot
+	//    or cluster. This format is valid only for RDS for PostgreSQL and Aurora
+	//    PostgreSQL.
 	//
 	//    * database.schema.table table-name - Export a table of the database schema.
 	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
 	ExportOnly []*string `type:"list"`
 
-	// A unique identifier for the snapshot export task. This ID isn't an identifier
-	// for the Amazon S3 bucket where the snapshot is to be exported to.
+	// A unique identifier for the export task. This ID isn't an identifier for
+	// the Amazon S3 bucket where the data is to be exported.
 	//
 	// ExportTaskIdentifier is a required field
 	ExportTaskIdentifier *string `type:"string" required:"true"`
 
 	// The name of the IAM role to use for writing to the Amazon S3 bucket when
-	// exporting a snapshot.
+	// exporting a snapshot or cluster.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services KMS key to use to encrypt the snapshot
-	// exported to Amazon S3. The Amazon Web Services KMS key identifier is the
-	// key ARN, key ID, alias ARN, or alias name for the KMS key. The caller of
-	// this operation must be authorized to run the following operations. These
-	// can be set in the Amazon Web Services KMS key policy:
+	// The ID of the Amazon Web Services KMS key to use to encrypt the data exported
+	// to Amazon S3. The Amazon Web Services KMS key identifier is the key ARN,
+	// key ID, alias ARN, or alias name for the KMS key. The caller of this operation
+	// must be authorized to run the following operations. These can be set in the
+	// Amazon Web Services KMS key policy:
 	//
 	//    * kms:Encrypt
 	//
@@ -52004,16 +52054,17 @@ type StartExportTaskInput struct {
 	// KmsKeyId is a required field
 	KmsKeyId *string `type:"string" required:"true"`
 
-	// The name of the Amazon S3 bucket to export the snapshot to.
+	// The name of the Amazon S3 bucket to export the snapshot or cluster data to.
 	//
 	// S3BucketName is a required field
 	S3BucketName *string `type:"string" required:"true"`
 
 	// The Amazon S3 bucket prefix to use as the file name and path of the exported
-	// snapshot.
+	// data.
 	S3Prefix *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the snapshot to export to Amazon S3.
+	// The Amazon Resource Name (ARN) of the snapshot or cluster to export to Amazon
+	// S3.
 	//
 	// SourceArn is a required field
 	SourceArn *string `type:"string" required:"true"`
@@ -52104,75 +52155,90 @@ func (s *StartExportTaskInput) SetSourceArn(v string) *StartExportTaskInput {
 	return s
 }
 
-// Contains the details of a snapshot export to Amazon S3.
+// Contains the details of a snapshot or cluster export to Amazon S3.
 //
 // This data type is used as a response element in the DescribeExportTasks action.
 type StartExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The data exported from the snapshot. Valid values are the following:
+	// The data exported from the snapshot or cluster. Valid values are the following:
 	//
 	//    * database - Export all the data from a specified database.
 	//
-	//    * database.table table-name - Export a table of the snapshot. This format
-	//    is valid only for RDS for MySQL, RDS for MariaDB, and Aurora MySQL.
+	//    * database.table table-name - Export a table of the snapshot or cluster.
+	//    This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora
+	//    MySQL.
 	//
-	//    * database.schema schema-name - Export a database schema of the snapshot.
-	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
+	//    * database.schema schema-name - Export a database schema of the snapshot
+	//    or cluster. This format is valid only for RDS for PostgreSQL and Aurora
+	//    PostgreSQL.
 	//
 	//    * database.schema.table table-name - Export a table of the database schema.
 	//    This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
 	ExportOnly []*string `type:"list"`
 
-	// A unique identifier for the snapshot export task. This ID isn't an identifier
-	// for the Amazon S3 bucket where the snapshot is exported to.
+	// A unique identifier for the snapshot or cluster export task. This ID isn't
+	// an identifier for the Amazon S3 bucket where the data is exported.
 	ExportTaskIdentifier *string `type:"string"`
 
 	// The reason the export failed, if it failed.
 	FailureCause *string `type:"string"`
 
 	// The name of the IAM role that is used to write to Amazon S3 when exporting
-	// a snapshot.
+	// a snapshot or cluster.
 	IamRoleArn *string `type:"string"`
 
 	// The key identifier of the Amazon Web Services KMS key that is used to encrypt
-	// the snapshot when it's exported to Amazon S3. The KMS key identifier is its
-	// key ARN, key ID, alias ARN, or alias name. The IAM role used for the snapshot
-	// export must have encryption and decryption permissions to use this KMS key.
+	// the data when it's exported to Amazon S3. The KMS key identifier is its key
+	// ARN, key ID, alias ARN, or alias name. The IAM role used for the export must
+	// have encryption and decryption permissions to use this KMS key.
 	KmsKeyId *string `type:"string"`
 
-	// The progress of the snapshot export task as a percentage.
+	// The progress of the snapshot or cluster export task as a percentage.
 	PercentProgress *int64 `type:"integer"`
 
-	// The Amazon S3 bucket that the snapshot is exported to.
+	// The Amazon S3 bucket that the snapshot or cluster is exported to.
 	S3Bucket *string `type:"string"`
 
 	// The Amazon S3 bucket prefix that is the file name and path of the exported
-	// snapshot.
+	// data.
 	S3Prefix *string `type:"string"`
 
 	// The time that the snapshot was created.
 	SnapshotTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
+	// The Amazon Resource Name (ARN) of the snapshot or cluster exported to Amazon
+	// S3.
 	SourceArn *string `type:"string"`
 
 	// The type of source for the export.
 	SourceType *string `type:"string" enum:"ExportSourceType"`
 
-	// The progress status of the export task.
+	// The progress status of the export task. The status can be one of the following:
+	//
+	//    * CANCELED
+	//
+	//    * CANCELING
+	//
+	//    * COMPLETE
+	//
+	//    * FAILED
+	//
+	//    * IN_PROGRESS
+	//
+	//    * STARTING
 	Status *string `type:"string"`
 
-	// The time that the snapshot export task completed.
+	// The time that the snapshot or cluster export task ended.
 	TaskEndTime *time.Time `type:"timestamp"`
 
-	// The time that the snapshot export task started.
+	// The time that the snapshot or cluster export task started.
 	TaskStartTime *time.Time `type:"timestamp"`
 
 	// The total amount of data exported, in gigabytes.
 	TotalExtractedDataInGB *int64 `type:"integer"`
 
-	// A warning about the snapshot export task.
+	// A warning about the snapshot or cluster export task.
 	WarningMessage *string `type:"string"`
 }
 

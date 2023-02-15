@@ -809,6 +809,15 @@
     }
   },
   "shapes":{
+    "AWSManagedRulesATPRuleSet":{
+      "type":"structure",
+      "required":["LoginPath"],
+      "members":{
+        "LoginPath":{"shape":"String"},
+        "RequestInspection":{"shape":"RequestInspection"},
+        "ResponseInspection":{"shape":"ResponseInspection"}
+      }
+    },
     "AWSManagedRulesBotControlRuleSet":{
       "type":"structure",
       "required":["InspectionLevel"],
@@ -1649,6 +1658,11 @@
       "member":{"shape":"ExcludedRule"},
       "max":100
     },
+    "FailureCode":{
+      "type":"integer",
+      "max":999,
+      "min":0
+    },
     "FailureReason":{
       "type":"string",
       "enum":[
@@ -1657,6 +1671,12 @@
         "TOKEN_INVALID",
         "TOKEN_DOMAIN_MISMATCH"
       ]
+    },
+    "FailureValue":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "FallbackBehavior":{
       "type":"string",
@@ -2473,17 +2493,33 @@
     "ManagedRuleGroupConfig":{
       "type":"structure",
       "members":{
-        "LoginPath":{"shape":"LoginPathString"},
-        "PayloadType":{"shape":"PayloadType"},
-        "UsernameField":{"shape":"UsernameField"},
-        "PasswordField":{"shape":"PasswordField"},
-        "AWSManagedRulesBotControlRuleSet":{"shape":"AWSManagedRulesBotControlRuleSet"}
+        "LoginPath":{
+          "shape":"LoginPathString",
+          "deprecated":true,
+          "deprecatedMessage":"Deprecated. Use AWSManagedRulesATPRuleSet LoginPath"
+        },
+        "PayloadType":{
+          "shape":"PayloadType",
+          "deprecated":true,
+          "deprecatedMessage":"Deprecated. Use AWSManagedRulesATPRuleSet RequestInspection PayloadType"
+        },
+        "UsernameField":{
+          "shape":"UsernameField",
+          "deprecated":true,
+          "deprecatedMessage":"Deprecated. Use AWSManagedRulesATPRuleSet RequestInspection UsernameField"
+        },
+        "PasswordField":{
+          "shape":"PasswordField",
+          "deprecated":true,
+          "deprecatedMessage":"Deprecated. Use AWSManagedRulesATPRuleSet RequestInspection PasswordField"
+        },
+        "AWSManagedRulesBotControlRuleSet":{"shape":"AWSManagedRulesBotControlRuleSet"},
+        "AWSManagedRulesATPRuleSet":{"shape":"AWSManagedRulesATPRuleSet"}
       }
     },
     "ManagedRuleGroupConfigs":{
       "type":"list",
-      "member":{"shape":"ManagedRuleGroupConfig"},
-      "min":1
+      "member":{"shape":"ManagedRuleGroupConfig"}
     },
     "ManagedRuleGroupStatement":{
       "type":"structure",
@@ -2709,7 +2745,8 @@
         "MAP_MATCH_SCOPE",
         "OVERSIZE_HANDLING",
         "CHALLENGE_CONFIG",
-        "TOKEN_DOMAIN"
+        "TOKEN_DOMAIN",
+        "ATP_RULE_SET_RESPONSE_INSPECTION"
       ]
     },
     "ParameterExceptionParameter":{
@@ -2931,6 +2968,19 @@
         "Timestamp":{"shape":"Timestamp"}
       }
     },
+    "RequestInspection":{
+      "type":"structure",
+      "required":[
+        "PayloadType",
+        "UsernameField",
+        "PasswordField"
+      ],
+      "members":{
+        "PayloadType":{"shape":"PayloadType"},
+        "UsernameField":{"shape":"UsernameField"},
+        "PasswordField":{"shape":"PasswordField"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "max":2048,
@@ -2964,6 +3014,117 @@
         "TEXT_HTML",
         "APPLICATION_JSON"
       ]
+    },
+    "ResponseInspection":{
+      "type":"structure",
+      "members":{
+        "StatusCode":{"shape":"ResponseInspectionStatusCode"},
+        "Header":{"shape":"ResponseInspectionHeader"},
+        "BodyContains":{"shape":"ResponseInspectionBodyContains"},
+        "Json":{"shape":"ResponseInspectionJson"}
+      }
+    },
+    "ResponseInspectionBodyContains":{
+      "type":"structure",
+      "required":[
+        "SuccessStrings",
+        "FailureStrings"
+      ],
+      "members":{
+        "SuccessStrings":{"shape":"ResponseInspectionBodyContainsSuccessStrings"},
+        "FailureStrings":{"shape":"ResponseInspectionBodyContainsFailureStrings"}
+      }
+    },
+    "ResponseInspectionBodyContainsFailureStrings":{
+      "type":"list",
+      "member":{"shape":"FailureValue"},
+      "max":5,
+      "min":1
+    },
+    "ResponseInspectionBodyContainsSuccessStrings":{
+      "type":"list",
+      "member":{"shape":"SuccessValue"},
+      "max":5,
+      "min":1
+    },
+    "ResponseInspectionHeader":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "SuccessValues",
+        "FailureValues"
+      ],
+      "members":{
+        "Name":{"shape":"ResponseInspectionHeaderName"},
+        "SuccessValues":{"shape":"ResponseInspectionHeaderSuccessValues"},
+        "FailureValues":{"shape":"ResponseInspectionHeaderFailureValues"}
+      }
+    },
+    "ResponseInspectionHeaderFailureValues":{
+      "type":"list",
+      "member":{"shape":"FailureValue"},
+      "max":3,
+      "min":1
+    },
+    "ResponseInspectionHeaderName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "ResponseInspectionHeaderSuccessValues":{
+      "type":"list",
+      "member":{"shape":"SuccessValue"},
+      "max":3,
+      "min":1
+    },
+    "ResponseInspectionJson":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "SuccessValues",
+        "FailureValues"
+      ],
+      "members":{
+        "Identifier":{"shape":"FieldIdentifier"},
+        "SuccessValues":{"shape":"ResponseInspectionJsonSuccessValues"},
+        "FailureValues":{"shape":"ResponseInspectionJsonFailureValues"}
+      }
+    },
+    "ResponseInspectionJsonFailureValues":{
+      "type":"list",
+      "member":{"shape":"FailureValue"},
+      "max":5,
+      "min":1
+    },
+    "ResponseInspectionJsonSuccessValues":{
+      "type":"list",
+      "member":{"shape":"SuccessValue"},
+      "max":5,
+      "min":1
+    },
+    "ResponseInspectionStatusCode":{
+      "type":"structure",
+      "required":[
+        "SuccessCodes",
+        "FailureCodes"
+      ],
+      "members":{
+        "SuccessCodes":{"shape":"ResponseInspectionStatusCodeSuccessCodes"},
+        "FailureCodes":{"shape":"ResponseInspectionStatusCodeFailureCodes"}
+      }
+    },
+    "ResponseInspectionStatusCodeFailureCodes":{
+      "type":"list",
+      "member":{"shape":"FailureCode"},
+      "max":10,
+      "min":1
+    },
+    "ResponseInspectionStatusCodeSuccessCodes":{
+      "type":"list",
+      "member":{"shape":"SuccessCode"},
+      "max":10,
+      "min":1
     },
     "ResponseStatusCode":{
       "type":"integer",
@@ -3202,6 +3363,18 @@
       "type":"list",
       "member":{"shape":"Statement"}
     },
+    "String":{"type":"string"},
+    "SuccessCode":{
+      "type":"integer",
+      "max":999,
+      "min":0
+    },
+    "SuccessValue":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -3333,8 +3506,7 @@
     },
     "TokenDomains":{
       "type":"list",
-      "member":{"shape":"TokenDomain"},
-      "min":1
+      "member":{"shape":"TokenDomain"}
     },
     "URIString":{"type":"string"},
     "UntagResourceRequest":{

@@ -673,6 +673,9 @@ func (c *PrivateNetworks) DeleteNetworkRequest(input *DeleteNetworkInput) (req *
 //   - ResourceNotFoundException
 //     The resource was not found.
 //
+//   - AccessDeniedException
+//     You do not have permission to perform this operation.
+//
 //   - ValidationException
 //     The request failed validation.
 //
@@ -760,6 +763,9 @@ func (c *PrivateNetworks) DeleteNetworkSiteRequest(input *DeleteNetworkSiteInput
 //
 //   - ResourceNotFoundException
 //     The resource was not found.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this operation.
 //
 //   - ValidationException
 //     The request failed validation.
@@ -1267,9 +1273,7 @@ func (c *PrivateNetworks) ListDeviceIdentifiersRequest(input *ListDeviceIdentifi
 // list of results. Use filters to match the Amazon Resource Name (ARN) of an
 // order, the status of device identifiers, or the ARN of the traffic group.
 //
-//	<p>If you specify multiple filters, filters are joined with an OR, and
-//	the request
-//
+// If you specify multiple filters, filters are joined with an OR, and the request
 // returns results that match all of the specified filters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2107,6 +2111,97 @@ func (c *PrivateNetworks) Ping(input *PingInput) (*PingOutput, error) {
 // for more information on using Contexts.
 func (c *PrivateNetworks) PingWithContext(ctx aws.Context, input *PingInput, opts ...request.Option) (*PingOutput, error) {
 	req, out := c.PingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartNetworkResourceUpdate = "StartNetworkResourceUpdate"
+
+// StartNetworkResourceUpdateRequest generates a "aws/request.Request" representing the
+// client's request for the StartNetworkResourceUpdate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartNetworkResourceUpdate for more information on using the StartNetworkResourceUpdate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartNetworkResourceUpdateRequest method.
+//	req, resp := client.StartNetworkResourceUpdateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/privatenetworks-2021-12-03/StartNetworkResourceUpdate
+func (c *PrivateNetworks) StartNetworkResourceUpdateRequest(input *StartNetworkResourceUpdateInput) (req *request.Request, output *StartNetworkResourceUpdateOutput) {
+	op := &request.Operation{
+		Name:       opStartNetworkResourceUpdate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/network-resources/update",
+	}
+
+	if input == nil {
+		input = &StartNetworkResourceUpdateInput{}
+	}
+
+	output = &StartNetworkResourceUpdateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartNetworkResourceUpdate API operation for AWS Private 5G.
+//
+// Starts an update of the specified network resource.
+//
+// After you submit a request to replace or return a network resource, the status
+// of the network resource is CREATING_SHIPPING_LABEL. The shipping label is
+// available when the status of the network resource is PENDING_RETURN. After
+// the network resource is successfully returned, its status is DELETED. For
+// more information, see Return a radio unit (https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Private 5G's
+// API operation StartNetworkResourceUpdate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource was not found.
+//
+//   - ValidationException
+//     The request failed validation.
+//
+//   - InternalServerException
+//     Information about an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/privatenetworks-2021-12-03/StartNetworkResourceUpdate
+func (c *PrivateNetworks) StartNetworkResourceUpdate(input *StartNetworkResourceUpdateInput) (*StartNetworkResourceUpdateOutput, error) {
+	req, out := c.StartNetworkResourceUpdateRequest(input)
+	return out, req.Send()
+}
+
+// StartNetworkResourceUpdateWithContext is the same as StartNetworkResourceUpdate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartNetworkResourceUpdate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrivateNetworks) StartNetworkResourceUpdateWithContext(ctx aws.Context, input *StartNetworkResourceUpdateInput, opts ...request.Option) (*StartNetworkResourceUpdateOutput, error) {
+	req, out := c.StartNetworkResourceUpdateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5374,6 +5469,9 @@ type NetworkResource struct {
 	// The position of the network resource.
 	Position *Position `locationName:"position" type:"structure"`
 
+	// Information about a request to return the network resource.
+	ReturnInformation *ReturnInformation `locationName:"returnInformation" type:"structure"`
+
 	// The serial number of the network resource.
 	SerialNumber *string `locationName:"serialNumber" type:"string"`
 
@@ -5465,6 +5563,12 @@ func (s *NetworkResource) SetOrderArn(v string) *NetworkResource {
 // SetPosition sets the Position field's value.
 func (s *NetworkResource) SetPosition(v *Position) *NetworkResource {
 	s.Position = v
+	return s
+}
+
+// SetReturnInformation sets the ReturnInformation field's value.
+func (s *NetworkResource) SetReturnInformation(v *ReturnInformation) *NetworkResource {
+	s.ReturnInformation = v
 	return s
 }
 
@@ -5990,6 +6094,68 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about a request to return a network resource.
+type ReturnInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the replacement order.
+	ReplacementOrderArn *string `locationName:"replacementOrderArn" type:"string"`
+
+	// The reason for the return. If the return request did not include a reason
+	// for the return, this value is null.
+	ReturnReason *string `locationName:"returnReason" type:"string"`
+
+	// The shipping address.
+	ShippingAddress *Address `locationName:"shippingAddress" type:"structure"`
+
+	// The URL of the shipping label. The shipping label is available for download
+	// only if the status of the network resource is PENDING_RETURN. For more information,
+	// see Return a radio unit (https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit).
+	ShippingLabel *string `locationName:"shippingLabel" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReturnInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReturnInformation) GoString() string {
+	return s.String()
+}
+
+// SetReplacementOrderArn sets the ReplacementOrderArn field's value.
+func (s *ReturnInformation) SetReplacementOrderArn(v string) *ReturnInformation {
+	s.ReplacementOrderArn = &v
+	return s
+}
+
+// SetReturnReason sets the ReturnReason field's value.
+func (s *ReturnInformation) SetReturnReason(v string) *ReturnInformation {
+	s.ReturnReason = &v
+	return s
+}
+
+// SetShippingAddress sets the ShippingAddress field's value.
+func (s *ReturnInformation) SetShippingAddress(v *Address) *ReturnInformation {
+	s.ShippingAddress = v
+	return s
+}
+
+// SetShippingLabel sets the ShippingLabel field's value.
+func (s *ReturnInformation) SetShippingLabel(v string) *ReturnInformation {
+	s.ShippingLabel = &v
+	return s
+}
+
 // Information about a site plan.
 type SitePlan struct {
 	_ struct{} `type:"structure"`
@@ -6058,6 +6224,129 @@ func (s *SitePlan) SetOptions(v []*NameValuePair) *SitePlan {
 // SetResourceDefinitions sets the ResourceDefinitions field's value.
 func (s *SitePlan) SetResourceDefinitions(v []*NetworkResourceDefinition) *SitePlan {
 	s.ResourceDefinitions = v
+	return s
+}
+
+type StartNetworkResourceUpdateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the network resource.
+	//
+	// NetworkResourceArn is a required field
+	NetworkResourceArn *string `locationName:"networkResourceArn" type:"string" required:"true"`
+
+	// The reason for the return. Providing a reason for a return is optional.
+	ReturnReason *string `locationName:"returnReason" type:"string"`
+
+	// The shipping address. If you don't provide a shipping address when replacing
+	// or returning a network resource, we use the address from the original order
+	// for the network resource.
+	ShippingAddress *Address `locationName:"shippingAddress" type:"structure"`
+
+	// The update type.
+	//
+	//    * REPLACE - Submits a request to replace a defective radio unit. We provide
+	//    a shipping label that you can use for the return process and we ship a
+	//    replacement radio unit to you.
+	//
+	//    * RETURN - Submits a request to replace a radio unit that you no longer
+	//    need. We provide a shipping label that you can use for the return process.
+	//
+	// UpdateType is a required field
+	UpdateType *string `locationName:"updateType" type:"string" required:"true" enum:"UpdateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNetworkResourceUpdateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNetworkResourceUpdateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartNetworkResourceUpdateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartNetworkResourceUpdateInput"}
+	if s.NetworkResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkResourceArn"))
+	}
+	if s.UpdateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateType"))
+	}
+	if s.ShippingAddress != nil {
+		if err := s.ShippingAddress.Validate(); err != nil {
+			invalidParams.AddNested("ShippingAddress", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetworkResourceArn sets the NetworkResourceArn field's value.
+func (s *StartNetworkResourceUpdateInput) SetNetworkResourceArn(v string) *StartNetworkResourceUpdateInput {
+	s.NetworkResourceArn = &v
+	return s
+}
+
+// SetReturnReason sets the ReturnReason field's value.
+func (s *StartNetworkResourceUpdateInput) SetReturnReason(v string) *StartNetworkResourceUpdateInput {
+	s.ReturnReason = &v
+	return s
+}
+
+// SetShippingAddress sets the ShippingAddress field's value.
+func (s *StartNetworkResourceUpdateInput) SetShippingAddress(v *Address) *StartNetworkResourceUpdateInput {
+	s.ShippingAddress = v
+	return s
+}
+
+// SetUpdateType sets the UpdateType field's value.
+func (s *StartNetworkResourceUpdateInput) SetUpdateType(v string) *StartNetworkResourceUpdateInput {
+	s.UpdateType = &v
+	return s
+}
+
+type StartNetworkResourceUpdateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The network resource.
+	NetworkResource *NetworkResource `locationName:"networkResource" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNetworkResourceUpdateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNetworkResourceUpdateOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkResource sets the NetworkResource field's value.
+func (s *StartNetworkResourceUpdateOutput) SetNetworkResource(v *NetworkResource) *StartNetworkResourceUpdateOutput {
+	s.NetworkResource = v
 	return s
 }
 
@@ -6865,6 +7154,9 @@ const (
 
 	// NetworkResourceStatusDeleted is a NetworkResourceStatus enum value
 	NetworkResourceStatusDeleted = "DELETED"
+
+	// NetworkResourceStatusCreatingShippingLabel is a NetworkResourceStatus enum value
+	NetworkResourceStatusCreatingShippingLabel = "CREATING_SHIPPING_LABEL"
 )
 
 // NetworkResourceStatus_Values returns all elements of the NetworkResourceStatus enum
@@ -6878,6 +7170,7 @@ func NetworkResourceStatus_Values() []string {
 		NetworkResourceStatusDeleting,
 		NetworkResourceStatusPendingReturn,
 		NetworkResourceStatusDeleted,
+		NetworkResourceStatusCreatingShippingLabel,
 	}
 }
 
@@ -6974,6 +7267,22 @@ func OrderFilterKeys_Values() []string {
 	return []string{
 		OrderFilterKeysStatus,
 		OrderFilterKeysNetworkSite,
+	}
+}
+
+const (
+	// UpdateTypeReplace is a UpdateType enum value
+	UpdateTypeReplace = "REPLACE"
+
+	// UpdateTypeReturn is a UpdateType enum value
+	UpdateTypeReturn = "RETURN"
+)
+
+// UpdateType_Values returns all elements of the UpdateType enum
+func UpdateType_Values() []string {
+	return []string{
+		UpdateTypeReplace,
+		UpdateTypeReturn,
 	}
 }
 
