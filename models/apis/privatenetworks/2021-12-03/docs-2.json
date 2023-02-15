@@ -16,13 +16,14 @@
     "GetNetworkResource": "<p>Gets the specified network resource.</p>",
     "GetNetworkSite": "<p>Gets the specified network site.</p>",
     "GetOrder": "<p>Gets the specified order.</p>",
-    "ListDeviceIdentifiers": "<p>Lists device identifiers. Add filters to your request to return a more specific list of results. Use filters to match the Amazon Resource Name (ARN) of an order, the status of device identifiers, or the ARN of the traffic group.</p> <pre><code> &lt;p&gt;If you specify multiple filters, filters are joined with an OR, and the request </code></pre> <p>returns results that match all of the specified filters.</p></p>",
+    "ListDeviceIdentifiers": "<p>Lists device identifiers. Add filters to your request to return a more specific list of results. Use filters to match the Amazon Resource Name (ARN) of an order, the status of device identifiers, or the ARN of the traffic group.</p> <p>If you specify multiple filters, filters are joined with an OR, and the request returns results that match all of the specified filters.</p>",
     "ListNetworkResources": "<p>Lists network resources. Add filters to your request to return a more specific list of results. Use filters to match the Amazon Resource Name (ARN) of an order or the status of network resources.</p> <p>If you specify multiple filters, filters are joined with an OR, and the request returns results that match all of the specified filters.</p>",
     "ListNetworkSites": "<p>Lists network sites. Add filters to your request to return a more specific list of results. Use filters to match the status of the network site.</p>",
     "ListNetworks": "<p>Lists networks. Add filters to your request to return a more specific list of results. Use filters to match the status of the network.</p>",
     "ListOrders": "<p>Lists orders. Add filters to your request to return a more specific list of results. Use filters to match the Amazon Resource Name (ARN) of the network site or the status of the order.</p> <p>If you specify multiple filters, filters are joined with an OR, and the request returns results that match all of the specified filters.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "Ping": "<p>Checks the health of the service.</p>",
+    "StartNetworkResourceUpdate": "<p>Starts an update of the specified network resource.</p> <p>After you submit a request to replace or return a network resource, the status of the network resource is <code>CREATING_SHIPPING_LABEL</code>. The shipping label is available when the status of the network resource is <code>PENDING_RETURN</code>. After the network resource is successfully returned, its status is <code>DELETED</code>. For more information, see <a href=\"https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit\">Return a radio unit</a>.</p>",
     "TagResource": "<p> Adds tags to the specified resource. </p>",
     "UntagResource": "<p>Removes tags from the specified resource.</p>",
     "UpdateNetworkSite": "<p>Updates the specified network site.</p>",
@@ -74,7 +75,9 @@
       "base": "<p>Information about an address.</p>",
       "refs": {
         "ActivateNetworkSiteRequest$shippingAddress": "<p>The shipping address of the network site.</p>",
-        "Order$shippingAddress": "<p>The shipping address of the order.</p>"
+        "Order$shippingAddress": "<p>The shipping address of the order.</p>",
+        "ReturnInformation$shippingAddress": "<p>The shipping address.</p>",
+        "StartNetworkResourceUpdateRequest$shippingAddress": "<p>The shipping address. If you don't provide a shipping address when replacing or returning a network resource, we use the address from the original order for the network resource.</p>"
       }
     },
     "AddressContent": {
@@ -126,6 +129,8 @@
         "Order$networkArn": "<p>The Amazon Resource Name (ARN) of the network associated with this order.</p>",
         "Order$networkSiteArn": "<p>The Amazon Resource Name (ARN) of the network site associated with this order.</p>",
         "Order$orderArn": "<p>The Amazon Resource Name (ARN) of the order.</p>",
+        "ReturnInformation$replacementOrderArn": "<p>The Amazon Resource Name (ARN) of the replacement order.</p>",
+        "StartNetworkResourceUpdateRequest$networkResourceArn": "<p>The Amazon Resource Name (ARN) of the network resource.</p>",
         "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource. </p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UpdateNetworkSitePlanRequest$networkSiteArn": "<p>The Amazon Resource Name (ARN) of the network site.</p>",
@@ -528,7 +533,8 @@
       "refs": {
         "ConfigureAccessPointResponse$accessPoint": "<p>Information about the network resource.</p>",
         "GetNetworkResourceResponse$networkResource": "<p>Information about the network resource.</p>",
-        "NetworkResourceList$member": null
+        "NetworkResourceList$member": null,
+        "StartNetworkResourceUpdateResponse$networkResource": "<p>The network resource.</p>"
       }
     },
     "NetworkResourceDefinition": {
@@ -709,6 +715,12 @@
       "refs": {
       }
     },
+    "ReturnInformation": {
+      "base": "<p>Information about a request to return a network resource.</p>",
+      "refs": {
+        "NetworkResource$returnInformation": "<p>Information about a request to return the network resource.</p>"
+      }
+    },
     "SitePlan": {
       "base": "<p>Information about a site plan.</p>",
       "refs": {
@@ -716,6 +728,22 @@
         "NetworkSite$currentPlan": "<p>The current plan of the network site.</p>",
         "NetworkSite$pendingPlan": "<p>The pending plan of the network site.</p>",
         "UpdateNetworkSitePlanRequest$pendingPlan": "<p>The pending plan.</p>"
+      }
+    },
+    "StartNetworkResourceUpdateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartNetworkResourceUpdateRequestReturnReasonString": {
+      "base": null,
+      "refs": {
+        "StartNetworkResourceUpdateRequest$returnReason": "<p>The reason for the return. Providing a reason for a return is optional.</p>"
+      }
+    },
+    "StartNetworkResourceUpdateResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "String": {
@@ -748,6 +776,8 @@
         "ResourceNotFoundException$message": "<p>Description of the error.</p>",
         "ResourceNotFoundException$resourceId": "<p>Identifier of the affected resource.</p>",
         "ResourceNotFoundException$resourceType": "<p>Type of the affected resource.</p>",
+        "ReturnInformation$returnReason": "<p>The reason for the return. If the return request did not include a reason for the return, this value is null.</p>",
+        "ReturnInformation$shippingLabel": "<p>The URL of the shipping label. The shipping label is available for download only if the status of the network resource is <code>PENDING_RETURN</code>. For more information, see <a href=\"https://docs.aws.amazon.com/private-networks/latest/userguide/radio-units.html#return-radio-unit\">Return a radio unit</a>.</p>",
         "ThrottlingException$message": null,
         "TrackingInformation$trackingNumber": "<p>The tracking number of the shipment.</p>",
         "ValidationException$message": "<p>Description of the error.</p>",
@@ -852,6 +882,12 @@
     "UpdateNetworkSiteResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateType": {
+      "base": null,
+      "refs": {
+        "StartNetworkResourceUpdateRequest$updateType": "<p>The update type.</p> <ul> <li> <p> <code>REPLACE</code> - Submits a request to replace a defective radio unit. We provide a shipping label that you can use for the return process and we ship a replacement radio unit to you.</p> </li> <li> <p> <code>RETURN</code> - Submits a request to replace a radio unit that you no longer need. We provide a shipping label that you can use for the return process.</p> </li> </ul>"
       }
     },
     "ValidationException": {

@@ -600,9 +600,9 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //     EFS One Zone storage. In that case, the General Purpose performance mode
 //     is used. The performance mode cannot be changed.
 //
-//   - Throughput mode - The destination file system uses the Bursting Throughput
-//     mode by default. After the file system is created, you can modify the
-//     throughput mode.
+//   - Throughput mode - The destination file system's throughput mode matches
+//     that of the source file system. After the file system is created, you
+//     can modify the throughput mode.
 //
 // The following properties are turned off by default:
 //
@@ -3663,7 +3663,7 @@ type AccessPointDescription struct {
 	// The name of the access point. This is the value of the Name tag.
 	Name *string `type:"string"`
 
-	// Identified the Amazon Web Services account that owns the access point resource.
+	// Identifies the Amazon Web Services account that owns the access point resource.
 	OwnerId *string `type:"string"`
 
 	// The full POSIX identity, including the user ID, group ID, and secondary group
@@ -4270,7 +4270,7 @@ type CreateAccessPointOutput struct {
 	// The name of the access point. This is the value of the Name tag.
 	Name *string `type:"string"`
 
-	// Identified the Amazon Web Services account that owns the access point resource.
+	// Identifies the Amazon Web Services account that owns the access point resource.
 	OwnerId *string `type:"string"`
 
 	// The full POSIX identity, including the user ID, group ID, and secondary group
@@ -6894,9 +6894,7 @@ type FileSystemDescription struct {
 	// NumberOfMountTargets is a required field
 	NumberOfMountTargets *int64 `type:"integer" required:"true"`
 
-	// The Amazon Web Services account that created the file system. If the file
-	// system was created by an IAM user, the parent account to which the user belongs
-	// is the owner.
+	// The Amazon Web Services account that created the file system.
 	//
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
@@ -10300,9 +10298,7 @@ type UpdateFileSystemOutput struct {
 	// NumberOfMountTargets is a required field
 	NumberOfMountTargets *int64 `type:"integer" required:"true"`
 
-	// The Amazon Web Services account that created the file system. If the file
-	// system was created by an IAM user, the parent account to which the user belongs
-	// is the owner.
+	// The Amazon Web Services account that created the file system.
 	//
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`

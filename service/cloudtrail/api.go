@@ -5051,6 +5051,10 @@ func (c *CloudTrail) StartImportRequest(input *StartImportInput) (req *request.R
 //   - InvalidParameterException
 //     The request includes a parameter that is not valid.
 //
+//   - InsufficientEncryptionPolicyException
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
+//
 //   - OperationNotPermittedException
 //     This exception is thrown when the requested operation is not permitted.
 //

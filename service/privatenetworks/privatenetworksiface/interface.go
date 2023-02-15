@@ -159,6 +159,10 @@ type PrivateNetworksAPI interface {
 	PingWithContext(aws.Context, *privatenetworks.PingInput, ...request.Option) (*privatenetworks.PingOutput, error)
 	PingRequest(*privatenetworks.PingInput) (*request.Request, *privatenetworks.PingOutput)
 
+	StartNetworkResourceUpdate(*privatenetworks.StartNetworkResourceUpdateInput) (*privatenetworks.StartNetworkResourceUpdateOutput, error)
+	StartNetworkResourceUpdateWithContext(aws.Context, *privatenetworks.StartNetworkResourceUpdateInput, ...request.Option) (*privatenetworks.StartNetworkResourceUpdateOutput, error)
+	StartNetworkResourceUpdateRequest(*privatenetworks.StartNetworkResourceUpdateInput) (*request.Request, *privatenetworks.StartNetworkResourceUpdateOutput)
+
 	TagResource(*privatenetworks.TagResourceInput) (*privatenetworks.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *privatenetworks.TagResourceInput, ...request.Option) (*privatenetworks.TagResourceOutput, error)
 	TagResourceRequest(*privatenetworks.TagResourceInput) (*request.Request, *privatenetworks.TagResourceOutput)

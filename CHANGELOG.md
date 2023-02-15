@@ -1,3 +1,19 @@
+Release v1.44.202 (2023-02-15)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API
+  * This release adds an InsufficientEncryptionPolicyException type to the StartImport endpoint
+* `service/elasticfilesystem`: Updates service documentation
+  * Documentation update for EFS to support IAM best practices.
+* `service/frauddetector`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Fix DirectJDBCSource not showing up in CLI code gen
+* `service/privatenetworks`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Database Activity Stream support for RDS for SQL Server.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.201 (2023-02-14)
 ===
 
