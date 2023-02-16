@@ -5801,6 +5801,11 @@ type AWSManagedRulesATPRuleSet struct {
 	//
 	// Response inspection is available only in web ACLs that protect Amazon CloudFront
 	// distributions.
+	//
+	// For regional web ACLs in Region US East (N. Virginia) us-east-1, it's possible
+	// to configure response inspection through the APIs, but ATP response inspection
+	// will not be enabled. You can only use the response inspection capabilities
+	// of the ATP managed rule group in web ACLs that protect CloudFront distributions.
 	ResponseInspection *ResponseInspection `type:"structure"`
 }
 
@@ -14783,8 +14788,15 @@ type ManagedRuleGroupConfig struct {
 	// managed rule group, AWSManagedRulesATPRuleSet. Use this to provide login
 	// request information to the rule group. For web ACLs that protect CloudFront
 	// distributions, use this to also provide the information about how your distribution
-	// responds to login requests. This configuration replaces the individual configuration
-	// fields in ManagedRuleGroupConfig and provides additional feature configuration.
+	// responds to login requests.
+	//
+	// For regional web ACLs in Region US East (N. Virginia) us-east-1, it's possible
+	// to configure response inspection through the APIs, but ATP response inspection
+	// will not be enabled. You can only use the response inspection capabilities
+	// of the ATP managed rule group in web ACLs that protect CloudFront distributions.
+	//
+	// This configuration replaces the individual configuration fields in ManagedRuleGroupConfig
+	// and provides additional feature configuration.
 	//
 	// For information about using the ATP managed rule group, see WAF Fraud Control
 	// account takeover prevention (ATP) rule group (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-atp.html)
@@ -17160,6 +17172,11 @@ func (s *RequestInspection) SetUsernameField(v *UsernameField) *RequestInspectio
 // Response inspection is available only in web ACLs that protect Amazon CloudFront
 // distributions.
 //
+// For regional web ACLs in Region US East (N. Virginia) us-east-1, it's possible
+// to configure response inspection through the APIs, but ATP response inspection
+// will not be enabled. You can only use the response inspection capabilities
+// of the ATP managed rule group in web ACLs that protect CloudFront distributions.
+//
 // This is part of the AWSManagedRulesATPRuleSet configuration in ManagedRuleGroupConfig.
 //
 // Enable login response inspection by configuring exactly one component of
@@ -17256,6 +17273,14 @@ func (s *ResponseInspection) SetStatusCode(v *ResponseInspectionStatusCode) *Res
 
 // Configures inspection of the response body. This is part of the ResponseInspection
 // configuration for AWSManagedRulesATPRuleSet.
+//
+// Response inspection is available only in web ACLs that protect Amazon CloudFront
+// distributions.
+//
+// For regional web ACLs in Region US East (N. Virginia) us-east-1, it's possible
+// to configure response inspection through the APIs, but ATP response inspection
+// will not be enabled. You can only use the response inspection capabilities
+// of the ATP managed rule group in web ACLs that protect CloudFront distributions.
 type ResponseInspectionBodyContains struct {
 	_ struct{} `type:"structure"`
 
@@ -17335,6 +17360,14 @@ func (s *ResponseInspectionBodyContains) SetSuccessStrings(v []*string) *Respons
 
 // Configures inspection of the response header. This is part of the ResponseInspection
 // configuration for AWSManagedRulesATPRuleSet.
+//
+// Response inspection is available only in web ACLs that protect Amazon CloudFront
+// distributions.
+//
+// For regional web ACLs in Region US East (N. Virginia) us-east-1, it's possible
+// to configure response inspection through the APIs, but ATP response inspection
+// will not be enabled. You can only use the response inspection capabilities
+// of the ATP managed rule group in web ACLs that protect CloudFront distributions.
 type ResponseInspectionHeader struct {
 	_ struct{} `type:"structure"`
 
@@ -17433,6 +17466,14 @@ func (s *ResponseInspectionHeader) SetSuccessValues(v []*string) *ResponseInspec
 
 // Configures inspection of the response JSON. This is part of the ResponseInspection
 // configuration for AWSManagedRulesATPRuleSet.
+//
+// Response inspection is available only in web ACLs that protect Amazon CloudFront
+// distributions.
+//
+// For regional web ACLs in Region US East (N. Virginia) us-east-1, it's possible
+// to configure response inspection through the APIs, but ATP response inspection
+// will not be enabled. You can only use the response inspection capabilities
+// of the ATP managed rule group in web ACLs that protect CloudFront distributions.
 type ResponseInspectionJson struct {
 	_ struct{} `type:"structure"`
 
@@ -17531,6 +17572,14 @@ func (s *ResponseInspectionJson) SetSuccessValues(v []*string) *ResponseInspecti
 
 // Configures inspection of the response status code. This is part of the ResponseInspection
 // configuration for AWSManagedRulesATPRuleSet.
+//
+// Response inspection is available only in web ACLs that protect Amazon CloudFront
+// distributions.
+//
+// For regional web ACLs in Region US East (N. Virginia) us-east-1, it's possible
+// to configure response inspection through the APIs, but ATP response inspection
+// will not be enabled. You can only use the response inspection capabilities
+// of the ATP managed rule group in web ACLs that protect CloudFront distributions.
 type ResponseInspectionStatusCode struct {
 	_ struct{} `type:"structure"`
 

@@ -1,3 +1,13 @@
+Release v1.44.203 (2023-02-16)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * This release provides customers the ability to define a timeout period for procuring capacity during a resize operation for Instance Fleet clusters. Customers can specify this timeout using the ResizeSpecifications parameter supported by RunJobFlow, ModifyInstanceFleet and AddInstanceFleet APIs.
+* `service/grafana`: Updates service API and documentation
+* `service/ivs`: Updates service documentation
+* `service/wafv2`: Updates service documentation
+
 Release v1.44.202 (2023-02-15)
 ===
 

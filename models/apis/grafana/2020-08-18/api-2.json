@@ -523,6 +523,7 @@
           "shape":"OverridableConfigurationJson",
           "jsonvalue":true
         },
+        "networkAccessControl":{"shape":"NetworkAccessConfiguration"},
         "organizationRoleName":{"shape":"OrganizationRoleName"},
         "permissionType":{"shape":"PermissionType"},
         "stackSetName":{"shape":"StackSetName"},
@@ -851,6 +852,17 @@
       }
     },
     "LoginValidityDuration":{"type":"integer"},
+    "NetworkAccessConfiguration":{
+      "type":"structure",
+      "required":[
+        "prefixListIds",
+        "vpceIds"
+      ],
+      "members":{
+        "prefixListIds":{"shape":"PrefixListIds"},
+        "vpceIds":{"shape":"VpceIds"}
+      }
+    },
     "NotificationDestinationType":{
       "type":"string",
       "enum":["SNS"]
@@ -898,6 +910,15 @@
         "CUSTOMER_MANAGED",
         "SERVICE_MANAGED"
       ]
+    },
+    "PrefixListId":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "PrefixListIds":{
+      "type":"list",
+      "member":{"shape":"PrefixListId"}
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1227,8 +1248,10 @@
       "required":["workspaceId"],
       "members":{
         "accountAccessType":{"shape":"AccountAccessType"},
+        "networkAccessControl":{"shape":"NetworkAccessConfiguration"},
         "organizationRoleName":{"shape":"OrganizationRoleName"},
         "permissionType":{"shape":"PermissionType"},
+        "removeNetworkAccessConfiguration":{"shape":"Boolean"},
         "removeVpcConfiguration":{"shape":"Boolean"},
         "stackSetName":{"shape":"StackSetName"},
         "vpcConfiguration":{"shape":"VpcConfiguration"},
@@ -1326,6 +1349,15 @@
         "subnetIds":{"shape":"SubnetIds"}
       }
     },
+    "VpceId":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "VpceIds":{
+      "type":"list",
+      "member":{"shape":"VpceId"}
+    },
     "WorkspaceDescription":{
       "type":"structure",
       "required":[
@@ -1353,6 +1385,7 @@
         "licenseType":{"shape":"LicenseType"},
         "modified":{"shape":"Timestamp"},
         "name":{"shape":"WorkspaceName"},
+        "networkAccessControl":{"shape":"NetworkAccessConfiguration"},
         "notificationDestinations":{"shape":"NotificationDestinationsList"},
         "organizationRoleName":{"shape":"OrganizationRoleName"},
         "organizationalUnits":{"shape":"OrganizationalUnitList"},
