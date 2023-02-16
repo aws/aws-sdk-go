@@ -93,8 +93,8 @@
 //
 // You generate a signature using valid Amazon Web Services credentials that
 // have permission to perform the requested action. For example, you must sign
-// PutMetadata requests with a signature generated from an IAM user account
-// that has the ivs:PutMetadata permission.
+// PutMetadata requests with a signature generated from a user account that
+// has the ivs:PutMetadata permission.
 //
 // For more information:
 //

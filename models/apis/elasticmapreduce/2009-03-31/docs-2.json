@@ -22,7 +22,7 @@
     "DescribeStudio": "<p>Returns details for the specified Amazon EMR Studio including ID, Name, VPC, Studio access URL, and so on.</p>",
     "GetAutoTerminationPolicy": "<p>Returns the auto-termination policy for an Amazon EMR cluster.</p>",
     "GetBlockPublicAccessConfiguration": "<p>Returns the Amazon EMR block public access configuration for your Amazon Web Services account in the current Region. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html\">Configure Block Public Access for Amazon EMR</a> in the <i>Amazon EMR Management Guide</i>.</p>",
-    "GetClusterSessionCredentials": "<p>Provides Temporary, basic HTTP credentials that are associated with a given runtime IAM role and used by a cluster with fine-grained access control activated. You can use these credentials to connect to cluster endpoints that support username-based and password-based authentication.</p>",
+    "GetClusterSessionCredentials": "<p>Provides temporary, HTTP basic credentials that are associated with a given runtime IAM role and used by a cluster with fine-grained access control activated. You can use these credentials to connect to cluster endpoints that support username and password authentication.</p>",
     "GetManagedScalingPolicy": "<p>Fetches the attached managed scaling policy for an Amazon EMR cluster. </p>",
     "GetStudioSessionMapping": "<p>Fetches mapping details for the specified Amazon EMR Studio and identity (user or group).</p>",
     "ListBootstrapActions": "<p>Provides information about the bootstrap actions associated with a cluster.</p>",
@@ -448,7 +448,7 @@
     "Credentials": {
       "base": "<p>The credentials that you can use to connect to cluster endpoints. Credentials consist of a username and a password.</p>",
       "refs": {
-        "GetClusterSessionCredentialsOutput$Credentials": "<p>The credentials that you can use to connect to cluster endpoints that support username-based and password-based authentication.</p>"
+        "GetClusterSessionCredentialsOutput$Credentials": "<p>The credentials that you can use to connect to cluster endpoints that support username and password authentication.</p>"
       }
     },
     "Date": {
@@ -816,10 +816,18 @@
       }
     },
     "InstanceFleetProvisioningSpecifications": {
-      "base": "<p>The launch specification for Spot Instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot Instance allocation strategies are available in Amazon EMR version 5.12.1 and later.</p> </note>",
+      "base": "<p>The launch specification for Spot Instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot instance allocation strategies are available in Amazon EMR version 5.12.1 and later.</p> </note>",
       "refs": {
         "InstanceFleet$LaunchSpecifications": "<p>Describes the launch specification for an instance fleet. </p>",
         "InstanceFleetConfig$LaunchSpecifications": "<p>The launch specification for the instance fleet.</p>"
+      }
+    },
+    "InstanceFleetResizingSpecifications": {
+      "base": "<p>The resize specification for On-Demand and Spot Instances in the fleet.</p>",
+      "refs": {
+        "InstanceFleet$ResizeSpecifications": "<p>The resize specification for the instance fleet.</p>",
+        "InstanceFleetConfig$ResizeSpecifications": "<p>The resize specification for the instance fleet.</p>",
+        "InstanceFleetModifyConfig$ResizeSpecifications": "<p>The resize specification for the instance fleet.</p>"
       }
     },
     "InstanceFleetState": {
@@ -1470,6 +1478,12 @@
         "InstanceFleetProvisioningSpecifications$OnDemandSpecification": "<p> The launch specification for On-Demand Instances in the instance fleet, which determines the allocation strategy. </p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand Instances allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note>"
       }
     },
+    "OnDemandResizingSpecification": {
+      "base": "<p>The resize specification for On-Demand Instances in the instance fleet, which contains the resize timeout period. </p>",
+      "refs": {
+        "InstanceFleetResizingSpecifications$OnDemandResizeSpecification": "<p>The resize specification for On-Demand Instances in the instance fleet, which contains the resize timeout period. </p>"
+      }
+    },
     "OptionalArnType": {
       "base": null,
       "refs": {
@@ -1766,13 +1780,19 @@
     "SpotProvisioningSpecification": {
       "base": "<p>The launch specification for Spot Instances in the instance fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. Spot Instance allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note> <note> <p>Spot Instances with a defined duration (also known as Spot blocks) are no longer available to new customers from July 1, 2021. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022. </p> </note>",
       "refs": {
-        "InstanceFleetProvisioningSpecifications$SpotSpecification": "<p>The launch specification for Spot Instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p>"
+        "InstanceFleetProvisioningSpecifications$SpotSpecification": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p>"
       }
     },
     "SpotProvisioningTimeoutAction": {
       "base": null,
       "refs": {
         "SpotProvisioningSpecification$TimeoutAction": "<p>The action to take when <code>TargetSpotCapacity</code> has not been fulfilled when the <code>TimeoutDurationMinutes</code> has expired; that is, when all Spot Instances could not be provisioned within the Spot provisioning timeout. Valid values are <code>TERMINATE_CLUSTER</code> and <code>SWITCH_TO_ON_DEMAND</code>. SWITCH_TO_ON_DEMAND specifies that if no Spot Instances are available, On-Demand Instances should be provisioned to fulfill any remaining Spot capacity.</p>"
+      }
+    },
+    "SpotResizingSpecification": {
+      "base": "<p>The resize specification for Spot Instances in the instance fleet, which contains the resize timeout period. </p>",
+      "refs": {
+        "InstanceFleetResizingSpecifications$SpotResizeSpecification": "<p>The resize specification for Spot Instances in the instance fleet, which contains the resize timeout period. </p>"
       }
     },
     "StartNotebookExecutionInput": {
@@ -2120,8 +2140,10 @@
         "InstanceFleetModifyConfig$TargetSpotCapacity": "<p>The target capacity of Spot units for the instance fleet. For more information, see <a>InstanceFleetConfig$TargetSpotCapacity</a>.</p>",
         "InstanceTypeConfig$WeightedCapacity": "<p>The number of units that a provisioned instance of this type provides toward fulfilling the target capacities defined in <a>InstanceFleetConfig</a>. This value is 1 for a master instance fleet, and must be 1 or greater for core and task instance fleets. Defaults to 1 if not specified. </p>",
         "InstanceTypeSpecification$WeightedCapacity": "<p>The number of units that a provisioned instance of this type provides toward fulfilling the target capacities defined in <a>InstanceFleetConfig</a>. Capacity values represent performance characteristics such as vCPUs, memory, or I/O. If not specified, the default value is 1.</p>",
-        "SpotProvisioningSpecification$TimeoutDurationMinutes": "<p>The spot provisioning timeout period in minutes. If Spot Instances are not provisioned within this time period, the <code>TimeOutAction</code> is taken. Minimum value is 5 and maximum value is 1440. The timeout applies only during initial provisioning, when the cluster is first created.</p>",
-        "SpotProvisioningSpecification$BlockDurationMinutes": "<p>The defined duration for Spot Instances (also known as Spot blocks) in minutes. When specified, the Spot Instance does not terminate before the defined duration expires, and defined duration pricing for Spot Instances applies. Valid values are 60, 120, 180, 240, 300, or 360. The duration period starts as soon as a Spot Instance receives its instance ID. At the end of the duration, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two-minute warning before it terminates. </p> <note> <p>Spot Instances with a defined duration (also known as Spot blocks) are no longer available to new customers from July 1, 2021. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022. </p> </note>"
+        "OnDemandResizingSpecification$TimeoutDurationMinutes": "<p>On-Demand resize timeout in minutes. If On-Demand Instances are not provisioned within this time, the resize workflow stops. The minimum value is 5 minutes, and the maximum value is 10,080 minutes (7 days). The timeout applies to all resize workflows on the Instance Fleet. The resize could be triggered by Amazon EMR Managed Scaling or by the customer (via Amazon EMR Console, Amazon EMR CLI modify-instance-fleet or Amazon EMR SDK ModifyInstanceFleet API) or by Amazon EMR due to Amazon EC2 Spot Reclamation.</p>",
+        "SpotProvisioningSpecification$TimeoutDurationMinutes": "<p>The Spot provisioning timeout period in minutes. If Spot Instances are not provisioned within this time period, the <code>TimeOutAction</code> is taken. Minimum value is 5 and maximum value is 1440. The timeout applies only during initial provisioning, when the cluster is first created.</p>",
+        "SpotProvisioningSpecification$BlockDurationMinutes": "<p>The defined duration for Spot Instances (also known as Spot blocks) in minutes. When specified, the Spot Instance does not terminate before the defined duration expires, and defined duration pricing for Spot Instances applies. Valid values are 60, 120, 180, 240, 300, or 360. The duration period starts as soon as a Spot Instance receives its instance ID. At the end of the duration, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two-minute warning before it terminates. </p> <note> <p>Spot Instances with a defined duration (also known as Spot blocks) are no longer available to new customers from July 1, 2021. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022. </p> </note>",
+        "SpotResizingSpecification$TimeoutDurationMinutes": "<p>Spot resize timeout in minutes. If Spot Instances are not provisioned within this time, the resize workflow will stop provisioning of Spot instances. Minimum value is 5 minutes and maximum value is 10,080 minutes (7 days). The timeout applies to all resize workflows on the Instance Fleet. The resize could be triggered by Amazon EMR Managed Scaling or by the customer (via Amazon EMR Console, Amazon EMR CLI modify-instance-fleet or Amazon EMR SDK ModifyInstanceFleet API) or by Amazon EMR due to Amazon EC2 Spot Reclamation.</p>"
       }
     },
     "XmlString": {

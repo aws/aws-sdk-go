@@ -2497,6 +2497,17 @@ type CreateWorkspaceInput struct {
 	// Grafana workspace (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html).
 	Configuration *string `locationName:"configuration" min:"2" type:"string"`
 
+	// Configuration for network access to your workspace.
+	//
+	// When this is configured, only listed IP addresses and VPC endpoints will
+	// be able to access your workspace. Standard Grafana authentication and authorization
+	// will still be required.
+	//
+	// If this is not configured, or is removed, then all IP addresses and VPC endpoints
+	// will be allowed. Standard Grafana authentication and authorization will still
+	// be required.
+	NetworkAccessControl *NetworkAccessConfiguration `locationName:"networkAccessControl" type:"structure"`
+
 	// The name of an IAM role that already exists to use with Organizations to
 	// access Amazon Web Services data sources and notification channels in other
 	// accounts in an organization.
@@ -2631,6 +2642,11 @@ func (s *CreateWorkspaceInput) Validate() error {
 	if s.WorkspaceRoleArn != nil && len(*s.WorkspaceRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkspaceRoleArn", 1))
 	}
+	if s.NetworkAccessControl != nil {
+		if err := s.NetworkAccessControl.Validate(); err != nil {
+			invalidParams.AddNested("NetworkAccessControl", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.VpcConfiguration != nil {
 		if err := s.VpcConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
@@ -2664,6 +2680,12 @@ func (s *CreateWorkspaceInput) SetClientToken(v string) *CreateWorkspaceInput {
 // SetConfiguration sets the Configuration field's value.
 func (s *CreateWorkspaceInput) SetConfiguration(v string) *CreateWorkspaceInput {
 	s.Configuration = &v
+	return s
+}
+
+// SetNetworkAccessControl sets the NetworkAccessControl field's value.
+func (s *CreateWorkspaceInput) SetNetworkAccessControl(v *NetworkAccessConfiguration) *CreateWorkspaceInput {
+	s.NetworkAccessControl = v
 	return s
 }
 
@@ -3755,6 +3777,98 @@ func (s *ListWorkspacesOutput) SetNextToken(v string) *ListWorkspacesOutput {
 // SetWorkspaces sets the Workspaces field's value.
 func (s *ListWorkspacesOutput) SetWorkspaces(v []*WorkspaceSummary) *ListWorkspacesOutput {
 	s.Workspaces = v
+	return s
+}
+
+// The configuration settings for in-bound network access to your workspace.
+//
+// When this is configured, only listed IP addresses and VPC endpoints will
+// be able to access your workspace. Standard Grafana authentication and authorization
+// will still be required.
+//
+// If this is not configured, or is removed, then all IP addresses and VPC endpoints
+// will be allowed. Standard Grafana authentication and authorization will still
+// be required.
+type NetworkAccessConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An array of prefix list IDs. A prefix list is a list of CIDR ranges of IP
+	// addresses. The IP addresses specified are allowed to access your workspace.
+	// If the list is not included in the configuration then no IP addresses will
+	// be allowed to access the workspace. You create a prefix list using the Amazon
+	// VPC console.
+	//
+	// Prefix list IDs have the format pl-1a2b3c4d .
+	//
+	// For more information about prefix lists, see Group CIDR blocks using managed
+	// prefix lists (https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html)in
+	// the Amazon Virtual Private Cloud User Guide.
+	//
+	// PrefixListIds is a required field
+	PrefixListIds []*string `locationName:"prefixListIds" type:"list" required:"true"`
+
+	// An array of Amazon VPC endpoint IDs for the workspace. You can create VPC
+	// endpoints to your Amazon Managed Grafana workspace for access from within
+	// a VPC. If a NetworkAccessConfiguration is specified then only VPC endpoints
+	// specified here will be allowed to access the workspace.
+	//
+	// VPC endpoint IDs have the format vpce-1a2b3c4d .
+	//
+	// For more information about creating an interface VPC endpoint, see Interface
+	// VPC endpoints (https://docs.aws.amazon.com/grafana/latest/userguide/VPC-endpoints)
+	// in the Amazon Managed Grafana User Guide.
+	//
+	// The only VPC endpoints that can be specified here are interface VPC endpoints
+	// for Grafana workspaces (using the com.amazonaws.[region].grafana-workspace
+	// service endpoint). Other VPC endpoints will be ignored.
+	//
+	// VpceIds is a required field
+	VpceIds []*string `locationName:"vpceIds" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAccessConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAccessConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkAccessConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkAccessConfiguration"}
+	if s.PrefixListIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrefixListIds"))
+	}
+	if s.VpceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpceIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrefixListIds sets the PrefixListIds field's value.
+func (s *NetworkAccessConfiguration) SetPrefixListIds(v []*string) *NetworkAccessConfiguration {
+	s.PrefixListIds = v
+	return s
+}
+
+// SetVpceIds sets the VpceIds field's value.
+func (s *NetworkAccessConfiguration) SetVpceIds(v []*string) *NetworkAccessConfiguration {
+	s.VpceIds = v
 	return s
 }
 
@@ -4866,6 +4980,17 @@ type UpdateWorkspaceInput struct {
 	// can access in the workspaceOrganizationalUnits parameter.
 	AccountAccessType *string `locationName:"accountAccessType" type:"string" enum:"AccountAccessType"`
 
+	// The configuration settings for network access to your workspace.
+	//
+	// When this is configured, only listed IP addresses and VPC endpoints will
+	// be able to access your workspace. Standard Grafana authentication and authorization
+	// will still be required.
+	//
+	// If this is not configured, or is removed, then all IP addresses and VPC endpoints
+	// will be allowed. Standard Grafana authentication and authorization will still
+	// be required.
+	NetworkAccessControl *NetworkAccessConfiguration `locationName:"networkAccessControl" type:"structure"`
+
 	// The name of an IAM role that already exists to use to access resources through
 	// Organizations.
 	//
@@ -4874,7 +4999,7 @@ type UpdateWorkspaceInput struct {
 	// String and GoString methods.
 	OrganizationRoleName *string `locationName:"organizationRoleName" min:"1" type:"string" sensitive:"true"`
 
-	// If you specify Service Managed, Amazon Managed Grafana automatically creates
+	// If you specify SERVICE_MANAGED, Amazon Managed Grafana automatically creates
 	// the IAM roles and provisions the permissions that the workspace needs to
 	// use Amazon Web Services data sources and notification channels.
 	//
@@ -4887,6 +5012,16 @@ type UpdateWorkspaceInput struct {
 	// For more information, see Amazon Managed Grafana permissions and policies
 	// for Amazon Web Services data sources and notification channels (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html)
 	PermissionType *string `locationName:"permissionType" type:"string" enum:"PermissionType"`
+
+	// Whether to remove the network access configuration from the workspace.
+	//
+	// Setting this to true and providing a networkAccessControl to set will return
+	// an error.
+	//
+	// If you remove this configuration by setting this to true, then all IP addresses
+	// and VPC endpoints will be allowed. Standard Grafana authentication and authorization
+	// will still be required.
+	RemoveNetworkAccessConfiguration *bool `locationName:"removeNetworkAccessConfiguration" type:"boolean"`
 
 	// Whether to remove the VPC configuration from the workspace.
 	//
@@ -4994,6 +5129,11 @@ func (s *UpdateWorkspaceInput) Validate() error {
 	if s.WorkspaceRoleArn != nil && len(*s.WorkspaceRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkspaceRoleArn", 1))
 	}
+	if s.NetworkAccessControl != nil {
+		if err := s.NetworkAccessControl.Validate(); err != nil {
+			invalidParams.AddNested("NetworkAccessControl", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.VpcConfiguration != nil {
 		if err := s.VpcConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
@@ -5012,6 +5152,12 @@ func (s *UpdateWorkspaceInput) SetAccountAccessType(v string) *UpdateWorkspaceIn
 	return s
 }
 
+// SetNetworkAccessControl sets the NetworkAccessControl field's value.
+func (s *UpdateWorkspaceInput) SetNetworkAccessControl(v *NetworkAccessConfiguration) *UpdateWorkspaceInput {
+	s.NetworkAccessControl = v
+	return s
+}
+
 // SetOrganizationRoleName sets the OrganizationRoleName field's value.
 func (s *UpdateWorkspaceInput) SetOrganizationRoleName(v string) *UpdateWorkspaceInput {
 	s.OrganizationRoleName = &v
@@ -5021,6 +5167,12 @@ func (s *UpdateWorkspaceInput) SetOrganizationRoleName(v string) *UpdateWorkspac
 // SetPermissionType sets the PermissionType field's value.
 func (s *UpdateWorkspaceInput) SetPermissionType(v string) *UpdateWorkspaceInput {
 	s.PermissionType = &v
+	return s
+}
+
+// SetRemoveNetworkAccessConfiguration sets the RemoveNetworkAccessConfiguration field's value.
+func (s *UpdateWorkspaceInput) SetRemoveNetworkAccessConfiguration(v bool) *UpdateWorkspaceInput {
+	s.RemoveNetworkAccessConfiguration = &v
 	return s
 }
 
@@ -5304,17 +5456,19 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 
 // The configuration settings for an Amazon VPC that contains data sources for
 // your Grafana workspace to connect to.
+//
+// Provided securityGroupIds and subnetIds must be part of the same VPC.
 type VpcConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The list of Amazon EC2 security group IDs attached to the Amazon VPC for
-	// your Grafana workspace to connect.
+	// your Grafana workspace to connect. Duplicates not allowed.
 	//
 	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `locationName:"securityGroupIds" min:"1" type:"list" required:"true"`
 
 	// The list of Amazon EC2 subnet IDs created in the Amazon VPC for your Grafana
-	// workspace to connect.
+	// workspace to connect. Duplicates not allowed.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `locationName:"subnetIds" min:"1" type:"list" required:"true"`
@@ -5452,6 +5606,9 @@ type WorkspaceDescription struct {
 	// String and GoString methods.
 	Name *string `locationName:"name" type:"string" sensitive:"true"`
 
+	// The configuration settings for network access to your workspace.
+	NetworkAccessControl *NetworkAccessConfiguration `locationName:"networkAccessControl" type:"structure"`
+
 	// The Amazon Web Services notification channels that Amazon Managed Grafana
 	// can automatically create IAM roles and permissions for, to allow Amazon Managed
 	// Grafana to use these channels.
@@ -5473,7 +5630,7 @@ type WorkspaceDescription struct {
 	// String and GoString methods.
 	OrganizationalUnits []*string `locationName:"organizationalUnits" type:"list" sensitive:"true"`
 
-	// If this is Service Managed, Amazon Managed Grafana automatically creates
+	// If this is SERVICE_MANAGED, Amazon Managed Grafana automatically creates
 	// the IAM roles and provisions the permissions that the workspace needs to
 	// use Amazon Web Services data sources and notification channels.
 	//
@@ -5611,6 +5768,12 @@ func (s *WorkspaceDescription) SetModified(v time.Time) *WorkspaceDescription {
 // SetName sets the Name field's value.
 func (s *WorkspaceDescription) SetName(v string) *WorkspaceDescription {
 	s.Name = &v
+	return s
+}
+
+// SetNetworkAccessControl sets the NetworkAccessControl field's value.
+func (s *WorkspaceDescription) SetNetworkAccessControl(v *NetworkAccessConfiguration) *WorkspaceDescription {
+	s.NetworkAccessControl = v
 	return s
 }
 

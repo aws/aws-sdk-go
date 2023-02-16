@@ -1777,10 +1777,10 @@ func (c *EMR) GetClusterSessionCredentialsRequest(input *GetClusterSessionCreden
 
 // GetClusterSessionCredentials API operation for Amazon EMR.
 //
-// Provides Temporary, basic HTTP credentials that are associated with a given
+// Provides temporary, HTTP basic credentials that are associated with a given
 // runtime IAM role and used by a cluster with fine-grained access control activated.
 // You can use these credentials to connect to cluster endpoints that support
-// username-based and password-based authentication.
+// username and password authentication.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9365,7 +9365,7 @@ type GetClusterSessionCredentialsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The credentials that you can use to connect to cluster endpoints that support
-	// username-based and password-based authentication.
+	// username and password authentication.
 	Credentials *Credentials `type:"structure"`
 
 	// The time when the credentials that are returned by the GetClusterSessionCredentials
@@ -9910,6 +9910,9 @@ type InstanceFleet struct {
 	// or greater than TargetSpotCapacity.
 	ProvisionedSpotCapacity *int64 `type:"integer"`
 
+	// The resize specification for the instance fleet.
+	ResizeSpecifications *InstanceFleetResizingSpecifications `type:"structure"`
+
 	// The current status of the instance fleet.
 	Status *InstanceFleetStatus `type:"structure"`
 
@@ -10013,6 +10016,12 @@ func (s *InstanceFleet) SetProvisionedSpotCapacity(v int64) *InstanceFleet {
 	return s
 }
 
+// SetResizeSpecifications sets the ResizeSpecifications field's value.
+func (s *InstanceFleet) SetResizeSpecifications(v *InstanceFleetResizingSpecifications) *InstanceFleet {
+	s.ResizeSpecifications = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *InstanceFleet) SetStatus(v *InstanceFleetStatus) *InstanceFleet {
 	s.Status = v
@@ -10053,6 +10062,9 @@ type InstanceFleetConfig struct {
 
 	// The friendly name of the instance fleet.
 	Name *string `type:"string"`
+
+	// The resize specification for the instance fleet.
+	ResizeSpecifications *InstanceFleetResizingSpecifications `type:"structure"`
 
 	// The target capacity of On-Demand units for the instance fleet, which determines
 	// how many On-Demand Instances to provision. When the instance fleet launches,
@@ -10129,6 +10141,11 @@ func (s *InstanceFleetConfig) Validate() error {
 			invalidParams.AddNested("LaunchSpecifications", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ResizeSpecifications != nil {
+		if err := s.ResizeSpecifications.Validate(); err != nil {
+			invalidParams.AddNested("ResizeSpecifications", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10160,6 +10177,12 @@ func (s *InstanceFleetConfig) SetName(v string) *InstanceFleetConfig {
 	return s
 }
 
+// SetResizeSpecifications sets the ResizeSpecifications field's value.
+func (s *InstanceFleetConfig) SetResizeSpecifications(v *InstanceFleetResizingSpecifications) *InstanceFleetConfig {
+	s.ResizeSpecifications = v
+	return s
+}
+
 // SetTargetOnDemandCapacity sets the TargetOnDemandCapacity field's value.
 func (s *InstanceFleetConfig) SetTargetOnDemandCapacity(v int64) *InstanceFleetConfig {
 	s.TargetOnDemandCapacity = &v
@@ -10183,6 +10206,9 @@ type InstanceFleetModifyConfig struct {
 	//
 	// InstanceFleetId is a required field
 	InstanceFleetId *string `type:"string" required:"true"`
+
+	// The resize specification for the instance fleet.
+	ResizeSpecifications *InstanceFleetResizingSpecifications `type:"structure"`
 
 	// The target capacity of On-Demand units for the instance fleet. For more information
 	// see InstanceFleetConfig$TargetOnDemandCapacity.
@@ -10217,6 +10243,11 @@ func (s *InstanceFleetModifyConfig) Validate() error {
 	if s.InstanceFleetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceFleetId"))
 	}
+	if s.ResizeSpecifications != nil {
+		if err := s.ResizeSpecifications.Validate(); err != nil {
+			invalidParams.AddNested("ResizeSpecifications", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10227,6 +10258,12 @@ func (s *InstanceFleetModifyConfig) Validate() error {
 // SetInstanceFleetId sets the InstanceFleetId field's value.
 func (s *InstanceFleetModifyConfig) SetInstanceFleetId(v string) *InstanceFleetModifyConfig {
 	s.InstanceFleetId = &v
+	return s
+}
+
+// SetResizeSpecifications sets the ResizeSpecifications field's value.
+func (s *InstanceFleetModifyConfig) SetResizeSpecifications(v *InstanceFleetResizingSpecifications) *InstanceFleetModifyConfig {
+	s.ResizeSpecifications = v
 	return s
 }
 
@@ -10246,7 +10283,7 @@ func (s *InstanceFleetModifyConfig) SetTargetSpotCapacity(v int64) *InstanceFlee
 // the defined duration, provisioning timeout behavior, and allocation strategy.
 //
 // The instance fleet configuration is available only in Amazon EMR versions
-// 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot Instance allocation
+// 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot instance allocation
 // strategies are available in Amazon EMR version 5.12.1 and later.
 type InstanceFleetProvisioningSpecifications struct {
 	_ struct{} `type:"structure"`
@@ -10259,7 +10296,7 @@ type InstanceFleetProvisioningSpecifications struct {
 	// strategy is available in Amazon EMR version 5.12.1 and later.
 	OnDemandSpecification *OnDemandProvisioningSpecification `type:"structure"`
 
-	// The launch specification for Spot Instances in the fleet, which determines
+	// The launch specification for Spot instances in the fleet, which determines
 	// the defined duration, provisioning timeout behavior, and allocation strategy.
 	SpotSpecification *SpotProvisioningSpecification `type:"structure"`
 }
@@ -10311,6 +10348,69 @@ func (s *InstanceFleetProvisioningSpecifications) SetOnDemandSpecification(v *On
 // SetSpotSpecification sets the SpotSpecification field's value.
 func (s *InstanceFleetProvisioningSpecifications) SetSpotSpecification(v *SpotProvisioningSpecification) *InstanceFleetProvisioningSpecifications {
 	s.SpotSpecification = v
+	return s
+}
+
+// The resize specification for On-Demand and Spot Instances in the fleet.
+type InstanceFleetResizingSpecifications struct {
+	_ struct{} `type:"structure"`
+
+	// The resize specification for On-Demand Instances in the instance fleet, which
+	// contains the resize timeout period.
+	OnDemandResizeSpecification *OnDemandResizingSpecification `type:"structure"`
+
+	// The resize specification for Spot Instances in the instance fleet, which
+	// contains the resize timeout period.
+	SpotResizeSpecification *SpotResizingSpecification `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceFleetResizingSpecifications) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceFleetResizingSpecifications) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceFleetResizingSpecifications) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceFleetResizingSpecifications"}
+	if s.OnDemandResizeSpecification != nil {
+		if err := s.OnDemandResizeSpecification.Validate(); err != nil {
+			invalidParams.AddNested("OnDemandResizeSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SpotResizeSpecification != nil {
+		if err := s.SpotResizeSpecification.Validate(); err != nil {
+			invalidParams.AddNested("SpotResizeSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOnDemandResizeSpecification sets the OnDemandResizeSpecification field's value.
+func (s *InstanceFleetResizingSpecifications) SetOnDemandResizeSpecification(v *OnDemandResizingSpecification) *InstanceFleetResizingSpecifications {
+	s.OnDemandResizeSpecification = v
+	return s
+}
+
+// SetSpotResizeSpecification sets the SpotResizeSpecification field's value.
+func (s *InstanceFleetResizingSpecifications) SetSpotResizeSpecification(v *SpotResizingSpecification) *InstanceFleetResizingSpecifications {
+	s.SpotResizeSpecification = v
 	return s
 }
 
@@ -14654,6 +14754,60 @@ func (s *OnDemandProvisioningSpecification) SetCapacityReservationOptions(v *OnD
 	return s
 }
 
+// The resize specification for On-Demand Instances in the instance fleet, which
+// contains the resize timeout period.
+type OnDemandResizingSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// On-Demand resize timeout in minutes. If On-Demand Instances are not provisioned
+	// within this time, the resize workflow stops. The minimum value is 5 minutes,
+	// and the maximum value is 10,080 minutes (7 days). The timeout applies to
+	// all resize workflows on the Instance Fleet. The resize could be triggered
+	// by Amazon EMR Managed Scaling or by the customer (via Amazon EMR Console,
+	// Amazon EMR CLI modify-instance-fleet or Amazon EMR SDK ModifyInstanceFleet
+	// API) or by Amazon EMR due to Amazon EC2 Spot Reclamation.
+	//
+	// TimeoutDurationMinutes is a required field
+	TimeoutDurationMinutes *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandResizingSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandResizingSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OnDemandResizingSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OnDemandResizingSpecification"}
+	if s.TimeoutDurationMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeoutDurationMinutes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeoutDurationMinutes sets the TimeoutDurationMinutes field's value.
+func (s *OnDemandResizingSpecification) SetTimeoutDurationMinutes(v int64) *OnDemandResizingSpecification {
+	s.TimeoutDurationMinutes = &v
+	return s
+}
+
 // Placement group configuration for an Amazon EMR cluster. The configuration
 // specifies the placement strategy that can be applied to instance roles during
 // cluster creation.
@@ -17015,7 +17169,7 @@ type SpotProvisioningSpecification struct {
 	// TimeoutAction is a required field
 	TimeoutAction *string `type:"string" required:"true" enum:"SpotProvisioningTimeoutAction"`
 
-	// The spot provisioning timeout period in minutes. If Spot Instances are not
+	// The Spot provisioning timeout period in minutes. If Spot Instances are not
 	// provisioned within this time period, the TimeOutAction is taken. Minimum
 	// value is 5 and maximum value is 1440. The timeout applies only during initial
 	// provisioning, when the cluster is first created.
@@ -17078,6 +17232,60 @@ func (s *SpotProvisioningSpecification) SetTimeoutAction(v string) *SpotProvisio
 
 // SetTimeoutDurationMinutes sets the TimeoutDurationMinutes field's value.
 func (s *SpotProvisioningSpecification) SetTimeoutDurationMinutes(v int64) *SpotProvisioningSpecification {
+	s.TimeoutDurationMinutes = &v
+	return s
+}
+
+// The resize specification for Spot Instances in the instance fleet, which
+// contains the resize timeout period.
+type SpotResizingSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Spot resize timeout in minutes. If Spot Instances are not provisioned within
+	// this time, the resize workflow will stop provisioning of Spot instances.
+	// Minimum value is 5 minutes and maximum value is 10,080 minutes (7 days).
+	// The timeout applies to all resize workflows on the Instance Fleet. The resize
+	// could be triggered by Amazon EMR Managed Scaling or by the customer (via
+	// Amazon EMR Console, Amazon EMR CLI modify-instance-fleet or Amazon EMR SDK
+	// ModifyInstanceFleet API) or by Amazon EMR due to Amazon EC2 Spot Reclamation.
+	//
+	// TimeoutDurationMinutes is a required field
+	TimeoutDurationMinutes *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpotResizingSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpotResizingSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SpotResizingSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SpotResizingSpecification"}
+	if s.TimeoutDurationMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeoutDurationMinutes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeoutDurationMinutes sets the TimeoutDurationMinutes field's value.
+func (s *SpotResizingSpecification) SetTimeoutDurationMinutes(v int64) *SpotResizingSpecification {
 	s.TimeoutDurationMinutes = &v
 	return s
 }
