@@ -517,7 +517,6 @@
     },
     "ASConfigMaxSize":{
       "type":"integer",
-      "max":25,
       "min":1
     },
     "ASConfigMinSize":{
@@ -1480,7 +1479,8 @@
         "CREATE_SERVICE",
         "PAUSE_SERVICE",
         "RESUME_SERVICE",
-        "DELETE_SERVICE"
+        "DELETE_SERVICE",
+        "UPDATE_SERVICE"
       ]
     },
     "PauseServiceRequest":{
