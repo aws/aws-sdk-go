@@ -10939,6 +10939,9 @@ const (
 
 	// OperationTypeDeleteService is a OperationType enum value
 	OperationTypeDeleteService = "DELETE_SERVICE"
+
+	// OperationTypeUpdateService is a OperationType enum value
+	OperationTypeUpdateService = "UPDATE_SERVICE"
 )
 
 // OperationType_Values returns all elements of the OperationType enum
@@ -10949,6 +10952,7 @@ func OperationType_Values() []string {
 		OperationTypePauseService,
 		OperationTypeResumeService,
 		OperationTypeDeleteService,
+		OperationTypeUpdateService,
 	}
 }
 

@@ -1,3 +1,11 @@
+Release v1.44.204 (2023-02-17)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API
+* `service/glue`: Updates service API and documentation
+  * Release of Delta Lake Data Lake Format for Glue Studio Service
+
 Release v1.44.203 (2023-02-16)
 ===
 
