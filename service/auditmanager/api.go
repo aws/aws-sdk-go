@@ -6184,6 +6184,13 @@ func (c *AuditManager) UpdateAssessmentFrameworkShareRequest(input *UpdateAssess
 //     An internal service error occurred during the processing of your request.
 //     Try again later.
 //
+//   - ServiceQuotaExceededException
+//     You've reached your account quota for this resource type. To perform the
+//     requested action, delete some existing resources or request a quota increase
+//     (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) from
+//     the Service Quotas console. For a list of Audit Manager service quotas, see
+//     Quotas and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/UpdateAssessmentFrameworkShare
 func (c *AuditManager) UpdateAssessmentFrameworkShare(input *UpdateAssessmentFrameworkShareInput) (*UpdateAssessmentFrameworkShareOutput, error) {
 	req, out := c.UpdateAssessmentFrameworkShareRequest(input)
@@ -6436,7 +6443,7 @@ func (c *AuditManager) UpdateSettingsRequest(input *UpdateSettingsInput) (req *r
 
 // UpdateSettings API operation for AWS Audit Manager.
 //
-// Updates Audit Manager settings for the current user account.
+// Updates Audit Manager settings for the current account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6641,6 +6648,13 @@ func (s *AWSAccount) SetName(v string) *AWSAccount {
 }
 
 // An Amazon Web Service such as Amazon S3 or CloudTrail.
+//
+// For an example of how to find an Amazon Web Service name and how to define
+// it in your assessment scope, see the following:
+//
+//   - Finding an Amazon Web Service name to use in your assessment scope (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetServicesInScope.html#API_GetServicesInScope_Example_2)
+//
+//   - Defining an Amazon Web Service name in your assessment scope (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetServicesInScope.html#API_GetServicesInScope_Example_3)
 type AWSService struct {
 	_ struct{} `type:"structure"`
 
@@ -8929,7 +8943,7 @@ type ChangeLog struct {
 	// The time when the action was performed and the changelog record was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// The IAM user or role that performed the action.
+	// The user or role that performed the action.
 	CreatedBy *string `locationName:"createdBy" min:"20" type:"string"`
 
 	// The name of the object that changed. This could be the name of an assessment,
@@ -9011,7 +9025,7 @@ type Control struct {
 	// The time when the control was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// The IAM user or role that created the control.
+	// The user or role that created the control.
 	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
 
 	// The description of the control.
@@ -9023,7 +9037,7 @@ type Control struct {
 	// The time when the control was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// The IAM user or role that most recently updated the control.
+	// The user or role that most recently updated the control.
 	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string"`
 
 	// The name of the control.
@@ -10622,7 +10636,7 @@ type Delegation struct {
 	// The identifier for the control set that's associated with the delegation.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
 
-	// The IAM user or role that created the delegation.
+	// The user or role that created the delegation.
 	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
 
 	// Specifies when the delegation was created.
@@ -11527,8 +11541,7 @@ type Evidence struct {
 	// The identifier for the folder that the evidence is stored in.
 	EvidenceFolderId *string `locationName:"evidenceFolderId" min:"36" type:"string"`
 
-	// The unique identifier for the IAM user or role that's associated with the
-	// evidence.
+	// The unique identifier for the user or role that's associated with the evidence.
 	IamId *string `locationName:"iamId" min:"20" type:"string"`
 
 	// The identifier for the evidence.
@@ -11825,7 +11838,7 @@ type Framework struct {
 	// The time when the framework was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// The IAM user or role that created the framework.
+	// The user or role that created the framework.
 	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
 
 	// The description of the framework.
@@ -11837,7 +11850,7 @@ type Framework struct {
 	// The time when the framework was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// The IAM user or role that most recently updated the framework.
+	// The user or role that most recently updated the framework.
 	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string"`
 
 	// The logo that's associated with the framework.

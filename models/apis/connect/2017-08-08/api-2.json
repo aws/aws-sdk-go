@@ -4896,7 +4896,7 @@
     },
     "DirectoryAlias":{
       "type":"string",
-      "max":62,
+      "max":45,
       "min":1,
       "pattern":"^(?!d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*$",
       "sensitive":true
@@ -5794,7 +5794,9 @@
         "MEDIA_STREAMS",
         "CONTACT_TRACE_RECORDS",
         "AGENT_EVENTS",
-        "REAL_TIME_CONTACT_ANALYSIS_SEGMENTS"
+        "REAL_TIME_CONTACT_ANALYSIS_SEGMENTS",
+        "ATTACHMENTS",
+        "CONTACT_EVALUATIONS"
       ]
     },
     "InstanceSummary":{
@@ -5941,6 +5943,10 @@
     },
     "LexBot":{
       "type":"structure",
+      "required":[
+        "Name",
+        "LexRegion"
+      ],
       "members":{
         "Name":{"shape":"BotName"},
         "LexRegion":{"shape":"LexRegion"}

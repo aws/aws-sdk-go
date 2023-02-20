@@ -61,7 +61,7 @@
     "UpdateAssessmentFrameworkShare": "<p> Updates a share request for a custom framework in Audit Manager. </p>",
     "UpdateAssessmentStatus": "<p> Updates the status of an assessment in Audit Manager. </p>",
     "UpdateControl": "<p> Updates a custom control in Audit Manager. </p>",
-    "UpdateSettings": "<p> Updates Audit Manager settings for the current user account. </p>",
+    "UpdateSettings": "<p> Updates Audit Manager settings for the current account. </p>",
     "ValidateAssessmentReportIntegrity": "<p> Validates the integrity of an assessment report in Audit Manager. </p>"
   },
   "shapes": {
@@ -79,7 +79,7 @@
       }
     },
     "AWSService": {
-      "base": "<p> An Amazon Web Service such as Amazon S3 or CloudTrail. </p>",
+      "base": "<p> An Amazon Web Service such as Amazon S3 or CloudTrail. </p> <p>For an example of how to find an Amazon Web Service name and how to define it in your assessment scope, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetServicesInScope.html#API_GetServicesInScope_Example_2\">Finding an Amazon Web Service name to use in your assessment scope</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetServicesInScope.html#API_GetServicesInScope_Example_3\">Defining an Amazon Web Service name in your assessment scope</a> </p> </li> </ul>",
       "refs": {
         "AWSServices$member": null
       }
@@ -800,9 +800,9 @@
     "CreatedBy": {
       "base": null,
       "refs": {
-        "Control$createdBy": "<p> The IAM user or role that created the control. </p>",
-        "Delegation$createdBy": "<p> The IAM user or role that created the delegation. </p>",
-        "Framework$createdBy": "<p> The IAM user or role that created the framework. </p>"
+        "Control$createdBy": "<p> The user or role that created the control. </p>",
+        "Delegation$createdBy": "<p> The user or role that created the delegation. </p>",
+        "Framework$createdBy": "<p> The user or role that created the framework. </p>"
       }
     },
     "Delegation": {
@@ -1290,11 +1290,11 @@
     "IamArn": {
       "base": null,
       "refs": {
-        "ChangeLog$createdBy": "<p> The IAM user or role that performed the action. </p>",
+        "ChangeLog$createdBy": "<p> The user or role that performed the action. </p>",
         "CreateDelegationRequest$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>",
         "Delegation$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>",
         "DelegationMetadata$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>",
-        "Evidence$iamId": "<p> The unique identifier for the IAM user or role that's associated with the evidence. </p>",
+        "Evidence$iamId": "<p> The unique identifier for the user or role that's associated with the evidence. </p>",
         "Role$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>"
       }
     },
@@ -1363,8 +1363,8 @@
     "LastUpdatedBy": {
       "base": null,
       "refs": {
-        "Control$lastUpdatedBy": "<p> The IAM user or role that most recently updated the control. </p>",
-        "Framework$lastUpdatedBy": "<p> The IAM user or role that most recently updated the framework. </p>"
+        "Control$lastUpdatedBy": "<p> The user or role that most recently updated the control. </p>",
+        "Framework$lastUpdatedBy": "<p> The user or role that most recently updated the framework. </p>"
       }
     },
     "ListAssessmentControlInsightsByControlDomainRequest": {
