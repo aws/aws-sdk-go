@@ -849,7 +849,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "UpdateAssessmentStatus":{

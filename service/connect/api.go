@@ -5566,8 +5566,9 @@ func (c *Connect) DescribeUserRequest(input *DescribeUserInput) (req *request.Re
 // DescribeUser API operation for Amazon Connect Service.
 //
 // Describes the specified user account. You can find the instance ID in the
-// console (it’s the final part of the ARN). The console does not display
-// the user IDs. Instead, list the users and note the IDs provided in the output.
+// Amazon Connect console (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+// (it’s the final part of the ARN). The console does not display the user
+// IDs. Instead, list the users and note the IDs provided in the output.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18989,8 +18990,9 @@ func (s AssignContactCategoryActionDefinition) GoString() string {
 type AssociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19075,8 +19077,9 @@ func (s AssociateApprovedOriginOutput) GoString() string {
 type AssociateBotInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19114,6 +19117,11 @@ func (s *AssociateBotInput) Validate() error {
 	}
 	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexBot != nil {
+		if err := s.LexBot.Validate(); err != nil {
+			invalidParams.AddNested("LexBot", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.LexV2Bot != nil {
 		if err := s.LexV2Bot.Validate(); err != nil {
@@ -19170,8 +19178,9 @@ func (s AssociateBotOutput) GoString() string {
 type AssociateDefaultVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19273,8 +19282,9 @@ func (s AssociateDefaultVocabularyOutput) GoString() string {
 type AssociateInstanceStorageConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19394,8 +19404,9 @@ type AssociateLambdaFunctionInput struct {
 	// FunctionArn is a required field
 	FunctionArn *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19478,8 +19489,9 @@ func (s AssociateLambdaFunctionOutput) GoString() string {
 type AssociateLexBotInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19519,6 +19531,11 @@ func (s *AssociateLexBotInput) Validate() error {
 	}
 	if s.LexBot == nil {
 		invalidParams.Add(request.NewErrParamRequired("LexBot"))
+	}
+	if s.LexBot != nil {
+		if err := s.LexBot.Validate(); err != nil {
+			invalidParams.AddNested("LexBot", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -19569,8 +19586,9 @@ type AssociatePhoneNumberContactFlowInput struct {
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -19667,8 +19685,9 @@ func (s AssociatePhoneNumberContactFlowOutput) GoString() string {
 type AssociateQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19773,8 +19792,9 @@ func (s AssociateQueueQuickConnectsOutput) GoString() string {
 type AssociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19889,8 +19909,9 @@ func (s AssociateRoutingProfileQueuesOutput) GoString() string {
 type AssociateSecurityKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21310,8 +21331,9 @@ type CreateAgentStatusInput struct {
 	// The display order of the status.
 	DisplayOrder *int64 `min:"1" type:"integer"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21594,8 +21616,9 @@ type CreateContactFlowModuleInput struct {
 	// The description of the flow module.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21787,8 +21810,9 @@ type CreateHoursOfOperationInput struct {
 	// The description of the hours of operation.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22100,8 +22124,9 @@ func (s *CreateInstanceOutput) SetId(v string) *CreateInstanceOutput {
 type CreateIntegrationAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22278,8 +22303,9 @@ type CreateQueueInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22455,8 +22481,9 @@ type CreateQuickConnectInput struct {
 	// The description of the quick connect.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22613,8 +22640,9 @@ type CreateRoutingProfileInput struct {
 	// Description is a required field
 	Description *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22823,8 +22851,9 @@ type CreateRuleInput struct {
 	// Function is a required field
 	Function *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23008,8 +23037,9 @@ type CreateSecurityProfileInput struct {
 	// The description of the security profile.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23186,8 +23216,9 @@ type CreateTaskTemplateInput struct {
 	// Fields is a required field
 	Fields []*TaskTemplateField `type:"list" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23517,8 +23548,9 @@ func (s *CreateTrafficDistributionGroupOutput) SetId(v string) *CreateTrafficDis
 type CreateUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23652,8 +23684,9 @@ func (s *CreateUseCaseOutput) SetUseCaseId(v string) *CreateUseCaseOutput {
 type CreateUserHierarchyGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23797,8 +23830,9 @@ type CreateUserInput struct {
 	// The information about the identity of the user.
 	IdentityInfo *UserIdentityInfo `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24021,8 +24055,9 @@ type CreateVocabularyInput struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24468,8 +24503,9 @@ func (s *DateReference) SetValue(v string) *DateReference {
 type DefaultVocabulary struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -24541,8 +24577,9 @@ type DeleteContactFlowInput struct {
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24608,8 +24645,9 @@ type DeleteContactFlowModuleInput struct {
 	// ContactFlowModuleId is a required field
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24719,8 +24757,9 @@ type DeleteHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24803,8 +24842,9 @@ func (s DeleteHoursOfOperationOutput) GoString() string {
 type DeleteInstanceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24875,8 +24915,9 @@ func (s DeleteInstanceOutput) GoString() string {
 type DeleteIntegrationAssociationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24964,8 +25005,9 @@ func (s DeleteIntegrationAssociationOutput) GoString() string {
 type DeleteQuickConnectInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25053,8 +25095,9 @@ func (s DeleteQuickConnectOutput) GoString() string {
 type DeleteRuleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25142,8 +25185,9 @@ func (s DeleteRuleOutput) GoString() string {
 type DeleteSecurityProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25231,8 +25275,9 @@ func (s DeleteSecurityProfileOutput) GoString() string {
 type DeleteTaskTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25394,8 +25439,9 @@ func (s DeleteTrafficDistributionGroupOutput) GoString() string {
 type DeleteUseCaseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25505,8 +25551,9 @@ type DeleteUserHierarchyGroupInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25589,8 +25636,9 @@ func (s DeleteUserHierarchyGroupOutput) GoString() string {
 type DeleteUserInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25678,8 +25726,9 @@ func (s DeleteUserOutput) GoString() string {
 type DeleteVocabularyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25805,8 +25854,9 @@ type DescribeAgentStatusInput struct {
 	// AgentStatusId is a required field
 	AgentStatusId *string `location:"uri" locationName:"AgentStatusId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -25969,8 +26019,9 @@ type DescribeContactFlowModuleInput struct {
 	// ContactFlowModuleId is a required field
 	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26098,8 +26149,9 @@ type DescribeContactInput struct {
 	// ContactId is a required field
 	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26196,8 +26248,9 @@ type DescribeHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26294,8 +26347,9 @@ type DescribeInstanceAttributeInput struct {
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26387,8 +26441,9 @@ func (s *DescribeInstanceAttributeOutput) SetAttribute(v *Attribute) *DescribeIn
 type DescribeInstanceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26474,8 +26529,9 @@ type DescribeInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26662,8 +26718,9 @@ func (s *DescribePhoneNumberOutput) SetClaimedPhoneNumberSummary(v *ClaimedPhone
 type DescribeQueueInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26760,8 +26817,9 @@ func (s *DescribeQueueOutput) SetQueue(v *Queue) *DescribeQueueOutput {
 type DescribeQuickConnectInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26858,8 +26916,9 @@ func (s *DescribeQuickConnectOutput) SetQuickConnect(v *QuickConnect) *DescribeQ
 type DescribeRoutingProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26956,8 +27015,9 @@ func (s *DescribeRoutingProfileOutput) SetRoutingProfile(v *RoutingProfile) *Des
 type DescribeRuleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27056,8 +27116,9 @@ func (s *DescribeRuleOutput) SetRule(v *Rule) *DescribeRuleOutput {
 type DescribeSecurityProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27242,8 +27303,9 @@ type DescribeUserHierarchyGroupInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27335,8 +27397,9 @@ func (s *DescribeUserHierarchyGroupOutput) SetHierarchyGroup(v *HierarchyGroup) 
 type DescribeUserHierarchyStructureInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27416,8 +27479,9 @@ func (s *DescribeUserHierarchyStructureOutput) SetHierarchyStructure(v *Hierarch
 type DescribeUserInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27514,8 +27578,9 @@ func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 type DescribeVocabularyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27731,8 +27796,9 @@ func (s *Dimensions) SetRoutingProfile(v *RoutingProfileReference) *Dimensions {
 type DisassociateApprovedOriginInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27817,8 +27883,9 @@ func (s DisassociateApprovedOriginOutput) GoString() string {
 type DisassociateBotInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27856,6 +27923,11 @@ func (s *DisassociateBotInput) Validate() error {
 	}
 	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexBot != nil {
+		if err := s.LexBot.Validate(); err != nil {
+			invalidParams.AddNested("LexBot", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.LexV2Bot != nil {
 		if err := s.LexV2Bot.Validate(); err != nil {
@@ -27918,8 +27990,9 @@ type DisassociateInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28021,8 +28094,9 @@ type DisassociateLambdaFunctionInput struct {
 	// FunctionArn is a required field
 	FunctionArn *string `location:"querystring" locationName:"functionArn" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance..
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance..
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28110,8 +28184,9 @@ type DisassociateLexBotInput struct {
 	// BotName is a required field
 	BotName *string `location:"querystring" locationName:"botName" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28205,8 +28280,9 @@ func (s DisassociateLexBotOutput) GoString() string {
 type DisassociatePhoneNumberContactFlowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"querystring" locationName:"instanceId" min:"1" type:"string" required:"true"`
@@ -28294,8 +28370,9 @@ func (s DisassociatePhoneNumberContactFlowOutput) GoString() string {
 type DisassociateQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28400,8 +28477,9 @@ func (s DisassociateQueueQuickConnectsOutput) GoString() string {
 type DisassociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28519,8 +28597,9 @@ type DisassociateSecurityKeyInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28888,6 +28967,9 @@ type EncryptionConfig struct {
 	// The full ARN of the encryption key.
 	//
 	// Be sure to provide the full ARN of the encryption key, not just the ID.
+	//
+	// Amazon Connect supports only KMS keys with the default key spec of SYMMETRIC_DEFAULT
+	// (https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-symmetric-default).
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -29290,8 +29372,9 @@ type GetCurrentMetricDataInput struct {
 	//    * If no Grouping is included in the request, a summary of metrics is returned.
 	Groupings []*string `type:"list" enum:"Grouping"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -29495,8 +29578,9 @@ type GetCurrentUserDataInput struct {
 	// Filters is a required field
 	Filters *UserDataFilters `type:"structure" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -29630,8 +29714,9 @@ func (s *GetCurrentUserDataOutput) SetUserDataList(v []*UserData) *GetCurrentUse
 type GetFederationTokenInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -29931,8 +30016,9 @@ type GetMetricDataInput struct {
 	// HistoricalMetrics is a required field
 	HistoricalMetrics []*HistoricalMetric `type:"list" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -30106,8 +30192,9 @@ func (s *GetMetricDataOutput) SetNextToken(v string) *GetMetricDataOutput {
 type GetTaskTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -30213,8 +30300,9 @@ type GetTaskTemplateOutput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The timestamp when the task template was last modified.
@@ -31546,8 +31634,9 @@ type Instance struct {
 	// When the instance was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	Id *string `min:"1" type:"string"`
 
 	// The identity management type.
@@ -31914,8 +32003,9 @@ func (s *InstanceSummary) SetServiceRole(v string) *InstanceSummary {
 type IntegrationAssociationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the AppIntegration.
@@ -32566,10 +32656,14 @@ type LexBot struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Web Services Region where the Amazon Lex bot was created.
-	LexRegion *string `type:"string"`
+	//
+	// LexRegion is a required field
+	LexRegion *string `type:"string" required:"true"`
 
 	// The name of the Amazon Lex bot.
-	Name *string `type:"string"`
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -32588,6 +32682,22 @@ func (s LexBot) String() string {
 // value will be replaced with "sensitive".
 func (s LexBot) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LexBot) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LexBot"}
+	if s.LexRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LexRegion"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetLexRegion sets the LexRegion field's value.
@@ -32759,8 +32869,9 @@ type ListAgentStatusesInput struct {
 	// Available agent status types.
 	AgentStatusTypes []*string `location:"querystring" locationName:"AgentStatusTypes" type:"list" enum:"AgentStatusType"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -32877,8 +32988,9 @@ func (s *ListAgentStatusesOutput) SetNextToken(v string) *ListAgentStatusesOutpu
 type ListApprovedOriginsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -32989,8 +33101,9 @@ func (s *ListApprovedOriginsOutput) SetOrigins(v []*string) *ListApprovedOrigins
 type ListBotsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -33119,8 +33232,9 @@ type ListContactFlowModulesInput struct {
 	// The state of the flow module.
 	ContactFlowModuleState *string `location:"querystring" locationName:"state" type:"string" enum:"ContactFlowModuleState"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -33240,8 +33354,9 @@ type ListContactFlowsInput struct {
 	// The type of flow.
 	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list" enum:"ContactFlowType"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -33364,8 +33479,9 @@ type ListContactReferencesInput struct {
 	// ContactId is a required field
 	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -33495,8 +33611,9 @@ func (s *ListContactReferencesOutput) SetReferenceSummaryList(v []*ReferenceSumm
 type ListDefaultVocabulariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -33622,8 +33739,9 @@ func (s *ListDefaultVocabulariesOutput) SetNextToken(v string) *ListDefaultVocab
 type ListHoursOfOperationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -33735,8 +33853,9 @@ func (s *ListHoursOfOperationsOutput) SetNextToken(v string) *ListHoursOfOperati
 type ListInstanceAttributesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -33847,8 +33966,9 @@ func (s *ListInstanceAttributesOutput) SetNextToken(v string) *ListInstanceAttri
 type ListInstanceStorageConfigsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -34067,8 +34187,9 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 type ListIntegrationAssociationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -34188,8 +34309,9 @@ func (s *ListIntegrationAssociationsOutput) SetNextToken(v string) *ListIntegrat
 type ListLambdaFunctionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -34300,8 +34422,9 @@ func (s *ListLambdaFunctionsOutput) SetNextToken(v string) *ListLambdaFunctionsO
 type ListLexBotsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -34414,8 +34537,9 @@ func (s *ListLexBotsOutput) SetNextToken(v string) *ListLexBotsOutput {
 type ListPhoneNumbersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -34875,8 +34999,9 @@ func (s *ListPromptsOutput) SetPromptSummaryList(v []*PromptSummary) *ListPrompt
 type ListQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35005,8 +35130,9 @@ func (s *ListQueueQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConn
 type ListQueuesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35127,8 +35253,9 @@ func (s *ListQueuesOutput) SetQueueSummaryList(v []*QueueSummary) *ListQueuesOut
 type ListQuickConnectsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35251,8 +35378,9 @@ func (s *ListQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConnectSu
 type ListRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35381,8 +35509,9 @@ func (s *ListRoutingProfileQueuesOutput) SetRoutingProfileQueueConfigSummaryList
 type ListRoutingProfilesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35497,8 +35626,9 @@ type ListRulesInput struct {
 	// The name of the event source.
 	EventSourceName *string `location:"querystring" locationName:"eventSourceName" type:"string" enum:"EventSourceName"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35626,8 +35756,9 @@ func (s *ListRulesOutput) SetRuleSummaryList(v []*RuleSummary) *ListRulesOutput 
 type ListSecurityKeysInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35738,8 +35869,9 @@ func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurity
 type ListSecurityProfilePermissionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35868,8 +36000,9 @@ func (s *ListSecurityProfilePermissionsOutput) SetPermissions(v []*string) *List
 type ListSecurityProfilesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -35981,7 +36114,10 @@ func (s *ListSecurityProfilesOutput) SetSecurityProfileSummaryList(v []*Security
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// The Amazon Resource Name (ARN) of the resource. All Amazon Connect resources
+	// (instances, queues, flows, routing profiles, etc) have an ARN. To locate
+	// the ARN for an instance, for example, see Find your Amazon Connect instance
+	// ID/ARN (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html).
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -36061,8 +36197,9 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListTaskTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -36203,8 +36340,9 @@ func (s *ListTaskTemplatesOutput) SetTaskTemplates(v []*TaskTemplateMetadata) *L
 type ListTrafficDistributionGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	InstanceId *string `location:"querystring" locationName:"instanceId" min:"1" type:"string"`
 
 	// The maximum number of results to return per page.
@@ -36312,8 +36450,9 @@ func (s *ListTrafficDistributionGroupsOutput) SetTrafficDistributionGroupSummary
 type ListUseCasesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -36441,8 +36580,9 @@ func (s *ListUseCasesOutput) SetUseCaseSummaryList(v []*UseCase) *ListUseCasesOu
 type ListUserHierarchyGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -36554,8 +36694,9 @@ func (s *ListUserHierarchyGroupsOutput) SetUserHierarchyGroupSummaryList(v []*Hi
 type ListUsersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -37748,8 +37889,9 @@ type PutUserStatusInput struct {
 	// AgentStatusId is a required field
 	AgentStatusId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -38772,9 +38914,10 @@ type ReplicateInstanceInput struct {
 	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance. You can provide the InstanceId, or the entire
-	// ARN.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance. You can provide the InstanceId,
+	// or the entire ARN.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -39230,8 +39373,9 @@ type ResumeContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -39333,8 +39477,9 @@ type RoutingProfile struct {
 	// The description of the routing profile.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The channels agents can handle in the Contact Control Panel (CCP) for this
@@ -40517,8 +40662,9 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 type SearchQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -40663,8 +40809,9 @@ func (s *SearchQueuesOutput) SetQueues(v []*Queue) *SearchQueuesOutput {
 type SearchRoutingProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -40809,8 +40956,9 @@ func (s *SearchRoutingProfilesOutput) SetRoutingProfiles(v []*RoutingProfile) *S
 type SearchSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -40957,8 +41105,9 @@ func (s *SearchSecurityProfilesOutput) SetSecurityProfiles(v []*SecurityProfileS
 type SearchUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The maximum number of results to return per page.
@@ -41098,8 +41247,9 @@ func (s *SearchUsersOutput) SetUsers(v []*UserSearchSummary) *SearchUsersOutput 
 type SearchVocabulariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -41820,8 +41970,9 @@ type StartChatContactInput struct {
 	// The initial message to be sent to the newly created chat.
 	InitialMessage *ChatMessage `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -42032,8 +42183,9 @@ type StartContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -42159,8 +42311,9 @@ type StartContactStreamingInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -42312,8 +42465,9 @@ type StartOutboundVoiceContactInput struct {
 	// DestinationPhoneNumber is a required field
 	DestinationPhoneNumber *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -42499,8 +42653,9 @@ type StartTaskContactInput struct {
 	// Panel (CCP).
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -42687,8 +42842,9 @@ type StopContactInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -42782,8 +42938,9 @@ type StopContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -42884,8 +43041,9 @@ type StopContactStreamingInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -43090,8 +43248,9 @@ type SuspendContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -44208,8 +44367,9 @@ type TransferContactInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -44445,8 +44605,9 @@ type UpdateAgentStatusInput struct {
 	// The display order of the agent status.
 	DisplayOrder *int64 `min:"1" type:"integer"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -44589,8 +44750,9 @@ type UpdateContactAttributesInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -44796,8 +44958,9 @@ type UpdateContactFlowMetadataInput struct {
 	// The description of the flow.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -44914,8 +45077,9 @@ type UpdateContactFlowModuleContentInput struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -45018,8 +45182,9 @@ type UpdateContactFlowModuleMetadataInput struct {
 	// The description of the flow module.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -45247,8 +45412,9 @@ type UpdateContactInput struct {
 	// The description of the contact.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -45370,8 +45536,9 @@ type UpdateContactScheduleInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -45481,8 +45648,9 @@ type UpdateHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -45616,8 +45784,9 @@ type UpdateInstanceAttributeInput struct {
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -45723,8 +45892,9 @@ type UpdateInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -45897,8 +46067,9 @@ type UpdateParticipantRoleConfigInput struct {
 	// ContactId is a required field
 	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46116,8 +46287,9 @@ type UpdateQueueHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46214,8 +46386,9 @@ func (s UpdateQueueHoursOfOperationOutput) GoString() string {
 type UpdateQueueMaxContactsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46316,8 +46489,9 @@ type UpdateQueueNameInput struct {
 	// The description of the queue.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46426,8 +46600,9 @@ func (s UpdateQueueNameOutput) GoString() string {
 type UpdateQueueOutboundCallerConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46534,8 +46709,9 @@ func (s UpdateQueueOutboundCallerConfigOutput) GoString() string {
 type UpdateQueueStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46637,8 +46813,9 @@ func (s UpdateQueueStatusOutput) GoString() string {
 type UpdateQuickConnectConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46748,8 +46925,9 @@ type UpdateQuickConnectNameInput struct {
 	// The description of the quick connect.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46855,8 +47033,9 @@ func (s UpdateQuickConnectNameOutput) GoString() string {
 type UpdateRoutingProfileConcurrencyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -46973,8 +47152,9 @@ type UpdateRoutingProfileDefaultOutboundQueueInput struct {
 	// DefaultOutboundQueueId is a required field
 	DefaultOutboundQueueId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -47074,8 +47254,9 @@ type UpdateRoutingProfileNameInput struct {
 	// The description of the routing profile. Must not be more than 250 characters.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -47184,8 +47365,9 @@ func (s UpdateRoutingProfileNameOutput) GoString() string {
 type UpdateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -47311,8 +47493,9 @@ type UpdateRuleInput struct {
 	// Function is a required field
 	Function *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -47468,8 +47651,9 @@ type UpdateSecurityProfileInput struct {
 	// The description of the security profile.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -47606,8 +47790,9 @@ type UpdateTaskTemplateInput struct {
 	// Fields that are part of the template.
 	Fields []*TaskTemplateField `type:"list"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -47775,8 +47960,9 @@ type UpdateTaskTemplateOutput struct {
 	// The identifier of the task template resource.
 	Id *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The timestamp when the task template was last modified.
@@ -47977,8 +48163,9 @@ type UpdateUserHierarchyGroupNameInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -48078,8 +48265,9 @@ type UpdateUserHierarchyInput struct {
 	// The identifier of the hierarchy group.
 	HierarchyGroupId *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -48178,8 +48366,9 @@ type UpdateUserHierarchyStructureInput struct {
 	// HierarchyStructure is a required field
 	HierarchyStructure *HierarchyStructureUpdate `type:"structure" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -48269,8 +48458,9 @@ type UpdateUserIdentityInfoInput struct {
 	// IdentityInfo is a required field
 	IdentityInfo *UserIdentityInfo `type:"structure" required:"true"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -48372,8 +48562,9 @@ func (s UpdateUserIdentityInfoOutput) GoString() string {
 type UpdateUserPhoneConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -48480,8 +48671,9 @@ func (s UpdateUserPhoneConfigOutput) GoString() string {
 type UpdateUserRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -48583,8 +48775,9 @@ func (s UpdateUserRoutingProfileOutput) GoString() string {
 type UpdateUserSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -50683,6 +50876,12 @@ const (
 
 	// InstanceStorageResourceTypeRealTimeContactAnalysisSegments is a InstanceStorageResourceType enum value
 	InstanceStorageResourceTypeRealTimeContactAnalysisSegments = "REAL_TIME_CONTACT_ANALYSIS_SEGMENTS"
+
+	// InstanceStorageResourceTypeAttachments is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeAttachments = "ATTACHMENTS"
+
+	// InstanceStorageResourceTypeContactEvaluations is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeContactEvaluations = "CONTACT_EVALUATIONS"
 )
 
 // InstanceStorageResourceType_Values returns all elements of the InstanceStorageResourceType enum
@@ -50695,6 +50894,8 @@ func InstanceStorageResourceType_Values() []string {
 		InstanceStorageResourceTypeContactTraceRecords,
 		InstanceStorageResourceTypeAgentEvents,
 		InstanceStorageResourceTypeRealTimeContactAnalysisSegments,
+		InstanceStorageResourceTypeAttachments,
+		InstanceStorageResourceTypeContactEvaluations,
 	}
 }
 

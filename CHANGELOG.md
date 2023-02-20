@@ -1,3 +1,10 @@
+Release v1.44.205 (2023-02-20)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+
 Release v1.44.204 (2023-02-17)
 ===
 
