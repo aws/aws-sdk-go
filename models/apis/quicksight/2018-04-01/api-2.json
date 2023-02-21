@@ -12323,7 +12323,8 @@
       "type":"structure",
       "required":["ManifestFileLocation"],
       "members":{
-        "ManifestFileLocation":{"shape":"ManifestFileLocation"}
+        "ManifestFileLocation":{"shape":"ManifestFileLocation"},
+        "RoleArn":{"shape":"RoleArn"}
       }
     },
     "S3Source":{

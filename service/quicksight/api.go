@@ -63700,6 +63700,14 @@ type S3Parameters struct {
 	//
 	// ManifestFileLocation is a required field
 	ManifestFileLocation *ManifestFileLocation `type:"structure" required:"true"`
+
+	// Use the RoleArn structure to override an account-wide role for a specific
+	// S3 data source. For example, say an account administrator has turned off
+	// all S3 access with an account-wide role. The administrator can then use RoleArn
+	// to bypass the account-wide role and allow S3 access for the single S3 data
+	// source that is specified in the structure, even if the account-wide role
+	// forbidding S3 access is still active.
+	RoleArn *string `min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -63726,6 +63734,9 @@ func (s *S3Parameters) Validate() error {
 	if s.ManifestFileLocation == nil {
 		invalidParams.Add(request.NewErrParamRequired("ManifestFileLocation"))
 	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
 	if s.ManifestFileLocation != nil {
 		if err := s.ManifestFileLocation.Validate(); err != nil {
 			invalidParams.AddNested("ManifestFileLocation", err.(request.ErrInvalidParams))
@@ -63741,6 +63752,12 @@ func (s *S3Parameters) Validate() error {
 // SetManifestFileLocation sets the ManifestFileLocation field's value.
 func (s *S3Parameters) SetManifestFileLocation(v *ManifestFileLocation) *S3Parameters {
 	s.ManifestFileLocation = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *S3Parameters) SetRoleArn(v string) *S3Parameters {
+	s.RoleArn = &v
 	return s
 }
 

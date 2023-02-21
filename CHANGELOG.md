@@ -1,3 +1,13 @@
+Release v1.44.206 (2023-02-21)
+===
+
+### Service Client Updates
+* `service/quicksight`: Updates service API and documentation
+  * S3 data sources now accept a custom IAM role.
+* `service/resiliencehub`: Updates service API, documentation, and paginators
+* `service/securityhub`: Updates service documentation
+* `service/tnb`: Updates service API, documentation, paginators, and examples
+
 Release v1.44.205 (2023-02-20)
 ===
 
