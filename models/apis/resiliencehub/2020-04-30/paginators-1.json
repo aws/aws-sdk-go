@@ -20,6 +20,16 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListAppInputSources": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListAppVersionAppComponents": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListAppVersionResourceMappings": {
       "input_token": "nextToken",
       "output_token": "nextToken",
