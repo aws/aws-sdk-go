@@ -563,6 +563,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListScheduledActions":{
+      "name":"ListScheduledActions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/scheduledActions"
+      },
+      "input":{"shape":"ListScheduledActionsRequest"},
+      "output":{"shape":"ListScheduledActionsResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ListTags":{
       "name":"ListTags",
       "http":{
@@ -745,6 +761,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdateScheduledAction":{
+      "name":"UpdateScheduledAction",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/scheduledAction/update"
+      },
+      "input":{"shape":"UpdateScheduledActionRequest"},
+      "output":{"shape":"UpdateScheduledActionResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"SlotNotAvailableException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateVpcEndpoint":{
       "name":"UpdateVpcEndpoint",
       "http":{
@@ -834,6 +868,33 @@
         "Options":{"shape":"PolicyDocument"},
         "Status":{"shape":"OptionStatus"}
       }
+    },
+    "ActionSeverity":{
+      "type":"string",
+      "enum":[
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "ActionStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING_UPDATE",
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETED",
+        "NOT_ELIGIBLE",
+        "ELIGIBLE"
+      ]
+    },
+    "ActionType":{
+      "type":"string",
+      "enum":[
+        "SERVICE_SOFTWARE_UPDATE",
+        "JVM_HEAP_SIZE_TUNING",
+        "JVM_YOUNG_GEN_TUNING"
+      ]
     },
     "AddTagsRequest":{
       "type":"structure",
@@ -1005,21 +1066,24 @@
       "members":{
         "DesiredState":{"shape":"AutoTuneDesiredState"},
         "RollbackOnDisable":{"shape":"RollbackOnDisable"},
-        "MaintenanceSchedules":{"shape":"AutoTuneMaintenanceScheduleList"}
+        "MaintenanceSchedules":{"shape":"AutoTuneMaintenanceScheduleList"},
+        "UseOffPeakWindow":{"shape":"Boolean"}
       }
     },
     "AutoTuneOptionsInput":{
       "type":"structure",
       "members":{
         "DesiredState":{"shape":"AutoTuneDesiredState"},
-        "MaintenanceSchedules":{"shape":"AutoTuneMaintenanceScheduleList"}
+        "MaintenanceSchedules":{"shape":"AutoTuneMaintenanceScheduleList"},
+        "UseOffPeakWindow":{"shape":"Boolean"}
       }
     },
     "AutoTuneOptionsOutput":{
       "type":"structure",
       "members":{
         "State":{"shape":"AutoTuneState"},
-        "ErrorMessage":{"shape":"String"}
+        "ErrorMessage":{"shape":"String"},
+        "UseOffPeakWindow":{"shape":"Boolean"}
       }
     },
     "AutoTuneOptionsStatus":{
@@ -1263,7 +1327,9 @@
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
         "TagList":{"shape":"TagList"},
-        "AutoTuneOptions":{"shape":"AutoTuneOptionsInput"}
+        "AutoTuneOptions":{"shape":"AutoTuneOptionsInput"},
+        "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"}
       }
     },
     "CreateDomainResponse":{
@@ -1792,7 +1858,9 @@
         "DomainEndpointOptions":{"shape":"DomainEndpointOptionsStatus"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsStatus"},
         "AutoTuneOptions":{"shape":"AutoTuneOptionsStatus"},
-        "ChangeProgressDetails":{"shape":"ChangeProgressDetails"}
+        "ChangeProgressDetails":{"shape":"ChangeProgressDetails"},
+        "OffPeakWindowOptions":{"shape":"OffPeakWindowOptionsStatus"},
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptionsStatus"}
       }
     },
     "DomainEndpointOptions":{
@@ -1915,7 +1983,9 @@
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptions"},
         "AutoTuneOptions":{"shape":"AutoTuneOptionsOutput"},
-        "ChangeProgressDetails":{"shape":"ChangeProgressDetails"}
+        "ChangeProgressDetails":{"shape":"ChangeProgressDetails"},
+        "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"}
       }
     },
     "DomainStatusList":{
@@ -2383,6 +2453,34 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListScheduledActionsRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListScheduledActionsResponse":{
+      "type":"structure",
+      "members":{
+        "ScheduledActions":{"shape":"ScheduledActionsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTagsRequest":{
       "type":"structure",
       "required":["ARN"],
@@ -2568,6 +2666,26 @@
       "max":100,
       "min":1,
       "pattern":"[a-zA-Z0-9\\-\\_\\.]+"
+    },
+    "OffPeakWindow":{
+      "type":"structure",
+      "members":{
+        "WindowStartTime":{"shape":"WindowStartTime"}
+      }
+    },
+    "OffPeakWindowOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "OffPeakWindow":{"shape":"OffPeakWindow"}
+      }
+    },
+    "OffPeakWindowOptionsStatus":{
+      "type":"structure",
+      "members":{
+        "Options":{"shape":"OffPeakWindowOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
     },
     "OpenSearchPartitionInstanceType":{
       "type":"string",
@@ -3058,6 +3176,38 @@
         "SessionTimeoutMinutes":{"shape":"IntegerClass"}
       }
     },
+    "ScheduleAt":{
+      "type":"string",
+      "enum":[
+        "NOW",
+        "TIMESTAMP",
+        "OFF_PEAK_WINDOW"
+      ]
+    },
+    "ScheduledAction":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Type",
+        "Severity",
+        "ScheduledTime"
+      ],
+      "members":{
+        "Id":{"shape":"String"},
+        "Type":{"shape":"ActionType"},
+        "Severity":{"shape":"ActionSeverity"},
+        "ScheduledTime":{"shape":"Long"},
+        "Description":{"shape":"String"},
+        "ScheduledBy":{"shape":"ScheduledBy"},
+        "Status":{"shape":"ActionStatus"},
+        "Mandatory":{"shape":"Boolean"},
+        "Cancellable":{"shape":"Boolean"}
+      }
+    },
+    "ScheduledActionsList":{
+      "type":"list",
+      "member":{"shape":"ScheduledAction"}
+    },
     "ScheduledAutoTuneActionType":{
       "type":"string",
       "enum":[
@@ -3083,6 +3233,13 @@
         "HIGH"
       ]
     },
+    "ScheduledBy":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER",
+        "SYSTEM"
+      ]
+    },
     "ServiceSoftwareOptions":{
       "type":"structure",
       "members":{
@@ -3097,6 +3254,18 @@
       }
     },
     "ServiceUrl":{"type":"string"},
+    "SlotList":{
+      "type":"list",
+      "member":{"shape":"Long"}
+    },
+    "SlotNotAvailableException":{
+      "type":"structure",
+      "members":{
+        "SlotSuggestions":{"shape":"SlotList"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "SnapshotOptions":{
       "type":"structure",
       "members":{
@@ -3114,12 +3283,27 @@
         "Status":{"shape":"OptionStatus"}
       }
     },
+    "SoftwareUpdateOptions":{
+      "type":"structure",
+      "members":{
+        "AutoSoftwareUpdateEnabled":{"shape":"Boolean"}
+      }
+    },
+    "SoftwareUpdateOptionsStatus":{
+      "type":"structure",
+      "members":{
+        "Options":{"shape":"SoftwareUpdateOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
+    },
     "StartAt":{"type":"timestamp"},
     "StartServiceSoftwareUpdateRequest":{
       "type":"structure",
       "required":["DomainName"],
       "members":{
-        "DomainName":{"shape":"DomainName"}
+        "DomainName":{"shape":"DomainName"},
+        "ScheduleAt":{"shape":"ScheduleAt"},
+        "DesiredStartTime":{"shape":"Long"}
       }
     },
     "StartServiceSoftwareUpdateResponse":{
@@ -3127,6 +3311,16 @@
       "members":{
         "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"}
       }
+    },
+    "StartTimeHours":{
+      "type":"long",
+      "max":23,
+      "min":0
+    },
+    "StartTimeMinutes":{
+      "type":"long",
+      "max":59,
+      "min":0
     },
     "StartTimestamp":{"type":"timestamp"},
     "StorageSubTypeName":{"type":"string"},
@@ -3225,7 +3419,9 @@
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
         "AutoTuneOptions":{"shape":"AutoTuneOptions"},
         "DryRun":{"shape":"DryRun"},
-        "DryRunMode":{"shape":"DryRunMode"}
+        "DryRunMode":{"shape":"DryRunMode"},
+        "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"}
       }
     },
     "UpdateDomainConfigResponse":{
@@ -3254,6 +3450,32 @@
       "type":"structure",
       "members":{
         "PackageDetails":{"shape":"PackageDetails"}
+      }
+    },
+    "UpdateScheduledActionRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "ActionID",
+        "ActionType",
+        "ScheduleAt"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "ActionID":{"shape":"String"},
+        "ActionType":{"shape":"ActionType"},
+        "ScheduleAt":{"shape":"ScheduleAt"},
+        "DesiredStartTime":{"shape":"Long"}
+      }
+    },
+    "UpdateScheduledActionResponse":{
+      "type":"structure",
+      "members":{
+        "ScheduledAction":{"shape":"ScheduledAction"}
       }
     },
     "UpdateTimestamp":{"type":"timestamp"},
@@ -3504,6 +3726,17 @@
     "VpcEndpoints":{
       "type":"list",
       "member":{"shape":"VpcEndpoint"}
+    },
+    "WindowStartTime":{
+      "type":"structure",
+      "required":[
+        "Hours",
+        "Minutes"
+      ],
+      "members":{
+        "Hours":{"shape":"StartTimeHours"},
+        "Minutes":{"shape":"StartTimeMinutes"}
+      }
     },
     "ZoneAwarenessConfig":{
       "type":"structure",

@@ -172,6 +172,7 @@
       "refs": {
         "CreateVoiceConnectorRequest$RequireEncryption": null,
         "LoggingConfiguration$EnableSIPLogs": null,
+        "LoggingConfiguration$EnableMediaMetricLogs": null,
         "Origination$Disabled": null,
         "Proxy$Disabled": null,
         "PutVoiceConnectorProxyRequest$Disabled": null,

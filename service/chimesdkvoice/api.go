@@ -12163,6 +12163,8 @@ func (s *ListVoiceConnectorsOutput) SetVoiceConnectors(v []*VoiceConnector) *Lis
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	EnableMediaMetricLogs *bool `type:"boolean"`
+
 	EnableSIPLogs *bool `type:"boolean"`
 }
 
@@ -12182,6 +12184,12 @@ func (s LoggingConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s LoggingConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetEnableMediaMetricLogs sets the EnableMediaMetricLogs field's value.
+func (s *LoggingConfiguration) SetEnableMediaMetricLogs(v bool) *LoggingConfiguration {
+	s.EnableMediaMetricLogs = &v
+	return s
 }
 
 // SetEnableSIPLogs sets the EnableSIPLogs field's value.

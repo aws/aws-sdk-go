@@ -23,14 +23,14 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// An error occurred because the client attempts to remove a resource that's
+	// An error occurred because the client attempts to remove a resource that is
 	// currently in use.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeDisabledOperationException for service response error code
 	// "DisabledOperationException".
 	//
-	// An error occured because the client wanted to access an unsupported operation.
+	// An error occured because the client wanted to access a not supported operation.
 	ErrCodeDisabledOperationException = "DisabledOperationException"
 
 	// ErrCodeInternalException for service response error code
@@ -70,13 +70,20 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// An exception for accessing or deleting a resource that doesn't exist.
+	// An exception for accessing or deleting a resource that does not exist..
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeSlotNotAvailableException for service response error code
+	// "SlotNotAvailableException".
+	//
+	// An exception for attempting to schedule a domain action during an unavailable
+	// time slot.
+	ErrCodeSlotNotAvailableException = "SlotNotAvailableException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// An exception for missing or invalid input fields.
+	// An exception for accessing or deleting a resource that doesn't exist.
 	ErrCodeValidationException = "ValidationException"
 )
 
@@ -91,5 +98,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"LimitExceededException":          newErrorLimitExceededException,
 	"ResourceAlreadyExistsException":  newErrorResourceAlreadyExistsException,
 	"ResourceNotFoundException":       newErrorResourceNotFoundException,
+	"SlotNotAvailableException":       newErrorSlotNotAvailableException,
 	"ValidationException":             newErrorValidationException,
 }

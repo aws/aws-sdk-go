@@ -237,6 +237,13 @@ type OpenSearchServiceAPI interface {
 	ListPackagesForDomainPages(*opensearchservice.ListPackagesForDomainInput, func(*opensearchservice.ListPackagesForDomainOutput, bool) bool) error
 	ListPackagesForDomainPagesWithContext(aws.Context, *opensearchservice.ListPackagesForDomainInput, func(*opensearchservice.ListPackagesForDomainOutput, bool) bool, ...request.Option) error
 
+	ListScheduledActions(*opensearchservice.ListScheduledActionsInput) (*opensearchservice.ListScheduledActionsOutput, error)
+	ListScheduledActionsWithContext(aws.Context, *opensearchservice.ListScheduledActionsInput, ...request.Option) (*opensearchservice.ListScheduledActionsOutput, error)
+	ListScheduledActionsRequest(*opensearchservice.ListScheduledActionsInput) (*request.Request, *opensearchservice.ListScheduledActionsOutput)
+
+	ListScheduledActionsPages(*opensearchservice.ListScheduledActionsInput, func(*opensearchservice.ListScheduledActionsOutput, bool) bool) error
+	ListScheduledActionsPagesWithContext(aws.Context, *opensearchservice.ListScheduledActionsInput, func(*opensearchservice.ListScheduledActionsOutput, bool) bool, ...request.Option) error
+
 	ListTags(*opensearchservice.ListTagsInput) (*opensearchservice.ListTagsOutput, error)
 	ListTagsWithContext(aws.Context, *opensearchservice.ListTagsInput, ...request.Option) (*opensearchservice.ListTagsOutput, error)
 	ListTagsRequest(*opensearchservice.ListTagsInput) (*request.Request, *opensearchservice.ListTagsOutput)
@@ -287,6 +294,10 @@ type OpenSearchServiceAPI interface {
 	UpdatePackage(*opensearchservice.UpdatePackageInput) (*opensearchservice.UpdatePackageOutput, error)
 	UpdatePackageWithContext(aws.Context, *opensearchservice.UpdatePackageInput, ...request.Option) (*opensearchservice.UpdatePackageOutput, error)
 	UpdatePackageRequest(*opensearchservice.UpdatePackageInput) (*request.Request, *opensearchservice.UpdatePackageOutput)
+
+	UpdateScheduledAction(*opensearchservice.UpdateScheduledActionInput) (*opensearchservice.UpdateScheduledActionOutput, error)
+	UpdateScheduledActionWithContext(aws.Context, *opensearchservice.UpdateScheduledActionInput, ...request.Option) (*opensearchservice.UpdateScheduledActionOutput, error)
+	UpdateScheduledActionRequest(*opensearchservice.UpdateScheduledActionInput) (*request.Request, *opensearchservice.UpdateScheduledActionOutput)
 
 	UpdateVpcEndpoint(*opensearchservice.UpdateVpcEndpointInput) (*opensearchservice.UpdateVpcEndpointOutput, error)
 	UpdateVpcEndpointWithContext(aws.Context, *opensearchservice.UpdateVpcEndpointInput, ...request.Option) (*opensearchservice.UpdateVpcEndpointOutput, error)

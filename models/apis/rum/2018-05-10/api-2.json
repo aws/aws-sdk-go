@@ -666,7 +666,9 @@
     "DimensionKeysMap":{
       "type":"map",
       "key":{"shape":"DimensionKey"},
-      "value":{"shape":"DimensionName"}
+      "value":{"shape":"DimensionName"},
+      "max":29,
+      "min":0
     },
     "DimensionName":{
       "type":"string",
@@ -862,6 +864,7 @@
         "EventPattern":{"shape":"EventPattern"},
         "MetricDefinitionId":{"shape":"MetricDefinitionId"},
         "Name":{"shape":"MetricName"},
+        "Namespace":{"shape":"Namespace"},
         "UnitLabel":{"shape":"UnitLabel"},
         "ValueKey":{"shape":"ValueKey"}
       }
@@ -882,6 +885,7 @@
         "DimensionKeys":{"shape":"DimensionKeysMap"},
         "EventPattern":{"shape":"EventPattern"},
         "Name":{"shape":"MetricName"},
+        "Namespace":{"shape":"Namespace"},
         "UnitLabel":{"shape":"UnitLabel"},
         "ValueKey":{"shape":"ValueKey"}
       }
@@ -918,6 +922,12 @@
       "max":255,
       "min":1
     },
+    "Namespace":{
+      "type":"string",
+      "max":237,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-._/#:]+$"
+    },
     "Pages":{
       "type":"list",
       "member":{"shape":"Url"},
@@ -935,15 +945,27 @@
       ],
       "members":{
         "AppMonitorDetails":{"shape":"AppMonitorDetails"},
-        "BatchId":{"shape":"String"},
+        "BatchId":{"shape":"PutRumEventsRequestBatchIdString"},
         "Id":{
-          "shape":"AppMonitorId",
+          "shape":"PutRumEventsRequestIdString",
           "location":"uri",
           "locationName":"Id"
         },
         "RumEvents":{"shape":"RumEventList"},
         "UserDetails":{"shape":"UserDetails"}
       }
+    },
+    "PutRumEventsRequestBatchIdString":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "PutRumEventsRequestIdString":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
     },
     "PutRumEventsResponse":{
       "type":"structure",
@@ -1020,7 +1042,7 @@
           "shape":"JsonValue",
           "jsonvalue":true
         },
-        "id":{"shape":"String"},
+        "id":{"shape":"RumEventIdString"},
         "metadata":{
           "shape":"JsonValue",
           "jsonvalue":true
@@ -1028,6 +1050,12 @@
         "timestamp":{"shape":"Timestamp"},
         "type":{"shape":"String"}
       }
+    },
+    "RumEventIdString":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
     },
     "RumEventList":{
       "type":"list",
@@ -1226,9 +1254,21 @@
     "UserDetails":{
       "type":"structure",
       "members":{
-        "sessionId":{"shape":"String"},
-        "userId":{"shape":"String"}
+        "sessionId":{"shape":"UserDetailsSessionIdString"},
+        "userId":{"shape":"UserDetailsUserIdString"}
       }
+    },
+    "UserDetailsSessionIdString":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "UserDetailsUserIdString":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
     },
     "ValidationException":{
       "type":"structure",
