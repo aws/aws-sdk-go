@@ -38,6 +38,7 @@
     "ListDomainsForPackage": "<p>Lists all Amazon OpenSearch Service domains associated with a given package. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
     "ListInstanceTypeDetails": "<p>Lists all instance types and available features for a given OpenSearch or Elasticsearch version.</p>",
     "ListPackagesForDomain": "<p>Lists all packages associated with an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
+    "ListScheduledActions": "<p>Retrieves a list of configuration changes that are scheduled for a domain. These changes can be <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">service software updates</a> or <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types\">blue/green Auto-Tune enhancements</a>.</p>",
     "ListTags": "<p>Returns all resource tags for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html\">Tagging Amazon OpenSearch Service domains</a>.</p>",
     "ListVersions": "<p>Lists all versions of OpenSearch and Elasticsearch that Amazon OpenSearch Service supports.</p>",
     "ListVpcEndpointAccess": "<p>Retrieves information about each Amazon Web Services principal that is allowed to access a given Amazon OpenSearch Service domain through the use of an interface VPC endpoint.</p>",
@@ -50,6 +51,7 @@
     "StartServiceSoftwareUpdate": "<p>Schedules a service software update for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>",
     "UpdateDomainConfig": "<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.</p>",
     "UpdatePackage": "<p>Updates a package for use with Amazon OpenSearch Service domains. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
+    "UpdateScheduledAction": "<p>Reschedules a planned domain configuration change for a later time. This change can be a scheduled <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">service software update</a> or a <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types\">blue/green Auto-Tune enhancement</a>.</p>",
     "UpdateVpcEndpoint": "<p>Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.</p>",
     "UpgradeDomain": "<p>Allows you to either upgrade your Amazon OpenSearch Service domain or perform an upgrade eligibility check to a compatible version of OpenSearch or Elasticsearch.</p>"
   },
@@ -98,6 +100,25 @@
       "base": "<p>The configured access rules for the domain's search endpoint, and the current status of those rules.</p>",
       "refs": {
         "DomainConfig$AccessPolicies": "<p>Specifies the access policies for the domain.</p>"
+      }
+    },
+    "ActionSeverity": {
+      "base": null,
+      "refs": {
+        "ScheduledAction$Severity": "<p>The severity of the action.</p>"
+      }
+    },
+    "ActionStatus": {
+      "base": null,
+      "refs": {
+        "ScheduledAction$Status": "<p>The current status of the scheduled action.</p>"
+      }
+    },
+    "ActionType": {
+      "base": null,
+      "refs": {
+        "ScheduledAction$Type": "<p>The type of action that will be taken on the domain.</p>",
+        "UpdateScheduledActionRequest$ActionType": "<p>The type of action to reschedule. Can be one of <code>SERVICE_SOFTWARE_UPDATE</code>, <code>JVM_HEAP_SIZE_TUNING</code>, or <code>JVM_YOUNG_GEN_TUNING</code>. To retrieve this value, send a <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_ListScheduledActions.html\">ListScheduledActions</a> request.</p>"
       }
     },
     "AddTagsRequest": {
@@ -219,7 +240,7 @@
       }
     },
     "AutoTuneMaintenanceSchedule": {
-      "base": "<p>The Auto-Tune maintenance schedule. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html\">Auto-Tune for Amazon OpenSearch Service</a>.</p>",
+      "base": "<note> <p>This object is deprecated. Use the domain's <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html\">off-peak window</a> to schedule Auto-Tune optimizations. For migration instructions, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html#off-peak-migrate\">Migrating from Auto-Tune maintenance windows</a>.</p> </note> <p>The Auto-Tune maintenance schedule. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html\">Auto-Tune for Amazon OpenSearch Service</a>.</p>",
       "refs": {
         "AutoTuneMaintenanceScheduleList$member": null
       }
@@ -227,8 +248,8 @@
     "AutoTuneMaintenanceScheduleList": {
       "base": null,
       "refs": {
-        "AutoTuneOptions$MaintenanceSchedules": "<p>A list of maintenance schedules during which Auto-Tune can deploy changes.</p>",
-        "AutoTuneOptionsInput$MaintenanceSchedules": "<p>A list of maintenance schedules during which Auto-Tune can deploy changes. Maintenance schedules are overwrite, not append. If your request includes no schedules, the request deletes all existing schedules. To preserve existing schedules, make a call to <code>DescribeDomainConfig</code> first and use the <code>MaintenanceSchedules</code> portion of the response as the basis for this section.</p>"
+        "AutoTuneOptions$MaintenanceSchedules": "<p>DEPRECATED. Use <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html\">off-peak window</a> instead.</p> <p>A list of maintenance schedules during which Auto-Tune can deploy changes.</p>",
+        "AutoTuneOptionsInput$MaintenanceSchedules": "<p>A list of maintenance schedules during which Auto-Tune can deploy changes. Maintenance windows are deprecated and have been replaced with <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html\">off-peak windows</a>.</p>"
       }
     },
     "AutoTuneOptions": {
@@ -239,7 +260,7 @@
       }
     },
     "AutoTuneOptionsInput": {
-      "base": "<p>Options for configuring Auto-Tune. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html\">Auto-Tune for Amazon OpenSearch Service</a>.</p>",
+      "base": "<p>Options for configuring Auto-Tune. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html\">Auto-Tune for Amazon OpenSearch Service</a> </p>",
       "refs": {
         "CreateDomainRequest$AutoTuneOptions": "<p>Options for Auto-Tune.</p>"
       }
@@ -257,7 +278,7 @@
       }
     },
     "AutoTuneState": {
-      "base": "<p>The Auto-Tune state for the domain. For valid states see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html\"> Auto-Tune for Amazon OpenSearch Service</a>. </p>",
+      "base": "<p>The Auto-Tune state for the domain. For valid states see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html\">Auto-Tune for Amazon OpenSearch Service</a>. </p>",
       "refs": {
         "AutoTuneOptionsOutput$State": "<p>The current state of Auto-Tune on the domain.</p>",
         "AutoTuneStatus$State": "<p>The current state of Auto-Tune on the domain.</p>"
@@ -295,6 +316,9 @@
         "AdvancedSecurityOptionsInput$Enabled": "<p>True to enable fine-grained access control.</p>",
         "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True to enable the internal user database.</p>",
         "AdvancedSecurityOptionsInput$AnonymousAuthEnabled": "<p>True to enable a 30-day migration period during which administrators can create role mappings. Only necessary when <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-enabling-existing\">enabling fine-grained access control on an existing domain</a>.</p>",
+        "AutoTuneOptions$UseOffPeakWindow": "<p>Whether to use the domain's <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html\">off-peak window</a> to deploy configuration changes on the domain rather than a maintenance schedule.</p>",
+        "AutoTuneOptionsInput$UseOffPeakWindow": "<p>Whether to schedule Auto-Tune optimizations that require blue/green deployments during the domain's configured daily off-peak window.</p>",
+        "AutoTuneOptionsOutput$UseOffPeakWindow": "<p>Whether the domain's off-peak window will be used to deploy Auto-Tune changes rather than a maintenance schedule.</p>",
         "AutoTuneStatus$PendingDeletion": "<p>Indicates whether the domain is being deleted.</p>",
         "ClusterConfig$DedicatedMasterEnabled": "<p>Indicates whether dedicated master nodes are enabled for the cluster.<code>True</code> if the cluster will use a dedicated master node.<code>False</code> if the cluster will not.</p>",
         "ClusterConfig$ZoneAwarenessEnabled": "<p>Indicates whether multiple Availability Zones are enabled. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html\">Configuring a multi-AZ domain in Amazon OpenSearch Service</a>.</p>",
@@ -317,12 +341,16 @@
         "InstanceTypeDetails$WarmEnabled": "<p>Whether UltraWarm is supported for the instance type.</p>",
         "LogPublishingOption$Enabled": "<p>Whether the log should be published.</p>",
         "NodeToNodeEncryptionOptions$Enabled": "<p>True to enable node-to-node encryption.</p>",
+        "OffPeakWindowOptions$Enabled": "<p>Whether to enable an off-peak window.</p> <p>This option is only available when modifying a domain created prior to February 13, 2023, not when creating a new domain. All domains created after this date have the off-peak window enabled by default. You can't disable the off-peak window after it's enabled for a domain.</p>",
         "OptionStatus$PendingDeletion": "<p>Indicates whether the entity is being deleted.</p>",
         "SAMLOptionsInput$Enabled": "<p>True to enable SAML authentication for a domain.</p>",
         "SAMLOptionsOutput$Enabled": "<p>True if SAML is enabled.</p>",
+        "ScheduledAction$Mandatory": "<p>Whether the action is required or optional.</p>",
+        "ScheduledAction$Cancellable": "<p>Whether or not the scheduled action is cancellable.</p>",
         "ServiceSoftwareOptions$UpdateAvailable": "<p>True if you're able to update your service software version. False if you can't update your service software version.</p>",
         "ServiceSoftwareOptions$Cancellable": "<p> True if you're able to cancel your service software version update. False if you can't cancel your service software update.</p>",
         "ServiceSoftwareOptions$OptionalDeployment": "<p>True if a service software is never automatically updated. False if a service software is automatically updated after the automated update date.</p>",
+        "SoftwareUpdateOptions$AutoSoftwareUpdateEnabled": "<p>Whether automatic service software updates are enabled for the domain.</p>",
         "UpgradeDomainRequest$PerformCheckOnly": "<p>When true, indicates that an upgrade eligibility check needs to be performed. Does not actually perform the upgrade.</p>",
         "UpgradeDomainResponse$PerformCheckOnly": "<p>When true, indicates that an upgrade eligibility check was performed.</p>"
       }
@@ -443,7 +471,7 @@
       }
     },
     "ConflictException": {
-      "base": "<p>An error occurred because the client attempts to remove a resource that's currently in use.</p>",
+      "base": "<p>An error occurred because the client attempts to remove a resource that is currently in use.</p>",
       "refs": {
       }
     },
@@ -778,7 +806,7 @@
       }
     },
     "DisabledOperationException": {
-      "base": "<p>An error occured because the client wanted to access an unsupported operation.</p>",
+      "base": "<p>An error occured because the client wanted to access a not supported operation.</p>",
       "refs": {
       }
     },
@@ -878,11 +906,13 @@
         "GetUpgradeStatusRequest$DomainName": "<p>The domain of the domain to get upgrade status information for.</p>",
         "ListInstanceTypeDetailsRequest$DomainName": "<p>Name of the domain to list instance type details for.</p>",
         "ListPackagesForDomainRequest$DomainName": "<p>The name of the domain for which you want to list associated packages.</p>",
+        "ListScheduledActionsRequest$DomainName": "<p>The name of the domain.</p>",
         "ListVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain to retrieve access information for.</p>",
         "ListVpcEndpointsForDomainRequest$DomainName": "<p>The name of the domain to list associated VPC endpoints for.</p>",
         "RevokeVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain.</p>",
         "StartServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to update to the latest service software.</p>",
         "UpdateDomainConfigRequest$DomainName": "<p>The name of the domain that you're updating.</p>",
+        "UpdateScheduledActionRequest$DomainName": "<p>The name of the domain to reschedule an action for.</p>",
         "UpgradeDomainRequest$DomainName": "<p>Name of the OpenSearch Service domain that you want to upgrade.</p>",
         "UpgradeDomainResponse$DomainName": "<p>The name of the domain that was upgraded.</p>"
       }
@@ -997,7 +1027,7 @@
     "EBSOptionsStatus": {
       "base": "<p>The status of the EBS options for the specified OpenSearch Service domain.</p>",
       "refs": {
-        "DomainConfig$EBSOptions": "<p>Container for EBS options configured for an OpenSearch Service domain.</p>"
+        "DomainConfig$EBSOptions": "<p>Container for EBS options configured for the domain.</p>"
       }
     },
     "EncryptionAtRestOptions": {
@@ -1341,6 +1371,16 @@
       "refs": {
       }
     },
+    "ListScheduledActionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListScheduledActionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsRequest": {
       "base": "<p>Container for the parameters to the <code>ListTags</code> operation.</p>",
       "refs": {
@@ -1403,7 +1443,7 @@
         "CreateDomainRequest$LogPublishingOptions": "<p>Key-value pairs to configure slow log publishing.</p>",
         "DomainStatus$LogPublishingOptions": "<p>Log publishing options for the domain.</p>",
         "LogPublishingOptionsStatus$Options": "<p>The log publishing options configured for the domain.</p>",
-        "UpdateDomainConfigRequest$LogPublishingOptions": "<p>Options to publish OpenSearch lots to Amazon CloudWatch Logs.</p>"
+        "UpdateDomainConfigRequest$LogPublishingOptions": "<p>Options to publish OpenSearch logs to Amazon CloudWatch Logs.</p>"
       }
     },
     "LogPublishingOptionsStatus": {
@@ -1421,7 +1461,11 @@
     "Long": {
       "base": null,
       "refs": {
-        "ReservedInstance$BillingSubscriptionId": "<p>The unique identifier of the billing subscription.</p>"
+        "ReservedInstance$BillingSubscriptionId": "<p>The unique identifier of the billing subscription.</p>",
+        "ScheduledAction$ScheduledTime": "<p>The time when the change is scheduled to happen.</p>",
+        "SlotList$member": null,
+        "StartServiceSoftwareUpdateRequest$DesiredStartTime": "<p>The Epoch timestamp when you want the service software update to start. You only need to specify this parameter if you set <code>ScheduleAt</code> to <code>TIMESTAMP</code>.</p>",
+        "UpdateScheduledActionRequest$DesiredStartTime": "<p>The time to implement the change, in Coordinated Universal Time (UTC). Only specify this parameter if you set <code>ScheduleAt</code> to <code>TIMESTAMP</code>.</p>"
       }
     },
     "MasterUserOptions": {
@@ -1444,6 +1488,7 @@
         "ListDomainsForPackageRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "ListInstanceTypeDetailsRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "ListPackagesForDomainRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
+        "ListScheduledActionsRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>",
         "ListVersionsRequest$MaxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>"
       }
     },
@@ -1485,6 +1530,8 @@
         "ListInstanceTypeDetailsRequest$NextToken": "<p>If your initial <code>ListInstanceTypeDetails</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListInstanceTypeDetails</code> operations, which returns results in the next page.</p>",
         "ListInstanceTypeDetailsResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListPackagesForDomainRequest$NextToken": "<p>If your initial <code>ListPackagesForDomain</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListPackagesForDomain</code> operations, which returns results in the next page.</p>",
+        "ListScheduledActionsRequest$NextToken": "<p>If your initial <code>ListScheduledActions</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListScheduledActions</code> operations, which returns results in the next page.</p>",
+        "ListScheduledActionsResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListVersionsRequest$NextToken": "<p>If your initial <code>ListVersions</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListVersions</code> operations, which returns results in the next page.</p>",
         "ListVersionsResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListVpcEndpointAccessRequest$NextToken": "<p>If your initial <code>ListVpcEndpointAccess</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListVpcEndpointAccess</code> operations, which returns results in the next page.</p>",
@@ -1501,7 +1548,7 @@
         "CreateDomainRequest$NodeToNodeEncryptionOptions": "<p>Enables node-to-node encryption.</p>",
         "DomainStatus$NodeToNodeEncryptionOptions": "<p>Whether node-to-node encryption is enabled or disabled.</p>",
         "NodeToNodeEncryptionOptionsStatus$Options": "<p>The node-to-node encryption options for the specified domain.</p>",
-        "UpdateDomainConfigRequest$NodeToNodeEncryptionOptions": "<p>Node-To-Node Encryption options for the domain.</p>"
+        "UpdateDomainConfigRequest$NodeToNodeEncryptionOptions": "<p>Node-to-node encryption options for the domain.</p>"
       }
     },
     "NodeToNodeEncryptionOptionsStatus": {
@@ -1515,6 +1562,27 @@
       "refs": {
         "Filter$Name": "<p>The name of the filter.</p>",
         "ValueStringList$member": null
+      }
+    },
+    "OffPeakWindow": {
+      "base": "<p>A custom 10-hour, low-traffic window during which OpenSearch Service can perform mandatory configuration changes on the domain. These actions can include scheduled service software updates and blue/green Auto-Tune enhancements. OpenSearch Service will schedule these actions during the window that you specify.</p> <p>If you don't specify a window start time, it defaults to 10:00 P.M. local time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html\">Defining off-peak maintenance windows for Amazon OpenSearch Service</a>.</p>",
+      "refs": {
+        "OffPeakWindowOptions$OffPeakWindow": "<p>Off-peak window settings for the domain.</p>"
+      }
+    },
+    "OffPeakWindowOptions": {
+      "base": "<p>Options for a domain's <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html\">off-peak window</a>, during which OpenSearch Service can perform mandatory configuration changes on the domain.</p>",
+      "refs": {
+        "CreateDomainRequest$OffPeakWindowOptions": "<p>Specifies a daily 10-hour time block during which OpenSearch Service can perform configuration changes on the domain, including service software updates and Auto-Tune enhancements that require a blue/green deployment. If no options are specified, the default start time of 10:00 P.M. local time (for the Region that the domain is created in) is used.</p>",
+        "DomainStatus$OffPeakWindowOptions": "<p>Options that specify a custom 10-hour window during which OpenSearch Service can perform configuration changes on the domain.</p>",
+        "OffPeakWindowOptionsStatus$Options": "<p>The domain's off-peak window configuration.</p>",
+        "UpdateDomainConfigRequest$OffPeakWindowOptions": "<p>Off-peak window options for the domain.</p>"
+      }
+    },
+    "OffPeakWindowOptionsStatus": {
+      "base": "<p>The status of <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html\">off-peak window</a> options for a domain.</p>",
+      "refs": {
+        "DomainConfig$OffPeakWindowOptions": "<p>Container for off-peak window options for the domain.</p>"
       }
     },
     "OpenSearchPartitionInstanceType": {
@@ -1553,7 +1621,9 @@
         "EncryptionAtRestOptionsStatus$Status": "<p>The status of the encryption at rest options for the specified domain.</p>",
         "LogPublishingOptionsStatus$Status": "<p>The status of the log publishing options for the domain.</p>",
         "NodeToNodeEncryptionOptionsStatus$Status": "<p>The status of the node-to-node encryption options for the specified domain.</p>",
+        "OffPeakWindowOptionsStatus$Status": "<p>The current status of off-peak window options.</p>",
         "SnapshotOptionsStatus$Status": "<p>The status of a daily automated snapshot.</p>",
+        "SoftwareUpdateOptionsStatus$Status": "<p>The status of service software update options, including creation date and last updated date.</p>",
         "VPCDerivedInfoStatus$Status": "<p>The status of the VPC options for the specified domain.</p>",
         "VersionStatus$Status": "<p>The status of the version options for the specified domain.</p>"
       }
@@ -1798,7 +1868,7 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>An exception for accessing or deleting a resource that doesn't exist.</p>",
+      "base": "<p>An exception for accessing or deleting a resource that does not exist..</p>",
       "refs": {
       }
     },
@@ -1867,6 +1937,26 @@
         "AdvancedSecurityOptions$SAMLOptions": "<p>Container for information about the SAML configuration for OpenSearch Dashboards.</p>"
       }
     },
+    "ScheduleAt": {
+      "base": null,
+      "refs": {
+        "StartServiceSoftwareUpdateRequest$ScheduleAt": "<p>When to start the service software update.</p> <ul> <li> <p> <code>NOW</code> - Immediately schedules the update to happen in the current hour if there's capacity available.</p> </li> <li> <p> <code>TIMESTAMP</code> - Lets you specify a custom date and time to apply the update. If you specify this value, you must also provide a value for <code>DesiredStartTime</code>.</p> </li> <li> <p> <code>OFF_PEAK_WINDOW</code> - Marks the update to be picked up during an upcoming off-peak window. There's no guarantee that the update will happen during the next immediate window. Depending on capacity, it might happen in subsequent days.</p> </li> </ul> <p>Default: <code>NOW</code> if you don't specify a value for <code>DesiredStartTime</code>, and <code>TIMESTAMP</code> if you do.</p>",
+        "UpdateScheduledActionRequest$ScheduleAt": "<p>When to schedule the action.</p> <ul> <li> <p> <code>NOW</code> - Immediately schedules the update to happen in the current hour if there's capacity available.</p> </li> <li> <p> <code>TIMESTAMP</code> - Lets you specify a custom date and time to apply the update. If you specify this value, you must also provide a value for <code>DesiredStartTime</code>.</p> </li> <li> <p> <code>OFF_PEAK_WINDOW</code> - Marks the action to be picked up during an upcoming off-peak window. There's no guarantee that the change will be implemented during the next immediate window. Depending on capacity, it might happen in subsequent days.</p> </li> </ul>"
+      }
+    },
+    "ScheduledAction": {
+      "base": "<p>Information about a scheduled configuration change for an OpenSearch Service domain. This actions can be a <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">service software update</a> or a <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types\">blue/green Auto-Tune enhancement</a>.</p>",
+      "refs": {
+        "ScheduledActionsList$member": null,
+        "UpdateScheduledActionResponse$ScheduledAction": "<p>Information about the rescheduled action.</p>"
+      }
+    },
+    "ScheduledActionsList": {
+      "base": null,
+      "refs": {
+        "ListScheduledActionsResponse$ScheduledActions": "<p>A list of actions that are scheduled for the domain.</p>"
+      }
+    },
     "ScheduledAutoTuneActionType": {
       "base": "<p>The Auto-Tune action type.</p>",
       "refs": {
@@ -1891,6 +1981,12 @@
         "ScheduledAutoTuneDetails$Severity": "<p>The severity of the Auto-Tune action. Valid values are <code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>.</p>"
       }
     },
+    "ScheduledBy": {
+      "base": null,
+      "refs": {
+        "ScheduledAction$ScheduledBy": "<p>Whether the action was scheduled manually (<code>CUSTOMER</code>, or by OpenSearch Service automatically (<code>SYSTEM</code>).</p>"
+      }
+    },
     "ServiceSoftwareOptions": {
       "base": "<p>The current status of the service software for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>",
       "refs": {
@@ -1904,6 +2000,17 @@
       "refs": {
         "DomainStatus$Endpoint": "<p>Domain-specific endpoint used to submit index, search, and data upload requests to the domain.</p>",
         "EndpointsMap$value": null
+      }
+    },
+    "SlotList": {
+      "base": null,
+      "refs": {
+        "SlotNotAvailableException$SlotSuggestions": "<p>Alternate time slots during which OpenSearch Service has available capacity to schedule a domain action.</p>"
+      }
+    },
+    "SlotNotAvailableException": {
+      "base": "<p>An exception for attempting to schedule a domain action during an unavailable time slot.</p>",
+      "refs": {
       }
     },
     "SnapshotOptions": {
@@ -1921,6 +2028,21 @@
         "DomainConfig$SnapshotOptions": "<p>DEPRECATED. Container for parameters required to configure automated snapshots of domain indexes.</p>"
       }
     },
+    "SoftwareUpdateOptions": {
+      "base": "<p>Options for configuring service software updates for a domain.</p>",
+      "refs": {
+        "CreateDomainRequest$SoftwareUpdateOptions": "<p>Software update options for the domain.</p>",
+        "DomainStatus$SoftwareUpdateOptions": "<p>Service software update options for the domain.</p>",
+        "SoftwareUpdateOptionsStatus$Options": "<p>The service software update options for a domain.</p>",
+        "UpdateDomainConfigRequest$SoftwareUpdateOptions": "<p>Service software update options for the domain.</p>"
+      }
+    },
+    "SoftwareUpdateOptionsStatus": {
+      "base": "<p>The status of the service software options for a domain.</p>",
+      "refs": {
+        "DomainConfig$SoftwareUpdateOptions": "<p>Software update options for the domain.</p>"
+      }
+    },
     "StartAt": {
       "base": null,
       "refs": {
@@ -1935,6 +2057,18 @@
     "StartServiceSoftwareUpdateResponse": {
       "base": "<p>Represents the output of a <code>StartServiceSoftwareUpdate</code> operation. Contains the status of the update.</p>",
       "refs": {
+      }
+    },
+    "StartTimeHours": {
+      "base": null,
+      "refs": {
+        "WindowStartTime$Hours": "<p>The start hour of the window in Coordinated Universal Time (UTC), using 24-hour time. For example, <code>17</code> refers to 5:00 P.M. UTC.</p>"
+      }
+    },
+    "StartTimeMinutes": {
+      "base": null,
+      "refs": {
+        "WindowStartTime$Minutes": "<p>The start minute of the window, in UTC.</p>"
       }
     },
     "StartTimestamp": {
@@ -2007,10 +2141,13 @@
         "SAMLOptionsInput$RolesKey": "<p>Element of the SAML assertion to use for backend roles. Default is <code>roles</code>.</p>",
         "SAMLOptionsOutput$SubjectKey": "<p>The key used for matching the SAML subject attribute.</p>",
         "SAMLOptionsOutput$RolesKey": "<p>The key used for matching the SAML roles attribute.</p>",
+        "ScheduledAction$Id": "<p>The unique identifier of the scheduled action.</p>",
+        "ScheduledAction$Description": "<p>A description of the action to be taken.</p>",
         "ServiceSoftwareOptions$CurrentVersion": "<p>The current service software version present on the domain.</p>",
         "ServiceSoftwareOptions$NewVersion": "<p>The new service software version, if one is available.</p>",
         "ServiceSoftwareOptions$Description": "<p>A description of the service software update status.</p>",
         "StringList$member": null,
+        "UpdateScheduledActionRequest$ActionID": "<p>The unique identifier of the action to reschedule. To retrieve this ID, send a <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_ListScheduledActions.html\">ListScheduledActions</a> request.</p>",
         "UpgradeDomainResponse$UpgradeId": "<p>The unique identifier of the domain upgrade.</p>",
         "VPCDerivedInfo$VPCId": "<p>The ID for your VPC. Amazon VPC generates this value when you create a VPC.</p>",
         "ValidationFailure$Code": "<p>The error code of the failure.</p>",
@@ -2100,6 +2237,16 @@
     },
     "UpdatePackageResponse": {
       "base": "<p>Container for the response returned by the <code>UpdatePackage</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "UpdateScheduledActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateScheduledActionResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -2217,7 +2364,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>An exception for missing or invalid input fields.</p>",
+      "base": "<p>An exception for accessing or deleting a resource that doesn't exist.</p>",
       "refs": {
       }
     },
@@ -2340,6 +2487,12 @@
       "base": null,
       "refs": {
         "DescribeVpcEndpointsResponse$VpcEndpoints": "<p>Information about each requested VPC endpoint.</p>"
+      }
+    },
+    "WindowStartTime": {
+      "base": "<p>The desired start time for an <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html\">off-peak maintenance window</a>.</p>",
+      "refs": {
+        "OffPeakWindow$WindowStartTime": "<p>A custom start time for the off-peak window, in Coordinated Universal Time (UTC). The window length will always be 10 hours, so you can't specify an end time. For example, if you specify 11:00 P.M. UTC as a start time, the end time will automatically be set to 9:00 A.M.</p>"
       }
     },
     "ZoneAwarenessConfig": {

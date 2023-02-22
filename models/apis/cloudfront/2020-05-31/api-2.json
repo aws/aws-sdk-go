@@ -6258,7 +6258,8 @@
       "enum":[
         "none",
         "whitelist",
-        "all"
+        "all",
+        "allExcept"
       ]
     },
     "OriginRequestPolicyCookiesConfig":{
@@ -6275,7 +6276,8 @@
         "none",
         "whitelist",
         "allViewer",
-        "allViewerAndWhitelistCloudFront"
+        "allViewerAndWhitelistCloudFront",
+        "allExcept"
       ]
     },
     "OriginRequestPolicyHeadersConfig":{
@@ -6312,7 +6314,8 @@
       "enum":[
         "none",
         "whitelist",
-        "all"
+        "all",
+        "allExcept"
       ]
     },
     "OriginRequestPolicyQueryStringsConfig":{

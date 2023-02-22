@@ -5553,7 +5553,7 @@ type CreateLocationObjectStorageInput struct {
 
 	// Specifies the access key (for example, a user name) if credentials are required
 	// to authenticate with the object storage server.
-	AccessKey *string `min:"8" type:"string"`
+	AccessKey *string `min:"1" type:"string"`
 
 	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
 	// securely connect with your location.
@@ -5572,7 +5572,7 @@ type CreateLocationObjectStorageInput struct {
 	// SecretKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateLocationObjectStorageInput's
 	// String and GoString methods.
-	SecretKey *string `min:"8" type:"string" sensitive:"true"`
+	SecretKey *string `min:"1" type:"string" sensitive:"true"`
 
 	// Specifies a certificate to authenticate with an object storage system that
 	// uses a private or self-signed certificate authority (CA). You must specify
@@ -5628,8 +5628,8 @@ func (s CreateLocationObjectStorageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateLocationObjectStorageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateLocationObjectStorageInput"}
-	if s.AccessKey != nil && len(*s.AccessKey) < 8 {
-		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 8))
+	if s.AccessKey != nil && len(*s.AccessKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 1))
 	}
 	if s.AgentArns == nil {
 		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
@@ -5643,8 +5643,8 @@ func (s *CreateLocationObjectStorageInput) Validate() error {
 	if s.BucketName != nil && len(*s.BucketName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
 	}
-	if s.SecretKey != nil && len(*s.SecretKey) < 8 {
-		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 8))
+	if s.SecretKey != nil && len(*s.SecretKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 1))
 	}
 	if s.ServerHostname == nil {
 		invalidParams.Add(request.NewErrParamRequired("ServerHostname"))
@@ -7650,7 +7650,7 @@ type DescribeLocationObjectStorageOutput struct {
 
 	// The access key (for example, a user name) required to authenticate with the
 	// object storage system.
-	AccessKey *string `min:"8" type:"string"`
+	AccessKey *string `min:"1" type:"string"`
 
 	// The ARNs of the DataSync agents that can securely connect with your location.
 	AgentArns []*string `min:"1" type:"list"`
@@ -11497,7 +11497,7 @@ type UpdateLocationObjectStorageInput struct {
 
 	// Specifies the access key (for example, a user name) if credentials are required
 	// to authenticate with the object storage server.
-	AccessKey *string `min:"8" type:"string"`
+	AccessKey *string `min:"1" type:"string"`
 
 	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
 	// securely connect with your location.
@@ -11514,7 +11514,7 @@ type UpdateLocationObjectStorageInput struct {
 	// SecretKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateLocationObjectStorageInput's
 	// String and GoString methods.
-	SecretKey *string `min:"8" type:"string" sensitive:"true"`
+	SecretKey *string `min:"1" type:"string" sensitive:"true"`
 
 	// Specifies a certificate to authenticate with an object storage system that
 	// uses a private or self-signed certificate authority (CA). You must specify
@@ -11561,8 +11561,8 @@ func (s UpdateLocationObjectStorageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateLocationObjectStorageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationObjectStorageInput"}
-	if s.AccessKey != nil && len(*s.AccessKey) < 8 {
-		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 8))
+	if s.AccessKey != nil && len(*s.AccessKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 1))
 	}
 	if s.AgentArns != nil && len(s.AgentArns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
@@ -11570,8 +11570,8 @@ func (s *UpdateLocationObjectStorageInput) Validate() error {
 	if s.LocationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
 	}
-	if s.SecretKey != nil && len(*s.SecretKey) < 8 {
-		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 8))
+	if s.SecretKey != nil && len(*s.SecretKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 1))
 	}
 	if s.ServerPort != nil && *s.ServerPort < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ServerPort", 1))

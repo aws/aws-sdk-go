@@ -55,6 +55,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListScheduledActions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListVersions": {
       "input_token": "NextToken",
       "output_token": "NextToken",

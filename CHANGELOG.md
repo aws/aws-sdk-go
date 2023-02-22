@@ -1,3 +1,16 @@
+Release v1.44.207 (2023-02-22)
+===
+
+### Service Client Updates
+* `service/chime-sdk-voice`: Updates service API and documentation
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront now supports block lists in origin request policies so that you can forward all headers, cookies, or query string from viewer requests to the origin *except* for those specified in the block list.
+* `service/datasync`: Updates service API
+* `service/opensearch`: Updates service API, documentation, and paginators
+* `service/rum`: Updates service API and documentation
+* `service/ssm`: Updates service documentation
+  * Document only update for Feb 2023
+
 Release v1.44.206 (2023-02-21)
 ===
 

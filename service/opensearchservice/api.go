@@ -70,14 +70,14 @@ func (c *OpenSearchService) AcceptInboundConnectionRequest(input *AcceptInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - LimitExceededException
 //     An exception for trying to create more than the allowed number of resources
 //     or sub-resources.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AcceptInboundConnection
 func (c *OpenSearchService) AcceptInboundConnection(input *AcceptInboundConnectionInput) (*AcceptInboundConnectionOutput, error) {
@@ -166,7 +166,7 @@ func (c *OpenSearchService) AddTagsRequest(input *AddTagsInput) (req *request.Re
 //     or sub-resources.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -257,16 +257,16 @@ func (c *OpenSearchService) AssociatePackageRequest(input *AssociatePackageInput
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that's
+//     An error occurred because the client attempts to remove a resource that is
 //     currently in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AssociatePackage
@@ -347,17 +347,17 @@ func (c *OpenSearchService) AuthorizeVpcEndpointAccessRequest(input *AuthorizeVp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - LimitExceededException
 //     An exception for trying to create more than the allowed number of resources
 //     or sub-resources.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -453,10 +453,10 @@ func (c *OpenSearchService) CancelServiceSoftwareUpdateRequest(input *CancelServ
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CancelServiceSoftwareUpdate
 func (c *OpenSearchService) CancelServiceSoftwareUpdate(input *CancelServiceSoftwareUpdateInput) (*CancelServiceSoftwareUpdateOutput, error) {
@@ -539,7 +539,7 @@ func (c *OpenSearchService) CreateDomainRequest(input *CreateDomainInput) (req *
 //     An error occurred while processing the request.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -557,7 +557,7 @@ func (c *OpenSearchService) CreateDomainRequest(input *CreateDomainInput) (req *
 //     An exception for creating a resource that already exists.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateDomain
 func (c *OpenSearchService) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
@@ -649,7 +649,7 @@ func (c *OpenSearchService) CreateOutboundConnectionRequest(input *CreateOutboun
 //     An exception for creating a resource that already exists.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateOutboundConnection
 func (c *OpenSearchService) CreateOutboundConnection(input *CreateOutboundConnectionInput) (*CreateOutboundConnectionOutput, error) {
@@ -750,7 +750,7 @@ func (c *OpenSearchService) CreatePackageRequest(input *CreatePackageInput) (req
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreatePackage
 func (c *OpenSearchService) CreatePackage(input *CreatePackageInput) (*CreatePackageOutput, error) {
@@ -829,11 +829,11 @@ func (c *OpenSearchService) CreateVpcEndpointRequest(input *CreateVpcEndpointInp
 // Returned Error Types:
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that's
+//     An error occurred because the client attempts to remove a resource that is
 //     currently in use.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - LimitExceededException
 //     An exception for trying to create more than the allowed number of resources
@@ -844,7 +844,7 @@ func (c *OpenSearchService) CreateVpcEndpointRequest(input *CreateVpcEndpointInp
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -934,10 +934,10 @@ func (c *OpenSearchService) DeleteDomainRequest(input *DeleteDomainInput) (req *
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteDomain
 func (c *OpenSearchService) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
@@ -1018,10 +1018,10 @@ func (c *OpenSearchService) DeleteInboundConnectionRequest(input *DeleteInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteInboundConnection
 func (c *OpenSearchService) DeleteInboundConnection(input *DeleteInboundConnectionInput) (*DeleteInboundConnectionOutput, error) {
@@ -1102,10 +1102,10 @@ func (c *OpenSearchService) DeleteOutboundConnectionRequest(input *DeleteOutboun
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteOutboundConnection
 func (c *OpenSearchService) DeleteOutboundConnection(input *DeleteOutboundConnectionInput) (*DeleteOutboundConnectionOutput, error) {
@@ -1192,16 +1192,16 @@ func (c *OpenSearchService) DeletePackageRequest(input *DeletePackageInput) (req
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that's
+//     An error occurred because the client attempts to remove a resource that is
 //     currently in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeletePackage
@@ -1281,10 +1281,10 @@ func (c *OpenSearchService) DeleteVpcEndpointRequest(input *DeleteVpcEndpointInp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -1378,10 +1378,10 @@ func (c *OpenSearchService) DescribeDomainRequest(input *DescribeDomainInput) (r
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomain
 func (c *OpenSearchService) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainOutput, error) {
@@ -1475,10 +1475,10 @@ func (c *OpenSearchService) DescribeDomainAutoTunesRequest(input *DescribeDomain
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainAutoTunes
 func (c *OpenSearchService) DescribeDomainAutoTunes(input *DescribeDomainAutoTunesInput) (*DescribeDomainAutoTunesOutput, error) {
@@ -1617,10 +1617,10 @@ func (c *OpenSearchService) DescribeDomainChangeProgressRequest(input *DescribeD
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainChangeProgress
 func (c *OpenSearchService) DescribeDomainChangeProgress(input *DescribeDomainChangeProgressInput) (*DescribeDomainChangeProgressOutput, error) {
@@ -1706,10 +1706,10 @@ func (c *OpenSearchService) DescribeDomainConfigRequest(input *DescribeDomainCon
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainConfig
 func (c *OpenSearchService) DescribeDomainConfig(input *DescribeDomainConfigInput) (*DescribeDomainConfigOutput, error) {
@@ -1796,7 +1796,7 @@ func (c *OpenSearchService) DescribeDomainsRequest(input *DescribeDomainsInput) 
 //     failure.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomains
 func (c *OpenSearchService) DescribeDomains(input *DescribeDomainsInput) (*DescribeDomainsOutput, error) {
@@ -1884,13 +1884,13 @@ func (c *OpenSearchService) DescribeDryRunProgressRequest(input *DescribeDryRunP
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDryRunProgress
 func (c *OpenSearchService) DescribeDryRunProgress(input *DescribeDryRunProgressInput) (*DescribeDryRunProgressOutput, error) {
@@ -1981,7 +1981,7 @@ func (c *OpenSearchService) DescribeInboundConnectionsRequest(input *DescribeInb
 //     token.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeInboundConnections
 func (c *OpenSearchService) DescribeInboundConnections(input *DescribeInboundConnectionsInput) (*DescribeInboundConnectionsOutput, error) {
@@ -2127,10 +2127,10 @@ func (c *OpenSearchService) DescribeInstanceTypeLimitsRequest(input *DescribeIns
 //     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeInstanceTypeLimits
 func (c *OpenSearchService) DescribeInstanceTypeLimits(input *DescribeInstanceTypeLimitsInput) (*DescribeInstanceTypeLimitsOutput, error) {
@@ -2221,7 +2221,7 @@ func (c *OpenSearchService) DescribeOutboundConnectionsRequest(input *DescribeOu
 //     token.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeOutboundConnections
 func (c *OpenSearchService) DescribeOutboundConnections(input *DescribeOutboundConnectionsInput) (*DescribeOutboundConnectionsOutput, error) {
@@ -2365,13 +2365,13 @@ func (c *OpenSearchService) DescribePackagesRequest(input *DescribePackagesInput
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribePackages
 func (c *OpenSearchService) DescribePackages(input *DescribePackagesInput) (*DescribePackagesOutput, error) {
@@ -2509,13 +2509,13 @@ func (c *OpenSearchService) DescribeReservedInstanceOfferingsRequest(input *Desc
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -2657,17 +2657,17 @@ func (c *OpenSearchService) DescribeReservedInstancesRequest(input *DescribeRese
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
 //     failure.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeReservedInstances
 func (c *OpenSearchService) DescribeReservedInstances(input *DescribeReservedInstancesInput) (*DescribeReservedInstancesOutput, error) {
@@ -2797,14 +2797,14 @@ func (c *OpenSearchService) DescribeVpcEndpointsRequest(input *DescribeVpcEndpoi
 // Returned Error Types:
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -2897,16 +2897,16 @@ func (c *OpenSearchService) DissociatePackageRequest(input *DissociatePackageInp
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that's
+//     An error occurred because the client attempts to remove a resource that is
 //     currently in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DissociatePackage
@@ -2990,13 +2990,13 @@ func (c *OpenSearchService) GetCompatibleVersionsRequest(input *GetCompatibleVer
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -3094,13 +3094,13 @@ func (c *OpenSearchService) GetPackageVersionHistoryRequest(input *GetPackageVer
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/GetPackageVersionHistory
 func (c *OpenSearchService) GetPackageVersionHistory(input *GetPackageVersionHistoryInput) (*GetPackageVersionHistoryOutput, error) {
@@ -3240,13 +3240,13 @@ func (c *OpenSearchService) GetUpgradeHistoryRequest(input *GetUpgradeHistoryInp
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -3384,13 +3384,13 @@ func (c *OpenSearchService) GetUpgradeStatusRequest(input *GetUpgradeStatusInput
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -3477,7 +3477,7 @@ func (c *OpenSearchService) ListDomainNamesRequest(input *ListDomainNamesInput) 
 //     An error occurred while processing the request.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListDomainNames
 func (c *OpenSearchService) ListDomainNames(input *ListDomainNamesInput) (*ListDomainNamesOutput, error) {
@@ -3570,13 +3570,13 @@ func (c *OpenSearchService) ListDomainsForPackageRequest(input *ListDomainsForPa
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListDomainsForPackage
 func (c *OpenSearchService) ListDomainsForPackage(input *ListDomainsForPackageInput) (*ListDomainsForPackageOutput, error) {
@@ -3720,10 +3720,10 @@ func (c *OpenSearchService) ListInstanceTypeDetailsRequest(input *ListInstanceTy
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListInstanceTypeDetails
 func (c *OpenSearchService) ListInstanceTypeDetails(input *ListInstanceTypeDetailsInput) (*ListInstanceTypeDetailsOutput, error) {
@@ -3867,13 +3867,13 @@ func (c *OpenSearchService) ListPackagesForDomainRequest(input *ListPackagesForD
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListPackagesForDomain
 func (c *OpenSearchService) ListPackagesForDomain(input *ListPackagesForDomainInput) (*ListPackagesForDomainOutput, error) {
@@ -3948,6 +3948,158 @@ func (c *OpenSearchService) ListPackagesForDomainPagesWithContext(ctx aws.Contex
 	return p.Err()
 }
 
+const opListScheduledActions = "ListScheduledActions"
+
+// ListScheduledActionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListScheduledActions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListScheduledActions for more information on using the ListScheduledActions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListScheduledActionsRequest method.
+//	req, resp := client.ListScheduledActionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListScheduledActions
+func (c *OpenSearchService) ListScheduledActionsRequest(input *ListScheduledActionsInput) (req *request.Request, output *ListScheduledActionsOutput) {
+	op := &request.Operation{
+		Name:       opListScheduledActions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/scheduledActions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListScheduledActionsInput{}
+	}
+
+	output = &ListScheduledActionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListScheduledActions API operation for Amazon OpenSearch Service.
+//
+// Retrieves a list of configuration changes that are scheduled for a domain.
+// These changes can be service software updates (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html)
+// or blue/green Auto-Tune enhancements (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation ListScheduledActions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+//   - InternalException
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist..
+//
+//   - InvalidPaginationTokenException
+//     The request processing has failed because you provided an invalid pagination
+//     token.
+//
+//   - ValidationException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListScheduledActions
+func (c *OpenSearchService) ListScheduledActions(input *ListScheduledActionsInput) (*ListScheduledActionsOutput, error) {
+	req, out := c.ListScheduledActionsRequest(input)
+	return out, req.Send()
+}
+
+// ListScheduledActionsWithContext is the same as ListScheduledActions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListScheduledActions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) ListScheduledActionsWithContext(ctx aws.Context, input *ListScheduledActionsInput, opts ...request.Option) (*ListScheduledActionsOutput, error) {
+	req, out := c.ListScheduledActionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListScheduledActionsPages iterates over the pages of a ListScheduledActions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListScheduledActions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListScheduledActions operation.
+//	pageNum := 0
+//	err := client.ListScheduledActionsPages(params,
+//	    func(page *opensearchservice.ListScheduledActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *OpenSearchService) ListScheduledActionsPages(input *ListScheduledActionsInput, fn func(*ListScheduledActionsOutput, bool) bool) error {
+	return c.ListScheduledActionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListScheduledActionsPagesWithContext same as ListScheduledActionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) ListScheduledActionsPagesWithContext(ctx aws.Context, input *ListScheduledActionsInput, fn func(*ListScheduledActionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListScheduledActionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListScheduledActionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListScheduledActionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTags = "ListTags"
 
 // ListTagsRequest generates a "aws/request.Request" representing the
@@ -4007,10 +4159,10 @@ func (c *OpenSearchService) ListTagsRequest(input *ListTagsInput) (req *request.
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -4107,10 +4259,10 @@ func (c *OpenSearchService) ListVersionsRequest(input *ListVersionsInput) (req *
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVersions
 func (c *OpenSearchService) ListVersions(input *ListVersionsInput) (*ListVersionsOutput, error) {
@@ -4242,10 +4394,10 @@ func (c *OpenSearchService) ListVpcEndpointAccessRequest(input *ListVpcEndpointA
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -4336,7 +4488,7 @@ func (c *OpenSearchService) ListVpcEndpointsRequest(input *ListVpcEndpointsInput
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -4423,10 +4575,10 @@ func (c *OpenSearchService) ListVpcEndpointsForDomainRequest(input *ListVpcEndpo
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -4508,7 +4660,7 @@ func (c *OpenSearchService) PurchaseReservedInstanceOfferingRequest(input *Purch
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ResourceAlreadyExistsException
 //     An exception for creating a resource that already exists.
@@ -4518,10 +4670,10 @@ func (c *OpenSearchService) PurchaseReservedInstanceOfferingRequest(input *Purch
 //     or sub-resources.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -4605,10 +4757,10 @@ func (c *OpenSearchService) RejectInboundConnectionRequest(input *RejectInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/RejectInboundConnection
 func (c *OpenSearchService) RejectInboundConnection(input *RejectInboundConnectionInput) (*RejectInboundConnectionOutput, error) {
@@ -4692,7 +4844,7 @@ func (c *OpenSearchService) RemoveTagsRequest(input *RemoveTagsInput) (req *requ
 //     An error occurred while processing the request.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -4777,13 +4929,13 @@ func (c *OpenSearchService) RevokeVpcEndpointAccessRequest(input *RevokeVpcEndpo
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -4878,10 +5030,10 @@ func (c *OpenSearchService) StartServiceSoftwareUpdateRequest(input *StartServic
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/StartServiceSoftwareUpdate
 func (c *OpenSearchService) StartServiceSoftwareUpdate(input *StartServiceSoftwareUpdateInput) (*StartServiceSoftwareUpdateOutput, error) {
@@ -4976,10 +5128,10 @@ func (c *OpenSearchService) UpdateDomainConfigRequest(input *UpdateDomainConfigI
 //     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateDomainConfig
 func (c *OpenSearchService) UpdateDomainConfig(input *UpdateDomainConfigInput) (*UpdateDomainConfigOutput, error) {
@@ -5070,13 +5222,13 @@ func (c *OpenSearchService) UpdatePackageRequest(input *UpdatePackageInput) (req
 //     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdatePackage
 func (c *OpenSearchService) UpdatePackage(input *UpdatePackageInput) (*UpdatePackageOutput, error) {
@@ -5095,6 +5247,109 @@ func (c *OpenSearchService) UpdatePackage(input *UpdatePackageInput) (*UpdatePac
 // for more information on using Contexts.
 func (c *OpenSearchService) UpdatePackageWithContext(ctx aws.Context, input *UpdatePackageInput, opts ...request.Option) (*UpdatePackageOutput, error) {
 	req, out := c.UpdatePackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateScheduledAction = "UpdateScheduledAction"
+
+// UpdateScheduledActionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateScheduledAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateScheduledAction for more information on using the UpdateScheduledAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateScheduledActionRequest method.
+//	req, resp := client.UpdateScheduledActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateScheduledAction
+func (c *OpenSearchService) UpdateScheduledActionRequest(input *UpdateScheduledActionInput) (req *request.Request, output *UpdateScheduledActionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateScheduledAction,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/scheduledAction/update",
+	}
+
+	if input == nil {
+		input = &UpdateScheduledActionInput{}
+	}
+
+	output = &UpdateScheduledActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateScheduledAction API operation for Amazon OpenSearch Service.
+//
+// Reschedules a planned domain configuration change for a later time. This
+// change can be a scheduled service software update (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html)
+// or a blue/green Auto-Tune enhancement (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation UpdateScheduledAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+//   - InternalException
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist..
+//
+//   - SlotNotAvailableException
+//     An exception for attempting to schedule a domain action during an unavailable
+//     time slot.
+//
+//   - ConflictException
+//     An error occurred because the client attempts to remove a resource that is
+//     currently in use.
+//
+//   - LimitExceededException
+//     An exception for trying to create more than the allowed number of resources
+//     or sub-resources.
+//
+//   - ValidationException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateScheduledAction
+func (c *OpenSearchService) UpdateScheduledAction(input *UpdateScheduledActionInput) (*UpdateScheduledActionOutput, error) {
+	req, out := c.UpdateScheduledActionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateScheduledActionWithContext is the same as UpdateScheduledAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateScheduledAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) UpdateScheduledActionWithContext(ctx aws.Context, input *UpdateScheduledActionInput, opts ...request.Option) (*UpdateScheduledActionOutput, error) {
+	req, out := c.UpdateScheduledActionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5155,20 +5410,20 @@ func (c *OpenSearchService) UpdateVpcEndpointRequest(input *UpdateVpcEndpointInp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
 //     failure.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ConflictException
-//     An error occurred because the client attempts to remove a resource that's
+//     An error occurred because the client attempts to remove a resource that is
 //     currently in use.
 //
 //   - BaseException
@@ -5255,16 +5510,16 @@ func (c *OpenSearchService) UpgradeDomainRequest(input *UpgradeDomainInput) (req
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that doesn't exist.
+//     An exception for accessing or deleting a resource that does not exist..
 //
 //   - ResourceAlreadyExistsException
 //     An exception for creating a resource that already exists.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access an unsupported operation.
+//     An error occured because the client wanted to access a not supported operation.
 //
 //   - ValidationException
-//     An exception for missing or invalid input fields.
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -6298,6 +6553,10 @@ func (s *AutoTuneDetails) SetScheduledAutoTuneDetails(v *ScheduledAutoTuneDetail
 	return s
 }
 
+// This object is deprecated. Use the domain's off-peak window (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html)
+// to schedule Auto-Tune optimizations. For migration instructions, see Migrating
+// from Auto-Tune maintenance windows (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html#off-peak-migrate).
+//
 // The Auto-Tune maintenance schedule. For more information, see Auto-Tune for
 // Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type AutoTuneMaintenanceSchedule struct {
@@ -6374,6 +6633,9 @@ type AutoTuneOptions struct {
 	// Whether Auto-Tune is enabled or disabled.
 	DesiredState *string `type:"string" enum:"AutoTuneDesiredState"`
 
+	// DEPRECATED. Use off-peak window (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html)
+	// instead.
+	//
 	// A list of maintenance schedules during which Auto-Tune can deploy changes.
 	MaintenanceSchedules []*AutoTuneMaintenanceSchedule `type:"list"`
 
@@ -6382,6 +6644,10 @@ type AutoTuneOptions struct {
 	// If you specify DEFAULT_ROLLBACK, you must include a MaintenanceSchedule in
 	// the request. Otherwise, OpenSearch Service is unable to perform the rollback.
 	RollbackOnDisable *string `type:"string" enum:"RollbackOnDisable"`
+
+	// Whether to use the domain's off-peak window (https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html)
+	// to deploy configuration changes on the domain rather than a maintenance schedule.
+	UseOffPeakWindow *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -6440,8 +6706,14 @@ func (s *AutoTuneOptions) SetRollbackOnDisable(v string) *AutoTuneOptions {
 	return s
 }
 
+// SetUseOffPeakWindow sets the UseOffPeakWindow field's value.
+func (s *AutoTuneOptions) SetUseOffPeakWindow(v bool) *AutoTuneOptions {
+	s.UseOffPeakWindow = &v
+	return s
+}
+
 // Options for configuring Auto-Tune. For more information, see Auto-Tune for
-// Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
+// Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
 type AutoTuneOptionsInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -6449,11 +6721,13 @@ type AutoTuneOptionsInput_ struct {
 	DesiredState *string `type:"string" enum:"AutoTuneDesiredState"`
 
 	// A list of maintenance schedules during which Auto-Tune can deploy changes.
-	// Maintenance schedules are overwrite, not append. If your request includes
-	// no schedules, the request deletes all existing schedules. To preserve existing
-	// schedules, make a call to DescribeDomainConfig first and use the MaintenanceSchedules
-	// portion of the response as the basis for this section.
+	// Maintenance windows are deprecated and have been replaced with off-peak windows
+	// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html).
 	MaintenanceSchedules []*AutoTuneMaintenanceSchedule `type:"list"`
+
+	// Whether to schedule Auto-Tune optimizations that require blue/green deployments
+	// during the domain's configured daily off-peak window.
+	UseOffPeakWindow *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -6506,6 +6780,12 @@ func (s *AutoTuneOptionsInput_) SetMaintenanceSchedules(v []*AutoTuneMaintenance
 	return s
 }
 
+// SetUseOffPeakWindow sets the UseOffPeakWindow field's value.
+func (s *AutoTuneOptionsInput_) SetUseOffPeakWindow(v bool) *AutoTuneOptionsInput_ {
+	s.UseOffPeakWindow = &v
+	return s
+}
+
 // The Auto-Tune settings for a domain, displayed when enabling or disabling
 // Auto-Tune.
 type AutoTuneOptionsOutput_ struct {
@@ -6516,6 +6796,10 @@ type AutoTuneOptionsOutput_ struct {
 
 	// The current state of Auto-Tune on the domain.
 	State *string `type:"string" enum:"AutoTuneState"`
+
+	// Whether the domain's off-peak window will be used to deploy Auto-Tune changes
+	// rather than a maintenance schedule.
+	UseOffPeakWindow *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -6545,6 +6829,12 @@ func (s *AutoTuneOptionsOutput_) SetErrorMessage(v string) *AutoTuneOptionsOutpu
 // SetState sets the State field's value.
 func (s *AutoTuneOptionsOutput_) SetState(v string) *AutoTuneOptionsOutput_ {
 	s.State = &v
+	return s
+}
+
+// SetUseOffPeakWindow sets the UseOffPeakWindow field's value.
+func (s *AutoTuneOptionsOutput_) SetUseOffPeakWindow(v bool) *AutoTuneOptionsOutput_ {
+	s.UseOffPeakWindow = &v
 	return s
 }
 
@@ -7421,7 +7711,7 @@ func (s *CompatibleVersionsMap) SetTargetVersions(v []*string) *CompatibleVersio
 	return s
 }
 
-// An error occurred because the client attempts to remove a resource that's
+// An error occurred because the client attempts to remove a resource that is
 // currently in use.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -7594,9 +7884,19 @@ type CreateDomainInput struct {
 	// Enables node-to-node encryption.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
 
+	// Specifies a daily 10-hour time block during which OpenSearch Service can
+	// perform configuration changes on the domain, including service software updates
+	// and Auto-Tune enhancements that require a blue/green deployment. If no options
+	// are specified, the default start time of 10:00 P.M. local time (for the Region
+	// that the domain is created in) is used.
+	OffPeakWindowOptions *OffPeakWindowOptions `type:"structure"`
+
 	// DEPRECATED. Container for the parameters required to configure automated
 	// snapshots of domain indexes.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
+
+	// Software update options for the domain.
+	SoftwareUpdateOptions *SoftwareUpdateOptions `type:"structure"`
 
 	// List of tags to add to the domain upon creation.
 	TagList []*Tag `type:"list"`
@@ -7676,6 +7976,11 @@ func (s *CreateDomainInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LogPublishingOptions", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.OffPeakWindowOptions != nil {
+		if err := s.OffPeakWindowOptions.Validate(); err != nil {
+			invalidParams.AddNested("OffPeakWindowOptions", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TagList != nil {
@@ -7773,9 +8078,21 @@ func (s *CreateDomainInput) SetNodeToNodeEncryptionOptions(v *NodeToNodeEncrypti
 	return s
 }
 
+// SetOffPeakWindowOptions sets the OffPeakWindowOptions field's value.
+func (s *CreateDomainInput) SetOffPeakWindowOptions(v *OffPeakWindowOptions) *CreateDomainInput {
+	s.OffPeakWindowOptions = v
+	return s
+}
+
 // SetSnapshotOptions sets the SnapshotOptions field's value.
 func (s *CreateDomainInput) SetSnapshotOptions(v *SnapshotOptions) *CreateDomainInput {
 	s.SnapshotOptions = v
+	return s
+}
+
+// SetSoftwareUpdateOptions sets the SoftwareUpdateOptions field's value.
+func (s *CreateDomainInput) SetSoftwareUpdateOptions(v *SoftwareUpdateOptions) *CreateDomainInput {
+	s.SoftwareUpdateOptions = v
 	return s
 }
 
@@ -10037,7 +10354,7 @@ func (s *DescribeVpcEndpointsOutput) SetVpcEndpoints(v []*VpcEndpoint) *Describe
 	return s
 }
 
-// An error occured because the client wanted to access an unsupported operation.
+// An error occured because the client wanted to access a not supported operation.
 type DisabledOperationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10232,7 +10549,7 @@ type DomainConfig struct {
 	// for all traffic.
 	DomainEndpointOptions *DomainEndpointOptionsStatus `type:"structure"`
 
-	// Container for EBS options configured for an OpenSearch Service domain.
+	// Container for EBS options configured for the domain.
 	EBSOptions *EBSOptionsStatus `type:"structure"`
 
 	// Key-value pairs to enable encryption at rest.
@@ -10247,9 +10564,15 @@ type DomainConfig struct {
 	// Whether node-to-node encryption is enabled or disabled.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptionsStatus `type:"structure"`
 
+	// Container for off-peak window options for the domain.
+	OffPeakWindowOptions *OffPeakWindowOptionsStatus `type:"structure"`
+
 	// DEPRECATED. Container for parameters required to configure automated snapshots
 	// of domain indexes.
 	SnapshotOptions *SnapshotOptionsStatus `type:"structure"`
+
+	// Software update options for the domain.
+	SoftwareUpdateOptions *SoftwareUpdateOptionsStatus `type:"structure"`
 
 	// The current VPC options for the domain and the status of any updates to their
 	// configuration.
@@ -10352,9 +10675,21 @@ func (s *DomainConfig) SetNodeToNodeEncryptionOptions(v *NodeToNodeEncryptionOpt
 	return s
 }
 
+// SetOffPeakWindowOptions sets the OffPeakWindowOptions field's value.
+func (s *DomainConfig) SetOffPeakWindowOptions(v *OffPeakWindowOptionsStatus) *DomainConfig {
+	s.OffPeakWindowOptions = v
+	return s
+}
+
 // SetSnapshotOptions sets the SnapshotOptions field's value.
 func (s *DomainConfig) SetSnapshotOptions(v *SnapshotOptionsStatus) *DomainConfig {
 	s.SnapshotOptions = v
+	return s
+}
+
+// SetSoftwareUpdateOptions sets the SoftwareUpdateOptions field's value.
+func (s *DomainConfig) SetSoftwareUpdateOptions(v *SoftwareUpdateOptionsStatus) *DomainConfig {
+	s.SoftwareUpdateOptions = v
 	return s
 }
 
@@ -10781,6 +11116,10 @@ type DomainStatus struct {
 	// Whether node-to-node encryption is enabled or disabled.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
 
+	// Options that specify a custom 10-hour window during which OpenSearch Service
+	// can perform configuration changes on the domain.
+	OffPeakWindowOptions *OffPeakWindowOptions `type:"structure"`
+
 	// The status of the domain configuration. True if OpenSearch Service is processing
 	// configuration changes. False if the configuration is active.
 	Processing *bool `type:"boolean"`
@@ -10791,6 +11130,9 @@ type DomainStatus struct {
 	// DEPRECATED. Container for parameters required to configure automated snapshots
 	// of domain indexes.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
+
+	// Service software update options for the domain.
+	SoftwareUpdateOptions *SoftwareUpdateOptions `type:"structure"`
 
 	// The status of a domain version upgrade to a new version of OpenSearch or
 	// Elasticsearch. True if OpenSearch Service is in the process of a version
@@ -10939,6 +11281,12 @@ func (s *DomainStatus) SetNodeToNodeEncryptionOptions(v *NodeToNodeEncryptionOpt
 	return s
 }
 
+// SetOffPeakWindowOptions sets the OffPeakWindowOptions field's value.
+func (s *DomainStatus) SetOffPeakWindowOptions(v *OffPeakWindowOptions) *DomainStatus {
+	s.OffPeakWindowOptions = v
+	return s
+}
+
 // SetProcessing sets the Processing field's value.
 func (s *DomainStatus) SetProcessing(v bool) *DomainStatus {
 	s.Processing = &v
@@ -10954,6 +11302,12 @@ func (s *DomainStatus) SetServiceSoftwareOptions(v *ServiceSoftwareOptions) *Dom
 // SetSnapshotOptions sets the SnapshotOptions field's value.
 func (s *DomainStatus) SetSnapshotOptions(v *SnapshotOptions) *DomainStatus {
 	s.SnapshotOptions = v
+	return s
+}
+
+// SetSoftwareUpdateOptions sets the SoftwareUpdateOptions field's value.
+func (s *DomainStatus) SetSoftwareUpdateOptions(v *SoftwareUpdateOptions) *DomainStatus {
+	s.SoftwareUpdateOptions = v
 	return s
 }
 
@@ -12913,6 +13267,118 @@ func (s *ListPackagesForDomainOutput) SetNextToken(v string) *ListPackagesForDom
 	return s
 }
 
+type ListScheduledActionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// If your initial ListScheduledActions operation returns a nextToken, you can
+	// include the returned nextToken in subsequent ListScheduledActions operations,
+	// which returns results in the next page.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListScheduledActionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListScheduledActionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListScheduledActionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListScheduledActionsInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ListScheduledActionsInput) SetDomainName(v string) *ListScheduledActionsInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListScheduledActionsInput) SetMaxResults(v int64) *ListScheduledActionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListScheduledActionsInput) SetNextToken(v string) *ListScheduledActionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListScheduledActionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
+	NextToken *string `type:"string"`
+
+	// A list of actions that are scheduled for the domain.
+	ScheduledActions []*ScheduledAction `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListScheduledActionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListScheduledActionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListScheduledActionsOutput) SetNextToken(v string) *ListScheduledActionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScheduledActions sets the ScheduledActions field's value.
+func (s *ListScheduledActionsOutput) SetScheduledActions(v []*ScheduledAction) *ListScheduledActionsOutput {
+	s.ScheduledActions = v
+	return s
+}
+
 // Container for the parameters to the ListTags operation.
 type ListTagsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -13632,6 +14098,171 @@ func (s *NodeToNodeEncryptionOptionsStatus) SetOptions(v *NodeToNodeEncryptionOp
 
 // SetStatus sets the Status field's value.
 func (s *NodeToNodeEncryptionOptionsStatus) SetStatus(v *OptionStatus) *NodeToNodeEncryptionOptionsStatus {
+	s.Status = v
+	return s
+}
+
+// A custom 10-hour, low-traffic window during which OpenSearch Service can
+// perform mandatory configuration changes on the domain. These actions can
+// include scheduled service software updates and blue/green Auto-Tune enhancements.
+// OpenSearch Service will schedule these actions during the window that you
+// specify.
+//
+// If you don't specify a window start time, it defaults to 10:00 P.M. local
+// time.
+//
+// For more information, see Defining off-peak maintenance windows for Amazon
+// OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html).
+type OffPeakWindow struct {
+	_ struct{} `type:"structure"`
+
+	// A custom start time for the off-peak window, in Coordinated Universal Time
+	// (UTC). The window length will always be 10 hours, so you can't specify an
+	// end time. For example, if you specify 11:00 P.M. UTC as a start time, the
+	// end time will automatically be set to 9:00 A.M.
+	WindowStartTime *WindowStartTime `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OffPeakWindow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OffPeakWindow) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OffPeakWindow) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OffPeakWindow"}
+	if s.WindowStartTime != nil {
+		if err := s.WindowStartTime.Validate(); err != nil {
+			invalidParams.AddNested("WindowStartTime", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWindowStartTime sets the WindowStartTime field's value.
+func (s *OffPeakWindow) SetWindowStartTime(v *WindowStartTime) *OffPeakWindow {
+	s.WindowStartTime = v
+	return s
+}
+
+// Options for a domain's off-peak window (https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html),
+// during which OpenSearch Service can perform mandatory configuration changes
+// on the domain.
+type OffPeakWindowOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to enable an off-peak window.
+	//
+	// This option is only available when modifying a domain created prior to February
+	// 13, 2023, not when creating a new domain. All domains created after this
+	// date have the off-peak window enabled by default. You can't disable the off-peak
+	// window after it's enabled for a domain.
+	Enabled *bool `type:"boolean"`
+
+	// Off-peak window settings for the domain.
+	OffPeakWindow *OffPeakWindow `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OffPeakWindowOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OffPeakWindowOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OffPeakWindowOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OffPeakWindowOptions"}
+	if s.OffPeakWindow != nil {
+		if err := s.OffPeakWindow.Validate(); err != nil {
+			invalidParams.AddNested("OffPeakWindow", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *OffPeakWindowOptions) SetEnabled(v bool) *OffPeakWindowOptions {
+	s.Enabled = &v
+	return s
+}
+
+// SetOffPeakWindow sets the OffPeakWindow field's value.
+func (s *OffPeakWindowOptions) SetOffPeakWindow(v *OffPeakWindow) *OffPeakWindowOptions {
+	s.OffPeakWindow = v
+	return s
+}
+
+// The status of off-peak window (https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html)
+// options for a domain.
+type OffPeakWindowOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The domain's off-peak window configuration.
+	Options *OffPeakWindowOptions `type:"structure"`
+
+	// The current status of off-peak window options.
+	Status *OptionStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OffPeakWindowOptionsStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OffPeakWindowOptionsStatus) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *OffPeakWindowOptionsStatus) SetOptions(v *OffPeakWindowOptions) *OffPeakWindowOptionsStatus {
+	s.Options = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *OffPeakWindowOptionsStatus) SetStatus(v *OptionStatus) *OffPeakWindowOptionsStatus {
 	s.Status = v
 	return s
 }
@@ -14719,7 +15350,7 @@ func (s *ResourceAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An exception for accessing or deleting a resource that doesn't exist.
+// An exception for accessing or deleting a resource that does not exist..
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15116,6 +15747,121 @@ func (s *SAMLOptionsOutput_) SetSubjectKey(v string) *SAMLOptionsOutput_ {
 	return s
 }
 
+// Information about a scheduled configuration change for an OpenSearch Service
+// domain. This actions can be a service software update (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html)
+// or a blue/green Auto-Tune enhancement (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types).
+type ScheduledAction struct {
+	_ struct{} `type:"structure"`
+
+	// Whether or not the scheduled action is cancellable.
+	Cancellable *bool `type:"boolean"`
+
+	// A description of the action to be taken.
+	Description *string `type:"string"`
+
+	// The unique identifier of the scheduled action.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// Whether the action is required or optional.
+	Mandatory *bool `type:"boolean"`
+
+	// Whether the action was scheduled manually (CUSTOMER, or by OpenSearch Service
+	// automatically (SYSTEM).
+	ScheduledBy *string `type:"string" enum:"ScheduledBy"`
+
+	// The time when the change is scheduled to happen.
+	//
+	// ScheduledTime is a required field
+	ScheduledTime *int64 `type:"long" required:"true"`
+
+	// The severity of the action.
+	//
+	// Severity is a required field
+	Severity *string `type:"string" required:"true" enum:"ActionSeverity"`
+
+	// The current status of the scheduled action.
+	Status *string `type:"string" enum:"ActionStatus"`
+
+	// The type of action that will be taken on the domain.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ActionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduledAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduledAction) GoString() string {
+	return s.String()
+}
+
+// SetCancellable sets the Cancellable field's value.
+func (s *ScheduledAction) SetCancellable(v bool) *ScheduledAction {
+	s.Cancellable = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ScheduledAction) SetDescription(v string) *ScheduledAction {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ScheduledAction) SetId(v string) *ScheduledAction {
+	s.Id = &v
+	return s
+}
+
+// SetMandatory sets the Mandatory field's value.
+func (s *ScheduledAction) SetMandatory(v bool) *ScheduledAction {
+	s.Mandatory = &v
+	return s
+}
+
+// SetScheduledBy sets the ScheduledBy field's value.
+func (s *ScheduledAction) SetScheduledBy(v string) *ScheduledAction {
+	s.ScheduledBy = &v
+	return s
+}
+
+// SetScheduledTime sets the ScheduledTime field's value.
+func (s *ScheduledAction) SetScheduledTime(v int64) *ScheduledAction {
+	s.ScheduledTime = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ScheduledAction) SetSeverity(v string) *ScheduledAction {
+	s.Severity = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ScheduledAction) SetStatus(v string) *ScheduledAction {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ScheduledAction) SetType(v string) *ScheduledAction {
+	s.Type = &v
+	return s
+}
+
 // Specifies details about a scheduled Auto-Tune action. For more information,
 // see Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type ScheduledAutoTuneDetails struct {
@@ -15277,6 +16023,75 @@ func (s *ServiceSoftwareOptions) SetUpdateStatus(v string) *ServiceSoftwareOptio
 	return s
 }
 
+// An exception for attempting to schedule a domain action during an unavailable
+// time slot.
+type SlotNotAvailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	// Alternate time slots during which OpenSearch Service has available capacity
+	// to schedule a domain action.
+	SlotSuggestions []*int64 `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotNotAvailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlotNotAvailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorSlotNotAvailableException(v protocol.ResponseMetadata) error {
+	return &SlotNotAvailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *SlotNotAvailableException) Code() string {
+	return "SlotNotAvailableException"
+}
+
+// Message returns the exception's message.
+func (s *SlotNotAvailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *SlotNotAvailableException) OrigErr() error {
+	return nil
+}
+
+func (s *SlotNotAvailableException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *SlotNotAvailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *SlotNotAvailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The time, in UTC format, when OpenSearch Service takes a daily automated
 // snapshot of the specified domain. Default is 0 hours.
 type SnapshotOptions struct {
@@ -15357,14 +16172,109 @@ func (s *SnapshotOptionsStatus) SetStatus(v *OptionStatus) *SnapshotOptionsStatu
 	return s
 }
 
+// Options for configuring service software updates for a domain.
+type SoftwareUpdateOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Whether automatic service software updates are enabled for the domain.
+	AutoSoftwareUpdateEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SoftwareUpdateOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SoftwareUpdateOptions) GoString() string {
+	return s.String()
+}
+
+// SetAutoSoftwareUpdateEnabled sets the AutoSoftwareUpdateEnabled field's value.
+func (s *SoftwareUpdateOptions) SetAutoSoftwareUpdateEnabled(v bool) *SoftwareUpdateOptions {
+	s.AutoSoftwareUpdateEnabled = &v
+	return s
+}
+
+// The status of the service software options for a domain.
+type SoftwareUpdateOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The service software update options for a domain.
+	Options *SoftwareUpdateOptions `type:"structure"`
+
+	// The status of service software update options, including creation date and
+	// last updated date.
+	Status *OptionStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SoftwareUpdateOptionsStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SoftwareUpdateOptionsStatus) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *SoftwareUpdateOptionsStatus) SetOptions(v *SoftwareUpdateOptions) *SoftwareUpdateOptionsStatus {
+	s.Options = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SoftwareUpdateOptionsStatus) SetStatus(v *OptionStatus) *SoftwareUpdateOptionsStatus {
+	s.Status = v
+	return s
+}
+
 // Container for the request parameters to the StartServiceSoftwareUpdate operation.
 type StartServiceSoftwareUpdateInput struct {
 	_ struct{} `type:"structure"`
+
+	// The Epoch timestamp when you want the service software update to start. You
+	// only need to specify this parameter if you set ScheduleAt to TIMESTAMP.
+	DesiredStartTime *int64 `type:"long"`
 
 	// The name of the domain that you want to update to the latest service software.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// When to start the service software update.
+	//
+	//    * NOW - Immediately schedules the update to happen in the current hour
+	//    if there's capacity available.
+	//
+	//    * TIMESTAMP - Lets you specify a custom date and time to apply the update.
+	//    If you specify this value, you must also provide a value for DesiredStartTime.
+	//
+	//    * OFF_PEAK_WINDOW - Marks the update to be picked up during an upcoming
+	//    off-peak window. There's no guarantee that the update will happen during
+	//    the next immediate window. Depending on capacity, it might happen in subsequent
+	//    days.
+	//
+	// Default: NOW if you don't specify a value for DesiredStartTime, and TIMESTAMP
+	// if you do.
+	ScheduleAt *string `type:"string" enum:"ScheduleAt"`
 }
 
 // String returns the string representation.
@@ -15401,9 +16311,21 @@ func (s *StartServiceSoftwareUpdateInput) Validate() error {
 	return nil
 }
 
+// SetDesiredStartTime sets the DesiredStartTime field's value.
+func (s *StartServiceSoftwareUpdateInput) SetDesiredStartTime(v int64) *StartServiceSoftwareUpdateInput {
+	s.DesiredStartTime = &v
+	return s
+}
+
 // SetDomainName sets the DomainName field's value.
 func (s *StartServiceSoftwareUpdateInput) SetDomainName(v string) *StartServiceSoftwareUpdateInput {
 	s.DomainName = &v
+	return s
+}
+
+// SetScheduleAt sets the ScheduleAt field's value.
+func (s *StartServiceSoftwareUpdateInput) SetScheduleAt(v string) *StartServiceSoftwareUpdateInput {
+	s.ScheduleAt = &v
 	return s
 }
 
@@ -15695,15 +16617,21 @@ type UpdateDomainConfigInput struct {
 	// Encryption at rest options for the domain.
 	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
-	// Options to publish OpenSearch lots to Amazon CloudWatch Logs.
+	// Options to publish OpenSearch logs to Amazon CloudWatch Logs.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
-	// Node-To-Node Encryption options for the domain.
+	// Node-to-node encryption options for the domain.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
+
+	// Off-peak window options for the domain.
+	OffPeakWindowOptions *OffPeakWindowOptions `type:"structure"`
 
 	// Option to set the time, in UTC format, for the daily automated snapshot.
 	// Default value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
+
+	// Service software update options for the domain.
+	SoftwareUpdateOptions *SoftwareUpdateOptions `type:"structure"`
 
 	// Options to specify the subnets and security groups for a VPC endpoint. For
 	// more information, see Launching your Amazon OpenSearch Service domains using
@@ -15776,6 +16704,11 @@ func (s *UpdateDomainConfigInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LogPublishingOptions", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.OffPeakWindowOptions != nil {
+		if err := s.OffPeakWindowOptions.Validate(); err != nil {
+			invalidParams.AddNested("OffPeakWindowOptions", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -15869,9 +16802,21 @@ func (s *UpdateDomainConfigInput) SetNodeToNodeEncryptionOptions(v *NodeToNodeEn
 	return s
 }
 
+// SetOffPeakWindowOptions sets the OffPeakWindowOptions field's value.
+func (s *UpdateDomainConfigInput) SetOffPeakWindowOptions(v *OffPeakWindowOptions) *UpdateDomainConfigInput {
+	s.OffPeakWindowOptions = v
+	return s
+}
+
 // SetSnapshotOptions sets the SnapshotOptions field's value.
 func (s *UpdateDomainConfigInput) SetSnapshotOptions(v *SnapshotOptions) *UpdateDomainConfigInput {
 	s.SnapshotOptions = v
+	return s
+}
+
+// SetSoftwareUpdateOptions sets the SoftwareUpdateOptions field's value.
+func (s *UpdateDomainConfigInput) SetSoftwareUpdateOptions(v *SoftwareUpdateOptions) *UpdateDomainConfigInput {
+	s.SoftwareUpdateOptions = v
 	return s
 }
 
@@ -16047,6 +16992,154 @@ func (s UpdatePackageOutput) GoString() string {
 // SetPackageDetails sets the PackageDetails field's value.
 func (s *UpdatePackageOutput) SetPackageDetails(v *PackageDetails) *UpdatePackageOutput {
 	s.PackageDetails = v
+	return s
+}
+
+type UpdateScheduledActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the action to reschedule. To retrieve this ID, send
+	// a ListScheduledActions (https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_ListScheduledActions.html)
+	// request.
+	//
+	// ActionID is a required field
+	ActionID *string `type:"string" required:"true"`
+
+	// The type of action to reschedule. Can be one of SERVICE_SOFTWARE_UPDATE,
+	// JVM_HEAP_SIZE_TUNING, or JVM_YOUNG_GEN_TUNING. To retrieve this value, send
+	// a ListScheduledActions (https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_ListScheduledActions.html)
+	// request.
+	//
+	// ActionType is a required field
+	ActionType *string `type:"string" required:"true" enum:"ActionType"`
+
+	// The time to implement the change, in Coordinated Universal Time (UTC). Only
+	// specify this parameter if you set ScheduleAt to TIMESTAMP.
+	DesiredStartTime *int64 `type:"long"`
+
+	// The name of the domain to reschedule an action for.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+
+	// When to schedule the action.
+	//
+	//    * NOW - Immediately schedules the update to happen in the current hour
+	//    if there's capacity available.
+	//
+	//    * TIMESTAMP - Lets you specify a custom date and time to apply the update.
+	//    If you specify this value, you must also provide a value for DesiredStartTime.
+	//
+	//    * OFF_PEAK_WINDOW - Marks the action to be picked up during an upcoming
+	//    off-peak window. There's no guarantee that the change will be implemented
+	//    during the next immediate window. Depending on capacity, it might happen
+	//    in subsequent days.
+	//
+	// ScheduleAt is a required field
+	ScheduleAt *string `type:"string" required:"true" enum:"ScheduleAt"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateScheduledActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateScheduledActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateScheduledActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateScheduledActionInput"}
+	if s.ActionID == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionID"))
+	}
+	if s.ActionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionType"))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.ScheduleAt == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleAt"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionID sets the ActionID field's value.
+func (s *UpdateScheduledActionInput) SetActionID(v string) *UpdateScheduledActionInput {
+	s.ActionID = &v
+	return s
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *UpdateScheduledActionInput) SetActionType(v string) *UpdateScheduledActionInput {
+	s.ActionType = &v
+	return s
+}
+
+// SetDesiredStartTime sets the DesiredStartTime field's value.
+func (s *UpdateScheduledActionInput) SetDesiredStartTime(v int64) *UpdateScheduledActionInput {
+	s.DesiredStartTime = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *UpdateScheduledActionInput) SetDomainName(v string) *UpdateScheduledActionInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetScheduleAt sets the ScheduleAt field's value.
+func (s *UpdateScheduledActionInput) SetScheduleAt(v string) *UpdateScheduledActionInput {
+	s.ScheduleAt = &v
+	return s
+}
+
+type UpdateScheduledActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the rescheduled action.
+	ScheduledAction *ScheduledAction `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateScheduledActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateScheduledActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetScheduledAction sets the ScheduledAction field's value.
+func (s *UpdateScheduledActionOutput) SetScheduledAction(v *ScheduledAction) *UpdateScheduledActionOutput {
+	s.ScheduledAction = v
 	return s
 }
 
@@ -16615,7 +17708,7 @@ func (s *VPCOptions) SetSubnetIds(v []*string) *VPCOptions {
 	return s
 }
 
-// An exception for missing or invalid input fields.
+// An exception for accessing or deleting a resource that doesn't exist.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16956,6 +18049,68 @@ func (s *VpcEndpointSummary) SetVpcEndpointOwner(v string) *VpcEndpointSummary {
 	return s
 }
 
+// The desired start time for an off-peak maintenance window (https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_OffPeakWindow.html).
+type WindowStartTime struct {
+	_ struct{} `type:"structure"`
+
+	// The start hour of the window in Coordinated Universal Time (UTC), using 24-hour
+	// time. For example, 17 refers to 5:00 P.M. UTC.
+	//
+	// Hours is a required field
+	Hours *int64 `type:"long" required:"true"`
+
+	// The start minute of the window, in UTC.
+	//
+	// Minutes is a required field
+	Minutes *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WindowStartTime) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WindowStartTime) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WindowStartTime) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WindowStartTime"}
+	if s.Hours == nil {
+		invalidParams.Add(request.NewErrParamRequired("Hours"))
+	}
+	if s.Minutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Minutes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHours sets the Hours field's value.
+func (s *WindowStartTime) SetHours(v int64) *WindowStartTime {
+	s.Hours = &v
+	return s
+}
+
+// SetMinutes sets the Minutes field's value.
+func (s *WindowStartTime) SetMinutes(v int64) *WindowStartTime {
+	s.Minutes = &v
+	return s
+}
+
 // The zone awareness configuration for an Amazon OpenSearch Service domain.
 type ZoneAwarenessConfig struct {
 	_ struct{} `type:"structure"`
@@ -16988,6 +18143,78 @@ func (s ZoneAwarenessConfig) GoString() string {
 func (s *ZoneAwarenessConfig) SetAvailabilityZoneCount(v int64) *ZoneAwarenessConfig {
 	s.AvailabilityZoneCount = &v
 	return s
+}
+
+const (
+	// ActionSeverityHigh is a ActionSeverity enum value
+	ActionSeverityHigh = "HIGH"
+
+	// ActionSeverityMedium is a ActionSeverity enum value
+	ActionSeverityMedium = "MEDIUM"
+
+	// ActionSeverityLow is a ActionSeverity enum value
+	ActionSeverityLow = "LOW"
+)
+
+// ActionSeverity_Values returns all elements of the ActionSeverity enum
+func ActionSeverity_Values() []string {
+	return []string{
+		ActionSeverityHigh,
+		ActionSeverityMedium,
+		ActionSeverityLow,
+	}
+}
+
+const (
+	// ActionStatusPendingUpdate is a ActionStatus enum value
+	ActionStatusPendingUpdate = "PENDING_UPDATE"
+
+	// ActionStatusInProgress is a ActionStatus enum value
+	ActionStatusInProgress = "IN_PROGRESS"
+
+	// ActionStatusFailed is a ActionStatus enum value
+	ActionStatusFailed = "FAILED"
+
+	// ActionStatusCompleted is a ActionStatus enum value
+	ActionStatusCompleted = "COMPLETED"
+
+	// ActionStatusNotEligible is a ActionStatus enum value
+	ActionStatusNotEligible = "NOT_ELIGIBLE"
+
+	// ActionStatusEligible is a ActionStatus enum value
+	ActionStatusEligible = "ELIGIBLE"
+)
+
+// ActionStatus_Values returns all elements of the ActionStatus enum
+func ActionStatus_Values() []string {
+	return []string{
+		ActionStatusPendingUpdate,
+		ActionStatusInProgress,
+		ActionStatusFailed,
+		ActionStatusCompleted,
+		ActionStatusNotEligible,
+		ActionStatusEligible,
+	}
+}
+
+const (
+	// ActionTypeServiceSoftwareUpdate is a ActionType enum value
+	ActionTypeServiceSoftwareUpdate = "SERVICE_SOFTWARE_UPDATE"
+
+	// ActionTypeJvmHeapSizeTuning is a ActionType enum value
+	ActionTypeJvmHeapSizeTuning = "JVM_HEAP_SIZE_TUNING"
+
+	// ActionTypeJvmYoungGenTuning is a ActionType enum value
+	ActionTypeJvmYoungGenTuning = "JVM_YOUNG_GEN_TUNING"
+)
+
+// ActionType_Values returns all elements of the ActionType enum
+func ActionType_Values() []string {
+	return []string{
+		ActionTypeServiceSoftwareUpdate,
+		ActionTypeJvmHeapSizeTuning,
+		ActionTypeJvmYoungGenTuning,
+	}
 }
 
 // The Auto-Tune desired state. Valid values are ENABLED and DISABLED.
@@ -17885,6 +19112,26 @@ func RollbackOnDisable_Values() []string {
 	}
 }
 
+const (
+	// ScheduleAtNow is a ScheduleAt enum value
+	ScheduleAtNow = "NOW"
+
+	// ScheduleAtTimestamp is a ScheduleAt enum value
+	ScheduleAtTimestamp = "TIMESTAMP"
+
+	// ScheduleAtOffPeakWindow is a ScheduleAt enum value
+	ScheduleAtOffPeakWindow = "OFF_PEAK_WINDOW"
+)
+
+// ScheduleAt_Values returns all elements of the ScheduleAt enum
+func ScheduleAt_Values() []string {
+	return []string{
+		ScheduleAtNow,
+		ScheduleAtTimestamp,
+		ScheduleAtOffPeakWindow,
+	}
+}
+
 // The Auto-Tune action type.
 const (
 	// ScheduledAutoTuneActionTypeJvmHeapSizeTuning is a ScheduledAutoTuneActionType enum value
@@ -17920,6 +19167,22 @@ func ScheduledAutoTuneSeverityType_Values() []string {
 		ScheduledAutoTuneSeverityTypeLow,
 		ScheduledAutoTuneSeverityTypeMedium,
 		ScheduledAutoTuneSeverityTypeHigh,
+	}
+}
+
+const (
+	// ScheduledByCustomer is a ScheduledBy enum value
+	ScheduledByCustomer = "CUSTOMER"
+
+	// ScheduledBySystem is a ScheduledBy enum value
+	ScheduledBySystem = "SYSTEM"
+)
+
+// ScheduledBy_Values returns all elements of the ScheduledBy enum
+func ScheduledBy_Values() []string {
+	return []string{
+		ScheduledByCustomer,
+		ScheduledBySystem,
 	}
 }
 

@@ -56,19 +56,33 @@ func (c *CloudWatchRUM) BatchCreateRumMetricDefinitionsRequest(input *BatchCreat
 
 // BatchCreateRumMetricDefinitions API operation for CloudWatch RUM.
 //
-// Specifies the extended metrics that you want a CloudWatch RUM app monitor
-// to send to a destination. Valid destinations include CloudWatch and Evidently.
+// Specifies the extended metrics and custom metrics that you want a CloudWatch
+// RUM app monitor to send to a destination. Valid destinations include CloudWatch
+// and Evidently.
 //
 // By default, RUM app monitors send some metrics to CloudWatch. These default
 // metrics are listed in CloudWatch metrics that you can collect with CloudWatch
 // RUM (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-metrics.html).
 //
-// If you also send extended metrics, you can send metrics to Evidently as well
-// as CloudWatch, and you can also optionally send the metrics with additional
-// dimensions. The valid dimension names for the additional dimensions are BrowserName,
-// CountryCode, DeviceType, FileType, OSName, and PageId. For more information,
-// see Extended metrics that you can send to CloudWatch and CloudWatch Evidently
-// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-vended-metrics.html).
+// In addition to these default metrics, you can choose to send extended metrics
+// or custom metrics or both.
+//
+//   - Extended metrics enable you to send metrics with additional dimensions
+//     not included in the default metrics. You can also send extended metrics
+//     to Evidently as well as CloudWatch. The valid dimension names for the
+//     additional dimensions for extended metrics are BrowserName, CountryCode,
+//     DeviceType, FileType, OSName, and PageId. For more information, see Extended
+//     metrics that you can send to CloudWatch and CloudWatch Evidently (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-vended-metrics.html).
+//
+//   - Custom metrics are metrics that you define. You can send custom metrics
+//     to CloudWatch or to CloudWatch Evidently or to both. With custom metrics,
+//     you can use any metric name and namespace, and to derive the metrics you
+//     can use any custom events, built-in events, custom attributes, or default
+//     attributes. You can't send custom metrics to the AWS/RUM namespace. You
+//     must send custom metrics to a custom namespace that you define. The namespace
+//     that you use can't start with AWS/. CloudWatch RUM prepends RUM/CustomMetrics/
+//     to the custom namespace that you define, so the final namespace for your
+//     metrics in CloudWatch is RUM/CustomMetrics/your-custom-namespace .
 //
 // The maximum number of metric definitions that you can specify in one BatchCreateRumMetricDefinitions
 // operation is 200.
@@ -76,9 +90,10 @@ func (c *CloudWatchRUM) BatchCreateRumMetricDefinitionsRequest(input *BatchCreat
 // The maximum number of metric definitions that one destination can contain
 // is 2000.
 //
-// Extended metrics sent are charged as CloudWatch custom metrics. Each combination
-// of additional dimension name and dimension value counts as a custom metric.
-// For more information, see Amazon CloudWatch Pricing (https://aws.amazon.com/cloudwatch/pricing/).
+// Extended metrics sent to CloudWatch and RUM custom metrics are charged as
+// CloudWatch custom metrics. Each combination of additional dimension name
+// and dimension value counts as a custom metric. For more information, see
+// Amazon CloudWatch Pricing (https://aws.amazon.com/cloudwatch/pricing/).
 //
 // You must have already created a destination for the metrics before you send
 // them. For more information, see PutRumMetricsDestination (https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_PutRumMetricsDestination.html).
@@ -1451,7 +1466,8 @@ func (c *CloudWatchRUM) PutRumMetricsDestinationRequest(input *PutRumMetricsDest
 // RUM. You can send extended metrics to CloudWatch or to a CloudWatch Evidently
 // experiment.
 //
-// For more information about extended metrics, see AddRumMetrics (https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_AddRumMetrics.html).
+// For more information about extended metrics, see BatchCreateRumMetricDefinitions
+// (https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_BatchCreateRumMetricDefinitions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4037,6 +4053,11 @@ type MetricDefinition struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// If this metric definition is for a custom metric instead of an extended metric,
+	// this field displays the metric namespace that the custom metric is published
+	// to.
+	Namespace *string `min:"1" type:"string"`
+
 	// Use this field only if you are sending this metric to CloudWatch. It defines
 	// the CloudWatch metric unit that this metric is measured in.
 	UnitLabel *string `min:"1" type:"string"`
@@ -4087,6 +4108,12 @@ func (s *MetricDefinition) SetName(v string) *MetricDefinition {
 	return s
 }
 
+// SetNamespace sets the Namespace field's value.
+func (s *MetricDefinition) SetNamespace(v string) *MetricDefinition {
+	s.Namespace = &v
+	return s
+}
+
 // SetUnitLabel sets the UnitLabel field's value.
 func (s *MetricDefinition) SetUnitLabel(v string) *MetricDefinition {
 	s.UnitLabel = &v
@@ -4099,58 +4126,111 @@ func (s *MetricDefinition) SetValueKey(v string) *MetricDefinition {
 	return s
 }
 
-// Use this structure to define one extended metric that RUM will send to CloudWatch
-// or CloudWatch Evidently. For more information, see Additional metrics that
-// you can send to CloudWatch and CloudWatch Evidently (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-vended-metrics.html).
+// Use this structure to define one extended metric or custom metric that RUM
+// will send to CloudWatch or CloudWatch Evidently. For more information, see
+// Additional metrics that you can send to CloudWatch and CloudWatch Evidently
+// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-vended-metrics.html).
 //
-// Only certain combinations of values for Name, ValueKey, and EventPattern
-// are valid. In addition to what is displayed in the list below, the EventPattern
-// can also include information used by the DimensionKeys field.
+// This structure is validated differently for extended metrics and custom metrics.
+// For extended metrics that are sent to the AWS/RUM namespace, the following
+// validations apply:
 //
-//   - If Name is PerformanceNavigationDuration, then ValueKeymust be event_details.duration
+//   - The Namespace parameter must be omitted or set to AWS/RUM.
+//
+//   - Only certain combinations of values for Name, ValueKey, and EventPattern
+//     are valid. In addition to what is displayed in the list below, the EventPattern
+//     can also include information used by the DimensionKeys field. If Name
+//     is PerformanceNavigationDuration, then ValueKeymust be event_details.duration
 //     and the EventPattern must include {"event_type":["com.amazon.rum.performance_navigation_event"]}
-//
-//   - If Name is PerformanceResourceDuration, then ValueKeymust be event_details.duration
+//     If Name is PerformanceResourceDuration, then ValueKeymust be event_details.duration
 //     and the EventPattern must include {"event_type":["com.amazon.rum.performance_resource_event"]}
-//
-//   - If Name is NavigationSatisfiedTransaction, then ValueKeymust be null
-//     and the EventPattern must include { "event_type": ["com.amazon.rum.performance_navigation_event"],
-//     "event_details": { "duration": [{ "numeric": [">",2000] }] } }
-//
-//   - If Name is NavigationToleratedTransaction, then ValueKeymust be null
-//     and the EventPattern must include { "event_type": ["com.amazon.rum.performance_navigation_event"],
+//     If Name is NavigationSatisfiedTransaction, then ValueKeymust be null and
+//     the EventPattern must include { "event_type": ["com.amazon.rum.performance_navigation_event"],
+//     "event_details": { "duration": [{ "numeric": [">",2000] }] } } If Name
+//     is NavigationToleratedTransaction, then ValueKeymust be null and the EventPattern
+//     must include { "event_type": ["com.amazon.rum.performance_navigation_event"],
 //     "event_details": { "duration": [{ "numeric": [">=",2000,"<"8000] }] }
-//     }
-//
-//   - If Name is NavigationFrustratedTransaction, then ValueKeymust be null
+//     } If Name is NavigationFrustratedTransaction, then ValueKeymust be null
 //     and the EventPattern must include { "event_type": ["com.amazon.rum.performance_navigation_event"],
-//     "event_details": { "duration": [{ "numeric": [">=",8000] }] } }
-//
-//   - If Name is WebVitalsCumulativeLayoutShift, then ValueKeymust be event_details.value
+//     "event_details": { "duration": [{ "numeric": [">=",8000] }] } } If Name
+//     is WebVitalsCumulativeLayoutShift, then ValueKeymust be event_details.value
 //     and the EventPattern must include {"event_type":["com.amazon.rum.cumulative_layout_shift_event"]}
-//
-//   - If Name is WebVitalsFirstInputDelay, then ValueKeymust be event_details.value
+//     If Name is WebVitalsFirstInputDelay, then ValueKeymust be event_details.value
 //     and the EventPattern must include {"event_type":["com.amazon.rum.first_input_delay_event"]}
-//
-//   - If Name is WebVitalsLargestContentfulPaint, then ValueKeymust be event_details.value
+//     If Name is WebVitalsLargestContentfulPaint, then ValueKeymust be event_details.value
 //     and the EventPattern must include {"event_type":["com.amazon.rum.largest_contentful_paint_event"]}
+//     If Name is JsErrorCount, then ValueKeymust be null and the EventPattern
+//     must include {"event_type":["com.amazon.rum.js_error_event"]} If Name
+//     is HttpErrorCount, then ValueKeymust be null and the EventPattern must
+//     include {"event_type":["com.amazon.rum.http_event"]} If Name is SessionCount,
+//     then ValueKeymust be null and the EventPattern must include {"event_type":["com.amazon.rum.session_start_event"]}
 //
-//   - If Name is JsErrorCount, then ValueKeymust be null and the EventPattern
-//     must include {"event_type":["com.amazon.rum.js_error_event"]}
+// For custom metrics, the following validation rules apply:
 //
-//   - If Name is HttpErrorCount, then ValueKeymust be null and the EventPattern
-//     must include {"event_type":["com.amazon.rum.http_event"]}
+//   - The namespace can't be omitted and can't be AWS/RUM. You can use the
+//     AWS/RUM namespace only for extended metrics.
 //
-//   - If Name is SessionCount, then ValueKeymust be null and the EventPattern
-//     must include {"event_type":["com.amazon.rum.session_start_event"]}
+//   - All dimensions listed in the DimensionKeys field must be present in
+//     the value of EventPattern.
+//
+//   - The values that you specify for ValueKey, EventPattern, and DimensionKeys
+//     must be fields in RUM events, so all first-level keys in these fields
+//     must be one of the keys in the list later in this section.
+//
+//   - If you set a value for EventPattern, it must be a JSON object.
+//
+//   - For every non-empty event_details, there must be a non-empty event_type.
+//
+//   - If EventPattern contains an event_details field, it must also contain
+//     an event_type. For every built-in event_type that you use, you must use
+//     a value for event_details that corresponds to that event_type. For information
+//     about event details that correspond to event types, see RUM event details
+//     (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-datacollected.html#CloudWatch-RUM-datacollected-eventDetails).
+//
+//   - In EventPattern, any JSON array must contain only one value.
+//
+// Valid key values for first-level keys in the ValueKey, EventPattern, and
+// DimensionKeys fields:
+//
+//   - account_id
+//
+//   - application_Id
+//
+//   - application_version
+//
+//   - application_name
+//
+//   - batch_id
+//
+//   - event_details
+//
+//   - event_id
+//
+//   - event_interaction
+//
+//   - event_timestamp
+//
+//   - event_type
+//
+//   - event_version
+//
+//   - log_stream
+//
+//   - metadata
+//
+//   - sessionId
+//
+//   - user_details
+//
+//   - userId
 type MetricDefinitionRequest struct {
 	_ struct{} `type:"structure"`
 
 	// Use this field only if you are sending the metric to CloudWatch.
 	//
 	// This field is a map of field paths to dimension names. It defines the dimensions
-	// to associate with this metric in CloudWatch. Valid values for the entries
-	// in this field are the following:
+	// to associate with this metric in CloudWatch. For extended metrics, valid
+	// values for the entries in this field are the following:
 	//
 	//    * "metadata.pageId": "PageId"
 	//
@@ -4164,7 +4244,8 @@ type MetricDefinitionRequest struct {
 	//
 	//    * "event_details.fileType": "FileType"
 	//
-	// All dimensions listed in this field must also be included in EventPattern.
+	// For both extended metrics and custom metrics, all dimensions listed in this
+	// field must also be included in EventPattern.
 	DimensionKeys map[string]*string `type:"map"`
 
 	// The pattern that defines the metric, specified as a JSON object. RUM checks
@@ -4191,8 +4272,9 @@ type MetricDefinitionRequest struct {
 	// in DimensionKeys, then the metric is published with the specified dimensions.
 	EventPattern *string `type:"string"`
 
-	// The name for the metric that is defined in this structure. Valid values are
-	// the following:
+	// The name for the metric that is defined in this structure. For custom metrics,
+	// you can specify any name that you like. For extended metrics, valid values
+	// are the following:
 	//
 	//    * PerformanceNavigationDuration
 	//
@@ -4218,6 +4300,13 @@ type MetricDefinitionRequest struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// If this structure is for a custom metric instead of an extended metrics,
+	// use this parameter to define the metric namespace for that custom metric.
+	// Do not specify this parameter if this structure is for an extended metric.
+	//
+	// You cannot use any string that starts with AWS/ for your namespace.
+	Namespace *string `min:"1" type:"string"`
 
 	// The CloudWatch metric unit to use for this metric. If you omit this field,
 	// the metric is recorded with no unit.
@@ -4261,6 +4350,9 @@ func (s *MetricDefinitionRequest) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 	if s.UnitLabel != nil && len(*s.UnitLabel) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UnitLabel", 1))
 	}
@@ -4289,6 +4381,12 @@ func (s *MetricDefinitionRequest) SetEventPattern(v string) *MetricDefinitionReq
 // SetName sets the Name field's value.
 func (s *MetricDefinitionRequest) SetName(v string) *MetricDefinitionRequest {
 	s.Name = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *MetricDefinitionRequest) SetNamespace(v string) *MetricDefinitionRequest {
+	s.Namespace = &v
 	return s
 }
 
@@ -4370,7 +4468,7 @@ type PutRumEventsInput struct {
 	// A unique identifier for this batch of RUM event data.
 	//
 	// BatchId is a required field
-	BatchId *string `type:"string" required:"true"`
+	BatchId *string `min:"36" type:"string" required:"true"`
 
 	// The ID of the app monitor that is sending this data.
 	//
@@ -4416,6 +4514,9 @@ func (s *PutRumEventsInput) Validate() error {
 	if s.BatchId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BatchId"))
 	}
+	if s.BatchId != nil && len(*s.BatchId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("BatchId", 36))
+	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -4436,6 +4537,11 @@ func (s *PutRumEventsInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RumEvents", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.UserDetails != nil {
+		if err := s.UserDetails.Validate(); err != nil {
+			invalidParams.AddNested("UserDetails", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4748,7 +4854,7 @@ type RumEvent struct {
 	// A unique ID for this event.
 	//
 	// Id is a required field
-	Id *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
 
 	// Metadata about this event, which contains a JSON serialization of the identity
 	// of the user for this session. The user information comes from information
@@ -4793,6 +4899,9 @@ func (s *RumEvent) Validate() error {
 	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
 	}
 	if s.Timestamp == nil {
 		invalidParams.Add(request.NewErrParamRequired("Timestamp"))
@@ -5474,11 +5583,11 @@ type UserDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The session ID that the performance events are from.
-	SessionId *string `locationName:"sessionId" type:"string"`
+	SessionId *string `locationName:"sessionId" min:"36" type:"string"`
 
 	// The ID of the user for this user session. This ID is generated by RUM and
 	// does not include any personally identifiable information about the user.
-	UserId *string `locationName:"userId" type:"string"`
+	UserId *string `locationName:"userId" min:"36" type:"string"`
 }
 
 // String returns the string representation.
@@ -5497,6 +5606,22 @@ func (s UserDetails) String() string {
 // value will be replaced with "sensitive".
 func (s UserDetails) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserDetails"}
+	if s.SessionId != nil && len(*s.SessionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 36))
+	}
+	if s.UserId != nil && len(*s.UserId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetSessionId sets the SessionId field's value.
