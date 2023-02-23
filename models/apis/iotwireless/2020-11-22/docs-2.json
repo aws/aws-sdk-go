@@ -52,7 +52,7 @@
     "GetPositionEstimate": "<p>Get estimated position information as a payload in GeoJSON format. The payload measurement data is resolved using solvers that are provided by third-party vendors.</p>",
     "GetResourceEventConfiguration": "<p>Get the event configuration for a particular resource identifier.</p>",
     "GetResourceLogLevel": "<p>Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
-    "GetResourcePosition": "<p>Get the position information for a given wireless device or a wireless gateway resource. The postion information uses the <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\"> World Geodetic System (WGS84)</a>.</p>",
+    "GetResourcePosition": "<p>Get the position information for a given wireless device or a wireless gateway resource. The position information uses the <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\"> World Geodetic System (WGS84)</a>.</p>",
     "GetServiceEndpoint": "<p>Gets the account-specific endpoint for Configuration and Update Server (CUPS) protocol or LoRaWAN Network Server (LNS) connections.</p>",
     "GetServiceProfile": "<p>Gets information about a service profile.</p>",
     "GetWirelessDevice": "<p>Gets information about a wireless device.</p>",
@@ -100,7 +100,7 @@
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
     "UpdatePosition": "<p>Update the position information of a resource.</p> <important> <p>This action is no longer supported. Calls to update the position information should use the <a href=\"https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_UpdateResourcePosition.html\">UpdateResourcePosition</a> API operation instead.</p> </important>",
     "UpdateResourceEventConfiguration": "<p>Update the event configuration for a particular resource identifier.</p>",
-    "UpdateResourcePosition": "<p>Update the position information of a given wireless device or a wireless gateway resource. The postion coordinates are based on the <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\"> World Geodetic System (WGS84)</a>.</p>",
+    "UpdateResourcePosition": "<p>Update the position information of a given wireless device or a wireless gateway resource. The position coordinates are based on the <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\"> World Geodetic System (WGS84)</a>.</p>",
     "UpdateWirelessDevice": "<p>Updates properties of a wireless device.</p>",
     "UpdateWirelessGateway": "<p>Updates properties of a wireless gateway.</p>"
   },
@@ -214,7 +214,7 @@
     "AssistPosition": {
       "base": null,
       "refs": {
-        "Gnss$AssistPosition": "<p>Optional assistance position information, specified using latitude and longitude values in degrees. The co-ordinates are inside the WGS84 reference frame.</p>"
+        "Gnss$AssistPosition": "<p>Optional assistance position information, specified using latitude and longitude values in degrees. The coordinates are inside the WGS84 reference frame.</p>"
       }
     },
     "AssociateAwsAccountWithPartnerAccountRequest": {
@@ -317,7 +317,7 @@
     "BaseLng": {
       "base": null,
       "refs": {
-        "CdmaObj$BaseLng": "<p>CDMA base station longtitude in degrees.</p>"
+        "CdmaObj$BaseLng": "<p>CDMA base station longitude in degrees.</p>"
       }
     },
     "BaseStationId": {
@@ -623,7 +623,7 @@
     "CreationDate": {
       "base": null,
       "refs": {
-        "GetPositionEstimateRequest$Timestamp": "<p>Optional information that specifies the time when the position information will be resolved. It uses the UNIX timestamp format. If not specified, the time at which the request was received will be used.</p>"
+        "GetPositionEstimateRequest$Timestamp": "<p>Optional information that specifies the time when the position information will be resolved. It uses the Unix timestamp format. If not specified, the time at which the request was received will be used.</p>"
       }
     },
     "DeleteDestinationRequest": {
@@ -1207,6 +1207,22 @@
         "CreateFuotaTaskRequest$FirmwareUpdateRole": null,
         "GetFuotaTaskResponse$FirmwareUpdateRole": null,
         "UpdateFuotaTaskRequest$FirmwareUpdateRole": null
+      }
+    },
+    "FragmentIntervalMS": {
+      "base": "<p>The interval of sending fragments in milliseconds. Currently the interval will be rounded to the nearest second. Note that this interval only controls the timing when the cloud sends the fragments down. The actual delay of receiving fragments at device side depends on the device's class and the communication delay with the cloud.</p>",
+      "refs": {
+        "CreateFuotaTaskRequest$FragmentIntervalMS": null,
+        "GetFuotaTaskResponse$FragmentIntervalMS": null,
+        "UpdateFuotaTaskRequest$FragmentIntervalMS": null
+      }
+    },
+    "FragmentSizeBytes": {
+      "base": "<p>The size of each fragment in bytes. Currently only supported in fuota tasks with multicast groups.</p>",
+      "refs": {
+        "CreateFuotaTaskRequest$FragmentSizeBytes": null,
+        "GetFuotaTaskResponse$FragmentSizeBytes": null,
+        "UpdateFuotaTaskRequest$FragmentSizeBytes": null
       }
     },
     "FuotaDeviceStatus": {
@@ -2596,11 +2612,11 @@
       "refs": {
         "GetPositionConfigurationRequest$ResourceIdentifier": "<p>Resource identifier used in a position configuration.</p>",
         "GetPositionRequest$ResourceIdentifier": "<p>Resource identifier used to retrieve the position information.</p>",
-        "GetResourcePositionRequest$ResourceIdentifier": "<p>The identifier of the resource for which position information is retrieved. It can be the wireless device ID or the wireless gateway ID depending on the resource type.</p>",
+        "GetResourcePositionRequest$ResourceIdentifier": "<p>The identifier of the resource for which position information is retrieved. It can be the wireless device ID or the wireless gateway ID, depending on the resource type.</p>",
         "PositionConfigurationItem$ResourceIdentifier": "<p>Resource identifier for the position configuration.</p>",
         "PutPositionConfigurationRequest$ResourceIdentifier": "<p>Resource identifier used to update the position configuration.</p>",
         "UpdatePositionRequest$ResourceIdentifier": "<p>Resource identifier of the resource for which position is updated.</p>",
-        "UpdateResourcePositionRequest$ResourceIdentifier": "<p>The identifier of the resource for which position information is updated. It can be the wireless device ID or the wireless gateway ID depending on the resource type.</p>"
+        "UpdateResourcePositionRequest$ResourceIdentifier": "<p>The identifier of the resource for which position information is updated. It can be the wireless device ID or the wireless gateway ID, depending on the resource type.</p>"
       }
     },
     "PositionResourceType": {
@@ -2751,6 +2767,14 @@
       "base": null,
       "refs": {
         "LoRaWANGetServiceProfileInfo$RaAllowed": "<p>The RAAllowed value that describes whether roaming activation is allowed.</p>"
+      }
+    },
+    "RedundancyPercent": {
+      "base": "<p>The percentage of added redundant fragments. For example, if firmware file is 100 bytes and fragment size is 10 bytes, with <code>RedundancyPercent</code> set to 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 * 50%) = 15.</p>",
+      "refs": {
+        "CreateFuotaTaskRequest$RedundancyPercent": null,
+        "GetFuotaTaskResponse$RedundancyPercent": null,
+        "UpdateFuotaTaskRequest$RedundancyPercent": null
       }
     },
     "RegParamsRevision": {

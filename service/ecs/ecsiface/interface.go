@@ -96,6 +96,10 @@ type ECSAPI interface {
 	DeleteServiceWithContext(aws.Context, *ecs.DeleteServiceInput, ...request.Option) (*ecs.DeleteServiceOutput, error)
 	DeleteServiceRequest(*ecs.DeleteServiceInput) (*request.Request, *ecs.DeleteServiceOutput)
 
+	DeleteTaskDefinitions(*ecs.DeleteTaskDefinitionsInput) (*ecs.DeleteTaskDefinitionsOutput, error)
+	DeleteTaskDefinitionsWithContext(aws.Context, *ecs.DeleteTaskDefinitionsInput, ...request.Option) (*ecs.DeleteTaskDefinitionsOutput, error)
+	DeleteTaskDefinitionsRequest(*ecs.DeleteTaskDefinitionsInput) (*request.Request, *ecs.DeleteTaskDefinitionsOutput)
+
 	DeleteTaskSet(*ecs.DeleteTaskSetInput) (*ecs.DeleteTaskSetOutput, error)
 	DeleteTaskSetWithContext(aws.Context, *ecs.DeleteTaskSetInput, ...request.Option) (*ecs.DeleteTaskSetOutput, error)
 	DeleteTaskSetRequest(*ecs.DeleteTaskSetInput) (*request.Request, *ecs.DeleteTaskSetOutput)

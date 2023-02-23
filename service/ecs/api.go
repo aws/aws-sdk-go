@@ -169,9 +169,9 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 // When you call the CreateCluster API operation, Amazon ECS attempts to create
 // the Amazon ECS service-linked role for your account. This is so that it can
 // manage required resources in other Amazon Web Services services on your behalf.
-// However, if the IAM user that makes the call doesn't have permissions to
-// create the service-linked role, it isn't created. For more information, see
-// Using service-linked roles for Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html)
+// However, if the user that makes the call doesn't have permissions to create
+// the service-linked role, it isn't created. For more information, see Using
+// service-linked roles for Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -578,8 +578,8 @@ func (c *ECS) DeleteAccountSettingRequest(input *DeleteAccountSettingInput) (req
 
 // DeleteAccountSetting API operation for Amazon EC2 Container Service.
 //
-// Disables an account setting for a specified IAM user, IAM role, or the root
-// user for an account.
+// Disables an account setting for a specified user, role, or the root user
+// for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1051,6 +1051,114 @@ func (c *ECS) DeleteServiceWithContext(ctx aws.Context, input *DeleteServiceInpu
 	return out, req.Send()
 }
 
+const opDeleteTaskDefinitions = "DeleteTaskDefinitions"
+
+// DeleteTaskDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTaskDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTaskDefinitions for more information on using the DeleteTaskDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTaskDefinitionsRequest method.
+//	req, resp := client.DeleteTaskDefinitionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeleteTaskDefinitions
+func (c *ECS) DeleteTaskDefinitionsRequest(input *DeleteTaskDefinitionsInput) (req *request.Request, output *DeleteTaskDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTaskDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteTaskDefinitionsInput{}
+	}
+
+	output = &DeleteTaskDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteTaskDefinitions API operation for Amazon EC2 Container Service.
+//
+// Deletes one or more task definitions.
+//
+// You must deregister a task definition revision before you delete it. For
+// more information, see DeregisterTaskDefinition (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeregisterTaskDefinition.html).
+//
+// When you delete a task definition revision, it is immediately transitions
+// from the INACTIVE to DELETE_IN_PROGRESS. Existing tasks and services that
+// reference a DELETE_IN_PROGRESS task definition revision continue to run without
+// disruption. Existing services that reference a DELETE_IN_PROGRESS task definition
+// revision can still scale up or down by modifying the service's desired count.
+//
+// You can't use a DELETE_IN_PROGRESS task definition revision to run new tasks
+// or create new services. You also can't update an existing service to reference
+// a DELETE_IN_PROGRESS task definition revision.
+//
+// A task definition revision will stay in DELETE_IN_PROGRESS status until all
+// the associated tasks and services have been terminated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Service's
+// API operation DeleteTaskDefinitions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have authorization to perform the requested action.
+//
+//   - ClientException
+//     These errors are usually caused by a client action. This client action might
+//     be using an action or resource on behalf of a user that doesn't have permissions
+//     to use the action or resource,. Or, it might be specifying an identifier
+//     that isn't valid.
+//
+//   - InvalidParameterException
+//     The specified parameter isn't valid. Review the available parameters for
+//     the API request.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeleteTaskDefinitions
+func (c *ECS) DeleteTaskDefinitions(input *DeleteTaskDefinitionsInput) (*DeleteTaskDefinitionsOutput, error) {
+	req, out := c.DeleteTaskDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTaskDefinitionsWithContext is the same as DeleteTaskDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTaskDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ECS) DeleteTaskDefinitionsWithContext(ctx aws.Context, input *DeleteTaskDefinitionsInput, opts ...request.Option) (*DeleteTaskDefinitionsOutput, error) {
+	req, out := c.DeleteTaskDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteTaskSet = "DeleteTaskSet"
 
 // DeleteTaskSetRequest generates a "aws/request.Request" representing the
@@ -1320,7 +1428,9 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 // the task definition is marked as INACTIVE. Existing tasks and services that
 // reference an INACTIVE task definition continue to run without disruption.
 // Existing services that reference an INACTIVE task definition can still scale
-// up or down by modifying the service's desired count.
+// up or down by modifying the service's desired count. If you want to delete
+// a task definition revision, you must first deregister the task definition
+// revision.
 //
 // You can't use an INACTIVE task definition to run new tasks or create new
 // services, and you can't update an existing service to reference an INACTIVE
@@ -1331,6 +1441,9 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 // indefinitely. However, this behavior is subject to change in the future.
 // We don't recommend that you rely on INACTIVE task definitions persisting
 // beyond the lifecycle of any associated tasks and services.
+//
+// You must deregister a task definition revision before you delete it. For
+// more information, see DeleteTaskDefinitions (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteTaskDefinitions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3847,18 +3960,18 @@ func (c *ECS) PutAccountSettingRequest(input *PutAccountSettingInput) (req *requ
 // Modifies an account setting. Account settings are set on a per-Region basis.
 //
 // If you change the account setting for the root user, the default settings
-// for all of the IAM users and roles that no individual account setting was
-// specified are reset for. For more information, see Account Settings (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html)
+// for all of the users and roles that no individual account setting was specified
+// are reset for. For more information, see Account Settings (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // When serviceLongArnFormat, taskLongArnFormat, or containerInstanceLongArnFormat
 // are specified, the Amazon Resource Name (ARN) and resource ID format of the
-// resource type for a specified IAM user, IAM role, or the root user for an
-// account is affected. The opt-in and opt-out account setting must be set for
-// each Amazon ECS resource separately. The ARN and resource ID format of a
-// resource is defined by the opt-in status of the IAM user or role that created
-// the resource. You must turn on this setting to use Amazon ECS features such
-// as resource tagging.
+// resource type for a specified user, role, or the root user for an account
+// is affected. The opt-in and opt-out account setting must be set for each
+// Amazon ECS resource separately. The ARN and resource ID format of a resource
+// is defined by the opt-in status of the user or role that created the resource.
+// You must turn on this setting to use Amazon ECS features such as resource
+// tagging.
 //
 // When awsvpcTrunking is specified, the elastic network interface (ENI) limit
 // for any new container instances that support the feature is changed. If awsvpcTrunking
@@ -3961,7 +4074,7 @@ func (c *ECS) PutAccountSettingDefaultRequest(input *PutAccountSettingDefaultInp
 
 // PutAccountSettingDefault API operation for Amazon EC2 Container Service.
 //
-// Modifies an account setting for all IAM users on an account for whom no individual
+// Modifies an account setting for all users on an account for whom no individual
 // account setting has been specified. Account settings are set on a per-Region
 // basis.
 //
@@ -4368,11 +4481,11 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 // see Amazon ECS Task Definitions (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
-// You can specify an IAM role for your task with the taskRoleArn parameter.
-// When you specify an IAM role for a task, its containers can then use the
-// latest versions of the CLI or SDKs to make API requests to the Amazon Web
-// Services services that are specified in the IAM policy that's associated
-// with the role. For more information, see IAM Roles for Tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
+// You can specify a role for your task with the taskRoleArn parameter. When
+// you specify a role for a task, its containers can then use the latest versions
+// of the CLI or SDKs to make API requests to the Amazon Web Services services
+// that are specified in the policy that's associated with the role. For more
+// information, see IAM Roles for Tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // You can specify a Docker networking mode for the containers in your task
@@ -5932,8 +6045,8 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 //     number of running tasks for this service.
 //
 // You must have a service-linked role when you update any of the following
-// service properties. If you specified a custom IAM role when you created the
-// service, Amazon ECS automatically replaces the roleARN (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Service.html#ECS-Type-Service-roleArn)
+// service properties. If you specified a custom role when you created the service,
+// Amazon ECS automatically replaces the roleARN (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Service.html#ECS-Type-Service-roleArn)
 // associated with the service with the ARN of your service-linked role. For
 // more information, see Service-linked roles (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html)
 // in the Amazon Elastic Container Service Developer Guide.
@@ -6719,20 +6832,20 @@ type AutoScalingGroupProvider struct {
 
 	// The managed termination protection setting to use for the Auto Scaling group
 	// capacity provider. This determines whether the Auto Scaling group has managed
-	// termination protection. The default is disabled.
+	// termination protection. The default is off.
 	//
 	// When using managed termination protection, managed scaling must also be used
 	// otherwise managed termination protection doesn't work.
 	//
-	// When managed termination protection is enabled, Amazon ECS prevents the Amazon
+	// When managed termination protection is on, Amazon ECS prevents the Amazon
 	// EC2 instances in an Auto Scaling group that contain tasks from being terminated
 	// during a scale-in action. The Auto Scaling group and each instance in the
 	// Auto Scaling group must have instance protection from scale-in actions enabled
 	// as well. For more information, see Instance Protection (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection)
 	// in the Auto Scaling User Guide.
 	//
-	// When managed termination protection is disabled, your Amazon EC2 instances
-	// aren't protected from termination when the Auto Scaling group scales in.
+	// When managed termination protection is off, your Amazon EC2 instances aren't
+	// protected from termination when the Auto Scaling group scales in.
 	ManagedTerminationProtection *string `locationName:"managedTerminationProtection" type:"string" enum:"ManagedTerminationProtection"`
 }
 
@@ -6804,15 +6917,15 @@ type AutoScalingGroupProviderUpdate struct {
 	// When using managed termination protection, managed scaling must also be used
 	// otherwise managed termination protection doesn't work.
 	//
-	// When managed termination protection is enabled, Amazon ECS prevents the Amazon
+	// When managed termination protection is on, Amazon ECS prevents the Amazon
 	// EC2 instances in an Auto Scaling group that contain tasks from being terminated
 	// during a scale-in action. The Auto Scaling group and each instance in the
-	// Auto Scaling group must have instance protection from scale-in actions enabled.
+	// Auto Scaling group must have instance protection from scale-in actions on.
 	// For more information, see Instance Protection (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection)
 	// in the Auto Scaling User Guide.
 	//
-	// When managed termination protection is disabled, your Amazon EC2 instances
-	// aren't protected from termination when the Auto Scaling group scales in.
+	// When managed termination protection is off, your Amazon EC2 instances aren't
+	// protected from termination when the Auto Scaling group scales in.
 	ManagedTerminationProtection *string `locationName:"managedTerminationProtection" type:"string" enum:"ManagedTerminationProtection"`
 }
 
@@ -7376,7 +7489,7 @@ type Cluster struct {
 	ServiceConnectDefaults *ClusterServiceConnectDefaults `locationName:"serviceConnectDefaults" type:"structure"`
 
 	// The settings for the cluster. This parameter indicates whether CloudWatch
-	// Container Insights is enabled or disabled for a cluster.
+	// Container Insights is on or off for a cluster.
 	Settings []*ClusterSetting `locationName:"settings" type:"list"`
 
 	// Additional information about your clusters that are separated by launch type.
@@ -8005,9 +8118,10 @@ type ClusterSetting struct {
 
 	// The value to set for the cluster setting. The supported values are enabled
 	// and disabled. If enabled is specified, CloudWatch Container Insights will
-	// be enabled for the cluster, otherwise it will be disabled unless the containerInsights
-	// account setting is enabled. If a cluster value is specified, it will override
-	// the containerInsights value set with PutAccountSetting or PutAccountSettingDefault.
+	// be enabled for the cluster, otherwise it will be off unless the containerInsights
+	// account setting is turned on. If a cluster value is specified, it will override
+	// the containerInsights value set with PutAccountSetting (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSetting.html)
+	// or PutAccountSettingDefault (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSettingDefault.html).
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -8312,8 +8426,8 @@ type ContainerDefinition struct {
 	//    * Windows platform version 1.0.0 or later.
 	DependsOn []*ContainerDependency `locationName:"dependsOn" type:"list"`
 
-	// When this parameter is true, networking is disabled within the container.
-	// This parameter maps to NetworkDisabled in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
+	// When this parameter is true, networking is off within the container. This
+	// parameter maps to NetworkDisabled in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/).
 	//
 	// This parameter is not supported for Windows containers.
@@ -8773,7 +8887,7 @@ type ContainerDefinition struct {
 	// set by the operating system with the exception of the nofile resource limit
 	// parameter which Fargate overrides. The nofile resource limit sets a restriction
 	// on the number of open files that a container can use. The default nofile
-	// soft limit is 1024 and hard limit is 4096.
+	// soft limit is 1024 and the default hard limit is 4096.
 	//
 	// This parameter requires version 1.18 of the Docker Remote API or greater
 	// on your container instance. To check the Docker Remote API version on your
@@ -9948,20 +10062,23 @@ type CreateClusterInput struct {
 	// The short name of one or more capacity providers to associate with the cluster.
 	// A capacity provider must be associated with a cluster before it can be included
 	// as part of the default capacity provider strategy of the cluster or used
-	// in a capacity provider strategy when calling the CreateService or RunTask
+	// in a capacity provider strategy when calling the CreateService (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html)
+	// or RunTask (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)
 	// actions.
 	//
 	// If specifying a capacity provider that uses an Auto Scaling group, the capacity
 	// provider must be created but not associated with another cluster. New Auto
 	// Scaling group capacity providers can be created with the CreateCapacityProvider
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCapacityProvider.html)
 	// API operation.
 	//
 	// To use a Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT
 	// capacity providers. The Fargate capacity providers are available to all accounts
 	// and only need to be associated with a cluster to be used.
 	//
-	// The PutClusterCapacityProviders API operation is used to update the list
-	// of available capacity providers for a cluster after the cluster is created.
+	// The PutCapacityProvider (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutCapacityProvider.html)
+	// API operation is used to update the list of available capacity providers
+	// for a cluster after the cluster is created.
 	CapacityProviders []*string `locationName:"capacityProviders" type:"list"`
 
 	// The name of your cluster. If you don't specify a name for your cluster, you
@@ -9974,9 +10091,10 @@ type CreateClusterInput struct {
 
 	// The capacity provider strategy to set as the default for the cluster. After
 	// a default capacity provider strategy is set for a cluster, when you call
-	// the RunTask or CreateService APIs with no capacity provider strategy or launch
-	// type specified, the default capacity provider strategy for the cluster is
-	// used.
+	// the CreateService (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html)
+	// or RunTask (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)
+	// APIs with no capacity provider strategy or launch type specified, the default
+	// capacity provider strategy for the cluster is used.
 	//
 	// If a default capacity provider strategy isn't defined for a cluster when
 	// it was created, it can be defined later with the PutClusterCapacityProviders
@@ -10985,11 +11103,11 @@ type DeleteAccountSettingInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
 
-	// The Amazon Resource Name (ARN) of the principal. It can be an IAM user, IAM
-	// role, or the root user. If you specify the root user, it disables the account
-	// setting for all IAM users, IAM roles, and the root user of the account unless
-	// an IAM user or role explicitly overrides these settings. If this field is
-	// omitted, the setting is changed only for the authenticated user.
+	// The Amazon Resource Name (ARN) of the principal. It can be an user, role,
+	// or the root user. If you specify the root user, it disables the account setting
+	// for all users, roles, and the root user of the account unless a user or role
+	// explicitly overrides these settings. If this field is omitted, the setting
+	// is changed only for the authenticated user.
 	PrincipalArn *string `locationName:"principalArn" type:"string"`
 }
 
@@ -11419,6 +11537,95 @@ func (s DeleteServiceOutput) GoString() string {
 // SetService sets the Service field's value.
 func (s *DeleteServiceOutput) SetService(v *Service) *DeleteServiceOutput {
 	s.Service = v
+	return s
+}
+
+type DeleteTaskDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
+	// of the task definition to delete. You must specify a revision.
+	//
+	// You can specify up to 10 task definitions as a comma separated list.
+	//
+	// TaskDefinitions is a required field
+	TaskDefinitions []*string `locationName:"taskDefinitions" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTaskDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTaskDefinitionsInput"}
+	if s.TaskDefinitions == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskDefinitions"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTaskDefinitions sets the TaskDefinitions field's value.
+func (s *DeleteTaskDefinitionsInput) SetTaskDefinitions(v []*string) *DeleteTaskDefinitionsInput {
+	s.TaskDefinitions = v
+	return s
+}
+
+type DeleteTaskDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Any failures associated with the call.
+	Failures []*Failure `locationName:"failures" type:"list"`
+
+	// The list of deleted task definitions.
+	TaskDefinitions []*TaskDefinition `locationName:"taskDefinitions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *DeleteTaskDefinitionsOutput) SetFailures(v []*Failure) *DeleteTaskDefinitionsOutput {
+	s.Failures = v
+	return s
+}
+
+// SetTaskDefinitions sets the TaskDefinitions field's value.
+func (s *DeleteTaskDefinitionsOutput) SetTaskDefinitions(v []*TaskDefinition) *DeleteTaskDefinitionsOutput {
+	s.TaskDefinitions = v
 	return s
 }
 
@@ -11872,7 +12079,7 @@ func (s *DeploymentAlarms) SetRollback(v bool) *DeploymentAlarms {
 }
 
 // The deployment circuit breaker can only be used for services using the rolling
-// update (ECS) deployment type that aren't behind a Classic Load Balancer.
+// update (ECS) deployment type.
 //
 // The deployment circuit breaker determines whether a service deployment will
 // fail if the service can't reach a steady state. If enabled, a service deployment
@@ -11955,10 +12162,12 @@ type DeploymentConfiguration struct {
 	// update (ECS) deployment type.
 	//
 	// The deployment circuit breaker determines whether a service deployment will
-	// fail if the service can't reach a steady state. If deployment circuit breaker
-	// is enabled, a service deployment will transition to a failed state and stop
-	// launching new tasks. If rollback is enabled, when a service deployment fails,
-	// the service is rolled back to the last deployment that completed successfully.
+	// fail if the service can't reach a steady state. If you use the deployment
+	// circuit breaker, a service deployment will transition to a failed state and
+	// stop launching new tasks. If you use the rollback option, when a service
+	// deployment fails, the service is rolled back to the last deployment that
+	// completed successfully. For more information, see Rolling update (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html)
+	// in the Amazon Elastic Container Service Developer Guide
 	DeploymentCircuitBreaker *DeploymentCircuitBreaker `locationName:"deploymentCircuitBreaker" type:"structure"`
 
 	// If a service is using the rolling update (ECS) deployment type, the maximumPercent
@@ -13412,11 +13621,11 @@ type EFSAuthorizationConfig struct {
 	// in the Amazon Elastic File System User Guide.
 	AccessPointId *string `locationName:"accessPointId" type:"string"`
 
-	// Determines whether to use the Amazon ECS task IAM role defined in a task
-	// definition when mounting the Amazon EFS file system. If enabled, transit
-	// encryption must be enabled in the EFSVolumeConfiguration. If this parameter
-	// is omitted, the default value of DISABLED is used. For more information,
-	// see Using Amazon EFS access points (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html#efs-volume-accesspoints)
+	// Determines whether to use the Amazon ECS task role defined in a task definition
+	// when mounting the Amazon EFS file system. If enabled, transit encryption
+	// must be enabled in the EFSVolumeConfiguration. If this parameter is omitted,
+	// the default value of DISABLED is used. For more information, see Using Amazon
+	// EFS access points (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html#efs-volume-accesspoints)
 	// in the Amazon Elastic Container Service Developer Guide.
 	Iam *string `locationName:"iam" type:"string" enum:"EFSAuthorizationConfigIAM"`
 }
@@ -13854,7 +14063,7 @@ type ExecuteCommandLogConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Determines whether to use encryption on the CloudWatch logs. If not specified,
-	// encryption will be disabled.
+	// encryption will be off.
 	CloudWatchEncryptionEnabled *bool `locationName:"cloudWatchEncryptionEnabled" type:"boolean"`
 
 	// The name of the CloudWatch log group to send logs to.
@@ -14451,14 +14660,15 @@ type HealthCheck struct {
 	// default shell.
 	//
 	// When you use the Amazon Web Services Management Console JSON panel, the Command
-	// Line Interface, or the APIs, enclose the list of commands in brackets.
+	// Line Interface, or the APIs, enclose the list of commands in double quotes
+	// and brackets.
 	//
 	// [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
 	//
-	// You don't need to include the brackets when you use the Amazon Web Services
-	// Management Console.
+	// You don't include the double quotes and brackets when you use the Amazon
+	// Web Services Management Console.
 	//
-	// "CMD-SHELL", "curl -f http://localhost/ || exit 1"
+	// CMD-SHELL, curl -f http://localhost/ || exit 1
 	//
 	// An exit code of 0 indicates success, and non-zero exit code indicates failure.
 	// For more information, see HealthCheck in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
@@ -14478,7 +14688,7 @@ type HealthCheck struct {
 
 	// The optional grace period to provide containers time to bootstrap before
 	// failed health checks count towards the maximum number of retries. You can
-	// specify between 0 and 300 seconds. By default, the startPeriod is disabled.
+	// specify between 0 and 300 seconds. By default, the startPeriod is off.
 	//
 	// If a health check succeeds within the startPeriod, then the container is
 	// considered healthy and any subsequent failures count toward the maximum number
@@ -15264,9 +15474,9 @@ type ListAccountSettingsInput struct {
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The ARN of the principal, which can be an IAM user, IAM role, or the root
-	// user. If this field is omitted, the account settings are listed only for
-	// the authenticated user.
+	// The ARN of the principal, which can be a user, role, or the root user. If
+	// this field is omitted, the account settings are listed only for the authenticated
+	// user.
 	//
 	// Federated users assume the account setting of the root user and can't have
 	// explicit account settings set for them.
@@ -16905,8 +17115,8 @@ func (s *ManagedAgentStateChange) SetStatus(v string) *ManagedAgentStateChange {
 // managed scaling (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html#asg-capacity-providers-managed-scaling)
 // in the Amazon Elastic Container Service Developer Guide.
 //
-// If managed scaling is disabled, the user must manage the scaling of the Auto
-// Scaling group.
+// If managed scaling is off, the user must manage the scaling of the Auto Scaling
+// group.
 type ManagedScaling struct {
 	_ struct{} `type:"structure"`
 
@@ -17316,7 +17526,7 @@ func (s *NetworkBinding) SetProtocol(v string) *NetworkBinding {
 	return s
 }
 
-// An object representing the network configuration for a task or service.
+// The network configuration for a task or service.
 type NetworkConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -17992,8 +18202,8 @@ type ProtectedTask struct {
 	// The epoch time when protection for the task will expire.
 	ExpirationDate *time.Time `locationName:"expirationDate" type:"timestamp"`
 
-	// The protection status of the task. If scale-in protection is enabled for
-	// a task, the value is true. Otherwise, it is false.
+	// The protection status of the task. If scale-in protection is on for a task,
+	// the value is true. Otherwise, it is false.
 	ProtectionEnabled *bool `locationName:"protectionEnabled" type:"boolean"`
 
 	// The task ARN.
@@ -18257,11 +18467,11 @@ type PutAccountSettingInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
 
-	// The ARN of the principal, which can be an IAM user, IAM role, or the root
-	// user. If you specify the root user, it modifies the account setting for all
-	// IAM users, IAM roles, and the root user of the account unless an IAM user
-	// or role explicitly overrides these settings. If this field is omitted, the
-	// setting is changed only for the authenticated user.
+	// The ARN of the principal, which can be a user, role, or the root user. If
+	// you specify the root user, it modifies the account setting for all users,
+	// roles, and the root user of the account unless a user or role explicitly
+	// overrides these settings. If this field is omitted, the setting is changed
+	// only for the authenticated user.
 	//
 	// Federated users assume the account setting of the root user and can't have
 	// explicit account settings set for them.
@@ -19790,11 +20000,11 @@ type RunTaskInput struct {
 	// The family and revision (family:revision) or full ARN of the task definition
 	// to run. If a revision isn't specified, the latest ACTIVE revision is used.
 	//
-	// When you create an IAM policy for run-task, you can set the resource to be
-	// the latest task definition revision, or a specific revision.
+	// When you create a policy for run-task, you can set the resource to be the
+	// latest task definition revision, or a specific revision.
 	//
 	// The full ARN value must match the value that you specified as the Resource
-	// of the IAM principal's permissions policy.
+	// of the principal's permissions policy.
 	//
 	// When you specify the policy resource as the latest task definition version
 	// (by setting the Resource in the policy to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName),
@@ -21373,12 +21583,11 @@ type Setting struct {
 	// The Amazon ECS resource name.
 	Name *string `locationName:"name" type:"string" enum:"SettingName"`
 
-	// The ARN of the principal. It can be an IAM user, IAM role, or the root user.
-	// If this field is omitted, the authenticated user is assumed.
+	// The ARN of the principal. It can be a user, role, or the root user. If this
+	// field is omitted, the authenticated user is assumed.
 	PrincipalArn *string `locationName:"principalArn" type:"string"`
 
-	// Determines whether the account setting is enabled or disabled for the specified
-	// resource.
+	// Determines whether the account setting is on or off for the specified resource.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -21697,7 +21906,7 @@ type StopTaskInput struct {
 	// API operations on this task. Up to 255 characters are allowed in this message.
 	Reason *string `locationName:"reason" type:"string"`
 
-	// The task ID or full Amazon Resource Name (ARN) of the task to stop.
+	// The task ID of the task to stop.
 	//
 	// Task is a required field
 	Task *string `locationName:"task" type:"string" required:"true"`
@@ -23568,8 +23777,8 @@ type TaskOverride struct {
 	//    * Windows platform version 1.0.0 or later.
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the task execution IAM role override for
-	// the task. For more information, see Amazon ECS task execution IAM role (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html)
+	// The Amazon Resource Name (ARN) of the task execution role override for the
+	// task. For more information, see Amazon ECS task execution IAM role (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string"`
 
@@ -23579,10 +23788,9 @@ type TaskOverride struct {
 	// The memory override for the task.
 	Memory *string `locationName:"memory" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that containers in this task
-	// can assume. All containers in this task are granted the permissions that
-	// are specified in this role. For more information, see IAM Role for Tasks
-	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
+	// The Amazon Resource Name (ARN) of the role that containers in this task can
+	// assume. All containers in this task are granted the permissions that are
+	// specified in this role. For more information, see IAM Role for Tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
 }
@@ -24140,7 +24348,9 @@ func (s *Tmpfs) SetSize(v int64) *Tmpfs {
 // set by the operating system with the exception of the nofile resource limit
 // parameter which Fargate overrides. The nofile resource limit sets a restriction
 // on the number of open files that a container can use. The default nofile
-// soft limit is 1024 and hard limit is 4096.
+// soft limit is 1024 and the default hard limit is 4096.
+//
+// You can specify the ulimit settings for a container in a task definition.
 type Ulimit struct {
 	_ struct{} `type:"structure"`
 
@@ -26887,6 +27097,9 @@ const (
 
 	// TaskDefinitionStatusInactive is a TaskDefinitionStatus enum value
 	TaskDefinitionStatusInactive = "INACTIVE"
+
+	// TaskDefinitionStatusDeleteInProgress is a TaskDefinitionStatus enum value
+	TaskDefinitionStatusDeleteInProgress = "DELETE_IN_PROGRESS"
 )
 
 // TaskDefinitionStatus_Values returns all elements of the TaskDefinitionStatus enum
@@ -26894,6 +27107,7 @@ func TaskDefinitionStatus_Values() []string {
 	return []string{
 		TaskDefinitionStatusActive,
 		TaskDefinitionStatusInactive,
+		TaskDefinitionStatusDeleteInProgress,
 	}
 }
 

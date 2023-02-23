@@ -100,6 +100,10 @@ type LocationServiceAPI interface {
 	CreateGeofenceCollectionWithContext(aws.Context, *locationservice.CreateGeofenceCollectionInput, ...request.Option) (*locationservice.CreateGeofenceCollectionOutput, error)
 	CreateGeofenceCollectionRequest(*locationservice.CreateGeofenceCollectionInput) (*request.Request, *locationservice.CreateGeofenceCollectionOutput)
 
+	CreateKey(*locationservice.CreateKeyInput) (*locationservice.CreateKeyOutput, error)
+	CreateKeyWithContext(aws.Context, *locationservice.CreateKeyInput, ...request.Option) (*locationservice.CreateKeyOutput, error)
+	CreateKeyRequest(*locationservice.CreateKeyInput) (*request.Request, *locationservice.CreateKeyOutput)
+
 	CreateMap(*locationservice.CreateMapInput) (*locationservice.CreateMapOutput, error)
 	CreateMapWithContext(aws.Context, *locationservice.CreateMapInput, ...request.Option) (*locationservice.CreateMapOutput, error)
 	CreateMapRequest(*locationservice.CreateMapInput) (*request.Request, *locationservice.CreateMapOutput)
@@ -120,6 +124,10 @@ type LocationServiceAPI interface {
 	DeleteGeofenceCollectionWithContext(aws.Context, *locationservice.DeleteGeofenceCollectionInput, ...request.Option) (*locationservice.DeleteGeofenceCollectionOutput, error)
 	DeleteGeofenceCollectionRequest(*locationservice.DeleteGeofenceCollectionInput) (*request.Request, *locationservice.DeleteGeofenceCollectionOutput)
 
+	DeleteKey(*locationservice.DeleteKeyInput) (*locationservice.DeleteKeyOutput, error)
+	DeleteKeyWithContext(aws.Context, *locationservice.DeleteKeyInput, ...request.Option) (*locationservice.DeleteKeyOutput, error)
+	DeleteKeyRequest(*locationservice.DeleteKeyInput) (*request.Request, *locationservice.DeleteKeyOutput)
+
 	DeleteMap(*locationservice.DeleteMapInput) (*locationservice.DeleteMapOutput, error)
 	DeleteMapWithContext(aws.Context, *locationservice.DeleteMapInput, ...request.Option) (*locationservice.DeleteMapOutput, error)
 	DeleteMapRequest(*locationservice.DeleteMapInput) (*request.Request, *locationservice.DeleteMapOutput)
@@ -139,6 +147,10 @@ type LocationServiceAPI interface {
 	DescribeGeofenceCollection(*locationservice.DescribeGeofenceCollectionInput) (*locationservice.DescribeGeofenceCollectionOutput, error)
 	DescribeGeofenceCollectionWithContext(aws.Context, *locationservice.DescribeGeofenceCollectionInput, ...request.Option) (*locationservice.DescribeGeofenceCollectionOutput, error)
 	DescribeGeofenceCollectionRequest(*locationservice.DescribeGeofenceCollectionInput) (*request.Request, *locationservice.DescribeGeofenceCollectionOutput)
+
+	DescribeKey(*locationservice.DescribeKeyInput) (*locationservice.DescribeKeyOutput, error)
+	DescribeKeyWithContext(aws.Context, *locationservice.DescribeKeyInput, ...request.Option) (*locationservice.DescribeKeyOutput, error)
+	DescribeKeyRequest(*locationservice.DescribeKeyInput) (*request.Request, *locationservice.DescribeKeyOutput)
 
 	DescribeMap(*locationservice.DescribeMapInput) (*locationservice.DescribeMapOutput, error)
 	DescribeMapWithContext(aws.Context, *locationservice.DescribeMapInput, ...request.Option) (*locationservice.DescribeMapOutput, error)
@@ -216,6 +228,13 @@ type LocationServiceAPI interface {
 	ListGeofencesPages(*locationservice.ListGeofencesInput, func(*locationservice.ListGeofencesOutput, bool) bool) error
 	ListGeofencesPagesWithContext(aws.Context, *locationservice.ListGeofencesInput, func(*locationservice.ListGeofencesOutput, bool) bool, ...request.Option) error
 
+	ListKeys(*locationservice.ListKeysInput) (*locationservice.ListKeysOutput, error)
+	ListKeysWithContext(aws.Context, *locationservice.ListKeysInput, ...request.Option) (*locationservice.ListKeysOutput, error)
+	ListKeysRequest(*locationservice.ListKeysInput) (*request.Request, *locationservice.ListKeysOutput)
+
+	ListKeysPages(*locationservice.ListKeysInput, func(*locationservice.ListKeysOutput, bool) bool) error
+	ListKeysPagesWithContext(aws.Context, *locationservice.ListKeysInput, func(*locationservice.ListKeysOutput, bool) bool, ...request.Option) error
+
 	ListMaps(*locationservice.ListMapsInput) (*locationservice.ListMapsOutput, error)
 	ListMapsWithContext(aws.Context, *locationservice.ListMapsInput, ...request.Option) (*locationservice.ListMapsOutput, error)
 	ListMapsRequest(*locationservice.ListMapsInput) (*request.Request, *locationservice.ListMapsOutput)
@@ -282,6 +301,10 @@ type LocationServiceAPI interface {
 	UpdateGeofenceCollection(*locationservice.UpdateGeofenceCollectionInput) (*locationservice.UpdateGeofenceCollectionOutput, error)
 	UpdateGeofenceCollectionWithContext(aws.Context, *locationservice.UpdateGeofenceCollectionInput, ...request.Option) (*locationservice.UpdateGeofenceCollectionOutput, error)
 	UpdateGeofenceCollectionRequest(*locationservice.UpdateGeofenceCollectionInput) (*request.Request, *locationservice.UpdateGeofenceCollectionOutput)
+
+	UpdateKey(*locationservice.UpdateKeyInput) (*locationservice.UpdateKeyOutput, error)
+	UpdateKeyWithContext(aws.Context, *locationservice.UpdateKeyInput, ...request.Option) (*locationservice.UpdateKeyOutput, error)
+	UpdateKeyRequest(*locationservice.UpdateKeyInput) (*request.Request, *locationservice.UpdateKeyOutput)
 
 	UpdateMap(*locationservice.UpdateMapInput) (*locationservice.UpdateMapOutput, error)
 	UpdateMapWithContext(aws.Context, *locationservice.UpdateMapInput, ...request.Option) (*locationservice.UpdateMapOutput, error)
