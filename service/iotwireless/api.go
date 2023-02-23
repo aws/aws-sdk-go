@@ -4723,7 +4723,7 @@ func (c *IoTWireless) GetResourcePositionRequest(input *GetResourcePositionInput
 // GetResourcePosition API operation for AWS IoT Wireless.
 //
 // Get the position information for a given wireless device or a wireless gateway
-// resource. The postion information uses the World Geodetic System (WGS84)
+// resource. The position information uses the World Geodetic System (WGS84)
 // (https://gisgeography.com/wgs84-world-geodetic-system/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9766,7 +9766,7 @@ func (c *IoTWireless) UpdateResourcePositionRequest(input *UpdateResourcePositio
 // UpdateResourcePosition API operation for AWS IoT Wireless.
 //
 // Update the position information of a given wireless device or a wireless
-// gateway resource. The postion coordinates are based on the World Geodetic
+// gateway resource. The position coordinates are based on the World Geodetic
 // System (WGS84) (https://gisgeography.com/wgs84-world-geodetic-system/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11187,7 +11187,7 @@ type CdmaObj struct {
 	// CDMA base station latitude in degrees.
 	BaseLat *float64 `type:"float"`
 
-	// CDMA base station longtitude in degrees.
+	// CDMA base station longitude in degrees.
 	BaseLng *float64 `type:"float"`
 
 	// CDMA base station ID (BSID).
@@ -12002,11 +12002,28 @@ type CreateFuotaTaskInput struct {
 	// FirmwareUpdateRole is a required field
 	FirmwareUpdateRole *string `min:"1" type:"string" required:"true"`
 
+	// The interval of sending fragments in milliseconds. Currently the interval
+	// will be rounded to the nearest second. Note that this interval only controls
+	// the timing when the cloud sends the fragments down. The actual delay of receiving
+	// fragments at device side depends on the device's class and the communication
+	// delay with the cloud.
+	FragmentIntervalMS *int64 `min:"1" type:"integer"`
+
+	// The size of each fragment in bytes. Currently only supported in fuota tasks
+	// with multicast groups.
+	FragmentSizeBytes *int64 `min:"1" type:"integer"`
+
 	// The LoRaWAN information used with a FUOTA task.
 	LoRaWAN *LoRaWANFuotaTask `type:"structure"`
 
 	// The name of a FUOTA task.
 	Name *string `type:"string"`
+
+	// The percentage of added redundant fragments. For example, if firmware file
+	// is 100 bytes and fragment size is 10 bytes, with RedundancyPercent set to
+	// 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 *
+	// 50%) = 15.
+	RedundancyPercent *int64 `type:"integer"`
 
 	// The tag to attach to the specified resource. Tags are metadata that you can
 	// use to manage a resource.
@@ -12049,6 +12066,12 @@ func (s *CreateFuotaTaskInput) Validate() error {
 	if s.FirmwareUpdateRole != nil && len(*s.FirmwareUpdateRole) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FirmwareUpdateRole", 1))
 	}
+	if s.FragmentIntervalMS != nil && *s.FragmentIntervalMS < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FragmentIntervalMS", 1))
+	}
+	if s.FragmentSizeBytes != nil && *s.FragmentSizeBytes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FragmentSizeBytes", 1))
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -12090,6 +12113,18 @@ func (s *CreateFuotaTaskInput) SetFirmwareUpdateRole(v string) *CreateFuotaTaskI
 	return s
 }
 
+// SetFragmentIntervalMS sets the FragmentIntervalMS field's value.
+func (s *CreateFuotaTaskInput) SetFragmentIntervalMS(v int64) *CreateFuotaTaskInput {
+	s.FragmentIntervalMS = &v
+	return s
+}
+
+// SetFragmentSizeBytes sets the FragmentSizeBytes field's value.
+func (s *CreateFuotaTaskInput) SetFragmentSizeBytes(v int64) *CreateFuotaTaskInput {
+	s.FragmentSizeBytes = &v
+	return s
+}
+
 // SetLoRaWAN sets the LoRaWAN field's value.
 func (s *CreateFuotaTaskInput) SetLoRaWAN(v *LoRaWANFuotaTask) *CreateFuotaTaskInput {
 	s.LoRaWAN = v
@@ -12099,6 +12134,12 @@ func (s *CreateFuotaTaskInput) SetLoRaWAN(v *LoRaWANFuotaTask) *CreateFuotaTaskI
 // SetName sets the Name field's value.
 func (s *CreateFuotaTaskInput) SetName(v string) *CreateFuotaTaskInput {
 	s.Name = &v
+	return s
+}
+
+// SetRedundancyPercent sets the RedundancyPercent field's value.
+func (s *CreateFuotaTaskInput) SetRedundancyPercent(v int64) *CreateFuotaTaskInput {
+	s.RedundancyPercent = &v
 	return s
 }
 
@@ -15514,6 +15555,17 @@ type GetFuotaTaskOutput struct {
 	// The firmware update role that is to be used with a FUOTA task.
 	FirmwareUpdateRole *string `min:"1" type:"string"`
 
+	// The interval of sending fragments in milliseconds. Currently the interval
+	// will be rounded to the nearest second. Note that this interval only controls
+	// the timing when the cloud sends the fragments down. The actual delay of receiving
+	// fragments at device side depends on the device's class and the communication
+	// delay with the cloud.
+	FragmentIntervalMS *int64 `min:"1" type:"integer"`
+
+	// The size of each fragment in bytes. Currently only supported in fuota tasks
+	// with multicast groups.
+	FragmentSizeBytes *int64 `min:"1" type:"integer"`
+
 	// The ID of a FUOTA task.
 	Id *string `type:"string"`
 
@@ -15522,6 +15574,12 @@ type GetFuotaTaskOutput struct {
 
 	// The name of a FUOTA task.
 	Name *string `type:"string"`
+
+	// The percentage of added redundant fragments. For example, if firmware file
+	// is 100 bytes and fragment size is 10 bytes, with RedundancyPercent set to
+	// 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 *
+	// 50%) = 15.
+	RedundancyPercent *int64 `type:"integer"`
 
 	// The status of a FUOTA task.
 	Status *string `type:"string" enum:"FuotaTaskStatus"`
@@ -15575,6 +15633,18 @@ func (s *GetFuotaTaskOutput) SetFirmwareUpdateRole(v string) *GetFuotaTaskOutput
 	return s
 }
 
+// SetFragmentIntervalMS sets the FragmentIntervalMS field's value.
+func (s *GetFuotaTaskOutput) SetFragmentIntervalMS(v int64) *GetFuotaTaskOutput {
+	s.FragmentIntervalMS = &v
+	return s
+}
+
+// SetFragmentSizeBytes sets the FragmentSizeBytes field's value.
+func (s *GetFuotaTaskOutput) SetFragmentSizeBytes(v int64) *GetFuotaTaskOutput {
+	s.FragmentSizeBytes = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *GetFuotaTaskOutput) SetId(v string) *GetFuotaTaskOutput {
 	s.Id = &v
@@ -15590,6 +15660,12 @@ func (s *GetFuotaTaskOutput) SetLoRaWAN(v *LoRaWANFuotaTaskGetInfo) *GetFuotaTas
 // SetName sets the Name field's value.
 func (s *GetFuotaTaskOutput) SetName(v string) *GetFuotaTaskOutput {
 	s.Name = &v
+	return s
+}
+
+// SetRedundancyPercent sets the RedundancyPercent field's value.
+func (s *GetFuotaTaskOutput) SetRedundancyPercent(v int64) *GetFuotaTaskOutput {
+	s.RedundancyPercent = &v
 	return s
 }
 
@@ -16241,7 +16317,7 @@ type GetPositionEstimateInput struct {
 	Ip *Ip `type:"structure"`
 
 	// Optional information that specifies the time when the position information
-	// will be resolved. It uses the UNIX timestamp format. If not specified, the
+	// will be resolved. It uses the Unix timestamp format. If not specified, the
 	// time at which the request was received will be used.
 	Timestamp *time.Time `type:"timestamp"`
 
@@ -16750,7 +16826,7 @@ type GetResourcePositionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the resource for which position information is retrieved.
-	// It can be the wireless device ID or the wireless gateway ID depending on
+	// It can be the wireless device ID or the wireless gateway ID, depending on
 	// the resource type.
 	//
 	// ResourceIdentifier is a required field
@@ -18042,7 +18118,7 @@ type Gnss struct {
 	AssistAltitude *float64 `type:"float"`
 
 	// Optional assistance position information, specified using latitude and longitude
-	// values in degrees. The co-ordinates are inside the WGS84 reference frame.
+	// values in degrees. The coordinates are inside the WGS84 reference frame.
 	AssistPosition []*float64 `min:"2" type:"list"`
 
 	// Optional parameter that gives an estimate of the time when the GNSS scan
@@ -25619,6 +25695,17 @@ type UpdateFuotaTaskInput struct {
 	// The firmware update role that is to be used with a FUOTA task.
 	FirmwareUpdateRole *string `min:"1" type:"string"`
 
+	// The interval of sending fragments in milliseconds. Currently the interval
+	// will be rounded to the nearest second. Note that this interval only controls
+	// the timing when the cloud sends the fragments down. The actual delay of receiving
+	// fragments at device side depends on the device's class and the communication
+	// delay with the cloud.
+	FragmentIntervalMS *int64 `min:"1" type:"integer"`
+
+	// The size of each fragment in bytes. Currently only supported in fuota tasks
+	// with multicast groups.
+	FragmentSizeBytes *int64 `min:"1" type:"integer"`
+
 	// The ID of a FUOTA task.
 	//
 	// Id is a required field
@@ -25629,6 +25716,12 @@ type UpdateFuotaTaskInput struct {
 
 	// The name of a FUOTA task.
 	Name *string `type:"string"`
+
+	// The percentage of added redundant fragments. For example, if firmware file
+	// is 100 bytes and fragment size is 10 bytes, with RedundancyPercent set to
+	// 50(%), the final number of encoded fragments is (100 / 10) + (100 / 10 *
+	// 50%) = 15.
+	RedundancyPercent *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -25657,6 +25750,12 @@ func (s *UpdateFuotaTaskInput) Validate() error {
 	}
 	if s.FirmwareUpdateRole != nil && len(*s.FirmwareUpdateRole) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FirmwareUpdateRole", 1))
+	}
+	if s.FragmentIntervalMS != nil && *s.FragmentIntervalMS < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FragmentIntervalMS", 1))
+	}
+	if s.FragmentSizeBytes != nil && *s.FragmentSizeBytes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FragmentSizeBytes", 1))
 	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
@@ -25689,6 +25788,18 @@ func (s *UpdateFuotaTaskInput) SetFirmwareUpdateRole(v string) *UpdateFuotaTaskI
 	return s
 }
 
+// SetFragmentIntervalMS sets the FragmentIntervalMS field's value.
+func (s *UpdateFuotaTaskInput) SetFragmentIntervalMS(v int64) *UpdateFuotaTaskInput {
+	s.FragmentIntervalMS = &v
+	return s
+}
+
+// SetFragmentSizeBytes sets the FragmentSizeBytes field's value.
+func (s *UpdateFuotaTaskInput) SetFragmentSizeBytes(v int64) *UpdateFuotaTaskInput {
+	s.FragmentSizeBytes = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *UpdateFuotaTaskInput) SetId(v string) *UpdateFuotaTaskInput {
 	s.Id = &v
@@ -25704,6 +25815,12 @@ func (s *UpdateFuotaTaskInput) SetLoRaWAN(v *LoRaWANFuotaTask) *UpdateFuotaTaskI
 // SetName sets the Name field's value.
 func (s *UpdateFuotaTaskInput) SetName(v string) *UpdateFuotaTaskInput {
 	s.Name = &v
+	return s
+}
+
+// SetRedundancyPercent sets the RedundancyPercent field's value.
+func (s *UpdateFuotaTaskInput) SetRedundancyPercent(v int64) *UpdateFuotaTaskInput {
+	s.RedundancyPercent = &v
 	return s
 }
 
@@ -26412,7 +26529,7 @@ type UpdateResourcePositionInput struct {
 	GeoJsonPayload []byte `type:"blob"`
 
 	// The identifier of the resource for which position information is updated.
-	// It can be the wireless device ID or the wireless gateway ID depending on
+	// It can be the wireless device ID or the wireless gateway ID, depending on
 	// the resource type.
 	//
 	// ResourceIdentifier is a required field

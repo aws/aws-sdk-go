@@ -324,6 +324,10 @@ func (c *GuardDuty) CreateDetectorRequest(input *CreateDetectorInput) (req *requ
 // one detector per account per Region. All data sources are enabled in a new
 // detector by default.
 //
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -582,8 +586,8 @@ func (c *GuardDuty) CreateMembersRequest(input *CreateMembersInput) (req *reques
 // of the organization delegated administrator account, which must enable GuardDuty
 // prior to being added as a member.
 //
-// If you are adding accounts by invitation use this action after GuardDuty
-// has been enabled in potential member accounts and before using Invite Members
+// If you are adding accounts by invitation, use this action after GuardDuty
+// has bee enabled in potential member accounts and before using InviteMembers
 // (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -750,8 +754,8 @@ func (c *GuardDuty) CreateSampleFindingsRequest(input *CreateSampleFindingsInput
 
 // CreateSampleFindings API operation for Amazon GuardDuty.
 //
-// Generates example findings of types specified by the list of finding types.
-// If 'NULL' is specified for findingTypes, the API generates example findings
+// Generates sample findings of types specified by the list of finding types.
+// If 'NULL' is specified for findingTypes, the API generates sample findings
 // of all supported finding types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1593,6 +1597,10 @@ func (c *GuardDuty) DescribeMalwareScansRequest(input *DescribeMalwareScansInput
 // scans for their own accounts. An administrator can view the malware scans
 // for all the member accounts.
 //
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1726,6 +1734,10 @@ func (c *GuardDuty) DescribeOrganizationConfigurationRequest(input *DescribeOrga
 //
 // Returns information about the account selected as the delegated administrator
 // for GuardDuty.
+//
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2403,6 +2415,10 @@ func (c *GuardDuty) GetDetectorRequest(input *GetDetectorInput) (req *request.Re
 //
 // Retrieves an Amazon GuardDuty detector specified by the detectorId.
 //
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2896,6 +2912,10 @@ func (c *GuardDuty) GetMalwareScanSettingsRequest(input *GetMalwareScanSettingsI
 //
 // Returns the details of the malware scan settings.
 //
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3069,6 +3089,10 @@ func (c *GuardDuty) GetMemberDetectorsRequest(input *GetMemberDetectorsInput) (r
 // GetMemberDetectors API operation for Amazon GuardDuty.
 //
 // Describes which data sources are enabled for the member account's detector.
+//
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5388,6 +5412,10 @@ func (c *GuardDuty) UpdateDetectorRequest(input *UpdateDetectorInput) (req *requ
 //
 // Updates the Amazon GuardDuty detector specified by the detectorId.
 //
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5719,6 +5747,10 @@ func (c *GuardDuty) UpdateMalwareScanSettingsRequest(input *UpdateMalwareScanSet
 //
 // Updates the malware scan settings.
 //
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5800,6 +5832,10 @@ func (c *GuardDuty) UpdateMemberDetectorsRequest(input *UpdateMemberDetectorsInp
 // UpdateMemberDetectors API operation for Amazon GuardDuty.
 //
 // Contains information on member accounts to be updated.
+//
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5883,6 +5919,10 @@ func (c *GuardDuty) UpdateOrganizationConfigurationRequest(input *UpdateOrganiza
 // UpdateOrganizationConfiguration API operation for Amazon GuardDuty.
 //
 // Updates the delegated administrator account with the values provided.
+//
+// There might be regional differences because some data sources might not be
+// available in all the Amazon Web Services Regions where GuardDuty is presently
+// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7486,6 +7526,10 @@ type CreateDetectorInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// Describes which data sources will be enabled for the detector.
+	//
+	// There might be regional differences because some data sources might not be
+	// available in all the Amazon Web Services Regions where GuardDuty is presently
+	// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
 	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
 
 	// A Boolean value that specifies whether the detector is to be enabled.
@@ -7620,9 +7664,9 @@ type CreateFilterInput struct {
 	// The idempotency token for the create request.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The description of the filter. Valid special characters include period (.),
-	// underscore (_), dash (-), and whitespace. The new line character is considered
-	// to be an invalid input for description.
+	// The description of the filter. Valid characters include alphanumeric characters,
+	// and special characters such as -, ., :, { }, [ ], ( ), /, \t, \n, \x0B, \f,
+	// \r, _, and whitespace.
 	Description *string `locationName:"description" type:"string"`
 
 	// The ID of the detector belonging to the GuardDuty account that you want to
@@ -7638,8 +7682,6 @@ type CreateFilterInput struct {
 	//    * accountId
 	//
 	//    * region
-	//
-	//    * confidence
 	//
 	//    * id
 	//
@@ -7738,10 +7780,6 @@ type CreateFilterInput struct {
 	//    * resource.s3BucketDetails.tags.value
 	//
 	//    * resource.s3BucketDetails.type
-	//
-	//    * service.archived When this attribute is set to TRUE, only archived findings
-	//    are listed. When it's set to FALSE, only unarchived findings are listed.
-	//    When this attribute is not set, all existing findings are listed.
 	//
 	//    * service.resourceRole
 	//
@@ -7933,7 +7971,7 @@ type CreateIPSetInput struct {
 
 	// The user-friendly name to identify the IPSet.
 	//
-	// Allowed characters are alphanumerics, spaces, hyphens (-), and underscores
+	// Allowed characters are alphanumeric, whitespace, dash (-), and underscores
 	// (_).
 	//
 	// Name is a required field
@@ -9625,7 +9663,9 @@ type DescribeMalwareScansInput struct {
 	// from the previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Represents the criteria used for sorting scan entries.
+	// Represents the criteria used for sorting scan entries. The attributeName
+	// (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_SortCriteria.html#guardduty-Type-SortCriteria-attributeName)
+	// is required and it must be scanStartTime.
 	SortCriteria *SortCriteria `locationName:"sortCriteria" type:"structure"`
 }
 
@@ -16989,8 +17029,8 @@ func (s *RemotePortDetails) SetPortName(v string) *RemotePortDetails {
 type Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The IAM access key details (IAM user information) of a user that engaged
-	// in the activity that prompted GuardDuty to generate a finding.
+	// The IAM access key details (user information) of a user that engaged in the
+	// activity that prompted GuardDuty to generate a finding.
 	AccessKeyDetails *AccessKeyDetails `locationName:"accessKeyDetails" type:"structure"`
 
 	// Details of a container.
@@ -18231,8 +18271,7 @@ func (s *ServiceAdditionalInfo) SetValue(v string) *ServiceAdditionalInfo {
 type SortCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// Represents the finding attribute (for example, accountId) to sort findings
-	// by.
+	// Represents the finding attribute, such as accountId, that sorts the findings.
 	AttributeName *string `locationName:"attributeName" type:"string"`
 
 	// The order by which the sorted findings are to be displayed.
@@ -18786,7 +18825,7 @@ type TriggerDetails struct {
 	// The description of the scan trigger.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The ID of the GuardDuty finding that triggered the BirdDog scan.
+	// The ID of the GuardDuty finding that triggered the malware scan.
 	GuardDutyFindingId *string `locationName:"guardDutyFindingId" min:"1" type:"string"`
 }
 
@@ -19075,6 +19114,10 @@ type UpdateDetectorInput struct {
 	_ struct{} `type:"structure"`
 
 	// Describes which data sources will be updated.
+	//
+	// There might be regional differences because some data sources might not be
+	// available in all the Amazon Web Services Regions where GuardDuty is presently
+	// supported. For more information, see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
 	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
 
 	// The unique ID of the detector to update.
@@ -19182,9 +19225,10 @@ type UpdateFilterInput struct {
 	// filter.
 	Action *string `locationName:"action" min:"1" type:"string" enum:"FilterAction"`
 
-	// The description of the filter. Valid special characters include period (.),
-	// underscore (_), dash (-), and whitespace. The new line character is considered
-	// to be an invalid input for description.
+	// The description of the filter. Valid characters include alphanumeric characters,
+	// and special characters such as hyphen, period, colon, underscore, parentheses
+	// ({ }, [ ], and ( )), forward slash, horizontal tab, vertical tab, newline,
+	// form feed, return, and whitespace.
 	Description *string `locationName:"description" type:"string"`
 
 	// The unique ID of the detector that specifies the GuardDuty service where

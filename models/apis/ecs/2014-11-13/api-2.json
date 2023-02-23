@@ -162,6 +162,21 @@
         {"shape":"ServiceNotFoundException"}
       ]
     },
+    "DeleteTaskDefinitions":{
+      "name":"DeleteTaskDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTaskDefinitionsRequest"},
+      "output":{"shape":"DeleteTaskDefinitionsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServerException"}
+      ]
+    },
     "DeleteTaskSet":{
       "name":"DeleteTaskSet",
       "http":{
@@ -1554,6 +1569,20 @@
       "type":"structure",
       "members":{
         "service":{"shape":"Service"}
+      }
+    },
+    "DeleteTaskDefinitionsRequest":{
+      "type":"structure",
+      "required":["taskDefinitions"],
+      "members":{
+        "taskDefinitions":{"shape":"StringList"}
+      }
+    },
+    "DeleteTaskDefinitionsResponse":{
+      "type":"structure",
+      "members":{
+        "taskDefinitions":{"shape":"TaskDefinitionList"},
+        "failures":{"shape":"Failures"}
       }
     },
     "DeleteTaskSetRequest":{
@@ -3417,6 +3446,10 @@
       "type":"list",
       "member":{"shape":"TaskDefinitionField"}
     },
+    "TaskDefinitionList":{
+      "type":"list",
+      "member":{"shape":"TaskDefinition"}
+    },
     "TaskDefinitionPlacementConstraint":{
       "type":"structure",
       "members":{
@@ -3436,7 +3469,8 @@
       "type":"string",
       "enum":[
         "ACTIVE",
-        "INACTIVE"
+        "INACTIVE",
+        "DELETE_IN_PROGRESS"
       ]
     },
     "TaskField":{

@@ -2233,7 +2233,10 @@
         "LoRaWAN":{"shape":"LoRaWANFuotaTask"},
         "FirmwareUpdateImage":{"shape":"FirmwareUpdateImage"},
         "FirmwareUpdateRole":{"shape":"FirmwareUpdateRole"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "RedundancyPercent":{"shape":"RedundancyPercent"},
+        "FragmentSizeBytes":{"shape":"FragmentSizeBytes"},
+        "FragmentIntervalMS":{"shape":"FragmentIntervalMS"}
       }
     },
     "CreateFuotaTaskResponse":{
@@ -3021,6 +3024,14 @@
       "max":2048,
       "min":1
     },
+    "FragmentIntervalMS":{
+      "type":"integer",
+      "min":1
+    },
+    "FragmentSizeBytes":{
+      "type":"integer",
+      "min":1
+    },
     "FuotaDeviceStatus":{
       "type":"string",
       "enum":[
@@ -3180,7 +3191,10 @@
         "LoRaWAN":{"shape":"LoRaWANFuotaTaskGetInfo"},
         "FirmwareUpdateImage":{"shape":"FirmwareUpdateImage"},
         "FirmwareUpdateRole":{"shape":"FirmwareUpdateRole"},
-        "CreatedAt":{"shape":"CreatedAt"}
+        "CreatedAt":{"shape":"CreatedAt"},
+        "RedundancyPercent":{"shape":"RedundancyPercent"},
+        "FragmentSizeBytes":{"shape":"FragmentSizeBytes"},
+        "FragmentIntervalMS":{"shape":"FragmentIntervalMS"}
       }
     },
     "GetLogLevelsByResourceTypesRequest":{
@@ -4984,6 +4998,11 @@
       "min":-128
     },
     "RaAllowed":{"type":"boolean"},
+    "RedundancyPercent":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
     "RegParamsRevision":{
       "type":"string",
       "max":64
@@ -5700,7 +5719,10 @@
         "Description":{"shape":"Description"},
         "LoRaWAN":{"shape":"LoRaWANFuotaTask"},
         "FirmwareUpdateImage":{"shape":"FirmwareUpdateImage"},
-        "FirmwareUpdateRole":{"shape":"FirmwareUpdateRole"}
+        "FirmwareUpdateRole":{"shape":"FirmwareUpdateRole"},
+        "RedundancyPercent":{"shape":"RedundancyPercent"},
+        "FragmentSizeBytes":{"shape":"FragmentSizeBytes"},
+        "FragmentIntervalMS":{"shape":"FragmentIntervalMS"}
       }
     },
     "UpdateFuotaTaskResponse":{

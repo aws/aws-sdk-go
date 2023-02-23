@@ -1,3 +1,18 @@
+Release v1.44.208 (2023-02-23)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release supports deleting Amazon ECS task definitions that are in the INACTIVE state.
+* `service/grafana`: Updates service documentation
+* `service/guardduty`: Updates service documentation
+  * Updated API and data types descriptions for CreateFilter, UpdateFilter, and TriggerDetails.
+* `service/iotwireless`: Updates service API and documentation
+* `service/location`: Updates service API, documentation, and paginators
+* `service/macie2`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.207 (2023-02-22)
 ===
 

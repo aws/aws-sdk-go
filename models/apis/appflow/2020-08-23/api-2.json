@@ -2695,7 +2695,8 @@
       "type":"structure",
       "members":{
         "instanceUrl":{"shape":"InstanceUrl"},
-        "isSandboxEnvironment":{"shape":"Boolean"}
+        "isSandboxEnvironment":{"shape":"Boolean"},
+        "usePrivateLinkForMetadataAndAuthorization":{"shape":"Boolean"}
       }
     },
     "SalesforceDataTransferApi":{
