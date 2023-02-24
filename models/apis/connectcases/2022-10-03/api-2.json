@@ -165,6 +165,25 @@
       ],
       "idempotent":true
     },
+    "DeleteDomain":{
+      "name":"DeleteDomain",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domains/{domainId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteDomainRequest"},
+      "output":{"shape":"DeleteDomainResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
     "GetCase":{
       "name":"GetCase",
       "http":{
@@ -966,6 +985,22 @@
     "CreatedTime":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
+    },
+    "DeleteDomainRequest":{
+      "type":"structure",
+      "required":["domainId"],
+      "members":{
+        "domainId":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainId"
+        }
+      }
+    },
+    "DeleteDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DomainArn":{
       "type":"string",

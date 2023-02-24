@@ -8730,7 +8730,8 @@
         },
         "ScheduledTime":{"shape":"Timestamp"},
         "TaskTemplateId":{"shape":"TaskTemplateId"},
-        "QuickConnectId":{"shape":"QuickConnectId"}
+        "QuickConnectId":{"shape":"QuickConnectId"},
+        "RelatedContactId":{"shape":"ContactId"}
       }
     },
     "StartTaskContactResponse":{

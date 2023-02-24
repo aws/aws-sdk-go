@@ -424,6 +424,190 @@ func (c *SecurityHub) BatchEnableStandardsWithContext(ctx aws.Context, input *Ba
 	return out, req.Send()
 }
 
+const opBatchGetSecurityControls = "BatchGetSecurityControls"
+
+// BatchGetSecurityControlsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetSecurityControls operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetSecurityControls for more information on using the BatchGetSecurityControls
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetSecurityControlsRequest method.
+//	req, resp := client.BatchGetSecurityControlsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetSecurityControls
+func (c *SecurityHub) BatchGetSecurityControlsRequest(input *BatchGetSecurityControlsInput) (req *request.Request, output *BatchGetSecurityControlsOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetSecurityControls,
+		HTTPMethod: "POST",
+		HTTPPath:   "/securityControls/batchGet",
+	}
+
+	if input == nil {
+		input = &BatchGetSecurityControlsInput{}
+	}
+
+	output = &BatchGetSecurityControlsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetSecurityControls API operation for AWS SecurityHub.
+//
+// Provides details about a batch of security controls for the current Amazon
+// Web Services account and Amazon Web Services Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation BatchGetSecurityControls for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetSecurityControls
+func (c *SecurityHub) BatchGetSecurityControls(input *BatchGetSecurityControlsInput) (*BatchGetSecurityControlsOutput, error) {
+	req, out := c.BatchGetSecurityControlsRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetSecurityControlsWithContext is the same as BatchGetSecurityControls with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetSecurityControls for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) BatchGetSecurityControlsWithContext(ctx aws.Context, input *BatchGetSecurityControlsInput, opts ...request.Option) (*BatchGetSecurityControlsOutput, error) {
+	req, out := c.BatchGetSecurityControlsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchGetStandardsControlAssociations = "BatchGetStandardsControlAssociations"
+
+// BatchGetStandardsControlAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetStandardsControlAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetStandardsControlAssociations for more information on using the BatchGetStandardsControlAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetStandardsControlAssociationsRequest method.
+//	req, resp := client.BatchGetStandardsControlAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetStandardsControlAssociations
+func (c *SecurityHub) BatchGetStandardsControlAssociationsRequest(input *BatchGetStandardsControlAssociationsInput) (req *request.Request, output *BatchGetStandardsControlAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetStandardsControlAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/associations/batchGet",
+	}
+
+	if input == nil {
+		input = &BatchGetStandardsControlAssociationsInput{}
+	}
+
+	output = &BatchGetStandardsControlAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetStandardsControlAssociations API operation for AWS SecurityHub.
+//
+// For a batch of security controls and standards, identifies whether each control
+// is currently enabled or disabled in a standard.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation BatchGetStandardsControlAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetStandardsControlAssociations
+func (c *SecurityHub) BatchGetStandardsControlAssociations(input *BatchGetStandardsControlAssociationsInput) (*BatchGetStandardsControlAssociationsOutput, error) {
+	req, out := c.BatchGetStandardsControlAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetStandardsControlAssociationsWithContext is the same as BatchGetStandardsControlAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetStandardsControlAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) BatchGetStandardsControlAssociationsWithContext(ctx aws.Context, input *BatchGetStandardsControlAssociationsInput, opts ...request.Option) (*BatchGetStandardsControlAssociationsOutput, error) {
+	req, out := c.BatchGetStandardsControlAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchImportFindings = "BatchImportFindings"
 
 // BatchImportFindingsRequest generates a "aws/request.Request" representing the
@@ -681,6 +865,98 @@ func (c *SecurityHub) BatchUpdateFindings(input *BatchUpdateFindingsInput) (*Bat
 // for more information on using Contexts.
 func (c *SecurityHub) BatchUpdateFindingsWithContext(ctx aws.Context, input *BatchUpdateFindingsInput, opts ...request.Option) (*BatchUpdateFindingsOutput, error) {
 	req, out := c.BatchUpdateFindingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchUpdateStandardsControlAssociations = "BatchUpdateStandardsControlAssociations"
+
+// BatchUpdateStandardsControlAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchUpdateStandardsControlAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchUpdateStandardsControlAssociations for more information on using the BatchUpdateStandardsControlAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchUpdateStandardsControlAssociationsRequest method.
+//	req, resp := client.BatchUpdateStandardsControlAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchUpdateStandardsControlAssociations
+func (c *SecurityHub) BatchUpdateStandardsControlAssociationsRequest(input *BatchUpdateStandardsControlAssociationsInput) (req *request.Request, output *BatchUpdateStandardsControlAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opBatchUpdateStandardsControlAssociations,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/associations",
+	}
+
+	if input == nil {
+		input = &BatchUpdateStandardsControlAssociationsInput{}
+	}
+
+	output = &BatchUpdateStandardsControlAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchUpdateStandardsControlAssociations API operation for AWS SecurityHub.
+//
+// For a batch of security controls and standards, this operation updates the
+// enablement status of a control in a standard.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation BatchUpdateStandardsControlAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchUpdateStandardsControlAssociations
+func (c *SecurityHub) BatchUpdateStandardsControlAssociations(input *BatchUpdateStandardsControlAssociationsInput) (*BatchUpdateStandardsControlAssociationsOutput, error) {
+	req, out := c.BatchUpdateStandardsControlAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// BatchUpdateStandardsControlAssociationsWithContext is the same as BatchUpdateStandardsControlAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchUpdateStandardsControlAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) BatchUpdateStandardsControlAssociationsWithContext(ctx aws.Context, input *BatchUpdateStandardsControlAssociationsInput, opts ...request.Option) (*BatchUpdateStandardsControlAssociationsOutput, error) {
+	req, out := c.BatchUpdateStandardsControlAssociationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5295,6 +5571,303 @@ func (c *SecurityHub) ListOrganizationAdminAccountsPagesWithContext(ctx aws.Cont
 	return p.Err()
 }
 
+const opListSecurityControlDefinitions = "ListSecurityControlDefinitions"
+
+// ListSecurityControlDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSecurityControlDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSecurityControlDefinitions for more information on using the ListSecurityControlDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSecurityControlDefinitionsRequest method.
+//	req, resp := client.ListSecurityControlDefinitionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListSecurityControlDefinitions
+func (c *SecurityHub) ListSecurityControlDefinitionsRequest(input *ListSecurityControlDefinitionsInput) (req *request.Request, output *ListSecurityControlDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListSecurityControlDefinitions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/securityControls/definitions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSecurityControlDefinitionsInput{}
+	}
+
+	output = &ListSecurityControlDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSecurityControlDefinitions API operation for AWS SecurityHub.
+//
+// Lists all of the security controls that apply to a specified standard.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation ListSecurityControlDefinitions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListSecurityControlDefinitions
+func (c *SecurityHub) ListSecurityControlDefinitions(input *ListSecurityControlDefinitionsInput) (*ListSecurityControlDefinitionsOutput, error) {
+	req, out := c.ListSecurityControlDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListSecurityControlDefinitionsWithContext is the same as ListSecurityControlDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSecurityControlDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListSecurityControlDefinitionsWithContext(ctx aws.Context, input *ListSecurityControlDefinitionsInput, opts ...request.Option) (*ListSecurityControlDefinitionsOutput, error) {
+	req, out := c.ListSecurityControlDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSecurityControlDefinitionsPages iterates over the pages of a ListSecurityControlDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSecurityControlDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSecurityControlDefinitions operation.
+//	pageNum := 0
+//	err := client.ListSecurityControlDefinitionsPages(params,
+//	    func(page *securityhub.ListSecurityControlDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SecurityHub) ListSecurityControlDefinitionsPages(input *ListSecurityControlDefinitionsInput, fn func(*ListSecurityControlDefinitionsOutput, bool) bool) error {
+	return c.ListSecurityControlDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSecurityControlDefinitionsPagesWithContext same as ListSecurityControlDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListSecurityControlDefinitionsPagesWithContext(ctx aws.Context, input *ListSecurityControlDefinitionsInput, fn func(*ListSecurityControlDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSecurityControlDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSecurityControlDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSecurityControlDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStandardsControlAssociations = "ListStandardsControlAssociations"
+
+// ListStandardsControlAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStandardsControlAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStandardsControlAssociations for more information on using the ListStandardsControlAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStandardsControlAssociationsRequest method.
+//	req, resp := client.ListStandardsControlAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListStandardsControlAssociations
+func (c *SecurityHub) ListStandardsControlAssociationsRequest(input *ListStandardsControlAssociationsInput) (req *request.Request, output *ListStandardsControlAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListStandardsControlAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/associations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStandardsControlAssociationsInput{}
+	}
+
+	output = &ListStandardsControlAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStandardsControlAssociations API operation for AWS SecurityHub.
+//
+// Specifies whether a control is currently enabled or disabled in each enabled
+// standard in the calling account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation ListStandardsControlAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListStandardsControlAssociations
+func (c *SecurityHub) ListStandardsControlAssociations(input *ListStandardsControlAssociationsInput) (*ListStandardsControlAssociationsOutput, error) {
+	req, out := c.ListStandardsControlAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListStandardsControlAssociationsWithContext is the same as ListStandardsControlAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStandardsControlAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListStandardsControlAssociationsWithContext(ctx aws.Context, input *ListStandardsControlAssociationsInput, opts ...request.Option) (*ListStandardsControlAssociationsOutput, error) {
+	req, out := c.ListStandardsControlAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStandardsControlAssociationsPages iterates over the pages of a ListStandardsControlAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStandardsControlAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListStandardsControlAssociations operation.
+//	pageNum := 0
+//	err := client.ListStandardsControlAssociationsPages(params,
+//	    func(page *securityhub.ListStandardsControlAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SecurityHub) ListStandardsControlAssociationsPages(input *ListStandardsControlAssociationsInput, fn func(*ListStandardsControlAssociationsOutput, bool) bool) error {
+	return c.ListStandardsControlAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStandardsControlAssociationsPagesWithContext same as ListStandardsControlAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListStandardsControlAssociationsPagesWithContext(ctx aws.Context, input *ListStandardsControlAssociationsInput, fn func(*ListStandardsControlAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStandardsControlAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStandardsControlAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStandardsControlAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -9518,8 +10091,8 @@ type AwsBackupBackupVaultNotificationsDetails struct {
 	//    * S3_BACKUP_OBJECT_FAILED | S3_RESTORE_OBJECT_FAILED
 	BackupVaultEvents []*string `type:"list"`
 
-	// An ARN that uniquely identifies the Amazon SNS topic for a backup vault’s
-	// events.
+	// The Amazon Resource Name (ARN) that uniquely identifies the Amazon SNS topic
+	// for a backup vault's events.
 	SnsTopicArn *string `type:"string"`
 }
 
@@ -15323,7 +15896,7 @@ type AwsEc2LaunchTemplateDataInstanceRequirementsDetails struct {
 	NetworkInterfaceCount *AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails `type:"structure"`
 
 	// The price protection threshold for On-Demand Instances. This is the maximum
-	// you’ll pay for an On-Demand Instance, expressed as a percentage above the
+	// you'll pay for an On-Demand Instance, expressed as a percentage above the
 	// least expensive current generation M, C, or R instance type with your specified
 	// attributes. When Amazon EC2 selects instance types with your attributes,
 	// it excludes instance types priced above your threshold.
@@ -15336,7 +15909,7 @@ type AwsEc2LaunchTemplateDataInstanceRequirementsDetails struct {
 	// Indicates whether instance types must support hibernation for On-Demand Instances.
 	RequireHibernateSupport *bool `type:"boolean"`
 
-	// The price protection threshold for Spot Instances. This is the maximum you’ll
+	// The price protection threshold for Spot Instances. This is the maximum you'll
 	// pay for a Spot Instance, expressed as a percentage above the least expensive
 	// current generation M, C, or R instance type with your specified attributes.
 	// When Amazon EC2 selects instance types with your attributes, it excludes
@@ -15776,8 +16349,8 @@ type AwsEc2LaunchTemplateDataMetadataOptionsDetails struct {
 	_ struct{} `type:"structure"`
 
 	// Enables or disables the HTTP metadata endpoint on your instances. If the
-	// parameter is not specified, the default state is enabled, and you won’t
-	// be able to access your instance metadata.
+	// parameter is not specified, the default state is enabled, and you won't be
+	// able to access your instance metadata.
 	HttpEndpoint *string `type:"string"`
 
 	// Enables or disables the IPv6 endpoint for the instance metadata service.
@@ -31116,7 +31689,9 @@ func (s *AwsRedshiftClusterClusterSecurityGroup) SetStatus(v string) *AwsRedshif
 	return s
 }
 
-// Information about a cross-Region snapshot copy.
+// You can configure Amazon Redshift to copy snapshots for a cluster to another
+// Amazon Web Services Region. This parameter provides information about a cross-Region
+// snapshot copy.
 type AwsRedshiftClusterClusterSnapshotCopyStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -31125,7 +31700,7 @@ type AwsRedshiftClusterClusterSnapshotCopyStatus struct {
 	DestinationRegion *string `type:"string"`
 
 	// The number of days that manual snapshots are retained in the destination
-	// region after they are copied from a source region.
+	// Region after they are copied from a source Region.
 	//
 	// If the value is -1, then the manual snapshot is retained indefinitely.
 	//
@@ -38597,6 +39172,204 @@ func (s *BatchEnableStandardsOutput) SetStandardsSubscriptions(v []*StandardsSub
 	return s
 }
 
+type BatchGetSecurityControlsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of security controls (identified with SecurityControlId, SecurityControlArn,
+	// or a mix of both parameters). The security control ID or Amazon Resource
+	// Name (ARN) is the same across standards.
+	//
+	// SecurityControlIds is a required field
+	SecurityControlIds []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecurityControlsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecurityControlsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetSecurityControlsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetSecurityControlsInput"}
+	if s.SecurityControlIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityControlIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityControlIds sets the SecurityControlIds field's value.
+func (s *BatchGetSecurityControlsInput) SetSecurityControlIds(v []*string) *BatchGetSecurityControlsInput {
+	s.SecurityControlIds = v
+	return s
+}
+
+type BatchGetSecurityControlsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array that returns the identifier, Amazon Resource Name (ARN), and other
+	// details about a security control. The same information is returned whether
+	// the request includes SecurityControlId or SecurityControlArn.
+	//
+	// SecurityControls is a required field
+	SecurityControls []*SecurityControl `type:"list" required:"true"`
+
+	// A security control (identified with SecurityControlId, SecurityControlArn,
+	// or a mix of both parameters) for which details cannot be returned.
+	UnprocessedIds []*UnprocessedSecurityControl `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecurityControlsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecurityControlsOutput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityControls sets the SecurityControls field's value.
+func (s *BatchGetSecurityControlsOutput) SetSecurityControls(v []*SecurityControl) *BatchGetSecurityControlsOutput {
+	s.SecurityControls = v
+	return s
+}
+
+// SetUnprocessedIds sets the UnprocessedIds field's value.
+func (s *BatchGetSecurityControlsOutput) SetUnprocessedIds(v []*UnprocessedSecurityControl) *BatchGetSecurityControlsOutput {
+	s.UnprocessedIds = v
+	return s
+}
+
+type BatchGetStandardsControlAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array with one or more objects that includes a security control (identified
+	// with SecurityControlId, SecurityControlArn, or a mix of both parameters)
+	// and the Amazon Resource Name (ARN) of a standard. This field is used to query
+	// the enablement status of a control in a specified standard. The security
+	// control ID or ARN is the same across standards.
+	//
+	// StandardsControlAssociationIds is a required field
+	StandardsControlAssociationIds []*StandardsControlAssociationId `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetStandardsControlAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetStandardsControlAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetStandardsControlAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetStandardsControlAssociationsInput"}
+	if s.StandardsControlAssociationIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandardsControlAssociationIds"))
+	}
+	if s.StandardsControlAssociationIds != nil {
+		for i, v := range s.StandardsControlAssociationIds {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StandardsControlAssociationIds", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStandardsControlAssociationIds sets the StandardsControlAssociationIds field's value.
+func (s *BatchGetStandardsControlAssociationsInput) SetStandardsControlAssociationIds(v []*StandardsControlAssociationId) *BatchGetStandardsControlAssociationsInput {
+	s.StandardsControlAssociationIds = v
+	return s
+}
+
+type BatchGetStandardsControlAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the enablement status of a security control in a specified standard
+	// and other details for the control in relation to the specified standard.
+	//
+	// StandardsControlAssociationDetails is a required field
+	StandardsControlAssociationDetails []*StandardsControlAssociationDetail `type:"list" required:"true"`
+
+	// A security control (identified with SecurityControlId, SecurityControlArn,
+	// or a mix of both parameters) whose enablement status in a specified standard
+	// cannot be returned.
+	UnprocessedAssociations []*UnprocessedStandardsControlAssociation `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetStandardsControlAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetStandardsControlAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetStandardsControlAssociationDetails sets the StandardsControlAssociationDetails field's value.
+func (s *BatchGetStandardsControlAssociationsOutput) SetStandardsControlAssociationDetails(v []*StandardsControlAssociationDetail) *BatchGetStandardsControlAssociationsOutput {
+	s.StandardsControlAssociationDetails = v
+	return s
+}
+
+// SetUnprocessedAssociations sets the UnprocessedAssociations field's value.
+func (s *BatchGetStandardsControlAssociationsOutput) SetUnprocessedAssociations(v []*UnprocessedStandardsControlAssociation) *BatchGetStandardsControlAssociationsOutput {
+	s.UnprocessedAssociations = v
+	return s
+}
+
 type BatchImportFindingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -39037,6 +39810,95 @@ func (s *BatchUpdateFindingsUnprocessedFinding) SetErrorMessage(v string) *Batch
 // SetFindingIdentifier sets the FindingIdentifier field's value.
 func (s *BatchUpdateFindingsUnprocessedFinding) SetFindingIdentifier(v *AwsSecurityFindingIdentifier) *BatchUpdateFindingsUnprocessedFinding {
 	s.FindingIdentifier = v
+	return s
+}
+
+type BatchUpdateStandardsControlAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Updates the enablement status of a security control in a specified standard.
+	//
+	// StandardsControlAssociationUpdates is a required field
+	StandardsControlAssociationUpdates []*StandardsControlAssociationUpdate `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateStandardsControlAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateStandardsControlAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchUpdateStandardsControlAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateStandardsControlAssociationsInput"}
+	if s.StandardsControlAssociationUpdates == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandardsControlAssociationUpdates"))
+	}
+	if s.StandardsControlAssociationUpdates != nil {
+		for i, v := range s.StandardsControlAssociationUpdates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StandardsControlAssociationUpdates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStandardsControlAssociationUpdates sets the StandardsControlAssociationUpdates field's value.
+func (s *BatchUpdateStandardsControlAssociationsInput) SetStandardsControlAssociationUpdates(v []*StandardsControlAssociationUpdate) *BatchUpdateStandardsControlAssociationsInput {
+	s.StandardsControlAssociationUpdates = v
+	return s
+}
+
+type BatchUpdateStandardsControlAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A security control (identified with SecurityControlId, SecurityControlArn,
+	// or a mix of both parameters) whose enablement status in a specified standard
+	// couldn't be updated.
+	UnprocessedAssociationUpdates []*UnprocessedStandardsControlAssociationUpdate `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateStandardsControlAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateStandardsControlAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetUnprocessedAssociationUpdates sets the UnprocessedAssociationUpdates field's value.
+func (s *BatchUpdateStandardsControlAssociationsOutput) SetUnprocessedAssociationUpdates(v []*UnprocessedStandardsControlAssociationUpdate) *BatchUpdateStandardsControlAssociationsOutput {
+	s.UnprocessedAssociationUpdates = v
 	return s
 }
 
@@ -39655,7 +40517,7 @@ func (s *CreateActionTargetInput) SetName(v string) *CreateActionTargetInput {
 type CreateActionTargetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN for the custom action target.
+	// The Amazon Resource Name (ARN) for the custom action target.
 	//
 	// ActionTargetArn is a required field
 	ActionTargetArn *string `type:"string" required:"true"`
@@ -40420,7 +41282,7 @@ func (s *DeclineInvitationsOutput) SetUnprocessedAccounts(v []*Result) *DeclineI
 type DeleteActionTargetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the custom action target to delete.
+	// The Amazon Resource Name (ARN) of the custom action target to delete.
 	//
 	// ActionTargetArn is a required field
 	ActionTargetArn *string `location:"uri" locationName:"ActionTargetArn" type:"string" required:"true"`
@@ -40959,6 +41821,21 @@ type DescribeHubOutput struct {
 	// If set to false, then new controls are not enabled.
 	AutoEnableControls *bool `type:"boolean"`
 
+	// Specifies whether the calling account has consolidated control findings turned
+	// on. If the value for this field is set to SECURITY_CONTROL, Security Hub
+	// generates a single finding for a control check even when the check applies
+	// to multiple enabled standards.
+	//
+	// If the value for this field is set to STANDARD_CONTROL, Security Hub generates
+	// separate findings for a control check when the check applies to multiple
+	// enabled standards.
+	//
+	// The value for this field in a member account matches the value in the administrator
+	// account. For accounts that aren't part of an organization, the default value
+	// of this field is SECURITY_CONTROL if you enabled Security Hub on or after
+	// February 9, 2023.
+	ControlFindingGenerator *string `type:"string" enum:"ControlFindingGenerator"`
+
 	// The ARN of the Hub resource that was retrieved.
 	HubArn *string `type:"string"`
 
@@ -40987,6 +41864,12 @@ func (s DescribeHubOutput) GoString() string {
 // SetAutoEnableControls sets the AutoEnableControls field's value.
 func (s *DescribeHubOutput) SetAutoEnableControls(v bool) *DescribeHubOutput {
 	s.AutoEnableControls = &v
+	return s
+}
+
+// SetControlFindingGenerator sets the ControlFindingGenerator field's value.
+func (s *DescribeHubOutput) SetControlFindingGenerator(v string) *DescribeHubOutput {
+	s.ControlFindingGenerator = &v
 	return s
 }
 
@@ -41946,6 +42829,21 @@ func (s EnableOrganizationAdminAccountOutput) GoString() string {
 type EnableSecurityHubInput struct {
 	_ struct{} `type:"structure"`
 
+	// This field, used when enabling Security Hub, specifies whether the calling
+	// account has consolidated control findings turned on. If the value for this
+	// field is set to SECURITY_CONTROL, Security Hub generates a single finding
+	// for a control check even when the check applies to multiple enabled standards.
+	//
+	// If the value for this field is set to STANDARD_CONTROL, Security Hub generates
+	// separate findings for a control check when the check applies to multiple
+	// enabled standards.
+	//
+	// The value for this field in a member account matches the value in the administrator
+	// account. For accounts that aren't part of an organization, the default value
+	// of this field is SECURITY_CONTROL if you enabled Security Hub on or after
+	// February 9, 2023.
+	ControlFindingGenerator *string `type:"string" enum:"ControlFindingGenerator"`
+
 	// Whether to enable the security standards that Security Hub has designated
 	// as automatically enabled. If you do not provide a value for EnableDefaultStandards,
 	// it is set to true. To not enable the automatically enabled standards, set
@@ -41985,6 +42883,12 @@ func (s *EnableSecurityHubInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetControlFindingGenerator sets the ControlFindingGenerator field's value.
+func (s *EnableSecurityHubInput) SetControlFindingGenerator(v string) *EnableSecurityHubInput {
+	s.ControlFindingGenerator = &v
+	return s
 }
 
 // SetEnableDefaultStandards sets the EnableDefaultStandards field's value.
@@ -44640,6 +45544,237 @@ func (s *ListOrganizationAdminAccountsOutput) SetAdminAccounts(v []*AdminAccount
 // SetNextToken sets the NextToken field's value.
 func (s *ListOrganizationAdminAccountsOutput) SetNextToken(v string) *ListOrganizationAdminAccountsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListSecurityControlDefinitionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// An optional parameter that limits the total results of the API response to
+	// the specified number. If this parameter isn't provided in the request, the
+	// results include the first 25 security controls that apply to the specified
+	// standard. The results also include a NextToken parameter that you can use
+	// in a subsequent API call to get the next 25 controls. This repeats until
+	// all controls for the standard are returned.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// Optional pagination parameter.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the standard that you want to view controls
+	// for.
+	StandardsArn *string `location:"querystring" locationName:"StandardsArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityControlDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityControlDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSecurityControlDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSecurityControlDefinitionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSecurityControlDefinitionsInput) SetMaxResults(v int64) *ListSecurityControlDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityControlDefinitionsInput) SetNextToken(v string) *ListSecurityControlDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStandardsArn sets the StandardsArn field's value.
+func (s *ListSecurityControlDefinitionsInput) SetStandardsArn(v string) *ListSecurityControlDefinitionsInput {
+	s.StandardsArn = &v
+	return s
+}
+
+type ListSecurityControlDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination parameter that's included in the response only if it was included
+	// in the request.
+	NextToken *string `type:"string"`
+
+	// An array of controls that apply to the specified standard.
+	//
+	// SecurityControlDefinitions is a required field
+	SecurityControlDefinitions []*SecurityControlDefinition `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityControlDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityControlDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityControlDefinitionsOutput) SetNextToken(v string) *ListSecurityControlDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityControlDefinitions sets the SecurityControlDefinitions field's value.
+func (s *ListSecurityControlDefinitionsOutput) SetSecurityControlDefinitions(v []*SecurityControlDefinition) *ListSecurityControlDefinitionsOutput {
+	s.SecurityControlDefinitions = v
+	return s
+}
+
+type ListStandardsControlAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// An optional parameter that limits the total results of the API response to
+	// the specified number. If this parameter isn't provided in the request, the
+	// results include the first 25 standard and control associations. The results
+	// also include a NextToken parameter that you can use in a subsequent API call
+	// to get the next 25 associations. This repeats until all associations for
+	// the specified control are returned. The number of results is limited by the
+	// number of supported Security Hub standards that you've enabled in the calling
+	// account.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// Optional pagination parameter.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// The identifier of the control (identified with SecurityControlId, SecurityControlArn,
+	// or a mix of both parameters) that you want to determine the enablement status
+	// of in each enabled standard.
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `location:"querystring" locationName:"SecurityControlId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStandardsControlAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStandardsControlAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStandardsControlAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStandardsControlAssociationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SecurityControlId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityControlId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStandardsControlAssociationsInput) SetMaxResults(v int64) *ListStandardsControlAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStandardsControlAssociationsInput) SetNextToken(v string) *ListStandardsControlAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *ListStandardsControlAssociationsInput) SetSecurityControlId(v string) *ListStandardsControlAssociationsInput {
+	s.SecurityControlId = &v
+	return s
+}
+
+type ListStandardsControlAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination parameter that's included in the response only if it was included
+	// in the request.
+	NextToken *string `type:"string"`
+
+	// An array that provides the enablement status and other details for each security
+	// control that applies to each enabled standard.
+	//
+	// StandardsControlAssociationSummaries is a required field
+	StandardsControlAssociationSummaries []*StandardsControlAssociationSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStandardsControlAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStandardsControlAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStandardsControlAssociationsOutput) SetNextToken(v string) *ListStandardsControlAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStandardsControlAssociationSummaries sets the StandardsControlAssociationSummaries field's value.
+func (s *ListStandardsControlAssociationsOutput) SetStandardsControlAssociationSummaries(v []*StandardsControlAssociationSummary) *ListStandardsControlAssociationsOutput {
+	s.StandardsControlAssociationSummaries = v
 	return s
 }
 
@@ -48486,6 +49621,222 @@ func (s *RuleGroupVariablesPortSetsDetails) SetDefinition(v []*string) *RuleGrou
 	return s
 }
 
+// A security control in Security Hub describes a security best practice related
+// to a specific resource.
+type SecurityControl struct {
+	_ struct{} `type:"structure"`
+
+	// The description of a security control across standards. This typically summarizes
+	// how Security Hub evaluates the control and the conditions under which it
+	// produces a failed finding. This parameter doesn't reference a specific standard.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// A link to Security Hub documentation that explains how to remediate a failed
+	// finding for a security control.
+	//
+	// RemediationUrl is a required field
+	RemediationUrl *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for a security control across standards, such
+	// as arn:aws:securityhub:eu-central-1:123456789012:security-control/S3.1. This
+	// parameter doesn't mention a specific standard.
+	//
+	// SecurityControlArn is a required field
+	SecurityControlArn *string `type:"string" required:"true"`
+
+	// The unique identifier of a security control across standards. Values for
+	// this field typically consist of an Amazon Web Service name and a number,
+	// such as APIGateway.3.
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `type:"string" required:"true"`
+
+	// The status of a security control based on the compliance status of its findings.
+	// For more information about how control status is determined, see Determining
+	// the overall status of a control from its findings (https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html)
+	// in the Security Hub User Guide.
+	//
+	// SecurityControlStatus is a required field
+	SecurityControlStatus *string `type:"string" required:"true" enum:"ControlStatus"`
+
+	// The severity of a security control. For more information about how Security
+	// Hub determines control severity, see Assigning severity to control findings
+	// (https://docs.aws.amazon.com/securityhub/latest/userguide/controls-findings-create-update.html#control-findings-severity)
+	// in the Security Hub User Guide.
+	//
+	// SeverityRating is a required field
+	SeverityRating *string `type:"string" required:"true" enum:"SeverityRating"`
+
+	// The title of a security control.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControl) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *SecurityControl) SetDescription(v string) *SecurityControl {
+	s.Description = &v
+	return s
+}
+
+// SetRemediationUrl sets the RemediationUrl field's value.
+func (s *SecurityControl) SetRemediationUrl(v string) *SecurityControl {
+	s.RemediationUrl = &v
+	return s
+}
+
+// SetSecurityControlArn sets the SecurityControlArn field's value.
+func (s *SecurityControl) SetSecurityControlArn(v string) *SecurityControl {
+	s.SecurityControlArn = &v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *SecurityControl) SetSecurityControlId(v string) *SecurityControl {
+	s.SecurityControlId = &v
+	return s
+}
+
+// SetSecurityControlStatus sets the SecurityControlStatus field's value.
+func (s *SecurityControl) SetSecurityControlStatus(v string) *SecurityControl {
+	s.SecurityControlStatus = &v
+	return s
+}
+
+// SetSeverityRating sets the SeverityRating field's value.
+func (s *SecurityControl) SetSeverityRating(v string) *SecurityControl {
+	s.SeverityRating = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *SecurityControl) SetTitle(v string) *SecurityControl {
+	s.Title = &v
+	return s
+}
+
+// Provides metadata for a security control, including its unique standard-agnostic
+// identifier, title, description, severity, availability in Amazon Web Services
+// Regions, and a link to remediation steps.
+type SecurityControlDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether a security control is available in the current Amazon Web
+	// Services Region.
+	//
+	// CurrentRegionAvailability is a required field
+	CurrentRegionAvailability *string `type:"string" required:"true" enum:"RegionAvailabilityStatus"`
+
+	// The description of a security control across standards. This typically summarizes
+	// how Security Hub evaluates the control and the conditions under which it
+	// produces a failed finding. This parameter doesn't reference a specific standard.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// A link to Security Hub documentation that explains how to remediate a failed
+	// finding for a security control.
+	//
+	// RemediationUrl is a required field
+	RemediationUrl *string `type:"string" required:"true"`
+
+	// The unique identifier of a security control across standards. Values for
+	// this field typically consist of an Amazon Web Service name and a number (for
+	// example, APIGateway.3). This parameter differs from SecurityControlArn, which
+	// is a unique Amazon Resource Name (ARN) assigned to a control. The ARN references
+	// the security control ID (for example, arn:aws:securityhub:eu-central-1:123456789012:security-control/APIGateway.3).
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `type:"string" required:"true"`
+
+	// The severity of a security control. For more information about how Security
+	// Hub determines control severity, see Assigning severity to control findings
+	// (https://docs.aws.amazon.com/securityhub/latest/userguide/controls-findings-create-update.html#control-findings-severity)
+	// in the Security Hub User Guide.
+	//
+	// SeverityRating is a required field
+	SeverityRating *string `type:"string" required:"true" enum:"SeverityRating"`
+
+	// The title of a security control.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControlDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControlDefinition) GoString() string {
+	return s.String()
+}
+
+// SetCurrentRegionAvailability sets the CurrentRegionAvailability field's value.
+func (s *SecurityControlDefinition) SetCurrentRegionAvailability(v string) *SecurityControlDefinition {
+	s.CurrentRegionAvailability = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SecurityControlDefinition) SetDescription(v string) *SecurityControlDefinition {
+	s.Description = &v
+	return s
+}
+
+// SetRemediationUrl sets the RemediationUrl field's value.
+func (s *SecurityControlDefinition) SetRemediationUrl(v string) *SecurityControlDefinition {
+	s.RemediationUrl = &v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *SecurityControlDefinition) SetSecurityControlId(v string) *SecurityControlDefinition {
+	s.SecurityControlId = &v
+	return s
+}
+
+// SetSeverityRating sets the SeverityRating field's value.
+func (s *SecurityControlDefinition) SetSeverityRating(v string) *SecurityControlDefinition {
+	s.SeverityRating = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *SecurityControlDefinition) SetTitle(v string) *SecurityControlDefinition {
+	s.Title = &v
+	return s
+}
+
 // The list of detected instances of sensitive data.
 type SensitiveDataDetections struct {
 	_ struct{} `type:"structure"`
@@ -48593,7 +49944,7 @@ func (s *SensitiveDataResult) SetTotalCount(v int64) *SensitiveDataResult {
 // The severity of the finding.
 //
 // The finding provider can provide the initial severity. The finding provider
-// can only update the severity if it has not been updated using BatchUpdateFindings.
+// can only update the severity if it hasn't been updated using BatchUpdateFindings.
 //
 // The finding must have either Label or Normalized populated. If only one of
 // these attributes is populated, then Security Hub automatically populates
@@ -49128,6 +50479,411 @@ func (s *StandardsControl) SetStandardsControlArn(v string) *StandardsControl {
 // SetTitle sets the Title field's value.
 func (s *StandardsControl) SetTitle(v string) *StandardsControl {
 	s.Title = &v
+	return s
+}
+
+// Provides details about a control's enablement status in a specified standard.
+type StandardsControlAssociationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether a control is enabled or disabled in a specified standard.
+	//
+	// AssociationStatus is a required field
+	AssociationStatus *string `type:"string" required:"true" enum:"AssociationStatus"`
+
+	// The requirement that underlies a control in the compliance framework related
+	// to the standard.
+	RelatedRequirements []*string `type:"list"`
+
+	// The ARN of a security control across standards, such as arn:aws:securityhub:eu-central-1:123456789012:security-control/S3.1.
+	// This parameter doesn't mention a specific standard.
+	//
+	// SecurityControlArn is a required field
+	SecurityControlArn *string `type:"string" required:"true"`
+
+	// The unique identifier of a security control across standards. Values for
+	// this field typically consist of an Amazon Web Service name and a number,
+	// such as APIGateway.3.
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of a security standard.
+	//
+	// StandardsArn is a required field
+	StandardsArn *string `type:"string" required:"true"`
+
+	// Provides the input parameter that Security Hub uses to call the UpdateStandardsControl
+	// (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_UpdateStandardsControl.html)
+	// API. This API can be used to enable or disable a control in a specified standard.
+	StandardsControlArns []*string `type:"list"`
+
+	// The description of a control. This typically summarizes how Security Hub
+	// evaluates the control and the conditions under which it produces a failed
+	// finding. This parameter may reference a specific standard.
+	StandardsControlDescription *string `type:"string"`
+
+	// The title of a control. This field may reference a specific standard.
+	StandardsControlTitle *string `type:"string"`
+
+	// The time at which the enablement status of the control in the specified standard
+	// was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The reason for updating the enablement status of a control in a specified
+	// standard.
+	UpdatedReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationDetail) GoString() string {
+	return s.String()
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *StandardsControlAssociationDetail) SetAssociationStatus(v string) *StandardsControlAssociationDetail {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetRelatedRequirements sets the RelatedRequirements field's value.
+func (s *StandardsControlAssociationDetail) SetRelatedRequirements(v []*string) *StandardsControlAssociationDetail {
+	s.RelatedRequirements = v
+	return s
+}
+
+// SetSecurityControlArn sets the SecurityControlArn field's value.
+func (s *StandardsControlAssociationDetail) SetSecurityControlArn(v string) *StandardsControlAssociationDetail {
+	s.SecurityControlArn = &v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *StandardsControlAssociationDetail) SetSecurityControlId(v string) *StandardsControlAssociationDetail {
+	s.SecurityControlId = &v
+	return s
+}
+
+// SetStandardsArn sets the StandardsArn field's value.
+func (s *StandardsControlAssociationDetail) SetStandardsArn(v string) *StandardsControlAssociationDetail {
+	s.StandardsArn = &v
+	return s
+}
+
+// SetStandardsControlArns sets the StandardsControlArns field's value.
+func (s *StandardsControlAssociationDetail) SetStandardsControlArns(v []*string) *StandardsControlAssociationDetail {
+	s.StandardsControlArns = v
+	return s
+}
+
+// SetStandardsControlDescription sets the StandardsControlDescription field's value.
+func (s *StandardsControlAssociationDetail) SetStandardsControlDescription(v string) *StandardsControlAssociationDetail {
+	s.StandardsControlDescription = &v
+	return s
+}
+
+// SetStandardsControlTitle sets the StandardsControlTitle field's value.
+func (s *StandardsControlAssociationDetail) SetStandardsControlTitle(v string) *StandardsControlAssociationDetail {
+	s.StandardsControlTitle = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *StandardsControlAssociationDetail) SetUpdatedAt(v time.Time) *StandardsControlAssociationDetail {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetUpdatedReason sets the UpdatedReason field's value.
+func (s *StandardsControlAssociationDetail) SetUpdatedReason(v string) *StandardsControlAssociationDetail {
+	s.UpdatedReason = &v
+	return s
+}
+
+// An array with one or more objects that includes a security control (identified
+// with SecurityControlId, SecurityControlArn, or a mix of both parameters)
+// and the Amazon Resource Name (ARN) of a standard. The security control ID
+// or ARN is the same across standards.
+type StandardsControlAssociationId struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier (identified with SecurityControlId, SecurityControlArn,
+	// or a mix of both parameters) of a security control across standards.
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `type:"string" required:"true"`
+
+	// The ARN of a standard.
+	//
+	// StandardsArn is a required field
+	StandardsArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StandardsControlAssociationId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StandardsControlAssociationId"}
+	if s.SecurityControlId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityControlId"))
+	}
+	if s.StandardsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandardsArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *StandardsControlAssociationId) SetSecurityControlId(v string) *StandardsControlAssociationId {
+	s.SecurityControlId = &v
+	return s
+}
+
+// SetStandardsArn sets the StandardsArn field's value.
+func (s *StandardsControlAssociationId) SetStandardsArn(v string) *StandardsControlAssociationId {
+	s.StandardsArn = &v
+	return s
+}
+
+// An array that provides the enablement status and other details for each control
+// that applies to each enabled standard.
+type StandardsControlAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The enablement status of a control in a specific standard.
+	//
+	// AssociationStatus is a required field
+	AssociationStatus *string `type:"string" required:"true" enum:"AssociationStatus"`
+
+	// The requirement that underlies this control in the compliance framework related
+	// to the standard.
+	RelatedRequirements []*string `type:"list"`
+
+	// The ARN of a control, such as arn:aws:securityhub:eu-central-1:123456789012:security-control/S3.1.
+	// This parameter doesn't mention a specific standard.
+	//
+	// SecurityControlArn is a required field
+	SecurityControlArn *string `type:"string" required:"true"`
+
+	// A unique standard-agnostic identifier for a control. Values for this field
+	// typically consist of an Amazon Web Service and a number, such as APIGateway.5.
+	// This field doesn't reference a specific standard.
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of a standard.
+	//
+	// StandardsArn is a required field
+	StandardsArn *string `type:"string" required:"true"`
+
+	// The description of a control. This typically summarizes how Security Hub
+	// evaluates the control and the conditions under which it produces a failed
+	// finding. The parameter may reference a specific standard.
+	StandardsControlDescription *string `type:"string"`
+
+	// The title of a control.
+	StandardsControlTitle *string `type:"string"`
+
+	// The last time that a control's enablement status in a specified standard
+	// was updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The reason for updating the control's enablement status in a specified standard.
+	UpdatedReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *StandardsControlAssociationSummary) SetAssociationStatus(v string) *StandardsControlAssociationSummary {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetRelatedRequirements sets the RelatedRequirements field's value.
+func (s *StandardsControlAssociationSummary) SetRelatedRequirements(v []*string) *StandardsControlAssociationSummary {
+	s.RelatedRequirements = v
+	return s
+}
+
+// SetSecurityControlArn sets the SecurityControlArn field's value.
+func (s *StandardsControlAssociationSummary) SetSecurityControlArn(v string) *StandardsControlAssociationSummary {
+	s.SecurityControlArn = &v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *StandardsControlAssociationSummary) SetSecurityControlId(v string) *StandardsControlAssociationSummary {
+	s.SecurityControlId = &v
+	return s
+}
+
+// SetStandardsArn sets the StandardsArn field's value.
+func (s *StandardsControlAssociationSummary) SetStandardsArn(v string) *StandardsControlAssociationSummary {
+	s.StandardsArn = &v
+	return s
+}
+
+// SetStandardsControlDescription sets the StandardsControlDescription field's value.
+func (s *StandardsControlAssociationSummary) SetStandardsControlDescription(v string) *StandardsControlAssociationSummary {
+	s.StandardsControlDescription = &v
+	return s
+}
+
+// SetStandardsControlTitle sets the StandardsControlTitle field's value.
+func (s *StandardsControlAssociationSummary) SetStandardsControlTitle(v string) *StandardsControlAssociationSummary {
+	s.StandardsControlTitle = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *StandardsControlAssociationSummary) SetUpdatedAt(v time.Time) *StandardsControlAssociationSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetUpdatedReason sets the UpdatedReason field's value.
+func (s *StandardsControlAssociationSummary) SetUpdatedReason(v string) *StandardsControlAssociationSummary {
+	s.UpdatedReason = &v
+	return s
+}
+
+// An array of requested updates to the enablement status of controls in specified
+// standards. The objects in the array include a security control ID, the Amazon
+// Resource Name (ARN) of the standard, the requested enablement status, and
+// the reason for updating the enablement status.
+type StandardsControlAssociationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The desired enablement status of the control in the standard.
+	//
+	// AssociationStatus is a required field
+	AssociationStatus *string `type:"string" required:"true" enum:"AssociationStatus"`
+
+	// The unique identifier for the security control whose enablement status you
+	// want to update.
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the standard in which you want to update
+	// the control's enablement status.
+	//
+	// StandardsArn is a required field
+	StandardsArn *string `type:"string" required:"true"`
+
+	// The reason for updating the control's enablement status in the standard.
+	UpdatedReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsControlAssociationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StandardsControlAssociationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StandardsControlAssociationUpdate"}
+	if s.AssociationStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationStatus"))
+	}
+	if s.SecurityControlId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityControlId"))
+	}
+	if s.StandardsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandardsArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *StandardsControlAssociationUpdate) SetAssociationStatus(v string) *StandardsControlAssociationUpdate {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *StandardsControlAssociationUpdate) SetSecurityControlId(v string) *StandardsControlAssociationUpdate {
+	s.SecurityControlId = &v
+	return s
+}
+
+// SetStandardsArn sets the StandardsArn field's value.
+func (s *StandardsControlAssociationUpdate) SetStandardsArn(v string) *StandardsControlAssociationUpdate {
+	s.StandardsArn = &v
+	return s
+}
+
+// SetUpdatedReason sets the UpdatedReason field's value.
+func (s *StandardsControlAssociationUpdate) SetUpdatedReason(v string) *StandardsControlAssociationUpdate {
+	s.UpdatedReason = &v
 	return s
 }
 
@@ -49839,6 +51595,184 @@ func (s *ThreatIntelIndicator) SetValue(v string) *ThreatIntelIndicator {
 	return s
 }
 
+// Provides details about a security control for which a response couldn't be
+// returned.
+type UnprocessedSecurityControl struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the unprocessed security control.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `type:"string" required:"true" enum:"UnprocessedErrorCode"`
+
+	// The reason why the security control was unprocessed.
+	ErrorReason *string `type:"string"`
+
+	// The control (identified with SecurityControlId, SecurityControlArn, or a
+	// mix of both parameters) for which a response couldn't be returned.
+	//
+	// SecurityControlId is a required field
+	SecurityControlId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedSecurityControl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedSecurityControl) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UnprocessedSecurityControl) SetErrorCode(v string) *UnprocessedSecurityControl {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorReason sets the ErrorReason field's value.
+func (s *UnprocessedSecurityControl) SetErrorReason(v string) *UnprocessedSecurityControl {
+	s.ErrorReason = &v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *UnprocessedSecurityControl) SetSecurityControlId(v string) *UnprocessedSecurityControl {
+	s.SecurityControlId = &v
+	return s
+}
+
+// Provides details about which control's enablement status couldn't be retrieved
+// in a specified standard when calling BatchUpdateStandardsControlAssociations
+// (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateStandardsControlAssociations.html).
+// This parameter also provides details about why the request was unprocessed.
+type UnprocessedStandardsControlAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the unprocessed standard and control association.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `type:"string" required:"true" enum:"UnprocessedErrorCode"`
+
+	// The reason why the standard and control association was unprocessed.
+	ErrorReason *string `type:"string"`
+
+	// An array with one or more objects that includes a security control (identified
+	// with SecurityControlId, SecurityControlArn, or a mix of both parameters)
+	// and the Amazon Resource Name (ARN) of a standard. This parameter shows the
+	// specific controls for which the enablement status couldn't be retrieved in
+	// specified standards when calling BatchUpdateStandardsControlAssociations
+	// (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateStandardsControlAssociations.html).
+	//
+	// StandardsControlAssociationId is a required field
+	StandardsControlAssociationId *StandardsControlAssociationId `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedStandardsControlAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedStandardsControlAssociation) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UnprocessedStandardsControlAssociation) SetErrorCode(v string) *UnprocessedStandardsControlAssociation {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorReason sets the ErrorReason field's value.
+func (s *UnprocessedStandardsControlAssociation) SetErrorReason(v string) *UnprocessedStandardsControlAssociation {
+	s.ErrorReason = &v
+	return s
+}
+
+// SetStandardsControlAssociationId sets the StandardsControlAssociationId field's value.
+func (s *UnprocessedStandardsControlAssociation) SetStandardsControlAssociationId(v *StandardsControlAssociationId) *UnprocessedStandardsControlAssociation {
+	s.StandardsControlAssociationId = v
+	return s
+}
+
+// Provides details about which control's enablement status could not be updated
+// in a specified standard when calling the BatchUpdateStandardsControlAssociations
+// (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateStandardsControlAssociations.html)
+// API. This parameter also provides details about why the request was unprocessed.
+type UnprocessedStandardsControlAssociationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the unprocessed update of the control's enablement status
+	// in the specified standard.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `type:"string" required:"true" enum:"UnprocessedErrorCode"`
+
+	// The reason why a control's enablement status in the specified standard couldn't
+	// be updated.
+	ErrorReason *string `type:"string"`
+
+	// An array of control and standard associations for which an update failed
+	// when calling BatchUpdateStandardsControlAssociations (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateStandardsControlAssociations.html).
+	//
+	// StandardsControlAssociationUpdate is a required field
+	StandardsControlAssociationUpdate *StandardsControlAssociationUpdate `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedStandardsControlAssociationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedStandardsControlAssociationUpdate) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UnprocessedStandardsControlAssociationUpdate) SetErrorCode(v string) *UnprocessedStandardsControlAssociationUpdate {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorReason sets the ErrorReason field's value.
+func (s *UnprocessedStandardsControlAssociationUpdate) SetErrorReason(v string) *UnprocessedStandardsControlAssociationUpdate {
+	s.ErrorReason = &v
+	return s
+}
+
+// SetStandardsControlAssociationUpdate sets the StandardsControlAssociationUpdate field's value.
+func (s *UnprocessedStandardsControlAssociationUpdate) SetStandardsControlAssociationUpdate(v *StandardsControlAssociationUpdate) *UnprocessedStandardsControlAssociationUpdate {
+	s.StandardsControlAssociationUpdate = v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -50458,6 +52392,19 @@ type UpdateSecurityHubConfigurationInput struct {
 	// By default, this is set to true, and new controls are enabled automatically.
 	// To not automatically enable new controls, set this to false.
 	AutoEnableControls *bool `type:"boolean"`
+
+	// Updates whether the calling account has consolidated control findings turned
+	// on. If the value for this field is set to SECURITY_CONTROL, Security Hub
+	// generates a single finding for a control check even when the check applies
+	// to multiple enabled standards.
+	//
+	// If the value for this field is set to STANDARD_CONTROL, Security Hub generates
+	// separate findings for a control check when the check applies to multiple
+	// enabled standards.
+	//
+	// For accounts that are part of an organization, this value can only be updated
+	// in the administrator account.
+	ControlFindingGenerator *string `type:"string" enum:"ControlFindingGenerator"`
 }
 
 // String returns the string representation.
@@ -50481,6 +52428,12 @@ func (s UpdateSecurityHubConfigurationInput) GoString() string {
 // SetAutoEnableControls sets the AutoEnableControls field's value.
 func (s *UpdateSecurityHubConfigurationInput) SetAutoEnableControls(v bool) *UpdateSecurityHubConfigurationInput {
 	s.AutoEnableControls = &v
+	return s
+}
+
+// SetControlFindingGenerator sets the ControlFindingGenerator field's value.
+func (s *UpdateSecurityHubConfigurationInput) SetControlFindingGenerator(v string) *UpdateSecurityHubConfigurationInput {
+	s.ControlFindingGenerator = &v
 	return s
 }
 
@@ -51196,6 +53149,22 @@ func AdminStatus_Values() []string {
 }
 
 const (
+	// AssociationStatusEnabled is a AssociationStatus enum value
+	AssociationStatusEnabled = "ENABLED"
+
+	// AssociationStatusDisabled is a AssociationStatus enum value
+	AssociationStatusDisabled = "DISABLED"
+)
+
+// AssociationStatus_Values returns all elements of the AssociationStatus enum
+func AssociationStatus_Values() []string {
+	return []string{
+		AssociationStatusEnabled,
+		AssociationStatusDisabled,
+	}
+}
+
+const (
 	// AutoEnableStandardsNone is a AutoEnableStandards enum value
 	AutoEnableStandardsNone = "NONE"
 
@@ -51264,6 +53233,22 @@ func ComplianceStatus_Values() []string {
 		ComplianceStatusWarning,
 		ComplianceStatusFailed,
 		ComplianceStatusNotAvailable,
+	}
+}
+
+const (
+	// ControlFindingGeneratorStandardControl is a ControlFindingGenerator enum value
+	ControlFindingGeneratorStandardControl = "STANDARD_CONTROL"
+
+	// ControlFindingGeneratorSecurityControl is a ControlFindingGenerator enum value
+	ControlFindingGeneratorSecurityControl = "SECURITY_CONTROL"
+)
+
+// ControlFindingGenerator_Values returns all elements of the ControlFindingGenerator enum
+func ControlFindingGenerator_Values() []string {
+	return []string{
+		ControlFindingGeneratorStandardControl,
+		ControlFindingGeneratorSecurityControl,
 	}
 }
 
@@ -51468,6 +53453,22 @@ func RecordState_Values() []string {
 	return []string{
 		RecordStateActive,
 		RecordStateArchived,
+	}
+}
+
+const (
+	// RegionAvailabilityStatusAvailable is a RegionAvailabilityStatus enum value
+	RegionAvailabilityStatusAvailable = "AVAILABLE"
+
+	// RegionAvailabilityStatusUnavailable is a RegionAvailabilityStatus enum value
+	RegionAvailabilityStatusUnavailable = "UNAVAILABLE"
+)
+
+// RegionAvailabilityStatus_Values returns all elements of the RegionAvailabilityStatus enum
+func RegionAvailabilityStatus_Values() []string {
+	return []string{
+		RegionAvailabilityStatusAvailable,
+		RegionAvailabilityStatusUnavailable,
 	}
 }
 
@@ -51688,6 +53689,30 @@ func ThreatIntelIndicatorType_Values() []string {
 		ThreatIntelIndicatorTypeMutex,
 		ThreatIntelIndicatorTypeProcess,
 		ThreatIntelIndicatorTypeUrl,
+	}
+}
+
+const (
+	// UnprocessedErrorCodeInvalidInput is a UnprocessedErrorCode enum value
+	UnprocessedErrorCodeInvalidInput = "INVALID_INPUT"
+
+	// UnprocessedErrorCodeAccessDenied is a UnprocessedErrorCode enum value
+	UnprocessedErrorCodeAccessDenied = "ACCESS_DENIED"
+
+	// UnprocessedErrorCodeNotFound is a UnprocessedErrorCode enum value
+	UnprocessedErrorCodeNotFound = "NOT_FOUND"
+
+	// UnprocessedErrorCodeLimitExceeded is a UnprocessedErrorCode enum value
+	UnprocessedErrorCodeLimitExceeded = "LIMIT_EXCEEDED"
+)
+
+// UnprocessedErrorCode_Values returns all elements of the UnprocessedErrorCode enum
+func UnprocessedErrorCode_Values() []string {
+	return []string{
+		UnprocessedErrorCodeInvalidInput,
+		UnprocessedErrorCodeAccessDenied,
+		UnprocessedErrorCodeNotFound,
+		UnprocessedErrorCodeLimitExceeded,
 	}
 }
 

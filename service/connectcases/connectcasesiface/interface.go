@@ -92,6 +92,10 @@ type ConnectCasesAPI interface {
 	CreateTemplateWithContext(aws.Context, *connectcases.CreateTemplateInput, ...request.Option) (*connectcases.CreateTemplateOutput, error)
 	CreateTemplateRequest(*connectcases.CreateTemplateInput) (*request.Request, *connectcases.CreateTemplateOutput)
 
+	DeleteDomain(*connectcases.DeleteDomainInput) (*connectcases.DeleteDomainOutput, error)
+	DeleteDomainWithContext(aws.Context, *connectcases.DeleteDomainInput, ...request.Option) (*connectcases.DeleteDomainOutput, error)
+	DeleteDomainRequest(*connectcases.DeleteDomainInput) (*request.Request, *connectcases.DeleteDomainOutput)
+
 	GetCase(*connectcases.GetCaseInput) (*connectcases.GetCaseOutput, error)
 	GetCaseWithContext(aws.Context, *connectcases.GetCaseInput, ...request.Option) (*connectcases.GetCaseOutput, error)
 	GetCaseRequest(*connectcases.GetCaseInput) (*request.Request, *connectcases.GetCaseOutput)
