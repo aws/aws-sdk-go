@@ -42675,6 +42675,10 @@ type StartTaskContactInput struct {
 	// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
 	References map[string]*Reference `type:"map"`
 
+	// The contactId that is related (https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks)
+	// to this contact.
+	RelatedContactId *string `min:"1" type:"string"`
+
 	// The timestamp, in Unix Epoch seconds format, at which to start running the
 	// inbound flow. The scheduled time cannot be in the past. It must be within
 	// up to 6 days in future.
@@ -42716,6 +42720,9 @@ func (s *StartTaskContactInput) Validate() error {
 	}
 	if s.PreviousContactId != nil && len(*s.PreviousContactId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PreviousContactId", 1))
+	}
+	if s.RelatedContactId != nil && len(*s.RelatedContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RelatedContactId", 1))
 	}
 	if s.TaskTemplateId != nil && len(*s.TaskTemplateId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TaskTemplateId", 1))
@@ -42788,6 +42795,12 @@ func (s *StartTaskContactInput) SetQuickConnectId(v string) *StartTaskContactInp
 // SetReferences sets the References field's value.
 func (s *StartTaskContactInput) SetReferences(v map[string]*Reference) *StartTaskContactInput {
 	s.References = v
+	return s
+}
+
+// SetRelatedContactId sets the RelatedContactId field's value.
+func (s *StartTaskContactInput) SetRelatedContactId(v string) *StartTaskContactInput {
+	s.RelatedContactId = &v
 	return s
 }
 

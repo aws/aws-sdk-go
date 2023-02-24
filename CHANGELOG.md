@@ -1,3 +1,15 @@
+Release v1.44.209 (2023-02-24)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/connectcases`: Updates service API and documentation
+* `service/redshift`: Updates service documentation
+  * Documentation updates for Redshift API bringing it in line with IAM best practices.
+* `service/securityhub`: Updates service API, documentation, and paginators
+* `service/servicecatalog`: Updates service documentation
+  * Documentation updates for Service Catalog
+
 Release v1.44.208 (2023-02-23)
 ===
 

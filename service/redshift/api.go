@@ -13940,7 +13940,7 @@ type AuthorizeSnapshotAccessInput struct {
 	SnapshotArn *string `type:"string"`
 
 	// The identifier of the cluster the snapshot was created from. This parameter
-	// is required if your IAM user has a policy containing a snapshot resource
+	// is required if your IAM user or role has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 
@@ -15867,8 +15867,9 @@ type CopyClusterSnapshotInput struct {
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
 	// The identifier of the cluster the source snapshot was created from. This
-	// parameter is required if your IAM user has a policy containing a snapshot
-	// resource element that specifies anything other than * for the cluster name.
+	// parameter is required if your IAM user or role has a policy containing a
+	// snapshot resource element that specifies anything other than * for the cluster
+	// name.
 	//
 	// Constraints:
 	//
@@ -16299,8 +16300,8 @@ type CreateClusterInput struct {
 	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
-	// The password associated with the admin user account for the cluster that
-	// is being created.
+	// The password associated with the admin user for the cluster that is being
+	// created.
 	//
 	// Constraints:
 	//
@@ -16318,8 +16319,8 @@ type CreateClusterInput struct {
 	// MasterUserPassword is a required field
 	MasterUserPassword *string `type:"string" required:"true"`
 
-	// The user name associated with the admin user account for the cluster that
-	// is being created.
+	// The user name associated with the admin user for the cluster that is being
+	// created.
 	//
 	// Constraints:
 	//
@@ -19492,8 +19493,9 @@ type DeleteClusterSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the cluster the snapshot was created from. This
-	// parameter is required if your IAM user has a policy containing a snapshot
-	// resource element that specifies anything other than * for the cluster name.
+	// parameter is required if your IAM user or role has a policy containing a
+	// snapshot resource element that specifies anything other than * for the cluster
+	// name.
 	//
 	// Constraints: Must be the name of valid cluster.
 	SnapshotClusterIdentifier *string `type:"string"`
@@ -19554,8 +19556,9 @@ type DeleteClusterSnapshotMessage struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the cluster the snapshot was created from. This
-	// parameter is required if your IAM user has a policy containing a snapshot
-	// resource element that specifies anything other than * for the cluster name.
+	// parameter is required if your IAM user or role has a policy containing a
+	// snapshot resource element that specifies anything other than * for the cluster
+	// name.
 	//
 	// Constraints: Must be the name of valid cluster.
 	SnapshotClusterIdentifier *string `type:"string"`
@@ -21257,7 +21260,7 @@ type DescribeClusterSnapshotsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100.
+	// Constraints: minimum 20, maximum 500.
 	MaxRecords *int64 `type:"integer"`
 
 	// The Amazon Web Services account used to create or copy the snapshot. Use
@@ -27969,8 +27972,7 @@ type ModifyClusterInput struct {
 	// element of the operation response.
 	//
 	// Operations never return the password, so this operation provides a way to
-	// regain access to the admin user account for a cluster if the password is
-	// lost.
+	// regain access to the admin user for a cluster if the password is lost.
 	//
 	// Default: Uses existing setting.
 	//
@@ -31758,7 +31760,7 @@ type RestoreFromClusterSnapshotInput struct {
 	SnapshotArn *string `type:"string"`
 
 	// The name of the cluster the source snapshot was created from. This parameter
-	// is required if your IAM user has a policy containing a snapshot resource
+	// is required if your IAM user or role has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 
@@ -32776,7 +32778,7 @@ type RevokeSnapshotAccessInput struct {
 	SnapshotArn *string `type:"string"`
 
 	// The identifier of the cluster the snapshot was created from. This parameter
-	// is required if your IAM user has a policy containing a snapshot resource
+	// is required if your IAM user or role has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
 	SnapshotClusterIdentifier *string `type:"string"`
 

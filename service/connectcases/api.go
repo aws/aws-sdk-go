@@ -253,7 +253,12 @@ func (c *ConnectCases) CreateCaseRequest(input *CreateCaseInput) (req *request.R
 // Creates a case in the specified Cases domain. Case system and custom fields
 // are taken as an array id/value pairs with a declared data types.
 //
-// customer_id is a required field when creating a case.
+// The following fields are required when creating a case:
+//
+//	<ul> <li> <p> <code>customer_id</code> - You must provide the full customer
+//	profile ARN in this format: <code>arn:aws:profile:your AWS Region:your
+//	AWS account ID:domains/profiles domain name/profiles/profile ID</code>
+//	</p> </li> <li> <p> <code>title</code> </p> </li> </ul> </note>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -358,7 +363,8 @@ func (c *ConnectCases) CreateDomainRequest(input *CreateDomainInput) (req *reque
 //
 // This will not associate your connect instance to Cases domain. Instead, use
 // the Amazon Connect CreateIntegrationAssociation (https://docs.aws.amazon.com/connect/latest/APIReference/API_CreateIntegrationAssociation.html)
-// API.
+// API. You need specific IAM permissions to successfully associate the Cases
+// domain. For more information, see Onboard to Cases (https://docs.aws.amazon.com/connect/latest/adminguide/required-permissions-iam-cases.html#onboard-cases-iam).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -841,6 +847,106 @@ func (c *ConnectCases) CreateTemplate(input *CreateTemplateInput) (*CreateTempla
 // for more information on using Contexts.
 func (c *ConnectCases) CreateTemplateWithContext(ctx aws.Context, input *CreateTemplateInput, opts ...request.Option) (*CreateTemplateOutput, error) {
 	req, out := c.CreateTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDomain = "DeleteDomain"
+
+// DeleteDomainRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDomain for more information on using the DeleteDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDomainRequest method.
+//	req, resp := client.DeleteDomainRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteDomain
+func (c *ConnectCases) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDomain,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/domains/{domainId}",
+	}
+
+	if input == nil {
+		input = &DeleteDomainInput{}
+	}
+
+	output = &DeleteDomainOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDomain API operation for Amazon Connect Cases.
+//
+// Deletes a domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Cases's
+// API operation DeleteDomain for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same Amazon Web Services Region as your request,
+//     and try your request again.
+//
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
+//
+//   - ThrottlingException
+//     The rate has been exceeded for this API. Please try again after a few minutes.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request. See the accompanying error message for details.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteDomain
+func (c *ConnectCases) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
+	req, out := c.DeleteDomainRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDomainWithContext is the same as DeleteDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectCases) DeleteDomainWithContext(ctx aws.Context, input *DeleteDomainInput, opts ...request.Option) (*DeleteDomainOutput, error) {
+	req, out := c.DeleteDomainRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2517,6 +2623,10 @@ func (c *ConnectCases) SearchCasesRequest(input *SearchCasesInput) (req *request
 //
 // Searches for cases within their associated Cases domain. Search results are
 // returned as a paginated list of abridged case documents.
+//
+// For customer_id you must provide the full customer profile ARN in this format:
+// arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles domain
+// name/profiles/profile ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5050,6 +5160,77 @@ func (s *CreateTemplateOutput) SetTemplateArn(v string) *CreateTemplateOutput {
 func (s *CreateTemplateOutput) SetTemplateId(v string) *CreateTemplateOutput {
 	s.TemplateId = &v
 	return s
+}
+
+type DeleteDomainInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the Cases domain.
+	//
+	// DomainId is a required field
+	DomainId *string `location:"uri" locationName:"domainId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDomainInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *DeleteDomainInput) SetDomainId(v string) *DeleteDomainInput {
+	s.DomainId = &v
+	return s
+}
+
+type DeleteDomainOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDomainOutput) GoString() string {
+	return s.String()
 }
 
 // Object for the summarized details of the domain.
@@ -9803,7 +9984,6 @@ func RelatedItemType_Values() []string {
 	}
 }
 
-// Status of a template
 const (
 	// TemplateStatusActive is a TemplateStatus enum value
 	TemplateStatusActive = "Active"
