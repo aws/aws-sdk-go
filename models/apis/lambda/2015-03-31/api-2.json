@@ -1365,6 +1365,12 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "CollectionName":{
+      "type":"string",
+      "max":57,
+      "min":1,
+      "pattern":"(^(?!(system\\x2e)))(^[_a-zA-Z0-9])([^$]*)"
+    },
     "CompatibleArchitectures":{
       "type":"list",
       "member":{"shape":"Architecture"},
@@ -1452,7 +1458,8 @@
         "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
         "AmazonManagedKafkaEventSourceConfig":{"shape":"AmazonManagedKafkaEventSourceConfig"},
         "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"},
-        "ScalingConfig":{"shape":"ScalingConfig"}
+        "ScalingConfig":{"shape":"ScalingConfig"},
+        "DocumentDBEventSourceConfig":{"shape":"DocumentDBEventSourceConfig"}
       }
     },
     "CreateFunctionRequest":{
@@ -1524,6 +1531,12 @@
         "Cors":{"shape":"Cors"},
         "CreationTime":{"shape":"Timestamp"}
       }
+    },
+    "DatabaseName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[^ /\\.$\\x22]*"
     },
     "Date":{"type":"timestamp"},
     "DeadLetterConfig":{
@@ -1704,6 +1717,14 @@
         "OnFailure":{"shape":"OnFailure"}
       }
     },
+    "DocumentDBEventSourceConfig":{
+      "type":"structure",
+      "members":{
+        "DatabaseName":{"shape":"DatabaseName"},
+        "CollectionName":{"shape":"CollectionName"},
+        "FullDocument":{"shape":"FullDocument"}
+      }
+    },
     "EC2AccessDeniedException":{
       "type":"structure",
       "members":{
@@ -1876,7 +1897,8 @@
         "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
         "AmazonManagedKafkaEventSourceConfig":{"shape":"AmazonManagedKafkaEventSourceConfig"},
         "SelfManagedKafkaEventSourceConfig":{"shape":"SelfManagedKafkaEventSourceConfig"},
-        "ScalingConfig":{"shape":"ScalingConfig"}
+        "ScalingConfig":{"shape":"ScalingConfig"},
+        "DocumentDBEventSourceConfig":{"shape":"DocumentDBEventSourceConfig"}
       }
     },
     "EventSourceMappingsList":{
@@ -1933,6 +1955,13 @@
     "FilterList":{
       "type":"list",
       "member":{"shape":"Filter"}
+    },
+    "FullDocument":{
+      "type":"string",
+      "enum":[
+        "UpdateLookup",
+        "Default"
+      ]
     },
     "FunctionArn":{
       "type":"string",
@@ -2397,7 +2426,7 @@
       "required":["FunctionName"],
       "members":{
         "FunctionName":{
-          "shape":"FunctionName",
+          "shape":"NamespacedFunctionName",
           "location":"uri",
           "locationName":"FunctionName"
         },
@@ -2412,7 +2441,8 @@
       "type":"structure",
       "members":{
         "UpdateRuntimeOn":{"shape":"UpdateRuntimeOn"},
-        "RuntimeVersionArn":{"shape":"RuntimeVersionArn"}
+        "RuntimeVersionArn":{"shape":"RuntimeVersionArn"},
+        "FunctionArn":{"shape":"NameSpacedFunctionArn"}
       }
     },
     "Handler":{
@@ -4108,7 +4138,8 @@
         "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"},
         "TumblingWindowInSeconds":{"shape":"TumblingWindowInSeconds"},
         "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"},
-        "ScalingConfig":{"shape":"ScalingConfig"}
+        "ScalingConfig":{"shape":"ScalingConfig"},
+        "DocumentDBEventSourceConfig":{"shape":"DocumentDBEventSourceConfig"}
       }
     },
     "UpdateFunctionCodeRequest":{

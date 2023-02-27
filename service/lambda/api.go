@@ -7404,9 +7404,9 @@ type AddPermissionInput struct {
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// The type of authentication that your function URL uses. Set to AWS_IAM if
-	// you want to restrict access to authenticated IAM users only. Set to NONE
-	// if you want to bypass IAM authentication to create a public endpoint. For
-	// more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+	// you want to restrict access to authenticated users only. Set to NONE if you
+	// want to bypass IAM authentication to create a public endpoint. For more information,
+	// see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 	FunctionUrlAuthType *string `type:"string" enum:"FunctionUrlAuthType"`
 
 	// The Amazon Web Service or Amazon Web Services account that invokes the function.
@@ -8478,6 +8478,9 @@ type CreateEventSourceMappingInput struct {
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
+	// Specific configuration settings for a DocumentDB event source.
+	DocumentDBEventSourceConfig *DocumentDBEventSourceConfig `type:"structure"`
+
 	// When true, the event source mapping is active. When false, Lambda pauses
 	// polling and invocation.
 	//
@@ -8637,6 +8640,11 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 			invalidParams.AddNested("AmazonManagedKafkaEventSourceConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DocumentDBEventSourceConfig != nil {
+		if err := s.DocumentDBEventSourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentDBEventSourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ScalingConfig != nil {
 		if err := s.ScalingConfig.Validate(); err != nil {
 			invalidParams.AddNested("ScalingConfig", err.(request.ErrInvalidParams))
@@ -8690,6 +8698,12 @@ func (s *CreateEventSourceMappingInput) SetBisectBatchOnFunctionError(v bool) *C
 // SetDestinationConfig sets the DestinationConfig field's value.
 func (s *CreateEventSourceMappingInput) SetDestinationConfig(v *DestinationConfig) *CreateEventSourceMappingInput {
 	s.DestinationConfig = v
+	return s
+}
+
+// SetDocumentDBEventSourceConfig sets the DocumentDBEventSourceConfig field's value.
+func (s *CreateEventSourceMappingInput) SetDocumentDBEventSourceConfig(v *DocumentDBEventSourceConfig) *CreateEventSourceMappingInput {
+	s.DocumentDBEventSourceConfig = v
 	return s
 }
 
@@ -8864,9 +8878,12 @@ type CreateFunctionInput struct {
 	// that override the values in the container image Dockerfile.
 	ImageConfig *ImageConfig `type:"structure"`
 
-	// The ARN of the Key Management Service (KMS) key that's used to encrypt your
-	// function's environment variables. If it's not provided, Lambda uses a default
-	// service key.
+	// The ARN of the Key Management Service (KMS) customer managed key that's used
+	// to encrypt your function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption).
+	// When Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html)
+	// is activated, this key is also used to encrypt your function's snapshot.
+	// If you don't provide a customer managed key, Lambda uses a default service
+	// key.
 	KMSKeyArn *string `type:"string"`
 
 	// A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
@@ -8893,6 +8910,9 @@ type CreateFunctionInput struct {
 
 	// The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
 	// Runtime is required if the deployment package is a .zip file archive.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	Runtime *string `type:"string" enum:"Runtime"`
 
 	// The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html)
@@ -9131,9 +9151,9 @@ type CreateFunctionUrlConfigInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication that your function URL uses. Set to AWS_IAM if
-	// you want to restrict access to authenticated IAM users only. Set to NONE
-	// if you want to bypass IAM authentication to create a public endpoint. For
-	// more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+	// you want to restrict access to authenticated users only. Set to NONE if you
+	// want to bypass IAM authentication to create a public endpoint. For more information,
+	// see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 	//
 	// AuthType is a required field
 	AuthType *string `type:"string" required:"true" enum:"FunctionUrlAuthType"`
@@ -9230,9 +9250,9 @@ type CreateFunctionUrlConfigOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication that your function URL uses. Set to AWS_IAM if
-	// you want to restrict access to authenticated IAM users only. Set to NONE
-	// if you want to bypass IAM authentication to create a public endpoint. For
-	// more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+	// you want to restrict access to authenticated users only. Set to NONE if you
+	// want to bypass IAM authentication to create a public endpoint. For more information,
+	// see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 	//
 	// AuthType is a required field
 	AuthType *string `type:"string" required:"true" enum:"FunctionUrlAuthType"`
@@ -10232,6 +10252,76 @@ func (s *DestinationConfig) SetOnSuccess(v *OnSuccess) *DestinationConfig {
 	return s
 }
 
+// Specific configuration settings for a DocumentDB event source.
+type DocumentDBEventSourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the collection to consume within the database. If you do not
+	// specify a collection, Lambda consumes all collections.
+	CollectionName *string `min:"1" type:"string"`
+
+	// The name of the database to consume within the DocumentDB cluster.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// Determines what DocumentDB sends to your event stream during document update
+	// operations. If set to UpdateLookup, DocumentDB sends a delta describing the
+	// changes, along with a copy of the entire document. Otherwise, DocumentDB
+	// sends only a partial document that contains the changes.
+	FullDocument *string `type:"string" enum:"FullDocument"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentDBEventSourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentDBEventSourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentDBEventSourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentDBEventSourceConfig"}
+	if s.CollectionName != nil && len(*s.CollectionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionName", 1))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionName sets the CollectionName field's value.
+func (s *DocumentDBEventSourceConfig) SetCollectionName(v string) *DocumentDBEventSourceConfig {
+	s.CollectionName = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DocumentDBEventSourceConfig) SetDatabaseName(v string) *DocumentDBEventSourceConfig {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetFullDocument sets the FullDocument field's value.
+func (s *DocumentDBEventSourceConfig) SetFullDocument(v string) *DocumentDBEventSourceConfig {
+	s.FullDocument = &v
+	return s
+}
+
 // Need additional permissions to configure VPC settings.
 type EC2AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -10981,6 +11071,9 @@ type EventSourceMappingConfiguration struct {
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
+	// Specific configuration settings for a DocumentDB event source.
+	DocumentDBEventSourceConfig *DocumentDBEventSourceConfig `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the event source.
 	EventSourceArn *string `type:"string"`
 
@@ -11119,6 +11212,12 @@ func (s *EventSourceMappingConfiguration) SetBisectBatchOnFunctionError(v bool) 
 // SetDestinationConfig sets the DestinationConfig field's value.
 func (s *EventSourceMappingConfiguration) SetDestinationConfig(v *DestinationConfig) *EventSourceMappingConfiguration {
 	s.DestinationConfig = v
+	return s
+}
+
+// SetDocumentDBEventSourceConfig sets the DocumentDBEventSourceConfig field's value.
+func (s *EventSourceMappingConfiguration) SetDocumentDBEventSourceConfig(v *DocumentDBEventSourceConfig) *EventSourceMappingConfiguration {
+	s.DocumentDBEventSourceConfig = v
 	return s
 }
 
@@ -11584,8 +11683,10 @@ type FunctionConfiguration struct {
 	// The function's image configuration values.
 	ImageConfigResponse *ImageConfigResponse `type:"structure"`
 
-	// The KMS key that's used to encrypt the function's environment variables.
-	// This key is returned only if you've configured a customer managed key.
+	// The KMS key that's used to encrypt the function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption).
+	// When Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html)
+	// is activated, this key is also used to encrypt the function's snapshot. This
+	// key is returned only if you've configured a customer managed key.
 	KMSKeyArn *string `type:"string"`
 
 	// The date and time that the function was last updated, in ISO-8601 format
@@ -11973,9 +12074,9 @@ type FunctionUrlConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication that your function URL uses. Set to AWS_IAM if
-	// you want to restrict access to authenticated IAM users only. Set to NONE
-	// if you want to bypass IAM authentication to create a public endpoint. For
-	// more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+	// you want to restrict access to authenticated users only. Set to NONE if you
+	// want to bypass IAM authentication to create a public endpoint. For more information,
+	// see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 	//
 	// AuthType is a required field
 	AuthType *string `type:"string" required:"true" enum:"FunctionUrlAuthType"`
@@ -12969,9 +13070,9 @@ type GetFunctionUrlConfigOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication that your function URL uses. Set to AWS_IAM if
-	// you want to restrict access to authenticated IAM users only. Set to NONE
-	// if you want to bypass IAM authentication to create a public endpoint. For
-	// more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+	// you want to restrict access to authenticated users only. Set to NONE if you
+	// want to bypass IAM authentication to create a public endpoint. For more information,
+	// see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 	//
 	// AuthType is a required field
 	AuthType *string `type:"string" required:"true" enum:"FunctionUrlAuthType"`
@@ -13827,6 +13928,9 @@ func (s *GetRuntimeManagementConfigInput) SetQualifier(v string) *GetRuntimeMana
 type GetRuntimeManagementConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of your function.
+	FunctionArn *string `type:"string"`
+
 	// The ARN of the runtime the function is configured to use. If the runtime
 	// update mode is Manual, the ARN is returned, otherwise null is returned.
 	RuntimeVersionArn *string `min:"26" type:"string"`
@@ -13851,6 +13955,12 @@ func (s GetRuntimeManagementConfigOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetRuntimeManagementConfigOutput) GoString() string {
 	return s.String()
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *GetRuntimeManagementConfigOutput) SetFunctionArn(v string) *GetRuntimeManagementConfigOutput {
+	s.FunctionArn = &v
+	return s
 }
 
 // SetRuntimeVersionArn sets the RuntimeVersionArn field's value.
@@ -20205,6 +20315,9 @@ type UpdateEventSourceMappingInput struct {
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
+	// Specific configuration settings for a DocumentDB event source.
+	DocumentDBEventSourceConfig *DocumentDBEventSourceConfig `type:"structure"`
+
 	// When true, the event source mapping is active. When false, Lambda pauses
 	// polling and invocation.
 	//
@@ -20326,6 +20439,11 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	if s.UUID != nil && len(*s.UUID) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UUID", 1))
 	}
+	if s.DocumentDBEventSourceConfig != nil {
+		if err := s.DocumentDBEventSourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentDBEventSourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ScalingConfig != nil {
 		if err := s.ScalingConfig.Validate(); err != nil {
 			invalidParams.AddNested("ScalingConfig", err.(request.ErrInvalidParams))
@@ -20363,6 +20481,12 @@ func (s *UpdateEventSourceMappingInput) SetBisectBatchOnFunctionError(v bool) *U
 // SetDestinationConfig sets the DestinationConfig field's value.
 func (s *UpdateEventSourceMappingInput) SetDestinationConfig(v *DestinationConfig) *UpdateEventSourceMappingInput {
 	s.DestinationConfig = v
+	return s
+}
+
+// SetDocumentDBEventSourceConfig sets the DocumentDBEventSourceConfig field's value.
+func (s *UpdateEventSourceMappingInput) SetDocumentDBEventSourceConfig(v *DocumentDBEventSourceConfig) *UpdateEventSourceMappingInput {
+	s.DocumentDBEventSourceConfig = v
 	return s
 }
 
@@ -20657,9 +20781,12 @@ type UpdateFunctionConfigurationInput struct {
 	// that override the values in the container image Docker file.
 	ImageConfig *ImageConfig `type:"structure"`
 
-	// The ARN of the Key Management Service (KMS) key that's used to encrypt your
-	// function's environment variables. If it's not provided, Lambda uses a default
-	// service key.
+	// The ARN of the Key Management Service (KMS) customer managed key that's used
+	// to encrypt your function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption).
+	// When Lambda SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html)
+	// is activated, this key is also used to encrypt your function's snapshot.
+	// If you don't provide a customer managed key, Lambda uses a default service
+	// key.
 	KMSKeyArn *string `type:"string"`
 
 	// A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
@@ -20682,6 +20809,9 @@ type UpdateFunctionConfigurationInput struct {
 
 	// The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
 	// Runtime is required if the deployment package is a .zip file archive.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	Runtime *string `type:"string" enum:"Runtime"`
 
 	// The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html)
@@ -21062,9 +21192,9 @@ type UpdateFunctionUrlConfigInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication that your function URL uses. Set to AWS_IAM if
-	// you want to restrict access to authenticated IAM users only. Set to NONE
-	// if you want to bypass IAM authentication to create a public endpoint. For
-	// more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+	// you want to restrict access to authenticated users only. Set to NONE if you
+	// want to bypass IAM authentication to create a public endpoint. For more information,
+	// see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 	AuthType *string `type:"string" enum:"FunctionUrlAuthType"`
 
 	// The cross-origin resource sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
@@ -21156,9 +21286,9 @@ type UpdateFunctionUrlConfigOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication that your function URL uses. Set to AWS_IAM if
-	// you want to restrict access to authenticated IAM users only. Set to NONE
-	// if you want to bypass IAM authentication to create a public endpoint. For
-	// more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+	// you want to restrict access to authenticated users only. Set to NONE if you
+	// want to bypass IAM authentication to create a public endpoint. For more information,
+	// see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 	//
 	// AuthType is a required field
 	AuthType *string `type:"string" required:"true" enum:"FunctionUrlAuthType"`
@@ -21398,6 +21528,22 @@ func EventSourcePosition_Values() []string {
 		EventSourcePositionTrimHorizon,
 		EventSourcePositionLatest,
 		EventSourcePositionAtTimestamp,
+	}
+}
+
+const (
+	// FullDocumentUpdateLookup is a FullDocument enum value
+	FullDocumentUpdateLookup = "UpdateLookup"
+
+	// FullDocumentDefault is a FullDocument enum value
+	FullDocumentDefault = "Default"
+)
+
+// FullDocument_Values returns all elements of the FullDocument enum
+func FullDocument_Values() []string {
+	return []string{
+		FullDocumentUpdateLookup,
+		FullDocumentDefault,
 	}
 }
 

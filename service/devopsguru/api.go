@@ -4883,7 +4883,7 @@ type CostEstimationResourceCollectionFilter struct {
 	// tag to resources from different services to indicate that the resources are
 	// related. For example, you can assign the same tag to an Amazon DynamoDB table
 	// resource that you assign to an Lambda function. For more information about
-	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
 	// whitepaper.
 	//
 	// Each Amazon Web Services tag has two parts.
@@ -5976,7 +5976,7 @@ type DescribeOrganizationResourceCollectionHealthOutput struct {
 	// tag to resources from different services to indicate that the resources are
 	// related. For example, you can assign the same tag to an Amazon DynamoDB table
 	// resource that you assign to an Lambda function. For more information about
-	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
 	// whitepaper.
 	//
 	// Each Amazon Web Services tag has two parts.
@@ -6139,7 +6139,7 @@ type DescribeResourceCollectionHealthOutput struct {
 	// tag to resources from different services to indicate that the resources are
 	// related. For example, you can assign the same tag to an Amazon DynamoDB table
 	// resource that you assign to an Lambda function. For more information about
-	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
 	// whitepaper.
 	//
 	// Each Amazon Web Services tag has two parts.
@@ -9605,6 +9605,9 @@ type ProactiveAnomaly struct {
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// A description of the proactive anomaly.
+	Description *string `type:"string"`
+
 	// The ID of a proactive anomaly.
 	Id *string `min:"1" type:"string"`
 
@@ -9687,6 +9690,12 @@ func (s *ProactiveAnomaly) SetAssociatedInsightId(v string) *ProactiveAnomaly {
 	return s
 }
 
+// SetDescription sets the Description field's value.
+func (s *ProactiveAnomaly) SetDescription(v string) *ProactiveAnomaly {
+	s.Description = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ProactiveAnomaly) SetId(v string) *ProactiveAnomaly {
 	s.Id = &v
@@ -9760,6 +9769,9 @@ type ProactiveAnomalySummary struct {
 	// The ID of the insight that contains this anomaly. An insight is composed
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
+
+	// A description of the proactive anomaly.
+	Description *string `type:"string"`
 
 	// The ID of the anomaly.
 	Id *string `min:"1" type:"string"`
@@ -9840,6 +9852,12 @@ func (s *ProactiveAnomalySummary) SetAnomalyTimeRange(v *AnomalyTimeRange) *Proa
 // SetAssociatedInsightId sets the AssociatedInsightId field's value.
 func (s *ProactiveAnomalySummary) SetAssociatedInsightId(v string) *ProactiveAnomalySummary {
 	s.AssociatedInsightId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ProactiveAnomalySummary) SetDescription(v string) *ProactiveAnomalySummary {
+	s.Description = &v
 	return s
 }
 
@@ -11408,7 +11426,7 @@ type ResourceCollection struct {
 	// tag to resources from different services to indicate that the resources are
 	// related. For example, you can assign the same tag to an Amazon DynamoDB table
 	// resource that you assign to an Lambda function. For more information about
-	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
 	// whitepaper.
 	//
 	// Each Amazon Web Services tag has two parts.
@@ -11502,7 +11520,7 @@ type ResourceCollectionFilter struct {
 	// tag to resources from different services to indicate that the resources are
 	// related. For example, you can assign the same tag to an Amazon DynamoDB table
 	// resource that you assign to an Lambda function. For more information about
-	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
 	// whitepaper.
 	//
 	// Each Amazon Web Services tag has two parts.
@@ -11631,8 +11649,12 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies one or more severity values and one or more status values that
-// are used to search for insights.
+// Specifies values used to filter responses when searching for insights. You
+// can use a ResourceCollection, ServiceCollection, array of severities, and
+// an array of status values. Each filter type contains one or more values to
+// search for. If you specify multiple filter types, the filter types are joined
+// with an AND, and the request returns only results that match all of the specified
+// filters.
 type SearchInsightsFilters struct {
 	_ struct{} `type:"structure"`
 
@@ -12626,7 +12648,7 @@ func (s *StartTimeRange) SetToTime(v time.Time) *StartTimeRange {
 // tag to resources from different services to indicate that the resources are
 // related. For example, you can assign the same tag to an Amazon DynamoDB table
 // resource that you assign to an Lambda function. For more information about
-// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
 // whitepaper.
 //
 // Each Amazon Web Services tag has two parts.
@@ -13188,7 +13210,7 @@ type UpdateResourceCollectionFilter struct {
 	// tag to resources from different services to indicate that the resources are
 	// related. For example, you can assign the same tag to an Amazon DynamoDB table
 	// resource that you assign to an Lambda function. For more information about
-	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// using tags, see the Tagging best practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)
 	// whitepaper.
 	//
 	// Each Amazon Web Services tag has two parts.

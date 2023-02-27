@@ -800,7 +800,8 @@
         "dataReplicationState":{"shape":"DataReplicationState"},
         "etaDateTime":{"shape":"ISO8601DatetimeString"},
         "lagDuration":{"shape":"ISO8601DurationString"},
-        "replicatedDisks":{"shape":"DataReplicationInfoReplicatedDisks"}
+        "replicatedDisks":{"shape":"DataReplicationInfoReplicatedDisks"},
+        "stagingAvailabilityZone":{"shape":"AwsAvailabilityZone"}
       }
     },
     "DataReplicationInfoReplicatedDisk":{
@@ -1421,7 +1422,8 @@
     "LifeCycleLastLaunch":{
       "type":"structure",
       "members":{
-        "initiated":{"shape":"LifeCycleLastLaunchInitiated"}
+        "initiated":{"shape":"LifeCycleLastLaunchInitiated"},
+        "status":{"shape":"LaunchStatus"}
       }
     },
     "LifeCycleLastLaunchInitiated":{
@@ -1585,6 +1587,7 @@
         "failback":{"shape":"RecoveryInstanceFailback"},
         "isDrill":{"shape":"Boolean"},
         "jobID":{"shape":"JobID"},
+        "originAvailabilityZone":{"shape":"AwsAvailabilityZone"},
         "originEnvironment":{"shape":"OriginEnvironment"},
         "pointInTimeSnapshotDateTime":{"shape":"ISO8601DatetimeString"},
         "recoveryInstanceID":{"shape":"RecoveryInstanceID"},
@@ -1608,7 +1611,8 @@
         "dataReplicationState":{"shape":"RecoveryInstanceDataReplicationState"},
         "etaDateTime":{"shape":"ISO8601DatetimeString"},
         "lagDuration":{"shape":"ISO8601DatetimeString"},
-        "replicatedDisks":{"shape":"RecoveryInstanceDataReplicationInfoReplicatedDisks"}
+        "replicatedDisks":{"shape":"RecoveryInstanceDataReplicationInfoReplicatedDisks"},
+        "stagingAvailabilityZone":{"shape":"AwsAvailabilityZone"}
       }
     },
     "RecoveryInstanceDataReplicationInfoReplicatedDisk":{

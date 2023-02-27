@@ -1,3 +1,16 @@
+Release v1.44.210 (2023-02-27)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API and documentation
+* `service/drs`: Updates service API and documentation
+* `service/internetmonitor`: Adds new service
+* `service/lambda`: Updates service API and documentation
+  * This release adds the ability to create ESMs with Document DB change streams as event source. For more information see  https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html.
+* `service/mediaconvert`: Updates service API and documentation
+  * The AWS Elemental MediaConvert SDK has added support for HDR10 to SDR tone mapping, and animated GIF video input sources.
+* `service/timestream-write`: Updates service API, documentation, and paginators
+
 Release v1.44.209 (2023-02-24)
 ===
 
