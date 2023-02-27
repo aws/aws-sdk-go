@@ -1916,7 +1916,8 @@
         "ResourceCollection":{"shape":"ResourceCollection"},
         "Limit":{"shape":"AnomalyLimit"},
         "SourceMetadata":{"shape":"AnomalySourceMetadata"},
-        "AnomalyResources":{"shape":"AnomalyResources"}
+        "AnomalyResources":{"shape":"AnomalyResources"},
+        "Description":{"shape":"AnomalyDescription"}
       }
     },
     "ProactiveAnomalySummary":{
@@ -1934,7 +1935,8 @@
         "ResourceCollection":{"shape":"ResourceCollection"},
         "Limit":{"shape":"AnomalyLimit"},
         "SourceMetadata":{"shape":"AnomalySourceMetadata"},
-        "AnomalyResources":{"shape":"AnomalyResources"}
+        "AnomalyResources":{"shape":"AnomalyResources"},
+        "Description":{"shape":"AnomalyDescription"}
       }
     },
     "ProactiveInsight":{

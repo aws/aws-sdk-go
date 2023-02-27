@@ -187,7 +187,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://drs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://ingest.timestream-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -245,7 +245,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://drs-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                "url": "https://ingest.timestream-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -303,7 +303,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://drs.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://ingest.timestream.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -327,7 +327,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://drs.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://ingest.timestream.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },

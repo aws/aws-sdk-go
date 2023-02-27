@@ -4640,6 +4640,9 @@ type DataReplicationInfo struct {
 
 	// The disks that should be replicated.
 	ReplicatedDisks []*DataReplicationInfoReplicatedDisk `locationName:"replicatedDisks" type:"list"`
+
+	// AWS Availability zone into which data is being replicated.
+	StagingAvailabilityZone *string `locationName:"stagingAvailabilityZone" type:"string"`
 }
 
 // String returns the string representation.
@@ -4693,6 +4696,12 @@ func (s *DataReplicationInfo) SetLagDuration(v string) *DataReplicationInfo {
 // SetReplicatedDisks sets the ReplicatedDisks field's value.
 func (s *DataReplicationInfo) SetReplicatedDisks(v []*DataReplicationInfoReplicatedDisk) *DataReplicationInfo {
 	s.ReplicatedDisks = v
+	return s
+}
+
+// SetStagingAvailabilityZone sets the StagingAvailabilityZone field's value.
+func (s *DataReplicationInfo) SetStagingAvailabilityZone(v string) *DataReplicationInfo {
+	s.StagingAvailabilityZone = &v
 	return s
 }
 
@@ -7300,6 +7309,9 @@ type LifeCycleLastLaunch struct {
 	// An object containing information regarding the initiation of the last launch
 	// of a Source Server.
 	Initiated *LifeCycleLastLaunchInitiated `locationName:"initiated" type:"structure"`
+
+	// Status of Source Server's last launch.
+	Status *string `locationName:"status" type:"string" enum:"LaunchStatus"`
 }
 
 // String returns the string representation.
@@ -7323,6 +7335,12 @@ func (s LifeCycleLastLaunch) GoString() string {
 // SetInitiated sets the Initiated field's value.
 func (s *LifeCycleLastLaunch) SetInitiated(v *LifeCycleLastLaunchInitiated) *LifeCycleLastLaunch {
 	s.Initiated = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LifeCycleLastLaunch) SetStatus(v string) *LifeCycleLastLaunch {
+	s.Status = &v
 	return s
 }
 
@@ -7922,6 +7940,9 @@ type RecoveryInstance struct {
 	// The ID of the Job that created the Recovery Instance.
 	JobID *string `locationName:"jobID" min:"24" type:"string"`
 
+	// AWS availability zone associated with the recovery instance.
+	OriginAvailabilityZone *string `locationName:"originAvailabilityZone" type:"string"`
+
 	// Environment (On Premises / AWS) of the instance that the recovery instance
 	// originated from.
 	OriginEnvironment *string `locationName:"originEnvironment" type:"string" enum:"OriginEnvironment"`
@@ -8004,6 +8025,12 @@ func (s *RecoveryInstance) SetIsDrill(v bool) *RecoveryInstance {
 // SetJobID sets the JobID field's value.
 func (s *RecoveryInstance) SetJobID(v string) *RecoveryInstance {
 	s.JobID = &v
+	return s
+}
+
+// SetOriginAvailabilityZone sets the OriginAvailabilityZone field's value.
+func (s *RecoveryInstance) SetOriginAvailabilityZone(v string) *RecoveryInstance {
+	s.OriginAvailabilityZone = &v
 	return s
 }
 
@@ -8105,6 +8132,9 @@ type RecoveryInstanceDataReplicationInfo struct {
 
 	// The disks that should be replicated.
 	ReplicatedDisks []*RecoveryInstanceDataReplicationInfoReplicatedDisk `locationName:"replicatedDisks" type:"list"`
+
+	// AWS Availability zone into which data is being replicated.
+	StagingAvailabilityZone *string `locationName:"stagingAvailabilityZone" type:"string"`
 }
 
 // String returns the string representation.
@@ -8158,6 +8188,12 @@ func (s *RecoveryInstanceDataReplicationInfo) SetLagDuration(v string) *Recovery
 // SetReplicatedDisks sets the ReplicatedDisks field's value.
 func (s *RecoveryInstanceDataReplicationInfo) SetReplicatedDisks(v []*RecoveryInstanceDataReplicationInfoReplicatedDisk) *RecoveryInstanceDataReplicationInfo {
 	s.ReplicatedDisks = v
+	return s
+}
+
+// SetStagingAvailabilityZone sets the StagingAvailabilityZone field's value.
+func (s *RecoveryInstanceDataReplicationInfo) SetStagingAvailabilityZone(v string) *RecoveryInstanceDataReplicationInfo {
+	s.StagingAvailabilityZone = &v
 	return s
 }
 
@@ -8652,9 +8688,8 @@ type ReplicationConfigurationReplicatedDisk struct {
 	// Whether to boot from this disk or not.
 	IsBootDisk *bool `locationName:"isBootDisk" type:"boolean"`
 
-	// When stagingDiskType is set to Auto, this field shows the current staging
-	// disk EBS volume type as it is constantly updated by the service. This is
-	// a read-only field.
+	// The Staging Disk EBS volume type to be used during replication when stagingDiskType
+	// is set to Auto. This is a read-only field.
 	OptimizedStagingDiskType *string `locationName:"optimizedStagingDiskType" type:"string" enum:"ReplicationConfigurationReplicatedDiskStagingDiskType"`
 
 	// The Staging Disk EBS volume type to be used during replication.

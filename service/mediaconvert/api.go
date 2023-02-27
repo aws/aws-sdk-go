@@ -5201,6 +5201,65 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The Bandwidth reduction filter increases the video quality of your output
+// relative to its bitrate. Use to lower the bitrate of your constant quality
+// QVBR output, with little or no perceptual decrease in quality. Or, use to
+// increase the video quality of outputs with other rate control modes relative
+// to the bitrate that you specify. Bandwidth reduction increases further when
+// your input is low quality or noisy.Outputs that use this feature incur pro-tier
+// pricing.When you include Bandwidth reduction filter, you cannot include the
+// Noise reducer preprocessor.
+type BandwidthReductionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Optionally specify the level of sharpening to apply when you use the Bandwidth
+	// reduction filter. Sharpening adds contrast to the edges of your video content
+	// and can reduce softness. Keep the default value Off to apply no sharpening.
+	// Set Sharpening strength to Low to apply a minimal amount of sharpening, or
+	// High to apply a maximum amount of sharpening.
+	Sharpening *string `locationName:"sharpening" type:"string" enum:"BandwidthReductionFilterSharpening"`
+
+	// Specify the strength of the Bandwidth reduction filter. For most workflows,
+	// we recommend that you choose Auto. Your output bandwidth will be reduced
+	// by at least 8 percent with no perceptual decrease in video quality. If your
+	// output bandwidth isn't constrained, set Filter strength to Low or Medium.
+	// Low results in minimal to no impact in perceptual quality. For more bandwidth
+	// reduction, choose High. The filter helps equalize quality between all scenes
+	// and increases video softness. We recommend that you choose High for low bitrate
+	// outputs.
+	Strength *string `locationName:"strength" type:"string" enum:"BandwidthReductionFilterStrength"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BandwidthReductionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BandwidthReductionFilter) GoString() string {
+	return s.String()
+}
+
+// SetSharpening sets the Sharpening field's value.
+func (s *BandwidthReductionFilter) SetSharpening(v string) *BandwidthReductionFilter {
+	s.Sharpening = &v
+	return s
+}
+
+// SetStrength sets the Strength field's value.
+func (s *BandwidthReductionFilter) SetStrength(v string) *BandwidthReductionFilter {
+	s.Strength = &v
+	return s
+}
+
 // Burn-in is a captions delivery method, rather than a captions format. Burn-in
 // writes the captions directly on your video frames, replacing pixels of video
 // content with the captions. Set up burn-in captions in the same output as
@@ -7226,14 +7285,14 @@ type CmfcSettings struct {
 	TimedMetadataBoxVersion *string `locationName:"timedMetadataBoxVersion" type:"string" enum:"CmfcTimedMetadataBoxVersion"`
 
 	// Specify the event message box (eMSG) scheme ID URI (scheme_id_uri) for ID3
-	// timed metadata in your output. For more informaiton, see ISO/IEC 23009-1:2022
+	// timed metadata in your output. For more information, see ISO/IEC 23009-1:2022
 	// section 5.10.3.3.4 Semantics. Leave blank to use the default value: https://aomedia.org/emsg/ID3
 	// When you specify a value for ID3 metadata scheme ID URI, you must also set
 	// ID3 metadata (timedMetadata) to Passthrough.
 	TimedMetadataSchemeIdUri *string `locationName:"timedMetadataSchemeIdUri" type:"string"`
 
 	// Specify the event message box (eMSG) value for ID3 timed metadata in your
-	// output. For more informaiton, see ISO/IEC 23009-1:2022 section 5.10.3.3.4
+	// output. For more information, see ISO/IEC 23009-1:2022 section 5.10.3.3.4
 	// Semantics. When you specify a value for ID3 Metadata Value, you must also
 	// set ID3 metadata (timedMetadata) to Passthrough.
 	TimedMetadataValue *string `locationName:"timedMetadataValue" type:"string"`
@@ -7380,6 +7439,20 @@ type ColorCorrector struct {
 	// see https://docs.aws.amazon.com/console/mediaconvert/hdr.
 	Hdr10Metadata *Hdr10Metadata `locationName:"hdr10Metadata" type:"structure"`
 
+	// Specify how MediaConvert maps brightness and colors from your HDR input to
+	// your SDR output. The mode that you select represents a creative choice, with
+	// different tradeoffs in the details and tones of your output. To maintain
+	// details in bright or saturated areas of your output: Choose Preserve details.
+	// For some sources, your SDR output may look less bright and less saturated
+	// when compared to your HDR source. MediaConvert automatically applies this
+	// mode for HLG sources, regardless of your choice. For a bright and saturated
+	// output: Choose Vibrant. We recommend that you choose this mode when any of
+	// your source content is HDR10, and for the best results when it is mastered
+	// for 1000 nits. You may notice loss of details in bright or saturated areas
+	// of your output. HDR to SDR tone mapping has no effect when your input is
+	// SDR.
+	HdrToSdrToneMapper *string `locationName:"hdrToSdrToneMapper" type:"string" enum:"HDRToSDRToneMapper"`
+
 	// Hue in degrees.
 	Hue *int64 `locationName:"hue" type:"integer"`
 
@@ -7489,6 +7562,12 @@ func (s *ColorCorrector) SetContrast(v int64) *ColorCorrector {
 // SetHdr10Metadata sets the Hdr10Metadata field's value.
 func (s *ColorCorrector) SetHdr10Metadata(v *Hdr10Metadata) *ColorCorrector {
 	s.Hdr10Metadata = v
+	return s
+}
+
+// SetHdrToSdrToneMapper sets the HdrToSdrToneMapper field's value.
+func (s *ColorCorrector) SetHdrToSdrToneMapper(v string) *ColorCorrector {
+	s.HdrToSdrToneMapper = &v
 	return s
 }
 
@@ -11228,9 +11307,9 @@ func (s *EsamSignalProcessingNotification) SetSccXml(v string) *EsamSignalProces
 type ExtendedDataServices struct {
 	_ struct{} `type:"structure"`
 
-	// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
-	// packets will not be changed. If you select STRIP, any packets will be removed
-	// in output captions.
+	// The action to take on copy and redistribution control XDS packets. If you
+	// select PASSTHROUGH, packets will not be changed. If you select STRIP, any
+	// packets will be removed in output captions.
 	CopyProtectionAction *string `locationName:"copyProtectionAction" type:"string" enum:"CopyProtectionAction"`
 
 	// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
@@ -12189,6 +12268,16 @@ type H264Settings struct {
 	// H264FlickerAdaptiveQuantization, H264SpatialAdaptiveQuantization, and H264TemporalAdaptiveQuantization.
 	AdaptiveQuantization *string `locationName:"adaptiveQuantization" type:"string" enum:"H264AdaptiveQuantization"`
 
+	// The Bandwidth reduction filter increases the video quality of your output
+	// relative to its bitrate. Use to lower the bitrate of your constant quality
+	// QVBR output, with little or no perceptual decrease in quality. Or, use to
+	// increase the video quality of outputs with other rate control modes relative
+	// to the bitrate that you specify. Bandwidth reduction increases further when
+	// your input is low quality or noisy.Outputs that use this feature incur pro-tier
+	// pricing.When you include Bandwidth reduction filter, you cannot include the
+	// Noise reducer preprocessor.
+	BandwidthReductionFilter *BandwidthReductionFilter `locationName:"bandwidthReductionFilter" type:"structure"`
+
 	// Specify the average bitrate in bits per second. Required for VBR and CBR.
 	// For MS Smooth outputs, bitrates must be unique when rounded down to the nearest
 	// multiple of 1000.
@@ -12589,6 +12678,12 @@ func (s *H264Settings) Validate() error {
 // SetAdaptiveQuantization sets the AdaptiveQuantization field's value.
 func (s *H264Settings) SetAdaptiveQuantization(v string) *H264Settings {
 	s.AdaptiveQuantization = &v
+	return s
+}
+
+// SetBandwidthReductionFilter sets the BandwidthReductionFilter field's value.
+func (s *H264Settings) SetBandwidthReductionFilter(v *BandwidthReductionFilter) *H264Settings {
+	s.BandwidthReductionFilter = v
 	return s
 }
 
@@ -19438,14 +19533,14 @@ type MpdSettings struct {
 	TimedMetadataBoxVersion *string `locationName:"timedMetadataBoxVersion" type:"string" enum:"MpdTimedMetadataBoxVersion"`
 
 	// Specify the event message box (eMSG) scheme ID URI (scheme_id_uri) for ID3
-	// timed metadata in your output. For more informaiton, see ISO/IEC 23009-1:2022
+	// timed metadata in your output. For more information, see ISO/IEC 23009-1:2022
 	// section 5.10.3.3.4 Semantics. Leave blank to use the default value: https://aomedia.org/emsg/ID3
 	// When you specify a value for ID3 metadata scheme ID URI, you must also set
 	// ID3 metadata (timedMetadata) to Passthrough.
 	TimedMetadataSchemeIdUri *string `locationName:"timedMetadataSchemeIdUri" type:"string"`
 
 	// Specify the event message box (eMSG) value for ID3 timed metadata in your
-	// output. For more informaiton, see ISO/IEC 23009-1:2022 section 5.10.3.3.4
+	// output. For more information, see ISO/IEC 23009-1:2022 section 5.10.3.3.4
 	// Semantics. When you specify a value for ID3 Metadata Value, you must also
 	// set ID3 metadata (timedMetadata) to Passthrough.
 	TimedMetadataValue *string `locationName:"timedMetadataValue" type:"string"`
@@ -20722,11 +20817,11 @@ func (s *NielsenNonLinearWatermarkSettings) SetUniqueTicPerAudioTrack(v string) 
 	return s
 }
 
-// Enable the Noise reducer (NoiseReducer) feature to remove noise from your
-// video output if necessary. Enable or disable this feature for each output
-// individually. This setting is disabled by default. When you enable Noise
-// reducer (NoiseReducer), you must also select a value for Noise reducer filter
-// (NoiseReducerFilter).
+// Enable the Noise reducer feature to remove noise from your video output if
+// necessary. Enable or disable this feature for each output individually. This
+// setting is disabled by default. When you enable Noise reducer, you must also
+// select a value for Noise reducer filter. For AVC outputs, when you include
+// Noise reducer, you cannot include the Bandwidth reduction filter.
 type NoiseReducer struct {
 	_ struct{} `type:"structure"`
 
@@ -25170,9 +25265,11 @@ type VideoPreprocessor struct {
 	// This setting is disabled by default.
 	ImageInserter *ImageInserter `locationName:"imageInserter" type:"structure"`
 
-	// Enable the Noise reducer (NoiseReducer) feature to remove noise from your
-	// video output if necessary. Enable or disable this feature for each output
-	// individually. This setting is disabled by default.
+	// Enable the Noise reducer feature to remove noise from your video output if
+	// necessary. Enable or disable this feature for each output individually. This
+	// setting is disabled by default. When you enable Noise reducer, you must also
+	// select a value for Noise reducer filter. For AVC outputs, when you include
+	// Noise reducer, you cannot include the Bandwidth reduction filter.
 	NoiseReducer *NoiseReducer `locationName:"noiseReducer" type:"structure"`
 
 	// If you work with a third party video watermarking partner, use the group
@@ -28147,6 +28244,71 @@ func AvcIntraUhdQualityTuningLevel_Values() []string {
 	}
 }
 
+// Optionally specify the level of sharpening to apply when you use the Bandwidth
+// reduction filter. Sharpening adds contrast to the edges of your video content
+// and can reduce softness. Keep the default value Off to apply no sharpening.
+// Set Sharpening strength to Low to apply a minimal amount of sharpening, or
+// High to apply a maximum amount of sharpening.
+const (
+	// BandwidthReductionFilterSharpeningLow is a BandwidthReductionFilterSharpening enum value
+	BandwidthReductionFilterSharpeningLow = "LOW"
+
+	// BandwidthReductionFilterSharpeningMedium is a BandwidthReductionFilterSharpening enum value
+	BandwidthReductionFilterSharpeningMedium = "MEDIUM"
+
+	// BandwidthReductionFilterSharpeningHigh is a BandwidthReductionFilterSharpening enum value
+	BandwidthReductionFilterSharpeningHigh = "HIGH"
+
+	// BandwidthReductionFilterSharpeningOff is a BandwidthReductionFilterSharpening enum value
+	BandwidthReductionFilterSharpeningOff = "OFF"
+)
+
+// BandwidthReductionFilterSharpening_Values returns all elements of the BandwidthReductionFilterSharpening enum
+func BandwidthReductionFilterSharpening_Values() []string {
+	return []string{
+		BandwidthReductionFilterSharpeningLow,
+		BandwidthReductionFilterSharpeningMedium,
+		BandwidthReductionFilterSharpeningHigh,
+		BandwidthReductionFilterSharpeningOff,
+	}
+}
+
+// Specify the strength of the Bandwidth reduction filter. For most workflows,
+// we recommend that you choose Auto. Your output bandwidth will be reduced
+// by at least 8 percent with no perceptual decrease in video quality. If your
+// output bandwidth isn't constrained, set Filter strength to Low or Medium.
+// Low results in minimal to no impact in perceptual quality. For more bandwidth
+// reduction, choose High. The filter helps equalize quality between all scenes
+// and increases video softness. We recommend that you choose High for low bitrate
+// outputs.
+const (
+	// BandwidthReductionFilterStrengthLow is a BandwidthReductionFilterStrength enum value
+	BandwidthReductionFilterStrengthLow = "LOW"
+
+	// BandwidthReductionFilterStrengthMedium is a BandwidthReductionFilterStrength enum value
+	BandwidthReductionFilterStrengthMedium = "MEDIUM"
+
+	// BandwidthReductionFilterStrengthHigh is a BandwidthReductionFilterStrength enum value
+	BandwidthReductionFilterStrengthHigh = "HIGH"
+
+	// BandwidthReductionFilterStrengthAuto is a BandwidthReductionFilterStrength enum value
+	BandwidthReductionFilterStrengthAuto = "AUTO"
+
+	// BandwidthReductionFilterStrengthOff is a BandwidthReductionFilterStrength enum value
+	BandwidthReductionFilterStrengthOff = "OFF"
+)
+
+// BandwidthReductionFilterStrength_Values returns all elements of the BandwidthReductionFilterStrength enum
+func BandwidthReductionFilterStrength_Values() []string {
+	return []string{
+		BandwidthReductionFilterStrengthLow,
+		BandwidthReductionFilterStrengthMedium,
+		BandwidthReductionFilterStrengthHigh,
+		BandwidthReductionFilterStrengthAuto,
+		BandwidthReductionFilterStrengthOff,
+	}
+}
+
 // The tag type that AWS Billing and Cost Management will use to sort your AWS
 // Elemental MediaConvert costs on any billing report that you set up.
 const (
@@ -29428,9 +29590,9 @@ func ContainerType_Values() []string {
 	}
 }
 
-// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
-// packets will not be changed. If you select STRIP, any packets will be removed
-// in output captions.
+// The action to take on copy and redistribution control XDS packets. If you
+// select PASSTHROUGH, packets will not be changed. If you select STRIP, any
+// packets will be removed in output captions.
 const (
 	// CopyProtectionActionPassthrough is a CopyProtectionAction enum value
 	CopyProtectionActionPassthrough = "PASSTHROUGH"
@@ -32416,6 +32578,34 @@ func H265WriteMp4PackagingType_Values() []string {
 	return []string{
 		H265WriteMp4PackagingTypeHvc1,
 		H265WriteMp4PackagingTypeHev1,
+	}
+}
+
+// Specify how MediaConvert maps brightness and colors from your HDR input to
+// your SDR output. The mode that you select represents a creative choice, with
+// different tradeoffs in the details and tones of your output. To maintain
+// details in bright or saturated areas of your output: Choose Preserve details.
+// For some sources, your SDR output may look less bright and less saturated
+// when compared to your HDR source. MediaConvert automatically applies this
+// mode for HLG sources, regardless of your choice. For a bright and saturated
+// output: Choose Vibrant. We recommend that you choose this mode when any of
+// your source content is HDR10, and for the best results when it is mastered
+// for 1000 nits. You may notice loss of details in bright or saturated areas
+// of your output. HDR to SDR tone mapping has no effect when your input is
+// SDR.
+const (
+	// HDRToSDRToneMapperPreserveDetails is a HDRToSDRToneMapper enum value
+	HDRToSDRToneMapperPreserveDetails = "PRESERVE_DETAILS"
+
+	// HDRToSDRToneMapperVibrant is a HDRToSDRToneMapper enum value
+	HDRToSDRToneMapperVibrant = "VIBRANT"
+)
+
+// HDRToSDRToneMapper_Values returns all elements of the HDRToSDRToneMapper enum
+func HDRToSDRToneMapper_Values() []string {
+	return []string{
+		HDRToSDRToneMapperPreserveDetails,
+		HDRToSDRToneMapperVibrant,
 	}
 }
 

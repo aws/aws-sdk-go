@@ -94,6 +94,9 @@
     "AwsAvailabilityZone": {
       "base": null,
       "refs": {
+        "DataReplicationInfo$stagingAvailabilityZone": "<p>AWS Availability zone into which data is being replicated.</p>",
+        "RecoveryInstance$originAvailabilityZone": "<p>AWS availability zone associated with the recovery instance.</p>",
+        "RecoveryInstanceDataReplicationInfo$stagingAvailabilityZone": "<p>AWS Availability zone into which data is being replicated.</p>",
         "SourceCloudProperties$originAvailabilityZone": "<p>AWS Availability Zone for an EC2-originated Source Server.</p>"
       }
     },
@@ -715,6 +718,7 @@
     "LaunchStatus": {
       "base": null,
       "refs": {
+        "LifeCycleLastLaunch$status": "<p>Status of Source Server's last launch.</p>",
         "ParticipatingServer$launchStatus": "<p>The launch status of a participating server.</p>"
       }
     },
@@ -808,7 +812,7 @@
     "OriginEnvironment": {
       "base": null,
       "refs": {
-        "RecoveryInstance$originEnvironment": "<p>Environment (On Premises / AWS) of the instance that the recovery instance originated from. </p>"
+        "RecoveryInstance$originEnvironment": "<p>Environment (On Premises / AWS) of the instance that the recovery instance originated from.</p>"
       }
     },
     "PITPolicy": {
@@ -1085,7 +1089,7 @@
     "ReplicationConfigurationReplicatedDiskStagingDiskType": {
       "base": null,
       "refs": {
-        "ReplicationConfigurationReplicatedDisk$optimizedStagingDiskType": "<p>When <code>stagingDiskType</code> is set to Auto, this field shows the current staging disk EBS volume type as it is constantly updated by the service. This is a read-only field.</p>",
+        "ReplicationConfigurationReplicatedDisk$optimizedStagingDiskType": "<p>The Staging Disk EBS volume type to be used during replication when <code>stagingDiskType</code> is set to Auto. This is a read-only field.</p>",
         "ReplicationConfigurationReplicatedDisk$stagingDiskType": "<p>The Staging Disk EBS volume type to be used during replication.</p>"
       }
     },
