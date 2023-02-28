@@ -6242,7 +6242,8 @@ func (c *Omics) StartReadSetActivationJobRequest(input *StartReadSetActivationJo
 
 // StartReadSetActivationJob API operation for Amazon Omics.
 //
-// Starts a read set activation job.
+// Activates an archived read set. To reduce storage charges, Amazon Omics archives
+// unused read sets after 30 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6341,7 +6342,7 @@ func (c *Omics) StartReadSetExportJobRequest(input *StartReadSetExportJobInput) 
 
 // StartReadSetExportJob API operation for Amazon Omics.
 //
-// Starts a read set export job.
+// Exports a read set to Amazon S3.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8494,7 +8495,8 @@ type CreateAnnotationStoreOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The store's genome reference.
+	// The store's genome reference. Required for all stores except TSV format with
+	// generic annotations.
 	Reference *ReferenceItem `locationName:"reference" type:"structure"`
 
 	// The store's status.
@@ -8754,7 +8756,7 @@ type CreateRunGroupInput struct {
 	// The maximum number of CPUs to use in the group.
 	MaxCpus *int64 `locationName:"maxCpus" min:"1" type:"integer"`
 
-	// A max duration for the group.
+	// A maximum run time for the group in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
 	// The maximum number of concurrent runs for the group.
@@ -8763,7 +8765,8 @@ type CreateRunGroupInput struct {
 	// A name for the group.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// A request ID for the group.
+	// To ensure that requests don't run multiple times, specify a unique ID for
+	// each request.
 	RequestId *string `locationName:"requestId" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Tags for the group.
@@ -9269,10 +9272,11 @@ type CreateWorkflowInput struct {
 	// A parameter template for the workflow.
 	ParameterTemplate map[string]*WorkflowParameter `locationName:"parameterTemplate" min:"1" type:"map"`
 
-	// A request ID for the workflow.
+	// To ensure that requests don't run multiple times, specify a unique ID for
+	// each request.
 	RequestId *string `locationName:"requestId" min:"1" type:"string" idempotencyToken:"true"`
 
-	// A storage capacity for the workflow.
+	// A storage capacity for the workflow in gigabytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// Tags for the workflow.
@@ -10918,7 +10922,7 @@ type GetReadSetActivationJobOutput struct {
 	// SequenceStoreId is a required field
 	SequenceStoreId *string `locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
 
-	// The job's sources.
+	// The job's source files.
 	Sources []*ActivateReadSetSourceItem `locationName:"sources" type:"list"`
 
 	// The job's status.
@@ -11252,7 +11256,7 @@ type GetReadSetImportJobOutput struct {
 	// SequenceStoreId is a required field
 	SequenceStoreId *string `locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
 
-	// The job's sources.
+	// The job's source files.
 	//
 	// Sources is a required field
 	Sources []*ImportReadSetSourceItem `locationName:"sources" type:"list" required:"true"`
@@ -11764,7 +11768,7 @@ type GetReferenceImportJobOutput struct {
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
 
-	// The job's sources.
+	// The job's source files.
 	//
 	// Sources is a required field
 	Sources []*ImportReferenceSourceItem `locationName:"sources" type:"list" required:"true"`
@@ -12364,7 +12368,7 @@ type GetRunGroupOutput struct {
 	// The group's maximum number of CPUs to use.
 	MaxCpus *int64 `locationName:"maxCpus" min:"1" type:"integer"`
 
-	// The group's maximum run duration.
+	// The group's maximum run time in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
 	// The maximum number of concurrent runs for the group.
@@ -12558,7 +12562,7 @@ type GetRunOutput struct {
 	// The run's stop time.
 	StopTime *time.Time `locationName:"stopTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The run's storage capacity.
+	// The run's storage capacity in gigabytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// The run's tags.
@@ -12799,7 +12803,7 @@ type GetRunTaskOutput struct {
 	// The task's log stream.
 	LogStream *string `locationName:"logStream" type:"string"`
 
-	// The task's memory setting.
+	// The task's memory use in gigabytes.
 	Memory *int64 `locationName:"memory" min:"1" type:"integer"`
 
 	// The task's name.
@@ -13521,7 +13525,7 @@ type GetWorkflowOutput struct {
 	// The workflow's status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// The workflow's storage capacity.
+	// The workflow's storage capacity in gigabytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// The workflow's tags.
@@ -17439,7 +17443,7 @@ type RunGroupListItem struct {
 	// The group's maximum CPU count setting.
 	MaxCpus *int64 `locationName:"maxCpus" min:"1" type:"integer"`
 
-	// The group's maximum duration setting.
+	// The group's maximum duration setting in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
 	// The group's maximum concurrent run setting.
@@ -18167,7 +18171,7 @@ type StartReadSetActivationJobInput struct {
 	// SequenceStoreId is a required field
 	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
 
-	// The job's sources.
+	// The job's source files.
 	//
 	// Sources is a required field
 	Sources []*StartReadSetActivationJobSourceItem `locationName:"sources" min:"1" type:"list" required:"true"`
@@ -18382,7 +18386,7 @@ type StartReadSetExportJobInput struct {
 	// SequenceStoreId is a required field
 	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
 
-	// Sources for the job.
+	// The job's source files.
 	//
 	// Sources is a required field
 	Sources []*ExportReadSet `locationName:"sources" min:"1" type:"list" required:"true"`
@@ -18574,7 +18578,7 @@ type StartReadSetImportJobInput struct {
 	// SequenceStoreId is a required field
 	SequenceStoreId *string `location:"uri" locationName:"sequenceStoreId" min:"10" type:"string" required:"true"`
 
-	// Source files to import.
+	// The job's source files.
 	//
 	// Sources is a required field
 	Sources []*StartReadSetImportJobSourceItem `locationName:"sources" min:"1" type:"list" required:"true"`
@@ -18919,7 +18923,7 @@ type StartReferenceImportJobInput struct {
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
 
-	// Sources for the job.
+	// The job's source files.
 	//
 	// Sources is a required field
 	Sources []*StartReferenceImportJobSourceItem `locationName:"sources" min:"1" type:"list" required:"true"`
@@ -19185,7 +19189,8 @@ type StartRunInput struct {
 	// A priority for the run.
 	Priority *int64 `locationName:"priority" type:"integer"`
 
-	// A request ID for the run.
+	// To ensure that requests don't run multiple times, specify a unique ID for
+	// each request.
 	RequestId *string `locationName:"requestId" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A service role for the run.
@@ -19199,7 +19204,7 @@ type StartRunInput struct {
 	// The run's ID.
 	RunId *string `locationName:"runId" min:"1" type:"string"`
 
-	// A storage capacity for the run.
+	// A storage capacity for the run in gigabytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// Tags for the run.
@@ -19677,7 +19682,7 @@ type TaskListItem struct {
 	// When the task was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The task's memory.
+	// The task's memory use in gigabyes.
 	Memory *int64 `locationName:"memory" min:"1" type:"integer"`
 
 	// The task's name.
@@ -20207,7 +20212,7 @@ type UpdateRunGroupInput struct {
 	// The maximum number of CPUs to use.
 	MaxCpus *int64 `locationName:"maxCpus" min:"1" type:"integer"`
 
-	// The maximum amount of time to run.
+	// A maximum run time for the group in minutes.
 	MaxDuration *int64 `locationName:"maxDuration" min:"1" type:"integer"`
 
 	// The maximum number of concurrent runs for the group.
@@ -20644,6 +20649,9 @@ type VariantImportItemDetail struct {
 	//
 	// Source is a required field
 	Source *string `locationName:"source" type:"string" required:"true"`
+
+	// A message that provides additional context about a job
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
 }
 
 // String returns the string representation.
@@ -20673,6 +20681,12 @@ func (s *VariantImportItemDetail) SetJobStatus(v string) *VariantImportItemDetai
 // SetSource sets the Source field's value.
 func (s *VariantImportItemDetail) SetSource(v string) *VariantImportItemDetail {
 	s.Source = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *VariantImportItemDetail) SetStatusMessage(v string) *VariantImportItemDetail {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -21257,6 +21271,9 @@ const (
 
 	// JobStatusFailed is a JobStatus enum value
 	JobStatusFailed = "FAILED"
+
+	// JobStatusCompletedWithFailures is a JobStatus enum value
+	JobStatusCompletedWithFailures = "COMPLETED_WITH_FAILURES"
 )
 
 // JobStatus_Values returns all elements of the JobStatus enum
@@ -21267,6 +21284,7 @@ func JobStatus_Values() []string {
 		JobStatusCancelled,
 		JobStatusCompleted,
 		JobStatusFailed,
+		JobStatusCompletedWithFailures,
 	}
 }
 
@@ -21829,6 +21847,9 @@ const (
 
 	// WorkflowStatusFailed is a WorkflowStatus enum value
 	WorkflowStatusFailed = "FAILED"
+
+	// WorkflowStatusInactive is a WorkflowStatus enum value
+	WorkflowStatusInactive = "INACTIVE"
 )
 
 // WorkflowStatus_Values returns all elements of the WorkflowStatus enum
@@ -21839,17 +21860,22 @@ func WorkflowStatus_Values() []string {
 		WorkflowStatusUpdating,
 		WorkflowStatusDeleted,
 		WorkflowStatusFailed,
+		WorkflowStatusInactive,
 	}
 }
 
 const (
 	// WorkflowTypePrivate is a WorkflowType enum value
 	WorkflowTypePrivate = "PRIVATE"
+
+	// WorkflowTypeService is a WorkflowType enum value
+	WorkflowTypeService = "SERVICE"
 )
 
 // WorkflowType_Values returns all elements of the WorkflowType enum
 func WorkflowType_Values() []string {
 	return []string{
 		WorkflowTypePrivate,
+		WorkflowTypeService,
 	}
 }

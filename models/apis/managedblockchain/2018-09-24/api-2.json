@@ -27,7 +27,8 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceLimitExceededException"},
-        {"shape":"InternalServiceErrorException"}
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateMember":{
@@ -474,7 +475,8 @@
         "BillingToken":{"shape":"AccessorBillingTokenString"},
         "Status":{"shape":"AccessorStatus"},
         "CreationDate":{"shape":"Timestamp"},
-        "Arn":{"shape":"ArnString"}
+        "Arn":{"shape":"ArnString"},
+        "Tags":{"shape":"OutputTagMap"}
       }
     },
     "AccessorBillingTokenString":{
@@ -545,7 +547,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "AccessorType":{"shape":"AccessorType"}
+        "AccessorType":{"shape":"AccessorType"},
+        "Tags":{"shape":"InputTagMap"}
       }
     },
     "CreateAccessorOutput":{

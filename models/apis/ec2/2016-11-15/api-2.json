@@ -6555,7 +6555,7 @@
       "members":{
         "AllocationId":{"shape":"AllocationId"},
         "InstanceId":{"shape":"InstanceId"},
-        "PublicIp":{"shape":"String"},
+        "PublicIp":{"shape":"EipAllocationPublicIp"},
         "AllowReassociation":{
           "shape":"Boolean",
           "locationName":"allowReassociation"
@@ -19236,7 +19236,7 @@
       "type":"structure",
       "members":{
         "AssociationId":{"shape":"ElasticIpAssociationId"},
-        "PublicIp":{"shape":"String"},
+        "PublicIp":{"shape":"EipAllocationPublicIp"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -19916,6 +19916,7 @@
         "locationName":"item"
       }
     },
+    "EipAllocationPublicIp":{"type":"string"},
     "EipAssociationIdList":{
       "type":"list",
       "member":{
@@ -30434,7 +30435,8 @@
         "OrganizationalUnitArns":{
           "shape":"OrganizationalUnitArnStringList",
           "locationName":"OrganizationalUnitArn"
-        }
+        },
+        "ImdsSupport":{"shape":"AttributeValue"}
       }
     },
     "ModifyInstanceAttributeRequest":{

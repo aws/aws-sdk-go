@@ -24,6 +24,7 @@
     "CreateDistribution": "<p>Creates an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A distribution is a globally distributed network of caching servers that improve the performance of your website or web application hosted on a Lightsail instance. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-content-delivery-network-distributions\">Content delivery networks in Amazon Lightsail</a>.</p>",
     "CreateDomain": "<p>Creates a domain resource for the specified domain (e.g., example.com).</p> <p>The <code>create domain</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
     "CreateDomainEntry": "<p>Creates one of the following domain name system (DNS) records in a domain DNS zone: Address (A), canonical name (CNAME), mail exchanger (MX), name server (NS), start of authority (SOA), service locator (SRV), or text (TXT).</p> <p>The <code>create domain entry</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
+    "CreateGUISessionAccessDetails": "<p>Creates two URLs that are used to access a virtual computer’s graphical user interface (GUI) session. The primary URL initiates a web-based NICE DCV session to the virtual computer's application. The secondary URL initiates a web-based NICE DCV session to the virtual computer's operating session. </p> <p>Use <code>StartGUISession</code> to open the session.</p>",
     "CreateInstanceSnapshot": "<p>Creates a snapshot of a specific virtual private server, or <i>instance</i>. You can use a snapshot to create a new instance that is based on that snapshot.</p> <p>The <code>create instance snapshot</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
     "CreateInstances": "<p>Creates one or more Amazon Lightsail instances.</p> <p>The <code>create instances</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Developer Guide</a>.</p>",
     "CreateInstancesFromSnapshot": "<p>Creates one or more new instances from a manual or automatic snapshot of an instance.</p> <p>The <code>create instances from snapshot</code> operation supports tag-based access control via request tags and resource tags applied to the resource identified by <code>instance snapshot name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
@@ -81,6 +82,7 @@
     "GetContainerServiceMetricData": "<p>Returns the data points of a specific metric of your Amazon Lightsail container service.</p> <p>Metrics report the utilization of your resources. Monitor and collect metric data regularly to maintain the reliability, availability, and performance of your resources.</p>",
     "GetContainerServicePowers": "<p>Returns the list of powers that can be specified for your Amazon Lightsail container services.</p> <p>The power specifies the amount of memory, the number of vCPUs, and the base price of the container service.</p>",
     "GetContainerServices": "<p>Returns information about one or more of your Amazon Lightsail container services.</p>",
+    "GetCostEstimate": "<p>Retrieves information about the cost estimate for a specified resource. A cost estimate will not generate for a resource that has been deleted.</p>",
     "GetDisk": "<p>Returns information about a specific block storage disk.</p>",
     "GetDiskSnapshot": "<p>Returns information about a specific block storage disk snapshot.</p>",
     "GetDiskSnapshots": "<p>Returns information about all block storage disk snapshots in your AWS account and region.</p>",
@@ -139,8 +141,10 @@
     "SendContactMethodVerification": "<p>Sends a verification request to an email contact method to ensure it's owned by the requester. SMS contact methods don't need to be verified.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each Amazon Web Services Region. However, SMS text messaging is not supported in some Amazon Web Services Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p> <p>A verification request is sent to the contact method when you initially create it. Use this action to send another verification request if a previous verification request was deleted, or has expired.</p> <important> <p>Notifications are not sent to an email contact method until after it is verified, and confirmed as valid.</p> </important>",
     "SetIpAddressType": "<p>Sets the IP address type for an Amazon Lightsail resource.</p> <p>Use this action to enable dual-stack for a resource, which enables IPv4 and IPv6 for the specified resource. Alternately, you can use this action to disable dual-stack, and enable IPv4 only.</p>",
     "SetResourceAccessForBucket": "<p>Sets the Amazon Lightsail resources that can access the specified Lightsail bucket.</p> <p>Lightsail buckets currently support setting access for Lightsail instances in the same Amazon Web Services Region.</p>",
+    "StartGUISession": "<p>Initiates a graphical user interface (GUI) session that’s used to access a virtual computer’s operating system and application. The session will be active for 1 hour. Use this action to resume the session after it expires. </p>",
     "StartInstance": "<p>Starts a specific Amazon Lightsail instance from a stopped state. To restart an instance, use the <code>reboot instance</code> operation.</p> <note> <p>When you start a stopped instance, Lightsail assigns a new public IP address to the instance. To use the same IP address after stopping and starting an instance, create a static IP address and attach it to the instance. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-create-static-ip\">Amazon Lightsail Developer Guide</a>.</p> </note> <p>The <code>start instance</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>instance name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
     "StartRelationalDatabase": "<p>Starts a specific database from a stopped state in Amazon Lightsail. To restart a database, use the <code>reboot relational database</code> operation.</p> <p>The <code>start relational database</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
+    "StopGUISession": "<p>Terminates a web-based NICE DCV session that’s used to access a virtual computer’s operating system or application. The session will close and any unsaved data will be lost.</p>",
     "StopInstance": "<p>Stops a specific Amazon Lightsail instance that is currently running.</p> <note> <p>When you start a stopped instance, Lightsail assigns a new public IP address to the instance. To use the same IP address after stopping and starting an instance, create a static IP address and attach it to the instance. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-create-static-ip\">Amazon Lightsail Developer Guide</a>.</p> </note> <p>The <code>stop instance</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>instance name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
     "StopRelationalDatabase": "<p>Stops a specific database that is currently running in Amazon Lightsail.</p> <p>The <code>stop relational database</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
     "TagResource": "<p>Adds one or more tags to the specified Amazon Lightsail resource. Each resource can have a maximum of 50 tags. Each tag consists of a key and an optional value. Tag keys must be unique per resource. For more information about tags, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-tags\">Amazon Lightsail Developer Guide</a>.</p> <p>The <code>tag resource</code> operation supports tag-based access control via request tags and resource tags applied to the resource identified by <code>resource name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags\">Amazon Lightsail Developer Guide</a>.</p>",
@@ -291,6 +295,21 @@
       "refs": {
       }
     },
+    "AppCategory": {
+      "base": null,
+      "refs": {
+        "AppCategoryList$member": null,
+        "Blueprint$appCategory": "<p>Virtual computer blueprints that are supported by Lightsail for Research.</p> <important> <p>This parameter only applies to Lightsail for Research resources.</p> </important>",
+        "GetBlueprintsRequest$appCategory": "<p>Returns a list of blueprints that are specific to Lightsail for Research.</p> <important> <p>You must use this parameter to view Lightsail for Research blueprints.</p> </important>",
+        "GetBundlesRequest$appCategory": "<p>Returns a list of bundles that are specific to Lightsail for Research.</p> <important> <p>You must use this parameter to view Lightsail for Research bundles.</p> </important>"
+      }
+    },
+    "AppCategoryList": {
+      "base": null,
+      "refs": {
+        "Bundle$supportedAppCategories": "<p>Virtual computer blueprints that are supported by a Lightsail for Research bundle.</p> <important> <p>This parameter only applies to Lightsail for Research resources.</p> </important>"
+      }
+    },
     "AttachCertificateToDistributionRequest": {
       "base": null,
       "refs": {
@@ -357,6 +376,12 @@
       "base": null,
       "refs": {
         "CreateInstancesFromSnapshotRequest$attachedDiskMapping": "<p>An object containing information about one or more disk mappings.</p>"
+      }
+    },
+    "AutoMountStatus": {
+      "base": null,
+      "refs": {
+        "Disk$autoMountStatus": "<p>The status of automatically mounting a storage disk to a virtual computer.</p> <important> <p>This parameter only applies to Lightsail for Research resources.</p> </important>"
       }
     },
     "AutoSnapshotAddOnRequest": {
@@ -937,6 +962,18 @@
       "refs": {
       }
     },
+    "CostEstimate": {
+      "base": "<p>Describes the estimated cost for resources in your Lightsail for Research account.</p>",
+      "refs": {
+        "CostEstimates$member": null
+      }
+    },
+    "CostEstimates": {
+      "base": null,
+      "refs": {
+        "ResourceBudgetEstimate$costEstimates": "<p>The cost estimate for the specified budget.</p>"
+      }
+    },
     "CreateBucketAccessKeyRequest": {
       "base": null,
       "refs": {
@@ -1077,6 +1114,16 @@
       "refs": {
       }
     },
+    "CreateGUISessionAccessDetailsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateGUISessionAccessDetailsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateInstanceSnapshotRequest": {
       "base": null,
       "refs": {
@@ -1165,6 +1212,12 @@
     "CreateRelationalDatabaseSnapshotResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "Currency": {
+      "base": null,
+      "refs": {
+        "EstimateByTime$currency": "<p>The currency of the estimate in USD.</p>"
       }
     },
     "DeleteAlarmRequest": {
@@ -1669,6 +1722,18 @@
         "Container$environment": "<p>The environment variables of the container.</p>"
       }
     },
+    "EstimateByTime": {
+      "base": "<p>An estimate that's associated with a time period. </p>",
+      "refs": {
+        "EstimatesByTime$member": null
+      }
+    },
+    "EstimatesByTime": {
+      "base": null,
+      "refs": {
+        "CostEstimate$resultsByTime": "<p>The cost estimate result that's associated with a time period.</p>"
+      }
+    },
     "ExportSnapshotRecord": {
       "base": "<p>Describes an export snapshot record.</p>",
       "refs": {
@@ -1891,6 +1956,16 @@
       }
     },
     "GetContainerServicesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCostEstimateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCostEstimateResult": {
       "base": null,
       "refs": {
       }
@@ -2666,6 +2741,8 @@
         "GetContainerLogRequest$endTime": "<p>The end of the time interval for which to get log data.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 9 PM UTC, specify <code>1538427600</code> as the end time.</p> </li> </ul> <p>You can convert a human-friendly time to Unix time format using a converter like <a href=\"https://www.epochconverter.com/\">Epoch converter</a>.</p>",
         "GetContainerServiceMetricDataRequest$startTime": "<p>The start time of the time period.</p>",
         "GetContainerServiceMetricDataRequest$endTime": "<p>The end time of the time period.</p>",
+        "GetCostEstimateRequest$startTime": "<p>The cost estimate start time.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, specify <code>1538424000</code> as the start time.</p> </li> </ul> <p>You can convert a human-friendly time to Unix time format using a converter like <a href=\"https://www.epochconverter.com/\">Epoch converter</a>.</p>",
+        "GetCostEstimateRequest$endTime": "<p>The cost estimate end time.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 9 PM UTC, specify <code>1538427600</code> as the end time.</p> </li> </ul> <p>You can convert a human-friendly time to Unix time format using a converter like <a href=\"https://www.epochconverter.com/\">Epoch converter</a>.</p>",
         "GetDistributionLatestCacheResetResult$createTime": "<p>The timestamp of the last cache reset (e.g., <code>1479734909.17</code>) in Unix time format.</p>",
         "GetRelationalDatabaseLogEventsRequest$startTime": "<p>The start of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the start time.</p> </li> </ul>",
         "GetRelationalDatabaseLogEventsRequest$endTime": "<p>The end of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the end time.</p> </li> </ul>",
@@ -2696,7 +2773,11 @@
         "RelationalDatabaseSnapshot$createdAt": "<p>The timestamp when the database snapshot was created.</p>",
         "RenewalSummary$updatedAt": "<p>The timestamp when the certificate was last updated.</p>",
         "ResetDistributionCacheResult$createTime": "<p>The timestamp of the reset cache request (e.g., <code>1479734909.17</code>) in Unix time format.</p>",
-        "StaticIp$createdAt": "<p>The timestamp when the static IP was created (e.g., <code>1479735304.222</code>).</p>"
+        "ResourceBudgetEstimate$startTime": "<p>The estimate start time.</p>",
+        "ResourceBudgetEstimate$endTime": "<p>The estimate end time.</p>",
+        "StaticIp$createdAt": "<p>The timestamp when the static IP was created (e.g., <code>1479735304.222</code>).</p>",
+        "TimePeriod$start": "<p>The beginning of the time period. The start date is inclusive. For example, if <code>start</code> is <code>2017-01-01</code>, Lightsail for Research retrieves cost and usage data starting at <code>2017-01-01</code> up to the end date. The start date must be equal to or no later than the current date to avoid a validation error.</p>",
+        "TimePeriod$end": "<p>The end of the time period. The end date is exclusive. For example, if <code>end</code> is <code>2017-05-01</code>, Lightsail for Research retrieves cost and usage data from the start date up to, but not including, <code>2017-05-01</code>.</p>"
       }
     },
     "IssuerCA": {
@@ -3026,6 +3107,7 @@
         "ContactMethod$contactEndpoint": "<p>The destination of the contact method, such as an email address or a mobile phone number.</p>",
         "ContactMethod$arn": "<p>The Amazon Resource Name (ARN) of the contact method.</p>",
         "ContainerService$arn": "<p>The Amazon Resource Name (ARN) of the container service.</p>",
+        "CostEstimate$usageType": "<p>The types of usage that are included in the estimate, such as costs, usage, or data transfer.</p>",
         "CreateBucketRequest$bundleId": "<p>The ID of the bundle to use for the bucket.</p> <p>A bucket bundle specifies the monthly cost, storage space, and data transfer quota for a bucket.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetBucketBundles.html\">GetBucketBundles</a> action to get a list of bundle IDs that you can specify.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_UpdateBucketBundle.html\">UpdateBucketBundle</a> action to change the bundle after the bucket is created.</p>",
         "CreateDiskFromSnapshotRequest$availabilityZone": "<p>The Availability Zone where you want to create the disk (e.g., <code>us-east-2a</code>). Choose the same Availability Zone as the Lightsail instance where you want to create the disk.</p> <p>Use the GetRegions operation to list the Availability Zones where Lightsail is currently available.</p>",
         "CreateDiskRequest$availabilityZone": "<p>The Availability Zone where you want to create the disk (e.g., <code>us-east-2a</code>). Use the same Availability Zone as the Lightsail instance to which you want to attach the disk.</p> <p>Use the <code>get regions</code> operation to list the Availability Zones where Lightsail is currently available.</p>",
@@ -3096,6 +3178,7 @@
         "RelationalDatabaseSnapshot$fromRelationalDatabaseArn": "<p>The Amazon Resource Name (ARN) of the database from which the database snapshot was created.</p>",
         "ResourceReceivingAccess$name": "<p>The name of the Lightsail instance.</p>",
         "ResourceReceivingAccess$resourceType": "<p>The Lightsail resource type (for example, <code>Instance</code>).</p>",
+        "Session$name": "<p>The session name.</p>",
         "StaticIp$arn": "<p>The Amazon Resource Name (ARN) of the static IP (e.g., <code>arn:aws:lightsail:us-east-2:123456789101:StaticIp/9cbb4a9e-f8e3-4dfe-b57e-12345EXAMPLE</code>).</p>",
         "UpdateBucketBundleRequest$bundleId": "<p>The ID of the new bundle to apply to the bucket.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetBucketBundles.html\">GetBucketBundles</a> action to get a list of bundle IDs that you can specify.</p>",
         "UpdateBucketRequest$versioning": "<p>Specifies whether to enable or suspend versioning of objects in the bucket.</p> <p>The following options can be specified:</p> <ul> <li> <p> <code>Enabled</code> - Enables versioning of objects in the specified bucket.</p> </li> <li> <p> <code>Suspended</code> - Suspends versioning of objects in the specified bucket. Existing object versions are retained.</p> </li> </ul>"
@@ -3210,8 +3293,10 @@
         "SendContactMethodVerificationResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "SetIpAddressTypeResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "SetResourceAccessForBucketResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "StartGUISessionResult$operations": "<p>The available API operations.</p>",
         "StartInstanceResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "StartRelationalDatabaseResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "StopGUISessionResult$operations": "<p>The available API operations.</p>",
         "StopInstanceResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "StopRelationalDatabaseResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "TagResourceResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
@@ -3346,6 +3431,12 @@
       "base": null,
       "refs": {
         "InstancePortState$state": "<p>Specifies whether the instance port is <code>open</code> or <code>closed</code>.</p> <note> <p>The port state for Lightsail instances is always <code>open</code>.</p> </note>"
+      }
+    },
+    "PricingUnit": {
+      "base": null,
+      "refs": {
+        "EstimateByTime$pricingUnit": "<p>The unit of measurement that's used for the cost estimate.</p>"
       }
     },
     "PrivateRegistryAccess": {
@@ -3628,6 +3719,12 @@
         "SetResourceAccessForBucketRequest$access": "<p>The access setting.</p> <p>The following access settings are available:</p> <ul> <li> <p> <code>allow</code> - Allows access to the bucket and its objects.</p> </li> <li> <p> <code>deny</code> - Denies access to the bucket and its objects. Use this setting to remove access for a resource previously set to <code>allow</code>.</p> </li> </ul>"
       }
     },
+    "ResourceBudgetEstimate": {
+      "base": "<p>Describes the estimated cost or usage that a budget tracks.</p>",
+      "refs": {
+        "ResourcesBudgetEstimate$member": null
+      }
+    },
     "ResourceLocation": {
       "base": "<p>Describes the resource location.</p>",
       "refs": {
@@ -3680,6 +3777,8 @@
         "CreateDiskSnapshotRequest$diskSnapshotName": "<p>The name of the destination disk snapshot (e.g., <code>my-disk-snapshot</code>) based on the source disk.</p>",
         "CreateDiskSnapshotRequest$instanceName": "<p>The unique name of the source instance (e.g., <code>Amazon_Linux-512MB-Virginia-1</code>). When this is defined, a snapshot of the instance's system volume is created.</p> <note> <p>This parameter cannot be defined together with the <code>disk name</code> parameter. The <code>instance name</code> and <code>disk name</code> parameters are mutually exclusive.</p> </note>",
         "CreateDistributionRequest$distributionName": "<p>The name for the distribution.</p>",
+        "CreateGUISessionAccessDetailsRequest$resourceName": "<p>The resource name.</p>",
+        "CreateGUISessionAccessDetailsResult$resourceName": "<p>The resource name.</p>",
         "CreateInstanceSnapshotRequest$instanceSnapshotName": "<p>The name for your new snapshot.</p>",
         "CreateInstanceSnapshotRequest$instanceName": "<p>The Lightsail instance on which to base your snapshot.</p>",
         "CreateInstancesFromSnapshotRequest$instanceSnapshotName": "<p>The name of the instance snapshot on which you are basing your new instances. Use the get instance snapshots operation to return information about your existing snapshots.</p> <p>Constraint:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>source instance name</code> parameter. The <code>instance snapshot name</code> and <code>source instance name</code> parameters are mutually exclusive.</p> </li> </ul>",
@@ -3731,6 +3830,7 @@
         "GetAlarmsRequest$monitoredResourceName": "<p>The name of the Lightsail resource being monitored by the alarm.</p> <p>Specify a monitored resource name to return information about all alarms for a specific resource.</p>",
         "GetAutoSnapshotsRequest$resourceName": "<p>The name of the source instance or disk from which to get automatic snapshot information.</p>",
         "GetAutoSnapshotsResult$resourceName": "<p>The name of the source instance or disk for the automatic snapshots.</p>",
+        "GetCostEstimateRequest$resourceName": "<p>The resource name.</p>",
         "GetDiskRequest$diskName": "<p>The name of the disk (e.g., <code>my-disk</code>).</p>",
         "GetDiskSnapshotRequest$diskSnapshotName": "<p>The name of the disk snapshot (e.g., <code>my-disk-snapshot</code>).</p>",
         "GetDistributionLatestCacheResetRequest$distributionName": "<p>The name of the distribution for which to return the timestamp of the last cache reset.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p> <p>When omitted, the response includes the latest cache reset timestamp of all your distributions.</p>",
@@ -3789,13 +3889,16 @@
         "RelationalDatabaseSnapshot$name": "<p>The name of the database snapshot.</p>",
         "ReleaseStaticIpRequest$staticIpName": "<p>The name of the static IP to delete.</p>",
         "ResetDistributionCacheRequest$distributionName": "<p>The name of the distribution for which to reset cache.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
+        "ResourceBudgetEstimate$resourceName": "<p>The resource name.</p>",
         "ResourceNameList$member": null,
         "SetIpAddressTypeRequest$resourceName": "<p>The name of the resource for which to set the IP address type.</p>",
         "SetResourceAccessForBucketRequest$resourceName": "<p>The name of the Lightsail instance for which to set bucket access. The instance must be in a running or stopped state.</p>",
+        "StartGUISessionRequest$resourceName": "<p>The resource name.</p>",
         "StartInstanceRequest$instanceName": "<p>The name of the instance (a virtual private server) to start.</p>",
         "StartRelationalDatabaseRequest$relationalDatabaseName": "<p>The name of your database to start.</p>",
         "StaticIp$name": "<p>The name of the static IP (e.g., <code>StaticIP-Ohio-EXAMPLE</code>).</p>",
         "StaticIp$attachedTo": "<p>The instance where the static IP is attached (e.g., <code>Amazon_Linux-1GB-Ohio-1</code>).</p>",
+        "StopGUISessionRequest$resourceName": "<p>The resource name.</p>",
         "StopInstanceRequest$instanceName": "<p>The name of the instance (a virtual private server) to stop.</p>",
         "StopRelationalDatabaseRequest$relationalDatabaseName": "<p>The name of your database to stop.</p>",
         "StopRelationalDatabaseRequest$relationalDatabaseSnapshotName": "<p>The name of your new database snapshot to be created before stopping your database.</p>",
@@ -3852,8 +3955,15 @@
         "Origin$resourceType": "<p>The resource type of the origin resource (e.g., <i>Instance</i>).</p>",
         "RelationalDatabase$resourceType": "<p>The Lightsail resource type for the database (for example, <code>RelationalDatabase</code>).</p>",
         "RelationalDatabaseSnapshot$resourceType": "<p>The Lightsail resource type.</p>",
+        "ResourceBudgetEstimate$resourceType": "<p>The type of resource the budget will track.</p>",
         "SetIpAddressTypeRequest$resourceType": "<p>The resource type.</p> <p>The possible values are <code>Distribution</code>, <code>Instance</code>, and <code>LoadBalancer</code>.</p> <note> <p>Distribution-related APIs are available only in the N. Virginia (<code>us-east-1</code>) Amazon Web Services Region. Set your Amazon Web Services Region configuration to <code>us-east-1</code> to create, view, or edit distributions.</p> </note>",
         "StaticIp$resourceType": "<p>The resource type (usually <code>StaticIp</code>).</p>"
+      }
+    },
+    "ResourcesBudgetEstimate": {
+      "base": null,
+      "refs": {
+        "GetCostEstimateResult$resourcesBudgetEstimate": "<p>Returns the estimate's forecasted cost or usage.</p>"
       }
     },
     "RevocationReason": {
@@ -3870,6 +3980,12 @@
     "SendContactMethodVerificationResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "SensitiveNonEmptyString": {
+      "base": null,
+      "refs": {
+        "Session$url": "<p>The session URL.</p>"
       }
     },
     "SensitiveString": {
@@ -3891,6 +4007,18 @@
       "refs": {
       }
     },
+    "Session": {
+      "base": "<p>Describes a web-based, remote graphical user interface (GUI), NICE DCV session. The session is used to access a virtual computer’s operating system or application.</p>",
+      "refs": {
+        "Sessions$member": null
+      }
+    },
+    "Sessions": {
+      "base": null,
+      "refs": {
+        "CreateGUISessionAccessDetailsResult$sessions": "<p>Returns information about the specified NICE DCV GUI session.</p>"
+      }
+    },
     "SetIpAddressTypeRequest": {
       "base": null,
       "refs": {
@@ -3907,6 +4035,16 @@
       }
     },
     "SetResourceAccessForBucketResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartGUISessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartGUISessionResult": {
       "base": null,
       "refs": {
       }
@@ -3944,10 +4082,32 @@
         "GetStaticIpsResult$staticIps": "<p>An array of key-value pairs containing information about your get static IPs request.</p>"
       }
     },
+    "Status": {
+      "base": null,
+      "refs": {
+        "CreateGUISessionAccessDetailsResult$status": "<p>The status of the operation.</p>"
+      }
+    },
     "StatusType": {
       "base": null,
       "refs": {
         "AccessKey$status": "<p>The status of the access key.</p> <p>A status of <code>Active</code> means that the key is valid, while <code>Inactive</code> means it is not.</p>"
+      }
+    },
+    "StopGUISessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopGUISessionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopInstanceOnIdleRequest": {
+      "base": "<p>Describes a request to create or edit the <code>StopInstanceOnIdle</code> add-on.</p> <important> <p>This add-on only applies to Lightsail for Research resources.</p> </important>",
+      "refs": {
+        "AddOnRequest$stopInstanceOnIdleRequest": "<p>An object that represents additional parameters when enabling or modifying the <code>StopInstanceOnIdle</code> add-on.</p> <important> <p>This object only applies to Lightsail for Research resources.</p> </important>"
       }
     },
     "StopInstanceRequest": {
@@ -4101,6 +4261,12 @@
         "AutoSnapshotAddOnRequest$snapshotTimeOfDay": "<p>The daily time when an automatic snapshot will be created.</p> <p>Constraints:</p> <ul> <li> <p>Must be in <code>HH:00</code> format, and in an hourly increment.</p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>The snapshot will be automatically created between the time specified and up to 45 minutes after.</p> </li> </ul>"
       }
     },
+    "TimePeriod": {
+      "base": "<p>Sets the start date and end date for retrieving a cost estimate. The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>.</p>",
+      "refs": {
+        "EstimateByTime$timePeriod": "<p>The period of time, in days, that an estimate covers. The period has a start date and an end date. The start date must come before the end date.</p>"
+      }
+    },
     "TreatMissingData": {
       "base": null,
       "refs": {
@@ -4239,6 +4405,7 @@
         "AccessRules$allowPublicOverrides": "<p>A Boolean value that indicates whether the access control list (ACL) permissions that are applied to individual objects override the <code>getObject</code> option that is currently specified.</p> <p>When this is true, you can use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html\">PutObjectAcl</a> Amazon S3 API action to set individual objects to public (read-only) using the <code>public-read</code> ACL, or to private using the <code>private</code> ACL.</p>",
         "AccountLevelBpaSync$bpaImpactsLightsail": "<p>A Boolean value that indicates whether account-level block public access is affecting your Lightsail buckets.</p>",
         "Alarm$notificationEnabled": "<p>Indicates whether the alarm is enabled.</p>",
+        "AttachDiskRequest$autoMounting": "<p>A Boolean value used to determine the automatic mounting of a storage volume to a virtual computer. The default value is <code>False</code>.</p> <important> <p>This value only applies to Lightsail for Research resources.</p> </important>",
         "Blueprint$isActive": "<p>A Boolean value indicating whether the blueprint is active. Inactive blueprints are listed to support customers with existing instances but are not necessarily available for launch of new instances. Blueprints are marked inactive when they become outdated due to operating system updates or new application releases.</p>",
         "Bucket$ableToUpdateBundle": "<p>Indicates whether the bundle that is currently applied to a bucket can be changed to another bundle.</p> <p>You can update a bucket's bundle only one time within a monthly Amazon Web Services billing cycle.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_UpdateBucketBundle.html\">UpdateBucketBundle</a> action to change a bucket's bundle.</p>",
         "BucketAccessLogConfig$enabled": "<p>A Boolean value that indicates whether bucket access logging is enabled for the bucket.</p>",
@@ -4294,6 +4461,7 @@
         "RelationalDatabaseBundle$isEncrypted": "<p>A Boolean value indicating whether the database bundle is encrypted.</p>",
         "RelationalDatabaseBundle$isActive": "<p>A Boolean value indicating whether the database bundle is active.</p>",
         "RelationalDatabaseParameter$isModifiable": "<p>A Boolean value indicating whether the parameter can be modified.</p>",
+        "Session$isPrimary": "<p>When true, this Boolean value indicates the primary session for the specified resource.</p>",
         "StaticIp$isAttached": "<p>A Boolean value indicating whether the static IP is attached.</p>",
         "StopInstanceRequest$force": "<p>When set to <code>True</code>, forces a Lightsail instance that is stuck in a <code>stopping</code> state to stop.</p> <important> <p>Only use the <code>force</code> parameter if your instance is stuck in the <code>stopping</code> state. In any other state, your instance should stop normally without adding this parameter to your API request.</p> </important>",
         "UpdateContainerServiceRequest$isDisabled": "<p>A Boolean value to indicate whether the container service is disabled.</p>",
@@ -4309,6 +4477,8 @@
       "base": null,
       "refs": {
         "Alarm$threshold": "<p>The value against which the specified statistic is compared.</p>",
+        "EstimateByTime$usageCost": "<p>The amount of cost or usage that's measured for the cost estimate.</p>",
+        "EstimateByTime$unit": "<p>The number of pricing units used to calculate the total number of hours. For example, 1 unit equals 1 hour.</p>",
         "MetricDatapoint$average": "<p>The average.</p>",
         "MetricDatapoint$maximum": "<p>The maximum.</p>",
         "MetricDatapoint$minimum": "<p>The minimum.</p>",
@@ -4354,6 +4524,7 @@
         "ContainerServiceHealthCheckConfig$intervalSeconds": "<p>The approximate interval, in seconds, between health checks of an individual container. You can specify between 5 and 300 seconds. The default value is <code>5</code>.</p>",
         "CreateDiskFromSnapshotRequest$sizeInGb": "<p>The size of the disk in GB (e.g., <code>32</code>).</p>",
         "CreateDiskRequest$sizeInGb": "<p>The size of the disk in GB (e.g., <code>32</code>).</p>",
+        "CreateGUISessionAccessDetailsResult$percentageComplete": "<p>The percentage of completion for the operation.</p>",
         "Disk$sizeInGb": "<p>The size of the disk in GB.</p>",
         "Disk$iops": "<p>The input/output operations per second (IOPS) of the disk.</p>",
         "Disk$gbInUse": "<p>(Deprecated) The number of GB in use by the disk.</p> <note> <p>In releases prior to November 14, 2017, this parameter was not included in the API response. It is now deprecated.</p> </note>",
@@ -4404,6 +4575,8 @@
         "AccountSetupInProgressException$tip": null,
         "AddOn$name": "<p>The name of the add-on.</p>",
         "AddOn$status": "<p>The status of the add-on.</p>",
+        "AddOn$threshold": "<p>The trigger threshold of the action.</p> <important> <p>This add-on only applies to Lightsail for Research resources.</p> </important>",
+        "AddOn$duration": "<p>The amount of idle time in minutes after which your virtual computer will automatically stop.</p> <important> <p>This add-on only applies to Lightsail for Research resources.</p> </important>",
         "Alarm$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail alarm. This code enables our support team to look up your Lightsail information more easily.</p>",
         "AttachedDisk$path": "<p>The path of the disk (e.g., <code>/dev/xvdf</code>).</p>",
         "AutoSnapshotDetails$date": "<p>The date of the automatic snapshot in <code>YYYY-MM-DD</code> format.</p>",
@@ -4445,6 +4618,7 @@
         "CreateDiskFromSnapshotRequest$sourceDiskName": "<p>The name of the source disk from which the source automatic snapshot was created.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>disk snapshot name</code> parameter. The <code>source disk name</code> and <code>disk snapshot name</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new disk from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Amazon Lightsail Developer Guide</a>.</p> </li> </ul>",
         "CreateDiskFromSnapshotRequest$restoreDate": "<p>The date of the automatic snapshot to use for the new disk. Use the <code>get auto snapshots</code> operation to identify the dates of the available automatic snapshots.</p> <p>Constraints:</p> <ul> <li> <p>Must be specified in <code>YYYY-MM-DD</code> format.</p> </li> <li> <p>This parameter cannot be defined together with the <code>use latest restorable auto snapshot</code> parameter. The <code>restore date</code> and <code>use latest restorable auto snapshot</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new disk from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Amazon Lightsail Developer Guide</a>.</p> </li> </ul>",
         "CreateDistributionRequest$bundleId": "<p>The bundle ID to use for the distribution.</p> <p>A distribution bundle describes the specifications of your distribution, such as the monthly cost and monthly network transfer quota.</p> <p>Use the <code>GetDistributionBundles</code> action to get a list of distribution bundle IDs that you can specify.</p>",
+        "CreateGUISessionAccessDetailsResult$failureReason": "<p>The reason the operation failed.</p>",
         "CreateInstancesFromSnapshotRequest$availabilityZone": "<p>The Availability Zone where you want to create your instances. Use the following formatting: <code>us-east-2a</code> (case sensitive). You can get a list of Availability Zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include Availability Zones</code> parameter to your request.</p>",
         "CreateInstancesFromSnapshotRequest$userData": "<p>You can create a launch script that configures a server with additional user data. For example, <code>apt-get -y update</code>.</p> <note> <p>Depending on the machine image you choose, the command to get software on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/compare-options-choose-lightsail-instance-image\">Amazon Lightsail Developer Guide</a>.</p> </note>",
         "CreateInstancesFromSnapshotRequest$sourceInstanceName": "<p>The name of the source instance from which the source automatic snapshot was created.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>instance snapshot name</code> parameter. The <code>source instance name</code> and <code>instance snapshot name</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new instance from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Amazon Lightsail Developer Guide</a>.</p> </li> </ul>",
@@ -4625,6 +4799,8 @@
         "ServiceException$message": null,
         "ServiceException$tip": null,
         "StaticIp$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
+        "StopInstanceOnIdleRequest$threshold": "<p>The value to compare with the duration.</p>",
+        "StopInstanceOnIdleRequest$duration": "<p>The amount of idle time in minutes after which your virtual computer will automatically stop.</p>",
         "StringList$member": null,
         "UnauthenticatedException$code": null,
         "UnauthenticatedException$docs": null,
