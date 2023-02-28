@@ -1,3 +1,17 @@
+Release v1.44.211 (2023-02-28)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * This release allows IMDS support to be set to v2-only on an existing AMI, so that all future instances launched from that AMI will use IMDSv2 by default.
+* `service/kms`: Updates service documentation and examples
+  * AWS KMS is deprecating the RSAES_PKCS1_V1_5 wrapping algorithm option in the GetParametersForImport API that is used in the AWS KMS Import Key Material feature. AWS KMS will end support for this wrapping algorithm by October 1, 2023.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds Lightsail for Research feature support, such as GUI session access, cost estimates, stop instance on idle, and disk auto mount.
+* `service/managedblockchain`: Updates service API and documentation
+* `service/omics`: Updates service API and documentation
+
 Release v1.44.210 (2023-02-27)
 ===
 

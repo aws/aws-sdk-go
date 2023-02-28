@@ -2557,6 +2557,54 @@ func ExampleKMS_Sign_shared00() {
 	fmt.Println(result)
 }
 
+// To digitally sign a message digest with an asymmetric KMS key.
+// This operation uses the private key in an asymmetric RSA signing KMS key to generate
+// a digital signature for a message digest. In this example, a large message was hashed
+// and the resulting digest is provided in the Message parameter. To tell KMS not to
+// hash the message again, the MessageType field is set to DIGEST
+func ExampleKMS_Sign_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.SignInput{
+		KeyId:            aws.String("alias/RSA_signing_key"),
+		Message:          []byte("<message digest to be signed>"),
+		MessageType:      aws.String("DIGEST"),
+		SigningAlgorithm: aws.String("RSASSA_PKCS1_V1_5_SHA_256"),
+	}
+
+	result, err := svc.Sign(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To tag a KMS key
 // The following example tags a KMS key.
 func ExampleKMS_TagResource_shared00() {
@@ -3160,6 +3208,57 @@ func ExampleKMS_Verify_shared00() {
 		MessageType:      aws.String("RAW"),
 		Signature:        []byte("<binary data>"),
 		SigningAlgorithm: aws.String("ECDSA_SHA_384"),
+	}
+
+	result, err := svc.Verify(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeKMSInvalidSignatureException:
+				fmt.Println(kms.ErrCodeKMSInvalidSignatureException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To use an asymmetric KMS key to verify a digital signature on a message digest
+// This operation uses the public key in an RSA asymmetric signing key pair to verify
+// the digital signature of a message digest. Hashing a message into a digest before
+// sending it to KMS lets you verify messages that exceed the 4096-byte message size
+// limit. To indicate that the value of Message is a digest, use the MessageType parameter
+func ExampleKMS_Verify_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.VerifyInput{
+		KeyId:            aws.String("arn:aws:kms:us-east-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321"),
+		Message:          []byte("<message digest to be verified>"),
+		MessageType:      aws.String("DIGEST"),
+		Signature:        []byte("<binary data>"),
+		SigningAlgorithm: aws.String("RSASSA_PSS_SHA_512"),
 	}
 
 	result, err := svc.Verify(input)

@@ -790,6 +790,111 @@ func (c *Comprehend) ContainsPiiEntitiesWithContext(ctx aws.Context, input *Cont
 	return out, req.Send()
 }
 
+const opCreateDataset = "CreateDataset"
+
+// CreateDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataset for more information on using the CreateDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateDatasetRequest method.
+//	req, resp := client.CreateDatasetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateDataset
+func (c *Comprehend) CreateDatasetRequest(input *CreateDatasetInput) (req *request.Request, output *CreateDatasetOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDatasetInput{}
+	}
+
+	output = &CreateDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataset API operation for Amazon Comprehend.
+//
+// Creates a dataset to upload training or test data for a model associated
+// with a flywheel. For more information about datasets, see Flywheel overview
+// (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html) in
+// the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation CreateDataset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
+//   - TooManyTagsException
+//     The request contains more tags than can be associated with a resource (50
+//     tags per resource). The maximum number of tags includes both existing tags
+//     and those included in your current request.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ResourceLimitExceededException
+//     The maximum number of resources per account has been exceeded. Review the
+//     resources, and then try your request again.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateDataset
+func (c *Comprehend) CreateDataset(input *CreateDatasetInput) (*CreateDatasetOutput, error) {
+	req, out := c.CreateDatasetRequest(input)
+	return out, req.Send()
+}
+
+// CreateDatasetWithContext is the same as CreateDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) CreateDatasetWithContext(ctx aws.Context, input *CreateDatasetInput, opts ...request.Option) (*CreateDatasetOutput, error) {
+	req, out := c.CreateDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDocumentClassifier = "CreateDocumentClassifier"
 
 // CreateDocumentClassifierRequest generates a "aws/request.Request" representing the
@@ -1056,7 +1161,8 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 // CreateEntityRecognizer API operation for Amazon Comprehend.
 //
 // Creates an entity recognizer using submitted files. After your CreateEntityRecognizer
-// request is submitted, you can check job status using the API.
+// request is submitted, you can check job status using the DescribeEntityRecognizer
+// API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1117,6 +1223,140 @@ func (c *Comprehend) CreateEntityRecognizer(input *CreateEntityRecognizerInput) 
 // for more information on using Contexts.
 func (c *Comprehend) CreateEntityRecognizerWithContext(ctx aws.Context, input *CreateEntityRecognizerInput, opts ...request.Option) (*CreateEntityRecognizerOutput, error) {
 	req, out := c.CreateEntityRecognizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFlywheel = "CreateFlywheel"
+
+// CreateFlywheelRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFlywheel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFlywheel for more information on using the CreateFlywheel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFlywheelRequest method.
+//	req, resp := client.CreateFlywheelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateFlywheel
+func (c *Comprehend) CreateFlywheelRequest(input *CreateFlywheelInput) (req *request.Request, output *CreateFlywheelOutput) {
+	op := &request.Operation{
+		Name:       opCreateFlywheel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFlywheelInput{}
+	}
+
+	output = &CreateFlywheelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFlywheel API operation for Amazon Comprehend.
+//
+// A flywheel is an AWS resource that orchestrates the ongoing training of a
+// model for custom classification or custom entity recognition. You can create
+// a flywheel to start with an existing trained model, or Comprehend can create
+// and train a new model.
+//
+// When you create the flywheel, Comprehend creates a data lake in your account.
+// The data lake holds the training data and test data for all versions of the
+// model.
+//
+// To use a flywheel with an existing trained model, you specify the active
+// model version. Comprehend copies the model's training data and test data
+// into the flywheel's data lake.
+//
+// To use the flywheel with a new model, you need to provide a dataset for training
+// data (and optional test data) when you create the flywheel.
+//
+// For more information about flywheels, see Flywheel overview (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html)
+// in the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation CreateFlywheel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
+//   - TooManyTagsException
+//     The request contains more tags than can be associated with a resource (50
+//     tags per resource). The maximum number of tags includes both existing tags
+//     and those included in your current request.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ResourceLimitExceededException
+//     The maximum number of resources per account has been exceeded. Review the
+//     resources, and then try your request again.
+//
+//   - UnsupportedLanguageException
+//     Amazon Comprehend can't process the language of the input text. For custom
+//     entity recognition APIs, only English, Spanish, French, Italian, German,
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
+//
+//   - KmsKeyValidationException
+//     The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//     key and re-enter it.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - ResourceUnavailableException
+//     The specified resource is not available. Check the resource and try your
+//     request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateFlywheel
+func (c *Comprehend) CreateFlywheel(input *CreateFlywheelInput) (*CreateFlywheelOutput, error) {
+	req, out := c.CreateFlywheelRequest(input)
+	return out, req.Send()
+}
+
+// CreateFlywheelWithContext is the same as CreateFlywheel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFlywheel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) CreateFlywheelWithContext(ctx aws.Context, input *CreateFlywheelInput, opts ...request.Option) (*CreateFlywheelOutput, error) {
+	req, out := c.CreateFlywheelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1430,6 +1670,108 @@ func (c *Comprehend) DeleteEntityRecognizerWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDeleteFlywheel = "DeleteFlywheel"
+
+// DeleteFlywheelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFlywheel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFlywheel for more information on using the DeleteFlywheel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFlywheelRequest method.
+//	req, resp := client.DeleteFlywheelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteFlywheel
+func (c *Comprehend) DeleteFlywheelRequest(input *DeleteFlywheelInput) (req *request.Request, output *DeleteFlywheelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFlywheel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFlywheelInput{}
+	}
+
+	output = &DeleteFlywheelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFlywheel API operation for Amazon Comprehend.
+//
+// Deletes a flywheel. When you delete the flywheel, Amazon Comprehend does
+// not delete the data lake or the model associated with the flywheel.
+//
+// For more information about flywheels, see Flywheel overview (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html)
+// in the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DeleteFlywheel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - ResourceUnavailableException
+//     The specified resource is not available. Check the resource and try your
+//     request again.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteFlywheel
+func (c *Comprehend) DeleteFlywheel(input *DeleteFlywheelInput) (*DeleteFlywheelOutput, error) {
+	req, out := c.DeleteFlywheelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFlywheelWithContext is the same as DeleteFlywheel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFlywheel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DeleteFlywheelWithContext(ctx aws.Context, input *DeleteFlywheelInput, opts ...request.Option) (*DeleteFlywheelOutput, error) {
+	req, out := c.DeleteFlywheelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteResourcePolicy = "DeleteResourcePolicy"
 
 // DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
@@ -1512,6 +1854,97 @@ func (c *Comprehend) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*De
 // for more information on using Contexts.
 func (c *Comprehend) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
 	req, out := c.DeleteResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDataset = "DescribeDataset"
+
+// DescribeDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataset for more information on using the DescribeDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDatasetRequest method.
+//	req, resp := client.DescribeDatasetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeDataset
+func (c *Comprehend) DescribeDatasetRequest(input *DescribeDatasetInput) (req *request.Request, output *DescribeDatasetOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDatasetInput{}
+	}
+
+	output = &DescribeDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataset API operation for Amazon Comprehend.
+//
+// Returns information about the dataset that you specify. For more information
+// about datasets, see Flywheel overview (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html)
+// in the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeDataset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeDataset
+func (c *Comprehend) DescribeDataset(input *DescribeDatasetInput) (*DescribeDatasetOutput, error) {
+	req, out := c.DescribeDatasetRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDatasetWithContext is the same as DescribeDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeDatasetWithContext(ctx aws.Context, input *DescribeDatasetInput, opts ...request.Option) (*DescribeDatasetOutput, error) {
+	req, out := c.DescribeDatasetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2137,6 +2570,188 @@ func (c *Comprehend) DescribeEventsDetectionJob(input *DescribeEventsDetectionJo
 // for more information on using Contexts.
 func (c *Comprehend) DescribeEventsDetectionJobWithContext(ctx aws.Context, input *DescribeEventsDetectionJobInput, opts ...request.Option) (*DescribeEventsDetectionJobOutput, error) {
 	req, out := c.DescribeEventsDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFlywheel = "DescribeFlywheel"
+
+// DescribeFlywheelRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFlywheel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFlywheel for more information on using the DescribeFlywheel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFlywheelRequest method.
+//	req, resp := client.DescribeFlywheelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeFlywheel
+func (c *Comprehend) DescribeFlywheelRequest(input *DescribeFlywheelInput) (req *request.Request, output *DescribeFlywheelOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFlywheel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeFlywheelInput{}
+	}
+
+	output = &DescribeFlywheelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFlywheel API operation for Amazon Comprehend.
+//
+// Provides configuration information about the flywheel. For more information
+// about flywheels, see Flywheel overview (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html)
+// in the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeFlywheel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeFlywheel
+func (c *Comprehend) DescribeFlywheel(input *DescribeFlywheelInput) (*DescribeFlywheelOutput, error) {
+	req, out := c.DescribeFlywheelRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFlywheelWithContext is the same as DescribeFlywheel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFlywheel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeFlywheelWithContext(ctx aws.Context, input *DescribeFlywheelInput, opts ...request.Option) (*DescribeFlywheelOutput, error) {
+	req, out := c.DescribeFlywheelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFlywheelIteration = "DescribeFlywheelIteration"
+
+// DescribeFlywheelIterationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFlywheelIteration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFlywheelIteration for more information on using the DescribeFlywheelIteration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFlywheelIterationRequest method.
+//	req, resp := client.DescribeFlywheelIterationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeFlywheelIteration
+func (c *Comprehend) DescribeFlywheelIterationRequest(input *DescribeFlywheelIterationInput) (req *request.Request, output *DescribeFlywheelIterationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFlywheelIteration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeFlywheelIterationInput{}
+	}
+
+	output = &DescribeFlywheelIterationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFlywheelIteration API operation for Amazon Comprehend.
+//
+// Retrieve the configuration properties of a flywheel iteration. For more information
+// about flywheels, see Flywheel overview (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html)
+// in the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeFlywheelIteration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeFlywheelIteration
+func (c *Comprehend) DescribeFlywheelIteration(input *DescribeFlywheelIterationInput) (*DescribeFlywheelIterationOutput, error) {
+	req, out := c.DescribeFlywheelIterationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFlywheelIterationWithContext is the same as DescribeFlywheelIteration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFlywheelIteration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeFlywheelIterationWithContext(ctx aws.Context, input *DescribeFlywheelIterationInput, opts ...request.Option) (*DescribeFlywheelIterationOutput, error) {
+	req, out := c.DescribeFlywheelIterationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3457,6 +4072,157 @@ func (c *Comprehend) ImportModelWithContext(ctx aws.Context, input *ImportModelI
 	return out, req.Send()
 }
 
+const opListDatasets = "ListDatasets"
+
+// ListDatasetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDatasets for more information on using the ListDatasets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDatasetsRequest method.
+//	req, resp := client.ListDatasetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListDatasets
+func (c *Comprehend) ListDatasetsRequest(input *ListDatasetsInput) (req *request.Request, output *ListDatasetsOutput) {
+	op := &request.Operation{
+		Name:       opListDatasets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDatasetsInput{}
+	}
+
+	output = &ListDatasetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDatasets API operation for Amazon Comprehend.
+//
+// List the datasets that you have configured in this region. For more information
+// about datasets, see Flywheel overview (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html)
+// in the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListDatasets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - InvalidFilterException
+//     The filter specified for the operation is invalid. Specify a different filter.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListDatasets
+func (c *Comprehend) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutput, error) {
+	req, out := c.ListDatasetsRequest(input)
+	return out, req.Send()
+}
+
+// ListDatasetsWithContext is the same as ListDatasets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDatasets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListDatasetsWithContext(ctx aws.Context, input *ListDatasetsInput, opts ...request.Option) (*ListDatasetsOutput, error) {
+	req, out := c.ListDatasetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDatasetsPages iterates over the pages of a ListDatasets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDatasets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDatasets operation.
+//	pageNum := 0
+//	err := client.ListDatasetsPages(params,
+//	    func(page *comprehend.ListDatasetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Comprehend) ListDatasetsPages(input *ListDatasetsInput, fn func(*ListDatasetsOutput, bool) bool) error {
+	return c.ListDatasetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDatasetsPagesWithContext same as ListDatasetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListDatasetsPagesWithContext(ctx aws.Context, input *ListDatasetsInput, fn func(*ListDatasetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDatasetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDatasetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDocumentClassificationJobs = "ListDocumentClassificationJobs"
 
 // ListDocumentClassificationJobsRequest generates a "aws/request.Request" representing the
@@ -4761,6 +5527,302 @@ func (c *Comprehend) ListEventsDetectionJobsPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opListFlywheelIterationHistory = "ListFlywheelIterationHistory"
+
+// ListFlywheelIterationHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the ListFlywheelIterationHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFlywheelIterationHistory for more information on using the ListFlywheelIterationHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFlywheelIterationHistoryRequest method.
+//	req, resp := client.ListFlywheelIterationHistoryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListFlywheelIterationHistory
+func (c *Comprehend) ListFlywheelIterationHistoryRequest(input *ListFlywheelIterationHistoryInput) (req *request.Request, output *ListFlywheelIterationHistoryOutput) {
+	op := &request.Operation{
+		Name:       opListFlywheelIterationHistory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFlywheelIterationHistoryInput{}
+	}
+
+	output = &ListFlywheelIterationHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFlywheelIterationHistory API operation for Amazon Comprehend.
+//
+// Information about the history of a flywheel iteration. For more information
+// about flywheels, see Flywheel overview (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html)
+// in the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListFlywheelIterationHistory for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - InvalidFilterException
+//     The filter specified for the operation is invalid. Specify a different filter.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListFlywheelIterationHistory
+func (c *Comprehend) ListFlywheelIterationHistory(input *ListFlywheelIterationHistoryInput) (*ListFlywheelIterationHistoryOutput, error) {
+	req, out := c.ListFlywheelIterationHistoryRequest(input)
+	return out, req.Send()
+}
+
+// ListFlywheelIterationHistoryWithContext is the same as ListFlywheelIterationHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFlywheelIterationHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListFlywheelIterationHistoryWithContext(ctx aws.Context, input *ListFlywheelIterationHistoryInput, opts ...request.Option) (*ListFlywheelIterationHistoryOutput, error) {
+	req, out := c.ListFlywheelIterationHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFlywheelIterationHistoryPages iterates over the pages of a ListFlywheelIterationHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFlywheelIterationHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFlywheelIterationHistory operation.
+//	pageNum := 0
+//	err := client.ListFlywheelIterationHistoryPages(params,
+//	    func(page *comprehend.ListFlywheelIterationHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Comprehend) ListFlywheelIterationHistoryPages(input *ListFlywheelIterationHistoryInput, fn func(*ListFlywheelIterationHistoryOutput, bool) bool) error {
+	return c.ListFlywheelIterationHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFlywheelIterationHistoryPagesWithContext same as ListFlywheelIterationHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListFlywheelIterationHistoryPagesWithContext(ctx aws.Context, input *ListFlywheelIterationHistoryInput, fn func(*ListFlywheelIterationHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFlywheelIterationHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFlywheelIterationHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFlywheelIterationHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFlywheels = "ListFlywheels"
+
+// ListFlywheelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFlywheels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFlywheels for more information on using the ListFlywheels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFlywheelsRequest method.
+//	req, resp := client.ListFlywheelsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListFlywheels
+func (c *Comprehend) ListFlywheelsRequest(input *ListFlywheelsInput) (req *request.Request, output *ListFlywheelsOutput) {
+	op := &request.Operation{
+		Name:       opListFlywheels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFlywheelsInput{}
+	}
+
+	output = &ListFlywheelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFlywheels API operation for Amazon Comprehend.
+//
+// Gets a list of the flywheels that you have created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListFlywheels for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - InvalidFilterException
+//     The filter specified for the operation is invalid. Specify a different filter.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListFlywheels
+func (c *Comprehend) ListFlywheels(input *ListFlywheelsInput) (*ListFlywheelsOutput, error) {
+	req, out := c.ListFlywheelsRequest(input)
+	return out, req.Send()
+}
+
+// ListFlywheelsWithContext is the same as ListFlywheels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFlywheels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListFlywheelsWithContext(ctx aws.Context, input *ListFlywheelsInput, opts ...request.Option) (*ListFlywheelsOutput, error) {
+	req, out := c.ListFlywheelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFlywheelsPages iterates over the pages of a ListFlywheels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFlywheels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFlywheels operation.
+//	pageNum := 0
+//	err := client.ListFlywheelsPages(params,
+//	    func(page *comprehend.ListFlywheelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Comprehend) ListFlywheelsPages(input *ListFlywheelsInput, fn func(*ListFlywheelsOutput, bool) bool) error {
+	return c.ListFlywheelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFlywheelsPagesWithContext same as ListFlywheelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListFlywheelsPagesWithContext(ctx aws.Context, input *ListFlywheelsInput, fn func(*ListFlywheelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFlywheelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFlywheelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFlywheelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListKeyPhrasesDetectionJobs = "ListKeyPhrasesDetectionJobs"
 
 // ListKeyPhrasesDetectionJobsRequest generates a "aws/request.Request" representing the
@@ -5703,8 +6765,8 @@ func (c *Comprehend) StartDocumentClassificationJobRequest(input *StartDocumentC
 
 // StartDocumentClassificationJob API operation for Amazon Comprehend.
 //
-// Starts an asynchronous document classification job. Use the operation to
-// track the progress of the job.
+// Starts an asynchronous document classification job. Use the DescribeDocumentClassificationJob
+// operation to track the progress of the job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6060,6 +7122,102 @@ func (c *Comprehend) StartEventsDetectionJobWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opStartFlywheelIteration = "StartFlywheelIteration"
+
+// StartFlywheelIterationRequest generates a "aws/request.Request" representing the
+// client's request for the StartFlywheelIteration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartFlywheelIteration for more information on using the StartFlywheelIteration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartFlywheelIterationRequest method.
+//	req, resp := client.StartFlywheelIterationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartFlywheelIteration
+func (c *Comprehend) StartFlywheelIterationRequest(input *StartFlywheelIterationInput) (req *request.Request, output *StartFlywheelIterationOutput) {
+	op := &request.Operation{
+		Name:       opStartFlywheelIteration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartFlywheelIterationInput{}
+	}
+
+	output = &StartFlywheelIterationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartFlywheelIteration API operation for Amazon Comprehend.
+//
+// Start the flywheel iteration.This operation uses any new datasets to train
+// a new model version. For more information about flywheels, see Flywheel overview
+// (https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html) in
+// the Amazon Comprehend Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StartFlywheelIteration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartFlywheelIteration
+func (c *Comprehend) StartFlywheelIteration(input *StartFlywheelIterationInput) (*StartFlywheelIterationOutput, error) {
+	req, out := c.StartFlywheelIterationRequest(input)
+	return out, req.Send()
+}
+
+// StartFlywheelIterationWithContext is the same as StartFlywheelIteration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartFlywheelIteration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StartFlywheelIterationWithContext(ctx aws.Context, input *StartFlywheelIterationInput, opts ...request.Option) (*StartFlywheelIterationOutput, error) {
+	req, out := c.StartFlywheelIterationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartKeyPhrasesDetectionJob = "StartKeyPhrasesDetectionJob"
 
 // StartKeyPhrasesDetectionJobRequest generates a "aws/request.Request" representing the
@@ -6388,7 +7546,8 @@ func (c *Comprehend) StartTargetedSentimentDetectionJobRequest(input *StartTarge
 // StartTargetedSentimentDetectionJob API operation for Amazon Comprehend.
 //
 // Starts an asynchronous targeted sentiment detection job for a collection
-// of documents. Use the operation to track the status of a job.
+// of documents. Use the DescribeTargetedSentimentDetectionJob operation to
+// track the status of a job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7608,7 +8767,6 @@ func (c *Comprehend) UpdateEndpointRequest(input *UpdateEndpointInput) (req *req
 
 	output = &UpdateEndpointOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -7668,6 +8826,99 @@ func (c *Comprehend) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpoint
 // for more information on using Contexts.
 func (c *Comprehend) UpdateEndpointWithContext(ctx aws.Context, input *UpdateEndpointInput, opts ...request.Option) (*UpdateEndpointOutput, error) {
 	req, out := c.UpdateEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFlywheel = "UpdateFlywheel"
+
+// UpdateFlywheelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFlywheel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFlywheel for more information on using the UpdateFlywheel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateFlywheelRequest method.
+//	req, resp := client.UpdateFlywheelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/UpdateFlywheel
+func (c *Comprehend) UpdateFlywheelRequest(input *UpdateFlywheelInput) (req *request.Request, output *UpdateFlywheelOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFlywheel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFlywheelInput{}
+	}
+
+	output = &UpdateFlywheelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFlywheel API operation for Amazon Comprehend.
+//
+// Update the configuration information for an existing flywheel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation UpdateFlywheel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TooManyRequestsException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - KmsKeyValidationException
+//     The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//     key and re-enter it.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/UpdateFlywheel
+func (c *Comprehend) UpdateFlywheel(input *UpdateFlywheelInput) (*UpdateFlywheelOutput, error) {
+	req, out := c.UpdateFlywheelRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFlywheelWithContext is the same as UpdateFlywheel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFlywheel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) UpdateFlywheelWithContext(ctx aws.Context, input *UpdateFlywheelInput, opts ...request.Option) (*UpdateFlywheelOutput, error) {
+	req, out := c.UpdateFlywheelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9670,6 +10921,170 @@ func (s *ContainsPiiEntitiesOutput) SetLabels(v []*EntityLabel) *ContainsPiiEnti
 	return s
 }
 
+type CreateDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Name of the dataset.
+	//
+	// DatasetName is a required field
+	DatasetName *string `type:"string" required:"true"`
+
+	// The dataset type. You can specify that the data in a dataset is for training
+	// the model or for testing the model.
+	DatasetType *string `type:"string" enum:"DatasetType"`
+
+	// Description of the dataset.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the flywheel of the flywheel to receive
+	// the data.
+	//
+	// FlywheelArn is a required field
+	FlywheelArn *string `type:"string" required:"true"`
+
+	// Information about the input data configuration. The type of input data varies
+	// based on the format of the input and whether the data is for a classifier
+	// model or an entity recognition model.
+	//
+	// InputDataConfig is a required field
+	InputDataConfig *DatasetInputDataConfig `type:"structure" required:"true"`
+
+	// Tags for the dataset.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDatasetInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.FlywheelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelArn"))
+	}
+	if s.InputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
+	}
+	if s.InputDataConfig != nil {
+		if err := s.InputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateDatasetInput) SetClientRequestToken(v string) *CreateDatasetInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *CreateDatasetInput) SetDatasetName(v string) *CreateDatasetInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetDatasetType sets the DatasetType field's value.
+func (s *CreateDatasetInput) SetDatasetType(v string) *CreateDatasetInput {
+	s.DatasetType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateDatasetInput) SetDescription(v string) *CreateDatasetInput {
+	s.Description = &v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *CreateDatasetInput) SetFlywheelArn(v string) *CreateDatasetInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *CreateDatasetInput) SetInputDataConfig(v *DatasetInputDataConfig) *CreateDatasetInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetInput) SetTags(v []*Tag) *CreateDatasetInput {
+	s.Tags = v
+	return s
+}
+
+type CreateDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the dataset.
+	DatasetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *CreateDatasetOutput) SetDatasetArn(v string) *CreateDatasetOutput {
+	s.DatasetArn = &v
+	return s
+}
+
 type CreateDocumentClassifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9677,8 +11092,8 @@ type CreateDocumentClassifierInput struct {
 	// token, Amazon Comprehend generates one.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -9693,10 +11108,8 @@ type CreateDocumentClassifierInput struct {
 	// InputDataConfig is a required field
 	InputDataConfig *DocumentClassifierInputDataConfig `type:"structure" required:"true"`
 
-	// The language of the input documents. You can specify any of the following
-	// languages supported by Amazon Comprehend: German ("de"), English ("en"),
-	// Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-	// documents must be in the same language.
+	// The language of the input documents. You can specify any of the languages
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -9739,10 +11152,10 @@ type CreateDocumentClassifierInput struct {
 	// classifier jobs.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
 
-	// Tags to be associated with the document classifier being created. A tag is
-	// a key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
-	// For example, a tag with "Sales" as the key might be added to a resource to
-	// indicate its use by the sales department.
+	// Tags to associate with the document classifier. A tag is a key-value pair
+	// that adds as a metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
 	Tags []*Tag `type:"list"`
 
 	// The version name given to the newly created classifier. Version names can
@@ -9952,7 +11365,7 @@ type CreateEndpointInput struct {
 	// endpoint creation request, Amazon Comprehend will not return a ResourceInUseException.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS identity and Access Management
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
 	// (IAM) role that grants Amazon Comprehend read access to trained custom models
 	// encrypted with a customer managed key (ModelKmsKeyId).
 	DataAccessRoleArn *string `min:"20" type:"string"`
@@ -9970,15 +11383,17 @@ type CreateEndpointInput struct {
 	// EndpointName is a required field
 	EndpointName *string `type:"string" required:"true"`
 
+	// The Amazon Resource Number (ARN) of the flywheel to which the endpoint will
+	// be attached.
+	FlywheelArn *string `type:"string"`
+
 	// The Amazon Resource Number (ARN) of the model to which the endpoint will
 	// be attached.
-	//
-	// ModelArn is a required field
-	ModelArn *string `type:"string" required:"true"`
+	ModelArn *string `type:"string"`
 
-	// Tags associated with the endpoint being created. A tag is a key-value pair
-	// that adds metadata to the endpoint. For example, a tag with "Sales" as the
-	// key might be added to an endpoint to indicate its use by the sales department.
+	// Tags to associate with the endpoint. A tag is a key-value pair that adds
+	// metadata to the endpoint. For example, a tag with "Sales" as the key might
+	// be added to an endpoint to indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
 }
 
@@ -10017,9 +11432,6 @@ func (s *CreateEndpointInput) Validate() error {
 	}
 	if s.EndpointName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
-	}
-	if s.ModelArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModelArn"))
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -10062,6 +11474,12 @@ func (s *CreateEndpointInput) SetEndpointName(v string) *CreateEndpointInput {
 	return s
 }
 
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *CreateEndpointInput) SetFlywheelArn(v string) *CreateEndpointInput {
+	s.FlywheelArn = &v
+	return s
+}
+
 // SetModelArn sets the ModelArn field's value.
 func (s *CreateEndpointInput) SetModelArn(v string) *CreateEndpointInput {
 	s.ModelArn = &v
@@ -10079,6 +11497,9 @@ type CreateEndpointOutput struct {
 
 	// The Amazon Resource Number (ARN) of the endpoint being created.
 	EndpointArn *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the model to which the endpoint is attached.
+	ModelArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -10105,6 +11526,12 @@ func (s *CreateEndpointOutput) SetEndpointArn(v string) *CreateEndpointOutput {
 	return s
 }
 
+// SetModelArn sets the ModelArn field's value.
+func (s *CreateEndpointOutput) SetModelArn(v string) *CreateEndpointOutput {
+	s.ModelArn = &v
+	return s
+}
+
 type CreateEntityRecognizerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10112,8 +11539,8 @@ type CreateEntityRecognizerInput struct {
 	// token, Amazon Comprehend generates one.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -10136,7 +11563,7 @@ type CreateEntityRecognizerInput struct {
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
-	// following formats
+	// following formats:
 	//
 	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -10167,10 +11594,10 @@ type CreateEntityRecognizerInput struct {
 	// RecognizerName is a required field
 	RecognizerName *string `type:"string" required:"true"`
 
-	// Tags to be associated with the entity recognizer being created. A tag is
-	// a key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
-	// For example, a tag with "Sales" as the key might be added to a resource to
-	// indicate its use by the sales department.
+	// Tags to associate with the entity recognizer. A tag is a key-value pair that
+	// adds as a metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
 	Tags []*Tag `type:"list"`
 
 	// The version name given to the newly created recognizer. Version names can
@@ -10358,6 +11785,987 @@ func (s CreateEntityRecognizerOutput) GoString() string {
 // SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
 func (s *CreateEntityRecognizerOutput) SetEntityRecognizerArn(v string) *CreateEntityRecognizerOutput {
 	s.EntityRecognizerArn = &v
+	return s
+}
+
+type CreateFlywheelInput struct {
+	_ struct{} `type:"structure"`
+
+	// To associate an existing model with the flywheel, specify the Amazon Resource
+	// Number (ARN) of the model version.
+	ActiveModelArn *string `type:"string"`
+
+	// A unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend the permissions required to access
+	// the flywheel data in the data lake.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// Enter the S3 location for the data lake. You can specify a new S3 bucket
+	// or a new folder of an existing S3 bucket. The flywheel creates the data lake
+	// at this location.
+	//
+	// DataLakeS3Uri is a required field
+	DataLakeS3Uri *string `type:"string" required:"true"`
+
+	// Data security configurations.
+	DataSecurityConfig *DataSecurityConfig `type:"structure"`
+
+	// Name for the flywheel.
+	//
+	// FlywheelName is a required field
+	FlywheelName *string `type:"string" required:"true"`
+
+	// The model type.
+	ModelType *string `type:"string" enum:"ModelType"`
+
+	// The tags to associate with this flywheel.
+	Tags []*Tag `type:"list"`
+
+	// Configuration about the custom classifier associated with the flywheel.
+	TaskConfig *TaskConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlywheelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlywheelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFlywheelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFlywheelInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.DataLakeS3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataLakeS3Uri"))
+	}
+	if s.FlywheelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelName"))
+	}
+	if s.DataSecurityConfig != nil {
+		if err := s.DataSecurityConfig.Validate(); err != nil {
+			invalidParams.AddNested("DataSecurityConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TaskConfig != nil {
+		if err := s.TaskConfig.Validate(); err != nil {
+			invalidParams.AddNested("TaskConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveModelArn sets the ActiveModelArn field's value.
+func (s *CreateFlywheelInput) SetActiveModelArn(v string) *CreateFlywheelInput {
+	s.ActiveModelArn = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateFlywheelInput) SetClientRequestToken(v string) *CreateFlywheelInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *CreateFlywheelInput) SetDataAccessRoleArn(v string) *CreateFlywheelInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetDataLakeS3Uri sets the DataLakeS3Uri field's value.
+func (s *CreateFlywheelInput) SetDataLakeS3Uri(v string) *CreateFlywheelInput {
+	s.DataLakeS3Uri = &v
+	return s
+}
+
+// SetDataSecurityConfig sets the DataSecurityConfig field's value.
+func (s *CreateFlywheelInput) SetDataSecurityConfig(v *DataSecurityConfig) *CreateFlywheelInput {
+	s.DataSecurityConfig = v
+	return s
+}
+
+// SetFlywheelName sets the FlywheelName field's value.
+func (s *CreateFlywheelInput) SetFlywheelName(v string) *CreateFlywheelInput {
+	s.FlywheelName = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *CreateFlywheelInput) SetModelType(v string) *CreateFlywheelInput {
+	s.ModelType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFlywheelInput) SetTags(v []*Tag) *CreateFlywheelInput {
+	s.Tags = v
+	return s
+}
+
+// SetTaskConfig sets the TaskConfig field's value.
+func (s *CreateFlywheelInput) SetTaskConfig(v *TaskConfig) *CreateFlywheelInput {
+	s.TaskConfig = v
+	return s
+}
+
+type CreateFlywheelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the active model version.
+	ActiveModelArn *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the flywheel.
+	FlywheelArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlywheelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlywheelOutput) GoString() string {
+	return s.String()
+}
+
+// SetActiveModelArn sets the ActiveModelArn field's value.
+func (s *CreateFlywheelOutput) SetActiveModelArn(v string) *CreateFlywheelOutput {
+	s.ActiveModelArn = &v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *CreateFlywheelOutput) SetFlywheelArn(v string) *CreateFlywheelOutput {
+	s.FlywheelArn = &v
+	return s
+}
+
+// Data security configuration.
+type DataSecurityConfig struct {
+	_ struct{} `type:"structure"`
+
+	// ID for the KMS key that Amazon Comprehend uses to encrypt the data in the
+	// data lake.
+	DataLakeKmsKeyId *string `type:"string"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
+	// following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	ModelKmsKeyId *string `type:"string"`
+
+	// ID for the KMS key that Amazon Comprehend uses to encrypt the volume.
+	VolumeKmsKeyId *string `type:"string"`
+
+	// Configuration parameters for an optional private Virtual Private Cloud (VPC)
+	// containing the resources you are using for the job. For more information,
+	// see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
+	VpcConfig *VpcConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSecurityConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSecurityConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSecurityConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSecurityConfig"}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataLakeKmsKeyId sets the DataLakeKmsKeyId field's value.
+func (s *DataSecurityConfig) SetDataLakeKmsKeyId(v string) *DataSecurityConfig {
+	s.DataLakeKmsKeyId = &v
+	return s
+}
+
+// SetModelKmsKeyId sets the ModelKmsKeyId field's value.
+func (s *DataSecurityConfig) SetModelKmsKeyId(v string) *DataSecurityConfig {
+	s.ModelKmsKeyId = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *DataSecurityConfig) SetVolumeKmsKeyId(v string) *DataSecurityConfig {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *DataSecurityConfig) SetVpcConfig(v *VpcConfig) *DataSecurityConfig {
+	s.VpcConfig = v
+	return s
+}
+
+// An augmented manifest file that provides training data for your custom model.
+// An augmented manifest file is a labeled dataset that is produced by Amazon
+// SageMaker Ground Truth.
+type DatasetAugmentedManifestsListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 prefix to the annotation files that are referred in the augmented
+	// manifest file.
+	AnnotationDataS3Uri *string `type:"string"`
+
+	// The JSON attribute that contains the annotations for your training documents.
+	// The number of attribute names that you specify depends on whether your augmented
+	// manifest file is the output of a single labeling job or a chained labeling
+	// job.
+	//
+	// If your file is the output of a single labeling job, specify the LabelAttributeName
+	// key that was used when the job was created in Ground Truth.
+	//
+	// If your file is the output of a chained labeling job, specify the LabelAttributeName
+	// key for one or more jobs in the chain. Each LabelAttributeName key provides
+	// the annotations from an individual job.
+	//
+	// AttributeNames is a required field
+	AttributeNames []*string `type:"list" required:"true"`
+
+	// The type of augmented manifest. If you don't specify, the default is PlainTextDocument.
+	//
+	// PLAIN_TEXT_DOCUMENT A document type that represents any unicode text that
+	// is encoded in UTF-8.
+	DocumentType *string `type:"string" enum:"AugmentedManifestsDocumentTypeFormat"`
+
+	// The Amazon S3 location of the augmented manifest file.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+
+	// The S3 prefix to the source files (PDFs) that are referred to in the augmented
+	// manifest file.
+	SourceDocumentsS3Uri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetAugmentedManifestsListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetAugmentedManifestsListItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetAugmentedManifestsListItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetAugmentedManifestsListItem"}
+	if s.AttributeNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeNames"))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnnotationDataS3Uri sets the AnnotationDataS3Uri field's value.
+func (s *DatasetAugmentedManifestsListItem) SetAnnotationDataS3Uri(v string) *DatasetAugmentedManifestsListItem {
+	s.AnnotationDataS3Uri = &v
+	return s
+}
+
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *DatasetAugmentedManifestsListItem) SetAttributeNames(v []*string) *DatasetAugmentedManifestsListItem {
+	s.AttributeNames = v
+	return s
+}
+
+// SetDocumentType sets the DocumentType field's value.
+func (s *DatasetAugmentedManifestsListItem) SetDocumentType(v string) *DatasetAugmentedManifestsListItem {
+	s.DocumentType = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *DatasetAugmentedManifestsListItem) SetS3Uri(v string) *DatasetAugmentedManifestsListItem {
+	s.S3Uri = &v
+	return s
+}
+
+// SetSourceDocumentsS3Uri sets the SourceDocumentsS3Uri field's value.
+func (s *DatasetAugmentedManifestsListItem) SetSourceDocumentsS3Uri(v string) *DatasetAugmentedManifestsListItem {
+	s.SourceDocumentsS3Uri = &v
+	return s
+}
+
+// Describes the dataset input data configuration for a document classifier
+// model.
+//
+// For more information on how the input file is formatted, see Preparing training
+// data (https://docs.aws.amazon.com/comprehend/latest/dg/prep-classifier-data.html)
+// in the Comprehend Developer Guide.
+type DatasetDocumentClassifierInputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the delimiter used to separate each label for training a multi-label
+	// classifier. The default delimiter between labels is a pipe (|). You can use
+	// a different character as a delimiter (if it's an allowed character) by specifying
+	// it under Delimiter for labels. If the training documents use a delimiter
+	// other than the default or the delimiter you specify, the labels on that line
+	// will be combined to make a single unique label, such as LABELLABELLABEL.
+	LabelDelimiter *string `min:"1" type:"string"`
+
+	// The Amazon S3 URI for the input data. The S3 bucket must be in the same region
+	// as the API endpoint that you are calling. The URI can point to a single input
+	// file or it can provide the prefix for a collection of input files.
+	//
+	// For example, if you use the URI S3://bucketName/prefix, if the prefix is
+	// a single file, Amazon Comprehend uses that file as input. If more than one
+	// file begins with the prefix, Amazon Comprehend uses all of them as input.
+	//
+	// This parameter is required if you set DataFormat to COMPREHEND_CSV.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetDocumentClassifierInputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetDocumentClassifierInputDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetDocumentClassifierInputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetDocumentClassifierInputDataConfig"}
+	if s.LabelDelimiter != nil && len(*s.LabelDelimiter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelDelimiter", 1))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelDelimiter sets the LabelDelimiter field's value.
+func (s *DatasetDocumentClassifierInputDataConfig) SetLabelDelimiter(v string) *DatasetDocumentClassifierInputDataConfig {
+	s.LabelDelimiter = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *DatasetDocumentClassifierInputDataConfig) SetS3Uri(v string) *DatasetDocumentClassifierInputDataConfig {
+	s.S3Uri = &v
+	return s
+}
+
+// Describes the annotations associated with a entity recognizer.
+type DatasetEntityRecognizerAnnotations struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 location where the training documents for an entity
+	// recognizer are located. The URI must be in the same region as the API endpoint
+	// that you are calling.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerAnnotations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerAnnotations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetEntityRecognizerAnnotations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetEntityRecognizerAnnotations"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *DatasetEntityRecognizerAnnotations) SetS3Uri(v string) *DatasetEntityRecognizerAnnotations {
+	s.S3Uri = &v
+	return s
+}
+
+// Describes the documents submitted with a dataset for an entity recognizer
+// model.
+type DatasetEntityRecognizerDocuments struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how the text in an input file should be processed. This is optional,
+	// and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each file is considered
+	// a separate document. Use this option when you are processing large documents,
+	// such as newspaper articles or scientific papers. ONE_DOC_PER_LINE - Each
+	// line in a file is considered a separate document. Use this option when you
+	// are processing many short documents, such as text messages.
+	InputFormat *string `type:"string" enum:"InputFormat"`
+
+	// Specifies the Amazon S3 location where the documents for the dataset are
+	// located.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerDocuments) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerDocuments) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetEntityRecognizerDocuments) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetEntityRecognizerDocuments"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputFormat sets the InputFormat field's value.
+func (s *DatasetEntityRecognizerDocuments) SetInputFormat(v string) *DatasetEntityRecognizerDocuments {
+	s.InputFormat = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *DatasetEntityRecognizerDocuments) SetS3Uri(v string) *DatasetEntityRecognizerDocuments {
+	s.S3Uri = &v
+	return s
+}
+
+// Describes the dataset entity list for an entity recognizer model.
+//
+// For more information on how the input file is formatted, see Preparing training
+// data (https://docs.aws.amazon.com/comprehend/latest/dg/prep-training-data-cer.html)
+// in the Comprehend Developer Guide.
+type DatasetEntityRecognizerEntityList struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 location where the entity list is located.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerEntityList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerEntityList) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetEntityRecognizerEntityList) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetEntityRecognizerEntityList"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *DatasetEntityRecognizerEntityList) SetS3Uri(v string) *DatasetEntityRecognizerEntityList {
+	s.S3Uri = &v
+	return s
+}
+
+// Specifies the format and location of the input data. You must provide either
+// the Annotations parameter or the EntityList parameter.
+type DatasetEntityRecognizerInputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 location of the annotation documents for your custom entity recognizer.
+	Annotations *DatasetEntityRecognizerAnnotations `type:"structure"`
+
+	// The format and location of the training documents for your custom entity
+	// recognizer.
+	//
+	// Documents is a required field
+	Documents *DatasetEntityRecognizerDocuments `type:"structure" required:"true"`
+
+	// The S3 location of the entity list for your custom entity recognizer.
+	EntityList *DatasetEntityRecognizerEntityList `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerInputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetEntityRecognizerInputDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetEntityRecognizerInputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetEntityRecognizerInputDataConfig"}
+	if s.Documents == nil {
+		invalidParams.Add(request.NewErrParamRequired("Documents"))
+	}
+	if s.Annotations != nil {
+		if err := s.Annotations.Validate(); err != nil {
+			invalidParams.AddNested("Annotations", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Documents != nil {
+		if err := s.Documents.Validate(); err != nil {
+			invalidParams.AddNested("Documents", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityList != nil {
+		if err := s.EntityList.Validate(); err != nil {
+			invalidParams.AddNested("EntityList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnnotations sets the Annotations field's value.
+func (s *DatasetEntityRecognizerInputDataConfig) SetAnnotations(v *DatasetEntityRecognizerAnnotations) *DatasetEntityRecognizerInputDataConfig {
+	s.Annotations = v
+	return s
+}
+
+// SetDocuments sets the Documents field's value.
+func (s *DatasetEntityRecognizerInputDataConfig) SetDocuments(v *DatasetEntityRecognizerDocuments) *DatasetEntityRecognizerInputDataConfig {
+	s.Documents = v
+	return s
+}
+
+// SetEntityList sets the EntityList field's value.
+func (s *DatasetEntityRecognizerInputDataConfig) SetEntityList(v *DatasetEntityRecognizerEntityList) *DatasetEntityRecognizerInputDataConfig {
+	s.EntityList = v
+	return s
+}
+
+// Filter the datasets based on creation time or dataset status.
+type DatasetFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filter the datasets to include datasets created after the specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// Filter the datasets to include datasets created before the specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// Filter the datasets based on the dataset type.
+	DatasetType *string `type:"string" enum:"DatasetType"`
+
+	// Filter the datasets based on the dataset status.
+	Status *string `type:"string" enum:"DatasetStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetFilter) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *DatasetFilter) SetCreationTimeAfter(v time.Time) *DatasetFilter {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *DatasetFilter) SetCreationTimeBefore(v time.Time) *DatasetFilter {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetDatasetType sets the DatasetType field's value.
+func (s *DatasetFilter) SetDatasetType(v string) *DatasetFilter {
+	s.DatasetType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetFilter) SetStatus(v string) *DatasetFilter {
+	s.Status = &v
+	return s
+}
+
+// Specifies the format and location of the input data for the dataset.
+type DatasetInputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A list of augmented manifest files that provide training data for your custom
+	// model. An augmented manifest file is a labeled dataset that is produced by
+	// Amazon SageMaker Ground Truth.
+	AugmentedManifests []*DatasetAugmentedManifestsListItem `type:"list"`
+
+	// COMPREHEND_CSV: The data format is a two-column CSV file, where the first
+	// column contains labels and the second column contains documents.
+	//
+	// AUGMENTED_MANIFEST: The data format
+	DataFormat *string `type:"string" enum:"DatasetDataFormat"`
+
+	// The input properties for training a document classifier model.
+	//
+	// For more information on how the input file is formatted, see Preparing training
+	// data (https://docs.aws.amazon.com/comprehend/latest/dg/prep-classifier-data.html)
+	// in the Comprehend Developer Guide.
+	DocumentClassifierInputDataConfig *DatasetDocumentClassifierInputDataConfig `type:"structure"`
+
+	// The input properties for training an entity recognizer model.
+	EntityRecognizerInputDataConfig *DatasetEntityRecognizerInputDataConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetInputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetInputDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetInputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetInputDataConfig"}
+	if s.AugmentedManifests != nil {
+		for i, v := range s.AugmentedManifests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AugmentedManifests", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DocumentClassifierInputDataConfig != nil {
+		if err := s.DocumentClassifierInputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentClassifierInputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityRecognizerInputDataConfig != nil {
+		if err := s.EntityRecognizerInputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("EntityRecognizerInputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAugmentedManifests sets the AugmentedManifests field's value.
+func (s *DatasetInputDataConfig) SetAugmentedManifests(v []*DatasetAugmentedManifestsListItem) *DatasetInputDataConfig {
+	s.AugmentedManifests = v
+	return s
+}
+
+// SetDataFormat sets the DataFormat field's value.
+func (s *DatasetInputDataConfig) SetDataFormat(v string) *DatasetInputDataConfig {
+	s.DataFormat = &v
+	return s
+}
+
+// SetDocumentClassifierInputDataConfig sets the DocumentClassifierInputDataConfig field's value.
+func (s *DatasetInputDataConfig) SetDocumentClassifierInputDataConfig(v *DatasetDocumentClassifierInputDataConfig) *DatasetInputDataConfig {
+	s.DocumentClassifierInputDataConfig = v
+	return s
+}
+
+// SetEntityRecognizerInputDataConfig sets the EntityRecognizerInputDataConfig field's value.
+func (s *DatasetInputDataConfig) SetEntityRecognizerInputDataConfig(v *DatasetEntityRecognizerInputDataConfig) *DatasetInputDataConfig {
+	s.EntityRecognizerInputDataConfig = v
+	return s
+}
+
+// Properties associated with the dataset.
+type DatasetProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Creation time of the dataset.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The ARN of the dataset.
+	DatasetArn *string `type:"string"`
+
+	// The name of the dataset.
+	DatasetName *string `type:"string"`
+
+	// The S3 URI where the dataset is stored.
+	DatasetS3Uri *string `type:"string"`
+
+	// The dataset type (training data or test data).
+	DatasetType *string `type:"string" enum:"DatasetType"`
+
+	// Description of the dataset.
+	Description *string `type:"string"`
+
+	// Time when the data from the dataset becomes available in the data lake.
+	EndTime *time.Time `type:"timestamp"`
+
+	// A description of the status of the dataset.
+	Message *string `type:"string"`
+
+	// The number of documents in the dataset.
+	NumberOfDocuments *int64 `type:"long"`
+
+	// The dataset status. While the system creates the dataset, the status is CREATING.
+	// When the dataset is ready to use, the status changes to COMPLETED.
+	Status *string `type:"string" enum:"DatasetStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetProperties) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DatasetProperties) SetCreationTime(v time.Time) *DatasetProperties {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DatasetProperties) SetDatasetArn(v string) *DatasetProperties {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *DatasetProperties) SetDatasetName(v string) *DatasetProperties {
+	s.DatasetName = &v
+	return s
+}
+
+// SetDatasetS3Uri sets the DatasetS3Uri field's value.
+func (s *DatasetProperties) SetDatasetS3Uri(v string) *DatasetProperties {
+	s.DatasetS3Uri = &v
+	return s
+}
+
+// SetDatasetType sets the DatasetType field's value.
+func (s *DatasetProperties) SetDatasetType(v string) *DatasetProperties {
+	s.DatasetType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DatasetProperties) SetDescription(v string) *DatasetProperties {
+	s.Description = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DatasetProperties) SetEndTime(v time.Time) *DatasetProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DatasetProperties) SetMessage(v string) *DatasetProperties {
+	s.Message = &v
+	return s
+}
+
+// SetNumberOfDocuments sets the NumberOfDocuments field's value.
+func (s *DatasetProperties) SetNumberOfDocuments(v int64) *DatasetProperties {
+	s.NumberOfDocuments = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetProperties) SetStatus(v string) *DatasetProperties {
+	s.Status = &v
 	return s
 }
 
@@ -10565,6 +12973,74 @@ func (s DeleteEntityRecognizerOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteFlywheelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the flywheel to delete.
+	//
+	// FlywheelArn is a required field
+	FlywheelArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlywheelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlywheelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFlywheelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFlywheelInput"}
+	if s.FlywheelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *DeleteFlywheelInput) SetFlywheelArn(v string) *DeleteFlywheelInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+type DeleteFlywheelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlywheelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlywheelOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10643,11 +13119,88 @@ func (s DeleteResourcePolicyOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the dataset.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDatasetInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DescribeDatasetInput) SetDatasetArn(v string) *DescribeDatasetInput {
+	s.DatasetArn = &v
+	return s
+}
+
+type DescribeDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The dataset properties.
+	DatasetProperties *DatasetProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetProperties sets the DatasetProperties field's value.
+func (s *DescribeDatasetOutput) SetDatasetProperties(v *DatasetProperties) *DescribeDatasetOutput {
+	s.DatasetProperties = v
+	return s
+}
+
 type DescribeDocumentClassificationJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier that Amazon Comprehend generated for the job. The operation
-	// returns this identifier in its response.
+	// The identifier that Amazon Comprehend generated for the job. The StartDocumentClassificationJob
+	// operation returns this identifier in its response.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -10729,7 +13282,7 @@ type DescribeDocumentClassifierInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) that identifies the document classifier. The
-	// operation returns this identifier in its response.
+	// CreateDocumentClassifier operation returns this identifier in its response.
 	//
 	// DocumentClassifierArn is a required field
 	DocumentClassifierArn *string `type:"string" required:"true"`
@@ -10806,8 +13359,8 @@ func (s *DescribeDocumentClassifierOutput) SetDocumentClassifierProperties(v *Do
 type DescribeDominantLanguageDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier that Amazon Comprehend generated for the job. The operation
-	// returns this identifier in its response.
+	// The identifier that Amazon Comprehend generated for the job. The StartDominantLanguageDetectionJob
+	// operation returns this identifier in its response.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -10965,8 +13518,8 @@ func (s *DescribeEndpointOutput) SetEndpointProperties(v *EndpointProperties) *D
 type DescribeEntitiesDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier that Amazon Comprehend generated for the job. The operation
-	// returns this identifier in its response.
+	// The identifier that Amazon Comprehend generated for the job. The StartEntitiesDetectionJob
+	// operation returns this identifier in its response.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -11202,11 +13755,175 @@ func (s *DescribeEventsDetectionJobOutput) SetEventsDetectionJobProperties(v *Ev
 	return s
 }
 
+type DescribeFlywheelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the flywheel.
+	//
+	// FlywheelArn is a required field
+	FlywheelArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFlywheelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFlywheelInput"}
+	if s.FlywheelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *DescribeFlywheelInput) SetFlywheelArn(v string) *DescribeFlywheelInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+type DescribeFlywheelIterationInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlywheelArn is a required field
+	FlywheelArn *string `type:"string" required:"true"`
+
+	// FlywheelIterationId is a required field
+	FlywheelIterationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelIterationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelIterationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFlywheelIterationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFlywheelIterationInput"}
+	if s.FlywheelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelArn"))
+	}
+	if s.FlywheelIterationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelIterationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *DescribeFlywheelIterationInput) SetFlywheelArn(v string) *DescribeFlywheelIterationInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetFlywheelIterationId sets the FlywheelIterationId field's value.
+func (s *DescribeFlywheelIterationInput) SetFlywheelIterationId(v string) *DescribeFlywheelIterationInput {
+	s.FlywheelIterationId = &v
+	return s
+}
+
+type DescribeFlywheelIterationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration properties of a flywheel iteration.
+	FlywheelIterationProperties *FlywheelIterationProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelIterationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelIterationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlywheelIterationProperties sets the FlywheelIterationProperties field's value.
+func (s *DescribeFlywheelIterationOutput) SetFlywheelIterationProperties(v *FlywheelIterationProperties) *DescribeFlywheelIterationOutput {
+	s.FlywheelIterationProperties = v
+	return s
+}
+
+type DescribeFlywheelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The flywheel properties.
+	FlywheelProperties *FlywheelProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlywheelOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlywheelProperties sets the FlywheelProperties field's value.
+func (s *DescribeFlywheelOutput) SetFlywheelProperties(v *FlywheelProperties) *DescribeFlywheelOutput {
+	s.FlywheelProperties = v
+	return s
+}
+
 type DescribeKeyPhrasesDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier that Amazon Comprehend generated for the job. The operation
-	// returns this identifier in its response.
+	// The identifier that Amazon Comprehend generated for the job. The StartKeyPhrasesDetectionJob
+	// operation returns this identifier in its response.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -11556,8 +14273,8 @@ func (s *DescribeSentimentDetectionJobOutput) SetSentimentDetectionJobProperties
 type DescribeTargetedSentimentDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier that Amazon Comprehend generated for the job. The operation
-	// returns this identifier in its response.
+	// The identifier that Amazon Comprehend generated for the job. The StartTargetedSentimentDetectionJob
+	// operation returns this identifier in its response.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -12582,6 +15299,62 @@ func (s *DocumentClass) SetScore(v float64) *DocumentClass {
 	return s
 }
 
+// Configuration required for a custom classification model.
+type DocumentClassificationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// One or more labels to associate with the custom classifier.
+	Labels []*string `type:"list"`
+
+	// Classification mode indicates whether the documents are MULTI_CLASS or MULTI_LABEL.
+	//
+	// Mode is a required field
+	Mode *string `type:"string" required:"true" enum:"DocumentClassifierMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentClassificationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentClassificationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentClassificationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentClassificationConfig"}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabels sets the Labels field's value.
+func (s *DocumentClassificationConfig) SetLabels(v []*string) *DocumentClassificationConfig {
+	s.Labels = v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *DocumentClassificationConfig) SetMode(v string) *DocumentClassificationConfig {
+	s.Mode = &v
+	return s
+}
+
 // Provides information for filtering a list of document classification jobs.
 // For more information, see the operation. You can provide only one filter
 // parameter in each request.
@@ -12665,7 +15438,7 @@ func (s *DocumentClassificationJobFilter) SetSubmitTimeBefore(v time.Time) *Docu
 type DocumentClassificationJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS identity and Access Management
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
 	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
@@ -12674,6 +15447,9 @@ type DocumentClassificationJobProperties struct {
 
 	// The time that the document classification job completed.
 	EndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Number (ARN) of the flywheel
+	FlywheelArn *string `type:"string"`
 
 	// The input data configuration that you supplied when you created the document
 	// classification job.
@@ -12762,6 +15538,12 @@ func (s *DocumentClassificationJobProperties) SetEndTime(v time.Time) *DocumentC
 	return s
 }
 
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *DocumentClassificationJobProperties) SetFlywheelArn(v string) *DocumentClassificationJobProperties {
+	s.FlywheelArn = &v
+	return s
+}
+
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *DocumentClassificationJobProperties) SetInputDataConfig(v *InputDataConfig) *DocumentClassificationJobProperties {
 	s.InputDataConfig = v
@@ -12824,7 +15606,7 @@ func (s *DocumentClassificationJobProperties) SetVpcConfig(v *VpcConfig) *Docume
 
 // Provides information for filtering a list of document classifiers. You can
 // only specify one filtering parameter in a request. For more information,
-// see the operation.
+// see the ListDocumentClassifiers operation.
 type DocumentClassifierFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -13018,6 +15800,9 @@ func (s *DocumentClassifierInputDataConfig) SetTestS3Uri(v string) *DocumentClas
 type DocumentClassifierOutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon S3 prefix for the data lake location of the flywheel statistics.
+	FlywheelStatsS3Prefix *string `type:"string"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt the output results from an analysis job. The KmsKeyId can be one
 	// of the following formats:
@@ -13062,6 +15847,12 @@ func (s DocumentClassifierOutputDataConfig) GoString() string {
 	return s.String()
 }
 
+// SetFlywheelStatsS3Prefix sets the FlywheelStatsS3Prefix field's value.
+func (s *DocumentClassifierOutputDataConfig) SetFlywheelStatsS3Prefix(v string) *DocumentClassifierOutputDataConfig {
+	s.FlywheelStatsS3Prefix = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *DocumentClassifierOutputDataConfig) SetKmsKeyId(v string) *DocumentClassifierOutputDataConfig {
 	s.KmsKeyId = &v
@@ -13087,8 +15878,8 @@ type DocumentClassifierProperties struct {
 	// String and GoString methods.
 	ClassifierMetadata *ClassifierMetadata `type:"structure" sensitive:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The Amazon Resource Name (ARN) that identifies the document classifier.
@@ -13096,6 +15887,9 @@ type DocumentClassifierProperties struct {
 
 	// The time that training the document classifier completed.
 	EndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Number (ARN) of the flywheel
+	FlywheelArn *string `type:"string"`
 
 	// The input data configuration that you supplied when you created the document
 	// classifier for training.
@@ -13206,6 +16000,12 @@ func (s *DocumentClassifierProperties) SetDocumentClassifierArn(v string) *Docum
 // SetEndTime sets the EndTime field's value.
 func (s *DocumentClassifierProperties) SetEndTime(v time.Time) *DocumentClassifierProperties {
 	s.EndTime = &v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *DocumentClassifierProperties) SetFlywheelArn(v string) *DocumentClassifierProperties {
+	s.FlywheelArn = &v
 	return s
 }
 
@@ -13730,8 +16530,8 @@ func (s *DominantLanguageDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *D
 type DominantLanguageDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
-	// your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the dominant language detection job completed.
@@ -13951,7 +16751,7 @@ type EndpointProperties struct {
 	// The number of inference units currently used by the model using this endpoint.
 	CurrentInferenceUnits *int64 `min:"1" type:"integer"`
 
-	// The Amazon Resource Name (ARN) of the AWS identity and Access Management
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
 	// (IAM) role that grants Amazon Comprehend read access to trained custom models
 	// encrypted with a customer managed key (ModelKmsKeyId).
 	DataAccessRoleArn *string `min:"20" type:"string"`
@@ -13971,6 +16771,9 @@ type EndpointProperties struct {
 
 	// The Amazon Resource Number (ARN) of the endpoint.
 	EndpointArn *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the flywheel
+	FlywheelArn *string `type:"string"`
 
 	// The date and time that the endpoint was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
@@ -14044,6 +16847,12 @@ func (s *EndpointProperties) SetDesiredModelArn(v string) *EndpointProperties {
 // SetEndpointArn sets the EndpointArn field's value.
 func (s *EndpointProperties) SetEndpointArn(v string) *EndpointProperties {
 	s.EndpointArn = &v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *EndpointProperties) SetFlywheelArn(v string) *EndpointProperties {
+	s.FlywheelArn = &v
 	return s
 }
 
@@ -14153,8 +16962,8 @@ func (s *EntitiesDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *EntitiesD
 type EntitiesDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
-	// your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the entities detection job completed
@@ -14451,6 +17260,63 @@ func (s *EntityLabel) SetScore(v float64) *EntityLabel {
 	return s
 }
 
+// Configuration required for an entity recognition model.
+type EntityRecognitionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Up to 25 entity types that the model is trained to recognize.
+	//
+	// EntityTypes is a required field
+	EntityTypes []*EntityTypesListItem `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRecognitionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRecognitionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityRecognitionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityRecognitionConfig"}
+	if s.EntityTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityTypes"))
+	}
+	if s.EntityTypes != nil {
+		for i, v := range s.EntityTypes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EntityTypes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityTypes sets the EntityTypes field's value.
+func (s *EntityRecognitionConfig) SetEntityTypes(v []*EntityTypesListItem) *EntityRecognitionConfig {
+	s.EntityTypes = v
+	return s
+}
+
 // Describes the annotations associated with a entity recognizer.
 type EntityRecognizerAnnotations struct {
 	_ struct{} `type:"structure"`
@@ -14585,7 +17451,7 @@ func (s *EntityRecognizerDocuments) SetTestS3Uri(v string) *EntityRecognizerDocu
 	return s
 }
 
-// Describes the entity recognizer submitted with an entity recognizer.
+// Describes the entity list submitted with an entity recognizer.
 type EntityRecognizerEntityList struct {
 	_ struct{} `type:"structure"`
 
@@ -14692,7 +17558,7 @@ func (s *EntityRecognizerEvaluationMetrics) SetRecall(v float64) *EntityRecogniz
 
 // Provides information for filtering a list of entity recognizers. You can
 // only specify one filtering parameter in a request. For more information,
-// see the operation./>
+// see the ListEntityRecognizers operation./>
 type EntityRecognizerFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -15029,12 +17895,44 @@ func (s *EntityRecognizerMetadataEntityTypesListItem) SetType(v string) *EntityR
 	return s
 }
 
+// Output data configuration.
+type EntityRecognizerOutputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 prefix for the data lake location of the flywheel statistics.
+	FlywheelStatsS3Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRecognizerOutputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRecognizerOutputDataConfig) GoString() string {
+	return s.String()
+}
+
+// SetFlywheelStatsS3Prefix sets the FlywheelStatsS3Prefix field's value.
+func (s *EntityRecognizerOutputDataConfig) SetFlywheelStatsS3Prefix(v string) *EntityRecognizerOutputDataConfig {
+	s.FlywheelStatsS3Prefix = &v
+	return s
+}
+
 // Describes information about an entity recognizer.
 type EntityRecognizerProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the recognizer creation completed.
@@ -15042,6 +17940,9 @@ type EntityRecognizerProperties struct {
 
 	// The Amazon Resource Name (ARN) that identifies the entity recognizer.
 	EntityRecognizerArn *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the flywheel
+	FlywheelArn *string `type:"string"`
 
 	// The input data properties of an entity recognizer.
 	InputDataConfig *EntityRecognizerInputDataConfig `type:"structure"`
@@ -15061,6 +17962,9 @@ type EntityRecognizerProperties struct {
 	//
 	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	ModelKmsKeyId *string `type:"string"`
+
+	// Output data configuration.
+	OutputDataConfig *EntityRecognizerOutputDataConfig `type:"structure"`
 
 	// Provides information about an entity recognizer.
 	//
@@ -15141,6 +18045,12 @@ func (s *EntityRecognizerProperties) SetEntityRecognizerArn(v string) *EntityRec
 	return s
 }
 
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *EntityRecognizerProperties) SetFlywheelArn(v string) *EntityRecognizerProperties {
+	s.FlywheelArn = &v
+	return s
+}
+
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *EntityRecognizerProperties) SetInputDataConfig(v *EntityRecognizerInputDataConfig) *EntityRecognizerProperties {
 	s.InputDataConfig = v
@@ -15162,6 +18072,12 @@ func (s *EntityRecognizerProperties) SetMessage(v string) *EntityRecognizerPrope
 // SetModelKmsKeyId sets the ModelKmsKeyId field's value.
 func (s *EntityRecognizerProperties) SetModelKmsKeyId(v string) *EntityRecognizerProperties {
 	s.ModelKmsKeyId = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *EntityRecognizerProperties) SetOutputDataConfig(v *EntityRecognizerOutputDataConfig) *EntityRecognizerProperties {
+	s.OutputDataConfig = v
 	return s
 }
 
@@ -15547,7 +18463,7 @@ func (s *EventsDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *EventsDetec
 type EventsDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identify and Access Management
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
 	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
@@ -15726,6 +18642,514 @@ func (s *ExtractedCharactersListItem) SetPage(v int64) *ExtractedCharactersListI
 	return s
 }
 
+// Filter the flywheels based on creation time or flywheel status.
+type FlywheelFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filter the flywheels to include flywheels created after the specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// Filter the flywheels to include flywheels created before the specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// Filter the flywheels based on the flywheel status.
+	Status *string `type:"string" enum:"FlywheelStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelFilter) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *FlywheelFilter) SetCreationTimeAfter(v time.Time) *FlywheelFilter {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *FlywheelFilter) SetCreationTimeBefore(v time.Time) *FlywheelFilter {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FlywheelFilter) SetStatus(v string) *FlywheelFilter {
+	s.Status = &v
+	return s
+}
+
+// Filter the flywheel iterations based on creation time.
+type FlywheelIterationFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filter the flywheel iterations to include iterations created after the specified
+	// time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// Filter the flywheel iterations to include iterations created before the specified
+	// time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelIterationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelIterationFilter) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *FlywheelIterationFilter) SetCreationTimeAfter(v time.Time) *FlywheelIterationFilter {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *FlywheelIterationFilter) SetCreationTimeBefore(v time.Time) *FlywheelIterationFilter {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// The configuration properties of a flywheel iteration.
+type FlywheelIterationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The creation start time of the flywheel iteration.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The completion time of this flywheel iteration.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The ARN of the evaluated model associated with this flywheel iteration.
+	EvaluatedModelArn *string `type:"string"`
+
+	// The evaluation metrics associated with the evaluated model.
+	EvaluatedModelMetrics *FlywheelModelEvaluationMetrics `type:"structure"`
+
+	EvaluationManifestS3Prefix *string `type:"string"`
+
+	FlywheelArn *string `type:"string"`
+
+	FlywheelIterationId *string `type:"string"`
+
+	// A description of the status of the flywheel iteration.
+	Message *string `type:"string"`
+
+	// The status of the flywheel iteration.
+	Status *string `type:"string" enum:"FlywheelIterationStatus"`
+
+	// The ARN of the trained model associated with this flywheel iteration.
+	TrainedModelArn *string `type:"string"`
+
+	// The metrics associated with the trained model.
+	TrainedModelMetrics *FlywheelModelEvaluationMetrics `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelIterationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelIterationProperties) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FlywheelIterationProperties) SetCreationTime(v time.Time) *FlywheelIterationProperties {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *FlywheelIterationProperties) SetEndTime(v time.Time) *FlywheelIterationProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetEvaluatedModelArn sets the EvaluatedModelArn field's value.
+func (s *FlywheelIterationProperties) SetEvaluatedModelArn(v string) *FlywheelIterationProperties {
+	s.EvaluatedModelArn = &v
+	return s
+}
+
+// SetEvaluatedModelMetrics sets the EvaluatedModelMetrics field's value.
+func (s *FlywheelIterationProperties) SetEvaluatedModelMetrics(v *FlywheelModelEvaluationMetrics) *FlywheelIterationProperties {
+	s.EvaluatedModelMetrics = v
+	return s
+}
+
+// SetEvaluationManifestS3Prefix sets the EvaluationManifestS3Prefix field's value.
+func (s *FlywheelIterationProperties) SetEvaluationManifestS3Prefix(v string) *FlywheelIterationProperties {
+	s.EvaluationManifestS3Prefix = &v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *FlywheelIterationProperties) SetFlywheelArn(v string) *FlywheelIterationProperties {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetFlywheelIterationId sets the FlywheelIterationId field's value.
+func (s *FlywheelIterationProperties) SetFlywheelIterationId(v string) *FlywheelIterationProperties {
+	s.FlywheelIterationId = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FlywheelIterationProperties) SetMessage(v string) *FlywheelIterationProperties {
+	s.Message = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FlywheelIterationProperties) SetStatus(v string) *FlywheelIterationProperties {
+	s.Status = &v
+	return s
+}
+
+// SetTrainedModelArn sets the TrainedModelArn field's value.
+func (s *FlywheelIterationProperties) SetTrainedModelArn(v string) *FlywheelIterationProperties {
+	s.TrainedModelArn = &v
+	return s
+}
+
+// SetTrainedModelMetrics sets the TrainedModelMetrics field's value.
+func (s *FlywheelIterationProperties) SetTrainedModelMetrics(v *FlywheelModelEvaluationMetrics) *FlywheelIterationProperties {
+	s.TrainedModelMetrics = v
+	return s
+}
+
+// The evaluation metrics associated with the evaluated model.
+type FlywheelModelEvaluationMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// Average accuracy metric for the model.
+	AverageAccuracy *float64 `type:"double"`
+
+	// The average F1 score from the evaluation metrics.
+	AverageF1Score *float64 `type:"double"`
+
+	// Average precision metric for the model.
+	AveragePrecision *float64 `type:"double"`
+
+	// Average recall metric for the model.
+	AverageRecall *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelModelEvaluationMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelModelEvaluationMetrics) GoString() string {
+	return s.String()
+}
+
+// SetAverageAccuracy sets the AverageAccuracy field's value.
+func (s *FlywheelModelEvaluationMetrics) SetAverageAccuracy(v float64) *FlywheelModelEvaluationMetrics {
+	s.AverageAccuracy = &v
+	return s
+}
+
+// SetAverageF1Score sets the AverageF1Score field's value.
+func (s *FlywheelModelEvaluationMetrics) SetAverageF1Score(v float64) *FlywheelModelEvaluationMetrics {
+	s.AverageF1Score = &v
+	return s
+}
+
+// SetAveragePrecision sets the AveragePrecision field's value.
+func (s *FlywheelModelEvaluationMetrics) SetAveragePrecision(v float64) *FlywheelModelEvaluationMetrics {
+	s.AveragePrecision = &v
+	return s
+}
+
+// SetAverageRecall sets the AverageRecall field's value.
+func (s *FlywheelModelEvaluationMetrics) SetAverageRecall(v float64) *FlywheelModelEvaluationMetrics {
+	s.AverageRecall = &v
+	return s
+}
+
+// The flywheel properties.
+type FlywheelProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the active model version.
+	ActiveModelArn *string `type:"string"`
+
+	// Creation time of the flywheel.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend permission to access the flywheel
+	// data.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// Amazon S3 URI of the data lake location.
+	DataLakeS3Uri *string `type:"string"`
+
+	// Data security configuration.
+	DataSecurityConfig *DataSecurityConfig `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the flywheel.
+	FlywheelArn *string `type:"string"`
+
+	// Last modified time for the flywheel.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The most recent flywheel iteration.
+	LatestFlywheelIteration *string `type:"string"`
+
+	// A description of the status of the flywheel.
+	Message *string `type:"string"`
+
+	// Model type of the flywheel's model.
+	ModelType *string `type:"string" enum:"ModelType"`
+
+	// The status of the flywheel.
+	Status *string `type:"string" enum:"FlywheelStatus"`
+
+	// Configuration about the custom classifier associated with the flywheel.
+	TaskConfig *TaskConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelProperties) GoString() string {
+	return s.String()
+}
+
+// SetActiveModelArn sets the ActiveModelArn field's value.
+func (s *FlywheelProperties) SetActiveModelArn(v string) *FlywheelProperties {
+	s.ActiveModelArn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FlywheelProperties) SetCreationTime(v time.Time) *FlywheelProperties {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *FlywheelProperties) SetDataAccessRoleArn(v string) *FlywheelProperties {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetDataLakeS3Uri sets the DataLakeS3Uri field's value.
+func (s *FlywheelProperties) SetDataLakeS3Uri(v string) *FlywheelProperties {
+	s.DataLakeS3Uri = &v
+	return s
+}
+
+// SetDataSecurityConfig sets the DataSecurityConfig field's value.
+func (s *FlywheelProperties) SetDataSecurityConfig(v *DataSecurityConfig) *FlywheelProperties {
+	s.DataSecurityConfig = v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *FlywheelProperties) SetFlywheelArn(v string) *FlywheelProperties {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FlywheelProperties) SetLastModifiedTime(v time.Time) *FlywheelProperties {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLatestFlywheelIteration sets the LatestFlywheelIteration field's value.
+func (s *FlywheelProperties) SetLatestFlywheelIteration(v string) *FlywheelProperties {
+	s.LatestFlywheelIteration = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FlywheelProperties) SetMessage(v string) *FlywheelProperties {
+	s.Message = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *FlywheelProperties) SetModelType(v string) *FlywheelProperties {
+	s.ModelType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FlywheelProperties) SetStatus(v string) *FlywheelProperties {
+	s.Status = &v
+	return s
+}
+
+// SetTaskConfig sets the TaskConfig field's value.
+func (s *FlywheelProperties) SetTaskConfig(v *TaskConfig) *FlywheelProperties {
+	s.TaskConfig = v
+	return s
+}
+
+// Flywheel summary information.
+type FlywheelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the active model version for the flywheel.
+	ActiveModelArn *string `type:"string"`
+
+	// Creation time of the flywheel.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// Amazon S3 URI of the data lake location.
+	DataLakeS3Uri *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the flywheel
+	FlywheelArn *string `type:"string"`
+
+	// Last modified time for the flywheel.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The most recent flywheel iteration.
+	LatestFlywheelIteration *string `type:"string"`
+
+	// A description of the status of the flywheel.
+	Message *string `type:"string"`
+
+	// Model type of the flywheel's model.
+	ModelType *string `type:"string" enum:"ModelType"`
+
+	// The status of the flywheel.
+	Status *string `type:"string" enum:"FlywheelStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlywheelSummary) GoString() string {
+	return s.String()
+}
+
+// SetActiveModelArn sets the ActiveModelArn field's value.
+func (s *FlywheelSummary) SetActiveModelArn(v string) *FlywheelSummary {
+	s.ActiveModelArn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FlywheelSummary) SetCreationTime(v time.Time) *FlywheelSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDataLakeS3Uri sets the DataLakeS3Uri field's value.
+func (s *FlywheelSummary) SetDataLakeS3Uri(v string) *FlywheelSummary {
+	s.DataLakeS3Uri = &v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *FlywheelSummary) SetFlywheelArn(v string) *FlywheelSummary {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FlywheelSummary) SetLastModifiedTime(v time.Time) *FlywheelSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLatestFlywheelIteration sets the LatestFlywheelIteration field's value.
+func (s *FlywheelSummary) SetLatestFlywheelIteration(v string) *FlywheelSummary {
+	s.LatestFlywheelIteration = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FlywheelSummary) SetMessage(v string) *FlywheelSummary {
+	s.Message = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *FlywheelSummary) SetModelType(v string) *FlywheelSummary {
+	s.ModelType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FlywheelSummary) SetStatus(v string) *FlywheelSummary {
+	s.Status = &v
+	return s
+}
+
 // Information about the location of items on a document page.
 //
 // For additional information, see Geometry (https://docs.aws.amazon.com/textract/latest/dg/API_Geometry.html)
@@ -15774,9 +19198,9 @@ func (s *Geometry) SetPolygon(v []*Point) *Geometry {
 type ImportModelInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that allows Amazon Comprehend to use Amazon Key Management Service (KMS)
-	// to encrypt or decrypt the custom model.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend permission to use Amazon Key Management
+	// Service (KMS) to encrypt or decrypt the custom model.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
@@ -15797,8 +19221,8 @@ type ImportModelInput struct {
 	// SourceModelArn is a required field
 	SourceModelArn *string `type:"string" required:"true"`
 
-	// Tags to be associated with the custom model that is created by this import.
-	// A tag is a key-value pair that adds as a metadata to a resource used by Amazon
+	// Tags to associate with the custom model that is created by this import. A
+	// tag is a key-value pair that adds as a metadata to a resource used by Amazon
 	// Comprehend. For example, a tag with "Sales" as the key might be added to
 	// a resource to indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
@@ -16468,8 +19892,8 @@ func (s *KeyPhrasesDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *KeyPhra
 type KeyPhrasesDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
-	// your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the key phrases detection job completed.
@@ -16688,6 +20112,120 @@ func (s *KmsKeyValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *KmsKeyValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListDatasetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the datasets to be returned in the response.
+	Filter *DatasetFilter `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the flywheel.
+	FlywheelArn *string `type:"string"`
+
+	// Maximum number of results to return in a response. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListDatasetsInput) SetFilter(v *DatasetFilter) *ListDatasetsInput {
+	s.Filter = v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *ListDatasetsInput) SetFlywheelArn(v string) *ListDatasetsInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetsInput) SetMaxResults(v int64) *ListDatasetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetsInput) SetNextToken(v string) *ListDatasetsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The dataset properties list.
+	DatasetPropertiesList []*DatasetProperties `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetPropertiesList sets the DatasetPropertiesList field's value.
+func (s *ListDatasetsOutput) SetDatasetPropertiesList(v []*DatasetProperties) *ListDatasetsOutput {
+	s.DatasetPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListDocumentClassificationJobsInput struct {
@@ -17399,7 +20937,7 @@ type ListEntityRecognizerSummariesOutput struct {
 	// The list entity recognizer summaries.
 	EntityRecognizerSummariesList []*EntityRecognizerSummary `type:"list"`
 
-	// The list entity recognizer summaries.
+	// Identifies the next page of results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -17647,6 +21185,233 @@ func (s *ListEventsDetectionJobsOutput) SetEventsDetectionJobPropertiesList(v []
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEventsDetectionJobsOutput) SetNextToken(v string) *ListEventsDetectionJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlywheelIterationHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filter the flywheel iteration history based on creation time.
+	Filter *FlywheelIterationFilter `type:"structure"`
+
+	// The ARN of the flywheel.
+	//
+	// FlywheelArn is a required field
+	FlywheelArn *string `type:"string" required:"true"`
+
+	// Maximum number of iteration history results to return
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Next token
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelIterationHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelIterationHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFlywheelIterationHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFlywheelIterationHistoryInput"}
+	if s.FlywheelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListFlywheelIterationHistoryInput) SetFilter(v *FlywheelIterationFilter) *ListFlywheelIterationHistoryInput {
+	s.Filter = v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *ListFlywheelIterationHistoryInput) SetFlywheelArn(v string) *ListFlywheelIterationHistoryInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFlywheelIterationHistoryInput) SetMaxResults(v int64) *ListFlywheelIterationHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlywheelIterationHistoryInput) SetNextToken(v string) *ListFlywheelIterationHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlywheelIterationHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of flywheel iteration properties
+	FlywheelIterationPropertiesList []*FlywheelIterationProperties `type:"list"`
+
+	// Next token
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelIterationHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelIterationHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlywheelIterationPropertiesList sets the FlywheelIterationPropertiesList field's value.
+func (s *ListFlywheelIterationHistoryOutput) SetFlywheelIterationPropertiesList(v []*FlywheelIterationProperties) *ListFlywheelIterationHistoryOutput {
+	s.FlywheelIterationPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlywheelIterationHistoryOutput) SetNextToken(v string) *ListFlywheelIterationHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlywheelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the flywheels that are returned. You can filter flywheels on their
+	// status, or the date and time that they were submitted. You can only set one
+	// filter at a time.
+	Filter *FlywheelFilter `type:"structure"`
+
+	// Maximum number of results to return in a response. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFlywheelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFlywheelsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListFlywheelsInput) SetFilter(v *FlywheelFilter) *ListFlywheelsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFlywheelsInput) SetMaxResults(v int64) *ListFlywheelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlywheelsInput) SetNextToken(v string) *ListFlywheelsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlywheelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of flywheel properties retrieved by the service in response to the
+	// request.
+	FlywheelSummaryList []*FlywheelSummary `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlywheelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlywheelSummaryList sets the FlywheelSummaryList field's value.
+func (s *ListFlywheelsOutput) SetFlywheelSummaryList(v []*FlywheelSummary) *ListFlywheelsOutput {
+	s.FlywheelSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlywheelsOutput) SetNextToken(v string) *ListFlywheelsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -18552,8 +22317,8 @@ func (s *PiiEntitiesDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *PiiEnt
 type PiiEntitiesDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
-	// your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the PII entities detection job completed.
@@ -19425,8 +23190,8 @@ func (s *SentimentDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *Sentimen
 type SentimentDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
-	// your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the sentiment detection job ended.
@@ -19661,9 +23426,11 @@ type StartDocumentClassificationJobInput struct {
 
 	// The Amazon Resource Name (ARN) of the document classifier to use to process
 	// the job.
-	//
-	// DocumentClassifierArn is a required field
-	DocumentClassifierArn *string `type:"string" required:"true"`
+	DocumentClassifierArn *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the flywheel associated with the model
+	// to use.
+	FlywheelArn *string `type:"string"`
 
 	// Specifies the format and location of the input data for the job.
 	//
@@ -19678,7 +23445,7 @@ type StartDocumentClassificationJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the document classification job. A tag is a key-value
+	// Tags to associate with the document classification job. A tag is a key-value
 	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
 	// a tag with "Sales" as the key might be added to a resource to indicate its
 	// use by the sales department.
@@ -19729,9 +23496,6 @@ func (s *StartDocumentClassificationJobInput) Validate() error {
 	}
 	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
-	}
-	if s.DocumentClassifierArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("DocumentClassifierArn"))
 	}
 	if s.InputDataConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
@@ -19792,6 +23556,12 @@ func (s *StartDocumentClassificationJobInput) SetDocumentClassifierArn(v string)
 	return s
 }
 
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *StartDocumentClassificationJobInput) SetFlywheelArn(v string) *StartDocumentClassificationJobInput {
+	s.FlywheelArn = &v
+	return s
+}
+
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *StartDocumentClassificationJobInput) SetInputDataConfig(v *InputDataConfig) *StartDocumentClassificationJobInput {
 	s.InputDataConfig = v
@@ -19831,6 +23601,9 @@ func (s *StartDocumentClassificationJobInput) SetVpcConfig(v *VpcConfig) *StartD
 type StartDocumentClassificationJobOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the custom classification model.
+	DocumentClassifierArn *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the document classification job. It is
 	// a unique, fully qualified identifier for the job. It includes the AWS account,
 	// Region, and the job ID. The format of the ARN is as follows:
@@ -19843,7 +23616,7 @@ type StartDocumentClassificationJobOutput struct {
 	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of the job, use this
-	// identifier with the operation.
+	// identifier with the DescribeDocumentClassificationJob operation.
 	JobId *string `min:"1" type:"string"`
 
 	// The status of the job:
@@ -19854,7 +23627,8 @@ type StartDocumentClassificationJobOutput struct {
 	//
 	//    * COMPLETED - The job was successfully completed and the output is available.
 	//
-	//    * FAILED - The job did not complete. For details, use the operation.
+	//    * FAILED - The job did not complete. For details, use the DescribeDocumentClassificationJob
+	//    operation.
 	//
 	//    * STOP_REQUESTED - Amazon Comprehend has received a stop request for the
 	//    job and is processing the request.
@@ -19879,6 +23653,12 @@ func (s StartDocumentClassificationJobOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StartDocumentClassificationJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetDocumentClassifierArn sets the DocumentClassifierArn field's value.
+func (s *StartDocumentClassificationJobOutput) SetDocumentClassifierArn(v string) *StartDocumentClassificationJobOutput {
+	s.DocumentClassifierArn = &v
+	return s
 }
 
 // SetJobArn sets the JobArn field's value.
@@ -19927,10 +23707,10 @@ type StartDominantLanguageDetectionJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the dominant language detection job. A tag is
-	// a key-value pair that adds metadata to a resource used by Amazon Comprehend.
-	// For example, a tag with "Sales" as the key might be added to a resource to
-	// indicate its use by the sales department.
+	// Tags to associate with the dominant language detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
 	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
@@ -20154,6 +23934,10 @@ type StartEntitiesDetectionJobInput struct {
 	// only used for a custom entity recognition job.
 	EntityRecognizerArn *string `type:"string"`
 
+	// The Amazon Resource Number (ARN) of the flywheel associated with the model
+	// to use.
+	FlywheelArn *string `type:"string"`
+
 	// Specifies the format and location of the input data for the job.
 	//
 	// InputDataConfig is a required field
@@ -20175,8 +23959,8 @@ type StartEntitiesDetectionJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the entities detection job. A tag is a key-value
-	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// Tags to associate with the entities detection job. A tag is a key-value pair
+	// that adds metadata to a resource used by Amazon Comprehend. For example,
 	// a tag with "Sales" as the key might be added to a resource to indicate its
 	// use by the sales department.
 	Tags []*Tag `type:"list"`
@@ -20289,6 +24073,12 @@ func (s *StartEntitiesDetectionJobInput) SetEntityRecognizerArn(v string) *Start
 	return s
 }
 
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *StartEntitiesDetectionJobInput) SetFlywheelArn(v string) *StartEntitiesDetectionJobInput {
+	s.FlywheelArn = &v
+	return s
+}
+
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *StartEntitiesDetectionJobInput) SetInputDataConfig(v *InputDataConfig) *StartEntitiesDetectionJobInput {
 	s.InputDataConfig = v
@@ -20333,6 +24123,9 @@ func (s *StartEntitiesDetectionJobInput) SetVpcConfig(v *VpcConfig) *StartEntiti
 
 type StartEntitiesDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The ARN of the custom entity recognition model.
+	EntityRecognizerArn *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the entities detection job. It is a unique,
 	// fully qualified identifier for the job. It includes the AWS account, Region,
@@ -20384,6 +24177,12 @@ func (s StartEntitiesDetectionJobOutput) GoString() string {
 	return s.String()
 }
 
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *StartEntitiesDetectionJobOutput) SetEntityRecognizerArn(v string) *StartEntitiesDetectionJobOutput {
+	s.EntityRecognizerArn = &v
+	return s
+}
+
 // SetJobArn sets the JobArn field's value.
 func (s *StartEntitiesDetectionJobOutput) SetJobArn(v string) *StartEntitiesDetectionJobOutput {
 	s.JobArn = &v
@@ -20433,8 +24232,8 @@ type StartEventsDetectionJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the events detection job. A tag is a key-value
-	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// Tags to associate with the events detection job. A tag is a key-value pair
+	// that adds metadata to a resource used by Amazon Comprehend. For example,
 	// a tag with "Sales" as the key might be added to a resource to indicate its
 	// use by the sales department.
 	Tags []*Tag `type:"list"`
@@ -20626,6 +24425,103 @@ func (s *StartEventsDetectionJobOutput) SetJobStatus(v string) *StartEventsDetec
 	return s
 }
 
+type StartFlywheelIterationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The ARN of the flywheel.
+	//
+	// FlywheelArn is a required field
+	FlywheelArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFlywheelIterationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFlywheelIterationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartFlywheelIterationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartFlywheelIterationInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FlywheelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartFlywheelIterationInput) SetClientRequestToken(v string) *StartFlywheelIterationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *StartFlywheelIterationInput) SetFlywheelArn(v string) *StartFlywheelIterationInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+type StartFlywheelIterationOutput struct {
+	_ struct{} `type:"structure"`
+
+	FlywheelArn *string `type:"string"`
+
+	FlywheelIterationId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFlywheelIterationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFlywheelIterationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *StartFlywheelIterationOutput) SetFlywheelArn(v string) *StartFlywheelIterationOutput {
+	s.FlywheelArn = &v
+	return s
+}
+
+// SetFlywheelIterationId sets the FlywheelIterationId field's value.
+func (s *StartFlywheelIterationOutput) SetFlywheelIterationId(v string) *StartFlywheelIterationOutput {
+	s.FlywheelIterationId = &v
+	return s
+}
+
 type StartKeyPhrasesDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20660,7 +24556,7 @@ type StartKeyPhrasesDetectionJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the key phrases detection job. A tag is a key-value
+	// Tags to associate with the key phrases detection job. A tag is a key-value
 	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
 	// a tag with "Sales" as the key might be added to a resource to indicate its
 	// use by the sales department.
@@ -20922,7 +24818,7 @@ type StartPiiEntitiesDetectionJobInput struct {
 	// the PiiEntityTypes parameter.
 	RedactionConfig *RedactionConfig `type:"structure"`
 
-	// Tags to be associated with the PII entities detection job. A tag is a key-value
+	// Tags to associate with the PII entities detection job. A tag is a key-value
 	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
 	// a tag with "Sales" as the key might be added to a resource to indicate its
 	// use by the sales department.
@@ -21151,7 +25047,7 @@ type StartSentimentDetectionJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the sentiment detection job. A tag is a key-value
+	// Tags to associate with the sentiment detection job. A tag is a key-value
 	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
 	// a tag with "Sales" as the key might be added to a resource to indicate its
 	// use by the sales department.
@@ -21401,10 +25297,10 @@ type StartTargetedSentimentDetectionJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the targeted sentiment detection job. A tag is
-	// a key-value pair that adds metadata to a resource used by Amazon Comprehend.
-	// For example, a tag with "Sales" as the key might be added to a resource to
-	// indicate its use by the sales department.
+	// Tags to associate with the targeted sentiment detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
 	Tags []*Tag `type:"list"`
 
 	// ID for the KMS key that Amazon Comprehend uses to encrypt data on the storage
@@ -21565,7 +25461,7 @@ type StartTargetedSentimentDetectionJobOutput struct {
 	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of a job, use this
-	// identifier with the operation.
+	// identifier with the DescribeTargetedSentimentDetectionJob operation.
 	JobId *string `min:"1" type:"string"`
 
 	// The status of the job.
@@ -21576,7 +25472,8 @@ type StartTargetedSentimentDetectionJobOutput struct {
 	//
 	//    * COMPLETED - The job was successfully completed and the output is available.
 	//
-	//    * FAILED - The job did not complete. To get details, use the operation.
+	//    * FAILED - The job did not complete. To get details, use the DescribeTargetedSentimentDetectionJob
+	//    operation.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 }
 
@@ -21649,8 +25546,8 @@ type StartTopicsDetectionJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// Tags to be associated with the topics detection job. A tag is a key-value
-	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// Tags to associate with the topics detection job. A tag is a key-value pair
+	// that adds metadata to a resource used by Amazon Comprehend. For example,
 	// a tag with "Sales" as the key might be added to a resource to indicate its
 	// use by the sales department.
 	Tags []*Tag `type:"list"`
@@ -22869,7 +26766,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 // Provides information for filtering a list of dominant language detection
-// jobs. For more information, see the operation.
+// jobs. For more information, see the ListTargetedSentimentDetectionJobs operation.
 type TargetedSentimentDetectionJobFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -22950,8 +26847,8 @@ func (s *TargetedSentimentDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *
 type TargetedSentimentDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
-	// your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the targeted sentiment detection job ended.
@@ -22994,10 +26891,10 @@ type TargetedSentimentDetectionJobProperties struct {
 	// The time that the targeted sentiment detection job was submitted for processing.
 	SubmitTime *time.Time `type:"timestamp"`
 
-	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
-	// to encrypt data on the storage volume attached to the ML compute instance(s)
-	// that process the targeted sentiment detection job. The VolumeKmsKeyId can
-	// be either of the following formats:
+	// ID for the KMS key that Amazon Comprehend uses to encrypt the data on the
+	// storage volume attached to the ML compute instance(s) that process the targeted
+	// sentiment detection job. The VolumeKmsKeyId can be either of the following
+	// formats:
 	//
 	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -23241,6 +27138,81 @@ func (s *TargetedSentimentMention) SetText(v string) *TargetedSentimentMention {
 // SetType sets the Type field's value.
 func (s *TargetedSentimentMention) SetType(v string) *TargetedSentimentMention {
 	s.Type = &v
+	return s
+}
+
+// Configuration about the custom classifier associated with the flywheel.
+type TaskConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration required for a classification model.
+	DocumentClassificationConfig *DocumentClassificationConfig `type:"structure"`
+
+	// Configuration required for an entity recognition model.
+	EntityRecognitionConfig *EntityRecognitionConfig `type:"structure"`
+
+	// Language code for the language that the model supports.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskConfig"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.DocumentClassificationConfig != nil {
+		if err := s.DocumentClassificationConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentClassificationConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityRecognitionConfig != nil {
+		if err := s.EntityRecognitionConfig.Validate(); err != nil {
+			invalidParams.AddNested("EntityRecognitionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentClassificationConfig sets the DocumentClassificationConfig field's value.
+func (s *TaskConfig) SetDocumentClassificationConfig(v *DocumentClassificationConfig) *TaskConfig {
+	s.DocumentClassificationConfig = v
+	return s
+}
+
+// SetEntityRecognitionConfig sets the EntityRecognitionConfig field's value.
+func (s *TaskConfig) SetEntityRecognitionConfig(v *EntityRecognitionConfig) *TaskConfig {
+	s.EntityRecognitionConfig = v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *TaskConfig) SetLanguageCode(v string) *TaskConfig {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -23584,8 +27556,8 @@ func (s *TopicsDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *TopicsDetec
 type TopicsDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your job data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your job data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the topic detection job was completed.
@@ -23896,6 +27868,79 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Data security configuration.
+type UpdateDataSecurityConfig struct {
+	_ struct{} `type:"structure"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
+	// following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	ModelKmsKeyId *string `type:"string"`
+
+	// ID for the KMS key that Amazon Comprehend uses to encrypt the volume.
+	VolumeKmsKeyId *string `type:"string"`
+
+	// Configuration parameters for an optional private Virtual Private Cloud (VPC)
+	// containing the resources you are using for the job. For more information,
+	// see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
+	VpcConfig *VpcConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataSecurityConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataSecurityConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDataSecurityConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDataSecurityConfig"}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelKmsKeyId sets the ModelKmsKeyId field's value.
+func (s *UpdateDataSecurityConfig) SetModelKmsKeyId(v string) *UpdateDataSecurityConfig {
+	s.ModelKmsKeyId = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *UpdateDataSecurityConfig) SetVolumeKmsKeyId(v string) *UpdateDataSecurityConfig {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *UpdateDataSecurityConfig) SetVpcConfig(v *VpcConfig) *UpdateDataSecurityConfig {
+	s.VpcConfig = v
+	return s
+}
+
 type UpdateEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23915,6 +27960,9 @@ type UpdateEndpointInput struct {
 	//
 	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Number (ARN) of the flywheel
+	FlywheelArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -23978,8 +28026,17 @@ func (s *UpdateEndpointInput) SetEndpointArn(v string) *UpdateEndpointInput {
 	return s
 }
 
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *UpdateEndpointInput) SetFlywheelArn(v string) *UpdateEndpointInput {
+	s.FlywheelArn = &v
+	return s
+}
+
 type UpdateEndpointOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the new model.
+	DesiredModelArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -23998,6 +28055,126 @@ func (s UpdateEndpointOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetDesiredModelArn sets the DesiredModelArn field's value.
+func (s *UpdateEndpointOutput) SetDesiredModelArn(v string) *UpdateEndpointOutput {
+	s.DesiredModelArn = &v
+	return s
+}
+
+type UpdateFlywheelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the active model version.
+	ActiveModelArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend permission to access the flywheel
+	// data.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// Flywheel data security configuration.
+	DataSecurityConfig *UpdateDataSecurityConfig `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the flywheel to update.
+	//
+	// FlywheelArn is a required field
+	FlywheelArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlywheelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlywheelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFlywheelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFlywheelInput"}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.FlywheelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlywheelArn"))
+	}
+	if s.DataSecurityConfig != nil {
+		if err := s.DataSecurityConfig.Validate(); err != nil {
+			invalidParams.AddNested("DataSecurityConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveModelArn sets the ActiveModelArn field's value.
+func (s *UpdateFlywheelInput) SetActiveModelArn(v string) *UpdateFlywheelInput {
+	s.ActiveModelArn = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *UpdateFlywheelInput) SetDataAccessRoleArn(v string) *UpdateFlywheelInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetDataSecurityConfig sets the DataSecurityConfig field's value.
+func (s *UpdateFlywheelInput) SetDataSecurityConfig(v *UpdateDataSecurityConfig) *UpdateFlywheelInput {
+	s.DataSecurityConfig = v
+	return s
+}
+
+// SetFlywheelArn sets the FlywheelArn field's value.
+func (s *UpdateFlywheelInput) SetFlywheelArn(v string) *UpdateFlywheelInput {
+	s.FlywheelArn = &v
+	return s
+}
+
+type UpdateFlywheelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The flywheel properties.
+	FlywheelProperties *FlywheelProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlywheelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlywheelOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlywheelProperties sets the FlywheelProperties field's value.
+func (s *UpdateFlywheelOutput) SetFlywheelProperties(v *FlywheelProperties) *UpdateFlywheelOutput {
+	s.FlywheelProperties = v
+	return s
 }
 
 // Configuration parameters for an optional private Virtual Private Cloud (VPC)
@@ -24107,6 +28284,58 @@ func BlockType_Values() []string {
 	return []string{
 		BlockTypeLine,
 		BlockTypeWord,
+	}
+}
+
+const (
+	// DatasetDataFormatComprehendCsv is a DatasetDataFormat enum value
+	DatasetDataFormatComprehendCsv = "COMPREHEND_CSV"
+
+	// DatasetDataFormatAugmentedManifest is a DatasetDataFormat enum value
+	DatasetDataFormatAugmentedManifest = "AUGMENTED_MANIFEST"
+)
+
+// DatasetDataFormat_Values returns all elements of the DatasetDataFormat enum
+func DatasetDataFormat_Values() []string {
+	return []string{
+		DatasetDataFormatComprehendCsv,
+		DatasetDataFormatAugmentedManifest,
+	}
+}
+
+const (
+	// DatasetStatusCreating is a DatasetStatus enum value
+	DatasetStatusCreating = "CREATING"
+
+	// DatasetStatusCompleted is a DatasetStatus enum value
+	DatasetStatusCompleted = "COMPLETED"
+
+	// DatasetStatusFailed is a DatasetStatus enum value
+	DatasetStatusFailed = "FAILED"
+)
+
+// DatasetStatus_Values returns all elements of the DatasetStatus enum
+func DatasetStatus_Values() []string {
+	return []string{
+		DatasetStatusCreating,
+		DatasetStatusCompleted,
+		DatasetStatusFailed,
+	}
+}
+
+const (
+	// DatasetTypeTrain is a DatasetType enum value
+	DatasetTypeTrain = "TRAIN"
+
+	// DatasetTypeTest is a DatasetType enum value
+	DatasetTypeTest = "TEST"
+)
+
+// DatasetType_Values returns all elements of the DatasetType enum
+func DatasetType_Values() []string {
+	return []string{
+		DatasetTypeTrain,
+		DatasetTypeTest,
 	}
 }
 
@@ -24323,6 +28552,66 @@ func EntityType_Values() []string {
 }
 
 const (
+	// FlywheelIterationStatusTraining is a FlywheelIterationStatus enum value
+	FlywheelIterationStatusTraining = "TRAINING"
+
+	// FlywheelIterationStatusEvaluating is a FlywheelIterationStatus enum value
+	FlywheelIterationStatusEvaluating = "EVALUATING"
+
+	// FlywheelIterationStatusCompleted is a FlywheelIterationStatus enum value
+	FlywheelIterationStatusCompleted = "COMPLETED"
+
+	// FlywheelIterationStatusFailed is a FlywheelIterationStatus enum value
+	FlywheelIterationStatusFailed = "FAILED"
+
+	// FlywheelIterationStatusStopRequested is a FlywheelIterationStatus enum value
+	FlywheelIterationStatusStopRequested = "STOP_REQUESTED"
+
+	// FlywheelIterationStatusStopped is a FlywheelIterationStatus enum value
+	FlywheelIterationStatusStopped = "STOPPED"
+)
+
+// FlywheelIterationStatus_Values returns all elements of the FlywheelIterationStatus enum
+func FlywheelIterationStatus_Values() []string {
+	return []string{
+		FlywheelIterationStatusTraining,
+		FlywheelIterationStatusEvaluating,
+		FlywheelIterationStatusCompleted,
+		FlywheelIterationStatusFailed,
+		FlywheelIterationStatusStopRequested,
+		FlywheelIterationStatusStopped,
+	}
+}
+
+const (
+	// FlywheelStatusCreating is a FlywheelStatus enum value
+	FlywheelStatusCreating = "CREATING"
+
+	// FlywheelStatusActive is a FlywheelStatus enum value
+	FlywheelStatusActive = "ACTIVE"
+
+	// FlywheelStatusUpdating is a FlywheelStatus enum value
+	FlywheelStatusUpdating = "UPDATING"
+
+	// FlywheelStatusDeleting is a FlywheelStatus enum value
+	FlywheelStatusDeleting = "DELETING"
+
+	// FlywheelStatusFailed is a FlywheelStatus enum value
+	FlywheelStatusFailed = "FAILED"
+)
+
+// FlywheelStatus_Values returns all elements of the FlywheelStatus enum
+func FlywheelStatus_Values() []string {
+	return []string{
+		FlywheelStatusCreating,
+		FlywheelStatusActive,
+		FlywheelStatusUpdating,
+		FlywheelStatusDeleting,
+		FlywheelStatusFailed,
+	}
+}
+
+const (
 	// InputFormatOneDocPerFile is a InputFormat enum value
 	InputFormatOneDocPerFile = "ONE_DOC_PER_FILE"
 
@@ -24495,6 +28784,22 @@ func ModelStatus_Values() []string {
 		ModelStatusStopped,
 		ModelStatusInError,
 		ModelStatusTrained,
+	}
+}
+
+const (
+	// ModelTypeDocumentClassifier is a ModelType enum value
+	ModelTypeDocumentClassifier = "DOCUMENT_CLASSIFIER"
+
+	// ModelTypeEntityRecognizer is a ModelType enum value
+	ModelTypeEntityRecognizer = "ENTITY_RECOGNIZER"
+)
+
+// ModelType_Values returns all elements of the ModelType enum
+func ModelType_Values() []string {
+	return []string{
+		ModelTypeDocumentClassifier,
+		ModelTypeEntityRecognizer,
 	}
 }
 

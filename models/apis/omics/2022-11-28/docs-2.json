@@ -56,8 +56,8 @@
     "ListVariantStores": "<p>Retrieves a list of variant stores.</p>",
     "ListWorkflows": "<p>Retrieves a list of workflows.</p>",
     "StartAnnotationImportJob": "<p>Starts an annotation import job.</p>",
-    "StartReadSetActivationJob": "<p>Starts a read set activation job.</p>",
-    "StartReadSetExportJob": "<p>Starts a read set export job.</p>",
+    "StartReadSetActivationJob": "<p>Activates an archived read set. To reduce storage charges, Amazon Omics archives unused read sets after 30 days.</p>",
+    "StartReadSetExportJob": "<p>Exports a read set to Amazon S3.</p>",
     "StartReadSetImportJob": "<p>Starts a read set import job.</p>",
     "StartReferenceImportJob": "<p>Starts a reference import job.</p>",
     "StartRun": "<p>Starts a run.</p>",
@@ -102,7 +102,7 @@
     "ActivateReadSetSourceList": {
       "base": null,
       "refs": {
-        "GetReadSetActivationJobResponse$sources": "<p>The job's sources.</p>"
+        "GetReadSetActivationJobResponse$sources": "<p>The job's source files.</p>"
       }
     },
     "ActivationJobId": {
@@ -303,7 +303,7 @@
     "CreateRunGroupRequestMaxDurationInteger": {
       "base": null,
       "refs": {
-        "CreateRunGroupRequest$maxDuration": "<p>A max duration for the group.</p>"
+        "CreateRunGroupRequest$maxDuration": "<p>A maximum run time for the group in minutes.</p>"
       }
     },
     "CreateRunGroupRequestMaxRunsInteger": {
@@ -351,7 +351,7 @@
     "CreateWorkflowRequestStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "CreateWorkflowRequest$storageCapacity": "<p>A storage capacity for the workflow.</p>"
+        "CreateWorkflowRequest$storageCapacity": "<p>A storage capacity for the workflow in gigabytes.</p>"
       }
     },
     "CreateWorkflowResponse": {
@@ -721,7 +721,7 @@
     "GetRunGroupResponseMaxDurationInteger": {
       "base": null,
       "refs": {
-        "GetRunGroupResponse$maxDuration": "<p>The group's maximum run duration.</p>"
+        "GetRunGroupResponse$maxDuration": "<p>The group's maximum run time in minutes.</p>"
       }
     },
     "GetRunGroupResponseMaxRunsInteger": {
@@ -749,7 +749,7 @@
     "GetRunResponseStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "GetRunResponse$storageCapacity": "<p>The run's storage capacity.</p>"
+        "GetRunResponse$storageCapacity": "<p>The run's storage capacity in gigabytes.</p>"
       }
     },
     "GetRunTaskRequest": {
@@ -771,7 +771,7 @@
     "GetRunTaskResponseMemoryInteger": {
       "base": null,
       "refs": {
-        "GetRunTaskResponse$memory": "<p>The task's memory setting.</p>"
+        "GetRunTaskResponse$memory": "<p>The task's memory use in gigabytes.</p>"
       }
     },
     "GetSequenceStoreRequest": {
@@ -817,7 +817,7 @@
     "GetWorkflowResponseStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "GetWorkflowResponse$storageCapacity": "<p>The workflow's storage capacity.</p>"
+        "GetWorkflowResponse$storageCapacity": "<p>The workflow's storage capacity in gigabytes.</p>"
       }
     },
     "Header": {
@@ -866,7 +866,7 @@
     "ImportReadSetSourceList": {
       "base": null,
       "refs": {
-        "GetReadSetImportJobResponse$sources": "<p>The job's sources.</p>"
+        "GetReadSetImportJobResponse$sources": "<p>The job's source files.</p>"
       }
     },
     "ImportReferenceFilter": {
@@ -896,7 +896,7 @@
     "ImportReferenceSourceList": {
       "base": null,
       "refs": {
-        "GetReferenceImportJobResponse$sources": "<p>The job's sources.</p>"
+        "GetReferenceImportJobResponse$sources": "<p>The job's source files.</p>"
       }
     },
     "InternalServerException": {
@@ -934,7 +934,8 @@
       "base": null,
       "refs": {
         "GetAnnotationImportResponse$statusMessage": "<p>The job's status message.</p>",
-        "GetVariantImportResponse$statusMessage": "<p>The job's status message.</p>"
+        "GetVariantImportResponse$statusMessage": "<p>The job's status message.</p>",
+        "VariantImportItemDetail$statusMessage": "<p> A message that provides additional context about a job </p>"
       }
     },
     "LineSep": {
@@ -1575,7 +1576,7 @@
       "refs": {
         "AnnotationStoreItem$reference": "<p>The store's genome reference.</p>",
         "CreateAnnotationStoreRequest$reference": "<p>The genome reference for the store's annotations.</p>",
-        "CreateAnnotationStoreResponse$reference": "<p>The store's genome reference.</p>",
+        "CreateAnnotationStoreResponse$reference": "<p>The store's genome reference. Required for all stores except TSV format with generic annotations.</p>",
         "CreateVariantStoreRequest$reference": "<p>The genome reference for the store's variants.</p>",
         "CreateVariantStoreResponse$reference": "<p>The store's genome reference.</p>",
         "GetAnnotationStoreResponse$reference": "<p>The store's genome reference.</p>",
@@ -1804,7 +1805,7 @@
     "RunGroupListItemMaxDurationInteger": {
       "base": null,
       "refs": {
-        "RunGroupListItem$maxDuration": "<p>The group's maximum duration setting.</p>"
+        "RunGroupListItem$maxDuration": "<p>The group's maximum duration setting in minutes.</p>"
       }
     },
     "RunGroupListItemMaxRunsInteger": {
@@ -1833,7 +1834,7 @@
     "RunGroupRequestId": {
       "base": null,
       "refs": {
-        "CreateRunGroupRequest$requestId": "<p>A request ID for the group.</p>"
+        "CreateRunGroupRequest$requestId": "<p>To ensure that requests don't run multiple times, specify a unique ID for each request.</p>"
       }
     },
     "RunGroupTimestamp": {
@@ -1933,7 +1934,7 @@
     "RunRequestId": {
       "base": null,
       "refs": {
-        "StartRunRequest$requestId": "<p>A request ID for the run.</p>"
+        "StartRunRequest$requestId": "<p>To ensure that requests don't run multiple times, specify a unique ID for each request.</p>"
       }
     },
     "RunResourceDigest": {
@@ -2027,6 +2028,12 @@
       "base": null,
       "refs": {
         "TsvStoreOptionsSchemaList$member": null
+      }
+    },
+    "SchemaItemKeyString": {
+      "base": null,
+      "refs": {
+        "SchemaItem$key": null
       }
     },
     "SchemaValueType": {
@@ -2182,7 +2189,7 @@
     "StartReadSetActivationJobRequestSourcesList": {
       "base": null,
       "refs": {
-        "StartReadSetActivationJobRequest$sources": "<p>The job's sources.</p>"
+        "StartReadSetActivationJobRequest$sources": "<p>The job's source files.</p>"
       }
     },
     "StartReadSetActivationJobResponse": {
@@ -2204,7 +2211,7 @@
     "StartReadSetExportJobRequestSourcesList": {
       "base": null,
       "refs": {
-        "StartReadSetExportJobRequest$sources": "<p>Sources for the job.</p>"
+        "StartReadSetExportJobRequest$sources": "<p>The job's source files.</p>"
       }
     },
     "StartReadSetExportJobResponse": {
@@ -2220,7 +2227,7 @@
     "StartReadSetImportJobRequestSourcesList": {
       "base": null,
       "refs": {
-        "StartReadSetImportJobRequest$sources": "<p>Source files to import.</p>"
+        "StartReadSetImportJobRequest$sources": "<p>The job's source files.</p>"
       }
     },
     "StartReadSetImportJobResponse": {
@@ -2242,7 +2249,7 @@
     "StartReferenceImportJobRequestSourcesList": {
       "base": null,
       "refs": {
-        "StartReferenceImportJobRequest$sources": "<p>Sources for the job.</p>"
+        "StartReferenceImportJobRequest$sources": "<p>The job's source files.</p>"
       }
     },
     "StartReferenceImportJobResponse": {
@@ -2270,7 +2277,7 @@
     "StartRunRequestStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "StartRunRequest$storageCapacity": "<p>A storage capacity for the run.</p>"
+        "StartRunRequest$storageCapacity": "<p>A storage capacity for the run in gigabytes.</p>"
       }
     },
     "StartRunResponse": {
@@ -2385,7 +2392,6 @@
         "ReadSetBatchError$message": "<p>The error's message.</p>",
         "RequestTimeoutException$message": null,
         "ResourceNotFoundException$message": null,
-        "SchemaItem$key": null,
         "SequenceInformation$alignment": "<p>The sequence's alignment setting.</p>",
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
@@ -2560,7 +2566,7 @@
     "TaskListItemMemoryInteger": {
       "base": null,
       "refs": {
-        "TaskListItem$memory": "<p>The task's memory.</p>"
+        "TaskListItem$memory": "<p>The task's memory use in gigabyes.</p>"
       }
     },
     "TaskListToken": {
@@ -2665,7 +2671,7 @@
     "UpdateRunGroupRequestMaxDurationInteger": {
       "base": null,
       "refs": {
-        "UpdateRunGroupRequest$maxDuration": "<p>The maximum amount of time to run.</p>"
+        "UpdateRunGroupRequest$maxDuration": "<p>A maximum run time for the group in minutes.</p>"
       }
     },
     "UpdateRunGroupRequestMaxRunsInteger": {
@@ -2892,7 +2898,7 @@
     "WorkflowRequestId": {
       "base": null,
       "refs": {
-        "CreateWorkflowRequest$requestId": "<p>A request ID for the workflow.</p>"
+        "CreateWorkflowRequest$requestId": "<p>To ensure that requests don't run multiple times, specify a unique ID for each request.</p>"
       }
     },
     "WorkflowStatus": {

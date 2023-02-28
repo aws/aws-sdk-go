@@ -1,5 +1,10 @@
 {
   "pagination": {
+    "ListDatasets": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListDocumentClassificationJobs": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -42,6 +47,16 @@
       "output_token": "NextToken"
     },
     "ListEventsDetectionJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListFlywheelIterationHistory": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListFlywheels": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"

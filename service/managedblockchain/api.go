@@ -56,13 +56,9 @@ func (c *ManagedBlockchain) CreateAccessorRequest(input *CreateAccessorInput) (r
 
 // CreateAccessor API operation for Amazon Managed Blockchain.
 //
-// The token based access feature is in preview release for Ethereum on Amazon
-// Managed Blockchain and is subject to change. We recommend that you use this
-// feature only with test scenarios, and not in production environments.
-//
 // Creates a new accessor for use with Managed Blockchain Ethereum nodes. An
-// accessor object is a container that has the information required for token
-// based access to your Ethereum nodes.
+// accessor contains information required for token based access to your Ethereum
+// nodes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -97,6 +93,8 @@ func (c *ManagedBlockchain) CreateAccessorRequest(input *CreateAccessorInput) (r
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
 //     or failure.
+//
+//   - TooManyTagsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/CreateAccessor
 func (c *ManagedBlockchain) CreateAccessor(input *CreateAccessorInput) (*CreateAccessorOutput, error) {
@@ -602,10 +600,6 @@ func (c *ManagedBlockchain) DeleteAccessorRequest(input *DeleteAccessorInput) (r
 
 // DeleteAccessor API operation for Amazon Managed Blockchain.
 //
-// The token based access feature is in preview release for Ethereum on Amazon
-// Managed Blockchain and is subject to change. We recommend that you use this
-// feature only with test scenarios, and not in production environments.
-//
 // Deletes an accessor that your Amazon Web Services account owns. An accessor
 // object is a container that has the information required for token based access
 // to your Ethereum nodes including, the BILLING_TOKEN. After an accessor is
@@ -924,10 +918,6 @@ func (c *ManagedBlockchain) GetAccessorRequest(input *GetAccessorInput) (req *re
 }
 
 // GetAccessor API operation for Amazon Managed Blockchain.
-//
-// The token based access feature is in preview release for Ethereum on Amazon
-// Managed Blockchain and is subject to change. We recommend that you use this
-// feature only with test scenarios, and not in production environments.
 //
 // Returns detailed information about an accessor. An accessor object is a container
 // that has the information required for token based access to your Ethereum
@@ -1429,10 +1419,6 @@ func (c *ManagedBlockchain) ListAccessorsRequest(input *ListAccessorsInput) (req
 }
 
 // ListAccessors API operation for Amazon Managed Blockchain.
-//
-// The token based access feature is in preview release for Ethereum on Amazon
-// Managed Blockchain and is subject to change. We recommend that you use this
-// feature only with test scenarios, and not in production environments.
 //
 // Returns a list of the accessors and their properties. Accessor objects are
 // containers that have the information required for token based access to your
@@ -3239,10 +3225,6 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The token based access feature is in preview release for Ethereum on Amazon
-// Managed Blockchain and is subject to change. We recommend that you use this
-// feature only with test scenarios, and not in production environments.
-//
 // The properties of the Accessor.
 type Accessor struct {
 	_ struct{} `type:"structure"`
@@ -3265,6 +3247,14 @@ type Accessor struct {
 
 	// The current status of the accessor.
 	Status *string `type:"string" enum:"AccessorStatus"`
+
+	// The tags assigned to the Accessor.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
 
 	// The type of the accessor.
 	//
@@ -3320,16 +3310,18 @@ func (s *Accessor) SetStatus(v string) *Accessor {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *Accessor) SetTags(v map[string]*string) *Accessor {
+	s.Tags = v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *Accessor) SetType(v string) *Accessor {
 	s.Type = &v
 	return s
 }
 
-// The token based access feature is in preview release for Ethereum on Amazon
-// Managed Blockchain and is subject to change. We recommend that you use this
-// feature only with test scenarios, and not in production environments.
-//
 // A summary of accessor properties.
 type AccessorSummary struct {
 	_ struct{} `type:"structure"`
@@ -3495,6 +3487,18 @@ type CreateAccessorInput struct {
 	// using an HTTP client. It is generated automatically if you use an Amazon
 	// Web Services SDK or the Amazon Web Services CLI.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Tags to assign to the Accessor.
+	//
+	// Each tag consists of a key and an optional value. You can specify multiple
+	// key-value pairs in a single request with an overall maximum of 50 tags allowed
+	// per resource.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -3540,6 +3544,12 @@ func (s *CreateAccessorInput) SetAccessorType(v string) *CreateAccessorInput {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateAccessorInput) SetClientRequestToken(v string) *CreateAccessorInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAccessorInput) SetTags(v map[string]*string) *CreateAccessorInput {
+	s.Tags = v
 	return s
 }
 
@@ -3755,11 +3765,11 @@ type CreateNetworkInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Tags to assign to the network. Each tag consists of a key and optional value.
+	// Tags to assign to the network.
 	//
-	// When specifying tags during creation, you can specify multiple key-value
-	// pairs in a single request, with an overall maximum of 50 tags added to each
-	// resource.
+	// Each tag consists of a key and an optional value. You can specify multiple
+	// key-value pairs in a single request with an overall maximum of 50 tags allowed
+	// per resource.
 	//
 	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
 	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
@@ -3969,11 +3979,11 @@ type CreateNodeInput struct {
 	// NodeConfiguration is a required field
 	NodeConfiguration *NodeConfiguration `type:"structure" required:"true"`
 
-	// Tags to assign to the node. Each tag consists of a key and optional value.
+	// Tags to assign to the node.
 	//
-	// When specifying tags during creation, you can specify multiple key-value
-	// pairs in a single request, with an overall maximum of 50 tags added to each
-	// resource.
+	// Each tag consists of a key and an optional value. You can specify multiple
+	// key-value pairs in a single request with an overall maximum of 50 tags allowed
+	// per resource.
 	//
 	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
 	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
@@ -4124,12 +4134,11 @@ type CreateProposalInput struct {
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
 
-	// Tags to assign to the proposal. Each tag consists of a key and optional value.
+	// Tags to assign to the proposal.
 	//
-	// When specifying tags during creation, you can specify multiple key-value
-	// pairs in a single request, with an overall maximum of 50 tags added to each
-	// resource. If the proposal is for a network invitation, the invitation inherits
-	// the tags added to the proposal.
+	// Each tag consists of a key and an optional value. You can specify multiple
+	// key-value pairs in a single request with an overall maximum of 50 tags allowed
+	// per resource.
 	//
 	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
 	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
@@ -6382,8 +6391,11 @@ type Member struct {
 	//    resource.
 	Status *string `type:"string" enum:"MemberStatus"`
 
-	// Tags assigned to the member. Tags consist of a key and optional value. For
-	// more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// Tags assigned to the member. Tags consist of a key and optional value.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
 	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
 	Tags map[string]*string `type:"map"`
 }
@@ -6514,13 +6526,16 @@ type MemberConfiguration struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Tags assigned to the member. Tags consist of a key and optional value. For
-	// more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
-	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	// Tags assigned to the member. Tags consist of a key and optional value.
 	//
 	// When specifying tags during creation, you can specify multiple key-value
 	// pairs in a single request, with an overall maximum of 50 tags added to each
 	// resource.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
 	Tags map[string]*string `type:"map"`
 }
 

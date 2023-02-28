@@ -392,6 +392,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "CreateGUISessionAccessDetails":{
+      "name":"CreateGUISessionAccessDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateGUISessionAccessDetailsRequest"},
+      "output":{"shape":"CreateGUISessionAccessDetailsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "CreateInstanceSnapshot":{
       "name":"CreateInstanceSnapshot",
       "http":{
@@ -1368,6 +1384,22 @@
         {"shape":"InvalidInputException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetCostEstimate":{
+      "name":"GetCostEstimate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCostEstimateRequest"},
+      "output":{"shape":"GetCostEstimateResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -2402,6 +2434,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "StartGUISession":{
+      "name":"StartGUISession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartGUISessionRequest"},
+      "output":{"shape":"StartGUISessionResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "StartInstance":{
       "name":"StartInstance",
       "http":{
@@ -2435,6 +2483,22 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "StopGUISession":{
+      "name":"StopGUISession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopGUISessionRequest"},
+      "output":{"shape":"StopGUISessionResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -2810,7 +2874,9 @@
         "name":{"shape":"string"},
         "status":{"shape":"string"},
         "snapshotTimeOfDay":{"shape":"TimeOfDay"},
-        "nextSnapshotTimeOfDay":{"shape":"TimeOfDay"}
+        "nextSnapshotTimeOfDay":{"shape":"TimeOfDay"},
+        "threshold":{"shape":"string"},
+        "duration":{"shape":"string"}
       }
     },
     "AddOnList":{
@@ -2822,7 +2888,8 @@
       "required":["addOnType"],
       "members":{
         "addOnType":{"shape":"AddOnType"},
-        "autoSnapshotAddOnRequest":{"shape":"AutoSnapshotAddOnRequest"}
+        "autoSnapshotAddOnRequest":{"shape":"AutoSnapshotAddOnRequest"},
+        "stopInstanceOnIdleRequest":{"shape":"StopInstanceOnIdleRequest"}
       }
     },
     "AddOnRequestList":{
@@ -2831,7 +2898,10 @@
     },
     "AddOnType":{
       "type":"string",
-      "enum":["AutoSnapshot"]
+      "enum":[
+        "AutoSnapshot",
+        "StopInstanceOnIdle"
+      ]
     },
     "Alarm":{
       "type":"structure",
@@ -2883,6 +2953,14 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "AppCategory":{
+      "type":"string",
+      "enum":["LfR"]
+    },
+    "AppCategoryList":{
+      "type":"list",
+      "member":{"shape":"AppCategory"}
+    },
     "AttachCertificateToDistributionRequest":{
       "type":"structure",
       "required":[
@@ -2910,7 +2988,8 @@
       "members":{
         "diskName":{"shape":"ResourceName"},
         "instanceName":{"shape":"ResourceName"},
-        "diskPath":{"shape":"NonEmptyString"}
+        "diskPath":{"shape":"NonEmptyString"},
+        "autoMounting":{"shape":"boolean"}
       }
     },
     "AttachDiskResult":{
@@ -2986,6 +3065,15 @@
       "key":{"shape":"ResourceName"},
       "value":{"shape":"DiskMapList"}
     },
+    "AutoMountStatus":{
+      "type":"string",
+      "enum":[
+        "Failed",
+        "Pending",
+        "Mounted",
+        "NotMounted"
+      ]
+    },
     "AutoSnapshotAddOnRequest":{
       "type":"structure",
       "members":{
@@ -3060,7 +3148,8 @@
         "versionCode":{"shape":"string"},
         "productUrl":{"shape":"string"},
         "licenseUrl":{"shape":"string"},
-        "platform":{"shape":"InstancePlatform"}
+        "platform":{"shape":"InstancePlatform"},
+        "appCategory":{"shape":"AppCategory"}
       }
     },
     "BlueprintList":{
@@ -3162,7 +3251,8 @@
         "power":{"shape":"integer"},
         "ramSizeInGb":{"shape":"float"},
         "transferPerMonthInGb":{"shape":"integer"},
-        "supportedPlatforms":{"shape":"InstancePlatformList"}
+        "supportedPlatforms":{"shape":"InstancePlatformList"},
+        "supportedAppCategories":{"shape":"AppCategoryList"}
       }
     },
     "BundleList":{
@@ -3650,6 +3740,17 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "CostEstimate":{
+      "type":"structure",
+      "members":{
+        "usageType":{"shape":"NonEmptyString"},
+        "resultsByTime":{"shape":"EstimatesByTime"}
+      }
+    },
+    "CostEstimates":{
+      "type":"list",
+      "member":{"shape":"CostEstimate"}
+    },
     "CreateBucketAccessKeyRequest":{
       "type":"structure",
       "required":["bucketName"],
@@ -3902,6 +4003,23 @@
         "operation":{"shape":"Operation"}
       }
     },
+    "CreateGUISessionAccessDetailsRequest":{
+      "type":"structure",
+      "required":["resourceName"],
+      "members":{
+        "resourceName":{"shape":"ResourceName"}
+      }
+    },
+    "CreateGUISessionAccessDetailsResult":{
+      "type":"structure",
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "status":{"shape":"Status"},
+        "percentageComplete":{"shape":"integer"},
+        "failureReason":{"shape":"string"},
+        "sessions":{"shape":"Sessions"}
+      }
+    },
     "CreateInstanceSnapshotRequest":{
       "type":"structure",
       "required":[
@@ -4108,6 +4226,10 @@
       "members":{
         "operations":{"shape":"OperationList"}
       }
+    },
+    "Currency":{
+      "type":"string",
+      "enum":["USD"]
     },
     "DeleteAlarmRequest":{
       "type":"structure",
@@ -4511,7 +4633,8 @@
         "gbInUse":{
           "shape":"integer",
           "deprecated":true
-        }
+        },
+        "autoMountStatus":{"shape":"AutoMountStatus"}
       }
     },
     "DiskInfo":{
@@ -4744,6 +4867,20 @@
       "key":{"shape":"string"},
       "value":{"shape":"string"}
     },
+    "EstimateByTime":{
+      "type":"structure",
+      "members":{
+        "usageCost":{"shape":"double"},
+        "pricingUnit":{"shape":"PricingUnit"},
+        "unit":{"shape":"double"},
+        "currency":{"shape":"Currency"},
+        "timePeriod":{"shape":"TimePeriod"}
+      }
+    },
+    "EstimatesByTime":{
+      "type":"list",
+      "member":{"shape":"EstimateByTime"}
+    },
     "ExportSnapshotRecord":{
       "type":"structure",
       "members":{
@@ -4849,7 +4986,8 @@
       "type":"structure",
       "members":{
         "includeInactive":{"shape":"boolean"},
-        "pageToken":{"shape":"string"}
+        "pageToken":{"shape":"string"},
+        "appCategory":{"shape":"AppCategory"}
       }
     },
     "GetBlueprintsResult":{
@@ -4932,7 +5070,8 @@
       "type":"structure",
       "members":{
         "includeInactive":{"shape":"boolean"},
-        "pageToken":{"shape":"string"}
+        "pageToken":{"shape":"string"},
+        "appCategory":{"shape":"AppCategory"}
       }
     },
     "GetBundlesResult":{
@@ -5081,6 +5220,25 @@
       "type":"structure",
       "members":{
         "serviceName":{"shape":"ContainerServiceName"}
+      }
+    },
+    "GetCostEstimateRequest":{
+      "type":"structure",
+      "required":[
+        "resourceName",
+        "startTime",
+        "endTime"
+      ],
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "startTime":{"shape":"IsoDate"},
+        "endTime":{"shape":"IsoDate"}
+      }
+    },
+    "GetCostEstimateResult":{
+      "type":"structure",
+      "members":{
+        "resourcesBudgetEstimate":{"shape":"ResourcesBudgetEstimate"}
       }
     },
     "GetDiskRequest":{
@@ -6723,7 +6881,9 @@
         "UpdateBucketBundle",
         "UpdateBucket",
         "SetResourceAccessForBucket",
-        "UpdateInstanceMetadataOptions"
+        "UpdateInstanceMetadataOptions",
+        "StartGUISession",
+        "StopGUISession"
       ]
     },
     "Origin":{
@@ -6835,6 +6995,16 @@
       "enum":[
         "open",
         "closed"
+      ]
+    },
+    "PricingUnit":{
+      "type":"string",
+      "enum":[
+        "GB",
+        "Hrs",
+        "GB-Mo",
+        "Bundles",
+        "Queries"
       ]
     },
     "PrivateRegistryAccess":{
@@ -7232,6 +7402,16 @@
         "deny"
       ]
     },
+    "ResourceBudgetEstimate":{
+      "type":"structure",
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "resourceType":{"shape":"ResourceType"},
+        "costEstimates":{"shape":"CostEstimates"},
+        "startTime":{"shape":"IsoDate"},
+        "endTime":{"shape":"IsoDate"}
+      }
+    },
     "ResourceLocation":{
       "type":"structure",
       "members":{
@@ -7287,6 +7467,10 @@
         "Bucket"
       ]
     },
+    "ResourcesBudgetEstimate":{
+      "type":"list",
+      "member":{"shape":"ResourceBudgetEstimate"}
+    },
     "RevocationReason":{"type":"string"},
     "SendContactMethodVerificationRequest":{
       "type":"structure",
@@ -7300,6 +7484,11 @@
       "members":{
         "operations":{"shape":"OperationList"}
       }
+    },
+    "SensitiveNonEmptyString":{
+      "type":"string",
+      "pattern":".*\\S.*",
+      "sensitive":true
     },
     "SensitiveString":{
       "type":"string",
@@ -7316,6 +7505,18 @@
       },
       "exception":true,
       "fault":true
+    },
+    "Session":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "url":{"shape":"SensitiveNonEmptyString"},
+        "isPrimary":{"shape":"boolean"}
+      }
+    },
+    "Sessions":{
+      "type":"list",
+      "member":{"shape":"Session"}
     },
     "SetIpAddressTypeRequest":{
       "type":"structure",
@@ -7350,6 +7551,19 @@
       }
     },
     "SetResourceAccessForBucketResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "StartGUISessionRequest":{
+      "type":"structure",
+      "required":["resourceName"],
+      "members":{
+        "resourceName":{"shape":"ResourceName"}
+      }
+    },
+    "StartGUISessionResult":{
       "type":"structure",
       "members":{
         "operations":{"shape":"OperationList"}
@@ -7399,12 +7613,47 @@
       "type":"list",
       "member":{"shape":"StaticIp"}
     },
+    "Status":{
+      "type":"string",
+      "enum":[
+        "startExpired",
+        "notStarted",
+        "started",
+        "starting",
+        "stopped",
+        "stopping",
+        "settingUpInstance",
+        "failedInstanceCreation",
+        "failedStartingGUISession",
+        "failedStoppingGUISession"
+      ]
+    },
     "StatusType":{
       "type":"string",
       "enum":[
         "Active",
         "Inactive"
       ]
+    },
+    "StopGUISessionRequest":{
+      "type":"structure",
+      "required":["resourceName"],
+      "members":{
+        "resourceName":{"shape":"ResourceName"}
+      }
+    },
+    "StopGUISessionResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "StopInstanceOnIdleRequest":{
+      "type":"structure",
+      "members":{
+        "threshold":{"shape":"string"},
+        "duration":{"shape":"string"}
+      }
     },
     "StopInstanceRequest":{
       "type":"structure",
@@ -7502,6 +7751,13 @@
     "TimeOfDay":{
       "type":"string",
       "pattern":"^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "TimePeriod":{
+      "type":"structure",
+      "members":{
+        "start":{"shape":"IsoDate"},
+        "end":{"shape":"IsoDate"}
+      }
     },
     "TreatMissingData":{
       "type":"string",

@@ -1799,8 +1799,37 @@
           }
         },
         "description": "This operation uses the private key in an asymmetric elliptic curve (ECC) KMS key to generate a digital signature for a given message.",
-        "id": "to-digitally-sign-a-message-with-an-asymmetric-kms-key-1628631433832",
+        "id": "to-digitally-sign-a-message-with-an-asymmetric-kms-key-1",
         "title": "To digitally sign a message with an asymmetric KMS key."
+      },
+      {
+        "input": {
+          "KeyId": "alias/RSA_signing_key",
+          "Message": "<message digest to be signed>",
+          "MessageType": "DIGEST",
+          "SigningAlgorithm": "RSASSA_PKCS1_V1_5_SHA_256"
+        },
+        "output": {
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321",
+          "Signature": "<binary data>",
+          "SigningAlgorithm": "RSASSA_PKCS1_V1_5_SHA_256"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The asymmetric KMS key to be used to generate the digital signature. This example uses an alias of the KMS key.",
+            "Message": "Message to be signed. Use Base-64 for the CLI.",
+            "MessageType": "Indicates whether the message is RAW or a DIGEST. When it is RAW, KMS hashes the message before signing. When it is DIGEST, KMS skips the hashing step and signs the Message value.",
+            "SigningAlgorithm": "The requested signing algorithm. This must be an algorithm that the KMS key supports."
+          },
+          "output": {
+            "KeyId": "The key ARN of the asymmetric KMS key that was used to sign the message.",
+            "Signature": "The digital signature of the message.",
+            "SigningAlgorithm": "The actual signing algorithm that was used to generate the signature."
+          }
+        },
+        "description": "This operation uses the private key in an asymmetric RSA signing KMS key to generate a digital signature for a message digest. In this example, a large message was hashed and the resulting digest is provided in the Message parameter. To tell KMS not to hash the message again, the MessageType field is set to DIGEST",
+        "id": "to-digitally-sign-a-message-digest-with-an-asymmetric-kms-key-2",
+        "title": "To digitally sign a message digest with an asymmetric KMS key."
       }
     ],
     "TagResource": [
@@ -2048,8 +2077,39 @@
           }
         },
         "description": "This operation uses the public key in an elliptic curve (ECC) asymmetric key to verify a digital signature within AWS KMS.",
-        "id": "to-use-an-asymmetric-kms-key-to-verify-a-digital-signature-1628633365663",
+        "id": "to-use-an-asymmetric-kms-key-to-verify-a-digital-signature-1",
         "title": "To use an asymmetric KMS key to verify a digital signature"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321",
+          "Message": "<message digest to be verified>",
+          "MessageType": "DIGEST",
+          "Signature": "<binary data>",
+          "SigningAlgorithm": "RSASSA_PSS_SHA_512"
+        },
+        "output": {
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321",
+          "SignatureValid": true,
+          "SigningAlgorithm": "RSASSA_PSS_SHA_512"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The asymmetric KMS key to be used to verify the digital signature. This example uses an alias to identify the KMS key.",
+            "Message": "The message that was signed.",
+            "MessageType": "Indicates whether the message is RAW or a DIGEST. When it is RAW, KMS hashes the message before signing. When it is DIGEST, KMS skips the hashing step and signs the Message value.",
+            "Signature": "The signature to be verified.",
+            "SigningAlgorithm": "The signing algorithm to be used to verify the signature."
+          },
+          "output": {
+            "KeyId": "The key ARN of the asymmetric KMS key that was used to verify the digital signature.",
+            "SignatureValid": "A value of 'true' Indicates that the signature was verified. If verification fails, the call to Verify fails.",
+            "SigningAlgorithm": "The signing algorithm that was used to verify the signature."
+          }
+        },
+        "description": "This operation uses the public key in an RSA asymmetric signing key pair to verify the digital signature of a message digest. Hashing a message into a digest before sending it to KMS lets you verify messages that exceed the 4096-byte message size limit. To indicate that the value of Message is a digest, use the MessageType parameter ",
+        "id": "to-use-an-asymmetric-kms-key-to-verify-a-digital-signature-on-a-message-digest-2",
+        "title": "To use an asymmetric KMS key to verify a digital signature on a message digest"
       }
     ],
     "VerifyMac": [
