@@ -4,9 +4,16 @@
   "operations": {
     "DescribeServices": "<p>Returns the metadata for one service or a list of the metadata for all services. Use this without a service code to get the service codes for all services. Use it with a service code, such as <code>AmazonEC2</code>, to get information specific to that service, such as the attribute names available for that service. For example, some of the attribute names available for EC2 are <code>volumeType</code>, <code>maxIopsVolume</code>, <code>operation</code>, <code>locationType</code>, and <code>instanceCapacity10xlarge</code>.</p>",
     "GetAttributeValues": "<p>Returns a list of attribute values. Attributes are similar to the details in a Price List API offer file. For a list of available attributes, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html#pps-defs\">Offer File Definitions</a> in the <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html\">Billing and Cost Management User Guide</a>.</p>",
-    "GetProducts": "<p>Returns a list of all products that match the filter criteria.</p>"
+    "GetPriceListFileUrl": "<p> <i> <b>This feature is in preview release and is subject to change. Your use of Amazon Web Services Price List API is subject to the Beta Service Participation terms of the <a href=\"https://aws.amazon.com/service-terms/\">Amazon Web Services Service Terms</a> (Section 1.10).</b> </i> </p> <p>This returns the URL that you can retrieve your Price List file from. This URL is based on the <code>PriceListArn</code> and <code>FileFormat</code> that you retrieve from the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html\"> <code>ListPriceLists</code> </a> response. </p>",
+    "GetProducts": "<p>Returns a list of all products that match the filter criteria.</p>",
+    "ListPriceLists": "<p> <i> <b>This feature is in preview release and is subject to change. Your use of Amazon Web Services Price List API is subject to the Beta Service Participation terms of the <a href=\"https://aws.amazon.com/service-terms/\">Amazon Web Services Service Terms</a> (Section 1.10).</b> </i> </p> <p>This returns a list of Price List references that the requester if authorized to view, given a <code>ServiceCode</code>, <code>CurrencyCode</code>, and an <code>EffectiveDate</code>. Use without a <code>RegionCode</code> filter to list Price List references from all available Amazon Web Services Regions. Use with a <code>RegionCode</code> filter to get the Price List reference that's specific to a specific Amazon Web Services Region. You can use the <code>PriceListArn</code> from the response to get your preferred Price List files through the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetPriceListFileUrl.html\"> <code>GetPriceListFileUrl</code> </a> API.</p>"
   },
   "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>General authentication failure. The request wasn't signed correctly.</p>",
+      "refs": {
+      }
+    },
     "AttributeNameList": {
       "base": null,
       "refs": {
@@ -33,6 +40,13 @@
         "GetProductsRequest$MaxResults": "<p>The maximum number of results to return in the response.</p>"
       }
     },
+    "CurrencyCode": {
+      "base": null,
+      "refs": {
+        "ListPriceListsRequest$CurrencyCode": "<p>The three alphabetical character ISO-4217 currency code that the Price List files are denominated in. </p>",
+        "PriceList$CurrencyCode": "<p>The three alphabetical character ISO-4217 currency code the Price List files are denominated in. </p>"
+      }
+    },
     "DescribeServicesRequest": {
       "base": null,
       "refs": {
@@ -43,9 +57,28 @@
       "refs": {
       }
     },
+    "EffectiveDate": {
+      "base": null,
+      "refs": {
+        "ListPriceListsRequest$EffectiveDate": "<p>The date that the Price List file prices are effective from. </p>"
+      }
+    },
     "ExpiredNextTokenException": {
       "base": "<p>The pagination token expired. Try again without a pagination token.</p>",
       "refs": {
+      }
+    },
+    "FileFormat": {
+      "base": null,
+      "refs": {
+        "FileFormats$member": null,
+        "GetPriceListFileUrlRequest$FileFormat": "<p>The format that you want to retrieve your Price List files in. The <code>FileFormat</code> can be obtained from the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html\"> <code>ListPriceLists</code> </a> response. </p>"
+      }
+    },
+    "FileFormats": {
+      "base": null,
+      "refs": {
+        "PriceList$FileFormats": "<p>The format you want to retrieve your Price List files. The <code>FileFormat</code> can be obtained from the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html\"> <code>ListPriceList</code> </a> response. </p>"
       }
     },
     "Filter": {
@@ -76,6 +109,16 @@
       "refs": {
       }
     },
+    "GetPriceListFileUrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPriceListFileUrlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetProductsRequest": {
       "base": null,
       "refs": {
@@ -101,9 +144,38 @@
       "refs": {
       }
     },
+    "ListPriceListsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPriceListsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListPriceListsRequest$MaxResults": "<p>The maximum number of results to return in the response. </p>"
+      }
+    },
     "NotFoundException": {
       "base": "<p>The requested resource can't be found.</p>",
       "refs": {
+      }
+    },
+    "PriceList": {
+      "base": "<p> <i> <b>This feature is in preview release and is subject to change. Your use of Amazon Web Services Price List API is subject to the Beta Service Participation terms of the <a href=\"https://aws.amazon.com/service-terms/\">Amazon Web Services Service Terms</a> (Section 1.10).</b> </i> </p> <p>This is the type of price list references that match your request. </p>",
+      "refs": {
+        "PriceLists$member": null
+      }
+    },
+    "PriceListArn": {
+      "base": null,
+      "refs": {
+        "GetPriceListFileUrlRequest$PriceListArn": "<p>The unique identifier that maps to where your Price List files are located. <code>PriceListArn</code> can be obtained from the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html\"> <code>ListPriceLists</code> </a> response. </p>",
+        "PriceList$PriceListArn": "<p>The unique identifier that maps to where your Price List files are located. <code>PriceListArn</code> can be obtained from the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_ListPriceLists.html\"> <code>ListPriceList</code> </a> response. </p>"
       }
     },
     "PriceListJsonItem": {
@@ -118,10 +190,29 @@
         "GetProductsResponse$PriceList": "<p>The list of products that match your filters. The list contains both the product metadata and the price information.</p>"
       }
     },
+    "PriceLists": {
+      "base": null,
+      "refs": {
+        "ListPriceListsResponse$PriceLists": "<p>The type of price list references that match your request. </p>"
+      }
+    },
+    "RegionCode": {
+      "base": null,
+      "refs": {
+        "ListPriceListsRequest$RegionCode": "<p>This is used to filter the Price List by Amazon Web Services Region. For example, to get the price list only for the <code>US East (N. Virginia)</code> Region, use <code>us-east-1</code>. If nothing is specified, you retrieve price lists for all applicable Regions. The available <code>RegionCode</code> list can be retrieved from <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetAttributeValues.html\"> <code>GetAttributeValues</code> </a> API.</p>",
+        "PriceList$RegionCode": "<p>This is used to filter the Price List by Amazon Web Services Region. For example, to get the price list only for the <code>US East (N. Virginia)</code> Region, use <code>us-east-1</code>. If nothing is specified, you retrieve price lists for all applicable Regions. The available <code>RegionCode</code> list can be retrieved from <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetAttributeValues.html\"> <code>GetAttributeValues</code> </a> API. </p>"
+      }
+    },
     "Service": {
       "base": "<p>The metadata for a service, such as the service code and available attribute names.</p>",
       "refs": {
         "ServiceList$member": null
+      }
+    },
+    "ServiceCode": {
+      "base": null,
+      "refs": {
+        "ListPriceListsRequest$ServiceCode": "<p>The service code or the Savings Plan service code for the attributes that you want to retrieve. For example, to get the list of applicable Amazon EC2 price lists, use <code>AmazonEC2</code>. For a full list of service codes containing On-Demand and Reserved Instance (RI) pricing, use the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_DescribeServices.html#awscostmanagement-pricing_DescribeServices-request-FormatVersion\"> <code>DescribeServices</code> </a> API.</p> <p>To retrieve the Compute Savings Plan price lists, use <code>ComputeSavingsPlans</code>. To retrieve Machine Learning Savings Plans price lists, use <code>MachineLearningSavingsPlans</code>. </p>"
       }
     },
     "ServiceList": {
@@ -141,22 +232,26 @@
         "DescribeServicesResponse$FormatVersion": "<p>The format version of the response. For example, <code>aws_v1</code>.</p>",
         "DescribeServicesResponse$NextToken": "<p>The pagination token for the next set of retrievable results.</p>",
         "Filter$Field": "<p>The product metadata field that you want to filter on. You can filter by just the service code to see all products for a specific service, filter by just the attribute name to see a specific attribute for multiple services, or use both a service code and an attribute name to retrieve only products that match both fields.</p> <p>Valid values include: <code>ServiceCode</code>, and all attribute names</p> <p>For example, you can filter by the <code>AmazonEC2</code> service code and the <code>volumeType</code> attribute name to get the prices for only Amazon EC2 volumes.</p>",
-        "Filter$Value": "<p>The service code or attribute value that you want to filter by. If you are filtering by service code this is the actual service code, such as <code>AmazonEC2</code>. If you are filtering by attribute name, this is the attribute value that you want the returned products to match, such as a <code>Provisioned IOPS</code> volume.</p>",
+        "Filter$Value": "<p>The service code or attribute value that you want to filter by. If you're filtering by service code this is the actual service code, such as <code>AmazonEC2</code>. If you're filtering by attribute name, this is the attribute value that you want the returned products to match, such as a <code>Provisioned IOPS</code> volume.</p>",
         "GetAttributeValuesRequest$ServiceCode": "<p>The service code for the service whose attributes you want to retrieve. For example, if you want the retrieve an EC2 attribute, use <code>AmazonEC2</code>.</p>",
         "GetAttributeValuesRequest$AttributeName": "<p>The name of the attribute that you want to retrieve the values for, such as <code>volumeType</code>.</p>",
         "GetAttributeValuesRequest$NextToken": "<p>The pagination token that indicates the next set of results that you want to retrieve.</p>",
         "GetAttributeValuesResponse$NextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "GetPriceListFileUrlResponse$Url": "<p>The URL to download your Price List file from. </p>",
         "GetProductsRequest$ServiceCode": "<p>The code for the service whose products you want to retrieve. </p>",
         "GetProductsRequest$FormatVersion": "<p>The format version that you want the response to be in.</p> <p>Valid values are: <code>aws_v1</code> </p>",
         "GetProductsRequest$NextToken": "<p>The pagination token that indicates the next set of results that you want to retrieve.</p>",
         "GetProductsResponse$FormatVersion": "<p>The format version of the response. For example, aws_v1.</p>",
         "GetProductsResponse$NextToken": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListPriceListsRequest$NextToken": "<p>The pagination token that indicates the next set of results that you want to retrieve. </p>",
+        "ListPriceListsResponse$NextToken": "<p>The pagination token that indicates the next set of results to retrieve. </p>",
         "Service$ServiceCode": "<p>The code for the Amazon Web Services service.</p>"
       }
     },
     "errorMessage": {
       "base": null,
       "refs": {
+        "AccessDeniedException$Message": null,
         "ExpiredNextTokenException$Message": null,
         "InternalErrorException$Message": null,
         "InvalidNextTokenException$Message": null,

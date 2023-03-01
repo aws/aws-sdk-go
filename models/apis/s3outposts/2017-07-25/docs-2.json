@@ -5,12 +5,25 @@
     "CreateEndpoint": "<p>Creates an endpoint and associates it with the specified Outpost.</p> <note> <p>It can take up to 5 minutes for this action to finish.</p> </note> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html\">DeleteEndpoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html\">ListEndpoints</a> </p> </li> </ul>",
     "DeleteEndpoint": "<p>Deletes an endpoint.</p> <note> <p>It can take up to 5 minutes for this action to finish.</p> </note> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html\">CreateEndpoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html\">ListEndpoints</a> </p> </li> </ul>",
     "ListEndpoints": "<p>Lists endpoints associated with the specified Outpost. </p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html\">CreateEndpoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html\">DeleteEndpoint</a> </p> </li> </ul>",
+    "ListOutpostsWithS3": "<p>Lists the Outposts with S3 on Outposts capacity for your Amazon Web Services account. Includes S3 on Outposts that you have access to as the Outposts owner, or as a shared user from Resource Access Manager (RAM). </p>",
     "ListSharedEndpoints": "<p>Lists all endpoints associated with an Outpost that has been shared by Amazon Web Services Resource Access Manager (RAM).</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html\">CreateEndpoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html\">DeleteEndpoint</a> </p> </li> </ul>"
   },
   "shapes": {
     "AccessDeniedException": {
       "base": "<p>Access was denied for this action.</p>",
       "refs": {
+      }
+    },
+    "AwsAccountId": {
+      "base": null,
+      "refs": {
+        "Outpost$OwnerId": "<p>Returns the Amazon Web Services account ID of the outpost owner. Useful for comparing owned versus shared outposts.</p>"
+      }
+    },
+    "CapacityInBytes": {
+      "base": null,
+      "refs": {
+        "Outpost$CapacityInBytes": "<p>The Amazon S3 capacity of the outpost in bytes.</p>"
       }
     },
     "CidrBlock": {
@@ -98,6 +111,7 @@
         "ConflictException$Message": null,
         "InternalServerException$Message": null,
         "ResourceNotFoundException$Message": null,
+        "ThrottlingException$Message": null,
         "ValidationException$Message": null
       }
     },
@@ -116,6 +130,16 @@
       "refs": {
       }
     },
+    "ListOutpostsWithS3Request": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOutpostsWithS3Result": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSharedEndpointsRequest": {
       "base": null,
       "refs": {
@@ -130,6 +154,7 @@
       "base": null,
       "refs": {
         "ListEndpointsRequest$MaxResults": "<p>The maximum number of endpoints that will be returned in the response.</p>",
+        "ListOutpostsWithS3Request$MaxResults": "<p>The maximum number of Outposts to return. The limit is 100.</p>",
         "ListSharedEndpointsRequest$MaxResults": "<p>The maximum number of endpoints that will be returned in the response.</p>"
       }
     },
@@ -156,8 +181,22 @@
       "refs": {
         "ListEndpointsRequest$NextToken": "<p>If a previous response from this operation included a <code>NextToken</code> value, provide that value here to retrieve the next page of results.</p>",
         "ListEndpointsResult$NextToken": "<p>If the number of endpoints associated with the specified Outpost exceeds <code>MaxResults</code>, you can include this value in subsequent calls to this operation to retrieve more results.</p>",
+        "ListOutpostsWithS3Request$NextToken": "<p>When you can get additional results from the <code>ListOutpostsWithS3</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command to the <code>NextToken</code> parameter to continue listing additional Outposts.</p>",
+        "ListOutpostsWithS3Result$NextToken": "<p>Returns a token that you can use to call <code>ListOutpostsWithS3</code> again and receive additional results, if there are any.</p>",
         "ListSharedEndpointsRequest$NextToken": "<p>If a previous response from this operation included a <code>NextToken</code> value, you can provide that value here to retrieve the next page of results.</p>",
         "ListSharedEndpointsResult$NextToken": "<p>If the number of endpoints associated with the specified Outpost exceeds <code>MaxResults</code>, you can include this value in subsequent calls to this operation to retrieve more results.</p>"
+      }
+    },
+    "Outpost": {
+      "base": "<p>Contains the details for the Outpost object.</p>",
+      "refs": {
+        "Outposts$member": null
+      }
+    },
+    "OutpostArn": {
+      "base": null,
+      "refs": {
+        "Outpost$OutpostArn": "<p>Specifies the unique Amazon Resource Name (ARN) for the outpost.</p>"
       }
     },
     "OutpostId": {
@@ -166,7 +205,14 @@
         "CreateEndpointRequest$OutpostId": "<p>The ID of the Outposts. </p>",
         "DeleteEndpointRequest$OutpostId": "<p>The ID of the Outposts. </p>",
         "Endpoint$OutpostsId": "<p>The ID of the Outposts.</p>",
-        "ListSharedEndpointsRequest$OutpostId": "<p>The ID of the Amazon Web Services Outpost.</p>"
+        "ListSharedEndpointsRequest$OutpostId": "<p>The ID of the Amazon Web Services Outpost.</p>",
+        "Outpost$OutpostId": "<p>Specifies the unique identifier for the outpost.</p>"
+      }
+    },
+    "Outposts": {
+      "base": null,
+      "refs": {
+        "ListOutpostsWithS3Result$Outposts": "<p>Returns the list of Outposts that have the following characteristics:</p> <ul> <li> <p>outposts that have S3 provisioned</p> </li> <li> <p>outposts that are <code>Active</code> (not pending any provisioning nor decommissioned)</p> </li> <li> <p>outposts to which the the calling Amazon Web Services account has access</p> </li> </ul>"
       }
     },
     "ResourceNotFoundException": {
@@ -186,6 +232,11 @@
       "refs": {
         "CreateEndpointRequest$SubnetId": "<p>The ID of the subnet in the selected VPC. The endpoint subnet must belong to the Outpost that has Amazon S3 on Outposts provisioned.</p>",
         "Endpoint$SubnetId": "<p>The ID of the subnet used for the endpoint.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The request was denied due to request throttling.</p>",
+      "refs": {
       }
     },
     "ValidationException": {

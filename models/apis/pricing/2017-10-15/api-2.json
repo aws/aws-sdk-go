@@ -46,6 +46,21 @@
         {"shape":"ExpiredNextTokenException"}
       ]
     },
+    "GetPriceListFileUrl":{
+      "name":"GetPriceListFileUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPriceListFileUrlRequest"},
+      "output":{"shape":"GetPriceListFileUrlResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetProducts":{
       "name":"GetProducts",
       "http":{
@@ -61,9 +76,33 @@
         {"shape":"InvalidNextTokenException"},
         {"shape":"ExpiredNextTokenException"}
       ]
+    },
+    "ListPriceLists":{
+      "name":"ListPriceLists",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPriceListsRequest"},
+      "output":{"shape":"ListPriceListsResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ExpiredNextTokenException"},
+        {"shape":"AccessDeniedException"}
+      ]
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"errorMessage"}
+      },
+      "exception":true
+    },
     "AttributeNameList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -82,6 +121,10 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "CurrencyCode":{
+      "type":"string",
+      "pattern":"^[A-Z]{3}$"
     },
     "DescribeServicesRequest":{
       "type":"structure",
@@ -103,12 +146,22 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "EffectiveDate":{"type":"timestamp"},
     "ExpiredNextTokenException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"errorMessage"}
       },
       "exception":true
+    },
+    "FileFormat":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "FileFormats":{
+      "type":"list",
+      "member":{"shape":"FileFormat"}
     },
     "Filter":{
       "type":"structure",
@@ -154,6 +207,23 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "GetPriceListFileUrlRequest":{
+      "type":"structure",
+      "required":[
+        "PriceListArn",
+        "FileFormat"
+      ],
+      "members":{
+        "PriceListArn":{"shape":"PriceListArn"},
+        "FileFormat":{"shape":"FileFormat"}
+      }
+    },
+    "GetPriceListFileUrlResponse":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"String"}
+      }
+    },
     "GetProductsRequest":{
       "type":"structure",
       "required":["ServiceCode"],
@@ -197,12 +267,55 @@
       },
       "exception":true
     },
+    "ListPriceListsRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceCode",
+        "EffectiveDate",
+        "CurrencyCode"
+      ],
+      "members":{
+        "ServiceCode":{"shape":"ServiceCode"},
+        "EffectiveDate":{"shape":"EffectiveDate"},
+        "RegionCode":{"shape":"RegionCode"},
+        "CurrencyCode":{"shape":"CurrencyCode"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListPriceListsResponse":{
+      "type":"structure",
+      "members":{
+        "PriceLists":{"shape":"PriceLists"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "MaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"errorMessage"}
       },
       "exception":true
+    },
+    "PriceList":{
+      "type":"structure",
+      "members":{
+        "PriceListArn":{"shape":"PriceListArn"},
+        "RegionCode":{"shape":"RegionCode"},
+        "CurrencyCode":{"shape":"CurrencyCode"},
+        "FileFormats":{"shape":"FileFormats"}
+      }
+    },
+    "PriceListArn":{
+      "type":"string",
+      "max":2048,
+      "min":18,
+      "pattern":"^arn:.+:pricing::.*:price-list/.{1,255}/.{1,32}/[A-Z]{3}/[0-9]{14}/[^/]*$"
     },
     "PriceListJsonItem":{"type":"string"},
     "PriceListJsonItems":{
@@ -212,6 +325,15 @@
         "jsonvalue":true
       }
     },
+    "PriceLists":{
+      "type":"list",
+      "member":{"shape":"PriceList"}
+    },
+    "RegionCode":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "Service":{
       "type":"structure",
       "required":["ServiceCode"],
@@ -219,6 +341,11 @@
         "ServiceCode":{"shape":"String"},
         "AttributeNames":{"shape":"AttributeNameList"}
       }
+    },
+    "ServiceCode":{
+      "type":"string",
+      "max":32,
+      "min":1
     },
     "ServiceList":{
       "type":"list",
