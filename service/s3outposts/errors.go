@@ -32,6 +32,12 @@ const (
 	// The requested resource was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// The request was denied due to request throttling.
+	ErrCodeThrottlingException = "ThrottlingException"
+
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
@@ -44,5 +50,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConflictException":         newErrorConflictException,
 	"InternalServerException":   newErrorInternalServerException,
 	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"ThrottlingException":       newErrorThrottlingException,
 	"ValidationException":       newErrorValidationException,
 }

@@ -1,3 +1,10 @@
+Release v1.44.212 (2023-03-01)
+===
+
+### Service Client Updates
+* `service/pricing`: Updates service API, documentation, and paginators
+* `service/s3outposts`: Updates service API, documentation, and paginators
+
 Release v1.44.211 (2023-02-28)
 ===
 
