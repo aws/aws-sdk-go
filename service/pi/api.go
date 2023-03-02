@@ -1892,6 +1892,10 @@ type GetResourceMetricsInput struct {
 	// the value specified by MaxRecords.
 	NextToken *string `min:"1" type:"string"`
 
+	// The returned timestamp which is the start or end time of the time periods.
+	// The default value is END_TIME.
+	PeriodAlignment *string `type:"string" enum:"PeriodAlignment"`
+
 	// The granularity, in seconds, of the data points returned from Performance
 	// Insights. A period can be as short as one second, or as long as one day (86400
 	// seconds). Valid values are:
@@ -2019,6 +2023,12 @@ func (s *GetResourceMetricsInput) SetMetricQueries(v []*MetricQuery) *GetResourc
 // SetNextToken sets the NextToken field's value.
 func (s *GetResourceMetricsInput) SetNextToken(v string) *GetResourceMetricsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetPeriodAlignment sets the PeriodAlignment field's value.
+func (s *GetResourceMetricsInput) SetPeriodAlignment(v string) *GetResourceMetricsInput {
+	s.PeriodAlignment = &v
 	return s
 }
 
@@ -2995,6 +3005,22 @@ func FeatureStatus_Values() []string {
 		FeatureStatusEnabledPendingReboot,
 		FeatureStatusDisabledPendingReboot,
 		FeatureStatusUnknown,
+	}
+}
+
+const (
+	// PeriodAlignmentEndTime is a PeriodAlignment enum value
+	PeriodAlignmentEndTime = "END_TIME"
+
+	// PeriodAlignmentStartTime is a PeriodAlignment enum value
+	PeriodAlignmentStartTime = "START_TIME"
+)
+
+// PeriodAlignment_Values returns all elements of the PeriodAlignment enum
+func PeriodAlignment_Values() []string {
+	return []string{
+		PeriodAlignmentEndTime,
+		PeriodAlignmentStartTime,
 	}
 }
 

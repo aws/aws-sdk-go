@@ -126,6 +126,10 @@ const (
 	//    * ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 	//    of accounts that you can create in one day.
 	//
+	//    * ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+	//    your account isn't fully active. You must complete the account setup before
+	//    you create an organization.
+	//
 	//    * ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 	//    the number of accounts in an organization. If you need more accounts,
 	//    contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)

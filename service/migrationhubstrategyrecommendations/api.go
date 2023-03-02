@@ -8116,6 +8116,9 @@ const (
 
 	// DataSourceTypeMpa is a DataSourceType enum value
 	DataSourceTypeMpa = "MPA"
+
+	// DataSourceTypeImport is a DataSourceType enum value
+	DataSourceTypeImport = "Import"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -8123,6 +8126,7 @@ func DataSourceType_Values() []string {
 	return []string{
 		DataSourceTypeApplicationDiscoveryService,
 		DataSourceTypeMpa,
+		DataSourceTypeImport,
 	}
 }
 
@@ -8149,12 +8153,16 @@ func DatabaseManagementPreference_Values() []string {
 const (
 	// GroupNameExternalId is a GroupName enum value
 	GroupNameExternalId = "ExternalId"
+
+	// GroupNameExternalSourceType is a GroupName enum value
+	GroupNameExternalSourceType = "ExternalSourceType"
 )
 
 // GroupName_Values returns all elements of the GroupName enum
 func GroupName_Values() []string {
 	return []string{
 		GroupNameExternalId,
+		GroupNameExternalSourceType,
 	}
 }
 

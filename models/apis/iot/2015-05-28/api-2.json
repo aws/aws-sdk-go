@@ -5569,7 +5569,8 @@
         "abortConfig":{"shape":"AbortConfig"},
         "timeoutConfig":{"shape":"TimeoutConfig"},
         "tags":{"shape":"TagList"},
-        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"}
+        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
+        "maintenanceWindows":{"shape":"MaintenanceWindows"}
       }
     },
     "CreateJobTemplateResponse":{
@@ -6001,6 +6002,11 @@
       "type":"integer",
       "max":43200,
       "min":900
+    },
+    "CronExpression":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "CustomCodeSigning":{
       "type":"structure",
@@ -7054,7 +7060,8 @@
         "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"},
         "abortConfig":{"shape":"AbortConfig"},
         "timeoutConfig":{"shape":"TimeoutConfig"},
-        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"}
+        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
+        "maintenanceWindows":{"shape":"MaintenanceWindows"}
       }
     },
     "DescribeManagedJobTemplateRequest":{
@@ -7647,6 +7654,11 @@
         "AWS_MANAGED",
         "CUSTOMER_MANAGED"
       ]
+    },
+    "DurationInMinutes":{
+      "type":"integer",
+      "max":1430,
+      "min":30
     },
     "DurationSeconds":{"type":"integer"},
     "DynamicGroupStatus":{
@@ -8569,7 +8581,8 @@
         "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
         "documentParameters":{"shape":"ParameterMap"},
         "isConcurrent":{"shape":"BooleanWrapperObject"},
-        "schedulingConfig":{"shape":"SchedulingConfig"}
+        "schedulingConfig":{"shape":"SchedulingConfig"},
+        "scheduledJobRollouts":{"shape":"ScheduledJobRolloutList"}
       }
     },
     "JobArn":{"type":"string"},
@@ -10697,6 +10710,21 @@
         "confidenceLevel":{"shape":"ConfidenceLevel"}
       }
     },
+    "MaintenanceWindow":{
+      "type":"structure",
+      "required":[
+        "startTime",
+        "durationInMinutes"
+      ],
+      "members":{
+        "startTime":{"shape":"CronExpression"},
+        "durationInMinutes":{"shape":"DurationInMinutes"}
+      }
+    },
+    "MaintenanceWindows":{
+      "type":"list",
+      "member":{"shape":"MaintenanceWindow"}
+    },
     "MalformedPolicyException":{
       "type":"structure",
       "members":{
@@ -11887,12 +11915,23 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_-]+"
     },
+    "ScheduledJobRollout":{
+      "type":"structure",
+      "members":{
+        "startTime":{"shape":"StringDateTime"}
+      }
+    },
+    "ScheduledJobRolloutList":{
+      "type":"list",
+      "member":{"shape":"ScheduledJobRollout"}
+    },
     "SchedulingConfig":{
       "type":"structure",
       "members":{
         "startTime":{"shape":"StringDateTime"},
         "endTime":{"shape":"StringDateTime"},
-        "endBehavior":{"shape":"JobEndBehavior"}
+        "endBehavior":{"shape":"JobEndBehavior"},
+        "maintenanceWindows":{"shape":"MaintenanceWindows"}
       }
     },
     "SearchIndexRequest":{

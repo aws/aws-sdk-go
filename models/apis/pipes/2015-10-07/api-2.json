@@ -191,7 +191,7 @@
       "type":"string",
       "max":1600,
       "min":1,
-      "pattern":"^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-]+):([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$"
+      "pattern":"^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-]+):([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$"
     },
     "ArnOrUrl":{
       "type":"string",
@@ -593,7 +593,7 @@
       "type":"string",
       "max":50,
       "min":1,
-      "pattern":"^[A-Za-z0-9\\-]+[\\.][A-Za-z0-9\\-]+|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+      "pattern":"^[A-Za-z0-9\\-]+[\\.][A-Za-z0-9\\-]+$",
       "sensitive":true
     },
     "EventBridgeEventResourceList":{
@@ -606,7 +606,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"(?=[/\\.\\-_A-Za-z0-9]+)((?!aws\\.).*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)",
+      "pattern":"(?=[/\\.\\-_A-Za-z0-9]+)((?!aws\\.).*)|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)",
       "sensitive":true
     },
     "EventPattern":{
@@ -637,7 +637,7 @@
       "type":"string",
       "max":512,
       "min":0,
-      "pattern":"^[!#$%&'*+-.^_`|~0-9a-zA-Z]+|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$"
+      "pattern":"^[!#$%&'*+-.^_`|~0-9a-zA-Z]+|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$"
     },
     "HeaderParametersMap":{
       "type":"map",
@@ -648,7 +648,7 @@
       "type":"string",
       "max":512,
       "min":0,
-      "pattern":"^[ \\t]*[\\x20-\\x7E]+([ \\t]+[\\x20-\\x7E]+)*[ \\t]*|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+      "pattern":"^[ \\t]*[\\x20-\\x7E]+([ \\t]+[\\x20-\\x7E]+)*[ \\t]*|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$",
       "sensitive":true
     },
     "InputTemplate":{
@@ -680,7 +680,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*$"
+      "pattern":"^\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*$"
     },
     "KafkaBootstrapServers":{
       "type":"list",
@@ -727,12 +727,6 @@
       "type":"integer",
       "box":true,
       "max":100,
-      "min":1
-    },
-    "LimitMax1000":{
-      "type":"integer",
-      "box":true,
-      "max":1000,
       "min":1
     },
     "LimitMax10000":{
@@ -909,7 +903,7 @@
     },
     "PathParameter":{
       "type":"string",
-      "pattern":"^(?!\\s*$).+|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+      "pattern":"^(?!\\s*$).+|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$",
       "sensitive":true
     },
     "PathParameterList":{
@@ -988,7 +982,7 @@
       "type":"structure",
       "required":["StartingPosition"],
       "members":{
-        "BatchSize":{"shape":"LimitMax1000"},
+        "BatchSize":{"shape":"LimitMax10000"},
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "MaximumRecordAgeInSeconds":{"shape":"MaximumRecordAgeInSeconds"},
@@ -1290,7 +1284,7 @@
       "type":"string",
       "max":512,
       "min":0,
-      "pattern":"^[^\\x00-\\x1F\\x7F]+|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$"
+      "pattern":"^[^\\x00-\\x1F\\x7F]+|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$"
     },
     "QueryStringParametersMap":{
       "type":"map",
@@ -1301,7 +1295,7 @@
       "type":"string",
       "max":512,
       "min":0,
-      "pattern":"^[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F]+|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+      "pattern":"^[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F]+|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$",
       "sensitive":true
     },
     "ReferenceId":{
@@ -1357,7 +1351,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$",
       "sensitive":true
     },
     "SageMakerPipelineParameterValue":{
@@ -1370,19 +1364,19 @@
       "type":"string",
       "max":1600,
       "min":1,
-      "pattern":"^(^arn:aws([a-z]|\\-)*:secretsmanager:[a-z0-9-.]+:.*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$"
+      "pattern":"^(^arn:aws([a-z]|\\-)*:secretsmanager:[a-z0-9-.]+:.*)$"
     },
     "SecretManagerArnOrJsonPath":{
       "type":"string",
       "max":1600,
       "min":1,
-      "pattern":"^(^arn:aws([a-z]|\\-)*:secretsmanager:[a-z0-9-.]+:.*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$"
+      "pattern":"^(^arn:aws([a-z]|\\-)*:secretsmanager:[a-z0-9-.]+:.*)|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$"
     },
     "SecurityGroup":{
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^sg-[0-9a-zA-Z]*|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+      "pattern":"^sg-[0-9a-zA-Z]*|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$",
       "sensitive":true
     },
     "SecurityGroupId":{
@@ -1520,7 +1514,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^subnet-[0-9a-z]*|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+      "pattern":"^subnet-[0-9a-z]*|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$",
       "sensitive":true
     },
     "SubnetId":{
@@ -1697,7 +1691,7 @@
     "UpdatePipeSourceDynamoDBStreamParameters":{
       "type":"structure",
       "members":{
-        "BatchSize":{"shape":"LimitMax1000"},
+        "BatchSize":{"shape":"LimitMax10000"},
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "MaximumRecordAgeInSeconds":{"shape":"MaximumRecordAgeInSeconds"},

@@ -940,8 +940,8 @@ func (c *Pipes) UpdatePipeRequest(input *UpdatePipeInput) (req *request.Request,
 // field in one of these Parameters objects, that field will be set to its system-default
 // value after the update.
 //
-//	<p>For more information about pipes, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html">
-//	Amazon EventBridge Pipes</a> in the Amazon EventBridge User Guide.</p>
+// For more information about pipes, see Amazon EventBridge Pipes (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html)
+// in the Amazon EventBridge User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
