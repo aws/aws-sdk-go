@@ -1,10 +1,23 @@
 {
     "testCases": [
         {
+            "documentation": "For region af-south-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://pi.af-south-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "af-south-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region ap-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.ap-east-1.amazonaws.com"
+                    "url": "https://pi.ap-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -17,7 +30,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.ap-northeast-1.amazonaws.com"
+                    "url": "https://pi.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +43,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.ap-northeast-2.amazonaws.com"
+                    "url": "https://pi.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -40,10 +53,23 @@
             }
         },
         {
+            "documentation": "For region ap-northeast-3 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://pi.ap-northeast-3.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ap-northeast-3",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.ap-south-1.amazonaws.com"
+                    "url": "https://pi.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +82,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.ap-southeast-1.amazonaws.com"
+                    "url": "https://pi.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -69,7 +95,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.ap-southeast-2.amazonaws.com"
+                    "url": "https://pi.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +108,7 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.ca-central-1.amazonaws.com"
+                    "url": "https://pi.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -92,23 +118,10 @@
             }
         },
         {
-            "documentation": "For region ca-central-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot-fips.ca-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "ca-central-1",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.eu-central-1.amazonaws.com"
+                    "url": "https://pi.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -121,7 +134,7 @@
             "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.eu-north-1.amazonaws.com"
+                    "url": "https://pi.eu-north-1.amazonaws.com"
                 }
             },
             "params": {
@@ -131,10 +144,23 @@
             }
         },
         {
+            "documentation": "For region eu-south-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://pi.eu-south-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "eu-south-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.eu-west-1.amazonaws.com"
+                    "url": "https://pi.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -147,7 +173,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.eu-west-2.amazonaws.com"
+                    "url": "https://pi.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -160,7 +186,7 @@
             "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.eu-west-3.amazonaws.com"
+                    "url": "https://pi.eu-west-3.amazonaws.com"
                 }
             },
             "params": {
@@ -173,7 +199,7 @@
             "documentation": "For region me-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.me-south-1.amazonaws.com"
+                    "url": "https://pi.me-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +212,7 @@
             "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.sa-east-1.amazonaws.com"
+                    "url": "https://pi.sa-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -199,25 +225,12 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-east-1.amazonaws.com"
+                    "url": "https://pi.us-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-east-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot-fips.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -225,25 +238,12 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-east-2.amazonaws.com"
+                    "url": "https://pi.us-east-2.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-east-2",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot-fips.us-east-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-east-2",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -251,25 +251,12 @@
             "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-west-1.amazonaws.com"
+                    "url": "https://pi.us-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-west-1",
                 "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot-fips.us-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-1",
-                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -277,7 +264,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-west-2.amazonaws.com"
+                    "url": "https://pi.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -287,23 +274,10 @@
             }
         },
         {
-            "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot-fips.us-west-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-west-2",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot-fips.us-east-1.api.aws"
+                    "url": "https://pi-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -313,10 +287,23 @@
             }
         },
         {
+            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://pi-fips.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-east-1.api.aws"
+                    "url": "https://pi.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -329,7 +316,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.cn-north-1.amazonaws.com.cn"
+                    "url": "https://pi.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -342,7 +329,7 @@
             "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.cn-northwest-1.amazonaws.com.cn"
+                    "url": "https://pi.cn-northwest-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -355,7 +342,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://pi-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -368,7 +355,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://pi-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -381,7 +368,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://pi.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -391,75 +378,36 @@
             }
         },
         {
-            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-gov-east-1.amazonaws.com"
+                    "url": "https://pi-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
+                "UseFIPS": true,
+                "UseDualStack": true
             }
         },
         {
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://pi-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": true,
                 "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot-fips.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://iot-fips.us-gov-east-1.api.aws"
-                }
-            },
-            "params": {
-                "Region": "us-gov-east-1",
-                "UseFIPS": true,
-                "UseDualStack": true
             }
         },
         {
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-gov-east-1.api.aws"
+                    "url": "https://pi.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -469,10 +417,23 @@
             }
         },
         {
+            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://pi.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://pi-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -485,7 +446,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://pi.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -498,7 +459,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://pi-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -511,7 +472,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://iot.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://pi.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

@@ -1855,23 +1855,22 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 //
 // Creates an X.509 certificate using the specified certificate signing request.
 //
-// Note: The CSR must include a public key that is either an RSA key with a
-// length of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or
-// NIST P-512 curves. For supported certificates, consult Certificate signing
-// algorithms supported by IoT (https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms).
-//
-// Note: Reusing the same certificate signing request (CSR) results in a distinct
-// certificate.
-//
 // Requires permission to access the CreateCertificateFromCsr (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
+//
+// The CSR must include a public key that is either an RSA key with a length
+// of at least 2048 bits or an ECC key from NIST P-25 or NIST P-384 curves.
+// For supported certificates, consult Certificate signing algorithms supported
+// by IoT (https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms).
+//
+// Reusing the same certificate signing request (CSR) results in a distinct
+// certificate.
 //
 // You can create multiple certificates in a batch by creating a directory,
 // copying multiple .csr files into that directory, and then specifying that
 // directory on the command line. The following commands show how to create
-// a batch of certificates given a batch of CSRs.
-//
-// Assuming a set of CSRs are located inside of the directory my-csr-directory:
+// a batch of certificates given a batch of CSRs. In the following commands,
+// we assume that a set of CSRs are located inside of the directory my-csr-directory:
 //
 // On Linux and OS X, the command is:
 //
@@ -1882,7 +1881,7 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // file name to the aws iot create-certificate-from-csr Amazon Web Services
 // CLI command to create a certificate for the corresponding CSR.
 //
-// The aws iot create-certificate-from-csr part of the command can also be run
+// You can also run the aws iot create-certificate-from-csr part of the command
 // in parallel to speed up the certificate creation process:
 //
 // $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
@@ -32123,7 +32122,7 @@ type CreateFleetMetricInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// Used to support unit transformation such as milliseconds to seconds. The
-	// unit must be supported by CW metric (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
+	// unit must be supported by CW metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
 	// Default to null.
 	Unit *string `locationName:"unit" type:"string" enum:"FleetMetricUnit"`
 }
@@ -32665,6 +32664,10 @@ type CreateJobTemplateInput struct {
 	// JobTemplateId is a required field
 	JobTemplateId *string `location:"uri" locationName:"jobTemplateId" min:"1" type:"string" required:"true"`
 
+	// Allows you to configure an optional maintenance window for the rollout of
+	// a job document to all devices in the target group for a job.
+	MaintenanceWindows []*MaintenanceWindow `locationName:"maintenanceWindows" type:"list"`
+
 	// Configuration for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
 
@@ -32724,6 +32727,16 @@ func (s *CreateJobTemplateInput) Validate() error {
 	if s.JobExecutionsRolloutConfig != nil {
 		if err := s.JobExecutionsRolloutConfig.Validate(); err != nil {
 			invalidParams.AddNested("JobExecutionsRolloutConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MaintenanceWindows != nil {
+		for i, v := range s.MaintenanceWindows {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MaintenanceWindows", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.PresignedUrlConfig != nil {
@@ -32793,6 +32806,12 @@ func (s *CreateJobTemplateInput) SetJobExecutionsRolloutConfig(v *JobExecutionsR
 // SetJobTemplateId sets the JobTemplateId field's value.
 func (s *CreateJobTemplateInput) SetJobTemplateId(v string) *CreateJobTemplateInput {
 	s.JobTemplateId = &v
+	return s
+}
+
+// SetMaintenanceWindows sets the MaintenanceWindows field's value.
+func (s *CreateJobTemplateInput) SetMaintenanceWindows(v []*MaintenanceWindow) *CreateJobTemplateInput {
+	s.MaintenanceWindows = v
 	return s
 }
 
@@ -39780,7 +39799,7 @@ type DescribeFleetMetricOutput struct {
 	QueryVersion *string `locationName:"queryVersion" type:"string"`
 
 	// Used to support unit transformation such as milliseconds to seconds. The
-	// unit must be supported by CW metric (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
+	// unit must be supported by CW metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
 	Unit *string `locationName:"unit" type:"string" enum:"FleetMetricUnit"`
 
 	// The version of the fleet metric.
@@ -40272,6 +40291,10 @@ type DescribeJobTemplateOutput struct {
 	// The unique identifier of the job template.
 	JobTemplateId *string `locationName:"jobTemplateId" min:"1" type:"string"`
 
+	// Allows you to configure an optional maintenance window for the rollout of
+	// a job document to all devices in the target group for a job.
+	MaintenanceWindows []*MaintenanceWindow `locationName:"maintenanceWindows" type:"list"`
+
 	// Configuration for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
 
@@ -40351,6 +40374,12 @@ func (s *DescribeJobTemplateOutput) SetJobTemplateArn(v string) *DescribeJobTemp
 // SetJobTemplateId sets the JobTemplateId field's value.
 func (s *DescribeJobTemplateOutput) SetJobTemplateId(v string) *DescribeJobTemplateOutput {
 	s.JobTemplateId = &v
+	return s
+}
+
+// SetMaintenanceWindows sets the MaintenanceWindows field's value.
+func (s *DescribeJobTemplateOutput) SetMaintenanceWindows(v []*MaintenanceWindow) *DescribeJobTemplateOutput {
+	s.MaintenanceWindows = v
 	return s
 }
 
@@ -46928,6 +46957,9 @@ type Job struct {
 	// If the job was updated, provides the reason code for the update.
 	ReasonCode *string `locationName:"reasonCode" type:"string"`
 
+	// Displays the next seven maintenance window occurrences and their start times.
+	ScheduledJobRollouts []*ScheduledJobRollout `locationName:"scheduledJobRollouts" type:"list"`
+
 	// The configuration that allows you to schedule a job for a future date and
 	// time in addition to specifying the end behavior for each job execution.
 	SchedulingConfig *SchedulingConfig `locationName:"schedulingConfig" type:"structure"`
@@ -47081,6 +47113,12 @@ func (s *Job) SetPresignedUrlConfig(v *PresignedUrlConfig) *Job {
 // SetReasonCode sets the ReasonCode field's value.
 func (s *Job) SetReasonCode(v string) *Job {
 	s.ReasonCode = &v
+	return s
+}
+
+// SetScheduledJobRollouts sets the ScheduledJobRollouts field's value.
+func (s *Job) SetScheduledJobRollouts(v []*ScheduledJobRollout) *Job {
+	s.ScheduledJobRollouts = v
 	return s
 }
 
@@ -55264,6 +55302,75 @@ func (s *MachineLearningDetectionConfig) SetConfidenceLevel(v string) *MachineLe
 	return s
 }
 
+// An optional configuration within the SchedulingConfig to setup a recurring
+// maintenance window with a predetermined start time and duration for the rollout
+// of a job document to all devices in a target group for a job.
+type MaintenanceWindow struct {
+	_ struct{} `type:"structure"`
+
+	// Displays the duration of the next maintenance window.
+	//
+	// DurationInMinutes is a required field
+	DurationInMinutes *int64 `locationName:"durationInMinutes" min:"30" type:"integer" required:"true"`
+
+	// Displays the start time of the next maintenance window.
+	//
+	// StartTime is a required field
+	StartTime *string `locationName:"startTime" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceWindow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceWindow) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MaintenanceWindow) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MaintenanceWindow"}
+	if s.DurationInMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("DurationInMinutes"))
+	}
+	if s.DurationInMinutes != nil && *s.DurationInMinutes < 30 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInMinutes", 30))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.StartTime != nil && len(*s.StartTime) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartTime", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDurationInMinutes sets the DurationInMinutes field's value.
+func (s *MaintenanceWindow) SetDurationInMinutes(v int64) *MaintenanceWindow {
+	s.DurationInMinutes = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *MaintenanceWindow) SetStartTime(v string) *MaintenanceWindow {
+	s.StartTime = &v
+	return s
+}
+
 // The policy documentation is not valid.
 type MalformedPolicyException struct {
 	_            struct{}                  `type:"structure"`
@@ -59536,6 +59643,38 @@ func (s *ScheduledAuditMetadata) SetScheduledAuditName(v string) *ScheduledAudit
 	return s
 }
 
+// Displays the next seven maintenance window occurrences and their start times.
+type ScheduledJobRollout struct {
+	_ struct{} `type:"structure"`
+
+	// Displays the start times of the next seven maintenance window occurrences.
+	StartTime *string `locationName:"startTime" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduledJobRollout) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduledJobRollout) GoString() string {
+	return s.String()
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ScheduledJobRollout) SetStartTime(v string) *ScheduledJobRollout {
+	s.StartTime = &v
+	return s
+}
+
 // Specifies the date and time that a job will begin the rollout of the job
 // document to all devices in the target group. Additionally, you can specify
 // the end behavior for each job execution when it reaches the scheduled end
@@ -59553,11 +59692,20 @@ type SchedulingConfig struct {
 	// from the current time and be scheduled a minimum of thirty minutes from the
 	// current time. The minimum duration between startTime and endTime is thirty
 	// minutes. The maximum duration between startTime and endTime is two years.
+	// The date and time format for the endTime is YYYY-MM-DD for the date and HH:MM
+	// for the time.
 	EndTime *string `locationName:"endTime" min:"1" type:"string"`
+
+	// An optional configuration within the SchedulingConfig to setup a recurring
+	// maintenance window with a predetermined start time and duration for the rollout
+	// of a job document to all devices in a target group for a job.
+	MaintenanceWindows []*MaintenanceWindow `locationName:"maintenanceWindows" type:"list"`
 
 	// The time a job will begin rollout of the job document to all devices in the
 	// target group for a job. The startTime can be scheduled up to a year in advance
 	// and must be scheduled a minimum of thirty minutes from the current time.
+	// The date and time format for the startTime is YYYY-MM-DD for the date and
+	// HH:MM for the time.
 	StartTime *string `locationName:"startTime" min:"1" type:"string"`
 }
 
@@ -59588,6 +59736,16 @@ func (s *SchedulingConfig) Validate() error {
 	if s.StartTime != nil && len(*s.StartTime) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StartTime", 1))
 	}
+	if s.MaintenanceWindows != nil {
+		for i, v := range s.MaintenanceWindows {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MaintenanceWindows", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -59604,6 +59762,12 @@ func (s *SchedulingConfig) SetEndBehavior(v string) *SchedulingConfig {
 // SetEndTime sets the EndTime field's value.
 func (s *SchedulingConfig) SetEndTime(v string) *SchedulingConfig {
 	s.EndTime = &v
+	return s
+}
+
+// SetMaintenanceWindows sets the MaintenanceWindows field's value.
+func (s *SchedulingConfig) SetMaintenanceWindows(v []*MaintenanceWindow) *SchedulingConfig {
+	s.MaintenanceWindows = v
 	return s
 }
 

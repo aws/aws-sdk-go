@@ -321,7 +321,8 @@
         "EndTime":{"shape":"ISOTimestamp"},
         "PeriodInSeconds":{"shape":"Integer"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "PeriodAlignment":{"shape":"PeriodAlignment"}
       }
     },
     "GetResourceMetricsResponse":{
@@ -473,6 +474,13 @@
         "Message":{"shape":"ErrorString"}
       },
       "exception":true
+    },
+    "PeriodAlignment":{
+      "type":"string",
+      "enum":[
+        "END_TIME",
+        "START_TIME"
+      ]
     },
     "RequestString":{
       "type":"string",

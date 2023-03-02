@@ -388,6 +388,10 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -899,7 +903,8 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 // CloseAccount API operation for AWS Organizations.
 //
 // Closes an Amazon Web Services member account within an organization. You
-// can't close the management account with this API. This is an asynchronous
+// can close an account when all features are enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html).
+// You can't close the management account with this API. This is an asynchronous
 // request that Amazon Web Services performs in the background. Because CloseAccount
 // operates asynchronously, it can return a successful completion message even
 // though account closure might still be in progress. You need to wait a few
@@ -917,10 +922,12 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 //     (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_security_incident-response.html#orgs_cloudtrail-integration)
 //     in the Organizations User Guide.
 //
-//   - You can only close 10% of active member accounts within a rolling 30
-//     day period. This quota is not bound by a calendar month, but starts when
-//     you close an account. Within 30 days of that initial account closure,
-//     you can't exceed the 10% account closure limit.
+//   - You can close only 10% of member accounts, between 10 and 200, within
+//     a rolling 30 day period. This quota is not bound by a calendar month,
+//     but starts when you close an account. After you reach this limit, you
+//     can close additional accounts in the Billing console. For more information,
+//     see Closing an account (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/close-account.html)
+//     in the Amazon Web Services Billing and Cost Management User Guide.
 //
 //   - To reinstate a closed account, contact Amazon Web Services Support within
 //     the 90-day grace period while the account is in SUSPENDED status.
@@ -996,6 +1003,10 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -1407,6 +1418,10 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -1868,6 +1883,10 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -2232,6 +2251,10 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -2590,6 +2613,10 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -2945,6 +2972,10 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -4094,6 +4125,10 @@ func (c *Organizations) DeleteResourcePolicyRequest(input *DeleteResourcePolicyI
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -4375,6 +4410,10 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -5103,6 +5142,10 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -6077,7 +6120,8 @@ func (c *Organizations) DescribeResourcePolicyRequest(input *DescribeResourcePol
 // Retrieves information about a resource policy.
 //
 // You can only call this operation from the organization's management account
-// or by a member account that is a delegated administrator for an AWS service.
+// or by a member account that is a delegated administrator for an Amazon Web
+// Services service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6142,6 +6186,10 @@ func (c *Organizations) DescribeResourcePolicyRequest(input *DescribeResourcePol
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -6410,6 +6458,10 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -6824,6 +6876,10 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -7182,6 +7238,10 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -7560,6 +7620,10 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -8173,6 +8237,10 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -8614,6 +8682,10 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -9011,6 +9083,10 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -9370,6 +9446,10 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -10763,6 +10843,10 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -11173,6 +11257,10 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -14104,6 +14192,10 @@ func (c *Organizations) PutResourcePolicyRequest(input *PutResourcePolicyInput) 
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -14379,6 +14471,10 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -14764,6 +14860,10 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -15126,6 +15226,10 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -15482,6 +15586,10 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -16018,6 +16126,10 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
+//
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
 //
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
@@ -17589,6 +17701,10 @@ func (s *ConflictException) RequestID() string {
 //   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
 //     of accounts that you can create in one day.
 //
+//   - ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or
+//     your account isn't fully active. You must complete the account setup before
+//     you create an organization.
+//
 //   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
 //     the number of accounts in an organization. If you need more accounts,
 //     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
@@ -17876,9 +17992,9 @@ type CreateAccountInput struct {
 	// information about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)
 	// in the Organizations User Guide.
 	//
-	// If any one of the tags is invalid or if you exceed the maximum allowed number
-	// of tags for an account, then the entire request fails and the account is
-	// not created.
+	// If any one of the tags is not valid or if you exceed the maximum allowed
+	// number of tags for an account, then the entire request fails and the account
+	// is not created.
 	Tags []*Tag `type:"list"`
 }
 
@@ -18325,9 +18441,9 @@ type CreateGovCloudAccountInput struct {
 	// information about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)
 	// in the Organizations User Guide.
 	//
-	// If any one of the tags is invalid or if you exceed the maximum allowed number
-	// of tags for an account, then the entire request fails and the account is
-	// not created.
+	// If any one of the tags is not valid or if you exceed the maximum allowed
+	// number of tags for an account, then the entire request fails and the account
+	// is not created.
 	Tags []*Tag `type:"list"`
 }
 
@@ -18551,7 +18667,7 @@ type CreateOrganizationalUnitInput struct {
 	// about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)
 	// in the Organizations User Guide.
 	//
-	// If any one of the tags is invalid or if you exceed the allowed number of
+	// If any one of the tags is not valid or if you exceed the allowed number of
 	// tags for an OU, then the entire request fails and the OU is not created.
 	Tags []*Tag `type:"list"`
 }
@@ -18681,7 +18797,7 @@ type CreatePolicyInput struct {
 	// about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)
 	// in the Organizations User Guide.
 	//
-	// If any one of the tags is invalid or if you exceed the allowed number of
+	// If any one of the tags is not valid or if you exceed the allowed number of
 	// tags for a policy, then the entire request fails and the policy is not created.
 	Tags []*Tag `type:"list"`
 
@@ -21941,7 +22057,7 @@ type InviteAccountToOrganizationInput struct {
 	// policy changes between the invitation and the acceptance, then that tags
 	// could potentially be non-compliant.
 	//
-	// If any one of the tags is invalid or if you exceed the allowed number of
+	// If any one of the tags is not valid or if you exceed the allowed number of
 	// tags for an account, then the entire request fails and invitations are not
 	// sent.
 	Tags []*Tag `type:"list"`
@@ -25583,14 +25699,14 @@ type PutResourcePolicyInput struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// Updates the list of tags that you want to attach to the newly-created resource
-	// policy. For each tag in the list, you must specify both a tag key and a value.
-	// You can set the value to an empty string, but you can't set it to null. For
-	// more information about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)
+	// A list of tags that you want to attach to the newly created resource policy.
+	// For each tag in the list, you must specify both a tag key and a value. You
+	// can set the value to an empty string, but you can't set it to null. For more
+	// information about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)
 	// in the Organizations User Guide.
 	//
 	// Calls with tags apply to the initial creation of the resource policy, otherwise
-	// an exception is thrown. If any one of the tags is invalid or if you exceed
+	// an exception is thrown. If any one of the tags is not valid or if you exceed
 	// the allowed number of tags for the resource policy, then the entire request
 	// fails and the resource policy is not created.
 	Tags []*Tag `type:"list"`
@@ -26361,8 +26477,8 @@ type TagResourceInput struct {
 	// For each tag in the list, you must specify both a tag key and a value. The
 	// value can be an empty string, but you can't set it to null.
 	//
-	// If any one of the tags is invalid or if you exceed the maximum allowed number
-	// of tags for a resource, then the entire request fails.
+	// If any one of the tags is not valid or if you exceed the maximum allowed
+	// number of tags for a resource, then the entire request fails.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -27149,6 +27265,9 @@ const (
 
 	// ConstraintViolationExceptionReasonInvalidPaymentInstrument is a ConstraintViolationExceptionReason enum value
 	ConstraintViolationExceptionReasonInvalidPaymentInstrument = "INVALID_PAYMENT_INSTRUMENT"
+
+	// ConstraintViolationExceptionReasonAccountCreationNotComplete is a ConstraintViolationExceptionReason enum value
+	ConstraintViolationExceptionReasonAccountCreationNotComplete = "ACCOUNT_CREATION_NOT_COMPLETE"
 )
 
 // ConstraintViolationExceptionReason_Values returns all elements of the ConstraintViolationExceptionReason enum
@@ -27187,6 +27306,7 @@ func ConstraintViolationExceptionReason_Values() []string {
 		ConstraintViolationExceptionReasonCloseAccountRequestsLimitExceeded,
 		ConstraintViolationExceptionReasonServiceAccessNotEnabled,
 		ConstraintViolationExceptionReasonInvalidPaymentInstrument,
+		ConstraintViolationExceptionReasonAccountCreationNotComplete,
 	}
 }
 

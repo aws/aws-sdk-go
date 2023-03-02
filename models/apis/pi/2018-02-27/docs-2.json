@@ -336,6 +336,12 @@
       "refs": {
       }
     },
+    "PeriodAlignment": {
+      "base": null,
+      "refs": {
+        "GetResourceMetricsRequest$PeriodAlignment": "<p>The returned timestamp which is the start or end time of the time periods. The default value is <code>END_TIME</code>.</p>"
+      }
+    },
     "RequestString": {
       "base": null,
       "refs": {

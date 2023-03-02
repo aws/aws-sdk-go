@@ -1,3 +1,17 @@
+Release v1.44.213 (2023-03-02)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * A recurring maintenance window is an optional configuration used for rolling out the job document to all devices in the target group observing a predetermined start time, duration, and frequency that the maintenance window occurs.
+* `service/migrationhubstrategy`: Updates service API
+* `service/organizations`: Updates service API and documentation
+  * This release introduces a new reason code, ACCOUNT_CREATION_NOT_COMPLETE, to ConstraintViolationException in CreateOrganization API.
+* `service/pi`: Updates service API and documentation
+* `service/pipes`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Add a new field "EndpointMetrics" in SageMaker Inference Recommender "ListInferenceRecommendationsJobSteps" API response.
+
 Release v1.44.212 (2023-03-01)
 ===
 

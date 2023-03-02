@@ -17252,7 +17252,8 @@
         "Metrics":{"shape":"RecommendationMetrics"},
         "EndpointConfiguration":{"shape":"EndpointOutputConfiguration"},
         "ModelConfiguration":{"shape":"ModelConfiguration"},
-        "FailureReason":{"shape":"RecommendationFailureReason"}
+        "FailureReason":{"shape":"RecommendationFailureReason"},
+        "EndpointMetrics":{"shape":"InferenceMetrics"}
       }
     },
     "RecommendationJobInputConfig":{

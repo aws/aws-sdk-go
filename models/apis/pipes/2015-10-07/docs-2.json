@@ -11,7 +11,7 @@
     "StopPipe": "<p>Stop an existing pipe.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified pipe. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values.</p> <p>Tags don't have any semantic meaning to Amazon Web Services and are interpreted strictly as strings of characters.</p> <p>You can use the <code>TagResource</code> action with a pipe that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the pipe. If you specify a tag key that is already associated with the pipe, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a pipe.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified pipes.</p>",
-    "UpdatePipe": "<p>Update an existing pipe. When you call <code>UpdatePipe</code>, only the fields that are included in the request are changed, the rest are unchanged. The exception to this is if you modify any Amazon Web Services-service specific fields in the <code>SourceParameters</code>, <code>EnrichmentParameters</code>, or <code>TargetParameters</code> objects. The fields in these objects are updated atomically as one and override existing values. This is by design and means that if you don't specify an optional field in one of these Parameters objects, that field will be set to its system-default value after the update.</p> <pre><code> &lt;p&gt;For more information about pipes, see &lt;a href=&quot;https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html&quot;&gt; Amazon EventBridge Pipes&lt;/a&gt; in the Amazon EventBridge User Guide.&lt;/p&gt; </code></pre>"
+    "UpdatePipe": "<p>Update an existing pipe. When you call <code>UpdatePipe</code>, only the fields that are included in the request are changed, the rest are unchanged. The exception to this is if you modify any Amazon Web Services-service specific fields in the <code>SourceParameters</code>, <code>EnrichmentParameters</code>, or <code>TargetParameters</code> objects. The fields in these objects are updated atomically as one and override existing values. This is by design and means that if you don't specify an optional field in one of these Parameters objects, that field will be set to its system-default value after the update.</p> <p>For more information about pipes, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html\"> Amazon EventBridge Pipes</a> in the Amazon EventBridge User Guide.</p>"
   },
   "shapes": {
     "Arn": {
@@ -484,23 +484,18 @@
         "ListPipesRequest$Limit": "<p>The maximum number of pipes to include in the response.</p>"
       }
     },
-    "LimitMax1000": {
-      "base": null,
-      "refs": {
-        "PipeSourceDynamoDBStreamParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
-        "UpdatePipeSourceDynamoDBStreamParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>"
-      }
-    },
     "LimitMax10000": {
       "base": null,
       "refs": {
         "PipeSourceActiveMQBrokerParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
+        "PipeSourceDynamoDBStreamParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "PipeSourceKinesisStreamParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "PipeSourceManagedStreamingKafkaParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "PipeSourceRabbitMQBrokerParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "PipeSourceSelfManagedKafkaParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "PipeSourceSqsQueueParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "UpdatePipeSourceActiveMQBrokerParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
+        "UpdatePipeSourceDynamoDBStreamParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "UpdatePipeSourceKinesisStreamParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "UpdatePipeSourceManagedStreamingKafkaParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
         "UpdatePipeSourceRabbitMQBrokerParameters$BatchSize": "<p>The maximum number of records to include in each batch.</p>",
