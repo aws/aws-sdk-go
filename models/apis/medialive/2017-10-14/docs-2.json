@@ -391,7 +391,7 @@
     "AvailSettings": {
       "base": "Avail Settings",
       "refs": {
-        "AvailConfiguration$AvailSettings": "Ad avail settings."
+        "AvailConfiguration$AvailSettings": "Controls how SCTE-35 messages create cues. Splice Insert mode treats all segmentation signals traditionally. With Time Signal APOS mode only Time Signal Placement Opportunity and Break messages create segment breaks. With ESAM mode, signals are forwarded to an ESAM server for possible update."
       }
     },
     "BadGatewayException": {
@@ -565,7 +565,7 @@
       }
     },
     "CaptionSelector": {
-      "base": "Output groups for this Live Event. Output groups contain information about where streams should be distributed.",
+      "base": "Caption Selector",
       "refs": {
         "__listOfCaptionSelector$member": null
       }
@@ -2600,6 +2600,12 @@
         "NielsenConfiguration$NielsenPcmToId3Tagging": "Enables Nielsen PCM to ID3 tagging"
       }
     },
+    "NielsenWatermarkTimezones": {
+      "base": "Nielsen Watermark Timezones",
+      "refs": {
+        "NielsenNaesIiNw$Timezone": "Choose the timezone for the time stamps in the watermark. If not provided,\nthe timestamps will be in Coordinated Universal Time (UTC)"
+      }
+    },
     "NielsenWatermarksCbetStepaside": {
       "base": "Nielsen Watermarks Cbet Stepaside",
       "refs": {
@@ -3055,7 +3061,7 @@
       }
     },
     "Scte35SpliceInsert": {
-      "base": "Scte35 Splice Insert",
+      "base": "Typical configuration that applies breaks on splice inserts in addition to time signal placement opportunities, breaks, and advertisements.",
       "refs": {
         "AvailSettings$Scte35SpliceInsert": null
       }
@@ -3079,7 +3085,7 @@
       }
     },
     "Scte35TimeSignalApos": {
-      "base": "Scte35 Time Signal Apos",
+      "base": "Atypical configuration that applies segment breaks only on SCTE-35 time signal placement opportunities and breaks.",
       "refs": {
         "AvailSettings$Scte35TimeSignalApos": null
       }
@@ -3656,9 +3662,9 @@
         "H264Settings$GopClosedCadence": "Frequency of closed GOPs. In streaming applications, it is recommended that this be set to 1 so a decoder joining mid-stream will receive an IDR frame as quickly as possible. Setting this value to 0 will break output segmenting.",
         "H265Settings$GopClosedCadence": "Frequency of closed GOPs. In streaming applications, it is recommended that this be set to 1 so a decoder joining mid-stream will receive an IDR frame as quickly as possible. Setting this value to 0 will break output segmenting.",
         "HlsAkamaiSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the CDN if the connection is lost.",
-        "HlsAkamaiSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
+        "HlsAkamaiSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state. Applies only if the CDN destination URI begins with \"s3\" or \"mediastore\". For other URIs, the value is always 3.",
         "HlsBasicPutSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the CDN if the connection is lost.",
-        "HlsBasicPutSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
+        "HlsBasicPutSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state. Applies only if the CDN destination URI begins with \"s3\" or \"mediastore\". For other URIs, the value is always 3.",
         "HlsGroupSettings$MinSegmentLength": "Minimum length of MPEG-2 Transport Stream segments in seconds. When set, minimum segment length is enforced by looking ahead and back within the specified range for a nearby avail and extending the segment size if needed.",
         "HlsGroupSettings$TimedMetadataId3Period": "Timed Metadata interval in seconds.",
         "HlsGroupSettings$TimestampDeltaMilliseconds": "Provides an extra millisecond delta offset to fine tune the timestamps.",
@@ -3667,9 +3673,9 @@
         "HlsInputSettings$Retries": "The number of consecutive times that attempts to read a manifest or segment must fail before the input is considered unavailable.",
         "HlsInputSettings$RetryInterval": "The number of seconds between retries when an attempt to read a manifest or segment fails.",
         "HlsMediaStoreSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the CDN if the connection is lost.",
-        "HlsMediaStoreSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
+        "HlsMediaStoreSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state. Applies only if the CDN destination URI begins with \"s3\" or \"mediastore\". For other URIs, the value is always 3.",
         "HlsWebdavSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the CDN if the connection is lost.",
-        "HlsWebdavSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
+        "HlsWebdavSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state. Applies only if the CDN destination URI begins with \"s3\" or \"mediastore\". For other URIs, the value is always 3.",
         "M2tsSettings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
         "M2tsSettings$Bitrate": "The output bitrate of the transport stream in bits per second. Setting to 0 lets the muxer automatically determine the appropriate bitrate.",
         "M3u8Settings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",

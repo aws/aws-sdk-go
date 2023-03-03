@@ -822,7 +822,8 @@
         "LanguageCode":{"shape":"LanguageCode"},
         "Words":{"shape":"Words"},
         "VocabularyFilterFileUri":{"shape":"Uri"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataAccessRoleArn":{"shape":"DataAccessRoleArn"}
       }
     },
     "CreateVocabularyFilterResponse":{
@@ -844,7 +845,8 @@
         "LanguageCode":{"shape":"LanguageCode"},
         "Phrases":{"shape":"Phrases"},
         "VocabularyFileUri":{"shape":"Uri"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataAccessRoleArn":{"shape":"DataAccessRoleArn"}
       }
     },
     "CreateVocabularyResponse":{
@@ -1997,7 +1999,8 @@
       "members":{
         "VocabularyFilterName":{"shape":"VocabularyFilterName"},
         "Words":{"shape":"Words"},
-        "VocabularyFilterFileUri":{"shape":"Uri"}
+        "VocabularyFilterFileUri":{"shape":"Uri"},
+        "DataAccessRoleArn":{"shape":"DataAccessRoleArn"}
       }
     },
     "UpdateVocabularyFilterResponse":{
@@ -2018,7 +2021,8 @@
         "VocabularyName":{"shape":"VocabularyName"},
         "LanguageCode":{"shape":"LanguageCode"},
         "Phrases":{"shape":"Phrases"},
-        "VocabularyFileUri":{"shape":"Uri"}
+        "VocabularyFileUri":{"shape":"Uri"},
+        "DataAccessRoleArn":{"shape":"DataAccessRoleArn"}
       }
     },
     "UpdateVocabularyResponse":{

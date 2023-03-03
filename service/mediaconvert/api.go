@@ -5206,9 +5206,9 @@ func (s *BadRequestException) RequestID() string {
 // QVBR output, with little or no perceptual decrease in quality. Or, use to
 // increase the video quality of outputs with other rate control modes relative
 // to the bitrate that you specify. Bandwidth reduction increases further when
-// your input is low quality or noisy.Outputs that use this feature incur pro-tier
-// pricing.When you include Bandwidth reduction filter, you cannot include the
-// Noise reducer preprocessor.
+// your input is low quality or noisy. Outputs that use this feature incur pro-tier
+// pricing. When you include Bandwidth reduction filter, you cannot include
+// the Noise reducer preprocessor.
 type BandwidthReductionFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -5220,13 +5220,11 @@ type BandwidthReductionFilter struct {
 	Sharpening *string `locationName:"sharpening" type:"string" enum:"BandwidthReductionFilterSharpening"`
 
 	// Specify the strength of the Bandwidth reduction filter. For most workflows,
-	// we recommend that you choose Auto. Your output bandwidth will be reduced
-	// by at least 8 percent with no perceptual decrease in video quality. If your
-	// output bandwidth isn't constrained, set Filter strength to Low or Medium.
-	// Low results in minimal to no impact in perceptual quality. For more bandwidth
-	// reduction, choose High. The filter helps equalize quality between all scenes
-	// and increases video softness. We recommend that you choose High for low bitrate
-	// outputs.
+	// we recommend that you choose Auto to reduce the bandwidth of your output
+	// with little to no perceptual decrease in video quality. For high quality
+	// and high bitrate outputs, choose Low. For the most bandwidth reduction, choose
+	// High. We recommend that you choose High for low bitrate outputs. Note that
+	// High may incur a slight increase in the softness of your output.
 	Strength *string `locationName:"strength" type:"string" enum:"BandwidthReductionFilterStrength"`
 }
 
@@ -7415,11 +7413,13 @@ type ColorCorrector struct {
 	// between HDR formats, between SDR formats, from SDR to HDR, and from HDR to
 	// SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
 	// video has an HDR format, but visually appears the same as an unconverted
-	// output. HDR to SDR conversion uses Elemental tone mapping technology to approximate
-	// the outcome of manually regrading from HDR to SDR. Select Force P3D65 (SDR)
-	// to set the output color space metadata to the following: * Color primaries:
-	// Display P3 * Transfer characteristics: SMPTE 428M * Matrix coefficients:
-	// BT.709
+	// output. HDR to SDR conversion uses tone mapping to approximate the outcome
+	// of manually regrading from HDR to SDR. When you specify an output color space,
+	// MediaConvert uses the following color space metadata, which includes color
+	// primaries, transfer characteristics, and matrix coefficients: * HDR 10: BT.2020,
+	// PQ, BT.2020 non-constant * HLG 2020: BT.2020, HLG, BT.2020 non-constant *
+	// P3DCI (Theater): DCIP3, SMPTE 428M, BT.709 * P3D65 (SDR): Display P3, sRGB,
+	// BT.709 * P3D65 (HDR): Display P3, PQ, BT.709
 	ColorSpaceConversion *string `locationName:"colorSpaceConversion" type:"string" enum:"ColorSpaceConversion"`
 
 	// Contrast level.
@@ -12273,9 +12273,9 @@ type H264Settings struct {
 	// QVBR output, with little or no perceptual decrease in quality. Or, use to
 	// increase the video quality of outputs with other rate control modes relative
 	// to the bitrate that you specify. Bandwidth reduction increases further when
-	// your input is low quality or noisy.Outputs that use this feature incur pro-tier
-	// pricing.When you include Bandwidth reduction filter, you cannot include the
-	// Noise reducer preprocessor.
+	// your input is low quality or noisy. Outputs that use this feature incur pro-tier
+	// pricing. When you include Bandwidth reduction filter, you cannot include
+	// the Noise reducer preprocessor.
 	BandwidthReductionFilter *BandwidthReductionFilter `locationName:"bandwidthReductionFilter" type:"structure"`
 
 	// Specify the average bitrate in bits per second. Required for VBR and CBR.
@@ -25396,17 +25396,20 @@ type VideoSelector struct {
 	AlphaBehavior *string `locationName:"alphaBehavior" type:"string" enum:"AlphaBehavior"`
 
 	// If your input video has accurate color space metadata, or if you don't know
-	// about color space, leave this set to the default value Follow. The service
-	// will automatically detect your input color space. If your input video has
-	// metadata indicating the wrong color space, specify the accurate color space
-	// here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering Display
-	// Color Volume static metadata isn't present in your video stream, or if that
-	// metadata is present but not accurate, choose Force HDR 10 here and specify
+	// about color space: Keep the default value, Follow. MediaConvert will automatically
+	// detect your input color space. If your input video has metadata indicating
+	// the wrong color space, or has missing metadata: Specify the accurate color
+	// space here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering
+	// Display Color Volume static metadata isn't present in your video stream,
+	// or if that metadata is present but not accurate: Choose Force HDR 10. Specify
 	// correct values in the input HDR 10 metadata settings. For more information
-	// about MediaConvert HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
-	// Select P3D65 (SDR) to set the input color space metadata to the following:
-	// * Color primaries: Display P3 * Transfer characteristics: SMPTE 428M * Matrix
-	// coefficients: BT.709
+	// about HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
+	// When you specify an input color space, MediaConvert uses the following color
+	// space metadata, which includes color primaries, transfer characteristics,
+	// and matrix coefficients: * HDR 10: BT.2020, PQ, BT.2020 non-constant * HLG
+	// 2020: BT.2020, HLG, BT.2020 non-constant * P3DCI (Theater): DCIP3, SMPTE
+	// 428M, BT.709 * P3D65 (SDR): Display P3, sRGB, BT.709 * P3D65 (HDR): Display
+	// P3, PQ, BT.709
 	ColorSpace *string `locationName:"colorSpace" type:"string" enum:"ColorSpace"`
 
 	// There are two sources for color metadata, the input file and the job input
@@ -28274,13 +28277,11 @@ func BandwidthReductionFilterSharpening_Values() []string {
 }
 
 // Specify the strength of the Bandwidth reduction filter. For most workflows,
-// we recommend that you choose Auto. Your output bandwidth will be reduced
-// by at least 8 percent with no perceptual decrease in video quality. If your
-// output bandwidth isn't constrained, set Filter strength to Low or Medium.
-// Low results in minimal to no impact in perceptual quality. For more bandwidth
-// reduction, choose High. The filter helps equalize quality between all scenes
-// and increases video softness. We recommend that you choose High for low bitrate
-// outputs.
+// we recommend that you choose Auto to reduce the bandwidth of your output
+// with little to no perceptual decrease in video quality. For high quality
+// and high bitrate outputs, choose Low. For the most bandwidth reduction, choose
+// High. We recommend that you choose High for low bitrate outputs. Note that
+// High may incur a slight increase in the softness of your output.
 const (
 	// BandwidthReductionFilterStrengthLow is a BandwidthReductionFilterStrength enum value
 	BandwidthReductionFilterStrengthLow = "LOW"
@@ -29407,17 +29408,20 @@ func ColorMetadata_Values() []string {
 }
 
 // If your input video has accurate color space metadata, or if you don't know
-// about color space, leave this set to the default value Follow. The service
-// will automatically detect your input color space. If your input video has
-// metadata indicating the wrong color space, specify the accurate color space
-// here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering Display
-// Color Volume static metadata isn't present in your video stream, or if that
-// metadata is present but not accurate, choose Force HDR 10 here and specify
+// about color space: Keep the default value, Follow. MediaConvert will automatically
+// detect your input color space. If your input video has metadata indicating
+// the wrong color space, or has missing metadata: Specify the accurate color
+// space here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering
+// Display Color Volume static metadata isn't present in your video stream,
+// or if that metadata is present but not accurate: Choose Force HDR 10. Specify
 // correct values in the input HDR 10 metadata settings. For more information
-// about MediaConvert HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
-// Select P3D65 (SDR) to set the input color space metadata to the following:
-// * Color primaries: Display P3 * Transfer characteristics: SMPTE 428M * Matrix
-// coefficients: BT.709
+// about HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
+// When you specify an input color space, MediaConvert uses the following color
+// space metadata, which includes color primaries, transfer characteristics,
+// and matrix coefficients: * HDR 10: BT.2020, PQ, BT.2020 non-constant * HLG
+// 2020: BT.2020, HLG, BT.2020 non-constant * P3DCI (Theater): DCIP3, SMPTE
+// 428M, BT.709 * P3D65 (SDR): Display P3, sRGB, BT.709 * P3D65 (HDR): Display
+// P3, PQ, BT.709
 const (
 	// ColorSpaceFollow is a ColorSpace enum value
 	ColorSpaceFollow = "FOLLOW"
@@ -29439,6 +29443,9 @@ const (
 
 	// ColorSpaceP3d65Sdr is a ColorSpace enum value
 	ColorSpaceP3d65Sdr = "P3D65_SDR"
+
+	// ColorSpaceP3d65Hdr is a ColorSpace enum value
+	ColorSpaceP3d65Hdr = "P3D65_HDR"
 )
 
 // ColorSpace_Values returns all elements of the ColorSpace enum
@@ -29451,6 +29458,7 @@ func ColorSpace_Values() []string {
 		ColorSpaceHlg2020,
 		ColorSpaceP3dci,
 		ColorSpaceP3d65Sdr,
+		ColorSpaceP3d65Hdr,
 	}
 }
 
@@ -29458,11 +29466,13 @@ func ColorSpace_Values() []string {
 // between HDR formats, between SDR formats, from SDR to HDR, and from HDR to
 // SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
 // video has an HDR format, but visually appears the same as an unconverted
-// output. HDR to SDR conversion uses Elemental tone mapping technology to approximate
-// the outcome of manually regrading from HDR to SDR. Select Force P3D65 (SDR)
-// to set the output color space metadata to the following: * Color primaries:
-// Display P3 * Transfer characteristics: SMPTE 428M * Matrix coefficients:
-// BT.709
+// output. HDR to SDR conversion uses tone mapping to approximate the outcome
+// of manually regrading from HDR to SDR. When you specify an output color space,
+// MediaConvert uses the following color space metadata, which includes color
+// primaries, transfer characteristics, and matrix coefficients: * HDR 10: BT.2020,
+// PQ, BT.2020 non-constant * HLG 2020: BT.2020, HLG, BT.2020 non-constant *
+// P3DCI (Theater): DCIP3, SMPTE 428M, BT.709 * P3D65 (SDR): Display P3, sRGB,
+// BT.709 * P3D65 (HDR): Display P3, PQ, BT.709
 const (
 	// ColorSpaceConversionNone is a ColorSpaceConversion enum value
 	ColorSpaceConversionNone = "NONE"
@@ -29484,6 +29494,9 @@ const (
 
 	// ColorSpaceConversionForceP3d65Sdr is a ColorSpaceConversion enum value
 	ColorSpaceConversionForceP3d65Sdr = "FORCE_P3D65_SDR"
+
+	// ColorSpaceConversionForceP3d65Hdr is a ColorSpaceConversion enum value
+	ColorSpaceConversionForceP3d65Hdr = "FORCE_P3D65_HDR"
 )
 
 // ColorSpaceConversion_Values returns all elements of the ColorSpaceConversion enum
@@ -29496,6 +29509,7 @@ func ColorSpaceConversion_Values() []string {
 		ColorSpaceConversionForceHlg2020,
 		ColorSpaceConversionForceP3dci,
 		ColorSpaceConversionForceP3d65Sdr,
+		ColorSpaceConversionForceP3d65Hdr,
 	}
 }
 

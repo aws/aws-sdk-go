@@ -2895,7 +2895,8 @@
         "HDR10",
         "HLG_2020",
         "P3DCI",
-        "P3D65_SDR"
+        "P3D65_SDR",
+        "P3D65_HDR"
       ]
     },
     "ColorSpaceConversion": {
@@ -2907,7 +2908,8 @@
         "FORCE_HDR10",
         "FORCE_HLG_2020",
         "FORCE_P3DCI",
-        "FORCE_P3D65_SDR"
+        "FORCE_P3D65_SDR",
+        "FORCE_P3D65_HDR"
       ]
     },
     "ColorSpaceUsage": {

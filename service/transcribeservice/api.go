@@ -64,10 +64,10 @@ func (c *TranscribeService) CreateCallAnalyticsCategoryRequest(input *CreateCall
 // applied retroactively.
 //
 // When creating a new category, you can use the InputType parameter to label
-// the category as a batch category (POST_CALL) or a streaming category (REAL_TIME).
-// Batch categories can only be applied to batch transcriptions and streaming
-// categories can only be applied to streaming transcriptions. If you do not
-// include InputType, your category is created as a batch category by default.
+// the category as a POST_CALL or a REAL_TIME category. POST_CALL categories
+// can only be applied to post-call transcriptions and REAL_TIME categories
+// can only be applied to real-time transcriptions. If you do not include InputType,
+// your category is created as a POST_CALL category by default.
 //
 // Call Analytics categories are composed of rules. For each category, you must
 // create between 1 and 20 rules. Rules can include these parameters: , , ,
@@ -76,8 +76,8 @@ func (c *TranscribeService) CreateCallAnalyticsCategoryRequest(input *CreateCall
 // To update an existing category, see .
 //
 // To learn more about Call Analytics categories, see Creating categories for
-// batch transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html)
-// and Creating categories for streaming transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html).
+// post-call transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html)
+// and Creating categories for real-time transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -280,10 +280,10 @@ func (c *TranscribeService) CreateMedicalVocabularyRequest(input *CreateMedicalV
 // Creates a new custom medical vocabulary.
 //
 // Before creating a new custom medical vocabulary, you must first upload a
-// text file that contains your new entries, phrases, and terms into an Amazon
-// S3 bucket. Note that this differs from , where you can include a list of
-// terms within your request using the Phrases flag; CreateMedicalVocabulary
-// does not support the Phrases flag.
+// text file that contains your vocabulary table into an Amazon S3 bucket. Note
+// that this differs from , where you can include a list of terms within your
+// request using the Phrases flag; CreateMedicalVocabulary does not support
+// the Phrases flag and only accepts vocabularies in table format.
 //
 // Each language has a character set that contains all allowed characters for
 // that specific language. If you use unsupported characters, your custom vocabulary
@@ -3481,13 +3481,15 @@ func (c *TranscribeService) StartCallAnalyticsJobRequest(input *StartCallAnalyti
 // If you want to apply categories to your Call Analytics job, you must create
 // them before submitting your job request. Categories cannot be retroactively
 // applied to a job. To create a new category, use the operation. To learn more
-// about Call Analytics categories, see Creating categories for batch transcriptions
+// about Call Analytics categories, see Creating categories for post-call transcriptions
 // (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html)
-// and Creating categories for streaming transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html).
+// and Creating categories for real-time transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html).
 //
 // To make a StartCallAnalyticsJob request, you must first upload your media
 // file into an Amazon S3 bucket; you can then specify the Amazon S3 location
 // of the file using the Media parameter.
+//
+// Note that job queuing is enabled by default for Call Analytics jobs.
 //
 // You must include the following parameters in your StartCallAnalyticsJob request:
 //
@@ -5362,17 +5364,17 @@ type CreateCallAnalyticsCategoryInput struct {
 	// CategoryName is a required field
 	CategoryName *string `min:"1" type:"string" required:"true"`
 
-	// Choose whether you want to create a streaming or a batch category for your
-	// Call Analytics transcription.
+	// Choose whether you want to create a real-time or a post-call category for
+	// your Call Analytics transcription.
 	//
-	// Specifying POST_CALL assigns your category to batch transcriptions; categories
+	// Specifying POST_CALL assigns your category to post-call transcriptions; categories
 	// with this input type cannot be applied to streaming (real-time) transcriptions.
 	//
 	// Specifying REAL_TIME assigns your category to streaming transcriptions; categories
-	// with this input type cannot be applied to batch (post-call) transcriptions.
+	// with this input type cannot be applied to post-call transcriptions.
 	//
-	// If you do not include InputType, your category is created as a batch category
-	// by default.
+	// If you do not include InputType, your category is created as a post-call
+	// category by default.
 	InputType *string `type:"string" enum:"InputType"`
 
 	// Rules define a Call Analytics category. When creating a new category, you
@@ -5904,6 +5906,17 @@ func (s *CreateMedicalVocabularyOutput) SetVocabularyState(v string) *CreateMedi
 type CreateVocabularyFilterInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of an IAM role that has permissions to access
+	// the Amazon S3 bucket that contains your input files (in this case, your custom
+	// vocabulary filter). If the role that you specify doesn’t have the appropriate
+	// permissions to access the specified Amazon S3 location, your request fails.
+	//
+	// IAM role ARNs have the format arn:partition:iam::account:role/role-name-with-path.
+	// For example: arn:aws:iam::111122223333:role/Admin.
+	//
+	// For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The language code that represents the language of the entries in your vocabulary
 	// filter. Each custom vocabulary filter must contain terms in only one language.
 	//
@@ -5983,6 +5996,9 @@ func (s CreateVocabularyFilterInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateVocabularyFilterInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateVocabularyFilterInput"}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
@@ -6016,6 +6032,12 @@ func (s *CreateVocabularyFilterInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *CreateVocabularyFilterInput) SetDataAccessRoleArn(v string) *CreateVocabularyFilterInput {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -6103,6 +6125,17 @@ func (s *CreateVocabularyFilterOutput) SetVocabularyFilterName(v string) *Create
 type CreateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of an IAM role that has permissions to access
+	// the Amazon S3 bucket that contains your input files (in this case, your custom
+	// vocabulary). If the role that you specify doesn’t have the appropriate
+	// permissions to access the specified Amazon S3 location, your request fails.
+	//
+	// IAM role ARNs have the format arn:partition:iam::account:role/role-name-with-path.
+	// For example: arn:aws:iam::111122223333:role/Admin.
+	//
+	// For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The language code that represents the language of the entries in your custom
 	// vocabulary. Each custom vocabulary must contain terms in only one language.
 	//
@@ -6182,6 +6215,9 @@ func (s CreateVocabularyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateVocabularyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateVocabularyInput"}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
@@ -6212,6 +6248,12 @@ func (s *CreateVocabularyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *CreateVocabularyInput) SetDataAccessRoleArn(v string) *CreateVocabularyInput {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -7862,7 +7904,7 @@ func (s *InternalFailureException) RequestID() string {
 //
 //   - A lack of interruptions
 //
-// See Rule criteria for batch categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
+// See Rule criteria for post-call categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
 // for usage examples.
 type InterruptionFilter struct {
 	_ struct{} `type:"structure"`
@@ -7951,8 +7993,6 @@ type JobExecutionSettings struct {
 	// request limit. If AllowDeferredExecution is set to false and the number of
 	// transcription job requests exceed the concurrent request limit, you get a
 	// LimitExceededException error.
-	//
-	// Note that job queuing is enabled by default for Call Analytics jobs.
 	//
 	// If you include AllowDeferredExecution in your request, you must also include
 	// DataAccessRoleArn.
@@ -8175,11 +8215,23 @@ func (s *LanguageIdSettings) SetVocabularyName(v string) *LanguageIdSettings {
 	return s
 }
 
-// Provides information about a custom language model, including the base model
-// name, when the model was created, the location of the files used to train
-// the model, when the model was last modified, the name you chose for the model,
-// its language, its processing state, and if there is an upgrade available
-// for the base model.
+// Provides information about a custom language model, including:
+//
+//   - The base model name
+//
+//   - When the model was created
+//
+//   - The location of the files used to train the model
+//
+//   - When the model was last modified
+//
+//   - The name you chose for the model
+//
+//   - The model's language
+//
+//   - The model's processing state
+//
+//   - Any available upgrades for the base model
 type LanguageModel struct {
 	_ struct{} `type:"structure"`
 
@@ -10232,7 +10284,7 @@ func (s *ModelSettings) SetLanguageModelName(v string) *ModelSettings {
 //
 //   - The presence of speech at specified periods throughout the call
 //
-// See Rule criteria for batch categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
+// See Rule criteria for post-call categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
 // for usage examples.
 type NonTalkTimeFilter struct {
 	_ struct{} `type:"structure"`
@@ -10447,8 +10499,8 @@ func (s *RelativeTimeRange) SetStartPercentage(v int64) *RelativeTimeRange {
 // Rules can include these parameters: , , , and .
 //
 // To learn more about Call Analytics rules and categories, see Creating categories
-// for batch transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html)
-// and Creating categories for streaming transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html).
+// for post-call transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html)
+// and Creating categories for real-time transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html).
 //
 // To learn more about Call Analytics, see Analyzing call center audio with
 // Call Analytics (https://docs.aws.amazon.com/transcribe/latest/dg/call-analytics.html).
@@ -10551,7 +10603,7 @@ func (s *Rule) SetTranscriptFilter(v *TranscriptFilter) *Rule {
 //   - The presence or absence of a mixed sentiment felt by the customer, the
 //     agent, or both at specified points in the call
 //
-// See Rule criteria for batch categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
+// See Rule criteria for post-call categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
 // for usage examples.
 type SentimentFilter struct {
 	_ struct{} `type:"structure"`
@@ -10882,7 +10934,7 @@ type StartCallAnalyticsJobInput struct {
 	// If you specify a KMS key to encrypt your output, you must also specify an
 	// output location using the OutputLocation parameter.
 	//
-	// Note that the user making the request must have permission to use the specified
+	// Note that the role making the request must have permission to use the specified
 	// KMS key.
 	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
 
@@ -11150,7 +11202,7 @@ type StartMedicalTranscriptionJobInput struct {
 	// If you specify a KMS key to encrypt your output, you must also specify an
 	// output location using the OutputLocation parameter.
 	//
-	// Note that the user making the request must have permission to use the specified
+	// Note that the role making the request must have permission to use the specified
 	// KMS key.
 	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
 
@@ -11603,7 +11655,7 @@ type StartTranscriptionJobInput struct {
 	// If you specify a KMS key to encrypt your output, you must also specify an
 	// output location using the OutputLocation parameter.
 	//
-	// Note that the user making the request must have permission to use the specified
+	// Note that the role making the request must have permission to use the specified
 	// KMS key.
 	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
 
@@ -12302,7 +12354,7 @@ func (s *Transcript) SetTranscriptFileUri(v string) *Transcript {
 //
 //   - Custom words or phrases that occur at a specific time frame
 //
-// See Rule criteria for batch categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
+// See Rule criteria for post-call categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch)
 // and Rule criteria for streaming categories (https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html#tca-rules-stream)
 // for usage examples.
 type TranscriptFilter struct {
@@ -13012,8 +13064,8 @@ type UpdateCallAnalyticsCategoryInput struct {
 	// CategoryName is a required field
 	CategoryName *string `min:"1" type:"string" required:"true"`
 
-	// Choose whether you want to update a streaming or a batch Call Analytics category.
-	// The input type you specify must match the input type specified when the category
+	// Choose whether you want to update a real-time or a post-call category. The
+	// input type you specify must match the input type specified when the category
 	// was created. For example, if you created a category with the POST_CALL input
 	// type, you must use POST_CALL as the input type when updating this category.
 	InputType *string `type:"string" enum:"InputType"`
@@ -13279,6 +13331,17 @@ func (s *UpdateMedicalVocabularyOutput) SetVocabularyState(v string) *UpdateMedi
 type UpdateVocabularyFilterInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of an IAM role that has permissions to access
+	// the Amazon S3 bucket that contains your input files (in this case, your custom
+	// vocabulary filter). If the role that you specify doesn’t have the appropriate
+	// permissions to access the specified Amazon S3 location, your request fails.
+	//
+	// IAM role ARNs have the format arn:partition:iam::account:role/role-name-with-path.
+	// For example: arn:aws:iam::111122223333:role/Admin.
+	//
+	// For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The Amazon S3 location of the text file that contains your custom vocabulary
 	// filter terms. The URI must be located in the same Amazon Web Services Region
 	// as the resource you're calling.
@@ -13332,6 +13395,9 @@ func (s UpdateVocabularyFilterInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateVocabularyFilterInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateVocabularyFilterInput"}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
 	if s.VocabularyFilterFileUri != nil && len(*s.VocabularyFilterFileUri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterFileUri", 1))
 	}
@@ -13349,6 +13415,12 @@ func (s *UpdateVocabularyFilterInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *UpdateVocabularyFilterInput) SetDataAccessRoleArn(v string) *UpdateVocabularyFilterInput {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetVocabularyFilterFileUri sets the VocabularyFilterFileUri field's value.
@@ -13424,6 +13496,17 @@ func (s *UpdateVocabularyFilterOutput) SetVocabularyFilterName(v string) *Update
 type UpdateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of an IAM role that has permissions to access
+	// the Amazon S3 bucket that contains your input files (in this case, your custom
+	// vocabulary). If the role that you specify doesn’t have the appropriate
+	// permissions to access the specified Amazon S3 location, your request fails.
+	//
+	// IAM role ARNs have the format arn:partition:iam::account:role/role-name-with-path.
+	// For example: arn:aws:iam::111122223333:role/Admin.
+	//
+	// For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The language code that represents the language of the entries in the custom
 	// vocabulary you want to update. Each custom vocabulary must contain terms
 	// in only one language.
@@ -13493,6 +13576,9 @@ func (s UpdateVocabularyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateVocabularyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateVocabularyInput"}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
@@ -13510,6 +13596,12 @@ func (s *UpdateVocabularyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *UpdateVocabularyInput) SetDataAccessRoleArn(v string) *UpdateVocabularyInput {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
