@@ -9859,10 +9859,10 @@ func (s *BucketCountByEffectivePermission) SetUnknown(v int64) *BucketCountByEff
 	return s
 }
 
-// Provides information about the number of S3 buckets that use certain types
-// of server-side encryption by default or don't encrypt new objects by default.
-// For detailed information about these settings, see Setting default server-side
-// encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+// Provides information about the number of S3 buckets whose settings do or
+// don't specify default server-side encryption behavior for objects that are
+// added to the buckets. For detailed information about these settings, see
+// Setting default server-side encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
 // in the Amazon Simple Storage Service User Guide.
 type BucketCountByEncryptionType struct {
 	_ struct{} `type:"structure"`
@@ -9979,7 +9979,7 @@ func (s *BucketCountBySharedAccessType) SetUnknown(v int64) *BucketCountByShared
 }
 
 // Provides information about the number of S3 buckets whose bucket policies
-// do or don't require server-side encryption of objects when objects are uploaded
+// do or don't require server-side encryption of objects when objects are added
 // to the buckets.
 type BucketCountPolicyAllowsUnencryptedObjectUploads struct {
 	_ struct{} `type:"structure"`
@@ -14716,15 +14716,15 @@ type GetBucketStatisticsOutput struct {
 	// due to a combination of permissions settings for each bucket.
 	BucketCountByEffectivePermission *BucketCountByEffectivePermission `locationName:"bucketCountByEffectivePermission" type:"structure"`
 
-	// Provides information about the number of S3 buckets that use certain types
-	// of server-side encryption by default or don't encrypt new objects by default.
-	// For detailed information about these settings, see Setting default server-side
-	// encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+	// Provides information about the number of S3 buckets whose settings do or
+	// don't specify default server-side encryption behavior for objects that are
+	// added to the buckets. For detailed information about these settings, see
+	// Setting default server-side encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
 	// in the Amazon Simple Storage Service User Guide.
 	BucketCountByEncryptionType *BucketCountByEncryptionType `locationName:"bucketCountByEncryptionType" type:"structure"`
 
 	// Provides information about the number of S3 buckets whose bucket policies
-	// do or don't require server-side encryption of objects when objects are uploaded
+	// do or don't require server-side encryption of objects when objects are added
 	// to the buckets.
 	BucketCountByObjectEncryptionRequirement *BucketCountPolicyAllowsUnencryptedObjectUploads `locationName:"bucketCountByObjectEncryptionRequirement" type:"structure"`
 
@@ -20168,8 +20168,8 @@ type S3Bucket struct {
 
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Provides information about the server-side encryption settings for an S3
-	// bucket or S3 object.
+	// Provides information about the default server-side encryption settings for
+	// an S3 bucket or the encryption settings for an S3 object.
 	DefaultServerSideEncryption *ServerSideEncryption `locationName:"defaultServerSideEncryption" type:"structure"`
 
 	Name *string `locationName:"name" type:"string"`
@@ -20743,8 +20743,8 @@ type S3Object struct {
 
 	PublicAccess *bool `locationName:"publicAccess" type:"boolean"`
 
-	// Provides information about the server-side encryption settings for an S3
-	// bucket or S3 object.
+	// Provides information about the default server-side encryption settings for
+	// an S3 bucket or the encryption settings for an S3 object.
 	ServerSideEncryption *ServerSideEncryption `locationName:"serverSideEncryption" type:"structure"`
 
 	Size *int64 `locationName:"size" type:"long"`
@@ -21663,13 +21663,14 @@ func (s *SensitivityInspectionTemplatesEntry) SetName(v string) *SensitivityInsp
 	return s
 }
 
-// Provides information about the server-side encryption settings for an S3
-// bucket or S3 object.
+// Provides information about the default server-side encryption settings for
+// an S3 bucket or the encryption settings for an S3 object.
 type ServerSideEncryption struct {
 	_ struct{} `type:"structure"`
 
-	// The type of server-side encryption that's used to encrypt an S3 object or
-	// objects in an S3 bucket. Possible values are:
+	// The server-side encryption algorithm that was used to encrypt an S3 object
+	// or is used by default to encrypt objects that are added to an S3 bucket.
+	// Possible values are:
 	EncryptionType *string `locationName:"encryptionType" type:"string" enum:"EncryptionType"`
 
 	KmsMasterKeyId *string `locationName:"kmsMasterKeyId" type:"string"`
@@ -24867,8 +24868,9 @@ func EffectivePermission_Values() []string {
 	}
 }
 
-// The type of server-side encryption that's used to encrypt an S3 object or
-// objects in an S3 bucket. Possible values are:
+// The server-side encryption algorithm that was used to encrypt an S3 object
+// or is used by default to encrypt objects that are added to an S3 bucket.
+// Possible values are:
 const (
 	// EncryptionTypeNone is a EncryptionType enum value
 	EncryptionTypeNone = "NONE"

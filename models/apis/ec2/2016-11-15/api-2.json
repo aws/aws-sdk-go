@@ -7693,7 +7693,8 @@
       "type":"string",
       "enum":[
         "legacy-bios",
-        "uefi"
+        "uefi",
+        "uefi-preferred"
       ]
     },
     "BoxedDouble":{"type":"double"},
@@ -9866,10 +9867,7 @@
     },
     "CreateCustomerGatewayRequest":{
       "type":"structure",
-      "required":[
-        "BgpAsn",
-        "Type"
-      ],
+      "required":["Type"],
       "members":{
         "BgpAsn":{"shape":"Integer"},
         "PublicIp":{"shape":"String"},
@@ -24889,6 +24887,10 @@
         "MaintenanceOptions":{
           "shape":"InstanceMaintenanceOptions",
           "locationName":"maintenanceOptions"
+        },
+        "CurrentInstanceBootMode":{
+          "shape":"InstanceBootModeValues",
+          "locationName":"currentInstanceBootMode"
         }
       }
     },
@@ -25040,6 +25042,13 @@
         "shape":"InstanceBlockDeviceMappingSpecification",
         "locationName":"item"
       }
+    },
+    "InstanceBootModeValues":{
+      "type":"string",
+      "enum":[
+        "legacy-bios",
+        "uefi"
+      ]
     },
     "InstanceCapacity":{
       "type":"structure",

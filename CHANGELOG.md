@@ -1,3 +1,18 @@
+Release v1.44.214 (2023-03-03)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for DynamoDB.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for a new boot mode for EC2 instances called 'UEFI Preferred'.
+* `service/macie2`: Updates service documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * The AWS Elemental MediaConvert SDK has improved handling for different input and output color space combinations.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive adds support for Nielsen watermark timezones.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.44.213 (2023-03-02)
 ===
 

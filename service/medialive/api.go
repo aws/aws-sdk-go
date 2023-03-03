@@ -7868,7 +7868,10 @@ func (s *AvailBlanking) SetState(v string) *AvailBlanking {
 type AvailConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Ad avail settings.
+	// Controls how SCTE-35 messages create cues. Splice Insert mode treats all
+	// segmentation signals traditionally. With Time Signal APOS mode only Time
+	// Signal Placement Opportunity and Break messages create segment breaks. With
+	// ESAM mode, signals are forwarded to an ESAM server for possible update.
 	AvailSettings *AvailSettings `locationName:"availSettings" type:"structure"`
 }
 
@@ -7918,10 +7921,12 @@ type AvailSettings struct {
 	// Esam
 	Esam *Esam `locationName:"esam" type:"structure"`
 
-	// Scte35 Splice Insert
+	// Typical configuration that applies breaks on splice inserts in addition to
+	// time signal placement opportunities, breaks, and advertisements.
 	Scte35SpliceInsert *Scte35SpliceInsert `locationName:"scte35SpliceInsert" type:"structure"`
 
-	// Scte35 Time Signal Apos
+	// Atypical configuration that applies segment breaks only on SCTE-35 time signal
+	// placement opportunities and breaks.
 	Scte35TimeSignalApos *Scte35TimeSignalApos `locationName:"scte35TimeSignalApos" type:"structure"`
 }
 
@@ -9626,8 +9631,7 @@ func (s *CaptionRectangle) SetWidth(v float64) *CaptionRectangle {
 	return s
 }
 
-// Output groups for this Live Event. Output groups contain information about
-// where streams should be distributed.
+// Caption Selector
 type CaptionSelector struct {
 	_ struct{} `type:"structure"`
 
@@ -17317,7 +17321,8 @@ type HlsAkamaiSettings struct {
 	HttpTransferMode *string `locationName:"httpTransferMode" type:"string" enum:"HlsAkamaiHttpTransferMode"`
 
 	// Number of retry attempts that will be made before the Live Event is put into
-	// an error state.
+	// an error state. Applies only if the CDN destination URI begins with "s3"
+	// or "mediastore". For other URIs, the value is always 3.
 	NumRetries *int64 `locationName:"numRetries" type:"integer"`
 
 	// If a streaming output fails, number of seconds to wait until a restart is
@@ -17403,7 +17408,8 @@ type HlsBasicPutSettings struct {
 	FilecacheDuration *int64 `locationName:"filecacheDuration" type:"integer"`
 
 	// Number of retry attempts that will be made before the Live Event is put into
-	// an error state.
+	// an error state. Applies only if the CDN destination URI begins with "s3"
+	// or "mediastore". For other URIs, the value is always 3.
 	NumRetries *int64 `locationName:"numRetries" type:"integer"`
 
 	// If a streaming output fails, number of seconds to wait until a restart is
@@ -18219,7 +18225,8 @@ type HlsMediaStoreSettings struct {
 	MediaStoreStorageClass *string `locationName:"mediaStoreStorageClass" type:"string" enum:"HlsMediaStoreStorageClass"`
 
 	// Number of retry attempts that will be made before the Live Event is put into
-	// an error state.
+	// an error state. Applies only if the CDN destination URI begins with "s3"
+	// or "mediastore". For other URIs, the value is always 3.
 	NumRetries *int64 `locationName:"numRetries" type:"integer"`
 
 	// If a streaming output fails, number of seconds to wait until a restart is
@@ -18533,7 +18540,8 @@ type HlsWebdavSettings struct {
 	HttpTransferMode *string `locationName:"httpTransferMode" type:"string" enum:"HlsWebdavHttpTransferMode"`
 
 	// Number of retry attempts that will be made before the Live Event is put into
-	// an error state.
+	// an error state. Applies only if the CDN destination URI begins with "s3"
+	// or "mediastore". For other URIs, the value is always 3.
 	NumRetries *int64 `locationName:"numRetries" type:"integer"`
 
 	// If a streaming output fails, number of seconds to wait until a restart is
@@ -24890,6 +24898,10 @@ type NielsenNaesIiNw struct {
 	//
 	// Sid is a required field
 	Sid *float64 `locationName:"sid" type:"double" required:"true"`
+
+	// Choose the timezone for the time stamps in the watermark. If not provided,the
+	// timestamps will be in Coordinated Universal Time (UTC)
+	Timezone *string `locationName:"timezone" type:"string" enum:"NielsenWatermarkTimezones"`
 }
 
 // String returns the string representation.
@@ -24938,6 +24950,12 @@ func (s *NielsenNaesIiNw) SetCheckDigitString(v string) *NielsenNaesIiNw {
 // SetSid sets the Sid field's value.
 func (s *NielsenNaesIiNw) SetSid(v float64) *NielsenNaesIiNw {
 	s.Sid = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *NielsenNaesIiNw) SetTimezone(v string) *NielsenNaesIiNw {
+	s.Timezone = &v
 	return s
 }
 
@@ -27996,7 +28014,8 @@ func (s *Scte35SegmentationDescriptor) SetSubSegmentsExpected(v int64) *Scte35Se
 	return s
 }
 
-// Scte35 Splice Insert
+// Typical configuration that applies breaks on splice inserts in addition to
+// time signal placement opportunities, breaks, and advertisements.
 type Scte35SpliceInsert struct {
 	_ struct{} `type:"structure"`
 
@@ -28124,7 +28143,8 @@ func (s *Scte35SpliceInsertScheduleActionSettings) SetSpliceEventId(v int64) *Sc
 	return s
 }
 
-// Scte35 Time Signal Apos
+// Atypical configuration that applies segment breaks only on SCTE-35 time signal
+// placement opportunities and breaks.
 type Scte35TimeSignalApos struct {
 	_ struct{} `type:"structure"`
 
@@ -36308,6 +36328,55 @@ func NielsenPcmToId3TaggingState_Values() []string {
 	return []string{
 		NielsenPcmToId3TaggingStateDisabled,
 		NielsenPcmToId3TaggingStateEnabled,
+	}
+}
+
+// Nielsen Watermark Timezones
+const (
+	// NielsenWatermarkTimezonesAmericaPuertoRico is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesAmericaPuertoRico = "AMERICA_PUERTO_RICO"
+
+	// NielsenWatermarkTimezonesUsAlaska is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsAlaska = "US_ALASKA"
+
+	// NielsenWatermarkTimezonesUsArizona is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsArizona = "US_ARIZONA"
+
+	// NielsenWatermarkTimezonesUsCentral is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsCentral = "US_CENTRAL"
+
+	// NielsenWatermarkTimezonesUsEastern is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsEastern = "US_EASTERN"
+
+	// NielsenWatermarkTimezonesUsHawaii is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsHawaii = "US_HAWAII"
+
+	// NielsenWatermarkTimezonesUsMountain is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsMountain = "US_MOUNTAIN"
+
+	// NielsenWatermarkTimezonesUsPacific is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsPacific = "US_PACIFIC"
+
+	// NielsenWatermarkTimezonesUsSamoa is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUsSamoa = "US_SAMOA"
+
+	// NielsenWatermarkTimezonesUtc is a NielsenWatermarkTimezones enum value
+	NielsenWatermarkTimezonesUtc = "UTC"
+)
+
+// NielsenWatermarkTimezones_Values returns all elements of the NielsenWatermarkTimezones enum
+func NielsenWatermarkTimezones_Values() []string {
+	return []string{
+		NielsenWatermarkTimezonesAmericaPuertoRico,
+		NielsenWatermarkTimezonesUsAlaska,
+		NielsenWatermarkTimezonesUsArizona,
+		NielsenWatermarkTimezonesUsCentral,
+		NielsenWatermarkTimezonesUsEastern,
+		NielsenWatermarkTimezonesUsHawaii,
+		NielsenWatermarkTimezonesUsMountain,
+		NielsenWatermarkTimezonesUsPacific,
+		NielsenWatermarkTimezonesUsSamoa,
+		NielsenWatermarkTimezonesUtc,
 	}
 }
 
