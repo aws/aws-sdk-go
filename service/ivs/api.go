@@ -485,9 +485,8 @@ func (c *IVS) DeleteChannelRequest(input *DeleteChannelInput) (req *request.Requ
 //
 // If you try to delete a live channel, you will get an error (409 ConflictException).
 // To delete a channel that is live, call StopStream, wait for the Amazon EventBridge
-// "Stream End" event (to verify that the stream's state was changed from Live
-// to Offline), then call DeleteChannel. (See Using EventBridge with Amazon
-// IVS (https://docs.aws.amazon.com/ivs/latest/userguide/eventbridge.html).)
+// "Stream End" event (to verify that the stream's state is no longer Live),
+// then call DeleteChannel. (See Using EventBridge with Amazon IVS (https://docs.aws.amazon.com/ivs/latest/userguide/eventbridge.html).)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6294,7 +6293,9 @@ type Stream struct {
 	// is returned as a string.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The stream’s state.
+	// The stream’s state. Do not rely on the OFFLINE state, as the API may not
+	// return it; instead, a "NotBroadcasting" error will indicate that the stream
+	// is not live.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`
 
 	// Unique identifier for a live or previously live stream in the specified channel.
@@ -6739,7 +6740,9 @@ type StreamSummary struct {
 	// is returned as a string.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The stream’s state.
+	// The stream’s state. Do not rely on the OFFLINE state, as the API may not
+	// return it; instead, a "NotBroadcasting" error will indicate that the stream
+	// is not live.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`
 
 	// Unique identifier for a live or previously live stream in the specified channel.

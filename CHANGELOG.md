@@ -1,3 +1,10 @@
+Release v1.44.215 (2023-03-06)
+===
+
+### Service Client Updates
+* `service/account`: Updates service API and documentation
+* `service/ivs`: Updates service documentation
+
 Release v1.44.214 (2023-03-03)
 ===
 

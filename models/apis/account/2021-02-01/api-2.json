@@ -287,9 +287,9 @@
     },
     "EmailAddress":{
       "type":"string",
-      "max":64,
+      "max":254,
       "min":1,
-      "pattern":"^[\\s]*[\\w+=.#!&-]+@[\\w.-]+\\.[\\w]+[\\s]*$",
+      "pattern":"^[\\s]*[\\w+=.#|!&-]+@[\\w.-]+\\.[\\w]+[\\s]*$",
       "sensitive":true
     },
     "EnableRegionRequest":{
