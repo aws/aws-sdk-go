@@ -194,7 +194,9 @@ type Config struct {
 
 	// Set this to `true` to disable EC2Metadata client from falling back to IMDSv1.
 	// By default, EC2 role credentials will fall back to IMDSv1 as needed for backwards compatibility.
-	// You can disable this behavior by explicitly disabling fallback.
+	// You can disable this behavior by explicitly setting this flag to `true`. When set, the EC2Metadata
+	// client will return any errors encountered from attempting to fetch a token instead of silently
+	// using the insecure data flow of IMDSv1.
 	//
 	// Example:
 	//    sess := session.Must(session.NewSession(aws.NewConfig()
@@ -202,6 +204,9 @@ type Config struct {
 	//
 	//    svc := s3.New(sess)
 	//
+	// See [configuring IMDS] for more information.
+	//
+	// [configuring IMDS]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html
 	EC2MetadataDisableFallback *bool
 
 	// Instructs the endpoint to be generated for a service client to
