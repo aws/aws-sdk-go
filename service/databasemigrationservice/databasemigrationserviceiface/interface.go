@@ -68,6 +68,10 @@ type DatabaseMigrationServiceAPI interface {
 	ApplyPendingMaintenanceActionWithContext(aws.Context, *databasemigrationservice.ApplyPendingMaintenanceActionInput, ...request.Option) (*databasemigrationservice.ApplyPendingMaintenanceActionOutput, error)
 	ApplyPendingMaintenanceActionRequest(*databasemigrationservice.ApplyPendingMaintenanceActionInput) (*request.Request, *databasemigrationservice.ApplyPendingMaintenanceActionOutput)
 
+	BatchStartRecommendations(*databasemigrationservice.BatchStartRecommendationsInput) (*databasemigrationservice.BatchStartRecommendationsOutput, error)
+	BatchStartRecommendationsWithContext(aws.Context, *databasemigrationservice.BatchStartRecommendationsInput, ...request.Option) (*databasemigrationservice.BatchStartRecommendationsOutput, error)
+	BatchStartRecommendationsRequest(*databasemigrationservice.BatchStartRecommendationsInput) (*request.Request, *databasemigrationservice.BatchStartRecommendationsOutput)
+
 	CancelReplicationTaskAssessmentRun(*databasemigrationservice.CancelReplicationTaskAssessmentRunInput) (*databasemigrationservice.CancelReplicationTaskAssessmentRunOutput, error)
 	CancelReplicationTaskAssessmentRunWithContext(aws.Context, *databasemigrationservice.CancelReplicationTaskAssessmentRunInput, ...request.Option) (*databasemigrationservice.CancelReplicationTaskAssessmentRunOutput, error)
 	CancelReplicationTaskAssessmentRunRequest(*databasemigrationservice.CancelReplicationTaskAssessmentRunInput) (*request.Request, *databasemigrationservice.CancelReplicationTaskAssessmentRunOutput)
@@ -249,6 +253,20 @@ type DatabaseMigrationServiceAPI interface {
 	DescribePendingMaintenanceActionsPages(*databasemigrationservice.DescribePendingMaintenanceActionsInput, func(*databasemigrationservice.DescribePendingMaintenanceActionsOutput, bool) bool) error
 	DescribePendingMaintenanceActionsPagesWithContext(aws.Context, *databasemigrationservice.DescribePendingMaintenanceActionsInput, func(*databasemigrationservice.DescribePendingMaintenanceActionsOutput, bool) bool, ...request.Option) error
 
+	DescribeRecommendationLimitations(*databasemigrationservice.DescribeRecommendationLimitationsInput) (*databasemigrationservice.DescribeRecommendationLimitationsOutput, error)
+	DescribeRecommendationLimitationsWithContext(aws.Context, *databasemigrationservice.DescribeRecommendationLimitationsInput, ...request.Option) (*databasemigrationservice.DescribeRecommendationLimitationsOutput, error)
+	DescribeRecommendationLimitationsRequest(*databasemigrationservice.DescribeRecommendationLimitationsInput) (*request.Request, *databasemigrationservice.DescribeRecommendationLimitationsOutput)
+
+	DescribeRecommendationLimitationsPages(*databasemigrationservice.DescribeRecommendationLimitationsInput, func(*databasemigrationservice.DescribeRecommendationLimitationsOutput, bool) bool) error
+	DescribeRecommendationLimitationsPagesWithContext(aws.Context, *databasemigrationservice.DescribeRecommendationLimitationsInput, func(*databasemigrationservice.DescribeRecommendationLimitationsOutput, bool) bool, ...request.Option) error
+
+	DescribeRecommendations(*databasemigrationservice.DescribeRecommendationsInput) (*databasemigrationservice.DescribeRecommendationsOutput, error)
+	DescribeRecommendationsWithContext(aws.Context, *databasemigrationservice.DescribeRecommendationsInput, ...request.Option) (*databasemigrationservice.DescribeRecommendationsOutput, error)
+	DescribeRecommendationsRequest(*databasemigrationservice.DescribeRecommendationsInput) (*request.Request, *databasemigrationservice.DescribeRecommendationsOutput)
+
+	DescribeRecommendationsPages(*databasemigrationservice.DescribeRecommendationsInput, func(*databasemigrationservice.DescribeRecommendationsOutput, bool) bool) error
+	DescribeRecommendationsPagesWithContext(aws.Context, *databasemigrationservice.DescribeRecommendationsInput, func(*databasemigrationservice.DescribeRecommendationsOutput, bool) bool, ...request.Option) error
+
 	DescribeRefreshSchemasStatus(*databasemigrationservice.DescribeRefreshSchemasStatusInput) (*databasemigrationservice.DescribeRefreshSchemasStatusOutput, error)
 	DescribeRefreshSchemasStatusWithContext(aws.Context, *databasemigrationservice.DescribeRefreshSchemasStatusInput, ...request.Option) (*databasemigrationservice.DescribeRefreshSchemasStatusOutput, error)
 	DescribeRefreshSchemasStatusRequest(*databasemigrationservice.DescribeRefreshSchemasStatusInput) (*request.Request, *databasemigrationservice.DescribeRefreshSchemasStatusOutput)
@@ -367,6 +385,10 @@ type DatabaseMigrationServiceAPI interface {
 	RunFleetAdvisorLsaAnalysis(*databasemigrationservice.RunFleetAdvisorLsaAnalysisInput) (*databasemigrationservice.RunFleetAdvisorLsaAnalysisOutput, error)
 	RunFleetAdvisorLsaAnalysisWithContext(aws.Context, *databasemigrationservice.RunFleetAdvisorLsaAnalysisInput, ...request.Option) (*databasemigrationservice.RunFleetAdvisorLsaAnalysisOutput, error)
 	RunFleetAdvisorLsaAnalysisRequest(*databasemigrationservice.RunFleetAdvisorLsaAnalysisInput) (*request.Request, *databasemigrationservice.RunFleetAdvisorLsaAnalysisOutput)
+
+	StartRecommendations(*databasemigrationservice.StartRecommendationsInput) (*databasemigrationservice.StartRecommendationsOutput, error)
+	StartRecommendationsWithContext(aws.Context, *databasemigrationservice.StartRecommendationsInput, ...request.Option) (*databasemigrationservice.StartRecommendationsOutput, error)
+	StartRecommendationsRequest(*databasemigrationservice.StartRecommendationsInput) (*request.Request, *databasemigrationservice.StartRecommendationsOutput)
 
 	StartReplicationTask(*databasemigrationservice.StartReplicationTaskInput) (*databasemigrationservice.StartReplicationTaskOutput, error)
 	StartReplicationTaskWithContext(aws.Context, *databasemigrationservice.StartReplicationTaskInput, ...request.Option) (*databasemigrationservice.StartReplicationTaskOutput, error)

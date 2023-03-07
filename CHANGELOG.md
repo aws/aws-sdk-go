@@ -1,3 +1,11 @@
+Release v1.44.216 (2023-03-07)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API, documentation, and paginators
+  * This release adds DMS Fleet Advisor Target Recommendation APIs and exposes functionality for DMS Fleet Advisor. It adds functionality to start Target Recommendation calculation.
+* `service/location`: Updates service documentation
+
 Release v1.44.215 (2023-03-06)
 ===
 

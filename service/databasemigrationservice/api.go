@@ -58,10 +58,9 @@ func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToReso
 // AddTagsToResource API operation for AWS Database Migration Service.
 //
 // Adds metadata tags to an DMS resource, including replication instance, endpoint,
-// security group, and migration task. These tags can also be used with cost
-// allocation reporting to track cost associated with DMS resources, or used
-// in a Condition statement in an IAM policy for DMS. For more information,
-// see Tag (https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html)
+// subnet group, and migration task. These tags can also be used with cost allocation
+// reporting to track cost associated with DMS resources, or used in a Condition
+// statement in an IAM policy for DMS. For more information, see Tag (https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html)
 // data type description.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -171,6 +170,99 @@ func (c *DatabaseMigrationService) ApplyPendingMaintenanceAction(input *ApplyPen
 // for more information on using Contexts.
 func (c *DatabaseMigrationService) ApplyPendingMaintenanceActionWithContext(ctx aws.Context, input *ApplyPendingMaintenanceActionInput, opts ...request.Option) (*ApplyPendingMaintenanceActionOutput, error) {
 	req, out := c.ApplyPendingMaintenanceActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchStartRecommendations = "BatchStartRecommendations"
+
+// BatchStartRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchStartRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchStartRecommendations for more information on using the BatchStartRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchStartRecommendationsRequest method.
+//	req, resp := client.BatchStartRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/BatchStartRecommendations
+func (c *DatabaseMigrationService) BatchStartRecommendationsRequest(input *BatchStartRecommendationsInput) (req *request.Request, output *BatchStartRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opBatchStartRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchStartRecommendationsInput{}
+	}
+
+	output = &BatchStartRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchStartRecommendations API operation for AWS Database Migration Service.
+//
+// Starts the analysis of up to 20 source databases to recommend target engines
+// for each source database. This is a batch version of StartRecommendations
+// (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartRecommendations.html).
+//
+// The result of analysis of each source database is reported individually in
+// the response. Because the batch request can result in a combination of successful
+// and unsuccessful actions, you should check for batch errors even when the
+// call returns an HTTP status code of 200.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation BatchStartRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/BatchStartRecommendations
+func (c *DatabaseMigrationService) BatchStartRecommendations(input *BatchStartRecommendationsInput) (*BatchStartRecommendationsOutput, error) {
+	req, out := c.BatchStartRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// BatchStartRecommendationsWithContext is the same as BatchStartRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchStartRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) BatchStartRecommendationsWithContext(ctx aws.Context, input *BatchStartRecommendationsInput, opts ...request.Option) (*BatchStartRecommendationsOutput, error) {
+	req, out := c.BatchStartRecommendationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3948,6 +4040,288 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsPagesWithCon
 	return p.Err()
 }
 
+const opDescribeRecommendationLimitations = "DescribeRecommendationLimitations"
+
+// DescribeRecommendationLimitationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRecommendationLimitations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRecommendationLimitations for more information on using the DescribeRecommendationLimitations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeRecommendationLimitationsRequest method.
+//	req, resp := client.DescribeRecommendationLimitationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRecommendationLimitations
+func (c *DatabaseMigrationService) DescribeRecommendationLimitationsRequest(input *DescribeRecommendationLimitationsInput) (req *request.Request, output *DescribeRecommendationLimitationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRecommendationLimitations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeRecommendationLimitationsInput{}
+	}
+
+	output = &DescribeRecommendationLimitationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRecommendationLimitations API operation for AWS Database Migration Service.
+//
+// Returns a paginated list of limitations for recommendations of target Amazon
+// Web Services engines.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeRecommendationLimitations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRecommendationLimitations
+func (c *DatabaseMigrationService) DescribeRecommendationLimitations(input *DescribeRecommendationLimitationsInput) (*DescribeRecommendationLimitationsOutput, error) {
+	req, out := c.DescribeRecommendationLimitationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRecommendationLimitationsWithContext is the same as DescribeRecommendationLimitations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRecommendationLimitations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeRecommendationLimitationsWithContext(ctx aws.Context, input *DescribeRecommendationLimitationsInput, opts ...request.Option) (*DescribeRecommendationLimitationsOutput, error) {
+	req, out := c.DescribeRecommendationLimitationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeRecommendationLimitationsPages iterates over the pages of a DescribeRecommendationLimitations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeRecommendationLimitations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeRecommendationLimitations operation.
+//	pageNum := 0
+//	err := client.DescribeRecommendationLimitationsPages(params,
+//	    func(page *databasemigrationservice.DescribeRecommendationLimitationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeRecommendationLimitationsPages(input *DescribeRecommendationLimitationsInput, fn func(*DescribeRecommendationLimitationsOutput, bool) bool) error {
+	return c.DescribeRecommendationLimitationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeRecommendationLimitationsPagesWithContext same as DescribeRecommendationLimitationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeRecommendationLimitationsPagesWithContext(ctx aws.Context, input *DescribeRecommendationLimitationsInput, fn func(*DescribeRecommendationLimitationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeRecommendationLimitationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeRecommendationLimitationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeRecommendationLimitationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeRecommendations = "DescribeRecommendations"
+
+// DescribeRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRecommendations for more information on using the DescribeRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeRecommendationsRequest method.
+//	req, resp := client.DescribeRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRecommendations
+func (c *DatabaseMigrationService) DescribeRecommendationsRequest(input *DescribeRecommendationsInput) (req *request.Request, output *DescribeRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeRecommendationsInput{}
+	}
+
+	output = &DescribeRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRecommendations API operation for AWS Database Migration Service.
+//
+// Returns a paginated list of target engine recommendations for your source
+// databases.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRecommendations
+func (c *DatabaseMigrationService) DescribeRecommendations(input *DescribeRecommendationsInput) (*DescribeRecommendationsOutput, error) {
+	req, out := c.DescribeRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRecommendationsWithContext is the same as DescribeRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeRecommendationsWithContext(ctx aws.Context, input *DescribeRecommendationsInput, opts ...request.Option) (*DescribeRecommendationsOutput, error) {
+	req, out := c.DescribeRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeRecommendationsPages iterates over the pages of a DescribeRecommendations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeRecommendations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeRecommendations operation.
+//	pageNum := 0
+//	err := client.DescribeRecommendationsPages(params,
+//	    func(page *databasemigrationservice.DescribeRecommendationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeRecommendationsPages(input *DescribeRecommendationsInput, fn func(*DescribeRecommendationsOutput, bool) bool) error {
+	return c.DescribeRecommendationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeRecommendationsPagesWithContext same as DescribeRecommendationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeRecommendationsPagesWithContext(ctx aws.Context, input *DescribeRecommendationsInput, fn func(*DescribeRecommendationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeRecommendationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeRecommendationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeRecommendationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeRefreshSchemasStatus = "DescribeRefreshSchemasStatus"
 
 // DescribeRefreshSchemasStatusRequest generates a "aws/request.Request" representing the
@@ -5413,7 +5787,7 @@ func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsFor
 // ListTagsForResource API operation for AWS Database Migration Service.
 //
 // Lists all metadata tags attached to an DMS resource, including replication
-// instance, endpoint, security group, and migration task. For more information,
+// instance, endpoint, subnet group, and migration task. For more information,
 // see Tag (https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html)
 // data type description.
 //
@@ -6346,7 +6720,7 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTa
 // RemoveTagsFromResource API operation for AWS Database Migration Service.
 //
 // Removes metadata tags from an DMS resource, including replication instance,
-// endpoint, security group, and migration task. For more information, see Tag
+// endpoint, subnet group, and migration task. For more information, see Tag
 // (https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html) data type
 // description.
 //
@@ -6462,6 +6836,97 @@ func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysis(input *RunFleetAdv
 // for more information on using Contexts.
 func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysisWithContext(ctx aws.Context, input *RunFleetAdvisorLsaAnalysisInput, opts ...request.Option) (*RunFleetAdvisorLsaAnalysisOutput, error) {
 	req, out := c.RunFleetAdvisorLsaAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartRecommendations = "StartRecommendations"
+
+// StartRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the StartRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartRecommendations for more information on using the StartRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartRecommendationsRequest method.
+//	req, resp := client.StartRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartRecommendations
+func (c *DatabaseMigrationService) StartRecommendationsRequest(input *StartRecommendationsInput) (req *request.Request, output *StartRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opStartRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartRecommendationsInput{}
+	}
+
+	output = &StartRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartRecommendations API operation for AWS Database Migration Service.
+//
+// Starts the analysis of your source database to provide recommendations of
+// target engines.
+//
+// You can create recommendations for multiple source databases using BatchStartRecommendations
+// (https://docs.aws.amazon.com/dms/latest/APIReference/API_BatchStartRecommendations.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation StartRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartRecommendations
+func (c *DatabaseMigrationService) StartRecommendations(input *StartRecommendationsInput) (*StartRecommendationsOutput, error) {
+	req, out := c.StartRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// StartRecommendationsWithContext is the same as StartRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) StartRecommendationsWithContext(ctx aws.Context, input *StartRecommendationsInput, opts ...request.Option) (*StartRecommendationsOutput, error) {
+	req, out := c.StartRecommendationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7400,6 +7865,140 @@ func (s AvailabilityZone) GoString() string {
 // SetName sets the Name field's value.
 func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 	s.Name = &v
+	return s
+}
+
+// Provides information about the errors that occurred during the analysis of
+// the source database.
+type BatchStartRecommendationsErrorEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The code of an error that occurred during the analysis of the source database.
+	Code *string `type:"string"`
+
+	// The identifier of the source database.
+	DatabaseId *string `type:"string"`
+
+	// The information about the error.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartRecommendationsErrorEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartRecommendationsErrorEntry) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *BatchStartRecommendationsErrorEntry) SetCode(v string) *BatchStartRecommendationsErrorEntry {
+	s.Code = &v
+	return s
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *BatchStartRecommendationsErrorEntry) SetDatabaseId(v string) *BatchStartRecommendationsErrorEntry {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *BatchStartRecommendationsErrorEntry) SetMessage(v string) *BatchStartRecommendationsErrorEntry {
+	s.Message = &v
+	return s
+}
+
+type BatchStartRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about source databases to analyze. After this analysis,
+	// Fleet Advisor recommends target engines for each source database.
+	Data []*StartRecommendationsRequestEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchStartRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchStartRecommendationsInput"}
+	if s.Data != nil {
+		for i, v := range s.Data {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Data", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetData sets the Data field's value.
+func (s *BatchStartRecommendationsInput) SetData(v []*StartRecommendationsRequestEntry) *BatchStartRecommendationsInput {
+	s.Data = v
+	return s
+}
+
+type BatchStartRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list with error details about the analysis of each source database.
+	ErrorEntries []*BatchStartRecommendationsErrorEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchStartRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorEntries sets the ErrorEntries field's value.
+func (s *BatchStartRecommendationsOutput) SetErrorEntries(v []*BatchStartRecommendationsErrorEntry) *BatchStartRecommendationsOutput {
+	s.ErrorEntries = v
 	return s
 }
 
@@ -8810,6 +9409,14 @@ type CreateReplicationInstanceInput struct {
 	// defaults to true.
 	//
 	// Default: true
+	//
+	// When AutoMinorVersionUpgrade is enabled, DMS uses the current default engine
+	// version when you create a replication instance. For example, if you set EngineVersion
+	// to a lower version number than the current default version, DMS uses the
+	// default version.
+	//
+	// If AutoMinorVersionUpgrade isn’t enabled when you create a replication
+	// instance, DMS uses the engine version specified by the EngineVersion parameter.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Availability Zone where the replication instance will be created. The
@@ -9233,8 +9840,7 @@ type CreateReplicationTaskInput struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
-	// “
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The migration type. Valid values: full-load | cdc | full-load-and-cdc
@@ -12476,6 +13082,251 @@ func (s *DescribePendingMaintenanceActionsOutput) SetPendingMaintenanceActions(v
 	return s
 }
 
+type DescribeRecommendationLimitationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied to the limitations described in the form of key-value pairs.
+	Filters []*Filter `type:"list"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, Fleet Advisor includes a pagination
+	// token in the response so that you can retrieve the remaining results.
+	MaxRecords *int64 `type:"integer"`
+
+	// Specifies the unique pagination token that makes it possible to display the
+	// next page of results. If this parameter is specified, the response includes
+	// only records beyond the marker, up to the value specified by MaxRecords.
+	//
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationLimitationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationLimitationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRecommendationLimitationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRecommendationLimitationsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeRecommendationLimitationsInput) SetFilters(v []*Filter) *DescribeRecommendationLimitationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeRecommendationLimitationsInput) SetMaxRecords(v int64) *DescribeRecommendationLimitationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRecommendationLimitationsInput) SetNextToken(v string) *DescribeRecommendationLimitationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeRecommendationLimitationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of limitations for recommendations of target Amazon Web Services
+	// engines.
+	Limitations []*Limitation `type:"list"`
+
+	// The unique pagination token returned for you to pass to a subsequent request.
+	// Fleet Advisor returns this token when the number of records in the response
+	// is greater than the MaxRecords value. To retrieve the next page, make the
+	// call again using the returned token and keeping all other arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationLimitationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationLimitationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLimitations sets the Limitations field's value.
+func (s *DescribeRecommendationLimitationsOutput) SetLimitations(v []*Limitation) *DescribeRecommendationLimitationsOutput {
+	s.Limitations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRecommendationLimitationsOutput) SetNextToken(v string) *DescribeRecommendationLimitationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied to the target engine recommendations described in the form
+	// of key-value pairs.
+	Filters []*Filter `type:"list"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, Fleet Advisor includes a pagination
+	// token in the response so that you can retrieve the remaining results.
+	MaxRecords *int64 `type:"integer"`
+
+	// Specifies the unique pagination token that makes it possible to display the
+	// next page of results. If this parameter is specified, the response includes
+	// only records beyond the marker, up to the value specified by MaxRecords.
+	//
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRecommendationsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeRecommendationsInput) SetFilters(v []*Filter) *DescribeRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeRecommendationsInput) SetMaxRecords(v int64) *DescribeRecommendationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRecommendationsInput) SetNextToken(v string) *DescribeRecommendationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique pagination token returned for you to pass to a subsequent request.
+	// Fleet Advisor returns this token when the number of records in the response
+	// is greater than the MaxRecords value. To retrieve the next page, make the
+	// call again using the returned token and keeping all other arguments unchanged.
+	NextToken *string `type:"string"`
+
+	// The list of recommendations of target engines that Fleet Advisor created
+	// for the source database.
+	Recommendations []*Recommendation `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRecommendationsOutput) SetNextToken(v string) *DescribeRecommendationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendations sets the Recommendations field's value.
+func (s *DescribeRecommendationsOutput) SetRecommendations(v []*Recommendation) *DescribeRecommendationsOutput {
+	s.Recommendations = v
+	return s
+}
+
 type DescribeRefreshSchemasStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14926,10 +15777,10 @@ type GcpMySQLSettings struct {
 	// a file containing the script.
 	AfterConnectScript *string `type:"string"`
 
-	// Adjusts the behavior of DMS when migrating from an SQL Server source database
-	// that is hosted as part of an Always On availability group cluster. If you
-	// need DMS to poll all the nodes in the Always On cluster for transaction backups,
-	// set this attribute to false.
+	// Cleans and recreates table metadata information on the replication instance
+	// when a mismatch occurs. For example, in a situation where running an alter
+	// DDL on the table could result in different information about the table cached
+	// in the replication instance.
 	CleanSourceMetadataOnMismatch *bool `type:"boolean"`
 
 	// Database name for the endpoint. For a MySQL source or target endpoint, don't
@@ -14970,6 +15821,7 @@ type GcpMySQLSettings struct {
 	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
+	// Endpoint TCP port.
 	Port *int64 `type:"integer"`
 
 	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
@@ -14992,7 +15844,7 @@ type GcpMySQLSettings struct {
 	// contains the MySQL endpoint connection details.
 	SecretsManagerSecretId *string `type:"string"`
 
-	// Endpoint TCP port.
+	// The MySQL host name.
 	ServerName *string `type:"string"`
 
 	// Specifies the time zone for the source MySQL database.
@@ -16538,6 +17390,98 @@ func (s *KinesisSettings) SetStreamArn(v string) *KinesisSettings {
 	return s
 }
 
+// Provides information about the limitations of target Amazon Web Services
+// engines.
+//
+// Your source database might include features that the target Amazon Web Services
+// engine doesn't support. Fleet Advisor lists these features as limitations.
+// You should consider these limitations during database migration. For each
+// limitation, Fleet Advisor recommends an action that you can take to address
+// or avoid this limitation.
+type Limitation struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the source database.
+	DatabaseId *string `type:"string"`
+
+	// A description of the limitation. Provides additional information about the
+	// limitation, and includes recommended actions that you can take to address
+	// or avoid this limitation.
+	Description *string `type:"string"`
+
+	// The name of the target engine that Fleet Advisor should use in the target
+	// engine recommendation. Valid values include "rds-aurora-mysql", "rds-aurora-postgresql",
+	// "rds-mysql", "rds-oracle", "rds-sql-server", and "rds-postgresql".
+	EngineName *string `type:"string"`
+
+	// The impact of the limitation. You can use this parameter to prioritize limitations
+	// that you want to address. Valid values include "Blocker", "High", "Medium",
+	// and "Low".
+	Impact *string `type:"string"`
+
+	// The name of the limitation. Describes unsupported database features, migration
+	// action items, and other limitations.
+	Name *string `type:"string"`
+
+	// The type of the limitation, such as action required, upgrade required, and
+	// limited feature.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Limitation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Limitation) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *Limitation) SetDatabaseId(v string) *Limitation {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Limitation) SetDescription(v string) *Limitation {
+	s.Description = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *Limitation) SetEngineName(v string) *Limitation {
+	s.EngineName = &v
+	return s
+}
+
+// SetImpact sets the Impact field's value.
+func (s *Limitation) SetImpact(v string) *Limitation {
+	s.Impact = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Limitation) SetName(v string) *Limitation {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Limitation) SetType(v string) *Limitation {
+	s.Type = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16690,7 +17634,10 @@ type MicrosoftSQLServerSettings struct {
 	// contains the SQL Server endpoint connection details.
 	SecretsManagerSecretId *string `type:"string"`
 
-	// Fully qualified domain name of the endpoint.
+	// Fully qualified domain name of the endpoint. For an Amazon RDS SQL Server
+	// instance, this is the output of DescribeDBInstances (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html),
+	// in the Endpoint (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html).Address
+	// field.
 	ServerName *string `type:"string"`
 
 	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
@@ -17449,6 +18396,14 @@ type ModifyReplicationInstanceInput struct {
 	//    * A newer minor version is available.
 	//
 	//    * DMS has enabled automatic patching for the given engine version.
+	//
+	// When AutoMinorVersionUpgrade is enabled, DMS uses the current default engine
+	// version when you modify a replication instance. For example, if you set EngineVersion
+	// to a lower version number than the current default version, DMS uses the
+	// default version.
+	//
+	// If AutoMinorVersionUpgrade isn’t enabled when you modify a replication
+	// instance, DMS uses the engine version specified by the EngineVersion parameter.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The engine version number of the replication instance.
@@ -17775,8 +18730,7 @@ type ModifyReplicationTaskInput struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
-	// “
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The migration type. Valid values: full-load | cdc | full-load-and-cdc
@@ -18222,10 +19176,10 @@ type MySQLSettings struct {
 	// a file containing the script.
 	AfterConnectScript *string `type:"string"`
 
-	// Adjusts the behavior of DMS when migrating from an SQL Server source database
-	// that is hosted as part of an Always On availability group cluster. If you
-	// need DMS to poll all the nodes in the Always On cluster for transaction backups,
-	// set this attribute to false.
+	// Cleans and recreates table metadata information on the replication instance
+	// when a mismatch occurs. For example, in a situation where running an alter
+	// DDL on the table could result in different information about the table cached
+	// in the replication instance.
 	CleanSourceMetadataOnMismatch *bool `type:"boolean"`
 
 	// Database name for the endpoint. For a MySQL source or target endpoint, don't
@@ -18289,7 +19243,15 @@ type MySQLSettings struct {
 	// contains the MySQL endpoint connection details.
 	SecretsManagerSecretId *string `type:"string"`
 
-	// Fully qualified domain name of the endpoint.
+	// The host name of the endpoint database.
+	//
+	// For an Amazon RDS MySQL instance, this is the output of DescribeDBInstances
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html),
+	// in the Endpoint (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html).Address
+	// field.
+	//
+	// For an Aurora MySQL instance, this is the output of DescribeDBClusters (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html),
+	// in the Endpoint field.
 	ServerName *string `type:"string"`
 
 	// Specifies the time zone for the source MySQL database.
@@ -18775,6 +19737,11 @@ type OracleSettings struct {
 	SecurityDbEncryptionName *string `type:"string"`
 
 	// Fully qualified domain name of the endpoint.
+	//
+	// For an Amazon RDS Oracle instance, this is the output of DescribeDBInstances
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html),
+	// in the Endpoint (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html).Address
+	// field.
 	ServerName *string `type:"string"`
 
 	// Use this attribute to convert SDO_GEOMETRY to GEOJSON format. By default,
@@ -19395,7 +20362,16 @@ type PostgreSQLSettings struct {
 	// contains the PostgreSQL endpoint connection details.
 	SecretsManagerSecretId *string `type:"string"`
 
-	// Fully qualified domain name of the endpoint.
+	// The host name of the endpoint database.
+	//
+	// For an Amazon RDS PostgreSQL instance, this is the output of DescribeDBInstances
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html),
+	// in the Endpoint (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html).Address
+	// field.
+	//
+	// For an Aurora PostgreSQL instance, this is the output of DescribeDBClusters
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html),
+	// in the Endpoint field.
 	ServerName *string `type:"string"`
 
 	// Sets the name of a previously created logical replication slot for a change
@@ -19556,6 +20532,238 @@ func (s *PostgreSQLSettings) SetUsername(v string) *PostgreSQLSettings {
 	return s
 }
 
+// Provides information that describes the configuration of the recommended
+// target engine on Amazon RDS.
+type RdsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the deployment option for the recommended Amazon RDS DB instance.
+	// The deployment options include Multi-AZ and Single-AZ deployments. Valid
+	// values include "MULTI_AZ" and "SINGLE_AZ".
+	DeploymentOption *string `type:"string"`
+
+	// Describes the recommended target Amazon RDS engine edition.
+	EngineEdition *string `type:"string"`
+
+	// Describes the memory on the recommended Amazon RDS DB instance that meets
+	// your requirements.
+	InstanceMemory *float64 `type:"double"`
+
+	// Describes the recommended target Amazon RDS instance type.
+	InstanceType *string `type:"string"`
+
+	// Describes the number of virtual CPUs (vCPU) on the recommended Amazon RDS
+	// DB instance that meets your requirements.
+	InstanceVcpu *float64 `type:"double"`
+
+	// Describes the number of I/O operations completed each second (IOPS) on the
+	// recommended Amazon RDS DB instance that meets your requirements.
+	StorageIops *int64 `type:"integer"`
+
+	// Describes the storage size of the recommended Amazon RDS DB instance that
+	// meets your requirements.
+	StorageSize *int64 `type:"integer"`
+
+	// Describes the storage type of the recommended Amazon RDS DB instance that
+	// meets your requirements.
+	//
+	// Amazon RDS provides three storage types: General Purpose SSD (also known
+	// as gp2 and gp3), Provisioned IOPS SSD (also known as io1), and magnetic (also
+	// known as standard).
+	StorageType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentOption sets the DeploymentOption field's value.
+func (s *RdsConfiguration) SetDeploymentOption(v string) *RdsConfiguration {
+	s.DeploymentOption = &v
+	return s
+}
+
+// SetEngineEdition sets the EngineEdition field's value.
+func (s *RdsConfiguration) SetEngineEdition(v string) *RdsConfiguration {
+	s.EngineEdition = &v
+	return s
+}
+
+// SetInstanceMemory sets the InstanceMemory field's value.
+func (s *RdsConfiguration) SetInstanceMemory(v float64) *RdsConfiguration {
+	s.InstanceMemory = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *RdsConfiguration) SetInstanceType(v string) *RdsConfiguration {
+	s.InstanceType = &v
+	return s
+}
+
+// SetInstanceVcpu sets the InstanceVcpu field's value.
+func (s *RdsConfiguration) SetInstanceVcpu(v float64) *RdsConfiguration {
+	s.InstanceVcpu = &v
+	return s
+}
+
+// SetStorageIops sets the StorageIops field's value.
+func (s *RdsConfiguration) SetStorageIops(v int64) *RdsConfiguration {
+	s.StorageIops = &v
+	return s
+}
+
+// SetStorageSize sets the StorageSize field's value.
+func (s *RdsConfiguration) SetStorageSize(v int64) *RdsConfiguration {
+	s.StorageSize = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RdsConfiguration) SetStorageType(v string) *RdsConfiguration {
+	s.StorageType = &v
+	return s
+}
+
+// Provides information that describes a recommendation of a target engine on
+// Amazon RDS.
+type RdsRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// Supplemental information about the requirements to the recommended target
+	// database on Amazon RDS.
+	RequirementsToTarget *RdsRequirements `type:"structure"`
+
+	// Supplemental information about the configuration of the recommended target
+	// database on Amazon RDS.
+	TargetConfiguration *RdsConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetRequirementsToTarget sets the RequirementsToTarget field's value.
+func (s *RdsRecommendation) SetRequirementsToTarget(v *RdsRequirements) *RdsRecommendation {
+	s.RequirementsToTarget = v
+	return s
+}
+
+// SetTargetConfiguration sets the TargetConfiguration field's value.
+func (s *RdsRecommendation) SetTargetConfiguration(v *RdsConfiguration) *RdsRecommendation {
+	s.TargetConfiguration = v
+	return s
+}
+
+// Provides information that describes the requirements to the target engine
+// on Amazon RDS.
+type RdsRequirements struct {
+	_ struct{} `type:"structure"`
+
+	// The required deployment option for the Amazon RDS DB instance. Valid values
+	// include "MULTI_AZ" for Multi-AZ deployments and "SINGLE_AZ" for Single-AZ
+	// deployments.
+	DeploymentOption *string `type:"string"`
+
+	// The required target Amazon RDS engine edition.
+	EngineEdition *string `type:"string"`
+
+	// The required memory on the Amazon RDS DB instance.
+	InstanceMemory *float64 `type:"double"`
+
+	// The required number of virtual CPUs (vCPU) on the Amazon RDS DB instance.
+	InstanceVcpu *float64 `type:"double"`
+
+	// The required number of I/O operations completed each second (IOPS) on your
+	// Amazon RDS DB instance.
+	StorageIops *int64 `type:"integer"`
+
+	// The required Amazon RDS DB instance storage size.
+	StorageSize *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsRequirements) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsRequirements) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentOption sets the DeploymentOption field's value.
+func (s *RdsRequirements) SetDeploymentOption(v string) *RdsRequirements {
+	s.DeploymentOption = &v
+	return s
+}
+
+// SetEngineEdition sets the EngineEdition field's value.
+func (s *RdsRequirements) SetEngineEdition(v string) *RdsRequirements {
+	s.EngineEdition = &v
+	return s
+}
+
+// SetInstanceMemory sets the InstanceMemory field's value.
+func (s *RdsRequirements) SetInstanceMemory(v float64) *RdsRequirements {
+	s.InstanceMemory = &v
+	return s
+}
+
+// SetInstanceVcpu sets the InstanceVcpu field's value.
+func (s *RdsRequirements) SetInstanceVcpu(v float64) *RdsRequirements {
+	s.InstanceVcpu = &v
+	return s
+}
+
+// SetStorageIops sets the StorageIops field's value.
+func (s *RdsRequirements) SetStorageIops(v int64) *RdsRequirements {
+	s.StorageIops = &v
+	return s
+}
+
+// SetStorageSize sets the StorageSize field's value.
+func (s *RdsRequirements) SetStorageSize(v int64) *RdsRequirements {
+	s.StorageSize = &v
+	return s
+}
+
 type RebootReplicationInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19654,6 +20862,206 @@ func (s RebootReplicationInstanceOutput) GoString() string {
 // SetReplicationInstance sets the ReplicationInstance field's value.
 func (s *RebootReplicationInstanceOutput) SetReplicationInstance(v *ReplicationInstance) *RebootReplicationInstanceOutput {
 	s.ReplicationInstance = v
+	return s
+}
+
+// Provides information that describes a recommendation of a target engine.
+//
+// A recommendation is a set of possible Amazon Web Services target engines
+// that you can choose to migrate your source on-premises database. In this
+// set, Fleet Advisor suggests a single target engine as the right sized migration
+// destination. To determine this rightsized migration destination, Fleet Advisor
+// uses the inventory metadata and metrics from data collector. You can use
+// recommendations before the start of migration to save costs and reduce risks.
+//
+// With recommendations, you can explore different target options and compare
+// metrics, so you can make an informed decision when you choose the migration
+// target.
+type Recommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The date when Fleet Advisor created the target engine recommendation.
+	CreatedDate *string `type:"string"`
+
+	// The recommendation of a target engine for the specified source database.
+	Data *RecommendationData `type:"structure"`
+
+	// The identifier of the source database for which Fleet Advisor provided this
+	// recommendation.
+	DatabaseId *string `type:"string"`
+
+	// The name of the target engine. Valid values include "rds-aurora-mysql", "rds-aurora-postgresql",
+	// "rds-mysql", "rds-oracle", "rds-sql-server", and "rds-postgresql".
+	EngineName *string `type:"string"`
+
+	// Indicates that this target is the rightsized migration destination.
+	Preferred *bool `type:"boolean"`
+
+	// The settings in JSON format for the preferred target engine parameters. These
+	// parameters include capacity, resource utilization, and the usage type (production,
+	// development, or testing).
+	Settings *RecommendationSettings `type:"structure"`
+
+	// The status of the target engine recommendation. Valid values include "alternate",
+	// "in-progress", "not-viable", and "recommended".
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) GoString() string {
+	return s.String()
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *Recommendation) SetCreatedDate(v string) *Recommendation {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *Recommendation) SetData(v *RecommendationData) *Recommendation {
+	s.Data = v
+	return s
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *Recommendation) SetDatabaseId(v string) *Recommendation {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *Recommendation) SetEngineName(v string) *Recommendation {
+	s.EngineName = &v
+	return s
+}
+
+// SetPreferred sets the Preferred field's value.
+func (s *Recommendation) SetPreferred(v bool) *Recommendation {
+	s.Preferred = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *Recommendation) SetSettings(v *RecommendationSettings) *Recommendation {
+	s.Settings = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Recommendation) SetStatus(v string) *Recommendation {
+	s.Status = &v
+	return s
+}
+
+// Provides information about the target engine for the specified source database.
+type RecommendationData struct {
+	_ struct{} `type:"structure"`
+
+	// The recommendation of a target Amazon RDS database engine.
+	RdsEngine *RdsRecommendation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationData) GoString() string {
+	return s.String()
+}
+
+// SetRdsEngine sets the RdsEngine field's value.
+func (s *RecommendationData) SetRdsEngine(v *RdsRecommendation) *RecommendationData {
+	s.RdsEngine = v
+	return s
+}
+
+// Provides information about the required target engine settings.
+type RecommendationSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The size of your target instance. Fleet Advisor calculates this value based
+	// on your data collection type, such as total capacity and resource utilization.
+	// Valid values include "total-capacity" and "utilization".
+	//
+	// InstanceSizingType is a required field
+	InstanceSizingType *string `type:"string" required:"true"`
+
+	// The deployment option for your target engine. For production databases, Fleet
+	// Advisor chooses Multi-AZ deployment. For development or test databases, Fleet
+	// Advisor chooses Single-AZ deployment. Valid values include "development"
+	// and "production".
+	//
+	// WorkloadType is a required field
+	WorkloadType *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommendationSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommendationSettings"}
+	if s.InstanceSizingType == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceSizingType"))
+	}
+	if s.WorkloadType == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceSizingType sets the InstanceSizingType field's value.
+func (s *RecommendationSettings) SetInstanceSizingType(v string) *RecommendationSettings {
+	s.InstanceSizingType = &v
+	return s
+}
+
+// SetWorkloadType sets the WorkloadType field's value.
+func (s *RecommendationSettings) SetWorkloadType(v string) *RecommendationSettings {
+	s.WorkloadType = &v
 	return s
 }
 
@@ -21149,8 +22557,7 @@ type ReplicationTask struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
-	// “
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The last error (failure) message generated for the replication task.
@@ -23421,6 +24828,166 @@ func (s *ServerShortInfoResponse) SetServerName(v string) *ServerShortInfoRespon
 	return s
 }
 
+type StartRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the source database to analyze and provide recommendations
+	// for.
+	//
+	// DatabaseId is a required field
+	DatabaseId *string `type:"string" required:"true"`
+
+	// The settings in JSON format that Fleet Advisor uses to determine target engine
+	// recommendations. These parameters include target instance sizing and availability
+	// and durability settings. For target instance sizing, Fleet Advisor supports
+	// the following two options: total capacity and resource utilization. For availability
+	// and durability, Fleet Advisor supports the following two options: production
+	// (Multi-AZ deployments) and Dev/Test (Single-AZ deployments).
+	//
+	// Settings is a required field
+	Settings *RecommendationSettings `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartRecommendationsInput"}
+	if s.DatabaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseId"))
+	}
+	if s.Settings == nil {
+		invalidParams.Add(request.NewErrParamRequired("Settings"))
+	}
+	if s.Settings != nil {
+		if err := s.Settings.Validate(); err != nil {
+			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *StartRecommendationsInput) SetDatabaseId(v string) *StartRecommendationsInput {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *StartRecommendationsInput) SetSettings(v *RecommendationSettings) *StartRecommendationsInput {
+	s.Settings = v
+	return s
+}
+
+type StartRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// Provides information about the source database to analyze and provide target
+// recommendations according to the specified requirements.
+type StartRecommendationsRequestEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the source database.
+	//
+	// DatabaseId is a required field
+	DatabaseId *string `type:"string" required:"true"`
+
+	// The required target engine settings.
+	//
+	// Settings is a required field
+	Settings *RecommendationSettings `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommendationsRequestEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommendationsRequestEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartRecommendationsRequestEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartRecommendationsRequestEntry"}
+	if s.DatabaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseId"))
+	}
+	if s.Settings == nil {
+		invalidParams.Add(request.NewErrParamRequired("Settings"))
+	}
+	if s.Settings != nil {
+		if err := s.Settings.Validate(); err != nil {
+			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *StartRecommendationsRequestEntry) SetDatabaseId(v string) *StartRecommendationsRequestEntry {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *StartRecommendationsRequestEntry) SetSettings(v *RecommendationSettings) *StartRecommendationsRequestEntry {
+	s.Settings = v
+	return s
+}
+
 type StartReplicationTaskAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23730,8 +25297,7 @@ type StartReplicationTaskInput struct {
 	//
 	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
-	// “
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12“
 	CdcStopPosition *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the replication task to be started.
@@ -23742,12 +25308,19 @@ type StartReplicationTaskInput struct {
 	// The type of replication task to start.
 	//
 	// When the migration type is full-load or full-load-and-cdc, the only valid
-	// value for the first run of the task is start-replication. You use reload-target
-	// to restart the task and resume-processing to resume the task.
+	// value for the first run of the task is start-replication. This option will
+	// start the migration.
 	//
-	// When the migration type is cdc, you use start-replication to start or restart
-	// the task, and resume-processing to resume the task. reload-target is not
-	// a valid value for a task with migration type of cdc.
+	// You can also use ReloadTables to reload specific tables that failed during
+	// migration instead of restarting the task.
+	//
+	// The resume-processing option isn't applicable for a full-load task, because
+	// you can't resume partially loaded tables during the full load phase.
+	//
+	// For a full-load-and-cdc task, DMS migrates table data, and then applies data
+	// changes that occur on the source. To load all the tables again, and start
+	// capturing source changes, use reload-target. Otherwise use resume-processing,
+	// to replicate the changes from the last stop position.
 	//
 	// StartReplicationTaskType is a required field
 	StartReplicationTaskType *string `type:"string" required:"true" enum:"StartReplicationTaskTypeValue"`
@@ -25380,12 +26953,16 @@ func RefreshSchemasStatusTypeValue_Values() []string {
 const (
 	// ReleaseStatusValuesBeta is a ReleaseStatusValues enum value
 	ReleaseStatusValuesBeta = "beta"
+
+	// ReleaseStatusValuesProd is a ReleaseStatusValues enum value
+	ReleaseStatusValuesProd = "prod"
 )
 
 // ReleaseStatusValues_Values returns all elements of the ReleaseStatusValues enum
 func ReleaseStatusValues_Values() []string {
 	return []string{
 		ReleaseStatusValuesBeta,
+		ReleaseStatusValuesProd,
 	}
 }
 

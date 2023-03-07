@@ -12498,18 +12498,18 @@ type GetMapGlyphsInput struct {
 	//    * VectorGrabStandardLight, VectorGrabStandardDark – Noto Sans Regular
 	//    | Noto Sans Medium | Noto Sans Bold
 	//
-	// Valid font stacks for Open Data (Preview) (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html)
+	// Valid font stacks for Open Data (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html)
 	// styles:
 	//
-	//    * VectorOpenDataStandardLight – Amazon Ember Regular,Noto Sans Regular
+	//    * VectorOpenDataStandardLight, VectorOpenDataStandardDark, VectorOpenDataVisualizationLight,
+	//    VectorOpenDataVisualizationDark – Amazon Ember Regular,Noto Sans Regular
 	//    | Amazon Ember Bold,Noto Sans Bold | Amazon Ember Medium,Noto Sans Medium
 	//    | Amazon Ember Regular Italic,Noto Sans Italic | Amazon Ember Condensed
 	//    RC Regular,Noto Sans Regular | Amazon Ember Condensed RC Bold,Noto Sans
 	//    Bold
 	//
-	// The fonts used by VectorOpenDataStandardLight are combined fonts that use
-	// Amazon Ember for most glyphs but Noto Sans for glyphs unsupported by Amazon
-	// Ember.
+	// The fonts used by the Open Data map styles are combined fonts that use Amazon
+	// Ember for most glyphs but Noto Sans for glyphs unsupported by Amazon Ember.
 	//
 	// FontStack is a required field
 	FontStack *string `location:"uri" locationName:"FontStack" type:"string" required:"true"`
@@ -15336,15 +15336,27 @@ type MapConfiguration struct {
 	// in the Asia Pacific (Singapore) Region (ap-southeast-1). For more information,
 	// see GrabMaps countries and area covered (https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area).
 	//
-	// Valid Open Data (Preview) map styles (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html):
+	// Valid Open Data map styles (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html):
 	//
-	//    * VectorOpenDataStandardLight – The Open Data Standard Light (preview)
-	//    map style provides a detailed basemap for the world suitable for website
-	//    and mobile application use. The map includes highways major roads, minor
-	//    roads, railways, water features, cities, parks, landmarks, building footprints,
-	//    and administrative boundaries. Open Data maps is in preview. We may add,
-	//    change, or remove features before announcing general availability. For
-	//    more information, see Open Data is in preview release (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html#open-data-preview).
+	//    * VectorOpenDataStandardLight – The Open Data Standard Light map style
+	//    provides a detailed basemap for the world suitable for website and mobile
+	//    application use. The map includes highways major roads, minor roads, railways,
+	//    water features, cities, parks, landmarks, building footprints, and administrative
+	//    boundaries.
+	//
+	//    * VectorOpenDataStandardDark – Open Data Standard Dark is a dark-themed
+	//    map style that provides a detailed basemap for the world suitable for
+	//    website and mobile application use. The map includes highways major roads,
+	//    minor roads, railways, water features, cities, parks, landmarks, building
+	//    footprints, and administrative boundaries.
+	//
+	//    * VectorOpenDataVisualizationLight – The Open Data Visualization Light
+	//    map style is a light-themed style with muted colors and fewer features
+	//    that aids in understanding overlaid data.
+	//
+	//    * VectorOpenDataVisualizationDark – The Open Data Visualization Dark
+	//    map style is a dark-themed style with muted colors and fewer features
+	//    that aids in understanding overlaid data.
 	//
 	// Style is a required field
 	Style *string `min:"1" type:"string" required:"true"`
