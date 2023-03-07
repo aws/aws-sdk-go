@@ -1,6 +1,7 @@
 package ec2metadata
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"net/http"
 	"sync/atomic"
 	"time"
@@ -49,13 +50,17 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 	output, err := t.client.getToken(r.Context(), t.configuredTTL)
 
 	if err != nil {
+		// only attempt fallback to insecure data flow if IMDSv1 is enabled
+		if aws.BoolValue(t.client.Config.EC2MetadataDisableFallback) {
+			r.Error = awserr.New("EC2MetadataError", "failed to get IMDS token and fallback is disabled", err)
+			return
+		}
 
-		// change the disabled flag on token provider to true,
-		// when error is request timeout error.
+		// change the disabled flag on token provider to true and fallback
 		if requestFailureError, ok := err.(awserr.RequestFailure); ok {
 			switch requestFailureError.StatusCode() {
 			case http.StatusForbidden, http.StatusNotFound, http.StatusMethodNotAllowed:
-				atomic.StoreUint32(&t.disabled, 1)
+				t.disableTokenRetrieval()
 			case http.StatusBadRequest:
 				r.Error = requestFailureError
 			}
@@ -63,7 +68,7 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 			// Check if request timed out while waiting for response
 			if e, ok := requestFailureError.OrigErr().(awserr.Error); ok {
 				if e.Code() == request.ErrCodeRequestError {
-					atomic.StoreUint32(&t.disabled, 1)
+					t.disableTokenRetrieval()
 				}
 			}
 		}
@@ -80,6 +85,12 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 	if ec2Token, ok := t.token.Load().(ec2Token); ok {
 		r.HTTPRequest.Header.Set(tokenHeader, ec2Token.token)
 	}
+}
+
+// disableTokenRetrieval sets the disabled flag on the token provider such that future calls
+// will fallback to the insecure data flow of IMDSv1
+func (t *tokenProvider) disableTokenRetrieval() {
+	atomic.StoreUint32(&t.disabled, 1)
 }
 
 // enableTokenProviderHandler enables the token provider
