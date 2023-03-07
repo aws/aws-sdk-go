@@ -36,6 +36,20 @@
         {"shape":"ResourceNotFoundFault"}
       ]
     },
+    "BatchStartRecommendations":{
+      "name":"BatchStartRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchStartRecommendationsRequest"},
+      "output":{"shape":"BatchStartRecommendationsResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"AccessDeniedFault"},
+        {"shape":"ResourceNotFoundFault"}
+      ]
+    },
     "CancelReplicationTaskAssessmentRun":{
       "name":"CancelReplicationTaskAssessmentRun",
       "http":{
@@ -479,6 +493,32 @@
         {"shape":"ResourceNotFoundFault"}
       ]
     },
+    "DescribeRecommendationLimitations":{
+      "name":"DescribeRecommendationLimitations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRecommendationLimitationsRequest"},
+      "output":{"shape":"DescribeRecommendationLimitationsResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"AccessDeniedFault"}
+      ]
+    },
+    "DescribeRecommendations":{
+      "name":"DescribeRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRecommendationsRequest"},
+      "output":{"shape":"DescribeRecommendationsResponse"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"AccessDeniedFault"}
+      ]
+    },
     "DescribeRefreshSchemasStatus":{
       "name":"DescribeRefreshSchemasStatus",
       "http":{
@@ -796,6 +836,19 @@
         {"shape":"ResourceNotFoundFault"}
       ]
     },
+    "StartRecommendations":{
+      "name":"StartRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartRecommendationsRequest"},
+      "errors":[
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"AccessDeniedFault"},
+        {"shape":"ResourceNotFoundFault"}
+      ]
+    },
     "StartReplicationTask":{
       "name":"StartReplicationTask",
       "http":{
@@ -972,6 +1025,30 @@
     "AvailabilityZonesList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "BatchStartRecommendationsErrorEntry":{
+      "type":"structure",
+      "members":{
+        "DatabaseId":{"shape":"String"},
+        "Message":{"shape":"String"},
+        "Code":{"shape":"String"}
+      }
+    },
+    "BatchStartRecommendationsErrorEntryList":{
+      "type":"list",
+      "member":{"shape":"BatchStartRecommendationsErrorEntry"}
+    },
+    "BatchStartRecommendationsRequest":{
+      "type":"structure",
+      "members":{
+        "Data":{"shape":"StartRecommendationsRequestEntryList"}
+      }
+    },
+    "BatchStartRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "ErrorEntries":{"shape":"BatchStartRecommendationsErrorEntryList"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
@@ -1737,6 +1814,36 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeRecommendationLimitationsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeRecommendationLimitationsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "Limitations":{"shape":"LimitationList"}
+      }
+    },
+    "DescribeRecommendationsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "Recommendations":{"shape":"RecommendationList"}
+      }
+    },
     "DescribeRefreshSchemasStatusMessage":{
       "type":"structure",
       "required":["EndpointArn"],
@@ -2343,6 +2450,21 @@
         "NoHexPrefix":{"shape":"BooleanOptional"}
       }
     },
+    "Limitation":{
+      "type":"structure",
+      "members":{
+        "DatabaseId":{"shape":"String"},
+        "EngineName":{"shape":"String"},
+        "Name":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "Impact":{"shape":"String"},
+        "Type":{"shape":"String"}
+      }
+    },
+    "LimitationList":{
+      "type":"list",
+      "member":{"shape":"Limitation"}
+    },
     "ListTagsForResourceMessage":{
       "type":"structure",
       "members":{
@@ -2718,6 +2840,37 @@
         "TrimSpaceInChar":{"shape":"BooleanOptional"}
       }
     },
+    "RdsConfiguration":{
+      "type":"structure",
+      "members":{
+        "EngineEdition":{"shape":"String"},
+        "InstanceType":{"shape":"String"},
+        "InstanceVcpu":{"shape":"DoubleOptional"},
+        "InstanceMemory":{"shape":"DoubleOptional"},
+        "StorageType":{"shape":"String"},
+        "StorageSize":{"shape":"IntegerOptional"},
+        "StorageIops":{"shape":"IntegerOptional"},
+        "DeploymentOption":{"shape":"String"}
+      }
+    },
+    "RdsRecommendation":{
+      "type":"structure",
+      "members":{
+        "RequirementsToTarget":{"shape":"RdsRequirements"},
+        "TargetConfiguration":{"shape":"RdsConfiguration"}
+      }
+    },
+    "RdsRequirements":{
+      "type":"structure",
+      "members":{
+        "EngineEdition":{"shape":"String"},
+        "InstanceVcpu":{"shape":"DoubleOptional"},
+        "InstanceMemory":{"shape":"DoubleOptional"},
+        "StorageSize":{"shape":"IntegerOptional"},
+        "StorageIops":{"shape":"IntegerOptional"},
+        "DeploymentOption":{"shape":"String"}
+      }
+    },
     "RebootReplicationInstanceMessage":{
       "type":"structure",
       "required":["ReplicationInstanceArn"],
@@ -2731,6 +2884,39 @@
       "type":"structure",
       "members":{
         "ReplicationInstance":{"shape":"ReplicationInstance"}
+      }
+    },
+    "Recommendation":{
+      "type":"structure",
+      "members":{
+        "DatabaseId":{"shape":"String"},
+        "EngineName":{"shape":"String"},
+        "CreatedDate":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "Preferred":{"shape":"BooleanOptional"},
+        "Settings":{"shape":"RecommendationSettings"},
+        "Data":{"shape":"RecommendationData"}
+      }
+    },
+    "RecommendationData":{
+      "type":"structure",
+      "members":{
+        "RdsEngine":{"shape":"RdsRecommendation"}
+      }
+    },
+    "RecommendationList":{
+      "type":"list",
+      "member":{"shape":"Recommendation"}
+    },
+    "RecommendationSettings":{
+      "type":"structure",
+      "required":[
+        "InstanceSizingType",
+        "WorkloadType"
+      ],
+      "members":{
+        "InstanceSizingType":{"shape":"String"},
+        "WorkloadType":{"shape":"String"}
       }
     },
     "RedisAuthTypeValue":{
@@ -2829,7 +3015,10 @@
     },
     "ReleaseStatusValues":{
       "type":"string",
-      "enum":["beta"]
+      "enum":[
+        "beta",
+        "prod"
+      ]
     },
     "ReloadOptionValue":{
       "type":"string",
@@ -3249,6 +3438,32 @@
         "plaintext",
         "ssl-encryption"
       ]
+    },
+    "StartRecommendationsRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseId",
+        "Settings"
+      ],
+      "members":{
+        "DatabaseId":{"shape":"String"},
+        "Settings":{"shape":"RecommendationSettings"}
+      }
+    },
+    "StartRecommendationsRequestEntry":{
+      "type":"structure",
+      "required":[
+        "DatabaseId",
+        "Settings"
+      ],
+      "members":{
+        "DatabaseId":{"shape":"String"},
+        "Settings":{"shape":"RecommendationSettings"}
+      }
+    },
+    "StartRecommendationsRequestEntryList":{
+      "type":"list",
+      "member":{"shape":"StartRecommendationsRequestEntry"}
     },
     "StartReplicationTaskAssessmentMessage":{
       "type":"structure",
