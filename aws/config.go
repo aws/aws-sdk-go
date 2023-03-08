@@ -449,9 +449,9 @@ func (c *Config) WithEC2MetadataDisableTimeoutOverride(enable bool) *Config {
 	return c
 }
 
-// WithEC2MetadataDisableFallback sets a config EC2MetadataEnableFallback value
+// WithEC2MetadataEnableFallback sets a config EC2MetadataEnableFallback value
 // returning a Config pointer for chaining.
-func (c *Config) WithEC2MetadataDisableFallback(v bool) *Config {
+func (c *Config) WithEC2MetadataEnableFallback(v bool) *Config {
 	c.EC2MetadataEnableFallback = &v
 	return c
 }
