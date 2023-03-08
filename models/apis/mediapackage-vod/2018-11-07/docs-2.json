@@ -212,7 +212,7 @@
     "ScteMarkersSource" : {
       "base" : null,
       "refs" : {
-        "DashManifest$ScteMarkersSource" : "The source of scte markers used. When set to SEGMENTS, the scte markers are sourced from the segments of the ingested content. When set to MANIFEST, the scte markers are sourced from the manifest of the ingested content. The MANIFEST value is compatible with source HLS playlists using the SCTE-35 Enhanced syntax (#EXT-OATCLS-SCTE35 tags). SCTE-35 Elemental and SCTE-35 Daterange syntaxes are not supported with this option."
+        "DashManifest$ScteMarkersSource" : "The source of scte markers used. When set to SEGMENTS, the scte markers are sourced from the segments of the ingested content. When set to MANIFEST, the scte markers are sourced from the manifest of the ingested content."
       }
     },
     "SegmentTemplateFormat" : {
@@ -388,12 +388,14 @@
         "HlsManifest$ManifestName" : "An optional string to include in the name of the manifest.",
         "MssManifest$ManifestName" : "An optional string to include in the name of the manifest.",
         "PackagingConfiguration$Arn" : "The ARN of the PackagingConfiguration.",
+        "PackagingConfiguration$CreatedAt" : "The time the PackagingConfiguration was created.",
         "PackagingConfiguration$Id" : "The ID of the PackagingConfiguration.",
         "PackagingConfiguration$PackagingGroupId" : "The ID of a PackagingGroup.",
         "PackagingConfigurationCreateParameters$Id" : "The ID of the PackagingConfiguration.",
         "PackagingConfigurationCreateParameters$PackagingGroupId" : "The ID of a PackagingGroup.",
         "PackagingConfigurationList$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
         "PackagingGroup$Arn" : "The ARN of the PackagingGroup.",
+        "PackagingGroup$CreatedAt" : "The time the PackagingGroup was created.",
         "PackagingGroup$DomainName" : "The fully qualified domain name for Assets in the PackagingGroup.",
         "PackagingGroup$Id" : "The ID of the PackagingGroup.",
         "PackagingGroupCreateParameters$Id" : "The ID of the PackagingGroup.",

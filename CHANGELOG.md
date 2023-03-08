@@ -1,3 +1,21 @@
+Release v1.44.217 (2023-03-08)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * A new field SubstatementType is added to GetQueryExecution API, so customers have an error free way to detect the query type and interpret the result.
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds deletion protection support to DynamoDB tables. Tables with deletion protection enabled cannot be deleted. Deletion protection is disabled by default, can be enabled via the CreateTable or UpdateTable APIs, and is visible in TableDescription. This setting is not replicated for Global Tables.
+* `service/ec2`: Updates service API
+  * Introducing Amazon EC2 C7g, M7g and R7g instances, powered by the latest generation AWS Graviton3 processors and deliver up to 25% better performance over Graviton2-based instances.
+* `service/lakeformation`: Updates service API and documentation
+* `service/mediapackage`: Updates service API and documentation
+  * This release provides the date and time live resources were created.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/route53resolver`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * There needs to be a user identity to specify the SageMaker user who perform each action regarding the entity. However, these is a not a unified concept of user identity across SageMaker service that could be used today.
+
 Release v1.44.216 (2023-03-07)
 ===
 

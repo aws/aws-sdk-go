@@ -756,6 +756,10 @@
           "locationName": "authorization",
           "shape": "Authorization"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DomainName": {
           "locationName": "domainName",
           "shape": "__string"
@@ -898,6 +902,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -958,6 +966,10 @@
         "Authorization": {
           "locationName": "authorization",
           "shape": "Authorization"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DomainName": {
           "locationName": "domainName",
@@ -1183,6 +1195,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -1236,6 +1252,10 @@
         "Authorization": {
           "locationName": "authorization",
           "shape": "Authorization"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DomainName": {
           "locationName": "domainName",
@@ -1605,6 +1625,10 @@
           "locationName": "cmafPackage",
           "shape": "CmafPackage"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "DashPackage": {
           "locationName": "dashPackage",
           "shape": "DashPackage"
@@ -1695,6 +1719,10 @@
         "Authorization": {
           "locationName": "authorization",
           "shape": "Authorization"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DomainName": {
           "locationName": "domainName",
@@ -1986,6 +2014,10 @@
         "Authorization": {
           "locationName": "authorization",
           "shape": "Authorization"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
         },
         "DomainName": {
           "locationName": "domainName",

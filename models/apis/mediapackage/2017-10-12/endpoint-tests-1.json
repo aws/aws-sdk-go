@@ -4,7 +4,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.ap-northeast-1.amazonaws.com"
+                    "url": "https://mediapackage.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -17,7 +17,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.ap-northeast-2.amazonaws.com"
+                    "url": "https://mediapackage.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +30,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.ap-south-1.amazonaws.com"
+                    "url": "https://mediapackage.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -43,7 +43,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.ap-southeast-1.amazonaws.com"
+                    "url": "https://mediapackage.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +56,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.ap-southeast-2.amazonaws.com"
+                    "url": "https://mediapackage.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -69,7 +69,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.eu-central-1.amazonaws.com"
+                    "url": "https://mediapackage.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +82,7 @@
             "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.eu-north-1.amazonaws.com"
+                    "url": "https://mediapackage.eu-north-1.amazonaws.com"
                 }
             },
             "params": {
@@ -95,7 +95,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.eu-west-1.amazonaws.com"
+                    "url": "https://mediapackage.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -108,7 +108,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.eu-west-2.amazonaws.com"
+                    "url": "https://mediapackage.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -121,7 +121,7 @@
             "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.eu-west-3.amazonaws.com"
+                    "url": "https://mediapackage.eu-west-3.amazonaws.com"
                 }
             },
             "params": {
@@ -134,7 +134,7 @@
             "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.sa-east-1.amazonaws.com"
+                    "url": "https://mediapackage.sa-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -147,7 +147,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-east-1.amazonaws.com"
+                    "url": "https://mediapackage.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -160,7 +160,7 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-east-2.amazonaws.com"
+                    "url": "https://mediapackage.us-east-2.amazonaws.com"
                 }
             },
             "params": {
@@ -173,7 +173,7 @@
             "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-west-1.amazonaws.com"
+                    "url": "https://mediapackage.us-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +186,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-west-2.amazonaws.com"
+                    "url": "https://mediapackage.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -199,7 +199,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod-fips.us-east-1.api.aws"
+                    "url": "https://mediapackage-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -212,7 +212,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod-fips.us-east-1.amazonaws.com"
+                    "url": "https://mediapackage-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -225,7 +225,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-east-1.api.aws"
+                    "url": "https://mediapackage.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -238,7 +238,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://mediapackage-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -251,7 +251,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://mediapackage-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -264,7 +264,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://mediapackage.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -277,7 +277,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.cn-north-1.amazonaws.com.cn"
+                    "url": "https://mediapackage.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -290,7 +290,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod-fips.us-gov-east-1.api.aws"
+                    "url": "https://mediapackage-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -303,7 +303,7 @@
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod-fips.us-gov-east-1.amazonaws.com"
+                    "url": "https://mediapackage-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -316,7 +316,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-gov-east-1.api.aws"
+                    "url": "https://mediapackage.us-gov-east-1.api.aws"
                 }
             },
             "params": {
@@ -329,7 +329,7 @@
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-gov-east-1.amazonaws.com"
+                    "url": "https://mediapackage.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -339,23 +339,10 @@
             }
         },
         {
-            "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://mediapackage-vod-fips.us-iso-east-1.c2s.ic.gov"
-                }
-            },
-            "params": {
-                "Region": "us-iso-east-1",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://mediapackage.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -365,10 +352,23 @@
             }
         },
         {
+            "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://mediapackage-fips.us-iso-east-1.c2s.ic.gov"
+                }
+            },
+            "params": {
+                "Region": "us-iso-east-1",
+                "UseFIPS": true,
+                "UseDualStack": false
+            }
+        },
+        {
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://mediapackage-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -381,7 +381,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://mediapackage-vod.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://mediapackage.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
