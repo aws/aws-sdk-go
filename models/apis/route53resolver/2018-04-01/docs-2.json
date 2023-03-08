@@ -27,7 +27,7 @@
     "GetFirewallRuleGroup": "<p>Retrieves the specified firewall rule group. </p>",
     "GetFirewallRuleGroupAssociation": "<p>Retrieves a firewall rule group association, which enables DNS filtering for a VPC with one rule group. A VPC can have more than one firewall rule group association, and a rule group can be associated with more than one VPC.</p>",
     "GetFirewallRuleGroupPolicy": "<p>Returns the Identity and Access Management (Amazon Web Services IAM) policy for sharing the specified rule group. You can use the policy to share the rule group using Resource Access Manager (RAM). </p>",
-    "GetResolverConfig": "<p>Retrieves the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
+    "GetResolverConfig": "<p>Retrieves the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
     "GetResolverDnssecConfig": "<p>Gets DNSSEC validation information for a specified resource.</p>",
     "GetResolverEndpoint": "<p>Gets information about a specified Resolver endpoint, such as whether it's an inbound or an outbound Resolver endpoint, and the current status of the endpoint.</p>",
     "GetResolverQueryLogConfig": "<p>Gets information about a specified Resolver query logging configuration, such as the number of VPCs that the configuration is logging queries for and the location that logs are sent to. </p>",
@@ -43,7 +43,7 @@
     "ListFirewallRuleGroupAssociations": "<p>Retrieves the firewall rule group associations that you have defined. Each association enables DNS filtering for a VPC with one rule group. </p> <p>A single call might return only a partial list of the associations. For information, see <code>MaxResults</code>. </p>",
     "ListFirewallRuleGroups": "<p>Retrieves the minimal high-level information for the rule groups that you have defined. </p> <p>A single call might return only a partial list of the rule groups. For information, see <code>MaxResults</code>. </p>",
     "ListFirewallRules": "<p>Retrieves the firewall rules that you have defined for the specified firewall rule group. DNS Firewall uses the rules in a rule group to filter DNS network traffic for a VPC. </p> <p>A single call might return only a partial list of the rules. For information, see <code>MaxResults</code>. </p>",
-    "ListResolverConfigs": "<p>Retrieves the Resolver configurations that you have defined. Route 53 Resolver uses the configurations to manage DNS resolution behavior for your VPCs.</p>",
+    "ListResolverConfigs": "<p>Retrieves the Resolver configurations that you have defined. Route 53 Resolver uses the configurations to manage DNS resolution behavior for your VPCs.</p>",
     "ListResolverDnssecConfigs": "<p>Lists the configurations for DNSSEC validation that are associated with the current Amazon Web Services account.</p>",
     "ListResolverEndpointIpAddresses": "<p>Gets the IP addresses for a specified Resolver endpoint.</p>",
     "ListResolverEndpoints": "<p>Lists all the Resolver endpoints that were created using the current Amazon Web Services account.</p>",
@@ -61,9 +61,9 @@
     "UpdateFirewallDomains": "<p>Updates the firewall domain list from an array of domain specifications. </p>",
     "UpdateFirewallRule": "<p>Updates the specified firewall rule. </p>",
     "UpdateFirewallRuleGroupAssociation": "<p>Changes the association of a <a>FirewallRuleGroup</a> with a VPC. The association enables DNS filtering for the VPC. </p>",
-    "UpdateResolverConfig": "<p>Updates the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
+    "UpdateResolverConfig": "<p>Updates the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
     "UpdateResolverDnssecConfig": "<p>Updates an existing DNSSEC validation configuration. If there is no existing DNSSEC validation configuration, one is created.</p>",
-    "UpdateResolverEndpoint": "<p>Updates the name of an inbound or an outbound Resolver endpoint. </p>",
+    "UpdateResolverEndpoint": "<p>Updates the name, or enpoint type for an inbound or an outbound Resolver endpoint. You can only update between IPV4 and DUALSTACK, IPV6 endpoint type can't be updated to other type. </p>",
     "UpdateResolverRule": "<p>Updates settings for a specified Resolver rule. <code>ResolverRuleId</code> is required, and all other parameters are optional. If you don't specify a parameter, it retains its current value.</p>"
   },
   "shapes": {
@@ -158,7 +158,7 @@
     "AutodefinedReverseFlag": {
       "base": null,
       "refs": {
-        "UpdateResolverConfigRequest$AutodefinedReverseFlag": "<p>Indicates whether or not the Resolver will create autodefined rules for reverse DNS lookups. This is enabled by default. Disabling this option will also affect EC2-Classic instances using ClassicLink. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon EC2 guide</i>.</p> <note> <p>It can take some time for the status change to be completed.</p> </note> <p/>"
+        "UpdateResolverConfigRequest$AutodefinedReverseFlag": "<p>Indicates whether or not the Resolver will create autodefined rules for reverse DNS lookups. This is enabled by default. Disabling this option will also affect EC2-Classic instances using ClassicLink. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon EC2 guide</i>.</p> <important> <p>We are retiring EC2-Classic on August 15, 2022. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon EC2 guide</i> and the blog <a href=\"http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/\">EC2-Classic Networking is Retiring – Here’s How to Prepare</a>.</p> </important> <note> <p>It can take some time for the status change to be completed.</p> </note> <p/>"
       }
     },
     "BlockOverrideDnsType": {
@@ -201,7 +201,7 @@
       }
     },
     "ConflictException": {
-      "base": "<p/>",
+      "base": "<p>The requested state transition isn't valid. For example, you can't delete a firewall domain list if it is in the process of being deleted, or you can't import domains into a domain list that is in the process of being deleted.</p>",
       "refs": {
       }
     },
@@ -510,8 +510,8 @@
       "base": null,
       "refs": {
         "FirewallDomainList$Status": "<p>The status of the domain list. </p>",
-        "ImportFirewallDomainsResponse$Status": "<p> </p>",
-        "UpdateFirewallDomainsResponse$Status": "<p> </p>"
+        "ImportFirewallDomainsResponse$Status": "<p>Status of the import request.</p>",
+        "UpdateFirewallDomainsResponse$Status": "<p>Status of the <code>UpdateFirewallDomains</code> request.</p>"
       }
     },
     "FirewallDomainName": {
@@ -530,7 +530,7 @@
       "base": null,
       "refs": {
         "ListFirewallDomainsResponse$Domains": "<p>A list of the domains in the firewall domain list. </p> <p>This might be a partial list of the domains that you've defined in the domain list. For information, see <code>MaxResults</code>. </p>",
-        "UpdateFirewallDomainsRequest$Domains": "<p>A list of domains to use in the update operation.</p> <p>Each domain specification in your domain list must satisfy the following requirements: </p> <ul> <li> <p>It can optionally start with <code>*</code> (asterisk).</p> </li> <li> <p>With the exception of the optional starting asterisk, it must only contain the following characters: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>-</code> (hyphen).</p> </li> <li> <p>It must be from 1-255 characters in length. </p> </li> </ul>"
+        "UpdateFirewallDomainsRequest$Domains": "<p>A list of domains to use in the update operation.</p> <important> <p>There is a limit of 1000 domains per request.</p> </important> <p>Each domain specification in your domain list must satisfy the following requirements: </p> <ul> <li> <p>It can optionally start with <code>*</code> (asterisk).</p> </li> <li> <p>With the exception of the optional starting asterisk, it must only contain the following characters: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>-</code> (hyphen).</p> </li> <li> <p>It must be from 1-255 characters in length. </p> </li> </ul>"
       }
     },
     "FirewallFailOpenStatus": {
@@ -794,10 +794,10 @@
     "Ip": {
       "base": null,
       "refs": {
-        "IpAddressRequest$Ip": "<p>The IP address that you want to use for DNS queries.</p>",
-        "IpAddressResponse$Ip": "<p>One IP address that the Resolver endpoint uses for DNS queries.</p>",
-        "IpAddressUpdate$Ip": "<p>The new IP address.</p>",
-        "TargetAddress$Ip": "<p>One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses.</p>"
+        "IpAddressRequest$Ip": "<p>The IPv4 address that you want to use for DNS queries.</p>",
+        "IpAddressResponse$Ip": "<p>One IPv4 address that the Resolver endpoint uses for DNS queries.</p>",
+        "IpAddressUpdate$Ip": "<p>The new IPv4 address.</p>",
+        "TargetAddress$Ip": "<p>One IPv4 address that you want to forward DNS queries to.</p>"
       }
     },
     "IpAddressCount": {
@@ -841,6 +841,16 @@
       "base": null,
       "refs": {
         "ListResolverEndpointIpAddressesResponse$IpAddresses": "<p>Information about the IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints).</p>"
+      }
+    },
+    "Ipv6": {
+      "base": null,
+      "refs": {
+        "IpAddressRequest$Ipv6": "<p> The IPv6 address that you want to use for DNS queries. </p>",
+        "IpAddressResponse$Ipv6": "<p> One IPv6 address that the Resolver endpoint uses for DNS queries. </p>",
+        "IpAddressUpdate$Ipv6": "<p> The new IPv6 address. </p>",
+        "TargetAddress$Ipv6": "<p> One IPv6 address that you want to forward DNS queries to. </p>",
+        "UpdateIpAddress$Ipv6": "<p> The IPv6 address that you want to use for DNS queries. </p>"
       }
     },
     "LimitExceededException": {
@@ -1088,7 +1098,7 @@
         "ListFirewallRulesRequest$NextToken": "<p>For the first call to this list request, omit this value.</p> <p>When you request a list of objects, Resolver returns at most the number of objects specified in <code>MaxResults</code>. If more objects are available for retrieval, Resolver returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.</p>",
         "ListFirewallRulesResponse$NextToken": "<p>If objects are still available for retrieval, Resolver returns this token in the response. To retrieve the next batch of objects, provide this token in your next request.</p>",
         "ListResolverConfigsRequest$NextToken": "<p>(Optional) If the current Amazon Web Services account has more than <code>MaxResults</code> Resolver configurations, use <code>NextToken</code> to get the second and subsequent pages of results.</p> <p>For the first <code>ListResolverConfigs</code> request, omit this value.</p> <p>For the second and subsequent requests, get the value of <code>NextToken</code> from the previous response and specify that value for <code>NextToken</code> in the request.</p>",
-        "ListResolverConfigsResponse$NextToken": "<p>If a response includes the last of the Resolver configurations that are associated with the current Amazon Web Services account, <code>NextToken</code> doesn't appear in the response.</p> <p>If a response doesn't include the last of the configurations, you can get more configurations by submitting another <code>ListResolverConfigs</code> request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in the previous response and include it in <code>NextToken</code> in the next request.</p>",
+        "ListResolverConfigsResponse$NextToken": "<p>If a response includes the last of the Resolver configurations that are associated with the current Amazon Web Services account, <code>NextToken</code> doesn't appear in the response.</p> <p>If a response doesn't include the last of the configurations, you can get more configurations by submitting another <code>ListResolverConfigs</code> request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in the previous response and include it in <code>NextToken</code> in the next request.</p>",
         "ListResolverDnssecConfigsRequest$NextToken": "<p>(Optional) If the current Amazon Web Services account has more than <code>MaxResults</code> DNSSEC configurations, use <code>NextToken</code> to get the second and subsequent pages of results.</p> <p>For the first <code>ListResolverDnssecConfigs</code> request, omit this value.</p> <p>For the second and subsequent requests, get the value of <code>NextToken</code> from the previous response and specify that value for <code>NextToken</code> in the request.</p>",
         "ListResolverDnssecConfigsResponse$NextToken": "<p>If a response includes the last of the DNSSEC configurations that are associated with the current Amazon Web Services account, <code>NextToken</code> doesn't appear in the response.</p> <p>If a response doesn't include the last of the configurations, you can get more configurations by submitting another <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListResolverDnssecConfigs.html\">ListResolverDnssecConfigs</a> request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in the previous response and include it in <code>NextToken</code> in the next request.</p>",
         "ListResolverEndpointIpAddressesRequest$NextToken": "<p>For the first <code>ListResolverEndpointIpAddresses</code> request, omit this value.</p> <p>If the specified Resolver endpoint has more than <code>MaxResults</code> IP addresses, you can submit another <code>ListResolverEndpointIpAddresses</code> request to get the next group of IP addresses. In the next request, specify the value of <code>NextToken</code> from the previous response. </p>",
@@ -1159,13 +1169,13 @@
     "ResolverAutodefinedReverseStatus": {
       "base": null,
       "refs": {
-        "ResolverConfig$AutodefinedReverse": "<p> The status of whether or not the Resolver will create autodefined rules for reverse DNS lookups. This is enabled by default. The status can be one of following:</p> <p> Status of the rules generated by VPCs based on CIDR/Region for reverse DNS resolution. The status can be one of following:</p> <ul> <li> <p> <b>ENABLING:</b> Autodefined rules for reverse DNS lookups are being enabled but are not complete.</p> </li> <li> <p> <b>ENABLED:</b> Autodefined rules for reverse DNS lookups are enabled.</p> </li> <li> <p> <b>DISABLING:</b> Autodefined rules for reverse DNS lookups are being disabled but are not complete.</p> </li> <li> <p> <b>DISABLED:</b> Autodefined rules for reverse DNS lookups are disabled.</p> </li> </ul>"
+        "ResolverConfig$AutodefinedReverse": "<p> The status of whether or not the Resolver will create autodefined rules for reverse DNS lookups. This is enabled by default. The status can be one of following:</p> <ul> <li> <p> <b>ENABLING:</b> Autodefined rules for reverse DNS lookups are being enabled but are not complete.</p> </li> <li> <p> <b>ENABLED:</b> Autodefined rules for reverse DNS lookups are enabled.</p> </li> <li> <p> <b>DISABLING:</b> Autodefined rules for reverse DNS lookups are being disabled but are not complete.</p> </li> <li> <p> <b>DISABLED:</b> Autodefined rules for reverse DNS lookups are disabled.</p> </li> </ul>"
       }
     },
     "ResolverConfig": {
       "base": "<p>A complex type that contains information about a Resolver configuration for a VPC.</p>",
       "refs": {
-        "GetResolverConfigResponse$ResolverConfig": "<p>Information about the behavior configuration of Route 53 Resolver behavior for the VPC you specified in the <code>GetResolverConfig</code> request.</p>",
+        "GetResolverConfigResponse$ResolverConfig": "<p>Information about the behavior configuration of Route 53 Resolver behavior for the VPC you specified in the <code>GetResolverConfig</code> request.</p>",
         "ResolverConfigList$member": null,
         "UpdateResolverConfigResponse$ResolverConfig": "<p>An array that contains settings for the specified Resolver configuration.</p>"
       }
@@ -1197,7 +1207,7 @@
       }
     },
     "ResolverEndpoint": {
-      "base": "<p>In the response to a <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html\">CreateResolverEndpoint</a>, <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html\">DeleteResolverEndpoint</a>, <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html\">GetResolverEndpoint</a>, <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverEndpoints.html\">ListResolverEndpoints</a>, or <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html\">UpdateResolverEndpoint</a> request, a complex type that contains settings for an existing inbound or outbound Resolver endpoint.</p>",
+      "base": "<p>In the response to a <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html\">CreateResolverEndpoint</a>, <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html\">DeleteResolverEndpoint</a>, <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html\">GetResolverEndpoint</a>, Updates the name, or ResolverEndpointType for an endpoint, or <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html\">UpdateResolverEndpoint</a> request, a complex type that contains settings for an existing inbound or outbound Resolver endpoint.</p>",
       "refs": {
         "AssociateResolverEndpointIpAddressResponse$ResolverEndpoint": "<p>The response to an <code>AssociateResolverEndpointIpAddress</code> request.</p>",
         "CreateResolverEndpointResponse$ResolverEndpoint": "<p>Information about the <code>CreateResolverEndpoint</code> request, including the status of the request.</p>",
@@ -1219,6 +1229,14 @@
       "base": null,
       "refs": {
         "ResolverEndpoint$Status": "<p>A code that specifies the current status of the Resolver endpoint. Valid values include the following:</p> <ul> <li> <p> <code>CREATING</code>: Resolver is creating and configuring one or more Amazon VPC network interfaces for this endpoint.</p> </li> <li> <p> <code>OPERATIONAL</code>: The Amazon VPC network interfaces for this endpoint are correctly configured and able to pass inbound or outbound DNS queries between your network and Resolver.</p> </li> <li> <p> <code>UPDATING</code>: Resolver is associating or disassociating one or more network interfaces with this endpoint.</p> </li> <li> <p> <code>AUTO_RECOVERING</code>: Resolver is trying to recover one or more of the network interfaces that are associated with this endpoint. During the recovery process, the endpoint functions with limited capacity because of the limit on the number of DNS queries per IP address (per network interface). For the current limit, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#limits-api-entities-resolver\">Limits on Route 53 Resolver</a>.</p> </li> <li> <p> <code>ACTION_NEEDED</code>: This endpoint is unhealthy, and Resolver can't automatically recover it. To resolve the problem, we recommend that you check each IP address that you associated with the endpoint. For each IP address that isn't available, add another IP address and then delete the IP address that isn't available. (An endpoint must always include at least two IP addresses.) A status of <code>ACTION_NEEDED</code> can have a variety of causes. Here are two common causes:</p> <ul> <li> <p>One or more of the network interfaces that are associated with the endpoint were deleted using Amazon VPC.</p> </li> <li> <p>The network interface couldn't be created for some reason that's outside the control of Resolver.</p> </li> </ul> </li> <li> <p> <code>DELETING</code>: Resolver is deleting this endpoint and the associated network interfaces.</p> </li> </ul>"
+      }
+    },
+    "ResolverEndpointType": {
+      "base": null,
+      "refs": {
+        "CreateResolverEndpointRequest$ResolverEndpointType": "<p> For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses. </p>",
+        "ResolverEndpoint$ResolverEndpointType": "<p> The Resolver endpoint IP address type. </p>",
+        "UpdateResolverEndpointRequest$ResolverEndpointType": "<p> Specifies the endpoint type for what type of IP address the endpoint uses to forward DNS queries. </p>"
       }
     },
     "ResolverEndpoints": {
@@ -1436,6 +1454,7 @@
         "UpdateFirewallRuleGroupAssociationRequest$FirewallRuleGroupAssociationId": "<p>The identifier of the <a>FirewallRuleGroupAssociation</a>. </p>",
         "UpdateFirewallRuleRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group for the rule. </p>",
         "UpdateFirewallRuleRequest$FirewallDomainListId": "<p>The ID of the domain list to use in the rule. </p>",
+        "UpdateIpAddress$IpId": "<p> The ID of the IP address, specified by the <code>ResolverEndpointId</code>. </p>",
         "UpdateResolverConfigRequest$ResourceId": "<p>Resource ID of the Amazon VPC that you want to update the Resolver configuration for.</p>",
         "UpdateResolverDnssecConfigRequest$ResourceId": "<p>The ID of the virtual private cloud (VPC) that you're updating the DNSSEC validation status for.</p>",
         "UpdateResolverEndpointRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to update.</p>",
@@ -1692,6 +1711,18 @@
       "refs": {
       }
     },
+    "UpdateIpAddress": {
+      "base": "<p> Provides information about the IP address type in response to <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html\">UpdateResolverEndpoint</a>. </p>",
+      "refs": {
+        "UpdateIpAddresses$member": null
+      }
+    },
+    "UpdateIpAddresses": {
+      "base": null,
+      "refs": {
+        "UpdateResolverEndpointRequest$UpdateIpAddresses": "<p> Updates the Resolver endpoint type to IpV4, Ipv6, or dual-stack. </p>"
+      }
+    },
     "UpdateResolverConfigRequest": {
       "base": null,
       "refs": {
@@ -1739,7 +1770,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p/>",
+      "base": "<p>You have provided an invalid command. Supported values are <code>ADD</code>, <code>REMOVE</code>, or <code>REPLACE</code> a domain.</p>",
       "refs": {
       }
     }

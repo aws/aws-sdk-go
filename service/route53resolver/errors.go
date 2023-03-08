@@ -17,6 +17,10 @@ const (
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
+	//
+	// The requested state transition isn't valid. For example, you can't delete
+	// a firewall domain list if it is in the process of being deleted, or you can't
+	// import domains into a domain list that is in the process of being deleted.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServiceErrorException for service response error code
@@ -99,6 +103,9 @@ const (
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
+	//
+	// You have provided an invalid command. Supported values are ADD, REMOVE, or
+	// REPLACE a domain.
 	ErrCodeValidationException = "ValidationException"
 )
 

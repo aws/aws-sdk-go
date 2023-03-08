@@ -35,7 +35,7 @@
     "ImportNotebook": "<p>Imports a single <code>ipynb</code> file to a Spark enabled workgroup. The maximum file size that can be imported is 10 megabytes. If an <code>ipynb</code> file with the same name already exists in the workgroup, throws an error.</p>",
     "ListApplicationDPUSizes": "<p>Returns the supported DPU sizes for the supported application runtimes (for example, <code>Jupyter 1.0</code>). </p>",
     "ListCalculationExecutions": "<p>Lists the calculations that have been submitted to a session in descending order. Newer calculations are listed first; older calculations are listed later.</p>",
-    "ListDataCatalogs": "<p>Lists the data catalogs in the current Amazon Web Services account.</p>",
+    "ListDataCatalogs": "<p>Lists the data catalogs in the current Amazon Web Services account.</p> <note> <p>In the Athena console, data catalogs are listed as \"data sources\" on the <b>Data sources</b> page under the <b>Data source name</b> column.</p> </note>",
     "ListDatabases": "<p>Lists the databases in the specified data catalog.</p>",
     "ListEngineVersions": "<p>Returns a list of engine versions that are available to choose from, including the Auto option.</p>",
     "ListExecutors": "<p>Lists, in descending order, the executors that have been submitted to a session. Newer executors are listed first; older executors are listed later. The result can be optionally filtered by state.</p>",
@@ -391,7 +391,7 @@
       }
     },
     "DataCatalog": {
-      "base": "<p>Contains information about a data catalog in an Amazon Web Services account.</p>",
+      "base": "<p>Contains information about a data catalog in an Amazon Web Services account.</p> <note> <p>In the Athena console, data catalogs are listed as \"data sources\" on the <b>Data sources</b> page under the <b>Data source name</b> column.</p> </note>",
       "refs": {
         "GetDataCatalogOutput$DataCatalog": "<p>The data catalog returned.</p>"
       }
@@ -1174,7 +1174,7 @@
         "Column$Name": "<p>The name of the column.</p>",
         "CreateNamedQueryInput$Name": "<p>The query name.</p>",
         "Database$Name": "<p>The name of the database.</p>",
-        "EngineVersion$SelectedEngineVersion": "<p>The engine version requested by the user. Possible values are determined by the output of <code>ListEngineVersions</code>, including Auto. The default is Auto.</p>",
+        "EngineVersion$SelectedEngineVersion": "<p>The engine version requested by the user. Possible values are determined by the output of <code>ListEngineVersions</code>, including AUTO. The default is AUTO.</p>",
         "EngineVersion$EffectiveEngineVersion": "<p>Read only. The engine version on which the query runs. If the user requests a valid engine version other than Auto, the effective engine version is the same as the engine version that the user requested. If the user requests Auto, the effective engine version is chosen by Athena. When a request to update the engine version is made by a <code>CreateWorkGroup</code> or <code>UpdateWorkGroup</code> operation, the <code>EffectiveEngineVersion</code> field is ignored.</p>",
         "GetDatabaseInput$DatabaseName": "<p>The name of the database to return.</p>",
         "GetSessionResponse$EngineVersion": "<p>The engine version used by the session (for example, <code>PySpark engine version 3</code>). You can get a list of engine versions by calling <a>ListEngineVersions</a>.</p>",
@@ -1715,6 +1715,7 @@
         "ColumnInfo$Type": "<p>The data type of the column.</p>",
         "CreatePresignedNotebookUrlResponse$NotebookUrl": "<p>The URL of the notebook. The URL includes the authentication token and notebook file name and points directly to the opened notebook.</p>",
         "EncryptionConfiguration$KmsKey": "<p>For <code>SSE_KMS</code> and <code>CSE_KMS</code>, this is the KMS key ARN or ID.</p>",
+        "QueryExecution$SubstatementType": "<p>The kind of query statement that was run.</p>",
         "QueryExecutionStatistics$DataManifestLocation": "<p>The location and file name of a data manifest file. The manifest file is saved to the Athena query results location in Amazon S3. The manifest file tracks files that the query wrote to Amazon S3. If the query fails, the manifest file also tracks files that the query intended to write. The manifest is useful for identifying orphaned files resulting from a failed query. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Working with Query Results, Output Files, and Query History</a> in the <i>Amazon Athena User Guide</i>.</p>",
         "QueryExecutionStatus$StateChangeReason": "<p>Further detail about the status of the query.</p>",
         "QueryStage$State": "<p>State of the stage after query execution.</p>",

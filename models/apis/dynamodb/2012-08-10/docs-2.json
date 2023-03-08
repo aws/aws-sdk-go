@@ -819,6 +819,14 @@
       "refs": {
       }
     },
+    "DeletionProtectionEnabled": {
+      "base": null,
+      "refs": {
+        "CreateTableInput$DeletionProtectionEnabled": "<p>Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table.</p>",
+        "TableDescription$DeletionProtectionEnabled": "<p>Indicates whether deletion protection is enabled (true) or disabled (false) on the table.</p>",
+        "UpdateTableInput$DeletionProtectionEnabled": "<p>Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table.</p>"
+      }
+    },
     "DescribeBackupInput": {
       "base": null,
       "refs": {
@@ -956,7 +964,7 @@
         "KinesisStreamingDestinationOutput$DestinationStatus": "<p>The current status of the replication.</p>"
       }
     },
-    "Double": {
+    "DoubleObject": {
       "base": null,
       "refs": {
         "AutoScalingTargetTrackingScalingPolicyConfigurationDescription$TargetValue": "<p>The target value for the metric. The range is 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360 (Base 2).</p>",
@@ -1890,7 +1898,12 @@
     "Long": {
       "base": null,
       "refs": {
-        "Endpoint$CachePeriodInMinutes": "<p>Endpoint cache time to live (TTL) value.</p>",
+        "Endpoint$CachePeriodInMinutes": "<p>Endpoint cache time to live (TTL) value.</p>"
+      }
+    },
+    "LongObject": {
+      "base": null,
+      "refs": {
         "GlobalSecondaryIndexDescription$IndexSizeBytes": "<p>The total size of the specified index, in bytes. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
         "GlobalSecondaryIndexDescription$ItemCount": "<p>The number of items in the specified index. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
         "ImportTableDescription$ProcessedSizeBytes": "<p> The total size of data processed from the source file, in Bytes. </p>",

@@ -71,11 +71,16 @@ func (c *Route53Resolver) AssociateFirewallRuleGroupRequest(input *AssociateFire
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - LimitExceededException
 //     The request caused one or more limits to be exceeded.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -486,6 +491,8 @@ func (c *Route53Resolver) CreateFirewallDomainListRequest(input *CreateFirewallD
 //     The request caused one or more limits to be exceeded.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -578,6 +585,8 @@ func (c *Route53Resolver) CreateFirewallRuleRequest(input *CreateFirewallRuleInp
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - LimitExceededException
 //     The request caused one or more limits to be exceeded.
@@ -673,6 +682,8 @@ func (c *Route53Resolver) CreateFirewallRuleGroupRequest(input *CreateFirewallRu
 //     The request caused one or more limits to be exceeded.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -1083,6 +1094,9 @@ func (c *Route53Resolver) DeleteFirewallDomainListRequest(input *DeleteFirewallD
 //     The specified resource doesn't exist.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -1263,8 +1277,13 @@ func (c *Route53Resolver) DeleteFirewallRuleGroupRequest(input *DeleteFirewallRu
 //     The specified resource doesn't exist.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -1656,12 +1675,17 @@ func (c *Route53Resolver) DisassociateFirewallRuleGroupRequest(input *Disassocia
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
 //     the specified Resolver operation.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - InternalServiceErrorException
 //     We encountered an unknown error. Try again in a few minutes.
@@ -2056,6 +2080,8 @@ func (c *Route53Resolver) GetFirewallConfigRequest(input *GetFirewallConfigInput
 //     The request was throttled. Try again in a few minutes.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallConfig
 func (c *Route53Resolver) GetFirewallConfig(input *GetFirewallConfigInput) (*GetFirewallConfigOutput, error) {
@@ -2406,6 +2432,8 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRu
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - ResourceNotFoundException
 //     The specified resource doesn't exist.
@@ -2512,6 +2540,10 @@ func (c *Route53Resolver) GetResolverConfigRequest(input *GetResolverConfigInput
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
 //     the specified Resolver operation.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverConfig
 func (c *Route53Resolver) GetResolverConfig(input *GetResolverConfigInput) (*GetResolverConfigOutput, error) {
@@ -3254,6 +3286,10 @@ func (c *Route53Resolver) GetResolverRulePolicyRequest(input *GetResolverRulePol
 //   - InternalServiceErrorException
 //     We encountered an unknown error. Try again in a few minutes.
 //
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverRulePolicy
 func (c *Route53Resolver) GetResolverRulePolicy(input *GetResolverRulePolicyInput) (*GetResolverRulePolicyOutput, error) {
 	req, out := c.GetResolverRulePolicyRequest(input)
@@ -3342,6 +3378,8 @@ func (c *Route53Resolver) ImportFirewallDomainsRequest(input *ImportFirewallDoma
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -3354,6 +3392,9 @@ func (c *Route53Resolver) ImportFirewallDomainsRequest(input *ImportFirewallDoma
 //     The request caused one or more limits to be exceeded.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - InternalServiceErrorException
 //     We encountered an unknown error. Try again in a few minutes.
@@ -3448,6 +3489,8 @@ func (c *Route53Resolver) ListFirewallConfigsRequest(input *ListFirewallConfigsI
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -3598,6 +3641,8 @@ func (c *Route53Resolver) ListFirewallDomainListsRequest(input *ListFirewallDoma
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -3750,6 +3795,8 @@ func (c *Route53Resolver) ListFirewallDomainsRequest(input *ListFirewallDomainsI
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -3899,6 +3946,8 @@ func (c *Route53Resolver) ListFirewallRuleGroupAssociationsRequest(input *ListFi
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4048,6 +4097,8 @@ func (c *Route53Resolver) ListFirewallRuleGroupsRequest(input *ListFirewallRuleG
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4201,6 +4252,8 @@ func (c *Route53Resolver) ListFirewallRulesRequest(input *ListFirewallRulesInput
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4364,6 +4417,10 @@ func (c *Route53Resolver) ListResolverConfigsRequest(input *ListResolverConfigsI
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
 //     the specified Resolver operation.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverConfigs
 func (c *Route53Resolver) ListResolverConfigs(input *ListResolverConfigsInput) (*ListResolverConfigsOutput, error) {
@@ -5701,6 +5758,8 @@ func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRu
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - ResourceNotFoundException
 //     The specified resource doesn't exist.
@@ -5902,6 +5961,10 @@ func (c *Route53Resolver) PutResolverRulePolicyRequest(input *PutResolverRulePol
 //
 //   - InternalServiceErrorException
 //     We encountered an unknown error. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutResolverRulePolicy
 func (c *Route53Resolver) PutResolverRulePolicy(input *PutResolverRulePolicyInput) (*PutResolverRulePolicyOutput, error) {
@@ -6171,6 +6234,8 @@ func (c *Route53Resolver) UpdateFirewallConfigRequest(input *UpdateFirewallConfi
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - ResourceNotFoundException
 //     The specified resource doesn't exist.
@@ -6262,6 +6327,8 @@ func (c *Route53Resolver) UpdateFirewallDomainsRequest(input *UpdateFirewallDoma
 // Returned Error Types:
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -6274,6 +6341,9 @@ func (c *Route53Resolver) UpdateFirewallDomainsRequest(input *UpdateFirewallDoma
 //     The request caused one or more limits to be exceeded.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - InternalServiceErrorException
 //     We encountered an unknown error. Try again in a few minutes.
@@ -6361,8 +6431,13 @@ func (c *Route53Resolver) UpdateFirewallRuleRequest(input *UpdateFirewallRuleInp
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -6455,8 +6530,13 @@ func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationRequest(input *Updat
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 //   - ConflictException
+//     The requested state transition isn't valid. For example, you can't delete
+//     a firewall domain list if it is in the process of being deleted, or you can't
+//     import domains into a domain list that is in the process of being deleted.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -6569,6 +6649,10 @@ func (c *Route53Resolver) UpdateResolverConfigRequest(input *UpdateResolverConfi
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
 //     the specified Resolver operation.
+//
+//   - ValidationException
+//     You have provided an invalid command. Supported values are ADD, REMOVE, or
+//     REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverConfig
 func (c *Route53Resolver) UpdateResolverConfig(input *UpdateResolverConfigInput) (*UpdateResolverConfigOutput, error) {
@@ -6731,7 +6815,9 @@ func (c *Route53Resolver) UpdateResolverEndpointRequest(input *UpdateResolverEnd
 
 // UpdateResolverEndpoint API operation for Amazon Route 53 Resolver.
 //
-// Updates the name of an inbound or an outbound Resolver endpoint.
+// Updates the name, or enpoint type for an inbound or an outbound Resolver
+// endpoint. You can only update between IPV4 and DUALSTACK, IPV6 endpoint type
+// can't be updated to other type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7437,6 +7523,9 @@ func (s *AssociateResolverRuleOutput) SetResolverRuleAssociation(v *ResolverRule
 	return s
 }
 
+// The requested state transition isn't valid. For example, you can't delete
+// a firewall domain list if it is in the process of being deleted, or you can't
+// import domains into a domain list that is in the process of being deleted.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7985,6 +8074,11 @@ type CreateResolverEndpointInput struct {
 	// dashboard in the Route 53 console.
 	Name *string `type:"string"`
 
+	// For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A
+	// dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This
+	// endpoint type is applied to all IP addresses.
+	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
+
 	// The ID of one or more security groups that you want to use to control access
 	// to this VPC. The security group that you specify must include one or more
 	// inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound
@@ -8086,6 +8180,12 @@ func (s *CreateResolverEndpointInput) SetIpAddresses(v []*IpAddressRequest) *Cre
 // SetName sets the Name field's value.
 func (s *CreateResolverEndpointInput) SetName(v string) *CreateResolverEndpointInput {
 	s.Name = &v
+	return s
+}
+
+// SetResolverEndpointType sets the ResolverEndpointType field's value.
+func (s *CreateResolverEndpointInput) SetResolverEndpointType(v string) *CreateResolverEndpointInput {
+	s.ResolverEndpointType = &v
 	return s
 }
 
@@ -11594,6 +11694,7 @@ type ImportFirewallDomainsOutput struct {
 	// The name of the domain list.
 	Name *string `type:"string"`
 
+	// Status of the import request.
 	Status *string `type:"string" enum:"FirewallDomainListStatus"`
 
 	// Additional information about the status of the list, if available.
@@ -12037,8 +12138,11 @@ func (s *InvalidTagException) RequestID() string {
 type IpAddressRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address that you want to use for DNS queries.
+	// The IPv4 address that you want to use for DNS queries.
 	Ip *string `min:"7" type:"string"`
+
+	// The IPv6 address that you want to use for DNS queries.
+	Ipv6 *string `min:"7" type:"string"`
 
 	// The ID of the subnet that contains the IP address.
 	//
@@ -12070,6 +12174,9 @@ func (s *IpAddressRequest) Validate() error {
 	if s.Ip != nil && len(*s.Ip) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("Ip", 7))
 	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
+	}
 	if s.SubnetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubnetId"))
 	}
@@ -12089,6 +12196,12 @@ func (s *IpAddressRequest) SetIp(v string) *IpAddressRequest {
 	return s
 }
 
+// SetIpv6 sets the Ipv6 field's value.
+func (s *IpAddressRequest) SetIpv6(v string) *IpAddressRequest {
+	s.Ipv6 = &v
+	return s
+}
+
 // SetSubnetId sets the SubnetId field's value.
 func (s *IpAddressRequest) SetSubnetId(v string) *IpAddressRequest {
 	s.SubnetId = &v
@@ -12105,11 +12218,14 @@ type IpAddressResponse struct {
 	// Coordinated Universal Time (UTC).
 	CreationTime *string `min:"20" type:"string"`
 
-	// One IP address that the Resolver endpoint uses for DNS queries.
+	// One IPv4 address that the Resolver endpoint uses for DNS queries.
 	Ip *string `min:"7" type:"string"`
 
 	// The ID of one IP address.
 	IpId *string `min:"1" type:"string"`
+
+	// One IPv6 address that the Resolver endpoint uses for DNS queries.
+	Ipv6 *string `min:"7" type:"string"`
 
 	// The date and time that the IP address was last modified, in Unix time format
 	// and Coordinated Universal Time (UTC).
@@ -12161,6 +12277,12 @@ func (s *IpAddressResponse) SetIpId(v string) *IpAddressResponse {
 	return s
 }
 
+// SetIpv6 sets the Ipv6 field's value.
+func (s *IpAddressResponse) SetIpv6(v string) *IpAddressResponse {
+	s.Ipv6 = &v
+	return s
+}
+
 // SetModificationTime sets the ModificationTime field's value.
 func (s *IpAddressResponse) SetModificationTime(v string) *IpAddressResponse {
 	s.ModificationTime = &v
@@ -12190,13 +12312,16 @@ func (s *IpAddressResponse) SetSubnetId(v string) *IpAddressResponse {
 type IpAddressUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The new IP address.
+	// The new IPv4 address.
 	Ip *string `min:"7" type:"string"`
 
 	// Only when removing an IP address from a Resolver endpoint: The ID of the
 	// IP address that you want to remove. To get this ID, use GetResolverEndpoint
 	// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html).
 	IpId *string `min:"1" type:"string"`
+
+	// The new IPv6 address.
+	Ipv6 *string `min:"7" type:"string"`
 
 	// The ID of the subnet that includes the IP address that you want to update.
 	// To get this ID, use GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html).
@@ -12230,6 +12355,9 @@ func (s *IpAddressUpdate) Validate() error {
 	if s.IpId != nil && len(*s.IpId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IpId", 1))
 	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
+	}
 	if s.SubnetId != nil && len(*s.SubnetId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SubnetId", 1))
 	}
@@ -12249,6 +12377,12 @@ func (s *IpAddressUpdate) SetIp(v string) *IpAddressUpdate {
 // SetIpId sets the IpId field's value.
 func (s *IpAddressUpdate) SetIpId(v string) *IpAddressUpdate {
 	s.IpId = &v
+	return s
+}
+
+// SetIpv6 sets the Ipv6 field's value.
+func (s *IpAddressUpdate) SetIpv6(v string) *IpAddressUpdate {
+	s.Ipv6 = &v
 	return s
 }
 
@@ -14743,9 +14877,6 @@ type ResolverConfig struct {
 	// reverse DNS lookups. This is enabled by default. The status can be one of
 	// following:
 	//
-	// Status of the rules generated by VPCs based on CIDR/Region for reverse DNS
-	// resolution. The status can be one of following:
-	//
 	//    * ENABLING: Autodefined rules for reverse DNS lookups are being enabled
 	//    but are not complete.
 	//
@@ -14884,8 +15015,8 @@ func (s *ResolverDnssecConfig) SetValidationStatus(v string) *ResolverDnssecConf
 // In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html),
 // DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html),
 // GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html),
-// ListResolverEndpoints (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverEndpoints.html),
-// or UpdateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html)
+// Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint
+// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html)
 // request, a complex type that contains settings for an existing inbound or
 // outbound Resolver endpoint.
 type ResolverEndpoint struct {
@@ -14927,6 +15058,9 @@ type ResolverEndpoint struct {
 	// CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html)
 	// request.
 	Name *string `type:"string"`
+
+	// The Resolver endpoint IP address type.
+	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
 
 	// The ID of one or more security groups that control access to this VPC. The
 	// security group must include one or more inbound rules (for inbound endpoints)
@@ -15042,6 +15176,12 @@ func (s *ResolverEndpoint) SetModificationTime(v string) *ResolverEndpoint {
 // SetName sets the Name field's value.
 func (s *ResolverEndpoint) SetName(v string) *ResolverEndpoint {
 	s.Name = &v
+	return s
+}
+
+// SetResolverEndpointType sets the ResolverEndpointType field's value.
+func (s *ResolverEndpoint) SetResolverEndpointType(v string) *ResolverEndpoint {
+	s.ResolverEndpointType = &v
 	return s
 }
 
@@ -16117,11 +16257,11 @@ func (s TagResourceOutput) GoString() string {
 type TargetAddress struct {
 	_ struct{} `type:"structure"`
 
-	// One IP address that you want to forward DNS queries to. You can specify only
-	// IPv4 addresses.
-	//
-	// Ip is a required field
-	Ip *string `min:"7" type:"string" required:"true"`
+	// One IPv4 address that you want to forward DNS queries to.
+	Ip *string `min:"7" type:"string"`
+
+	// One IPv6 address that you want to forward DNS queries to.
+	Ipv6 *string `min:"7" type:"string"`
 
 	// The port at Ip that you want to forward DNS queries to.
 	Port *int64 `type:"integer"`
@@ -16148,11 +16288,11 @@ func (s TargetAddress) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TargetAddress) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TargetAddress"}
-	if s.Ip == nil {
-		invalidParams.Add(request.NewErrParamRequired("Ip"))
-	}
 	if s.Ip != nil && len(*s.Ip) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("Ip", 7))
+	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16164,6 +16304,12 @@ func (s *TargetAddress) Validate() error {
 // SetIp sets the Ip field's value.
 func (s *TargetAddress) SetIp(v string) *TargetAddress {
 	s.Ip = &v
+	return s
+}
+
+// SetIpv6 sets the Ipv6 field's value.
+func (s *TargetAddress) SetIpv6(v string) *TargetAddress {
+	s.Ipv6 = &v
 	return s
 }
 
@@ -16511,6 +16657,8 @@ type UpdateFirewallDomainsInput struct {
 
 	// A list of domains to use in the update operation.
 	//
+	// There is a limit of 1000 domains per request.
+	//
 	// Each domain specification in your domain list must satisfy the following
 	// requirements:
 	//
@@ -16610,6 +16758,7 @@ type UpdateFirewallDomainsOutput struct {
 	// The name of the domain list.
 	Name *string `type:"string"`
 
+	// Status of the UpdateFirewallDomains request.
 	Status *string `type:"string" enum:"FirewallDomainListStatus"`
 
 	// Additional information about the status of the list, if available.
@@ -16967,6 +17116,74 @@ func (s *UpdateFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *UpdateFirew
 	return s
 }
 
+// Provides information about the IP address type in response to UpdateResolverEndpoint
+// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html).
+type UpdateIpAddress struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the IP address, specified by the ResolverEndpointId.
+	//
+	// IpId is a required field
+	IpId *string `min:"1" type:"string" required:"true"`
+
+	// The IPv6 address that you want to use for DNS queries.
+	//
+	// Ipv6 is a required field
+	Ipv6 *string `min:"7" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAddress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpAddress) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIpAddress) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIpAddress"}
+	if s.IpId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpId"))
+	}
+	if s.IpId != nil && len(*s.IpId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IpId", 1))
+	}
+	if s.Ipv6 == nil {
+		invalidParams.Add(request.NewErrParamRequired("Ipv6"))
+	}
+	if s.Ipv6 != nil && len(*s.Ipv6) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIpId sets the IpId field's value.
+func (s *UpdateIpAddress) SetIpId(v string) *UpdateIpAddress {
+	s.IpId = &v
+	return s
+}
+
+// SetIpv6 sets the Ipv6 field's value.
+func (s *UpdateIpAddress) SetIpv6(v string) *UpdateIpAddress {
+	s.Ipv6 = &v
+	return s
+}
+
 type UpdateResolverConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16975,6 +17192,12 @@ type UpdateResolverConfigInput struct {
 	// affect EC2-Classic instances using ClassicLink. For more information, see
 	// ClassicLink (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 	// in the Amazon EC2 guide.
+	//
+	// We are retiring EC2-Classic on August 15, 2022. We recommend that you migrate
+	// from EC2-Classic to a VPC. For more information, see Migrate from EC2-Classic
+	// to a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html)
+	// in the Amazon EC2 guide and the blog EC2-Classic Networking is Retiring –
+	// Here’s How to Prepare (http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/).
 	//
 	// It can take some time for the status change to be completed.
 	//
@@ -17175,6 +17398,13 @@ type UpdateResolverEndpointInput struct {
 	//
 	// ResolverEndpointId is a required field
 	ResolverEndpointId *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the endpoint type for what type of IP address the endpoint uses
+	// to forward DNS queries.
+	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
+
+	// Updates the Resolver endpoint type to IpV4, Ipv6, or dual-stack.
+	UpdateIpAddresses []*UpdateIpAddress `type:"list"`
 }
 
 // String returns the string representation.
@@ -17204,6 +17434,16 @@ func (s *UpdateResolverEndpointInput) Validate() error {
 	if s.ResolverEndpointId != nil && len(*s.ResolverEndpointId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResolverEndpointId", 1))
 	}
+	if s.UpdateIpAddresses != nil {
+		for i, v := range s.UpdateIpAddresses {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UpdateIpAddresses", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -17220,6 +17460,18 @@ func (s *UpdateResolverEndpointInput) SetName(v string) *UpdateResolverEndpointI
 // SetResolverEndpointId sets the ResolverEndpointId field's value.
 func (s *UpdateResolverEndpointInput) SetResolverEndpointId(v string) *UpdateResolverEndpointInput {
 	s.ResolverEndpointId = &v
+	return s
+}
+
+// SetResolverEndpointType sets the ResolverEndpointType field's value.
+func (s *UpdateResolverEndpointInput) SetResolverEndpointType(v string) *UpdateResolverEndpointInput {
+	s.ResolverEndpointType = &v
+	return s
+}
+
+// SetUpdateIpAddresses sets the UpdateIpAddresses field's value.
+func (s *UpdateResolverEndpointInput) SetUpdateIpAddresses(v []*UpdateIpAddress) *UpdateResolverEndpointInput {
+	s.UpdateIpAddresses = v
 	return s
 }
 
@@ -17353,6 +17605,8 @@ func (s *UpdateResolverRuleOutput) SetResolverRule(v *ResolverRule) *UpdateResol
 	return s
 }
 
+// You have provided an invalid command. Supported values are ADD, REMOVE, or
+// REPLACE a domain.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17442,6 +17696,9 @@ const (
 
 	// AutodefinedReverseFlagDisable is a AutodefinedReverseFlag enum value
 	AutodefinedReverseFlagDisable = "DISABLE"
+
+	// AutodefinedReverseFlagUseLocalResourceSetting is a AutodefinedReverseFlag enum value
+	AutodefinedReverseFlagUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // AutodefinedReverseFlag_Values returns all elements of the AutodefinedReverseFlag enum
@@ -17449,6 +17706,7 @@ func AutodefinedReverseFlag_Values() []string {
 	return []string{
 		AutodefinedReverseFlagEnable,
 		AutodefinedReverseFlagDisable,
+		AutodefinedReverseFlagUseLocalResourceSetting,
 	}
 }
 
@@ -17550,6 +17808,9 @@ const (
 
 	// FirewallFailOpenStatusDisabled is a FirewallFailOpenStatus enum value
 	FirewallFailOpenStatusDisabled = "DISABLED"
+
+	// FirewallFailOpenStatusUseLocalResourceSetting is a FirewallFailOpenStatus enum value
+	FirewallFailOpenStatusUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // FirewallFailOpenStatus_Values returns all elements of the FirewallFailOpenStatus enum
@@ -17557,6 +17818,7 @@ func FirewallFailOpenStatus_Values() []string {
 	return []string{
 		FirewallFailOpenStatusEnabled,
 		FirewallFailOpenStatusDisabled,
+		FirewallFailOpenStatusUseLocalResourceSetting,
 	}
 }
 
@@ -17630,6 +17892,9 @@ const (
 
 	// IpAddressStatusDeleteFailedFasExpired is a IpAddressStatus enum value
 	IpAddressStatusDeleteFailedFasExpired = "DELETE_FAILED_FAS_EXPIRED"
+
+	// IpAddressStatusUpdating is a IpAddressStatus enum value
+	IpAddressStatusUpdating = "UPDATING"
 )
 
 // IpAddressStatus_Values returns all elements of the IpAddressStatus enum
@@ -17645,6 +17910,7 @@ func IpAddressStatus_Values() []string {
 		IpAddressStatusFailedResourceGone,
 		IpAddressStatusDeleting,
 		IpAddressStatusDeleteFailedFasExpired,
+		IpAddressStatusUpdating,
 	}
 }
 
@@ -17676,6 +17942,12 @@ const (
 
 	// ResolverAutodefinedReverseStatusDisabled is a ResolverAutodefinedReverseStatus enum value
 	ResolverAutodefinedReverseStatusDisabled = "DISABLED"
+
+	// ResolverAutodefinedReverseStatusUpdatingToUseLocalResourceSetting is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusUpdatingToUseLocalResourceSetting = "UPDATING_TO_USE_LOCAL_RESOURCE_SETTING"
+
+	// ResolverAutodefinedReverseStatusUseLocalResourceSetting is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // ResolverAutodefinedReverseStatus_Values returns all elements of the ResolverAutodefinedReverseStatus enum
@@ -17685,6 +17957,8 @@ func ResolverAutodefinedReverseStatus_Values() []string {
 		ResolverAutodefinedReverseStatusEnabled,
 		ResolverAutodefinedReverseStatusDisabling,
 		ResolverAutodefinedReverseStatusDisabled,
+		ResolverAutodefinedReverseStatusUpdatingToUseLocalResourceSetting,
+		ResolverAutodefinedReverseStatusUseLocalResourceSetting,
 	}
 }
 
@@ -17700,6 +17974,12 @@ const (
 
 	// ResolverDNSSECValidationStatusDisabled is a ResolverDNSSECValidationStatus enum value
 	ResolverDNSSECValidationStatusDisabled = "DISABLED"
+
+	// ResolverDNSSECValidationStatusUpdatingToUseLocalResourceSetting is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusUpdatingToUseLocalResourceSetting = "UPDATING_TO_USE_LOCAL_RESOURCE_SETTING"
+
+	// ResolverDNSSECValidationStatusUseLocalResourceSetting is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // ResolverDNSSECValidationStatus_Values returns all elements of the ResolverDNSSECValidationStatus enum
@@ -17709,6 +17989,8 @@ func ResolverDNSSECValidationStatus_Values() []string {
 		ResolverDNSSECValidationStatusEnabled,
 		ResolverDNSSECValidationStatusDisabling,
 		ResolverDNSSECValidationStatusDisabled,
+		ResolverDNSSECValidationStatusUpdatingToUseLocalResourceSetting,
+		ResolverDNSSECValidationStatusUseLocalResourceSetting,
 	}
 }
 
@@ -17757,6 +18039,26 @@ func ResolverEndpointStatus_Values() []string {
 		ResolverEndpointStatusAutoRecovering,
 		ResolverEndpointStatusActionNeeded,
 		ResolverEndpointStatusDeleting,
+	}
+}
+
+const (
+	// ResolverEndpointTypeIpv6 is a ResolverEndpointType enum value
+	ResolverEndpointTypeIpv6 = "IPV6"
+
+	// ResolverEndpointTypeIpv4 is a ResolverEndpointType enum value
+	ResolverEndpointTypeIpv4 = "IPV4"
+
+	// ResolverEndpointTypeDualstack is a ResolverEndpointType enum value
+	ResolverEndpointTypeDualstack = "DUALSTACK"
+)
+
+// ResolverEndpointType_Values returns all elements of the ResolverEndpointType enum
+func ResolverEndpointType_Values() []string {
+	return []string{
+		ResolverEndpointTypeIpv6,
+		ResolverEndpointTypeIpv4,
+		ResolverEndpointTypeDualstack,
 	}
 }
 
@@ -17950,6 +18252,9 @@ const (
 
 	// ValidationDisable is a Validation enum value
 	ValidationDisable = "DISABLE"
+
+	// ValidationUseLocalResourceSetting is a Validation enum value
+	ValidationUseLocalResourceSetting = "USE_LOCAL_RESOURCE_SETTING"
 )
 
 // Validation_Values returns all elements of the Validation enum
@@ -17957,5 +18262,6 @@ func Validation_Values() []string {
 	return []string{
 		ValidationEnable,
 		ValidationDisable,
+		ValidationUseLocalResourceSetting,
 	}
 }

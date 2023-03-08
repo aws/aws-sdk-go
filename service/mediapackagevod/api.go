@@ -2012,6 +2012,8 @@ type ConfigureLogsOutput struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	DomainName *string `locationName:"domainName" type:"string"`
 
 	// Configure egress access logging.
@@ -2050,6 +2052,12 @@ func (s *ConfigureLogsOutput) SetArn(v string) *ConfigureLogsOutput {
 // SetAuthorization sets the Authorization field's value.
 func (s *ConfigureLogsOutput) SetAuthorization(v *Authorization) *ConfigureLogsOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ConfigureLogsOutput) SetCreatedAt(v string) *ConfigureLogsOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -2398,6 +2406,8 @@ type CreatePackagingConfigurationOutput struct {
 	// A CMAF packaging configuration.
 	CmafPackage *CmafPackage `locationName:"cmafPackage" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.
 	DashPackage *DashPackage `locationName:"dashPackage" type:"structure"`
 
@@ -2442,6 +2452,12 @@ func (s *CreatePackagingConfigurationOutput) SetArn(v string) *CreatePackagingCo
 // SetCmafPackage sets the CmafPackage field's value.
 func (s *CreatePackagingConfigurationOutput) SetCmafPackage(v *CmafPackage) *CreatePackagingConfigurationOutput {
 	s.CmafPackage = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreatePackagingConfigurationOutput) SetCreatedAt(v string) *CreatePackagingConfigurationOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -2565,6 +2581,8 @@ type CreatePackagingGroupOutput struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	DomainName *string `locationName:"domainName" type:"string"`
 
 	// Configure egress access logging.
@@ -2603,6 +2621,12 @@ func (s *CreatePackagingGroupOutput) SetArn(v string) *CreatePackagingGroupOutpu
 // SetAuthorization sets the Authorization field's value.
 func (s *CreatePackagingGroupOutput) SetAuthorization(v *Authorization) *CreatePackagingGroupOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreatePackagingGroupOutput) SetCreatedAt(v string) *CreatePackagingGroupOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -2706,10 +2730,7 @@ type DashManifest struct {
 
 	// The source of scte markers used. When set to SEGMENTS, the scte markers are
 	// sourced from the segments of the ingested content. When set to MANIFEST,
-	// the scte markers are sourced from the manifest of the ingested content. The
-	// MANIFEST value is compatible with source HLS playlists using the SCTE-35
-	// Enhanced syntax (#EXT-OATCLS-SCTE35 tags). SCTE-35 Elemental and SCTE-35
-	// Daterange syntaxes are not supported with this option.
+	// the scte markers are sourced from the manifest of the ingested content.
 	ScteMarkersSource *string `locationName:"scteMarkersSource" type:"string" enum:"ScteMarkersSource"`
 
 	// A StreamSelection configuration.
@@ -3294,6 +3315,8 @@ type DescribePackagingConfigurationOutput struct {
 	// A CMAF packaging configuration.
 	CmafPackage *CmafPackage `locationName:"cmafPackage" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.
 	DashPackage *DashPackage `locationName:"dashPackage" type:"structure"`
 
@@ -3338,6 +3361,12 @@ func (s *DescribePackagingConfigurationOutput) SetArn(v string) *DescribePackagi
 // SetCmafPackage sets the CmafPackage field's value.
 func (s *DescribePackagingConfigurationOutput) SetCmafPackage(v *CmafPackage) *DescribePackagingConfigurationOutput {
 	s.CmafPackage = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribePackagingConfigurationOutput) SetCreatedAt(v string) *DescribePackagingConfigurationOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -3434,6 +3463,8 @@ type DescribePackagingGroupOutput struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	DomainName *string `locationName:"domainName" type:"string"`
 
 	// Configure egress access logging.
@@ -3478,6 +3509,12 @@ func (s *DescribePackagingGroupOutput) SetArn(v string) *DescribePackagingGroupO
 // SetAuthorization sets the Authorization field's value.
 func (s *DescribePackagingGroupOutput) SetAuthorization(v *Authorization) *DescribePackagingGroupOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribePackagingGroupOutput) SetCreatedAt(v string) *DescribePackagingGroupOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -4630,6 +4667,9 @@ type PackagingConfiguration struct {
 	// A CMAF packaging configuration.
 	CmafPackage *CmafPackage `locationName:"cmafPackage" type:"structure"`
 
+	// The time the PackagingConfiguration was created.
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.
 	DashPackage *DashPackage `locationName:"dashPackage" type:"structure"`
 
@@ -4676,6 +4716,12 @@ func (s *PackagingConfiguration) SetArn(v string) *PackagingConfiguration {
 // SetCmafPackage sets the CmafPackage field's value.
 func (s *PackagingConfiguration) SetCmafPackage(v *CmafPackage) *PackagingConfiguration {
 	s.CmafPackage = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PackagingConfiguration) SetCreatedAt(v string) *PackagingConfiguration {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -4728,6 +4774,9 @@ type PackagingGroup struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	// The time the PackagingGroup was created.
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// The fully qualified domain name for Assets in the PackagingGroup.
 	DomainName *string `locationName:"domainName" type:"string"`
 
@@ -4774,6 +4823,12 @@ func (s *PackagingGroup) SetArn(v string) *PackagingGroup {
 // SetAuthorization sets the Authorization field's value.
 func (s *PackagingGroup) SetAuthorization(v *Authorization) *PackagingGroup {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PackagingGroup) SetCreatedAt(v string) *PackagingGroup {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -5371,6 +5426,8 @@ type UpdatePackagingGroupOutput struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	DomainName *string `locationName:"domainName" type:"string"`
 
 	// Configure egress access logging.
@@ -5415,6 +5472,12 @@ func (s *UpdatePackagingGroupOutput) SetArn(v string) *UpdatePackagingGroupOutpu
 // SetAuthorization sets the Authorization field's value.
 func (s *UpdatePackagingGroupOutput) SetAuthorization(v *Authorization) *UpdatePackagingGroupOutput {
 	s.Authorization = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdatePackagingGroupOutput) SetCreatedAt(v string) *UpdatePackagingGroupOutput {
+	s.CreatedAt = &v
 	return s
 }
 

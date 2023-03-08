@@ -3144,6 +3144,9 @@ func (c *Athena) ListDataCatalogsRequest(input *ListDataCatalogsInput) (req *req
 //
 // Lists the data catalogs in the current Amazon Web Services account.
 //
+// In the Athena console, data catalogs are listed as "data sources" on the
+// Data sources page under the Data source name column.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7806,6 +7809,9 @@ func (s *CustomerContentEncryptionConfiguration) SetKmsKey(v string) *CustomerCo
 }
 
 // Contains information about a data catalog in an Amazon Web Services account.
+//
+// In the Athena console, data catalogs are listed as "data sources" on the
+// Data sources page under the Data source name column.
 type DataCatalog struct {
 	_ struct{} `type:"structure"`
 
@@ -8560,7 +8566,7 @@ type EngineVersion struct {
 	EffectiveEngineVersion *string `min:"1" type:"string"`
 
 	// The engine version requested by the user. Possible values are determined
-	// by the output of ListEngineVersions, including Auto. The default is Auto.
+	// by the output of ListEngineVersions, including AUTO. The default is AUTO.
 	SelectedEngineVersion *string `min:"1" type:"string"`
 }
 
@@ -12797,6 +12803,9 @@ type QueryExecution struct {
 	// (if applicable) for the query execution.
 	Status *QueryExecutionStatus `type:"structure"`
 
+	// The kind of query statement that was run.
+	SubstatementType *string `type:"string"`
+
 	// The name of the workgroup in which the query ran.
 	WorkGroup *string `type:"string"`
 }
@@ -12876,6 +12885,12 @@ func (s *QueryExecution) SetStatistics(v *QueryExecutionStatistics) *QueryExecut
 // SetStatus sets the Status field's value.
 func (s *QueryExecution) SetStatus(v *QueryExecutionStatus) *QueryExecution {
 	s.Status = v
+	return s
+}
+
+// SetSubstatementType sets the SubstatementType field's value.
+func (s *QueryExecution) SetSubstatementType(v string) *QueryExecution {
+	s.SubstatementType = &v
 	return s
 }
 

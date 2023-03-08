@@ -11362,6 +11362,14 @@
       "type":"integer",
       "min":1
     },
+    "IamIdentity":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"String"},
+        "PrincipalId":{"shape":"String"},
+        "SourceIdentity":{"shape":"String"}
+      }
+    },
     "IdempotencyToken":{
       "type":"string",
       "max":128,
@@ -20264,7 +20272,8 @@
       "members":{
         "UserProfileArn":{"shape":"String"},
         "UserProfileName":{"shape":"String"},
-        "DomainId":{"shape":"String"}
+        "DomainId":{"shape":"String"},
+        "IamIdentity":{"shape":"IamIdentity"}
       }
     },
     "UserProfileArn":{

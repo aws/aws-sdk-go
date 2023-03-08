@@ -2238,7 +2238,8 @@
         "Statistics":{"shape":"QueryExecutionStatistics"},
         "WorkGroup":{"shape":"WorkGroupName"},
         "EngineVersion":{"shape":"EngineVersion"},
-        "ExecutionParameters":{"shape":"ExecutionParameters"}
+        "ExecutionParameters":{"shape":"ExecutionParameters"},
+        "SubstatementType":{"shape":"String"}
       }
     },
     "QueryExecutionContext":{
