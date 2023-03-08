@@ -20,6 +20,7 @@ type tokenProvider struct {
 	client        *EC2Metadata
 	token         atomic.Value
 	configuredTTL time.Duration
+	disabled      uint32
 }
 
 // A ec2Token struct helps use of token in EC2 Metadata service ops
@@ -35,6 +36,11 @@ func newTokenProvider(c *EC2Metadata, duration time.Duration) *tokenProvider {
 
 // fetchTokenHandler fetches token for EC2Metadata service client by default.
 func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
+	// short-circuits to insecure data flow if tokenProvider is disabled.
+	if v := atomic.LoadUint32(&t.disabled); v == 1 {
+		return
+	}
+
 	if ec2Token, ok := t.token.Load().(ec2Token); ok && !ec2Token.IsExpired() {
 		r.HTTPRequest.Header.Set(tokenHeader, ec2Token.token)
 		return
@@ -52,6 +58,8 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 		// change the disabled flag on token provider to true and fallback
 		if requestFailureError, ok := err.(awserr.RequestFailure); ok {
 			switch requestFailureError.StatusCode() {
+			case http.StatusForbidden, http.StatusNotFound, http.StatusMethodNotAllowed:
+				atomic.StoreUint32(&t.disabled, 1)
 			case http.StatusBadRequest:
 				r.Error = requestFailureError
 			}
@@ -73,9 +81,10 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 
 // enableTokenProviderHandler enables the token provider
 func (t *tokenProvider) enableTokenProviderHandler(r *request.Request) {
-	// If the error code status is 401, force refresh of the token
+	// If the error code status is 401, we enable the token provider
 	if e, ok := r.Error.(awserr.RequestFailure); ok && e != nil &&
 		e.StatusCode() == http.StatusUnauthorized {
 		t.token.Store(ec2Token{})
+		atomic.StoreUint32(&t.disabled, 0)
 	}
 }

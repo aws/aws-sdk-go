@@ -262,7 +262,7 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 		"Secure server success case": {
 			tokens: []string{"firstToken", "secondToken", "thirdToken"},
@@ -332,7 +332,7 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 		"No fallback to IMDSv1": {
 			NewServer: func(t *testing.T, tokens []string) *httptest.Server {
@@ -1014,7 +1014,7 @@ func TestExhaustiveRetryToFetchToken(t *testing.T) {
 	}
 
 	resp, err = c.GetMetadata("/some/path")
-	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"}
+	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetMetadata", "GetMetadata", "GetMetadata"}
 	if err != nil {
 		t.Fatalf("Expected no error, got %v", err)
 	}
