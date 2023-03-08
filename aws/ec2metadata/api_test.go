@@ -249,7 +249,7 @@ func TestGetMetadata(t *testing.T) {
 		expectedData                string
 		expectedError               string
 		expectedOperationsAttempted []string
-		disableImdsFallback         *bool
+		enableImdsFallback          *bool
 	}{
 		"Insecure server success case": {
 			NewServer: func(t *testing.T, tokens []string) *httptest.Server {
@@ -347,7 +347,7 @@ func TestGetMetadata(t *testing.T) {
 			expectedError: "failed to get IMDS token and fallback is disabled",
 			// 2 attempts + 2 retries per/attempt
 			expectedOperationsAttempted: []string{"GetToken", "GetToken", "GetToken", "GetToken", "GetToken", "GetToken"},
-			disableImdsFallback:         aws.Bool(true),
+			enableImdsFallback:          aws.Bool(false),
 		},
 	}
 
@@ -360,8 +360,8 @@ func TestGetMetadata(t *testing.T) {
 			op := &operationListProvider{}
 
 			c := ec2metadata.New(unit.Session, &aws.Config{
-				Endpoint:                   aws.String(server.URL),
-				EC2MetadataDisableFallback: x.disableImdsFallback,
+				Endpoint:                  aws.String(server.URL),
+				EC2MetadataEnableFallback: x.enableImdsFallback,
 			})
 
 			c.Handlers.CompleteAttempt.PushBack(op.addToOperationPerformedList)

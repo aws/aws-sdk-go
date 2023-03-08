@@ -192,22 +192,22 @@ type Config struct {
 	//
 	EC2MetadataDisableTimeoutOverride *bool
 
-	// Set this to `true` to disable EC2Metadata client from falling back to IMDSv1.
+	// Set this to `false` to disable EC2Metadata client from falling back to IMDSv1.
 	// By default, EC2 role credentials will fall back to IMDSv1 as needed for backwards compatibility.
-	// You can disable this behavior by explicitly setting this flag to `true`. When set, the EC2Metadata
+	// You can disable this behavior by explicitly setting this flag to `false`. When false, the EC2Metadata
 	// client will return any errors encountered from attempting to fetch a token instead of silently
 	// using the insecure data flow of IMDSv1.
 	//
 	// Example:
 	//    sess := session.Must(session.NewSession(aws.NewConfig()
-	//       .WithEC2MetadataDisableFallback(true)))
+	//       .WithEC2MetadataEnableFallback(false)))
 	//
 	//    svc := s3.New(sess)
 	//
 	// See [configuring IMDS] for more information.
 	//
 	// [configuring IMDS]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html
-	EC2MetadataDisableFallback *bool
+	EC2MetadataEnableFallback *bool
 
 	// Instructs the endpoint to be generated for a service client to
 	// be the dual stack endpoint. The dual stack endpoint will support
@@ -449,10 +449,10 @@ func (c *Config) WithEC2MetadataDisableTimeoutOverride(enable bool) *Config {
 	return c
 }
 
-// WithEC2MetadataDisableFallback sets a config EC2MetadataDisableFallback value
+// WithEC2MetadataDisableFallback sets a config EC2MetadataEnableFallback value
 // returning a Config pointer for chaining.
 func (c *Config) WithEC2MetadataDisableFallback(v bool) *Config {
-	c.EC2MetadataDisableFallback = &v
+	c.EC2MetadataEnableFallback = &v
 	return c
 }
 
@@ -600,8 +600,8 @@ func mergeInConfig(dst *Config, other *Config) {
 		dst.EC2MetadataDisableTimeoutOverride = other.EC2MetadataDisableTimeoutOverride
 	}
 
-	if other.EC2MetadataDisableFallback != nil {
-		dst.EC2MetadataDisableFallback = other.EC2MetadataDisableFallback
+	if other.EC2MetadataEnableFallback != nil {
+		dst.EC2MetadataEnableFallback = other.EC2MetadataEnableFallback
 	}
 
 	if other.SleepDelay != nil {

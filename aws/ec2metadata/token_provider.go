@@ -1,7 +1,6 @@
 package ec2metadata
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
 	"net/http"
 	"sync/atomic"
 	"time"
@@ -34,10 +33,15 @@ func newTokenProvider(c *EC2Metadata, duration time.Duration) *tokenProvider {
 	return &tokenProvider{client: c, configuredTTL: duration}
 }
 
+// check if fallback is enabled
+func (t *tokenProvider) fallbackEnabled() bool {
+	return t.client.Config.EC2MetadataEnableFallback == nil || *t.client.Config.EC2MetadataEnableFallback
+}
+
 // fetchTokenHandler fetches token for EC2Metadata service client by default.
 func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 	// short-circuits to insecure data flow if tokenProvider is disabled.
-	if v := atomic.LoadUint32(&t.disabled); v == 1 {
+	if v := atomic.LoadUint32(&t.disabled); v == 1 && t.fallbackEnabled() {
 		return
 	}
 
@@ -50,7 +54,7 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 
 	if err != nil {
 		// only attempt fallback to insecure data flow if IMDSv1 is enabled
-		if aws.BoolValue(t.client.Config.EC2MetadataDisableFallback) {
+		if !t.fallbackEnabled() {
 			r.Error = awserr.New("EC2MetadataError", "failed to get IMDS token and fallback is disabled", err)
 			return
 		}
