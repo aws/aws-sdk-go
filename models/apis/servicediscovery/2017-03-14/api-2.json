@@ -26,7 +26,8 @@
         {"shape":"NamespaceAlreadyExists"},
         {"shape":"ResourceLimitExceeded"},
         {"shape":"DuplicateRequest"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "CreatePrivateDnsNamespace":{
@@ -42,7 +43,8 @@
         {"shape":"NamespaceAlreadyExists"},
         {"shape":"ResourceLimitExceeded"},
         {"shape":"DuplicateRequest"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "CreatePublicDnsNamespace":{
@@ -58,7 +60,8 @@
         {"shape":"NamespaceAlreadyExists"},
         {"shape":"ResourceLimitExceeded"},
         {"shape":"DuplicateRequest"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "CreateService":{
@@ -74,7 +77,8 @@
         {"shape":"ResourceLimitExceeded"},
         {"shape":"NamespaceNotFound"},
         {"shape":"ServiceAlreadyExists"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "DeleteNamespace":{
@@ -89,7 +93,8 @@
         {"shape":"InvalidInput"},
         {"shape":"NamespaceNotFound"},
         {"shape":"ResourceInUse"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "DeleteService":{
@@ -103,7 +108,8 @@
       "errors":[
         {"shape":"InvalidInput"},
         {"shape":"ServiceNotFound"},
-        {"shape":"ResourceInUse"}
+        {"shape":"ResourceInUse"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "DeregisterInstance":{
@@ -119,7 +125,8 @@
         {"shape":"InvalidInput"},
         {"shape":"InstanceNotFound"},
         {"shape":"ResourceInUse"},
-        {"shape":"ServiceNotFound"}
+        {"shape":"ServiceNotFound"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "DiscoverInstances":{
@@ -149,7 +156,8 @@
       "errors":[
         {"shape":"InstanceNotFound"},
         {"shape":"InvalidInput"},
-        {"shape":"ServiceNotFound"}
+        {"shape":"ServiceNotFound"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "GetInstancesHealthStatus":{
@@ -163,7 +171,8 @@
       "errors":[
         {"shape":"InstanceNotFound"},
         {"shape":"InvalidInput"},
-        {"shape":"ServiceNotFound"}
+        {"shape":"ServiceNotFound"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "GetNamespace":{
@@ -189,7 +198,8 @@
       "output":{"shape":"GetOperationResponse"},
       "errors":[
         {"shape":"InvalidInput"},
-        {"shape":"OperationNotFound"}
+        {"shape":"OperationNotFound"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "GetService":{
@@ -202,7 +212,8 @@
       "output":{"shape":"GetServiceResponse"},
       "errors":[
         {"shape":"InvalidInput"},
-        {"shape":"ServiceNotFound"}
+        {"shape":"ServiceNotFound"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "ListInstances":{
@@ -215,7 +226,8 @@
       "output":{"shape":"ListInstancesResponse"},
       "errors":[
         {"shape":"ServiceNotFound"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "ListNamespaces":{
@@ -227,7 +239,8 @@
       "input":{"shape":"ListNamespacesRequest"},
       "output":{"shape":"ListNamespacesResponse"},
       "errors":[
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "ListOperations":{
@@ -239,7 +252,8 @@
       "input":{"shape":"ListOperationsRequest"},
       "output":{"shape":"ListOperationsResponse"},
       "errors":[
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "ListServices":{
@@ -251,7 +265,8 @@
       "input":{"shape":"ListServicesRequest"},
       "output":{"shape":"ListServicesResponse"},
       "errors":[
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "ListTagsForResource":{
@@ -264,7 +279,8 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "RegisterInstance":{
@@ -280,7 +296,8 @@
         {"shape":"InvalidInput"},
         {"shape":"ResourceInUse"},
         {"shape":"ResourceLimitExceeded"},
-        {"shape":"ServiceNotFound"}
+        {"shape":"ServiceNotFound"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "TagResource":{
@@ -294,7 +311,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyTagsException"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "UntagResource":{
@@ -307,7 +325,8 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "UpdateHttpNamespace":{
@@ -322,7 +341,8 @@
         {"shape":"InvalidInput"},
         {"shape":"NamespaceNotFound"},
         {"shape":"ResourceInUse"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "UpdateInstanceCustomHealthStatus":{
@@ -336,7 +356,8 @@
         {"shape":"InstanceNotFound"},
         {"shape":"ServiceNotFound"},
         {"shape":"CustomHealthNotFound"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "UpdatePrivateDnsNamespace":{
@@ -351,7 +372,8 @@
         {"shape":"InvalidInput"},
         {"shape":"NamespaceNotFound"},
         {"shape":"ResourceInUse"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "UpdatePublicDnsNamespace":{
@@ -366,7 +388,8 @@
         {"shape":"InvalidInput"},
         {"shape":"NamespaceNotFound"},
         {"shape":"ResourceInUse"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"RequestLimitExceeded"}
       ]
     },
     "UpdateService":{
@@ -380,7 +403,8 @@
       "errors":[
         {"shape":"DuplicateRequest"},
         {"shape":"InvalidInput"},
-        {"shape":"ServiceNotFound"}
+        {"shape":"ServiceNotFound"},
+        {"shape":"RequestLimitExceeded"}
       ]
     }
   },

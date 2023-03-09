@@ -36,7 +36,7 @@
     "DeleteTemplateAlias": "<p>Deletes the item that the specified template alias points to. If you provide a specific alias, you delete the version of the template that the alias points to.</p>",
     "DeleteTheme": "<p>Deletes a theme.</p>",
     "DeleteThemeAlias": "<p>Deletes the version of the theme that the specified theme alias points to. If you provide a specific alias, you delete the version of the theme that the alias points to.</p>",
-    "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the Identity and Access Management (IAM) user or role that's making the call. The IAM user isn't deleted as a result of this call. </p>",
+    "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the IAM user or role that's making the call. The IAM user isn't deleted as a result of this call. </p>",
     "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
     "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions and Amazon Web Services Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region. </p> </li> <li> <p> <code>Amazon Web Services Region</code> - In each Amazon Web Services Region where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region, you change your Region settings. If you're using the CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region. To apply them in other Amazon Web Services Regions, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region where you want to apply the same customizations. </p> </li> </ul>",
     "DescribeAccountSettings": "<p>Describes the settings that were used when your Amazon QuickSight subscription was first created in this Amazon Web Services account.</p>",
@@ -131,7 +131,7 @@
   },
   "shapes": {
     "AccessDeniedException": {
-      "base": "<p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon QuickSight service, that your policies have the correct permissions, and that you are using the correct access keys.</p>",
+      "base": "<p>You don't have access to this item. The provided credentials couldn't be validated. You might not be authorized to carry out the request. Make sure that your account is authorized to use the Amazon QuickSight service, that your policies have the correct permissions, and that you are using the correct credentials.</p>",
       "refs": {
       }
     },
@@ -484,7 +484,7 @@
         "GenerateEmbedUrlForAnonymousUserResponse$AnonymousUserArn": "<p>The Amazon Resource Name (ARN) to use for the anonymous Amazon QuickSight user.</p>",
         "GenerateEmbedUrlForRegisteredUserRequest$UserArn": "<p>The Amazon Resource Name for the registered user.</p>",
         "GetDashboardEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:</p> <ul> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>IAM users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation.</p> </li> </ul> <p>Omit this parameter for users in the third group – IAM users and IAM role-based sessions.</p>",
-        "GetSessionEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any type of Amazon QuickSight users in your account (readers, authors, or admins). They need to be authenticated as one of the following:</p> <ol> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>Identity and Access Management (IAM) users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation</p> </li> </ol> <p>Omit this parameter for users in the third group, IAM users and IAM role-based sessions.</p>",
+        "GetSessionEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any type of Amazon QuickSight users in your account (readers, authors, or admins). They need to be authenticated as one of the following:</p> <ol> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>IAM users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation</p> </li> </ol> <p>Omit this parameter for users in the third group, IAM users and IAM role-based sessions.</p>",
         "Group$Arn": "<p>The Amazon Resource Name (ARN) for the group.</p>",
         "GroupMember$Arn": "<p>The Amazon Resource Name (ARN) for the group member (user).</p>",
         "IAMPolicyAssignment$PolicyArn": "<p>The Amazon Resource Name (ARN) for the IAM policy.</p>",
@@ -943,13 +943,14 @@
         "NumericRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
         "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
+        "StatePersistenceConfigurations$Enabled": "<p>Determines if a Amazon QuickSight dashboard's state persistence settings are turned on or off.</p>",
         "TimeRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "TimeRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
         "UpdateAccountSettingsRequest$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubscription</code> request. A <code>False</code> value will allow the account to be deleted.</p>",
         "UpdatePublicSharingSettingsRequest$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account.</p>",
         "UpdateUserRequest$UnapplyCustomPermissions": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>",
         "UploadSettings$ContainsHeader": "<p>Whether the file has a header row, or the files each have a header row.</p>",
-        "User$Active": "<p>The active status of user. When you create an Amazon QuickSight user that’s not an IAM user or an Active Directory user, that user is inactive until they sign in and provide a password.</p>"
+        "User$Active": "<p>The active status of user. When you create an Amazon QuickSight user that's not an IAM user or an Active Directory user, that user is inactive until they sign in and provide a password.</p>"
       }
     },
     "BooleanObject": {
@@ -3310,7 +3311,7 @@
     "EntityList": {
       "base": null,
       "refs": {
-        "AnalysisError$ViolatedEntities": "<p/>",
+        "AnalysisError$ViolatedEntities": "<p>Lists the violated entities that caused the analysis error</p>",
         "DashboardError$ViolatedEntities": "<p>Lists the violated entities that caused the dashboard error.</p>",
         "TemplateError$ViolatedEntities": "<p>An error path that shows which entities caused the template error.</p>"
       }
@@ -5664,7 +5665,7 @@
         "SearchGroupsRequest$Namespace": "<p>The namespace that you want to search.</p>",
         "UpdateAccountCustomizationRequest$Namespace": "<p>The namespace that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$Namespace": "<p>The namespace associated with the customization that you're updating.</p>",
-        "UpdateAccountSettingsRequest$DefaultNamespace": "<p>The default namespace for this Amazon Web Services account. Currently, the default is <code>default</code>. Identity and Access Management (IAM) users that register for the first time with Amazon QuickSight provide an email address that becomes associated with the default namespace. </p>",
+        "UpdateAccountSettingsRequest$DefaultNamespace": "<p>The default namespace for this Amazon Web Services account. Currently, the default is <code>default</code>. IAM users that register for the first time with Amazon QuickSight provide an email address that becomes associated with the default namespace. </p>",
         "UpdateGroupRequest$Namespace": "<p>The namespace of the group that you want to update.</p>",
         "UpdateIAMPolicyAssignmentRequest$Namespace": "<p>The namespace of the assignment.</p>",
         "UpdateUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>"
@@ -6693,10 +6694,22 @@
       "refs": {
       }
     },
+    "RegisteredUserConsoleFeatureConfigurations": {
+      "base": "<p>The feature configurations of an embedded Amazon QuickSight console.</p>",
+      "refs": {
+        "RegisteredUserQuickSightConsoleEmbeddingConfiguration$FeatureConfigurations": "<p>The embedding configuration of an embedded Amazon QuickSight console.</p>"
+      }
+    },
     "RegisteredUserDashboardEmbeddingConfiguration": {
       "base": "<p>Information about the dashboard you want to embed.</p>",
       "refs": {
         "RegisteredUserEmbeddingExperienceConfiguration$Dashboard": "<p>The configuration details for providing a dashboard embedding experience.</p>"
+      }
+    },
+    "RegisteredUserDashboardFeatureConfigurations": {
+      "base": "<p>The feature configuration for an embedded dashboard.</p>",
+      "refs": {
+        "RegisteredUserDashboardEmbeddingConfiguration$FeatureConfigurations": "<p>The feature configurations of an embbedded Amazon QuickSight dashboard.</p>"
       }
     },
     "RegisteredUserDashboardVisualEmbeddingConfiguration": {
@@ -7915,6 +7928,13 @@
         "CreateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>",
         "DataSource$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>",
         "UpdateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.</p>"
+      }
+    },
+    "StatePersistenceConfigurations": {
+      "base": "<p>The state perssitence configuration of an embedded dashboard.</p>",
+      "refs": {
+        "RegisteredUserConsoleFeatureConfigurations$StatePersistence": "<p>The state persistence configurations of an embedded Amazon QuickSight console.</p>",
+        "RegisteredUserDashboardFeatureConfigurations$StatePersistence": "<p>The state persistence settings of an embedded dashboard.</p>"
       }
     },
     "Status": {
@@ -9773,6 +9793,7 @@
         "PivotTableOptions$SingleMetricVisibility": "<p>The visibility of the single metric options.</p>",
         "PivotTableOptions$ColumnNamesVisibility": "<p>The visibility of the column names.</p>",
         "PivotTableOptions$ToggleButtonsVisibility": "<p>Determines the visibility of the pivot table.</p>",
+        "PivotTableOptions$CollapsedRowDimensionsVisibility": "<p>The visibility setting of a pivot table's collapsed row dimension fields. If the value of this structure is <code>HIDDEN</code>, all collapsed columns in a pivot table are automatically hidden. The default value is <code>VISIBLE</code>.</p>",
         "PivotTablePaginatedReportOptions$VerticalOverflowVisibility": "<p>The visibility of the printing table overflow across pages.</p>",
         "PivotTablePaginatedReportOptions$OverflowColumnHeaderVisibility": "<p>The visibility of the repeating header rows on each page.</p>",
         "PivotTotalOptions$TotalsVisibility": "<p>The visibility configuration for the total cells.</p>",

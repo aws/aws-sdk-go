@@ -1,3 +1,19 @@
+Release v1.44.218 (2023-03-09)
+===
+
+### Service Client Updates
+* `service/codeartifact`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/evidently`: Updates service documentation
+* `service/networkmanager`: Updates service documentation
+* `service/quicksight`: Updates service API and documentation
+  * This release has two changes: add state persistence feature for embedded dashboard and console in GenerateEmbedUrlForRegisteredUser API; add properties for hidden collapsed row dimensions in PivotTableOptions.
+* `service/redshift-data`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Inference now allows SSM access to customer's model container by setting the "EnableSSMAccess" parameter for a ProductionVariant in CreateEndpointConfig API.
+* `service/servicediscovery`: Updates service API
+* `service/sesv2`: Updates service API and documentation
+
 Release v1.44.217 (2023-03-08)
 ===
 

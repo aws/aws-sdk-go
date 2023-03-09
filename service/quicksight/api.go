@@ -71,7 +71,7 @@ func (c *QuickSight) CancelIngestionRequest(input *CancelIngestionInput) (req *r
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -190,7 +190,7 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -323,7 +323,7 @@ func (c *QuickSight) CreateAccountSubscriptionRequest(input *CreateAccountSubscr
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -646,7 +646,7 @@ func (c *QuickSight) CreateDataSetRequest(input *CreateDataSetInput) (req *reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -756,7 +756,7 @@ func (c *QuickSight) CreateDataSourceRequest(input *CreateDataSourceInput) (req 
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -881,7 +881,7 @@ func (c *QuickSight) CreateFolderRequest(input *CreateFolderInput) (req *request
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - LimitExceededException
 //     A limit is exceeded.
@@ -970,7 +970,7 @@ func (c *QuickSight) CreateFolderMembershipRequest(input *CreateFolderMembership
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -1083,7 +1083,7 @@ func (c *QuickSight) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -1190,7 +1190,7 @@ func (c *QuickSight) CreateGroupMembershipRequest(input *CreateGroupMembershipIn
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -1295,7 +1295,7 @@ func (c *QuickSight) CreateIAMPolicyAssignmentRequest(input *CreateIAMPolicyAssi
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -1407,7 +1407,7 @@ func (c *QuickSight) CreateIngestionRequest(input *CreateIngestionInput) (req *r
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -1518,7 +1518,7 @@ func (c *QuickSight) CreateNamespaceRequest(input *CreateNamespaceInput) (req *r
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -1640,7 +1640,7 @@ func (c *QuickSight) CreateTemplateRequest(input *CreateTemplateInput) (req *req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceExistsException
 //     The resource specified already exists.
@@ -1855,7 +1855,7 @@ func (c *QuickSight) CreateThemeRequest(input *CreateThemeInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -2067,7 +2067,7 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -2173,7 +2173,7 @@ func (c *QuickSight) DeleteAccountSubscriptionRequest(input *DeleteAccountSubscr
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -2482,7 +2482,7 @@ func (c *QuickSight) DeleteDataSetRequest(input *DeleteDataSetInput) (req *reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -2578,7 +2578,7 @@ func (c *QuickSight) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req 
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -2679,7 +2679,7 @@ func (c *QuickSight) DeleteFolderRequest(input *DeleteFolderInput) (req *request
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
@@ -2780,7 +2780,7 @@ func (c *QuickSight) DeleteFolderMembershipRequest(input *DeleteFolderMembership
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -2881,7 +2881,7 @@ func (c *QuickSight) DeleteGroupRequest(input *DeleteGroupInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -2983,7 +2983,7 @@ func (c *QuickSight) DeleteGroupMembershipRequest(input *DeleteGroupMembershipIn
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -3084,7 +3084,7 @@ func (c *QuickSight) DeleteIAMPolicyAssignmentRequest(input *DeleteIAMPolicyAssi
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -3189,7 +3189,7 @@ func (c *QuickSight) DeleteNamespaceRequest(input *DeleteNamespaceInput) (req *r
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -3486,7 +3486,7 @@ func (c *QuickSight) DeleteThemeRequest(input *DeleteThemeInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -3674,8 +3674,8 @@ func (c *QuickSight) DeleteUserRequest(input *DeleteUserInput) (req *request.Req
 // DeleteUser API operation for Amazon QuickSight.
 //
 // Deletes the Amazon QuickSight user that is associated with the identity of
-// the Identity and Access Management (IAM) user or role that's making the call.
-// The IAM user isn't deleted as a result of this call.
+// the IAM user or role that's making the call. The IAM user isn't deleted as
+// a result of this call.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3691,7 +3691,7 @@ func (c *QuickSight) DeleteUserRequest(input *DeleteUserInput) (req *request.Req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -3792,7 +3792,7 @@ func (c *QuickSight) DeleteUserByPrincipalIdRequest(input *DeleteUserByPrincipal
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -3936,7 +3936,7 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -4035,7 +4035,7 @@ func (c *QuickSight) DescribeAccountSettingsRequest(input *DescribeAccountSettin
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -4136,7 +4136,7 @@ func (c *QuickSight) DescribeAccountSubscriptionRequest(input *DescribeAccountSu
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -4240,7 +4240,7 @@ func (c *QuickSight) DescribeAnalysisRequest(input *DescribeAnalysisInput) (req 
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ThrottlingException
 //     Access is throttled.
@@ -4343,7 +4343,7 @@ func (c *QuickSight) DescribeAnalysisDefinitionRequest(input *DescribeAnalysisDe
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceExistsException
 //     The resource specified already exists.
@@ -4547,7 +4547,7 @@ func (c *QuickSight) DescribeDashboardRequest(input *DescribeDashboardInput) (re
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ThrottlingException
 //     Access is throttled.
@@ -4650,7 +4650,7 @@ func (c *QuickSight) DescribeDashboardDefinitionRequest(input *DescribeDashboard
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceExistsException
 //     The resource specified already exists.
@@ -4849,7 +4849,7 @@ func (c *QuickSight) DescribeDataSetRequest(input *DescribeDataSetInput) (req *r
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -4946,7 +4946,7 @@ func (c *QuickSight) DescribeDataSetPermissionsRequest(input *DescribeDataSetPer
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -5041,7 +5041,7 @@ func (c *QuickSight) DescribeDataSourceRequest(input *DescribeDataSourceInput) (
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -5136,7 +5136,7 @@ func (c *QuickSight) DescribeDataSourcePermissionsRequest(input *DescribeDataSou
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -5234,7 +5234,7 @@ func (c *QuickSight) DescribeFolderRequest(input *DescribeFolderInput) (req *req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
@@ -5335,7 +5335,7 @@ func (c *QuickSight) DescribeFolderPermissionsRequest(input *DescribeFolderPermi
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
@@ -5437,7 +5437,7 @@ func (c *QuickSight) DescribeFolderResolvedPermissionsRequest(input *DescribeFol
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
@@ -5536,7 +5536,7 @@ func (c *QuickSight) DescribeGroupRequest(input *DescribeGroupInput) (req *reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -5639,7 +5639,7 @@ func (c *QuickSight) DescribeGroupMembershipRequest(input *DescribeGroupMembersh
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -5741,7 +5741,7 @@ func (c *QuickSight) DescribeIAMPolicyAssignmentRequest(input *DescribeIAMPolicy
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -5839,7 +5839,7 @@ func (c *QuickSight) DescribeIngestionRequest(input *DescribeIngestionInput) (re
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -5937,7 +5937,7 @@ func (c *QuickSight) DescribeIpRestrictionRequest(input *DescribeIpRestrictionIn
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -6032,7 +6032,7 @@ func (c *QuickSight) DescribeNamespaceRequest(input *DescribeNamespaceInput) (re
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -6133,7 +6133,7 @@ func (c *QuickSight) DescribeTemplateRequest(input *DescribeTemplateInput) (req 
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceExistsException
 //     The resource specified already exists.
@@ -6336,7 +6336,7 @@ func (c *QuickSight) DescribeTemplateDefinitionRequest(input *DescribeTemplateDe
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceExistsException
 //     The resource specified already exists.
@@ -6537,7 +6537,7 @@ func (c *QuickSight) DescribeThemeRequest(input *DescribeThemeInput) (req *reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -6738,7 +6738,7 @@ func (c *QuickSight) DescribeThemePermissionsRequest(input *DescribeThemePermiss
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -6839,7 +6839,7 @@ func (c *QuickSight) DescribeUserRequest(input *DescribeUserInput) (req *request
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -6964,7 +6964,7 @@ func (c *QuickSight) GenerateEmbedUrlForAnonymousUserRequest(input *GenerateEmbe
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -7103,7 +7103,7 @@ func (c *QuickSight) GenerateEmbedUrlForRegisteredUserRequest(input *GenerateEmb
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -7250,7 +7250,7 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -7395,7 +7395,7 @@ func (c *QuickSight) GetSessionEmbedUrlRequest(input *GetSessionEmbedUrlInput) (
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -7968,7 +7968,7 @@ func (c *QuickSight) ListDataSetsRequest(input *ListDataSetsInput) (req *request
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -8121,7 +8121,7 @@ func (c *QuickSight) ListDataSourcesRequest(input *ListDataSourcesInput) (req *r
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -8270,7 +8270,7 @@ func (c *QuickSight) ListFolderMembersRequest(input *ListFolderMembersInput) (re
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
@@ -8374,7 +8374,7 @@ func (c *QuickSight) ListFoldersRequest(input *ListFoldersInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
@@ -8475,7 +8475,7 @@ func (c *QuickSight) ListGroupMembershipsRequest(input *ListGroupMembershipsInpu
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -8579,7 +8579,7 @@ func (c *QuickSight) ListGroupsRequest(input *ListGroupsInput) (req *request.Req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -8683,7 +8683,7 @@ func (c *QuickSight) ListIAMPolicyAssignmentsRequest(input *ListIAMPolicyAssignm
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -8783,7 +8783,7 @@ func (c *QuickSight) ListIAMPolicyAssignmentsForUserRequest(input *ListIAMPolicy
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -8891,7 +8891,7 @@ func (c *QuickSight) ListIngestionsRequest(input *ListIngestionsInput) (req *req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -9050,7 +9050,7 @@ func (c *QuickSight) ListNamespacesRequest(input *ListNamespacesInput) (req *req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -9205,7 +9205,7 @@ func (c *QuickSight) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -9866,7 +9866,7 @@ func (c *QuickSight) ListThemeVersionsRequest(input *ListThemeVersionsInput) (re
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidNextTokenException
 //     The NextToken value isn't valid.
@@ -10027,7 +10027,7 @@ func (c *QuickSight) ListThemesRequest(input *ListThemesInput) (req *request.Req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -10183,7 +10183,7 @@ func (c *QuickSight) ListUserGroupsRequest(input *ListUserGroupsInput) (req *req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -10284,7 +10284,7 @@ func (c *QuickSight) ListUsersRequest(input *ListUsersInput) (req *request.Reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -10397,7 +10397,7 @@ func (c *QuickSight) RegisterUserRequest(input *RegisterUserInput) (req *request
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -10931,7 +10931,7 @@ func (c *QuickSight) SearchDataSetsRequest(input *SearchDataSetsInput) (req *req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidNextTokenException
 //     The NextToken value isn't valid.
@@ -11087,7 +11087,7 @@ func (c *QuickSight) SearchDataSourcesRequest(input *SearchDataSourcesInput) (re
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidNextTokenException
 //     The NextToken value isn't valid.
@@ -11230,7 +11230,7 @@ func (c *QuickSight) SearchFoldersRequest(input *SearchFoldersInput) (req *reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceNotFoundException
 //     One or more resources can't be found.
@@ -11336,7 +11336,7 @@ func (c *QuickSight) SearchGroupsRequest(input *SearchGroupsInput) (req *request
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -11467,7 +11467,7 @@ func (c *QuickSight) TagResourceRequest(input *TagResourceInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -11562,7 +11562,7 @@ func (c *QuickSight) UntagResourceRequest(input *UntagResourceInput) (req *reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -11664,7 +11664,7 @@ func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCusto
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -11765,7 +11765,7 @@ func (c *QuickSight) UpdateAccountSettingsRequest(input *UpdateAccountSettingsIn
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -12366,7 +12366,7 @@ func (c *QuickSight) UpdateDataSetRequest(input *UpdateDataSetInput) (req *reque
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -12475,7 +12475,7 @@ func (c *QuickSight) UpdateDataSetPermissionsRequest(input *UpdateDataSetPermiss
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -12573,7 +12573,7 @@ func (c *QuickSight) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req 
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -12671,7 +12671,7 @@ func (c *QuickSight) UpdateDataSourcePermissionsRequest(input *UpdateDataSourceP
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ConflictException
 //     Updating or deleting a resource can cause an inconsistent state.
@@ -12772,7 +12772,7 @@ func (c *QuickSight) UpdateFolderRequest(input *UpdateFolderInput) (req *request
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - ResourceExistsException
 //     The resource specified already exists.
@@ -12879,7 +12879,7 @@ func (c *QuickSight) UpdateFolderPermissionsRequest(input *UpdateFolderPermissio
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - LimitExceededException
 //     A limit is exceeded.
@@ -12980,7 +12980,7 @@ func (c *QuickSight) UpdateGroupRequest(input *UpdateGroupInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -13083,7 +13083,7 @@ func (c *QuickSight) UpdateIAMPolicyAssignmentRequest(input *UpdateIAMPolicyAssi
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -13190,7 +13190,7 @@ func (c *QuickSight) UpdateIpRestrictionRequest(input *UpdateIpRestrictionInput)
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -13295,7 +13295,7 @@ func (c *QuickSight) UpdatePublicSharingSettingsRequest(input *UpdatePublicShari
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -13701,7 +13701,7 @@ func (c *QuickSight) UpdateThemeRequest(input *UpdateThemeInput) (req *request.R
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -13922,7 +13922,7 @@ func (c *QuickSight) UpdateThemePermissionsRequest(input *UpdateThemePermissions
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -14026,7 +14026,7 @@ func (c *QuickSight) UpdateUserRequest(input *UpdateUserInput) (req *request.Req
 //     validated. You might not be authorized to carry out the request. Make sure
 //     that your account is authorized to use the Amazon QuickSight service, that
 //     your policies have the correct permissions, and that you are using the correct
-//     access keys.
+//     credentials.
 //
 //   - InvalidParameterValueException
 //     One or more parameters has a value that isn't valid.
@@ -14072,7 +14072,7 @@ func (c *QuickSight) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInp
 // validated. You might not be authorized to carry out the request. Make sure
 // that your account is authorized to use the Amazon QuickSight service, that
 // your policies have the correct permissions, and that you are using the correct
-// access keys.
+// credentials.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15029,6 +15029,7 @@ type AnalysisError struct {
 	// The type of the analysis error.
 	Type *string `type:"string" enum:"AnalysisErrorType"`
 
+	// Lists the violated entities that caused the analysis error
 	ViolatedEntities []*Entity `type:"list"`
 }
 
@@ -45329,8 +45330,8 @@ type GetSessionEmbedUrlInput struct {
 	//
 	// Invited nonfederated users
 	//
-	// Identity and Access Management (IAM) users and IAM role-based sessions authenticated
-	// through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation
+	// IAM users and IAM role-based sessions authenticated through Federated Single
+	// Sign-On using SAML, OpenID Connect, or IAM federation
 	//
 	// Omit this parameter for users in the third group, IAM users and IAM role-based
 	// sessions.
@@ -59345,6 +59346,11 @@ type PivotTableOptions struct {
 	// The table cell style of cells.
 	CellStyle *TableCellStyle `type:"structure"`
 
+	// The visibility setting of a pivot table's collapsed row dimension fields.
+	// If the value of this structure is HIDDEN, all collapsed columns in a pivot
+	// table are automatically hidden. The default value is VISIBLE.
+	CollapsedRowDimensionsVisibility *string `type:"string" enum:"Visibility"`
+
 	// The table cell style of the column header.
 	ColumnHeaderStyle *TableCellStyle `type:"structure"`
 
@@ -59421,6 +59427,12 @@ func (s *PivotTableOptions) Validate() error {
 // SetCellStyle sets the CellStyle field's value.
 func (s *PivotTableOptions) SetCellStyle(v *TableCellStyle) *PivotTableOptions {
 	s.CellStyle = v
+	return s
+}
+
+// SetCollapsedRowDimensionsVisibility sets the CollapsedRowDimensionsVisibility field's value.
+func (s *PivotTableOptions) SetCollapsedRowDimensionsVisibility(v string) *PivotTableOptions {
+	s.CollapsedRowDimensionsVisibility = &v
 	return s
 }
 
@@ -62087,9 +62099,59 @@ func (s *RegisterUserOutput) SetUserInvitationUrl(v string) *RegisterUserOutput 
 	return s
 }
 
+// The feature configurations of an embedded Amazon QuickSight console.
+type RegisteredUserConsoleFeatureConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// The state persistence configurations of an embedded Amazon QuickSight console.
+	StatePersistence *StatePersistenceConfigurations `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserConsoleFeatureConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserConsoleFeatureConfigurations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisteredUserConsoleFeatureConfigurations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisteredUserConsoleFeatureConfigurations"}
+	if s.StatePersistence != nil {
+		if err := s.StatePersistence.Validate(); err != nil {
+			invalidParams.AddNested("StatePersistence", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatePersistence sets the StatePersistence field's value.
+func (s *RegisteredUserConsoleFeatureConfigurations) SetStatePersistence(v *StatePersistenceConfigurations) *RegisteredUserConsoleFeatureConfigurations {
+	s.StatePersistence = v
+	return s
+}
+
 // Information about the dashboard you want to embed.
 type RegisteredUserDashboardEmbeddingConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// The feature configurations of an embbedded Amazon QuickSight dashboard.
+	FeatureConfigurations *RegisteredUserDashboardFeatureConfigurations `type:"structure"`
 
 	// The dashboard ID for the dashboard that you want the user to see first. This
 	// ID is included in the output URL. When the URL in response is accessed, Amazon
@@ -62129,6 +62191,11 @@ func (s *RegisteredUserDashboardEmbeddingConfiguration) Validate() error {
 	if s.InitialDashboardId != nil && len(*s.InitialDashboardId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InitialDashboardId", 1))
 	}
+	if s.FeatureConfigurations != nil {
+		if err := s.FeatureConfigurations.Validate(); err != nil {
+			invalidParams.AddNested("FeatureConfigurations", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -62136,9 +62203,62 @@ func (s *RegisteredUserDashboardEmbeddingConfiguration) Validate() error {
 	return nil
 }
 
+// SetFeatureConfigurations sets the FeatureConfigurations field's value.
+func (s *RegisteredUserDashboardEmbeddingConfiguration) SetFeatureConfigurations(v *RegisteredUserDashboardFeatureConfigurations) *RegisteredUserDashboardEmbeddingConfiguration {
+	s.FeatureConfigurations = v
+	return s
+}
+
 // SetInitialDashboardId sets the InitialDashboardId field's value.
 func (s *RegisteredUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v string) *RegisteredUserDashboardEmbeddingConfiguration {
 	s.InitialDashboardId = &v
+	return s
+}
+
+// The feature configuration for an embedded dashboard.
+type RegisteredUserDashboardFeatureConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// The state persistence settings of an embedded dashboard.
+	StatePersistence *StatePersistenceConfigurations `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserDashboardFeatureConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserDashboardFeatureConfigurations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisteredUserDashboardFeatureConfigurations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisteredUserDashboardFeatureConfigurations"}
+	if s.StatePersistence != nil {
+		if err := s.StatePersistence.Validate(); err != nil {
+			invalidParams.AddNested("StatePersistence", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatePersistence sets the StatePersistence field's value.
+func (s *RegisteredUserDashboardFeatureConfigurations) SetStatePersistence(v *StatePersistenceConfigurations) *RegisteredUserDashboardFeatureConfigurations {
+	s.StatePersistence = v
 	return s
 }
 
@@ -62380,6 +62500,9 @@ func (s *RegisteredUserQSearchBarEmbeddingConfiguration) SetInitialTopicId(v str
 type RegisteredUserQuickSightConsoleEmbeddingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The embedding configuration of an embedded Amazon QuickSight console.
+	FeatureConfigurations *RegisteredUserConsoleFeatureConfigurations `type:"structure"`
+
 	// The initial URL path for the Amazon QuickSight console. InitialPath is required.
 	//
 	// The entry point URL is constrained to the following paths:
@@ -62424,11 +62547,22 @@ func (s *RegisteredUserQuickSightConsoleEmbeddingConfiguration) Validate() error
 	if s.InitialPath != nil && len(*s.InitialPath) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InitialPath", 1))
 	}
+	if s.FeatureConfigurations != nil {
+		if err := s.FeatureConfigurations.Validate(); err != nil {
+			invalidParams.AddNested("FeatureConfigurations", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFeatureConfigurations sets the FeatureConfigurations field's value.
+func (s *RegisteredUserQuickSightConsoleEmbeddingConfiguration) SetFeatureConfigurations(v *RegisteredUserConsoleFeatureConfigurations) *RegisteredUserQuickSightConsoleEmbeddingConfiguration {
+	s.FeatureConfigurations = v
+	return s
 }
 
 // SetInitialPath sets the InitialPath field's value.
@@ -67998,6 +68132,54 @@ func (s SslProperties) GoString() string {
 // SetDisableSsl sets the DisableSsl field's value.
 func (s *SslProperties) SetDisableSsl(v bool) *SslProperties {
 	s.DisableSsl = &v
+	return s
+}
+
+// The state perssitence configuration of an embedded dashboard.
+type StatePersistenceConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// Determines if a Amazon QuickSight dashboard's state persistence settings
+	// are turned on or off.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatePersistenceConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatePersistenceConfigurations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StatePersistenceConfigurations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StatePersistenceConfigurations"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *StatePersistenceConfigurations) SetEnabled(v bool) *StatePersistenceConfigurations {
+	s.Enabled = &v
 	return s
 }
 
@@ -74945,9 +75127,9 @@ type UpdateAccountSettingsInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The default namespace for this Amazon Web Services account. Currently, the
-	// default is default. Identity and Access Management (IAM) users that register
-	// for the first time with Amazon QuickSight provide an email address that becomes
-	// associated with the default namespace.
+	// default is default. IAM users that register for the first time with Amazon
+	// QuickSight provide an email address that becomes associated with the default
+	// namespace.
 	//
 	// DefaultNamespace is a required field
 	DefaultNamespace *string `type:"string" required:"true"`
@@ -79248,7 +79430,7 @@ func (s *UploadSettings) SetTextQualifier(v string) *UploadSettings {
 type User struct {
 	_ struct{} `type:"structure"`
 
-	// The active status of user. When you create an Amazon QuickSight user that’s
+	// The active status of user. When you create an Amazon QuickSight user that's
 	// not an IAM user or an Active Directory user, that user is inactive until
 	// they sign in and provide a password.
 	Active *bool `type:"boolean"`

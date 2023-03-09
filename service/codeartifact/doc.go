@@ -83,6 +83,8 @@
 //   - DeleteDomainPermissionsPolicy: Deletes the resource policy that is set
 //     on a domain.
 //
+//   - DeletePackage: Deletes a package and all associated package versions.
+//
 //   - DeletePackageVersions: Deletes versions of a package. After a package
 //     has been deleted, it can be republished, but its assets and metadata cannot
 //     be restored because they have been permanently removed from storage.
@@ -149,6 +151,9 @@
 //     Web Services account that called this method.
 //
 //   - ListRepositoriesInDomain: Returns a list of the repositories in a domain.
+//
+//   - PublishPackageVersion: Creates a new package version containing one
+//     or more assets.
 //
 //   - PutDomainPermissionsPolicy: Attaches a resource policy to a domain.
 //

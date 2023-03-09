@@ -3801,7 +3801,8 @@
       "enum":[
         "DKIM",
         "DMARC",
-        "SPF"
+        "SPF",
+        "BIMI"
       ]
     },
     "RecommendationsList":{

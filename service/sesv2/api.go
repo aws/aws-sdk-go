@@ -13377,6 +13377,45 @@ type EventDestination struct {
 
 	// The types of events that Amazon SES sends to the specified event destinations.
 	//
+	//    * SEND - The send request was successful and SES will attempt to deliver
+	//    the message to the recipient’s mail server. (If account-level or global
+	//    suppression is being used, SES will still count it as a send, but delivery
+	//    is suppressed.)
+	//
+	//    * REJECT - SES accepted the email, but determined that it contained a
+	//    virus and didn’t attempt to deliver it to the recipient’s mail server.
+	//
+	//    * BOUNCE - (Hard bounce) The recipient's mail server permanently rejected
+	//    the email. (Soft bounces are only included when SES fails to deliver the
+	//    email after retrying for a period of time.)
+	//
+	//    * COMPLAINT - The email was successfully delivered to the recipient’s
+	//    mail server, but the recipient marked it as spam.
+	//
+	//    * DELIVERY - SES successfully delivered the email to the recipient's mail
+	//    server.
+	//
+	//    * OPEN - The recipient received the message and opened it in their email
+	//    client.
+	//
+	//    * CLICK - The recipient clicked one or more links in the email.
+	//
+	//    * RENDERING_FAILURE - The email wasn't sent because of a template rendering
+	//    issue. This event type can occur when template data is missing, or when
+	//    there is a mismatch between template parameters and data. (This event
+	//    type only occurs when you send email using the SendTemplatedEmail (https://docs.aws.amazon.com/ses/latest/APIReference/API_SendTemplatedEmail.html)
+	//    or SendBulkTemplatedEmail (https://docs.aws.amazon.com/ses/latest/APIReference/API_SendBulkTemplatedEmail.html)
+	//    API operations.)
+	//
+	//    * DELIVERY_DELAY - The email couldn't be delivered to the recipient’s
+	//    mail server because a temporary issue occurred. Delivery delays can occur,
+	//    for example, when the recipient's inbox is full, or when the receiving
+	//    email server experiences a transient issue.
+	//
+	//    * SUBSCRIPTION - The email was successfully delivered, but the recipient
+	//    updated their subscription preferences by clicking on an unsubscribe link
+	//    as part of your subscription management (https://docs.aws.amazon.com/ses/latest/dg/sending-email-subscription-management.html).
+	//
 	// MatchingEventTypes is a required field
 	MatchingEventTypes []*string `type:"list" required:"true" enum:"EventType"`
 
@@ -20590,7 +20629,7 @@ type Recommendation struct {
 	// The recommendation status, with values like OPEN or FIXED.
 	Status *string `type:"string" enum:"RecommendationStatus"`
 
-	// The recommendation type, with values like DKIM, SPF or DMARC.
+	// The recommendation type, with values like DKIM, SPF, DMARC or BIMI.
 	Type *string `type:"string" enum:"RecommendationType"`
 }
 
@@ -23915,7 +23954,8 @@ func JobStatus_Values() []string {
 
 // The ListRecommendations filter type. This can be one of the following:
 //
-//   - TYPE – The recommendation type, with values like DKIM, SPF or DMARC.
+//   - TYPE – The recommendation type, with values like DKIM, SPF, DMARC
+//     or BIMI.
 //
 //   - IMPACT – The recommendation impact, with values like HIGH or LOW.
 //
@@ -24144,6 +24184,9 @@ const (
 
 	// RecommendationTypeSpf is a RecommendationType enum value
 	RecommendationTypeSpf = "SPF"
+
+	// RecommendationTypeBimi is a RecommendationType enum value
+	RecommendationTypeBimi = "BIMI"
 )
 
 // RecommendationType_Values returns all elements of the RecommendationType enum
@@ -24152,6 +24195,7 @@ func RecommendationType_Values() []string {
 		RecommendationTypeDkim,
 		RecommendationTypeDmarc,
 		RecommendationTypeSpf,
+		RecommendationTypeBimi,
 	}
 }
 

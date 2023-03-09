@@ -507,6 +507,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "PublishPackageVersion":{
+      "name":"PublishPackageVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/package/version/publish"
+      },
+      "input":{"shape":"PublishPackageVersionRequest"},
+      "output":{"shape":"PublishPackageVersionResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "PutDomainPermissionsPolicy":{
       "name":"PutDomainPermissionsPolicy",
       "http":{
@@ -2100,7 +2118,8 @@
         "npm",
         "pypi",
         "maven",
-        "nuget"
+        "nuget",
+        "generic"
       ]
     },
     "PackageName":{
@@ -2272,6 +2291,85 @@
       "max":100,
       "min":1,
       "pattern":"\\S+"
+    },
+    "PublishPackageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "repository",
+        "format",
+        "package",
+        "packageVersion",
+        "assetContent",
+        "assetName",
+        "assetSHA256"
+      ],
+      "members":{
+        "domain":{
+          "shape":"DomainName",
+          "location":"querystring",
+          "locationName":"domain"
+        },
+        "domainOwner":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"domain-owner"
+        },
+        "repository":{
+          "shape":"RepositoryName",
+          "location":"querystring",
+          "locationName":"repository"
+        },
+        "format":{
+          "shape":"PackageFormat",
+          "location":"querystring",
+          "locationName":"format"
+        },
+        "namespace":{
+          "shape":"PackageNamespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "package":{
+          "shape":"PackageName",
+          "location":"querystring",
+          "locationName":"package"
+        },
+        "packageVersion":{
+          "shape":"PackageVersion",
+          "location":"querystring",
+          "locationName":"version"
+        },
+        "assetContent":{"shape":"Asset"},
+        "assetName":{
+          "shape":"AssetName",
+          "location":"querystring",
+          "locationName":"asset"
+        },
+        "assetSHA256":{
+          "shape":"SHA256",
+          "location":"header",
+          "locationName":"x-amz-content-sha256"
+        },
+        "unfinished":{
+          "shape":"BooleanOptional",
+          "location":"querystring",
+          "locationName":"unfinished"
+        }
+      },
+      "payload":"assetContent"
+    },
+    "PublishPackageVersionResult":{
+      "type":"structure",
+      "members":{
+        "format":{"shape":"PackageFormat"},
+        "namespace":{"shape":"PackageNamespace"},
+        "package":{"shape":"PackageName"},
+        "version":{"shape":"PackageVersion"},
+        "versionRevision":{"shape":"PackageVersionRevision"},
+        "status":{"shape":"PackageVersionStatus"},
+        "asset":{"shape":"AssetSummary"}
+      }
     },
     "PutDomainPermissionsPolicyRequest":{
       "type":"structure",
@@ -2450,6 +2548,12 @@
       ]
     },
     "RetryAfterSeconds":{"type":"integer"},
+    "SHA256":{
+      "type":"string",
+      "max":64,
+      "min":64,
+      "pattern":"[0-9a-f]+"
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":["message"],
