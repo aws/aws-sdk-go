@@ -676,9 +676,9 @@
     },
     "WorkgroupNameString":{
       "type":"string",
-      "max":64,
+      "max":128,
       "min":3,
-      "pattern":"^[a-z0-9-]+$"
+      "pattern":"^(([a-z0-9-]+)|(arn:(aws(-[a-z]+)*):redshift-serverless:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:workgroup/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}))$"
     },
     "bool":{"type":"boolean"}
   }

@@ -198,6 +198,10 @@ type CodeArtifactAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *codeartifact.ListTagsForResourceInput, ...request.Option) (*codeartifact.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*codeartifact.ListTagsForResourceInput) (*request.Request, *codeartifact.ListTagsForResourceOutput)
 
+	PublishPackageVersion(*codeartifact.PublishPackageVersionInput) (*codeartifact.PublishPackageVersionOutput, error)
+	PublishPackageVersionWithContext(aws.Context, *codeartifact.PublishPackageVersionInput, ...request.Option) (*codeartifact.PublishPackageVersionOutput, error)
+	PublishPackageVersionRequest(*codeartifact.PublishPackageVersionInput) (*request.Request, *codeartifact.PublishPackageVersionOutput)
+
 	PutDomainPermissionsPolicy(*codeartifact.PutDomainPermissionsPolicyInput) (*codeartifact.PutDomainPermissionsPolicyOutput, error)
 	PutDomainPermissionsPolicyWithContext(aws.Context, *codeartifact.PutDomainPermissionsPolicyInput, ...request.Option) (*codeartifact.PutDomainPermissionsPolicyOutput, error)
 	PutDomainPermissionsPolicyRequest(*codeartifact.PutDomainPermissionsPolicyInput) (*request.Request, *codeartifact.PutDomainPermissionsPolicyOutput)

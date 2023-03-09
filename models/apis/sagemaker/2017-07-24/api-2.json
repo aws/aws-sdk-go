@@ -16597,7 +16597,8 @@
         "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"},
         "VolumeSizeInGB":{"shape":"ProductionVariantVolumeSizeInGB"},
         "ModelDataDownloadTimeoutInSeconds":{"shape":"ProductionVariantModelDataDownloadTimeoutInSeconds"},
-        "ContainerStartupHealthCheckTimeoutInSeconds":{"shape":"ProductionVariantContainerStartupHealthCheckTimeoutInSeconds"}
+        "ContainerStartupHealthCheckTimeoutInSeconds":{"shape":"ProductionVariantContainerStartupHealthCheckTimeoutInSeconds"},
+        "EnableSSMAccess":{"shape":"ProductionVariantSSMAccess"}
       }
     },
     "ProductionVariantAcceleratorType":{
@@ -16781,6 +16782,7 @@
       "max":3600,
       "min":60
     },
+    "ProductionVariantSSMAccess":{"type":"boolean"},
     "ProductionVariantServerlessConfig":{
       "type":"structure",
       "required":[

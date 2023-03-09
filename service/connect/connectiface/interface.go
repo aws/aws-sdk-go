@@ -373,6 +373,13 @@ type ConnectAPI interface {
 	GetMetricDataPages(*connect.GetMetricDataInput, func(*connect.GetMetricDataOutput, bool) bool) error
 	GetMetricDataPagesWithContext(aws.Context, *connect.GetMetricDataInput, func(*connect.GetMetricDataOutput, bool) bool, ...request.Option) error
 
+	GetMetricDataV2(*connect.GetMetricDataV2Input) (*connect.GetMetricDataV2Output, error)
+	GetMetricDataV2WithContext(aws.Context, *connect.GetMetricDataV2Input, ...request.Option) (*connect.GetMetricDataV2Output, error)
+	GetMetricDataV2Request(*connect.GetMetricDataV2Input) (*request.Request, *connect.GetMetricDataV2Output)
+
+	GetMetricDataV2Pages(*connect.GetMetricDataV2Input, func(*connect.GetMetricDataV2Output, bool) bool) error
+	GetMetricDataV2PagesWithContext(aws.Context, *connect.GetMetricDataV2Input, func(*connect.GetMetricDataV2Output, bool) bool, ...request.Option) error
+
 	GetTaskTemplate(*connect.GetTaskTemplateInput) (*connect.GetTaskTemplateOutput, error)
 	GetTaskTemplateWithContext(aws.Context, *connect.GetTaskTemplateInput, ...request.Option) (*connect.GetTaskTemplateOutput, error)
 	GetTaskTemplateRequest(*connect.GetTaskTemplateInput) (*request.Request, *connect.GetTaskTemplateOutput)

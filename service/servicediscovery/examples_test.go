@@ -49,6 +49,8 @@ func ExampleServiceDiscovery_CreateHttpNamespace_shared00() {
 				fmt.Println(servicediscovery.ErrCodeDuplicateRequest, aerr.Error())
 			case servicediscovery.ErrCodeTooManyTagsException:
 				fmt.Println(servicediscovery.ErrCodeTooManyTagsException, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -87,6 +89,8 @@ func ExampleServiceDiscovery_CreatePrivateDnsNamespace_shared00() {
 				fmt.Println(servicediscovery.ErrCodeDuplicateRequest, aerr.Error())
 			case servicediscovery.ErrCodeTooManyTagsException:
 				fmt.Println(servicediscovery.ErrCodeTooManyTagsException, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -125,6 +129,8 @@ func ExampleServiceDiscovery_CreatePublicDnsNamespace_shared00() {
 				fmt.Println(servicediscovery.ErrCodeDuplicateRequest, aerr.Error())
 			case servicediscovery.ErrCodeTooManyTagsException:
 				fmt.Println(servicediscovery.ErrCodeTooManyTagsException, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -173,6 +179,8 @@ func ExampleServiceDiscovery_CreateService_shared00() {
 				fmt.Println(servicediscovery.ErrCodeServiceAlreadyExists, aerr.Error())
 			case servicediscovery.ErrCodeTooManyTagsException:
 				fmt.Println(servicediscovery.ErrCodeTooManyTagsException, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -207,6 +215,8 @@ func ExampleServiceDiscovery_DeleteNamespace_shared00() {
 				fmt.Println(servicediscovery.ErrCodeResourceInUse, aerr.Error())
 			case servicediscovery.ErrCodeDuplicateRequest:
 				fmt.Println(servicediscovery.ErrCodeDuplicateRequest, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -239,6 +249,8 @@ func ExampleServiceDiscovery_DeleteService_shared00() {
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
 			case servicediscovery.ErrCodeResourceInUse:
 				fmt.Println(servicediscovery.ErrCodeResourceInUse, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -276,6 +288,8 @@ func ExampleServiceDiscovery_DeregisterInstance_shared00() {
 				fmt.Println(servicediscovery.ErrCodeResourceInUse, aerr.Error())
 			case servicediscovery.ErrCodeServiceNotFound:
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -346,6 +360,8 @@ func ExampleServiceDiscovery_GetInstance_shared00() {
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
 			case servicediscovery.ErrCodeServiceNotFound:
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -379,6 +395,8 @@ func ExampleServiceDiscovery_GetInstancesHealthStatus_shared00() {
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
 			case servicediscovery.ErrCodeServiceNotFound:
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -439,6 +457,8 @@ func ExampleServiceDiscovery_GetOperation_shared00() {
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
 			case servicediscovery.ErrCodeOperationNotFound:
 				fmt.Println(servicediscovery.ErrCodeOperationNotFound, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -469,6 +489,8 @@ func ExampleServiceDiscovery_GetService_shared00() {
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
 			case servicediscovery.ErrCodeServiceNotFound:
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -499,6 +521,8 @@ func ExampleServiceDiscovery_ListInstances_shared00() {
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -525,6 +549,8 @@ func ExampleServiceDiscovery_ListNamespaces_shared00() {
 			switch aerr.Code() {
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -562,6 +588,8 @@ func ExampleServiceDiscovery_ListOperations_shared00() {
 			switch aerr.Code() {
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -588,6 +616,8 @@ func ExampleServiceDiscovery_ListServices_shared00() {
 			switch aerr.Code() {
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -618,6 +648,8 @@ func ExampleServiceDiscovery_ListTagsForResource_shared00() {
 				fmt.Println(servicediscovery.ErrCodeResourceNotFoundException, aerr.Error())
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -660,6 +692,8 @@ func ExampleServiceDiscovery_RegisterInstance_shared00() {
 				fmt.Println(servicediscovery.ErrCodeResourceLimitExceeded, aerr.Error())
 			case servicediscovery.ErrCodeServiceNotFound:
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -702,6 +736,8 @@ func ExampleServiceDiscovery_TagResource_shared00() {
 				fmt.Println(servicediscovery.ErrCodeTooManyTagsException, aerr.Error())
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -736,6 +772,8 @@ func ExampleServiceDiscovery_UntagResource_shared00() {
 				fmt.Println(servicediscovery.ErrCodeResourceNotFoundException, aerr.Error())
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -773,6 +811,8 @@ func ExampleServiceDiscovery_UpdateInstanceCustomHealthStatus_shared00() {
 				fmt.Println(servicediscovery.ErrCodeCustomHealthNotFound, aerr.Error())
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -821,6 +861,8 @@ func ExampleServiceDiscovery_UpdateService_shared00() {
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
 			case servicediscovery.ErrCodeServiceNotFound:
 				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

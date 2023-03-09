@@ -11479,7 +11479,8 @@
         "RowHeaderStyle":{"shape":"TableCellStyle"},
         "CellStyle":{"shape":"TableCellStyle"},
         "RowFieldNamesStyle":{"shape":"TableCellStyle"},
-        "RowAlternateColorOptions":{"shape":"RowAlternateColorOptions"}
+        "RowAlternateColorOptions":{"shape":"RowAlternateColorOptions"},
+        "CollapsedRowDimensionsVisibility":{"shape":"Visibility"}
       }
     },
     "PivotTablePaginatedReportOptions":{
@@ -11955,11 +11956,24 @@
         }
       }
     },
+    "RegisteredUserConsoleFeatureConfigurations":{
+      "type":"structure",
+      "members":{
+        "StatePersistence":{"shape":"StatePersistenceConfigurations"}
+      }
+    },
     "RegisteredUserDashboardEmbeddingConfiguration":{
       "type":"structure",
       "required":["InitialDashboardId"],
       "members":{
-        "InitialDashboardId":{"shape":"ShortRestrictiveResourceId"}
+        "InitialDashboardId":{"shape":"ShortRestrictiveResourceId"},
+        "FeatureConfigurations":{"shape":"RegisteredUserDashboardFeatureConfigurations"}
+      }
+    },
+    "RegisteredUserDashboardFeatureConfigurations":{
+      "type":"structure",
+      "members":{
+        "StatePersistence":{"shape":"StatePersistenceConfigurations"}
       }
     },
     "RegisteredUserDashboardVisualEmbeddingConfiguration":{
@@ -11987,7 +12001,8 @@
     "RegisteredUserQuickSightConsoleEmbeddingConfiguration":{
       "type":"structure",
       "members":{
-        "InitialPath":{"shape":"EntryPath"}
+        "InitialPath":{"shape":"EntryPath"},
+        "FeatureConfigurations":{"shape":"RegisteredUserConsoleFeatureConfigurations"}
       }
     },
     "RelationalTable":{
@@ -13205,6 +13220,13 @@
       "type":"structure",
       "members":{
         "DisableSsl":{"shape":"Boolean"}
+      }
+    },
+    "StatePersistenceConfigurations":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "Status":{

@@ -15,7 +15,7 @@ const (
 	// validated. You might not be authorized to carry out the request. Make sure
 	// that your account is authorized to use the Amazon QuickSight service, that
 	// your policies have the correct permissions, and that you are using the correct
-	// access keys.
+	// credentials.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConcurrentUpdatingException for service response error code

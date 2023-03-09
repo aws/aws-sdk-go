@@ -7476,6 +7476,166 @@ func (c *Connect) GetMetricDataPagesWithContext(ctx aws.Context, input *GetMetri
 	return p.Err()
 }
 
+const opGetMetricDataV2 = "GetMetricDataV2"
+
+// GetMetricDataV2Request generates a "aws/request.Request" representing the
+// client's request for the GetMetricDataV2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMetricDataV2 for more information on using the GetMetricDataV2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMetricDataV2Request method.
+//	req, resp := client.GetMetricDataV2Request(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetMetricDataV2
+func (c *Connect) GetMetricDataV2Request(input *GetMetricDataV2Input) (req *request.Request, output *GetMetricDataV2Output) {
+	op := &request.Operation{
+		Name:       opGetMetricDataV2,
+		HTTPMethod: "POST",
+		HTTPPath:   "/metrics/data",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetMetricDataV2Input{}
+	}
+
+	output = &GetMetricDataV2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMetricDataV2 API operation for Amazon Connect Service.
+//
+// Gets metric data from the specified Amazon Connect instance.
+//
+// GetMetricDataV2 offers more features than GetMetricData (https://docs.aws.amazon.com/connect/latest/APIReference/API_GetMetricData.html),
+// the previous version of this API. It has new metrics, offers filtering at
+// a metric level, and offers the ability to filter and group data by channels,
+// queues, routing profiles, agents, and agent hierarchy levels. It can retrieve
+// historical data for last the 14 days, in 24-hour intervals.
+//
+// For a description of the historical metrics that are supported by GetMetricDataV2
+// and GetMetricData, see Historical metrics definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
+// in the Amazon Connect Administrator's Guide.
+//
+// This API is not available in the Amazon Web Services GovCloud (US) Regions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation GetMetricDataV2 for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetMetricDataV2
+func (c *Connect) GetMetricDataV2(input *GetMetricDataV2Input) (*GetMetricDataV2Output, error) {
+	req, out := c.GetMetricDataV2Request(input)
+	return out, req.Send()
+}
+
+// GetMetricDataV2WithContext is the same as GetMetricDataV2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMetricDataV2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetMetricDataV2WithContext(ctx aws.Context, input *GetMetricDataV2Input, opts ...request.Option) (*GetMetricDataV2Output, error) {
+	req, out := c.GetMetricDataV2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetMetricDataV2Pages iterates over the pages of a GetMetricDataV2 operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetMetricDataV2 method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetMetricDataV2 operation.
+//	pageNum := 0
+//	err := client.GetMetricDataV2Pages(params,
+//	    func(page *connect.GetMetricDataV2Output, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) GetMetricDataV2Pages(input *GetMetricDataV2Input, fn func(*GetMetricDataV2Output, bool) bool) error {
+	return c.GetMetricDataV2PagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetMetricDataV2PagesWithContext same as GetMetricDataV2Pages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetMetricDataV2PagesWithContext(ctx aws.Context, input *GetMetricDataV2Input, fn func(*GetMetricDataV2Output, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetMetricDataV2Input
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetMetricDataV2Request(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetMetricDataV2Output), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetTaskTemplate = "GetTaskTemplate"
 
 // GetTaskTemplateRequest generates a "aws/request.Request" representing the
@@ -29074,6 +29234,69 @@ func (s *EventBridgeActionDefinition) SetName(v string) *EventBridgeActionDefini
 	return s
 }
 
+// Contains the filter to apply when retrieving metrics with the GetMetricDataV2
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_GetMetricDataV2.html)
+// API.
+type FilterV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The key to use for filtering data. For example, QUEUE, ROUTING_PROFILE, AGENT,
+	// CHANNEL, AGENT_HIERARCHY_LEVEL_ONE, AGENT_HIERARCHY_LEVEL_TWO, AGENT_HIERARCHY_LEVEL_THREE,
+	// AGENT_HIERARCHY_LEVEL_FOUR, AGENT_HIERARCHY_LEVEL_FIVE. There must be at
+	// least 1 key and a maximum 5 keys.
+	FilterKey *string `min:"1" type:"string"`
+
+	// The identifiers to use for filtering data. For example, if you have a filter
+	// key of QUEUE, you would add queue IDs or ARNs in FilterValues.
+	FilterValues []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterV2) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FilterV2) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FilterV2"}
+	if s.FilterKey != nil && len(*s.FilterKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterKey", 1))
+	}
+	if s.FilterValues != nil && len(s.FilterValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterKey sets the FilterKey field's value.
+func (s *FilterV2) SetFilterKey(v string) *FilterV2 {
+	s.FilterKey = &v
+	return s
+}
+
+// SetFilterValues sets the FilterValues field's value.
+func (s *FilterV2) SetFilterValues(v []*string) *FilterV2 {
+	s.FilterValues = v
+	return s
+}
+
 // Contains the filter to apply when retrieving metrics.
 type Filters struct {
 	_ struct{} `type:"structure"`
@@ -30185,6 +30408,462 @@ func (s *GetMetricDataOutput) SetMetricResults(v []*HistoricalMetricResult) *Get
 
 // SetNextToken sets the NextToken field's value.
 func (s *GetMetricDataOutput) SetNextToken(v string) *GetMetricDataOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetMetricDataV2Input struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp, in UNIX Epoch time format, at which to end the reporting interval
+	// for the retrieval of historical metrics data. The time must be later than
+	// the start time timestamp.
+	//
+	// The time range between the start and end time must be less than 24 hours.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// The filters to apply to returned metrics. You can filter on the following
+	// resources:
+	//
+	//    * Queues
+	//
+	//    * Routing profiles
+	//
+	//    * Agents
+	//
+	//    * Channels
+	//
+	//    * User hierarchy groups
+	//
+	// At least one filter must be passed from queues, routing profiles, agents,
+	// or user hierarchy groups.
+	//
+	// To filter by phone number, see Create a historical metrics report (https://docs.aws.amazon.com/connect/latest/adminguide/create-historical-metrics-report.html)
+	// in the Amazon Connect Administrator's Guide.
+	//
+	// Note the following limits:
+	//
+	//    * Filter keys: A maximum of 5 filter keys are supported in a single request.
+	//    Valid filter keys: QUEUE | ROUTING_PROFILE | AGENT | CHANNEL | AGENT_HIERARCHY_LEVEL_ONE
+	//    | AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR
+	//    | AGENT_HIERARCHY_LEVEL_FIVE
+	//
+	//    * Filter values: A maximum of 100 filter values are supported in a single
+	//    request. For example, a GetMetricDataV2 request can filter by 50 queues,
+	//    35 agents, and 15 routing profiles for a total of 100 filter values. VOICE,
+	//    CHAT, and TASK are valid filterValue for the CHANNEL filter key.
+	//
+	// Filters is a required field
+	Filters []*FilterV2 `min:"1" type:"list" required:"true"`
+
+	// The grouping applied to the metrics that are returned. For example, when
+	// results are grouped by queue, the metrics returned are grouped by queue.
+	// The values that are returned apply to the metrics for each queue. They are
+	// not aggregated for all queues.
+	//
+	// If no grouping is specified, a summary of all metrics is returned.
+	//
+	// Valid grouping keys: QUEUE | ROUTING_PROFILE | AGENT | CHANNEL | AGENT_HIERARCHY_LEVEL_ONE
+	// | AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR
+	// | AGENT_HIERARCHY_LEVEL_FIVE
+	Groupings []*string `type:"list"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The metrics to retrieve. Specify the name, groupings, and filters for each
+	// metric. The following historical metrics are available. For a description
+	// of each metric, see Historical metrics definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
+	// in the Amazon Connect Administrator's Guide.
+	//
+	// AGENT_ADHERENT_TIME
+	//
+	// This metric is available only in Amazon Web Services Regions where Forecasting,
+	// capacity planning, and scheduling (https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region)
+	// is available.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AGENT_NON_RESPONSE
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AGENT_OCCUPANCY
+	//
+	// Unit: Percentage
+	//
+	// Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy
+	//
+	// AGENT_SCHEDULE_ADHERENCE
+	//
+	// This metric is available only in Amazon Web Services Regions where Forecasting,
+	// capacity planning, and scheduling (https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region)
+	// is available.
+	//
+	// Unit: Percent
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AGENT_SCHEDULED_TIME
+	//
+	// This metric is available only in Amazon Web Services Regions where Forecasting,
+	// capacity planning, and scheduling (https://docs.aws.amazon.com/connect/latest/adminguide/regions.html#optimization_region)
+	// is available.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_ABANDON_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_AFTER_CONTACT_WORK_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_AGENT_CONNECTING_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid metric filter key: INITIATION_METHOD. For now, this metric only supports
+	// the following as INITIATION_METHOD: INBOUND | OUTBOUND | CALLBACK | API
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_HANDLE_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_HOLD_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_INTERACTION_AND_HOLD_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// AVG_INTERACTION_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// AVG_QUEUE_ANSWER_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// CONTACTS_ABANDONED
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// CONTACTS_CREATED
+	//
+	// Unit: Count
+	//
+	// Valid metric filter key: INITIATION_METHOD
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// CONTACTS_HANDLED
+	//
+	// Unit: Count
+	//
+	// Valid metric filter key: INITIATION_METHOD, DISCONNECT_REASON
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// CONTACTS_HOLD_ABANDONS
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// CONTACTS_QUEUED
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// CONTACTS_TRANSFERRED_OUT
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// CONTACTS_TRANSFERRED_OUT_BY_AGENT
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// CONTACTS_TRANSFERRED_OUT_FROM_QUEUE
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// MAX_QUEUED_TIME
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy
+	//
+	// SERVICE_LEVEL
+	//
+	// You can include up to 20 SERVICE_LEVEL metrics in a request.
+	//
+	// Unit: Percent
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
+	//
+	// SUM_CONTACTS_ANSWERED_IN_X
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// SUM_CONTACTS_ABANDONED_IN_X
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// SUM_CONTACTS_DISCONNECTED
+	//
+	// Valid metric filter key: DISCONNECT_REASON
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// SUM_RETRY_CALLBACK_ATTEMPTS
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// Metrics is a required field
+	Metrics []*MetricV2 `type:"list" required:"true"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource. This includes the instanceId
+	// an Amazon Connect instance.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// The timestamp, in UNIX Epoch time format, at which to start the reporting
+	// interval for the retrieval of historical metrics data. The time must be before
+	// the end time timestamp. The time range between the start and end time must
+	// be less than 24 hours. The start time cannot be earlier than 14 days before
+	// the time of the request. Historical metrics are available for 14 days.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricDataV2Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricDataV2Input) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMetricDataV2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMetricDataV2Input"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetMetricDataV2Input) SetEndTime(v time.Time) *GetMetricDataV2Input {
+	s.EndTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GetMetricDataV2Input) SetFilters(v []*FilterV2) *GetMetricDataV2Input {
+	s.Filters = v
+	return s
+}
+
+// SetGroupings sets the Groupings field's value.
+func (s *GetMetricDataV2Input) SetGroupings(v []*string) *GetMetricDataV2Input {
+	s.Groupings = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetMetricDataV2Input) SetMaxResults(v int64) *GetMetricDataV2Input {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *GetMetricDataV2Input) SetMetrics(v []*MetricV2) *GetMetricDataV2Input {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetMetricDataV2Input) SetNextToken(v string) *GetMetricDataV2Input {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetMetricDataV2Input) SetResourceArn(v string) *GetMetricDataV2Input {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetMetricDataV2Input) SetStartTime(v time.Time) *GetMetricDataV2Input {
+	s.StartTime = &v
+	return s
+}
+
+type GetMetricDataV2Output struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the metrics requested in the API request If no grouping
+	// is specified, a summary of metric data is returned.
+	MetricResults []*MetricResultV2 `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricDataV2Output) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricDataV2Output) GoString() string {
+	return s.String()
+}
+
+// SetMetricResults sets the MetricResults field's value.
+func (s *GetMetricDataV2Output) SetMetricResults(v []*MetricResultV2) *GetMetricDataV2Output {
+	s.MetricResults = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetMetricDataV2Output) SetNextToken(v string) *GetMetricDataV2Output {
 	s.NextToken = &v
 	return s
 }
@@ -36873,6 +37552,233 @@ func (s *MediaConcurrency) SetChannel(v string) *MediaConcurrency {
 // SetConcurrency sets the Concurrency field's value.
 func (s *MediaConcurrency) SetConcurrency(v int64) *MediaConcurrency {
 	s.Concurrency = &v
+	return s
+}
+
+// Contains the name, thresholds, and metric filters.
+type MetricDataV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The metric name, thresholds, and metric filters of the returned metric.
+	Metric *MetricV2 `type:"structure"`
+
+	// The corresponding value of the metric returned in the response.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDataV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDataV2) GoString() string {
+	return s.String()
+}
+
+// SetMetric sets the Metric field's value.
+func (s *MetricDataV2) SetMetric(v *MetricV2) *MetricDataV2 {
+	s.Metric = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MetricDataV2) SetValue(v float64) *MetricDataV2 {
+	s.Value = &v
+	return s
+}
+
+// Contains information about the filter used when retrieving metrics. MetricFiltersV2
+// can be used on the following metrics: AVG_AGENT_CONNECTING_TIME, CONTACTS_CREATED,
+// CONTACTS_HANDLED, SUM_CONTACTS_DISCONNECTED.
+type MetricFilterV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The key to use for filtering data.
+	//
+	// Valid metric filter keys: INITIATION_METHOD, DISCONNECT_REASON
+	MetricFilterKey *string `type:"string"`
+
+	// The values to use for filtering data.
+	//
+	// Valid metric filter values for INITIATION_METHOD: INBOUND | OUTBOUND | TRANSFER
+	// | QUEUE_TRANSFER | CALLBACK | API
+	//
+	// Valid metric filter values for DISCONNECT_REASON: CUSTOMER_DISCONNECT | AGENT_DISCONNECT
+	// | THIRD_PARTY_DISCONNECT | TELECOM_PROBLEM | BARGED | CONTACT_FLOW_DISCONNECT
+	// | OTHER | EXPIRED | API
+	MetricFilterValues []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricFilterV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricFilterV2) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricFilterV2) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricFilterV2"}
+	if s.MetricFilterValues != nil && len(s.MetricFilterValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricFilterValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricFilterKey sets the MetricFilterKey field's value.
+func (s *MetricFilterV2) SetMetricFilterKey(v string) *MetricFilterV2 {
+	s.MetricFilterKey = &v
+	return s
+}
+
+// SetMetricFilterValues sets the MetricFilterValues field's value.
+func (s *MetricFilterV2) SetMetricFilterValues(v []*string) *MetricFilterV2 {
+	s.MetricFilterValues = v
+	return s
+}
+
+// Contains information about the metric results.
+type MetricResultV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The set of metrics.
+	Collections []*MetricDataV2 `type:"list"`
+
+	// The dimension for the metrics.
+	Dimensions map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricResultV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricResultV2) GoString() string {
+	return s.String()
+}
+
+// SetCollections sets the Collections field's value.
+func (s *MetricResultV2) SetCollections(v []*MetricDataV2) *MetricResultV2 {
+	s.Collections = v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *MetricResultV2) SetDimensions(v map[string]*string) *MetricResultV2 {
+	s.Dimensions = v
+	return s
+}
+
+// Contains information about the metric.
+type MetricV2 struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the filters to be used when returning data.
+	MetricFilters []*MetricFilterV2 `type:"list"`
+
+	// The name of the metric.
+	Name *string `type:"string"`
+
+	// Contains information about the threshold for service level metrics.
+	Threshold []*ThresholdV2 `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricV2) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricV2) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricV2"}
+	if s.MetricFilters != nil {
+		for i, v := range s.MetricFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MetricFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Threshold != nil {
+		for i, v := range s.Threshold {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Threshold", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricFilters sets the MetricFilters field's value.
+func (s *MetricV2) SetMetricFilters(v []*MetricFilterV2) *MetricV2 {
+	s.MetricFilters = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MetricV2) SetName(v string) *MetricV2 {
+	s.Name = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *MetricV2) SetThreshold(v []*ThresholdV2) *MetricV2 {
+	s.Threshold = v
 	return s
 }
 
@@ -44090,6 +44996,60 @@ func (s *Threshold) SetComparison(v string) *Threshold {
 
 // SetThresholdValue sets the ThresholdValue field's value.
 func (s *Threshold) SetThresholdValue(v float64) *Threshold {
+	s.ThresholdValue = &v
+	return s
+}
+
+// Contains information about the threshold for service level metrics.
+type ThresholdV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The type of comparison. Only "less than" (LT) comparisons are supported.
+	Comparison *string `min:"1" type:"string"`
+
+	// The threshold value to compare.
+	ThresholdValue *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThresholdV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThresholdV2) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ThresholdV2) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ThresholdV2"}
+	if s.Comparison != nil && len(*s.Comparison) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Comparison", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *ThresholdV2) SetComparison(v string) *ThresholdV2 {
+	s.Comparison = &v
+	return s
+}
+
+// SetThresholdValue sets the ThresholdValue field's value.
+func (s *ThresholdV2) SetThresholdValue(v float64) *ThresholdV2 {
 	s.ThresholdValue = &v
 	return s
 }

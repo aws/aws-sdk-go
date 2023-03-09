@@ -515,15 +515,15 @@
     "WorkgroupNameString": {
       "base": null,
       "refs": {
-        "BatchExecuteStatementInput$WorkgroupName": "<p>The serverless workgroup name. This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
-        "BatchExecuteStatementOutput$WorkgroupName": "<p>The serverless workgroup name. This element is not returned when connecting to a provisioned cluster.</p>",
-        "DescribeStatementResponse$WorkgroupName": "<p>The serverless workgroup name.</p>",
-        "DescribeTableRequest$WorkgroupName": "<p>The serverless workgroup name. This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
-        "ExecuteStatementInput$WorkgroupName": "<p>The serverless workgroup name. This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
-        "ExecuteStatementOutput$WorkgroupName": "<p>The serverless workgroup name. This element is not returned when connecting to a provisioned cluster.</p>",
-        "ListDatabasesRequest$WorkgroupName": "<p>The serverless workgroup name. This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
-        "ListSchemasRequest$WorkgroupName": "<p>The serverless workgroup name. This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
-        "ListTablesRequest$WorkgroupName": "<p>The serverless workgroup name. This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>"
+        "BatchExecuteStatementInput$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
+        "BatchExecuteStatementOutput$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This element is not returned when connecting to a provisioned cluster.</p>",
+        "DescribeStatementResponse$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN).</p>",
+        "DescribeTableRequest$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
+        "ExecuteStatementInput$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
+        "ExecuteStatementOutput$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This element is not returned when connecting to a provisioned cluster.</p>",
+        "ListDatabasesRequest$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
+        "ListSchemasRequest$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>",
+        "ListTablesRequest$WorkgroupName": "<p>The serverless workgroup name or Amazon Resource Name (ARN). This parameter is required when connecting to a serverless workgroup and authenticating using either Secrets Manager or temporary credentials.</p>"
       }
     },
     "bool": {

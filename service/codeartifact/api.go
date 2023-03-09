@@ -763,7 +763,7 @@ func (c *CodeArtifact) DeletePackageVersionsRequest(input *DeletePackageVersions
 // be restored in your repository. If you want to remove a package version from
 // your repository and be able to restore it later, set its status to Archived.
 // Archived packages cannot be downloaded from a repository and don't show up
-// with list package APIs (for example, ListackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)),
+// with list package APIs (for example, ListPackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)),
 // but you can restore them using UpdatePackageVersionsStatus (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3293,6 +3293,117 @@ func (c *CodeArtifact) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+const opPublishPackageVersion = "PublishPackageVersion"
+
+// PublishPackageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the PublishPackageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PublishPackageVersion for more information on using the PublishPackageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PublishPackageVersionRequest method.
+//	req, resp := client.PublishPackageVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/PublishPackageVersion
+func (c *CodeArtifact) PublishPackageVersionRequest(input *PublishPackageVersionInput) (req *request.Request, output *PublishPackageVersionOutput) {
+	op := &request.Operation{
+		Name:       opPublishPackageVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/package/version/publish",
+	}
+
+	if input == nil {
+		input = &PublishPackageVersionInput{}
+	}
+
+	output = &PublishPackageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PublishPackageVersion API operation for CodeArtifact.
+//
+// Creates a new package version containing one or more assets (or files).
+//
+// The unfinished flag can be used to keep the package version in the Unfinished
+// state until all of it’s assets have been uploaded (see Package version
+// status (https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status.html#package-version-status)
+// in the CodeArtifact user guide). To set the package version’s status to
+// Published, omit the unfinished flag when uploading the final asset, or set
+// the status using UpdatePackageVersionStatus (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html).
+// Once a package version’s status is set to Published, it cannot change back
+// to Unfinished.
+//
+// Only generic packages can be published using this API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for CodeArtifact's
+// API operation PublishPackageVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The operation did not succeed because of an unauthorized access attempt.
+//
+//   - ConflictException
+//     The operation did not succeed because prerequisites are not met.
+//
+//   - InternalServerException
+//     The operation did not succeed because of an error that occurred inside CodeArtifact.
+//
+//   - ResourceNotFoundException
+//     The operation did not succeed because the resource requested is not found
+//     in the service.
+//
+//   - ServiceQuotaExceededException
+//     The operation did not succeed because it would have exceeded a service limit
+//     for your account.
+//
+//   - ThrottlingException
+//     The operation did not succeed because too many requests are sent to the service.
+//
+//   - ValidationException
+//     The operation did not succeed because a parameter in the request was sent
+//     with an invalid value.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeartifact-2018-09-22/PublishPackageVersion
+func (c *CodeArtifact) PublishPackageVersion(input *PublishPackageVersionInput) (*PublishPackageVersionOutput, error) {
+	req, out := c.PublishPackageVersionRequest(input)
+	return out, req.Send()
+}
+
+// PublishPackageVersionWithContext is the same as PublishPackageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PublishPackageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeArtifact) PublishPackageVersionWithContext(ctx aws.Context, input *PublishPackageVersionInput, opts ...request.Option) (*PublishPackageVersionOutput, error) {
+	req, out := c.PublishPackageVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutDomainPermissionsPolicy = "PutDomainPermissionsPolicy"
 
 // PutDomainPermissionsPolicyRequest generates a "aws/request.Request" representing the
@@ -4369,6 +4480,8 @@ type CopyPackageVersionsInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the versions to be copied.
@@ -5253,6 +5366,8 @@ type DeletePackageVersionsInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions to delete.
@@ -5788,6 +5903,8 @@ type DescribePackageInput struct {
 	//
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the requested package.
@@ -5953,6 +6070,8 @@ type DescribePackageVersionInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the requested package version.
@@ -6375,6 +6494,8 @@ type DisposePackageVersionsInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions you want to dispose.
@@ -7034,6 +7155,8 @@ type GetPackageVersionAssetInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the requested asset.
@@ -7252,9 +7375,6 @@ type GetPackageVersionReadmeInput struct {
 
 	// A format that specifies the type of the package version with the requested
 	// readme file.
-	//
-	// Although maven is listed as a valid value, CodeArtifact does not support
-	// displaying readme files for Maven packages.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7946,6 +8066,8 @@ type ListPackageVersionAssetsInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -8213,6 +8335,8 @@ type ListPackageVersionDependenciesInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -8457,7 +8581,7 @@ type ListPackageVersionsInput struct {
 	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the returned package versions.
+	// The format of the package versions you want to list.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -8475,6 +8599,8 @@ type ListPackageVersionsInput struct {
 	//
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -8741,9 +8867,12 @@ type ListPackagesInput struct {
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace used to filter requested packages. Only packages with the provided
-	// namespace will be returned. The package component that specifies its namespace
-	// depends on its type. For example:
+	// The namespace prefix used to filter requested packages. Only packages with
+	// a namespace that starts with the provided string value are returned. Note
+	// that although this option is called --namespace and not --namespace-prefix,
+	// it has prefix-matching behavior.
+	//
+	// Each package format uses namespace as follows:
 	//
 	//    * The namespace of a Maven package is its groupId.
 	//
@@ -8751,6 +8880,8 @@ type ListPackagesInput struct {
 	//
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -9282,8 +9413,18 @@ type PackageDependency struct {
 	_ struct{} `type:"structure"`
 
 	// The type of a package dependency. The possible values depend on the package
-	// type. Example types are compile, runtime, and test for Maven packages, and
-	// dev, prod, and optional for npm packages.
+	// type.
+	//
+	//    * npm: regular, dev, peer, optional
+	//
+	//    * maven: optional, parent, compile, runtime, test, system, provided. Note
+	//    that parent is not a regular Maven dependency type; instead this is extracted
+	//    from the <parent> element if one is defined in the package version's POM
+	//    file.
+	//
+	//    * nuget: The dependencyType field is never set for NuGet packages.
+	//
+	//    * pypi: Requires-Dist
 	DependencyType *string `locationName:"dependencyType" type:"string"`
 
 	// The namespace of the package that this package depends on. The package component
@@ -9367,6 +9508,8 @@ type PackageDescription struct {
 	//
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The package origin configuration for the package.
@@ -9529,6 +9672,8 @@ type PackageSummary struct {
 	//
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// A PackageOriginConfiguration (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginConfiguration.html)
@@ -9611,6 +9756,8 @@ type PackageVersionDescription struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// A PackageVersionOrigin (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionOrigin.html)
@@ -9906,6 +10053,303 @@ func (s *PackageVersionSummary) SetVersion(v string) *PackageVersionSummary {
 	return s
 }
 
+type PublishPackageVersionInput struct {
+	_ struct{} `type:"structure" payload:"AssetContent"`
+
+	// The content of the asset to publish.
+	//
+	// AssetContent is a required field
+	AssetContent io.ReadSeeker `locationName:"assetContent" type:"blob" required:"true"`
+
+	// The name of the asset to publish. Asset names can include Unicode letters
+	// and numbers, and the following special characters: ~ ! @ ^ & ( ) - ` _ +
+	// [ ] { } ; , . `
+	//
+	// AssetName is a required field
+	AssetName *string `location:"querystring" locationName:"asset" min:"1" type:"string" required:"true"`
+
+	// The SHA256 hash of the assetContent to publish. This value must be calculated
+	// by the caller and provided with the request.
+	//
+	// This value is used as an integrity check to verify that the assetContent
+	// has not changed after it was originally sent.
+	//
+	// AssetSHA256 is a required field
+	AssetSHA256 *string `location:"header" locationName:"x-amz-content-sha256" min:"64" type:"string" required:"true"`
+
+	// The name of the domain that contains the repository that contains the package
+	// version to publish.
+	//
+	// Domain is a required field
+	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
+
+	// The 12-digit account number of the AWS account that owns the domain. It does
+	// not include dashes or spaces.
+	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
+
+	// A format that specifies the type of the package version with the requested
+	// asset file.
+	//
+	// Format is a required field
+	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
+
+	// The namespace of the package version to publish.
+	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
+
+	// The name of the package version to publish.
+	//
+	// Package is a required field
+	Package *string `location:"querystring" locationName:"package" min:"1" type:"string" required:"true"`
+
+	// The package version to publish (for example, 3.5.2).
+	//
+	// PackageVersion is a required field
+	PackageVersion *string `location:"querystring" locationName:"version" min:"1" type:"string" required:"true"`
+
+	// The name of the repository that the package version will be published to.
+	//
+	// Repository is a required field
+	Repository *string `location:"querystring" locationName:"repository" min:"2" type:"string" required:"true"`
+
+	// Specifies whether the package version should remain in the unfinished state.
+	// If omitted, the package version status will be set to Published (see Package
+	// version status (https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status.html#package-version-status)
+	// in the CodeArtifact User Guide).
+	//
+	// Valid values: unfinished
+	Unfinished *bool `location:"querystring" locationName:"unfinished" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishPackageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishPackageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublishPackageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublishPackageVersionInput"}
+	if s.AssetContent == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetContent"))
+	}
+	if s.AssetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetName"))
+	}
+	if s.AssetName != nil && len(*s.AssetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetName", 1))
+	}
+	if s.AssetSHA256 == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetSHA256"))
+	}
+	if s.AssetSHA256 != nil && len(*s.AssetSHA256) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetSHA256", 64))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 2))
+	}
+	if s.DomainOwner != nil && len(*s.DomainOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainOwner", 12))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Package == nil {
+		invalidParams.Add(request.NewErrParamRequired("Package"))
+	}
+	if s.Package != nil && len(*s.Package) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Package", 1))
+	}
+	if s.PackageVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageVersion"))
+	}
+	if s.PackageVersion != nil && len(*s.PackageVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageVersion", 1))
+	}
+	if s.Repository == nil {
+		invalidParams.Add(request.NewErrParamRequired("Repository"))
+	}
+	if s.Repository != nil && len(*s.Repository) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Repository", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetContent sets the AssetContent field's value.
+func (s *PublishPackageVersionInput) SetAssetContent(v io.ReadSeeker) *PublishPackageVersionInput {
+	s.AssetContent = v
+	return s
+}
+
+// SetAssetName sets the AssetName field's value.
+func (s *PublishPackageVersionInput) SetAssetName(v string) *PublishPackageVersionInput {
+	s.AssetName = &v
+	return s
+}
+
+// SetAssetSHA256 sets the AssetSHA256 field's value.
+func (s *PublishPackageVersionInput) SetAssetSHA256(v string) *PublishPackageVersionInput {
+	s.AssetSHA256 = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *PublishPackageVersionInput) SetDomain(v string) *PublishPackageVersionInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainOwner sets the DomainOwner field's value.
+func (s *PublishPackageVersionInput) SetDomainOwner(v string) *PublishPackageVersionInput {
+	s.DomainOwner = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *PublishPackageVersionInput) SetFormat(v string) *PublishPackageVersionInput {
+	s.Format = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PublishPackageVersionInput) SetNamespace(v string) *PublishPackageVersionInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPackage sets the Package field's value.
+func (s *PublishPackageVersionInput) SetPackage(v string) *PublishPackageVersionInput {
+	s.Package = &v
+	return s
+}
+
+// SetPackageVersion sets the PackageVersion field's value.
+func (s *PublishPackageVersionInput) SetPackageVersion(v string) *PublishPackageVersionInput {
+	s.PackageVersion = &v
+	return s
+}
+
+// SetRepository sets the Repository field's value.
+func (s *PublishPackageVersionInput) SetRepository(v string) *PublishPackageVersionInput {
+	s.Repository = &v
+	return s
+}
+
+// SetUnfinished sets the Unfinished field's value.
+func (s *PublishPackageVersionInput) SetUnfinished(v bool) *PublishPackageVersionInput {
+	s.Unfinished = &v
+	return s
+}
+
+type PublishPackageVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An AssetSummary (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html)
+	// for the published asset.
+	Asset *AssetSummary `locationName:"asset" type:"structure"`
+
+	// The format of the package version.
+	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
+
+	// The namespace of the package version.
+	Namespace *string `locationName:"namespace" min:"1" type:"string"`
+
+	// The name of the package.
+	Package *string `locationName:"package" min:"1" type:"string"`
+
+	// A string that contains the status of the package version. For more information,
+	// see Package version status (https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status.html#package-version-status)
+	// in the CodeArtifact User Guide.
+	Status *string `locationName:"status" type:"string" enum:"PackageVersionStatus"`
+
+	// The version of the package.
+	Version *string `locationName:"version" min:"1" type:"string"`
+
+	// The revision of the package version.
+	VersionRevision *string `locationName:"versionRevision" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishPackageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublishPackageVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAsset sets the Asset field's value.
+func (s *PublishPackageVersionOutput) SetAsset(v *AssetSummary) *PublishPackageVersionOutput {
+	s.Asset = v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *PublishPackageVersionOutput) SetFormat(v string) *PublishPackageVersionOutput {
+	s.Format = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PublishPackageVersionOutput) SetNamespace(v string) *PublishPackageVersionOutput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPackage sets the Package field's value.
+func (s *PublishPackageVersionOutput) SetPackage(v string) *PublishPackageVersionOutput {
+	s.Package = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PublishPackageVersionOutput) SetStatus(v string) *PublishPackageVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *PublishPackageVersionOutput) SetVersion(v string) *PublishPackageVersionOutput {
+	s.Version = &v
+	return s
+}
+
+// SetVersionRevision sets the VersionRevision field's value.
+func (s *PublishPackageVersionOutput) SetVersionRevision(v string) *PublishPackageVersionOutput {
+	s.VersionRevision = &v
+	return s
+}
+
 type PutDomainPermissionsPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10057,6 +10501,8 @@ type PutPackageOriginConfigurationInput struct {
 	//
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package to be updated.
@@ -11191,6 +11637,8 @@ type UpdatePackageVersionsStatusInput struct {
 	//
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is it’s namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the version statuses to update.
@@ -11772,6 +12220,9 @@ const (
 
 	// PackageFormatNuget is a PackageFormat enum value
 	PackageFormatNuget = "nuget"
+
+	// PackageFormatGeneric is a PackageFormat enum value
+	PackageFormatGeneric = "generic"
 )
 
 // PackageFormat_Values returns all elements of the PackageFormat enum
@@ -11781,6 +12232,7 @@ func PackageFormat_Values() []string {
 		PackageFormatPypi,
 		PackageFormatMaven,
 		PackageFormatNuget,
+		PackageFormatGeneric,
 	}
 }
 

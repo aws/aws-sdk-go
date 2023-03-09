@@ -1511,9 +1511,9 @@ type BatchExecuteStatementInput struct {
 	// event bus after the SQL statements run.
 	WithEvent *bool `type:"boolean"`
 
-	// The serverless workgroup name. This parameter is required when connecting
-	// to a serverless workgroup and authenticating using either Secrets Manager
-	// or temporary credentials.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -1638,8 +1638,8 @@ type BatchExecuteStatementOutput struct {
 	// The name or ARN of the secret that enables access to the database.
 	SecretArn *string `type:"string"`
 
-	// The serverless workgroup name. This element is not returned when connecting
-	// to a provisioned cluster.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This element
+	// is not returned when connecting to a provisioned cluster.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -2122,7 +2122,7 @@ type DescribeStatementOutput struct {
 	// updated. An example is the time the status last changed.
 	UpdatedAt *time.Time `type:"timestamp"`
 
-	// The serverless workgroup name.
+	// The serverless workgroup name or Amazon Resource Name (ARN).
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -2305,9 +2305,9 @@ type DescribeTableInput struct {
 	// for all schemas in the database are returned
 	Table *string `type:"string"`
 
-	// The serverless workgroup name. This parameter is required when connecting
-	// to a serverless workgroup and authenticating using either Secrets Manager
-	// or temporary credentials.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -2569,9 +2569,9 @@ type ExecuteStatementInput struct {
 	// event bus after the SQL statement runs.
 	WithEvent *bool `type:"boolean"`
 
-	// The serverless workgroup name. This parameter is required when connecting
-	// to a serverless workgroup and authenticating using either Secrets Manager
-	// or temporary credentials.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -2712,8 +2712,8 @@ type ExecuteStatementOutput struct {
 	// The name or ARN of the secret that enables access to the database.
 	SecretArn *string `type:"string"`
 
-	// The serverless workgroup name. This element is not returned when connecting
-	// to a provisioned cluster.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This element
+	// is not returned when connecting to a provisioned cluster.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -3083,9 +3083,9 @@ type ListDatabasesInput struct {
 	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
-	// The serverless workgroup name. This parameter is required when connecting
-	// to a serverless workgroup and authenticating using either Secrets Manager
-	// or temporary credentials.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -3252,9 +3252,9 @@ type ListSchemasInput struct {
 	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
-	// The serverless workgroup name. This parameter is required when connecting
-	// to a serverless workgroup and authenticating using either Secrets Manager
-	// or temporary credentials.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 
@@ -3586,9 +3586,9 @@ type ListTablesInput struct {
 	// returned.
 	TablePattern *string `type:"string"`
 
-	// The serverless workgroup name. This parameter is required when connecting
-	// to a serverless workgroup and authenticating using either Secrets Manager
-	// or temporary credentials.
+	// The serverless workgroup name or Amazon Resource Name (ARN). This parameter
+	// is required when connecting to a serverless workgroup and authenticating
+	// using either Secrets Manager or temporary credentials.
 	WorkgroupName *string `min:"3" type:"string"`
 }
 

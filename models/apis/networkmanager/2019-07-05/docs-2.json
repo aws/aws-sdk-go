@@ -72,7 +72,7 @@
     "ListTagsForResource": "<p>Lists the tags for a specified resource.</p>",
     "PutCoreNetworkPolicy": "<p>Creates a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and the submitted policy.</p>",
     "PutResourcePolicy": "<p>Creates or updates a resource policy.</p>",
-    "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. The transit gateway can be in any Amazon Web Services Region, but it must be owned by the same Amazon Web Services account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
+    "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. Not all Regions support transit gateways for global networks. For a list of the supported Regions, see <a href=\"https://docs.aws.amazon.com/network-manager/latest/tgwnm/what-are-global-networks.html#nm-available-regions\">Region Availability</a> in the <i>Amazon Web Services Transit Gateways for Global Networks User Guide</i>. The transit gateway can be in any of the supported Amazon Web Services Regions, but it must be owned by the same Amazon Web Services account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
     "RejectAttachment": "<p>Rejects a core network attachment request.</p>",
     "RestoreCoreNetworkPolicyVersion": "<p>Restores a previous policy version as a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and restored policy.</p>",
     "StartOrganizationServiceAccessUpdate": "<p>Enables the Network Manager service for an Amazon Web Services Organization. This can only be called by a management account within the organization. </p>",
@@ -2579,7 +2579,7 @@
       "refs": {
         "CreateTransitGatewayRouteTableAttachmentRequest$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table for the attachment request.</p>",
         "RouteTableIdentifier$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table.</p>",
-        "TransitGatewayRouteTableAttachment$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway attachment route table.</p>"
+        "TransitGatewayRouteTableAttachment$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway attachment route table. For example, <code>\"TransitGatewayRouteTableArn\": \"arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456\"</code>.</p>"
       }
     },
     "TransitGatewayRouteTableAttachment": {

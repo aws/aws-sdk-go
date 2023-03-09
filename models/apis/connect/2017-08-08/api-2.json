@@ -1250,6 +1250,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetMetricDataV2":{
+      "name":"GetMetricDataV2",
+      "http":{
+        "method":"POST",
+        "requestUri":"/metrics/data"
+      },
+      "input":{"shape":"GetMetricDataV2Request"},
+      "output":{"shape":"GetMetricDataV2Response"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetTaskTemplate":{
       "name":"GetTaskTemplate",
       "http":{
@@ -4894,6 +4910,13 @@
         "RoutingProfile":{"shape":"RoutingProfileReference"}
       }
     },
+    "DimensionsV2Key":{"type":"string"},
+    "DimensionsV2Map":{
+      "type":"map",
+      "key":{"shape":"DimensionsV2Key"},
+      "value":{"shape":"DimensionsV2Value"}
+    },
+    "DimensionsV2Value":{"type":"string"},
     "DirectoryAlias":{
       "type":"string",
       "max":45,
@@ -5197,6 +5220,19 @@
         "OnSalesforceCaseCreate"
       ]
     },
+    "FilterV2":{
+      "type":"structure",
+      "members":{
+        "FilterKey":{"shape":"ResourceArnOrId"},
+        "FilterValues":{"shape":"FilterValueList"}
+      }
+    },
+    "FilterValueList":{
+      "type":"list",
+      "member":{"shape":"ResourceArnOrId"},
+      "max":100,
+      "min":1
+    },
     "Filters":{
       "type":"structure",
       "members":{
@@ -5204,6 +5240,12 @@
         "Channels":{"shape":"Channels"},
         "RoutingProfiles":{"shape":"RoutingProfiles"}
       }
+    },
+    "FiltersV2List":{
+      "type":"list",
+      "member":{"shape":"FilterV2"},
+      "max":5,
+      "min":1
     },
     "FunctionArn":{
       "type":"string",
@@ -5354,6 +5396,36 @@
         "MetricResults":{"shape":"HistoricalMetricResults"}
       }
     },
+    "GetMetricDataV2Request":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "StartTime",
+        "EndTime",
+        "Filters",
+        "Metrics"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ARN"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "Filters":{"shape":"FiltersV2List"},
+        "Groupings":{"shape":"GroupingsV2"},
+        "Metrics":{"shape":"MetricsV2"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        }
+      }
+    },
+    "GetMetricDataV2Response":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken2500"},
+        "MetricResults":{"shape":"MetricResultsV2"}
+      }
+    },
     "GetTaskTemplateRequest":{
       "type":"structure",
       "required":[
@@ -5428,9 +5500,15 @@
         "ROUTING_PROFILE"
       ]
     },
+    "GroupingV2":{"type":"string"},
     "Groupings":{
       "type":"list",
       "member":{"shape":"Grouping"},
+      "max":2
+    },
+    "GroupingsV2":{
+      "type":"list",
+      "member":{"shape":"GroupingV2"},
       "max":2
     },
     "HierarchyGroup":{
@@ -7065,6 +7143,62 @@
       }
     },
     "Message":{"type":"string"},
+    "MetricDataCollectionsV2":{
+      "type":"list",
+      "member":{"shape":"MetricDataV2"}
+    },
+    "MetricDataV2":{
+      "type":"structure",
+      "members":{
+        "Metric":{"shape":"MetricV2"},
+        "Value":{
+          "shape":"Value",
+          "box":true
+        }
+      }
+    },
+    "MetricFilterV2":{
+      "type":"structure",
+      "members":{
+        "MetricFilterKey":{"shape":"String"},
+        "MetricFilterValues":{"shape":"MetricFilterValueList"}
+      }
+    },
+    "MetricFilterValueList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":10,
+      "min":1
+    },
+    "MetricFiltersV2List":{
+      "type":"list",
+      "member":{"shape":"MetricFilterV2"},
+      "max":2
+    },
+    "MetricNameV2":{"type":"string"},
+    "MetricResultV2":{
+      "type":"structure",
+      "members":{
+        "Dimensions":{"shape":"DimensionsV2Map"},
+        "Collections":{"shape":"MetricDataCollectionsV2"}
+      }
+    },
+    "MetricResultsV2":{
+      "type":"list",
+      "member":{"shape":"MetricResultV2"}
+    },
+    "MetricV2":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"MetricNameV2"},
+        "Threshold":{"shape":"ThresholdCollections"},
+        "MetricFilters":{"shape":"MetricFiltersV2List"}
+      }
+    },
+    "MetricsV2":{
+      "type":"list",
+      "member":{"shape":"MetricV2"}
+    },
     "MinutesLimit60":{
       "type":"integer",
       "max":59,
@@ -8006,6 +8140,11 @@
     "RequiredTaskTemplateFields":{
       "type":"list",
       "member":{"shape":"RequiredFieldInfo"}
+    },
+    "ResourceArnOrId":{
+      "type":"string",
+      "max":250,
+      "min":1
     },
     "ResourceConflictException":{
       "type":"structure",
@@ -9092,6 +9231,21 @@
       "type":"structure",
       "members":{
         "Comparison":{"shape":"Comparison"},
+        "ThresholdValue":{
+          "shape":"ThresholdValue",
+          "box":true
+        }
+      }
+    },
+    "ThresholdCollections":{
+      "type":"list",
+      "member":{"shape":"ThresholdV2"},
+      "max":1
+    },
+    "ThresholdV2":{
+      "type":"structure",
+      "members":{
+        "Comparison":{"shape":"ResourceArnOrId"},
         "ThresholdValue":{
           "shape":"ThresholdValue",
           "box":true

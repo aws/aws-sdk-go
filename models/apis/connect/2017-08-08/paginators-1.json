@@ -15,6 +15,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetMetricDataV2": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListAgentStatuses": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
