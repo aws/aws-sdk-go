@@ -1016,7 +1016,7 @@
     "SecretBinaryType":{
       "type":"blob",
       "max":65536,
-      "min":0,
+      "min":1,
       "sensitive":true
     },
     "SecretIdType":{
@@ -1073,7 +1073,7 @@
     "SecretStringType":{
       "type":"string",
       "max":65536,
-      "min":0,
+      "min":1,
       "sensitive":true
     },
     "SecretVersionIdType":{

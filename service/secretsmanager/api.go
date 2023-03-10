@@ -3008,7 +3008,7 @@ type CreateSecretInput struct {
 	// String and GoString methods.
 	//
 	// SecretBinary is automatically base64 encoded/decoded by the SDK.
-	SecretBinary []byte `type:"blob" sensitive:"true"`
+	SecretBinary []byte `min:"1" type:"blob" sensitive:"true"`
 
 	// The text data to encrypt and store in this new version of the secret. We
 	// recommend you use a JSON structure of key/value pairs for your secret value.
@@ -3023,7 +3023,7 @@ type CreateSecretInput struct {
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateSecretInput's
 	// String and GoString methods.
-	SecretString *string `type:"string" sensitive:"true"`
+	SecretString *string `min:"1" type:"string" sensitive:"true"`
 
 	// A list of tags to attach to the secret. Each tag is a key and value pair
 	// of strings in a JSON text string, for example:
@@ -3100,6 +3100,12 @@ func (s *CreateSecretInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SecretBinary != nil && len(s.SecretBinary) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretBinary", 1))
+	}
+	if s.SecretString != nil && len(*s.SecretString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretString", 1))
 	}
 	if s.AddReplicaRegions != nil {
 		for i, v := range s.AddReplicaRegions {
@@ -4341,7 +4347,7 @@ type GetSecretValueOutput struct {
 	// String and GoString methods.
 	//
 	// SecretBinary is automatically base64 encoded/decoded by the SDK.
-	SecretBinary []byte `type:"blob" sensitive:"true"`
+	SecretBinary []byte `min:"1" type:"blob" sensitive:"true"`
 
 	// The decrypted secret value, if the secret value was originally provided as
 	// a string or through the Secrets Manager console.
@@ -4352,7 +4358,7 @@ type GetSecretValueOutput struct {
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetSecretValueOutput's
 	// String and GoString methods.
-	SecretString *string `type:"string" sensitive:"true"`
+	SecretString *string `min:"1" type:"string" sensitive:"true"`
 
 	// The unique identifier of this version of the secret.
 	VersionId *string `min:"32" type:"string"`
@@ -5410,7 +5416,7 @@ type PutSecretValueInput struct {
 	// String and GoString methods.
 	//
 	// SecretBinary is automatically base64 encoded/decoded by the SDK.
-	SecretBinary []byte `type:"blob" sensitive:"true"`
+	SecretBinary []byte `min:"1" type:"blob" sensitive:"true"`
 
 	// The ARN or name of the secret to add a new version to.
 	//
@@ -5432,7 +5438,7 @@ type PutSecretValueInput struct {
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutSecretValueInput's
 	// String and GoString methods.
-	SecretString *string `type:"string" sensitive:"true"`
+	SecretString *string `min:"1" type:"string" sensitive:"true"`
 
 	// A list of staging labels to attach to this version of the secret. Secrets
 	// Manager uses staging labels to track versions of a secret through the rotation
@@ -5474,11 +5480,17 @@ func (s *PutSecretValueInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
 	}
+	if s.SecretBinary != nil && len(s.SecretBinary) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretBinary", 1))
+	}
 	if s.SecretId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecretId"))
 	}
 	if s.SecretId != nil && len(*s.SecretId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecretId", 1))
+	}
+	if s.SecretString != nil && len(*s.SecretString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretString", 1))
 	}
 	if s.VersionStages != nil && len(s.VersionStages) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VersionStages", 1))
@@ -7104,7 +7116,7 @@ type UpdateSecretInput struct {
 	// String and GoString methods.
 	//
 	// SecretBinary is automatically base64 encoded/decoded by the SDK.
-	SecretBinary []byte `type:"blob" sensitive:"true"`
+	SecretBinary []byte `min:"1" type:"blob" sensitive:"true"`
 
 	// The ARN or name of the secret.
 	//
@@ -7122,7 +7134,7 @@ type UpdateSecretInput struct {
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateSecretInput's
 	// String and GoString methods.
-	SecretString *string `type:"string" sensitive:"true"`
+	SecretString *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7149,11 +7161,17 @@ func (s *UpdateSecretInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
 	}
+	if s.SecretBinary != nil && len(s.SecretBinary) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretBinary", 1))
+	}
 	if s.SecretId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecretId"))
 	}
 	if s.SecretId != nil && len(*s.SecretId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecretId", 1))
+	}
+	if s.SecretString != nil && len(*s.SecretString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretString", 1))
 	}
 
 	if invalidParams.Len() > 0 {

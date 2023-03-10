@@ -1,3 +1,11 @@
+Release v1.44.219 (2023-03-10)
+===
+
+### Service Client Updates
+* `service/ivschat`: Updates service API
+* `service/secretsmanager`: Updates service API
+  * The type definitions of SecretString and SecretBinary now have a minimum length of 1 in the model to match the exception thrown when you pass in empty values.
+
 Release v1.44.218 (2023-03-09)
 ===
 
