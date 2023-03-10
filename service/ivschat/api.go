@@ -1473,6 +1473,8 @@ func (c *Ivschat) UpdateLoggingConfigurationRequest(input *UpdateLoggingConfigur
 //
 // Returned Error Types:
 //
+//   - ConflictException
+//
 //   - AccessDeniedException
 //
 //   - ResourceNotFoundException
