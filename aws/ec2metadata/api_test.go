@@ -344,7 +344,7 @@ func TestGetMetadata(t *testing.T) {
 				}
 				return newTestServer(t, testType, Ts)
 			},
-			expectedError: "failed to get IMDS token and fallback is disabled",
+			expectedError: "failed to get IMDSv2 token and fallback to IMDSv1 is disabled",
 			// 2 attempts + 2 retries per/attempt
 			expectedOperationsAttempted: []string{"GetToken", "GetToken", "GetToken", "GetToken", "GetToken", "GetToken"},
 			enableImdsFallback:          aws.Bool(false),

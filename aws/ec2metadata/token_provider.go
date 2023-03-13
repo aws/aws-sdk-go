@@ -56,7 +56,7 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 	if err != nil {
 		// only attempt fallback to insecure data flow if IMDSv1 is enabled
 		if !t.fallbackEnabled() {
-			r.Error = awserr.New("EC2MetadataError", "failed to get IMDS token and fallback is disabled", err)
+			r.Error = awserr.New("EC2MetadataError", "failed to get IMDSv2 token and fallback to IMDSv1 is disabled", err)
 			return
 		}
 
