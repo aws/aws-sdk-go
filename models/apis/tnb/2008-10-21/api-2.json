@@ -1126,12 +1126,12 @@
       "type": "structure"
     },
     "CreateSolNetworkInstanceInputNsDescriptionString": {
-      "max": 124,
-      "min": 1,
+      "max": 255,
+      "min": 0,
       "type": "string"
     },
     "CreateSolNetworkInstanceInputNsNameString": {
-      "max": 80,
+      "max": 100,
       "min": 1,
       "type": "string"
     },
@@ -1856,6 +1856,9 @@
           "location": "uri",
           "locationName": "nsInstanceId",
           "shape": "NsInstanceId"
+        },
+        "tags": {
+          "shape": "TagMap"
         }
       },
       "required": [
@@ -1867,6 +1870,9 @@
       "members": {
         "nsLcmOpOccId": {
           "shape": "NsLcmOpOccId"
+        },
+        "tags": {
+          "shape": "TagMap"
         }
       },
       "required": [
@@ -2777,6 +2783,9 @@
           "location": "uri",
           "locationName": "nsInstanceId",
           "shape": "NsInstanceId"
+        },
+        "tags": {
+          "shape": "TagMap"
         }
       },
       "required": [
@@ -2788,6 +2797,9 @@
       "members": {
         "nsLcmOpOccId": {
           "shape": "NsLcmOpOccId"
+        },
+        "tags": {
+          "shape": "TagMap"
         }
       },
       "type": "structure"
@@ -2877,6 +2889,9 @@
           "locationName": "nsInstanceId",
           "shape": "NsInstanceId"
         },
+        "tags": {
+          "shape": "TagMap"
+        },
         "updateType": {
           "shape": "UpdateSolNetworkType"
         }
@@ -2891,6 +2906,9 @@
       "members": {
         "nsLcmOpOccId": {
           "shape": "NsLcmOpOccId"
+        },
+        "tags": {
+          "shape": "TagMap"
         }
       },
       "type": "structure"

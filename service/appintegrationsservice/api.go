@@ -1477,27 +1477,42 @@ type CreateDataIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description of the DataIntegration.
 	Description *string `min:"1" type:"string"`
 
+	// The configuration for what files should be pulled from the source.
+	FileConfiguration *FileConfiguration `type:"structure"`
+
 	// The KMS key for the DataIntegration.
-	KmsKey *string `min:"1" type:"string"`
+	//
+	// KmsKey is a required field
+	KmsKey *string `min:"1" type:"string" required:"true"`
 
 	// The name of the DataIntegration.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The configuration for what data should be pulled from the source.
+	ObjectConfiguration map[string]map[string][]*string `type:"map"`
+
 	// The name of the data and how often it should be pulled from the source.
-	ScheduleConfig *ScheduleConfiguration `type:"structure"`
+	//
+	// ScheduleConfig is a required field
+	ScheduleConfig *ScheduleConfiguration `type:"structure" required:"true"`
 
 	// The URI of the data source.
-	SourceURI *string `min:"1" type:"string"`
+	//
+	// SourceURI is a required field
+	SourceURI *string `min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -1528,6 +1543,9 @@ func (s *CreateDataIntegrationInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.KmsKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKey"))
+	}
 	if s.KmsKey != nil && len(*s.KmsKey) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKey", 1))
 	}
@@ -1537,11 +1555,22 @@ func (s *CreateDataIntegrationInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.ScheduleConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleConfig"))
+	}
+	if s.SourceURI == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceURI"))
+	}
 	if s.SourceURI != nil && len(*s.SourceURI) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceURI", 1))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.FileConfiguration != nil {
+		if err := s.FileConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FileConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.ScheduleConfig != nil {
 		if err := s.ScheduleConfig.Validate(); err != nil {
@@ -1567,6 +1596,12 @@ func (s *CreateDataIntegrationInput) SetDescription(v string) *CreateDataIntegra
 	return s
 }
 
+// SetFileConfiguration sets the FileConfiguration field's value.
+func (s *CreateDataIntegrationInput) SetFileConfiguration(v *FileConfiguration) *CreateDataIntegrationInput {
+	s.FileConfiguration = v
+	return s
+}
+
 // SetKmsKey sets the KmsKey field's value.
 func (s *CreateDataIntegrationInput) SetKmsKey(v string) *CreateDataIntegrationInput {
 	s.KmsKey = &v
@@ -1576,6 +1611,12 @@ func (s *CreateDataIntegrationInput) SetKmsKey(v string) *CreateDataIntegrationI
 // SetName sets the Name field's value.
 func (s *CreateDataIntegrationInput) SetName(v string) *CreateDataIntegrationInput {
 	s.Name = &v
+	return s
+}
+
+// SetObjectConfiguration sets the ObjectConfiguration field's value.
+func (s *CreateDataIntegrationInput) SetObjectConfiguration(v map[string]map[string][]*string) *CreateDataIntegrationInput {
+	s.ObjectConfiguration = v
 	return s
 }
 
@@ -1604,11 +1645,16 @@ type CreateDataIntegrationOutput struct {
 	Arn *string `min:"1" type:"string"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string"`
 
 	// A description of the DataIntegration.
 	Description *string `min:"1" type:"string"`
+
+	// The configuration for what files should be pulled from the source.
+	FileConfiguration *FileConfiguration `type:"structure"`
 
 	// A unique identifier.
 	Id *string `type:"string"`
@@ -1619,13 +1665,17 @@ type CreateDataIntegrationOutput struct {
 	// The name of the DataIntegration.
 	Name *string `min:"1" type:"string"`
 
+	// The configuration for what data should be pulled from the source.
+	ObjectConfiguration map[string]map[string][]*string `type:"map"`
+
 	// The name of the data and how often it should be pulled from the source.
 	ScheduleConfiguration *ScheduleConfiguration `type:"structure"`
 
 	// The URI of the data source.
 	SourceURI *string `min:"1" type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -1665,6 +1715,12 @@ func (s *CreateDataIntegrationOutput) SetDescription(v string) *CreateDataIntegr
 	return s
 }
 
+// SetFileConfiguration sets the FileConfiguration field's value.
+func (s *CreateDataIntegrationOutput) SetFileConfiguration(v *FileConfiguration) *CreateDataIntegrationOutput {
+	s.FileConfiguration = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *CreateDataIntegrationOutput) SetId(v string) *CreateDataIntegrationOutput {
 	s.Id = &v
@@ -1680,6 +1736,12 @@ func (s *CreateDataIntegrationOutput) SetKmsKey(v string) *CreateDataIntegration
 // SetName sets the Name field's value.
 func (s *CreateDataIntegrationOutput) SetName(v string) *CreateDataIntegrationOutput {
 	s.Name = &v
+	return s
+}
+
+// SetObjectConfiguration sets the ObjectConfiguration field's value.
+func (s *CreateDataIntegrationOutput) SetObjectConfiguration(v map[string]map[string][]*string) *CreateDataIntegrationOutput {
+	s.ObjectConfiguration = v
 	return s
 }
 
@@ -1705,7 +1767,9 @@ type CreateEventIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the event integration.
@@ -1726,7 +1790,8 @@ type CreateEventIntegrationInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -1858,11 +1923,11 @@ func (s *CreateEventIntegrationOutput) SetEventIntegrationArn(v string) *CreateE
 type DataIntegrationAssociationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for teh client that is associated with the DataIntegration
+	// The identifier for the client that is associated with the DataIntegration
 	// association.
 	ClientId *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN)of the DataIntegration.
+	// The Amazon Resource Name (ARN) of the DataIntegration.
 	DataIntegrationArn *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the DataIntegration association.
@@ -2230,7 +2295,8 @@ type EventIntegration struct {
 	// The name of the event integration.
 	Name *string `min:"1" type:"string"`
 
-	// The tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -2365,6 +2431,65 @@ func (s *EventIntegrationAssociation) SetEventIntegrationName(v string) *EventIn
 	return s
 }
 
+// The configuration for what files should be pulled from the source.
+type FileConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Restrictions for what files should be pulled from the source.
+	Filters map[string][]*string `type:"map"`
+
+	// Identifiers for the source folders to pull all files from recursively.
+	//
+	// Folders is a required field
+	Folders []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileConfiguration"}
+	if s.Folders == nil {
+		invalidParams.Add(request.NewErrParamRequired("Folders"))
+	}
+	if s.Folders != nil && len(s.Folders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Folders", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *FileConfiguration) SetFilters(v map[string][]*string) *FileConfiguration {
+	s.Filters = v
+	return s
+}
+
+// SetFolders sets the Folders field's value.
+func (s *FileConfiguration) SetFolders(v []*string) *FileConfiguration {
+	s.Folders = v
+	return s
+}
+
 type GetDataIntegrationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -2423,6 +2548,9 @@ type GetDataIntegrationOutput struct {
 	// The KMS key for the DataIntegration.
 	Description *string `min:"1" type:"string"`
 
+	// The configuration for what files should be pulled from the source.
+	FileConfiguration *FileConfiguration `type:"structure"`
+
 	// A unique identifier.
 	Id *string `type:"string"`
 
@@ -2432,13 +2560,17 @@ type GetDataIntegrationOutput struct {
 	// The name of the DataIntegration.
 	Name *string `min:"1" type:"string"`
 
+	// The configuration for what data should be pulled from the source.
+	ObjectConfiguration map[string]map[string][]*string `type:"map"`
+
 	// The name of the data and how often it should be pulled from the source.
 	ScheduleConfiguration *ScheduleConfiguration `type:"structure"`
 
 	// The URI of the data source.
 	SourceURI *string `min:"1" type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -2472,6 +2604,12 @@ func (s *GetDataIntegrationOutput) SetDescription(v string) *GetDataIntegrationO
 	return s
 }
 
+// SetFileConfiguration sets the FileConfiguration field's value.
+func (s *GetDataIntegrationOutput) SetFileConfiguration(v *FileConfiguration) *GetDataIntegrationOutput {
+	s.FileConfiguration = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *GetDataIntegrationOutput) SetId(v string) *GetDataIntegrationOutput {
 	s.Id = &v
@@ -2487,6 +2625,12 @@ func (s *GetDataIntegrationOutput) SetKmsKey(v string) *GetDataIntegrationOutput
 // SetName sets the Name field's value.
 func (s *GetDataIntegrationOutput) SetName(v string) *GetDataIntegrationOutput {
 	s.Name = &v
+	return s
+}
+
+// SetObjectConfiguration sets the ObjectConfiguration field's value.
+func (s *GetDataIntegrationOutput) SetObjectConfiguration(v map[string]map[string][]*string) *GetDataIntegrationOutput {
+	s.ObjectConfiguration = v
 	return s
 }
 
@@ -2575,7 +2719,8 @@ type GetEventIntegrationOutput struct {
 	// The name of the event integration.
 	Name *string `min:"1" type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -3395,14 +3540,17 @@ func (s *ResourceQuotaExceededException) RequestID() string {
 type ScheduleConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The start date for objects to import in the first flow run.
+	// The start date for objects to import in the first flow run as an Unix/epoch
+	// timestamp in milliseconds or in ISO-8601 format.
 	FirstExecutionFrom *string `min:"1" type:"string"`
 
 	// The name of the object to pull from the data source.
 	Object *string `min:"1" type:"string"`
 
 	// How often the data should be pulled from data source.
-	ScheduleExpression *string `min:"1" type:"string"`
+	//
+	// ScheduleExpression is a required field
+	ScheduleExpression *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3431,6 +3579,9 @@ func (s *ScheduleConfiguration) Validate() error {
 	}
 	if s.Object != nil && len(*s.Object) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Object", 1))
+	}
+	if s.ScheduleExpression == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleExpression"))
 	}
 	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 1))
@@ -3468,7 +3619,8 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`

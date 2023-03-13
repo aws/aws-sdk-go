@@ -164,7 +164,7 @@ func (c *Tnb) CreateSolFunctionPackageRequest(input *CreateSolFunctionPackageInp
 // Creating a function package is the first step for creating a network in AWS
 // TNB. This request creates an empty container with an ID. The next step is
 // to upload the actual CSAR zip file into that empty container. To upload function
-// package content, see PutSolFunctionPackageContent (https://docs.aws.amazon.com/TNB/latest/APIReference/API_PutSolFunctionPackageContent.html).
+// package content, see PutSolFunctionPackageContent (https://docs.aws.amazon.com/tnb/latest/APIReference/API_PutSolFunctionPackageContent.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -266,7 +266,7 @@ func (c *Tnb) CreateSolNetworkInstanceRequest(input *CreateSolNetworkInstanceInp
 // in the Amazon Web Services Telco Network Builder User Guide.
 //
 // Once you create a network instance, you can instantiate it. To instantiate
-// a network, see InstantiateSolNetworkInstance (https://docs.aws.amazon.com/TNB/latest/APIReference/API_InstantiateSolNetworkInstance.html).
+// a network, see InstantiateSolNetworkInstance (https://docs.aws.amazon.com/tnb/latest/APIReference/API_InstantiateSolNetworkInstance.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -376,7 +376,7 @@ func (c *Tnb) CreateSolNetworkPackageRequest(input *CreateSolNetworkPackageInput
 //
 // This request creates an empty network package container with an ID. Once
 // you create a network package, you can upload the network package content
-// using PutSolNetworkPackageContent (https://docs.aws.amazon.com/TNB/latest/APIReference/API_PutSolNetworkPackageContent.html).
+// using PutSolNetworkPackageContent (https://docs.aws.amazon.com/tnb/latest/APIReference/API_PutSolNetworkPackageContent.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -477,7 +477,7 @@ func (c *Tnb) DeleteSolFunctionPackageRequest(input *DeleteSolFunctionPackageInp
 // how the network functions should run on your network.
 //
 // To delete a function package, the package must be in a disabled state. To
-// disable a function package, see UpdateSolFunctionPackage (https://docs.aws.amazon.com/TNB/latest/APIReference/API_UpdateSolFunctionPackage.html).
+// disable a function package, see UpdateSolFunctionPackage (https://docs.aws.amazon.com/tnb/latest/APIReference/API_UpdateSolFunctionPackage.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -577,7 +577,7 @@ func (c *Tnb) DeleteSolNetworkInstanceRequest(input *DeleteSolNetworkInstanceInp
 // update, and delete) can be performed.
 //
 // To delete a network instance, the instance must be in a stopped or terminated
-// state. To terminate a network instance, see TerminateSolNetworkInstance (https://docs.aws.amazon.com/TNB/latest/APIReference/API_TerminateSolNetworkInstance.html).
+// state. To terminate a network instance, see TerminateSolNetworkInstance (https://docs.aws.amazon.com/tnb/latest/APIReference/API_TerminateSolNetworkInstance.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -677,7 +677,7 @@ func (c *Tnb) DeleteSolNetworkPackageRequest(input *DeleteSolNetworkPackageInput
 // you want to deploy them on.
 //
 // To delete a network package, the package must be in a disable state. To disable
-// a network package, see UpdateSolNetworkPackage (https://docs.aws.amazon.com/TNB/latest/APIReference/API_UpdateSolNetworkPackage.html).
+// a network package, see UpdateSolNetworkPackage (https://docs.aws.amazon.com/tnb/latest/APIReference/API_UpdateSolNetworkPackage.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1649,7 +1649,7 @@ func (c *Tnb) InstantiateSolNetworkInstanceRequest(input *InstantiateSolNetworkI
 // update, and delete) can be performed.
 //
 // Before you can instantiate a network instance, you have to create a network
-// instance. For more information, see CreateSolNetworkInstance (https://docs.aws.amazon.com/TNB/latest/APIReference/API_CreateSolNetworkInstance.html).
+// instance. For more information, see CreateSolNetworkInstance (https://docs.aws.amazon.com/tnb/latest/APIReference/API_CreateSolNetworkInstance.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3371,7 +3371,7 @@ func (c *Tnb) ValidateSolFunctionPackageContentRequest(input *ValidateSolFunctio
 // ValidateSolFunctionPackageContent API operation for AWS Telco Network Builder.
 //
 // Validates function package content. This can be used as a dry run before
-// uploading function package content with PutSolFunctionPackageContent (https://docs.aws.amazon.com/TNB/latest/APIReference/API_PutSolFunctionPackageContent.html).
+// uploading function package content with PutSolFunctionPackageContent (https://docs.aws.amazon.com/tnb/latest/APIReference/API_PutSolFunctionPackageContent.html).
 //
 // A function package is a .zip file in CSAR (Cloud Service Archive) format
 // that contains a network function (an ETSI standard telecommunication application)
@@ -3469,7 +3469,7 @@ func (c *Tnb) ValidateSolNetworkPackageContentRequest(input *ValidateSolNetworkP
 // ValidateSolNetworkPackageContent API operation for AWS Telco Network Builder.
 //
 // Validates network package content. This can be used as a dry run before uploading
-// network package content with PutSolNetworkPackageContent (https://docs.aws.amazon.com/TNB/latest/APIReference/API_PutSolNetworkPackageContent.html).
+// network package content with PutSolNetworkPackageContent (https://docs.aws.amazon.com/tnb/latest/APIReference/API_PutSolNetworkPackageContent.html).
 //
 // A network package is a .zip file in CSAR (Cloud Service Archive) format defines
 // the function packages you want to deploy and the Amazon Web Services infrastructure
@@ -3589,7 +3589,7 @@ func (s *AccessDeniedException) RequestID() string {
 type CancelSolNetworkOperationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of a network operation occurrence.
+	// The identifier of the network operation.
 	//
 	// NsLcmOpOccId is a required field
 	NsLcmOpOccId *string `location:"uri" locationName:"nsLcmOpOccId" type:"string" required:"true"`
@@ -3790,7 +3790,7 @@ type CreateSolNetworkInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Network instance description.
-	NsDescription *string `locationName:"nsDescription" min:"1" type:"string"`
+	NsDescription *string `locationName:"nsDescription" type:"string"`
 
 	// Network instance name.
 	//
@@ -3833,9 +3833,6 @@ func (s CreateSolNetworkInstanceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateSolNetworkInstanceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSolNetworkInstanceInput"}
-	if s.NsDescription != nil && len(*s.NsDescription) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NsDescription", 1))
-	}
 	if s.NsName == nil {
 		invalidParams.Add(request.NewErrParamRequired("NsName"))
 	}
@@ -5357,7 +5354,7 @@ func (s *GetSolNetworkInstanceOutput) SetTags(v map[string]*string) *GetSolNetwo
 type GetSolNetworkOperationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the operation occurrence.
+	// The identifier of the network operation.
 	//
 	// NsLcmOpOccId is a required field
 	NsLcmOpOccId *string `location:"uri" locationName:"nsLcmOpOccId" type:"string" required:"true"`
@@ -5403,7 +5400,7 @@ func (s *GetSolNetworkOperationInput) SetNsLcmOpOccId(v string) *GetSolNetworkOp
 	return s
 }
 
-// Metadata related to a network operation occurence.
+// Metadata related to a network operation occurrence.
 //
 // A network operation is any operation that is done to your network, such as
 // network instance instantiation or termination.
@@ -5459,7 +5456,7 @@ type GetSolNetworkOperationOutput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// Error related to this specific network operation occurence.
+	// Error related to this specific network operation occurrence.
 	Error *ProblemDetails `locationName:"error" type:"structure"`
 
 	// ID of this network operation occurrence.
@@ -6228,7 +6225,7 @@ func (s *GetSolVnfcResourceInfoMetadata) SetNodeGroup(v string) *GetSolVnfcResou
 }
 
 type InstantiateSolNetworkInstanceInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// A check for whether you have the required permissions for the action without
 	// actually making the request and provides an error response. If you have the
@@ -6240,6 +6237,16 @@ type InstantiateSolNetworkInstanceInput struct {
 	//
 	// NsInstanceId is a required field
 	NsInstanceId *string `location:"uri" locationName:"nsInstanceId" type:"string" required:"true"`
+
+	// A tag is a label that you assign to an Amazon Web Services resource. Each
+	// tag consists of a key and an optional value. When you use this API, the tags
+	// are transferred to the network operation that is created. Use tags to search
+	// and filter your resources or track your Amazon Web Services costs.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InstantiateSolNetworkInstanceInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6288,13 +6295,29 @@ func (s *InstantiateSolNetworkInstanceInput) SetNsInstanceId(v string) *Instanti
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *InstantiateSolNetworkInstanceInput) SetTags(v map[string]*string) *InstantiateSolNetworkInstanceInput {
+	s.Tags = v
+	return s
+}
+
 type InstantiateSolNetworkInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the network instance.
+	// The identifier of the network operation.
 	//
 	// NsLcmOpOccId is a required field
 	NsLcmOpOccId *string `locationName:"nsLcmOpOccId" type:"string" required:"true"`
+
+	// A tag is a label that you assign to an Amazon Web Services resource. Each
+	// tag consists of a key and an optional value. When you use this API, the tags
+	// are transferred to the network operation that is created. Use tags to search
+	// and filter your resources or track your Amazon Web Services costs.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InstantiateSolNetworkInstanceOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6318,6 +6341,12 @@ func (s InstantiateSolNetworkInstanceOutput) GoString() string {
 // SetNsLcmOpOccId sets the NsLcmOpOccId field's value.
 func (s *InstantiateSolNetworkInstanceOutput) SetNsLcmOpOccId(v string) *InstantiateSolNetworkInstanceOutput {
 	s.NsLcmOpOccId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *InstantiateSolNetworkInstanceOutput) SetTags(v map[string]*string) *InstantiateSolNetworkInstanceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -6391,7 +6420,7 @@ func (s *InternalServerException) RequestID() string {
 type LcmOperationInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the latest network lifecycle management operation occurrence.
+	// The identifier of the network operation.
 	//
 	// NsLcmOpOccId is a required field
 	NsLcmOpOccId *string `locationName:"nsLcmOpOccId" type:"string" required:"true"`
@@ -8540,12 +8569,22 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type TerminateSolNetworkInstanceInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// ID of the network instance.
 	//
 	// NsInstanceId is a required field
 	NsInstanceId *string `location:"uri" locationName:"nsInstanceId" type:"string" required:"true"`
+
+	// A tag is a label that you assign to an Amazon Web Services resource. Each
+	// tag consists of a key and an optional value. When you use this API, the tags
+	// are transferred to the network operation that is created. Use tags to search
+	// and filter your resources or track your Amazon Web Services costs.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TerminateSolNetworkInstanceInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8588,11 +8627,27 @@ func (s *TerminateSolNetworkInstanceInput) SetNsInstanceId(v string) *TerminateS
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *TerminateSolNetworkInstanceInput) SetTags(v map[string]*string) *TerminateSolNetworkInstanceInput {
+	s.Tags = v
+	return s
+}
+
 type TerminateSolNetworkInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the operation occurrence.
+	// The identifier of the network operation.
 	NsLcmOpOccId *string `locationName:"nsLcmOpOccId" type:"string"`
+
+	// A tag is a label that you assign to an Amazon Web Services resource. Each
+	// tag consists of a key and an optional value. When you use this API, the tags
+	// are transferred to the network operation that is created. Use tags to search
+	// and filter your resources or track your Amazon Web Services costs.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TerminateSolNetworkInstanceOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8616,6 +8671,12 @@ func (s TerminateSolNetworkInstanceOutput) GoString() string {
 // SetNsLcmOpOccId sets the NsLcmOpOccId field's value.
 func (s *TerminateSolNetworkInstanceOutput) SetNsLcmOpOccId(v string) *TerminateSolNetworkInstanceOutput {
 	s.NsLcmOpOccId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TerminateSolNetworkInstanceOutput) SetTags(v map[string]*string) *TerminateSolNetworkInstanceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -8913,6 +8974,16 @@ type UpdateSolNetworkInstanceInput struct {
 	// NsInstanceId is a required field
 	NsInstanceId *string `location:"uri" locationName:"nsInstanceId" type:"string" required:"true"`
 
+	// A tag is a label that you assign to an Amazon Web Services resource. Each
+	// tag consists of a key and an optional value. When you use this API, the tags
+	// are transferred to the network operation that is created. Use tags to search
+	// and filter your resources or track your Amazon Web Services costs.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateSolNetworkInstanceInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
 	// The type of update.
 	//
 	// UpdateType is a required field
@@ -8962,6 +9033,12 @@ func (s *UpdateSolNetworkInstanceInput) SetNsInstanceId(v string) *UpdateSolNetw
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *UpdateSolNetworkInstanceInput) SetTags(v map[string]*string) *UpdateSolNetworkInstanceInput {
+	s.Tags = v
+	return s
+}
+
 // SetUpdateType sets the UpdateType field's value.
 func (s *UpdateSolNetworkInstanceInput) SetUpdateType(v string) *UpdateSolNetworkInstanceInput {
 	s.UpdateType = &v
@@ -8971,8 +9048,18 @@ func (s *UpdateSolNetworkInstanceInput) SetUpdateType(v string) *UpdateSolNetwor
 type UpdateSolNetworkInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the network instance operation occurrence.
+	// The identifier of the network operation.
 	NsLcmOpOccId *string `locationName:"nsLcmOpOccId" type:"string"`
+
+	// A tag is a label that you assign to an Amazon Web Services resource. Each
+	// tag consists of a key and an optional value. When you use this API, the tags
+	// are transferred to the network operation that is created. Use tags to search
+	// and filter your resources or track your Amazon Web Services costs.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateSolNetworkInstanceOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8996,6 +9083,12 @@ func (s UpdateSolNetworkInstanceOutput) GoString() string {
 // SetNsLcmOpOccId sets the NsLcmOpOccId field's value.
 func (s *UpdateSolNetworkInstanceOutput) SetNsLcmOpOccId(v string) *UpdateSolNetworkInstanceOutput {
 	s.NsLcmOpOccId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateSolNetworkInstanceOutput) SetTags(v map[string]*string) *UpdateSolNetworkInstanceOutput {
+	s.Tags = v
 	return s
 }
 

@@ -505,10 +505,7 @@
     },
     "AppIntegrationsConfiguration":{
       "type":"structure",
-      "required":[
-        "appIntegrationArn",
-        "objectFields"
-      ],
+      "required":["appIntegrationArn"],
       "members":{
         "appIntegrationArn":{"shape":"GenericArn"},
         "objectFields":{"shape":"ObjectFieldsList"}

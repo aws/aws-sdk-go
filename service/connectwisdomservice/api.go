@@ -351,13 +351,18 @@ func (c *ConnectWisdomService) CreateKnowledgeBaseRequest(input *CreateKnowledge
 // DataIntegrations with external knowledge bases such as Salesforce and ServiceNow.
 // If you do, you'll get an InvalidRequestException error.
 //
-//	<p>For example, you're programmatically managing your external knowledge
-//	base, and you want to add or remove one of the fields that is being ingested
-//	from Salesforce. Do the following:</p> <ol> <li> <p>Call <a href="https://docs.aws.amazon.com/wisdom/latest/APIReference/API_DeleteKnowledgeBase.html">DeleteKnowledgeBase</a>.</p>
-//	</li> <li> <p>Call <a href="https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_DeleteDataIntegration.html">DeleteDataIntegration</a>.</p>
-//	</li> <li> <p>Call <a href="https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html">CreateDataIntegration</a>
-//	to recreate the DataIntegration or a create different one.</p> </li> <li>
-//	<p>Call CreateKnowledgeBase.</p> </li> </ol> </note>
+// For example, you're programmatically managing your external knowledge base,
+// and you want to add or remove one of the fields that is being ingested from
+// Salesforce. Do the following:
+//
+// Call DeleteKnowledgeBase (https://docs.aws.amazon.com/wisdom/latest/APIReference/API_DeleteKnowledgeBase.html).
+//
+// Call DeleteDataIntegration (https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_DeleteDataIntegration.html).
+//
+// Call CreateDataIntegration (https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html)
+// to recreate the DataIntegration or a create different one.
+//
+// Call CreateKnowledgeBase.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3202,10 +3207,30 @@ type AppIntegrationsConfiguration struct {
 	// The Amazon Resource Name (ARN) of the AppIntegrations DataIntegration to
 	// use for ingesting content.
 	//
+	//    * For Salesforce (https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/sforce_api_objects_knowledge__kav.htm),
+	//    your AppIntegrations DataIntegration must have an ObjectConfiguration
+	//    if objectFields is not provided, including at least Id, ArticleNumber,
+	//    VersionNumber, Title, PublishStatus, and IsDeleted as source fields.
+	//
+	//    * For ServiceNow (https://developer.servicenow.com/dev.do#!/reference/api/rome/rest/knowledge-management-api),
+	//    your AppIntegrations DataIntegration must have an ObjectConfiguration
+	//    if objectFields is not provided, including at least number, short_description,
+	//    sys_mod_count, workflow_state, and active as source fields.
+	//
+	//    * For Zendesk (https://developer.zendesk.com/api-reference/help_center/help-center-api/articles/),
+	//    your AppIntegrations DataIntegration must have an ObjectConfiguration
+	//    if objectFields is not provided, including at least id, title, updated_at,
+	//    and draft as source fields.
+	//
+	//    * For SharePoint (https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/sharepoint-net-server-csom-jsom-and-rest-api-index),
+	//    your AppIntegrations DataIntegration must have a FileConfiguration, including
+	//    only file extensions that are among docx, pdf, html, htm, and txt.
+	//
 	// AppIntegrationArn is a required field
 	AppIntegrationArn *string `locationName:"appIntegrationArn" min:"1" type:"string" required:"true"`
 
 	// The fields from the source that are made available to your agents in Wisdom.
+	// Optional if ObjectConfiguration is included in the provided DataIntegration.
 	//
 	//    * For Salesforce (https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/sforce_api_objects_knowledge__kav.htm),
 	//    you must include at least Id, ArticleNumber, VersionNumber, Title, PublishStatus,
@@ -3215,11 +3240,12 @@ type AppIntegrationsConfiguration struct {
 	//    you must include at least number, short_description, sys_mod_count, workflow_state,
 	//    and active.
 	//
+	//    * For Zendesk (https://developer.zendesk.com/api-reference/help_center/help-center-api/articles/),
+	//    you must include at least id, title, updated_at, and draft.
+	//
 	// Make sure to include additional fields. These fields are indexed and used
 	// to source recommendations.
-	//
-	// ObjectFields is a required field
-	ObjectFields []*string `locationName:"objectFields" min:"1" type:"list" required:"true"`
+	ObjectFields []*string `locationName:"objectFields" min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -3248,9 +3274,6 @@ func (s *AppIntegrationsConfiguration) Validate() error {
 	}
 	if s.AppIntegrationArn != nil && len(*s.AppIntegrationArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AppIntegrationArn", 1))
-	}
-	if s.ObjectFields == nil {
-		invalidParams.Add(request.NewErrParamRequired("ObjectFields"))
 	}
 	if s.ObjectFields != nil && len(s.ObjectFields) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ObjectFields", 1))
@@ -4215,7 +4238,9 @@ type CreateAssistantAssociationInput struct {
 	AssociationType *string `locationName:"associationType" type:"string" required:"true" enum:"AssociationType"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
@@ -4330,7 +4355,9 @@ type CreateAssistantInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the assistant.
@@ -4472,7 +4499,9 @@ type CreateContentInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The identifier of the knowledge base. Can be either the ID or the ARN. URLs
@@ -4650,7 +4679,9 @@ type CreateKnowledgeBaseInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description.
@@ -4829,7 +4860,9 @@ type CreateSessionInput struct {
 	AssistantId *string `location:"uri" locationName:"assistantId" type:"string" required:"true"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description.
@@ -7660,8 +7693,8 @@ type RenderingConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// A URI template containing exactly one variable in ${variableName} format.
-	// This can only be set for EXTERNAL knowledge bases. For Salesforce and ServiceNow,
-	// the variable must be one of the following:
+	// This can only be set for EXTERNAL knowledge bases. For Salesforce, ServiceNow,
+	// and Zendesk, the variable must be one of the following:
 	//
 	//    * Salesforce: Id, ArticleNumber, VersionNumber, Title, PublishStatus,
 	//    or IsDeleted
@@ -7669,9 +7702,10 @@ type RenderingConfiguration struct {
 	//    * ServiceNow: number, short_description, sys_mod_count, workflow_state,
 	//    or active
 	//
-	//    <p>The variable is replaced with the actual value for a piece of content
-	//    when calling <a href="https://docs.aws.amazon.com/wisdom/latest/APIReference/API_GetContent.html">GetContent</a>.
-	//    </p>
+	//    * Zendesk: id, title, updated_at, or draft
+	//
+	// The variable is replaced with the actual value for a piece of content when
+	// calling GetContent (https://docs.aws.amazon.com/wisdom/latest/APIReference/API_GetContent.html).
 	TemplateUri *string `locationName:"templateUri" min:"1" type:"string"`
 }
 

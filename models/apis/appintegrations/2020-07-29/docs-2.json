@@ -30,7 +30,7 @@
         "CreateDataIntegrationResponse$Arn": "<p>The Amazon Resource Name (ARN)</p>",
         "CreateEventIntegrationResponse$EventIntegrationArn": "<p>The Amazon Resource Name (ARN) of the event integration. </p>",
         "DataIntegrationAssociationSummary$DataIntegrationAssociationArn": "<p>The Amazon Resource Name (ARN) of the DataIntegration association.</p>",
-        "DataIntegrationAssociationSummary$DataIntegrationArn": "<p>The Amazon Resource Name (ARN)of the DataIntegration.</p>",
+        "DataIntegrationAssociationSummary$DataIntegrationArn": "<p>The Amazon Resource Name (ARN) of the DataIntegration.</p>",
         "DataIntegrationSummary$Arn": "<p>The Amazon Resource Name (ARN) of the DataIntegration.</p>",
         "EventIntegration$EventIntegrationArn": "<p>The Amazon Resource Name (ARN) of the event integration.</p>",
         "EventIntegrationAssociation$EventIntegrationAssociationArn": "<p>The Amazon Resource Name (ARN) for the event integration association.</p>",
@@ -50,7 +50,7 @@
     "ClientId": {
       "base": null,
       "refs": {
-        "DataIntegrationAssociationSummary$ClientId": "<p>The identifier for teh client that is associated with the DataIntegration association.</p>",
+        "DataIntegrationAssociationSummary$ClientId": "<p>The identifier for the client that is associated with the DataIntegration association.</p>",
         "EventIntegrationAssociation$ClientId": "<p>The identifier for the client that is associated with the event integration.</p>"
       }
     },
@@ -182,6 +182,39 @@
         "ListEventIntegrationsResponse$EventIntegrations": "<p>The event integrations.</p>"
       }
     },
+    "Fields": {
+      "base": null,
+      "refs": {
+        "FieldsList$member": null
+      }
+    },
+    "FieldsList": {
+      "base": null,
+      "refs": {
+        "FieldsMap$value": null
+      }
+    },
+    "FieldsMap": {
+      "base": null,
+      "refs": {
+        "FileConfiguration$Filters": "<p>Restrictions for what files should be pulled from the source.</p>",
+        "ObjectConfiguration$value": null
+      }
+    },
+    "FileConfiguration": {
+      "base": "<p>The configuration for what files should be pulled from the source.</p>",
+      "refs": {
+        "CreateDataIntegrationRequest$FileConfiguration": "<p>The configuration for what files should be pulled from the source.</p>",
+        "CreateDataIntegrationResponse$FileConfiguration": "<p>The configuration for what files should be pulled from the source.</p>",
+        "GetDataIntegrationResponse$FileConfiguration": "<p>The configuration for what files should be pulled from the source.</p>"
+      }
+    },
+    "FolderList": {
+      "base": null,
+      "refs": {
+        "FileConfiguration$Folders": "<p>Identifiers for the source folders to pull all files from recursively.</p>"
+      }
+    },
     "GetDataIntegrationRequest": {
       "base": null,
       "refs": {
@@ -205,9 +238,9 @@
     "IdempotencyToken": {
       "base": null,
       "refs": {
-        "CreateDataIntegrationRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
-        "CreateDataIntegrationResponse$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
-        "CreateEventIntegrationRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+        "CreateDataIntegrationRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
+        "CreateDataIntegrationResponse$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
+        "CreateEventIntegrationRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>"
       }
     },
     "Identifier": {
@@ -331,25 +364,38 @@
         "ListEventIntegrationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
       }
     },
+    "NonBlankLongString": {
+      "base": null,
+      "refs": {
+        "FolderList$member": null
+      }
+    },
     "NonBlankString": {
       "base": null,
       "refs": {
         "ClientAssociationMetadata$key": null,
         "ClientAssociationMetadata$value": null,
         "CreateDataIntegrationRequest$KmsKey": "<p>The KMS key for the DataIntegration.</p>",
-        "CreateDataIntegrationRequest$SourceURI": "<p>The URI of the data source.</p>",
         "CreateDataIntegrationResponse$KmsKey": "<p>The KMS key for the DataIntegration.</p>",
-        "CreateDataIntegrationResponse$SourceURI": "<p>The URI of the data source.</p>",
-        "DataIntegrationSummary$SourceURI": "<p>The URI of the data source.</p>",
+        "FieldsMap$key": null,
         "GetDataIntegrationResponse$KmsKey": "<p>The KMS key for the DataIntegration.</p>",
-        "GetDataIntegrationResponse$SourceURI": "<p>The URI of the data source.</p>",
-        "ScheduleConfiguration$FirstExecutionFrom": "<p>The start date for objects to import in the first flow run.</p>"
+        "ObjectConfiguration$key": null,
+        "ScheduleConfiguration$FirstExecutionFrom": "<p>The start date for objects to import in the first flow run as an Unix/epoch timestamp in milliseconds or in ISO-8601 format.</p>",
+        "ScheduleConfiguration$ScheduleExpression": "<p>How often the data should be pulled from data source.</p>"
       }
     },
     "Object": {
       "base": null,
       "refs": {
         "ScheduleConfiguration$Object": "<p>The name of the object to pull from the data source.</p>"
+      }
+    },
+    "ObjectConfiguration": {
+      "base": "<p>The configuration for what data should be pulled from the source.</p>",
+      "refs": {
+        "CreateDataIntegrationRequest$ObjectConfiguration": "<p>The configuration for what data should be pulled from the source.</p>",
+        "CreateDataIntegrationResponse$ObjectConfiguration": "<p>The configuration for what data should be pulled from the source.</p>",
+        "GetDataIntegrationResponse$ObjectConfiguration": "<p>The configuration for what data should be pulled from the source.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -360,12 +406,6 @@
     "ResourceQuotaExceededException": {
       "base": "<p>The allowed quota for the resource has been exceeded.</p>",
       "refs": {
-      }
-    },
-    "Schedule": {
-      "base": null,
-      "refs": {
-        "ScheduleConfiguration$ScheduleExpression": "<p>How often the data should be pulled from data source.</p>"
       }
     },
     "ScheduleConfiguration": {
@@ -380,6 +420,15 @@
       "base": null,
       "refs": {
         "EventFilter$Source": "<p>The source of the events.</p>"
+      }
+    },
+    "SourceURI": {
+      "base": null,
+      "refs": {
+        "CreateDataIntegrationRequest$SourceURI": "<p>The URI of the data source.</p>",
+        "CreateDataIntegrationResponse$SourceURI": "<p>The URI of the data source.</p>",
+        "DataIntegrationSummary$SourceURI": "<p>The URI of the data source.</p>",
+        "GetDataIntegrationResponse$SourceURI": "<p>The URI of the data source.</p>"
       }
     },
     "TagKey": {
@@ -398,14 +447,14 @@
     "TagMap": {
       "base": null,
       "refs": {
-        "CreateDataIntegrationRequest$Tags": "<p>One or more tags.</p>",
-        "CreateDataIntegrationResponse$Tags": "<p>One or more tags.</p>",
-        "CreateEventIntegrationRequest$Tags": "<p>One or more tags.</p>",
-        "EventIntegration$Tags": "<p>The tags.</p>",
-        "GetDataIntegrationResponse$Tags": "<p>One or more tags.</p>",
-        "GetEventIntegrationResponse$Tags": "<p>One or more tags.</p>",
+        "CreateDataIntegrationRequest$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "CreateDataIntegrationResponse$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "CreateEventIntegrationRequest$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "EventIntegration$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "GetDataIntegrationResponse$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "GetEventIntegrationResponse$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "ListTagsForResourceResponse$tags": "<p>Information about the tags.</p>",
-        "TagResourceRequest$tags": "<p>One or more tags. </p>"
+        "TagResourceRequest$tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>"
       }
     },
     "TagResourceRequest": {
