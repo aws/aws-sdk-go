@@ -206,6 +206,20 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "DeleteBucketReplication":{
+      "name":"DeleteBucketReplication",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/bucket/{name}/replication"
+      },
+      "input":{"shape":"DeleteBucketReplicationRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "DeleteBucketTagging":{
       "name":"DeleteBucketTagging",
       "http":{
@@ -484,6 +498,21 @@
       },
       "input":{"shape":"GetBucketPolicyRequest"},
       "output":{"shape":"GetBucketPolicyResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetBucketReplication":{
+      "name":"GetBucketReplication",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/bucket/{name}/replication"
+      },
+      "input":{"shape":"GetBucketReplicationRequest"},
+      "output":{"shape":"GetBucketReplicationResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
@@ -837,6 +866,21 @@
         "RequiresAccountId":{"value":true}
       }
     },
+    "PutBucketReplication":{
+      "name":"PutBucketReplication",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/bucket/{name}/replication"
+      },
+      "input":{"shape":"PutBucketReplicationRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
     "PutBucketTagging":{
       "name":"PutBucketTagging",
       "http":{
@@ -1034,6 +1078,13 @@
         "DaysAfterInitiation":{"shape":"DaysAfterInitiation"}
       }
     },
+    "AccessControlTranslation":{
+      "type":"structure",
+      "required":["Owner"],
+      "members":{
+        "Owner":{"shape":"OwnerOverride"}
+      }
+    },
     "AccessPoint":{
       "type":"structure",
       "required":[
@@ -1060,7 +1111,7 @@
     },
     "AccessPointName":{
       "type":"string",
-      "max":63,
+      "max":255,
       "min":3
     },
     "AccountId":{
@@ -1197,6 +1248,7 @@
         "authenticated-read"
       ]
     },
+    "BucketIdentifierString":{"type":"string"},
     "BucketLevel":{
       "type":"structure",
       "members":{
@@ -1619,6 +1671,28 @@
         }
       }
     },
+    "DeleteBucketReplicationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Bucket"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
     "DeleteBucketRequest":{
       "type":"structure",
       "required":[
@@ -1688,6 +1762,20 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DeleteMarkerReplication":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"DeleteMarkerReplicationStatus"}
+      }
+    },
+    "DeleteMarkerReplicationStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
     },
     "DeleteMultiRegionAccessPointInput":{
       "type":"structure",
@@ -1838,10 +1926,32 @@
         "AsyncOperation":{"shape":"AsyncOperation"}
       }
     },
+    "Destination":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Account":{"shape":"AccountId"},
+        "Bucket":{"shape":"BucketIdentifierString"},
+        "ReplicationTime":{"shape":"ReplicationTime"},
+        "AccessControlTranslation":{"shape":"AccessControlTranslation"},
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "Metrics":{"shape":"Metrics"},
+        "StorageClass":{"shape":"ReplicationStorageClass"}
+      }
+    },
     "DetailedStatusCodesMetrics":{
       "type":"structure",
       "members":{
         "IsEnabled":{"shape":"IsEnabled"}
+      }
+    },
+    "EncryptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "ReplicaKmsKeyID":{
+          "shape":"ReplicaKmsKeyID",
+          "box":true
+        }
       }
     },
     "Endpoints":{
@@ -1866,6 +1976,20 @@
         "Buckets":{"shape":"Buckets"},
         "Regions":{"shape":"Regions"}
       }
+    },
+    "ExistingObjectReplication":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"ExistingObjectReplicationStatus"}
+      }
+    },
+    "ExistingObjectReplicationStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
     },
     "ExpirationStatus":{
       "type":"string",
@@ -2162,6 +2286,34 @@
       "type":"structure",
       "members":{
         "Policy":{"shape":"Policy"}
+      }
+    },
+    "GetBucketReplicationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Bucket"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetBucketReplicationResult":{
+      "type":"structure",
+      "members":{
+        "ReplicationConfiguration":{"shape":"ReplicationConfiguration"}
       }
     },
     "GetBucketRequest":{
@@ -3178,11 +3330,27 @@
       "max":1000,
       "min":0
     },
+    "Metrics":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"MetricsStatus"},
+        "EventThreshold":{"shape":"ReplicationTimeValue"}
+      }
+    },
+    "MetricsStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "MinStorageBytesPercentage":{
       "type":"double",
       "max":100,
       "min":0.1
     },
+    "Minutes":{"type":"integer"},
     "MultiRegionAccessPointAlias":{
       "type":"string",
       "max":63,
@@ -3462,6 +3630,10 @@
       "type":"string",
       "enum":["V_1"]
     },
+    "OwnerOverride":{
+      "type":"string",
+      "enum":["Destination"]
+    },
     "Policy":{"type":"string"},
     "PolicyStatus":{
       "type":"structure",
@@ -3487,6 +3659,7 @@
         "SelectionCriteria":{"shape":"SelectionCriteria"}
       }
     },
+    "Priority":{"type":"integer"},
     "ProposedMultiRegionAccessPointPolicy":{
       "type":"structure",
       "members":{
@@ -3641,6 +3814,35 @@
         },
         "Policy":{"shape":"Policy"}
       }
+    },
+    "PutBucketReplicationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Bucket",
+        "ReplicationConfiguration"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
+          "location":"uri",
+          "locationName":"name"
+        },
+        "ReplicationConfiguration":{
+          "shape":"ReplicationConfiguration",
+          "locationName":"ReplicationConfiguration",
+          "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+        }
+      },
+      "payload":"ReplicationConfiguration"
     },
     "PutBucketTaggingRequest":{
       "type":"structure",
@@ -3850,7 +4052,8 @@
       "type":"structure",
       "required":["Bucket"],
       "members":{
-        "Bucket":{"shape":"BucketName"}
+        "Bucket":{"shape":"BucketName"},
+        "BucketAccountId":{"shape":"AccountId"}
       }
     },
     "RegionCreationList":{
@@ -3869,7 +4072,8 @@
       "type":"structure",
       "members":{
         "Bucket":{"shape":"BucketName"},
-        "Region":{"shape":"RegionName"}
+        "Region":{"shape":"RegionName"},
+        "BucketAccountId":{"shape":"AccountId"}
       }
     },
     "RegionReportList":{
@@ -3908,6 +4112,88 @@
         "locationName":"Region"
       }
     },
+    "ReplicaKmsKeyID":{"type":"string"},
+    "ReplicaModifications":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"ReplicaModificationsStatus"}
+      }
+    },
+    "ReplicaModificationsStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "ReplicationConfiguration":{
+      "type":"structure",
+      "required":[
+        "Role",
+        "Rules"
+      ],
+      "members":{
+        "Role":{"shape":"Role"},
+        "Rules":{"shape":"ReplicationRules"}
+      }
+    },
+    "ReplicationRule":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "Destination",
+        "Bucket"
+      ],
+      "members":{
+        "ID":{"shape":"ID"},
+        "Priority":{
+          "shape":"Priority",
+          "box":true
+        },
+        "Prefix":{
+          "shape":"Prefix",
+          "deprecated":true,
+          "deprecatedMessage":"Prefix has been deprecated"
+        },
+        "Filter":{"shape":"ReplicationRuleFilter"},
+        "Status":{"shape":"ReplicationRuleStatus"},
+        "SourceSelectionCriteria":{"shape":"SourceSelectionCriteria"},
+        "ExistingObjectReplication":{"shape":"ExistingObjectReplication"},
+        "Destination":{"shape":"Destination"},
+        "DeleteMarkerReplication":{"shape":"DeleteMarkerReplication"},
+        "Bucket":{"shape":"BucketIdentifierString"}
+      }
+    },
+    "ReplicationRuleAndOperator":{
+      "type":"structure",
+      "members":{
+        "Prefix":{"shape":"Prefix"},
+        "Tags":{"shape":"S3TagSet"}
+      }
+    },
+    "ReplicationRuleFilter":{
+      "type":"structure",
+      "members":{
+        "Prefix":{"shape":"Prefix"},
+        "Tag":{"shape":"S3Tag"},
+        "And":{"shape":"ReplicationRuleAndOperator"}
+      }
+    },
+    "ReplicationRuleStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "ReplicationRules":{
+      "type":"list",
+      "member":{
+        "shape":"ReplicationRule",
+        "locationName":"Rule"
+      }
+    },
     "ReplicationStatus":{
       "type":"string",
       "enum":[
@@ -3921,6 +4207,47 @@
       "type":"list",
       "member":{"shape":"ReplicationStatus"}
     },
+    "ReplicationStorageClass":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "REDUCED_REDUNDANCY",
+        "STANDARD_IA",
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING",
+        "GLACIER",
+        "DEEP_ARCHIVE",
+        "OUTPOSTS",
+        "GLACIER_IR"
+      ]
+    },
+    "ReplicationTime":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "Time"
+      ],
+      "members":{
+        "Status":{"shape":"ReplicationTimeStatus"},
+        "Time":{"shape":"ReplicationTimeValue"}
+      }
+    },
+    "ReplicationTimeStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "ReplicationTimeValue":{
+      "type":"structure",
+      "members":{
+        "Minutes":{
+          "shape":"Minutes",
+          "box":true
+        }
+      }
+    },
     "ReportPrefixString":{
       "type":"string",
       "max":512,
@@ -3933,6 +4260,7 @@
         "Ready"
       ]
     },
+    "Role":{"type":"string"},
     "RouteList":{
       "type":"list",
       "member":{
@@ -4347,6 +4675,27 @@
       }
     },
     "Setting":{"type":"boolean"},
+    "SourceSelectionCriteria":{
+      "type":"structure",
+      "members":{
+        "SseKmsEncryptedObjects":{"shape":"SseKmsEncryptedObjects"},
+        "ReplicaModifications":{"shape":"ReplicaModifications"}
+      }
+    },
+    "SseKmsEncryptedObjects":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"SseKmsEncryptedObjectsStatus"}
+      }
+    },
+    "SseKmsEncryptedObjectsStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "StorageLensArn":{
       "type":"string",
       "max":1024,

@@ -108,6 +108,10 @@ type S3ControlAPI interface {
 	DeleteBucketPolicyWithContext(aws.Context, *s3control.DeleteBucketPolicyInput, ...request.Option) (*s3control.DeleteBucketPolicyOutput, error)
 	DeleteBucketPolicyRequest(*s3control.DeleteBucketPolicyInput) (*request.Request, *s3control.DeleteBucketPolicyOutput)
 
+	DeleteBucketReplication(*s3control.DeleteBucketReplicationInput) (*s3control.DeleteBucketReplicationOutput, error)
+	DeleteBucketReplicationWithContext(aws.Context, *s3control.DeleteBucketReplicationInput, ...request.Option) (*s3control.DeleteBucketReplicationOutput, error)
+	DeleteBucketReplicationRequest(*s3control.DeleteBucketReplicationInput) (*request.Request, *s3control.DeleteBucketReplicationOutput)
+
 	DeleteBucketTagging(*s3control.DeleteBucketTaggingInput) (*s3control.DeleteBucketTaggingOutput, error)
 	DeleteBucketTaggingWithContext(aws.Context, *s3control.DeleteBucketTaggingInput, ...request.Option) (*s3control.DeleteBucketTaggingOutput, error)
 	DeleteBucketTaggingRequest(*s3control.DeleteBucketTaggingInput) (*request.Request, *s3control.DeleteBucketTaggingOutput)
@@ -179,6 +183,10 @@ type S3ControlAPI interface {
 	GetBucketPolicy(*s3control.GetBucketPolicyInput) (*s3control.GetBucketPolicyOutput, error)
 	GetBucketPolicyWithContext(aws.Context, *s3control.GetBucketPolicyInput, ...request.Option) (*s3control.GetBucketPolicyOutput, error)
 	GetBucketPolicyRequest(*s3control.GetBucketPolicyInput) (*request.Request, *s3control.GetBucketPolicyOutput)
+
+	GetBucketReplication(*s3control.GetBucketReplicationInput) (*s3control.GetBucketReplicationOutput, error)
+	GetBucketReplicationWithContext(aws.Context, *s3control.GetBucketReplicationInput, ...request.Option) (*s3control.GetBucketReplicationOutput, error)
+	GetBucketReplicationRequest(*s3control.GetBucketReplicationInput) (*request.Request, *s3control.GetBucketReplicationOutput)
 
 	GetBucketTagging(*s3control.GetBucketTaggingInput) (*s3control.GetBucketTaggingOutput, error)
 	GetBucketTaggingWithContext(aws.Context, *s3control.GetBucketTaggingInput, ...request.Option) (*s3control.GetBucketTaggingOutput, error)
@@ -281,6 +289,10 @@ type S3ControlAPI interface {
 	PutBucketPolicy(*s3control.PutBucketPolicyInput) (*s3control.PutBucketPolicyOutput, error)
 	PutBucketPolicyWithContext(aws.Context, *s3control.PutBucketPolicyInput, ...request.Option) (*s3control.PutBucketPolicyOutput, error)
 	PutBucketPolicyRequest(*s3control.PutBucketPolicyInput) (*request.Request, *s3control.PutBucketPolicyOutput)
+
+	PutBucketReplication(*s3control.PutBucketReplicationInput) (*s3control.PutBucketReplicationOutput, error)
+	PutBucketReplicationWithContext(aws.Context, *s3control.PutBucketReplicationInput, ...request.Option) (*s3control.PutBucketReplicationOutput, error)
+	PutBucketReplicationRequest(*s3control.PutBucketReplicationInput) (*request.Request, *s3control.PutBucketReplicationOutput)
 
 	PutBucketTagging(*s3control.PutBucketTaggingInput) (*s3control.PutBucketTaggingOutput, error)
 	PutBucketTaggingWithContext(aws.Context, *s3control.PutBucketTaggingInput, ...request.Option) (*s3control.PutBucketTaggingOutput, error)

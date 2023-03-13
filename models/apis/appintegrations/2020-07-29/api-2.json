@@ -278,18 +278,25 @@
     },
     "CreateDataIntegrationRequest":{
       "type":"structure",
-      "required":["Name"],
+      "required":[
+        "Name",
+        "KmsKey",
+        "SourceURI",
+        "ScheduleConfig"
+      ],
       "members":{
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "KmsKey":{"shape":"NonBlankString"},
-        "SourceURI":{"shape":"NonBlankString"},
+        "SourceURI":{"shape":"SourceURI"},
         "ScheduleConfig":{"shape":"ScheduleConfiguration"},
         "Tags":{"shape":"TagMap"},
         "ClientToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
-        }
+        },
+        "FileConfiguration":{"shape":"FileConfiguration"},
+        "ObjectConfiguration":{"shape":"ObjectConfiguration"}
       }
     },
     "CreateDataIntegrationResponse":{
@@ -300,10 +307,12 @@
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "KmsKey":{"shape":"NonBlankString"},
-        "SourceURI":{"shape":"NonBlankString"},
+        "SourceURI":{"shape":"SourceURI"},
         "ScheduleConfiguration":{"shape":"ScheduleConfiguration"},
         "Tags":{"shape":"TagMap"},
-        "ClientToken":{"shape":"IdempotencyToken"}
+        "ClientToken":{"shape":"IdempotencyToken"},
+        "FileConfiguration":{"shape":"FileConfiguration"},
+        "ObjectConfiguration":{"shape":"ObjectConfiguration"}
       }
     },
     "CreateEventIntegrationRequest":{
@@ -350,7 +359,7 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "Name":{"shape":"Name"},
-        "SourceURI":{"shape":"NonBlankString"}
+        "SourceURI":{"shape":"SourceURI"}
       }
     },
     "DataIntegrationsList":{
@@ -458,6 +467,37 @@
       "max":50,
       "min":1
     },
+    "Fields":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\/\\._\\-]+$"
+    },
+    "FieldsList":{
+      "type":"list",
+      "member":{"shape":"Fields"},
+      "max":2048,
+      "min":1
+    },
+    "FieldsMap":{
+      "type":"map",
+      "key":{"shape":"NonBlankString"},
+      "value":{"shape":"FieldsList"}
+    },
+    "FileConfiguration":{
+      "type":"structure",
+      "required":["Folders"],
+      "members":{
+        "Folders":{"shape":"FolderList"},
+        "Filters":{"shape":"FieldsMap"}
+      }
+    },
+    "FolderList":{
+      "type":"list",
+      "member":{"shape":"NonBlankLongString"},
+      "max":10,
+      "min":1
+    },
     "GetDataIntegrationRequest":{
       "type":"structure",
       "required":["Identifier"],
@@ -477,9 +517,11 @@
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "KmsKey":{"shape":"NonBlankString"},
-        "SourceURI":{"shape":"NonBlankString"},
+        "SourceURI":{"shape":"SourceURI"},
         "ScheduleConfiguration":{"shape":"ScheduleConfiguration"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "FileConfiguration":{"shape":"FileConfiguration"},
+        "ObjectConfiguration":{"shape":"ObjectConfiguration"}
       }
     },
     "GetEventIntegrationRequest":{
@@ -668,6 +710,12 @@
       "min":1,
       "pattern":".*"
     },
+    "NonBlankLongString":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
     "NonBlankString":{
       "type":"string",
       "max":255,
@@ -679,6 +727,11 @@
       "max":255,
       "min":1,
       "pattern":"^[a-zA-Z0-9\\/\\._\\-]+$"
+    },
+    "ObjectConfiguration":{
+      "type":"map",
+      "key":{"shape":"NonBlankString"},
+      "value":{"shape":"FieldsMap"}
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -696,18 +749,13 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
-    "Schedule":{
-      "type":"string",
-      "max":255,
-      "min":1,
-      "pattern":"^[a-zA-Z0-9\\/\\._\\-]+$"
-    },
     "ScheduleConfiguration":{
       "type":"structure",
+      "required":["ScheduleExpression"],
       "members":{
         "FirstExecutionFrom":{"shape":"NonBlankString"},
         "Object":{"shape":"Object"},
-        "ScheduleExpression":{"shape":"Schedule"}
+        "ScheduleExpression":{"shape":"NonBlankString"}
       }
     },
     "Source":{
@@ -715,6 +763,12 @@
       "max":256,
       "min":1,
       "pattern":"^aws\\.partner\\/.*$"
+    },
+    "SourceURI":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"^(\\w+\\:\\/\\/[\\w.-]+[\\w/!@#+=.-]+$)|(\\w+\\:\\/\\/[\\w.-]+[\\w/!@#+=.-]+[\\w/!@#+=.-]+[\\w/!@#+=.,-]+$)"
     },
     "TagKey":{
       "type":"string",

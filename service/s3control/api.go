@@ -1214,6 +1214,122 @@ func (c *S3Control) DeleteBucketPolicyWithContext(ctx aws.Context, input *Delete
 	return out, req.Send()
 }
 
+const opDeleteBucketReplication = "DeleteBucketReplication"
+
+// DeleteBucketReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBucketReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBucketReplication for more information on using the DeleteBucketReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteBucketReplicationRequest method.
+//	req, resp := client.DeleteBucketReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketReplication
+func (c *S3Control) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput) (req *request.Request, output *DeleteBucketReplicationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBucketReplication,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/bucket/{name}/replication",
+	}
+
+	if input == nil {
+		input = &DeleteBucketReplicationInput{}
+	}
+
+	output = &DeleteBucketReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteBucketReplication API operation for AWS S3 Control.
+//
+// This operation deletes an Amazon S3 on Outposts bucket's replication configuration.
+// To delete an S3 bucket's replication configuration, see DeleteBucketReplication
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html)
+// in the Amazon S3 API Reference.
+//
+// Deletes the replication configuration from the specified S3 on Outposts bucket.
+//
+// To use this operation, you must have permissions to perform the s3-outposts:PutReplicationConfiguration
+// action. The Outposts bucket owner has this permission by default and can
+// grant it to others. For more information about permissions, see Setting up
+// IAM with S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html)
+// and Managing access to S3 on Outposts buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html)
+// in the Amazon S3 User Guide.
+//
+// It can take a while to propagate PUT or DELETE requests for a replication
+// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+// that's returned by a GET request soon after a PUT or DELETE request might
+// return a more recent result than what's on the Outpost. If an Outpost is
+// offline, the delay in updating the replication configuration on that Outpost
+// can be significant.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html#API_control_DeleteBucketReplication_Examples)
+// section.
+//
+// For information about S3 replication on Outposts configuration, see Replicating
+// objects for Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)
+// in the Amazon S3 User Guide.
+//
+// The following operations are related to DeleteBucketReplication:
+//
+//   - PutBucketReplication (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html)
+//
+//   - GetBucketReplication (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteBucketReplication for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketReplication
+func (c *S3Control) DeleteBucketReplication(input *DeleteBucketReplicationInput) (*DeleteBucketReplicationOutput, error) {
+	req, out := c.DeleteBucketReplicationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBucketReplicationWithContext is the same as DeleteBucketReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBucketReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteBucketReplicationWithContext(ctx aws.Context, input *DeleteBucketReplicationInput, opts ...request.Option) (*DeleteBucketReplicationOutput, error) {
+	req, out := c.DeleteBucketReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteBucketTagging = "DeleteBucketTagging"
 
 // DeleteBucketTaggingRequest generates a "aws/request.Request" representing the
@@ -1364,9 +1480,9 @@ func (c *S3Control) DeleteJobTaggingRequest(input *DeleteJobTaggingInput) (req *
 // DeleteJobTagging API operation for AWS S3 Control.
 //
 // Removes the entire tag set from the specified S3 Batch Operations job. To
-// use this operation, you must have permission to perform the s3:DeleteJobTagging
-// action. For more information, see Controlling access and labeling jobs using
-// tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
+// use the DeleteJobTagging operation, you must have permission to perform the
+// s3:DeleteJobTagging action. For more information, see Controlling access
+// and labeling jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -2869,6 +2985,129 @@ func (c *S3Control) GetBucketPolicyWithContext(ctx aws.Context, input *GetBucket
 	return out, req.Send()
 }
 
+const opGetBucketReplication = "GetBucketReplication"
+
+// GetBucketReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucketReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucketReplication for more information on using the GetBucketReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetBucketReplicationRequest method.
+//	req, resp := client.GetBucketReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketReplication
+func (c *S3Control) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req *request.Request, output *GetBucketReplicationOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketReplication,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/bucket/{name}/replication",
+	}
+
+	if input == nil {
+		input = &GetBucketReplicationInput{}
+	}
+
+	output = &GetBucketReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetBucketReplication API operation for AWS S3 Control.
+//
+// This operation gets an Amazon S3 on Outposts bucket's replication configuration.
+// To get an S3 bucket's replication configuration, see GetBucketReplication
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html)
+// in the Amazon S3 API Reference.
+//
+// Returns the replication configuration of an S3 on Outposts bucket. For more
+// information about S3 on Outposts, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+// in the Amazon S3 User Guide. For information about S3 replication on Outposts
+// configuration, see Replicating objects for Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)
+// in the Amazon S3 User Guide.
+//
+// It can take a while to propagate PUT or DELETE requests for a replication
+// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+// that's returned by a GET request soon after a PUT or DELETE request might
+// return a more recent result than what's on the Outpost. If an Outpost is
+// offline, the delay in updating the replication configuration on that Outpost
+// can be significant.
+//
+// This action requires permissions for the s3-outposts:GetReplicationConfiguration
+// action. The Outposts bucket owner has this permission by default and can
+// grant it to others. For more information about permissions, see Setting up
+// IAM with S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html)
+// and Managing access to S3 on Outposts bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html)
+// in the Amazon S3 User Guide.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html#API_control_GetBucketReplication_Examples)
+// section.
+//
+// If you include the Filter element in a replication configuration, you must
+// also include the DeleteMarkerReplication, Status, and Priority elements.
+// The response also returns those elements.
+//
+// For information about S3 on Outposts replication failure reasons, see Replication
+// failure reasons (https://docs.aws.amazon.com/AmazonS3/latest/userguide/outposts-replication-eventbridge.html#outposts-replication-failure-codes)
+// in the Amazon S3 User Guide.
+//
+// The following operations are related to GetBucketReplication:
+//
+//   - PutBucketReplication (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html)
+//
+//   - DeleteBucketReplication (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetBucketReplication for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketReplication
+func (c *S3Control) GetBucketReplication(input *GetBucketReplicationInput) (*GetBucketReplicationOutput, error) {
+	req, out := c.GetBucketReplicationRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketReplicationWithContext is the same as GetBucketReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucketReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetBucketReplicationWithContext(ctx aws.Context, input *GetBucketReplicationInput, opts ...request.Option) (*GetBucketReplicationOutput, error) {
+	req, out := c.GetBucketReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetBucketTagging = "GetBucketTagging"
 
 // GetBucketTaggingRequest generates a "aws/request.Request" representing the
@@ -3024,13 +3263,13 @@ func (c *S3Control) GetBucketVersioningRequest(input *GetBucketVersioningInput) 
 
 // GetBucketVersioning API operation for AWS S3 Control.
 //
-// This operation returns the versioning state only for S3 on Outposts buckets.
+// This operation returns the versioning state for S3 on Outposts buckets only.
 // To return the versioning state for an S3 bucket, see GetBucketVersioning
 // (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html)
 // in the Amazon S3 API Reference.
 //
-// Returns the versioning state for an S3 on Outposts bucket. With versioning,
-// you can save multiple distinct copies of your data and recover from unintended
+// Returns the versioning state for an S3 on Outposts bucket. With S3 Versioning,
+// you can save multiple distinct copies of your objects and recover from unintended
 // user actions and application failures.
 //
 // If you've never set versioning on your bucket, it has no versioning state.
@@ -3129,9 +3368,10 @@ func (c *S3Control) GetJobTaggingRequest(input *GetJobTaggingInput) (req *reques
 
 // GetJobTagging API operation for AWS S3 Control.
 //
-// Returns the tags on an S3 Batch Operations job. To use this operation, you
-// must have permission to perform the s3:GetJobTagging action. For more information,
-// see Controlling access and labeling jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
+// Returns the tags on an S3 Batch Operations job. To use the GetJobTagging
+// operation, you must have permission to perform the s3:GetJobTagging action.
+// For more information, see Controlling access and labeling jobs using tags
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -3860,11 +4100,12 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 
 // ListAccessPoints API operation for AWS S3 Control.
 //
-// Returns a list of the access points owned by the current account associated
-// with the specified bucket. You can retrieve up to 1000 access points per
-// call. If the specified bucket has more than 1,000 access points (or the number
-// specified in maxResults, whichever is less), the response will include a
-// continuation token that you can use to list the additional access points.
+// Returns a list of the access points that are owned by the current account
+// that's associated with the specified bucket. You can retrieve up to 1000
+// access points per call. If the specified bucket has more than 1,000 access
+// points (or the number specified in maxResults, whichever is less), the response
+// will include a continuation token that you can use to list the additional
+// access points.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
 // parameter of x-amz-outpost-id to be passed with the request. In addition,
@@ -5176,6 +5417,169 @@ func (c *S3Control) PutBucketPolicyWithContext(ctx aws.Context, input *PutBucket
 	return out, req.Send()
 }
 
+const opPutBucketReplication = "PutBucketReplication"
+
+// PutBucketReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the PutBucketReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBucketReplication for more information on using the PutBucketReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutBucketReplicationRequest method.
+//	req, resp := client.PutBucketReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketReplication
+func (c *S3Control) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req *request.Request, output *PutBucketReplicationOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketReplication,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/bucket/{name}/replication",
+	}
+
+	if input == nil {
+		input = &PutBucketReplicationInput{}
+	}
+
+	output = &PutBucketReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutBucketReplication API operation for AWS S3 Control.
+//
+// This action creates an Amazon S3 on Outposts bucket's replication configuration.
+// To create an S3 bucket's replication configuration, see PutBucketReplication
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html)
+// in the Amazon S3 API Reference.
+//
+// Creates a replication configuration or replaces an existing one. For information
+// about S3 replication on Outposts configuration, see Replicating objects for
+// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AmazonS3/latest/userguide/S3OutpostsReplication.html)
+// in the Amazon S3 User Guide.
+//
+// It can take a while to propagate PUT or DELETE requests for a replication
+// configuration to all S3 on Outposts systems. Therefore, the replication configuration
+// that's returned by a GET request soon after a PUT or DELETE request might
+// return a more recent result than what's on the Outpost. If an Outpost is
+// offline, the delay in updating the replication configuration on that Outpost
+// can be significant.
+//
+// Specify the replication configuration in the request body. In the replication
+// configuration, you provide the following information:
+//
+//   - The name of the destination bucket or buckets where you want S3 on Outposts
+//     to replicate objects
+//
+//   - The Identity and Access Management (IAM) role that S3 on Outposts can
+//     assume to replicate objects on your behalf
+//
+//   - Other relevant information, such as replication rules
+//
+// A replication configuration must include at least one rule and can contain
+// a maximum of 100. Each rule identifies a subset of objects to replicate by
+// filtering the objects in the source Outposts bucket. To choose additional
+// subsets of objects to replicate, add a rule for each subset.
+//
+// To specify a subset of the objects in the source Outposts bucket to apply
+// a replication rule to, add the Filter element as a child of the Rule element.
+// You can filter objects based on an object key prefix, one or more object
+// tags, or both. When you add the Filter element in the configuration, you
+// must also add the following elements: DeleteMarkerReplication, Status, and
+// Priority.
+//
+// Using PutBucketReplication on Outposts requires that both the source and
+// destination buckets must have versioning enabled. For information about enabling
+// versioning on a bucket, see Managing S3 Versioning for your S3 on Outposts
+// bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsManagingVersioning.html).
+//
+// For information about S3 on Outposts replication failure reasons, see Replication
+// failure reasons (https://docs.aws.amazon.com/AmazonS3/latest/userguide/outposts-replication-eventbridge.html#outposts-replication-failure-codes)
+// in the Amazon S3 User Guide.
+//
+// # Handling Replication of Encrypted Objects
+//
+// Outposts buckets are encrypted at all times. All the objects in the source
+// Outposts bucket are encrypted and can be replicated. Also, all the replicas
+// in the destination Outposts bucket are encrypted with the same encryption
+// key as the objects in the source Outposts bucket.
+//
+// # Permissions
+//
+// To create a PutBucketReplication request, you must have s3-outposts:PutReplicationConfiguration
+// permissions for the bucket. The Outposts bucket owner has this permission
+// by default and can grant it to others. For more information about permissions,
+// see Setting up IAM with S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html)
+// and Managing access to S3 on Outposts buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html).
+//
+// To perform this operation, the user or role must also have the iam:PassRole
+// (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html)
+// permission.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of x-amz-outpost-id to be passed with the request. In addition,
+// you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples)
+// section.
+//
+// The following operations are related to PutBucketReplication:
+//
+//   - GetBucketReplication (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html)
+//
+//   - DeleteBucketReplication (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutBucketReplication for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketReplication
+func (c *S3Control) PutBucketReplication(input *PutBucketReplicationInput) (*PutBucketReplicationOutput, error) {
+	req, out := c.PutBucketReplicationRequest(input)
+	return out, req.Send()
+}
+
+// PutBucketReplicationWithContext is the same as PutBucketReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBucketReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutBucketReplicationWithContext(ctx aws.Context, input *PutBucketReplicationInput, opts ...request.Option) (*PutBucketReplicationOutput, error) {
+	req, out := c.PutBucketReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutBucketTagging = "PutBucketTagging"
 
 // PutBucketTaggingRequest generates a "aws/request.Request" representing the
@@ -5368,12 +5772,12 @@ func (c *S3Control) PutBucketVersioningRequest(input *PutBucketVersioningInput) 
 
 // PutBucketVersioning API operation for AWS S3 Control.
 //
-// This operation sets the versioning state only for S3 on Outposts buckets.
+// This operation sets the versioning state for S3 on Outposts buckets only.
 // To set the versioning state for an S3 bucket, see PutBucketVersioning (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html)
 // in the Amazon S3 API Reference.
 //
-// Sets the versioning state for an S3 on Outposts bucket. With versioning,
-// you can save multiple distinct copies of your data and recover from unintended
+// Sets the versioning state for an S3 on Outposts bucket. With S3 Versioning,
+// you can save multiple distinct copies of your objects and recover from unintended
 // user actions and application failures.
 //
 // You can set the versioning state to one of the following:
@@ -5398,7 +5802,7 @@ func (c *S3Control) PutBucketVersioningRequest(input *PutBucketVersioningInput) 
 // If you have an object expiration lifecycle policy in your non-versioned bucket
 // and you want to maintain the same permanent delete behavior when you enable
 // versioning, you must add a noncurrent expiration policy. The noncurrent expiration
-// lifecycle policy will manage the deletes of the noncurrent object versions
+// lifecycle policy will manage the deletions of the noncurrent object versions
 // in the version-enabled bucket. For more information, see Versioning (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html)
 // in the Amazon S3 User Guide.
 //
@@ -5523,8 +5927,8 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 //     Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
 //     in the Billing and Cost Management User Guide.
 //
-// To use this action, you must have permission to perform the s3:PutJobTagging
-// action.
+// To use the PutJobTagging operation, you must have permission to perform the
+// s3:PutJobTagging action.
 //
 // Related actions include:
 //
@@ -6259,6 +6663,55 @@ func (s AbortIncompleteMultipartUpload) GoString() string {
 // SetDaysAfterInitiation sets the DaysAfterInitiation field's value.
 func (s *AbortIncompleteMultipartUpload) SetDaysAfterInitiation(v int64) *AbortIncompleteMultipartUpload {
 	s.DaysAfterInitiation = &v
+	return s
+}
+
+// A container for information about access control for replicas.
+//
+// This is not supported by Amazon S3 on Outposts buckets.
+type AccessControlTranslation struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the replica ownership.
+	//
+	// Owner is a required field
+	Owner *string `type:"string" required:"true" enum:"OwnerOverride"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessControlTranslation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessControlTranslation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AccessControlTranslation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AccessControlTranslation"}
+	if s.Owner == nil {
+		invalidParams.Add(request.NewErrParamRequired("Owner"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOwner sets the Owner field's value.
+func (s *AccessControlTranslation) SetOwner(v string) *AccessControlTranslation {
+	s.Owner = &v
 	return s
 }
 
@@ -7157,7 +7610,7 @@ type CreateAccessPointInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -7589,7 +8042,7 @@ type CreateBucketOutput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	BucketArn *string `min:"4" type:"string"`
@@ -8194,7 +8647,7 @@ type DeleteAccessPointInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the access point accessed in the
 	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
-	// For example, to access the access point reports-ap through outpost my-outpost
+	// For example, to access the access point reports-ap through Outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
 	// The value must be URL encoded.
@@ -8436,7 +8889,7 @@ type DeleteAccessPointPolicyInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the access point accessed in the
 	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
-	// For example, to access the access point reports-ap through outpost my-outpost
+	// For example, to access the access point reports-ap through Outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
 	// The value must be URL encoded.
@@ -8582,7 +9035,7 @@ type DeleteBucketInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -8705,7 +9158,7 @@ type DeleteBucketLifecycleConfigurationInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -8872,7 +9325,7 @@ type DeleteBucketPolicyInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -9001,6 +9454,153 @@ func (s DeleteBucketPolicyOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteBucketReplicationInput struct {
+	_ struct{} `locationName:"DeleteBucketReplicationRequest" type:"structure"`
+
+	// The Amazon Web Services account ID of the Outposts bucket to delete the replication
+	// configuration for.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Specifies the S3 on Outposts bucket to delete the replication configuration
+	// for.
+	//
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through Outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBucketReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBucketReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBucketReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBucketReplicationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteBucketReplicationInput) SetAccountId(v string) *DeleteBucketReplicationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *DeleteBucketReplicationInput) SetBucket(v string) *DeleteBucketReplicationInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *DeleteBucketReplicationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *DeleteBucketReplicationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketReplicationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s DeleteBucketReplicationInput) updateArnableField(v string) (interface{}, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s DeleteBucketReplicationInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
+}
+
+type DeleteBucketReplicationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBucketReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBucketReplicationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteBucketTaggingInput struct {
 	_ struct{} `locationName:"DeleteBucketTaggingRequest" type:"structure"`
 
@@ -9017,7 +9617,7 @@ type DeleteBucketTaggingInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -9239,6 +9839,62 @@ func (s DeleteJobTaggingOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteJobTaggingOutput) GoString() string {
 	return s.String()
+}
+
+// Specifies whether S3 on Outposts replicates delete markers. If you specify
+// a Filter element in your replication configuration, you must also include
+// a DeleteMarkerReplication element. If your Filter includes a Tag element,
+// the DeleteMarkerReplication element's Status child element must be set to
+// Disabled, because S3 on Outposts does not support replicating delete markers
+// for tag-based rules.
+//
+// For more information about delete marker replication, see How delete operations
+// affect replication (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html#outposts-replication-what-is-replicated)
+// in the Amazon S3 User Guide.
+type DeleteMarkerReplication struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to replicate delete markers.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"DeleteMarkerReplicationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMarkerReplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMarkerReplication) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMarkerReplication) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMarkerReplication"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteMarkerReplication) SetStatus(v string) *DeleteMarkerReplication {
+	s.Status = &v
+	return s
 }
 
 type DeleteMultiRegionAccessPointInput struct {
@@ -9886,6 +10542,142 @@ func (s *DescribeMultiRegionAccessPointOperationOutput) SetAsyncOperation(v *Asy
 	return s
 }
 
+// Specifies information about the replication destination bucket and its settings
+// for an S3 on Outposts replication configuration.
+type Destination struct {
+	_ struct{} `type:"structure"`
+
+	// Specify this property only in a cross-account scenario (where the source
+	// and destination bucket owners are not the same), and you want to change replica
+	// ownership to the Amazon Web Services account that owns the destination bucket.
+	// If this property is not specified in the replication configuration, the replicas
+	// are owned by same Amazon Web Services account that owns the source object.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	AccessControlTranslation *AccessControlTranslation `type:"structure"`
+
+	// The destination bucket owner's account ID.
+	Account *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the access point for the destination bucket
+	// where you want S3 on Outposts to store the replication results.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// A container that provides information about encryption. If SourceSelectionCriteria
+	// is specified, you must specify this element.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// A container that specifies replication metrics-related settings.
+	Metrics *Metrics `type:"structure"`
+
+	// A container that specifies S3 Replication Time Control (S3 RTC) settings,
+	// including whether S3 RTC is enabled and the time when all objects and operations
+	// on objects must be replicated. Must be specified together with a Metrics
+	// block.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	ReplicationTime *ReplicationTime `type:"structure"`
+
+	// The storage class to use when replicating objects. All objects stored on
+	// S3 on Outposts are stored in the OUTPOSTS storage class. S3 on Outposts uses
+	// the OUTPOSTS storage class to create the object replicas.
+	//
+	// Values other than OUTPOSTS are not supported by Amazon S3 on Outposts.
+	StorageClass *string `type:"string" enum:"ReplicationStorageClass"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Destination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Destination"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.AccessControlTranslation != nil {
+		if err := s.AccessControlTranslation.Validate(); err != nil {
+			invalidParams.AddNested("AccessControlTranslation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Metrics != nil {
+		if err := s.Metrics.Validate(); err != nil {
+			invalidParams.AddNested("Metrics", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReplicationTime != nil {
+		if err := s.ReplicationTime.Validate(); err != nil {
+			invalidParams.AddNested("ReplicationTime", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessControlTranslation sets the AccessControlTranslation field's value.
+func (s *Destination) SetAccessControlTranslation(v *AccessControlTranslation) *Destination {
+	s.AccessControlTranslation = v
+	return s
+}
+
+// SetAccount sets the Account field's value.
+func (s *Destination) SetAccount(v string) *Destination {
+	s.Account = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *Destination) SetBucket(v string) *Destination {
+	s.Bucket = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *Destination) SetEncryptionConfiguration(v *EncryptionConfiguration) *Destination {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *Destination) SetMetrics(v *Metrics) *Destination {
+	s.Metrics = v
+	return s
+}
+
+// SetReplicationTime sets the ReplicationTime field's value.
+func (s *Destination) SetReplicationTime(v *ReplicationTime) *Destination {
+	s.ReplicationTime = v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *Destination) SetStorageClass(v string) *Destination {
+	s.StorageClass = &v
+	return s
+}
+
 // The container element for Amazon S3 Storage Lens detailed status code metrics.
 // Detailed status code metrics generate metrics for HTTP status codes, such
 // as 200 OK, 403 Forbidden, 503 Service Unavailable and others.
@@ -9923,6 +10715,47 @@ func (s DetailedStatusCodesMetrics) GoString() string {
 // SetIsEnabled sets the IsEnabled field's value.
 func (s *DetailedStatusCodesMetrics) SetIsEnabled(v bool) *DetailedStatusCodesMetrics {
 	s.IsEnabled = &v
+	return s
+}
+
+// Specifies encryption-related information for an Amazon S3 bucket that is
+// a destination for replicated objects.
+//
+// This is not supported by Amazon S3 on Outposts buckets.
+type EncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ID of the customer managed KMS key that's stored in Key Management
+	// Service (KMS) for the destination bucket. This ID is either the Amazon Resource
+	// Name (ARN) for the KMS key or the alias ARN for the KMS key. Amazon S3 uses
+	// this KMS key to encrypt replica objects. Amazon S3 supports only symmetric
+	// encryption KMS keys. For more information, see Symmetric encryption KMS keys
+	// (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks)
+	// in the Amazon Web Services Key Management Service Developer Guide.
+	ReplicaKmsKeyID *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetReplicaKmsKeyID sets the ReplicaKmsKeyID field's value.
+func (s *EncryptionConfiguration) SetReplicaKmsKeyID(v string) *EncryptionConfiguration {
+	s.ReplicaKmsKeyID = &v
 	return s
 }
 
@@ -10001,6 +10834,55 @@ func (s *Exclude) SetBuckets(v []*string) *Exclude {
 // SetRegions sets the Regions field's value.
 func (s *Exclude) SetRegions(v []*string) *Exclude {
 	s.Regions = v
+	return s
+}
+
+// An optional configuration to replicate existing source bucket objects.
+//
+// This is not supported by Amazon S3 on Outposts buckets.
+type ExistingObjectReplication struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether Amazon S3 replicates existing source bucket objects.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ExistingObjectReplicationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExistingObjectReplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExistingObjectReplication) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExistingObjectReplication) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExistingObjectReplication"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *ExistingObjectReplication) SetStatus(v string) *ExistingObjectReplication {
+	s.Status = &v
 	return s
 }
 
@@ -10307,7 +11189,7 @@ type GetAccessPointInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the access point accessed in the
 	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
-	// For example, to access the access point reports-ap through outpost my-outpost
+	// For example, to access the access point reports-ap through Outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
 	// The value must be URL encoded.
@@ -10664,7 +11546,7 @@ type GetAccessPointPolicyInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the access point accessed in the
 	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
-	// For example, to access the access point reports-ap through outpost my-outpost
+	// For example, to access the access point reports-ap through Outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
 	// The value must be URL encoded.
@@ -11029,7 +11911,7 @@ type GetBucketInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -11152,7 +12034,7 @@ type GetBucketLifecycleConfigurationInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -11354,7 +12236,7 @@ type GetBucketPolicyInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -11492,6 +12374,162 @@ func (s *GetBucketPolicyOutput) SetPolicy(v string) *GetBucketPolicyOutput {
 	return s
 }
 
+type GetBucketReplicationInput struct {
+	_ struct{} `locationName:"GetBucketReplicationRequest" type:"structure"`
+
+	// The Amazon Web Services account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Specifies the bucket to get the replication information for.
+	//
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through Outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketReplicationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetBucketReplicationInput) SetAccountId(v string) *GetBucketReplicationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketReplicationInput) SetBucket(v string) *GetBucketReplicationInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *GetBucketReplicationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *GetBucketReplicationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketReplicationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetBucketReplicationInput) updateArnableField(v string) (interface{}, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetBucketReplicationInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
+}
+
+type GetBucketReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container for one or more replication rules. A replication configuration
+	// must have at least one rule and you can add up to 100 rules. The maximum
+	// size of a replication configuration is 128 KB.
+	ReplicationConfiguration *ReplicationConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBucketReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationConfiguration sets the ReplicationConfiguration field's value.
+func (s *GetBucketReplicationOutput) SetReplicationConfiguration(v *ReplicationConfiguration) *GetBucketReplicationOutput {
+	s.ReplicationConfiguration = v
+	return s
+}
+
 type GetBucketTaggingInput struct {
 	_ struct{} `locationName:"GetBucketTaggingRequest" type:"structure"`
 
@@ -11508,7 +12546,7 @@ type GetBucketTaggingInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -13229,9 +14267,10 @@ type JobManifestLocation struct {
 
 	// The Amazon Resource Name (ARN) for a manifest object.
 	//
-	// Replacement must be made for object keys containing special characters (such
-	// as carriage returns) when using XML requests. For more information, see XML
-	// related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
+	// When you're using XML requests, you must replace special characters (such
+	// as carriage returns) in object keys with their equivalent XML entity codes.
+	// For more information, see XML-related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints)
+	// in the Amazon S3 User Guide.
 	//
 	// ObjectArn is a required field
 	ObjectArn *string `min:"1" type:"string" required:"true"`
@@ -13387,16 +14426,16 @@ type JobOperation struct {
 	S3PutObjectCopy *S3CopyObjectOperation `type:"structure"`
 
 	// Contains the configuration for an S3 Object Lock legal hold operation that
-	// an S3 Batch Operations job passes every object to the underlying PutObjectLegalHold
-	// API. For more information, see Using S3 Object Lock legal hold with S3 Batch
-	// Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
+	// an S3 Batch Operations job passes to every object to the underlying PutObjectLegalHold
+	// API operation. For more information, see Using S3 Object Lock legal hold
+	// with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
 	// in the Amazon S3 User Guide.
 	S3PutObjectLegalHold *S3SetObjectLegalHoldOperation `type:"structure"`
 
 	// Contains the configuration parameters for the Object Lock retention action
 	// for an S3 Batch Operations job. Batch Operations passes every object to the
-	// underlying PutObjectRetention API. For more information, see Using S3 Object
-	// Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+	// underlying PutObjectRetention API operation. For more information, see Using
+	// S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
 	// in the Amazon S3 User Guide.
 	S3PutObjectRetention *S3SetObjectRetentionOperation `type:"structure"`
 
@@ -14080,9 +15119,10 @@ type LifecycleRuleFilter struct {
 
 	// Prefix identifying one or more objects to which the rule applies.
 	//
-	// Replacement must be made for object keys containing special characters (such
-	// as carriage returns) when using XML requests. For more information, see XML
-	// related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
+	// When you're using XML requests, you must replace special characters (such
+	// as carriage returns) in object keys with their equivalent XML entity codes.
+	// For more information, see XML-related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints)
+	// in the Amazon S3 User Guide.
 	Prefix *string `type:"string"`
 
 	// A container for a key-value name pair.
@@ -14299,7 +15339,7 @@ type ListAccessPointsInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	Bucket *string `location:"querystring" locationName:"bucket" min:"3" type:"string"`
@@ -15038,6 +16078,65 @@ func (s *ListStorageLensConfigurationsOutput) SetNextToken(v string) *ListStorag
 // SetStorageLensConfigurationList sets the StorageLensConfigurationList field's value.
 func (s *ListStorageLensConfigurationsOutput) SetStorageLensConfigurationList(v []*ListStorageLensConfigurationEntry) *ListStorageLensConfigurationsOutput {
 	s.StorageLensConfigurationList = v
+	return s
+}
+
+// A container that specifies replication metrics-related settings.
+type Metrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container that specifies the time threshold for emitting the s3:Replication:OperationMissedThreshold
+	// event.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	EventThreshold *ReplicationTimeValue `type:"structure"`
+
+	// Specifies whether replication metrics are enabled.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"MetricsStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Metrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Metrics) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Metrics) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Metrics"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventThreshold sets the EventThreshold field's value.
+func (s *Metrics) SetEventThreshold(v *ReplicationTimeValue) *Metrics {
+	s.EventThreshold = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Metrics) SetStatus(v string) *Metrics {
+	s.Status = &v
 	return s
 }
 
@@ -16218,7 +17317,7 @@ type PutAccessPointPolicyInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the access point accessed in the
 	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
-	// For example, to access the access point reports-ap through outpost my-outpost
+	// For example, to access the access point reports-ap through Outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
 	// The value must be URL encoded.
@@ -16530,7 +17629,7 @@ type PutBucketPolicyInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -16685,6 +17784,172 @@ func (s PutBucketPolicyOutput) GoString() string {
 	return s.String()
 }
 
+type PutBucketReplicationInput struct {
+	_ struct{} `locationName:"PutBucketReplicationRequest" type:"structure" payload:"ReplicationConfiguration"`
+
+	// The Amazon Web Services account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Specifies the S3 on Outposts bucket to set the configuration for.
+	//
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through Outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// A container for one or more replication rules. A replication configuration
+	// must have at least one rule and you can add up to 100 rules. The maximum
+	// size of a replication configuration is 128 KB.
+	//
+	// ReplicationConfiguration is a required field
+	ReplicationConfiguration *ReplicationConfiguration `locationName:"ReplicationConfiguration" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBucketReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBucketReplicationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.ReplicationConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationConfiguration"))
+	}
+	if s.ReplicationConfiguration != nil {
+		if err := s.ReplicationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ReplicationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutBucketReplicationInput) SetAccountId(v string) *PutBucketReplicationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PutBucketReplicationInput) SetBucket(v string) *PutBucketReplicationInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetReplicationConfiguration sets the ReplicationConfiguration field's value.
+func (s *PutBucketReplicationInput) SetReplicationConfiguration(v *ReplicationConfiguration) *PutBucketReplicationInput {
+	s.ReplicationConfiguration = v
+	return s
+}
+
+func (s *PutBucketReplicationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *PutBucketReplicationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketReplicationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s PutBucketReplicationInput) updateArnableField(v string) (interface{}, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s PutBucketReplicationInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
+}
+
+type PutBucketReplicationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBucketReplicationOutput) GoString() string {
+	return s.String()
+}
+
 type PutBucketTaggingInput struct {
 	_ struct{} `locationName:"PutBucketTaggingRequest" type:"structure" payload:"Tagging"`
 
@@ -16701,7 +17966,7 @@ type PutBucketTaggingInput struct {
 	// For using this parameter with S3 on Outposts with the Amazon Web Services
 	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
 	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
-	// For example, to access the bucket reports through outpost my-outpost owned
+	// For example, to access the bucket reports through Outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
 	//
@@ -17663,6 +18928,10 @@ type Region struct {
 	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon Web Services account ID that owns the Amazon S3 bucket that's
+	// associated with this Multi-Region Access Point.
+	BucketAccountId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -17705,6 +18974,12 @@ func (s *Region) SetBucket(v string) *Region {
 	return s
 }
 
+// SetBucketAccountId sets the BucketAccountId field's value.
+func (s *Region) SetBucketAccountId(v string) *Region {
+	s.BucketAccountId = &v
+	return s
+}
+
 // A combination of a bucket and Region that's part of a Multi-Region Access
 // Point.
 type RegionReport struct {
@@ -17712,6 +18987,10 @@ type RegionReport struct {
 
 	// The name of the bucket.
 	Bucket *string `min:"3" type:"string"`
+
+	// The Amazon Web Services account ID that owns the Amazon S3 bucket that's
+	// associated with this Multi-Region Access Point.
+	BucketAccountId *string `type:"string"`
 
 	// The name of the Region.
 	Region *string `min:"1" type:"string"`
@@ -17738,6 +19017,12 @@ func (s RegionReport) GoString() string {
 // SetBucket sets the Bucket field's value.
 func (s *RegionReport) SetBucket(v string) *RegionReport {
 	s.Bucket = &v
+	return s
+}
+
+// SetBucketAccountId sets the BucketAccountId field's value.
+func (s *RegionReport) SetBucketAccountId(v string) *RegionReport {
+	s.BucketAccountId = &v
 	return s
 }
 
@@ -17814,6 +19099,604 @@ func (s *RegionalBucket) SetOutpostId(v string) *RegionalBucket {
 // SetPublicAccessBlockEnabled sets the PublicAccessBlockEnabled field's value.
 func (s *RegionalBucket) SetPublicAccessBlockEnabled(v bool) *RegionalBucket {
 	s.PublicAccessBlockEnabled = &v
+	return s
+}
+
+// A filter that you can use to specify whether replica modification sync is
+// enabled. S3 on Outposts replica modification sync can help you keep object
+// metadata synchronized between replicas and source objects. By default, S3
+// on Outposts replicates metadata from the source objects to the replicas only.
+// When replica modification sync is enabled, S3 on Outposts replicates metadata
+// changes made to the replica copies back to the source object, making the
+// replication bidirectional.
+//
+// To replicate object metadata modifications on replicas, you can specify this
+// element and set the Status of this element to Enabled.
+//
+// You must enable replica modification sync on the source and destination buckets
+// to replicate replica metadata changes between the source and the replicas.
+type ReplicaModifications struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether S3 on Outposts replicates modifications to object metadata
+	// on replicas.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ReplicaModificationsStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaModifications) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaModifications) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicaModifications) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicaModifications"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicaModifications) SetStatus(v string) *ReplicaModifications {
+	s.Status = &v
+	return s
+}
+
+// A container for one or more replication rules. A replication configuration
+// must have at least one rule and you can add up to 100 rules. The maximum
+// size of a replication configuration is 128 KB.
+type ReplicationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that S3 on Outposts assumes when replicating objects. For information
+	// about S3 replication on Outposts configuration, see Setting up replication
+	// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/outposts-replication-how-setup.html)
+	// in the Amazon S3 User Guide.
+	//
+	// Role is a required field
+	Role *string `type:"string" required:"true"`
+
+	// A container for one or more replication rules. A replication configuration
+	// must have at least one rule and can contain an array of 100 rules at the
+	// most.
+	//
+	// Rules is a required field
+	Rules []*ReplicationRule `locationNameList:"Rule" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicationConfiguration"}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRole sets the Role field's value.
+func (s *ReplicationConfiguration) SetRole(v string) *ReplicationConfiguration {
+	s.Role = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *ReplicationConfiguration) SetRules(v []*ReplicationRule) *ReplicationConfiguration {
+	s.Rules = v
+	return s
+}
+
+// Specifies which S3 on Outposts objects to replicate and where to store the
+// replicas.
+type ReplicationRule struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the access point for the source Outposts
+	// bucket that you want S3 on Outposts to replicate the objects from.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// Specifies whether S3 on Outposts replicates delete markers. If you specify
+	// a Filter element in your replication configuration, you must also include
+	// a DeleteMarkerReplication element. If your Filter includes a Tag element,
+	// the DeleteMarkerReplication element's Status child element must be set to
+	// Disabled, because S3 on Outposts doesn't support replicating delete markers
+	// for tag-based rules.
+	//
+	// For more information about delete marker replication, see How delete operations
+	// affect replication (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html#outposts-replication-what-is-replicated)
+	// in the Amazon S3 User Guide.
+	DeleteMarkerReplication *DeleteMarkerReplication `type:"structure"`
+
+	// A container for information about the replication destination and its configurations.
+	//
+	// Destination is a required field
+	Destination *Destination `type:"structure" required:"true"`
+
+	// An optional configuration to replicate existing source bucket objects.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	ExistingObjectReplication *ExistingObjectReplication `type:"structure"`
+
+	// A filter that identifies the subset of objects to which the replication rule
+	// applies. A Filter element must specify exactly one Prefix, Tag, or And child
+	// element.
+	Filter *ReplicationRuleFilter `type:"structure"`
+
+	// A unique identifier for the rule. The maximum value is 255 characters.
+	ID *string `type:"string"`
+
+	// An object key name prefix that identifies the object or objects to which
+	// the rule applies. The maximum prefix length is 1,024 characters. To include
+	// all objects in an Outposts bucket, specify an empty string.
+	//
+	// When you're using XML requests, you must replace special characters (such
+	// as carriage returns) in object keys with their equivalent XML entity codes.
+	// For more information, see XML-related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints)
+	// in the Amazon S3 User Guide.
+	//
+	// Deprecated: Prefix has been deprecated
+	Prefix *string `deprecated:"true" type:"string"`
+
+	// The priority indicates which rule has precedence whenever two or more replication
+	// rules conflict. S3 on Outposts attempts to replicate objects according to
+	// all replication rules. However, if there are two or more rules with the same
+	// destination Outposts bucket, then objects will be replicated according to
+	// the rule with the highest priority. The higher the number, the higher the
+	// priority.
+	//
+	// For more information, see Creating replication rules between Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-between-outposts.html)
+	// in the Amazon S3 User Guide.
+	Priority *int64 `type:"integer"`
+
+	// A container that describes additional filters for identifying the source
+	// Outposts objects that you want to replicate. You can choose to enable or
+	// disable the replication of these objects.
+	SourceSelectionCriteria *SourceSelectionCriteria `type:"structure"`
+
+	// Specifies whether the rule is enabled.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ReplicationRuleStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicationRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicationRule"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Destination == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destination"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.DeleteMarkerReplication != nil {
+		if err := s.DeleteMarkerReplication.Validate(); err != nil {
+			invalidParams.AddNested("DeleteMarkerReplication", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Destination != nil {
+		if err := s.Destination.Validate(); err != nil {
+			invalidParams.AddNested("Destination", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExistingObjectReplication != nil {
+		if err := s.ExistingObjectReplication.Validate(); err != nil {
+			invalidParams.AddNested("ExistingObjectReplication", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceSelectionCriteria != nil {
+		if err := s.SourceSelectionCriteria.Validate(); err != nil {
+			invalidParams.AddNested("SourceSelectionCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *ReplicationRule) SetBucket(v string) *ReplicationRule {
+	s.Bucket = &v
+	return s
+}
+
+// SetDeleteMarkerReplication sets the DeleteMarkerReplication field's value.
+func (s *ReplicationRule) SetDeleteMarkerReplication(v *DeleteMarkerReplication) *ReplicationRule {
+	s.DeleteMarkerReplication = v
+	return s
+}
+
+// SetDestination sets the Destination field's value.
+func (s *ReplicationRule) SetDestination(v *Destination) *ReplicationRule {
+	s.Destination = v
+	return s
+}
+
+// SetExistingObjectReplication sets the ExistingObjectReplication field's value.
+func (s *ReplicationRule) SetExistingObjectReplication(v *ExistingObjectReplication) *ReplicationRule {
+	s.ExistingObjectReplication = v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ReplicationRule) SetFilter(v *ReplicationRuleFilter) *ReplicationRule {
+	s.Filter = v
+	return s
+}
+
+// SetID sets the ID field's value.
+func (s *ReplicationRule) SetID(v string) *ReplicationRule {
+	s.ID = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ReplicationRule) SetPrefix(v string) *ReplicationRule {
+	s.Prefix = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *ReplicationRule) SetPriority(v int64) *ReplicationRule {
+	s.Priority = &v
+	return s
+}
+
+// SetSourceSelectionCriteria sets the SourceSelectionCriteria field's value.
+func (s *ReplicationRule) SetSourceSelectionCriteria(v *SourceSelectionCriteria) *ReplicationRule {
+	s.SourceSelectionCriteria = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicationRule) SetStatus(v string) *ReplicationRule {
+	s.Status = &v
+	return s
+}
+
+// A container for specifying rule filters. The filters determine the subset
+// of objects to which the rule applies. This element is required only if you
+// specify more than one filter.
+//
+// For example:
+//
+//   - If you specify both a Prefix and a Tag filter, wrap these filters in
+//     an And element.
+//
+//   - If you specify a filter based on multiple tags, wrap the Tag elements
+//     in an And element.
+type ReplicationRuleAndOperator struct {
+	_ struct{} `type:"structure"`
+
+	// An object key name prefix that identifies the subset of objects that the
+	// rule applies to.
+	Prefix *string `type:"string"`
+
+	// An array of tags that contain key and value pairs.
+	Tags []*S3Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationRuleAndOperator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationRuleAndOperator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicationRuleAndOperator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicationRuleAndOperator"}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ReplicationRuleAndOperator) SetPrefix(v string) *ReplicationRuleAndOperator {
+	s.Prefix = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ReplicationRuleAndOperator) SetTags(v []*S3Tag) *ReplicationRuleAndOperator {
+	s.Tags = v
+	return s
+}
+
+// A filter that identifies the subset of objects to which the replication rule
+// applies. A Filter element must specify exactly one Prefix, Tag, or And child
+// element.
+type ReplicationRuleFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A container for specifying rule filters. The filters determine the subset
+	// of objects that the rule applies to. This element is required only if you
+	// specify more than one filter. For example:
+	//
+	//    * If you specify both a Prefix and a Tag filter, wrap these filters in
+	//    an And element.
+	//
+	//    * If you specify a filter based on multiple tags, wrap the Tag elements
+	//    in an And element.
+	And *ReplicationRuleAndOperator `type:"structure"`
+
+	// An object key name prefix that identifies the subset of objects that the
+	// rule applies to.
+	//
+	// When you're using XML requests, you must replace special characters (such
+	// as carriage returns) in object keys with their equivalent XML entity codes.
+	// For more information, see XML-related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints)
+	// in the Amazon S3 User Guide.
+	Prefix *string `type:"string"`
+
+	// A container for a key-value name pair.
+	Tag *S3Tag `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationRuleFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationRuleFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicationRuleFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicationRuleFilter"}
+	if s.And != nil {
+		if err := s.And.Validate(); err != nil {
+			invalidParams.AddNested("And", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tag != nil {
+		if err := s.Tag.Validate(); err != nil {
+			invalidParams.AddNested("Tag", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnd sets the And field's value.
+func (s *ReplicationRuleFilter) SetAnd(v *ReplicationRuleAndOperator) *ReplicationRuleFilter {
+	s.And = v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ReplicationRuleFilter) SetPrefix(v string) *ReplicationRuleFilter {
+	s.Prefix = &v
+	return s
+}
+
+// SetTag sets the Tag field's value.
+func (s *ReplicationRuleFilter) SetTag(v *S3Tag) *ReplicationRuleFilter {
+	s.Tag = v
+	return s
+}
+
+// A container that specifies S3 Replication Time Control (S3 RTC) related information,
+// including whether S3 RTC is enabled and the time when all objects and operations
+// on objects must be replicated.
+//
+// This is not supported by Amazon S3 on Outposts buckets.
+type ReplicationTime struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether S3 Replication Time Control (S3 RTC) is enabled.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ReplicationTimeStatus"`
+
+	// A container that specifies the time by which replication should be complete
+	// for all objects and operations on objects.
+	//
+	// Time is a required field
+	Time *ReplicationTimeValue `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTime) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTime) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicationTime) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicationTime"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.Time == nil {
+		invalidParams.Add(request.NewErrParamRequired("Time"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicationTime) SetStatus(v string) *ReplicationTime {
+	s.Status = &v
+	return s
+}
+
+// SetTime sets the Time field's value.
+func (s *ReplicationTime) SetTime(v *ReplicationTimeValue) *ReplicationTime {
+	s.Time = v
+	return s
+}
+
+// A container that specifies the time value for S3 Replication Time Control
+// (S3 RTC). This value is also used for the replication metrics EventThreshold
+// element.
+//
+// This is not supported by Amazon S3 on Outposts buckets.
+type ReplicationTimeValue struct {
+	_ struct{} `type:"structure"`
+
+	// Contains an integer that specifies the time period in minutes.
+	//
+	// Valid value: 15
+	Minutes *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTimeValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTimeValue) GoString() string {
+	return s.String()
+}
+
+// SetMinutes sets the Minutes field's value.
+func (s *ReplicationTimeValue) SetMinutes(v int64) *ReplicationTimeValue {
+	s.Minutes = &v
 	return s
 }
 
@@ -18053,9 +19936,9 @@ func (s *S3BucketDestination) SetPrefix(v string) *S3BucketDestination {
 }
 
 // Contains the configuration parameters for a PUT Copy object operation. S3
-// Batch Operations passes every object to the underlying PUT Copy object API.
-// For more information about the parameters for this operation, see PUT Object
-// - Copy (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html).
+// Batch Operations passes every object to the underlying CopyObject API operation.
+// For more information about the parameters for this operation, see CopyObject
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html).
 type S3CopyObjectOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -18072,8 +19955,8 @@ type S3CopyObjectOperation struct {
 
 	CannedAccessControlList *string `type:"string" enum:"S3CannedAccessControlList"`
 
-	// Indicates the algorithm you want Amazon S3 to use to create the checksum.
-	// For more information see Checking object integrity (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml)
+	// Indicates the algorithm that you want Amazon S3 to use to create the checksum.
+	// For more information, see Checking object integrity (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml)
 	// in the Amazon S3 User Guide.
 	ChecksumAlgorithm *string `type:"string" enum:"S3ChecksumAlgorithm"`
 
@@ -18109,14 +19992,14 @@ type S3CopyObjectOperation struct {
 
 	StorageClass *string `type:"string" enum:"S3StorageClass"`
 
-	// Specifies the folder prefix into which you would like the objects to be copied.
+	// Specifies the folder prefix that you want the objects to be copied into.
 	// For example, to copy objects into a folder named Folder1 in the destination
-	// bucket, set the TargetKeyPrefix to Folder1.
+	// bucket, set the TargetKeyPrefix property to Folder1.
 	TargetKeyPrefix *string `min:"1" type:"string"`
 
-	// Specifies the destination bucket ARN for the batch copy operation. For example,
-	// to copy objects to a bucket named destinationBucket, set the TargetResource
-	// property to arn:aws:s3:::destinationBucket.
+	// Specifies the destination bucket Amazon Resource Name (ARN) for the batch
+	// copy operation. For example, to copy objects to a bucket named destinationBucket,
+	// set the TargetResource property to arn:aws:s3:::destinationBucket.
 	TargetResource *string `min:"1" type:"string"`
 
 	UnModifiedSinceConstraint *time.Time `type:"timestamp"`
@@ -18295,9 +20178,9 @@ func (s *S3CopyObjectOperation) SetUnModifiedSinceConstraint(v time.Time) *S3Cop
 	return s
 }
 
-// Contains no configuration parameters because the DELETE Object tagging API
-// only accepts the bucket name and key name as parameters, which are defined
-// in the job's manifest.
+// Contains no configuration parameters because the DELETE Object tagging (DeleteObjectTagging)
+// API operation accepts only the bucket name and key name as parameters, which
+// are defined in the job's manifest.
 type S3DeleteObjectTaggingOperation struct {
 	_ struct{} `type:"structure"`
 }
@@ -18478,9 +20361,9 @@ func (s *S3Grantee) SetTypeIdentifier(v string) *S3Grantee {
 	return s
 }
 
-// Contains the configuration parameters for an S3 Initiate Restore Object job.
-// S3 Batch Operations passes every object to the underlying POST Object restore
-// API. For more information about the parameters for this operation, see RestoreObject
+// Contains the configuration parameters for a POST Object restore job. S3 Batch
+// Operations passes every object to the underlying RestoreObject API operation.
+// For more information about the parameters for this operation, see RestoreObject
 // (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html#RESTObjectPOSTrestore-restore-request).
 type S3InitiateRestoreObjectOperation struct {
 	_ struct{} `type:"structure"`
@@ -19051,8 +20934,8 @@ func (s *S3Retention) SetRetainUntilDate(v time.Time) *S3Retention {
 	return s
 }
 
-// Contains the configuration parameters for a Set Object ACL operation. S3
-// Batch Operations passes every object to the underlying PutObjectAcl API.
+// Contains the configuration parameters for a PUT Object ACL operation. S3
+// Batch Operations passes every object to the underlying PutObjectAcl API operation.
 // For more information about the parameters for this operation, see PutObjectAcl
 // (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTacl.html).
 type S3SetObjectAclOperation struct {
@@ -19101,9 +20984,9 @@ func (s *S3SetObjectAclOperation) SetAccessControlPolicy(v *S3AccessControlPolic
 }
 
 // Contains the configuration for an S3 Object Lock legal hold operation that
-// an S3 Batch Operations job passes every object to the underlying PutObjectLegalHold
-// API. For more information, see Using S3 Object Lock legal hold with S3 Batch
-// Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
+// an S3 Batch Operations job passes to every object to the underlying PutObjectLegalHold
+// API operation. For more information, see Using S3 Object Lock legal hold
+// with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
 // in the Amazon S3 User Guide.
 type S3SetObjectLegalHoldOperation struct {
 	_ struct{} `type:"structure"`
@@ -19159,8 +21042,8 @@ func (s *S3SetObjectLegalHoldOperation) SetLegalHold(v *S3ObjectLockLegalHold) *
 
 // Contains the configuration parameters for the Object Lock retention action
 // for an S3 Batch Operations job. Batch Operations passes every object to the
-// underlying PutObjectRetention API. For more information, see Using S3 Object
-// Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+// underlying PutObjectRetention API operation. For more information, see Using
+// S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
 // in the Amazon S3 User Guide.
 type S3SetObjectRetentionOperation struct {
 	_ struct{} `type:"structure"`
@@ -19221,10 +21104,10 @@ func (s *S3SetObjectRetentionOperation) SetRetention(v *S3Retention) *S3SetObjec
 	return s
 }
 
-// Contains the configuration parameters for a Set Object Tagging operation.
-// S3 Batch Operations passes every object to the underlying PUT Object tagging
-// API. For more information about the parameters for this operation, see PUT
-// Object tagging (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTtagging.html).
+// Contains the configuration parameters for a PUT Object Tagging operation.
+// S3 Batch Operations passes every object to the underlying PutObjectTagging
+// API operation. For more information about the parameters for this operation,
+// see PutObjectTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTtagging.html).
 type S3SetObjectTaggingOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -19547,6 +21430,137 @@ func (s *SelectionCriteria) SetMaxDepth(v int64) *SelectionCriteria {
 // SetMinStorageBytesPercentage sets the MinStorageBytesPercentage field's value.
 func (s *SelectionCriteria) SetMinStorageBytesPercentage(v float64) *SelectionCriteria {
 	s.MinStorageBytesPercentage = &v
+	return s
+}
+
+// A container that describes additional filters for identifying the source
+// objects that you want to replicate. You can choose to enable or disable the
+// replication of these objects.
+type SourceSelectionCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that you can use to specify whether replica modification sync is
+	// enabled. S3 on Outposts replica modification sync can help you keep object
+	// metadata synchronized between replicas and source objects. By default, S3
+	// on Outposts replicates metadata from the source objects to the replicas only.
+	// When replica modification sync is enabled, S3 on Outposts replicates metadata
+	// changes made to the replica copies back to the source object, making the
+	// replication bidirectional.
+	//
+	// To replicate object metadata modifications on replicas, you can specify this
+	// element and set the Status of this element to Enabled.
+	//
+	// You must enable replica modification sync on the source and destination buckets
+	// to replicate replica metadata changes between the source and the replicas.
+	ReplicaModifications *ReplicaModifications `type:"structure"`
+
+	// A filter that you can use to select Amazon S3 objects that are encrypted
+	// with server-side encryption by using Key Management Service (KMS) keys. If
+	// you include SourceSelectionCriteria in the replication configuration, this
+	// element is required.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	SseKmsEncryptedObjects *SseKmsEncryptedObjects `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceSelectionCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceSelectionCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceSelectionCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceSelectionCriteria"}
+	if s.ReplicaModifications != nil {
+		if err := s.ReplicaModifications.Validate(); err != nil {
+			invalidParams.AddNested("ReplicaModifications", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SseKmsEncryptedObjects != nil {
+		if err := s.SseKmsEncryptedObjects.Validate(); err != nil {
+			invalidParams.AddNested("SseKmsEncryptedObjects", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicaModifications sets the ReplicaModifications field's value.
+func (s *SourceSelectionCriteria) SetReplicaModifications(v *ReplicaModifications) *SourceSelectionCriteria {
+	s.ReplicaModifications = v
+	return s
+}
+
+// SetSseKmsEncryptedObjects sets the SseKmsEncryptedObjects field's value.
+func (s *SourceSelectionCriteria) SetSseKmsEncryptedObjects(v *SseKmsEncryptedObjects) *SourceSelectionCriteria {
+	s.SseKmsEncryptedObjects = v
+	return s
+}
+
+// A container for filter information that you can use to select S3 objects
+// that are encrypted with Key Management Service (KMS).
+//
+// This is not supported by Amazon S3 on Outposts buckets.
+type SseKmsEncryptedObjects struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether Amazon S3 replicates objects that are created with server-side
+	// encryption by using an KMS key stored in Key Management Service.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"SseKmsEncryptedObjectsStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SseKmsEncryptedObjects) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SseKmsEncryptedObjects) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SseKmsEncryptedObjects) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SseKmsEncryptedObjects"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *SseKmsEncryptedObjects) SetStatus(v string) *SseKmsEncryptedObjects {
+	s.Status = &v
 	return s
 }
 
@@ -20646,6 +22660,38 @@ func BucketVersioningStatus_Values() []string {
 }
 
 const (
+	// DeleteMarkerReplicationStatusEnabled is a DeleteMarkerReplicationStatus enum value
+	DeleteMarkerReplicationStatusEnabled = "Enabled"
+
+	// DeleteMarkerReplicationStatusDisabled is a DeleteMarkerReplicationStatus enum value
+	DeleteMarkerReplicationStatusDisabled = "Disabled"
+)
+
+// DeleteMarkerReplicationStatus_Values returns all elements of the DeleteMarkerReplicationStatus enum
+func DeleteMarkerReplicationStatus_Values() []string {
+	return []string{
+		DeleteMarkerReplicationStatusEnabled,
+		DeleteMarkerReplicationStatusDisabled,
+	}
+}
+
+const (
+	// ExistingObjectReplicationStatusEnabled is a ExistingObjectReplicationStatus enum value
+	ExistingObjectReplicationStatusEnabled = "Enabled"
+
+	// ExistingObjectReplicationStatusDisabled is a ExistingObjectReplicationStatus enum value
+	ExistingObjectReplicationStatusDisabled = "Disabled"
+)
+
+// ExistingObjectReplicationStatus_Values returns all elements of the ExistingObjectReplicationStatus enum
+func ExistingObjectReplicationStatus_Values() []string {
+	return []string{
+		ExistingObjectReplicationStatusEnabled,
+		ExistingObjectReplicationStatusDisabled,
+	}
+}
+
+const (
 	// ExpirationStatusEnabled is a ExpirationStatus enum value
 	ExpirationStatusEnabled = "Enabled"
 
@@ -20850,6 +22896,22 @@ func MFADeleteStatus_Values() []string {
 }
 
 const (
+	// MetricsStatusEnabled is a MetricsStatus enum value
+	MetricsStatusEnabled = "Enabled"
+
+	// MetricsStatusDisabled is a MetricsStatus enum value
+	MetricsStatusDisabled = "Disabled"
+)
+
+// MetricsStatus_Values returns all elements of the MetricsStatus enum
+func MetricsStatus_Values() []string {
+	return []string{
+		MetricsStatusEnabled,
+		MetricsStatusDisabled,
+	}
+}
+
+const (
 	// MultiRegionAccessPointStatusReady is a MultiRegionAccessPointStatus enum value
 	MultiRegionAccessPointStatusReady = "READY"
 
@@ -21002,6 +23064,50 @@ func OutputSchemaVersion_Values() []string {
 }
 
 const (
+	// OwnerOverrideDestination is a OwnerOverride enum value
+	OwnerOverrideDestination = "Destination"
+)
+
+// OwnerOverride_Values returns all elements of the OwnerOverride enum
+func OwnerOverride_Values() []string {
+	return []string{
+		OwnerOverrideDestination,
+	}
+}
+
+const (
+	// ReplicaModificationsStatusEnabled is a ReplicaModificationsStatus enum value
+	ReplicaModificationsStatusEnabled = "Enabled"
+
+	// ReplicaModificationsStatusDisabled is a ReplicaModificationsStatus enum value
+	ReplicaModificationsStatusDisabled = "Disabled"
+)
+
+// ReplicaModificationsStatus_Values returns all elements of the ReplicaModificationsStatus enum
+func ReplicaModificationsStatus_Values() []string {
+	return []string{
+		ReplicaModificationsStatusEnabled,
+		ReplicaModificationsStatusDisabled,
+	}
+}
+
+const (
+	// ReplicationRuleStatusEnabled is a ReplicationRuleStatus enum value
+	ReplicationRuleStatusEnabled = "Enabled"
+
+	// ReplicationRuleStatusDisabled is a ReplicationRuleStatus enum value
+	ReplicationRuleStatusDisabled = "Disabled"
+)
+
+// ReplicationRuleStatus_Values returns all elements of the ReplicationRuleStatus enum
+func ReplicationRuleStatus_Values() []string {
+	return []string{
+		ReplicationRuleStatusEnabled,
+		ReplicationRuleStatusDisabled,
+	}
+}
+
+const (
 	// ReplicationStatusCompleted is a ReplicationStatus enum value
 	ReplicationStatusCompleted = "COMPLETED"
 
@@ -21022,6 +23128,66 @@ func ReplicationStatus_Values() []string {
 		ReplicationStatusFailed,
 		ReplicationStatusReplica,
 		ReplicationStatusNone,
+	}
+}
+
+const (
+	// ReplicationStorageClassStandard is a ReplicationStorageClass enum value
+	ReplicationStorageClassStandard = "STANDARD"
+
+	// ReplicationStorageClassReducedRedundancy is a ReplicationStorageClass enum value
+	ReplicationStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+
+	// ReplicationStorageClassStandardIa is a ReplicationStorageClass enum value
+	ReplicationStorageClassStandardIa = "STANDARD_IA"
+
+	// ReplicationStorageClassOnezoneIa is a ReplicationStorageClass enum value
+	ReplicationStorageClassOnezoneIa = "ONEZONE_IA"
+
+	// ReplicationStorageClassIntelligentTiering is a ReplicationStorageClass enum value
+	ReplicationStorageClassIntelligentTiering = "INTELLIGENT_TIERING"
+
+	// ReplicationStorageClassGlacier is a ReplicationStorageClass enum value
+	ReplicationStorageClassGlacier = "GLACIER"
+
+	// ReplicationStorageClassDeepArchive is a ReplicationStorageClass enum value
+	ReplicationStorageClassDeepArchive = "DEEP_ARCHIVE"
+
+	// ReplicationStorageClassOutposts is a ReplicationStorageClass enum value
+	ReplicationStorageClassOutposts = "OUTPOSTS"
+
+	// ReplicationStorageClassGlacierIr is a ReplicationStorageClass enum value
+	ReplicationStorageClassGlacierIr = "GLACIER_IR"
+)
+
+// ReplicationStorageClass_Values returns all elements of the ReplicationStorageClass enum
+func ReplicationStorageClass_Values() []string {
+	return []string{
+		ReplicationStorageClassStandard,
+		ReplicationStorageClassReducedRedundancy,
+		ReplicationStorageClassStandardIa,
+		ReplicationStorageClassOnezoneIa,
+		ReplicationStorageClassIntelligentTiering,
+		ReplicationStorageClassGlacier,
+		ReplicationStorageClassDeepArchive,
+		ReplicationStorageClassOutposts,
+		ReplicationStorageClassGlacierIr,
+	}
+}
+
+const (
+	// ReplicationTimeStatusEnabled is a ReplicationTimeStatus enum value
+	ReplicationTimeStatusEnabled = "Enabled"
+
+	// ReplicationTimeStatusDisabled is a ReplicationTimeStatus enum value
+	ReplicationTimeStatusDisabled = "Disabled"
+)
+
+// ReplicationTimeStatus_Values returns all elements of the ReplicationTimeStatus enum
+func ReplicationTimeStatus_Values() []string {
+	return []string{
+		ReplicationTimeStatusEnabled,
+		ReplicationTimeStatusDisabled,
 	}
 }
 
@@ -21278,6 +23444,22 @@ func S3StorageClass_Values() []string {
 		S3StorageClassIntelligentTiering,
 		S3StorageClassDeepArchive,
 		S3StorageClassGlacierIr,
+	}
+}
+
+const (
+	// SseKmsEncryptedObjectsStatusEnabled is a SseKmsEncryptedObjectsStatus enum value
+	SseKmsEncryptedObjectsStatusEnabled = "Enabled"
+
+	// SseKmsEncryptedObjectsStatusDisabled is a SseKmsEncryptedObjectsStatus enum value
+	SseKmsEncryptedObjectsStatusDisabled = "Disabled"
+)
+
+// SseKmsEncryptedObjectsStatus_Values returns all elements of the SseKmsEncryptedObjectsStatus enum
+func SseKmsEncryptedObjectsStatus_Values() []string {
+	return []string{
+		SseKmsEncryptedObjectsStatusEnabled,
+		SseKmsEncryptedObjectsStatusDisabled,
 	}
 }
 

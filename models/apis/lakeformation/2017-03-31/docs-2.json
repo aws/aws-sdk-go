@@ -1084,7 +1084,7 @@
         "PrincipalPermissions$Permissions": "<p>The permissions that are granted to the principal.</p>",
         "PrincipalResourcePermissions$Permissions": "<p>The permissions to be granted or revoked on the resource.</p>",
         "PrincipalResourcePermissions$PermissionsWithGrantOption": "<p>Indicates whether to grant the ability to grant permissions (as a subset of permissions granted).</p>",
-        "RevokePermissionsRequest$Permissions": "<p>The permissions revoked to the principal on the resource. For information about permissions, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
+        "RevokePermissionsRequest$Permissions": "<p>The permissions revoked to the principal on the resource. For information about permissions, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
         "RevokePermissionsRequest$PermissionsWithGrantOption": "<p>Indicates a list of permissions for which to revoke the grant option allowing the principal to pass permissions to other principals.</p>"
       }
     },
@@ -1706,7 +1706,7 @@
     "VersionString": {
       "base": null,
       "refs": {
-        "DataCellsFilter$VersionId": null
+        "DataCellsFilter$VersionId": "<p>The ID of the data cells filter version.</p>"
       }
     },
     "VirtualObject": {

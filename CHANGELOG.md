@@ -1,3 +1,14 @@
+Release v1.44.220 (2023-03-13)
+===
+
+### Service Client Updates
+* `service/appintegrations`: Updates service API and documentation
+* `service/lakeformation`: Updates service documentation
+* `service/s3control`: Updates service API and documentation
+  * Added support for cross-account Multi-Region Access Points. Added support for S3 Replication for S3 on Outposts.
+* `service/tnb`: Updates service API and documentation
+* `service/wisdom`: Updates service API and documentation
+
 Release v1.44.219 (2023-03-10)
 ===
 
