@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>With Application Auto Scaling, you can configure automatic scaling for the following resources:</p> <ul> <li> <p>Amazon AppStream 2.0 fleets</p> </li> <li> <p>Amazon Aurora Replicas</p> </li> <li> <p>Amazon Comprehend document classification and entity recognizer endpoints</p> </li> <li> <p>Amazon DynamoDB tables and global secondary indexes throughput capacity</p> </li> <li> <p>Amazon ECS services</p> </li> <li> <p>Amazon ElastiCache for Redis clusters (replication groups)</p> </li> <li> <p>Amazon EMR clusters</p> </li> <li> <p>Amazon Keyspaces (for Apache Cassandra) tables</p> </li> <li> <p>Lambda function provisioned concurrency</p> </li> <li> <p>Amazon Managed Streaming for Apache Kafka broker storage</p> </li> <li> <p>Amazon Neptune clusters</p> </li> <li> <p>Amazon SageMaker endpoint variants</p> </li> <li> <p>Spot Fleets (Amazon EC2)</p> </li> <li> <p>Custom resources provided by your own applications or services</p> </li> </ul> <p> <b>API Summary</b> </p> <p>The Application Auto Scaling service API includes three key sets of actions: </p> <ul> <li> <p>Register and manage scalable targets - Register Amazon Web Services or custom resources as scalable targets (a resource that Application Auto Scaling can scale), set minimum and maximum capacity limits, and retrieve information on existing scalable targets.</p> </li> <li> <p>Configure and manage automatic scaling - Define scaling policies to dynamically scale your resources in response to CloudWatch alarms, schedule one-time or recurring scaling actions, and retrieve your recent scaling activity history.</p> </li> <li> <p>Suspend and resume scaling - Temporarily suspend and later resume automatic scaling by calling the <a href=\"https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html\">RegisterScalableTarget</a> API action for any Application Auto Scaling scalable target. You can suspend and resume (individually or in combination) scale-out activities that are triggered by a scaling policy, scale-in activities that are triggered by a scaling policy, and scheduled scaling.</p> </li> </ul> <p>To learn more about Application Auto Scaling, including information about granting IAM users required permissions for Application Auto Scaling actions, see the <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/what-is-application-auto-scaling.html\">Application Auto Scaling User Guide</a>.</p>",
+  "service": "<p>With Application Auto Scaling, you can configure automatic scaling for the following resources:</p> <ul> <li> <p>Amazon AppStream 2.0 fleets</p> </li> <li> <p>Amazon Aurora Replicas</p> </li> <li> <p>Amazon Comprehend document classification and entity recognizer endpoints</p> </li> <li> <p>Amazon DynamoDB tables and global secondary indexes throughput capacity</p> </li> <li> <p>Amazon ECS services</p> </li> <li> <p>Amazon ElastiCache for Redis clusters (replication groups)</p> </li> <li> <p>Amazon EMR clusters</p> </li> <li> <p>Amazon Keyspaces (for Apache Cassandra) tables</p> </li> <li> <p>Lambda function provisioned concurrency</p> </li> <li> <p>Amazon Managed Streaming for Apache Kafka broker storage</p> </li> <li> <p>Amazon Neptune clusters</p> </li> <li> <p>Amazon SageMaker endpoint variants</p> </li> <li> <p>Spot Fleets (Amazon EC2)</p> </li> <li> <p>Custom resources provided by your own applications or services</p> </li> </ul> <p>To learn more about Application Auto Scaling, see the <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/what-is-application-auto-scaling.html\">Application Auto Scaling User Guide</a>.</p> <p> <b>API Summary</b> </p> <p>The Application Auto Scaling service API includes three key sets of actions: </p> <ul> <li> <p>Register and manage scalable targets - Register Amazon Web Services or custom resources as scalable targets (a resource that Application Auto Scaling can scale), set minimum and maximum capacity limits, and retrieve information on existing scalable targets.</p> </li> <li> <p>Configure and manage automatic scaling - Define scaling policies to dynamically scale your resources in response to CloudWatch alarms, schedule one-time or recurring scaling actions, and retrieve your recent scaling activity history.</p> </li> <li> <p>Suspend and resume scaling - Temporarily suspend and later resume automatic scaling by calling the <a href=\"https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html\">RegisterScalableTarget</a> API action for any Application Auto Scaling scalable target. You can suspend and resume (individually or in combination) scale-out activities that are triggered by a scaling policy, scale-in activities that are triggered by a scaling policy, and scheduled scaling.</p> </li> </ul>",
   "operations": {
     "DeleteScalingPolicy": "<p>Deletes the specified scaling policy for an Application Auto Scaling scalable target.</p> <p>Deleting a step scaling policy deletes the underlying alarm action, but does not delete the CloudWatch alarm associated with the scaling policy, even if it no longer has an associated action.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html#delete-step-scaling-policy\">Delete a step scaling policy</a> and <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#delete-target-tracking-policy\">Delete a target tracking scaling policy</a> in the <i>Application Auto Scaling User Guide</i>.</p>",
     "DeleteScheduledAction": "<p>Deletes the specified scheduled action for an Application Auto Scaling scalable target.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/scheduled-scaling-additional-cli-commands.html#delete-scheduled-action\">Delete a scheduled action</a> in the <i>Application Auto Scaling User Guide</i>.</p>",
@@ -47,7 +47,7 @@
       }
     },
     "CustomizedMetricSpecification": {
-      "base": "<p>Represents a CloudWatch metric of your choosing for a target tracking scaling policy to use with Application Auto Scaling.</p> <p>For information about the available metrics for a service, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\">Amazon Web Services services that publish CloudWatch metrics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>To create your customized metric specification:</p> <ul> <li> <p>Add values for each required parameter from CloudWatch. You can use an existing metric, or a new metric that you create. To use your own metric, you must first publish the metric to CloudWatch. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html\">Publish custom metrics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> </li> <li> <p>Choose a metric that changes proportionally with capacity. The value of the metric should increase or decrease in inverse proportion to the number of capacity units. That is, the value of the metric should decrease when capacity increases, and increase when capacity decreases. </p> </li> </ul> <p>For an example of how creating new metrics can be useful, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html\">Scaling based on Amazon SQS</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. This topic mentions Auto Scaling groups, but the same scenario for Amazon SQS can apply to the target tracking scaling policies that you create for a Spot Fleet by using the Application Auto Scaling API.</p> <p>For more information about the CloudWatch terminology below, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html\">Amazon CloudWatch concepts</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
+      "base": "<p>Represents a CloudWatch metric of your choosing for a target tracking scaling policy to use with Application Auto Scaling.</p> <p>For information about the available metrics for a service, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\">Amazon Web Services services that publish CloudWatch metrics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>To create your customized metric specification:</p> <ul> <li> <p>Add values for each required parameter from CloudWatch. You can use an existing metric, or a new metric that you create. To use your own metric, you must first publish the metric to CloudWatch. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html\">Publish custom metrics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> </li> <li> <p>Choose a metric that changes proportionally with capacity. The value of the metric should increase or decrease in inverse proportion to the number of capacity units. That is, the value of the metric should decrease when capacity increases, and increase when capacity decreases. </p> </li> </ul> <p>For more information about the CloudWatch terminology below, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html\">Amazon CloudWatch concepts</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
       "refs": {
         "TargetTrackingScalingPolicyConfiguration$CustomizedMetricSpecification": "<p>A customized metric. You can specify either a predefined metric or a customized metric.</p>"
       }
@@ -140,9 +140,21 @@
         "ValidationException$Message": null
       }
     },
+    "Expression": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetricDataQuery$Expression": "<p>The math expression to perform on the returned data, if this object is performing a math expression. This expression can use the <code>Id</code> of the other metrics to refer to those metrics, and can also use the <code>Id</code> of other expressions to use the result of those expressions. </p> <p>Conditional: Within each <code>TargetTrackingMetricDataQuery</code> object, you must specify either <code>Expression</code> or <code>MetricStat</code>, but not both.</p>"
+      }
+    },
     "FailedResourceAccessException": {
       "base": "<p>Failed access to resources caused an exception. This exception is thrown when Application Auto Scaling is unable to retrieve the alarms associated with a scaling policy due to a client error, for example, if the role ARN specified for a scalable target does not have permission to call the CloudWatch <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html\">DescribeAlarms</a> on your behalf.</p>",
       "refs": {
+      }
+    },
+    "Id": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetricDataQuery$Id": "<p>A short name that identifies the object's results in the response. This name must be unique among all <code>MetricDataQuery</code> objects specified for a single scaling policy. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscores. The first character must be a lowercase letter. </p>"
       }
     },
     "IncludeNotScaledActivities": {
@@ -382,6 +394,12 @@
         "PredefinedMetricSpecification$ResourceLabel": "<p>Identifies the resource associated with the metric type. You can't specify a resource label unless the metric type is <code>ALBRequestCountPerTarget</code> and there is a target group attached to the Spot Fleet or ECS service.</p> <p>You create the resource label by appending the final portion of the load balancer ARN and the final portion of the target group ARN into a single value, separated by a forward slash (/). The format of the resource label is:</p> <p> <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.</p> <p>Where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt; is the final portion of the load balancer ARN</p> </li> <li> <p>targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt; is the final portion of the target group ARN.</p> </li> </ul> <p>To find the ARN for an Application Load Balancer, use the <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html\">DescribeLoadBalancers</a> API operation. To find the ARN for the target group, use the <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html\">DescribeTargetGroups</a> API operation.</p>"
       }
     },
+    "ReturnData": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetricDataQuery$ReturnData": "<p>Indicates whether to return the timestamps and raw data values of this metric. </p> <p>If you use any math expressions, specify <code>true</code> for this value for only the final math expression that the metric specification is based on. You must specify <code>false</code> for <code>ReturnData</code> for all the other metrics and expressions used in the metric specification.</p> <p>If you are only retrieving metrics and not performing any math expressions, do not specify anything for <code>ReturnData</code>. This sets it to its default (<code>true</code>).</p>"
+      }
+    },
     "ScalableDimension": {
       "base": null,
       "refs": {
@@ -525,7 +543,73 @@
       "base": "<p>Specifies whether the scaling activities for a scalable target are in a suspended state. </p>",
       "refs": {
         "RegisterScalableTargetRequest$SuspendedState": "<p>An embedded object that contains attributes and attribute values that are used to suspend and resume automatic scaling. Setting the value of an attribute to <code>true</code> suspends the specified scaling activities. Setting it to <code>false</code> (default) resumes the specified scaling activities. </p> <p> <b>Suspension Outcomes</b> </p> <ul> <li> <p>For <code>DynamicScalingInSuspended</code>, while a suspension is in effect, all scale-in activities that are triggered by a scaling policy are suspended.</p> </li> <li> <p>For <code>DynamicScalingOutSuspended</code>, while a suspension is in effect, all scale-out activities that are triggered by a scaling policy are suspended.</p> </li> <li> <p>For <code>ScheduledScalingSuspended</code>, while a suspension is in effect, all scaling activities that involve scheduled actions are suspended. </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-suspend-resume-scaling.html\">Suspending and resuming scaling</a> in the <i>Application Auto Scaling User Guide</i>.</p>",
-        "ScalableTarget$SuspendedState": null
+        "ScalableTarget$SuspendedState": "<p>Specifies whether the scaling activities for a scalable target are in a suspended state.</p>"
+      }
+    },
+    "TargetTrackingMetric": {
+      "base": "<p>Represents a specific metric.</p> <p>Metric is a property of the <a>TargetTrackingMetricStat</a> object.</p>",
+      "refs": {
+        "TargetTrackingMetricStat$Metric": "<p>The CloudWatch metric to return, including the metric name, namespace, and dimensions. To get the exact metric name, namespace, and dimensions, inspect the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html\">Metric</a> object that is returned by a call to <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html\">ListMetrics</a>.</p>"
+      }
+    },
+    "TargetTrackingMetricDataQueries": {
+      "base": null,
+      "refs": {
+        "CustomizedMetricSpecification$Metrics": "<p>The metrics to include in the target tracking scaling policy, as a metric data query. This can include both raw metric and metric math expressions.</p>"
+      }
+    },
+    "TargetTrackingMetricDataQuery": {
+      "base": "<p>The metric data to return. Also defines whether this call is returning data for one metric only, or whether it is performing a math expression on the values of returned metric statistics to create a new time series. A time series is a series of data points, each of which is associated with a timestamp.</p> <p>For more information and examples, see <a href=\"https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking-metric-math.html\">Create a target tracking scaling policy for Application Auto Scaling using metric math</a> in the <i>Application Auto Scaling User Guide</i>.</p>",
+      "refs": {
+        "TargetTrackingMetricDataQueries$member": null
+      }
+    },
+    "TargetTrackingMetricDimension": {
+      "base": "<p>Describes the dimension of a metric.</p>",
+      "refs": {
+        "TargetTrackingMetricDimensions$member": null
+      }
+    },
+    "TargetTrackingMetricDimensionName": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetricDimension$Name": "<p>The name of the dimension.</p>"
+      }
+    },
+    "TargetTrackingMetricDimensionValue": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetricDimension$Value": "<p>The value of the dimension.</p>"
+      }
+    },
+    "TargetTrackingMetricDimensions": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetric$Dimensions": "<p>The dimensions for the metric. For the list of available dimensions, see the Amazon Web Services documentation available from the table in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\">Amazon Web Services services that publish CloudWatch metrics </a> in the <i>Amazon CloudWatch User Guide</i>. </p> <p>Conditional: If you published your metric with dimensions, you must specify the same dimensions in your scaling policy.</p>"
+      }
+    },
+    "TargetTrackingMetricName": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetric$MetricName": "<p>The name of the metric.</p>"
+      }
+    },
+    "TargetTrackingMetricNamespace": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetric$Namespace": "<p>The namespace of the metric. For more information, see the table in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\">Amazon Web Services services that publish CloudWatch metrics </a> in the <i>Amazon CloudWatch User Guide</i>.</p>"
+      }
+    },
+    "TargetTrackingMetricStat": {
+      "base": "<p>This structure defines the CloudWatch metric to return, along with the statistic, period, and unit.</p> <p>For more information about the CloudWatch terminology below, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html\">Amazon CloudWatch concepts</a> in the <i>Amazon CloudWatch User Guide</i>.</p>",
+      "refs": {
+        "TargetTrackingMetricDataQuery$MetricStat": "<p>Information about the metric data to return.</p> <p>Conditional: Within each <code>MetricDataQuery</code> object, you must specify either <code>Expression</code> or <code>MetricStat</code>, but not both.</p>"
+      }
+    },
+    "TargetTrackingMetricUnit": {
+      "base": null,
+      "refs": {
+        "TargetTrackingMetricStat$Unit": "<p>The unit to use for the returned data points. For a complete list of the units that CloudWatch supports, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">MetricDatum</a> data type in the <i>Amazon CloudWatch API Reference</i>.</p>"
       }
     },
     "TargetTrackingScalingPolicyConfiguration": {
@@ -569,7 +653,9 @@
         "ScalingActivity$Description": "<p>A simple description of what action the scaling activity intends to accomplish.</p>",
         "ScalingActivity$Cause": "<p>A simple description of what caused the scaling activity to happen.</p>",
         "ScalingActivity$StatusMessage": "<p>A simple message about the current status of the scaling activity.</p>",
-        "ScalingActivity$Details": "<p>The details about the scaling activity.</p>"
+        "ScalingActivity$Details": "<p>The details about the scaling activity.</p>",
+        "TargetTrackingMetricDataQuery$Label": "<p>A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents.</p>",
+        "TargetTrackingMetricStat$Stat": "<p>The statistic to return. It can include any CloudWatch statistic or extended statistic. For a list of valid values, see the table in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic\">Statistics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>The most commonly used metrics for scaling is <code>Average</code> </p>"
       }
     }
   }

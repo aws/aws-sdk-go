@@ -1450,13 +1450,6 @@ func (s *ConcurrentUpdateException) RequestID() string {
 //     number of capacity units. That is, the value of the metric should decrease
 //     when capacity increases, and increase when capacity decreases.
 //
-// For an example of how creating new metrics can be useful, see Scaling based
-// on Amazon SQS (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html)
-// in the Amazon EC2 Auto Scaling User Guide. This topic mentions Auto Scaling
-// groups, but the same scenario for Amazon SQS can apply to the target tracking
-// scaling policies that you create for a Spot Fleet by using the Application
-// Auto Scaling API.
-//
 // For more information about the CloudWatch terminology below, see Amazon CloudWatch
 // concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
 // in the Amazon CloudWatch User Guide.
@@ -1472,19 +1465,17 @@ type CustomizedMetricSpecification struct {
 	// The name of the metric. To get the exact metric name, namespace, and dimensions,
 	// inspect the Metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html)
 	// object that is returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
-	//
-	// MetricName is a required field
-	MetricName *string `type:"string" required:"true"`
+	MetricName *string `type:"string"`
+
+	// The metrics to include in the target tracking scaling policy, as a metric
+	// data query. This can include both raw metric and metric math expressions.
+	Metrics []*TargetTrackingMetricDataQuery `type:"list"`
 
 	// The namespace of the metric.
-	//
-	// Namespace is a required field
-	Namespace *string `type:"string" required:"true"`
+	Namespace *string `type:"string"`
 
 	// The statistic of the metric.
-	//
-	// Statistic is a required field
-	Statistic *string `type:"string" required:"true" enum:"MetricStatistic"`
+	Statistic *string `type:"string" enum:"MetricStatistic"`
 
 	// The unit of the metric. For a complete list of the units that CloudWatch
 	// supports, see the MetricDatum (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
@@ -1513,15 +1504,6 @@ func (s CustomizedMetricSpecification) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CustomizedMetricSpecification) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CustomizedMetricSpecification"}
-	if s.MetricName == nil {
-		invalidParams.Add(request.NewErrParamRequired("MetricName"))
-	}
-	if s.Namespace == nil {
-		invalidParams.Add(request.NewErrParamRequired("Namespace"))
-	}
-	if s.Statistic == nil {
-		invalidParams.Add(request.NewErrParamRequired("Statistic"))
-	}
 	if s.Dimensions != nil {
 		for i, v := range s.Dimensions {
 			if v == nil {
@@ -1529,6 +1511,16 @@ func (s *CustomizedMetricSpecification) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -1548,6 +1540,12 @@ func (s *CustomizedMetricSpecification) SetDimensions(v []*MetricDimension) *Cus
 // SetMetricName sets the MetricName field's value.
 func (s *CustomizedMetricSpecification) SetMetricName(v string) *CustomizedMetricSpecification {
 	s.MetricName = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *CustomizedMetricSpecification) SetMetrics(v []*TargetTrackingMetricDataQuery) *CustomizedMetricSpecification {
+	s.Metrics = v
 	return s
 }
 
@@ -6179,6 +6177,375 @@ func (s *SuspendedState) SetDynamicScalingOutSuspended(v bool) *SuspendedState {
 // SetScheduledScalingSuspended sets the ScheduledScalingSuspended field's value.
 func (s *SuspendedState) SetScheduledScalingSuspended(v bool) *SuspendedState {
 	s.ScheduledScalingSuspended = &v
+	return s
+}
+
+// Represents a specific metric.
+//
+// Metric is a property of the TargetTrackingMetricStat object.
+type TargetTrackingMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The dimensions for the metric. For the list of available dimensions, see
+	// the Amazon Web Services documentation available from the table in Amazon
+	// Web Services services that publish CloudWatch metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+	// in the Amazon CloudWatch User Guide.
+	//
+	// Conditional: If you published your metric with dimensions, you must specify
+	// the same dimensions in your scaling policy.
+	Dimensions []*TargetTrackingMetricDimension `type:"list"`
+
+	// The name of the metric.
+	MetricName *string `min:"1" type:"string"`
+
+	// The namespace of the metric. For more information, see the table in Amazon
+	// Web Services services that publish CloudWatch metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+	// in the Amazon CloudWatch User Guide.
+	Namespace *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetric"}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Dimensions != nil {
+		for i, v := range s.Dimensions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *TargetTrackingMetric) SetDimensions(v []*TargetTrackingMetricDimension) *TargetTrackingMetric {
+	s.Dimensions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *TargetTrackingMetric) SetMetricName(v string) *TargetTrackingMetric {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *TargetTrackingMetric) SetNamespace(v string) *TargetTrackingMetric {
+	s.Namespace = &v
+	return s
+}
+
+// The metric data to return. Also defines whether this call is returning data
+// for one metric only, or whether it is performing a math expression on the
+// values of returned metric statistics to create a new time series. A time
+// series is a series of data points, each of which is associated with a timestamp.
+//
+// For more information and examples, see Create a target tracking scaling policy
+// for Application Auto Scaling using metric math (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking-metric-math.html)
+// in the Application Auto Scaling User Guide.
+type TargetTrackingMetricDataQuery struct {
+	_ struct{} `type:"structure"`
+
+	// The math expression to perform on the returned data, if this object is performing
+	// a math expression. This expression can use the Id of the other metrics to
+	// refer to those metrics, and can also use the Id of other expressions to use
+	// the result of those expressions.
+	//
+	// Conditional: Within each TargetTrackingMetricDataQuery object, you must specify
+	// either Expression or MetricStat, but not both.
+	Expression *string `min:"1" type:"string"`
+
+	// A short name that identifies the object's results in the response. This name
+	// must be unique among all MetricDataQuery objects specified for a single scaling
+	// policy. If you are performing math expressions on this set of data, this
+	// name represents that data and can serve as a variable in the mathematical
+	// expression. The valid characters are letters, numbers, and underscores. The
+	// first character must be a lowercase letter.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A human-readable label for this metric or expression. This is especially
+	// useful if this is a math expression, so that you know what the value represents.
+	Label *string `type:"string"`
+
+	// Information about the metric data to return.
+	//
+	// Conditional: Within each MetricDataQuery object, you must specify either
+	// Expression or MetricStat, but not both.
+	MetricStat *TargetTrackingMetricStat `type:"structure"`
+
+	// Indicates whether to return the timestamps and raw data values of this metric.
+	//
+	// If you use any math expressions, specify true for this value for only the
+	// final math expression that the metric specification is based on. You must
+	// specify false for ReturnData for all the other metrics and expressions used
+	// in the metric specification.
+	//
+	// If you are only retrieving metrics and not performing any math expressions,
+	// do not specify anything for ReturnData. This sets it to its default (true).
+	ReturnData *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDataQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDataQuery) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetricDataQuery) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetricDataQuery"}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.MetricStat != nil {
+		if err := s.MetricStat.Validate(); err != nil {
+			invalidParams.AddNested("MetricStat", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TargetTrackingMetricDataQuery) SetExpression(v string) *TargetTrackingMetricDataQuery {
+	s.Expression = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TargetTrackingMetricDataQuery) SetId(v string) *TargetTrackingMetricDataQuery {
+	s.Id = &v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *TargetTrackingMetricDataQuery) SetLabel(v string) *TargetTrackingMetricDataQuery {
+	s.Label = &v
+	return s
+}
+
+// SetMetricStat sets the MetricStat field's value.
+func (s *TargetTrackingMetricDataQuery) SetMetricStat(v *TargetTrackingMetricStat) *TargetTrackingMetricDataQuery {
+	s.MetricStat = v
+	return s
+}
+
+// SetReturnData sets the ReturnData field's value.
+func (s *TargetTrackingMetricDataQuery) SetReturnData(v bool) *TargetTrackingMetricDataQuery {
+	s.ReturnData = &v
+	return s
+}
+
+// Describes the dimension of a metric.
+type TargetTrackingMetricDimension struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dimension.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value of the dimension.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDimension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricDimension) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetricDimension) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetricDimension"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *TargetTrackingMetricDimension) SetName(v string) *TargetTrackingMetricDimension {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TargetTrackingMetricDimension) SetValue(v string) *TargetTrackingMetricDimension {
+	s.Value = &v
+	return s
+}
+
+// This structure defines the CloudWatch metric to return, along with the statistic,
+// period, and unit.
+//
+// For more information about the CloudWatch terminology below, see Amazon CloudWatch
+// concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
+// in the Amazon CloudWatch User Guide.
+type TargetTrackingMetricStat struct {
+	_ struct{} `type:"structure"`
+
+	// The CloudWatch metric to return, including the metric name, namespace, and
+	// dimensions. To get the exact metric name, namespace, and dimensions, inspect
+	// the Metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html)
+	// object that is returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
+	//
+	// Metric is a required field
+	Metric *TargetTrackingMetric `type:"structure" required:"true"`
+
+	// The statistic to return. It can include any CloudWatch statistic or extended
+	// statistic. For a list of valid values, see the table in Statistics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic)
+	// in the Amazon CloudWatch User Guide.
+	//
+	// The most commonly used metrics for scaling is Average
+	//
+	// Stat is a required field
+	Stat *string `type:"string" required:"true"`
+
+	// The unit to use for the returned data points. For a complete list of the
+	// units that CloudWatch supports, see the MetricDatum (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+	// data type in the Amazon CloudWatch API Reference.
+	Unit *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricStat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingMetricStat) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingMetricStat) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingMetricStat"}
+	if s.Metric == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metric"))
+	}
+	if s.Stat == nil {
+		invalidParams.Add(request.NewErrParamRequired("Stat"))
+	}
+	if s.Unit != nil && len(*s.Unit) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Unit", 1))
+	}
+	if s.Metric != nil {
+		if err := s.Metric.Validate(); err != nil {
+			invalidParams.AddNested("Metric", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetric sets the Metric field's value.
+func (s *TargetTrackingMetricStat) SetMetric(v *TargetTrackingMetric) *TargetTrackingMetricStat {
+	s.Metric = v
+	return s
+}
+
+// SetStat sets the Stat field's value.
+func (s *TargetTrackingMetricStat) SetStat(v string) *TargetTrackingMetricStat {
+	s.Stat = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *TargetTrackingMetricStat) SetUnit(v string) *TargetTrackingMetricStat {
+	s.Unit = &v
 	return s
 }
 

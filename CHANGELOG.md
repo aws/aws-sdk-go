@@ -1,3 +1,22 @@
+Release v1.44.221 (2023-03-14)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/dataexchange`: Updates service API and documentation
+* `service/directconnect`: Updates service documentation
+  * describe-direct-connect-gateway-associations includes a new status, updating, indicating that the association is currently in-process of updating.
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new DnsOptions key (PrivateDnsOnlyForInboundResolverEndpoint) to CreateVpcEndpoint and ModifyVpcEndpoint APIs.
+* `service/iam`: Updates service documentation
+  * Documentation only updates to correct customer-reported issues
+* `service/keyspaces`: Updates service API and documentation
+
+### SDK Enhancements
+
+* `aws/ec2metadata`: Added an option to disable fallback to IMDSv1. 
+  * When set the SDK will no longer fallback to IMDSv1 when fetching a token fails. Use `aws.WithEC2MetadataDisableFallback` to enable.
+
 Release v1.44.220 (2023-03-13)
 ===
 

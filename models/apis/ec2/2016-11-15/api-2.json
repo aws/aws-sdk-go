@@ -19667,13 +19667,18 @@
         "DnsRecordIpType":{
           "shape":"DnsRecordIpType",
           "locationName":"dnsRecordIpType"
+        },
+        "PrivateDnsOnlyForInboundResolverEndpoint":{
+          "shape":"Boolean",
+          "locationName":"privateDnsOnlyForInboundResolverEndpoint"
         }
       }
     },
     "DnsOptionsSpecification":{
       "type":"structure",
       "members":{
-        "DnsRecordIpType":{"shape":"DnsRecordIpType"}
+        "DnsRecordIpType":{"shape":"DnsRecordIpType"},
+        "PrivateDnsOnlyForInboundResolverEndpoint":{"shape":"Boolean"}
       }
     },
     "DnsRecordIpType":{

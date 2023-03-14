@@ -1340,6 +1340,8 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 //   - A list of client IDs (also known as audiences) that identify the application
 //     or applications allowed to authenticate using the OIDC provider
 //
+//   - A list of tags that are attached to the specified IAM OIDC provider
+//
 //   - A list of thumbprints of one or more server certificates that the IdP
 //     uses
 //
@@ -6773,7 +6775,7 @@ func (c *IAM) GetOrganizationsAccessReportRequest(input *GetOrganizationsAccessR
 // permissions using service last accessed data (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html)
 // in the IAM User Guide.
 //
-// For each service that principals in an account (root users, IAM users, or
+// For each service that principals in an account (root user, IAM users, or
 // IAM roles) could access using SCPs, the operation returns details about the
 // most recent access attempt. If there was no attempt, the service is listed
 // without details about the most recent attempt to access the service. If the
@@ -14323,10 +14325,10 @@ func (c *IAM) TagOpenIDConnectProviderRequest(input *TagOpenIDConnectProviderInp
 //     Or search for all resources with the key name Cost Center and the value
 //     41200.
 //
-//   - Access control - Include tags in IAM user-based and resource-based policies.
-//     You can use tags to restrict access to only an OIDC provider that has
-//     a specified tag attached. For examples of policies that show how to use
-//     tags to control access, see Control access using IAM tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html)
+//   - Access control - Include tags in IAM identity-based and resource-based
+//     policies. You can use tags to restrict access to only an OIDC provider
+//     that has a specified tag attached. For examples of policies that show
+//     how to use tags to control access, see Control access using IAM tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html)
 //     in the IAM User Guide.
 //
 //   - If any one of the tags is invalid or if you exceed the allowed maximum
@@ -14968,13 +14970,13 @@ func (c *IAM) TagUserRequest(input *TagUserInput) (req *request.Request, output 
 //     Or search for all resources with the key name Cost Center and the value
 //     41200.
 //
-//   - Access control - Include tags in IAM user-based and resource-based policies.
-//     You can use tags to restrict access to only an IAM requesting user that
-//     has a specified tag attached. You can also restrict access to only those
-//     resources that have a certain tag attached. For examples of policies that
-//     show how to use tags to control access, see Control access using IAM tags
-//     (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in
-//     the IAM User Guide.
+//   - Access control - Include tags in IAM identity-based and resource-based
+//     policies. You can use tags to restrict access to only an IAM requesting
+//     user that has a specified tag attached. You can also restrict access to
+//     only those resources that have a certain tag attached. For examples of
+//     policies that show how to use tags to control access, see Control access
+//     using IAM tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html)
+//     in the IAM User Guide.
 //
 //   - Cost allocation - Use tags to help track which individuals and teams
 //     are using which Amazon Web Services resources.
@@ -17604,7 +17606,7 @@ type AccessDetail struct {
 	// from which an authenticated principal last attempted to access the service.
 	// Amazon Web Services does not report unauthenticated requests.
 	//
-	// This field is null if no principals (IAM users, IAM roles, or root users)
+	// This field is null if no principals (IAM users, IAM roles, or root user)
 	// in the reported Organizations entity attempted to access the service within
 	// the tracking period (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html#service-last-accessed-reporting-period).
 	EntityPath *string `min:"19" type:"string"`
@@ -17641,7 +17643,7 @@ type AccessDetail struct {
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `min:"1" type:"string" required:"true"`
 
-	// The number of accounts with authenticated principals (root users, IAM users,
+	// The number of accounts with authenticated principals (root user, IAM users,
 	// and IAM roles) that attempted to access the service in the tracking period.
 	TotalAuthenticatedEntities *int64 `type:"integer"`
 }
@@ -19368,7 +19370,7 @@ type CreateOpenIDConnectProviderInput struct {
 	//
 	// For more information about obtaining the OIDC provider thumbprint, see Obtaining
 	// the thumbprint for an OpenID Connect provider (https://docs.aws.amazon.com/IAM/latest/UserGuide/identity-providers-oidc-obtain-thumbprint.html)
-	// in the IAM User Guide.
+	// in the IAM user Guide.
 	//
 	// ThumbprintList is a required field
 	ThumbprintList []*string `type:"list" required:"true"`
@@ -19923,6 +19925,10 @@ type CreateRoleInput struct {
 	// IAM user, group, role, and policy names must be unique within the account.
 	// Names are not distinguished by case. For example, you cannot create resources
 	// named both "MyResource" and "myresource".
+	//
+	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
+	// a string of characters consisting of upper and lowercase alphanumeric characters
+	// with no spaces. You can also include any of the following characters: _+=,.@-
 	//
 	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
@@ -20626,8 +20632,8 @@ type CreateVirtualMFADeviceInput struct {
 	// of tags, then the entire request fails and the resource is not created.
 	Tags []*Tag `type:"list"`
 
-	// The name of the virtual MFA device. Use with path to uniquely identify a
-	// virtual MFA device.
+	// The name of the virtual MFA device, which must be unique. Use with path to
+	// uniquely identify a virtual MFA device.
 	//
 	// This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))
 	// a string of characters consisting of upper and lowercase alphanumeric characters
@@ -34270,7 +34276,7 @@ type Role struct {
 	// if your Region began supporting these features within the last year. The
 	// role might have been used more than 400 days ago. For more information, see
 	// Regions where data is tracked (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html#access-advisor_tracking-period)
-	// in the IAM User Guide.
+	// in the IAM user Guide.
 	RoleLastUsed *RoleLastUsed `type:"structure"`
 
 	// The friendly name that identifies the role.
@@ -34531,7 +34537,7 @@ func (s *RoleDetail) SetTags(v []*Tag) *RoleDetail {
 // if your Region began supporting these features within the last year. The
 // role might have been used more than 400 days ago. For more information, see
 // Regions where data is tracked (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html#access-advisor_tracking-period)
-// in the IAM User Guide.
+// in the IAM user Guide.
 //
 // This data type is returned as a response element in the GetRole and GetAccountAuthorizationDetails
 // operations.
