@@ -266,6 +266,17 @@
       "box":true,
       "min":1
     },
+    "ClientSideTimestamps":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"ClientSideTimestampsStatus"}
+      }
+    },
+    "ClientSideTimestampsStatus":{
+      "type":"string",
+      "enum":["ENABLED"]
+    },
     "ClusteringKey":{
       "type":"structure",
       "required":[
@@ -343,7 +354,8 @@
         "pointInTimeRecovery":{"shape":"PointInTimeRecovery"},
         "ttl":{"shape":"TimeToLive"},
         "defaultTimeToLive":{"shape":"DefaultTimeToLive"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "clientSideTimestamps":{"shape":"ClientSideTimestamps"}
       }
     },
     "CreateTableResponse":{
@@ -451,7 +463,8 @@
         "pointInTimeRecovery":{"shape":"PointInTimeRecoverySummary"},
         "ttl":{"shape":"TimeToLive"},
         "defaultTimeToLive":{"shape":"DefaultTimeToLive"},
-        "comment":{"shape":"Comment"}
+        "comment":{"shape":"Comment"},
+        "clientSideTimestamps":{"shape":"ClientSideTimestamps"}
       }
     },
     "InternalServerException":{
@@ -776,7 +789,8 @@
         "encryptionSpecification":{"shape":"EncryptionSpecification"},
         "pointInTimeRecovery":{"shape":"PointInTimeRecovery"},
         "ttl":{"shape":"TimeToLive"},
-        "defaultTimeToLive":{"shape":"DefaultTimeToLive"}
+        "defaultTimeToLive":{"shape":"DefaultTimeToLive"},
+        "clientSideTimestamps":{"shape":"ClientSideTimestamps"}
       }
     },
     "UpdateTableResponse":{

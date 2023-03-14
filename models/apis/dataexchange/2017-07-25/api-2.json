@@ -1405,6 +1405,18 @@
         "DATA_SET"
       ]
     },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "KmsKeyToGrant":{
+      "type":"structure",
+      "required":["KmsKeyArn"],
+      "members":{
+        "KmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
     "LFPermission":{
       "type":"string",
       "enum":[
@@ -1652,6 +1664,12 @@
     "ListOfJobError":{
       "type":"list",
       "member":{"shape":"JobError"}
+    },
+    "ListOfKmsKeysToGrant":{
+      "type":"list",
+      "member":{"shape":"KmsKeyToGrant"},
+      "max":10,
+      "min":1
     },
     "ListOfLFPermissions":{
       "type":"list",
@@ -1928,7 +1946,8 @@
         "KeyPrefixes":{"shape":"ListOf__string"},
         "Keys":{"shape":"ListOf__string"},
         "S3AccessPointAlias":{"shape":"__string"},
-        "S3AccessPointArn":{"shape":"__string"}
+        "S3AccessPointArn":{"shape":"__string"},
+        "KmsKeysToGrant":{"shape":"ListOfKmsKeysToGrant"}
       }
     },
     "S3DataAccessAssetSourceEntry":{
@@ -1937,7 +1956,8 @@
       "members":{
         "Bucket":{"shape":"__string"},
         "KeyPrefixes":{"shape":"ListOf__string"},
-        "Keys":{"shape":"ListOf__string"}
+        "Keys":{"shape":"ListOf__string"},
+        "KmsKeysToGrant":{"shape":"ListOfKmsKeysToGrant"}
       }
     },
     "S3SnapshotAsset":{

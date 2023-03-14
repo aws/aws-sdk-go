@@ -202,17 +202,13 @@
     "Cooldown":{"type":"integer"},
     "CustomizedMetricSpecification":{
       "type":"structure",
-      "required":[
-        "MetricName",
-        "Namespace",
-        "Statistic"
-      ],
       "members":{
         "MetricName":{"shape":"MetricName"},
         "Namespace":{"shape":"MetricNamespace"},
         "Dimensions":{"shape":"MetricDimensions"},
         "Statistic":{"shape":"MetricStatistic"},
-        "Unit":{"shape":"MetricUnit"}
+        "Unit":{"shape":"MetricUnit"},
+        "Metrics":{"shape":"TargetTrackingMetricDataQueries"}
       }
     },
     "DeleteScalingPolicyRequest":{
@@ -350,12 +346,24 @@
     },
     "DisableScaleIn":{"type":"boolean"},
     "ErrorMessage":{"type":"string"},
+    "Expression":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
     "FailedResourceAccessException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "Id":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "IncludeNotScaledActivities":{"type":"boolean"},
     "InternalServiceException":{
@@ -582,6 +590,7 @@
       "max":1023,
       "min":1
     },
+    "ReturnData":{"type":"boolean"},
     "ScalableDimension":{
       "type":"string",
       "enum":[
@@ -795,6 +804,86 @@
         "DynamicScalingOutSuspended":{"shape":"ScalingSuspended"},
         "ScheduledScalingSuspended":{"shape":"ScalingSuspended"}
       }
+    },
+    "TargetTrackingMetric":{
+      "type":"structure",
+      "members":{
+        "Dimensions":{"shape":"TargetTrackingMetricDimensions"},
+        "MetricName":{"shape":"TargetTrackingMetricName"},
+        "Namespace":{"shape":"TargetTrackingMetricNamespace"}
+      }
+    },
+    "TargetTrackingMetricDataQueries":{
+      "type":"list",
+      "member":{"shape":"TargetTrackingMetricDataQuery"}
+    },
+    "TargetTrackingMetricDataQuery":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Expression":{"shape":"Expression"},
+        "Id":{"shape":"Id"},
+        "Label":{"shape":"XmlString"},
+        "MetricStat":{"shape":"TargetTrackingMetricStat"},
+        "ReturnData":{"shape":"ReturnData"}
+      }
+    },
+    "TargetTrackingMetricDimension":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"TargetTrackingMetricDimensionName"},
+        "Value":{"shape":"TargetTrackingMetricDimensionValue"}
+      }
+    },
+    "TargetTrackingMetricDimensionName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricDimensionValue":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricDimensions":{
+      "type":"list",
+      "member":{"shape":"TargetTrackingMetricDimension"}
+    },
+    "TargetTrackingMetricName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricNamespace":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "TargetTrackingMetricStat":{
+      "type":"structure",
+      "required":[
+        "Metric",
+        "Stat"
+      ],
+      "members":{
+        "Metric":{"shape":"TargetTrackingMetric"},
+        "Stat":{"shape":"XmlString"},
+        "Unit":{"shape":"TargetTrackingMetricUnit"}
+      }
+    },
+    "TargetTrackingMetricUnit":{
+      "type":"string",
+      "max":1023,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "TargetTrackingScalingPolicyConfiguration":{
       "type":"structure",

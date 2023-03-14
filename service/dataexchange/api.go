@@ -7983,6 +7983,60 @@ func (s *JobError) SetResourceType(v string) *JobError {
 	return s
 }
 
+// The Amazon Resource Name (ARN) of the AWS KMS key used to encrypt the shared
+// S3 objects.
+type KmsKeyToGrant struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS KMS CMK (Key Management System Customer Managed Key) used to encrypt
+	// S3 objects in the shared S3 Bucket. AWS Data exchange will create a KMS grant
+	// for each subscriber to allow them to access and decrypt their entitled data
+	// that is encrypted using this KMS key specified.
+	//
+	// KmsKeyArn is a required field
+	KmsKeyArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsKeyToGrant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsKeyToGrant) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KmsKeyToGrant) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KmsKeyToGrant"}
+	if s.KmsKeyArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKeyArn"))
+	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *KmsKeyToGrant) SetKmsKeyArn(v string) *KmsKeyToGrant {
+	s.KmsKeyArn = &v
+	return s
+}
+
 // Details about the AWS Lake Formation resource (Table or Database) included
 // in the AWS Lake Formation data permission.
 type LFResourceDetails struct {
@@ -9823,6 +9877,11 @@ type S3DataAccessAsset struct {
 	// S3 keys made available using this asset.
 	Keys []*string `type:"list"`
 
+	// List of AWS KMS CMKs (Key Management System Customer Managed Keys) and ARNs
+	// used to encrypt S3 objects being shared in this S3 Data Access asset. Providers
+	// must include all AWS KMS keys used to encrypt these shared S3 objects.
+	KmsKeysToGrant []*KmsKeyToGrant `min:"1" type:"list"`
+
 	// The automatically-generated bucket-style alias for your Amazon S3 Access
 	// Point. Customers can access their entitled data using the S3 Access Point
 	// alias.
@@ -9869,6 +9928,12 @@ func (s *S3DataAccessAsset) SetKeys(v []*string) *S3DataAccessAsset {
 	return s
 }
 
+// SetKmsKeysToGrant sets the KmsKeysToGrant field's value.
+func (s *S3DataAccessAsset) SetKmsKeysToGrant(v []*KmsKeyToGrant) *S3DataAccessAsset {
+	s.KmsKeysToGrant = v
+	return s
+}
+
 // SetS3AccessPointAlias sets the S3AccessPointAlias field's value.
 func (s *S3DataAccessAsset) SetS3AccessPointAlias(v string) *S3DataAccessAsset {
 	s.S3AccessPointAlias = &v
@@ -9895,6 +9960,10 @@ type S3DataAccessAssetSourceEntry struct {
 
 	// The keys used to create the Amazon S3 data access.
 	Keys []*string `type:"list"`
+
+	// List of AWS KMS CMKs (Key Management System Customer Managed Keys) and ARNs
+	// used to encrypt S3 objects being shared in this S3 Data Access asset.
+	KmsKeysToGrant []*KmsKeyToGrant `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -9921,6 +9990,19 @@ func (s *S3DataAccessAssetSourceEntry) Validate() error {
 	if s.Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("Bucket"))
 	}
+	if s.KmsKeysToGrant != nil && len(s.KmsKeysToGrant) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeysToGrant", 1))
+	}
+	if s.KmsKeysToGrant != nil {
+		for i, v := range s.KmsKeysToGrant {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "KmsKeysToGrant", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9943,6 +10025,12 @@ func (s *S3DataAccessAssetSourceEntry) SetKeyPrefixes(v []*string) *S3DataAccess
 // SetKeys sets the Keys field's value.
 func (s *S3DataAccessAssetSourceEntry) SetKeys(v []*string) *S3DataAccessAssetSourceEntry {
 	s.Keys = v
+	return s
+}
+
+// SetKmsKeysToGrant sets the KmsKeysToGrant field's value.
+func (s *S3DataAccessAssetSourceEntry) SetKmsKeysToGrant(v []*KmsKeyToGrant) *S3DataAccessAssetSourceEntry {
+	s.KmsKeysToGrant = v
 	return s
 }
 

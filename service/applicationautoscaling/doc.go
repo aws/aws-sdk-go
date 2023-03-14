@@ -34,6 +34,9 @@
 //
 //   - Custom resources provided by your own applications or services
 //
+// To learn more about Application Auto Scaling, see the Application Auto Scaling
+// User Guide (https://docs.aws.amazon.com/autoscaling/application/userguide/what-is-application-auto-scaling.html).
+//
 // # API Summary
 //
 // The Application Auto Scaling service API includes three key sets of actions:
@@ -54,10 +57,6 @@
 //     and resume (individually or in combination) scale-out activities that
 //     are triggered by a scaling policy, scale-in activities that are triggered
 //     by a scaling policy, and scheduled scaling.
-//
-// To learn more about Application Auto Scaling, including information about
-// granting IAM users required permissions for Application Auto Scaling actions,
-// see the Application Auto Scaling User Guide (https://docs.aws.amazon.com/autoscaling/application/userguide/what-is-application-auto-scaling.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06 for more information on this service.
 //
