@@ -4,4 +4,5 @@
 
 ### SDK Bugs
 
-- `private/protocol`: Use request body error message for unknown errors missing a message header
+* `private/protocol`: Fix error message being elided in restJson errors.
+  * Use request body error message for unknown errors when header is absent.
