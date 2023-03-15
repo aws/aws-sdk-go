@@ -11,9 +11,8 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// The AWS user account does not have permission to perform the action. Check
-	// the AWS Identity and Access Management (IAM) policy associated with this
-	// account.
+	// The user does not have permission to perform the action. Check the AWS Identity
+	// and Access Management (IAM) policy associated with this user.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code

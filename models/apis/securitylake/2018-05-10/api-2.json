@@ -544,6 +544,7 @@
       "type":"structure",
       "required":["message"],
       "members":{
+        "errorCode":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{
@@ -835,6 +836,8 @@
       "type":"structure",
       "required":["subscriptionId"],
       "members":{
+        "resourceShareArn":{"shape":"ResourceShareArn"},
+        "resourceShareName":{"shape":"ResourceShareName"},
         "roleArn":{"shape":"RoleArn"},
         "s3BucketArn":{"shape":"S3BucketArn"},
         "snsArn":{"shape":"SnsTopicArn"},
@@ -1200,13 +1203,21 @@
         "retentionSettings":{"shape":"RetentionSettingList"},
         "s3BucketArn":{"shape":"S3BucketArn"},
         "status":{"shape":"settingsStatus"},
-        "tagsMap":{"shape":"TagsMap"}
+        "tagsMap":{"shape":"TagsMap"},
+        "updateStatus":{"shape":"UpdateStatus"}
       }
     },
     "LakeConfigurationResponseMap":{
       "type":"map",
       "key":{"shape":"Region"},
       "value":{"shape":"LakeConfigurationResponse"}
+    },
+    "LastUpdateFailure":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"String"},
+        "reason":{"shape":"String"}
+      }
     },
     "ListDatalakeExceptionsRequest":{
       "type":"structure",
@@ -1368,6 +1379,11 @@
       },
       "exception":true
     },
+    "ResourceShareArn":{"type":"string"},
+    "ResourceShareName":{
+      "type":"string",
+      "pattern":"^LakeFormation(?:-V[0-9]+)-([a-zA-Z0-9]+)-([\\\\\\w\\-_:/.@=+]*)$"
+    },
     "RetentionSetting":{
       "type":"structure",
       "members":{
@@ -1477,6 +1493,8 @@
         "accountId":{"shape":"AwsAccountId"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "externalId":{"shape":"SafeString"},
+        "resourceShareArn":{"shape":"ResourceShareArn"},
+        "resourceShareName":{"shape":"ResourceShareName"},
         "roleArn":{"shape":"RoleArn"},
         "s3BucketArn":{"shape":"S3BucketArn"},
         "snsArn":{"shape":"SnsTopicArn"},
@@ -1594,6 +1612,14 @@
     "UpdateDatalakeResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateStatus":{
+      "type":"structure",
+      "members":{
+        "lastUpdateFailure":{"shape":"LastUpdateFailure"},
+        "lastUpdateRequestId":{"shape":"String"},
+        "lastUpdateStatus":{"shape":"settingsStatus"}
       }
     },
     "UpdateSubscriberRequest":{

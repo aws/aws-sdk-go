@@ -1336,7 +1336,8 @@
     "CreateAccessPointForObjectLambdaResult":{
       "type":"structure",
       "members":{
-        "ObjectLambdaAccessPointArn":{"shape":"ObjectLambdaAccessPointArn"}
+        "ObjectLambdaAccessPointArn":{"shape":"ObjectLambdaAccessPointArn"},
+        "Alias":{"shape":"ObjectLambdaAccessPointAlias"}
       }
     },
     "CreateAccessPointRequest":{
@@ -2082,7 +2083,8 @@
       "members":{
         "Name":{"shape":"ObjectLambdaAccessPointName"},
         "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"},
-        "CreationDate":{"shape":"CreationDate"}
+        "CreationDate":{"shape":"CreationDate"},
+        "Alias":{"shape":"ObjectLambdaAccessPointAlias"}
       }
     },
     "GetAccessPointPolicyForObjectLambdaRequest":{
@@ -3510,8 +3512,31 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"ObjectLambdaAccessPointName"},
-        "ObjectLambdaAccessPointArn":{"shape":"ObjectLambdaAccessPointArn"}
+        "ObjectLambdaAccessPointArn":{"shape":"ObjectLambdaAccessPointArn"},
+        "Alias":{"shape":"ObjectLambdaAccessPointAlias"}
       }
+    },
+    "ObjectLambdaAccessPointAlias":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"ObjectLambdaAccessPointAliasValue"},
+        "Status":{"shape":"ObjectLambdaAccessPointAliasStatus"}
+      }
+    },
+    "ObjectLambdaAccessPointAliasStatus":{
+      "type":"string",
+      "enum":[
+        "PROVISIONING",
+        "READY"
+      ],
+      "max":16,
+      "min":2
+    },
+    "ObjectLambdaAccessPointAliasValue":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[0-9a-z\\\\-]{3,63}"
     },
     "ObjectLambdaAccessPointArn":{
       "type":"string",

@@ -1293,7 +1293,7 @@ func (c *S3Control) DeleteBucketReplicationRequest(input *DeleteBucketReplicatio
 // section.
 //
 // For information about S3 replication on Outposts configuration, see Replicating
-// objects for Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)
+// objects for S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)
 // in the Amazon S3 User Guide.
 //
 // The following operations are related to DeleteBucketReplication:
@@ -3041,7 +3041,7 @@ func (c *S3Control) GetBucketReplicationRequest(input *GetBucketReplicationInput
 // Returns the replication configuration of an S3 on Outposts bucket. For more
 // information about S3 on Outposts, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide. For information about S3 replication on Outposts
-// configuration, see Replicating objects for Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)
+// configuration, see Replicating objects for S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)
 // in the Amazon S3 User Guide.
 //
 // It can take a while to propagate PUT or DELETE requests for a replication
@@ -5477,7 +5477,7 @@ func (c *S3Control) PutBucketReplicationRequest(input *PutBucketReplicationInput
 //
 // Creates a replication configuration or replaces an existing one. For information
 // about S3 replication on Outposts configuration, see Replicating objects for
-// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AmazonS3/latest/userguide/S3OutpostsReplication.html)
+// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)
 // in the Amazon S3 User Guide.
 //
 // It can take a while to propagate PUT or DELETE requests for a replication
@@ -5534,16 +5534,16 @@ func (c *S3Control) PutBucketReplicationRequest(input *PutBucketReplicationInput
 // see Setting up IAM with S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html)
 // and Managing access to S3 on Outposts buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html).
 //
-// To perform this operation, the user or role must also have the iam:PassRole
-// (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html)
-// permission.
+// To perform this operation, the user or role must also have the iam:CreateRole
+// and iam:PassRole permissions. For more information, see Granting a user permissions
+// to pass a role to an Amazon Web Services service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
 // parameter of x-amz-outpost-id to be passed with the request. In addition,
 // you must use an S3 on Outposts endpoint hostname prefix instead of s3-control.
 // For an example of the request syntax for Amazon S3 on Outposts that uses
 // the S3 on Outposts endpoint hostname prefix and the x-amz-outpost-id derived
-// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples)
+// by using the access point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html#API_control_PutBucketReplication_Examples)
 // section.
 //
 // The following operations are related to PutBucketReplication:
@@ -5799,11 +5799,12 @@ func (c *S3Control) PutBucketVersioningRequest(input *PutBucketVersioningInput) 
 // configuration for your S3 on Outposts bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsLifecycleManaging.html)
 // in the Amazon S3 User Guide.
 //
-// If you have an object expiration lifecycle policy in your non-versioned bucket
-// and you want to maintain the same permanent delete behavior when you enable
-// versioning, you must add a noncurrent expiration policy. The noncurrent expiration
-// lifecycle policy will manage the deletions of the noncurrent object versions
-// in the version-enabled bucket. For more information, see Versioning (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html)
+// If you have an object expiration lifecycle configuration in your non-versioned
+// bucket and you want to maintain the same permanent delete behavior when you
+// enable versioning, you must add a noncurrent expiration policy. The noncurrent
+// expiration lifecycle configuration will manage the deletes of the noncurrent
+// object versions in the version-enabled bucket. For more information, see
+// Versioning (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html)
 // in the Amazon S3 User Guide.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
@@ -7565,6 +7566,9 @@ func (s *CreateAccessPointForObjectLambdaInput) hostLabels() map[string]string {
 type CreateAccessPointForObjectLambdaOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The alias of the Object Lambda Access Point.
+	Alias *ObjectLambdaAccessPointAlias `type:"structure"`
+
 	// Specifies the ARN for the Object Lambda Access Point.
 	ObjectLambdaAccessPointArn *string `min:"1" type:"string"`
 }
@@ -7585,6 +7589,12 @@ func (s CreateAccessPointForObjectLambdaOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateAccessPointForObjectLambdaOutput) GoString() string {
 	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *CreateAccessPointForObjectLambdaOutput) SetAlias(v *ObjectLambdaAccessPointAlias) *CreateAccessPointForObjectLambdaOutput {
+	s.Alias = v
+	return s
 }
 
 // SetObjectLambdaAccessPointArn sets the ObjectLambdaAccessPointArn field's value.
@@ -11124,6 +11134,9 @@ func (s *GetAccessPointForObjectLambdaInput) hostLabels() map[string]string {
 type GetAccessPointForObjectLambdaOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The alias of the Object Lambda Access Point.
+	Alias *ObjectLambdaAccessPointAlias `type:"structure"`
+
 	// The date and time when the specified Object Lambda Access Point was created.
 	CreationDate *time.Time `type:"timestamp"`
 
@@ -11151,6 +11164,12 @@ func (s GetAccessPointForObjectLambdaOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetAccessPointForObjectLambdaOutput) GoString() string {
 	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *GetAccessPointForObjectLambdaOutput) SetAlias(v *ObjectLambdaAccessPointAlias) *GetAccessPointForObjectLambdaOutput {
+	s.Alias = v
+	return s
 }
 
 // SetCreationDate sets the CreationDate field's value.
@@ -14902,7 +14921,7 @@ type LifecycleRule struct {
 	// Specifies the days since the initiation of an incomplete multipart upload
 	// that Amazon S3 waits before permanently removing all parts of the upload.
 	// For more information, see Aborting Incomplete Multipart Uploads Using a Bucket
-	// Lifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config)
+	// Lifecycle Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config)
 	// in the Amazon S3 User Guide.
 	AbortIncompleteMultipartUpload *AbortIncompleteMultipartUpload `type:"structure"`
 
@@ -16551,6 +16570,9 @@ func (s *NoncurrentVersionTransition) SetStorageClass(v string) *NoncurrentVersi
 type ObjectLambdaAccessPoint struct {
 	_ struct{} `type:"structure"`
 
+	// The alias of the Object Lambda Access Point.
+	Alias *ObjectLambdaAccessPointAlias `type:"structure"`
+
 	// The name of the Object Lambda Access Point.
 	//
 	// Name is a required field
@@ -16578,6 +16600,12 @@ func (s ObjectLambdaAccessPoint) GoString() string {
 	return s.String()
 }
 
+// SetAlias sets the Alias field's value.
+func (s *ObjectLambdaAccessPoint) SetAlias(v *ObjectLambdaAccessPointAlias) *ObjectLambdaAccessPoint {
+	s.Alias = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *ObjectLambdaAccessPoint) SetName(v string) *ObjectLambdaAccessPoint {
 	s.Name = &v
@@ -16587,6 +16615,52 @@ func (s *ObjectLambdaAccessPoint) SetName(v string) *ObjectLambdaAccessPoint {
 // SetObjectLambdaAccessPointArn sets the ObjectLambdaAccessPointArn field's value.
 func (s *ObjectLambdaAccessPoint) SetObjectLambdaAccessPointArn(v string) *ObjectLambdaAccessPoint {
 	s.ObjectLambdaAccessPointArn = &v
+	return s
+}
+
+// The alias of an Object Lambda Access Point. For more information, see How
+// to use a bucket-style alias for your S3 bucket Object Lambda Access Point
+// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-use.html#ol-access-points-alias).
+type ObjectLambdaAccessPointAlias struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the Object Lambda Access Point alias. If the status is PROVISIONING,
+	// the Object Lambda Access Point is provisioning the alias and the alias is
+	// not ready for use yet. If the status is READY, the Object Lambda Access Point
+	// alias is successfully provisioned and ready for use.
+	Status *string `min:"2" type:"string" enum:"ObjectLambdaAccessPointAliasStatus"`
+
+	// The alias value of the Object Lambda Access Point.
+	Value *string `min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ObjectLambdaAccessPointAlias) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ObjectLambdaAccessPointAlias) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *ObjectLambdaAccessPointAlias) SetStatus(v string) *ObjectLambdaAccessPointAlias {
+	s.Status = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ObjectLambdaAccessPointAlias) SetValue(v string) *ObjectLambdaAccessPointAlias {
+	s.Value = &v
 	return s
 }
 
@@ -19301,7 +19375,7 @@ type ReplicationRule struct {
 	// the rule with the highest priority. The higher the number, the higher the
 	// priority.
 	//
-	// For more information, see Creating replication rules between Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-between-outposts.html)
+	// For more information, see Creating replication rules on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-between-outposts.html)
 	// in the Amazon S3 User Guide.
 	Priority *int64 `type:"integer"`
 
@@ -22956,6 +23030,22 @@ func NetworkOrigin_Values() []string {
 	return []string{
 		NetworkOriginInternet,
 		NetworkOriginVpc,
+	}
+}
+
+const (
+	// ObjectLambdaAccessPointAliasStatusProvisioning is a ObjectLambdaAccessPointAliasStatus enum value
+	ObjectLambdaAccessPointAliasStatusProvisioning = "PROVISIONING"
+
+	// ObjectLambdaAccessPointAliasStatusReady is a ObjectLambdaAccessPointAliasStatus enum value
+	ObjectLambdaAccessPointAliasStatusReady = "READY"
+)
+
+// ObjectLambdaAccessPointAliasStatus_Values returns all elements of the ObjectLambdaAccessPointAliasStatus enum
+func ObjectLambdaAccessPointAliasStatus_Values() []string {
+	return []string{
+		ObjectLambdaAccessPointAliasStatusProvisioning,
+		ObjectLambdaAccessPointAliasStatusReady,
 	}
 }
 
