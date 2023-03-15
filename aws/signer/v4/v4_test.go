@@ -230,6 +230,16 @@ func TestSignBodyGlacier(t *testing.T) {
 	}
 }
 
+func TestSignBodyOpensearchServerless(t *testing.T) {
+	req, body := buildRequest("aoss", "us-east-1", "hello")
+	signer := buildSigner()
+	signer.Sign(req, body, "aoss", "us-east-1", time.Now())
+	hash := req.Header.Get("X-Amz-Content-Sha256")
+	if e, a := "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824", hash; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
 func TestPresign_SignedPayload(t *testing.T) {
 	req, body := buildRequest("glacier", "us-east-1", "hello")
 	signer := buildSigner()

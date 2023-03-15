@@ -695,7 +695,8 @@ func (ctx *signingCtx) buildBodyDigest() error {
 		includeSHA256Header := ctx.unsignedPayload ||
 			ctx.ServiceName == "s3" ||
 			ctx.ServiceName == "s3-object-lambda" ||
-			ctx.ServiceName == "glacier"
+			ctx.ServiceName == "glacier" ||
+			ctx.ServiceName == "aoss" // OpenSearch Server Serverless
 
 		s3Presign := ctx.isPresign &&
 			(ctx.ServiceName == "s3" ||
