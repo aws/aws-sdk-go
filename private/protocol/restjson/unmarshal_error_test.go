@@ -161,6 +161,32 @@ func TestUnmarshalTypedError(t *testing.T) {
 				respMeta.RequestID,
 			),
 		},
+		"unknown code header only": {
+			Response: &http.Response{
+				Header: http.Header{
+					errorTypeHeader: []string{"UnknownError"},
+				},
+				Body: ioutil.NopCloser(strings.NewReader(unknownErrJSON)),
+			},
+			Expect: awserr.NewRequestFailure(
+				awserr.New("UnknownError", "error message", nil),
+				respMeta.StatusCode,
+				respMeta.RequestID,
+			),
+		},
+		"unknown message header only": {
+			Response: &http.Response{
+				Header: http.Header{
+					errorMessageHeader: []string{"overwritten error message"},
+				},
+				Body: ioutil.NopCloser(strings.NewReader(unknownErrJSON)),
+			},
+			Expect: awserr.NewRequestFailure(
+				awserr.New("UnknownError", "error message", nil),
+				respMeta.StatusCode,
+				respMeta.RequestID,
+			),
+		},
 		"code from header": {
 			Response: &http.Response{
 				Header: http.Header{
