@@ -9,11 +9,11 @@
     "CreateDatalakeDelegatedAdmin": "<p>Designates the Amazon Security Lake delegated administrator account for the organization. This API can only be called by the organization management account. The organization management account cannot be the delegated administrator account.</p>",
     "CreateDatalakeExceptionsSubscription": "<p>Creates the specified notification subscription in Amazon Security Lake for the organization you specify.</p>",
     "CreateSubscriber": "<p>Creates a subscription permission for accounts that are already enabled in Amazon Security Lake. You can create a subscriber with access to data in the current Amazon Web Services Region.</p>",
-    "CreateSubscriptionNotificationConfiguration": "<p>Notifies the subscriber when new data is written to the data lake for the sources that the subscriber consumes in Security Lake.</p>",
+    "CreateSubscriptionNotificationConfiguration": "<p>Notifies the subscriber when new data is written to the data lake for the sources that the subscriber consumes in Security Lake. You can create only one subscriber notification per subscriber.</p>",
     "DeleteAwsLogSource": "<p>Removes a natively supported Amazon Web Service as an Amazon Security Lake source. When you remove the source, Security Lake stops collecting data from that source, and subscribers can no longer consume new data from the source. Subscribers can still consume data that Security Lake collected from the source before disablement.</p> <p>You can choose any source type in any Amazon Web Services Region for either accounts that are part of a trusted organization or standalone accounts. At least one of the three dimensions is a mandatory input to this API. However, you can supply any combination of the three dimensions to this API. </p> <p>By default, a dimension refers to the entire set. This is overridden when you supply any one of the inputs. For instance, when you do not specify members, the API disables all Security Lake member accounts for sources. Similarly, when you do not specify Regions, Security Lake is disabled for all the Regions where Security Lake is available as a service.</p> <p>When you don't provide a dimension, Security Lake assumes that the missing dimension refers to the entire set. For example, if you don't provide specific accounts, the API applies to the entire set of accounts in your organization.</p>",
     "DeleteCustomLogSource": "<p>Removes a custom log source from Amazon Security Lake.</p>",
     "DeleteDatalake": "<p>When you delete Amazon Security Lake from your account, Security Lake is disabled in all Amazon Web Services Regions. Also, this API automatically takes steps to remove the account from Security Lake . </p> <p>This operation disables security data collection from sources, deletes data stored, and stops making data accessible to subscribers. Security Lake also deletes all the existing settings and resources that it stores or maintains for your Amazon Web Services account in the current Region, including security log and event data. The <code>DeleteDatalake</code> operation does not delete the Amazon S3 bucket, which is owned by your Amazon Web Services account. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html\">Amazon Security Lake User Guide</a>.</p>",
-    "DeleteDatalakeAutoEnable": "<p>Automatically deletes Amazon Security Lake to stop collecting security data. When you delete Amazon Security Lake from your account, Security Lake is disabled in all Regions. Also, this API automatically takes steps to remove the account from Security Lake . </p> <p>This operation disables security data collection from sources, deletes data stored, and stops making data accessible to subscribers. Security Lake also deletes all the existing settings and resources that it stores or maintains for your Amazon Web Services account in the current Region, including security log and event data. The <code>DeleteDatalake</code> operation does not delete the Amazon S3 bucket, which is owned by your Amazon Web Services account. For more information, see the <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html\">Amazon Security Lake User Guide</a>.</p>",
+    "DeleteDatalakeAutoEnable": "<p> <code>DeleteDatalakeAutoEnable</code> removes automatic enablement of configuration settings for new member accounts (but keeps settings for the delegated administrator) from Amazon Security Lake. You must run this API using credentials of the delegated administrator. When you run this API, new member accounts that are added after the organization enables Security Lake won't contribute to the data lake.</p>",
     "DeleteDatalakeDelegatedAdmin": "<p>Deletes the Amazon Security Lake delegated administrator account for the organization. This API can only be called by the organization management account. The organization management account cannot be the delegated administrator account.</p>",
     "DeleteDatalakeExceptionsSubscription": "<p>Deletes the specified notification subscription in Amazon Security Lake for the organization you specify.</p>",
     "DeleteSubscriber": "<p>Deletes the subscription permission for accounts that are already enabled in Amazon Security Lake. You can delete a subscriber and remove access to data in the current Amazon Web Services Region.</p>",
@@ -31,7 +31,7 @@
     "UpdateDatalakeExceptionsExpiry": "<p>Update the expiration period for the exception message to your preferred time, and control the time-to-live (TTL) for the exception message to remain. Exceptions are stored by default for 2 weeks from when a record was created in Amazon Security Lake. </p>",
     "UpdateDatalakeExceptionsSubscription": "<p>Updates the specified notification subscription in Amazon Security Lake for the organization you specify.</p>",
     "UpdateSubscriber": "<p>Updates an existing subscription for the given Amazon Security Lake account ID. You can update a subscriber by changing the sources that the subscriber consumes data from. </p>",
-    "UpdateSubscriptionNotificationConfiguration": "<p>Creates a new subscription notification or adds the existing subscription notification setting for the specified subscription ID.</p>"
+    "UpdateSubscriptionNotificationConfiguration": "<p>Updates an existing notification method for the subscription (SQS or HTTPs endpoint) or switches the notification subscription endpoint for a subscriber.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -97,7 +97,7 @@
       "base": null,
       "refs": {
         "CreateDatalakeAutoEnableRequest$configurationForNewAccounts": "<p>Enable Security Lake with the specified configuration settings to begin collecting security data for new accounts in your organization. </p>",
-        "DeleteDatalakeAutoEnableRequest$removeFromConfigurationForNewAccounts": "<p>Delete Amazon Security Lake with the specified configuration settings to stop ingesting security data for new accounts in Security Lake. </p>",
+        "DeleteDatalakeAutoEnableRequest$removeFromConfigurationForNewAccounts": "<p>Remove automatic enablement of configuration settings for new member accounts in Security Lake. </p>",
         "GetDatalakeAutoEnableResponse$autoEnableNewAccounts": "<p>The configuration for new accounts.</p>"
       }
     },
@@ -512,6 +512,12 @@
         "GetDatalakeResponse$configurations": "<p>Retrieves the Security Lake configuration object. </p>"
       }
     },
+    "LastUpdateFailure": {
+      "base": "<p>The details of the last <code>UpdateDatalake</code> or <code>DeleteDatalake</code> API request which failed.</p>",
+      "refs": {
+        "UpdateStatus$lastUpdateFailure": "<p>The details of the last <code>UpdateDatalake</code>or <code>DeleteDatalake</code> API request which failed.</p>"
+      }
+    },
     "ListDatalakeExceptionsRequest": {
       "base": null,
       "refs": {
@@ -602,6 +608,20 @@
       "refs": {
       }
     },
+    "ResourceShareArn": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberResponse$resourceShareArn": "<p>The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource share. Before accepting the RAM resource share invitation, you can view details related to the RAM resource share.</p>",
+        "SubscriberResource$resourceShareArn": "<p>The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource share. Before accepting the RAM resource share invitation, you can view details related to the RAM resource share.</p> <p>This field is available only for Lake Formation subscribers created after March 8, 2023.</p>"
+      }
+    },
+    "ResourceShareName": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberResponse$resourceShareName": "<p>The name of the resource share.</p>",
+        "SubscriberResource$resourceShareName": "<p>The name of the resource share.</p>"
+      }
+    },
     "RetentionSetting": {
       "base": "<p>Retention settings for the destination Amazon S3 buckets in Amazon Security Lake. </p>",
       "refs": {
@@ -626,12 +646,12 @@
       "refs": {
         "CreateCustomLogSourceRequest$glueInvocationRoleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be used by the Glue crawler. The recommended IAM policies are:</p> <ul> <li> <p>The managed policy <code>AWSGlueServiceRole</code> </p> </li> <li> <p>A custom policy granting access to your Amazon S3 Data Lake</p> </li> </ul>",
         "CreateDatalakeRequest$metaStoreManagerRoleArn": "<p>The Amazon Resource Name (ARN) used to create and update the Glue table. This table contains partitions generated by the ingestion and normalization of Amazon Web Services log sources and custom sources.</p>",
-        "CreateSubscriberResponse$roleArn": "<p>The Amazon Resource Name (ARN) created by you to provide to the subscriber. For more information about ARNs and how to use them in policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM identifiers in the Identity and Access Management (IAM) User Guide</a>. .</p>",
-        "CreateSubscriptionNotificationConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role that you created.</p>",
+        "CreateSubscriberResponse$roleArn": "<p>The Amazon Resource Name (ARN) created by you to provide to the subscriber. For more information about ARNs and how to use them in policies, see <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-management.html\">Amazon Security Lake User Guide</a>.</p>",
+        "CreateSubscriptionNotificationConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role that you created. For more information about ARNs and how to use them in policies, see <a href=\"https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html\">Managing data access</a> and <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html\">Amazon Web Services Managed Policies</a> in the Amazon Security Lake User Guide.</p>",
         "LakeConfigurationRequest$replicationRoleArn": "<p>Replication settings for the Amazon S3 buckets. This parameter uses the Identity and Access Management (IAM) role you created that is managed by Security Lake, to ensure the replication setting is correct. </p>",
         "LakeConfigurationResponse$replicationRoleArn": "<p>Replication settings for the Amazon S3 buckets. This parameter uses the IAM role you created that is managed by Security Lake, to ensure the replication setting is correct. </p>",
         "SubscriberResource$roleArn": "<p>The Amazon Resource Name (ARN) specifying the role of the subscriber.</p>",
-        "UpdateSubscriptionNotificationConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) specifying the role of the subscriber. </p>"
+        "UpdateSubscriptionNotificationConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) specifying the role of the subscriber. For more information about ARNs and how to use them in policies, see, see the <a href=\"https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html\">Managing data access</a> and <a href=\"https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html\">Amazon Web Services Managed Policies</a>in the Amazon Security Lake User Guide.</p>"
       }
     },
     "S3BucketArn": {
@@ -716,6 +736,7 @@
     "String": {
       "base": null,
       "refs": {
+        "AccessDeniedException$errorCode": "<p>A coded string to provide more information about the access denied exception. You can use the error code to check the exception type.</p>",
         "AccessDeniedException$message": null,
         "AccountList$member": null,
         "AccountNotFoundException$message": null,
@@ -745,6 +766,8 @@
         "InvalidInputException$message": null,
         "LakeConfigurationRequest$encryptionKey": "<p>The type of encryption key used by Amazon Security Lake to encrypt the Security Lake configuration object.</p>",
         "LakeConfigurationResponse$encryptionKey": "<p>The type of encryption key used by secure the Security Lake configuration object.</p>",
+        "LastUpdateFailure$code": "<p>The reason code for the failure of the last <code>UpdateDatalake</code> or <code>DeleteDatalake</code> API request.</p>",
+        "LastUpdateFailure$reason": "<p>The reason for the failure of the last <code>UpdateDatalake</code>or <code>DeleteDatalake</code> API request.</p>",
         "ListLogSourcesResponse$nextToken": "<p>If nextToken is returned, there are more results available. You can repeat the call using the returned token to retrieve the next page.</p>",
         "ListSubscribersRequest$nextToken": "<p>If nextToken is returned, there are more results available. You can repeat the call using the returned token to retrieve the next page.</p>",
         "ListSubscribersResponse$nextToken": "<p>If nextToken is returned, there are more results available. You can repeat the call using the returned token to retrieve the next page.</p>",
@@ -765,6 +788,7 @@
         "ThrottlingException$quotaCode": "<p>That the rate of requests to Security Lake is exceeding the request quotas for your Amazon Web Services account.</p>",
         "ThrottlingException$serviceCode": "<p>The code for the service in Service Quotas.</p>",
         "TwoDimensionsMap$key": null,
+        "UpdateStatus$lastUpdateRequestId": "<p>The unique ID for the <code>UpdateDatalake</code> or <code>DeleteDatalake</code> API request.</p>",
         "UpdateSubscriberRequest$id": "<p>A value created by Security Lake that uniquely identifies your subscription. </p>",
         "UpdateSubscriptionNotificationConfigurationRequest$httpsApiKeyName": "<p>The key name for the subscription notification.</p>",
         "UpdateSubscriptionNotificationConfigurationRequest$httpsApiKeyValue": "<p>The key value for the subscription notification.</p>",
@@ -834,7 +858,7 @@
       "base": null,
       "refs": {
         "CreateSubscriberResponse$subscriptionId": "<p>The <code>subscriptionId</code> created by the <code>CreateSubscriber</code> API call.</p>",
-        "CreateSubscriptionNotificationConfigurationRequest$subscriptionId": "<p>The subscription ID for the notification subscription/</p>",
+        "CreateSubscriptionNotificationConfigurationRequest$subscriptionId": "<p>The subscription ID for the notification subscription.</p>",
         "DeleteSubscriptionNotificationConfigurationRequest$subscriptionId": "<p>The ID of the Security Lake subscriber account.</p>",
         "SubscriberResource$subscriptionId": "<p>The subscription ID of the Amazon Security Lake subscriber account.</p>",
         "UpdateSubscriptionNotificationConfigurationRequest$subscriptionId": "<p>The subscription ID for which the subscription notification is specified. </p>"
@@ -874,6 +898,12 @@
     "UpdateDatalakeResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateStatus": {
+      "base": "<p>The status of the last <code>UpdateDatalake</code> or <code>DeleteDatalake</code> API request. This is set to Completed after the configuration is updated, or removed if deletion of the data lake is successful.</p>",
+      "refs": {
+        "LakeConfigurationResponse$updateStatus": "<p>The status of the last <code>UpdateDatalake </code>or <code>DeleteDatalake</code> API request. </p>"
       }
     },
     "UpdateSubscriberRequest": {
@@ -940,7 +970,8 @@
     "settingsStatus": {
       "base": null,
       "refs": {
-        "LakeConfigurationResponse$status": "<p>Retrieves the status of the configuration operation for an account in Amazon Security Lake. </p>"
+        "LakeConfigurationResponse$status": "<p>Retrieves the status of the configuration operation for an account in Amazon Security Lake. </p>",
+        "UpdateStatus$lastUpdateStatus": "<p>The status of the last <code>UpdateDatalake</code> or <code>DeleteDatalake</code> API request that was requested.</p>"
       }
     }
   }

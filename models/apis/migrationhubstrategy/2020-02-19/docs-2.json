@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p><fullname>Migration Hub Strategy Recommendations</fullname></p> <pre><code> &lt;p&gt;This API reference provides descriptions, syntax, and other details about each of the actions and data types for Migration Hub Strategy Recommendations (Strategy Recommendations). The topic for each action shows the API request parameters and the response. Alternatively, you can use one of the AWS SDKs to access an API that is tailored to the programming language or platform that you're using. For more information, see &lt;a href=&quot;http://aws.amazon.com/tools/#SDKs&quot;&gt;AWS SDKs&lt;/a&gt;.&lt;/p&gt; </code></pre>",
+  "service": "<p><fullname>Migration Hub Strategy Recommendations</fullname> <p>This API reference provides descriptions, syntax, and other details about each of the actions and data types for Migration Hub Strategy Recommendations (Strategy Recommendations). The topic for each action shows the API request parameters and the response. Alternatively, you can use one of the AWS SDKs to access an API that is tailored to the programming language or platform that you're using. For more information, see <a href=\"http://aws.amazon.com/tools/#SDKs\">AWS SDKs</a>.</p></p>",
   "operations": {
     "GetApplicationComponentDetails": "<p> Retrieves details about an application component. </p>",
     "GetApplicationComponentStrategies": "<p> Retrieves a list of all the recommended strategies and tools for an application component running on a server. </p>",
@@ -26,13 +26,44 @@
   },
   "shapes": {
     "AccessDeniedException": {
-      "base": "<p> The AWS user account does not have permission to perform the action. Check the AWS Identity and Access Management (IAM) policy associated with this account.</p>",
+      "base": "<p> The user does not have permission to perform the action. Check the AWS Identity and Access Management (IAM) policy associated with this user.</p>",
       "refs": {
+      }
+    },
+    "AnalysisStatusUnion": {
+      "base": "<p>A combination of existing analysis statuses.</p>",
+      "refs": {
+        "Result$analysisStatus": "<p>The error in server analysis.</p>"
+      }
+    },
+    "AnalysisType": {
+      "base": null,
+      "refs": {
+        "Result$analysisType": "<p>The error in server analysis.</p>"
+      }
+    },
+    "AnalyzerNameUnion": {
+      "base": "<p>The combination of the existing analyzers.</p>",
+      "refs": {
+        "AntipatternReportResult$analyzerName": "<p>The analyzer name.</p>"
+      }
+    },
+    "AntipatternReportResult": {
+      "base": "<p>The anti-pattern report result.</p>",
+      "refs": {
+        "AntipatternReportResultList$member": null
+      }
+    },
+    "AntipatternReportResultList": {
+      "base": null,
+      "refs": {
+        "Result$antipatternReportResultList": "<p>The error in server analysis.</p>"
       }
     },
     "AntipatternReportStatus": {
       "base": null,
       "refs": {
+        "AntipatternReportResult$antipatternReportStatus": "<p>The status of the anti-pattern report generation.</p>",
         "ApplicationComponentDetail$antipatternReportStatus": "<p> The status of the anti-pattern report generation.</p>",
         "AssessmentSummary$antipatternReportStatus": "<p> The status of the anti-pattern report. </p>",
         "ServerDetail$antipatternReportStatus": "<p> The status of the anti-pattern report generation. </p>"
@@ -217,6 +248,12 @@
       "base": null,
       "refs": {
         "AwsManagedResources$targetDestination": "<p> The choice of application destination that you specify. </p>"
+      }
+    },
+    "BinaryAnalyzerName": {
+      "base": null,
+      "refs": {
+        "AnalyzerNameUnion$binaryAnalyzerName": "<p>The binary analyzer names.</p>"
       }
     },
     "Boolean": {
@@ -862,6 +899,24 @@
         "ApplicationComponentDetail$resourceSubType": "<p> The application component subtype.</p>"
       }
     },
+    "Result": {
+      "base": "<p>The error in server analysis.</p>",
+      "refs": {
+        "ResultList$member": null
+      }
+    },
+    "ResultList": {
+      "base": null,
+      "refs": {
+        "ApplicationComponentDetail$resultList": "<p>A list of the analysis results.</p>"
+      }
+    },
+    "RunTimeAnalyzerName": {
+      "base": null,
+      "refs": {
+        "AnalyzerNameUnion$runTimeAnalyzerName": "<p>The assessment analyzer names.</p>"
+      }
+    },
     "RunTimeAssessmentStatus": {
       "base": null,
       "refs": {
@@ -872,6 +927,7 @@
     "RuntimeAnalysisStatus": {
       "base": null,
       "refs": {
+        "AnalysisStatusUnion$runtimeAnalysisStatus": "<p>The status of the analysis.</p>",
         "ApplicationComponentDetail$runtimeStatus": "<p>The status of the application unit.</p>"
       }
     },
@@ -896,6 +952,7 @@
     "S3Object": {
       "base": "<p> Contains the S3 bucket name and the Amazon S3 key name. </p>",
       "refs": {
+        "AntipatternReportResult$antiPatternReportS3Object": null,
         "ApplicationComponentDetail$antipatternReportS3Object": "<p> The S3 bucket name and the Amazon S3 key name for the anti-pattern report. </p>",
         "AssessmentSummary$antipatternReportS3Object": "<p> The Amazon S3 object containing the anti-pattern report. </p>",
         "ServerDetail$antipatternReportS3Object": "<p> The S3 bucket name and Amazon S3 key name for anti-pattern report. </p>"
@@ -1024,6 +1081,12 @@
         "SourceCodeList$member": null
       }
     },
+    "SourceCodeAnalyzerName": {
+      "base": null,
+      "refs": {
+        "AnalyzerNameUnion$sourceCodeAnalyzerName": "<p>The source code analyzer names.</p>"
+      }
+    },
     "SourceCodeList": {
       "base": null,
       "refs": {
@@ -1051,6 +1114,7 @@
     "SrcCodeOrDbAnalysisStatus": {
       "base": null,
       "refs": {
+        "AnalysisStatusUnion$srcCodeOrDbAnalysisStatus": "<p>The status of the source code or database analysis.</p>",
         "ApplicationComponentDetail$analysisStatus": "<p> The status of analysis, if the application component has source code or an associated database. </p>",
         "ApplicationComponentStatusSummary$srcCodeOrDbAnalysisStatus": "<p>The status of database analysis.</p>"
       }
@@ -1112,10 +1176,12 @@
     "StatusMessage": {
       "base": null,
       "refs": {
+        "AntipatternReportResult$antipatternReportStatusMessage": "<p>The status message for the anti-pattern.</p>",
         "ApplicationComponentDetail$antipatternReportStatusMessage": "<p> The status message for the anti-pattern. </p>",
         "ApplicationComponentDetail$runtimeStatusMessage": "<p>The status message for the application unit.</p>",
         "ApplicationComponentDetail$statusMessage": "<p> A detailed description of the analysis status and any failure message. </p>",
         "AssessmentSummary$antipatternReportStatusMessage": "<p> The status message of the anti-pattern report. </p>",
+        "Result$statusMessage": "<p>The error in server analysis.</p>",
         "ServerDetail$antipatternReportStatusMessage": "<p> A message about the status of the anti-pattern report generation. </p>",
         "ServerDetail$statusMessage": "<p> A message about the status of data collection, which contains detailed descriptions of any error messages. </p>"
       }

@@ -366,6 +366,45 @@
       },
       "exception":true
     },
+    "AnalysisStatusUnion":{
+      "type":"structure",
+      "members":{
+        "runtimeAnalysisStatus":{"shape":"RuntimeAnalysisStatus"},
+        "srcCodeOrDbAnalysisStatus":{"shape":"SrcCodeOrDbAnalysisStatus"}
+      },
+      "union":true
+    },
+    "AnalysisType":{
+      "type":"string",
+      "enum":[
+        "SOURCE_CODE_ANALYSIS",
+        "DATABASE_ANALYSIS",
+        "RUNTIME_ANALYSIS",
+        "BINARY_ANALYSIS"
+      ]
+    },
+    "AnalyzerNameUnion":{
+      "type":"structure",
+      "members":{
+        "binaryAnalyzerName":{"shape":"BinaryAnalyzerName"},
+        "runTimeAnalyzerName":{"shape":"RunTimeAnalyzerName"},
+        "sourceCodeAnalyzerName":{"shape":"SourceCodeAnalyzerName"}
+      },
+      "union":true
+    },
+    "AntipatternReportResult":{
+      "type":"structure",
+      "members":{
+        "analyzerName":{"shape":"AnalyzerNameUnion"},
+        "antiPatternReportS3Object":{"shape":"S3Object"},
+        "antipatternReportStatus":{"shape":"AntipatternReportStatus"},
+        "antipatternReportStatusMessage":{"shape":"StatusMessage"}
+      }
+    },
+    "AntipatternReportResultList":{
+      "type":"list",
+      "member":{"shape":"AntipatternReportResult"}
+    },
     "AntipatternReportStatus":{
       "type":"string",
       "enum":[
@@ -458,6 +497,7 @@
         "osVersion":{"shape":"String"},
         "recommendationSet":{"shape":"RecommendationSet"},
         "resourceSubType":{"shape":"ResourceSubType"},
+        "resultList":{"shape":"ResultList"},
         "runtimeStatus":{"shape":"RuntimeAnalysisStatus"},
         "runtimeStatusMessage":{"shape":"StatusMessage"},
         "sourceCodeRepositories":{"shape":"SourceCodeRepositories"},
@@ -617,6 +657,13 @@
       "member":{"shape":"AwsManagedTargetDestination"},
       "max":1,
       "min":1
+    },
+    "BinaryAnalyzerName":{
+      "type":"string",
+      "enum":[
+        "DLL_ANALYZER",
+        "BYTECODE_ANALYZER"
+      ]
     },
     "Boolean":{
       "type":"boolean",
@@ -1411,6 +1458,29 @@
         "DatabaseProcess"
       ]
     },
+    "Result":{
+      "type":"structure",
+      "members":{
+        "analysisStatus":{"shape":"AnalysisStatusUnion"},
+        "analysisType":{"shape":"AnalysisType"},
+        "antipatternReportResultList":{"shape":"AntipatternReportResultList"},
+        "statusMessage":{"shape":"StatusMessage"}
+      }
+    },
+    "ResultList":{
+      "type":"list",
+      "member":{"shape":"Result"}
+    },
+    "RunTimeAnalyzerName":{
+      "type":"string",
+      "enum":[
+        "A2C_ANALYZER",
+        "REHOST_ANALYZER",
+        "EMP_PA_ANALYZER",
+        "DATABASE_ANALYZER",
+        "SCT_ANALYZER"
+      ]
+    },
     "RunTimeAssessmentStatus":{
       "type":"string",
       "enum":[
@@ -1624,6 +1694,15 @@
         "sourceVersion":{"shape":"SourceVersion"},
         "versionControl":{"shape":"VersionControl"}
       }
+    },
+    "SourceCodeAnalyzerName":{
+      "type":"string",
+      "enum":[
+        "CSHARP_ANALYZER",
+        "JAVA_ANALYZER",
+        "BYTECODE_ANALYZER",
+        "PORTING_ASSISTANT"
+      ]
     },
     "SourceCodeList":{
       "type":"list",

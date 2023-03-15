@@ -242,9 +242,8 @@ func (c *MigrationHubStrategyRecommendations) GetAssessmentRequest(input *GetAss
 //     The specified ID in the request is not found.
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -332,9 +331,8 @@ func (c *MigrationHubStrategyRecommendations) GetImportFileTaskRequest(input *Ge
 //     The specified ID in the request is not found.
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -425,9 +423,8 @@ func (c *MigrationHubStrategyRecommendations) GetLatestAssessmentIdRequest(input
 //     Dependency encountered an error.
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ValidationException
 //     The request body isn't valid.
@@ -515,9 +512,8 @@ func (c *MigrationHubStrategyRecommendations) GetPortfolioPreferencesRequest(inp
 //     The specified ID in the request is not found.
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -603,9 +599,8 @@ func (c *MigrationHubStrategyRecommendations) GetPortfolioSummaryRequest(input *
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -693,9 +688,8 @@ func (c *MigrationHubStrategyRecommendations) GetRecommendationReportDetailsRequ
 //     The specified ID in the request is not found.
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -792,9 +786,8 @@ func (c *MigrationHubStrategyRecommendations) GetServerDetailsRequest(input *Get
 //     The specified ID in the request is not found.
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -936,9 +929,8 @@ func (c *MigrationHubStrategyRecommendations) GetServerStrategiesRequest(input *
 //     The specified ID in the request is not found.
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1032,9 +1024,8 @@ func (c *MigrationHubStrategyRecommendations) ListApplicationComponentsRequest(i
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ServiceLinkedRoleLockClientException
 //     Exception to indicate that the service-linked role (SLR) is locked.
@@ -1179,9 +1170,8 @@ func (c *MigrationHubStrategyRecommendations) ListCollectorsRequest(input *ListC
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1326,9 +1316,8 @@ func (c *MigrationHubStrategyRecommendations) ListImportFileTaskRequest(input *L
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1473,9 +1462,8 @@ func (c *MigrationHubStrategyRecommendations) ListServersRequest(input *ListServ
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1615,9 +1603,8 @@ func (c *MigrationHubStrategyRecommendations) PutPortfolioPreferencesRequest(inp
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1709,9 +1696,8 @@ func (c *MigrationHubStrategyRecommendations) StartAssessmentRequest(input *Star
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1800,9 +1786,8 @@ func (c *MigrationHubStrategyRecommendations) StartImportFileTaskRequest(input *
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1894,9 +1879,8 @@ func (c *MigrationHubStrategyRecommendations) StartRecommendationReportGeneratio
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -1989,9 +1973,8 @@ func (c *MigrationHubStrategyRecommendations) StopAssessmentRequest(input *StopA
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     The AWS user account does not have permission to perform the action. Check
-//     the AWS Identity and Access Management (IAM) policy associated with this
-//     account.
+//     The user does not have permission to perform the action. Check the AWS Identity
+//     and Access Management (IAM) policy associated with this user.
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
@@ -2202,9 +2185,8 @@ func (c *MigrationHubStrategyRecommendations) UpdateServerConfigWithContext(ctx 
 	return out, req.Send()
 }
 
-// The AWS user account does not have permission to perform the action. Check
-// the AWS Identity and Access Management (IAM) policy associated with this
-// account.
+// The user does not have permission to perform the action. Check the AWS Identity
+// and Access Management (IAM) policy associated with this user.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2266,6 +2248,156 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A combination of existing analysis statuses.
+type AnalysisStatusUnion struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the analysis.
+	RuntimeAnalysisStatus *string `locationName:"runtimeAnalysisStatus" type:"string" enum:"RuntimeAnalysisStatus"`
+
+	// The status of the source code or database analysis.
+	SrcCodeOrDbAnalysisStatus *string `locationName:"srcCodeOrDbAnalysisStatus" type:"string" enum:"SrcCodeOrDbAnalysisStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisStatusUnion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisStatusUnion) GoString() string {
+	return s.String()
+}
+
+// SetRuntimeAnalysisStatus sets the RuntimeAnalysisStatus field's value.
+func (s *AnalysisStatusUnion) SetRuntimeAnalysisStatus(v string) *AnalysisStatusUnion {
+	s.RuntimeAnalysisStatus = &v
+	return s
+}
+
+// SetSrcCodeOrDbAnalysisStatus sets the SrcCodeOrDbAnalysisStatus field's value.
+func (s *AnalysisStatusUnion) SetSrcCodeOrDbAnalysisStatus(v string) *AnalysisStatusUnion {
+	s.SrcCodeOrDbAnalysisStatus = &v
+	return s
+}
+
+// The combination of the existing analyzers.
+type AnalyzerNameUnion struct {
+	_ struct{} `type:"structure"`
+
+	// The binary analyzer names.
+	BinaryAnalyzerName *string `locationName:"binaryAnalyzerName" type:"string" enum:"BinaryAnalyzerName"`
+
+	// The assessment analyzer names.
+	RunTimeAnalyzerName *string `locationName:"runTimeAnalyzerName" type:"string" enum:"RunTimeAnalyzerName"`
+
+	// The source code analyzer names.
+	SourceCodeAnalyzerName *string `locationName:"sourceCodeAnalyzerName" type:"string" enum:"SourceCodeAnalyzerName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzerNameUnion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzerNameUnion) GoString() string {
+	return s.String()
+}
+
+// SetBinaryAnalyzerName sets the BinaryAnalyzerName field's value.
+func (s *AnalyzerNameUnion) SetBinaryAnalyzerName(v string) *AnalyzerNameUnion {
+	s.BinaryAnalyzerName = &v
+	return s
+}
+
+// SetRunTimeAnalyzerName sets the RunTimeAnalyzerName field's value.
+func (s *AnalyzerNameUnion) SetRunTimeAnalyzerName(v string) *AnalyzerNameUnion {
+	s.RunTimeAnalyzerName = &v
+	return s
+}
+
+// SetSourceCodeAnalyzerName sets the SourceCodeAnalyzerName field's value.
+func (s *AnalyzerNameUnion) SetSourceCodeAnalyzerName(v string) *AnalyzerNameUnion {
+	s.SourceCodeAnalyzerName = &v
+	return s
+}
+
+// The anti-pattern report result.
+type AntipatternReportResult struct {
+	_ struct{} `type:"structure"`
+
+	// The analyzer name.
+	AnalyzerName *AnalyzerNameUnion `locationName:"analyzerName" type:"structure"`
+
+	// Contains the S3 bucket name and the Amazon S3 key name.
+	AntiPatternReportS3Object *S3Object `locationName:"antiPatternReportS3Object" type:"structure"`
+
+	// The status of the anti-pattern report generation.
+	AntipatternReportStatus *string `locationName:"antipatternReportStatus" type:"string" enum:"AntipatternReportStatus"`
+
+	// The status message for the anti-pattern.
+	AntipatternReportStatusMessage *string `locationName:"antipatternReportStatusMessage" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AntipatternReportResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AntipatternReportResult) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzerName sets the AnalyzerName field's value.
+func (s *AntipatternReportResult) SetAnalyzerName(v *AnalyzerNameUnion) *AntipatternReportResult {
+	s.AnalyzerName = v
+	return s
+}
+
+// SetAntiPatternReportS3Object sets the AntiPatternReportS3Object field's value.
+func (s *AntipatternReportResult) SetAntiPatternReportS3Object(v *S3Object) *AntipatternReportResult {
+	s.AntiPatternReportS3Object = v
+	return s
+}
+
+// SetAntipatternReportStatus sets the AntipatternReportStatus field's value.
+func (s *AntipatternReportResult) SetAntipatternReportStatus(v string) *AntipatternReportResult {
+	s.AntipatternReportStatus = &v
+	return s
+}
+
+// SetAntipatternReportStatusMessage sets the AntipatternReportStatusMessage field's value.
+func (s *AntipatternReportResult) SetAntipatternReportStatusMessage(v string) *AntipatternReportResult {
+	s.AntipatternReportStatusMessage = &v
+	return s
 }
 
 // Contains the summary of anti-patterns and their severity.
@@ -2400,6 +2532,9 @@ type ApplicationComponentDetail struct {
 
 	// The application component subtype.
 	ResourceSubType *string `locationName:"resourceSubType" type:"string" enum:"ResourceSubType"`
+
+	// A list of the analysis results.
+	ResultList []*Result `locationName:"resultList" type:"list"`
 
 	// The status of the application unit.
 	RuntimeStatus *string `locationName:"runtimeStatus" type:"string" enum:"RuntimeAnalysisStatus"`
@@ -2538,6 +2673,12 @@ func (s *ApplicationComponentDetail) SetRecommendationSet(v *RecommendationSet) 
 // SetResourceSubType sets the ResourceSubType field's value.
 func (s *ApplicationComponentDetail) SetResourceSubType(v string) *ApplicationComponentDetail {
 	s.ResourceSubType = &v
+	return s
+}
+
+// SetResultList sets the ResultList field's value.
+func (s *ApplicationComponentDetail) SetResultList(v []*Result) *ApplicationComponentDetail {
+	s.ResultList = v
 	return s
 }
 
@@ -6087,6 +6228,65 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The error in server analysis.
+type Result struct {
+	_ struct{} `type:"structure"`
+
+	// The error in server analysis.
+	AnalysisStatus *AnalysisStatusUnion `locationName:"analysisStatus" type:"structure"`
+
+	// The error in server analysis.
+	AnalysisType *string `locationName:"analysisType" type:"string" enum:"AnalysisType"`
+
+	// The error in server analysis.
+	AntipatternReportResultList []*AntipatternReportResult `locationName:"antipatternReportResultList" type:"list"`
+
+	// The error in server analysis.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Result) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Result) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisStatus sets the AnalysisStatus field's value.
+func (s *Result) SetAnalysisStatus(v *AnalysisStatusUnion) *Result {
+	s.AnalysisStatus = v
+	return s
+}
+
+// SetAnalysisType sets the AnalysisType field's value.
+func (s *Result) SetAnalysisType(v string) *Result {
+	s.AnalysisType = &v
+	return s
+}
+
+// SetAntipatternReportResultList sets the AntipatternReportResultList field's value.
+func (s *Result) SetAntipatternReportResultList(v []*AntipatternReportResult) *Result {
+	s.AntipatternReportResultList = v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *Result) SetStatusMessage(v string) *Result {
+	s.StatusMessage = &v
+	return s
+}
+
 // Contains the S3 bucket name and the Amazon S3 key name.
 type S3Object struct {
 	_ struct{} `type:"structure"`
@@ -7803,6 +8003,30 @@ func (s *VersionControlInfo) SetVersionControlType(v string) *VersionControlInfo
 }
 
 const (
+	// AnalysisTypeSourceCodeAnalysis is a AnalysisType enum value
+	AnalysisTypeSourceCodeAnalysis = "SOURCE_CODE_ANALYSIS"
+
+	// AnalysisTypeDatabaseAnalysis is a AnalysisType enum value
+	AnalysisTypeDatabaseAnalysis = "DATABASE_ANALYSIS"
+
+	// AnalysisTypeRuntimeAnalysis is a AnalysisType enum value
+	AnalysisTypeRuntimeAnalysis = "RUNTIME_ANALYSIS"
+
+	// AnalysisTypeBinaryAnalysis is a AnalysisType enum value
+	AnalysisTypeBinaryAnalysis = "BINARY_ANALYSIS"
+)
+
+// AnalysisType_Values returns all elements of the AnalysisType enum
+func AnalysisType_Values() []string {
+	return []string{
+		AnalysisTypeSourceCodeAnalysis,
+		AnalysisTypeDatabaseAnalysis,
+		AnalysisTypeRuntimeAnalysis,
+		AnalysisTypeBinaryAnalysis,
+	}
+}
+
+const (
 	// AntipatternReportStatusFailed is a AntipatternReportStatus enum value
 	AntipatternReportStatusFailed = "FAILED"
 
@@ -8067,6 +8291,22 @@ func AwsManagedTargetDestination_Values() []string {
 		AwsManagedTargetDestinationNonespecified,
 		AwsManagedTargetDestinationAwselasticBeanStalk,
 		AwsManagedTargetDestinationAwsfargate,
+	}
+}
+
+const (
+	// BinaryAnalyzerNameDllAnalyzer is a BinaryAnalyzerName enum value
+	BinaryAnalyzerNameDllAnalyzer = "DLL_ANALYZER"
+
+	// BinaryAnalyzerNameBytecodeAnalyzer is a BinaryAnalyzerName enum value
+	BinaryAnalyzerNameBytecodeAnalyzer = "BYTECODE_ANALYZER"
+)
+
+// BinaryAnalyzerName_Values returns all elements of the BinaryAnalyzerName enum
+func BinaryAnalyzerName_Values() []string {
+	return []string{
+		BinaryAnalyzerNameDllAnalyzer,
+		BinaryAnalyzerNameBytecodeAnalyzer,
 	}
 }
 
@@ -8399,6 +8639,34 @@ func ResourceSubType_Values() []string {
 }
 
 const (
+	// RunTimeAnalyzerNameA2cAnalyzer is a RunTimeAnalyzerName enum value
+	RunTimeAnalyzerNameA2cAnalyzer = "A2C_ANALYZER"
+
+	// RunTimeAnalyzerNameRehostAnalyzer is a RunTimeAnalyzerName enum value
+	RunTimeAnalyzerNameRehostAnalyzer = "REHOST_ANALYZER"
+
+	// RunTimeAnalyzerNameEmpPaAnalyzer is a RunTimeAnalyzerName enum value
+	RunTimeAnalyzerNameEmpPaAnalyzer = "EMP_PA_ANALYZER"
+
+	// RunTimeAnalyzerNameDatabaseAnalyzer is a RunTimeAnalyzerName enum value
+	RunTimeAnalyzerNameDatabaseAnalyzer = "DATABASE_ANALYZER"
+
+	// RunTimeAnalyzerNameSctAnalyzer is a RunTimeAnalyzerName enum value
+	RunTimeAnalyzerNameSctAnalyzer = "SCT_ANALYZER"
+)
+
+// RunTimeAnalyzerName_Values returns all elements of the RunTimeAnalyzerName enum
+func RunTimeAnalyzerName_Values() []string {
+	return []string{
+		RunTimeAnalyzerNameA2cAnalyzer,
+		RunTimeAnalyzerNameRehostAnalyzer,
+		RunTimeAnalyzerNameEmpPaAnalyzer,
+		RunTimeAnalyzerNameDatabaseAnalyzer,
+		RunTimeAnalyzerNameSctAnalyzer,
+	}
+}
+
+const (
 	// RunTimeAssessmentStatusDataCollectionTaskToBeScheduled is a RunTimeAssessmentStatus enum value
 	RunTimeAssessmentStatusDataCollectionTaskToBeScheduled = "dataCollectionTaskToBeScheduled"
 
@@ -8607,6 +8875,30 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAsc,
 		SortOrderDesc,
+	}
+}
+
+const (
+	// SourceCodeAnalyzerNameCsharpAnalyzer is a SourceCodeAnalyzerName enum value
+	SourceCodeAnalyzerNameCsharpAnalyzer = "CSHARP_ANALYZER"
+
+	// SourceCodeAnalyzerNameJavaAnalyzer is a SourceCodeAnalyzerName enum value
+	SourceCodeAnalyzerNameJavaAnalyzer = "JAVA_ANALYZER"
+
+	// SourceCodeAnalyzerNameBytecodeAnalyzer is a SourceCodeAnalyzerName enum value
+	SourceCodeAnalyzerNameBytecodeAnalyzer = "BYTECODE_ANALYZER"
+
+	// SourceCodeAnalyzerNamePortingAssistant is a SourceCodeAnalyzerName enum value
+	SourceCodeAnalyzerNamePortingAssistant = "PORTING_ASSISTANT"
+)
+
+// SourceCodeAnalyzerName_Values returns all elements of the SourceCodeAnalyzerName enum
+func SourceCodeAnalyzerName_Values() []string {
+	return []string{
+		SourceCodeAnalyzerNameCsharpAnalyzer,
+		SourceCodeAnalyzerNameJavaAnalyzer,
+		SourceCodeAnalyzerNameBytecodeAnalyzer,
+		SourceCodeAnalyzerNamePortingAssistant,
 	}
 }
 

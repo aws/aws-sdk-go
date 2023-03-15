@@ -821,7 +821,8 @@ func (c *SecurityLake) CreateSubscriptionNotificationConfigurationRequest(input 
 // CreateSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
 //
 // Notifies the subscriber when new data is written to the data lake for the
-// sources that the subscriber consumes in Security Lake.
+// sources that the subscriber consumes in Security Lake. You can create only
+// one subscriber notification per subscriber.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1265,18 +1266,12 @@ func (c *SecurityLake) DeleteDatalakeAutoEnableRequest(input *DeleteDatalakeAuto
 
 // DeleteDatalakeAutoEnable API operation for Amazon Security Lake.
 //
-// Automatically deletes Amazon Security Lake to stop collecting security data.
-// When you delete Amazon Security Lake from your account, Security Lake is
-// disabled in all Regions. Also, this API automatically takes steps to remove
-// the account from Security Lake .
-//
-// This operation disables security data collection from sources, deletes data
-// stored, and stops making data accessible to subscribers. Security Lake also
-// deletes all the existing settings and resources that it stores or maintains
-// for your Amazon Web Services account in the current Region, including security
-// log and event data. The DeleteDatalake operation does not delete the Amazon
-// S3 bucket, which is owned by your Amazon Web Services account. For more information,
-// see the Amazon Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/disable-security-lake.html).
+// DeleteDatalakeAutoEnable removes automatic enablement of configuration settings
+// for new member accounts (but keeps settings for the delegated administrator)
+// from Amazon Security Lake. You must run this API using credentials of the
+// delegated administrator. When you run this API, new member accounts that
+// are added after the organization enables Security Lake won't contribute to
+// the data lake.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3299,8 +3294,8 @@ func (c *SecurityLake) UpdateSubscriptionNotificationConfigurationRequest(input 
 
 // UpdateSubscriptionNotificationConfiguration API operation for Amazon Security Lake.
 //
-// Creates a new subscription notification or adds the existing subscription
-// notification setting for the specified subscription ID.
+// Updates an existing notification method for the subscription (SQS or HTTPs
+// endpoint) or switches the notification subscription endpoint for a subscriber.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3371,6 +3366,10 @@ type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A coded string to provide more information about the access denied exception.
+	// You can use the error code to check the exception type.
+	ErrorCode *string `locationName:"errorCode" type:"string"`
+
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -3417,7 +3416,7 @@ func (s *AccessDeniedException) OrigErr() error {
 }
 
 func (s *AccessDeniedException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -4713,9 +4712,17 @@ func (s *CreateSubscriberInput) SetSubscriberName(v string) *CreateSubscriberInp
 type CreateSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource
+	// share. Before accepting the RAM resource share invitation, you can view details
+	// related to the RAM resource share.
+	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
+
+	// The name of the resource share.
+	ResourceShareName *string `locationName:"resourceShareName" type:"string"`
+
 	// The Amazon Resource Name (ARN) created by you to provide to the subscriber.
-	// For more information about ARNs and how to use them in policies, see IAM
-	// identifiers in the Identity and Access Management (IAM) User Guide (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html). .
+	// For more information about ARNs and how to use them in policies, see Amazon
+	// Security Lake User Guide (https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-management.html).
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The ARN for the Amazon S3 bucket.
@@ -4746,6 +4753,18 @@ func (s CreateSubscriberOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateSubscriberOutput) GoString() string {
 	return s.String()
+}
+
+// SetResourceShareArn sets the ResourceShareArn field's value.
+func (s *CreateSubscriberOutput) SetResourceShareArn(v string) *CreateSubscriberOutput {
+	s.ResourceShareArn = &v
+	return s
+}
+
+// SetResourceShareName sets the ResourceShareName field's value.
+func (s *CreateSubscriberOutput) SetResourceShareName(v string) *CreateSubscriberOutput {
+	s.ResourceShareName = &v
+	return s
 }
 
 // SetRoleArn sets the RoleArn field's value.
@@ -4788,14 +4807,17 @@ type CreateSubscriptionNotificationConfigurationInput struct {
 	HttpsMethod *string `locationName:"httpsMethod" type:"string" enum:"HttpsMethod"`
 
 	// The Amazon Resource Name (ARN) of the EventBridge API destinations IAM role
-	// that you created.
+	// that you created. For more information about ARNs and how to use them in
+	// policies, see Managing data access (https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html)
+	// and Amazon Web Services Managed Policies (https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html)
+	// in the Amazon Security Lake User Guide.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The subscription endpoint in Security Lake. If you prefer notification with
 	// an HTTPs endpoint, populate this field.
 	SubscriptionEndpoint *string `locationName:"subscriptionEndpoint" type:"string"`
 
-	// The subscription ID for the notification subscription/
+	// The subscription ID for the notification subscription.
 	//
 	// SubscriptionId is a required field
 	SubscriptionId *string `location:"uri" locationName:"subscriptionId" type:"string" required:"true"`
@@ -5107,8 +5129,8 @@ func (s *DeleteCustomLogSourceOutput) SetCustomDataLocation(v string) *DeleteCus
 type DeleteDatalakeAutoEnableInput struct {
 	_ struct{} `type:"structure"`
 
-	// Delete Amazon Security Lake with the specified configuration settings to
-	// stop ingesting security data for new accounts in Security Lake.
+	// Remove automatic enablement of configuration settings for new member accounts
+	// in Security Lake.
 	//
 	// RemoveFromConfigurationForNewAccounts is a required field
 	RemoveFromConfigurationForNewAccounts []*AutoEnableNewRegionConfiguration `locationName:"removeFromConfigurationForNewAccounts" type:"list" required:"true"`
@@ -6334,6 +6356,9 @@ type LakeConfigurationResponse struct {
 	// A tag is a label that you assign to an Amazon Web Services resource. Each
 	// tag consists of a key and an optional value, both of which you define.
 	TagsMap map[string]*string `locationName:"tagsMap" type:"map"`
+
+	// The status of the last UpdateDatalake or DeleteDatalake API request.
+	UpdateStatus *UpdateStatus `locationName:"updateStatus" type:"structure"`
 }
 
 // String returns the string representation.
@@ -6393,6 +6418,56 @@ func (s *LakeConfigurationResponse) SetStatus(v string) *LakeConfigurationRespon
 // SetTagsMap sets the TagsMap field's value.
 func (s *LakeConfigurationResponse) SetTagsMap(v map[string]*string) *LakeConfigurationResponse {
 	s.TagsMap = v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *LakeConfigurationResponse) SetUpdateStatus(v *UpdateStatus) *LakeConfigurationResponse {
+	s.UpdateStatus = v
+	return s
+}
+
+// The details of the last UpdateDatalake or DeleteDatalake API request which
+// failed.
+type LastUpdateFailure struct {
+	_ struct{} `type:"structure"`
+
+	// The reason code for the failure of the last UpdateDatalake or DeleteDatalake
+	// API request.
+	Code *string `locationName:"code" type:"string"`
+
+	// The reason for the failure of the last UpdateDatalakeor DeleteDatalake API
+	// request.
+	Reason *string `locationName:"reason" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUpdateFailure) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LastUpdateFailure) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *LastUpdateFailure) SetCode(v string) *LastUpdateFailure {
+	s.Code = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *LastUpdateFailure) SetReason(v string) *LastUpdateFailure {
+	s.Reason = &v
 	return s
 }
 
@@ -7156,6 +7231,17 @@ type SubscriberResource struct {
 	// only under specific circumstances.
 	ExternalId *string `locationName:"externalId" type:"string"`
 
+	// The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource
+	// share. Before accepting the RAM resource share invitation, you can view details
+	// related to the RAM resource share.
+	//
+	// This field is available only for Lake Formation subscribers created after
+	// March 8, 2023.
+	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
+
+	// The name of the resource share.
+	ResourceShareName *string `locationName:"resourceShareName" type:"string"`
+
 	// The Amazon Resource Name (ARN) specifying the role of the subscriber.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
@@ -7236,6 +7322,18 @@ func (s *SubscriberResource) SetCreatedAt(v time.Time) *SubscriberResource {
 // SetExternalId sets the ExternalId field's value.
 func (s *SubscriberResource) SetExternalId(v string) *SubscriberResource {
 	s.ExternalId = &v
+	return s
+}
+
+// SetResourceShareArn sets the ResourceShareArn field's value.
+func (s *SubscriberResource) SetResourceShareArn(v string) *SubscriberResource {
+	s.ResourceShareArn = &v
+	return s
+}
+
+// SetResourceShareName sets the ResourceShareName field's value.
+func (s *SubscriberResource) SetResourceShareName(v string) *SubscriberResource {
+	s.ResourceShareName = &v
 	return s
 }
 
@@ -7610,6 +7708,60 @@ func (s UpdateDatalakeOutput) GoString() string {
 	return s.String()
 }
 
+// The status of the last UpdateDatalake or DeleteDatalake API request. This
+// is set to Completed after the configuration is updated, or removed if deletion
+// of the data lake is successful.
+type UpdateStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the last UpdateDatalakeor DeleteDatalake API request which
+	// failed.
+	LastUpdateFailure *LastUpdateFailure `locationName:"lastUpdateFailure" type:"structure"`
+
+	// The unique ID for the UpdateDatalake or DeleteDatalake API request.
+	LastUpdateRequestId *string `locationName:"lastUpdateRequestId" type:"string"`
+
+	// The status of the last UpdateDatalake or DeleteDatalake API request that
+	// was requested.
+	LastUpdateStatus *string `locationName:"lastUpdateStatus" type:"string" enum:"SettingsStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStatus) GoString() string {
+	return s.String()
+}
+
+// SetLastUpdateFailure sets the LastUpdateFailure field's value.
+func (s *UpdateStatus) SetLastUpdateFailure(v *LastUpdateFailure) *UpdateStatus {
+	s.LastUpdateFailure = v
+	return s
+}
+
+// SetLastUpdateRequestId sets the LastUpdateRequestId field's value.
+func (s *UpdateStatus) SetLastUpdateRequestId(v string) *UpdateStatus {
+	s.LastUpdateRequestId = &v
+	return s
+}
+
+// SetLastUpdateStatus sets the LastUpdateStatus field's value.
+func (s *UpdateStatus) SetLastUpdateStatus(v string) *UpdateStatus {
+	s.LastUpdateStatus = &v
+	return s
+}
+
 type UpdateSubscriberInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7749,7 +7901,11 @@ type UpdateSubscriptionNotificationConfigurationInput struct {
 	// The HTTPS method used for the subscription notification.
 	HttpsMethod *string `locationName:"httpsMethod" type:"string" enum:"HttpsMethod"`
 
-	// The Amazon Resource Name (ARN) specifying the role of the subscriber.
+	// The Amazon Resource Name (ARN) specifying the role of the subscriber. For
+	// more information about ARNs and how to use them in policies, see, see the
+	// Managing data access (https://docs.aws.amazon.com//security-lake/latest/userguide/subscriber-data-access.html)
+	// and Amazon Web Services Managed Policies (https://docs.aws.amazon.com/security-lake/latest/userguide/security-iam-awsmanpol.html)in
+	// the Amazon Security Lake User Guide.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The subscription endpoint in Security Lake.

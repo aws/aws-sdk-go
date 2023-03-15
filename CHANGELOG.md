@@ -1,3 +1,17 @@
+Release v1.44.222 (2023-03-15)
+===
+
+### Service Client Updates
+* `service/migrationhubstrategy`: Updates service API and documentation
+* `service/s3control`: Updates service API and documentation
+  * Added support for S3 Object Lambda aliases.
+* `service/securitylake`: Updates service API and documentation
+
+### SDK Bugs
+
+* `private/protocol`: Fix error message being elided in restJson errors.
+  * Use request body error message for unknown errors when header is absent.
+
 Release v1.44.221 (2023-03-14)
 ===
 
