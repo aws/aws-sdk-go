@@ -1056,7 +1056,13 @@
         },
         "DataSources":{
           "shape":"DataSourcesFreeTrial",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"FreeTrialFeatureConfigurationsResults",
+          "locationName":"features"
         }
       }
     },
@@ -1110,6 +1116,10 @@
         "KubernetesApiCallAction":{
           "shape":"KubernetesApiCallAction",
           "locationName":"kubernetesApiCallAction"
+        },
+        "RdsLoginAttemptAction":{
+          "shape":"RdsLoginAttemptAction",
+          "locationName":"rdsLoginAttemptAction"
         }
       }
     },
@@ -1455,11 +1465,17 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
         },
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
+        },
+        "Features":{
+          "shape":"DetectorFeatureConfigurations",
+          "locationName":"features"
         }
       }
     },
@@ -2102,6 +2118,16 @@
           "shape":"DetectorId",
           "location":"uri",
           "locationName":"detectorId"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
@@ -2122,7 +2148,17 @@
         },
         "DataSources":{
           "shape":"OrganizationDataSourceConfigurationsResult",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"OrganizationFeaturesConfigurationsResults",
+          "locationName":"features"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -2221,6 +2257,65 @@
     "Destinations":{
       "type":"list",
       "member":{"shape":"Destination"}
+    },
+    "DetectorFeature":{
+      "type":"string",
+      "enum":[
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS"
+      ]
+    },
+    "DetectorFeatureConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DetectorFeature",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "DetectorFeatureConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DetectorFeatureResult",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        }
+      }
+    },
+    "DetectorFeatureConfigurations":{
+      "type":"list",
+      "member":{"shape":"DetectorFeatureConfiguration"}
+    },
+    "DetectorFeatureConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"DetectorFeatureConfigurationResult"}
+    },
+    "DetectorFeatureResult":{
+      "type":"string",
+      "enum":[
+        "FLOW_LOGS",
+        "CLOUD_TRAIL",
+        "DNS_LOGS",
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS"
+      ]
     },
     "DetectorId":{
       "type":"string",
@@ -2558,6 +2653,13 @@
         }
       }
     },
+    "FeatureStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "Feedback":{
       "type":"string",
       "enum":[
@@ -2795,6 +2897,35 @@
         }
       }
     },
+    "FreeTrialFeatureConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"FreeTrialFeatureResult",
+          "locationName":"name"
+        },
+        "FreeTrialDaysRemaining":{
+          "shape":"Integer",
+          "locationName":"freeTrialDaysRemaining"
+        }
+      }
+    },
+    "FreeTrialFeatureConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"FreeTrialFeatureConfigurationResult"}
+    },
+    "FreeTrialFeatureResult":{
+      "type":"string",
+      "enum":[
+        "FLOW_LOGS",
+        "CLOUD_TRAIL",
+        "DNS_LOGS",
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS"
+      ]
+    },
     "GeoLocation":{
       "type":"structure",
       "members":{
@@ -2869,11 +3000,17 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurationsResult",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
         },
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
+        },
+        "Features":{
+          "shape":"DetectorFeatureConfigurationsResults",
+          "locationName":"features"
         }
       }
     },
@@ -4029,6 +4166,31 @@
       "max":300,
       "min":1
     },
+    "LoginAttribute":{
+      "type":"structure",
+      "members":{
+        "User":{
+          "shape":"String",
+          "locationName":"user"
+        },
+        "Application":{
+          "shape":"String",
+          "locationName":"application"
+        },
+        "FailedLoginAttempts":{
+          "shape":"Integer",
+          "locationName":"failedLoginAttempts"
+        },
+        "SuccessfulLoginAttempts":{
+          "shape":"Integer",
+          "locationName":"successfulLoginAttempts"
+        }
+      }
+    },
+    "LoginAttributes":{
+      "type":"list",
+      "member":{"shape":"LoginAttribute"}
+    },
     "Long":{"type":"long"},
     "LongValue":{"type":"long"},
     "MalwareProtectionConfiguration":{
@@ -4138,10 +4300,7 @@
     },
     "MemberDataSourceConfiguration":{
       "type":"structure",
-      "required":[
-        "AccountId",
-        "DataSources"
-      ],
+      "required":["AccountId"],
       "members":{
         "AccountId":{
           "shape":"AccountId",
@@ -4149,7 +4308,13 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurationsResult",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"MemberFeaturesConfigurationsResults",
+          "locationName":"features"
         }
       }
     },
@@ -4158,6 +4323,44 @@
       "member":{"shape":"MemberDataSourceConfiguration"},
       "max":50,
       "min":1
+    },
+    "MemberFeaturesConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "MemberFeaturesConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "Status":{
+          "shape":"FeatureStatus",
+          "locationName":"status"
+        },
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        }
+      }
+    },
+    "MemberFeaturesConfigurations":{
+      "type":"list",
+      "member":{"shape":"MemberFeaturesConfiguration"}
+    },
+    "MemberFeaturesConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"MemberFeaturesConfigurationResult"}
     },
     "Members":{
       "type":"list",
@@ -4272,6 +4475,22 @@
         "DESC"
       ]
     },
+    "OrgFeature":{
+      "type":"string",
+      "enum":[
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS"
+      ]
+    },
+    "OrgFeatureStatus":{
+      "type":"string",
+      "enum":[
+        "NEW",
+        "NONE"
+      ]
+    },
     "Organization":{
       "type":"structure",
       "members":{
@@ -4345,6 +4564,40 @@
           "locationName":"autoEnable"
         }
       }
+    },
+    "OrganizationFeatureConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "AutoEnable":{
+          "shape":"OrgFeatureStatus",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationFeatureConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "AutoEnable":{
+          "shape":"OrgFeatureStatus",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationFeaturesConfigurations":{
+      "type":"list",
+      "member":{"shape":"OrganizationFeatureConfiguration"}
+    },
+    "OrganizationFeaturesConfigurationsResults":{
+      "type":"list",
+      "member":{"shape":"OrganizationFeatureConfigurationResult"}
     },
     "OrganizationKubernetesAuditLogsConfiguration":{
       "type":"structure",
@@ -4560,6 +4813,70 @@
       "max":300,
       "min":1
     },
+    "RdsDbInstanceDetails":{
+      "type":"structure",
+      "members":{
+        "DbInstanceIdentifier":{
+          "shape":"String",
+          "locationName":"dbInstanceIdentifier"
+        },
+        "Engine":{
+          "shape":"String",
+          "locationName":"engine"
+        },
+        "EngineVersion":{
+          "shape":"String",
+          "locationName":"engineVersion"
+        },
+        "DbClusterIdentifier":{
+          "shape":"String",
+          "locationName":"dbClusterIdentifier"
+        },
+        "DbInstanceArn":{
+          "shape":"String",
+          "locationName":"dbInstanceArn"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        }
+      }
+    },
+    "RdsDbUserDetails":{
+      "type":"structure",
+      "members":{
+        "User":{
+          "shape":"String",
+          "locationName":"user"
+        },
+        "Application":{
+          "shape":"String",
+          "locationName":"application"
+        },
+        "Database":{
+          "shape":"String",
+          "locationName":"database"
+        },
+        "Ssl":{
+          "shape":"String",
+          "locationName":"ssl"
+        },
+        "AuthMethod":{
+          "shape":"String",
+          "locationName":"authMethod"
+        }
+      }
+    },
+    "RdsLoginAttemptAction":{
+      "type":"structure",
+      "members":{
+        "RemoteIpDetails":{
+          "shape":"RemoteIpDetails",
+          "locationName":"remoteIpDetails"
+        },
+        "LoginAttributes":{"shape":"LoginAttributes"}
+      }
+    },
     "RemoteAccountDetails":{
       "type":"structure",
       "members":{
@@ -4649,6 +4966,14 @@
         "ContainerDetails":{
           "shape":"Container",
           "locationName":"containerDetails"
+        },
+        "RdsDbInstanceDetails":{
+          "shape":"RdsDbInstanceDetails",
+          "locationName":"rdsDbInstanceDetails"
+        },
+        "RdsDbUserDetails":{
+          "shape":"RdsDbUserDetails",
+          "locationName":"rdsDbUserDetails"
         }
       }
     },
@@ -5409,7 +5734,13 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"DetectorFeatureConfigurations",
+          "locationName":"features"
         }
       }
     },
@@ -5573,7 +5904,13 @@
         },
         "DataSources":{
           "shape":"DataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"MemberFeaturesConfigurations",
+          "locationName":"features"
         }
       }
     },
@@ -5605,7 +5942,13 @@
         },
         "DataSources":{
           "shape":"OrganizationDataSourceConfigurations",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
+        },
+        "Features":{
+          "shape":"OrganizationFeaturesConfigurations",
+          "locationName":"features"
         }
       }
     },
@@ -5697,7 +6040,6 @@
     },
     "UsageCriteria":{
       "type":"structure",
-      "required":["DataSources"],
       "members":{
         "AccountIds":{
           "shape":"AccountIds",
@@ -5705,11 +6047,17 @@
         },
         "DataSources":{
           "shape":"DataSourceList",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter is deprecated, use Features instead",
           "locationName":"dataSources"
         },
         "Resources":{
           "shape":"ResourceList",
           "locationName":"resources"
+        },
+        "Features":{
+          "shape":"UsageFeatureList",
+          "locationName":"features"
         }
       }
     },
@@ -5729,6 +6077,41 @@
     "UsageDataSourceResultList":{
       "type":"list",
       "member":{"shape":"UsageDataSourceResult"}
+    },
+    "UsageFeature":{
+      "type":"string",
+      "enum":[
+        "FLOW_LOGS",
+        "CLOUD_TRAIL",
+        "DNS_LOGS",
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "EBS_MALWARE_PROTECTION",
+        "RDS_LOGIN_EVENTS",
+        "LAMBDA_NETWORK_LOGS",
+        "EKS_RUNTIME_MONITORING"
+      ]
+    },
+    "UsageFeatureList":{
+      "type":"list",
+      "member":{"shape":"UsageFeature"}
+    },
+    "UsageFeatureResult":{
+      "type":"structure",
+      "members":{
+        "Feature":{
+          "shape":"UsageFeature",
+          "locationName":"feature"
+        },
+        "Total":{
+          "shape":"Total",
+          "locationName":"total"
+        }
+      }
+    },
+    "UsageFeatureResultList":{
+      "type":"list",
+      "member":{"shape":"UsageFeatureResult"}
     },
     "UsageResourceResult":{
       "type":"structure",
@@ -5753,7 +6136,8 @@
         "SUM_BY_ACCOUNT",
         "SUM_BY_DATA_SOURCE",
         "SUM_BY_RESOURCE",
-        "TOP_RESOURCES"
+        "TOP_RESOURCES",
+        "SUM_BY_FEATURES"
       ]
     },
     "UsageStatistics":{
@@ -5774,6 +6158,10 @@
         "TopResources":{
           "shape":"UsageResourceResultList",
           "locationName":"topResources"
+        },
+        "SumByFeature":{
+          "shape":"UsageFeatureResultList",
+          "locationName":"sumByFeature"
         }
       }
     },

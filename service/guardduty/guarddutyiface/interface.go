@@ -143,6 +143,9 @@ type GuardDutyAPI interface {
 	DescribeOrganizationConfigurationWithContext(aws.Context, *guardduty.DescribeOrganizationConfigurationInput, ...request.Option) (*guardduty.DescribeOrganizationConfigurationOutput, error)
 	DescribeOrganizationConfigurationRequest(*guardduty.DescribeOrganizationConfigurationInput) (*request.Request, *guardduty.DescribeOrganizationConfigurationOutput)
 
+	DescribeOrganizationConfigurationPages(*guardduty.DescribeOrganizationConfigurationInput, func(*guardduty.DescribeOrganizationConfigurationOutput, bool) bool) error
+	DescribeOrganizationConfigurationPagesWithContext(aws.Context, *guardduty.DescribeOrganizationConfigurationInput, func(*guardduty.DescribeOrganizationConfigurationOutput, bool) bool, ...request.Option) error
+
 	DescribePublishingDestination(*guardduty.DescribePublishingDestinationInput) (*guardduty.DescribePublishingDestinationOutput, error)
 	DescribePublishingDestinationWithContext(aws.Context, *guardduty.DescribePublishingDestinationInput, ...request.Option) (*guardduty.DescribePublishingDestinationOutput, error)
 	DescribePublishingDestinationRequest(*guardduty.DescribePublishingDestinationInput) (*request.Request, *guardduty.DescribePublishingDestinationOutput)
