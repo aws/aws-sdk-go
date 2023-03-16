@@ -314,9 +314,9 @@ func (c *ResourceExplorer2) CreateIndexRequest(input *CreateIndexInput) (req *re
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     You tried to create a new view or index when one already exists, and you
-//     either didn't specify or specified a different idempotency token as the original
-//     request.
+//     The request failed because either you specified parameters that didn’t
+//     match the original request, or you attempted to create a view with a name
+//     that already exists in this Amazon Web Services Region.
 //
 //   - ThrottlingException
 //     The request failed because you exceeded a rate limit for this operation.
@@ -419,9 +419,9 @@ func (c *ResourceExplorer2) CreateViewRequest(input *CreateViewInput) (req *requ
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     You tried to create a new view or index when one already exists, and you
-//     either didn't specify or specified a different idempotency token as the original
-//     request.
+//     The request failed because either you specified parameters that didn’t
+//     match the original request, or you attempted to create a view with a name
+//     that already exists in this Amazon Web Services Region.
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it exceeds a service quota.
@@ -1854,9 +1854,9 @@ func (c *ResourceExplorer2) TagResourceRequest(input *TagResourceInput) (req *re
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     You tried to create a new view or index when one already exists, and you
-//     either didn't specify or specified a different idempotency token as the original
-//     request.
+//     The request failed because either you specified parameters that didn’t
+//     match the original request, or you attempted to create a view with a name
+//     that already exists in this Amazon Web Services Region.
 //
 //   - UnauthorizedException
 //     The principal making the request isn't permitted to perform the operation.
@@ -2101,9 +2101,9 @@ func (c *ResourceExplorer2) UpdateIndexTypeRequest(input *UpdateIndexTypeInput) 
 //     the syntax for the operation, and try again.
 //
 //   - ConflictException
-//     You tried to create a new view or index when one already exists, and you
-//     either didn't specify or specified a different idempotency token as the original
-//     request.
+//     The request failed because either you specified parameters that didn’t
+//     match the original request, or you attempted to create a view with a name
+//     that already exists in this Amazon Web Services Region.
 //
 //   - ServiceQuotaExceededException
 //     The request failed because it exceeds a service quota.
@@ -2522,9 +2522,9 @@ func (s *BatchGetViewOutput) SetViews(v []*View) *BatchGetViewOutput {
 	return s
 }
 
-// You tried to create a new view or index when one already exists, and you
-// either didn't specify or specified a different idempotency token as the original
-// request.
+// The request failed because either you specified parameters that didn’t
+// match the original request, or you attempted to create a view with a name
+// that already exists in this Amazon Web Services Region.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

@@ -411,11 +411,11 @@ type InvokeEndpointAsyncInput struct {
 	InputLocation *string `location:"header" locationName:"X-Amzn-SageMaker-InputLocation" min:"1" type:"string" required:"true"`
 
 	// Maximum amount of time in seconds a request can be processed before it is
-	// marked as expired.
+	// marked as expired. The default is 15 minutes, or 900 seconds.
 	InvocationTimeoutSeconds *int64 `location:"header" locationName:"X-Amzn-SageMaker-InvocationTimeoutSeconds" min:"1" type:"integer"`
 
 	// Maximum age in seconds a request can be in the queue before it is marked
-	// as expired.
+	// as expired. The default is 6 hours, or 21,600 seconds.
 	RequestTTLSeconds *int64 `location:"header" locationName:"X-Amzn-SageMaker-RequestTTLSeconds" min:"60" type:"integer"`
 }
 

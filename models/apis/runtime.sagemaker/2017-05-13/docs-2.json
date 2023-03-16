@@ -73,7 +73,7 @@
     "InvocationTimeoutSecondsHeader": {
       "base": null,
       "refs": {
-        "InvokeEndpointAsyncInput$InvocationTimeoutSeconds": "<p>Maximum amount of time in seconds a request can be processed before it is marked as expired.</p>"
+        "InvokeEndpointAsyncInput$InvocationTimeoutSeconds": "<p>Maximum amount of time in seconds a request can be processed before it is marked as expired. The default is 15 minutes, or 900 seconds.</p>"
       }
     },
     "InvokeEndpointAsyncInput": {
@@ -127,7 +127,7 @@
     "RequestTTLSecondsHeader": {
       "base": null,
       "refs": {
-        "InvokeEndpointAsyncInput$RequestTTLSeconds": "<p>Maximum age in seconds a request can be in the queue before it is marked as expired.</p>"
+        "InvokeEndpointAsyncInput$RequestTTLSeconds": "<p>Maximum age in seconds a request can be in the queue before it is marked as expired. The default is 6 hours, or 21,600 seconds.</p>"
       }
     },
     "ServiceUnavailable": {

@@ -1,3 +1,12 @@
+Release v1.44.223 (2023-03-16)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * Updated 9 APIs for feature enablement to reflect expansion of GuardDuty to features. Added new APIs and updated existing APIs to support RDS Protection GA.
+* `service/resource-explorer-2`: Updates service documentation
+* `service/runtime.sagemaker`: Updates service documentation
+
 Release v1.44.222 (2023-03-15)
 ===
 

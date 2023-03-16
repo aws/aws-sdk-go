@@ -6,7 +6,7 @@
     "AcceptInvitation": "<p>Accepts the invitation to be monitored by a GuardDuty administrator account.</p>",
     "ArchiveFindings": "<p>Archives GuardDuty findings that are specified by the list of finding IDs.</p> <note> <p>Only the administrator account can archive findings. Member accounts don't have permission to archive findings from their accounts.</p> </note>",
     "CreateDetector": "<p>Creates a single Amazon GuardDuty detector. A detector is a resource that represents the GuardDuty service. To start using GuardDuty, you must create a detector in each Region where you enable the service. You can have only one detector per account per Region. All data sources are enabled in a new detector by default.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
-    "CreateFilter": "<p>Creates a filter using the specified finding criteria.</p>",
+    "CreateFilter": "<p>Creates a filter using the specified finding criteria. The maximum number of saved filters per Amazon Web Services account per Region is 100. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_limits.html\">Quotas for GuardDuty</a>.</p>",
     "CreateIPSet": "<p>Creates a new IPSet, which is called a trusted IP list in the console user interface. An IPSet is a list of IP addresses that are trusted for secure communication with Amazon Web Services infrastructure and applications. GuardDuty doesn't generate findings for IP addresses that are included in IPSets. Only users from the administrator account can use this operation.</p>",
     "CreateMembers": "<p>Creates member accounts of the current Amazon Web Services account by specifying a list of Amazon Web Services account IDs. This step is a prerequisite for managing the associated member accounts either by invitation or through an organization.</p> <p>When using <code>Create Members</code> as an organizations delegated administrator this action will enable GuardDuty in the added member accounts, with the exception of the organization delegated administrator account, which must enable GuardDuty prior to being added as a member.</p> <p>If you are adding accounts by invitation, use this action after GuardDuty has bee enabled in potential member accounts and before using <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html\">InviteMembers</a>.</p>",
     "CreatePublishingDestination": "<p>Creates a publishing destination to export findings to. The resource to export findings to must exist before you use this operation.</p>",
@@ -621,6 +621,43 @@
         "ListPublishingDestinationsResponse$Destinations": "<p>A <code>Destinations</code> object that includes information about each publishing destination returned.</p>"
       }
     },
+    "DetectorFeature": {
+      "base": null,
+      "refs": {
+        "DetectorFeatureConfiguration$Name": "<p>The name of the feature.</p>"
+      }
+    },
+    "DetectorFeatureConfiguration": {
+      "base": "<p>Contains information about a GuardDuty feature.</p>",
+      "refs": {
+        "DetectorFeatureConfigurations$member": null
+      }
+    },
+    "DetectorFeatureConfigurationResult": {
+      "base": "<p>Contains information about a GuardDuty feature.</p>",
+      "refs": {
+        "DetectorFeatureConfigurationsResults$member": null
+      }
+    },
+    "DetectorFeatureConfigurations": {
+      "base": null,
+      "refs": {
+        "CreateDetectorRequest$Features": "<p>A list of features that will be configured for the detector.</p>",
+        "UpdateDetectorRequest$Features": "<p>Provides the features that will be updated for the detector.</p>"
+      }
+    },
+    "DetectorFeatureConfigurationsResults": {
+      "base": null,
+      "refs": {
+        "GetDetectorResponse$Features": "<p>Describes the features that have been enabled for the detector.</p>"
+      }
+    },
+    "DetectorFeatureResult": {
+      "base": null,
+      "refs": {
+        "DetectorFeatureConfigurationResult$Name": "<p>Indicates the name of the feature that can be enabled for the detector.</p>"
+      }
+    },
     "DetectorId": {
       "base": null,
       "refs": {
@@ -836,6 +873,15 @@
         "Service$Evidence": "<p>An evidence object associated with the service.</p>"
       }
     },
+    "FeatureStatus": {
+      "base": null,
+      "refs": {
+        "DetectorFeatureConfiguration$Status": "<p>The status of the feature.</p>",
+        "DetectorFeatureConfigurationResult$Status": "<p>Indicates the status of the feature that is enabled for the detector.</p>",
+        "MemberFeaturesConfiguration$Status": "<p>The status of the feature.</p>",
+        "MemberFeaturesConfigurationResult$Status": "<p>Indicates the status of the feature that is enabled for the detector.</p>"
+      }
+    },
     "Feedback": {
       "base": null,
       "refs": {
@@ -883,7 +929,7 @@
     "FilterDescription": {
       "base": null,
       "refs": {
-        "CreateFilterRequest$Description": "<p>The description of the filter. Valid characters include alphanumeric characters, and special characters such as <code>-</code>, <code>.</code>, <code>:</code>, <code>{ }</code>, <code>[ ]</code>, <code>( )</code>, <code>/</code>, <code>\\t</code>, <code>\\n</code>, <code>\\x0B</code>, <code>\\f</code>, <code>\\r</code>, <code>_</code>, and whitespace.</p>",
+        "CreateFilterRequest$Description": "<p>The description of the filter. Valid characters include alphanumeric characters, and special characters such as hyphen, period, colon, underscore, parentheses (<code>{ }</code>, <code>[ ]</code>, and <code>( )</code>), forward slash, horizontal tab, vertical tab, newline, form feed, return, and whitespace.</p>",
         "GetFilterResponse$Description": "<p>The description of the filter.</p>",
         "UpdateFilterRequest$Description": "<p>The description of the filter. Valid characters include alphanumeric characters, and special characters such as hyphen, period, colon, underscore, parentheses (<code>{ }</code>, <code>[ ]</code>, and <code>( )</code>), forward slash, horizontal tab, vertical tab, newline, form feed, return, and whitespace.</p>"
       }
@@ -993,6 +1039,24 @@
       "base": "<p>Contains information on the status of VPC flow logs as a data source.</p>",
       "refs": {
         "DataSourceConfigurationsResult$FlowLogs": "<p>An object that contains information on the status of VPC flow logs as a data source.</p>"
+      }
+    },
+    "FreeTrialFeatureConfigurationResult": {
+      "base": "<p>Contains information about the free trial period for a feature.</p>",
+      "refs": {
+        "FreeTrialFeatureConfigurationsResults$member": null
+      }
+    },
+    "FreeTrialFeatureConfigurationsResults": {
+      "base": null,
+      "refs": {
+        "AccountFreeTrialInfo$Features": "<p>A list of features enabled for the GuardDuty account.</p>"
+      }
+    },
+    "FreeTrialFeatureResult": {
+      "base": null,
+      "refs": {
+        "FreeTrialFeatureConfigurationResult$Name": "<p>The name of the feature for which the free trial is configured.</p>"
       }
     },
     "GeoLocation": {
@@ -1197,10 +1261,13 @@
         "EcsClusterDetails$ActiveServicesCount": "<p>The number of services that are running on the cluster in an ACTIVE state.</p>",
         "EcsClusterDetails$RegisteredContainerInstancesCount": "<p>The number of container instances registered into the cluster.</p>",
         "EcsClusterDetails$RunningTasksCount": "<p>The number of tasks in the cluster that are in the RUNNING state.</p>",
+        "FreeTrialFeatureConfigurationResult$FreeTrialDaysRemaining": "<p>The number of the remaining free trial days for the feature.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of received invitations.</p>",
         "HighestSeverityThreatDetails$Count": "<p>Total number of infected files with the highest severity threat detected.</p>",
         "KubernetesApiCallAction$StatusCode": "<p>The resulting HTTP response code of the Kubernetes API call action.</p>",
         "LocalPortDetails$Port": "<p>The port number of the local connection.</p>",
+        "LoginAttribute$FailedLoginAttempts": "<p>Represents the sum of failed (unsuccessful) login attempts made to establish a connection to the database instance.</p>",
+        "LoginAttribute$SuccessfulLoginAttempts": "<p>Represents the sum of successful connections (a correct combination of login attributes) made to the database instance by the actor.</p>",
         "RemotePortDetails$Port": "<p>The port number of the remote connection.</p>",
         "ScanThreatName$ItemCount": "<p>Total number of files infected with given threat.</p>",
         "ScannedItemCount$TotalGb": "<p>Total GB of files scanned for malware.</p>",
@@ -1450,6 +1517,18 @@
         "UpdateThreatIntelSetRequest$Location": "<p>The updated URI of the file that contains the ThreateIntelSet.</p>"
       }
     },
+    "LoginAttribute": {
+      "base": "<p>Information about the login attempts.</p>",
+      "refs": {
+        "LoginAttributes$member": null
+      }
+    },
+    "LoginAttributes": {
+      "base": null,
+      "refs": {
+        "RdsLoginAttemptAction$LoginAttributes": "<p>Indicates the login attributes used in the login attempt.</p>"
+      }
+    },
     "Long": {
       "base": null,
       "refs": {
@@ -1501,6 +1580,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "DescribeOrganizationConfigurationRequest$MaxResults": "<p>You can use this parameter to indicate the maximum number of items that you want in the response.</p>",
         "GetUsageStatisticsRequest$MaxResults": "<p>The maximum number of results to return in the response.</p>",
         "ListDetectorsRequest$MaxResults": "<p>You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.</p>",
         "ListFiltersRequest$MaxResults": "<p>You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.</p>",
@@ -1529,6 +1609,30 @@
       "base": null,
       "refs": {
         "GetMemberDetectorsResponse$MemberDataSourceConfigurations": "<p>An object that describes which data sources are enabled for a member account.</p>"
+      }
+    },
+    "MemberFeaturesConfiguration": {
+      "base": "<p>Contains information about the features for the member account.</p>",
+      "refs": {
+        "MemberFeaturesConfigurations$member": null
+      }
+    },
+    "MemberFeaturesConfigurationResult": {
+      "base": "<p>Contains information about the features for the member account.</p>",
+      "refs": {
+        "MemberFeaturesConfigurationsResults$member": null
+      }
+    },
+    "MemberFeaturesConfigurations": {
+      "base": null,
+      "refs": {
+        "UpdateMemberDetectorsRequest$Features": "<p>A list of features that will be updated for the specified member accounts.</p>"
+      }
+    },
+    "MemberFeaturesConfigurationsResults": {
+      "base": null,
+      "refs": {
+        "MemberDataSourceConfiguration$Features": "<p>Contains information about the status of the features for the member account.</p>"
       }
     },
     "Members": {
@@ -1595,6 +1699,22 @@
         "SortCriteria$OrderBy": "<p>The order by which the sorted findings are to be displayed.</p>"
       }
     },
+    "OrgFeature": {
+      "base": null,
+      "refs": {
+        "MemberFeaturesConfiguration$Name": "<p>The name of the feature.</p>",
+        "MemberFeaturesConfigurationResult$Name": "<p>Indicates the name of the feature that is enabled for the detector.</p>",
+        "OrganizationFeatureConfiguration$Name": "<p>The name of the feature that will be configured for the organization.</p>",
+        "OrganizationFeatureConfigurationResult$Name": "<p>The name of the feature that is configured for the member accounts within the organization.</p>"
+      }
+    },
+    "OrgFeatureStatus": {
+      "base": null,
+      "refs": {
+        "OrganizationFeatureConfiguration$AutoEnable": "<p>The status of the feature that will be configured for the organization.</p>",
+        "OrganizationFeatureConfigurationResult$AutoEnable": "<p>Describes how The status of the feature that are configured for the member accounts within the organization.</p> <p>If you set <code>AutoEnable</code> to <code>NEW</code>, a feature will be configured for only the new accounts when they join the organization.</p> <p>If you set <code>AutoEnable</code> to <code>NONE</code>, no feature will be configured for the accounts when they join the organization.</p>"
+      }
+    },
     "Organization": {
       "base": "<p>Contains information about the ISP organization of the remote IP address.</p>",
       "refs": {
@@ -1623,6 +1743,30 @@
       "base": "<p>An object that contains information on the status of whether EBS volumes scanning will be enabled as a data source for an organization.</p>",
       "refs": {
         "OrganizationScanEc2InstanceWithFindingsResult$EbsVolumes": "<p>Describes the configuration for scanning EBS volumes for an organization.</p>"
+      }
+    },
+    "OrganizationFeatureConfiguration": {
+      "base": "<p>A list of features which will be configured for the organization.</p>",
+      "refs": {
+        "OrganizationFeaturesConfigurations$member": null
+      }
+    },
+    "OrganizationFeatureConfigurationResult": {
+      "base": "<p>A list of features which will be configured for the organization.</p>",
+      "refs": {
+        "OrganizationFeaturesConfigurationsResults$member": null
+      }
+    },
+    "OrganizationFeaturesConfigurations": {
+      "base": null,
+      "refs": {
+        "UpdateOrganizationConfigurationRequest$Features": "<p>A list of features that will be configured for the organization.</p>"
+      }
+    },
+    "OrganizationFeaturesConfigurationsResults": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationConfigurationResponse$Features": "<p>A list of features that are configured for this organization.</p>"
       }
     },
     "OrganizationKubernetesAuditLogsConfiguration": {
@@ -1759,6 +1903,24 @@
         "Destination$Status": "<p>The status of the publishing destination.</p>"
       }
     },
+    "RdsDbInstanceDetails": {
+      "base": "<p>Contains information about the resource type <code>RDSDBInstance</code> involved in a GuardDuty finding.</p>",
+      "refs": {
+        "Resource$RdsDbInstanceDetails": "<p>Contains information about the database instance to which an anomalous login attempt was made.</p>"
+      }
+    },
+    "RdsDbUserDetails": {
+      "base": "<p>Contains information about the user and authentication details for a database instance involved in the finding.</p>",
+      "refs": {
+        "Resource$RdsDbUserDetails": "<p>Contains information about the user details through which anomalous login attempt was made.</p>"
+      }
+    },
+    "RdsLoginAttemptAction": {
+      "base": "<p>Indicates that a login attempt was made to the potentially compromised database from a remote IP address.</p>",
+      "refs": {
+        "Action$RdsLoginAttemptAction": "<p>Information about <code>RDS_LOGIN_ATTEMPT</code> action described in this finding.</p>"
+      }
+    },
     "RemoteAccountDetails": {
       "base": "<p>Contains details about the remote Amazon Web Services account that made the API call.</p>",
       "refs": {
@@ -1771,7 +1933,8 @@
         "AwsApiCallAction$RemoteIpDetails": "<p>The remote IP information of the connection that initiated the Amazon Web Services API call.</p>",
         "KubernetesApiCallAction$RemoteIpDetails": null,
         "NetworkConnectionAction$RemoteIpDetails": "<p>The remote IP information of the connection.</p>",
-        "PortProbeDetail$RemoteIpDetails": "<p>The remote IP information of the connection.</p>"
+        "PortProbeDetail$RemoteIpDetails": "<p>The remote IP information of the connection.</p>",
+        "RdsLoginAttemptAction$RemoteIpDetails": null
       }
     },
     "RemotePortDetails": {
@@ -2043,6 +2206,8 @@
         "DeleteThreatIntelSetRequest$ThreatIntelSetId": "<p>The unique ID of the threatIntelSet that you want to delete.</p>",
         "DescribeMalwareScansRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
         "DescribeMalwareScansResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
+        "DescribeOrganizationConfigurationRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill <code>nextToken</code> in the request with the value of <code>NextToken</code> from the previous response to continue listing data.</p>",
+        "DescribeOrganizationConfigurationResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "DescribePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to retrieve.</p>",
         "DescribePublishingDestinationResponse$DestinationId": "<p>The ID of the publishing destination.</p>",
         "Destination$DestinationId": "<p>The unique ID of the publishing destination.</p>",
@@ -2143,6 +2308,8 @@
         "ListThreatIntelSetsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "LocalIpDetails$IpAddressV4": "<p>The IPv4 local address of the connection.</p>",
         "LocalPortDetails$PortName": "<p>The port name of the local connection.</p>",
+        "LoginAttribute$User": "<p>Indicates the user name which attempted to log in.</p>",
+        "LoginAttribute$Application": "<p>Indicates the application name used to attempt log in.</p>",
         "MalwareProtectionConfigurationResult$ServiceRole": "<p>The GuardDuty Malware Protection service role.</p>",
         "Master$InvitationId": "<p>The value used to validate the administrator account to the member account.</p>",
         "Master$RelationshipStatus": "<p>The status of the relationship between the administrator and member accounts.</p>",
@@ -2173,6 +2340,16 @@
         "ProductCode$Code": "<p>The product code information.</p>",
         "ProductCode$ProductType": "<p>The product code type.</p>",
         "PublicAccess$EffectivePermission": "<p>Describes the effective permission on this bucket after factoring all attached policies.</p>",
+        "RdsDbInstanceDetails$DbInstanceIdentifier": "<p>The identifier associated to the database instance that was involved in the finding.</p>",
+        "RdsDbInstanceDetails$Engine": "<p>The database engine of the database instance involved in the finding.</p>",
+        "RdsDbInstanceDetails$EngineVersion": "<p>The version of the database engine that was involved in the finding.</p>",
+        "RdsDbInstanceDetails$DbClusterIdentifier": "<p>The identifier of the database cluster that contains the database instance ID involved in the finding.</p>",
+        "RdsDbInstanceDetails$DbInstanceArn": "<p>The Amazon Resource Name (ARN) that identifies the database instance involved in the finding.</p>",
+        "RdsDbUserDetails$User": "<p>The user name used in the anomalous login attempt.</p>",
+        "RdsDbUserDetails$Application": "<p>The application name used in the anomalous login attempt.</p>",
+        "RdsDbUserDetails$Database": "<p>The name of the database instance involved in the anomalous login attempt.</p>",
+        "RdsDbUserDetails$Ssl": "<p>The version of the Secure Socket Layer (SSL) used for the network.</p>",
+        "RdsDbUserDetails$AuthMethod": "<p>The authentication method used by the user involved in the finding.</p>",
         "RemoteAccountDetails$AccountId": "<p>The Amazon Web Services account ID of the remote API caller.</p>",
         "RemoteIpDetails$IpAddressV4": "<p>The IPv4 remote address of the connection.</p>",
         "RemotePortDetails$PortName": "<p>The port name of the remote connection.</p>",
@@ -2284,6 +2461,7 @@
         "EcsTaskDetails$Tags": "<p>The tags of the ECS Task.</p>",
         "EksClusterDetails$Tags": "<p>The EKS cluster tags.</p>",
         "InstanceDetails$Tags": "<p>The tags of the EC2 instance.</p>",
+        "RdsDbInstanceDetails$Tags": "<p>Instance tag key-value pairs associated with the database instance ID.</p>",
         "S3BucketDetail$Tags": "<p>All tags attached to the S3 bucket</p>"
       }
     },
@@ -2339,11 +2517,13 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "DetectorFeatureConfigurationResult$UpdatedAt": "<p>The timestamp at which the feature object was updated.</p>",
         "EbsVolumeScanDetails$ScanStartedAt": "<p>Returns the start date and time of the malware scan.</p>",
         "EbsVolumeScanDetails$ScanCompletedAt": "<p>Returns the completion date and time of the malware scan.</p>",
         "EcsTaskDetails$TaskCreatedAt": "<p>The Unix timestamp for the time when the task was created.</p>",
         "EcsTaskDetails$StartedAt": "<p>The Unix timestamp for the time when the task started.</p>",
         "EksClusterDetails$CreatedAt": "<p>The timestamp when the EKS cluster was created.</p>",
+        "MemberFeaturesConfigurationResult$UpdatedAt": "<p>The timestamp at which the feature object was updated.</p>",
         "S3BucketDetail$CreatedAt": "<p>The date and time the bucket was created at.</p>",
         "Scan$ScanStartTime": "<p>The timestamp of when the scan was triggered.</p>",
         "Scan$ScanEndTime": "<p>The timestamp of when the scan was finished.</p>"
@@ -2354,6 +2534,7 @@
       "refs": {
         "UsageAccountResult$Total": "<p>Represents the total of usage for the Account ID.</p>",
         "UsageDataSourceResult$Total": "<p>Represents the total of usage for the specified data source.</p>",
+        "UsageFeatureResult$Total": null,
         "UsageResourceResult$Total": "<p>Represents the sum total of usage for the specified resource type.</p>"
       }
     },
@@ -2530,6 +2711,31 @@
       "base": null,
       "refs": {
         "UsageStatistics$SumByDataSource": "<p>The usage statistic sum organized by on data source.</p>"
+      }
+    },
+    "UsageFeature": {
+      "base": null,
+      "refs": {
+        "UsageFeatureList$member": null,
+        "UsageFeatureResult$Feature": "<p>The feature that generated the usage cost.</p>"
+      }
+    },
+    "UsageFeatureList": {
+      "base": null,
+      "refs": {
+        "UsageCriteria$Features": "<p>The features to aggregate usage statistics from.</p>"
+      }
+    },
+    "UsageFeatureResult": {
+      "base": "<p>Contains information about the result of the total usage based on the feature.</p>",
+      "refs": {
+        "UsageFeatureResultList$member": null
+      }
+    },
+    "UsageFeatureResultList": {
+      "base": null,
+      "refs": {
+        "UsageStatistics$SumByFeature": "<p>The usage statistic sum organized by feature.</p>"
       }
     },
     "UsageResourceResult": {
