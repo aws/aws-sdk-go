@@ -1,3 +1,12 @@
+Release v1.44.224 (2023-03-17)
+===
+
+### Service Client Updates
+* `service/billingconductor`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * S3 setting to create AWS Glue Data Catalog. Oracle setting to control conversion of timestamp column. Support for Kafka SASL Plain authentication. Setting to map boolean from PostgreSQL to Redshift. SQL Server settings to force lob lookup on inline LOBs and to control access of database logs.
+
 Release v1.44.223 (2023-03-16)
 ===
 

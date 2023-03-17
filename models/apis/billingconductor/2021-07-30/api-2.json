@@ -612,6 +612,12 @@
       "type":"string",
       "pattern":"[0-9]{12}"
     },
+    "AccountIdFilterList":{
+      "type":"list",
+      "member":{"shape":"AccountId"},
+      "max":30,
+      "min":1
+    },
     "AccountIdList":{
       "type":"list",
       "member":{"shape":"AccountId"},
@@ -803,6 +809,12 @@
         "ACTIVE",
         "PRIMARY_ACCOUNT_MISSING"
       ]
+    },
+    "BillingGroupStatusList":{
+      "type":"list",
+      "member":{"shape":"BillingGroupStatus"},
+      "max":2,
+      "min":1
     },
     "BillingGroupStatusReason":{"type":"string"},
     "BillingPeriod":{
@@ -1135,7 +1147,9 @@
         "LastModifiedTime":{"shape":"Instant"},
         "AssociationSize":{"shape":"NumberOfAssociations"},
         "StartBillingPeriod":{"shape":"BillingPeriod"},
-        "EndBillingPeriod":{"shape":"BillingPeriod"}
+        "EndBillingPeriod":{"shape":"BillingPeriod"},
+        "Arn":{"shape":"CustomLineItemArn"},
+        "StartTime":{"shape":"Instant"}
       }
     },
     "DeleteBillingGroupInput":{
@@ -1263,7 +1277,8 @@
       "type":"structure",
       "members":{
         "Association":{"shape":"Association"},
-        "AccountId":{"shape":"AccountId"}
+        "AccountId":{"shape":"AccountId"},
+        "AccountIds":{"shape":"AccountIdFilterList"}
       }
     },
     "ListAccountAssociationsInput":{
@@ -1307,7 +1322,8 @@
       "type":"structure",
       "members":{
         "Arns":{"shape":"BillingGroupArnList"},
-        "PricingPlan":{"shape":"PricingPlanFullArn"}
+        "PricingPlan":{"shape":"PricingPlanFullArn"},
+        "Statuses":{"shape":"BillingGroupStatusList"}
       }
     },
     "ListBillingGroupsInput":{
@@ -1682,7 +1698,9 @@
         "CreationTime":{"shape":"Instant"},
         "LastModifiedTime":{"shape":"Instant"},
         "BillingEntity":{"shape":"BillingEntity"},
-        "Tiering":{"shape":"Tiering"}
+        "Tiering":{"shape":"Tiering"},
+        "UsageType":{"shape":"UsageType"},
+        "Operation":{"shape":"Operation"}
       }
     },
     "PricingRuleName":{
@@ -1697,7 +1715,8 @@
       "enum":[
         "GLOBAL",
         "SERVICE",
-        "BILLING_ENTITY"
+        "BILLING_ENTITY",
+        "SKU"
       ]
     },
     "PricingRuleType":{
@@ -2073,7 +2092,11 @@
         "ILLEGAL_MODIFIER_PERCENTAGE",
         "ILLEGAL_TYPE",
         "ILLEGAL_ENDED_BILLINGGROUP",
-        "ILLEGAL_TIERING_INPUT"
+        "ILLEGAL_TIERING_INPUT",
+        "ILLEGAL_OPERATION",
+        "ILLEGAL_USAGE_TYPE",
+        "INVALID_SKU_COMBO",
+        "INVALID_FILTER"
       ]
     }
   }

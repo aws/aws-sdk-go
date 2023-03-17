@@ -13817,6 +13817,12 @@
               "tags" : [ "dualstack" ]
             } ]
           },
+          "ap-southeast-4" : {
+            "variants" : [ {
+              "hostname" : "servicediscovery.ap-southeast-4.amazonaws.com",
+              "tags" : [ "dualstack" ]
+            } ]
+          },
           "ca-central-1" : {
             "variants" : [ {
               "hostname" : "servicediscovery-fips.ca-central-1.amazonaws.com",

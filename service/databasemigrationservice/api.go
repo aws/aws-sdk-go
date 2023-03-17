@@ -17085,6 +17085,11 @@ type KafkaSettings struct {
 	// throttling. The default is false.
 	PartitionIncludeSchemaTable *bool `type:"boolean"`
 
+	// For SASL/SSL authentication, DMS supports the SCRAM-SHA-512 mechanism by
+	// default. DMS versions 3.5.0 and later also support the PLAIN mechanism. To
+	// use the PLAIN mechanism, set this parameter to PLAIN.
+	SaslMechanism *string `type:"string" enum:"KafkaSaslMechanism"`
+
 	// The secure password you created when you first set up your MSK cluster to
 	// validate a client identity and make an encrypted connection between server
 	// and client using SASL-SSL authentication.
@@ -17204,6 +17209,12 @@ func (s *KafkaSettings) SetNoHexPrefix(v bool) *KafkaSettings {
 // SetPartitionIncludeSchemaTable sets the PartitionIncludeSchemaTable field's value.
 func (s *KafkaSettings) SetPartitionIncludeSchemaTable(v bool) *KafkaSettings {
 	s.PartitionIncludeSchemaTable = &v
+	return s
+}
+
+// SetSaslMechanism sets the SaslMechanism field's value.
+func (s *KafkaSettings) SetSaslMechanism(v string) *KafkaSettings {
+	s.SaslMechanism = &v
 	return s
 }
 
@@ -17573,6 +17584,9 @@ type MicrosoftSQLServerSettings struct {
 	// Database name for the endpoint.
 	DatabaseName *string `type:"string"`
 
+	// Forces LOB lookup on inline LOB.
+	ForceLobLookup *bool `type:"boolean"`
+
 	// Endpoint connection password.
 	//
 	// Password is a sensitive parameter and its value will be
@@ -17640,6 +17654,9 @@ type MicrosoftSQLServerSettings struct {
 	// field.
 	ServerName *string `type:"string"`
 
+	// Indicates the mode used to fetch CDC data.
+	TlogAccessMode *string `type:"string" enum:"TlogAccessMode"`
+
 	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
 	// NCHAR data types during migration. The default value is true.
 	TrimSpaceInChar *bool `type:"boolean"`
@@ -17693,6 +17710,12 @@ func (s *MicrosoftSQLServerSettings) SetDatabaseName(v string) *MicrosoftSQLServ
 	return s
 }
 
+// SetForceLobLookup sets the ForceLobLookup field's value.
+func (s *MicrosoftSQLServerSettings) SetForceLobLookup(v bool) *MicrosoftSQLServerSettings {
+	s.ForceLobLookup = &v
+	return s
+}
+
 // SetPassword sets the Password field's value.
 func (s *MicrosoftSQLServerSettings) SetPassword(v string) *MicrosoftSQLServerSettings {
 	s.Password = &v
@@ -17738,6 +17761,12 @@ func (s *MicrosoftSQLServerSettings) SetSecretsManagerSecretId(v string) *Micros
 // SetServerName sets the ServerName field's value.
 func (s *MicrosoftSQLServerSettings) SetServerName(v string) *MicrosoftSQLServerSettings {
 	s.ServerName = &v
+	return s
+}
+
+// SetTlogAccessMode sets the TlogAccessMode field's value.
+func (s *MicrosoftSQLServerSettings) SetTlogAccessMode(v string) *MicrosoftSQLServerSettings {
+	s.TlogAccessMode = &v
 	return s
 }
 
@@ -19576,6 +19605,9 @@ type OracleSettings struct {
 	// Example: charLengthSemantics=CHAR;
 	CharLengthSemantics *string `type:"string" enum:"CharLengthSemantics"`
 
+	// When true, converts timestamps with the timezone datatype to their UTC value.
+	ConvertTimestampWithZoneToUTC *bool `type:"boolean"`
+
 	// Database name for the endpoint.
 	DatabaseName *string `type:"string"`
 
@@ -19875,6 +19907,12 @@ func (s *OracleSettings) SetAsmUser(v string) *OracleSettings {
 // SetCharLengthSemantics sets the CharLengthSemantics field's value.
 func (s *OracleSettings) SetCharLengthSemantics(v string) *OracleSettings {
 	s.CharLengthSemantics = &v
+	return s
+}
+
+// SetConvertTimestampWithZoneToUTC sets the ConvertTimestampWithZoneToUTC field's value.
+func (s *OracleSettings) SetConvertTimestampWithZoneToUTC(v bool) *OracleSettings {
+	s.ConvertTimestampWithZoneToUTC = &v
 	return s
 }
 
@@ -20323,6 +20361,10 @@ type PostgreSQLSettings struct {
 	// Sets the schema in which the heartbeat artifacts are created.
 	HeartbeatSchema *string `type:"string"`
 
+	// When true, lets PostgreSQL migrate the boolean type as boolean. By default,
+	// PostgreSQL migrates booleans as varchar(5).
+	MapBooleanAsBoolean *bool `type:"boolean"`
+
 	// Specifies the maximum size (in KB) of any .csv file used to transfer data
 	// to PostgreSQL.
 	//
@@ -20469,6 +20511,12 @@ func (s *PostgreSQLSettings) SetHeartbeatFrequency(v int64) *PostgreSQLSettings 
 // SetHeartbeatSchema sets the HeartbeatSchema field's value.
 func (s *PostgreSQLSettings) SetHeartbeatSchema(v string) *PostgreSQLSettings {
 	s.HeartbeatSchema = &v
+	return s
+}
+
+// SetMapBooleanAsBoolean sets the MapBooleanAsBoolean field's value.
+func (s *PostgreSQLSettings) SetMapBooleanAsBoolean(v bool) *PostgreSQLSettings {
+	s.MapBooleanAsBoolean = &v
 	return s
 }
 
@@ -21293,6 +21341,10 @@ type RedshiftSettings struct {
 	// and UPDATE.
 	LoadTimeout *int64 `type:"integer"`
 
+	// When true, lets Redshift migrate the boolean type as boolean. By default,
+	// Redshift migrates booleans as varchar(1).
+	MapBooleanAsBoolean *bool `type:"boolean"`
+
 	// The maximum size (in KB) of any .csv file used to load data on an S3 bucket
 	// and transfer data to Amazon Redshift. It defaults to 1048576KB (1 GB).
 	MaxFileSize *int64 `type:"integer"`
@@ -21480,6 +21532,12 @@ func (s *RedshiftSettings) SetFileTransferUploadStreams(v int64) *RedshiftSettin
 // SetLoadTimeout sets the LoadTimeout field's value.
 func (s *RedshiftSettings) SetLoadTimeout(v int64) *RedshiftSettings {
 	s.LoadTimeout = &v
+	return s
+}
+
+// SetMapBooleanAsBoolean sets the MapBooleanAsBoolean field's value.
+func (s *RedshiftSettings) SetMapBooleanAsBoolean(v bool) *RedshiftSettings {
+	s.MapBooleanAsBoolean = &v
 	return s
 }
 
@@ -24069,6 +24127,10 @@ type S3Settings struct {
 	// Specifies how tables are defined in the S3 source files only.
 	ExternalTableDefinition *string `type:"string"`
 
+	// When true, allows Glue to catalog your S3 bucket. Creating an Glue catalog
+	// lets you use Athena to query your data.
+	GlueCatalogGeneration *bool `type:"boolean"`
+
 	// When this value is set to 1, DMS ignores the first row header in a .csv file.
 	// A value of 1 turns on the feature; a value of 0 turns off the feature.
 	//
@@ -24395,6 +24457,12 @@ func (s *S3Settings) SetExpectedBucketOwner(v string) *S3Settings {
 // SetExternalTableDefinition sets the ExternalTableDefinition field's value.
 func (s *S3Settings) SetExternalTableDefinition(v string) *S3Settings {
 	s.ExternalTableDefinition = &v
+	return s
+}
+
+// SetGlueCatalogGeneration sets the GlueCatalogGeneration field's value.
+func (s *S3Settings) SetGlueCatalogGeneration(v bool) *S3Settings {
+	s.GlueCatalogGeneration = &v
 	return s
 }
 
@@ -26799,6 +26867,22 @@ func EndpointSettingTypeValue_Values() []string {
 }
 
 const (
+	// KafkaSaslMechanismScramSha512 is a KafkaSaslMechanism enum value
+	KafkaSaslMechanismScramSha512 = "scram-sha-512"
+
+	// KafkaSaslMechanismPlain is a KafkaSaslMechanism enum value
+	KafkaSaslMechanismPlain = "plain"
+)
+
+// KafkaSaslMechanism_Values returns all elements of the KafkaSaslMechanism enum
+func KafkaSaslMechanism_Values() []string {
+	return []string{
+		KafkaSaslMechanismScramSha512,
+		KafkaSaslMechanismPlain,
+	}
+}
+
+const (
 	// KafkaSecurityProtocolPlaintext is a KafkaSecurityProtocol enum value
 	KafkaSecurityProtocolPlaintext = "plaintext"
 
@@ -27079,6 +27163,30 @@ func TargetDbType_Values() []string {
 	return []string{
 		TargetDbTypeSpecificDatabase,
 		TargetDbTypeMultipleDatabases,
+	}
+}
+
+const (
+	// TlogAccessModeBackupOnly is a TlogAccessMode enum value
+	TlogAccessModeBackupOnly = "BackupOnly"
+
+	// TlogAccessModePreferBackup is a TlogAccessMode enum value
+	TlogAccessModePreferBackup = "PreferBackup"
+
+	// TlogAccessModePreferTlog is a TlogAccessMode enum value
+	TlogAccessModePreferTlog = "PreferTlog"
+
+	// TlogAccessModeTlogOnly is a TlogAccessMode enum value
+	TlogAccessModeTlogOnly = "TlogOnly"
+)
+
+// TlogAccessMode_Values returns all elements of the TlogAccessMode enum
+func TlogAccessMode_Values() []string {
+	return []string{
+		TlogAccessModeBackupOnly,
+		TlogAccessModePreferBackup,
+		TlogAccessModePreferTlog,
+		TlogAccessModeTlogOnly,
 	}
 }
 

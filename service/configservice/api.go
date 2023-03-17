@@ -75,7 +75,7 @@ func (c *ConfigService) BatchGetAggregateResourceConfigRequest(input *BatchGetAg
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -173,7 +173,7 @@ func (c *ConfigService) BatchGetResourceConfigRequest(input *BatchGetResourceCon
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -265,7 +265,7 @@ func (c *ConfigService) DeleteAggregationAuthorizationRequest(input *DeleteAggre
 //
 // Returned Error Types:
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteAggregationAuthorization
@@ -352,8 +352,8 @@ func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (r
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 //   - ResourceInUseException
@@ -828,8 +828,8 @@ func (c *ConfigService) DeleteEvaluationResultsRequest(input *DeleteEvaluationRe
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 //   - ResourceInUseException
@@ -945,8 +945,8 @@ func (c *ConfigService) DeleteOrganizationConfigRuleRequest(input *DeleteOrganiz
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an organization
-//     Config Custom Policy rule, that the rule name is correct, and that valid
+//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     Config Process Check rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
 //   - ResourceInUseException
@@ -1223,7 +1223,7 @@ func (c *ConfigService) DeletePendingAggregationRequestRequest(input *DeletePend
 //
 // Returned Error Types:
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeletePendingAggregationRequest
@@ -1329,7 +1329,7 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteRemediationConfiguration
@@ -1495,7 +1495,7 @@ func (c *ConfigService) DeleteResourceConfigRequest(input *DeleteResourceConfigI
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -1586,7 +1586,7 @@ func (c *ConfigService) DeleteRetentionConfigurationRequest(input *DeleteRetenti
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - NoSuchRetentionConfigurationException
@@ -1671,7 +1671,7 @@ func (c *ConfigService) DeleteStoredQueryRequest(input *DeleteStoredQueryInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -1867,7 +1867,7 @@ func (c *ConfigService) DescribeAggregateComplianceByConfigRulesRequest(input *D
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -1881,8 +1881,8 @@ func (c *ConfigService) DescribeAggregateComplianceByConfigRulesRequest(input *D
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
@@ -2027,7 +2027,7 @@ func (c *ConfigService) DescribeAggregateComplianceByConformancePacksRequest(inp
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -2041,8 +2041,8 @@ func (c *ConfigService) DescribeAggregateComplianceByConformancePacksRequest(inp
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
@@ -2182,12 +2182,12 @@ func (c *ConfigService) DescribeAggregationAuthorizationsRequest(input *Describe
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
@@ -2348,17 +2348,17 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeComplianceByConfigRule
 func (c *ConfigService) DescribeComplianceByConfigRule(input *DescribeComplianceByConfigRuleInput) (*DescribeComplianceByConfigRuleOutput, error) {
@@ -2517,12 +2517,12 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeComplianceByResource
 func (c *ConfigService) DescribeComplianceByResource(input *DescribeComplianceByResourceInput) (*DescribeComplianceByResourceOutput, error) {
@@ -2661,17 +2661,17 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigRuleEvaluationStatus
 func (c *ConfigService) DescribeConfigRuleEvaluationStatus(input *DescribeConfigRuleEvaluationStatusInput) (*DescribeConfigRuleEvaluationStatusOutput, error) {
@@ -2807,16 +2807,16 @@ func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInp
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigRules
@@ -2956,15 +2956,15 @@ func (c *ConfigService) DescribeConfigurationAggregatorSourcesStatusRequest(inpu
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
@@ -3105,15 +3105,15 @@ func (c *ConfigService) DescribeConfigurationAggregatorsRequest(input *DescribeC
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
@@ -3234,12 +3234,14 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 
 // DescribeConfigurationRecorderStatus API operation for AWS Config.
 //
-// Returns the current status of the specified configuration recorder. If a
-// configuration recorder is not specified, this action returns the status of
-// all configuration recorders associated with the account.
+// Returns the current status of the specified configuration recorder as well
+// as the status of the last recording event for the recorder. If a configuration
+// recorder is not specified, this action returns the status of all configuration
+// recorders associated with the account.
 //
 // Currently, you can specify only one configuration recorder per region in
-// your account.
+// your account. For a detailed status of recording events over time, add your
+// Config events to Amazon CloudWatch metrics and use CloudWatch metrics.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3423,11 +3425,11 @@ func (c *ConfigService) DescribeConformancePackComplianceRequest(input *Describe
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - NoSuchConfigRuleInConformancePackException
@@ -3575,11 +3577,11 @@ func (c *ConfigService) DescribeConformancePackStatusRequest(input *DescribeConf
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConformancePackStatus
@@ -3722,11 +3724,11 @@ func (c *ConfigService) DescribeConformancePacksRequest(input *DescribeConforman
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConformancePacks
@@ -4036,16 +4038,16 @@ func (c *ConfigService) DescribeOrganizationConfigRuleStatusesRequest(input *Des
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an organization
-//     Config Custom Policy rule, that the rule name is correct, and that valid
+//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     Config Process Check rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - OrganizationAccessDeniedException
 //     For PutConfigurationAggregator API, you can see this exception for the following
@@ -4225,13 +4227,13 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an organization
-//     Config Custom Policy rule, that the rule name is correct, and that valid
+//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     Config Process Check rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
@@ -4414,8 +4416,8 @@ func (c *ConfigService) DescribeOrganizationConformancePackStatusesRequest(input
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - OrganizationAccessDeniedException
 //     For PutConfigurationAggregator API, you can see this exception for the following
@@ -4602,8 +4604,8 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 //     conformance pack that does not exist.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
@@ -4767,12 +4769,12 @@ func (c *ConfigService) DescribePendingAggregationRequestsRequest(input *Describ
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
@@ -4996,11 +4998,11 @@ func (c *ConfigService) DescribeRemediationExceptionsRequest(input *DescribeReme
 // Returned Error Types:
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationExceptions
@@ -5143,11 +5145,11 @@ func (c *ConfigService) DescribeRemediationExecutionStatusRequest(input *Describ
 //     You specified an Config rule without a remediation configuration.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationExecutionStatus
@@ -5289,15 +5291,15 @@ func (c *ConfigService) DescribeRetentionConfigurationsRequest(input *DescribeRe
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - NoSuchRetentionConfigurationException
 //     You have specified a retention configuration that does not exist.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRetentionConfigurations
 func (c *ConfigService) DescribeRetentionConfigurations(input *DescribeRetentionConfigurationsInput) (*DescribeRetentionConfigurationsOutput, error) {
@@ -5439,7 +5441,7 @@ func (c *ConfigService) GetAggregateComplianceDetailsByConfigRuleRequest(input *
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -5453,8 +5455,8 @@ func (c *ConfigService) GetAggregateComplianceDetailsByConfigRuleRequest(input *
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
@@ -5597,7 +5599,7 @@ func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryRequest(input *Ge
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -5611,8 +5613,8 @@ func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryRequest(input *Ge
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
@@ -5757,7 +5759,7 @@ func (c *ConfigService) GetAggregateConformancePackComplianceSummaryRequest(inpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -5771,8 +5773,8 @@ func (c *ConfigService) GetAggregateConformancePackComplianceSummaryRequest(inpu
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
@@ -5919,7 +5921,7 @@ func (c *ConfigService) GetAggregateDiscoveredResourceCountsRequest(input *GetAg
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -5933,8 +5935,8 @@ func (c *ConfigService) GetAggregateDiscoveredResourceCountsRequest(input *GetAg
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
@@ -6068,7 +6070,7 @@ func (c *ConfigService) GetAggregateResourceConfigRequest(input *GetAggregateRes
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -6173,16 +6175,16 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetCompli
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetComplianceDetailsByConfigRule
@@ -6321,7 +6323,7 @@ func (c *ConfigService) GetComplianceDetailsByResourceRequest(input *GetComplian
 //
 // Returned Error Types:
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetComplianceDetailsByResource
@@ -6527,7 +6529,7 @@ func (c *ConfigService) GetComplianceSummaryByResourceTypeRequest(input *GetComp
 //
 // Returned Error Types:
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetComplianceSummaryByResourceType
@@ -6617,8 +6619,8 @@ func (c *ConfigService) GetConformancePackComplianceDetailsRequest(input *GetCon
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConformancePackException
 //     You specified one or more conformance packs that do not exist.
@@ -6627,7 +6629,7 @@ func (c *ConfigService) GetConformancePackComplianceDetailsRequest(input *GetCon
 //     Config rule that you passed in the filter does not exist.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetConformancePackComplianceDetails
@@ -6771,8 +6773,8 @@ func (c *ConfigService) GetConformancePackComplianceSummaryRequest(input *GetCon
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetConformancePackComplianceSummary
 func (c *ConfigService) GetConformancePackComplianceSummary(input *GetConformancePackComplianceSummaryInput) (*GetConformancePackComplianceSummaryOutput, error) {
@@ -6902,8 +6904,8 @@ func (c *ConfigService) GetCustomRulePolicyRequest(input *GetCustomRulePolicyInp
 //
 // Returned Error Types:
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetCustomRulePolicy
@@ -7022,7 +7024,7 @@ func (c *ConfigService) GetDiscoveredResourceCountsRequest(input *GetDiscoveredR
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -7036,8 +7038,8 @@ func (c *ConfigService) GetDiscoveredResourceCountsRequest(input *GetDiscoveredR
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetDiscoveredResourceCounts
 func (c *ConfigService) GetDiscoveredResourceCounts(input *GetDiscoveredResourceCountsInput) (*GetDiscoveredResourceCountsOutput, error) {
@@ -7174,16 +7176,16 @@ func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusRequest(input *Ge
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an organization
-//     Config Custom Policy rule, that the rule name is correct, and that valid
+//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     Config Process Check rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - OrganizationAccessDeniedException
 //     For PutConfigurationAggregator API, you can see this exception for the following
@@ -7355,8 +7357,8 @@ func (c *ConfigService) GetOrganizationConformancePackDetailedStatusRequest(inpu
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - OrganizationAccessDeniedException
 //     For PutConfigurationAggregator API, you can see this exception for the following
@@ -7512,8 +7514,8 @@ func (c *ConfigService) GetOrganizationCustomRulePolicyRequest(input *GetOrganiz
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an organization
-//     Config Custom Policy rule, that the rule name is correct, and that valid
+//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     Config Process Check rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
 //   - OrganizationAccessDeniedException
@@ -7637,7 +7639,7 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -7648,15 +7650,15 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 //     the validation.
 //
 //   - InvalidTimeRangeException
-//     The specified time range is invalid. The earlier time is not chronologically
+//     The specified time range is not valid. The earlier time is not chronologically
 //     before the later time.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoAvailableConfigurationRecorderException
 //     There are no configuration recorders available to provide the role needed
@@ -7787,6 +7789,12 @@ func (c *ConfigService) GetResourceEvaluationSummaryRequest(input *GetResourceEv
 // the evaluation mode that was run, and whether the resource details comply
 // with the configuration of the proactive rules.
 //
+// To see additional information about the evaluation result, such as which
+// rule flagged a resource as NON_COMPLIANT, use the GetComplianceDetailsByResource
+// (https://docs.aws.amazon.com/config/latest/APIReference/API_GetComplianceDetailsByResource.html)
+// API. For more information, see the Examples (https://docs.aws.amazon.com/config/latest/APIReference/API_GetResourceEvaluationSummary.html#API_GetResourceEvaluationSummary_Examples)
+// section.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7875,7 +7883,7 @@ func (c *ConfigService) GetStoredQueryRequest(input *GetStoredQueryInput) (req *
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -7980,7 +7988,7 @@ func (c *ConfigService) ListAggregateDiscoveredResourcesRequest(input *ListAggre
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -7994,8 +8002,8 @@ func (c *ConfigService) ListAggregateDiscoveredResourcesRequest(input *ListAggre
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigurationAggregatorException
 //     You have specified a configuration aggregator that does not exist.
@@ -8143,15 +8151,15 @@ func (c *ConfigService) ListConformancePackComplianceScoresRequest(input *ListCo
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidLimitException
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListConformancePackComplianceScores
 func (c *ConfigService) ListConformancePackComplianceScores(input *ListConformancePackComplianceScoresInput) (*ListConformancePackComplianceScoresOutput, error) {
@@ -8300,7 +8308,7 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -8314,8 +8322,8 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - NoAvailableConfigurationRecorderException
 //     There are no configuration recorders available to provide the role needed
@@ -8455,15 +8463,15 @@ func (c *ConfigService) ListResourceEvaluationsRequest(input *ListResourceEvalua
 // Returned Error Types:
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidTimeRangeException
-//     The specified time range is invalid. The earlier time is not chronologically
+//     The specified time range is not valid. The earlier time is not chronologically
 //     before the later time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListResourceEvaluations
@@ -8601,7 +8609,7 @@ func (c *ConfigService) ListStoredQueriesRequest(input *ListStoredQueriesInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -8612,8 +8620,8 @@ func (c *ConfigService) ListStoredQueriesRequest(input *ListStoredQueriesInput) 
 //     the validation.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListStoredQueries
 func (c *ConfigService) ListStoredQueries(input *ListStoredQueriesInput) (*ListStoredQueriesOutput, error) {
@@ -8752,7 +8760,7 @@ func (c *ConfigService) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //     You have specified a resource that does not exist.
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -8766,8 +8774,8 @@ func (c *ConfigService) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListTagsForResource
 func (c *ConfigService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -8888,6 +8896,12 @@ func (c *ConfigService) PutAggregationAuthorizationRequest(input *PutAggregation
 // Authorizes the aggregator account and region to collect data from the source
 // account and region.
 //
+// PutAggregationAuthorization is an idempotent API. Subsequent requests won’t
+// create a duplicate resource if one was already created. If a following request
+// has different tags values, Config will ignore these differences and treat
+// it as an idempotent request of the previous. In this case, tags will not
+// be updated, even if they are different.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8897,7 +8911,7 @@ func (c *ConfigService) PutAggregationAuthorizationRequest(input *PutAggregation
 //
 // Returned Error Types:
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutAggregationAuthorization
@@ -8971,27 +8985,31 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // rules you can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
 // in the Config Developer Guide.
 //
-// There are two types of rules: Config Custom Rules and Config Managed Rules.
-// You can use PutConfigRule to create both Config custom rules and Config managed
-// rules.
+// There are two types of rules: Config Managed Rules and Config Custom Rules.
+// You can use PutConfigRule to create both Config Managed Rules and Config
+// Custom Rules.
 //
-// Custom rules are rules that you can create using either Guard or Lambda functions.
-// Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard))
-// is a policy-as-code language that allows you to write policies that are enforced
-// by Config Custom Policy rules. Lambda uses custom code that you upload to
-// evaluate a custom rule. If you are adding a new Custom Lambda rule, you first
-// need to create an Lambda function that the rule invokes to evaluate your
-// resources. When you use PutConfigRule to add a Custom Lambda rule to Config,
-// you must specify the Amazon Resource Name (ARN) that Lambda assigns to the
-// function. You specify the ARN in the SourceIdentifier key. This key is part
-// of the Source object, which is part of the ConfigRule object.
-//
-// Managed rules are predefined, customizable rules created by Config. For a
-// list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
+// Config Managed Rules are predefined, customizable rules created by Config.
+// For a list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
 // If you are adding an Config managed rule, you must specify the rule's identifier
 // for the SourceIdentifier key.
 //
-// For any new rule that you add, specify the ConfigRuleName in the ConfigRule
+// Config Custom Rules are rules that you create from scratch. There are two
+// ways to create Config custom rules: with Lambda functions ( Lambda Developer
+// Guide (https://docs.aws.amazon.com/config/latest/developerguide/gettingstarted-concepts.html#gettingstarted-concepts-function))
+// and with Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard)),
+// a policy-as-code language. Config custom rules created with Lambda are called
+// Config Custom Lambda Rules and Config custom rules created with Guard are
+// called Config Custom Policy Rules.
+//
+// If you are adding a new Config Custom Lambda rule, you first need to create
+// an Lambda function that the rule invokes to evaluate your resources. When
+// you use PutConfigRule to add a Custom Lambda rule to Config, you must specify
+// the Amazon Resource Name (ARN) that Lambda assigns to the function. You specify
+// the ARN in the SourceIdentifier key. This key is part of the Source object,
+// which is part of the ConfigRule object.
+//
+// For any new Config rule that you add, specify the ConfigRuleName in the ConfigRule
 // object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values
 // are generated by Config for new rules.
 //
@@ -9000,8 +9018,14 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // data type that you use in this request.
 //
 // For more information about developing and using Config rules, see Evaluating
-// Amazon Web Services resource Configurations with Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// Resources with Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 // in the Config Developer Guide.
+//
+// PutConfigRule is an idempotent API. Subsequent requests won’t create a
+// duplicate resource if one was already created. If a following request has
+// different tags values, Config will ignore these differences and treat it
+// as an idempotent request of the previous. In this case, tags will not be
+// updated, even if they are different.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9013,7 +9037,7 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - MaxNumberOfConfigRulesExceededException
@@ -9156,6 +9180,12 @@ func (c *ConfigService) PutConfigurationAggregatorRequest(input *PutConfiguratio
 // (https://docs.aws.amazon.com/config/latest/developerguide/set-up-aggregator-cli.html#register-a-delegated-administrator-cli)
 // in the Config developer guide.
 //
+// PutConfigurationAggregator is an idempotent API. Subsequent requests won’t
+// create a duplicate resource if one was already created. If a following request
+// has different tags values, Config will ignore these differences and treat
+// it as an idempotent request of the previous. In this case, tags will not
+// be updated, even if they are different.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9166,7 +9196,7 @@ func (c *ConfigService) PutConfigurationAggregatorRequest(input *PutConfiguratio
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - LimitExceededException
@@ -9310,7 +9340,8 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 //
 //   - InvalidRecordingGroupException
 //     Config throws an exception if the recording group does not contain a valid
-//     list of resource types. Invalid values might also be incorrectly formatted.
+//     list of resource types. Values that are not valid might also be incorrectly
+//     formatted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutConfigurationRecorder
 func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (*PutConfigurationRecorderOutput, error) {
@@ -9418,7 +9449,7 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - ConformancePackTemplateValidationException
-//     You have specified a template that is invalid or supported.
+//     You have specified a template that is not valid or supported.
 //
 //   - ResourceInUseException
 //     You see this exception in the following cases:
@@ -9447,7 +9478,7 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //     deletion is in progress. Try your request again later.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - MaxNumberOfConformancePacksExceededException
@@ -9553,16 +9584,16 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 //     to describe your resources. Create a configuration recorder.
 //
 //   - InvalidDeliveryChannelNameException
-//     The specified delivery channel name is invalid.
+//     The specified delivery channel name is not valid.
 //
 //   - NoSuchBucketException
 //     The specified Amazon S3 bucket does not exist.
 //
 //   - InvalidS3KeyPrefixException
-//     The specified Amazon S3 key prefix is invalid.
+//     The specified Amazon S3 key prefix is not valid.
 //
 //   - InvalidS3KmsKeyArnException
-//     The specified Amazon KMS Key ARN is invalid.
+//     The specified Amazon KMS Key ARN is not valid.
 //
 //   - InvalidSNSTopicARNException
 //     The specified Amazon SNS topic does not exist.
@@ -9649,15 +9680,15 @@ func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InvalidResultTokenException
-//     The specified ResultToken is invalid.
+//     The specified ResultToken is not valid.
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutEvaluations
@@ -9739,12 +9770,12 @@ func (c *ConfigService) PutExternalEvaluationRequest(input *PutExternalEvaluatio
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutExternalEvaluation
@@ -9833,26 +9864,30 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 // by calling Amazon Web Services Organization register-delegated-administrator
 // for config-multiaccountsetup.amazonaws.com.
 //
-// There are two types of rules: Config Custom Rules and Config Managed Rules.
-// You can use PutOrganizationConfigRule to create both Config custom rules
-// and Config managed rules.
+// There are two types of rules: Config Managed Rules and Config Custom Rules.
+// You can use PutOrganizationConfigRule to create both Config Managed Rules
+// and Config Custom Rules.
 //
-// Custom rules are rules that you can create using either Guard or Lambda functions.
-// Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard))
-// is a policy-as-code language that allows you to write policies that are enforced
-// by Config Custom Policy rules. Lambda uses custom code that you upload to
-// evaluate a custom rule. If you are adding a new Custom Lambda rule, you first
-// need to create an Lambda function in the management account or a delegated
-// administrator that the rule invokes to evaluate your resources. You also
-// need to create an IAM role in the managed account that can be assumed by
-// the Lambda function. When you use PutOrganizationConfigRule to add a Custom
-// Lambda rule to Config, you must specify the Amazon Resource Name (ARN) that
-// Lambda assigns to the function.
-//
-// Managed rules are predefined, customizable rules created by Config. For a
-// list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
+// Config Managed Rules are predefined, customizable rules created by Config.
+// For a list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
 // If you are adding an Config managed rule, you must specify the rule's identifier
 // for the RuleIdentifier key.
+//
+// Config Custom Rules are rules that you create from scratch. There are two
+// ways to create Config custom rules: with Lambda functions ( Lambda Developer
+// Guide (https://docs.aws.amazon.com/config/latest/developerguide/gettingstarted-concepts.html#gettingstarted-concepts-function))
+// and with Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard)),
+// a policy-as-code language. Config custom rules created with Lambda are called
+// Config Custom Lambda Rules and Config custom rules created with Guard are
+// called Config Custom Policy Rules.
+//
+// If you are adding a new Config Custom Lambda rule, you first need to create
+// an Lambda function in the management account or a delegated administrator
+// that the rule invokes to evaluate your resources. You also need to create
+// an IAM role in the managed account that can be assumed by the Lambda function.
+// When you use PutOrganizationConfigRule to add a Custom Lambda rule to Config,
+// you must specify the Amazon Resource Name (ARN) that Lambda assigns to the
+// function.
 //
 // Prerequisite: Ensure you call EnableAllFeatures API to enable all features
 // in an organization.
@@ -9902,11 +9937,11 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //     deletion is in progress. Try your request again later.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -10101,7 +10136,7 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //     deletion is in progress. Try your request again later.
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -10155,7 +10190,7 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - OrganizationConformancePackTemplateValidationException
-//     You have specified a template that is invalid or supported.
+//     You have specified a template that is not valid or supported.
 //
 //   - OrganizationAllFeaturesNotEnabledException
 //     Config resource cannot be created because your organization does not have
@@ -10278,7 +10313,7 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 //     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutRemediationConfigurations
@@ -10346,16 +10381,29 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 
 // PutRemediationExceptions API operation for AWS Config.
 //
-// A remediation exception is when a specific resource is no longer considered
+// A remediation exception is when a specified resource is no longer considered
 // for auto-remediation. This API adds a new exception or updates an existing
-// exception for a specific resource with a specific Config rule.
+// exception for a specified resource with a specified Config rule.
 //
-// Config generates a remediation exception when a problem occurs executing
-// a remediation action to a specific resource. Remediation exceptions blocks
+// Config generates a remediation exception when a problem occurs running a
+// remediation action for a specified resource. Remediation exceptions blocks
 // auto-remediation until the exception is cleared.
 //
-// To place an exception on an Amazon Web Services resource, ensure remediation
-// is set as manual remediation.
+// When placing an exception on an Amazon Web Services resource, it is recommended
+// that remediation is set as manual remediation until the given Config rule
+// for the specified resource evaluates the resource as NON_COMPLIANT. Once
+// the resource has been evaluated as NON_COMPLIANT, you can add remediation
+// exceptions and change the remediation type back from Manual to Auto if you
+// want to use auto-remediation. Otherwise, using auto-remediation before a
+// NON_COMPLIANT evaluation result can delete resources before the exception
+// is applied.
+//
+// Placing an exception can only be performed on resources that are NON_COMPLIANT.
+// If you use this API for COMPLIANT resources or resources that are NOT_APPLICABLE,
+// a remediation exception will not be generated. For more information on the
+// conditions that initiate the possible Config evaluation results, see Concepts
+// | Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#aws-config-rules)
+// in the Config Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10367,7 +10415,7 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InsufficientPermissionsException
@@ -10480,7 +10528,7 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -10600,7 +10648,7 @@ func (c *ConfigService) PutRetentionConfigurationRequest(input *PutRetentionConf
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - MaxNumberOfRetentionConfigurationsExceededException
@@ -10677,6 +10725,12 @@ func (c *ConfigService) PutStoredQueryRequest(input *PutStoredQueryInput) (req *
 // Services Region. You can create upto 300 queries in a single Amazon Web Services
 // account and a single Amazon Web Services Region.
 //
+// PutStoredQuery is an idempotent API. Subsequent requests won’t create a
+// duplicate resource if one was already created. If a following request has
+// different tags values, Config will ignore these differences and treat it
+// as an idempotent request of the previous. In this case, tags will not be
+// updated, even if they are different.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10687,7 +10741,7 @@ func (c *ConfigService) PutStoredQueryRequest(input *PutStoredQueryInput) (req *
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -10814,8 +10868,8 @@ func (c *ConfigService) SelectAggregateResourceConfigRequest(input *SelectAggreg
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/SelectAggregateResourceConfig
 func (c *ConfigService) SelectAggregateResourceConfig(input *SelectAggregateResourceConfigInput) (*SelectAggregateResourceConfigOutput, error) {
@@ -10961,8 +11015,8 @@ func (c *ConfigService) SelectResourceConfigRequest(input *SelectResourceConfigI
 //     The specified limit is outside the allowable range.
 //
 //   - InvalidNextTokenException
-//     The specified next token is invalid. Specify the nextToken string that was
-//     returned in the previous response to get the next page of results.
+//     The specified next token is not valid. Specify the nextToken string that
+//     was returned in the previous response to get the next page of results.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/SelectResourceConfig
 func (c *ConfigService) SelectResourceConfig(input *SelectResourceConfigInput) (*SelectResourceConfigOutput, error) {
@@ -11122,8 +11176,8 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is invalid. Verify that the rule is an Config
-//     Custom Policy rule, that the rule name is correct, and that valid Amazon
+//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     Process Check rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
 //   - LimitExceededException
@@ -11161,7 +11215,7 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 //     deletion is in progress. Try your request again later.
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StartConfigRulesEvaluation
@@ -11334,7 +11388,7 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - InsufficientPermissionsException
@@ -11433,6 +11487,16 @@ func (c *ConfigService) StartResourceEvaluationRequest(input *StartResourceEvalu
 // Ensure you have the cloudformation:DescribeType role setup to validate the
 // resource type schema.
 //
+// You can find the Resource type schema (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html)
+// in "Amazon Web Services public extensions" within the CloudFormation registry
+// or with the following CLI commmand: aws cloudformation describe-type --type-name
+// "AWS::S3::Bucket" --type RESOURCE.
+//
+// For more information, see Managing extensions through the CloudFormation
+// registry (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry.html#registry-view)
+// and Amazon Web Services resource and property types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+// in the CloudFormation User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11443,7 +11507,7 @@ func (c *ConfigService) StartResourceEvaluationRequest(input *StartResourceEvalu
 // Returned Error Types:
 //
 //   - InvalidParameterValueException
-//     One or more of the specified parameters are invalid. Verify that your parameters
+//     One or more of the specified parameters are not valid. Verify that your parameters
 //     are valid and try again.
 //
 //   - IdempotentParameterMismatch
@@ -11598,7 +11662,8 @@ func (c *ConfigService) TagResourceRequest(input *TagResourceInput) (req *reques
 //
 // Associates the specified tags to a resource with the specified resourceArn.
 // If existing tags on a resource are not specified in the request parameters,
-// they are not changed. When a resource is deleted, the tags associated with
+// they are not changed. If existing tags are specified, however, then their
+// values will be updated. When a resource is deleted, the tags associated with
 // that resource are deleted as well.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11611,7 +11676,7 @@ func (c *ConfigService) TagResourceRequest(input *TagResourceInput) (req *reques
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -11707,7 +11772,7 @@ func (c *ConfigService) UntagResourceRequest(input *UntagResourceInput) (req *re
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is invalid.
+//     The requested action is not valid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -13390,19 +13455,21 @@ func (s *ConfigExportDeliveryInfo) SetNextDeliveryTime(v time.Time) *ConfigExpor
 // resources. A rule can run when Config detects a configuration change to an
 // Amazon Web Services resource or at a periodic frequency that you choose (for
 // example, every 24 hours). There are two types of rules: Config Managed Rules
-// and Config Custom Rules. Managed rules are predefined, customizable rules
-// created by Config. For a list of managed rules, see List of Config Managed
-// Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
+// and Config Custom Rules.
 //
-// Custom rules are rules that you can create using either Guard or Lambda functions.
-// Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard))
-// is a policy-as-code language that allows you to write policies that are enforced
-// by Config Custom Policy rules. Lambda uses custom code that you upload to
-// evaluate a custom rule. It is invoked by events that are published to it
-// by an event source, which Config invokes when the custom rule is initiated.
+// Config Managed Rules are predefined, customizable rules created by Config.
+// For a list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
+//
+// Config Custom Rules are rules that you create from scratch. There are two
+// ways to create Config custom rules: with Lambda functions ( Lambda Developer
+// Guide (https://docs.aws.amazon.com/config/latest/developerguide/gettingstarted-concepts.html#gettingstarted-concepts-function))
+// and with Guard (Guard GitHub Repository (https://github.com/aws-cloudformation/cloudformation-guard)),
+// a policy-as-code language. Config custom rules created with Lambda are called
+// Config Custom Lambda Rules and Config custom rules created with Guard are
+// called Config Custom Policy Rules.
 //
 // For more information about developing and using Config rules, see Evaluating
-// Amazon Web Services resource Configurations with Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// Resource with Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 // in the Config Developer Guide.
 //
 // You can use the Amazon Web Services CLI and Amazon Web Services SDKs if you
@@ -14422,22 +14489,26 @@ func (s *ConfigurationRecorder) SetRoleARN(v string) *ConfigurationRecorder {
 }
 
 // The current status of the configuration recorder.
+//
+// For a detailed status of recording events over time, add your Config events
+// to CloudWatch metrics and use CloudWatch metrics.
 type ConfigurationRecorderStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The error code indicating that the recording failed.
+	// The latest error code from when the recorder last failed.
 	LastErrorCode *string `locationName:"lastErrorCode" type:"string"`
 
-	// The message indicating that the recording failed due to an error.
+	// The latest error message from when the recorder last failed.
 	LastErrorMessage *string `locationName:"lastErrorMessage" type:"string"`
 
 	// The time the recorder was last started.
 	LastStartTime *time.Time `locationName:"lastStartTime" type:"timestamp"`
 
-	// The last (previous) status of the recorder.
+	// The status of the latest recording event processed by the recorder.
 	LastStatus *string `locationName:"lastStatus" type:"string" enum:"RecorderStatus"`
 
-	// The time when the status was last changed.
+	// The time of the latest change in status of an recording event processed by
+	// the recorder.
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp"`
 
 	// The time the recorder was last stopped.
@@ -14674,8 +14745,7 @@ func (s *ConformancePackComplianceScoresFilters) SetConformancePackNames(v []*st
 type ConformancePackComplianceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the conformance pack. The allowed values are COMPLIANT, NON_COMPLIANT
-	// and INSUFFICIENT_DATA.
+	// The status of the conformance pack.
 	//
 	// ConformancePackComplianceStatus is a required field
 	ConformancePackComplianceStatus *string `type:"string" required:"true" enum:"ConformancePackComplianceType"`
@@ -15061,8 +15131,6 @@ type ConformancePackRuleCompliance struct {
 	_ struct{} `type:"structure"`
 
 	// Compliance of the Config rule.
-	//
-	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
 
 	// Name of the Config rule.
@@ -15231,7 +15299,7 @@ func (s *ConformancePackStatusDetail) SetStackArn(v string) *ConformancePackStat
 	return s
 }
 
-// You have specified a template that is invalid or supported.
+// You have specified a template that is not valid or supported.
 type ConformancePackTemplateValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17133,8 +17201,6 @@ type DescribeComplianceByConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters the results by compliance.
-	//
-	// The allowed values are COMPLIANT and NON_COMPLIANT.
 	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// Specify one or more Config rule names to filter the results by rule.
@@ -17226,8 +17292,6 @@ type DescribeComplianceByResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters the results by compliance.
-	//
-	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
 	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// The maximum number of evaluation results returned on each page. The default
@@ -17457,7 +17521,9 @@ func (s *DescribeConfigRuleEvaluationStatusOutput) SetNextToken(v string) *Descr
 }
 
 // Returns a filtered list of Detective or Proactive Config rules. By default,
-// if the filter is not defined, this API returns an unfiltered list.
+// if the filter is not defined, this API returns an unfiltered list. For more
+// information on Detective or Proactive Config rules, see Evaluation Mode (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config-rules.html)
+// in the Config Developer Guide.
 type DescribeConfigRulesFilters struct {
 	_ struct{} `type:"structure"`
 
@@ -17496,8 +17562,10 @@ type DescribeConfigRulesInput struct {
 	// any names, Config returns details for all your rules.
 	ConfigRuleNames []*string `type:"list"`
 
-	// Returns a list of Detecive or Proactive Config rules. By default, this API
-	// returns an unfiltered list.
+	// Returns a list of Detective or Proactive Config rules. By default, this API
+	// returns an unfiltered list. For more information on Detective or Proactive
+	// Config rules, see Evaluation Mode (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config-rules.html)
+	// in the Config Developer Guide.
 	Filters *DescribeConfigRulesFilters `type:"structure"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -20746,7 +20814,9 @@ type GetComplianceDetailsByConfigRuleInput struct {
 
 	// Filters the results by compliance.
 	//
-	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
+	// INSUFFICIENT_DATA is a valid ComplianceType that is returned when an Config
+	// rule cannot be evaluated. However, INSUFFICIENT_DATA cannot be used as a
+	// ComplianceType for filtering results.
 	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// The name of the Config rule for which you want compliance information.
@@ -20869,7 +20939,9 @@ type GetComplianceDetailsByResourceInput struct {
 
 	// Filters the results by compliance.
 	//
-	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
+	// INSUFFICIENT_DATA is a valid ComplianceType that is returned when an Config
+	// rule cannot be evaluated. However, INSUFFICIENT_DATA cannot be used as a
+	// ComplianceType for filtering results.
 	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -22586,7 +22658,7 @@ func (s *InvalidConfigurationRecorderNameException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified delivery channel name is invalid.
+// The specified delivery channel name is not valid.
 type InvalidDeliveryChannelNameException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22778,8 +22850,8 @@ func (s *InvalidLimitException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified next token is invalid. Specify the nextToken string that was
-// returned in the previous response to get the next page of results.
+// The specified next token is not valid. Specify the nextToken string that
+// was returned in the previous response to get the next page of results.
 type InvalidNextTokenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22843,7 +22915,7 @@ func (s *InvalidNextTokenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// One or more of the specified parameters are invalid. Verify that your parameters
+// One or more of the specified parameters are not valid. Verify that your parameters
 // are valid and try again.
 type InvalidParameterValueException struct {
 	_            struct{}                  `type:"structure"`
@@ -22909,7 +22981,8 @@ func (s *InvalidParameterValueException) RequestID() string {
 }
 
 // Config throws an exception if the recording group does not contain a valid
-// list of resource types. Invalid values might also be incorrectly formatted.
+// list of resource types. Values that are not valid might also be incorrectly
+// formatted.
 type InvalidRecordingGroupException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22973,7 +23046,7 @@ func (s *InvalidRecordingGroupException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified ResultToken is invalid.
+// The specified ResultToken is not valid.
 type InvalidResultTokenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23101,7 +23174,7 @@ func (s *InvalidRoleException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified Amazon S3 key prefix is invalid.
+// The specified Amazon S3 key prefix is not valid.
 type InvalidS3KeyPrefixException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23165,7 +23238,7 @@ func (s *InvalidS3KeyPrefixException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified Amazon KMS Key ARN is invalid.
+// The specified Amazon KMS Key ARN is not valid.
 type InvalidS3KmsKeyArnException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23293,7 +23366,7 @@ func (s *InvalidSNSTopicARNException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified time range is invalid. The earlier time is not chronologically
+// The specified time range is not valid. The earlier time is not chronologically
 // before the later time.
 type InvalidTimeRangeException struct {
 	_            struct{}                  `type:"structure"`
@@ -23641,7 +23714,7 @@ type ListConformancePackComplianceScoresInput struct {
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string in a prior request that you can use to get the paginated
-	// response for next set of conformance pack compliance scores.
+	// response for the next set of conformance pack compliance scores.
 	NextToken *string `type:"string"`
 
 	// Sorts your conformance pack compliance scores in either ascending or descending
@@ -23791,7 +23864,8 @@ type ListDiscoveredResourcesInput struct {
 
 	// The IDs of only those resources that you want Config to list in the response.
 	// If you do not specify this parameter, Config lists all resources of the specified
-	// type that it has discovered.
+	// type that it has discovered. You can list a minimum of 1 resourceID and a
+	// maximum of 20 resourceIds.
 	ResourceIds []*string `locationName:"resourceIds" type:"list"`
 
 	// The custom name of only those resources that you want Config to list in the
@@ -25177,8 +25251,8 @@ func (s *NoSuchBucketException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Config rule in the request is invalid. Verify that the rule is an Config
-// Custom Policy rule, that the rule name is correct, and that valid Amazon
+// The Config rule in the request is not valid. Verify that the rule is an Config
+// Process Check rule, that the rule name is correct, and that valid Amazon
 // Resouce Names (ARNs) are used before trying again.
 type NoSuchConfigRuleException struct {
 	_            struct{}                  `type:"structure"`
@@ -25563,8 +25637,8 @@ func (s *NoSuchDeliveryChannelException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Config rule in the request is invalid. Verify that the rule is an organization
-// Config Custom Policy rule, that the rule name is correct, and that valid
+// The Config rule in the request is not valid. Verify that the rule is an organization
+// Config Process Check rule, that the rule name is correct, and that valid
 // Amazon Resouce Names (ARNs) are used before trying again.
 type NoSuchOrganizationConfigRuleException struct {
 	_            struct{}                  `type:"structure"`
@@ -26643,7 +26717,7 @@ func (s *OrganizationConformancePackStatus) SetStatus(v string) *OrganizationCon
 	return s
 }
 
-// You have specified a template that is invalid or supported.
+// You have specified a template that is not valid or supported.
 type OrganizationConformancePackTemplateValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -29339,9 +29413,10 @@ type RecordingGroup struct {
 	// To record all configuration changes, you must set the allSupported option
 	// to true.
 	//
-	// If you set this option to false, when Config adds support for a new type
-	// of resource, it will not record resources of that type unless you manually
-	// add that type to your recording group.
+	// If you set the AllSupported option to false and populate the ResourceTypes
+	// option with values, when Config adds support for a new type of resource,
+	// it will not record resources of that type unless you manually add that type
+	// to your recording group.
 	//
 	// For a list of valid resourceTypes values, see the resourceType Value column
 	// in Supported Amazon Web Services resource Types (https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
@@ -30226,6 +30301,16 @@ type ResourceDetails struct {
 	ResourceConfiguration *string `min:"1" type:"string" required:"true"`
 
 	// The schema type of the resource configuration.
+	//
+	// You can find the Resource type schema (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html),
+	// or CFN_RESOURCE_SCHEMA, in "Amazon Web Services public extensions" within
+	// the CloudFormation registry or with the following CLI commmand: aws cloudformation
+	// describe-type --type-name "AWS::S3::Bucket" --type RESOURCE.
+	//
+	// For more information, see Managing extensions through the CloudFormation
+	// registry (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry.html#registry-view)
+	// and Amazon Web Services resource and property types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// in the CloudFormation User Guide.
 	ResourceConfigurationSchemaType *string `type:"string" enum:"ResourceConfigurationSchemaType"`
 
 	// A unique resource ID for an evaluation.
@@ -31825,7 +31910,8 @@ type StartResourceEvaluationInput struct {
 	// Returns an EvaluationContext object.
 	EvaluationContext *EvaluationContext `type:"structure"`
 
-	// The mode of an evaluation. The valid value for this API is Proactive.
+	// The mode of an evaluation. The valid values for this API are DETECTIVE and
+	// PROACTIVE.
 	//
 	// EvaluationMode is a required field
 	EvaluationMode *string `type:"string" required:"true" enum:"EvaluationMode"`
@@ -32726,7 +32812,7 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The requested action is invalid.
+// The requested action is not valid.
 //
 // For PutStoredQuery, you will see this exception if there are missing required
 // fields or if the input value fails the validation, or if you are trying to
@@ -33958,6 +34044,267 @@ const (
 
 	// ResourceTypeAwsRoute53HostedZone is a ResourceType enum value
 	ResourceTypeAwsRoute53HostedZone = "AWS::Route53::HostedZone"
+
+	// ResourceTypeAwsIoTeventsInput is a ResourceType enum value
+	ResourceTypeAwsIoTeventsInput = "AWS::IoTEvents::Input"
+
+	// ResourceTypeAwsIoTeventsDetectorModel is a ResourceType enum value
+	ResourceTypeAwsIoTeventsDetectorModel = "AWS::IoTEvents::DetectorModel"
+
+	// ResourceTypeAwsIoTeventsAlarmModel is a ResourceType enum value
+	ResourceTypeAwsIoTeventsAlarmModel = "AWS::IoTEvents::AlarmModel"
+
+	// ResourceTypeAwsServiceDiscoveryHttpNamespace is a ResourceType enum value
+	ResourceTypeAwsServiceDiscoveryHttpNamespace = "AWS::ServiceDiscovery::HttpNamespace"
+
+	// ResourceTypeAwsEventsEventBus is a ResourceType enum value
+	ResourceTypeAwsEventsEventBus = "AWS::Events::EventBus"
+
+	// ResourceTypeAwsImageBuilderContainerRecipe is a ResourceType enum value
+	ResourceTypeAwsImageBuilderContainerRecipe = "AWS::ImageBuilder::ContainerRecipe"
+
+	// ResourceTypeAwsImageBuilderDistributionConfiguration is a ResourceType enum value
+	ResourceTypeAwsImageBuilderDistributionConfiguration = "AWS::ImageBuilder::DistributionConfiguration"
+
+	// ResourceTypeAwsImageBuilderInfrastructureConfiguration is a ResourceType enum value
+	ResourceTypeAwsImageBuilderInfrastructureConfiguration = "AWS::ImageBuilder::InfrastructureConfiguration"
+
+	// ResourceTypeAwsDataSyncLocationObjectStorage is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationObjectStorage = "AWS::DataSync::LocationObjectStorage"
+
+	// ResourceTypeAwsDataSyncLocationHdfs is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationHdfs = "AWS::DataSync::LocationHDFS"
+
+	// ResourceTypeAwsGlueClassifier is a ResourceType enum value
+	ResourceTypeAwsGlueClassifier = "AWS::Glue::Classifier"
+
+	// ResourceTypeAwsRoute53recoveryReadinessCell is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryReadinessCell = "AWS::Route53RecoveryReadiness::Cell"
+
+	// ResourceTypeAwsRoute53recoveryReadinessReadinessCheck is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryReadinessReadinessCheck = "AWS::Route53RecoveryReadiness::ReadinessCheck"
+
+	// ResourceTypeAwsEcrRegistryPolicy is a ResourceType enum value
+	ResourceTypeAwsEcrRegistryPolicy = "AWS::ECR::RegistryPolicy"
+
+	// ResourceTypeAwsBackupReportPlan is a ResourceType enum value
+	ResourceTypeAwsBackupReportPlan = "AWS::Backup::ReportPlan"
+
+	// ResourceTypeAwsLightsailCertificate is a ResourceType enum value
+	ResourceTypeAwsLightsailCertificate = "AWS::Lightsail::Certificate"
+
+	// ResourceTypeAwsRumAppMonitor is a ResourceType enum value
+	ResourceTypeAwsRumAppMonitor = "AWS::RUM::AppMonitor"
+
+	// ResourceTypeAwsEventsEndpoint is a ResourceType enum value
+	ResourceTypeAwsEventsEndpoint = "AWS::Events::Endpoint"
+
+	// ResourceTypeAwsSesReceiptRuleSet is a ResourceType enum value
+	ResourceTypeAwsSesReceiptRuleSet = "AWS::SES::ReceiptRuleSet"
+
+	// ResourceTypeAwsEventsArchive is a ResourceType enum value
+	ResourceTypeAwsEventsArchive = "AWS::Events::Archive"
+
+	// ResourceTypeAwsEventsApiDestination is a ResourceType enum value
+	ResourceTypeAwsEventsApiDestination = "AWS::Events::ApiDestination"
+
+	// ResourceTypeAwsLightsailDisk is a ResourceType enum value
+	ResourceTypeAwsLightsailDisk = "AWS::Lightsail::Disk"
+
+	// ResourceTypeAwsFisExperimentTemplate is a ResourceType enum value
+	ResourceTypeAwsFisExperimentTemplate = "AWS::FIS::ExperimentTemplate"
+
+	// ResourceTypeAwsDataSyncLocationFsxWindows is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationFsxWindows = "AWS::DataSync::LocationFSxWindows"
+
+	// ResourceTypeAwsSesReceiptFilter is a ResourceType enum value
+	ResourceTypeAwsSesReceiptFilter = "AWS::SES::ReceiptFilter"
+
+	// ResourceTypeAwsGuardDutyFilter is a ResourceType enum value
+	ResourceTypeAwsGuardDutyFilter = "AWS::GuardDuty::Filter"
+
+	// ResourceTypeAwsSesTemplate is a ResourceType enum value
+	ResourceTypeAwsSesTemplate = "AWS::SES::Template"
+
+	// ResourceTypeAwsAmazonMqBroker is a ResourceType enum value
+	ResourceTypeAwsAmazonMqBroker = "AWS::AmazonMQ::Broker"
+
+	// ResourceTypeAwsAppConfigEnvironment is a ResourceType enum value
+	ResourceTypeAwsAppConfigEnvironment = "AWS::AppConfig::Environment"
+
+	// ResourceTypeAwsAppConfigConfigurationProfile is a ResourceType enum value
+	ResourceTypeAwsAppConfigConfigurationProfile = "AWS::AppConfig::ConfigurationProfile"
+
+	// ResourceTypeAwsCloud9EnvironmentEc2 is a ResourceType enum value
+	ResourceTypeAwsCloud9EnvironmentEc2 = "AWS::Cloud9::EnvironmentEC2"
+
+	// ResourceTypeAwsEventSchemasRegistry is a ResourceType enum value
+	ResourceTypeAwsEventSchemasRegistry = "AWS::EventSchemas::Registry"
+
+	// ResourceTypeAwsEventSchemasRegistryPolicy is a ResourceType enum value
+	ResourceTypeAwsEventSchemasRegistryPolicy = "AWS::EventSchemas::RegistryPolicy"
+
+	// ResourceTypeAwsEventSchemasDiscoverer is a ResourceType enum value
+	ResourceTypeAwsEventSchemasDiscoverer = "AWS::EventSchemas::Discoverer"
+
+	// ResourceTypeAwsFraudDetectorLabel is a ResourceType enum value
+	ResourceTypeAwsFraudDetectorLabel = "AWS::FraudDetector::Label"
+
+	// ResourceTypeAwsFraudDetectorEntityType is a ResourceType enum value
+	ResourceTypeAwsFraudDetectorEntityType = "AWS::FraudDetector::EntityType"
+
+	// ResourceTypeAwsFraudDetectorVariable is a ResourceType enum value
+	ResourceTypeAwsFraudDetectorVariable = "AWS::FraudDetector::Variable"
+
+	// ResourceTypeAwsFraudDetectorOutcome is a ResourceType enum value
+	ResourceTypeAwsFraudDetectorOutcome = "AWS::FraudDetector::Outcome"
+
+	// ResourceTypeAwsIoTAuthorizer is a ResourceType enum value
+	ResourceTypeAwsIoTAuthorizer = "AWS::IoT::Authorizer"
+
+	// ResourceTypeAwsIoTSecurityProfile is a ResourceType enum value
+	ResourceTypeAwsIoTSecurityProfile = "AWS::IoT::SecurityProfile"
+
+	// ResourceTypeAwsIoTRoleAlias is a ResourceType enum value
+	ResourceTypeAwsIoTRoleAlias = "AWS::IoT::RoleAlias"
+
+	// ResourceTypeAwsIoTDimension is a ResourceType enum value
+	ResourceTypeAwsIoTDimension = "AWS::IoT::Dimension"
+
+	// ResourceTypeAwsIoTanalyticsDatastore is a ResourceType enum value
+	ResourceTypeAwsIoTanalyticsDatastore = "AWS::IoTAnalytics::Datastore"
+
+	// ResourceTypeAwsLightsailBucket is a ResourceType enum value
+	ResourceTypeAwsLightsailBucket = "AWS::Lightsail::Bucket"
+
+	// ResourceTypeAwsLightsailStaticIp is a ResourceType enum value
+	ResourceTypeAwsLightsailStaticIp = "AWS::Lightsail::StaticIp"
+
+	// ResourceTypeAwsMediaPackagePackagingGroup is a ResourceType enum value
+	ResourceTypeAwsMediaPackagePackagingGroup = "AWS::MediaPackage::PackagingGroup"
+
+	// ResourceTypeAwsRoute53recoveryReadinessRecoveryGroup is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryReadinessRecoveryGroup = "AWS::Route53RecoveryReadiness::RecoveryGroup"
+
+	// ResourceTypeAwsResilienceHubResiliencyPolicy is a ResourceType enum value
+	ResourceTypeAwsResilienceHubResiliencyPolicy = "AWS::ResilienceHub::ResiliencyPolicy"
+
+	// ResourceTypeAwsTransferWorkflow is a ResourceType enum value
+	ResourceTypeAwsTransferWorkflow = "AWS::Transfer::Workflow"
+
+	// ResourceTypeAwsEksIdentityProviderConfig is a ResourceType enum value
+	ResourceTypeAwsEksIdentityProviderConfig = "AWS::EKS::IdentityProviderConfig"
+
+	// ResourceTypeAwsEksAddon is a ResourceType enum value
+	ResourceTypeAwsEksAddon = "AWS::EKS::Addon"
+
+	// ResourceTypeAwsGlueMltransform is a ResourceType enum value
+	ResourceTypeAwsGlueMltransform = "AWS::Glue::MLTransform"
+
+	// ResourceTypeAwsIoTPolicy is a ResourceType enum value
+	ResourceTypeAwsIoTPolicy = "AWS::IoT::Policy"
+
+	// ResourceTypeAwsIoTMitigationAction is a ResourceType enum value
+	ResourceTypeAwsIoTMitigationAction = "AWS::IoT::MitigationAction"
+
+	// ResourceTypeAwsIoTtwinMakerWorkspace is a ResourceType enum value
+	ResourceTypeAwsIoTtwinMakerWorkspace = "AWS::IoTTwinMaker::Workspace"
+
+	// ResourceTypeAwsIoTtwinMakerEntity is a ResourceType enum value
+	ResourceTypeAwsIoTtwinMakerEntity = "AWS::IoTTwinMaker::Entity"
+
+	// ResourceTypeAwsIoTanalyticsDataset is a ResourceType enum value
+	ResourceTypeAwsIoTanalyticsDataset = "AWS::IoTAnalytics::Dataset"
+
+	// ResourceTypeAwsIoTanalyticsPipeline is a ResourceType enum value
+	ResourceTypeAwsIoTanalyticsPipeline = "AWS::IoTAnalytics::Pipeline"
+
+	// ResourceTypeAwsIoTanalyticsChannel is a ResourceType enum value
+	ResourceTypeAwsIoTanalyticsChannel = "AWS::IoTAnalytics::Channel"
+
+	// ResourceTypeAwsIoTsiteWiseDashboard is a ResourceType enum value
+	ResourceTypeAwsIoTsiteWiseDashboard = "AWS::IoTSiteWise::Dashboard"
+
+	// ResourceTypeAwsIoTsiteWiseProject is a ResourceType enum value
+	ResourceTypeAwsIoTsiteWiseProject = "AWS::IoTSiteWise::Project"
+
+	// ResourceTypeAwsIoTsiteWisePortal is a ResourceType enum value
+	ResourceTypeAwsIoTsiteWisePortal = "AWS::IoTSiteWise::Portal"
+
+	// ResourceTypeAwsIoTsiteWiseAssetModel is a ResourceType enum value
+	ResourceTypeAwsIoTsiteWiseAssetModel = "AWS::IoTSiteWise::AssetModel"
+
+	// ResourceTypeAwsIvsChannel is a ResourceType enum value
+	ResourceTypeAwsIvsChannel = "AWS::IVS::Channel"
+
+	// ResourceTypeAwsIvsRecordingConfiguration is a ResourceType enum value
+	ResourceTypeAwsIvsRecordingConfiguration = "AWS::IVS::RecordingConfiguration"
+
+	// ResourceTypeAwsIvsPlaybackKeyPair is a ResourceType enum value
+	ResourceTypeAwsIvsPlaybackKeyPair = "AWS::IVS::PlaybackKeyPair"
+
+	// ResourceTypeAwsKinesisAnalyticsV2Application is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsV2Application = "AWS::KinesisAnalyticsV2::Application"
+
+	// ResourceTypeAwsRdsGlobalCluster is a ResourceType enum value
+	ResourceTypeAwsRdsGlobalCluster = "AWS::RDS::GlobalCluster"
+
+	// ResourceTypeAwsS3MultiRegionAccessPoint is a ResourceType enum value
+	ResourceTypeAwsS3MultiRegionAccessPoint = "AWS::S3::MultiRegionAccessPoint"
+
+	// ResourceTypeAwsDeviceFarmTestGridProject is a ResourceType enum value
+	ResourceTypeAwsDeviceFarmTestGridProject = "AWS::DeviceFarm::TestGridProject"
+
+	// ResourceTypeAwsBudgetsBudgetsAction is a ResourceType enum value
+	ResourceTypeAwsBudgetsBudgetsAction = "AWS::Budgets::BudgetsAction"
+
+	// ResourceTypeAwsLexBot is a ResourceType enum value
+	ResourceTypeAwsLexBot = "AWS::Lex::Bot"
+
+	// ResourceTypeAwsCodeGuruReviewerRepositoryAssociation is a ResourceType enum value
+	ResourceTypeAwsCodeGuruReviewerRepositoryAssociation = "AWS::CodeGuruReviewer::RepositoryAssociation"
+
+	// ResourceTypeAwsIoTCustomMetric is a ResourceType enum value
+	ResourceTypeAwsIoTCustomMetric = "AWS::IoT::CustomMetric"
+
+	// ResourceTypeAwsRoute53resolverFirewallDomainList is a ResourceType enum value
+	ResourceTypeAwsRoute53resolverFirewallDomainList = "AWS::Route53Resolver::FirewallDomainList"
+
+	// ResourceTypeAwsRoboMakerRobotApplicationVersion is a ResourceType enum value
+	ResourceTypeAwsRoboMakerRobotApplicationVersion = "AWS::RoboMaker::RobotApplicationVersion"
+
+	// ResourceTypeAwsEc2TrafficMirrorSession is a ResourceType enum value
+	ResourceTypeAwsEc2TrafficMirrorSession = "AWS::EC2::TrafficMirrorSession"
+
+	// ResourceTypeAwsIoTsiteWiseGateway is a ResourceType enum value
+	ResourceTypeAwsIoTsiteWiseGateway = "AWS::IoTSiteWise::Gateway"
+
+	// ResourceTypeAwsLexBotAlias is a ResourceType enum value
+	ResourceTypeAwsLexBotAlias = "AWS::Lex::BotAlias"
+
+	// ResourceTypeAwsLookoutMetricsAlert is a ResourceType enum value
+	ResourceTypeAwsLookoutMetricsAlert = "AWS::LookoutMetrics::Alert"
+
+	// ResourceTypeAwsIoTAccountAuditConfiguration is a ResourceType enum value
+	ResourceTypeAwsIoTAccountAuditConfiguration = "AWS::IoT::AccountAuditConfiguration"
+
+	// ResourceTypeAwsEc2TrafficMirrorTarget is a ResourceType enum value
+	ResourceTypeAwsEc2TrafficMirrorTarget = "AWS::EC2::TrafficMirrorTarget"
+
+	// ResourceTypeAwsS3StorageLens is a ResourceType enum value
+	ResourceTypeAwsS3StorageLens = "AWS::S3::StorageLens"
+
+	// ResourceTypeAwsIoTScheduledAudit is a ResourceType enum value
+	ResourceTypeAwsIoTScheduledAudit = "AWS::IoT::ScheduledAudit"
+
+	// ResourceTypeAwsEventsConnection is a ResourceType enum value
+	ResourceTypeAwsEventsConnection = "AWS::Events::Connection"
+
+	// ResourceTypeAwsEventSchemasSchema is a ResourceType enum value
+	ResourceTypeAwsEventSchemasSchema = "AWS::EventSchemas::Schema"
+
+	// ResourceTypeAwsMediaPackagePackagingConfiguration is a ResourceType enum value
+	ResourceTypeAwsMediaPackagePackagingConfiguration = "AWS::MediaPackage::PackagingConfiguration"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -34127,6 +34474,93 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsSesContactList,
 		ResourceTypeAwsSesConfigurationSet,
 		ResourceTypeAwsRoute53HostedZone,
+		ResourceTypeAwsIoTeventsInput,
+		ResourceTypeAwsIoTeventsDetectorModel,
+		ResourceTypeAwsIoTeventsAlarmModel,
+		ResourceTypeAwsServiceDiscoveryHttpNamespace,
+		ResourceTypeAwsEventsEventBus,
+		ResourceTypeAwsImageBuilderContainerRecipe,
+		ResourceTypeAwsImageBuilderDistributionConfiguration,
+		ResourceTypeAwsImageBuilderInfrastructureConfiguration,
+		ResourceTypeAwsDataSyncLocationObjectStorage,
+		ResourceTypeAwsDataSyncLocationHdfs,
+		ResourceTypeAwsGlueClassifier,
+		ResourceTypeAwsRoute53recoveryReadinessCell,
+		ResourceTypeAwsRoute53recoveryReadinessReadinessCheck,
+		ResourceTypeAwsEcrRegistryPolicy,
+		ResourceTypeAwsBackupReportPlan,
+		ResourceTypeAwsLightsailCertificate,
+		ResourceTypeAwsRumAppMonitor,
+		ResourceTypeAwsEventsEndpoint,
+		ResourceTypeAwsSesReceiptRuleSet,
+		ResourceTypeAwsEventsArchive,
+		ResourceTypeAwsEventsApiDestination,
+		ResourceTypeAwsLightsailDisk,
+		ResourceTypeAwsFisExperimentTemplate,
+		ResourceTypeAwsDataSyncLocationFsxWindows,
+		ResourceTypeAwsSesReceiptFilter,
+		ResourceTypeAwsGuardDutyFilter,
+		ResourceTypeAwsSesTemplate,
+		ResourceTypeAwsAmazonMqBroker,
+		ResourceTypeAwsAppConfigEnvironment,
+		ResourceTypeAwsAppConfigConfigurationProfile,
+		ResourceTypeAwsCloud9EnvironmentEc2,
+		ResourceTypeAwsEventSchemasRegistry,
+		ResourceTypeAwsEventSchemasRegistryPolicy,
+		ResourceTypeAwsEventSchemasDiscoverer,
+		ResourceTypeAwsFraudDetectorLabel,
+		ResourceTypeAwsFraudDetectorEntityType,
+		ResourceTypeAwsFraudDetectorVariable,
+		ResourceTypeAwsFraudDetectorOutcome,
+		ResourceTypeAwsIoTAuthorizer,
+		ResourceTypeAwsIoTSecurityProfile,
+		ResourceTypeAwsIoTRoleAlias,
+		ResourceTypeAwsIoTDimension,
+		ResourceTypeAwsIoTanalyticsDatastore,
+		ResourceTypeAwsLightsailBucket,
+		ResourceTypeAwsLightsailStaticIp,
+		ResourceTypeAwsMediaPackagePackagingGroup,
+		ResourceTypeAwsRoute53recoveryReadinessRecoveryGroup,
+		ResourceTypeAwsResilienceHubResiliencyPolicy,
+		ResourceTypeAwsTransferWorkflow,
+		ResourceTypeAwsEksIdentityProviderConfig,
+		ResourceTypeAwsEksAddon,
+		ResourceTypeAwsGlueMltransform,
+		ResourceTypeAwsIoTPolicy,
+		ResourceTypeAwsIoTMitigationAction,
+		ResourceTypeAwsIoTtwinMakerWorkspace,
+		ResourceTypeAwsIoTtwinMakerEntity,
+		ResourceTypeAwsIoTanalyticsDataset,
+		ResourceTypeAwsIoTanalyticsPipeline,
+		ResourceTypeAwsIoTanalyticsChannel,
+		ResourceTypeAwsIoTsiteWiseDashboard,
+		ResourceTypeAwsIoTsiteWiseProject,
+		ResourceTypeAwsIoTsiteWisePortal,
+		ResourceTypeAwsIoTsiteWiseAssetModel,
+		ResourceTypeAwsIvsChannel,
+		ResourceTypeAwsIvsRecordingConfiguration,
+		ResourceTypeAwsIvsPlaybackKeyPair,
+		ResourceTypeAwsKinesisAnalyticsV2Application,
+		ResourceTypeAwsRdsGlobalCluster,
+		ResourceTypeAwsS3MultiRegionAccessPoint,
+		ResourceTypeAwsDeviceFarmTestGridProject,
+		ResourceTypeAwsBudgetsBudgetsAction,
+		ResourceTypeAwsLexBot,
+		ResourceTypeAwsCodeGuruReviewerRepositoryAssociation,
+		ResourceTypeAwsIoTCustomMetric,
+		ResourceTypeAwsRoute53resolverFirewallDomainList,
+		ResourceTypeAwsRoboMakerRobotApplicationVersion,
+		ResourceTypeAwsEc2TrafficMirrorSession,
+		ResourceTypeAwsIoTsiteWiseGateway,
+		ResourceTypeAwsLexBotAlias,
+		ResourceTypeAwsLookoutMetricsAlert,
+		ResourceTypeAwsIoTAccountAuditConfiguration,
+		ResourceTypeAwsEc2TrafficMirrorTarget,
+		ResourceTypeAwsS3StorageLens,
+		ResourceTypeAwsIoTScheduledAudit,
+		ResourceTypeAwsEventsConnection,
+		ResourceTypeAwsEventSchemasSchema,
+		ResourceTypeAwsMediaPackagePackagingConfiguration,
 	}
 }
 

@@ -2399,6 +2399,13 @@
       },
       "exception":true
     },
+    "KafkaSaslMechanism":{
+      "type":"string",
+      "enum":[
+        "scram-sha-512",
+        "plain"
+      ]
+    },
     "KafkaSecurityProtocol":{
       "type":"string",
       "enum":[
@@ -2428,7 +2435,8 @@
         "SslCaCertificateArn":{"shape":"String"},
         "SaslUsername":{"shape":"String"},
         "SaslPassword":{"shape":"SecretString"},
-        "NoHexPrefix":{"shape":"BooleanOptional"}
+        "NoHexPrefix":{"shape":"BooleanOptional"},
+        "SaslMechanism":{"shape":"KafkaSaslMechanism"}
       }
     },
     "KeyList":{
@@ -2504,7 +2512,9 @@
         "UseThirdPartyBackupDevice":{"shape":"BooleanOptional"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
         "SecretsManagerSecretId":{"shape":"String"},
-        "TrimSpaceInChar":{"shape":"BooleanOptional"}
+        "TrimSpaceInChar":{"shape":"BooleanOptional"},
+        "TlogAccessMode":{"shape":"TlogAccessMode"},
+        "ForceLobLookup":{"shape":"BooleanOptional"}
       }
     },
     "MigrationTypeValue":{
@@ -2761,7 +2771,8 @@
         "SecretsManagerSecretId":{"shape":"String"},
         "SecretsManagerOracleAsmAccessRoleArn":{"shape":"String"},
         "SecretsManagerOracleAsmSecretId":{"shape":"String"},
-        "TrimSpaceInChar":{"shape":"BooleanOptional"}
+        "TrimSpaceInChar":{"shape":"BooleanOptional"},
+        "ConvertTimestampWithZoneToUTC":{"shape":"BooleanOptional"}
       }
     },
     "OrderableReplicationInstance":{
@@ -2837,7 +2848,8 @@
         "PluginName":{"shape":"PluginNameValue"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
         "SecretsManagerSecretId":{"shape":"String"},
-        "TrimSpaceInChar":{"shape":"BooleanOptional"}
+        "TrimSpaceInChar":{"shape":"BooleanOptional"},
+        "MapBooleanAsBoolean":{"shape":"BooleanOptional"}
       }
     },
     "RdsConfiguration":{
@@ -2975,7 +2987,8 @@
         "Username":{"shape":"String"},
         "WriteBufferSize":{"shape":"IntegerOptional"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
-        "SecretsManagerSecretId":{"shape":"String"}
+        "SecretsManagerSecretId":{"shape":"String"},
+        "MapBooleanAsBoolean":{"shape":"BooleanOptional"}
       }
     },
     "RefreshSchemasMessage":{
@@ -3359,7 +3372,8 @@
         "Rfc4180":{"shape":"BooleanOptional"},
         "DatePartitionTimezone":{"shape":"String"},
         "AddTrailingPaddingCharacter":{"shape":"BooleanOptional"},
-        "ExpectedBucketOwner":{"shape":"String"}
+        "ExpectedBucketOwner":{"shape":"String"},
+        "GlueCatalogGeneration":{"shape":"BooleanOptional"}
       }
     },
     "SNSInvalidTopicFault":{
@@ -3689,6 +3703,15 @@
       "members":{
         "Connection":{"shape":"Connection"}
       }
+    },
+    "TlogAccessMode":{
+      "type":"string",
+      "enum":[
+        "BackupOnly",
+        "PreferBackup",
+        "PreferTlog",
+        "TlogOnly"
+      ]
     },
     "UpdateSubscriptionsToEventBridgeMessage":{
       "type":"structure",
