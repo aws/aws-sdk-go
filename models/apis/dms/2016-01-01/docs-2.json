@@ -209,6 +209,7 @@
         "MicrosoftSQLServerSettings$UseBcpFullLoad": "<p>Use this to attribute to transfer data for full-load operations using BCP. When the target table contains an identity column that does not exist in the source table, you must disable the use BCP for loading table option.</p>",
         "MicrosoftSQLServerSettings$UseThirdPartyBackupDevice": "<p>When this attribute is set to <code>Y</code>, DMS processes third-party transaction log backups if they are created in native format.</p>",
         "MicrosoftSQLServerSettings$TrimSpaceInChar": "<p>Use the <code>TrimSpaceInChar</code> source endpoint setting to trim data on CHAR and NCHAR data types during migration. The default value is <code>true</code>.</p>",
+        "MicrosoftSQLServerSettings$ForceLobLookup": "<p>Forces LOB lookup on inline LOB.</p>",
         "ModifyEndpointMessage$ExactSettings": "<p>If this attribute is Y, the current call to <code>ModifyEndpoint</code> replaces all existing endpoint settings with the exact settings that you specify in this call. If this attribute is N, the current call to <code>ModifyEndpoint</code> does two things: </p> <ul> <li> <p>It replaces any endpoint settings that already exist with new values, for settings with the same names.</p> </li> <li> <p>It creates new endpoint settings that you specify in the call, for settings with different names. </p> </li> </ul> <p>For example, if you call <code>create-endpoint ... --endpoint-settings '{\"a\":1}' ...</code>, the endpoint has the following endpoint settings: <code>'{\"a\":1}'</code>. If you then call <code>modify-endpoint ... --endpoint-settings '{\"b\":2}' ...</code> for the same endpoint, the endpoint has the following settings: <code>'{\"a\":1,\"b\":2}'</code>. </p> <p>However, suppose that you follow this with a call to <code>modify-endpoint ... --endpoint-settings '{\"b\":2}' --exact-settings ...</code> for that same endpoint again. Then the endpoint has the following settings: <code>'{\"b\":2}'</code>. All existing settings are replaced with the exact settings that you specify. </p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <b>true</b> to activate the subscription. </p>",
         "ModifyReplicationInstanceMessage$MultiAZ": "<p> Specifies whether the replication instance is a Multi-AZ deployment. You can't set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>",
@@ -230,10 +231,12 @@
         "OracleSettings$UseDirectPathFullLoad": "<p>Set this attribute to Y to have DMS use a direct path full load. Specify this value to use the direct path protocol in the Oracle Call Interface (OCI). By using this OCI protocol, you can bulk-load Oracle target tables during a full load.</p>",
         "OracleSettings$UseLogminerReader": "<p>Set this attribute to Y to capture change data using the Oracle LogMiner utility (the default). Set this attribute to N if you want to access the redo logs as a binary file. When you set <code>UseLogminerReader</code> to N, also set <code>UseBfile</code> to Y. For more information on this setting and using Oracle ASM, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.CDC\"> Using Oracle LogMiner or DMS Binary Reader for CDC</a> in the <i>DMS User Guide</i>.</p>",
         "OracleSettings$TrimSpaceInChar": "<p>Use the <code>TrimSpaceInChar</code> source endpoint setting to trim data on CHAR and NCHAR data types during migration. The default value is <code>true</code>.</p>",
+        "OracleSettings$ConvertTimestampWithZoneToUTC": "<p>When true, converts timestamps with the <code>timezone</code> datatype to their UTC value.</p>",
         "PostgreSQLSettings$CaptureDdls": "<p>To capture DDL events, DMS creates various artifacts in the PostgreSQL database when the task starts. You can later remove these artifacts.</p> <p>If this value is set to <code>N</code>, you don't have to create tables or triggers on the source database.</p>",
         "PostgreSQLSettings$FailTasksOnLobTruncation": "<p>When set to <code>true</code>, this value causes a task to fail if the actual size of a LOB column is greater than the specified <code>LobMaxSize</code>.</p> <p>If task is set to Limited LOB mode and this option is set to true, the task fails instead of truncating the LOB data.</p>",
         "PostgreSQLSettings$HeartbeatEnable": "<p>The write-ahead log (WAL) heartbeat feature mimics a dummy transaction. By doing this, it prevents idle logical replication slots from holding onto old WAL logs, which can result in storage full situations on the source. This heartbeat keeps <code>restart_lsn</code> moving and prevents storage full scenarios.</p>",
         "PostgreSQLSettings$TrimSpaceInChar": "<p>Use the <code>TrimSpaceInChar</code> source endpoint setting to trim data on CHAR and NCHAR data types during migration. The default value is <code>true</code>.</p>",
+        "PostgreSQLSettings$MapBooleanAsBoolean": "<p>When true, lets PostgreSQL migrate the boolean type as boolean. By default, PostgreSQL migrates booleans as <code>varchar(5)</code>.</p>",
         "RebootReplicationInstanceMessage$ForceFailover": "<p>If this parameter is <code>true</code>, the reboot is conducted through a Multi-AZ failover. If the instance isn't configured for Multi-AZ, then you can't specify <code>true</code>. ( <code>--force-planned-failover</code> and <code>--force-failover</code> can't both be set to <code>true</code>.)</p>",
         "RebootReplicationInstanceMessage$ForcePlannedFailover": "<p>If this parameter is <code>true</code>, the reboot is conducted through a planned Multi-AZ failover where resources are released and cleaned up prior to conducting the failover. If the instance isn''t configured for Multi-AZ, then you can't specify <code>true</code>. ( <code>--force-planned-failover</code> and <code>--force-failover</code> can't both be set to <code>true</code>.)</p>",
         "Recommendation$Preferred": "<p>Indicates that this target is the rightsized migration destination.</p>",
@@ -245,6 +248,7 @@
         "RedshiftSettings$RemoveQuotes": "<p>A value that specifies to remove surrounding quotation marks from strings in the incoming data. All characters within the quotation marks, including delimiters, are retained. Choose <code>true</code> to remove quotation marks. The default is <code>false</code>.</p>",
         "RedshiftSettings$TrimBlanks": "<p>A value that specifies to remove the trailing white space characters from a VARCHAR string. This parameter applies only to columns with a VARCHAR data type. Choose <code>true</code> to remove unneeded white space. The default is <code>false</code>.</p>",
         "RedshiftSettings$TruncateColumns": "<p>A value that specifies to truncate data in columns to the appropriate number of characters, so that the data fits in the column. This parameter applies only to columns with a VARCHAR or CHAR data type, and rows with a size of 4 MB or less. Choose <code>true</code> to truncate data. The default is <code>false</code>.</p>",
+        "RedshiftSettings$MapBooleanAsBoolean": "<p>When true, lets Redshift migrate the boolean type as boolean. By default, Redshift migrates booleans as <code>varchar(1)</code>.</p>",
         "ReplicationPendingModifiedValues$MultiAZ": "<p> Specifies whether the replication instance is a Multi-AZ deployment. You can't set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>",
         "S3Settings$EnableStatistics": "<p>A value that enables statistics for Parquet pages and row groups. Choose <code>true</code> to enable statistics, <code>false</code> to disable. Statistics include <code>NULL</code>, <code>DISTINCT</code>, <code>MAX</code>, and <code>MIN</code> values. This parameter defaults to <code>true</code>. This value is used for .parquet file format only.</p>",
         "S3Settings$IncludeOpForFullLoad": "<p>A value that enables a full load to write INSERT operations to the comma-separated value (.csv) output files only to indicate how the rows were added to the source database.</p> <note> <p>DMS supports the <code>IncludeOpForFullLoad</code> parameter in versions 3.1.4 and later.</p> </note> <p>For full load, records can only be inserted. By default (the <code>false</code> setting), no information is recorded in these output files for a full load to indicate that the rows were inserted at the source database. If <code>IncludeOpForFullLoad</code> is set to <code>true</code> or <code>y</code>, the INSERT is recorded as an I annotation in the first field of the .csv file. This allows the format of your target records from a full load to be consistent with the target records from a CDC load.</p> <note> <p>This setting works together with the <code>CdcInsertsOnly</code> and the <code>CdcInsertsAndUpdates</code> parameters for output to .csv files only. For more information about how these settings work together, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring.InsertOps\">Indicating Source DB Operations in Migrated S3 Data</a> in the <i>Database Migration Service User Guide.</i>.</p> </note>",
@@ -258,6 +262,7 @@
         "S3Settings$AddColumnName": "<p>An optional parameter that, when set to <code>true</code> or <code>y</code>, you can use to add column name information to the .csv output file.</p> <p>The default value is <code>false</code>. Valid values are <code>true</code>, <code>false</code>, <code>y</code>, and <code>n</code>.</p>",
         "S3Settings$Rfc4180": "<p>For an S3 source, when this value is set to <code>true</code> or <code>y</code>, each leading double quotation mark has to be followed by an ending double quotation mark. This formatting complies with RFC 4180. When this value is set to <code>false</code> or <code>n</code>, string literals are copied to the target as is. In this case, a delimiter (row or column) signals the end of the field. Thus, you can't use a delimiter as part of the string, because it signals the end of the value.</p> <p>For an S3 target, an optional parameter used to set behavior to comply with RFC 4180 for data migrated to Amazon S3 using .csv file format only. When this value is set to <code>true</code> or <code>y</code> using Amazon S3 as a target, if the data has quotation marks or newline characters in it, DMS encloses the entire column with an additional pair of double quotation marks (\"). Every quotation mark within the data is repeated twice.</p> <p>The default value is <code>true</code>. Valid values include <code>true</code>, <code>false</code>, <code>y</code>, and <code>n</code>.</p>",
         "S3Settings$AddTrailingPaddingCharacter": "<p>Use the S3 target endpoint setting <code>AddTrailingPaddingCharacter</code> to add padding on string data. The default value is <code>false</code>.</p>",
+        "S3Settings$GlueCatalogGeneration": "<p>When true, allows Glue to catalog your S3 bucket. Creating an Glue catalog lets you use Athena to query your data.</p>",
         "TableStatistics$FullLoadReloaded": "<p>A value that indicates if the table was reloaded (<code>true</code>) or loaded as part of a new full load operation (<code>false</code>).</p>",
         "UpdateSubscriptionsToEventBridgeMessage$ForceMove": "<p>When set to true, this operation migrates DMS subscriptions for Amazon SNS notifications no matter what your replication instance version is. If not set or set to false, this operation runs only when all your replication instances are from DMS version 3.4.6 or higher. </p>"
       }
@@ -1330,6 +1335,12 @@
     "KMSThrottlingFault": {
       "base": "<p>This request triggered KMS request throttling.</p>",
       "refs": {
+      }
+    },
+    "KafkaSaslMechanism": {
+      "base": null,
+      "refs": {
+        "KafkaSettings$SaslMechanism": "<p>For SASL/SSL authentication, DMS supports the <code>SCRAM-SHA-512</code> mechanism by default. DMS versions 3.5.0 and later also support the <code>PLAIN</code> mechanism. To use the <code>PLAIN</code> mechanism, set this parameter to <code>PLAIN.</code> </p>"
       }
     },
     "KafkaSecurityProtocol": {
@@ -2726,6 +2737,12 @@
     "TestConnectionResponse": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "TlogAccessMode": {
+      "base": null,
+      "refs": {
+        "MicrosoftSQLServerSettings$TlogAccessMode": "<p>Indicates the mode used to fetch CDC data.</p>"
       }
     },
     "UpdateSubscriptionsToEventBridgeMessage": {

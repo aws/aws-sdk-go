@@ -74,11 +74,18 @@
       "base": null,
       "refs": {
         "AccountAssociationsListElement$AccountId": "<p> The associating array of account IDs. </p>",
+        "AccountIdFilterList$member": null,
         "AccountIdList$member": null,
         "BillingGroupListElement$PrimaryAccountId": "<p>The account ID that serves as the main account in a billing group. </p>",
         "CreateBillingGroupInput$PrimaryAccountId": "<p> The account ID that serves as the main account in a billing group. </p>",
         "ListAccountAssociationsFilter$AccountId": "<p> The Amazon Web Services account ID to filter on. </p>",
         "UpdateBillingGroupOutput$PrimaryAccountId": "<p> The account ID that serves as the main account in a billing group. </p>"
+      }
+    },
+    "AccountIdFilterList": {
+      "base": null,
+      "refs": {
+        "ListAccountAssociationsFilter$AccountIds": "<p> The list of Amazon Web Services IDs to retrieve their associated billing group for a given time range. </p>"
       }
     },
     "AccountIdList": {
@@ -264,8 +271,15 @@
       "base": null,
       "refs": {
         "BillingGroupListElement$Status": "<p>The billing group status. Only one of the valid values can be used. </p>",
+        "BillingGroupStatusList$member": null,
         "UpdateBillingGroupInput$Status": "<p>The status of the billing group. Only one of the valid values can be used. </p>",
         "UpdateBillingGroupOutput$Status": "<p> The status of the billing group. Only one of the valid values can be used. </p>"
+      }
+    },
+    "BillingGroupStatusList": {
+      "base": null,
+      "refs": {
+        "ListBillingGroupsFilter$Statuses": "<p> A list of billing groups to retrieve their current status for a specific time range </p>"
       }
     },
     "BillingGroupStatusReason": {
@@ -401,6 +415,7 @@
         "CreateCustomLineItemOutput$Arn": "<p> The Amazon Resource Name (ARN) of the created custom line item. </p>",
         "CustomLineItemArns$member": null,
         "CustomLineItemListElement$Arn": "<p> The Amazon Resource Names (ARNs) for custom line items. </p>",
+        "CustomLineItemVersionListElement$Arn": "<p> A list of custom line item Amazon Resource Names (ARNs) to retrieve information. </p>",
         "DeleteCustomLineItemInput$Arn": "<p> The ARN of the custom line item to be deleted. </p>",
         "DeleteCustomLineItemOutput$Arn": "<p> Then ARN of the deleted custom line item. </p>",
         "ListCustomLineItemVersionsInput$Arn": "<p>The Amazon Resource Name (ARN) for the custom line item.</p>",
@@ -649,6 +664,7 @@
         "CustomLineItemListElement$LastModifiedTime": "<p> The most recent time when the custom line item was modified. </p>",
         "CustomLineItemVersionListElement$CreationTime": "<p>The time when the custom line item version was created.</p>",
         "CustomLineItemVersionListElement$LastModifiedTime": "<p>The most recent time that the custom line item version was modified.</p>",
+        "CustomLineItemVersionListElement$StartTime": "<p> The inclusive start time. </p>",
         "PricingPlanListElement$CreationTime": "<p> The time when the pricing plan was created. </p>",
         "PricingPlanListElement$LastModifiedTime": "<p> The most recent time when the pricing plan was modified. </p>",
         "PricingRuleListElement$CreationTime": "<p> The time when the pricing rule was created. </p>",
@@ -943,6 +959,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$Operation": "<p> Operation is the specific Amazon Web Services action covered by this line item. This describes the specific usage of the line item.</p> <p> If the <code>Scope</code> attribute is set to <code>SKU</code>, this attribute indicates which operation the <code>PricingRule</code> is modifying. For example, a value of <code>RunInstances:0202</code> indicates the operation of running an Amazon EC2 instance.</p>",
+        "PricingRuleListElement$Operation": "<p> Operation is the specific Amazon Web Services action covered by this line item. This describes the specific usage of the line item.</p> <p> If the <code>Scope</code> attribute is set to <code>SKU</code>, this attribute indicates which operation the <code>PricingRule</code> is modifying. For example, a value of <code>RunInstances:0202</code> indicates the operation of running an Amazon EC2 instance.</p>",
         "UpdatePricingRuleOutput$Operation": "<p>Operation refers to the specific Amazon Web Services covered by this line item. This describes the specific usage of the line item.</p> <p> If the <code>Scope</code> attribute is set to <code>SKU</code>, this attribute indicates which operation the <code>PricingRule</code> is modifying. For example, a value of <code>RunInstances:0202</code> indicates the operation of running an Amazon EC2 instance.</p>"
       }
     },
@@ -1315,6 +1332,7 @@
       "base": null,
       "refs": {
         "CreatePricingRuleInput$UsageType": "<p> Usage type is the unit that each service uses to measure the usage of a specific type of resource.</p> <p>If the <code>Scope</code> attribute is set to <code>SKU</code>, this attribute indicates which usage type the <code>PricingRule</code> is modifying. For example, <code>USW2-BoxUsage:m2.2xlarge</code> describes an<code> M2 High Memory Double Extra Large</code> instance in the US West (Oregon) Region. <pre><code>&lt;/p&gt; </code></pre>",
+        "PricingRuleListElement$UsageType": "<p> Usage type is the unit that each service uses to measure the usage of a specific type of resource.</p> <p>If the <code>Scope</code> attribute is set to <code>SKU</code>, this attribute indicates which usage type the <code>PricingRule</code> is modifying. For example, <code>USW2-BoxUsage:m2.2xlarge</code> describes an<code> M2 High Memory Double Extra Large</code> instance in the US West (Oregon) Region. <pre><code>&lt;/p&gt; </code></pre>",
         "UpdatePricingRuleOutput$UsageType": "<p>Usage type is the unit that each service uses to measure the usage of a specific type of resource.</p> <p>If the <code>Scope</code> attribute is set to <code>SKU</code>, this attribute indicates which usage type the <code>PricingRule</code> is modifying. For example, <code>USW2-BoxUsage:m2.2xlarge</code> describes an <code>M2 High Memory Double Extra Large</code> instance in the US West (Oregon) Region. </p>"
       }
     },
