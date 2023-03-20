@@ -93,6 +93,10 @@ func (c *S3Outposts) CreateEndpointRequest(input *CreateEndpointInput) (req *req
 //   - ThrottlingException
 //     The request was denied due to request throttling.
 //
+//   - OutpostOfflineException
+//     The service link connection to your Outposts home Region is down. Check your
+//     connection and try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3outposts-2017-07-25/CreateEndpoint
 func (c *S3Outposts) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
 	req, out := c.CreateEndpointRequest(input)
@@ -192,6 +196,10 @@ func (c *S3Outposts) DeleteEndpointRequest(input *DeleteEndpointInput) (req *req
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - OutpostOfflineException
+//     The service link connection to your Outposts home Region is down. Check your
+//     connection and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3outposts-2017-07-25/DeleteEndpoint
 func (c *S3Outposts) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
@@ -1036,6 +1044,9 @@ type Endpoint struct {
 	// The Amazon Resource Name (ARN) of the endpoint.
 	EndpointArn *string `type:"string"`
 
+	// The failure reason, if any, for a create or delete endpoint operation.
+	FailedReason *FailedReason `type:"structure"`
+
 	// The network interface of the endpoint.
 	NetworkInterfaces []*NetworkInterface `type:"list"`
 
@@ -1103,6 +1114,12 @@ func (s *Endpoint) SetEndpointArn(v string) *Endpoint {
 	return s
 }
 
+// SetFailedReason sets the FailedReason field's value.
+func (s *Endpoint) SetFailedReason(v *FailedReason) *Endpoint {
+	s.FailedReason = v
+	return s
+}
+
 // SetNetworkInterfaces sets the NetworkInterfaces field's value.
 func (s *Endpoint) SetNetworkInterfaces(v []*NetworkInterface) *Endpoint {
 	s.NetworkInterfaces = v
@@ -1136,6 +1153,48 @@ func (s *Endpoint) SetSubnetId(v string) *Endpoint {
 // SetVpcId sets the VpcId field's value.
 func (s *Endpoint) SetVpcId(v string) *Endpoint {
 	s.VpcId = &v
+	return s
+}
+
+// The failure reason, if any, for a create or delete endpoint operation.
+type FailedReason struct {
+	_ struct{} `type:"structure"`
+
+	// The failure code, if any, for a create or delete endpoint operation.
+	ErrorCode *string `type:"string"`
+
+	// Additional error details describing the endpoint failure and recommended
+	// action.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedReason) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *FailedReason) SetErrorCode(v string) *FailedReason {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FailedReason) SetMessage(v string) *FailedReason {
+	s.Message = &v
 	return s
 }
 
@@ -1604,6 +1663,71 @@ func (s *Outpost) SetOwnerId(v string) *Outpost {
 	return s
 }
 
+// The service link connection to your Outposts home Region is down. Check your
+// connection and try again.
+type OutpostOfflineException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostOfflineException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutpostOfflineException) GoString() string {
+	return s.String()
+}
+
+func newErrorOutpostOfflineException(v protocol.ResponseMetadata) error {
+	return &OutpostOfflineException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *OutpostOfflineException) Code() string {
+	return "OutpostOfflineException"
+}
+
+// Message returns the exception's message.
+func (s *OutpostOfflineException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *OutpostOfflineException) OrigErr() error {
+	return nil
+}
+
+func (s *OutpostOfflineException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *OutpostOfflineException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *OutpostOfflineException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The requested resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -1821,6 +1945,12 @@ const (
 
 	// EndpointStatusDeleting is a EndpointStatus enum value
 	EndpointStatusDeleting = "Deleting"
+
+	// EndpointStatusCreateFailed is a EndpointStatus enum value
+	EndpointStatusCreateFailed = "Create_Failed"
+
+	// EndpointStatusDeleteFailed is a EndpointStatus enum value
+	EndpointStatusDeleteFailed = "Delete_Failed"
 )
 
 // EndpointStatus_Values returns all elements of the EndpointStatus enum
@@ -1829,5 +1959,7 @@ func EndpointStatus_Values() []string {
 		EndpointStatusPending,
 		EndpointStatusAvailable,
 		EndpointStatusDeleting,
+		EndpointStatusCreateFailed,
+		EndpointStatusDeleteFailed,
 	}
 }

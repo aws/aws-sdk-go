@@ -194,6 +194,7 @@
     "BooleanOptional": {
       "base": null,
       "refs": {
+        "ClusterPendingModifiedValues$IAMDatabaseAuthenticationEnabled": "<p>A value that indicates whether mapping of Amazon Web Services Identity and Access Management (IAM) accounts to database accounts is enabled.</p>",
         "CopyDBClusterSnapshotMessage$CopyTags": "<p>True to copy all tags from the source DB cluster snapshot to the target DB cluster snapshot, and otherwise false. The default is false.</p>",
         "CreateDBClusterMessage$CopyTagsToSnapshot": "<p> <i>If set to <code>true</code>, tags are copied to any snapshot of the DB cluster that is created.</i> </p>",
         "CreateDBClusterMessage$StorageEncrypted": "<p>Specifies whether the DB cluster is encrypted.</p>",
@@ -260,6 +261,12 @@
       "refs": {
         "ModifyDBClusterMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB cluster.</p>",
         "ModifyDBInstanceMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance or DB cluster.</p>"
+      }
+    },
+    "ClusterPendingModifiedValues": {
+      "base": "<p>This data type is used as a response element in the <code>ModifyDBCluster</code> operation and contains changes that will be applied during the next maintenance window.</p>",
+      "refs": {
+        "DBCluster$PendingModifiedValues": "<p>This data type is used as a response element in the <code>ModifyDBCluster</code> operation and contains changes that will be applied during the next maintenance window.</p>"
       }
     },
     "CopyDBClusterParameterGroupMessage": {
@@ -1192,6 +1199,7 @@
       "refs": {
         "CreateDBClusterMessage$GlobalClusterIdentifier": "<p>The ID of the Neptune global database to which this new DB cluster should be added.</p>",
         "CreateGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier of the new global database cluster.</p>",
+        "DBCluster$GlobalClusterIdentifier": "<p>Contains a user-supplied global database cluster identifier. This identifier is the unique key that identifies a global database.</p>",
         "DeleteGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier of the global database cluster being deleted.</p>",
         "DescribeGlobalClustersMessage$GlobalClusterIdentifier": "<p>The user-supplied DB cluster identifier. If this parameter is specified, only information about the specified DB cluster is returned. This parameter is not case-sensitive.</p> <p>Constraints: If supplied, must match an existing DB cluster identifier.</p>",
         "FailoverGlobalClusterMessage$GlobalClusterIdentifier": "<p>Identifier of the Neptune global database that should be failed over. The identifier is the unique key assigned by the user when the Neptune global database was created. In other words, it's the name of the global database that you want to fail over.</p> <p>Constraints: Must match the identifier of an existing Neptune global database.</p>",
@@ -1271,6 +1279,9 @@
     "IntegerOptional": {
       "base": null,
       "refs": {
+        "ClusterPendingModifiedValues$BackupRetentionPeriod": "<p>The number of days for which automatic DB snapshots are retained.</p>",
+        "ClusterPendingModifiedValues$AllocatedStorage": "<p>The allocated storage size in gibibytes (GiB) for database engines. For Neptune, <code>AllocatedStorage</code> always returns 1, because Neptune DB cluster storage size isn't fixed, but instead automatically adjusts as needed.</p>",
+        "ClusterPendingModifiedValues$Iops": "<p>The Provisioned IOPS (I/O operations per second) value. This setting is only for non-Aurora Multi-AZ DB clusters.</p>",
         "CreateDBClusterMessage$BackupRetentionPeriod": "<p>The number of days for which automated backups are retained. You must specify a minimum value of 1.</p> <p>Default: 1</p> <p>Constraints:</p> <ul> <li> <p>Must be a value from 1 to 35</p> </li> </ul>",
         "CreateDBClusterMessage$Port": "<p>The port number on which the instances in the DB cluster accept connections.</p> <p> Default: <code>8182</code> </p>",
         "CreateDBInstanceMessage$AllocatedStorage": "<p>Not supported by Neptune.</p>",
@@ -1562,6 +1573,7 @@
     "PendingCloudwatchLogsExports": {
       "base": "<p>A list of the log types whose configuration is still pending. In other words, these log types are in the process of being activated or deactivated.</p>",
       "refs": {
+        "ClusterPendingModifiedValues$PendingCloudwatchLogsExports": "<p>This <code>PendingCloudwatchLogsExports</code> structure specifies pending changes to which CloudWatch logs are enabled and which are disabled.</p>",
         "PendingModifiedValues$PendingCloudwatchLogsExports": "<p>This <code>PendingCloudwatchLogsExports</code> structure specifies pending changes to which CloudWatch logs are enabled and which are disabled.</p>"
       }
     },
@@ -1834,6 +1846,8 @@
         "AvailabilityZones$member": null,
         "CharacterSet$CharacterSetName": "<p>The name of the character set.</p>",
         "CharacterSet$CharacterSetDescription": "<p>The description of the character set.</p>",
+        "ClusterPendingModifiedValues$DBClusterIdentifier": "<p>The DBClusterIdentifier value for the DB cluster.</p>",
+        "ClusterPendingModifiedValues$EngineVersion": "<p>The database engine version.</p>",
         "CopyDBClusterParameterGroupMessage$SourceDBClusterParameterGroupIdentifier": "<p>The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter group. For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/neptune/latest/UserGuide/tagging.ARN.html#tagging.ARN.Constructing\"> Constructing an Amazon Resource Name (ARN)</a>.</p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid DB cluster parameter group.</p> </li> <li> <p>If the source DB cluster parameter group is in the same Amazon Region as the copy, specify a valid DB parameter group identifier, for example <code>my-db-cluster-param-group</code>, or a valid ARN.</p> </li> <li> <p>If the source DB parameter group is in a different Amazon Region than the copy, specify a valid DB cluster parameter group ARN, for example <code>arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1</code>.</p> </li> </ul>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupIdentifier": "<p>The identifier for the copied DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster-param-group1</code> </p>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupDescription": "<p>A description for the copied DB cluster parameter group.</p>",

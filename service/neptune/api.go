@@ -7799,6 +7799,98 @@ func (s *CloudwatchLogsExportConfiguration) SetEnableLogTypes(v []*string) *Clou
 	return s
 }
 
+// This data type is used as a response element in the ModifyDBCluster operation
+// and contains changes that will be applied during the next maintenance window.
+type ClusterPendingModifiedValues struct {
+	_ struct{} `type:"structure"`
+
+	// The allocated storage size in gibibytes (GiB) for database engines. For Neptune,
+	// AllocatedStorage always returns 1, because Neptune DB cluster storage size
+	// isn't fixed, but instead automatically adjusts as needed.
+	AllocatedStorage *int64 `type:"integer"`
+
+	// The number of days for which automatic DB snapshots are retained.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The DBClusterIdentifier value for the DB cluster.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The database engine version.
+	EngineVersion *string `type:"string"`
+
+	// A value that indicates whether mapping of Amazon Web Services Identity and
+	// Access Management (IAM) accounts to database accounts is enabled.
+	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
+
+	// The Provisioned IOPS (I/O operations per second) value. This setting is only
+	// for non-Aurora Multi-AZ DB clusters.
+	Iops *int64 `type:"integer"`
+
+	// This PendingCloudwatchLogsExports structure specifies pending changes to
+	// which CloudWatch logs are enabled and which are disabled.
+	PendingCloudwatchLogsExports *PendingCloudwatchLogsExports `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterPendingModifiedValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterPendingModifiedValues) GoString() string {
+	return s.String()
+}
+
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *ClusterPendingModifiedValues) SetAllocatedStorage(v int64) *ClusterPendingModifiedValues {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *ClusterPendingModifiedValues) SetBackupRetentionPeriod(v int64) *ClusterPendingModifiedValues {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *ClusterPendingModifiedValues) SetDBClusterIdentifier(v string) *ClusterPendingModifiedValues {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ClusterPendingModifiedValues) SetEngineVersion(v string) *ClusterPendingModifiedValues {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIAMDatabaseAuthenticationEnabled sets the IAMDatabaseAuthenticationEnabled field's value.
+func (s *ClusterPendingModifiedValues) SetIAMDatabaseAuthenticationEnabled(v bool) *ClusterPendingModifiedValues {
+	s.IAMDatabaseAuthenticationEnabled = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *ClusterPendingModifiedValues) SetIops(v int64) *ClusterPendingModifiedValues {
+	s.Iops = &v
+	return s
+}
+
+// SetPendingCloudwatchLogsExports sets the PendingCloudwatchLogsExports field's value.
+func (s *ClusterPendingModifiedValues) SetPendingCloudwatchLogsExports(v *PendingCloudwatchLogsExports) *ClusterPendingModifiedValues {
+	s.PendingCloudwatchLogsExports = v
+	return s
+}
+
 type CopyDBClusterParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9245,7 +9337,9 @@ type CreateDBInstanceInput struct {
 	// For information on creating a DB cluster, see CreateDBCluster.
 	//
 	// Type: String
-	DBClusterIdentifier *string `type:"string"`
+	//
+	// DBClusterIdentifier is a required field
+	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the DB instance, for example, db.m4.large.
 	// Not all DB instance classes are available in all Amazon Regions.
@@ -9487,6 +9581,9 @@ func (s CreateDBInstanceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDBInstanceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDBInstanceInput"}
+	if s.DBClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
+	}
 	if s.DBInstanceClass == nil {
 		invalidParams.Add(request.NewErrParamRequired("DBInstanceClass"))
 	}
@@ -10443,6 +10540,10 @@ type DBCluster struct {
 	// Indicates the database engine version.
 	EngineVersion *string `type:"string"`
 
+	// Contains a user-supplied global database cluster identifier. This identifier
+	// is the unique key that identifies a global database.
+	GlobalClusterIdentifier *string `min:"1" type:"string"`
+
 	// Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
 	HostedZoneId *string `type:"string"`
 
@@ -10463,6 +10564,10 @@ type DBCluster struct {
 
 	// Specifies whether the DB cluster has instances in multiple Availability Zones.
 	MultiAZ *bool `type:"boolean"`
+
+	// This data type is used as a response element in the ModifyDBCluster operation
+	// and contains changes that will be applied during the next maintenance window.
+	PendingModifiedValues *ClusterPendingModifiedValues `type:"structure"`
 
 	// Specifies the progress of the operation as a percentage.
 	PercentProgress *string `type:"string"`
@@ -10676,6 +10781,12 @@ func (s *DBCluster) SetEngineVersion(v string) *DBCluster {
 	return s
 }
 
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *DBCluster) SetGlobalClusterIdentifier(v string) *DBCluster {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
 // SetHostedZoneId sets the HostedZoneId field's value.
 func (s *DBCluster) SetHostedZoneId(v string) *DBCluster {
 	s.HostedZoneId = &v
@@ -10709,6 +10820,12 @@ func (s *DBCluster) SetMasterUsername(v string) *DBCluster {
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *DBCluster) SetMultiAZ(v bool) *DBCluster {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *DBCluster) SetPendingModifiedValues(v *ClusterPendingModifiedValues) *DBCluster {
+	s.PendingModifiedValues = v
 	return s
 }
 

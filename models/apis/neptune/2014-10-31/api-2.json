@@ -1324,6 +1324,18 @@
         "DisableLogTypes":{"shape":"LogTypeList"}
       }
     },
+    "ClusterPendingModifiedValues":{
+      "type":"structure",
+      "members":{
+        "PendingCloudwatchLogsExports":{"shape":"PendingCloudwatchLogsExports"},
+        "DBClusterIdentifier":{"shape":"String"},
+        "IAMDatabaseAuthenticationEnabled":{"shape":"BooleanOptional"},
+        "EngineVersion":{"shape":"String"},
+        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
+        "AllocatedStorage":{"shape":"IntegerOptional"},
+        "Iops":{"shape":"IntegerOptional"}
+      }
+    },
     "CopyDBClusterParameterGroupMessage":{
       "type":"structure",
       "required":[
@@ -1501,7 +1513,8 @@
       "required":[
         "DBInstanceIdentifier",
         "DBInstanceClass",
-        "Engine"
+        "Engine",
+        "DBClusterIdentifier"
       ],
       "members":{
         "DBName":{"shape":"String"},
@@ -1678,10 +1691,12 @@
         "ClusterCreateTime":{"shape":"TStamp"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"},
+        "PendingModifiedValues":{"shape":"ClusterPendingModifiedValues"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "CrossAccountClone":{"shape":"BooleanOptional"},
         "AutomaticRestartTime":{"shape":"TStamp"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfigurationInfo"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfigurationInfo"},
+        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"}
       },
       "wrapper":true
     },

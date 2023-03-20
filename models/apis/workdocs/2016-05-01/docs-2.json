@@ -41,6 +41,7 @@
     "RemoveAllResourcePermissions": "<p>Removes all the permissions from the specified resource.</p>",
     "RemoveResourcePermission": "<p>Removes the permission for the specified principal from the specified resource.</p>",
     "RestoreDocumentVersions": "<p>Recovers a deleted version of an Amazon WorkDocs document.</p>",
+    "SearchResources": "<p>Searches metadata and the content of folders, documents, document versions, and comments.</p>",
     "UpdateDocument": "<p>Updates the specified attributes of a document. The user must have access to both the document and its parent folder, if applicable.</p>",
     "UpdateDocumentVersion": "<p>Changes the status of the document version to ACTIVE. </p> <p>Amazon WorkDocs also sets its document container to ACTIVE. This is the last step in a document upload, after the client uploads the document to an S3-presigned URL returned by <a>InitiateDocumentVersionUpload</a>. </p>",
     "UpdateFolder": "<p>Updates the specified attributes of the specified folder. The user must have access to both the folder and its parent folder, if applicable.</p>",
@@ -90,6 +91,18 @@
       "refs": {
       }
     },
+    "AdditionalResponseFieldType": {
+      "base": null,
+      "refs": {
+        "AdditionalResponseFieldsList$member": null
+      }
+    },
+    "AdditionalResponseFieldsList": {
+      "base": null,
+      "refs": {
+        "SearchResourcesRequest$AdditionalResponseFields": "<p>A list of attributes to include in the response. Used to request fields that are not normally returned in a standard response.</p>"
+      }
+    },
     "AuthenticationHeaderType": {
       "base": null,
       "refs": {
@@ -129,6 +142,7 @@
         "RemoveAllResourcePermissionsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.</p>",
         "RemoveResourcePermissionRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.</p>",
         "RestoreDocumentVersionsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.</p>",
+        "SearchResourcesRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.</p>",
         "UpdateDocumentRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.</p>",
         "UpdateDocumentVersionRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.</p>",
         "UpdateFolderRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.</p>",
@@ -184,7 +198,8 @@
     "CommentMetadata": {
       "base": "<p>Describes the metadata of a comment.</p>",
       "refs": {
-        "Activity$CommentMetadata": "<p>Metadata of the commenting activity. This is an optional field and is filled for commenting activities.</p>"
+        "Activity$CommentMetadata": "<p>Metadata of the commenting activity. This is an optional field and is filled for commenting activities.</p>",
+        "ResponseItem$CommentMetadata": "<p>The comment that matches the query.</p>"
       }
     },
     "CommentStatusType": {
@@ -216,6 +231,12 @@
     "ConflictingOperationException": {
       "base": "<p>Another operation is in progress on the resource that conflicts with the current operation.</p>",
       "refs": {
+      }
+    },
+    "ContentCategoryType": {
+      "base": null,
+      "refs": {
+        "SearchContentCategoryTypeList$member": null
       }
     },
     "CreateCommentRequest": {
@@ -309,6 +330,13 @@
       "base": null,
       "refs": {
         "CustomMetadataMap$value": null
+      }
+    },
+    "DateRangeType": {
+      "base": "<p>Filters results based on timestamp range (in epochs).</p>",
+      "refs": {
+        "Filters$CreatedRange": "<p>Filter based on resource’s creation timestamp.</p>",
+        "Filters$ModifiedRange": "<p>Filter based on resource’s modified timestamp.</p>"
       }
     },
     "DeactivateUserRequest": {
@@ -483,7 +511,8 @@
       "refs": {
         "DocumentMetadataList$member": null,
         "GetDocumentResponse$Metadata": "<p>The metadata details of the document.</p>",
-        "InitiateDocumentVersionUploadResponse$Metadata": "<p>The document metadata.</p>"
+        "InitiateDocumentVersionUploadResponse$Metadata": "<p>The document metadata.</p>",
+        "ResponseItem$DocumentMetadata": "<p>The document that matches the query.</p>"
       }
     },
     "DocumentMetadataList": {
@@ -544,7 +573,8 @@
       "refs": {
         "DocumentMetadata$LatestVersionMetadata": "<p>The latest version of the document.</p>",
         "DocumentVersionMetadataList$member": null,
-        "GetDocumentVersionResponse$Metadata": "<p>The version metadata.</p>"
+        "GetDocumentVersionResponse$Metadata": "<p>The version metadata.</p>",
+        "ResponseItem$DocumentVersionMetadata": "<p>The document version that matches the metadata.</p>"
       }
     },
     "DocumentVersionMetadataList": {
@@ -633,6 +663,12 @@
         "GetFolderPathRequest$Fields": "<p>A comma-separated list of values. Specify \"NAME\" to include the names of the parent folders.</p>"
       }
     },
+    "Filters": {
+      "base": "<p>Filters results based on entity metadata.</p>",
+      "refs": {
+        "SearchResourcesRequest$Filters": "<p>Filters results based on entity metadata.</p>"
+      }
+    },
     "FolderContentType": {
       "base": null,
       "refs": {
@@ -644,7 +680,8 @@
       "refs": {
         "CreateFolderResponse$Metadata": "<p>The metadata of the folder.</p>",
         "FolderMetadataList$member": null,
-        "GetFolderResponse$Metadata": "<p>The metadata of the folder.</p>"
+        "GetFolderResponse$Metadata": "<p>The metadata of the folder.</p>",
+        "ResponseItem$FolderMetadata": "<p>The folder that matches the query.</p>"
       }
     },
     "FolderMetadataList": {
@@ -770,6 +807,7 @@
         "Activity$OrganizationId": "<p>The ID of the organization.</p>",
         "Comment$RecipientId": "<p>If the comment is a reply to another user's comment, this field contains the user ID of the user being replied to.</p>",
         "CommentMetadata$RecipientId": "<p>The ID of the user being replied to.</p>",
+        "CommentMetadata$ContributorId": "<p>The ID of the user who made the comment.</p>",
         "CreateNotificationSubscriptionRequest$OrganizationId": "<p>The ID of the organization.</p>",
         "CreateUserRequest$OrganizationId": "<p>The ID of the organization.</p>",
         "DeactivateUserRequest$UserId": "<p>The ID of the user.</p>",
@@ -794,6 +832,8 @@
         "Principal$Id": "<p>The ID of the resource.</p>",
         "RemoveResourcePermissionRequest$PrincipalId": "<p>The principal ID of the resource.</p>",
         "ResourcePathComponent$Id": "<p>The ID of the resource path.</p>",
+        "SearchPrincipalType$Id": "<p>UserIds or GroupIds.</p>",
+        "SearchResourcesRequest$OrganizationId": "<p>Filters based on the resource owner OrgId. This is a mandatory parameter when using Admin SigV4 credentials.</p>",
         "SharePrincipal$Id": "<p>The ID of the recipient.</p>",
         "ShareResult$PrincipalId": "<p>The ID of the principal.</p>",
         "ShareResult$InviteePrincipalId": "<p>The ID of the invited user.</p>",
@@ -839,6 +879,12 @@
       "refs": {
       }
     },
+    "LanguageCodeType": {
+      "base": null,
+      "refs": {
+        "TextLocaleTypeList$member": null
+      }
+    },
     "LimitExceededException": {
       "base": "<p>The maximum of 100,000 files and folders under the parent folder has been exceeded.</p>",
       "refs": {
@@ -867,6 +913,19 @@
         "User$Locale": "<p>The locale of the user.</p>"
       }
     },
+    "LongRangeType": {
+      "base": "<p>Filter based on size (in bytes).</p>",
+      "refs": {
+        "Filters$SizeRange": "<p>Filter based on size (in bytes).</p>"
+      }
+    },
+    "LongType": {
+      "base": null,
+      "refs": {
+        "LongRangeType$StartValue": "<p>The size start range (in bytes).</p>",
+        "LongRangeType$EndValue": "<p>The size end range (in bytes).</p>"
+      }
+    },
     "MarkerType": {
       "base": null,
       "refs": {
@@ -883,10 +942,23 @@
         "ShareResult$StatusMessage": "<p>The status message.</p>"
       }
     },
+    "NextMarkerType": {
+      "base": null,
+      "refs": {
+        "SearchResourcesRequest$Marker": "<p>The marker for the next set of results.</p>",
+        "SearchResourcesResponse$Marker": "<p>The marker to use when requesting the next set of results. If there are no additional results, the string is empty.</p>"
+      }
+    },
     "NotificationOptions": {
       "base": "<p>Set of options which defines notification preferences of given action.</p>",
       "refs": {
         "AddResourcePermissionsRequest$NotificationOptions": "<p>The notification options.</p>"
+      }
+    },
+    "OrderByFieldType": {
+      "base": null,
+      "refs": {
+        "SearchSortResult$Field": "<p>Sort search results based on this field name.</p>"
       }
     },
     "OrderType": {
@@ -969,6 +1041,12 @@
       "base": null,
       "refs": {
         "DescribeResourcePermissionsResponse$Principals": "<p>The principals.</p>"
+      }
+    },
+    "PrincipalRoleType": {
+      "base": null,
+      "refs": {
+        "SearchPrincipalRoleList$member": null
       }
     },
     "PrincipalType": {
@@ -1115,6 +1193,30 @@
         "ResourceMetadata$Type": "<p>The type of resource.</p>"
       }
     },
+    "ResponseItem": {
+      "base": "<p>List of Documents, Folders, Comments, and Document Versions matching the query.</p>",
+      "refs": {
+        "ResponseItemsList$member": null
+      }
+    },
+    "ResponseItemType": {
+      "base": null,
+      "refs": {
+        "ResponseItem$ResourceType": "<p>The type of item being returned.</p>"
+      }
+    },
+    "ResponseItemWebUrl": {
+      "base": null,
+      "refs": {
+        "ResponseItem$WebUrl": "<p>The webUrl of the item being returned.</p>"
+      }
+    },
+    "ResponseItemsList": {
+      "base": null,
+      "refs": {
+        "SearchResourcesResponse$Items": "<p>List of Documents, Folders, Comments, and Document Versions matching the query.</p>"
+      }
+    },
     "RestoreDocumentVersionsRequest": {
       "base": null,
       "refs": {
@@ -1134,6 +1236,48 @@
         "ShareResult$Role": "<p>The role.</p>"
       }
     },
+    "SearchAncestorId": {
+      "base": null,
+      "refs": {
+        "SearchAncestorIdList$member": null
+      }
+    },
+    "SearchAncestorIdList": {
+      "base": null,
+      "refs": {
+        "Filters$AncestorIds": "<p>Filter based on resource’s path.</p>"
+      }
+    },
+    "SearchCollectionType": {
+      "base": null,
+      "refs": {
+        "SearchCollectionTypeList$member": null
+      }
+    },
+    "SearchCollectionTypeList": {
+      "base": null,
+      "refs": {
+        "Filters$SearchCollectionTypes": "<p>Filter based on file groupings.</p>"
+      }
+    },
+    "SearchContentCategoryTypeList": {
+      "base": null,
+      "refs": {
+        "Filters$ContentCategories": "<p>Filters by content category.</p>"
+      }
+    },
+    "SearchLabel": {
+      "base": null,
+      "refs": {
+        "SearchLabelList$member": null
+      }
+    },
+    "SearchLabelList": {
+      "base": null,
+      "refs": {
+        "Filters$Labels": "<p>Filter by labels using exact match.</p>"
+      }
+    },
     "SearchMarkerType": {
       "base": null,
       "refs": {
@@ -1141,11 +1285,82 @@
         "DescribeActivitiesResponse$Marker": "<p>The marker for the next set of results.</p>"
       }
     },
+    "SearchPrincipalRoleList": {
+      "base": null,
+      "refs": {
+        "SearchPrincipalType$Roles": "<p>The Role of a User or Group.</p>"
+      }
+    },
+    "SearchPrincipalType": {
+      "base": "<p>Filter based on UserIds or GroupIds.</p>",
+      "refs": {
+        "SearchPrincipalTypeList$member": null
+      }
+    },
+    "SearchPrincipalTypeList": {
+      "base": null,
+      "refs": {
+        "Filters$Principals": "<p>Filter based on UserIds or GroupIds.</p>"
+      }
+    },
+    "SearchQueryScopeType": {
+      "base": null,
+      "refs": {
+        "SearchQueryScopeTypeList$member": null
+      }
+    },
+    "SearchQueryScopeTypeList": {
+      "base": null,
+      "refs": {
+        "SearchResourcesRequest$QueryScopes": "<p>Filter based on the text field type. A Folder has only a name and no content. A Comment has only content and no name. A Document or Document Version has a name and content</p>"
+      }
+    },
     "SearchQueryType": {
       "base": null,
       "refs": {
         "DescribeGroupsRequest$SearchQuery": "<p>A query to describe groups by group name.</p>",
-        "DescribeUsersRequest$Query": "<p>A query to filter users by user name. Remember the following about the <code>Userids</code> and <code>Query</code> parameters:</p> <ul> <li> <p>If you don't use either parameter, the API returns a paginated list of all users on the site.</p> </li> <li> <p>If you use both parameters, the API ignores the <code>Query</code> parameter.</p> </li> <li> <p>The <code>Userid</code> parameter only returns user names that match a corresponding user ID.</p> </li> <li> <p>The <code>Query</code> parameter runs a \"prefix\" search for users by the <code>GivenName</code>, <code>SurName</code>, or <code>UserName</code> fields included in a <a href=\"https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateUser.html\">CreateUser</a> API call. For example, querying on <code>Ma</code> returns Márcia Oliveira, María García, and Mateo Jackson. If you use multiple characters, the API only returns data that matches all characters. For example, querying on <code>Ma J</code> only returns Mateo Jackson.</p> </li> </ul>"
+        "DescribeUsersRequest$Query": "<p>A query to filter users by user name. Remember the following about the <code>Userids</code> and <code>Query</code> parameters:</p> <ul> <li> <p>If you don't use either parameter, the API returns a paginated list of all users on the site.</p> </li> <li> <p>If you use both parameters, the API ignores the <code>Query</code> parameter.</p> </li> <li> <p>The <code>Userid</code> parameter only returns user names that match a corresponding user ID.</p> </li> <li> <p>The <code>Query</code> parameter runs a \"prefix\" search for users by the <code>GivenName</code>, <code>SurName</code>, or <code>UserName</code> fields included in a <a href=\"https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateUser.html\">CreateUser</a> API call. For example, querying on <code>Ma</code> returns Márcia Oliveira, María García, and Mateo Jackson. If you use multiple characters, the API only returns data that matches all characters. For example, querying on <code>Ma J</code> only returns Mateo Jackson.</p> </li> </ul>",
+        "SearchResourcesRequest$QueryText": "<p>The String to search for. Searches across different text fields based on request parameters. Use double quotes around the query string for exact phrase matches.</p>"
+      }
+    },
+    "SearchResourceType": {
+      "base": null,
+      "refs": {
+        "SearchResourceTypeList$member": null
+      }
+    },
+    "SearchResourceTypeList": {
+      "base": null,
+      "refs": {
+        "Filters$ResourceTypes": "<p>Filters based on entity type.</p>"
+      }
+    },
+    "SearchResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchResultSortList": {
+      "base": null,
+      "refs": {
+        "SearchResourcesRequest$OrderBy": "<p>Order by results in one or more categories.</p>"
+      }
+    },
+    "SearchResultsLimitType": {
+      "base": null,
+      "refs": {
+        "SearchResourcesRequest$Limit": "<p>Max results count per page.</p>"
+      }
+    },
+    "SearchSortResult": {
+      "base": "<p>The result of the sort operation.</p>",
+      "refs": {
+        "SearchResultSortList$member": null
       }
     },
     "ServiceUnavailableException": {
@@ -1215,6 +1430,12 @@
         "UserStorageMetadata$StorageUtilizedInBytes": "<p>The amount of storage used, in bytes.</p>"
       }
     },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "SearchSortResult$Order": "<p>Sort direction.</p>"
+      }
+    },
     "StorageLimitExceededException": {
       "base": "<p>The storage limit has been exceeded.</p>",
       "refs": {
@@ -1272,6 +1493,12 @@
         "CreateNotificationSubscriptionRequest$SubscriptionType": "<p>The notification type.</p>"
       }
     },
+    "TextLocaleTypeList": {
+      "base": null,
+      "refs": {
+        "Filters$TextLocales": "<p>Filters by the locale of the content or comment.</p>"
+      }
+    },
     "TimeZoneIdType": {
       "base": null,
       "refs": {
@@ -1286,6 +1513,8 @@
         "Activity$TimeStamp": "<p>The timestamp when the action was performed.</p>",
         "Comment$CreatedTimestamp": "<p>The time that the comment was created.</p>",
         "CommentMetadata$CreatedTimestamp": "<p>The timestamp that the comment was created.</p>",
+        "DateRangeType$StartValue": "<p>Timestamp range start value (in epochs)</p>",
+        "DateRangeType$EndValue": "<p>Timestamp range end value (in epochs).</p>",
         "DescribeActivitiesRequest$StartTime": "<p>The timestamp that determines the starting time of the activities. The response includes the activities performed after the specified timestamp.</p>",
         "DescribeActivitiesRequest$EndTime": "<p>The timestamp that determines the end time of the activities. The response includes the activities performed before the specified timestamp.</p>",
         "DocumentMetadata$CreatedTimestamp": "<p>The time when the document was created.</p>",
