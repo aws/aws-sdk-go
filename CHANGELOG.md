@@ -1,3 +1,14 @@
+Release v1.44.225 (2023-03-20)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API, documentation, and examples
+* `service/neptune`: Updates service API and documentation
+  * This release makes following few changes. db-cluster-identifier is now a required parameter of create-db-instance. describe-db-cluster will now return PendingModifiedValues and GlobalClusterIdentifier fields in the response.
+* `service/s3outposts`: Updates service API and documentation
+* `service/workdocs`: Updates service API, documentation, and paginators
+  * This release adds a new API, SearchResources, which enable users to search through metadata and content of folders, documents, document versions and comments in a WorkDocs site.
+
 Release v1.44.224 (2023-03-17)
 ===
 

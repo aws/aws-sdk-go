@@ -935,6 +935,88 @@ func (c *ApplicationAutoScaling) DescribeScheduledActionsPagesWithContext(ctx aw
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/ListTagsForResource
+func (c *ApplicationAutoScaling) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Application Auto Scaling.
+//
+// Returns all the tags on the specified Application Auto Scaling scalable target.
+//
+// For general information about tags, including the format and syntax, see
+// Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/ListTagsForResource
+func (c *ApplicationAutoScaling) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutScalingPolicy = "PutScalingPolicy"
 
 // PutScalingPolicyRequest generates a "aws/request.Request" representing the
@@ -1010,8 +1092,8 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 // in the Application Auto Scaling User Guide.
 //
 // If a scalable target is deregistered, the scalable target is no longer available
-// to execute scaling policies. Any scaling policies that were specified for
-// the scalable target are deleted.
+// to use scaling policies. Any scaling policies that were specified for the
+// scalable target are deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1126,9 +1208,9 @@ func (c *ApplicationAutoScaling) PutScheduledActionRequest(input *PutScheduledAc
 // by those three attributes. You cannot create a scheduled action until you
 // have registered the resource as a scalable target.
 //
-// When start and end times are specified with a recurring schedule using a
-// cron expression or rates, they form the boundaries for when the recurring
-// action starts and stops.
+// When you specify start and end times with a recurring schedule using a cron
+// expression or rates, they form the boundaries for when the recurring action
+// starts and stops.
 //
 // To update a scheduled action, specify the parameters that you want to change.
 // If you don't specify start and end times, the old values are deleted.
@@ -1231,13 +1313,13 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 
 	output = &RegisterScalableTargetOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // RegisterScalableTarget API operation for Application Auto Scaling.
 //
-// Registers or updates a scalable target, the resource that you want to scale.
+// Registers or updates a scalable target, which is the resource that you want
+// to scale.
 //
 // Scalable targets are uniquely identified by the combination of resource ID,
 // scalable dimension, and namespace, which represents some capacity dimension
@@ -1249,10 +1331,10 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // capacity. Otherwise, it changes the resource's current capacity to a value
 // that is inside of this range.
 //
-// If you choose to add a scaling policy, current capacity is adjustable within
-// the specified range when scaling starts. Application Auto Scaling scaling
-// policies will not scale capacity to values that are outside of the minimum
-// and maximum range.
+// If you add a scaling policy, current capacity is adjustable within the specified
+// range when scaling starts. Application Auto Scaling scaling policies will
+// not scale capacity to values that are outside of the minimum and maximum
+// range.
 //
 // After you register a scalable target, you do not need to register it again
 // to use other Application Auto Scaling operations. To see which resources
@@ -1267,12 +1349,19 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // dimension, and namespace. Any parameters that you don't specify are not changed
 // by this update request.
 //
-// If you call the RegisterScalableTarget API to update an existing scalable
-// target, Application Auto Scaling retrieves the current capacity of the resource.
-// If it is below the minimum capacity or above the maximum capacity, Application
-// Auto Scaling adjusts the capacity of the scalable target to place it within
-// these bounds, even if you don't include the MinCapacity or MaxCapacity request
-// parameters.
+// If you call the RegisterScalableTarget API operation to create a scalable
+// target, there might be a brief delay until the operation achieves eventual
+// consistency (https://en.wikipedia.org/wiki/Eventual_consistency). You might
+// become aware of this brief delay if you get unexpected errors when performing
+// sequential operations. The typical strategy is to retry the request, and
+// some Amazon Web Services SDKs include automatic backoff and retry logic.
+//
+// If you call the RegisterScalableTarget API operation to update an existing
+// scalable target, Application Auto Scaling retrieves the current capacity
+// of the resource. If it's below the minimum capacity or above the maximum
+// capacity, Application Auto Scaling adjusts the capacity of the scalable target
+// to place it within these bounds, even if you don't include the MinCapacity
+// or MaxCapacity request parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1315,6 +1404,196 @@ func (c *ApplicationAutoScaling) RegisterScalableTarget(input *RegisterScalableT
 // for more information on using Contexts.
 func (c *ApplicationAutoScaling) RegisterScalableTargetWithContext(ctx aws.Context, input *RegisterScalableTargetInput, opts ...request.Option) (*RegisterScalableTargetOutput, error) {
 	req, out := c.RegisterScalableTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/TagResource
+func (c *ApplicationAutoScaling) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Application Auto Scaling.
+//
+// Adds or edits tags on an Application Auto Scaling scalable target.
+//
+// Each tag consists of a tag key and a tag value, which are both case-sensitive
+// strings. To add a tag, specify a new tag key and a tag value. To edit a tag,
+// specify an existing tag key and a new tag value.
+//
+// You can use this operation to tag an Application Auto Scaling scalable target,
+// but you cannot tag a scaling policy or scheduled action.
+//
+// You can also add tags to an Application Auto Scaling scalable target while
+// creating it (RegisterScalableTarget).
+//
+// For general information about tags, including the format and syntax, see
+// Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference.
+//
+// Use tags to control access to a scalable target. For more information, see
+// Tagging support for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/resource-tagging-support.html)
+// in the Application Auto Scaling User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - TooManyTagsException
+//     The request contains too many tags. Try the request again with fewer tags.
+//
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/TagResource
+func (c *ApplicationAutoScaling) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/UntagResource
+func (c *ApplicationAutoScaling) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Application Auto Scaling.
+//
+// Deletes tags from an Application Auto Scaling scalable target. To delete
+// a tag, specify the tag key and the Application Auto Scaling scalable target.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource doesn't exist.
+//
+//   - ValidationException
+//     An exception was thrown for a validation issue. Review the available parameters
+//     for the API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/UntagResource
+func (c *ApplicationAutoScaling) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1464,7 +1743,7 @@ type CustomizedMetricSpecification struct {
 
 	// The name of the metric. To get the exact metric name, namespace, and dimensions,
 	// inspect the Metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html)
-	// object that is returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
+	// object that's returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
 	MetricName *string `type:"string"`
 
 	// The metrics to include in the target tracking scaling policy, as a metric
@@ -3539,6 +3818,90 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the ARN of the scalable target.
+	//
+	// For example: arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123
+	//
+	// To get the ARN for a scalable target, use DescribeScalableTargets.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags. Each tag consists of a tag key and a tag value.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // Describes the dimension names and values associated with a metric.
 type MetricDimension struct {
 	_ struct{} `type:"structure"`
@@ -4472,7 +4835,7 @@ type RegisterScalableTargetInput struct {
 	// when registering a new scalable target.
 	//
 	// Although you can specify a large maximum capacity, note that service quotas
-	// may impose lower limits. Each service has its own default quotas for the
+	// might impose lower limits. Each service has its own default quotas for the
 	// maximum capacity of the resource. If you want to specify a higher limit,
 	// you can request an increase. For more information, consult the documentation
 	// for that service. For information about the default quotas for each service,
@@ -4673,6 +5036,19 @@ type RegisterScalableTargetInput struct {
 	// For more information, see Suspending and resuming scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-suspend-resume-scaling.html)
 	// in the Application Auto Scaling User Guide.
 	SuspendedState *SuspendedState `type:"structure"`
+
+	// Assigns one or more tags to the scalable target. Use this parameter to tag
+	// the scalable target when it is created. To tag an existing scalable target,
+	// use the TagResource operation.
+	//
+	// Each tag consists of a tag key and a tag value. Both the tag key and the
+	// tag value are required. You cannot have more than one tag on a scalable target
+	// with the same tag key.
+	//
+	// Use tags to control access to a scalable target. For more information, see
+	// Tagging support for Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/resource-tagging-support.html)
+	// in the Application Auto Scaling User Guide.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -4760,8 +5136,17 @@ func (s *RegisterScalableTargetInput) SetSuspendedState(v *SuspendedState) *Regi
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *RegisterScalableTargetInput) SetTags(v map[string]*string) *RegisterScalableTargetInput {
+	s.Tags = v
+	return s
+}
+
 type RegisterScalableTargetOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The ARN of the scalable target.
+	ScalableTargetARN *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -4780,6 +5165,80 @@ func (s RegisterScalableTargetOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RegisterScalableTargetOutput) GoString() string {
 	return s.String()
+}
+
+// SetScalableTargetARN sets the ScalableTargetARN field's value.
+func (s *RegisterScalableTargetOutput) SetScalableTargetARN(v string) *RegisterScalableTargetOutput {
+	s.ScalableTargetARN = &v
+	return s
+}
+
+// The specified resource doesn't exist.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The name of the Application Auto Scaling resource. This value is an Amazon
+	// Resource Name (ARN).
+	ResourceName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Represents a scalable target.
@@ -4932,6 +5391,9 @@ type ScalableTarget struct {
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
+	// The ARN of the scalable target.
+	ScalableTargetARN *string `type:"string"`
+
 	// The namespace of the Amazon Web Services service that provides the resource,
 	// or a custom-resource.
 	//
@@ -4994,6 +5456,12 @@ func (s *ScalableTarget) SetRoleARN(v string) *ScalableTarget {
 // SetScalableDimension sets the ScalableDimension field's value.
 func (s *ScalableTarget) SetScalableDimension(v string) *ScalableTarget {
 	s.ScalableDimension = &v
+	return s
+}
+
+// SetScalableTargetARN sets the ScalableTargetARN field's value.
+func (s *ScalableTarget) SetScalableTargetARN(v string) *ScalableTarget {
+	s.ScalableTargetARN = &v
 	return s
 }
 
@@ -5868,11 +6336,11 @@ func (s *ScheduledAction) SetTimezone(v string) *ScheduledAction {
 // For the following examples, suppose that you have an alarm with a breach
 // threshold of 50:
 //
-//   - To trigger the adjustment when the metric is greater than or equal to
-//     50 and less than 60, specify a lower bound of 0 and an upper bound of
-//     10.
+//   - To initiate the adjustment when the metric is greater than or equal
+//     to 50 and less than 60, specify a lower bound of 0 and an upper bound
+//     of 10.
 //
-//   - To trigger the adjustment when the metric is greater than 40 and less
+//   - To initiate the adjustment when the metric is greater than 40 and less
 //     than or equal to 50, specify a lower bound of -10 and an upper bound of
 //     0.
 //
@@ -5895,16 +6363,15 @@ type StepAdjustment struct {
 	// The lower bound for the difference between the alarm threshold and the CloudWatch
 	// metric. If the metric value is above the breach threshold, the lower bound
 	// is inclusive (the metric must be greater than or equal to the threshold plus
-	// the lower bound). Otherwise, it is exclusive (the metric must be greater
-	// than the threshold plus the lower bound). A null value indicates negative
-	// infinity.
+	// the lower bound). Otherwise, it's exclusive (the metric must be greater than
+	// the threshold plus the lower bound). A null value indicates negative infinity.
 	MetricIntervalLowerBound *float64 `type:"double"`
 
 	// The upper bound for the difference between the alarm threshold and the CloudWatch
 	// metric. If the metric value is above the breach threshold, the upper bound
 	// is exclusive (the metric must be less than the threshold plus the upper bound).
-	// Otherwise, it is inclusive (the metric must be less than or equal to the
-	// threshold plus the upper bound). A null value indicates positive infinity.
+	// Otherwise, it's inclusive (the metric must be less than or equal to the threshold
+	// plus the upper bound). A null value indicates positive infinity.
 	//
 	// The upper bound must be greater than the lower bound.
 	MetricIntervalUpperBound *float64 `type:"double"`
@@ -6178,6 +6645,108 @@ func (s *SuspendedState) SetDynamicScalingOutSuspended(v bool) *SuspendedState {
 func (s *SuspendedState) SetScheduledScalingSuspended(v bool) *SuspendedState {
 	s.ScheduledScalingSuspended = &v
 	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the Application Auto Scaling scalable target that you want to
+	// apply tags to.
+	//
+	// For example: arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123
+	//
+	// To get the ARN for a scalable target, use DescribeScalableTargets.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// The tags assigned to the resource. A tag is a label that you assign to an
+	// AWS resource.
+	//
+	// Each tag consists of a tag key and a tag value.
+	//
+	// You cannot have more than one tag on an Application Auto Scaling scalable
+	// target with the same tag key. If you specify an existing tag key with a different
+	// tag value, Application Auto Scaling replaces the current tag value with the
+	// specified one.
+	//
+	// For information about the rules that apply to tag keys and tag values, see
+	// User-defined tag restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
+	// in the Amazon Web Services Billing and Cost Management User Guide.
+	//
+	// Tags is a required field
+	Tags map[string]*string `type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a specific metric.
@@ -6478,7 +7047,7 @@ type TargetTrackingMetricStat struct {
 	// statistic. For a list of valid values, see the table in Statistics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic)
 	// in the Amazon CloudWatch User Guide.
 	//
-	// The most commonly used metrics for scaling is Average
+	// The most commonly used metric for scaling is Average.
 	//
 	// Stat is a required field
 	Stat *string `type:"string" required:"true"`
@@ -6747,6 +7316,164 @@ func (s *TargetTrackingScalingPolicyConfiguration) SetScaleOutCooldown(v int64) 
 func (s *TargetTrackingScalingPolicyConfiguration) SetTargetValue(v float64) *TargetTrackingScalingPolicyConfiguration {
 	s.TargetValue = &v
 	return s
+}
+
+// The request contains too many tags. Try the request again with fewer tags.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The name of the Application Auto Scaling resource. This value is an Amazon
+	// Resource Name (ARN).
+	ResourceName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the Application Auto Scaling scalable target from which to remove
+	// tags.
+	//
+	// For example: arn:aws:application-autoscaling:us-east-1:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123
+	//
+	// To get the ARN for a scalable target, use DescribeScalableTargets.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// One or more tag keys. Specify only the tag keys, not the tag values.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // An exception was thrown for a validation issue. Review the available parameters

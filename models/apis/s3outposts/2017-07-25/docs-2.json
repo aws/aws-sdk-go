@@ -104,15 +104,28 @@
         "ListSharedEndpointsResult$Endpoints": "<p>The list of endpoints associated with the specified Outpost that have been shared by Amazon Web Services Resource Access Manager (RAM).</p>"
       }
     },
+    "ErrorCode": {
+      "base": null,
+      "refs": {
+        "FailedReason$ErrorCode": "<p>The failure code, if any, for a create or delete endpoint operation.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
         "AccessDeniedException$Message": null,
         "ConflictException$Message": null,
         "InternalServerException$Message": null,
+        "OutpostOfflineException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ThrottlingException$Message": null,
         "ValidationException$Message": null
+      }
+    },
+    "FailedReason": {
+      "base": "<p>The failure reason, if any, for a create or delete endpoint operation.</p>",
+      "refs": {
+        "Endpoint$FailedReason": "<p>The failure reason, if any, for a create or delete endpoint operation.</p>"
       }
     },
     "InternalServerException": {
@@ -156,6 +169,12 @@
         "ListEndpointsRequest$MaxResults": "<p>The maximum number of endpoints that will be returned in the response.</p>",
         "ListOutpostsWithS3Request$MaxResults": "<p>The maximum number of Outposts to return. The limit is 100.</p>",
         "ListSharedEndpointsRequest$MaxResults": "<p>The maximum number of endpoints that will be returned in the response.</p>"
+      }
+    },
+    "Message": {
+      "base": null,
+      "refs": {
+        "FailedReason$Message": "<p>Additional error details describing the endpoint failure and recommended action.</p>"
       }
     },
     "NetworkInterface": {
@@ -207,6 +226,11 @@
         "Endpoint$OutpostsId": "<p>The ID of the Outposts.</p>",
         "ListSharedEndpointsRequest$OutpostId": "<p>The ID of the Amazon Web Services Outpost.</p>",
         "Outpost$OutpostId": "<p>Specifies the unique identifier for the outpost.</p>"
+      }
+    },
+    "OutpostOfflineException": {
+      "base": "<p>The service link connection to your Outposts home Region is down. Check your connection and try again.</p>",
+      "refs": {
       }
     },
     "Outposts": {

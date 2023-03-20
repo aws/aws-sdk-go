@@ -27,7 +27,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"OutpostOfflineException"}
       ]
     },
     "DeleteEndpoint":{
@@ -42,7 +43,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"OutpostOfflineException"}
       ]
     },
     "ListEndpoints":{
@@ -174,7 +176,8 @@
         "SubnetId":{"shape":"SubnetId"},
         "SecurityGroupId":{"shape":"SecurityGroupId"},
         "AccessType":{"shape":"EndpointAccessType"},
-        "CustomerOwnedIpv4Pool":{"shape":"CustomerOwnedIpv4Pool"}
+        "CustomerOwnedIpv4Pool":{"shape":"CustomerOwnedIpv4Pool"},
+        "FailedReason":{"shape":"FailedReason"}
       }
     },
     "EndpointAccessType":{
@@ -197,14 +200,24 @@
       "enum":[
         "Pending",
         "Available",
-        "Deleting"
+        "Deleting",
+        "Create_Failed",
+        "Delete_Failed"
       ]
     },
     "Endpoints":{
       "type":"list",
       "member":{"shape":"Endpoint"}
     },
+    "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
+    "FailedReason":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"Message"}
+      }
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -291,6 +304,7 @@
       "max":100,
       "min":0
     },
+    "Message":{"type":"string"},
     "NetworkInterface":{
       "type":"structure",
       "members":{
@@ -324,6 +338,14 @@
     "OutpostId":{
       "type":"string",
       "pattern":"^(op-[a-f0-9]{17}|\\d{12}|ec2)$"
+    },
+    "OutpostOfflineException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "Outposts":{
       "type":"list",

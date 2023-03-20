@@ -22,6 +22,27 @@
         "title": "To delete a scaling policy"
       }
     ],
+    "DeleteScheduledAction": [
+      {
+        "input": {
+          "ResourceId": "fleet/sample-fleet",
+          "ScalableDimension": "appstream:fleet:DesiredCapacity",
+          "ScheduledActionName": "my-recurring-action",
+          "ServiceNamespace": "appstream"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example deletes a scheduled action for the AppStream 2.0 fleet called sample-fleet.",
+        "id": "to-delete-a-scheduled-action-1677963329606",
+        "title": "To delete a scheduled action"
+      }
+    ],
     "DeregisterScalableTarget": [
       {
         "input": {
@@ -156,6 +177,73 @@
         "title": "To describe scaling policies"
       }
     ],
+    "DescribeScheduledActions": [
+      {
+        "input": {
+          "ServiceNamespace": "dynamodb"
+        },
+        "output": {
+          "ScheduledActions": [
+            {
+              "CreationTime": 1561571888.361,
+              "ResourceId": "table/my-table",
+              "ScalableDimension": "dynamodb:table:WriteCapacityUnits",
+              "ScalableTargetAction": {
+                "MaxCapacity": 20,
+                "MinCapacity": 15
+              },
+              "Schedule": "at(2019-05-20T18:35:00)",
+              "ScheduledActionARN": "arn:aws:autoscaling:us-west-2:123456789012:scheduledAction:2d36aa3b-cdf9-4565-b290-81db519b227d:resource/dynamodb/table/my-table:scheduledActionName/my-first-scheduled-action",
+              "ScheduledActionName": "my-first-scheduled-action",
+              "ServiceNamespace": "dynamodb"
+            },
+            {
+              "CreationTime": 1561571946.021,
+              "ResourceId": "table/my-table",
+              "ScalableDimension": "dynamodb:table:WriteCapacityUnits",
+              "ScalableTargetAction": {
+                "MaxCapacity": 10,
+                "MinCapacity": 5
+              },
+              "Schedule": "at(2019-05-20T18:40:00)",
+              "ScheduledActionARN": "arn:aws:autoscaling:us-west-2:123456789012:scheduledAction:2d36aa3b-cdf9-4565-b290-81db519b227d:resource/dynamodb/table/my-table:scheduledActionName/my-second-scheduled-action",
+              "ScheduledActionName": "my-second-scheduled-action",
+              "ServiceNamespace": "dynamodb"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example describes the scheduled actions for the dynamodb service namespace.",
+        "id": "to-describe-scheduled-actions-1677965249349",
+        "title": "To describe scheduled actions"
+      }
+    ],
+    "ListTagsForResource": [
+      {
+        "input": {
+          "ResourceARN": "arn:aws:application-autoscaling:us-west-2:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123"
+        },
+        "output": {
+          "Tags": {
+            "environment": "production"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example lists the tag key names and values that are attached to the scalable target specified by its ARN.",
+        "id": "to-list-tags-for-a-scalable-target-1677971474903",
+        "title": "To list tags for a scalable target"
+      }
+    ],
     "PutScalingPolicy": [
       {
         "input": {
@@ -197,6 +285,31 @@
         "title": "To apply a target tracking scaling policy with a predefined metric specification"
       }
     ],
+    "PutScheduledAction": [
+      {
+        "input": {
+          "ResourceId": "table/TestTable",
+          "ScalableDimension": "dynamodb:table:WriteCapacityUnits",
+          "ScalableTargetAction": {
+            "MinCapacity": 6
+          },
+          "Schedule": "cron(15 12 * * ? *)",
+          "ScheduledActionName": "my-recurring-action",
+          "ServiceNamespace": "dynamodb"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example adds a scheduled action to a DynamoDB table called TestTable to scale out on a recurring schedule. On the specified schedule (every day at 12:15pm UTC), if the current capacity is below the value specified for MinCapacity, Application Auto Scaling scales out to the value specified by MinCapacity.",
+        "id": "to-create-a-recurring-scheduled-action-1677970068621",
+        "title": "To create a recurring scheduled action"
+      }
+    ],
     "RegisterScalableTarget": [
       {
         "input": {
@@ -215,6 +328,48 @@
         "description": "This example registers a scalable target from an Amazon ECS service called web-app that is running on the default cluster, with a minimum desired count of 1 task and a maximum desired count of 10 tasks.",
         "id": "to-register-a-new-scalable-target-1470864910380",
         "title": "To register an ECS service as a scalable target"
+      }
+    ],
+    "TagResource": [
+      {
+        "input": {
+          "ResourceARN": "arn:aws:application-autoscaling:us-west-2:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123",
+          "Tags": {
+            "environment": "production"
+          }
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example adds a tag with the key name \"environment\" and the value \"production\" to the scalable target specified by its ARN.",
+        "id": "to-add-a-tag-to-a-scalable-target-1677970764620",
+        "title": "To add a tag to a scalable target"
+      }
+    ],
+    "UntagResource": [
+      {
+        "input": {
+          "ResourceARN": "arn:aws:application-autoscaling:us-west-2:123456789012:scalable-target/1234abcd56ab78cd901ef1234567890ab123",
+          "TagKeys": [
+            "environment"
+          ]
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example removes the tag pair with the key name \"environment\" from the scalable target specified by its ARN.",
+        "id": "to-remove-a-tag-from-a-scalable-target-1677971117168",
+        "title": "To remove a tag from a scalable target"
       }
     ]
   }

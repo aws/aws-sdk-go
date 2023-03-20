@@ -657,7 +657,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"DraftUploadOutOfSyncException"},
         {"shape":"ResourceAlreadyCheckedOutException"},
-        {"shape":"InvalidPasswordException"}
+        {"shape":"InvalidPasswordException"},
+        {"shape":"InvalidArgumentException"}
       ]
     },
     "RemoveAllResourcePermissions":{
@@ -707,6 +708,22 @@
         {"shape":"FailedDependencyException"},
         {"shape":"InvalidOperationException"},
         {"shape":"UnauthorizedOperationException"}
+      ]
+    },
+    "SearchResources":{
+      "name":"SearchResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/api/v1/search",
+        "responseCode":200
+      },
+      "input":{"shape":"SearchResourcesRequest"},
+      "output":{"shape":"SearchResourcesResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"UnauthorizedResourceAccessException"},
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     },
     "UpdateDocument":{
@@ -924,6 +941,14 @@
         "ShareResults":{"shape":"ShareResultsList"}
       }
     },
+    "AdditionalResponseFieldType":{
+      "type":"string",
+      "enum":["WEBURL"]
+    },
+    "AdditionalResponseFieldsList":{
+      "type":"list",
+      "member":{"shape":"AdditionalResponseFieldType"}
+    },
     "AuthenticationHeaderType":{
       "type":"string",
       "max":8199,
@@ -970,7 +995,8 @@
         "Contributor":{"shape":"User"},
         "CreatedTimestamp":{"shape":"TimestampType"},
         "CommentStatus":{"shape":"CommentStatusType"},
-        "RecipientId":{"shape":"IdType"}
+        "RecipientId":{"shape":"IdType"},
+        "ContributorId":{"shape":"IdType"}
       }
     },
     "CommentStatusType":{
@@ -1009,6 +1035,20 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ContentCategoryType":{
+      "type":"string",
+      "enum":[
+        "IMAGE",
+        "DOCUMENT",
+        "PDF",
+        "SPREADSHEET",
+        "PRESENTATION",
+        "AUDIO",
+        "VIDEO",
+        "SOURCE_CODE",
+        "OTHER"
+      ]
     },
     "CreateCommentRequest":{
       "type":"structure",
@@ -1206,6 +1246,13 @@
       "max":256,
       "min":1,
       "pattern":"[a-zA-Z0-9._+-/=][a-zA-Z0-9 ._+-/=]*"
+    },
+    "DateRangeType":{
+      "type":"structure",
+      "members":{
+        "StartValue":{"shape":"TimestampType"},
+        "EndValue":{"shape":"TimestampType"}
+      }
     },
     "DeactivateUserRequest":{
       "type":"structure",
@@ -1983,6 +2030,21 @@
       "min":1,
       "pattern":"[\\w,]+"
     },
+    "Filters":{
+      "type":"structure",
+      "members":{
+        "TextLocales":{"shape":"TextLocaleTypeList"},
+        "ContentCategories":{"shape":"SearchContentCategoryTypeList"},
+        "ResourceTypes":{"shape":"SearchResourceTypeList"},
+        "Labels":{"shape":"SearchLabelList"},
+        "Principals":{"shape":"SearchPrincipalTypeList"},
+        "AncestorIds":{"shape":"SearchAncestorIdList"},
+        "SearchCollectionTypes":{"shape":"SearchCollectionTypeList"},
+        "SizeRange":{"shape":"LongRangeType"},
+        "CreatedRange":{"shape":"DateRangeType"},
+        "ModifiedRange":{"shape":"DateRangeType"}
+      }
+    },
     "FolderContentType":{
       "type":"string",
       "enum":[
@@ -2336,6 +2398,42 @@
       "error":{"httpStatusCode":401},
       "exception":true
     },
+    "LanguageCodeType":{
+      "type":"string",
+      "enum":[
+        "AR",
+        "BG",
+        "BN",
+        "DA",
+        "DE",
+        "CS",
+        "EL",
+        "EN",
+        "ES",
+        "FA",
+        "FI",
+        "FR",
+        "HI",
+        "HU",
+        "ID",
+        "IT",
+        "JA",
+        "KO",
+        "LT",
+        "LV",
+        "NL",
+        "NO",
+        "PT",
+        "RO",
+        "RU",
+        "SV",
+        "SW",
+        "TH",
+        "TR",
+        "ZH",
+        "DEFAULT"
+      ]
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -2365,6 +2463,14 @@
         "default"
       ]
     },
+    "LongRangeType":{
+      "type":"structure",
+      "members":{
+        "StartValue":{"shape":"LongType"},
+        "EndValue":{"shape":"LongType"}
+      }
+    },
+    "LongType":{"type":"long"},
     "MarkerType":{
       "type":"string",
       "max":2048,
@@ -2377,12 +2483,28 @@
       "min":0,
       "sensitive":true
     },
+    "NextMarkerType":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"[\\d]+"
+    },
     "NotificationOptions":{
       "type":"structure",
       "members":{
         "SendEmail":{"shape":"BooleanType"},
         "EmailMessage":{"shape":"MessageType"}
       }
+    },
+    "OrderByFieldType":{
+      "type":"string",
+      "enum":[
+        "RELEVANCE",
+        "NAME",
+        "SIZE",
+        "CREATED_TIMESTAMP",
+        "MODIFIED_TIMESTAMP"
+      ]
     },
     "OrderType":{
       "type":"string",
@@ -2444,6 +2566,15 @@
     "PrincipalList":{
       "type":"list",
       "member":{"shape":"Principal"}
+    },
+    "PrincipalRoleType":{
+      "type":"string",
+      "enum":[
+        "VIEWER",
+        "CONTRIBUTOR",
+        "OWNER",
+        "COOWNER"
+      ]
     },
     "PrincipalType":{
       "type":"string",
@@ -2550,7 +2681,8 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"[\\u0020-\\u202D\\u202F-\\uFFFF]+"
+      "pattern":"[\\u0020-\\u202D\\u202F-\\uFFFF]+",
+      "sensitive":true
     },
     "ResourcePath":{
       "type":"structure",
@@ -2592,6 +2724,38 @@
         "DOCUMENT"
       ]
     },
+    "ResponseItem":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"ResponseItemType"},
+        "WebUrl":{"shape":"ResponseItemWebUrl"},
+        "DocumentMetadata":{"shape":"DocumentMetadata"},
+        "FolderMetadata":{"shape":"FolderMetadata"},
+        "CommentMetadata":{"shape":"CommentMetadata"},
+        "DocumentVersionMetadata":{"shape":"DocumentVersionMetadata"}
+      }
+    },
+    "ResponseItemType":{
+      "type":"string",
+      "enum":[
+        "DOCUMENT",
+        "FOLDER",
+        "COMMENT",
+        "DOCUMENT_VERSION"
+      ]
+    },
+    "ResponseItemWebUrl":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\u0020-\\uFFFF]+",
+      "sensitive":true
+    },
+    "ResponseItemsList":{
+      "type":"list",
+      "member":{"shape":"ResponseItem"},
+      "max":100
+    },
     "RestoreDocumentVersionsRequest":{
       "type":"structure",
       "required":["DocumentId"],
@@ -2624,11 +2788,78 @@
         "COOWNER"
       ]
     },
+    "SearchAncestorId":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "SearchAncestorIdList":{
+      "type":"list",
+      "member":{"shape":"SearchAncestorId"},
+      "max":10
+    },
+    "SearchCollectionType":{
+      "type":"string",
+      "enum":[
+        "OWNED",
+        "SHARED_WITH_ME"
+      ]
+    },
+    "SearchCollectionTypeList":{
+      "type":"list",
+      "member":{"shape":"SearchCollectionType"},
+      "max":2
+    },
+    "SearchContentCategoryTypeList":{
+      "type":"list",
+      "member":{"shape":"ContentCategoryType"},
+      "max":9
+    },
+    "SearchLabel":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "SearchLabelList":{
+      "type":"list",
+      "member":{"shape":"SearchLabel"},
+      "max":10
+    },
     "SearchMarkerType":{
       "type":"string",
       "max":12288,
       "min":1,
       "pattern":"[\\u0000-\\u00FF]+"
+    },
+    "SearchPrincipalRoleList":{
+      "type":"list",
+      "member":{"shape":"PrincipalRoleType"},
+      "max":4
+    },
+    "SearchPrincipalType":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"IdType"},
+        "Roles":{"shape":"SearchPrincipalRoleList"}
+      }
+    },
+    "SearchPrincipalTypeList":{
+      "type":"list",
+      "member":{"shape":"SearchPrincipalType"},
+      "max":10
+    },
+    "SearchQueryScopeType":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "CONTENT"
+      ]
+    },
+    "SearchQueryScopeTypeList":{
+      "type":"list",
+      "member":{"shape":"SearchQueryScopeType"},
+      "max":2
     },
     "SearchQueryType":{
       "type":"string",
@@ -2636,6 +2867,62 @@
       "min":1,
       "pattern":"[\\u0020-\\uFFFF]+",
       "sensitive":true
+    },
+    "SearchResourceType":{
+      "type":"string",
+      "enum":[
+        "FOLDER",
+        "DOCUMENT",
+        "COMMENT",
+        "DOCUMENT_VERSION"
+      ]
+    },
+    "SearchResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"SearchResourceType"},
+      "max":4
+    },
+    "SearchResourcesRequest":{
+      "type":"structure",
+      "members":{
+        "AuthenticationToken":{
+          "shape":"AuthenticationHeaderType",
+          "location":"header",
+          "locationName":"Authentication"
+        },
+        "QueryText":{"shape":"SearchQueryType"},
+        "QueryScopes":{"shape":"SearchQueryScopeTypeList"},
+        "OrganizationId":{"shape":"IdType"},
+        "AdditionalResponseFields":{"shape":"AdditionalResponseFieldsList"},
+        "Filters":{"shape":"Filters"},
+        "OrderBy":{"shape":"SearchResultSortList"},
+        "Limit":{"shape":"SearchResultsLimitType"},
+        "Marker":{"shape":"NextMarkerType"}
+      }
+    },
+    "SearchResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"ResponseItemsList"},
+        "Marker":{"shape":"NextMarkerType"}
+      }
+    },
+    "SearchResultSortList":{
+      "type":"list",
+      "member":{"shape":"SearchSortResult"},
+      "max":1
+    },
+    "SearchResultsLimitType":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "SearchSortResult":{
+      "type":"structure",
+      "members":{
+        "Field":{"shape":"OrderByFieldType"},
+        "Order":{"shape":"SortOrder"}
+      }
     },
     "ServiceUnavailableException":{
       "type":"structure",
@@ -2702,6 +2989,13 @@
       "value":{"shape":"HeaderValueType"}
     },
     "SizeType":{"type":"long"},
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
+    },
     "StorageLimitExceededException":{
       "type":"structure",
       "members":{
@@ -2760,6 +3054,11 @@
     "SubscriptionType":{
       "type":"string",
       "enum":["ALL"]
+    },
+    "TextLocaleTypeList":{
+      "type":"list",
+      "member":{"shape":"LanguageCodeType"},
+      "max":1
     },
     "TimeZoneIdType":{
       "type":"string",
@@ -2930,7 +3229,8 @@
     "UserAttributeValueType":{
       "type":"string",
       "max":64,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "UserFilterType":{
       "type":"string",
@@ -2998,7 +3298,8 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"[\\w\\-+.]+(@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]+)?"
+      "pattern":"[\\w\\-+.]+(@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]+)?",
+      "sensitive":true
     }
   }
 }
