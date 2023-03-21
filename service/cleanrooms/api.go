@@ -2080,6 +2080,9 @@ func (c *CleanRooms) ListConfiguredTableAssociationsRequest(input *ListConfigure
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
 //   - InternalServerException
 //     Unexpected error during processing of request.
 //
@@ -2663,6 +2666,9 @@ func (c *CleanRooms) ListProtectedQueriesRequest(input *ListProtectedQueriesInpu
 //
 // Returned Error Types:
 //
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
 //   - InternalServerException
 //     Unexpected error during processing of request.
 //
@@ -2896,6 +2902,88 @@ func (c *CleanRooms) ListSchemasPagesWithContext(ctx aws.Context, input *ListSch
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListTagsForResource
+func (c *CleanRooms) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS Clean Rooms Service.
+//
+// Lists all of the tags that have been added to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListTagsForResource
+func (c *CleanRooms) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartProtectedQuery = "StartProtectedQuery"
 
 // StartProtectedQueryRequest generates a "aws/request.Request" representing the
@@ -2985,6 +3073,172 @@ func (c *CleanRooms) StartProtectedQuery(input *StartProtectedQueryInput) (*Star
 // for more information on using Contexts.
 func (c *CleanRooms) StartProtectedQueryWithContext(ctx aws.Context, input *StartProtectedQueryInput, opts ...request.Option) (*StartProtectedQueryOutput, error) {
 	req, out := c.StartProtectedQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/TagResource
+func (c *CleanRooms) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS Clean Rooms Service.
+//
+// Tags a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/TagResource
+func (c *CleanRooms) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UntagResource
+func (c *CleanRooms) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS Clean Rooms Service.
+//
+// Removes a tag or list of tags from a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UntagResource
+func (c *CleanRooms) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5452,6 +5706,12 @@ type CreateCollaborationInput struct {
 	//
 	// QueryLogStatus is a required field
 	QueryLogStatus *string `locationName:"queryLogStatus" type:"string" required:"true" enum:"CollaborationQueryLogStatus"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -5563,6 +5823,12 @@ func (s *CreateCollaborationInput) SetName(v string) *CreateCollaborationInput {
 // SetQueryLogStatus sets the QueryLogStatus field's value.
 func (s *CreateCollaborationInput) SetQueryLogStatus(v string) *CreateCollaborationInput {
 	s.QueryLogStatus = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCollaborationInput) SetTags(v map[string]*string) *CreateCollaborationInput {
+	s.Tags = v
 	return s
 }
 
@@ -5745,6 +6011,12 @@ type CreateConfiguredTableAssociationInput struct {
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -5826,6 +6098,12 @@ func (s *CreateConfiguredTableAssociationInput) SetRoleArn(v string) *CreateConf
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateConfiguredTableAssociationInput) SetTags(v map[string]*string) *CreateConfiguredTableAssociationInput {
+	s.Tags = v
+	return s
+}
+
 type CreateConfiguredTableAssociationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5886,6 +6164,12 @@ type CreateConfiguredTableInput struct {
 	//
 	// TableReference is a required field
 	TableReference *TableReference `locationName:"tableReference" type:"structure" required:"true"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -5969,6 +6253,12 @@ func (s *CreateConfiguredTableInput) SetTableReference(v *TableReference) *Creat
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateConfiguredTableInput) SetTags(v map[string]*string) *CreateConfiguredTableInput {
+	s.Tags = v
+	return s
+}
+
 type CreateConfiguredTableOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6015,6 +6305,12 @@ type CreateMembershipInput struct {
 	//
 	// QueryLogStatus is a required field
 	QueryLogStatus *string `locationName:"queryLogStatus" type:"string" required:"true" enum:"MembershipQueryLogStatus"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -6063,6 +6359,12 @@ func (s *CreateMembershipInput) SetCollaborationIdentifier(v string) *CreateMemb
 // SetQueryLogStatus sets the QueryLogStatus field's value.
 func (s *CreateMembershipInput) SetQueryLogStatus(v string) *CreateMembershipInput {
 	s.QueryLogStatus = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMembershipInput) SetTags(v map[string]*string) *CreateMembershipInput {
+	s.Tags = v
 	return s
 }
 
@@ -8358,6 +8660,89 @@ func (s *ListSchemasOutput) SetSchemaSummaries(v []*SchemaSummary) *ListSchemasO
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) associated with the resource you want to list
+	// tags on.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of objects specifying each key name and value.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // Basic metadata used to construct a new member.
 type MemberSpecification struct {
 	_ struct{} `type:"structure"`
@@ -9580,7 +9965,7 @@ type Schema struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The partition keys for the data set underlying this schema.
+	// The partition keys for the dataset underlying this schema.
 	//
 	// PartitionKeys is a required field
 	PartitionKeys []*Column `locationName:"partitionKeys" type:"list" required:"true"`
@@ -10020,8 +10405,8 @@ func (s *StartProtectedQueryOutput) SetProtectedQuery(v *ProtectedQuery) *StartP
 	return s
 }
 
-// A pointer to the data set that underlies this table. Currently, this can
-// only be an AWS Glue table.
+// A pointer to the dataset that underlies this table. Currently, this can only
+// be an AWS Glue table.
 type TableReference struct {
 	_ struct{} `type:"structure"`
 
@@ -10066,6 +10451,91 @@ func (s *TableReference) Validate() error {
 func (s *TableReference) SetGlue(v *GlueTableReference) *TableReference {
 	s.Glue = v
 	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) associated with the resource you want to tag.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// A map of objects specifying each key name and value.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Request was denied due to request throttling.
@@ -10130,6 +10600,92 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) associated with the resource you want to remove
+	// the tag from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// A list of key names of tags to be removed.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateCollaborationInput struct {
@@ -11322,6 +11878,9 @@ const (
 
 	// ValidationExceptionReasonInvalidConfiguration is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidConfiguration = "INVALID_CONFIGURATION"
+
+	// ValidationExceptionReasonInvalidQuery is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidQuery = "INVALID_QUERY"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -11329,5 +11888,6 @@ func ValidationExceptionReason_Values() []string {
 	return []string{
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonInvalidConfiguration,
+		ValidationExceptionReasonInvalidQuery,
 	}
 }

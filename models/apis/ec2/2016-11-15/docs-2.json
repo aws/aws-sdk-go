@@ -12,7 +12,7 @@
     "AdvertiseByoipCidr": "<p>Advertises an IPv4 or IPv6 address range that is provisioned for use with your Amazon Web Services resources through bring your own IP addresses (BYOIP).</p> <p>You can perform this operation at most once every 10 seconds, even if you specify different address ranges each time.</p> <p>We recommend that you stop advertising the BYOIP CIDR from other locations when you advertise it from Amazon Web Services. To minimize down time, you can configure your Amazon Web Services resources to use an address from a BYOIP CIDR before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through Amazon Web Services.</p> <p>It can take a few minutes before traffic to the specified addresses starts routing to Amazon Web Services because of BGP propagation delays.</p> <p>To stop advertising the BYOIP CIDR, use <a>WithdrawByoipCidr</a>.</p>",
     "AllocateAddress": "<p>Allocates an Elastic IP address to your Amazon Web Services account. After you allocate the Elastic IP address you can associate it with an instance or network interface. After you release an Elastic IP address, it is released to the IP address pool and can be allocated to a different Amazon Web Services account.</p> <p>You can allocate an Elastic IP address from an address pool owned by Amazon Web Services or from an address pool created from a public IPv4 address range that you have brought to Amazon Web Services for use with your Amazon Web Services resources using bring your own IP addresses (BYOIP). For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-VPC] If you release an Elastic IP address, you might be able to recover it. You cannot recover an Elastic IP address that you released after it is allocated to another Amazon Web Services account. You cannot recover an Elastic IP address for EC2-Classic. To attempt to recover an Elastic IP address that you released, specify it in this operation.</p> <p>An Elastic IP address is for use either in the EC2-Classic platform or in a VPC. By default, you can allocate 5 Elastic IP addresses for EC2-Classic per Region and 5 Elastic IP addresses for EC2-VPC per Region.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can allocate a carrier IP address which is a public IP address from a telecommunication carrier, to a network interface which resides in a subnet in a Wavelength Zone (for example an EC2 instance). </p> <note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note>",
     "AllocateHosts": "<p>Allocates a Dedicated Host to your account. At a minimum, specify the supported instance type or instance family, the Availability Zone in which to allocate the host, and the number of hosts to allocate.</p>",
-    "AllocateIpamPoolCidr": "<p>Allocate a CIDR from an IPAM pool. In IPAM, an allocation is a CIDR assignment from an IPAM pool to another IPAM pool or to a resource. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/allocate-cidrs-ipam.html\">Allocate CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
+    "AllocateIpamPoolCidr": "<p>Allocate a CIDR from an IPAM pool. In IPAM, an allocation is a CIDR assignment from an IPAM pool to another IPAM pool or to a resource. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/allocate-cidrs-ipam.html\">Allocate CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>.</p> <note> <p>This action creates an allocation with strong consistency. The returned CIDR will not overlap with any other allocations from the same pool.</p> </note>",
     "ApplySecurityGroupsToClientVpnTargetNetwork": "<p>Applies a security group to the association between the target network and the Client VPN endpoint. This action replaces the existing security groups with the specified security groups.</p>",
     "AssignIpv6Addresses": "<p>Assigns one or more IPv6 addresses to the specified network interface. You can specify one or more specific IPv6 addresses, or you can specify the number of IPv6 addresses to be automatically assigned from within the subnet's IPv6 CIDR block range. You can assign as many IPv6 addresses to a network interface as you can assign private IPv4 addresses, and the limit varies per instance type. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI\">IP Addresses Per Network Interface Per Instance Type</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You must specify either the IPv6 addresses or the IPv6 address count in the request. </p> <p>You can optionally use Prefix Delegation on the network interface. You must specify either the IPV6 Prefix Delegation prefixes, or the IPv6 Prefix Delegation count. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html\"> Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AssignPrivateIpAddresses": "<p>Assigns one or more secondary private IP addresses to the specified network interface.</p> <p>You can specify one or more specific secondary IP addresses, or you can specify the number of secondary IP addresses to be automatically assigned within the subnet's CIDR block range. The number of secondary IP addresses that you can assign to an instance varies by instance type. For information about instance types, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about Elastic IP addresses, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you move a secondary private IP address to another network interface, any Elastic IP address that is associated with the IP address is also moved.</p> <p>Remapping an IP address is an asynchronous operation. When you move an IP address from one network interface to another, check <code>network/interfaces/macs/mac/local-ipv4s</code> in the instance metadata to confirm that the remapping is complete.</p> <p>You must specify either the IP addresses or the IP address count in the request.</p> <p>You can optionally use Prefix Delegation on the network interface. You must specify either the IPv4 Prefix Delegation prefixes, or the IPv4 Prefix Delegation count. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html\"> Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -91,7 +91,7 @@
     "CreateNetworkAcl": "<p>Creates a network ACL in a VPC. Network ACLs provide an optional layer of security (in addition to security groups) for the instances in your VPC.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html\">Network ACLs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateNetworkAclEntry": "<p>Creates an entry (a rule) in a network ACL with the specified rule number. Each network ACL has a set of numbered ingress rules and a separate set of numbered egress rules. When determining whether a packet should be allowed in or out of a subnet associated with the ACL, we process the entries in the ACL according to the rule numbers, in ascending order. Each network ACL has a set of ingress rules and a separate set of egress rules.</p> <p>We recommend that you leave room between the rule numbers (for example, 100, 110, 120, ...), and not number them one right after the other (for example, 101, 102, 103, ...). This makes it easier to add a rule between existing ones without having to renumber the rules.</p> <p>After you add an entry, you can't modify it; you must either replace it, or create an entry and delete the old one.</p> <p>For more information about network ACLs, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html\">Network ACLs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateNetworkInsightsAccessScope": "<p>Creates a Network Access Scope.</p> <p>Amazon Web Services Network Access Analyzer enables cloud networking and cloud operations teams to verify that their networks on Amazon Web Services conform to their network security and governance objectives. For more information, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/network-access-analyzer/\">Amazon Web Services Network Access Analyzer Guide</a>.</p>",
-    "CreateNetworkInsightsPath": "<p>Creates a path to analyze for reachability.</p> <p>Reachability Analyzer enables you to analyze and debug network reachability between two resources in your virtual private cloud (VPC). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/reachability/\">What is Reachability Analyzer</a>.</p>",
+    "CreateNetworkInsightsPath": "<p>Creates a path to analyze for reachability.</p> <p>Reachability Analyzer enables you to analyze and debug network reachability between two resources in your virtual private cloud (VPC). For more information, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/reachability/\">Reachability Analyzer Guide</a>.</p>",
     "CreateNetworkInterface": "<p>Creates a network interface in the specified subnet.</p> <p>The number of IP addresses you can assign to a network interface varies by instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI\">IP Addresses Per ENI Per Instance Type</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>For more information about network interfaces, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html\">Elastic network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateNetworkInterfacePermission": "<p>Grants an Amazon Web Services-authorized account permission to attach the specified network interface to an instance in their account.</p> <p>You can grant permission to a single Amazon Web Services account only, and only one account at a time.</p>",
     "CreatePlacementGroup": "<p>Creates a placement group in which to launch instances. The strategy of the placement group determines how the instances are organized within the group. </p> <p>A <code>cluster</code> placement group is a logical grouping of instances within a single Availability Zone that benefit from low network latency, high network throughput. A <code>spread</code> placement group places instances on distinct hardware. A <code>partition</code> placement group places groups of instances in different partitions, where instances in one partition do not share the same hardware with instances in another partition.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement groups</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -102,7 +102,7 @@
     "CreateRoute": "<p>Creates a route in a route table within a VPC.</p> <p>You must specify either a destination CIDR block or a prefix list ID. You must also specify exactly one of the resources from the parameter list.</p> <p>When determining how to route traffic, we use the route with the most specific match. For example, traffic is destined for the IPv4 address <code>192.0.2.3</code>, and the route table includes the following two IPv4 routes:</p> <ul> <li> <p> <code>192.0.2.0/24</code> (goes to some target A)</p> </li> <li> <p> <code>192.0.2.0/28</code> (goes to some target B)</p> </li> </ul> <p>Both routes apply to the traffic destined for <code>192.0.2.3</code>. However, the second route in the list covers a smaller number of IP addresses and is therefore more specific, so we use that route to determine where to target the traffic.</p> <p>For more information about route tables, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateRouteTable": "<p>Creates a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateSecurityGroup": "<p>Creates a security group.</p> <p>A security group acts as a virtual firewall for your instance to control inbound and outbound traffic. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Amazon EC2 security groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html\">Security groups for your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>When you create a security group, you specify a friendly name of your choice. You can have a security group for use in EC2-Classic with the same name as a security group for use in a VPC. However, you can't have two security groups for use in EC2-Classic with the same name or two security groups for use in a VPC with the same name.</p> <p>You have a default security group for use in EC2-Classic and a default security group for use in your VPC. If you don't specify a security group when you launch an instance, the instance is launched into the appropriate default security group. A default security group includes a default rule that grants instances unrestricted network access to each other.</p> <p>You can add or remove rules from your security groups using <a>AuthorizeSecurityGroupIngress</a>, <a>AuthorizeSecurityGroupEgress</a>, <a>RevokeSecurityGroupIngress</a>, and <a>RevokeSecurityGroupEgress</a>.</p> <p>For more information about VPC security group limits, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html\">Amazon VPC Limits</a>.</p> <note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note>",
-    "CreateSnapshot": "<p>Creates a snapshot of an EBS volume and stores it in Amazon S3. You can use snapshots for backups, to make copies of EBS volumes, and to save data before shutting down an instance.</p> <p>You can create snapshots of volumes in a Region and volumes on an Outpost. If you create a snapshot of a volume in a Region, the snapshot must be stored in the same Region as the volume. If you create a snapshot of a volume on an Outpost, the snapshot can be stored on the same Outpost as the volume, or in the Region for that Outpost.</p> <p>When a snapshot is created, any Amazon Web Services Marketplace product codes that are associated with the source volume are propagated to the snapshot.</p> <p>You can take a snapshot of an attached volume that is in use. However, snapshots only capture data that has been written to your Amazon EBS volume at the time the snapshot command is issued; this might exclude any data that has been cached by any applications or the operating system. If you can pause any file systems on the volume long enough to take a snapshot, your snapshot should be complete. However, if you cannot pause all file writes to the volume, you should unmount the volume from within the instance, issue the snapshot command, and then remount the volume to ensure a consistent and complete snapshot. You may remount and use your volume while the snapshot status is <code>pending</code>.</p> <p>To create a snapshot for Amazon EBS volumes that serve as root devices, you should stop the instance before taking the snapshot.</p> <p>Snapshots that are taken from encrypted volumes are automatically encrypted. Volumes that are created from encrypted snapshots are also automatically encrypted. Your encrypted volumes and any associated snapshots always remain protected.</p> <p>You can tag your snapshots during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html\">Amazon Elastic Block Store</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "CreateSnapshot": "<p>Creates a snapshot of an EBS volume and stores it in Amazon S3. You can use snapshots for backups, to make copies of EBS volumes, and to save data before shutting down an instance.</p> <p>You can create snapshots of volumes in a Region and volumes on an Outpost. If you create a snapshot of a volume in a Region, the snapshot must be stored in the same Region as the volume. If you create a snapshot of a volume on an Outpost, the snapshot can be stored on the same Outpost as the volume, or in the Region for that Outpost.</p> <p>When a snapshot is created, any Amazon Web Services Marketplace product codes that are associated with the source volume are propagated to the snapshot.</p> <p>You can take a snapshot of an attached volume that is in use. However, snapshots only capture data that has been written to your Amazon EBS volume at the time the snapshot command is issued; this might exclude any data that has been cached by any applications or the operating system. If you can pause any file systems on the volume long enough to take a snapshot, your snapshot should be complete. However, if you cannot pause all file writes to the volume, you should unmount the volume from within the instance, issue the snapshot command, and then remount the volume to ensure a consistent and complete snapshot. You may remount and use your volume while the snapshot status is <code>pending</code>.</p> <p>When you create a snapshot for an EBS volume that serves as a root device, we recommend that you stop the instance before taking the snapshot.</p> <p>Snapshots that are taken from encrypted volumes are automatically encrypted. Volumes that are created from encrypted snapshots are also automatically encrypted. Your encrypted volumes and any associated snapshots always remain protected.</p> <p>You can tag your snapshots during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html\">Amazon Elastic Block Store</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateSnapshots": "<p>Creates crash-consistent snapshots of multiple EBS volumes and stores the data in S3. Volumes are chosen by specifying an instance. Any attached volumes will produce one snapshot each that is crash-consistent across the instance.</p> <p>You can include all of the volumes currently attached to the instance, or you can exclude the root volume or specific data (non-root) volumes from the multi-volume snapshot set.</p> <p>You can create multi-volume snapshots of instances in a Region and instances on an Outpost. If you create snapshots from an instance in a Region, the snapshots must be stored in the same Region as the instance. If you create snapshots from an instance on an Outpost, the snapshots can be stored on the same Outpost as the instance, or in the Region for that Outpost.</p>",
     "CreateSpotDatafeedSubscription": "<p>Creates a data feed for Spot Instances, enabling you to view Spot Instance usage logs. You can create one data feed per Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html\">Spot Instance data feed</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
     "CreateStoreImageTask": "<p>Stores an AMI as a single object in an Amazon S3 bucket.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -429,7 +429,7 @@
     "GetIpamAddressHistory": "<p>Retrieve historical information about a CIDR within an IPAM scope. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/view-history-cidr-ipam.html\">View the history of IP addresses</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
     "GetIpamDiscoveredAccounts": "<p>Gets IPAM discovered accounts. A discovered account is an Amazon Web Services account that is monitored under a resource discovery. If you have integrated IPAM with Amazon Web Services Organizations, all accounts in the organization are discovered accounts. Only the IPAM account can get all discovered accounts in the organization.</p>",
     "GetIpamDiscoveredResourceCidrs": "<p>Returns the resource CIDRs that are monitored as part of a resource discovery. A discovered resource is a resource CIDR monitored under a resource discovery. The following resources can be discovered: VPCs, Public IPv4 pools, VPC subnets, and Elastic IP addresses. </p>",
-    "GetIpamPoolAllocations": "<p>Get a list of all the CIDR allocations in an IPAM pool.</p>",
+    "GetIpamPoolAllocations": "<p>Get a list of all the CIDR allocations in an IPAM pool.</p> <note> <p>If you use this action after <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AllocateIpamPoolCidr.html\">AllocateIpamPoolCidr</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ReleaseIpamPoolAllocation.html\">ReleaseIpamPoolAllocation</a>, note that all EC2 API actions follow an <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#eventual-consistency\">eventual consistency</a> model.</p> </note>",
     "GetIpamPoolCidrs": "<p>Get the CIDRs provisioned to an IPAM pool.</p>",
     "GetIpamResourceCidrs": "<p>Returns resource CIDRs managed by IPAM in a given scope. If an IPAM is associated with more than one resource discovery, the resource CIDRs across all of the resource discoveries is returned. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>",
     "GetLaunchTemplateData": "<p>Retrieves the configuration data of the specified instance. You can use this data to create a launch template. </p> <p>This action calls on other describe actions to get instance information. Depending on your instance configuration, you may need to allow the following actions in your IAM policy: <code>DescribeSpotInstanceRequests</code>, <code>DescribeInstanceCreditSpecifications</code>, <code>DescribeVolumes</code>, <code>DescribeInstanceAttribute</code>, and <code>DescribeElasticGpus</code>. Or, you can allow <code>describe*</code> depending on your instance requirements.</p>",
@@ -546,7 +546,7 @@
     "RejectVpcPeeringConnection": "<p>Rejects a VPC peering connection request. The VPC peering connection must be in the <code>pending-acceptance</code> state. Use the <a>DescribeVpcPeeringConnections</a> request to view your outstanding VPC peering connection requests. To delete an active VPC peering connection, or to delete a VPC peering connection request that you initiated, use <a>DeleteVpcPeeringConnection</a>.</p>",
     "ReleaseAddress": "<p>Releases the specified Elastic IP address.</p> <p>[EC2-Classic, default VPC] Releasing an Elastic IP address automatically disassociates it from any instance that it's associated with. To disassociate an Elastic IP address without releasing it, use <a>DisassociateAddress</a>.</p> <note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note> <p>[Nondefault VPC] You must use <a>DisassociateAddress</a> to disassociate the Elastic IP address before you can release it. Otherwise, Amazon EC2 returns an error (<code>InvalidIPAddress.InUse</code>).</p> <p>After releasing an Elastic IP address, it is released to the IP address pool. Be sure to update your DNS records and any servers or devices that communicate with the address. If you attempt to release an Elastic IP address that you already released, you'll get an <code>AuthFailure</code> error if the address is already allocated to another Amazon Web Services account.</p> <p>[EC2-VPC] After you release an Elastic IP address for use in a VPC, you might be able to recover it. For more information, see <a>AllocateAddress</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ReleaseHosts": "<p>When you no longer want to use an On-Demand Dedicated Host it can be released. On-Demand billing is stopped and the host goes into <code>released</code> state. The host ID of Dedicated Hosts that have been released can no longer be specified in another request, for example, to modify the host. You must stop or terminate all instances on a host before it can be released.</p> <p>When Dedicated Hosts are released, it may take some time for them to stop counting toward your limit and you may receive capacity errors when trying to allocate new Dedicated Hosts. Wait a few minutes and then try again.</p> <p>Released hosts still appear in a <a>DescribeHosts</a> response.</p>",
-    "ReleaseIpamPoolAllocation": "<p>Release an allocation within an IPAM pool. You can only use this action to release manual allocations. To remove an allocation for a resource without deleting the resource, set its monitored state to false using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyIpamResourceCidr.html\">ModifyIpamResourceCidr</a>. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/release-pool-alloc-ipam.html\">Release an allocation</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
+    "ReleaseIpamPoolAllocation": "<p>Release an allocation within an IPAM pool. You can only use this action to release manual allocations. To remove an allocation for a resource without deleting the resource, set its monitored state to false using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyIpamResourceCidr.html\">ModifyIpamResourceCidr</a>. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/release-pool-alloc-ipam.html\">Release an allocation</a> in the <i>Amazon VPC IPAM User Guide</i>. </p> <note> <p>All EC2 API actions follow an <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#eventual-consistency\">eventual consistency</a> model.</p> </note>",
     "ReplaceIamInstanceProfileAssociation": "<p>Replaces an IAM instance profile for the specified running instance. You can use this action to change the IAM instance profile that's associated with an instance without having to disassociate the existing IAM instance profile first.</p> <p>Use <a>DescribeIamInstanceProfileAssociations</a> to get the association ID.</p>",
     "ReplaceNetworkAclAssociation": "<p>Changes which network ACL a subnet is associated with. By default when you create a subnet, it's automatically associated with the default network ACL. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html\">Network ACLs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>This is an idempotent operation.</p>",
     "ReplaceNetworkAclEntry": "<p>Replaces an entry (rule) in a network ACL. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html\">Network ACLs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -860,7 +860,7 @@
       }
     },
     "AdditionalDetail": {
-      "base": "<p>Describes an additional detail for a path analysis.</p>",
+      "base": "<p>Describes an additional detail for a path analysis. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/reachability/additional-detail-codes.html\">Reachability Analyzer additional detail codes</a>.</p>",
       "refs": {
         "AdditionalDetailList$member": null
       }
@@ -1086,6 +1086,7 @@
       "base": "<p>Describes a path component.</p>",
       "refs": {
         "AdditionalDetail$Component": "<p>The path component.</p>",
+        "AdditionalDetail$VpcEndpointService": "<p>The VPC endpoint service.</p>",
         "AnalysisComponentList$member": null,
         "AnalysisLoadBalancerTarget$Instance": "<p>Information about the instance.</p>",
         "Explanation$Acl": "<p>The network ACL.</p>",
@@ -1127,6 +1128,7 @@
     "AnalysisComponentList": {
       "base": null,
       "refs": {
+        "AdditionalDetail$LoadBalancers": "<p>The load balancers.</p>",
         "Explanation$LoadBalancerTargetGroups": "<p>The target groups.</p>",
         "Explanation$SecurityGroups": "<p>The security groups.</p>"
       }
@@ -1222,7 +1224,7 @@
     "ArnList": {
       "base": null,
       "refs": {
-        "NetworkInsightsAnalysis$FilterInArns": "<p>The Amazon Resource Names (ARN) of the Amazon Web Services resources that the path must traverse.</p>",
+        "NetworkInsightsAnalysis$FilterInArns": "<p>The Amazon Resource Names (ARN) of the resources that the path must traverse.</p>",
         "StartNetworkInsightsAnalysisRequest$FilterInArns": "<p>The Amazon Resource Names (ARN) of the resources that the path must traverse.</p>"
       }
     },
@@ -8964,7 +8966,7 @@
         "DescribeNetworkInsightsAccessScopeAnalysesRequest$Filters": "<p>There are no supported filters.</p>",
         "DescribeNetworkInsightsAccessScopesRequest$Filters": "<p>There are no supported filters.</p>",
         "DescribeNetworkInsightsAnalysesRequest$Filters": "<p>The filters. The following are the possible values:</p> <ul> <li> <p>path-found - A Boolean value that indicates whether a feasible path is found.</p> </li> <li> <p>status - The status of the analysis (running | succeeded | failed).</p> </li> </ul>",
-        "DescribeNetworkInsightsPathsRequest$Filters": "<p>The filters. The following are the possible values:</p> <ul> <li> <p>destination - The ID of the resource.</p> </li> <li> <p>destination-port - The destination port.</p> </li> <li> <p>protocol - The protocol.</p> </li> <li> <p>source - The ID of the resource.</p> </li> </ul>",
+        "DescribeNetworkInsightsPathsRequest$Filters": "<p>The filters. The following are the possible values:</p> <ul> <li> <p>destination - The ID of the resource.</p> </li> <li> <p>filter-at-source.source-address - The source IPv4 address at the source.</p> </li> <li> <p>filter-at-source.source-port-range - The source port range at the source.</p> </li> <li> <p>filter-at-source.destination-address - The destination IPv4 address at the source.</p> </li> <li> <p>filter-at-source.destination-port-range - The destination port range at the source.</p> </li> <li> <p>filter-at-destination.source-address - The source IPv4 address at the destination.</p> </li> <li> <p>filter-at-destination.source-port-range - The source port range at the destination.</p> </li> <li> <p>filter-at-destination.destination-address - The destination IPv4 address at the destination.</p> </li> <li> <p>filter-at-destination.destination-port-range - The destination port range at the destination.</p> </li> <li> <p>protocol - The protocol.</p> </li> <li> <p>source - The ID of the resource.</p> </li> </ul>",
         "DescribeNetworkInterfacePermissionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>network-interface-permission.network-interface-permission-id</code> - The ID of the permission.</p> </li> <li> <p> <code>network-interface-permission.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface-permission.aws-account-id</code> - The Amazon Web Services account ID.</p> </li> <li> <p> <code>network-interface-permission.aws-service</code> - The Amazon Web Service.</p> </li> <li> <p> <code>network-interface-permission.permission</code> - The type of permission (<code>INSTANCE-ATTACH</code> | <code>EIP-ASSOCIATE</code>).</p> </li> </ul>",
         "DescribeNetworkInterfacesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>addresses.private-ip-address</code> - The private IPv4 addresses associated with the network interface.</p> </li> <li> <p> <code>addresses.primary</code> - Whether the private IPv4 address is the primary IP address associated with the network interface. </p> </li> <li> <p> <code>addresses.association.public-ip</code> - The association ID returned when the network interface was associated with the Elastic IP address (IPv4).</p> </li> <li> <p> <code>addresses.association.owner-id</code> - The owner ID of the addresses associated with the network interface.</p> </li> <li> <p> <code>association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>association.public-dns-name</code> - The public DNS name for the network interface (IPv4).</p> </li> <li> <p> <code>attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>attachment.delete-on-termination</code> - Indicates whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the network interface.</p> </li> <li> <p> <code>description</code> - The description of the network interface.</p> </li> <li> <p> <code>group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>ipv6-addresses.ipv6-address</code> - An IPv6 address associated with the network interface.</p> </li> <li> <p> <code>interface-type</code> - The type of network interface (<code>api_gateway_managed</code> | <code>aws_codestar_connections_managed</code> | <code>branch</code> | <code>efa</code> | <code>gateway_load_balancer</code> | <code>gateway_load_balancer_endpoint</code> | <code>global_accelerator_managed</code> | <code>interface</code> | <code>iot_rules_managed</code> | <code>lambda</code> | <code>load_balancer</code> | <code>nat_gateway</code> | <code>network_load_balancer</code> | <code>quicksight</code> | <code>transit_gateway</code> | <code>trunk</code> | <code>vpc_endpoint</code>).</p> </li> <li> <p> <code>mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the network interface owner.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address or addresses of the network interface.</p> </li> <li> <p> <code>private-dns-name</code> - The private DNS name of the network interface (IPv4).</p> </li> <li> <p> <code>requester-id</code> - The alias or Amazon Web Services account ID of the principal or service that created the network interface.</p> </li> <li> <p> <code>requester-managed</code> - Indicates whether the network interface is being managed by an Amazon Web Service (for example, Amazon Web Services Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the network interface performs source/destination checking. A value of <code>true</code> means checking is enabled, and <code>false</code> means checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>status</code> - The status of the network interface. If the network interface is not attached to an instance, the status is <code>available</code>; if a network interface is attached to an instance the status is <code>in-use</code>.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the network interface.</p> </li> </ul>",
         "DescribePlacementGroupsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - The name of the placement group.</p> </li> <li> <p> <code>group-arn</code> - The Amazon Resource Name (ARN) of the placement group.</p> </li> <li> <p> <code>spread-level</code> - The spread level for the placement group (<code>host</code> | <code>rack</code>). </p> </li> <li> <p> <code>state</code> - The state of the placement group (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>strategy</code> - The strategy of the placement group (<code>cluster</code> | <code>spread</code> | <code>partition</code>).</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
@@ -9041,10 +9043,31 @@
         "SearchTransitGatewayRoutesRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>attachment.transit-gateway-attachment-id</code>- The id of the transit gateway attachment.</p> </li> <li> <p> <code>attachment.resource-id</code> - The resource id of the transit gateway attachment.</p> </li> <li> <p> <code>attachment.resource-type</code> - The attachment resource type. Valid values are <code>vpc</code> | <code>vpn</code> | <code>direct-connect-gateway</code> | <code>peering</code> | <code>connect</code>.</p> </li> <li> <p> <code>prefix-list-id</code> - The ID of the prefix list.</p> </li> <li> <p> <code>route-search.exact-match</code> - The exact match of the specified filter.</p> </li> <li> <p> <code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p> </li> <li> <p> <code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p> </li> <li> <p> <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p> </li> <li> <p> <code>state</code> - The state of the route (<code>active</code> | <code>blackhole</code>).</p> </li> <li> <p> <code>type</code> - The type of route (<code>propagated</code> | <code>static</code>).</p> </li> </ul>"
       }
     },
+    "FilterPortRange": {
+      "base": "<p>Describes a port range.</p>",
+      "refs": {
+        "PathFilter$SourcePortRange": "<p>The source port range.</p>",
+        "PathFilter$DestinationPortRange": "<p>The destination port range.</p>"
+      }
+    },
     "FindingsFound": {
       "base": null,
       "refs": {
         "NetworkInsightsAccessScopeAnalysis$FindingsFound": "<p>Indicates whether there are findings.</p>"
+      }
+    },
+    "FirewallStatefulRule": {
+      "base": "<p>Describes a stateful rule.</p>",
+      "refs": {
+        "Explanation$FirewallStatefulRule": "<p>The Network Firewall stateful rule.</p>",
+        "PathComponent$FirewallStatefulRule": "<p>The Network Firewall stateful rule.</p>"
+      }
+    },
+    "FirewallStatelessRule": {
+      "base": "<p>Describes a stateless rule.</p>",
+      "refs": {
+        "Explanation$FirewallStatelessRule": "<p>The Network Firewall stateless rule.</p>",
+        "PathComponent$FirewallStatelessRule": "<p>The Network Firewall stateless rule.</p>"
       }
     },
     "FleetActivityStatus": {
@@ -10467,6 +10490,12 @@
       "refs": {
       }
     },
+    "ImportManifestUrl": {
+      "base": null,
+      "refs": {
+        "DiskImageDetail$ImportManifestUrl": "<p>A presigned URL for the import manifest stored in Amazon S3 and presented here as an Amazon S3 presigned URL. For information about creating a presigned URL for an Amazon S3 object, read the \"Query String Request Authentication Alternative\" section of the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html\">Authenticating REST Requests</a> topic in the <i>Amazon Simple Storage Service Developer Guide</i>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>"
+      }
+    },
     "ImportSnapshotRequest": {
       "base": null,
       "refs": {
@@ -11770,12 +11799,16 @@
       "base": null,
       "refs": {
         "AnalysisLoadBalancerTarget$Address": "<p>The IP address.</p>",
-        "CreateNetworkInsightsPathRequest$SourceIp": "<p>The IP address of the Amazon Web Services resource that is the source of the path.</p>",
-        "CreateNetworkInsightsPathRequest$DestinationIp": "<p>The IP address of the Amazon Web Services resource that is the destination of the path.</p>",
+        "CreateNetworkInsightsPathRequest$SourceIp": "<p>The IP address of the source.</p>",
+        "CreateNetworkInsightsPathRequest$DestinationIp": "<p>The IP address of the destination.</p>",
         "Explanation$Address": "<p>The IPv4 address, in CIDR notation.</p>",
         "IpAddressList$member": null,
-        "NetworkInsightsPath$SourceIp": "<p>The IP address of the Amazon Web Services resource that is the source of the path.</p>",
-        "NetworkInsightsPath$DestinationIp": "<p>The IP address of the Amazon Web Services resource that is the destination of the path.</p>"
+        "NetworkInsightsPath$SourceIp": "<p>The IP address of the source.</p>",
+        "NetworkInsightsPath$DestinationIp": "<p>The IP address of the destination.</p>",
+        "PathFilter$SourceAddress": "<p>The source IPv4 address.</p>",
+        "PathFilter$DestinationAddress": "<p>The destination IPv4 address.</p>",
+        "PathRequestFilter$SourceAddress": "<p>The source IPv4 address.</p>",
+        "PathRequestFilter$DestinationAddress": "<p>The destination IPv4 address.</p>"
       }
     },
     "IpAddressList": {
@@ -14718,8 +14751,8 @@
     "NetworkInsightsResourceId": {
       "base": null,
       "refs": {
-        "CreateNetworkInsightsPathRequest$Source": "<p>The Amazon Web Services resource that is the source of the path.</p>",
-        "CreateNetworkInsightsPathRequest$Destination": "<p>The Amazon Web Services resource that is the destination of the path.</p>"
+        "CreateNetworkInsightsPathRequest$Source": "<p>The ID or ARN of the source. If the resource is in another account, you must specify an ARN.</p>",
+        "CreateNetworkInsightsPathRequest$Destination": "<p>The ID or ARN of the destination. If the resource is in another account, you must specify an ARN.</p>"
       }
     },
     "NetworkInterface": {
@@ -15134,6 +15167,20 @@
         "NetworkInsightsAnalysis$ReturnPathComponents": "<p>The components in the path from destination to source.</p>"
       }
     },
+    "PathFilter": {
+      "base": "<p>Describes a set of filters for a path analysis. Use path filters to scope the analysis when there can be multiple resulting paths.</p>",
+      "refs": {
+        "NetworkInsightsPath$FilterAtSource": "<p>Scopes the analysis to network paths that match specific filters at the source.</p>",
+        "NetworkInsightsPath$FilterAtDestination": "<p>Scopes the analysis to network paths that match specific filters at the destination.</p>"
+      }
+    },
+    "PathRequestFilter": {
+      "base": "<p>Describes a set of filters for a path analysis. Use path filters to scope the analysis when there can be multiple resulting paths.</p>",
+      "refs": {
+        "CreateNetworkInsightsPathRequest$FilterAtSource": "<p>Scopes the analysis to network paths that match specific filters at the source. If you specify this parameter, you can't specify the parameters for the source IP address or the destination port.</p>",
+        "CreateNetworkInsightsPathRequest$FilterAtDestination": "<p>Scopes the analysis to network paths that match specific filters at the destination. If you specify this parameter, you can't specify the parameter for the destination IP address.</p>"
+      }
+    },
     "PathStatement": {
       "base": "<p>Describes a path statement.</p>",
       "refs": {
@@ -15503,7 +15550,11 @@
         "CreateNetworkInsightsPathRequest$DestinationPort": "<p>The destination port.</p>",
         "Explanation$LoadBalancerListenerPort": "<p>The listener port of the load balancer.</p>",
         "Explanation$LoadBalancerTargetPort": "<p>The target port.</p>",
-        "Explanation$Port": "<p>The port.</p>"
+        "Explanation$Port": "<p>The port.</p>",
+        "FilterPortRange$FromPort": "<p>The first port in the range.</p>",
+        "FilterPortRange$ToPort": "<p>The last port in the range.</p>",
+        "RequestFilterPortRange$FromPort": "<p>The first port in the range.</p>",
+        "RequestFilterPortRange$ToPort": "<p>The last port in the range.</p>"
       }
     },
     "PortRange": {
@@ -15522,7 +15573,11 @@
       "refs": {
         "AnalysisPacketHeader$DestinationPortRanges": "<p>The destination port ranges.</p>",
         "AnalysisPacketHeader$SourcePortRanges": "<p>The source port ranges.</p>",
-        "Explanation$PortRanges": "<p>The port ranges.</p>"
+        "Explanation$PortRanges": "<p>The port ranges.</p>",
+        "FirewallStatefulRule$SourcePorts": "<p>The source ports.</p>",
+        "FirewallStatefulRule$DestinationPorts": "<p>The destination ports.</p>",
+        "FirewallStatelessRule$SourcePorts": "<p>The source ports.</p>",
+        "FirewallStatelessRule$DestinationPorts": "<p>The destination ports.</p>"
       }
     },
     "PrefixList": {
@@ -15679,6 +15734,12 @@
         "AllowedPrincipal$PrincipalType": "<p>The type of principal.</p>"
       }
     },
+    "Priority": {
+      "base": null,
+      "refs": {
+        "FirewallStatelessRule$Priority": "<p>The rule priority.</p>"
+      }
+    },
     "PrivateDnsDetails": {
       "base": "<p>Information about the Private DNS name for interface endpoints.</p>",
       "refs": {
@@ -15818,6 +15879,18 @@
         "CreateNetworkInsightsPathRequest$Protocol": "<p>The protocol.</p>",
         "NetworkInsightsPath$Protocol": "<p>The protocol.</p>",
         "ProtocolList$member": null
+      }
+    },
+    "ProtocolInt": {
+      "base": null,
+      "refs": {
+        "ProtocolIntList$member": null
+      }
+    },
+    "ProtocolIntList": {
+      "base": null,
+      "refs": {
+        "FirewallStatelessRule$Protocols": "<p>The protocols.</p>"
       }
     },
     "ProtocolList": {
@@ -16313,6 +16386,13 @@
         "ReportInstanceStatusRequest$Status": "<p>The status of all instances listed.</p>"
       }
     },
+    "RequestFilterPortRange": {
+      "base": "<p>Describes a port range.</p>",
+      "refs": {
+        "PathRequestFilter$SourcePortRange": "<p>The source port range.</p>",
+        "PathRequestFilter$DestinationPortRange": "<p>The destination port range.</p>"
+      }
+    },
     "RequestHostIdList": {
       "base": null,
       "refs": {
@@ -16666,10 +16746,13 @@
     "ResourceArn": {
       "base": null,
       "refs": {
+        "AnalysisRouteTableRoute$CoreNetworkArn": "<p>The Amazon Resource Name (ARN) of a core network.</p>",
         "ArnList$member": null,
         "AssociatedRole$AssociatedRoleArn": "<p>The ARN of the associated IAM role.</p>",
         "CoipPool$PoolArn": "<p>The ARN of the address pool.</p>",
         "Explanation$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
+        "FirewallStatefulRule$RuleGroupArn": "<p>The ARN of the stateful rule group.</p>",
+        "FirewallStatelessRule$RuleGroupArn": "<p>The ARN of the stateless rule group.</p>",
         "Ipam$IpamArn": "<p>The Amazon Resource Name (ARN) of the IPAM.</p>",
         "IpamPool$IpamPoolArn": "<p>The Amazon Resource Name (ARN) of the IPAM pool.</p>",
         "IpamPool$IpamScopeArn": "<p>The ARN of the scope of the IPAM pool.</p>",
@@ -16687,7 +16770,9 @@
         "NetworkInsightsAnalysis$NetworkInsightsAnalysisArn": "<p>The Amazon Resource Name (ARN) of the network insights analysis.</p>",
         "NetworkInsightsPath$NetworkInsightsPathArn": "<p>The Amazon Resource Name (ARN) of the path.</p>",
         "NetworkInsightsPath$SourceArn": "<p>The Amazon Resource Name (ARN) of the source.</p>",
-        "NetworkInsightsPath$DestinationArn": "<p>The Amazon Resource Name (ARN) of the destination.</p>"
+        "NetworkInsightsPath$DestinationArn": "<p>The Amazon Resource Name (ARN) of the destination.</p>",
+        "RuleGroupRuleOptionsPair$RuleGroupArn": "<p>The ARN of the rule group.</p>",
+        "RuleGroupTypePair$RuleGroupArn": "<p>The ARN of the rule group.</p>"
       }
     },
     "ResourceIdList": {
@@ -16977,6 +17062,43 @@
         "CreateNetworkAclEntryRequest$RuleAction": "<p>Indicates whether to allow or deny the traffic that matches the rule.</p>",
         "NetworkAclEntry$RuleAction": "<p>Indicates whether to allow or deny the traffic that matches the rule.</p>",
         "ReplaceNetworkAclEntryRequest$RuleAction": "<p>Indicates whether to allow or deny the traffic that matches the rule.</p>"
+      }
+    },
+    "RuleGroupRuleOptionsPair": {
+      "base": "<p>Describes the rule options for a stateful rule group.</p>",
+      "refs": {
+        "RuleGroupRuleOptionsPairList$member": null
+      }
+    },
+    "RuleGroupRuleOptionsPairList": {
+      "base": null,
+      "refs": {
+        "AdditionalDetail$RuleGroupRuleOptionsPairs": "<p>The rule options.</p>"
+      }
+    },
+    "RuleGroupTypePair": {
+      "base": "<p>Describes the type of a stateful rule group.</p>",
+      "refs": {
+        "RuleGroupTypePairList$member": null
+      }
+    },
+    "RuleGroupTypePairList": {
+      "base": null,
+      "refs": {
+        "AdditionalDetail$RuleGroupTypePairs": "<p>The rule group type.</p>"
+      }
+    },
+    "RuleOption": {
+      "base": "<p>Describes additional settings for a stateful rule.</p>",
+      "refs": {
+        "RuleOptionList$member": null
+      }
+    },
+    "RuleOptionList": {
+      "base": null,
+      "refs": {
+        "AdditionalDetail$RuleOptions": "<p>The rule options.</p>",
+        "RuleGroupRuleOptionsPair$RuleOptions": "<p>The rule options.</p>"
       }
     },
     "RunInstancesMonitoringEnabled": {
@@ -17945,7 +18067,8 @@
         "AddedPrincipal$Principal": "<p>The Amazon Resource Name (ARN) of the principal.</p>",
         "AddedPrincipal$ServicePermissionId": "<p>The ID of the service permission.</p>",
         "AddedPrincipal$ServiceId": "<p>The ID of the service.</p>",
-        "AdditionalDetail$AdditionalDetailType": "<p>The information type.</p>",
+        "AdditionalDetail$AdditionalDetailType": "<p>The additional detail code.</p>",
+        "AdditionalDetail$ServiceName": "<p>The name of the VPC endpoint service.</p>",
         "Address$InstanceId": "<p>The ID of the instance that the address is associated with (if any).</p>",
         "Address$PublicIp": "<p>The Elastic IP address.</p>",
         "Address$AllocationId": "<p>The ID representing the allocation of the address for use with EC2-VPC.</p>",
@@ -18004,6 +18127,8 @@
         "AnalysisRouteTableRoute$TransitGatewayId": "<p>The ID of a transit gateway.</p>",
         "AnalysisRouteTableRoute$VpcPeeringConnectionId": "<p>The ID of a VPC peering connection.</p>",
         "AnalysisRouteTableRoute$State": "<p>The state. The following are the possible values:</p> <ul> <li> <p>active</p> </li> <li> <p>blackhole</p> </li> </ul>",
+        "AnalysisRouteTableRoute$CarrierGatewayId": "<p>The ID of a carrier gateway.</p>",
+        "AnalysisRouteTableRoute$LocalGatewayId": "<p>The ID of a local gateway.</p>",
         "AnalysisSecurityGroupRule$Cidr": "<p>The IPv4 address range, in CIDR notation.</p>",
         "AnalysisSecurityGroupRule$Direction": "<p>The direction. The following are the possible values:</p> <ul> <li> <p>egress</p> </li> <li> <p>ingress</p> </li> </ul>",
         "AnalysisSecurityGroupRule$SecurityGroupId": "<p>The security group ID.</p>",
@@ -18274,7 +18399,7 @@
         "CreateRestoreImageTaskResult$ImageId": "<p>The AMI ID.</p>",
         "CreateRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p>",
         "CreateRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>",
-        "CreateSecurityGroupRequest$Description": "<p>A description for the security group. This is informational only.</p> <p>Constraints: Up to 255 characters in length</p> <p>Constraints for EC2-Classic: ASCII characters</p> <p>Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>",
+        "CreateSecurityGroupRequest$Description": "<p>A description for the security group.</p> <p>Constraints: Up to 255 characters in length</p> <p>Constraints for EC2-Classic: ASCII characters</p> <p>Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>",
         "CreateSecurityGroupRequest$GroupName": "<p>The name of the security group.</p> <p>Constraints: Up to 255 characters in length. Cannot start with <code>sg-</code>.</p> <p>Constraints for EC2-Classic: ASCII characters</p> <p>Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>",
         "CreateSecurityGroupResult$GroupId": "<p>The ID of the security group.</p>",
         "CreateSnapshotRequest$Description": "<p>A description for the snapshot.</p>",
@@ -18621,7 +18746,6 @@
         "DiskImage$Description": "<p>A description of the disk image.</p>",
         "DiskImageDescription$Checksum": "<p>The checksum computed for the disk image.</p>",
         "DiskImageDescription$ImportManifestUrl": "<p>A presigned URL for the import manifest stored in Amazon S3. For information about creating a presigned URL for an Amazon S3 object, read the \"Query String Request Authentication Alternative\" section of the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html\">Authenticating REST Requests</a> topic in the <i>Amazon Simple Storage Service Developer Guide</i>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
-        "DiskImageDetail$ImportManifestUrl": "<p>A presigned URL for the import manifest stored in Amazon S3 and presented here as an Amazon S3 presigned URL. For information about creating a presigned URL for an Amazon S3 object, read the \"Query String Request Authentication Alternative\" section of the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html\">Authenticating REST Requests</a> topic in the <i>Amazon Simple Storage Service Developer Guide</i>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
         "DiskImageVolumeDescription$Id": "<p>The volume identifier.</p>",
         "DnsEntry$DnsName": "<p>The DNS name.</p>",
         "DnsEntry$HostedZoneId": "<p>The ID of the private hosted zone.</p>",
@@ -18707,6 +18831,10 @@
         "FederatedAuthenticationRequest$SAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",
         "FederatedAuthenticationRequest$SelfServiceSAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider for the self-service portal.</p>",
         "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
+        "FirewallStatefulRule$Protocol": "<p>The protocol.</p>",
+        "FirewallStatefulRule$RuleAction": "<p>The rule action. The possible values are <code>pass</code>, <code>drop</code>, and <code>alert</code>.</p>",
+        "FirewallStatefulRule$Direction": "<p>The direction. The possible values are <code>FORWARD</code> and <code>ANY</code>.</p>",
+        "FirewallStatelessRule$RuleAction": "<p>The rule action. The possible values are <code>pass</code>, <code>drop</code>, and <code>forward_to_site</code>.</p>",
         "FleetCapacityReservation$AvailabilityZoneId": "<p>The ID of the Availability Zone in which the Capacity Reservation reserves capacity.</p>",
         "FleetCapacityReservation$AvailabilityZone": "<p>The Availability Zone in which the Capacity Reservation reserves capacity.</p>",
         "FleetData$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p> <p>Constraints: Maximum 64 ASCII characters</p>",
@@ -19247,8 +19375,8 @@
         "NetworkInsightsAccessScopeAnalysis$WarningMessage": "<p>The warning message.</p>",
         "NetworkInsightsAnalysis$StatusMessage": "<p>The status message, if the status is <code>failed</code>.</p>",
         "NetworkInsightsAnalysis$WarningMessage": "<p>The warning message.</p>",
-        "NetworkInsightsPath$Source": "<p>The Amazon Web Services resource that is the source of the path.</p>",
-        "NetworkInsightsPath$Destination": "<p>The Amazon Web Services resource that is the destination of the path.</p>",
+        "NetworkInsightsPath$Source": "<p>The ID of the source.</p>",
+        "NetworkInsightsPath$Destination": "<p>The ID of the destination.</p>",
         "NetworkInterface$AvailabilityZone": "<p>The Availability Zone.</p>",
         "NetworkInterface$Description": "<p>A description.</p>",
         "NetworkInterface$MacAddress": "<p>The MAC address.</p>",
@@ -19292,6 +19420,7 @@
         "OrganizationArnStringList$member": null,
         "OrganizationalUnitArnStringList$member": null,
         "OwnerStringList$member": null,
+        "PathComponent$ServiceName": "<p>The name of the VPC endpoint service.</p>",
         "PciId$DeviceId": "<p>The ID of the device.</p>",
         "PciId$VendorId": "<p>The ID of the vendor.</p>",
         "PciId$SubsystemId": "<p>The ID of the subsystem.</p>",
@@ -19487,6 +19616,8 @@
         "RouteTableAssociation$SubnetId": "<p>The ID of the subnet. A subnet ID is not returned for an implicit association.</p>",
         "RouteTableAssociation$GatewayId": "<p>The ID of the internet gateway or virtual private gateway.</p>",
         "RouteTableAssociationState$StatusMessage": "<p>The status message, if applicable.</p>",
+        "RuleGroupTypePair$RuleGroupType": "<p>The rule group type. The possible values are <code>Domain List</code> and <code>Suricata</code>.</p>",
+        "RuleOption$Keyword": "<p>The Suricata keyword.</p>",
         "RunInstancesRequest$AdditionalInfo": "<p>Reserved.</p>",
         "RunInstancesRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraints: Maximum 64 ASCII characters</p>",
         "RunInstancesRequest$PrivateIpAddress": "<p>[EC2-VPC] The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet.</p> <p>Only one private IP address can be designated as primary. You can't specify this option if you've specified the option to designate a private IP address as the primary IP address in a network interface specification. You cannot specify this option if you're launching more than one instance in the request.</p> <p>You cannot specify this option and the network interfaces option in the same request.</p>",
@@ -19951,7 +20082,8 @@
     "StringList": {
       "base": null,
       "refs": {
-        "Explanation$Protocols": "<p>The protocols.</p>"
+        "Explanation$Protocols": "<p>The protocols.</p>",
+        "RuleOption$Settings": "<p>The settings for the keyword.</p>"
       }
     },
     "StringType": {
@@ -21857,6 +21989,10 @@
         "Explanation$AvailabilityZones": "<p>The Availability Zones.</p>",
         "Explanation$Cidrs": "<p>The CIDR ranges.</p>",
         "Filter$Values": "<p>The filter values. Filter values are case-sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>",
+        "FirewallStatefulRule$Sources": "<p>The source IP addresses, in CIDR notation.</p>",
+        "FirewallStatefulRule$Destinations": "<p>The destination IP addresses, in CIDR notation.</p>",
+        "FirewallStatelessRule$Sources": "<p>The source IP addresses, in CIDR notation.</p>",
+        "FirewallStatelessRule$Destinations": "<p>The destination IP addresses, in CIDR notation.</p>",
         "ModifyVpcEndpointConnectionNotificationRequest$ConnectionEvents": "<p>The events for the endpoint. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$AddNetworkLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of Network Load Balancers to add to your service configuration.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$RemoveNetworkLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of Network Load Balancers to remove from your service configuration.</p>",

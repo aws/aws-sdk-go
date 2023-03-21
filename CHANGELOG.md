@@ -1,3 +1,14 @@
+Release v1.44.226 (2023-03-21)
+===
+
+### Service Client Updates
+* `service/chime-sdk-messaging`: Updates service API and documentation
+* `service/cleanrooms`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for AWS Network Firewall, AWS PrivateLink, and Gateway Load Balancers to Amazon VPC Reachability Analyzer, and it makes the path destination optional as long as a destination address in the filter at source is provided.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/mgn`: Updates service API, documentation, and paginators
+
 Release v1.44.225 (2023-03-20)
 ===
 

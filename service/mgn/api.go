@@ -3012,6 +3012,558 @@ func (c *Mgn) ListApplicationsPagesWithContext(ctx aws.Context, input *ListAppli
 	return p.Err()
 }
 
+const opListExportErrors = "ListExportErrors"
+
+// ListExportErrorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExportErrors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExportErrors for more information on using the ListExportErrors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExportErrorsRequest method.
+//	req, resp := client.ListExportErrorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListExportErrors
+func (c *Mgn) ListExportErrorsRequest(input *ListExportErrorsInput) (req *request.Request, output *ListExportErrorsOutput) {
+	op := &request.Operation{
+		Name:       opListExportErrors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListExportErrors",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExportErrorsInput{}
+	}
+
+	output = &ListExportErrorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExportErrors API operation for Application Migration Service.
+//
+// List export errors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation ListExportErrors for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListExportErrors
+func (c *Mgn) ListExportErrors(input *ListExportErrorsInput) (*ListExportErrorsOutput, error) {
+	req, out := c.ListExportErrorsRequest(input)
+	return out, req.Send()
+}
+
+// ListExportErrorsWithContext is the same as ListExportErrors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExportErrors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListExportErrorsWithContext(ctx aws.Context, input *ListExportErrorsInput, opts ...request.Option) (*ListExportErrorsOutput, error) {
+	req, out := c.ListExportErrorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExportErrorsPages iterates over the pages of a ListExportErrors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExportErrors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListExportErrors operation.
+//	pageNum := 0
+//	err := client.ListExportErrorsPages(params,
+//	    func(page *mgn.ListExportErrorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Mgn) ListExportErrorsPages(input *ListExportErrorsInput, fn func(*ListExportErrorsOutput, bool) bool) error {
+	return c.ListExportErrorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExportErrorsPagesWithContext same as ListExportErrorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListExportErrorsPagesWithContext(ctx aws.Context, input *ListExportErrorsInput, fn func(*ListExportErrorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExportErrorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExportErrorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExportErrorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExports = "ListExports"
+
+// ListExportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExports for more information on using the ListExports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExportsRequest method.
+//	req, resp := client.ListExportsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListExports
+func (c *Mgn) ListExportsRequest(input *ListExportsInput) (req *request.Request, output *ListExportsOutput) {
+	op := &request.Operation{
+		Name:       opListExports,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListExports",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExportsInput{}
+	}
+
+	output = &ListExportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExports API operation for Application Migration Service.
+//
+// List exports.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation ListExports for usage and error information.
+//
+// Returned Error Types:
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListExports
+func (c *Mgn) ListExports(input *ListExportsInput) (*ListExportsOutput, error) {
+	req, out := c.ListExportsRequest(input)
+	return out, req.Send()
+}
+
+// ListExportsWithContext is the same as ListExports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListExportsWithContext(ctx aws.Context, input *ListExportsInput, opts ...request.Option) (*ListExportsOutput, error) {
+	req, out := c.ListExportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExportsPages iterates over the pages of a ListExports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListExports operation.
+//	pageNum := 0
+//	err := client.ListExportsPages(params,
+//	    func(page *mgn.ListExportsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Mgn) ListExportsPages(input *ListExportsInput, fn func(*ListExportsOutput, bool) bool) error {
+	return c.ListExportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExportsPagesWithContext same as ListExportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListExportsPagesWithContext(ctx aws.Context, input *ListExportsInput, fn func(*ListExportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExportsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImportErrors = "ListImportErrors"
+
+// ListImportErrorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListImportErrors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImportErrors for more information on using the ListImportErrors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListImportErrorsRequest method.
+//	req, resp := client.ListImportErrorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListImportErrors
+func (c *Mgn) ListImportErrorsRequest(input *ListImportErrorsInput) (req *request.Request, output *ListImportErrorsOutput) {
+	op := &request.Operation{
+		Name:       opListImportErrors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListImportErrors",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImportErrorsInput{}
+	}
+
+	output = &ListImportErrorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImportErrors API operation for Application Migration Service.
+//
+// List import errors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation ListImportErrors for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListImportErrors
+func (c *Mgn) ListImportErrors(input *ListImportErrorsInput) (*ListImportErrorsOutput, error) {
+	req, out := c.ListImportErrorsRequest(input)
+	return out, req.Send()
+}
+
+// ListImportErrorsWithContext is the same as ListImportErrors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImportErrors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListImportErrorsWithContext(ctx aws.Context, input *ListImportErrorsInput, opts ...request.Option) (*ListImportErrorsOutput, error) {
+	req, out := c.ListImportErrorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImportErrorsPages iterates over the pages of a ListImportErrors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImportErrors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListImportErrors operation.
+//	pageNum := 0
+//	err := client.ListImportErrorsPages(params,
+//	    func(page *mgn.ListImportErrorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Mgn) ListImportErrorsPages(input *ListImportErrorsInput, fn func(*ListImportErrorsOutput, bool) bool) error {
+	return c.ListImportErrorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImportErrorsPagesWithContext same as ListImportErrorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListImportErrorsPagesWithContext(ctx aws.Context, input *ListImportErrorsInput, fn func(*ListImportErrorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImportErrorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImportErrorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImportErrorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImports = "ListImports"
+
+// ListImportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListImports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImports for more information on using the ListImports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListImportsRequest method.
+//	req, resp := client.ListImportsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListImports
+func (c *Mgn) ListImportsRequest(input *ListImportsInput) (req *request.Request, output *ListImportsOutput) {
+	op := &request.Operation{
+		Name:       opListImports,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListImports",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImportsInput{}
+	}
+
+	output = &ListImportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImports API operation for Application Migration Service.
+//
+// List imports.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation ListImports for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/ListImports
+func (c *Mgn) ListImports(input *ListImportsInput) (*ListImportsOutput, error) {
+	req, out := c.ListImportsRequest(input)
+	return out, req.Send()
+}
+
+// ListImportsWithContext is the same as ListImports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListImportsWithContext(ctx aws.Context, input *ListImportsInput, opts ...request.Option) (*ListImportsOutput, error) {
+	req, out := c.ListImportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImportsPages iterates over the pages of a ListImports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListImports operation.
+//	pageNum := 0
+//	err := client.ListImportsPages(params,
+//	    func(page *mgn.ListImportsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Mgn) ListImportsPages(input *ListImportsInput, fn func(*ListImportsOutput, bool) bool) error {
+	return c.ListImportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImportsPagesWithContext same as ListImportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) ListImportsPagesWithContext(ctx aws.Context, input *ListImportsInput, fn func(*ListImportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImportsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSourceServerActions = "ListSourceServerActions"
 
 // ListSourceServerActionsRequest generates a "aws/request.Request" representing the
@@ -4126,6 +4678,183 @@ func (c *Mgn) StartCutover(input *StartCutoverInput) (*StartCutoverOutput, error
 // for more information on using Contexts.
 func (c *Mgn) StartCutoverWithContext(ctx aws.Context, input *StartCutoverInput, opts ...request.Option) (*StartCutoverOutput, error) {
 	req, out := c.StartCutoverRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartExport = "StartExport"
+
+// StartExportRequest generates a "aws/request.Request" representing the
+// client's request for the StartExport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartExport for more information on using the StartExport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartExportRequest method.
+//	req, resp := client.StartExportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StartExport
+func (c *Mgn) StartExportRequest(input *StartExportInput) (req *request.Request, output *StartExportOutput) {
+	op := &request.Operation{
+		Name:       opStartExport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartExport",
+	}
+
+	if input == nil {
+		input = &StartExportInput{}
+	}
+
+	output = &StartExportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartExport API operation for Application Migration Service.
+//
+// Start export.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation StartExport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StartExport
+func (c *Mgn) StartExport(input *StartExportInput) (*StartExportOutput, error) {
+	req, out := c.StartExportRequest(input)
+	return out, req.Send()
+}
+
+// StartExportWithContext is the same as StartExport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartExport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) StartExportWithContext(ctx aws.Context, input *StartExportInput, opts ...request.Option) (*StartExportOutput, error) {
+	req, out := c.StartExportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartImport = "StartImport"
+
+// StartImportRequest generates a "aws/request.Request" representing the
+// client's request for the StartImport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartImport for more information on using the StartImport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartImportRequest method.
+//	req, resp := client.StartImportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StartImport
+func (c *Mgn) StartImportRequest(input *StartImportInput) (req *request.Request, output *StartImportOutput) {
+	op := &request.Operation{
+		Name:       opStartImport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartImport",
+	}
+
+	if input == nil {
+		input = &StartImportInput{}
+	}
+
+	output = &StartImportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartImport API operation for Application Migration Service.
+//
+// Start import.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation StartImport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UninitializedAccountException
+//     Uninitialized account exception.
+//
+//   - ResourceNotFoundException
+//     Resource not found exception.
+//
+//   - ValidationException
+//     Validate exception.
+//
+//   - ServiceQuotaExceededException
+//     The request could not be completed because its exceeded the service quota.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StartImport
+func (c *Mgn) StartImport(input *StartImportInput) (*StartImportOutput, error) {
+	req, out := c.StartImportRequest(input)
+	return out, req.Send()
+}
+
+// StartImportWithContext is the same as StartImport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartImport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) StartImportWithContext(ctx aws.Context, input *StartImportInput, opts ...request.Option) (*StartImportOutput, error) {
+	req, out := c.StartImportRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6239,6 +6968,9 @@ type ChangeServerLifeCycleStateOutput struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -6263,6 +6995,9 @@ type ChangeServerLifeCycleStateOutput struct {
 	// replaced with "sensitive" in string returned by ChangeServerLifeCycleStateOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -6301,6 +7036,12 @@ func (s *ChangeServerLifeCycleStateOutput) SetArn(v string) *ChangeServerLifeCyc
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *ChangeServerLifeCycleStateOutput) SetDataReplicationInfo(v *DataReplicationInfo) *ChangeServerLifeCycleStateOutput {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *ChangeServerLifeCycleStateOutput) SetFqdnForActionFramework(v string) *ChangeServerLifeCycleStateOutput {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -6343,6 +7084,12 @@ func (s *ChangeServerLifeCycleStateOutput) SetSourceServerID(v string) *ChangeSe
 // SetTags sets the Tags field's value.
 func (s *ChangeServerLifeCycleStateOutput) SetTags(v map[string]*string) *ChangeServerLifeCycleStateOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *ChangeServerLifeCycleStateOutput) SetUserProvidedID(v string) *ChangeServerLifeCycleStateOutput {
+	s.UserProvidedID = &v
 	return s
 }
 
@@ -9354,6 +10101,9 @@ type DisconnectFromServiceOutput struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -9378,6 +10128,9 @@ type DisconnectFromServiceOutput struct {
 	// replaced with "sensitive" in string returned by DisconnectFromServiceOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -9416,6 +10169,12 @@ func (s *DisconnectFromServiceOutput) SetArn(v string) *DisconnectFromServiceOut
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *DisconnectFromServiceOutput) SetDataReplicationInfo(v *DataReplicationInfo) *DisconnectFromServiceOutput {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *DisconnectFromServiceOutput) SetFqdnForActionFramework(v string) *DisconnectFromServiceOutput {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -9458,6 +10217,12 @@ func (s *DisconnectFromServiceOutput) SetSourceServerID(v string) *DisconnectFro
 // SetTags sets the Tags field's value.
 func (s *DisconnectFromServiceOutput) SetTags(v map[string]*string) *DisconnectFromServiceOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *DisconnectFromServiceOutput) SetUserProvidedID(v string) *DisconnectFromServiceOutput {
+	s.UserProvidedID = &v
 	return s
 }
 
@@ -9567,6 +10332,233 @@ func (s *ErrorDetails) SetResourceType(v string) *ErrorDetails {
 	return s
 }
 
+// Export errors data.
+type ExportErrorData struct {
+	_ struct{} `type:"structure"`
+
+	// Export errors data raw error.
+	RawError *string `locationName:"rawError" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportErrorData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportErrorData) GoString() string {
+	return s.String()
+}
+
+// SetRawError sets the RawError field's value.
+func (s *ExportErrorData) SetRawError(v string) *ExportErrorData {
+	s.RawError = &v
+	return s
+}
+
+// Export task.
+type ExportTask struct {
+	_ struct{} `type:"structure"`
+
+	// Export task creation datetime.
+	CreationDateTime *string `locationName:"creationDateTime" min:"19" type:"string"`
+
+	// Export task end datetime.
+	EndDateTime *string `locationName:"endDateTime" min:"19" type:"string"`
+
+	// Export task id.
+	ExportID *string `locationName:"exportID" min:"24" type:"string"`
+
+	// Export task progress percentage.
+	ProgressPercentage *float64 `locationName:"progressPercentage" type:"float"`
+
+	// Export task s3 bucket.
+	S3Bucket *string `locationName:"s3Bucket" type:"string"`
+
+	// Export task s3 bucket owner.
+	S3BucketOwner *string `locationName:"s3BucketOwner" min:"12" type:"string"`
+
+	// Export task s3 key.
+	S3Key *string `locationName:"s3Key" type:"string"`
+
+	// Export task status.
+	Status *string `locationName:"status" type:"string" enum:"ExportStatus"`
+
+	// Export task summary.
+	Summary *ExportTaskSummary `locationName:"summary" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportTask) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *ExportTask) SetCreationDateTime(v string) *ExportTask {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ExportTask) SetEndDateTime(v string) *ExportTask {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetExportID sets the ExportID field's value.
+func (s *ExportTask) SetExportID(v string) *ExportTask {
+	s.ExportID = &v
+	return s
+}
+
+// SetProgressPercentage sets the ProgressPercentage field's value.
+func (s *ExportTask) SetProgressPercentage(v float64) *ExportTask {
+	s.ProgressPercentage = &v
+	return s
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *ExportTask) SetS3Bucket(v string) *ExportTask {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3BucketOwner sets the S3BucketOwner field's value.
+func (s *ExportTask) SetS3BucketOwner(v string) *ExportTask {
+	s.S3BucketOwner = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *ExportTask) SetS3Key(v string) *ExportTask {
+	s.S3Key = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ExportTask) SetStatus(v string) *ExportTask {
+	s.Status = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *ExportTask) SetSummary(v *ExportTaskSummary) *ExportTask {
+	s.Summary = v
+	return s
+}
+
+// Export task error.
+type ExportTaskError struct {
+	_ struct{} `type:"structure"`
+
+	// Export task error data.
+	ErrorData *ExportErrorData `locationName:"errorData" type:"structure"`
+
+	// Export task error datetime.
+	ErrorDateTime *string `locationName:"errorDateTime" min:"19" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportTaskError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportTaskError) GoString() string {
+	return s.String()
+}
+
+// SetErrorData sets the ErrorData field's value.
+func (s *ExportTaskError) SetErrorData(v *ExportErrorData) *ExportTaskError {
+	s.ErrorData = v
+	return s
+}
+
+// SetErrorDateTime sets the ErrorDateTime field's value.
+func (s *ExportTaskError) SetErrorDateTime(v string) *ExportTaskError {
+	s.ErrorDateTime = &v
+	return s
+}
+
+// Export task summary.
+type ExportTaskSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Export task summary applications count.
+	ApplicationsCount *int64 `locationName:"applicationsCount" type:"long"`
+
+	// Export task summary servers count.
+	ServersCount *int64 `locationName:"serversCount" type:"long"`
+
+	// Export task summary waves count.
+	WavesCount *int64 `locationName:"wavesCount" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportTaskSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportTaskSummary) GoString() string {
+	return s.String()
+}
+
+// SetApplicationsCount sets the ApplicationsCount field's value.
+func (s *ExportTaskSummary) SetApplicationsCount(v int64) *ExportTaskSummary {
+	s.ApplicationsCount = &v
+	return s
+}
+
+// SetServersCount sets the ServersCount field's value.
+func (s *ExportTaskSummary) SetServersCount(v int64) *ExportTaskSummary {
+	s.ServersCount = &v
+	return s
+}
+
+// SetWavesCount sets the WavesCount field's value.
+func (s *ExportTaskSummary) SetWavesCount(v int64) *ExportTaskSummary {
+	s.WavesCount = &v
+	return s
+}
+
 type FinalizeCutoverInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9628,6 +10620,9 @@ type FinalizeCutoverOutput struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -9652,6 +10647,9 @@ type FinalizeCutoverOutput struct {
 	// replaced with "sensitive" in string returned by FinalizeCutoverOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -9690,6 +10688,12 @@ func (s *FinalizeCutoverOutput) SetArn(v string) *FinalizeCutoverOutput {
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *FinalizeCutoverOutput) SetDataReplicationInfo(v *DataReplicationInfo) *FinalizeCutoverOutput {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *FinalizeCutoverOutput) SetFqdnForActionFramework(v string) *FinalizeCutoverOutput {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -9732,6 +10736,12 @@ func (s *FinalizeCutoverOutput) SetSourceServerID(v string) *FinalizeCutoverOutp
 // SetTags sets the Tags field's value.
 func (s *FinalizeCutoverOutput) SetTags(v map[string]*string) *FinalizeCutoverOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *FinalizeCutoverOutput) SetUserProvidedID(v string) *FinalizeCutoverOutput {
+	s.UserProvidedID = &v
 	return s
 }
 
@@ -10196,6 +11206,392 @@ func (s *IdentificationHints) SetVmPath(v string) *IdentificationHints {
 // SetVmWareUuid sets the VmWareUuid field's value.
 func (s *IdentificationHints) SetVmWareUuid(v string) *IdentificationHints {
 	s.VmWareUuid = &v
+	return s
+}
+
+// Import error data.
+type ImportErrorData struct {
+	_ struct{} `type:"structure"`
+
+	// Import error data application ID.
+	ApplicationID *string `locationName:"applicationID" min:"21" type:"string"`
+
+	// Import error data ec2 LaunchTemplate ID.
+	Ec2LaunchTemplateID *string `locationName:"ec2LaunchTemplateID" type:"string"`
+
+	// Import error data raw error.
+	RawError *string `locationName:"rawError" type:"string"`
+
+	// Import error data row number.
+	RowNumber *int64 `locationName:"rowNumber" type:"long"`
+
+	// Import error data source server ID.
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+
+	// Import error data wave id.
+	WaveID *string `locationName:"waveID" min:"22" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportErrorData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportErrorData) GoString() string {
+	return s.String()
+}
+
+// SetApplicationID sets the ApplicationID field's value.
+func (s *ImportErrorData) SetApplicationID(v string) *ImportErrorData {
+	s.ApplicationID = &v
+	return s
+}
+
+// SetEc2LaunchTemplateID sets the Ec2LaunchTemplateID field's value.
+func (s *ImportErrorData) SetEc2LaunchTemplateID(v string) *ImportErrorData {
+	s.Ec2LaunchTemplateID = &v
+	return s
+}
+
+// SetRawError sets the RawError field's value.
+func (s *ImportErrorData) SetRawError(v string) *ImportErrorData {
+	s.RawError = &v
+	return s
+}
+
+// SetRowNumber sets the RowNumber field's value.
+func (s *ImportErrorData) SetRowNumber(v int64) *ImportErrorData {
+	s.RowNumber = &v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *ImportErrorData) SetSourceServerID(v string) *ImportErrorData {
+	s.SourceServerID = &v
+	return s
+}
+
+// SetWaveID sets the WaveID field's value.
+func (s *ImportErrorData) SetWaveID(v string) *ImportErrorData {
+	s.WaveID = &v
+	return s
+}
+
+// Import task.
+type ImportTask struct {
+	_ struct{} `type:"structure"`
+
+	// Import task creation datetime.
+	CreationDateTime *string `locationName:"creationDateTime" min:"19" type:"string"`
+
+	// Import task end datetime.
+	EndDateTime *string `locationName:"endDateTime" min:"19" type:"string"`
+
+	// Import task id.
+	ImportID *string `locationName:"importID" min:"24" type:"string"`
+
+	// Import task progress percentage.
+	ProgressPercentage *float64 `locationName:"progressPercentage" type:"float"`
+
+	// Import task s3 bucket source.
+	S3BucketSource *S3BucketSource `locationName:"s3BucketSource" type:"structure"`
+
+	// Import task status.
+	Status *string `locationName:"status" type:"string" enum:"ImportStatus"`
+
+	// Import task summary.
+	Summary *ImportTaskSummary `locationName:"summary" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTask) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *ImportTask) SetCreationDateTime(v string) *ImportTask {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ImportTask) SetEndDateTime(v string) *ImportTask {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetImportID sets the ImportID field's value.
+func (s *ImportTask) SetImportID(v string) *ImportTask {
+	s.ImportID = &v
+	return s
+}
+
+// SetProgressPercentage sets the ProgressPercentage field's value.
+func (s *ImportTask) SetProgressPercentage(v float64) *ImportTask {
+	s.ProgressPercentage = &v
+	return s
+}
+
+// SetS3BucketSource sets the S3BucketSource field's value.
+func (s *ImportTask) SetS3BucketSource(v *S3BucketSource) *ImportTask {
+	s.S3BucketSource = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportTask) SetStatus(v string) *ImportTask {
+	s.Status = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *ImportTask) SetSummary(v *ImportTaskSummary) *ImportTask {
+	s.Summary = v
+	return s
+}
+
+// Import task error.
+type ImportTaskError struct {
+	_ struct{} `type:"structure"`
+
+	// Import task error data.
+	ErrorData *ImportErrorData `locationName:"errorData" type:"structure"`
+
+	// Import task error datetime.
+	ErrorDateTime *string `locationName:"errorDateTime" min:"19" type:"string"`
+
+	// Import task error type.
+	ErrorType *string `locationName:"errorType" type:"string" enum:"ImportErrorType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskError) GoString() string {
+	return s.String()
+}
+
+// SetErrorData sets the ErrorData field's value.
+func (s *ImportTaskError) SetErrorData(v *ImportErrorData) *ImportTaskError {
+	s.ErrorData = v
+	return s
+}
+
+// SetErrorDateTime sets the ErrorDateTime field's value.
+func (s *ImportTaskError) SetErrorDateTime(v string) *ImportTaskError {
+	s.ErrorDateTime = &v
+	return s
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *ImportTaskError) SetErrorType(v string) *ImportTaskError {
+	s.ErrorType = &v
+	return s
+}
+
+// Import task summary.
+type ImportTaskSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Import task summary applications.
+	Applications *ImportTaskSummaryApplications `locationName:"applications" type:"structure"`
+
+	// Import task summary servers.
+	Servers *ImportTaskSummaryServers `locationName:"servers" type:"structure"`
+
+	// Import task summary waves.
+	Waves *ImportTaskSummaryWaves `locationName:"waves" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummary) GoString() string {
+	return s.String()
+}
+
+// SetApplications sets the Applications field's value.
+func (s *ImportTaskSummary) SetApplications(v *ImportTaskSummaryApplications) *ImportTaskSummary {
+	s.Applications = v
+	return s
+}
+
+// SetServers sets the Servers field's value.
+func (s *ImportTaskSummary) SetServers(v *ImportTaskSummaryServers) *ImportTaskSummary {
+	s.Servers = v
+	return s
+}
+
+// SetWaves sets the Waves field's value.
+func (s *ImportTaskSummary) SetWaves(v *ImportTaskSummaryWaves) *ImportTaskSummary {
+	s.Waves = v
+	return s
+}
+
+// Import task summary applications.
+type ImportTaskSummaryApplications struct {
+	_ struct{} `type:"structure"`
+
+	// Import task summary applications created count.
+	CreatedCount *int64 `locationName:"createdCount" type:"long"`
+
+	// Import task summary applications modified count.
+	ModifiedCount *int64 `locationName:"modifiedCount" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummaryApplications) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummaryApplications) GoString() string {
+	return s.String()
+}
+
+// SetCreatedCount sets the CreatedCount field's value.
+func (s *ImportTaskSummaryApplications) SetCreatedCount(v int64) *ImportTaskSummaryApplications {
+	s.CreatedCount = &v
+	return s
+}
+
+// SetModifiedCount sets the ModifiedCount field's value.
+func (s *ImportTaskSummaryApplications) SetModifiedCount(v int64) *ImportTaskSummaryApplications {
+	s.ModifiedCount = &v
+	return s
+}
+
+// Import task summary servers.
+type ImportTaskSummaryServers struct {
+	_ struct{} `type:"structure"`
+
+	// Import task summary servers created count.
+	CreatedCount *int64 `locationName:"createdCount" type:"long"`
+
+	// Import task summary servers modified count.
+	ModifiedCount *int64 `locationName:"modifiedCount" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummaryServers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummaryServers) GoString() string {
+	return s.String()
+}
+
+// SetCreatedCount sets the CreatedCount field's value.
+func (s *ImportTaskSummaryServers) SetCreatedCount(v int64) *ImportTaskSummaryServers {
+	s.CreatedCount = &v
+	return s
+}
+
+// SetModifiedCount sets the ModifiedCount field's value.
+func (s *ImportTaskSummaryServers) SetModifiedCount(v int64) *ImportTaskSummaryServers {
+	s.ModifiedCount = &v
+	return s
+}
+
+// Import task summery waves.
+type ImportTaskSummaryWaves struct {
+	_ struct{} `type:"structure"`
+
+	// Import task summery waves created count.
+	CreatedCount *int64 `locationName:"createdCount" type:"long"`
+
+	// Import task summery waves modified count.
+	ModifiedCount *int64 `locationName:"modifiedCount" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummaryWaves) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportTaskSummaryWaves) GoString() string {
+	return s.String()
+}
+
+// SetCreatedCount sets the CreatedCount field's value.
+func (s *ImportTaskSummaryWaves) SetCreatedCount(v int64) *ImportTaskSummaryWaves {
+	s.CreatedCount = &v
+	return s
+}
+
+// SetModifiedCount sets the ModifiedCount field's value.
+func (s *ImportTaskSummaryWaves) SetModifiedCount(v int64) *ImportTaskSummaryWaves {
+	s.ModifiedCount = &v
 	return s
 }
 
@@ -11460,6 +12856,502 @@ func (s *ListApplicationsRequestFilters) SetWaveIDs(v []*string) *ListApplicatio
 	return s
 }
 
+// List export errors request.
+type ListExportErrorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// List export errors request export id.
+	//
+	// ExportID is a required field
+	ExportID *string `locationName:"exportID" min:"24" type:"string" required:"true"`
+
+	// List export errors request max results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// List export errors request next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportErrorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportErrorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExportErrorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExportErrorsInput"}
+	if s.ExportID == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportID"))
+	}
+	if s.ExportID != nil && len(*s.ExportID) < 24 {
+		invalidParams.Add(request.NewErrParamMinLen("ExportID", 24))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportID sets the ExportID field's value.
+func (s *ListExportErrorsInput) SetExportID(v string) *ListExportErrorsInput {
+	s.ExportID = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExportErrorsInput) SetMaxResults(v int64) *ListExportErrorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportErrorsInput) SetNextToken(v string) *ListExportErrorsInput {
+	s.NextToken = &v
+	return s
+}
+
+// List export errors response.
+type ListExportErrorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List export errors response items.
+	Items []*ExportTaskError `locationName:"items" type:"list"`
+
+	// List export errors response next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportErrorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportErrorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListExportErrorsOutput) SetItems(v []*ExportTaskError) *ListExportErrorsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportErrorsOutput) SetNextToken(v string) *ListExportErrorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// List export request.
+type ListExportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// List exports request filters.
+	Filters *ListExportsRequestFilters `locationName:"filters" type:"structure"`
+
+	// List export request max results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// List export request next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExportsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListExportsInput) SetFilters(v *ListExportsRequestFilters) *ListExportsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExportsInput) SetMaxResults(v int64) *ListExportsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportsInput) SetNextToken(v string) *ListExportsInput {
+	s.NextToken = &v
+	return s
+}
+
+// List export response.
+type ListExportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List export response items.
+	Items []*ExportTask `locationName:"items" type:"list"`
+
+	// List export response next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListExportsOutput) SetItems(v []*ExportTask) *ListExportsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportsOutput) SetNextToken(v string) *ListExportsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// List exports request filters.
+type ListExportsRequestFilters struct {
+	_ struct{} `type:"structure"`
+
+	// List exports request filters export ids.
+	ExportIDs []*string `locationName:"exportIDs" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportsRequestFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExportsRequestFilters) GoString() string {
+	return s.String()
+}
+
+// SetExportIDs sets the ExportIDs field's value.
+func (s *ListExportsRequestFilters) SetExportIDs(v []*string) *ListExportsRequestFilters {
+	s.ExportIDs = v
+	return s
+}
+
+// List import errors request.
+type ListImportErrorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// List import errors request import id.
+	//
+	// ImportID is a required field
+	ImportID *string `locationName:"importID" min:"24" type:"string" required:"true"`
+
+	// List import errors request max results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// List import errors request next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportErrorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportErrorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImportErrorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImportErrorsInput"}
+	if s.ImportID == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportID"))
+	}
+	if s.ImportID != nil && len(*s.ImportID) < 24 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportID", 24))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImportID sets the ImportID field's value.
+func (s *ListImportErrorsInput) SetImportID(v string) *ListImportErrorsInput {
+	s.ImportID = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImportErrorsInput) SetMaxResults(v int64) *ListImportErrorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportErrorsInput) SetNextToken(v string) *ListImportErrorsInput {
+	s.NextToken = &v
+	return s
+}
+
+// List imports errors response.
+type ListImportErrorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List imports errors response items.
+	Items []*ImportTaskError `locationName:"items" type:"list"`
+
+	// List imports errors response next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportErrorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportErrorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListImportErrorsOutput) SetItems(v []*ImportTaskError) *ListImportErrorsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportErrorsOutput) SetNextToken(v string) *ListImportErrorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// List imports request.
+type ListImportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// List imports request filters.
+	Filters *ListImportsRequestFilters `locationName:"filters" type:"structure"`
+
+	// List imports request max results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// List imports request next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImportsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListImportsInput) SetFilters(v *ListImportsRequestFilters) *ListImportsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImportsInput) SetMaxResults(v int64) *ListImportsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportsInput) SetNextToken(v string) *ListImportsInput {
+	s.NextToken = &v
+	return s
+}
+
+// List import response.
+type ListImportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List import response items.
+	Items []*ImportTask `locationName:"items" type:"list"`
+
+	// List import response next token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListImportsOutput) SetItems(v []*ImportTask) *ListImportsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportsOutput) SetNextToken(v string) *ListImportsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// List imports request filters.
+type ListImportsRequestFilters struct {
+	_ struct{} `type:"structure"`
+
+	// List imports request filters import IDs.
+	ImportIDs []*string `locationName:"importIDs" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsRequestFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListImportsRequestFilters) GoString() string {
+	return s.String()
+}
+
+// SetImportIDs sets the ImportIDs field's value.
+func (s *ListImportsRequestFilters) SetImportIDs(v []*string) *ListImportsRequestFilters {
+	s.ImportIDs = v
+	return s
+}
+
 type ListSourceServerActionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11988,6 +13880,9 @@ type MarkAsArchivedOutput struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -12012,6 +13907,9 @@ type MarkAsArchivedOutput struct {
 	// replaced with "sensitive" in string returned by MarkAsArchivedOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -12050,6 +13948,12 @@ func (s *MarkAsArchivedOutput) SetArn(v string) *MarkAsArchivedOutput {
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *MarkAsArchivedOutput) SetDataReplicationInfo(v *DataReplicationInfo) *MarkAsArchivedOutput {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *MarkAsArchivedOutput) SetFqdnForActionFramework(v string) *MarkAsArchivedOutput {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -12092,6 +13996,12 @@ func (s *MarkAsArchivedOutput) SetSourceServerID(v string) *MarkAsArchivedOutput
 // SetTags sets the Tags field's value.
 func (s *MarkAsArchivedOutput) SetTags(v map[string]*string) *MarkAsArchivedOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *MarkAsArchivedOutput) SetUserProvidedID(v string) *MarkAsArchivedOutput {
+	s.UserProvidedID = &v
 	return s
 }
 
@@ -12396,6 +14306,12 @@ type PutSourceServerActionInput struct {
 	// Source server post migration custom action active status.
 	Active *bool `locationName:"active" type:"boolean"`
 
+	// Source server post migration custom action category.
+	Category *string `locationName:"category" type:"string" enum:"ActionCategory"`
+
+	// Source server post migration custom action description.
+	Description *string `locationName:"description" type:"string"`
+
 	// Source server post migration custom action document identifier.
 	//
 	// DocumentIdentifier is a required field
@@ -12403,6 +14319,9 @@ type PutSourceServerActionInput struct {
 
 	// Source server post migration custom action document version.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
+
+	// Source server post migration custom action external parameters.
+	ExternalParameters map[string]*SsmExternalParameter `locationName:"externalParameters" type:"map"`
 
 	// Source server post migration custom action must succeed for cutover.
 	MustSucceedForCutover *bool `locationName:"mustSucceedForCutover" type:"boolean"`
@@ -12475,6 +14394,16 @@ func (s *PutSourceServerActionInput) Validate() error {
 	if s.TimeoutSeconds != nil && *s.TimeoutSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("TimeoutSeconds", 1))
 	}
+	if s.ExternalParameters != nil {
+		for i, v := range s.ExternalParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExternalParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12500,6 +14429,18 @@ func (s *PutSourceServerActionInput) SetActive(v bool) *PutSourceServerActionInp
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *PutSourceServerActionInput) SetCategory(v string) *PutSourceServerActionInput {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutSourceServerActionInput) SetDescription(v string) *PutSourceServerActionInput {
+	s.Description = &v
+	return s
+}
+
 // SetDocumentIdentifier sets the DocumentIdentifier field's value.
 func (s *PutSourceServerActionInput) SetDocumentIdentifier(v string) *PutSourceServerActionInput {
 	s.DocumentIdentifier = &v
@@ -12509,6 +14450,12 @@ func (s *PutSourceServerActionInput) SetDocumentIdentifier(v string) *PutSourceS
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *PutSourceServerActionInput) SetDocumentVersion(v string) *PutSourceServerActionInput {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetExternalParameters sets the ExternalParameters field's value.
+func (s *PutSourceServerActionInput) SetExternalParameters(v map[string]*SsmExternalParameter) *PutSourceServerActionInput {
+	s.ExternalParameters = v
 	return s
 }
 
@@ -12554,11 +14501,20 @@ type PutSourceServerActionOutput struct {
 	// Source server post migration custom action active status.
 	Active *bool `locationName:"active" type:"boolean"`
 
+	// Source server post migration custom action category.
+	Category *string `locationName:"category" type:"string" enum:"ActionCategory"`
+
+	// Source server post migration custom action description.
+	Description *string `locationName:"description" type:"string"`
+
 	// Source server post migration custom action document identifier.
 	DocumentIdentifier *string `locationName:"documentIdentifier" type:"string"`
 
 	// Source server post migration custom action document version.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
+
+	// Source server post migration custom action external parameters.
+	ExternalParameters map[string]*SsmExternalParameter `locationName:"externalParameters" type:"map"`
 
 	// Source server post migration custom action must succeed for cutover.
 	MustSucceedForCutover *bool `locationName:"mustSucceedForCutover" type:"boolean"`
@@ -12609,6 +14565,18 @@ func (s *PutSourceServerActionOutput) SetActive(v bool) *PutSourceServerActionOu
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *PutSourceServerActionOutput) SetCategory(v string) *PutSourceServerActionOutput {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutSourceServerActionOutput) SetDescription(v string) *PutSourceServerActionOutput {
+	s.Description = &v
+	return s
+}
+
 // SetDocumentIdentifier sets the DocumentIdentifier field's value.
 func (s *PutSourceServerActionOutput) SetDocumentIdentifier(v string) *PutSourceServerActionOutput {
 	s.DocumentIdentifier = &v
@@ -12618,6 +14586,12 @@ func (s *PutSourceServerActionOutput) SetDocumentIdentifier(v string) *PutSource
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *PutSourceServerActionOutput) SetDocumentVersion(v string) *PutSourceServerActionOutput {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetExternalParameters sets the ExternalParameters field's value.
+func (s *PutSourceServerActionOutput) SetExternalParameters(v map[string]*SsmExternalParameter) *PutSourceServerActionOutput {
+	s.ExternalParameters = v
 	return s
 }
 
@@ -12661,6 +14635,12 @@ type PutTemplateActionInput struct {
 	// Template post migration custom action active status.
 	Active *bool `locationName:"active" type:"boolean"`
 
+	// Template post migration custom action category.
+	Category *string `locationName:"category" type:"string" enum:"ActionCategory"`
+
+	// Template post migration custom action description.
+	Description *string `locationName:"description" type:"string"`
+
 	// Template post migration custom action document identifier.
 	//
 	// DocumentIdentifier is a required field
@@ -12668,6 +14648,9 @@ type PutTemplateActionInput struct {
 
 	// Template post migration custom action document version.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
+
+	// Template post migration custom action external parameters.
+	ExternalParameters map[string]*SsmExternalParameter `locationName:"externalParameters" type:"map"`
 
 	// Launch configuration template ID.
 	//
@@ -12740,6 +14723,16 @@ func (s *PutTemplateActionInput) Validate() error {
 	if s.TimeoutSeconds != nil && *s.TimeoutSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("TimeoutSeconds", 1))
 	}
+	if s.ExternalParameters != nil {
+		for i, v := range s.ExternalParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExternalParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12765,6 +14758,18 @@ func (s *PutTemplateActionInput) SetActive(v bool) *PutTemplateActionInput {
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *PutTemplateActionInput) SetCategory(v string) *PutTemplateActionInput {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutTemplateActionInput) SetDescription(v string) *PutTemplateActionInput {
+	s.Description = &v
+	return s
+}
+
 // SetDocumentIdentifier sets the DocumentIdentifier field's value.
 func (s *PutTemplateActionInput) SetDocumentIdentifier(v string) *PutTemplateActionInput {
 	s.DocumentIdentifier = &v
@@ -12774,6 +14779,12 @@ func (s *PutTemplateActionInput) SetDocumentIdentifier(v string) *PutTemplateAct
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *PutTemplateActionInput) SetDocumentVersion(v string) *PutTemplateActionInput {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetExternalParameters sets the ExternalParameters field's value.
+func (s *PutTemplateActionInput) SetExternalParameters(v map[string]*SsmExternalParameter) *PutTemplateActionInput {
+	s.ExternalParameters = v
 	return s
 }
 
@@ -12825,11 +14836,20 @@ type PutTemplateActionOutput struct {
 	// Template post migration custom action active status.
 	Active *bool `locationName:"active" type:"boolean"`
 
+	// Template post migration custom action category.
+	Category *string `locationName:"category" type:"string" enum:"ActionCategory"`
+
+	// Template post migration custom action description.
+	Description *string `locationName:"description" type:"string"`
+
 	// Template post migration custom action document identifier.
 	DocumentIdentifier *string `locationName:"documentIdentifier" type:"string"`
 
 	// Template post migration custom action document version.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
+
+	// Template post migration custom action external parameters.
+	ExternalParameters map[string]*SsmExternalParameter `locationName:"externalParameters" type:"map"`
 
 	// Template post migration custom action must succeed for cutover.
 	MustSucceedForCutover *bool `locationName:"mustSucceedForCutover" type:"boolean"`
@@ -12883,6 +14903,18 @@ func (s *PutTemplateActionOutput) SetActive(v bool) *PutTemplateActionOutput {
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *PutTemplateActionOutput) SetCategory(v string) *PutTemplateActionOutput {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutTemplateActionOutput) SetDescription(v string) *PutTemplateActionOutput {
+	s.Description = &v
+	return s
+}
+
 // SetDocumentIdentifier sets the DocumentIdentifier field's value.
 func (s *PutTemplateActionOutput) SetDocumentIdentifier(v string) *PutTemplateActionOutput {
 	s.DocumentIdentifier = &v
@@ -12892,6 +14924,12 @@ func (s *PutTemplateActionOutput) SetDocumentIdentifier(v string) *PutTemplateAc
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *PutTemplateActionOutput) SetDocumentVersion(v string) *PutTemplateActionOutput {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetExternalParameters sets the ExternalParameters field's value.
+func (s *PutTemplateActionOutput) SetExternalParameters(v map[string]*SsmExternalParameter) *PutTemplateActionOutput {
+	s.ExternalParameters = v
 	return s
 }
 
@@ -13470,6 +15508,9 @@ type RetryDataReplicationOutput struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -13494,6 +15535,9 @@ type RetryDataReplicationOutput struct {
 	// replaced with "sensitive" in string returned by RetryDataReplicationOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -13532,6 +15576,12 @@ func (s *RetryDataReplicationOutput) SetArn(v string) *RetryDataReplicationOutpu
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *RetryDataReplicationOutput) SetDataReplicationInfo(v *DataReplicationInfo) *RetryDataReplicationOutput {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *RetryDataReplicationOutput) SetFqdnForActionFramework(v string) *RetryDataReplicationOutput {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -13577,9 +15627,88 @@ func (s *RetryDataReplicationOutput) SetTags(v map[string]*string) *RetryDataRep
 	return s
 }
 
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *RetryDataReplicationOutput) SetUserProvidedID(v string) *RetryDataReplicationOutput {
+	s.UserProvidedID = &v
+	return s
+}
+
 // SetVcenterClientID sets the VcenterClientID field's value.
 func (s *RetryDataReplicationOutput) SetVcenterClientID(v string) *RetryDataReplicationOutput {
 	s.VcenterClientID = &v
+	return s
+}
+
+// S3 bucket source.
+type S3BucketSource struct {
+	_ struct{} `type:"structure"`
+
+	// S3 bucket source s3 bucket.
+	//
+	// S3Bucket is a required field
+	S3Bucket *string `locationName:"s3Bucket" type:"string" required:"true"`
+
+	// S3 bucket source s3 bucket owner.
+	S3BucketOwner *string `locationName:"s3BucketOwner" min:"12" type:"string"`
+
+	// S3 bucket source s3 key.
+	//
+	// S3Key is a required field
+	S3Key *string `locationName:"s3Key" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3BucketSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketSource"}
+	if s.S3Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Bucket"))
+	}
+	if s.S3BucketOwner != nil && len(*s.S3BucketOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("S3BucketOwner", 12))
+	}
+	if s.S3Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Key"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *S3BucketSource) SetS3Bucket(v string) *S3BucketSource {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3BucketOwner sets the S3BucketOwner field's value.
+func (s *S3BucketSource) SetS3BucketOwner(v string) *S3BucketSource {
+	s.S3BucketOwner = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *S3BucketSource) SetS3Key(v string) *S3BucketSource {
+	s.S3Key = &v
 	return s
 }
 
@@ -13771,6 +15900,9 @@ type SourceServer struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -13795,6 +15927,9 @@ type SourceServer struct {
 	// replaced with "sensitive" in string returned by SourceServer's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -13833,6 +15968,12 @@ func (s *SourceServer) SetArn(v string) *SourceServer {
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *SourceServer) SetDataReplicationInfo(v *DataReplicationInfo) *SourceServer {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *SourceServer) SetFqdnForActionFramework(v string) *SourceServer {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -13878,6 +16019,12 @@ func (s *SourceServer) SetTags(v map[string]*string) *SourceServer {
 	return s
 }
 
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *SourceServer) SetUserProvidedID(v string) *SourceServer {
+	s.UserProvidedID = &v
+	return s
+}
+
 // SetVcenterClientID sets the VcenterClientID field's value.
 func (s *SourceServer) SetVcenterClientID(v string) *SourceServer {
 	s.VcenterClientID = &v
@@ -13896,11 +16043,20 @@ type SourceServerActionDocument struct {
 	// Source server post migration custom action active status.
 	Active *bool `locationName:"active" type:"boolean"`
 
+	// Source server post migration custom action category.
+	Category *string `locationName:"category" type:"string" enum:"ActionCategory"`
+
+	// Source server post migration custom action description.
+	Description *string `locationName:"description" type:"string"`
+
 	// Source server post migration custom action document identifier.
 	DocumentIdentifier *string `locationName:"documentIdentifier" type:"string"`
 
 	// Source server post migration custom action document version.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
+
+	// Source server post migration custom action external parameters.
+	ExternalParameters map[string]*SsmExternalParameter `locationName:"externalParameters" type:"map"`
 
 	// Source server post migration custom action must succeed for cutover.
 	MustSucceedForCutover *bool `locationName:"mustSucceedForCutover" type:"boolean"`
@@ -13951,6 +16107,18 @@ func (s *SourceServerActionDocument) SetActive(v bool) *SourceServerActionDocume
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *SourceServerActionDocument) SetCategory(v string) *SourceServerActionDocument {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SourceServerActionDocument) SetDescription(v string) *SourceServerActionDocument {
+	s.Description = &v
+	return s
+}
+
 // SetDocumentIdentifier sets the DocumentIdentifier field's value.
 func (s *SourceServerActionDocument) SetDocumentIdentifier(v string) *SourceServerActionDocument {
 	s.DocumentIdentifier = &v
@@ -13960,6 +16128,12 @@ func (s *SourceServerActionDocument) SetDocumentIdentifier(v string) *SourceServ
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *SourceServerActionDocument) SetDocumentVersion(v string) *SourceServerActionDocument {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetExternalParameters sets the ExternalParameters field's value.
+func (s *SourceServerActionDocument) SetExternalParameters(v map[string]*SsmExternalParameter) *SourceServerActionDocument {
+	s.ExternalParameters = v
 	return s
 }
 
@@ -14028,6 +16202,9 @@ type SsmDocument struct {
 	// ActionName is a required field
 	ActionName *string `locationName:"actionName" type:"string" required:"true"`
 
+	// AWS Systems Manager Document external parameters.
+	ExternalParameters map[string]*SsmExternalParameter `locationName:"externalParameters" type:"map"`
+
 	// If true, Cutover will not be enabled if the document has failed.
 	MustSucceedForCutover *bool `locationName:"mustSucceedForCutover" type:"boolean"`
 
@@ -14076,6 +16253,16 @@ func (s *SsmDocument) Validate() error {
 	if s.TimeoutSeconds != nil && *s.TimeoutSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("TimeoutSeconds", 1))
 	}
+	if s.ExternalParameters != nil {
+		for i, v := range s.ExternalParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExternalParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14086,6 +16273,12 @@ func (s *SsmDocument) Validate() error {
 // SetActionName sets the ActionName field's value.
 func (s *SsmDocument) SetActionName(v string) *SsmDocument {
 	s.ActionName = &v
+	return s
+}
+
+// SetExternalParameters sets the ExternalParameters field's value.
+func (s *SsmDocument) SetExternalParameters(v map[string]*SsmExternalParameter) *SsmDocument {
+	s.ExternalParameters = v
 	return s
 }
 
@@ -14110,6 +16303,51 @@ func (s *SsmDocument) SetSsmDocumentName(v string) *SsmDocument {
 // SetTimeoutSeconds sets the TimeoutSeconds field's value.
 func (s *SsmDocument) SetTimeoutSeconds(v int64) *SsmDocument {
 	s.TimeoutSeconds = &v
+	return s
+}
+
+// AWS Systems Manager Document external parameter.
+type SsmExternalParameter struct {
+	_ struct{} `type:"structure"`
+
+	// AWS Systems Manager Document external parameters dynamic path.
+	DynamicPath *string `locationName:"dynamicPath" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SsmExternalParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SsmExternalParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SsmExternalParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SsmExternalParameter"}
+	if s.DynamicPath != nil && len(*s.DynamicPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DynamicPath", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDynamicPath sets the DynamicPath field's value.
+func (s *SsmExternalParameter) SetDynamicPath(v string) *SsmExternalParameter {
+	s.DynamicPath = &v
 	return s
 }
 
@@ -14251,6 +16489,204 @@ func (s *StartCutoverOutput) SetJob(v *Job) *StartCutoverOutput {
 	return s
 }
 
+// Start export request.
+type StartExportInput struct {
+	_ struct{} `type:"structure"`
+
+	// Start export request s3 bucket.
+	//
+	// S3Bucket is a required field
+	S3Bucket *string `locationName:"s3Bucket" type:"string" required:"true"`
+
+	// Start export request s3 bucket owner.
+	S3BucketOwner *string `locationName:"s3BucketOwner" min:"12" type:"string"`
+
+	// Start export request s3key.
+	//
+	// S3Key is a required field
+	S3Key *string `locationName:"s3Key" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartExportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartExportInput"}
+	if s.S3Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Bucket"))
+	}
+	if s.S3BucketOwner != nil && len(*s.S3BucketOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("S3BucketOwner", 12))
+	}
+	if s.S3Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Key"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *StartExportInput) SetS3Bucket(v string) *StartExportInput {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3BucketOwner sets the S3BucketOwner field's value.
+func (s *StartExportInput) SetS3BucketOwner(v string) *StartExportInput {
+	s.S3BucketOwner = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *StartExportInput) SetS3Key(v string) *StartExportInput {
+	s.S3Key = &v
+	return s
+}
+
+// Start export response.
+type StartExportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Start export response export task.
+	ExportTask *ExportTask `locationName:"exportTask" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExportOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportTask sets the ExportTask field's value.
+func (s *StartExportOutput) SetExportTask(v *ExportTask) *StartExportOutput {
+	s.ExportTask = v
+	return s
+}
+
+// Start import request.
+type StartImportInput struct {
+	_ struct{} `type:"structure"`
+
+	// Start import request client token.
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// Start import request s3 bucket source.
+	//
+	// S3BucketSource is a required field
+	S3BucketSource *S3BucketSource `locationName:"s3BucketSource" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartImportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartImportInput"}
+	if s.S3BucketSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketSource"))
+	}
+	if s.S3BucketSource != nil {
+		if err := s.S3BucketSource.Validate(); err != nil {
+			invalidParams.AddNested("S3BucketSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartImportInput) SetClientToken(v string) *StartImportInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetS3BucketSource sets the S3BucketSource field's value.
+func (s *StartImportInput) SetS3BucketSource(v *S3BucketSource) *StartImportInput {
+	s.S3BucketSource = v
+	return s
+}
+
+// Start import response.
+type StartImportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Start import response import task.
+	ImportTask *ImportTask `locationName:"importTask" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartImportOutput) GoString() string {
+	return s.String()
+}
+
+// SetImportTask sets the ImportTask field's value.
+func (s *StartImportOutput) SetImportTask(v *ImportTask) *StartImportOutput {
+	s.ImportTask = v
+	return s
+}
+
 type StartReplicationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14312,6 +16748,9 @@ type StartReplicationOutput struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -14336,6 +16775,9 @@ type StartReplicationOutput struct {
 	// replaced with "sensitive" in string returned by StartReplicationOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -14374,6 +16816,12 @@ func (s *StartReplicationOutput) SetArn(v string) *StartReplicationOutput {
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *StartReplicationOutput) SetDataReplicationInfo(v *DataReplicationInfo) *StartReplicationOutput {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *StartReplicationOutput) SetFqdnForActionFramework(v string) *StartReplicationOutput {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -14416,6 +16864,12 @@ func (s *StartReplicationOutput) SetSourceServerID(v string) *StartReplicationOu
 // SetTags sets the Tags field's value.
 func (s *StartReplicationOutput) SetTags(v map[string]*string) *StartReplicationOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *StartReplicationOutput) SetUserProvidedID(v string) *StartReplicationOutput {
+	s.UserProvidedID = &v
 	return s
 }
 
@@ -14619,11 +17073,20 @@ type TemplateActionDocument struct {
 	// Template post migration custom action active status.
 	Active *bool `locationName:"active" type:"boolean"`
 
+	// Template post migration custom action category.
+	Category *string `locationName:"category" type:"string" enum:"ActionCategory"`
+
+	// Template post migration custom action description.
+	Description *string `locationName:"description" type:"string"`
+
 	// Template post migration custom action document identifier.
 	DocumentIdentifier *string `locationName:"documentIdentifier" type:"string"`
 
 	// Template post migration custom action document version.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
+
+	// Template post migration custom action external parameters.
+	ExternalParameters map[string]*SsmExternalParameter `locationName:"externalParameters" type:"map"`
 
 	// Template post migration custom action must succeed for cutover.
 	MustSucceedForCutover *bool `locationName:"mustSucceedForCutover" type:"boolean"`
@@ -14677,6 +17140,18 @@ func (s *TemplateActionDocument) SetActive(v bool) *TemplateActionDocument {
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *TemplateActionDocument) SetCategory(v string) *TemplateActionDocument {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TemplateActionDocument) SetDescription(v string) *TemplateActionDocument {
+	s.Description = &v
+	return s
+}
+
 // SetDocumentIdentifier sets the DocumentIdentifier field's value.
 func (s *TemplateActionDocument) SetDocumentIdentifier(v string) *TemplateActionDocument {
 	s.DocumentIdentifier = &v
@@ -14686,6 +17161,12 @@ func (s *TemplateActionDocument) SetDocumentIdentifier(v string) *TemplateAction
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *TemplateActionDocument) SetDocumentVersion(v string) *TemplateActionDocument {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetExternalParameters sets the ExternalParameters field's value.
+func (s *TemplateActionDocument) SetExternalParameters(v map[string]*SsmExternalParameter) *TemplateActionDocument {
+	s.ExternalParameters = v
 	return s
 }
 
@@ -16974,6 +19455,9 @@ type UpdateSourceServerReplicationTypeOutput struct {
 	// Source server data replication info.
 	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
 
+	// Source server fqdn for action framework.
+	FqdnForActionFramework *string `locationName:"fqdnForActionFramework" type:"string"`
+
 	// Source server archived status.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
@@ -16998,6 +19482,9 @@ type UpdateSourceServerReplicationTypeOutput struct {
 	// replaced with "sensitive" in string returned by UpdateSourceServerReplicationTypeOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server user provided ID.
+	UserProvidedID *string `locationName:"userProvidedID" type:"string"`
 
 	// Source server vCenter client id.
 	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
@@ -17036,6 +19523,12 @@ func (s *UpdateSourceServerReplicationTypeOutput) SetArn(v string) *UpdateSource
 // SetDataReplicationInfo sets the DataReplicationInfo field's value.
 func (s *UpdateSourceServerReplicationTypeOutput) SetDataReplicationInfo(v *DataReplicationInfo) *UpdateSourceServerReplicationTypeOutput {
 	s.DataReplicationInfo = v
+	return s
+}
+
+// SetFqdnForActionFramework sets the FqdnForActionFramework field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetFqdnForActionFramework(v string) *UpdateSourceServerReplicationTypeOutput {
+	s.FqdnForActionFramework = &v
 	return s
 }
 
@@ -17078,6 +19571,12 @@ func (s *UpdateSourceServerReplicationTypeOutput) SetSourceServerID(v string) *U
 // SetTags sets the Tags field's value.
 func (s *UpdateSourceServerReplicationTypeOutput) SetTags(v map[string]*string) *UpdateSourceServerReplicationTypeOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUserProvidedID sets the UserProvidedID field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetUserProvidedID(v string) *UpdateSourceServerReplicationTypeOutput {
+	s.UserProvidedID = &v
 	return s
 }
 
@@ -17656,6 +20155,54 @@ func (s *WaveAggregatedStatus) SetTotalApplications(v int64) *WaveAggregatedStat
 }
 
 const (
+	// ActionCategoryDisasterRecovery is a ActionCategory enum value
+	ActionCategoryDisasterRecovery = "DISASTER_RECOVERY"
+
+	// ActionCategoryOperatingSystem is a ActionCategory enum value
+	ActionCategoryOperatingSystem = "OPERATING_SYSTEM"
+
+	// ActionCategoryLicenseAndSubscription is a ActionCategory enum value
+	ActionCategoryLicenseAndSubscription = "LICENSE_AND_SUBSCRIPTION"
+
+	// ActionCategoryValidation is a ActionCategory enum value
+	ActionCategoryValidation = "VALIDATION"
+
+	// ActionCategoryObservability is a ActionCategory enum value
+	ActionCategoryObservability = "OBSERVABILITY"
+
+	// ActionCategorySecurity is a ActionCategory enum value
+	ActionCategorySecurity = "SECURITY"
+
+	// ActionCategoryNetworking is a ActionCategory enum value
+	ActionCategoryNetworking = "NETWORKING"
+
+	// ActionCategoryConfiguration is a ActionCategory enum value
+	ActionCategoryConfiguration = "CONFIGURATION"
+
+	// ActionCategoryBackup is a ActionCategory enum value
+	ActionCategoryBackup = "BACKUP"
+
+	// ActionCategoryOther is a ActionCategory enum value
+	ActionCategoryOther = "OTHER"
+)
+
+// ActionCategory_Values returns all elements of the ActionCategory enum
+func ActionCategory_Values() []string {
+	return []string{
+		ActionCategoryDisasterRecovery,
+		ActionCategoryOperatingSystem,
+		ActionCategoryLicenseAndSubscription,
+		ActionCategoryValidation,
+		ActionCategoryObservability,
+		ActionCategorySecurity,
+		ActionCategoryNetworking,
+		ActionCategoryConfiguration,
+		ActionCategoryBackup,
+		ActionCategoryOther,
+	}
+}
+
+const (
 	// ApplicationHealthStatusHealthy is a ApplicationHealthStatus enum value
 	ApplicationHealthStatusHealthy = "HEALTHY"
 
@@ -17940,6 +20487,30 @@ func DataReplicationState_Values() []string {
 }
 
 const (
+	// ExportStatusPending is a ExportStatus enum value
+	ExportStatusPending = "PENDING"
+
+	// ExportStatusStarted is a ExportStatus enum value
+	ExportStatusStarted = "STARTED"
+
+	// ExportStatusFailed is a ExportStatus enum value
+	ExportStatusFailed = "FAILED"
+
+	// ExportStatusSucceeded is a ExportStatus enum value
+	ExportStatusSucceeded = "SUCCEEDED"
+)
+
+// ExportStatus_Values returns all elements of the ExportStatus enum
+func ExportStatus_Values() []string {
+	return []string{
+		ExportStatusPending,
+		ExportStatusStarted,
+		ExportStatusFailed,
+		ExportStatusSucceeded,
+	}
+}
+
+const (
 	// FirstBootWaiting is a FirstBoot enum value
 	FirstBootWaiting = "WAITING"
 
@@ -17960,6 +20531,46 @@ func FirstBoot_Values() []string {
 		FirstBootSucceeded,
 		FirstBootUnknown,
 		FirstBootStopped,
+	}
+}
+
+const (
+	// ImportErrorTypeValidationError is a ImportErrorType enum value
+	ImportErrorTypeValidationError = "VALIDATION_ERROR"
+
+	// ImportErrorTypeProcessingError is a ImportErrorType enum value
+	ImportErrorTypeProcessingError = "PROCESSING_ERROR"
+)
+
+// ImportErrorType_Values returns all elements of the ImportErrorType enum
+func ImportErrorType_Values() []string {
+	return []string{
+		ImportErrorTypeValidationError,
+		ImportErrorTypeProcessingError,
+	}
+}
+
+const (
+	// ImportStatusPending is a ImportStatus enum value
+	ImportStatusPending = "PENDING"
+
+	// ImportStatusStarted is a ImportStatus enum value
+	ImportStatusStarted = "STARTED"
+
+	// ImportStatusFailed is a ImportStatus enum value
+	ImportStatusFailed = "FAILED"
+
+	// ImportStatusSucceeded is a ImportStatus enum value
+	ImportStatusSucceeded = "SUCCEEDED"
+)
+
+// ImportStatus_Values returns all elements of the ImportStatus enum
+func ImportStatus_Values() []string {
+	return []string{
+		ImportStatusPending,
+		ImportStatusStarted,
+		ImportStatusFailed,
+		ImportStatusSucceeded,
 	}
 }
 
@@ -18166,6 +20777,9 @@ const (
 
 	// LifeCycleStateDiscovered is a LifeCycleState enum value
 	LifeCycleStateDiscovered = "DISCOVERED"
+
+	// LifeCycleStatePendingInstallation is a LifeCycleState enum value
+	LifeCycleStatePendingInstallation = "PENDING_INSTALLATION"
 )
 
 // LifeCycleState_Values returns all elements of the LifeCycleState enum
@@ -18180,6 +20794,7 @@ func LifeCycleState_Values() []string {
 		LifeCycleStateCutover,
 		LifeCycleStateDisconnected,
 		LifeCycleStateDiscovered,
+		LifeCycleStatePendingInstallation,
 	}
 }
 

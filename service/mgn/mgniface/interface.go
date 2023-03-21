@@ -201,6 +201,34 @@ type MgnAPI interface {
 	ListApplicationsPages(*mgn.ListApplicationsInput, func(*mgn.ListApplicationsOutput, bool) bool) error
 	ListApplicationsPagesWithContext(aws.Context, *mgn.ListApplicationsInput, func(*mgn.ListApplicationsOutput, bool) bool, ...request.Option) error
 
+	ListExportErrors(*mgn.ListExportErrorsInput) (*mgn.ListExportErrorsOutput, error)
+	ListExportErrorsWithContext(aws.Context, *mgn.ListExportErrorsInput, ...request.Option) (*mgn.ListExportErrorsOutput, error)
+	ListExportErrorsRequest(*mgn.ListExportErrorsInput) (*request.Request, *mgn.ListExportErrorsOutput)
+
+	ListExportErrorsPages(*mgn.ListExportErrorsInput, func(*mgn.ListExportErrorsOutput, bool) bool) error
+	ListExportErrorsPagesWithContext(aws.Context, *mgn.ListExportErrorsInput, func(*mgn.ListExportErrorsOutput, bool) bool, ...request.Option) error
+
+	ListExports(*mgn.ListExportsInput) (*mgn.ListExportsOutput, error)
+	ListExportsWithContext(aws.Context, *mgn.ListExportsInput, ...request.Option) (*mgn.ListExportsOutput, error)
+	ListExportsRequest(*mgn.ListExportsInput) (*request.Request, *mgn.ListExportsOutput)
+
+	ListExportsPages(*mgn.ListExportsInput, func(*mgn.ListExportsOutput, bool) bool) error
+	ListExportsPagesWithContext(aws.Context, *mgn.ListExportsInput, func(*mgn.ListExportsOutput, bool) bool, ...request.Option) error
+
+	ListImportErrors(*mgn.ListImportErrorsInput) (*mgn.ListImportErrorsOutput, error)
+	ListImportErrorsWithContext(aws.Context, *mgn.ListImportErrorsInput, ...request.Option) (*mgn.ListImportErrorsOutput, error)
+	ListImportErrorsRequest(*mgn.ListImportErrorsInput) (*request.Request, *mgn.ListImportErrorsOutput)
+
+	ListImportErrorsPages(*mgn.ListImportErrorsInput, func(*mgn.ListImportErrorsOutput, bool) bool) error
+	ListImportErrorsPagesWithContext(aws.Context, *mgn.ListImportErrorsInput, func(*mgn.ListImportErrorsOutput, bool) bool, ...request.Option) error
+
+	ListImports(*mgn.ListImportsInput) (*mgn.ListImportsOutput, error)
+	ListImportsWithContext(aws.Context, *mgn.ListImportsInput, ...request.Option) (*mgn.ListImportsOutput, error)
+	ListImportsRequest(*mgn.ListImportsInput) (*request.Request, *mgn.ListImportsOutput)
+
+	ListImportsPages(*mgn.ListImportsInput, func(*mgn.ListImportsOutput, bool) bool) error
+	ListImportsPagesWithContext(aws.Context, *mgn.ListImportsInput, func(*mgn.ListImportsOutput, bool) bool, ...request.Option) error
+
 	ListSourceServerActions(*mgn.ListSourceServerActionsInput) (*mgn.ListSourceServerActionsOutput, error)
 	ListSourceServerActionsWithContext(aws.Context, *mgn.ListSourceServerActionsInput, ...request.Option) (*mgn.ListSourceServerActionsOutput, error)
 	ListSourceServerActionsRequest(*mgn.ListSourceServerActionsInput) (*request.Request, *mgn.ListSourceServerActionsOutput)
@@ -253,6 +281,14 @@ type MgnAPI interface {
 	StartCutover(*mgn.StartCutoverInput) (*mgn.StartCutoverOutput, error)
 	StartCutoverWithContext(aws.Context, *mgn.StartCutoverInput, ...request.Option) (*mgn.StartCutoverOutput, error)
 	StartCutoverRequest(*mgn.StartCutoverInput) (*request.Request, *mgn.StartCutoverOutput)
+
+	StartExport(*mgn.StartExportInput) (*mgn.StartExportOutput, error)
+	StartExportWithContext(aws.Context, *mgn.StartExportInput, ...request.Option) (*mgn.StartExportOutput, error)
+	StartExportRequest(*mgn.StartExportInput) (*request.Request, *mgn.StartExportOutput)
+
+	StartImport(*mgn.StartImportInput) (*mgn.StartImportOutput, error)
+	StartImportWithContext(aws.Context, *mgn.StartImportInput, ...request.Option) (*mgn.StartImportOutput, error)
+	StartImportRequest(*mgn.StartImportInput) (*request.Request, *mgn.StartImportOutput)
 
 	StartReplication(*mgn.StartReplicationInput) (*mgn.StartReplicationOutput, error)
 	StartReplicationWithContext(aws.Context, *mgn.StartReplicationInput, ...request.Option) (*mgn.StartReplicationOutput, error)

@@ -274,6 +274,22 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DeleteMessagingStreamingConfigurations":{
+      "name":"DeleteMessagingStreamingConfigurations",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/app-instances/{appInstanceArn}/streaming-configurations",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteMessagingStreamingConfigurationsRequest"},
+      "errors":[
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DescribeChannel":{
       "name":"DescribeChannel",
       "http":{
@@ -494,6 +510,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetMessagingStreamingConfigurations":{
+      "name":"GetMessagingStreamingConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/app-instances/{appInstanceArn}/streaming-configurations",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMessagingStreamingConfigurationsRequest"},
+      "output":{"shape":"GetMessagingStreamingConfigurationsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListChannelBans":{
       "name":"ListChannelBans",
       "http":{
@@ -707,6 +742,26 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ForbiddenException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "PutMessagingStreamingConfigurations":{
+      "name":"PutMessagingStreamingConfigurations",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/app-instances/{appInstanceArn}/streaming-configurations",
+        "responseCode":200
+      },
+      "input":{"shape":"PutMessagingStreamingConfigurationsRequest"},
+      "output":{"shape":"PutMessagingStreamingConfigurationsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1611,6 +1666,17 @@
         }
       }
     },
+    "DeleteMessagingStreamingConfigurationsRequest":{
+      "type":"structure",
+      "required":["AppInstanceArn"],
+      "members":{
+        "AppInstanceArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceArn"
+        }
+      }
+    },
     "DescribeChannelBanRequest":{
       "type":"structure",
       "required":[
@@ -2007,6 +2073,23 @@
       "type":"structure",
       "members":{
         "Endpoint":{"shape":"MessagingSessionEndpoint"}
+      }
+    },
+    "GetMessagingStreamingConfigurationsRequest":{
+      "type":"structure",
+      "required":["AppInstanceArn"],
+      "members":{
+        "AppInstanceArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceArn"
+        }
+      }
+    },
+    "GetMessagingStreamingConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "StreamingConfigurations":{"shape":"StreamingConfigurationList"}
       }
     },
     "Identity":{
@@ -2488,6 +2571,13 @@
       "min":1,
       "pattern":"[-_a-zA-Z0-9]*"
     },
+    "MessagingDataType":{
+      "type":"string",
+      "enum":[
+        "Channel",
+        "ChannelMessage"
+      ]
+    },
     "MessagingSessionEndpoint":{
       "type":"structure",
       "members":{
@@ -2634,6 +2724,27 @@
         "ChannelArn":{"shape":"ChimeArn"},
         "Member":{"shape":"Identity"},
         "Preferences":{"shape":"ChannelMembershipPreferences"}
+      }
+    },
+    "PutMessagingStreamingConfigurationsRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceArn",
+        "StreamingConfigurations"
+      ],
+      "members":{
+        "AppInstanceArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceArn"
+        },
+        "StreamingConfigurations":{"shape":"StreamingConfigurationList"}
+      }
+    },
+    "PutMessagingStreamingConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "StreamingConfigurations":{"shape":"StreamingConfigurationList"}
       }
     },
     "RedactChannelMessageRequest":{
@@ -2832,6 +2943,23 @@
       "max":256,
       "min":0,
       "pattern":"[\\s\\S]*"
+    },
+    "StreamingConfiguration":{
+      "type":"structure",
+      "required":[
+        "DataType",
+        "ResourceArn"
+      ],
+      "members":{
+        "DataType":{"shape":"MessagingDataType"},
+        "ResourceArn":{"shape":"ChimeArn"}
+      }
+    },
+    "StreamingConfigurationList":{
+      "type":"list",
+      "member":{"shape":"StreamingConfiguration"},
+      "max":2,
+      "min":1
     },
     "String":{"type":"string"},
     "SubChannelId":{

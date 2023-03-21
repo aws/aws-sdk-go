@@ -1501,6 +1501,100 @@ func (c *ChimeSDKMessaging) DeleteChannelModeratorWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opDeleteMessagingStreamingConfigurations = "DeleteMessagingStreamingConfigurations"
+
+// DeleteMessagingStreamingConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMessagingStreamingConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMessagingStreamingConfigurations for more information on using the DeleteMessagingStreamingConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteMessagingStreamingConfigurationsRequest method.
+//	req, resp := client.DeleteMessagingStreamingConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/DeleteMessagingStreamingConfigurations
+func (c *ChimeSDKMessaging) DeleteMessagingStreamingConfigurationsRequest(input *DeleteMessagingStreamingConfigurationsInput) (req *request.Request, output *DeleteMessagingStreamingConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMessagingStreamingConfigurations,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/app-instances/{appInstanceArn}/streaming-configurations",
+	}
+
+	if input == nil {
+		input = &DeleteMessagingStreamingConfigurationsInput{}
+	}
+
+	output = &DeleteMessagingStreamingConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMessagingStreamingConfigurations API operation for Amazon Chime SDK Messaging.
+//
+// Deletes the streaming configurations for an AppInstance. For more information,
+// see Streaming messaging data (https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html)
+// in the Amazon Chime SDK Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Messaging's
+// API operation DeleteMessagingStreamingConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/DeleteMessagingStreamingConfigurations
+func (c *ChimeSDKMessaging) DeleteMessagingStreamingConfigurations(input *DeleteMessagingStreamingConfigurationsInput) (*DeleteMessagingStreamingConfigurationsOutput, error) {
+	req, out := c.DeleteMessagingStreamingConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMessagingStreamingConfigurationsWithContext is the same as DeleteMessagingStreamingConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMessagingStreamingConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) DeleteMessagingStreamingConfigurationsWithContext(ctx aws.Context, input *DeleteMessagingStreamingConfigurationsInput, opts ...request.Option) (*DeleteMessagingStreamingConfigurationsOutput, error) {
+	req, out := c.DeleteMessagingStreamingConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeChannel = "DescribeChannel"
 
 // DescribeChannelRequest generates a "aws/request.Request" representing the
@@ -2703,6 +2797,105 @@ func (c *ChimeSDKMessaging) GetMessagingSessionEndpoint(input *GetMessagingSessi
 // for more information on using Contexts.
 func (c *ChimeSDKMessaging) GetMessagingSessionEndpointWithContext(ctx aws.Context, input *GetMessagingSessionEndpointInput, opts ...request.Option) (*GetMessagingSessionEndpointOutput, error) {
 	req, out := c.GetMessagingSessionEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMessagingStreamingConfigurations = "GetMessagingStreamingConfigurations"
+
+// GetMessagingStreamingConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the GetMessagingStreamingConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMessagingStreamingConfigurations for more information on using the GetMessagingStreamingConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMessagingStreamingConfigurationsRequest method.
+//	req, resp := client.GetMessagingStreamingConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/GetMessagingStreamingConfigurations
+func (c *ChimeSDKMessaging) GetMessagingStreamingConfigurationsRequest(input *GetMessagingStreamingConfigurationsInput) (req *request.Request, output *GetMessagingStreamingConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opGetMessagingStreamingConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instances/{appInstanceArn}/streaming-configurations",
+	}
+
+	if input == nil {
+		input = &GetMessagingStreamingConfigurationsInput{}
+	}
+
+	output = &GetMessagingStreamingConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMessagingStreamingConfigurations API operation for Amazon Chime SDK Messaging.
+//
+// Retrieves the data streaming configuration for an AppInstance. For more information,
+// see Streaming messaging data (https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html)
+// in the Amazon Chime SDK Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Messaging's
+// API operation GetMessagingStreamingConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/GetMessagingStreamingConfigurations
+func (c *ChimeSDKMessaging) GetMessagingStreamingConfigurations(input *GetMessagingStreamingConfigurationsInput) (*GetMessagingStreamingConfigurationsOutput, error) {
+	req, out := c.GetMessagingStreamingConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// GetMessagingStreamingConfigurationsWithContext is the same as GetMessagingStreamingConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMessagingStreamingConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) GetMessagingStreamingConfigurationsWithContext(ctx aws.Context, input *GetMessagingStreamingConfigurationsInput, opts ...request.Option) (*GetMessagingStreamingConfigurationsOutput, error) {
+	req, out := c.GetMessagingStreamingConfigurationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4454,6 +4647,109 @@ func (c *ChimeSDKMessaging) PutChannelMembershipPreferences(input *PutChannelMem
 // for more information on using Contexts.
 func (c *ChimeSDKMessaging) PutChannelMembershipPreferencesWithContext(ctx aws.Context, input *PutChannelMembershipPreferencesInput, opts ...request.Option) (*PutChannelMembershipPreferencesOutput, error) {
 	req, out := c.PutChannelMembershipPreferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutMessagingStreamingConfigurations = "PutMessagingStreamingConfigurations"
+
+// PutMessagingStreamingConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the PutMessagingStreamingConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutMessagingStreamingConfigurations for more information on using the PutMessagingStreamingConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutMessagingStreamingConfigurationsRequest method.
+//	req, resp := client.PutMessagingStreamingConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/PutMessagingStreamingConfigurations
+func (c *ChimeSDKMessaging) PutMessagingStreamingConfigurationsRequest(input *PutMessagingStreamingConfigurationsInput) (req *request.Request, output *PutMessagingStreamingConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opPutMessagingStreamingConfigurations,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/app-instances/{appInstanceArn}/streaming-configurations",
+	}
+
+	if input == nil {
+		input = &PutMessagingStreamingConfigurationsInput{}
+	}
+
+	output = &PutMessagingStreamingConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutMessagingStreamingConfigurations API operation for Amazon Chime SDK Messaging.
+//
+// Sets the data streaming configuration for an AppInstance. For more information,
+// see Streaming messaging data (https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html)
+// in the Amazon Chime SDK Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Messaging's
+// API operation PutMessagingStreamingConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     One or more of the resources in the request does not exist in the system.
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
+//
+//   - ForbiddenException
+//     The client is permanently forbidden from making the request.
+//
+//   - UnauthorizedClientException
+//     The client is not currently authorized to make the request.
+//
+//   - ThrottledClientException
+//     The client exceeded its request rate limit.
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
+//   - ServiceUnavailableException
+//     The service is currently unavailable.
+//
+//   - ServiceFailureException
+//     The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/PutMessagingStreamingConfigurations
+func (c *ChimeSDKMessaging) PutMessagingStreamingConfigurations(input *PutMessagingStreamingConfigurationsInput) (*PutMessagingStreamingConfigurationsOutput, error) {
+	req, out := c.PutMessagingStreamingConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// PutMessagingStreamingConfigurationsWithContext is the same as PutMessagingStreamingConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutMessagingStreamingConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) PutMessagingStreamingConfigurationsWithContext(ctx aws.Context, input *PutMessagingStreamingConfigurationsInput, opts ...request.Option) (*PutMessagingStreamingConfigurationsOutput, error) {
+	req, out := c.PutMessagingStreamingConfigurationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8831,6 +9127,77 @@ func (s DeleteChannelOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteMessagingStreamingConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the streaming configurations being deleted.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMessagingStreamingConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMessagingStreamingConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMessagingStreamingConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMessagingStreamingConfigurationsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *DeleteMessagingStreamingConfigurationsInput) SetAppInstanceArn(v string) *DeleteMessagingStreamingConfigurationsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type DeleteMessagingStreamingConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMessagingStreamingConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMessagingStreamingConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeChannelBanInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -10291,6 +10658,86 @@ func (s GetMessagingSessionEndpointOutput) GoString() string {
 // SetEndpoint sets the Endpoint field's value.
 func (s *GetMessagingSessionEndpointOutput) SetEndpoint(v *MessagingSessionEndpoint) *GetMessagingSessionEndpointOutput {
 	s.Endpoint = v
+	return s
+}
+
+type GetMessagingStreamingConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the streaming configurations.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessagingStreamingConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessagingStreamingConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMessagingStreamingConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMessagingStreamingConfigurationsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *GetMessagingStreamingConfigurationsInput) SetAppInstanceArn(v string) *GetMessagingStreamingConfigurationsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type GetMessagingStreamingConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The streaming settings.
+	StreamingConfigurations []*StreamingConfiguration `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessagingStreamingConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMessagingStreamingConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetStreamingConfigurations sets the StreamingConfigurations field's value.
+func (s *GetMessagingStreamingConfigurationsOutput) SetStreamingConfigurations(v []*StreamingConfiguration) *GetMessagingStreamingConfigurationsOutput {
+	s.StreamingConfigurations = v
 	return s
 }
 
@@ -12504,6 +12951,113 @@ func (s *PutChannelMembershipPreferencesOutput) SetPreferences(v *ChannelMembers
 	return s
 }
 
+type PutMessagingStreamingConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the streaming configuration.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+
+	// The streaming configurations.
+	//
+	// StreamingConfigurations is a required field
+	StreamingConfigurations []*StreamingConfiguration `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMessagingStreamingConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMessagingStreamingConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutMessagingStreamingConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutMessagingStreamingConfigurationsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.StreamingConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamingConfigurations"))
+	}
+	if s.StreamingConfigurations != nil && len(s.StreamingConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamingConfigurations", 1))
+	}
+	if s.StreamingConfigurations != nil {
+		for i, v := range s.StreamingConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StreamingConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *PutMessagingStreamingConfigurationsInput) SetAppInstanceArn(v string) *PutMessagingStreamingConfigurationsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetStreamingConfigurations sets the StreamingConfigurations field's value.
+func (s *PutMessagingStreamingConfigurationsInput) SetStreamingConfigurations(v []*StreamingConfiguration) *PutMessagingStreamingConfigurationsInput {
+	s.StreamingConfigurations = v
+	return s
+}
+
+type PutMessagingStreamingConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The requested streaming configurations.
+	StreamingConfigurations []*StreamingConfiguration `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMessagingStreamingConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMessagingStreamingConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetStreamingConfigurations sets the StreamingConfigurations field's value.
+func (s *PutMessagingStreamingConfigurationsOutput) SetStreamingConfigurations(v []*StreamingConfiguration) *PutMessagingStreamingConfigurationsOutput {
+	s.StreamingConfigurations = v
+	return s
+}
+
 type RedactChannelMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13311,6 +13865,70 @@ func (s *ServiceUnavailableException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The configuration for connecting a messaging stream to Amazon Kinesis.
+type StreamingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The data type of the configuration.
+	//
+	// DataType is a required field
+	DataType *string `type:"string" required:"true" enum:"MessagingDataType"`
+
+	// The ARN of the resource in the configuration.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamingConfiguration"}
+	if s.DataType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataType"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataType sets the DataType field's value.
+func (s *StreamingConfiguration) SetDataType(v string) *StreamingConfiguration {
+	s.DataType = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *StreamingConfiguration) SetResourceArn(v string) *StreamingConfiguration {
+	s.ResourceArn = &v
+	return s
 }
 
 // Summary of the sub-channels associated with the elastic channel.
@@ -14527,6 +15145,22 @@ const (
 func InvocationType_Values() []string {
 	return []string{
 		InvocationTypeAsync,
+	}
+}
+
+const (
+	// MessagingDataTypeChannel is a MessagingDataType enum value
+	MessagingDataTypeChannel = "Channel"
+
+	// MessagingDataTypeChannelMessage is a MessagingDataType enum value
+	MessagingDataTypeChannelMessage = "ChannelMessage"
+)
+
+// MessagingDataType_Values returns all elements of the MessagingDataType enum
+func MessagingDataType_Values() []string {
+	return []string{
+		MessagingDataTypeChannel,
+		MessagingDataTypeChannelMessage,
 	}
 }
 

@@ -3250,7 +3250,8 @@
         "timeSeriesId",
         "dataType",
         "timeSeriesCreationDate",
-        "timeSeriesLastUpdateDate"
+        "timeSeriesLastUpdateDate",
+        "timeSeriesArn"
       ],
       "members":{
         "assetId":{"shape":"ID"},
@@ -3260,7 +3261,8 @@
         "dataType":{"shape":"PropertyDataType"},
         "dataTypeSpec":{"shape":"Name"},
         "timeSeriesCreationDate":{"shape":"Timestamp"},
-        "timeSeriesLastUpdateDate":{"shape":"Timestamp"}
+        "timeSeriesLastUpdateDate":{"shape":"Timestamp"},
+        "timeSeriesArn":{"shape":"ARN"}
       }
     },
     "Description":{
@@ -4984,7 +4986,8 @@
         "timeSeriesId",
         "dataType",
         "timeSeriesCreationDate",
-        "timeSeriesLastUpdateDate"
+        "timeSeriesLastUpdateDate",
+        "timeSeriesArn"
       ],
       "members":{
         "assetId":{"shape":"ID"},
@@ -4994,7 +4997,8 @@
         "dataType":{"shape":"PropertyDataType"},
         "dataTypeSpec":{"shape":"Name"},
         "timeSeriesCreationDate":{"shape":"Timestamp"},
-        "timeSeriesLastUpdateDate":{"shape":"Timestamp"}
+        "timeSeriesLastUpdateDate":{"shape":"Timestamp"},
+        "timeSeriesArn":{"shape":"ARN"}
       }
     },
     "Timestamp":{"type":"timestamp"},

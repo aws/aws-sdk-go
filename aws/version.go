@@ -5,4 +5,4 @@ package aws
 const SDKName = "aws-sdk-go"
 
 // SDKVersion is the version of this SDK
-const SDKVersion = "1.44.225"
+const SDKVersion = "1.44.226"

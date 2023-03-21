@@ -12389,7 +12389,7 @@ type BatchGetAssetPropertyValueInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of asset property value entries for the batch get request. You can
-	// specify up to 16 entries per request.
+	// specify up to 128 entries per request.
 	//
 	// Entries is a required field
 	Entries []*BatchGetAssetPropertyValueEntry `locationName:"entries" type:"list" required:"true"`
@@ -17524,6 +17524,14 @@ type DescribeTimeSeriesOutput struct {
 	// The ID of the asset property.
 	PropertyId *string `locationName:"propertyId" min:"36" type:"string"`
 
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the time series, which has the following format.
+	//
+	// arn:${Partition}:iotsitewise:${Region}:${Account}:time-series/${TimeSeriesId}
+	//
+	// TimeSeriesArn is a required field
+	TimeSeriesArn *string `locationName:"timeSeriesArn" min:"1" type:"string" required:"true"`
+
 	// The date that the time series was created, in Unix epoch time.
 	//
 	// TimeSeriesCreationDate is a required field
@@ -17585,6 +17593,12 @@ func (s *DescribeTimeSeriesOutput) SetDataTypeSpec(v string) *DescribeTimeSeries
 // SetPropertyId sets the PropertyId field's value.
 func (s *DescribeTimeSeriesOutput) SetPropertyId(v string) *DescribeTimeSeriesOutput {
 	s.PropertyId = &v
+	return s
+}
+
+// SetTimeSeriesArn sets the TimeSeriesArn field's value.
+func (s *DescribeTimeSeriesOutput) SetTimeSeriesArn(v string) *DescribeTimeSeriesOutput {
+	s.TimeSeriesArn = &v
 	return s
 }
 
@@ -24099,6 +24113,14 @@ type TimeSeriesSummary struct {
 	// The ID of the asset property.
 	PropertyId *string `locationName:"propertyId" min:"36" type:"string"`
 
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the time series, which has the following format.
+	//
+	// arn:${Partition}:iotsitewise:${Region}:${Account}:time-series/${TimeSeriesId}
+	//
+	// TimeSeriesArn is a required field
+	TimeSeriesArn *string `locationName:"timeSeriesArn" min:"1" type:"string" required:"true"`
+
 	// The date that the time series was created, in Unix epoch time.
 	//
 	// TimeSeriesCreationDate is a required field
@@ -24160,6 +24182,12 @@ func (s *TimeSeriesSummary) SetDataTypeSpec(v string) *TimeSeriesSummary {
 // SetPropertyId sets the PropertyId field's value.
 func (s *TimeSeriesSummary) SetPropertyId(v string) *TimeSeriesSummary {
 	s.PropertyId = &v
+	return s
+}
+
+// SetTimeSeriesArn sets the TimeSeriesArn field's value.
+func (s *TimeSeriesSummary) SetTimeSeriesArn(v string) *TimeSeriesSummary {
+	s.TimeSeriesArn = &v
 	return s
 }
 
