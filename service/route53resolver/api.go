@@ -15531,7 +15531,7 @@ type ResolverRule struct {
 
 	// An array that contains the IP addresses and ports that an outbound endpoint
 	// forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers
-	// on your network. Specify either IPv4 or IPv6 addresses but but not both in the same rule.
+	// on your network. Specify either IPv4 or IPv6 addresses but not both in the same rule.
 	TargetIps []*TargetAddress `min:"1" type:"list"`
 }
 
