@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<note> <p>AWS Clean Rooms is in preview release and is subject to change.</p> </note> <p>Welcome to the <i>AWS Clean Rooms API Reference</i>.</p> <p>AWS Clean Rooms is an AWS service that helps multiple parties to join their data together in a secure collaboration workspace. In the collaboration, members who can query and receive results can get insights into the combined data without either party getting access to the other party's raw data.</p> <p>To learn more about AWS Clean Rooms concepts, procedures, and best practices, see the <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/what-is.html\">AWS Clean Rooms User Guide</a>.</p>",
+  "service": "<p>Welcome to the <i>AWS Clean Rooms API Reference</i>.</p> <p>AWS Clean Rooms is an AWS service that helps multiple parties to join their data together in a secure collaboration workspace. In the collaboration, members who can query and receive results can get insights into the collective datasets without either party getting access to the other party's raw data.</p> <p>To learn more about AWS Clean Rooms concepts, procedures, and best practices, see the <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/what-is.html\">AWS Clean Rooms User Guide</a>.</p>",
   "operations": {
     "BatchGetSchema": "<p>Retrieves multiple schemas by their identifiers.</p>",
     "CreateCollaboration": "<p>Creates a new collaboration.</p>",
@@ -29,7 +29,10 @@
     "ListMemberships": "<p>Lists all memberships resources within the caller's account.</p>",
     "ListProtectedQueries": "<p>Lists protected queries, sorted by the most recent query.</p>",
     "ListSchemas": "<p>Lists the schemas for relations within a collaboration.</p>",
+    "ListTagsForResource": "<p>Lists all of the tags that have been added to a resource.</p>",
     "StartProtectedQuery": "<p>Creates a protected query that is started by AWS Clean Rooms.</p>",
+    "TagResource": "<p>Tags a resource.</p>",
+    "UntagResource": "<p>Removes a tag or list of tags from a resource.</p>",
     "UpdateCollaboration": "<p>Updates collaboration metadata and can only be called by the collaboration owner.</p>",
     "UpdateConfiguredTable": "<p>Updates a configured table.</p>",
     "UpdateConfiguredTableAnalysisRule": "<p>Updates a configured table analysis rule.</p>",
@@ -229,6 +232,14 @@
         "DataEncryptionMetadata$preserveNulls": "<p>Indicates whether NULL values are to be copied as NULL to encrypted tables (true) or cryptographically processed (false).</p>"
       }
     },
+    "CleanroomsArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) associated with the resource you want to list tags on.</p>",
+        "TagResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) associated with the resource you want to tag.</p>",
+        "UntagResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) associated with the resource you want to remove the tag from.</p>"
+      }
+    },
     "Collaboration": {
       "base": "<p>The multi-party data share environment. The collaboration contains metadata about its purpose and participants.</p>",
       "refs": {
@@ -313,7 +324,7 @@
       "base": null,
       "refs": {
         "Schema$columns": "<p>The columns for the relation this schema represents.</p>",
-        "Schema$partitionKeys": "<p>The partition keys for the data set underlying this schema.</p>"
+        "Schema$partitionKeys": "<p>The partition keys for the dataset underlying this schema.</p>"
       }
     },
     "ColumnName": {
@@ -783,6 +794,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Long": {
       "base": null,
       "refs": {
@@ -1187,10 +1208,50 @@
       }
     },
     "TableReference": {
-      "base": "<p>A pointer to the data set that underlies this table. Currently, this can only be an AWS Glue table.</p>",
+      "base": "<p>A pointer to the dataset that underlies this table. Currently, this can only be an AWS Glue table.</p>",
       "refs": {
         "ConfiguredTable$tableReference": "<p>The AWS Glue table that this configured table represents.</p>",
         "CreateConfiguredTableInput$tableReference": "<p>A reference to the AWS Glue table being configured.</p>"
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeys$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceInput$tagKeys": "<p>A list of key names of tags to be removed.</p>"
+      }
+    },
+    "TagMap": {
+      "base": "<p>Map of tags assigned to a resource</p>",
+      "refs": {
+        "CreateCollaborationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "CreateConfiguredTableAssociationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "CreateConfiguredTableInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "CreateMembershipInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "ListTagsForResourceOutput$tags": "<p>A map of objects specifying each key name and value.</p>",
+        "TagResourceInput$tags": "<p>A map of objects specifying each key name and value.</p>"
+      }
+    },
+    "TagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
       }
     },
     "TargetProtectedQueryStatus": {
@@ -1261,6 +1322,16 @@
         "ProtectedQuerySummary$membershipId": "<p>The unique ID for the membership that initiated the protected query.</p>",
         "Schema$collaborationId": "<p>The unique ID for the collaboration that the schema belongs to.</p>",
         "SchemaSummary$collaborationId": "<p>The unique ID for the collaboration that the schema belongs to.</p>"
+      }
+    },
+    "UntagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateCollaborationInput": {

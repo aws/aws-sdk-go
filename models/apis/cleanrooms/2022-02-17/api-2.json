@@ -396,6 +396,7 @@
       "input":{"shape":"ListConfiguredTableAssociationsInput"},
       "output":{"shape":"ListConfiguredTableAssociationsOutput"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
@@ -461,6 +462,7 @@
       "input":{"shape":"ListProtectedQueriesInput"},
       "output":{"shape":"ListProtectedQueriesOutput"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
@@ -484,6 +486,20 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "StartProtectedQuery":{
       "name":"StartProtectedQuery",
       "http":{
@@ -500,6 +516,34 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceInput"},
+      "output":{"shape":"TagResourceOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "output":{"shape":"UntagResourceOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "UpdateCollaboration":{
@@ -675,6 +719,7 @@
     "AggregationConstraintMinimumInteger":{
       "type":"integer",
       "box":true,
+      "max":100000,
       "min":2
     },
     "AggregationConstraints":{
@@ -689,7 +734,7 @@
     "AllowedColumnList":{
       "type":"list",
       "member":{"shape":"ColumnName"},
-      "max":250,
+      "max":100,
       "min":1
     },
     "AnalysisMethod":{
@@ -838,6 +883,12 @@
     "Boolean":{
       "type":"boolean",
       "box":true
+    },
+    "CleanroomsArn":{
+      "type":"string",
+      "max":100,
+      "min":0,
+      "pattern":"arn:aws:cleanrooms:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:[\\d\\w/-]+"
     },
     "Collaboration":{
       "type":"structure",
@@ -1169,7 +1220,8 @@
         "creatorMemberAbilities":{"shape":"MemberAbilities"},
         "creatorDisplayName":{"shape":"DisplayName"},
         "dataEncryptionMetadata":{"shape":"DataEncryptionMetadata"},
-        "queryLogStatus":{"shape":"CollaborationQueryLogStatus"}
+        "queryLogStatus":{"shape":"CollaborationQueryLogStatus"},
+        "tags":{"shape":"TagMap"}
       }
     },
     "CreateCollaborationOutput":{
@@ -1220,7 +1272,8 @@
           "locationName":"membershipIdentifier"
         },
         "configuredTableIdentifier":{"shape":"ConfiguredTableIdentifier"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"TagMap"}
       }
     },
     "CreateConfiguredTableAssociationOutput":{
@@ -1243,7 +1296,8 @@
         "description":{"shape":"TableDescription"},
         "tableReference":{"shape":"TableReference"},
         "allowedColumns":{"shape":"AllowedColumnList"},
-        "analysisMethod":{"shape":"AnalysisMethod"}
+        "analysisMethod":{"shape":"AnalysisMethod"},
+        "tags":{"shape":"TagMap"}
       }
     },
     "CreateConfiguredTableOutput":{
@@ -1261,7 +1315,8 @@
       ],
       "members":{
         "collaborationIdentifier":{"shape":"CollaborationIdentifier"},
-        "queryLogStatus":{"shape":"MembershipQueryLogStatus"}
+        "queryLogStatus":{"shape":"MembershipQueryLogStatus"},
+        "tags":{"shape":"TagMap"}
       }
     },
     "CreateMembershipOutput":{
@@ -1852,6 +1907,24 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"CleanroomsArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "required":["tags"],
+      "members":{
+        "tags":{"shape":"TagMap"}
+      }
+    },
     "Long":{
       "type":"long",
       "box":true
@@ -2372,6 +2445,48 @@
       },
       "union":true
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"(?!aws:).{1,128}"
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"CleanroomsArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "TargetProtectedQueryStatus":{
       "type":"string",
       "enum":["CANCELLED"]
@@ -2393,6 +2508,30 @@
       "max":36,
       "min":36,
       "pattern":".*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.*"
+    },
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"CleanroomsArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeys",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateCollaborationInput":{
       "type":"structure",
@@ -2569,7 +2708,8 @@
       "type":"string",
       "enum":[
         "FIELD_VALIDATION_FAILED",
-        "INVALID_CONFIGURATION"
+        "INVALID_CONFIGURATION",
+        "INVALID_QUERY"
       ]
     }
   }

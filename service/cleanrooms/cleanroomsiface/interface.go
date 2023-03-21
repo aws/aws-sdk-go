@@ -189,9 +189,21 @@ type CleanRoomsAPI interface {
 	ListSchemasPages(*cleanrooms.ListSchemasInput, func(*cleanrooms.ListSchemasOutput, bool) bool) error
 	ListSchemasPagesWithContext(aws.Context, *cleanrooms.ListSchemasInput, func(*cleanrooms.ListSchemasOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*cleanrooms.ListTagsForResourceInput) (*cleanrooms.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *cleanrooms.ListTagsForResourceInput, ...request.Option) (*cleanrooms.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*cleanrooms.ListTagsForResourceInput) (*request.Request, *cleanrooms.ListTagsForResourceOutput)
+
 	StartProtectedQuery(*cleanrooms.StartProtectedQueryInput) (*cleanrooms.StartProtectedQueryOutput, error)
 	StartProtectedQueryWithContext(aws.Context, *cleanrooms.StartProtectedQueryInput, ...request.Option) (*cleanrooms.StartProtectedQueryOutput, error)
 	StartProtectedQueryRequest(*cleanrooms.StartProtectedQueryInput) (*request.Request, *cleanrooms.StartProtectedQueryOutput)
+
+	TagResource(*cleanrooms.TagResourceInput) (*cleanrooms.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *cleanrooms.TagResourceInput, ...request.Option) (*cleanrooms.TagResourceOutput, error)
+	TagResourceRequest(*cleanrooms.TagResourceInput) (*request.Request, *cleanrooms.TagResourceOutput)
+
+	UntagResource(*cleanrooms.UntagResourceInput) (*cleanrooms.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *cleanrooms.UntagResourceInput, ...request.Option) (*cleanrooms.UntagResourceOutput, error)
+	UntagResourceRequest(*cleanrooms.UntagResourceInput) (*request.Request, *cleanrooms.UntagResourceOutput)
 
 	UpdateCollaboration(*cleanrooms.UpdateCollaborationInput) (*cleanrooms.UpdateCollaborationOutput, error)
 	UpdateCollaborationWithContext(aws.Context, *cleanrooms.UpdateCollaborationInput, ...request.Option) (*cleanrooms.UpdateCollaborationOutput, error)

@@ -5716,6 +5716,30 @@
         "Component":{
           "shape":"AnalysisComponent",
           "locationName":"component"
+        },
+        "VpcEndpointService":{
+          "shape":"AnalysisComponent",
+          "locationName":"vpcEndpointService"
+        },
+        "RuleOptions":{
+          "shape":"RuleOptionList",
+          "locationName":"ruleOptionSet"
+        },
+        "RuleGroupTypePairs":{
+          "shape":"RuleGroupTypePairList",
+          "locationName":"ruleGroupTypePairSet"
+        },
+        "RuleGroupRuleOptionsPairs":{
+          "shape":"RuleGroupRuleOptionsPairList",
+          "locationName":"ruleGroupRuleOptionsPairSet"
+        },
+        "ServiceName":{
+          "shape":"String",
+          "locationName":"serviceName"
+        },
+        "LoadBalancers":{
+          "shape":"AnalysisComponentList",
+          "locationName":"loadBalancerSet"
         }
       }
     },
@@ -6308,6 +6332,18 @@
         "State":{
           "shape":"String",
           "locationName":"state"
+        },
+        "CarrierGatewayId":{
+          "shape":"String",
+          "locationName":"carrierGatewayId"
+        },
+        "CoreNetworkArn":{
+          "shape":"ResourceArn",
+          "locationName":"coreNetworkArn"
+        },
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
         }
       }
     },
@@ -10778,7 +10814,6 @@
       "type":"structure",
       "required":[
         "Source",
-        "Destination",
         "Protocol",
         "ClientToken"
       ],
@@ -10797,7 +10832,9 @@
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "FilterAtSource":{"shape":"PathRequestFilter"},
+        "FilterAtDestination":{"shape":"PathRequestFilter"}
       }
     },
     "CreateNetworkInsightsPathResult":{
@@ -19571,7 +19608,7 @@
           "locationName":"format"
         },
         "ImportManifestUrl":{
-          "shape":"String",
+          "shape":"ImportManifestUrl",
           "locationName":"importManifestUrl"
         }
       }
@@ -20845,6 +20882,14 @@
         "ComponentRegion":{
           "shape":"ComponentRegion",
           "locationName":"componentRegion"
+        },
+        "FirewallStatelessRule":{
+          "shape":"FirewallStatelessRule",
+          "locationName":"firewallStatelessRule"
+        },
+        "FirewallStatefulRule":{
+          "shape":"FirewallStatefulRule",
+          "locationName":"firewallStatefulRule"
         }
       }
     },
@@ -21318,6 +21363,19 @@
         "locationName":"Filter"
       }
     },
+    "FilterPortRange":{
+      "type":"structure",
+      "members":{
+        "FromPort":{
+          "shape":"Port",
+          "locationName":"fromPort"
+        },
+        "ToPort":{
+          "shape":"Port",
+          "locationName":"toPort"
+        }
+      }
+    },
     "FindingsFound":{
       "type":"string",
       "enum":[
@@ -21325,6 +21383,80 @@
         "false",
         "unknown"
       ]
+    },
+    "FirewallStatefulRule":{
+      "type":"structure",
+      "members":{
+        "RuleGroupArn":{
+          "shape":"ResourceArn",
+          "locationName":"ruleGroupArn"
+        },
+        "Sources":{
+          "shape":"ValueStringList",
+          "locationName":"sourceSet"
+        },
+        "Destinations":{
+          "shape":"ValueStringList",
+          "locationName":"destinationSet"
+        },
+        "SourcePorts":{
+          "shape":"PortRangeList",
+          "locationName":"sourcePortSet"
+        },
+        "DestinationPorts":{
+          "shape":"PortRangeList",
+          "locationName":"destinationPortSet"
+        },
+        "Protocol":{
+          "shape":"String",
+          "locationName":"protocol"
+        },
+        "RuleAction":{
+          "shape":"String",
+          "locationName":"ruleAction"
+        },
+        "Direction":{
+          "shape":"String",
+          "locationName":"direction"
+        }
+      }
+    },
+    "FirewallStatelessRule":{
+      "type":"structure",
+      "members":{
+        "RuleGroupArn":{
+          "shape":"ResourceArn",
+          "locationName":"ruleGroupArn"
+        },
+        "Sources":{
+          "shape":"ValueStringList",
+          "locationName":"sourceSet"
+        },
+        "Destinations":{
+          "shape":"ValueStringList",
+          "locationName":"destinationSet"
+        },
+        "SourcePorts":{
+          "shape":"PortRangeList",
+          "locationName":"sourcePortSet"
+        },
+        "DestinationPorts":{
+          "shape":"PortRangeList",
+          "locationName":"destinationPortSet"
+        },
+        "Protocols":{
+          "shape":"ProtocolIntList",
+          "locationName":"protocolSet"
+        },
+        "RuleAction":{
+          "shape":"String",
+          "locationName":"ruleAction"
+        },
+        "Priority":{
+          "shape":"Priority",
+          "locationName":"priority"
+        }
+      }
     },
     "FleetActivityStatus":{
       "type":"string",
@@ -24478,6 +24610,10 @@
           "locationName":"tagSet"
         }
       }
+    },
+    "ImportManifestUrl":{
+      "type":"string",
+      "sensitive":true
     },
     "ImportSnapshotRequest":{
       "type":"structure",
@@ -32605,6 +32741,14 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "FilterAtSource":{
+          "shape":"PathFilter",
+          "locationName":"filterAtSource"
+        },
+        "FilterAtDestination":{
+          "shape":"PathFilter",
+          "locationName":"filterAtDestination"
         }
       }
     },
@@ -33324,6 +33468,18 @@
         "ElasticLoadBalancerListener":{
           "shape":"AnalysisComponent",
           "locationName":"elasticLoadBalancerListener"
+        },
+        "FirewallStatelessRule":{
+          "shape":"FirewallStatelessRule",
+          "locationName":"firewallStatelessRule"
+        },
+        "FirewallStatefulRule":{
+          "shape":"FirewallStatefulRule",
+          "locationName":"firewallStatefulRule"
+        },
+        "ServiceName":{
+          "shape":"String",
+          "locationName":"serviceName"
         }
       }
     },
@@ -33332,6 +33488,36 @@
       "member":{
         "shape":"PathComponent",
         "locationName":"item"
+      }
+    },
+    "PathFilter":{
+      "type":"structure",
+      "members":{
+        "SourceAddress":{
+          "shape":"IpAddress",
+          "locationName":"sourceAddress"
+        },
+        "SourcePortRange":{
+          "shape":"FilterPortRange",
+          "locationName":"sourcePortRange"
+        },
+        "DestinationAddress":{
+          "shape":"IpAddress",
+          "locationName":"destinationAddress"
+        },
+        "DestinationPortRange":{
+          "shape":"FilterPortRange",
+          "locationName":"destinationPortRange"
+        }
+      }
+    },
+    "PathRequestFilter":{
+      "type":"structure",
+      "members":{
+        "SourceAddress":{"shape":"IpAddress"},
+        "SourcePortRange":{"shape":"RequestFilterPortRange"},
+        "DestinationAddress":{"shape":"IpAddress"},
+        "DestinationPortRange":{"shape":"RequestFilterPortRange"}
       }
     },
     "PathStatement":{
@@ -34049,6 +34235,11 @@
         "Role"
       ]
     },
+    "Priority":{
+      "type":"integer",
+      "max":65535,
+      "min":-1
+    },
     "PrivateDnsDetails":{
       "type":"structure",
       "members":{
@@ -34241,6 +34432,18 @@
         "tcp",
         "udp"
       ]
+    },
+    "ProtocolInt":{
+      "type":"integer",
+      "max":255,
+      "min":0
+    },
+    "ProtocolIntList":{
+      "type":"list",
+      "member":{
+        "shape":"ProtocolInt",
+        "locationName":"item"
+      }
     },
     "ProtocolList":{
       "type":"list",
@@ -35401,6 +35604,13 @@
         "ok",
         "impaired"
       ]
+    },
+    "RequestFilterPortRange":{
+      "type":"structure",
+      "members":{
+        "FromPort":{"shape":"Port"},
+        "ToPort":{"shape":"Port"}
+      }
     },
     "RequestHostIdList":{
       "type":"list",
@@ -37053,6 +37263,66 @@
         "allow",
         "deny"
       ]
+    },
+    "RuleGroupRuleOptionsPair":{
+      "type":"structure",
+      "members":{
+        "RuleGroupArn":{
+          "shape":"ResourceArn",
+          "locationName":"ruleGroupArn"
+        },
+        "RuleOptions":{
+          "shape":"RuleOptionList",
+          "locationName":"ruleOptionSet"
+        }
+      }
+    },
+    "RuleGroupRuleOptionsPairList":{
+      "type":"list",
+      "member":{
+        "shape":"RuleGroupRuleOptionsPair",
+        "locationName":"item"
+      }
+    },
+    "RuleGroupTypePair":{
+      "type":"structure",
+      "members":{
+        "RuleGroupArn":{
+          "shape":"ResourceArn",
+          "locationName":"ruleGroupArn"
+        },
+        "RuleGroupType":{
+          "shape":"String",
+          "locationName":"ruleGroupType"
+        }
+      }
+    },
+    "RuleGroupTypePairList":{
+      "type":"list",
+      "member":{
+        "shape":"RuleGroupTypePair",
+        "locationName":"item"
+      }
+    },
+    "RuleOption":{
+      "type":"structure",
+      "members":{
+        "Keyword":{
+          "shape":"String",
+          "locationName":"keyword"
+        },
+        "Settings":{
+          "shape":"StringList",
+          "locationName":"settingSet"
+        }
+      }
+    },
+    "RuleOptionList":{
+      "type":"list",
+      "member":{
+        "shape":"RuleOption",
+        "locationName":"item"
+      }
     },
     "RunInstancesMonitoringEnabled":{
       "type":"structure",

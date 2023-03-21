@@ -473,6 +473,61 @@
         {"shape":"UninitializedAccountException"}
       ]
     },
+    "ListExportErrors":{
+      "name":"ListExportErrors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListExportErrors",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExportErrorsRequest"},
+      "output":{"shape":"ListExportErrorsResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListExports":{
+      "name":"ListExports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListExports",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExportsRequest"},
+      "output":{"shape":"ListExportsResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
+    "ListImportErrors":{
+      "name":"ListImportErrors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListImportErrors",
+        "responseCode":200
+      },
+      "input":{"shape":"ListImportErrorsRequest"},
+      "output":{"shape":"ListImportErrorsResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListImports":{
+      "name":"ListImports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListImports",
+        "responseCode":200
+      },
+      "input":{"shape":"ListImportsRequest"},
+      "output":{"shape":"ListImportsResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ListSourceServerActions":{
       "name":"ListSourceServerActions",
       "http":{
@@ -635,6 +690,38 @@
       "errors":[
         {"shape":"UninitializedAccountException"},
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "StartExport":{
+      "name":"StartExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/StartExport",
+        "responseCode":202
+      },
+      "input":{"shape":"StartExportRequest"},
+      "output":{"shape":"StartExportResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "StartImport":{
+      "name":"StartImport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/StartImport",
+        "responseCode":202
+      },
+      "input":{"shape":"StartImportRequest"},
+      "output":{"shape":"StartImportResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -883,6 +970,33 @@
       },
       "exception":true
     },
+    "AccountID":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"[0-9]{12,}"
+    },
+    "ActionCategory":{
+      "type":"string",
+      "enum":[
+        "DISASTER_RECOVERY",
+        "OPERATING_SYSTEM",
+        "LICENSE_AND_SUBSCRIPTION",
+        "VALIDATION",
+        "OBSERVABILITY",
+        "SECURITY",
+        "NETWORKING",
+        "CONFIGURATION",
+        "BACKUP",
+        "OTHER"
+      ]
+    },
+    "ActionDescription":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^[0-9a-zA-Z ():/.,'-_#*; ]*$"
+    },
     "ActionID":{
       "type":"string",
       "max":64,
@@ -1075,6 +1189,11 @@
         "READY_FOR_CUTOVER",
         "CUTOVER"
       ]
+    },
+    "ClientIdempotencyToken":{
+      "type":"string",
+      "max":64,
+      "min":0
     },
     "CloudWatchLogGroupName":{
       "type":"string",
@@ -1594,6 +1713,64 @@
         "resourceType":{"shape":"LargeBoundedString"}
       }
     },
+    "ExportErrorData":{
+      "type":"structure",
+      "members":{
+        "rawError":{"shape":"LargeBoundedString"}
+      }
+    },
+    "ExportErrors":{
+      "type":"list",
+      "member":{"shape":"ExportTaskError"}
+    },
+    "ExportID":{
+      "type":"string",
+      "max":24,
+      "min":24,
+      "pattern":"^export-[0-9a-zA-Z]{17}$"
+    },
+    "ExportStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "STARTED",
+        "FAILED",
+        "SUCCEEDED"
+      ]
+    },
+    "ExportTask":{
+      "type":"structure",
+      "members":{
+        "creationDateTime":{"shape":"ISO8601DatetimeString"},
+        "endDateTime":{"shape":"ISO8601DatetimeString"},
+        "exportID":{"shape":"ExportID"},
+        "progressPercentage":{"shape":"Float"},
+        "s3Bucket":{"shape":"S3BucketName"},
+        "s3BucketOwner":{"shape":"AccountID"},
+        "s3Key":{"shape":"S3Key"},
+        "status":{"shape":"ExportStatus"},
+        "summary":{"shape":"ExportTaskSummary"}
+      }
+    },
+    "ExportTaskError":{
+      "type":"structure",
+      "members":{
+        "errorData":{"shape":"ExportErrorData"},
+        "errorDateTime":{"shape":"ISO8601DatetimeString"}
+      }
+    },
+    "ExportTaskSummary":{
+      "type":"structure",
+      "members":{
+        "applicationsCount":{"shape":"PositiveInteger"},
+        "serversCount":{"shape":"PositiveInteger"},
+        "wavesCount":{"shape":"PositiveInteger"}
+      }
+    },
+    "ExportsList":{
+      "type":"list",
+      "member":{"shape":"ExportTask"}
+    },
     "FinalizeCutoverRequest":{
       "type":"structure",
       "required":["sourceServerID"],
@@ -1609,6 +1786,10 @@
         "UNKNOWN",
         "STOPPED"
       ]
+    },
+    "Float":{
+      "type":"float",
+      "box":true
     },
     "GetLaunchConfigurationRequest":{
       "type":"structure",
@@ -1649,6 +1830,102 @@
         "vmWareUuid":{"shape":"BoundedString"}
       }
     },
+    "ImportErrorData":{
+      "type":"structure",
+      "members":{
+        "applicationID":{"shape":"ApplicationID"},
+        "ec2LaunchTemplateID":{"shape":"BoundedString"},
+        "rawError":{"shape":"LargeBoundedString"},
+        "rowNumber":{"shape":"PositiveInteger"},
+        "sourceServerID":{"shape":"SourceServerID"},
+        "waveID":{"shape":"WaveID"}
+      }
+    },
+    "ImportErrorType":{
+      "type":"string",
+      "enum":[
+        "VALIDATION_ERROR",
+        "PROCESSING_ERROR"
+      ]
+    },
+    "ImportErrors":{
+      "type":"list",
+      "member":{"shape":"ImportTaskError"}
+    },
+    "ImportID":{
+      "type":"string",
+      "max":24,
+      "min":24,
+      "pattern":"^import-[0-9a-zA-Z]{17}$"
+    },
+    "ImportIDsFilter":{
+      "type":"list",
+      "member":{"shape":"ImportID"},
+      "max":10,
+      "min":0
+    },
+    "ImportList":{
+      "type":"list",
+      "member":{"shape":"ImportTask"}
+    },
+    "ImportStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "STARTED",
+        "FAILED",
+        "SUCCEEDED"
+      ]
+    },
+    "ImportTask":{
+      "type":"structure",
+      "members":{
+        "creationDateTime":{"shape":"ISO8601DatetimeString"},
+        "endDateTime":{"shape":"ISO8601DatetimeString"},
+        "importID":{"shape":"ImportID"},
+        "progressPercentage":{"shape":"Float"},
+        "s3BucketSource":{"shape":"S3BucketSource"},
+        "status":{"shape":"ImportStatus"},
+        "summary":{"shape":"ImportTaskSummary"}
+      }
+    },
+    "ImportTaskError":{
+      "type":"structure",
+      "members":{
+        "errorData":{"shape":"ImportErrorData"},
+        "errorDateTime":{"shape":"ISO8601DatetimeString"},
+        "errorType":{"shape":"ImportErrorType"}
+      }
+    },
+    "ImportTaskSummary":{
+      "type":"structure",
+      "members":{
+        "applications":{"shape":"ImportTaskSummaryApplications"},
+        "servers":{"shape":"ImportTaskSummaryServers"},
+        "waves":{"shape":"ImportTaskSummaryWaves"}
+      }
+    },
+    "ImportTaskSummaryApplications":{
+      "type":"structure",
+      "members":{
+        "createdCount":{"shape":"PositiveInteger"},
+        "modifiedCount":{"shape":"PositiveInteger"}
+      }
+    },
+    "ImportTaskSummaryServers":{
+      "type":"structure",
+      "members":{
+        "createdCount":{"shape":"PositiveInteger"},
+        "modifiedCount":{"shape":"PositiveInteger"}
+      }
+    },
+    "ImportTaskSummaryWaves":{
+      "type":"structure",
+      "members":{
+        "createdCount":{"shape":"PositiveInteger"},
+        "modifiedCount":{"shape":"PositiveInteger"}
+      }
+    },
     "InitializeServiceRequest":{
       "type":"structure",
       "members":{
@@ -1682,6 +1959,12 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "JmesPathString":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_\\[\\]]+)*$"
     },
     "Job":{
       "type":"structure",
@@ -1954,7 +2237,8 @@
         "CUTTING_OVER",
         "CUTOVER",
         "DISCONNECTED",
-        "DISCOVERED"
+        "DISCOVERED",
+        "PENDING_INSTALLATION"
       ]
     },
     "LifeCycleStates":{
@@ -1983,6 +2267,86 @@
       "type":"structure",
       "members":{
         "items":{"shape":"ApplicationsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListExportErrorsRequest":{
+      "type":"structure",
+      "required":["exportID"],
+      "members":{
+        "exportID":{"shape":"ExportID"},
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListExportErrorsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"ExportErrors"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListExportsRequest":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"ListExportsRequestFilters"},
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListExportsRequestFilters":{
+      "type":"structure",
+      "members":{
+        "exportIDs":{"shape":"ListExportsRequestFiltersExportIDs"}
+      }
+    },
+    "ListExportsRequestFiltersExportIDs":{
+      "type":"list",
+      "member":{"shape":"ExportID"},
+      "max":10,
+      "min":0
+    },
+    "ListExportsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"ExportsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportErrorsRequest":{
+      "type":"structure",
+      "required":["importID"],
+      "members":{
+        "importID":{"shape":"ImportID"},
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportErrorsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"ImportErrors"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportsRequest":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"ListImportsRequestFilters"},
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListImportsRequestFilters":{
+      "type":"structure",
+      "members":{
+        "importIDs":{"shape":"ImportIDsFilter"}
+      }
+    },
+    "ListImportsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"ImportList"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -2173,8 +2537,11 @@
         "actionID":{"shape":"ActionID"},
         "actionName":{"shape":"ActionName"},
         "active":{"shape":"Boolean"},
+        "category":{"shape":"ActionCategory"},
+        "description":{"shape":"ActionDescription"},
         "documentIdentifier":{"shape":"BoundedString"},
         "documentVersion":{"shape":"DocumentVersion"},
+        "externalParameters":{"shape":"SsmDocumentExternalParameters"},
         "mustSucceedForCutover":{"shape":"Boolean"},
         "order":{"shape":"OrderType"},
         "parameters":{"shape":"SsmDocumentParameters"},
@@ -2195,8 +2562,11 @@
         "actionID":{"shape":"ActionID"},
         "actionName":{"shape":"BoundedString"},
         "active":{"shape":"Boolean"},
+        "category":{"shape":"ActionCategory"},
+        "description":{"shape":"ActionDescription"},
         "documentIdentifier":{"shape":"BoundedString"},
         "documentVersion":{"shape":"DocumentVersion"},
+        "externalParameters":{"shape":"SsmDocumentExternalParameters"},
         "launchConfigurationTemplateID":{"shape":"LaunchConfigurationTemplateID"},
         "mustSucceedForCutover":{"shape":"Boolean"},
         "operatingSystem":{"shape":"OperatingSystemString"},
@@ -2385,6 +2755,26 @@
         "sourceServerID":{"shape":"SourceServerID"}
       }
     },
+    "S3BucketName":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9.\\-_]{1,255}$"
+    },
+    "S3BucketSource":{
+      "type":"structure",
+      "required":[
+        "s3Bucket",
+        "s3Key"
+      ],
+      "members":{
+        "s3Bucket":{"shape":"S3BucketName"},
+        "s3BucketOwner":{"shape":"AccountID"},
+        "s3Key":{"shape":"S3Key"}
+      }
+    },
+    "S3Key":{
+      "type":"string",
+      "pattern":"^[^\\x00]{1,1020}\\.csv$"
+    },
     "S3LogBucketName":{
       "type":"string",
       "max":63,
@@ -2437,6 +2827,7 @@
         "applicationID":{"shape":"ApplicationID"},
         "arn":{"shape":"ARN"},
         "dataReplicationInfo":{"shape":"DataReplicationInfo"},
+        "fqdnForActionFramework":{"shape":"BoundedString"},
         "isArchived":{"shape":"Boolean"},
         "launchedInstance":{"shape":"LaunchedInstance"},
         "lifeCycle":{"shape":"LifeCycle"},
@@ -2444,6 +2835,7 @@
         "sourceProperties":{"shape":"SourceProperties"},
         "sourceServerID":{"shape":"SourceServerID"},
         "tags":{"shape":"TagsMap"},
+        "userProvidedID":{"shape":"BoundedString"},
         "vcenterClientID":{"shape":"VcenterClientID"}
       }
     },
@@ -2453,8 +2845,11 @@
         "actionID":{"shape":"ActionID"},
         "actionName":{"shape":"ActionName"},
         "active":{"shape":"Boolean"},
+        "category":{"shape":"ActionCategory"},
+        "description":{"shape":"ActionDescription"},
         "documentIdentifier":{"shape":"BoundedString"},
         "documentVersion":{"shape":"DocumentVersion"},
+        "externalParameters":{"shape":"SsmDocumentExternalParameters"},
         "mustSucceedForCutover":{"shape":"Boolean"},
         "order":{"shape":"OrderType"},
         "parameters":{"shape":"SsmDocumentParameters"},
@@ -2491,11 +2886,19 @@
       ],
       "members":{
         "actionName":{"shape":"BoundedString"},
+        "externalParameters":{"shape":"SsmDocumentExternalParameters"},
         "mustSucceedForCutover":{"shape":"Boolean"},
         "parameters":{"shape":"SsmDocumentParameters"},
         "ssmDocumentName":{"shape":"SsmDocumentName"},
         "timeoutSeconds":{"shape":"StrictlyPositiveInteger"}
       }
+    },
+    "SsmDocumentExternalParameters":{
+      "type":"map",
+      "key":{"shape":"SsmDocumentParameterName"},
+      "value":{"shape":"SsmExternalParameter"},
+      "max":20,
+      "min":0
     },
     "SsmDocumentName":{
       "type":"string",
@@ -2528,6 +2931,13 @@
       "member":{"shape":"SsmDocument"},
       "max":10,
       "min":0
+    },
+    "SsmExternalParameter":{
+      "type":"structure",
+      "members":{
+        "dynamicPath":{"shape":"JmesPathString"}
+      },
+      "union":true
     },
     "SsmParameterStoreParameter":{
       "type":"structure",
@@ -2574,6 +2984,41 @@
       "type":"structure",
       "members":{
         "job":{"shape":"Job"}
+      }
+    },
+    "StartExportRequest":{
+      "type":"structure",
+      "required":[
+        "s3Bucket",
+        "s3Key"
+      ],
+      "members":{
+        "s3Bucket":{"shape":"S3BucketName"},
+        "s3BucketOwner":{"shape":"AccountID"},
+        "s3Key":{"shape":"S3Key"}
+      }
+    },
+    "StartExportResponse":{
+      "type":"structure",
+      "members":{
+        "exportTask":{"shape":"ExportTask"}
+      }
+    },
+    "StartImportRequest":{
+      "type":"structure",
+      "required":["s3BucketSource"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientIdempotencyToken",
+          "idempotencyToken":true
+        },
+        "s3BucketSource":{"shape":"S3BucketSource"}
+      }
+    },
+    "StartImportResponse":{
+      "type":"structure",
+      "members":{
+        "importTask":{"shape":"ImportTask"}
       }
     },
     "StartReplicationRequest":{
@@ -2662,8 +3107,11 @@
         "actionID":{"shape":"ActionID"},
         "actionName":{"shape":"BoundedString"},
         "active":{"shape":"Boolean"},
+        "category":{"shape":"ActionCategory"},
+        "description":{"shape":"ActionDescription"},
         "documentIdentifier":{"shape":"BoundedString"},
         "documentVersion":{"shape":"DocumentVersion"},
+        "externalParameters":{"shape":"SsmDocumentExternalParameters"},
         "mustSucceedForCutover":{"shape":"Boolean"},
         "operatingSystem":{"shape":"OperatingSystemString"},
         "order":{"shape":"OrderType"},
