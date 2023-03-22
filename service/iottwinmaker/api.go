@@ -3971,7 +3971,7 @@ func (s *BatchPutPropertyValuesOutput) SetErrorEntries(v []*BatchPutPropertyErro
 	return s
 }
 
-// Information about pricing bundle.
+// Information about the pricing bundle.
 type BundleInformation struct {
 	_ struct{} `type:"structure"`
 
@@ -4055,6 +4055,7 @@ func (s *ColumnDescription) SetType(v string) *ColumnDescription {
 	return s
 }
 
+// The component property group request.
 type ComponentPropertyGroupRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -5147,6 +5148,9 @@ type CreateSceneInput struct {
 	// SceneId is a required field
 	SceneId *string `locationName:"sceneId" min:"1" type:"string" required:"true"`
 
+	// The request metadata.
+	SceneMetadata map[string]*string `locationName:"sceneMetadata" type:"map"`
+
 	// Metadata that you can use to manage the scene.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
@@ -5223,6 +5227,12 @@ func (s *CreateSceneInput) SetSceneId(v string) *CreateSceneInput {
 	return s
 }
 
+// SetSceneMetadata sets the SceneMetadata field's value.
+func (s *CreateSceneInput) SetSceneMetadata(v map[string]*string) *CreateSceneInput {
+	s.SceneMetadata = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateSceneInput) SetTags(v map[string]*string) *CreateSceneInput {
 	s.Tags = v
@@ -5282,15 +5292,15 @@ func (s *CreateSceneOutput) SetCreationDateTime(v time.Time) *CreateSceneOutput 
 type CreateSyncJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The SyncJob IAM role. This IAM role is used by the sync job to read from
-	// the syncSource, and create, update or delete the corresponding resources.
+	// The SyncJob IAM role. This IAM role is used by the SyncJob to read from the
+	// syncSource, and create, update, or delete the corresponding resources.
 	//
 	// SyncRole is a required field
 	SyncRole *string `locationName:"syncRole" min:"20" type:"string" required:"true"`
 
 	// The sync source.
 	//
-	// Currently the only supported syncSoucre is SITEWISE .
+	// Currently the only supported syncSoource is SITEWISE .
 	//
 	// SyncSource is a required field
 	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
@@ -5298,7 +5308,7 @@ type CreateSyncJobInput struct {
 	// The SyncJob tags.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The workspace Id.
+	// The workspace ID.
 	//
 	// WorkspaceId is a required field
 	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
@@ -6180,12 +6190,12 @@ type DeleteSyncJobInput struct {
 
 	// The sync source.
 	//
-	// Currently the only supported syncSoucre is SITEWISE .
+	// Currently the only supported syncSource is SITEWISE .
 	//
 	// SyncSource is a required field
 	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
 
-	// The workspace Id.
+	// The workspace ID.
 	//
 	// WorkspaceId is a required field
 	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
@@ -6970,7 +6980,7 @@ type GetComponentTypeOutput struct {
 	// The current status of the component type.
 	Status *Status `locationName:"status" type:"structure"`
 
-	// The syncSource of the sync job, if this entity was created by a sync job.
+	// The syncSource of the SyncJob, if this entity was created by a SyncJob.
 	SyncSource *string `locationName:"syncSource" type:"string"`
 
 	// The date and time when the component was last updated.
@@ -7923,10 +7933,16 @@ type GetSceneOutput struct {
 	// The description of the scene.
 	Description *string `locationName:"description" type:"string"`
 
+	// The generated scene metadata.
+	GeneratedSceneMetadata map[string]*string `locationName:"generatedSceneMetadata" type:"map"`
+
 	// The ID of the scene.
 	//
 	// SceneId is a required field
 	SceneId *string `locationName:"sceneId" min:"1" type:"string" required:"true"`
+
+	// The response metadata.
+	SceneMetadata map[string]*string `locationName:"sceneMetadata" type:"map"`
 
 	// The date and time when the scene was last updated.
 	//
@@ -7987,9 +8003,21 @@ func (s *GetSceneOutput) SetDescription(v string) *GetSceneOutput {
 	return s
 }
 
+// SetGeneratedSceneMetadata sets the GeneratedSceneMetadata field's value.
+func (s *GetSceneOutput) SetGeneratedSceneMetadata(v map[string]*string) *GetSceneOutput {
+	s.GeneratedSceneMetadata = v
+	return s
+}
+
 // SetSceneId sets the SceneId field's value.
 func (s *GetSceneOutput) SetSceneId(v string) *GetSceneOutput {
 	s.SceneId = &v
+	return s
+}
+
+// SetSceneMetadata sets the SceneMetadata field's value.
+func (s *GetSceneOutput) SetSceneMetadata(v map[string]*string) *GetSceneOutput {
+	s.SceneMetadata = v
 	return s
 }
 
@@ -8008,14 +8036,14 @@ func (s *GetSceneOutput) SetWorkspaceId(v string) *GetSceneOutput {
 type GetSyncJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The sync soucre.
+	// The sync source.
 	//
-	// Currently the only supported syncSoucre is SITEWISE .
+	// Currently the only supported syncSource is SITEWISE .
 	//
 	// SyncSource is a required field
 	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
 
-	// The workspace Id.
+	// The workspace ID.
 	WorkspaceId *string `location:"querystring" locationName:"workspace" min:"1" type:"string"`
 }
 
@@ -8093,7 +8121,7 @@ type GetSyncJobOutput struct {
 
 	// The sync soucre.
 	//
-	// Currently the only supported syncSoucre is SITEWISE .
+	// Currently the only supported syncSource is SITEWISE .
 	//
 	// SyncSource is a required field
 	SyncSource *string `locationName:"syncSource" type:"string" required:"true"`
@@ -9110,6 +9138,14 @@ type ListSyncResourcesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of objects that filter the request.
+	//
+	// The following filter combinations are supported:
+	//
+	//    * Filter with state
+	//
+	//    * Filter with ResourceType and ResourceId
+	//
+	//    * Filter with ResourceType and ExternalId
 	Filters []*SyncResourceFilter `locationName:"filters" type:"list"`
 
 	// The maximum number of results to return at one time. The default is 50.
@@ -9120,9 +9156,9 @@ type ListSyncResourcesInput struct {
 	// The string that specifies the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The sync soucre.
+	// The sync source.
 	//
-	// Currently the only supported syncSoucre is SITEWISE .
+	// Currently the only supported syncSource is SITEWISE .
 	//
 	// SyncSource is a required field
 	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
@@ -9588,7 +9624,7 @@ type PricingPlan struct {
 	// UpdateDateTime is a required field
 	UpdateDateTime *time.Time `locationName:"updateDateTime" type:"timestamp" required:"true"`
 
-	// The update reason, for changing a pricing plan.
+	// The update reason for changing a pricing plan.
 	//
 	// UpdateReason is a required field
 	UpdateReason *string `locationName:"updateReason" type:"string" required:"true" enum:"UpdateReason"`
@@ -10081,7 +10117,7 @@ func (s *PropertyGroupResponse) SetPropertyNames(v []*string) *PropertyGroupResp
 type PropertyLatestValue struct {
 	_ struct{} `type:"structure"`
 
-	// An object that specifies information about a property.>
+	// An object that specifies information about a property.
 	//
 	// PropertyReference is a required field
 	PropertyReference *EntityPropertyReference `locationName:"propertyReference" type:"structure" required:"true"`
@@ -11029,13 +11065,13 @@ func (s *SyncJobSummary) SetWorkspaceId(v string) *SyncJobSummary {
 type SyncResourceFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The external Id.
+	// The external ID.
 	ExternalId *string `locationName:"externalId" min:"1" type:"string"`
 
-	// The sync resource filter resource Id.
+	// The sync resource filter resource ID.
 	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
 
-	// The sync resource filter resoucre type
+	// The sync resource filter resource type
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"SyncResourceType"`
 
 	// The sync resource filter's state.
@@ -11145,10 +11181,10 @@ func (s *SyncResourceStatus) SetState(v string) *SyncResourceStatus {
 type SyncResourceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The external Id.
+	// The external ID.
 	ExternalId *string `locationName:"externalId" min:"1" type:"string"`
 
-	// The resource Id.
+	// The resource ID.
 	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
 
 	// The resource type.
@@ -11618,7 +11654,7 @@ type UpdateComponentTypeInput struct {
 	// type. Each string in the mapping must be unique to this object.
 	PropertyDefinitions map[string]*PropertyDefinitionRequest `locationName:"propertyDefinitions" type:"map"`
 
-	// The property groups
+	// The property groups.
 	PropertyGroups map[string]*PropertyGroupRequest `locationName:"propertyGroups" type:"map"`
 
 	// The ID of the workspace.
@@ -12089,6 +12125,9 @@ type UpdateSceneInput struct {
 	// SceneId is a required field
 	SceneId *string `location:"uri" locationName:"sceneId" min:"1" type:"string" required:"true"`
 
+	// The scene metadata.
+	SceneMetadata map[string]*string `locationName:"sceneMetadata" type:"map"`
+
 	// The ID of the workspace that contains the scene.
 	//
 	// WorkspaceId is a required field
@@ -12156,6 +12195,12 @@ func (s *UpdateSceneInput) SetDescription(v string) *UpdateSceneInput {
 // SetSceneId sets the SceneId field's value.
 func (s *UpdateSceneInput) SetSceneId(v string) *UpdateSceneInput {
 	s.SceneId = &v
+	return s
+}
+
+// SetSceneMetadata sets the SceneMetadata field's value.
+func (s *UpdateSceneInput) SetSceneMetadata(v map[string]*string) *UpdateSceneInput {
+	s.SceneMetadata = v
 	return s
 }
 

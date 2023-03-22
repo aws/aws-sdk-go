@@ -2577,7 +2577,7 @@
     "TransitGatewayRouteTableArn": {
       "base": null,
       "refs": {
-        "CreateTransitGatewayRouteTableAttachmentRequest$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table for the attachment request.</p>",
+        "CreateTransitGatewayRouteTableAttachmentRequest$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table for the attachment request. For example, <code>\"TransitGatewayRouteTableArn\": \"arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456\"</code>.</p>",
         "RouteTableIdentifier$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table.</p>",
         "TransitGatewayRouteTableAttachment$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway attachment route table. For example, <code>\"TransitGatewayRouteTableArn\": \"arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456\"</code>.</p>"
       }

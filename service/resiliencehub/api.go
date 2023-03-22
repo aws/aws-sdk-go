@@ -69,7 +69,7 @@ func (c *ResilienceHub) AddDraftAppVersionResourceMappingsRequest(input *AddDraf
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -158,17 +158,17 @@ func (c *ResilienceHub) CreateAppRequest(input *CreateAppInput) (req *request.Re
 
 // CreateApp API operation for AWS Resilience Hub.
 //
-// Creates an AWS Resilience Hub application. An AWS Resilience Hub application
-// is a collection of Amazon Web Services resources structured to prevent and
-// recover Amazon Web Services application disruptions. To describe a AWS Resilience
-// Hub application, you provide an application name, resources from one or more–up
+// Creates an Resilience Hub application. An Resilience Hub application is a
+// collection of Amazon Web Services resources structured to prevent and recover
+// Amazon Web Services application disruptions. To describe a Resilience Hub
+// application, you provide an application name, resources from one or more–up
 // to five–CloudFormation stacks, and an appropriate resiliency policy.
 //
-// After you create an AWS Resilience Hub application, you publish it so that
-// you can run a resiliency assessment on it. You can then use recommendations
-// from the assessment to improve resiliency by running another assessment,
-// comparing results, and then iterating the process until you achieve your
-// goals for recovery time objective (RTO) and recovery point objective (RPO).
+// After you create an Resilience Hub application, you publish it so that you
+// can run a resiliency assessment on it. You can then use recommendations from
+// the assessment to improve resiliency by running another assessment, comparing
+// results, and then iterating the process until you achieve your goals for
+// recovery time objective (RTO) and recovery point objective (RPO).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -180,7 +180,7 @@ func (c *ResilienceHub) CreateAppRequest(input *CreateAppInput) (req *request.Re
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -274,11 +274,11 @@ func (c *ResilienceHub) CreateAppVersionAppComponentRequest(input *CreateAppVers
 
 // CreateAppVersionAppComponent API operation for AWS Resilience Hub.
 //
-// Creates a new Application Component in the AWS Resilience Hub application.
+// Creates a new Application Component in the Resilience Hub application.
 //
-// This API updates the AWS Resilience Hub application draft version. To use
-// this Application Component for running assessments, you must publish the
-// AWS Resilience Hub application using the PublishAppVersion API.
+// This API updates the Resilience Hub application draft version. To use this
+// Application Component for running assessments, you must publish the Resilience
+// Hub application using the PublishAppVersion API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -290,7 +290,7 @@ func (c *ResilienceHub) CreateAppVersionAppComponentRequest(input *CreateAppVers
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -384,15 +384,15 @@ func (c *ResilienceHub) CreateAppVersionResourceRequest(input *CreateAppVersionR
 
 // CreateAppVersionResource API operation for AWS Resilience Hub.
 //
-// Adds a resource to the AWS Resilience Hub applicationand assigns it to the
-// specified Application Components. If you specify a new Application Component,
-// AWS Resilience Hub will automatically create the Application Component.
+// Adds a resource to the Resilience Hub application and assigns it to the specified
+// Application Components. If you specify a new Application Component, Resilience
+// Hub will automatically create the Application Component.
 //
-//   - This action has no effect outside AWS Resilience Hub.
+//   - This action has no effect outside Resilience Hub.
 //
-//   - This API updates the AWS Resilience Hub application draft version. To
-//     use this resource for running resiliency assessments, you must publish
-//     the AWS Resilience Hub application using the PublishAppVersion API.
+//   - This API updates the Resilience Hub application draft version. To use
+//     this resource for running resiliency assessments, you must publish the
+//     Resilience Hub application using the PublishAppVersion API.
 //
 //   - To update application version with new physicalResourceID, you must
 //     call ResolveAppVersionResources API.
@@ -407,7 +407,7 @@ func (c *ResilienceHub) CreateAppVersionResourceRequest(input *CreateAppVersionR
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -501,7 +501,7 @@ func (c *ResilienceHub) CreateRecommendationTemplateRequest(input *CreateRecomme
 
 // CreateRecommendationTemplate API operation for AWS Resilience Hub.
 //
-// Creates a new recommendation template for the AWS Resilience Hub application.
+// Creates a new recommendation template for the Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -513,7 +513,7 @@ func (c *ResilienceHub) CreateRecommendationTemplateRequest(input *CreateRecomme
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -619,7 +619,7 @@ func (c *ResilienceHub) CreateResiliencyPolicyRequest(input *CreateResiliencyPol
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ConflictException
@@ -710,7 +710,7 @@ func (c *ResilienceHub) DeleteAppRequest(input *DeleteAppInput) (req *request.Re
 
 // DeleteApp API operation for AWS Resilience Hub.
 //
-// Deletes an AWS Resilience Hub application. This is a destructive action that
+// Deletes an Resilience Hub application. This is a destructive action that
 // can't be undone.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -723,7 +723,7 @@ func (c *ResilienceHub) DeleteAppRequest(input *DeleteAppInput) (req *request.Re
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -807,8 +807,8 @@ func (c *ResilienceHub) DeleteAppAssessmentRequest(input *DeleteAppAssessmentInp
 
 // DeleteAppAssessment API operation for AWS Resilience Hub.
 //
-// Deletes an AWS Resilience Hub application assessment. This is a destructive
-// action that can't be undone.
+// Deletes an Resilience Hub application assessment. This is a destructive action
+// that can't be undone.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -820,7 +820,7 @@ func (c *ResilienceHub) DeleteAppAssessmentRequest(input *DeleteAppAssessmentInp
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -909,7 +909,7 @@ func (c *ResilienceHub) DeleteAppInputSourceRequest(input *DeleteAppInputSourceI
 
 // DeleteAppInputSource API operation for AWS Resilience Hub.
 //
-// Deletes the input source and all of its imported resources from the AWS Resilience
+// Deletes the input source and all of its imported resources from the Resilience
 // Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -922,7 +922,7 @@ func (c *ResilienceHub) DeleteAppInputSourceRequest(input *DeleteAppInputSourceI
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1011,11 +1011,11 @@ func (c *ResilienceHub) DeleteAppVersionAppComponentRequest(input *DeleteAppVers
 
 // DeleteAppVersionAppComponent API operation for AWS Resilience Hub.
 //
-// Deletes an Application Component from the AWS Resilience Hub application.
+// Deletes an Application Component from the Resilience Hub application.
 //
-//   - This API updates the AWS Resilience Hub application draft version. To
-//     use this Application Component for running assessments, you must publish
-//     the AWS Resilience Hub application using the PublishAppVersion API.
+//   - This API updates the Resilience Hub application draft version. To use
+//     this Application Component for running assessments, you must publish the
+//     Resilience Hub application using the PublishAppVersion API.
 //
 //   - You will not be able to delete an Application Component if it has resources
 //     associated with it.
@@ -1030,7 +1030,7 @@ func (c *ResilienceHub) DeleteAppVersionAppComponentRequest(input *DeleteAppVers
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1119,16 +1119,16 @@ func (c *ResilienceHub) DeleteAppVersionResourceRequest(input *DeleteAppVersionR
 
 // DeleteAppVersionResource API operation for AWS Resilience Hub.
 //
-// Deletes a resource from the AWS Resilience Hub application.
+// Deletes a resource from the Resilience Hub application.
 //
 //   - You can only delete a manually added resource. To exclude non-manually
 //     added resources, use the UpdateAppVersionResource API.
 //
-//   - This action has no effect outside AWS Resilience Hub.
+//   - This action has no effect outside Resilience Hub.
 //
-//   - This API updates the AWS Resilience Hub application draft version. To
-//     use this resource for running resiliency assessments, you must publish
-//     the AWS Resilience Hub application using the PublishAppVersion API.
+//   - This API updates the Resilience Hub application draft version. To use
+//     this resource for running resiliency assessments, you must publish the
+//     Resilience Hub application using the PublishAppVersion API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1140,7 +1140,7 @@ func (c *ResilienceHub) DeleteAppVersionResourceRequest(input *DeleteAppVersionR
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1242,7 +1242,7 @@ func (c *ResilienceHub) DeleteRecommendationTemplateRequest(input *DeleteRecomme
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1337,7 +1337,7 @@ func (c *ResilienceHub) DeleteResiliencyPolicyRequest(input *DeleteResiliencyPol
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1426,7 +1426,7 @@ func (c *ResilienceHub) DescribeAppRequest(input *DescribeAppInput) (req *reques
 
 // DescribeApp API operation for AWS Resilience Hub.
 //
-// Describes an AWS Resilience Hub application.
+// Describes an Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1438,7 +1438,7 @@ func (c *ResilienceHub) DescribeAppRequest(input *DescribeAppInput) (req *reques
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1521,7 +1521,7 @@ func (c *ResilienceHub) DescribeAppAssessmentRequest(input *DescribeAppAssessmen
 
 // DescribeAppAssessment API operation for AWS Resilience Hub.
 //
-// Describes an assessment for an AWS Resilience Hub application.
+// Describes an assessment for an Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1533,7 +1533,7 @@ func (c *ResilienceHub) DescribeAppAssessmentRequest(input *DescribeAppAssessmen
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1616,7 +1616,7 @@ func (c *ResilienceHub) DescribeAppVersionRequest(input *DescribeAppVersionInput
 
 // DescribeAppVersion API operation for AWS Resilience Hub.
 //
-// Describes the AWS Resilience Hub application version.
+// Describes the Resilience Hub application version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1628,7 +1628,7 @@ func (c *ResilienceHub) DescribeAppVersionRequest(input *DescribeAppVersionInput
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1711,7 +1711,7 @@ func (c *ResilienceHub) DescribeAppVersionAppComponentRequest(input *DescribeApp
 
 // DescribeAppVersionAppComponent API operation for AWS Resilience Hub.
 //
-// Describes an Application Component in the AWS Resilience Hub application.
+// Describes an Application Component in the Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1723,7 +1723,7 @@ func (c *ResilienceHub) DescribeAppVersionAppComponentRequest(input *DescribeApp
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1812,7 +1812,7 @@ func (c *ResilienceHub) DescribeAppVersionResourceRequest(input *DescribeAppVers
 
 // DescribeAppVersionResource API operation for AWS Resilience Hub.
 //
-// Describes a resource of the AWS Resilience Hub application.
+// Describes a resource of the Resilience Hub application.
 //
 // This API accepts only one of the following parameters to descibe the resource:
 //
@@ -1833,7 +1833,7 @@ func (c *ResilienceHub) DescribeAppVersionResourceRequest(input *DescribeAppVers
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -1936,7 +1936,7 @@ func (c *ResilienceHub) DescribeAppVersionResourcesResolutionStatusRequest(input
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2019,7 +2019,7 @@ func (c *ResilienceHub) DescribeAppVersionTemplateRequest(input *DescribeAppVers
 
 // DescribeAppVersionTemplate API operation for AWS Resilience Hub.
 //
-// Describes details about an AWS Resilience Hub application.
+// Describes details about an Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2031,7 +2031,7 @@ func (c *ResilienceHub) DescribeAppVersionTemplateRequest(input *DescribeAppVers
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2131,7 +2131,7 @@ func (c *ResilienceHub) DescribeDraftAppVersionResourcesImportStatusRequest(inpu
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2214,7 +2214,7 @@ func (c *ResilienceHub) DescribeResiliencyPolicyRequest(input *DescribeResilienc
 
 // DescribeResiliencyPolicy API operation for AWS Resilience Hub.
 //
-// Describes a specified resiliency policy for an AWS Resilience Hub application.
+// Describes a specified resiliency policy for an Resilience Hub application.
 // The returned policy object includes creation time, data location constraints,
 // the Amazon Resource Name (ARN) for the policy, tags, tier, and more.
 //
@@ -2228,7 +2228,7 @@ func (c *ResilienceHub) DescribeResiliencyPolicyRequest(input *DescribeResilienc
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2311,10 +2311,10 @@ func (c *ResilienceHub) ImportResourcesToDraftAppVersionRequest(input *ImportRes
 
 // ImportResourcesToDraftAppVersion API operation for AWS Resilience Hub.
 //
-// Imports resources to AWS Resilience Hub application draft version from different
+// Imports resources to Resilience Hub application draft version from different
 // input sources. For more information about the input sources supported by
-// AWS Resilience Hub, see Discover the structure and describe your Resilience
-// Hub application (https://docs.aws.amazon.com/resilience-hub/latest/userguide/discover-structure.html).
+// Resilience Hub, see Discover the structure and describe your Resilience Hub
+// application (https://docs.aws.amazon.com/resilience-hub/latest/userguide/discover-structure.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2326,7 +2326,7 @@ func (c *ResilienceHub) ImportResourcesToDraftAppVersionRequest(input *ImportRes
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2421,7 +2421,7 @@ func (c *ResilienceHub) ListAlarmRecommendationsRequest(input *ListAlarmRecommen
 
 // ListAlarmRecommendations API operation for AWS Resilience Hub.
 //
-// Lists the alarm recommendations for an AWS Resilience Hub application.
+// Lists the alarm recommendations for an Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2433,7 +2433,7 @@ func (c *ResilienceHub) ListAlarmRecommendationsRequest(input *ListAlarmRecommen
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2573,8 +2573,8 @@ func (c *ResilienceHub) ListAppAssessmentsRequest(input *ListAppAssessmentsInput
 
 // ListAppAssessments API operation for AWS Resilience Hub.
 //
-// Lists the assessments for an AWS Resilience Hub application. You can use
-// request parameters to refine the results for the response object.
+// Lists the assessments for an Resilience Hub application. You can use request
+// parameters to refine the results for the response object.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2586,7 +2586,7 @@ func (c *ResilienceHub) ListAppAssessmentsRequest(input *ListAppAssessmentsInput
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2726,7 +2726,7 @@ func (c *ResilienceHub) ListAppComponentCompliancesRequest(input *ListAppCompone
 
 // ListAppComponentCompliances API operation for AWS Resilience Hub.
 //
-// Lists the compliances for an AWS Resilience Hub Application Component.
+// Lists the compliances for an Resilience Hub Application Component.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2738,7 +2738,7 @@ func (c *ResilienceHub) ListAppComponentCompliancesRequest(input *ListAppCompone
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -2878,7 +2878,7 @@ func (c *ResilienceHub) ListAppComponentRecommendationsRequest(input *ListAppCom
 
 // ListAppComponentRecommendations API operation for AWS Resilience Hub.
 //
-// Lists the recommendations for an AWS Resilience Hub Application Component.
+// Lists the recommendations for an Resilience Hub Application Component.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2890,7 +2890,7 @@ func (c *ResilienceHub) ListAppComponentRecommendationsRequest(input *ListAppCom
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -3030,9 +3030,9 @@ func (c *ResilienceHub) ListAppInputSourcesRequest(input *ListAppInputSourcesInp
 
 // ListAppInputSources API operation for AWS Resilience Hub.
 //
-// Lists all the input sources of the AWS Resilience Hub application. For more
-// information about the input sources supported by AWS Resilience Hub, see
-// Discover the structure and describe your Resilience Hub application (https://docs.aws.amazon.com/resilience-hub/latest/userguide/discover-structure.html).
+// Lists all the input sources of the Resilience Hub application. For more information
+// about the input sources supported by Resilience Hub, see Discover the structure
+// and describe your Resilience Hub application (https://docs.aws.amazon.com/resilience-hub/latest/userguide/discover-structure.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3044,7 +3044,7 @@ func (c *ResilienceHub) ListAppInputSourcesRequest(input *ListAppInputSourcesInp
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -3184,7 +3184,7 @@ func (c *ResilienceHub) ListAppVersionAppComponentsRequest(input *ListAppVersion
 
 // ListAppVersionAppComponents API operation for AWS Resilience Hub.
 //
-// Lists all the Application Components in the AWS Resilience Hub application.
+// Lists all the Application Components in the Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3196,7 +3196,7 @@ func (c *ResilienceHub) ListAppVersionAppComponentsRequest(input *ListAppVersion
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -3356,7 +3356,7 @@ func (c *ResilienceHub) ListAppVersionResourceMappingsRequest(input *ListAppVers
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -3496,7 +3496,7 @@ func (c *ResilienceHub) ListAppVersionResourcesRequest(input *ListAppVersionReso
 
 // ListAppVersionResources API operation for AWS Resilience Hub.
 //
-// Lists all the resources in an AWS Resilience Hub application.
+// Lists all the resources in an Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3508,7 +3508,7 @@ func (c *ResilienceHub) ListAppVersionResourcesRequest(input *ListAppVersionReso
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -3654,7 +3654,7 @@ func (c *ResilienceHub) ListAppVersionsRequest(input *ListAppVersionsInput) (req
 
 // ListAppVersions API operation for AWS Resilience Hub.
 //
-// Lists the different versions for the AWS Resilience Hub applications.
+// Lists the different versions for the Resilience Hub applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3666,7 +3666,7 @@ func (c *ResilienceHub) ListAppVersionsRequest(input *ListAppVersionsInput) (req
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -3802,7 +3802,7 @@ func (c *ResilienceHub) ListAppsRequest(input *ListAppsInput) (req *request.Requ
 
 // ListApps API operation for AWS Resilience Hub.
 //
-// Lists your AWS Resilience Hub applications.
+// Lists your Resilience Hub applications.
 //
 // You can filter applications using only one filter at a time or without using
 // any filter. If you try to filter applications using multiple filters, you
@@ -3821,7 +3821,7 @@ func (c *ResilienceHub) ListAppsRequest(input *ListAppsInput) (req *request.Requ
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ThrottlingException
@@ -3958,7 +3958,7 @@ func (c *ResilienceHub) ListRecommendationTemplatesRequest(input *ListRecommenda
 
 // ListRecommendationTemplates API operation for AWS Resilience Hub.
 //
-// Lists the recommendation templates for the AWS Resilience Hub applications.
+// Lists the recommendation templates for the Resilience Hub applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3970,7 +3970,7 @@ func (c *ResilienceHub) ListRecommendationTemplatesRequest(input *ListRecommenda
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ThrottlingException
@@ -4107,7 +4107,7 @@ func (c *ResilienceHub) ListResiliencyPoliciesRequest(input *ListResiliencyPolic
 
 // ListResiliencyPolicies API operation for AWS Resilience Hub.
 //
-// Lists the resiliency policies for the AWS Resilience Hub applications.
+// Lists the resiliency policies for the Resilience Hub applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4119,7 +4119,7 @@ func (c *ResilienceHub) ListResiliencyPoliciesRequest(input *ListResiliencyPolic
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -4259,8 +4259,8 @@ func (c *ResilienceHub) ListSopRecommendationsRequest(input *ListSopRecommendati
 
 // ListSopRecommendations API operation for AWS Resilience Hub.
 //
-// Lists the standard operating procedure (SOP) recommendations for the AWS
-// Resilience Hub applications.
+// Lists the standard operating procedure (SOP) recommendations for the Resilience
+// Hub applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4272,7 +4272,7 @@ func (c *ResilienceHub) ListSopRecommendationsRequest(input *ListSopRecommendati
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -4418,7 +4418,7 @@ func (c *ResilienceHub) ListSuggestedResiliencyPoliciesRequest(input *ListSugges
 
 // ListSuggestedResiliencyPolicies API operation for AWS Resilience Hub.
 //
-// Lists the suggested resiliency policies for the AWS Resilience Hub applications.
+// Lists the suggested resiliency policies for the Resilience Hub applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4430,7 +4430,7 @@ func (c *ResilienceHub) ListSuggestedResiliencyPoliciesRequest(input *ListSugges
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -4564,7 +4564,7 @@ func (c *ResilienceHub) ListTagsForResourceRequest(input *ListTagsForResourceInp
 
 // ListTagsForResource API operation for AWS Resilience Hub.
 //
-// Lists the tags for your resources in your AWS Resilience Hub applications.
+// Lists the tags for your resources in your Resilience Hub applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4576,7 +4576,7 @@ func (c *ResilienceHub) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -4665,7 +4665,7 @@ func (c *ResilienceHub) ListTestRecommendationsRequest(input *ListTestRecommenda
 
 // ListTestRecommendations API operation for AWS Resilience Hub.
 //
-// Lists the test recommendations for the AWS Resilience Hub application.
+// Lists the test recommendations for the Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4677,7 +4677,7 @@ func (c *ResilienceHub) ListTestRecommendationsRequest(input *ListTestRecommenda
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -4823,9 +4823,9 @@ func (c *ResilienceHub) ListUnsupportedAppVersionResourcesRequest(input *ListUns
 
 // ListUnsupportedAppVersionResources API operation for AWS Resilience Hub.
 //
-// Lists the resources that are not currently supported in AWS Resilience Hub.
-// An unsupported resource is a resource that exists in the object that was
-// used to create an app, but is not supported by AWS Resilience Hub.
+// Lists the resources that are not currently supported in Resilience Hub. An
+// unsupported resource is a resource that exists in the object that was used
+// to create an app, but is not supported by Resilience Hub.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4837,7 +4837,7 @@ func (c *ResilienceHub) ListUnsupportedAppVersionResourcesRequest(input *ListUns
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -4977,7 +4977,7 @@ func (c *ResilienceHub) PublishAppVersionRequest(input *PublishAppVersionInput) 
 
 // PublishAppVersion API operation for AWS Resilience Hub.
 //
-// Publishes a new version of a specific AWS Resilience Hub application.
+// Publishes a new version of a specific Resilience Hub application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4989,7 +4989,7 @@ func (c *ResilienceHub) PublishAppVersionRequest(input *PublishAppVersionInput) 
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5078,7 +5078,7 @@ func (c *ResilienceHub) PutDraftAppVersionTemplateRequest(input *PutDraftAppVers
 
 // PutDraftAppVersionTemplate API operation for AWS Resilience Hub.
 //
-// Adds or updates the app template for an AWS Resilience Hub application draft
+// Adds or updates the app template for an Resilience Hub application draft
 // version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5091,7 +5091,7 @@ func (c *ResilienceHub) PutDraftAppVersionTemplateRequest(input *PutDraftAppVers
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5192,7 +5192,7 @@ func (c *ResilienceHub) RemoveDraftAppVersionResourceMappingsRequest(input *Remo
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5293,7 +5293,7 @@ func (c *ResilienceHub) ResolveAppVersionResourcesRequest(input *ResolveAppVersi
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5394,7 +5394,7 @@ func (c *ResilienceHub) StartAppAssessmentRequest(input *StartAppAssessmentInput
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5501,7 +5501,7 @@ func (c *ResilienceHub) TagResourceRequest(input *TagResourceInput) (req *reques
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5597,7 +5597,7 @@ func (c *ResilienceHub) UntagResourceRequest(input *UntagResourceInput) (req *re
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5692,7 +5692,7 @@ func (c *ResilienceHub) UpdateAppRequest(input *UpdateAppInput) (req *request.Re
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5781,11 +5781,11 @@ func (c *ResilienceHub) UpdateAppVersionRequest(input *UpdateAppVersionInput) (r
 
 // UpdateAppVersion API operation for AWS Resilience Hub.
 //
-// Updates the AWS Resilience Hub application version.
+// Updates the Resilience Hub application version.
 //
-// This API updates the AWS Resilience Hub application draft version. To use
-// this information for running resiliency assessments, you must publish the
-// AWS Resilience Hub application using the PublishAppVersion API.
+// This API updates the Resilience Hub application draft version. To use this
+// information for running resiliency assessments, you must publish the Resilience
+// Hub application using the PublishAppVersion API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5797,7 +5797,7 @@ func (c *ResilienceHub) UpdateAppVersionRequest(input *UpdateAppVersionInput) (r
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5886,11 +5886,11 @@ func (c *ResilienceHub) UpdateAppVersionAppComponentRequest(input *UpdateAppVers
 
 // UpdateAppVersionAppComponent API operation for AWS Resilience Hub.
 //
-// Updates an existing Application Component in the AWS Resilience Hub application.
+// Updates an existing Application Component in the Resilience Hub application.
 //
-// This API updates the AWS Resilience Hub application draft version. To use
-// this Application Component for running assessments, you must publish the
-// AWS Resilience Hub application using the PublishAppVersion API.
+// This API updates the Resilience Hub application draft version. To use this
+// Application Component for running assessments, you must publish the Resilience
+// Hub application using the PublishAppVersion API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5902,7 +5902,7 @@ func (c *ResilienceHub) UpdateAppVersionAppComponentRequest(input *UpdateAppVers
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -5991,13 +5991,13 @@ func (c *ResilienceHub) UpdateAppVersionResourceRequest(input *UpdateAppVersionR
 
 // UpdateAppVersionResource API operation for AWS Resilience Hub.
 //
-// Updates the resource details in the AWS Resilience Hub application.
+// Updates the resource details in the Resilience Hub application.
 //
-//   - This action has no effect outside AWS Resilience Hub.
+//   - This action has no effect outside Resilience Hub.
 //
-//   - This API updates the AWS Resilience Hub application draft version. To
-//     use this resource for running resiliency assessments, you must publish
-//     the AWS Resilience Hub application using the PublishAppVersion API.
+//   - This API updates the Resilience Hub application draft version. To use
+//     this resource for running resiliency assessments, you must publish the
+//     Resilience Hub application using the PublishAppVersion API.
 //
 //   - To update application version with new physicalResourceID, you must
 //     call ResolveAppVersionResources API.
@@ -6012,7 +6012,7 @@ func (c *ResilienceHub) UpdateAppVersionResourceRequest(input *UpdateAppVersionR
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -6118,7 +6118,7 @@ func (c *ResilienceHub) UpdateResiliencyPolicyRequest(input *UpdateResiliencyPol
 // Returned Error Types:
 //
 //   - InternalServerException
-//     This exception occurs when there is an internal failure in the AWS Resilience
+//     This exception occurs when there is an internal failure in the Resilience
 //     Hub service.
 //
 //   - ResourceNotFoundException
@@ -6472,7 +6472,7 @@ func (s *AlarmRecommendation) SetType(v string) *AlarmRecommendation {
 	return s
 }
 
-// Defines an AWS Resilience Hub application.
+// Defines an Resilience Hub application.
 type App struct {
 	_ struct{} `type:"structure"`
 
@@ -7094,16 +7094,19 @@ func (s *AppComponentCompliance) SetStatus(v string) *AppComponentCompliance {
 	return s
 }
 
-// The list of AWS Resilience Hub application input sources.
+// The list of Resilience Hub application input sources.
 type AppInputSource struct {
 	_ struct{} `type:"structure"`
+
+	// The namespace on your Amazon Elastic Kubernetes Service cluster.
+	EksSourceClusterNamespace *EksSourceClusterNamespace `locationName:"eksSourceClusterNamespace" type:"structure"`
 
 	// The resource type of the input source.
 	//
 	// ImportType is a required field
 	ImportType *string `locationName:"importType" type:"string" required:"true" enum:"ResourceMappingType"`
 
-	// The number of resources that were imported.
+	// The number of resources.
 	ResourceCount *int64 `locationName:"resourceCount" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the input source. For more information
@@ -7134,6 +7137,12 @@ func (s AppInputSource) String() string {
 // value will be replaced with "sensitive".
 func (s AppInputSource) GoString() string {
 	return s.String()
+}
+
+// SetEksSourceClusterNamespace sets the EksSourceClusterNamespace field's value.
+func (s *AppInputSource) SetEksSourceClusterNamespace(v *EksSourceClusterNamespace) *AppInputSource {
+	s.EksSourceClusterNamespace = v
+	return s
 }
 
 // SetImportType sets the ImportType field's value.
@@ -7304,9 +7313,9 @@ func (s *AppVersionSummary) SetAppVersion(v string) *AppVersionSummary {
 	return s
 }
 
-// Defines recommendations for an AWS Resilience Hub Application Component,
-// returned as an object. This object contains component names, configuration
-// recommendations, and recommendation statuses.
+// Defines recommendations for an Resilience Hub Application Component, returned
+// as an object. This object contains component names, configuration recommendations,
+// and recommendation statuses.
 type ComponentRecommendation struct {
 	_ struct{} `type:"structure"`
 
@@ -7883,7 +7892,7 @@ type CreateAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// Defines an Application Component.
+	// The list of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
 	// The AWS Resilience Hub application version.
@@ -8643,7 +8652,7 @@ type DeleteAppInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// A boolean option to force the deletion of an AWS Resilience Hub application.
+	// A boolean option to force the deletion of an Resilience Hub application.
 	ForceDelete *bool `locationName:"forceDelete" type:"boolean"`
 }
 
@@ -8715,13 +8724,17 @@ type DeleteAppInputSourceInput struct {
 	// token for other API requests.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The namespace on your Amazon Elastic Kubernetes Service cluster that you
+	// want to delete from the Resilience Hub application.
+	EksSourceClusterNamespace *EksSourceClusterNamespace `locationName:"eksSourceClusterNamespace" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the imported resource you want to remove
-	// from the AWS Resilience Hub application. For more information about ARNs,
-	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// from the Resilience Hub application. For more information about ARNs, see
+	// Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference guide.
 	SourceArn *string `locationName:"sourceArn" type:"string"`
 
-	// The imported Terraform s3 state ﬁle you want to remove from the AWS Resilience
+	// The imported Terraform s3 state ﬁle you want to remove from the Resilience
 	// Hub application.
 	TerraformSource *TerraformSource `locationName:"terraformSource" type:"structure"`
 }
@@ -8753,6 +8766,11 @@ func (s *DeleteAppInputSourceInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
+	if s.EksSourceClusterNamespace != nil {
+		if err := s.EksSourceClusterNamespace.Validate(); err != nil {
+			invalidParams.AddNested("EksSourceClusterNamespace", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TerraformSource != nil {
 		if err := s.TerraformSource.Validate(); err != nil {
 			invalidParams.AddNested("TerraformSource", err.(request.ErrInvalidParams))
@@ -8774,6 +8792,12 @@ func (s *DeleteAppInputSourceInput) SetAppArn(v string) *DeleteAppInputSourceInp
 // SetClientToken sets the ClientToken field's value.
 func (s *DeleteAppInputSourceInput) SetClientToken(v string) *DeleteAppInputSourceInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetEksSourceClusterNamespace sets the EksSourceClusterNamespace field's value.
+func (s *DeleteAppInputSourceInput) SetEksSourceClusterNamespace(v *EksSourceClusterNamespace) *DeleteAppInputSourceInput {
+	s.EksSourceClusterNamespace = v
 	return s
 }
 
@@ -8960,7 +8984,7 @@ type DeleteAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// Defines an Application Component.
+	// The list of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
 	// The AWS Resilience Hub application version.
@@ -9434,7 +9458,7 @@ func (s *DescribeAppAssessmentInput) SetAssessmentArn(v string) *DescribeAppAsse
 type DescribeAppAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The assessment for an AWS Resilience Hub application, returned as an object.
+	// The assessment for an Resilience Hub application, returned as an object.
 	// This object includes Amazon Resource Names (ARNs), compliance information,
 	// compliance status, cost, messages, resiliency scores, and more.
 	//
@@ -9640,7 +9664,7 @@ type DescribeAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// Defines an Application Component.
+	// The list of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
 	// The AWS Resilience Hub application version.
@@ -10214,16 +10238,20 @@ type DescribeAppVersionTemplateOutput struct {
 	// The appTemplateBody JSON string has the following structure:
 	//
 	//    * resources The list of logical resources that needs to be included in
-	//    the application. Type: Array Don't add the resources that you want to
-	//    exclude. Each resources array item includes the following fields: logicalResourceId
-	//    The logical identifier of the resource. Type: Object Each logicalResourceId
-	//    object includes the following fields: identifier The identifier of the
-	//    resource. Type: String logicalStackName The name of the CloudFormation
-	//    stack this resource belongs to. Type: String resourceGroupName The name
-	//    of the resource group this resource belongs to. Type: String terraformSourceName
-	//    The name of the Terraform S3 state file this resource belongs to. Type:
-	//    String type The type of resource. Type: string name The name of the resource.
-	//    Type: String
+	//    the Resilience Hub application. Type: Array Don't add the resources that
+	//    you want to exclude. Each resources array item includes the following
+	//    fields: logicalResourceId The logical identifier of the resource. Type:
+	//    Object Each logicalResourceId object includes the following fields: identifier
+	//    The identifier of the resource. Type: String logicalStackName The name
+	//    of the CloudFormation stack this resource belongs to. Type: String resourceGroupName
+	//    The name of the resource group this resource belongs to. Type: String
+	//    terraformSourceName The name of the Terraform S3 state file this resource
+	//    belongs to. Type: String type The type of resource. Type: string name
+	//    The name of the resource. Type: String additionalInfo Additional configuration
+	//    parameters for an AWS Resilience Hub application. Currently, this parameter
+	//    accepts a key-value mapping (in a string format) of only one failover
+	//    region and one associated account. Key: "failover-regions" Value: "[{"region":"<REGION>",
+	//    "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	//
 	//    * appComponents The list of Application Components that this resource
 	//    belongs to. If an Application Component is not part of the AWS Resilience
@@ -10250,6 +10278,13 @@ type DescribeAppVersionTemplateOutput struct {
 	//    resourceGroupName The name of the resource group this resource belongs
 	//    to. Type: String terraformSourceName The name of the Terraform S3 state
 	//    file this resource belongs to. Type: String
+	//
+	//    * version The AWS Resilience Hub application version.
+	//
+	//    * additionalInfo Additional configuration parameters for an AWS Resilience
+	//    Hub application. Currently, this parameter accepts a key-value mapping
+	//    (in a string format) of only one failover region and one associated account.
+	//    Key: "failover-regions" Value: "[{"region":"<REGION>", "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	//
 	// AppTemplateBody is a required field
 	AppTemplateBody *string `locationName:"appTemplateBody" type:"string" required:"true"`
@@ -10623,6 +10658,140 @@ func (s *DisruptionCompliance) SetRtoReferenceId(v string) *DisruptionCompliance
 	return s
 }
 
+// The input source of the Amazon Elastic Kubernetes Service cluster.
+type EksSource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
+	// The format for this ARN is: arn:aws:eks:region:account-id:cluster/cluster-name.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference guide.
+	//
+	// EksClusterArn is a required field
+	EksClusterArn *string `locationName:"eksClusterArn" type:"string" required:"true"`
+
+	// The list of namespaces located on your Amazon Elastic Kubernetes Service
+	// cluster.
+	//
+	// Namespaces is a required field
+	Namespaces []*string `locationName:"namespaces" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EksSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EksSource"}
+	if s.EksClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EksClusterArn"))
+	}
+	if s.Namespaces == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespaces"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEksClusterArn sets the EksClusterArn field's value.
+func (s *EksSource) SetEksClusterArn(v string) *EksSource {
+	s.EksClusterArn = &v
+	return s
+}
+
+// SetNamespaces sets the Namespaces field's value.
+func (s *EksSource) SetNamespaces(v []*string) *EksSource {
+	s.Namespaces = v
+	return s
+}
+
+// The input source of the namespace that is located on your Amazon Elastic
+// Kubernetes Service cluster.
+type EksSourceClusterNamespace struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster.
+	// The format for this ARN is: arn:aws:eks:region:account-id:cluster/cluster-name.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference guide.
+	//
+	// EksClusterArn is a required field
+	EksClusterArn *string `locationName:"eksClusterArn" type:"string" required:"true"`
+
+	// Name of the namespace that is located on your Amazon Elastic Kubernetes Service
+	// cluster.
+	//
+	// Namespace is a required field
+	Namespace *string `locationName:"namespace" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksSourceClusterNamespace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksSourceClusterNamespace) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EksSourceClusterNamespace) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EksSourceClusterNamespace"}
+	if s.EksClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EksClusterArn"))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEksClusterArn sets the EksClusterArn field's value.
+func (s *EksSourceClusterNamespace) SetEksClusterArn(v string) *EksSourceClusterNamespace {
+	s.EksClusterArn = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *EksSourceClusterNamespace) SetNamespace(v string) *EksSourceClusterNamespace {
+	s.Namespace = &v
+	return s
+}
+
 // Defines a failure policy.
 type FailurePolicy struct {
 	_ struct{} `type:"structure"`
@@ -10695,11 +10864,15 @@ type ImportResourcesToDraftAppVersionInput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// The import strategy you would like to set to import resources into AWS Resilience
+	// The input sources of the Amazon Elastic Kubernetes Service resources you
+	// need to import.
+	EksSources []*EksSource `locationName:"eksSources" type:"list"`
+
+	// The import strategy you would like to set to import resources into Resilience
 	// Hub application.
 	ImportStrategy *string `locationName:"importStrategy" type:"string" enum:"ResourceImportStrategyType"`
 
-	// The Amazon Resource Names (ARNs) for the resources that you want to import.
+	// The Amazon Resource Names (ARNs) for the resources.
 	SourceArns []*string `locationName:"sourceArns" type:"list"`
 
 	// A list of terraform file s3 URLs you need to import.
@@ -10730,6 +10903,16 @@ func (s *ImportResourcesToDraftAppVersionInput) Validate() error {
 	if s.AppArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("AppArn"))
 	}
+	if s.EksSources != nil {
+		for i, v := range s.EksSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EksSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.TerraformSources != nil {
 		for i, v := range s.TerraformSources {
 			if v == nil {
@@ -10750,6 +10933,12 @@ func (s *ImportResourcesToDraftAppVersionInput) Validate() error {
 // SetAppArn sets the AppArn field's value.
 func (s *ImportResourcesToDraftAppVersionInput) SetAppArn(v string) *ImportResourcesToDraftAppVersionInput {
 	s.AppArn = &v
+	return s
+}
+
+// SetEksSources sets the EksSources field's value.
+func (s *ImportResourcesToDraftAppVersionInput) SetEksSources(v []*EksSource) *ImportResourcesToDraftAppVersionInput {
+	s.EksSources = v
 	return s
 }
 
@@ -10787,7 +10976,11 @@ type ImportResourcesToDraftAppVersionOutput struct {
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// The Amazon Resource Names (ARNs) for the resources that you imported.
+	// The input sources of the Amazon Elastic Kubernetes Service resources you
+	// have imported.
+	EksSources []*EksSource `locationName:"eksSources" type:"list"`
+
+	// The Amazon Resource Names (ARNs) for the resources you have imported.
 	SourceArns []*string `locationName:"sourceArns" type:"list"`
 
 	// The status of the action.
@@ -10795,7 +10988,7 @@ type ImportResourcesToDraftAppVersionOutput struct {
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceImportStatusType"`
 
-	// A list of terraform file s3 URLs you need to import.
+	// A list of terraform file s3 URLs you have imported.
 	TerraformSources []*TerraformSource `locationName:"terraformSources" type:"list"`
 }
 
@@ -10829,6 +11022,12 @@ func (s *ImportResourcesToDraftAppVersionOutput) SetAppVersion(v string) *Import
 	return s
 }
 
+// SetEksSources sets the EksSources field's value.
+func (s *ImportResourcesToDraftAppVersionOutput) SetEksSources(v []*EksSource) *ImportResourcesToDraftAppVersionOutput {
+	s.EksSources = v
+	return s
+}
+
 // SetSourceArns sets the SourceArns field's value.
 func (s *ImportResourcesToDraftAppVersionOutput) SetSourceArns(v []*string) *ImportResourcesToDraftAppVersionOutput {
 	s.SourceArns = v
@@ -10847,7 +11046,7 @@ func (s *ImportResourcesToDraftAppVersionOutput) SetTerraformSources(v []*Terraf
 	return s
 }
 
-// This exception occurs when there is an internal failure in the AWS Resilience
+// This exception occurs when there is an internal failure in the Resilience
 // Hub service.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -10987,8 +11186,8 @@ func (s *ListAlarmRecommendationsInput) SetNextToken(v string) *ListAlarmRecomme
 type ListAlarmRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The alarm recommendations for an AWS Resilience Hub application, returned
-	// as an object. This object includes Application Component names, descriptions,
+	// The alarm recommendations for an Resilience Hub application, returned as
+	// an object. This object includes Application Component names, descriptions,
 	// information about whether a recommendation has already been implemented or
 	// not, prerequisites, and more.
 	//
@@ -11265,8 +11464,8 @@ func (s *ListAppComponentCompliancesInput) SetNextToken(v string) *ListAppCompon
 type ListAppComponentCompliancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The compliances for an AWS Resilience Hub Application Component, returned
-	// as an object. This object contains the names of the Application Components,
+	// The compliances for an Resilience Hub Application Component, returned as
+	// an object. This object contains the names of the Application Components,
 	// compliances, costs, resiliency scores, outage scores, and more.
 	//
 	// ComponentCompliances is a required field
@@ -11381,7 +11580,7 @@ func (s *ListAppComponentRecommendationsInput) SetNextToken(v string) *ListAppCo
 type ListAppComponentRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The recommendations for an AWS Resilience Hub Application Component, returned
+	// The recommendations for an Resilience Hub Application Component, returned
 	// as an object. This object contains the names of the Application Components,
 	// configuration recommendations, and recommendation statuses.
 	//
@@ -11438,7 +11637,7 @@ type ListAppInputSourcesInput struct {
 	// AppVersion is a required field
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
-	// Maximum number of input sources to be displayed per AWS Resilience Hub application.
+	// Maximum number of input sources to be displayed per Resilience Hub application.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// Null, or the token from a previous call to get the next set of results.
@@ -11509,7 +11708,7 @@ func (s *ListAppInputSourcesInput) SetNextToken(v string) *ListAppInputSourcesIn
 type ListAppInputSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of AWS Resilience Hub application input sources.
+	// The list of Resilience Hub application input sources.
 	//
 	// AppInputSources is a required field
 	AppInputSources []*AppInputSource `locationName:"appInputSources" type:"list" required:"true"`
@@ -12174,7 +12373,7 @@ func (s *ListAppsInput) SetNextToken(v string) *ListAppsInput {
 type ListAppsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Summaries for the AWS Resilience Hub application.
+	// Summaries for the Resilience Hub application.
 	//
 	// AppSummaries is a required field
 	AppSummaries []*AppSummary `locationName:"appSummaries" type:"list" required:"true"`
@@ -12331,7 +12530,7 @@ type ListRecommendationTemplatesOutput struct {
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The recommendation templates for the AWS Resilience Hub applications.
+	// The recommendation templates for the Resilience Hub applications.
 	RecommendationTemplates []*RecommendationTemplate `locationName:"recommendationTemplates" type:"list"`
 }
 
@@ -12435,7 +12634,7 @@ type ListResiliencyPoliciesOutput struct {
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The resiliency policies for the AWS Resilience Hub applications.
+	// The resiliency policies for the Resilience Hub applications.
 	//
 	// ResiliencyPolicies is a required field
 	ResiliencyPolicies []*ResiliencyPolicy `locationName:"resiliencyPolicies" type:"list" required:"true"`
@@ -12549,7 +12748,7 @@ type ListSopRecommendationsOutput struct {
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The standard operating procedure (SOP) recommendations for the AWS Resilience
+	// The standard operating procedure (SOP) recommendations for the Resilience
 	// Hub applications.
 	//
 	// SopRecommendations is a required field
@@ -12647,7 +12846,7 @@ type ListSuggestedResiliencyPoliciesOutput struct {
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The suggested resiliency policies for the AWS Resilience Hub applications.
+	// The suggested resiliency policies for the Resilience Hub applications.
 	//
 	// ResiliencyPolicies is a required field
 	ResiliencyPolicies []*ResiliencyPolicy `locationName:"resiliencyPolicies" type:"list" required:"true"`
@@ -12686,7 +12885,7 @@ func (s *ListSuggestedResiliencyPoliciesOutput) SetResiliencyPolicies(v []*Resil
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) for a specific resource in your AWS Resilience
+	// The Amazon Resource Name (ARN) for a specific resource in your Resilience
 	// Hub application.
 	//
 	// ResourceArn is a required field
@@ -12847,7 +13046,7 @@ type ListTestRecommendationsOutput struct {
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The test recommendations for the AWS Resilience Hub application.
+	// The test recommendations for the Resilience Hub application.
 	//
 	// TestRecommendations is a required field
 	TestRecommendations []*TestRecommendation `locationName:"testRecommendations" type:"list" required:"true"`
@@ -13038,6 +13237,12 @@ func (s *ListUnsupportedAppVersionResourcesOutput) SetUnsupportedResources(v []*
 type LogicalResourceId struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the Amazon Elastic Kubernetes Service cluster and namespace this
+	// resource belongs to.
+	//
+	// This parameter accepts values in "eks-cluster/namespace" format.
+	EksSourceName *string `locationName:"eksSourceName" min:"1" type:"string"`
+
 	// The identifier of the resource.
 	//
 	// Identifier is a required field
@@ -13074,6 +13279,9 @@ func (s LogicalResourceId) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *LogicalResourceId) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "LogicalResourceId"}
+	if s.EksSourceName != nil && len(*s.EksSourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EksSourceName", 1))
+	}
 	if s.Identifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("Identifier"))
 	}
@@ -13091,6 +13299,12 @@ func (s *LogicalResourceId) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEksSourceName sets the EksSourceName field's value.
+func (s *LogicalResourceId) SetEksSourceName(v string) *LogicalResourceId {
+	s.EksSourceName = &v
+	return s
 }
 
 // SetIdentifier sets the Identifier field's value.
@@ -13119,7 +13333,7 @@ func (s *LogicalResourceId) SetTerraformSourceName(v string) *LogicalResourceId 
 
 // Defines a physical resource. A physical resource is a resource that exists
 // in your account. It can be identified using an Amazon Resource Name (ARN)
-// or an AWS Resilience Hub-native identifier.
+// or an Resilience Hub-native identifier.
 type PhysicalResource struct {
 	_ struct{} `type:"structure"`
 
@@ -13241,7 +13455,7 @@ type PhysicalResourceId struct {
 	//
 	// Native
 	//
-	// The resource identifier is an AWS Resilience Hub-native identifier.
+	// The resource identifier is an Resilience Hub-native identifier.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"PhysicalIdentifierType"`
@@ -13420,16 +13634,20 @@ type PutDraftAppVersionTemplateInput struct {
 	// The appTemplateBody JSON string has the following structure:
 	//
 	//    * resources The list of logical resources that needs to be included in
-	//    the application. Type: Array Don't add the resources that you want to
-	//    exclude. Each resources array item includes the following fields: logicalResourceId
-	//    The logical identifier of the resource. Type: Object Each logicalResourceId
-	//    object includes the following fields: identifier The identifier of the
-	//    resource. Type: String logicalStackName The name of the CloudFormation
-	//    stack this resource belongs to. Type: String resourceGroupName The name
-	//    of the resource group this resource belongs to. Type: String terraformSourceName
-	//    The name of the Terraform S3 state file this resource belongs to. Type:
-	//    String type The type of resource. Type: string name The name of the resource.
-	//    Type: String
+	//    the Resilience Hub application. Type: Array Don't add the resources that
+	//    you want to exclude. Each resources array item includes the following
+	//    fields: logicalResourceId The logical identifier of the resource. Type:
+	//    Object Each logicalResourceId object includes the following fields: identifier
+	//    The identifier of the resource. Type: String logicalStackName The name
+	//    of the CloudFormation stack this resource belongs to. Type: String resourceGroupName
+	//    The name of the resource group this resource belongs to. Type: String
+	//    terraformSourceName The name of the Terraform S3 state file this resource
+	//    belongs to. Type: String type The type of resource. Type: string name
+	//    The name of the resource. Type: String additionalInfo Additional configuration
+	//    parameters for an AWS Resilience Hub application. Currently, this parameter
+	//    accepts a key-value mapping (in a string format) of only one failover
+	//    region and one associated account. Key: "failover-regions" Value: "[{"region":"<REGION>",
+	//    "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	//
 	//    * appComponents The list of Application Components that this resource
 	//    belongs to. If an Application Component is not part of the AWS Resilience
@@ -13456,6 +13674,13 @@ type PutDraftAppVersionTemplateInput struct {
 	//    resourceGroupName The name of the resource group this resource belongs
 	//    to. Type: String terraformSourceName The name of the Terraform S3 state
 	//    file this resource belongs to. Type: String
+	//
+	//    * version The AWS Resilience Hub application version.
+	//
+	//    * additionalInfo Additional configuration parameters for an AWS Resilience
+	//    Hub application. Currently, this parameter accepts a key-value mapping
+	//    (in a string format) of only one failover region and one associated account.
+	//    Key: "failover-regions" Value: "[{"region":"<REGION>", "accounts":[{"id":"<ACCOUNT_ID>"}]}]"
 	//
 	// AppTemplateBody is a required field
 	AppTemplateBody *string `locationName:"appTemplateBody" type:"string" required:"true"`
@@ -13890,6 +14115,12 @@ type RemoveDraftAppVersionResourceMappingsInput struct {
 	// mappings.
 	AppRegistryAppNames []*string `locationName:"appRegistryAppNames" type:"list"`
 
+	// The names of the Amazon Elastic Kubernetes Service clusters and namespaces
+	// you want to remove from the resource mappings.
+	//
+	// This parameter accepts values in "eks-cluster/namespace" format.
+	EksSourceNames []*string `locationName:"eksSourceNames" type:"list"`
+
 	// The names of the CloudFormation stacks you want to remove from the resource
 	// mappings.
 	LogicalStackNames []*string `locationName:"logicalStackNames" type:"list"`
@@ -13944,6 +14175,12 @@ func (s *RemoveDraftAppVersionResourceMappingsInput) SetAppArn(v string) *Remove
 // SetAppRegistryAppNames sets the AppRegistryAppNames field's value.
 func (s *RemoveDraftAppVersionResourceMappingsInput) SetAppRegistryAppNames(v []*string) *RemoveDraftAppVersionResourceMappingsInput {
 	s.AppRegistryAppNames = v
+	return s
+}
+
+// SetEksSourceNames sets the EksSourceNames field's value.
+func (s *RemoveDraftAppVersionResourceMappingsInput) SetEksSourceNames(v []*string) *RemoveDraftAppVersionResourceMappingsInput {
+	s.EksSourceNames = v
 	return s
 }
 
@@ -14405,6 +14642,12 @@ type ResourceMapping struct {
 	// The name of the application this resource is mapped to.
 	AppRegistryAppName *string `locationName:"appRegistryAppName" type:"string"`
 
+	// The name of the Amazon Elastic Kubernetes Service cluster and namespace this
+	// resource belongs to.
+	//
+	// This parameter accepts values in "eks-cluster/namespace" format.
+	EksSourceName *string `locationName:"eksSourceName" min:"1" type:"string"`
+
 	// The name of the CloudFormation stack this resource is mapped to.
 	LogicalStackName *string `locationName:"logicalStackName" min:"1" type:"string"`
 
@@ -14427,7 +14670,7 @@ type ResourceMapping struct {
 	//
 	// ResourceGroup
 	//
-	// The resource is mapped to a resource group. The name of the resource group
+	// The resource is mapped to an Resource Groups. The name of the resource group
 	// is contained in the resourceGroupName property.
 	//
 	// MappingType is a required field
@@ -14469,6 +14712,9 @@ func (s ResourceMapping) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResourceMapping) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResourceMapping"}
+	if s.EksSourceName != nil && len(*s.EksSourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EksSourceName", 1))
+	}
 	if s.LogicalStackName != nil && len(*s.LogicalStackName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LogicalStackName", 1))
 	}
@@ -14496,6 +14742,12 @@ func (s *ResourceMapping) Validate() error {
 // SetAppRegistryAppName sets the AppRegistryAppName field's value.
 func (s *ResourceMapping) SetAppRegistryAppName(v string) *ResourceMapping {
 	s.AppRegistryAppName = &v
+	return s
+}
+
+// SetEksSourceName sets the EksSourceName field's value.
+func (s *ResourceMapping) SetEksSourceName(v string) *ResourceMapping {
+	s.EksSourceName = &v
 	return s
 }
 
@@ -15050,7 +15302,7 @@ func (s TagResourceOutput) GoString() string {
 type TerraformSource struct {
 	_ struct{} `type:"structure"`
 
-	// The Terraform s3 state file you need to import.
+	// The URL of the Terraform s3 state file you need to import.
 	//
 	// S3StateFileUrl is a required field
 	S3StateFileUrl *string `locationName:"s3StateFileUrl" type:"string" required:"true"`
@@ -15286,7 +15538,7 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Defines a resource that is not supported by AWS Resilience Hub.
+// Defines a resource that is not supported by Resilience Hub.
 type UnsupportedResource struct {
 	_ struct{} `type:"structure"`
 
@@ -15304,6 +15556,9 @@ type UnsupportedResource struct {
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
+
+	// The status of unsupported resource.
+	UnsupportedResourceStatus *string `locationName:"unsupportedResourceStatus" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -15339,6 +15594,12 @@ func (s *UnsupportedResource) SetPhysicalResourceId(v *PhysicalResourceId) *Unsu
 // SetResourceType sets the ResourceType field's value.
 func (s *UnsupportedResource) SetResourceType(v string) *UnsupportedResource {
 	s.ResourceType = &v
+	return s
+}
+
+// SetUnsupportedResourceStatus sets the UnsupportedResourceStatus field's value.
+func (s *UnsupportedResource) SetUnsupportedResourceStatus(v string) *UnsupportedResource {
+	s.UnsupportedResourceStatus = &v
 	return s
 }
 
@@ -15667,7 +15928,7 @@ type UpdateAppVersionAppComponentOutput struct {
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
-	// Defines an Application Component.
+	// The list of Application Components that belong to this resource.
 	AppComponent *AppComponent `locationName:"appComponent" type:"structure"`
 
 	// The AWS Resilience Hub application version.
@@ -15859,9 +16120,9 @@ type UpdateAppVersionResourceInput struct {
 	// The Amazon Web Services region that owns the physical resource.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
-	// Indicates if a resource is excluded from an AWS Resilience Hub application.
+	// Indicates if a resource is excluded from an Resilience Hub application.
 	//
-	// You can exclude only imported resources from an AWS Resilience Hub application.
+	// You can exclude only imported resources from an Resilience Hub application.
 	Excluded *bool `locationName:"excluded" type:"boolean"`
 
 	// The logical identifier of the resource.
@@ -16697,6 +16958,9 @@ const (
 
 	// ResourceMappingTypeTerraform is a ResourceMappingType enum value
 	ResourceMappingTypeTerraform = "Terraform"
+
+	// ResourceMappingTypeEks is a ResourceMappingType enum value
+	ResourceMappingTypeEks = "EKS"
 )
 
 // ResourceMappingType_Values returns all elements of the ResourceMappingType enum
@@ -16707,6 +16971,7 @@ func ResourceMappingType_Values() []string {
 		ResourceMappingTypeAppRegistryApp,
 		ResourceMappingTypeResourceGroup,
 		ResourceMappingTypeTerraform,
+		ResourceMappingTypeEks,
 	}
 }
 

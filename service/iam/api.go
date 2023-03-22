@@ -194,7 +194,8 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 //     the limit exceeded.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -508,7 +509,8 @@ func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *reques
 //     for an input parameter.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -3476,7 +3478,8 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *request.Request, o
 //     the limit exceeded.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -3558,6 +3561,8 @@ func (c *IAM) DeleteRolePermissionsBoundaryRequest(input *DeleteRolePermissionsB
 //
 // Deletes the permissions boundary for the specified IAM role.
 //
+// You cannot set the boundary for a service-linked role.
+//
 // Deleting the permissions boundary for a role might increase its permissions.
 // For example, it might allow anyone who assumes the role to perform all the
 // actions granted in its permissions policies.
@@ -3576,7 +3581,8 @@ func (c *IAM) DeleteRolePermissionsBoundaryRequest(input *DeleteRolePermissionsB
 //     not exist. The error message describes the resource.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -3678,7 +3684,8 @@ func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *reques
 //     the limit exceeded.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -4866,7 +4873,8 @@ func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *reques
 //     for an input parameter.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -12619,7 +12627,8 @@ func (c *IAM) PutRolePermissionsBoundaryRequest(input *PutRolePermissionsBoundar
 //     for an input parameter.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -12745,7 +12754,8 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *request.Requ
 //     not exist. The error message describes the resource.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -13157,7 +13167,8 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 //     the limit exceeded.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -16098,7 +16109,8 @@ func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) 
 //     the limit exceeded.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -16507,7 +16519,8 @@ func (c *IAM) UpdateRoleRequest(input *UpdateRoleInput) (req *request.Request, o
 // Returned Error Codes:
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
@@ -16604,7 +16617,8 @@ func (c *IAM) UpdateRoleDescriptionRequest(input *UpdateRoleDescriptionInput) (r
 //     not exist. The error message describes the resource.
 //
 //   - ErrCodeUnmodifiableEntityException "UnmodifiableEntity"
-//     The request was rejected because only the service that depends on the service-linked
+//     The request was rejected because service-linked roles are protected Amazon
+//     Web Services resources. Only the service that depends on the service-linked
 //     role can modify or delete the role on your behalf. The error message includes
 //     the name of the service that depends on this service-linked role. You must
 //     request the change through that service.
