@@ -13113,7 +13113,8 @@ type CreateTransitGatewayRouteTableAttachmentInput struct {
 	// The list of key-value tags associated with the request.
 	Tags []*Tag `type:"list"`
 
-	// The ARN of the transit gateway route table for the attachment request.
+	// The ARN of the transit gateway route table for the attachment request. For
+	// example, "TransitGatewayRouteTableArn": "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456".
 	//
 	// TransitGatewayRouteTableArn is a required field
 	TransitGatewayRouteTableArn *string `type:"string" required:"true"`

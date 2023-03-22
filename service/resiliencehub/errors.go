@@ -28,7 +28,7 @@ const (
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// This exception occurs when there is an internal failure in the AWS Resilience
+	// This exception occurs when there is an internal failure in the Resilience
 	// Hub service.
 	ErrCodeInternalServerException = "InternalServerException"
 

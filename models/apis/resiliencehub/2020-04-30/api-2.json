@@ -1140,6 +1140,7 @@
       "type":"structure",
       "required":["importType"],
       "members":{
+        "eksSourceClusterNamespace":{"shape":"EksSourceClusterNamespace"},
         "importType":{"shape":"ResourceMappingType"},
         "resourceCount":{"shape":"Integer"},
         "sourceArn":{"shape":"Arn"},
@@ -1184,7 +1185,7 @@
       "type":"string",
       "max":204800,
       "min":0,
-      "pattern":"^[\\w\\s:,-\\.'{}\\[\\]:\"]+$"
+      "pattern":"^[\\w\\s:,-\\.'\\/{}\\[\\]:\"\\\\]+$"
     },
     "AppVersionList":{
       "type":"list",
@@ -1536,6 +1537,7 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
+        "eksSourceClusterNamespace":{"shape":"EksSourceClusterNamespace"},
         "sourceArn":{"shape":"Arn"},
         "terraformSource":{"shape":"TerraformSource"}
       }
@@ -1895,6 +1897,42 @@
       "min":1
     },
     "Double":{"type":"double"},
+    "EksNamespace":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+    },
+    "EksNamespaceList":{
+      "type":"list",
+      "member":{"shape":"EksNamespace"}
+    },
+    "EksSource":{
+      "type":"structure",
+      "required":[
+        "eksClusterArn",
+        "namespaces"
+      ],
+      "members":{
+        "eksClusterArn":{"shape":"Arn"},
+        "namespaces":{"shape":"EksNamespaceList"}
+      }
+    },
+    "EksSourceClusterNamespace":{
+      "type":"structure",
+      "required":[
+        "eksClusterArn",
+        "namespace"
+      ],
+      "members":{
+        "eksClusterArn":{"shape":"Arn"},
+        "namespace":{"shape":"EksNamespace"}
+      }
+    },
+    "EksSourceList":{
+      "type":"list",
+      "member":{"shape":"EksSource"}
+    },
     "EntityDescription":{
       "type":"string",
       "max":500,
@@ -1956,6 +1994,7 @@
       "required":["appArn"],
       "members":{
         "appArn":{"shape":"Arn"},
+        "eksSources":{"shape":"EksSourceList"},
         "importStrategy":{"shape":"ResourceImportStrategyType"},
         "sourceArns":{"shape":"ArnList"},
         "terraformSources":{"shape":"TerraformSourceList"}
@@ -1971,6 +2010,7 @@
       "members":{
         "appArn":{"shape":"Arn"},
         "appVersion":{"shape":"EntityVersion"},
+        "eksSources":{"shape":"EksSourceList"},
         "sourceArns":{"shape":"ArnList"},
         "status":{"shape":"ResourceImportStatusType"},
         "terraformSources":{"shape":"TerraformSourceList"}
@@ -2414,6 +2454,7 @@
       "type":"structure",
       "required":["identifier"],
       "members":{
+        "eksSourceName":{"shape":"String255"},
         "identifier":{"shape":"String255"},
         "logicalStackName":{"shape":"String255"},
         "resourceGroupName":{"shape":"EntityName"},
@@ -2599,6 +2640,7 @@
       "members":{
         "appArn":{"shape":"Arn"},
         "appRegistryAppNames":{"shape":"EntityNameList"},
+        "eksSourceNames":{"shape":"String255List"},
         "logicalStackNames":{"shape":"String255List"},
         "resourceGroupNames":{"shape":"EntityNameList"},
         "resourceNames":{"shape":"EntityNameList"},
@@ -2738,6 +2780,7 @@
       ],
       "members":{
         "appRegistryAppName":{"shape":"EntityName"},
+        "eksSourceName":{"shape":"String255"},
         "logicalStackName":{"shape":"String255"},
         "mappingType":{"shape":"ResourceMappingType"},
         "physicalResourceId":{"shape":"PhysicalResourceId"},
@@ -2757,7 +2800,8 @@
         "Resource",
         "AppRegistryApp",
         "ResourceGroup",
-        "Terraform"
+        "Terraform",
+        "EKS"
       ]
     },
     "ResourceNotFoundException":{
@@ -3032,7 +3076,8 @@
       "members":{
         "logicalResourceId":{"shape":"LogicalResourceId"},
         "physicalResourceId":{"shape":"PhysicalResourceId"},
-        "resourceType":{"shape":"String255"}
+        "resourceType":{"shape":"String255"},
+        "unsupportedResourceStatus":{"shape":"String255"}
       }
     },
     "UnsupportedResourceList":{

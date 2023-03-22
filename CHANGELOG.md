@@ -1,3 +1,16 @@
+Release v1.44.227 (2023-03-22)
+===
+
+### Service Client Updates
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/iottwinmaker`: Updates service API and documentation
+* `service/networkmanager`: Updates service documentation
+* `service/pipes`: Updates service API
+* `service/resiliencehub`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * This Patch Manager release supports creating, updating, and deleting Patch Baselines for AmazonLinux2023, AlmaLinux.
+
 Release v1.44.226 (2023-03-21)
 ===
 
