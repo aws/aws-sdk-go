@@ -37,6 +37,16 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListVoiceProfileDomains": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListVoiceProfiles": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "SearchAvailablePhoneNumbers": {
       "input_token": "NextToken",
       "output_token": "NextToken",

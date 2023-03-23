@@ -1001,6 +1001,194 @@ func (c *ChimeSDKVoice) CreateVoiceConnectorGroupWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opCreateVoiceProfile = "CreateVoiceProfile"
+
+// CreateVoiceProfileRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVoiceProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVoiceProfile for more information on using the CreateVoiceProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVoiceProfileRequest method.
+//	req, resp := client.CreateVoiceProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceProfile
+func (c *ChimeSDKVoice) CreateVoiceProfileRequest(input *CreateVoiceProfileInput) (req *request.Request, output *CreateVoiceProfileOutput) {
+	op := &request.Operation{
+		Name:       opCreateVoiceProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/voice-profiles",
+	}
+
+	if input == nil {
+		input = &CreateVoiceProfileInput{}
+	}
+
+	output = &CreateVoiceProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVoiceProfile API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation CreateVoiceProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ResourceLimitExceededException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - GoneException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceProfile
+func (c *ChimeSDKVoice) CreateVoiceProfile(input *CreateVoiceProfileInput) (*CreateVoiceProfileOutput, error) {
+	req, out := c.CreateVoiceProfileRequest(input)
+	return out, req.Send()
+}
+
+// CreateVoiceProfileWithContext is the same as CreateVoiceProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVoiceProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) CreateVoiceProfileWithContext(ctx aws.Context, input *CreateVoiceProfileInput, opts ...request.Option) (*CreateVoiceProfileOutput, error) {
+	req, out := c.CreateVoiceProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVoiceProfileDomain = "CreateVoiceProfileDomain"
+
+// CreateVoiceProfileDomainRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVoiceProfileDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVoiceProfileDomain for more information on using the CreateVoiceProfileDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVoiceProfileDomainRequest method.
+//	req, resp := client.CreateVoiceProfileDomainRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceProfileDomain
+func (c *ChimeSDKVoice) CreateVoiceProfileDomainRequest(input *CreateVoiceProfileDomainInput) (req *request.Request, output *CreateVoiceProfileDomainOutput) {
+	op := &request.Operation{
+		Name:       opCreateVoiceProfileDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/voice-profile-domains",
+	}
+
+	if input == nil {
+		input = &CreateVoiceProfileDomainInput{}
+	}
+
+	output = &CreateVoiceProfileDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVoiceProfileDomain API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation CreateVoiceProfileDomain for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - ConflictException
+//
+//   - UnauthorizedClientException
+//
+//   - ThrottledClientException
+//
+//   - ResourceLimitExceededException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceProfileDomain
+func (c *ChimeSDKVoice) CreateVoiceProfileDomain(input *CreateVoiceProfileDomainInput) (*CreateVoiceProfileDomainOutput, error) {
+	req, out := c.CreateVoiceProfileDomainRequest(input)
+	return out, req.Send()
+}
+
+// CreateVoiceProfileDomainWithContext is the same as CreateVoiceProfileDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVoiceProfileDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) CreateVoiceProfileDomainWithContext(ctx aws.Context, input *CreateVoiceProfileDomainInput, opts ...request.Option) (*CreateVoiceProfileDomainOutput, error) {
+	req, out := c.CreateVoiceProfileDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeletePhoneNumber = "DeletePhoneNumber"
 
 // DeletePhoneNumberRequest generates a "aws/request.Request" representing the
@@ -2077,6 +2265,192 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorTerminationCredentialsWithContext(ct
 	return out, req.Send()
 }
 
+const opDeleteVoiceProfile = "DeleteVoiceProfile"
+
+// DeleteVoiceProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVoiceProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVoiceProfile for more information on using the DeleteVoiceProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteVoiceProfileRequest method.
+//	req, resp := client.DeleteVoiceProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceProfile
+func (c *ChimeSDKVoice) DeleteVoiceProfileRequest(input *DeleteVoiceProfileInput) (req *request.Request, output *DeleteVoiceProfileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVoiceProfile,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/voice-profiles/{VoiceProfileId}",
+	}
+
+	if input == nil {
+		input = &DeleteVoiceProfileInput{}
+	}
+
+	output = &DeleteVoiceProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteVoiceProfile API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation DeleteVoiceProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceProfile
+func (c *ChimeSDKVoice) DeleteVoiceProfile(input *DeleteVoiceProfileInput) (*DeleteVoiceProfileOutput, error) {
+	req, out := c.DeleteVoiceProfileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVoiceProfileWithContext is the same as DeleteVoiceProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVoiceProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) DeleteVoiceProfileWithContext(ctx aws.Context, input *DeleteVoiceProfileInput, opts ...request.Option) (*DeleteVoiceProfileOutput, error) {
+	req, out := c.DeleteVoiceProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVoiceProfileDomain = "DeleteVoiceProfileDomain"
+
+// DeleteVoiceProfileDomainRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVoiceProfileDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVoiceProfileDomain for more information on using the DeleteVoiceProfileDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteVoiceProfileDomainRequest method.
+//	req, resp := client.DeleteVoiceProfileDomainRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceProfileDomain
+func (c *ChimeSDKVoice) DeleteVoiceProfileDomainRequest(input *DeleteVoiceProfileDomainInput) (req *request.Request, output *DeleteVoiceProfileDomainOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVoiceProfileDomain,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/voice-profile-domains/{VoiceProfileDomainId}",
+	}
+
+	if input == nil {
+		input = &DeleteVoiceProfileDomainInput{}
+	}
+
+	output = &DeleteVoiceProfileDomainOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteVoiceProfileDomain API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation DeleteVoiceProfileDomain for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedClientException
+//
+//   - NotFoundException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - BadRequestException
+//
+//   - ConflictException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceProfileDomain
+func (c *ChimeSDKVoice) DeleteVoiceProfileDomain(input *DeleteVoiceProfileDomainInput) (*DeleteVoiceProfileDomainOutput, error) {
+	req, out := c.DeleteVoiceProfileDomainRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVoiceProfileDomainWithContext is the same as DeleteVoiceProfileDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVoiceProfileDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) DeleteVoiceProfileDomainWithContext(ctx aws.Context, input *DeleteVoiceProfileDomainInput, opts ...request.Option) (*DeleteVoiceProfileDomainOutput, error) {
+	req, out := c.DeleteVoiceProfileDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociatePhoneNumbersFromVoiceConnector = "DisassociatePhoneNumbersFromVoiceConnector"
 
 // DisassociatePhoneNumbersFromVoiceConnectorRequest generates a "aws/request.Request" representing the
@@ -3041,6 +3415,98 @@ func (c *ChimeSDKVoice) GetSipRuleWithContext(ctx aws.Context, input *GetSipRule
 	return out, req.Send()
 }
 
+const opGetSpeakerSearchTask = "GetSpeakerSearchTask"
+
+// GetSpeakerSearchTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetSpeakerSearchTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSpeakerSearchTask for more information on using the GetSpeakerSearchTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSpeakerSearchTaskRequest method.
+//	req, resp := client.GetSpeakerSearchTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSpeakerSearchTask
+func (c *ChimeSDKVoice) GetSpeakerSearchTaskRequest(input *GetSpeakerSearchTaskInput) (req *request.Request, output *GetSpeakerSearchTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetSpeakerSearchTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}",
+	}
+
+	if input == nil {
+		input = &GetSpeakerSearchTaskInput{}
+	}
+
+	output = &GetSpeakerSearchTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSpeakerSearchTask API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation GetSpeakerSearchTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - ThrottledClientException
+//
+//   - AccessDeniedException
+//
+//   - UnauthorizedClientException
+//
+//   - ServiceFailureException
+//
+//   - ServiceUnavailableException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSpeakerSearchTask
+func (c *ChimeSDKVoice) GetSpeakerSearchTask(input *GetSpeakerSearchTaskInput) (*GetSpeakerSearchTaskOutput, error) {
+	req, out := c.GetSpeakerSearchTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetSpeakerSearchTaskWithContext is the same as GetSpeakerSearchTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSpeakerSearchTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) GetSpeakerSearchTaskWithContext(ctx aws.Context, input *GetSpeakerSearchTaskInput, opts ...request.Option) (*GetSpeakerSearchTaskOutput, error) {
+	req, out := c.GetSpeakerSearchTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetVoiceConnector = "GetVoiceConnector"
 
 // GetVoiceConnectorRequest generates a "aws/request.Request" representing the
@@ -3828,6 +4294,278 @@ func (c *ChimeSDKVoice) GetVoiceConnectorTerminationHealth(input *GetVoiceConnec
 // for more information on using Contexts.
 func (c *ChimeSDKVoice) GetVoiceConnectorTerminationHealthWithContext(ctx aws.Context, input *GetVoiceConnectorTerminationHealthInput, opts ...request.Option) (*GetVoiceConnectorTerminationHealthOutput, error) {
 	req, out := c.GetVoiceConnectorTerminationHealthRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetVoiceProfile = "GetVoiceProfile"
+
+// GetVoiceProfileRequest generates a "aws/request.Request" representing the
+// client's request for the GetVoiceProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetVoiceProfile for more information on using the GetVoiceProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetVoiceProfileRequest method.
+//	req, resp := client.GetVoiceProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceProfile
+func (c *ChimeSDKVoice) GetVoiceProfileRequest(input *GetVoiceProfileInput) (req *request.Request, output *GetVoiceProfileOutput) {
+	op := &request.Operation{
+		Name:       opGetVoiceProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/voice-profiles/{VoiceProfileId}",
+	}
+
+	if input == nil {
+		input = &GetVoiceProfileInput{}
+	}
+
+	output = &GetVoiceProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetVoiceProfile API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation GetVoiceProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceProfile
+func (c *ChimeSDKVoice) GetVoiceProfile(input *GetVoiceProfileInput) (*GetVoiceProfileOutput, error) {
+	req, out := c.GetVoiceProfileRequest(input)
+	return out, req.Send()
+}
+
+// GetVoiceProfileWithContext is the same as GetVoiceProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetVoiceProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) GetVoiceProfileWithContext(ctx aws.Context, input *GetVoiceProfileInput, opts ...request.Option) (*GetVoiceProfileOutput, error) {
+	req, out := c.GetVoiceProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetVoiceProfileDomain = "GetVoiceProfileDomain"
+
+// GetVoiceProfileDomainRequest generates a "aws/request.Request" representing the
+// client's request for the GetVoiceProfileDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetVoiceProfileDomain for more information on using the GetVoiceProfileDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetVoiceProfileDomainRequest method.
+//	req, resp := client.GetVoiceProfileDomainRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceProfileDomain
+func (c *ChimeSDKVoice) GetVoiceProfileDomainRequest(input *GetVoiceProfileDomainInput) (req *request.Request, output *GetVoiceProfileDomainOutput) {
+	op := &request.Operation{
+		Name:       opGetVoiceProfileDomain,
+		HTTPMethod: "GET",
+		HTTPPath:   "/voice-profile-domains/{VoiceProfileDomainId}",
+	}
+
+	if input == nil {
+		input = &GetVoiceProfileDomainInput{}
+	}
+
+	output = &GetVoiceProfileDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetVoiceProfileDomain API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation GetVoiceProfileDomain for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedClientException
+//
+//   - NotFoundException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - BadRequestException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceProfileDomain
+func (c *ChimeSDKVoice) GetVoiceProfileDomain(input *GetVoiceProfileDomainInput) (*GetVoiceProfileDomainOutput, error) {
+	req, out := c.GetVoiceProfileDomainRequest(input)
+	return out, req.Send()
+}
+
+// GetVoiceProfileDomainWithContext is the same as GetVoiceProfileDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetVoiceProfileDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) GetVoiceProfileDomainWithContext(ctx aws.Context, input *GetVoiceProfileDomainInput, opts ...request.Option) (*GetVoiceProfileDomainOutput, error) {
+	req, out := c.GetVoiceProfileDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetVoiceToneAnalysisTask = "GetVoiceToneAnalysisTask"
+
+// GetVoiceToneAnalysisTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetVoiceToneAnalysisTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetVoiceToneAnalysisTask for more information on using the GetVoiceToneAnalysisTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetVoiceToneAnalysisTaskRequest method.
+//	req, resp := client.GetVoiceToneAnalysisTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceToneAnalysisTask
+func (c *ChimeSDKVoice) GetVoiceToneAnalysisTaskRequest(input *GetVoiceToneAnalysisTaskInput) (req *request.Request, output *GetVoiceToneAnalysisTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetVoiceToneAnalysisTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}",
+	}
+
+	if input == nil {
+		input = &GetVoiceToneAnalysisTaskInput{}
+	}
+
+	output = &GetVoiceToneAnalysisTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetVoiceToneAnalysisTask API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation GetVoiceToneAnalysisTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - ThrottledClientException
+//
+//   - AccessDeniedException
+//
+//   - UnauthorizedClientException
+//
+//   - ServiceFailureException
+//
+//   - ServiceUnavailableException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceToneAnalysisTask
+func (c *ChimeSDKVoice) GetVoiceToneAnalysisTask(input *GetVoiceToneAnalysisTaskInput) (*GetVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.GetVoiceToneAnalysisTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetVoiceToneAnalysisTaskWithContext is the same as GetVoiceToneAnalysisTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetVoiceToneAnalysisTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) GetVoiceToneAnalysisTaskWithContext(ctx aws.Context, input *GetVoiceToneAnalysisTaskInput, opts ...request.Option) (*GetVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.GetVoiceToneAnalysisTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4726,6 +5464,92 @@ func (c *ChimeSDKVoice) ListSupportedPhoneNumberCountriesWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListTagsForResource
+func (c *ChimeSDKVoice) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - UnauthorizedClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListTagsForResource
+func (c *ChimeSDKVoice) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListVoiceConnectorGroups = "ListVoiceConnectorGroups"
 
 // ListVoiceConnectorGroupsRequest generates a "aws/request.Request" representing the
@@ -5093,6 +5917,296 @@ func (c *ChimeSDKVoice) ListVoiceConnectorsPagesWithContext(ctx aws.Context, inp
 
 	for p.Next() {
 		if !fn(p.Page().(*ListVoiceConnectorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListVoiceProfileDomains = "ListVoiceProfileDomains"
+
+// ListVoiceProfileDomainsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVoiceProfileDomains operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVoiceProfileDomains for more information on using the ListVoiceProfileDomains
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVoiceProfileDomainsRequest method.
+//	req, resp := client.ListVoiceProfileDomainsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceProfileDomains
+func (c *ChimeSDKVoice) ListVoiceProfileDomainsRequest(input *ListVoiceProfileDomainsInput) (req *request.Request, output *ListVoiceProfileDomainsOutput) {
+	op := &request.Operation{
+		Name:       opListVoiceProfileDomains,
+		HTTPMethod: "GET",
+		HTTPPath:   "/voice-profile-domains",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVoiceProfileDomainsInput{}
+	}
+
+	output = &ListVoiceProfileDomainsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVoiceProfileDomains API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation ListVoiceProfileDomains for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - BadRequestException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceProfileDomains
+func (c *ChimeSDKVoice) ListVoiceProfileDomains(input *ListVoiceProfileDomainsInput) (*ListVoiceProfileDomainsOutput, error) {
+	req, out := c.ListVoiceProfileDomainsRequest(input)
+	return out, req.Send()
+}
+
+// ListVoiceProfileDomainsWithContext is the same as ListVoiceProfileDomains with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVoiceProfileDomains for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) ListVoiceProfileDomainsWithContext(ctx aws.Context, input *ListVoiceProfileDomainsInput, opts ...request.Option) (*ListVoiceProfileDomainsOutput, error) {
+	req, out := c.ListVoiceProfileDomainsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVoiceProfileDomainsPages iterates over the pages of a ListVoiceProfileDomains operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVoiceProfileDomains method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListVoiceProfileDomains operation.
+//	pageNum := 0
+//	err := client.ListVoiceProfileDomainsPages(params,
+//	    func(page *chimesdkvoice.ListVoiceProfileDomainsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ChimeSDKVoice) ListVoiceProfileDomainsPages(input *ListVoiceProfileDomainsInput, fn func(*ListVoiceProfileDomainsOutput, bool) bool) error {
+	return c.ListVoiceProfileDomainsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVoiceProfileDomainsPagesWithContext same as ListVoiceProfileDomainsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) ListVoiceProfileDomainsPagesWithContext(ctx aws.Context, input *ListVoiceProfileDomainsInput, fn func(*ListVoiceProfileDomainsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVoiceProfileDomainsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVoiceProfileDomainsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVoiceProfileDomainsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListVoiceProfiles = "ListVoiceProfiles"
+
+// ListVoiceProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the ListVoiceProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVoiceProfiles for more information on using the ListVoiceProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVoiceProfilesRequest method.
+//	req, resp := client.ListVoiceProfilesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceProfiles
+func (c *ChimeSDKVoice) ListVoiceProfilesRequest(input *ListVoiceProfilesInput) (req *request.Request, output *ListVoiceProfilesOutput) {
+	op := &request.Operation{
+		Name:       opListVoiceProfiles,
+		HTTPMethod: "GET",
+		HTTPPath:   "/voice-profiles",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVoiceProfilesInput{}
+	}
+
+	output = &ListVoiceProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVoiceProfiles API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation ListVoiceProfiles for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - BadRequestException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceProfiles
+func (c *ChimeSDKVoice) ListVoiceProfiles(input *ListVoiceProfilesInput) (*ListVoiceProfilesOutput, error) {
+	req, out := c.ListVoiceProfilesRequest(input)
+	return out, req.Send()
+}
+
+// ListVoiceProfilesWithContext is the same as ListVoiceProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVoiceProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) ListVoiceProfilesWithContext(ctx aws.Context, input *ListVoiceProfilesInput, opts ...request.Option) (*ListVoiceProfilesOutput, error) {
+	req, out := c.ListVoiceProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVoiceProfilesPages iterates over the pages of a ListVoiceProfiles operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVoiceProfiles method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListVoiceProfiles operation.
+//	pageNum := 0
+//	err := client.ListVoiceProfilesPages(params,
+//	    func(page *chimesdkvoice.ListVoiceProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ChimeSDKVoice) ListVoiceProfilesPages(input *ListVoiceProfilesInput, fn func(*ListVoiceProfilesOutput, bool) bool) error {
+	return c.ListVoiceProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVoiceProfilesPagesWithContext same as ListVoiceProfilesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) ListVoiceProfilesPagesWithContext(ctx aws.Context, input *ListVoiceProfilesInput, fn func(*ListVoiceProfilesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVoiceProfilesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVoiceProfilesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVoiceProfilesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6132,6 +7246,568 @@ func (c *ChimeSDKVoice) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Cont
 	return p.Err()
 }
 
+const opStartSpeakerSearchTask = "StartSpeakerSearchTask"
+
+// StartSpeakerSearchTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartSpeakerSearchTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSpeakerSearchTask for more information on using the StartSpeakerSearchTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSpeakerSearchTaskRequest method.
+//	req, resp := client.StartSpeakerSearchTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StartSpeakerSearchTask
+func (c *ChimeSDKVoice) StartSpeakerSearchTaskRequest(input *StartSpeakerSearchTaskInput) (req *request.Request, output *StartSpeakerSearchTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartSpeakerSearchTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks",
+	}
+
+	if input == nil {
+		input = &StartSpeakerSearchTaskInput{}
+	}
+
+	output = &StartSpeakerSearchTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSpeakerSearchTask API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation StartSpeakerSearchTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ResourceLimitExceededException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - GoneException
+//
+//   - UnprocessableEntityException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StartSpeakerSearchTask
+func (c *ChimeSDKVoice) StartSpeakerSearchTask(input *StartSpeakerSearchTaskInput) (*StartSpeakerSearchTaskOutput, error) {
+	req, out := c.StartSpeakerSearchTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartSpeakerSearchTaskWithContext is the same as StartSpeakerSearchTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSpeakerSearchTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) StartSpeakerSearchTaskWithContext(ctx aws.Context, input *StartSpeakerSearchTaskInput, opts ...request.Option) (*StartSpeakerSearchTaskOutput, error) {
+	req, out := c.StartSpeakerSearchTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartVoiceToneAnalysisTask = "StartVoiceToneAnalysisTask"
+
+// StartVoiceToneAnalysisTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartVoiceToneAnalysisTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartVoiceToneAnalysisTask for more information on using the StartVoiceToneAnalysisTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartVoiceToneAnalysisTaskRequest method.
+//	req, resp := client.StartVoiceToneAnalysisTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StartVoiceToneAnalysisTask
+func (c *ChimeSDKVoice) StartVoiceToneAnalysisTaskRequest(input *StartVoiceToneAnalysisTaskInput) (req *request.Request, output *StartVoiceToneAnalysisTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartVoiceToneAnalysisTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks",
+	}
+
+	if input == nil {
+		input = &StartVoiceToneAnalysisTaskInput{}
+	}
+
+	output = &StartVoiceToneAnalysisTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartVoiceToneAnalysisTask API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation StartVoiceToneAnalysisTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ResourceLimitExceededException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - GoneException
+//
+//   - UnprocessableEntityException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StartVoiceToneAnalysisTask
+func (c *ChimeSDKVoice) StartVoiceToneAnalysisTask(input *StartVoiceToneAnalysisTaskInput) (*StartVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StartVoiceToneAnalysisTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartVoiceToneAnalysisTaskWithContext is the same as StartVoiceToneAnalysisTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartVoiceToneAnalysisTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) StartVoiceToneAnalysisTaskWithContext(ctx aws.Context, input *StartVoiceToneAnalysisTaskInput, opts ...request.Option) (*StartVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StartVoiceToneAnalysisTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopSpeakerSearchTask = "StopSpeakerSearchTask"
+
+// StopSpeakerSearchTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StopSpeakerSearchTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopSpeakerSearchTask for more information on using the StopSpeakerSearchTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopSpeakerSearchTaskRequest method.
+//	req, resp := client.StopSpeakerSearchTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StopSpeakerSearchTask
+func (c *ChimeSDKVoice) StopSpeakerSearchTaskRequest(input *StopSpeakerSearchTaskInput) (req *request.Request, output *StopSpeakerSearchTaskOutput) {
+	op := &request.Operation{
+		Name:       opStopSpeakerSearchTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}?operation=stop",
+	}
+
+	if input == nil {
+		input = &StopSpeakerSearchTaskInput{}
+	}
+
+	output = &StopSpeakerSearchTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopSpeakerSearchTask API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation StopSpeakerSearchTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - UnprocessableEntityException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StopSpeakerSearchTask
+func (c *ChimeSDKVoice) StopSpeakerSearchTask(input *StopSpeakerSearchTaskInput) (*StopSpeakerSearchTaskOutput, error) {
+	req, out := c.StopSpeakerSearchTaskRequest(input)
+	return out, req.Send()
+}
+
+// StopSpeakerSearchTaskWithContext is the same as StopSpeakerSearchTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopSpeakerSearchTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) StopSpeakerSearchTaskWithContext(ctx aws.Context, input *StopSpeakerSearchTaskInput, opts ...request.Option) (*StopSpeakerSearchTaskOutput, error) {
+	req, out := c.StopSpeakerSearchTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopVoiceToneAnalysisTask = "StopVoiceToneAnalysisTask"
+
+// StopVoiceToneAnalysisTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StopVoiceToneAnalysisTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopVoiceToneAnalysisTask for more information on using the StopVoiceToneAnalysisTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopVoiceToneAnalysisTaskRequest method.
+//	req, resp := client.StopVoiceToneAnalysisTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StopVoiceToneAnalysisTask
+func (c *ChimeSDKVoice) StopVoiceToneAnalysisTaskRequest(input *StopVoiceToneAnalysisTaskInput) (req *request.Request, output *StopVoiceToneAnalysisTaskOutput) {
+	op := &request.Operation{
+		Name:       opStopVoiceToneAnalysisTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}?operation=stop",
+	}
+
+	if input == nil {
+		input = &StopVoiceToneAnalysisTaskInput{}
+	}
+
+	output = &StopVoiceToneAnalysisTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopVoiceToneAnalysisTask API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation StopVoiceToneAnalysisTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - UnprocessableEntityException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StopVoiceToneAnalysisTask
+func (c *ChimeSDKVoice) StopVoiceToneAnalysisTask(input *StopVoiceToneAnalysisTaskInput) (*StopVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StopVoiceToneAnalysisTaskRequest(input)
+	return out, req.Send()
+}
+
+// StopVoiceToneAnalysisTaskWithContext is the same as StopVoiceToneAnalysisTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopVoiceToneAnalysisTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) StopVoiceToneAnalysisTaskWithContext(ctx aws.Context, input *StopVoiceToneAnalysisTaskInput, opts ...request.Option) (*StopVoiceToneAnalysisTaskOutput, error) {
+	req, out := c.StopVoiceToneAnalysisTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/TagResource
+func (c *ChimeSDKVoice) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=tag-resource",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - ResourceLimitExceededException
+//
+//   - UnauthorizedClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/TagResource
+func (c *ChimeSDKVoice) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UntagResource
+func (c *ChimeSDKVoice) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=untag-resource",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - UnauthorizedClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UntagResource
+func (c *ChimeSDKVoice) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateGlobalSettings = "UpdateGlobalSettings"
 
 // UpdateGlobalSettingsRequest generates a "aws/request.Request" representing the
@@ -6934,6 +8610,190 @@ func (c *ChimeSDKVoice) UpdateVoiceConnectorGroupWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opUpdateVoiceProfile = "UpdateVoiceProfile"
+
+// UpdateVoiceProfileRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVoiceProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVoiceProfile for more information on using the UpdateVoiceProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateVoiceProfileRequest method.
+//	req, resp := client.UpdateVoiceProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceProfile
+func (c *ChimeSDKVoice) UpdateVoiceProfileRequest(input *UpdateVoiceProfileInput) (req *request.Request, output *UpdateVoiceProfileOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVoiceProfile,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/voice-profiles/{VoiceProfileId}",
+	}
+
+	if input == nil {
+		input = &UpdateVoiceProfileInput{}
+	}
+
+	output = &UpdateVoiceProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVoiceProfile API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation UpdateVoiceProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - UnauthorizedClientException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - NotFoundException
+//
+//   - ConflictException
+//
+//   - GoneException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceProfile
+func (c *ChimeSDKVoice) UpdateVoiceProfile(input *UpdateVoiceProfileInput) (*UpdateVoiceProfileOutput, error) {
+	req, out := c.UpdateVoiceProfileRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVoiceProfileWithContext is the same as UpdateVoiceProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVoiceProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) UpdateVoiceProfileWithContext(ctx aws.Context, input *UpdateVoiceProfileInput, opts ...request.Option) (*UpdateVoiceProfileOutput, error) {
+	req, out := c.UpdateVoiceProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateVoiceProfileDomain = "UpdateVoiceProfileDomain"
+
+// UpdateVoiceProfileDomainRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVoiceProfileDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVoiceProfileDomain for more information on using the UpdateVoiceProfileDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateVoiceProfileDomainRequest method.
+//	req, resp := client.UpdateVoiceProfileDomainRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceProfileDomain
+func (c *ChimeSDKVoice) UpdateVoiceProfileDomainRequest(input *UpdateVoiceProfileDomainInput) (req *request.Request, output *UpdateVoiceProfileDomainOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVoiceProfileDomain,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/voice-profile-domains/{VoiceProfileDomainId}",
+	}
+
+	if input == nil {
+		input = &UpdateVoiceProfileDomainInput{}
+	}
+
+	output = &UpdateVoiceProfileDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVoiceProfileDomain API operation for Amazon Chime SDK Voice.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Voice's
+// API operation UpdateVoiceProfileDomain for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedClientException
+//
+//   - NotFoundException
+//
+//   - ForbiddenException
+//
+//   - AccessDeniedException
+//
+//   - BadRequestException
+//
+//   - ThrottledClientException
+//
+//   - ServiceUnavailableException
+//
+//   - ServiceFailureException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceProfileDomain
+func (c *ChimeSDKVoice) UpdateVoiceProfileDomain(input *UpdateVoiceProfileDomainInput) (*UpdateVoiceProfileDomainOutput, error) {
+	req, out := c.UpdateVoiceProfileDomainRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVoiceProfileDomainWithContext is the same as UpdateVoiceProfileDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVoiceProfileDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKVoice) UpdateVoiceProfileDomainWithContext(ctx aws.Context, input *UpdateVoiceProfileDomainInput, opts ...request.Option) (*UpdateVoiceProfileDomainOutput, error) {
+	req, out := c.UpdateVoiceProfileDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opValidateE911Address = "ValidateE911Address"
 
 // ValidateE911AddressRequest generates a "aws/request.Request" representing the
@@ -7632,6 +9492,52 @@ func (s BatchUpdatePhoneNumberOutput) GoString() string {
 // SetPhoneNumberErrors sets the PhoneNumberErrors field's value.
 func (s *BatchUpdatePhoneNumberOutput) SetPhoneNumberErrors(v []*PhoneNumberError) *BatchUpdatePhoneNumberOutput {
 	s.PhoneNumberErrors = v
+	return s
+}
+
+type CallDetails struct {
+	_ struct{} `type:"structure"`
+
+	IsCaller *bool `type:"boolean"`
+
+	TransactionId *string `min:"1" type:"string"`
+
+	VoiceConnectorId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CallDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CallDetails) GoString() string {
+	return s.String()
+}
+
+// SetIsCaller sets the IsCaller field's value.
+func (s *CallDetails) SetIsCaller(v bool) *CallDetails {
+	s.IsCaller = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *CallDetails) SetTransactionId(v string) *CallDetails {
+	s.TransactionId = &v
+	return s
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *CallDetails) SetVoiceConnectorId(v string) *CallDetails {
+	s.VoiceConnectorId = &v
 	return s
 }
 
@@ -8584,6 +10490,214 @@ func (s CreateVoiceConnectorOutput) GoString() string {
 // SetVoiceConnector sets the VoiceConnector field's value.
 func (s *CreateVoiceConnectorOutput) SetVoiceConnector(v *VoiceConnector) *CreateVoiceConnectorOutput {
 	s.VoiceConnector = v
+	return s
+}
+
+type CreateVoiceProfileDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	ClientRequestToken *string `type:"string"`
+
+	Description *string `type:"string"`
+
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// ServerSideEncryptionConfiguration is a required field
+	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure" required:"true"`
+
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVoiceProfileDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVoiceProfileDomainInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ServerSideEncryptionConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerSideEncryptionConfiguration"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.ServerSideEncryptionConfiguration != nil {
+		if err := s.ServerSideEncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServerSideEncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateVoiceProfileDomainInput) SetClientRequestToken(v string) *CreateVoiceProfileDomainInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateVoiceProfileDomainInput) SetDescription(v string) *CreateVoiceProfileDomainInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateVoiceProfileDomainInput) SetName(v string) *CreateVoiceProfileDomainInput {
+	s.Name = &v
+	return s
+}
+
+// SetServerSideEncryptionConfiguration sets the ServerSideEncryptionConfiguration field's value.
+func (s *CreateVoiceProfileDomainInput) SetServerSideEncryptionConfiguration(v *ServerSideEncryptionConfiguration) *CreateVoiceProfileDomainInput {
+	s.ServerSideEncryptionConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVoiceProfileDomainInput) SetTags(v []*Tag) *CreateVoiceProfileDomainInput {
+	s.Tags = v
+	return s
+}
+
+type CreateVoiceProfileDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceProfileDomain *VoiceProfileDomain `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceProfileDomain sets the VoiceProfileDomain field's value.
+func (s *CreateVoiceProfileDomainOutput) SetVoiceProfileDomain(v *VoiceProfileDomain) *CreateVoiceProfileDomainOutput {
+	s.VoiceProfileDomain = v
+	return s
+}
+
+type CreateVoiceProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// SpeakerSearchTaskId is a required field
+	SpeakerSearchTaskId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVoiceProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVoiceProfileInput"}
+	if s.SpeakerSearchTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SpeakerSearchTaskId"))
+	}
+	if s.SpeakerSearchTaskId != nil && len(*s.SpeakerSearchTaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SpeakerSearchTaskId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *CreateVoiceProfileInput) SetSpeakerSearchTaskId(v string) *CreateVoiceProfileInput {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+type CreateVoiceProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceProfile *VoiceProfile `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVoiceProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceProfile sets the VoiceProfile field's value.
+func (s *CreateVoiceProfileOutput) SetVoiceProfile(v *VoiceProfile) *CreateVoiceProfileOutput {
+	s.VoiceProfile = v
 	return s
 }
 
@@ -9556,6 +11670,144 @@ func (s DeleteVoiceConnectorTerminationOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteVoiceConnectorTerminationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteVoiceProfileDomainInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// VoiceProfileDomainId is a required field
+	VoiceProfileDomainId *string `location:"uri" locationName:"VoiceProfileDomainId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVoiceProfileDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVoiceProfileDomainInput"}
+	if s.VoiceProfileDomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileDomainId"))
+	}
+	if s.VoiceProfileDomainId != nil && len(*s.VoiceProfileDomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileDomainId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *DeleteVoiceProfileDomainInput) SetVoiceProfileDomainId(v string) *DeleteVoiceProfileDomainInput {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+type DeleteVoiceProfileDomainOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileDomainOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteVoiceProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// VoiceProfileId is a required field
+	VoiceProfileId *string `location:"uri" locationName:"VoiceProfileId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVoiceProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVoiceProfileInput"}
+	if s.VoiceProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileId"))
+	}
+	if s.VoiceProfileId != nil && len(*s.VoiceProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoiceProfileId sets the VoiceProfileId field's value.
+func (s *DeleteVoiceProfileInput) SetVoiceProfileId(v string) *DeleteVoiceProfileInput {
+	s.VoiceProfileId = &v
+	return s
+}
+
+type DeleteVoiceProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVoiceProfileOutput) GoString() string {
 	return s.String()
 }
 
@@ -10578,6 +12830,98 @@ func (s *GetSipRuleOutput) SetSipRule(v *SipRule) *GetSipRuleOutput {
 	return s
 }
 
+type GetSpeakerSearchTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// SpeakerSearchTaskId is a required field
+	SpeakerSearchTaskId *string `location:"uri" locationName:"SpeakerSearchTaskId" min:"1" type:"string" required:"true"`
+
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSpeakerSearchTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSpeakerSearchTaskInput"}
+	if s.SpeakerSearchTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SpeakerSearchTaskId"))
+	}
+	if s.SpeakerSearchTaskId != nil && len(*s.SpeakerSearchTaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SpeakerSearchTaskId", 1))
+	}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *GetSpeakerSearchTaskInput) SetSpeakerSearchTaskId(v string) *GetSpeakerSearchTaskInput {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *GetSpeakerSearchTaskInput) SetVoiceConnectorId(v string) *GetSpeakerSearchTaskInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+type GetSpeakerSearchTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	SpeakerSearchTask *SpeakerSearchTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSpeakerSearchTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetSpeakerSearchTask sets the SpeakerSearchTask field's value.
+func (s *GetSpeakerSearchTaskOutput) SetSpeakerSearchTask(v *SpeakerSearchTask) *GetSpeakerSearchTaskOutput {
+	s.SpeakerSearchTask = v
+	return s
+}
+
 type GetVoiceConnectorEmergencyCallingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -11271,6 +13615,327 @@ func (s *GetVoiceConnectorTerminationOutput) SetTermination(v *Termination) *Get
 	return s
 }
 
+type GetVoiceProfileDomainInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// VoiceProfileDomainId is a required field
+	VoiceProfileDomainId *string `location:"uri" locationName:"VoiceProfileDomainId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetVoiceProfileDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetVoiceProfileDomainInput"}
+	if s.VoiceProfileDomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileDomainId"))
+	}
+	if s.VoiceProfileDomainId != nil && len(*s.VoiceProfileDomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileDomainId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *GetVoiceProfileDomainInput) SetVoiceProfileDomainId(v string) *GetVoiceProfileDomainInput {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+type GetVoiceProfileDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceProfileDomain *VoiceProfileDomain `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceProfileDomain sets the VoiceProfileDomain field's value.
+func (s *GetVoiceProfileDomainOutput) SetVoiceProfileDomain(v *VoiceProfileDomain) *GetVoiceProfileDomainOutput {
+	s.VoiceProfileDomain = v
+	return s
+}
+
+type GetVoiceProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// VoiceProfileId is a required field
+	VoiceProfileId *string `location:"uri" locationName:"VoiceProfileId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetVoiceProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetVoiceProfileInput"}
+	if s.VoiceProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileId"))
+	}
+	if s.VoiceProfileId != nil && len(*s.VoiceProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoiceProfileId sets the VoiceProfileId field's value.
+func (s *GetVoiceProfileInput) SetVoiceProfileId(v string) *GetVoiceProfileInput {
+	s.VoiceProfileId = &v
+	return s
+}
+
+type GetVoiceProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceProfile *VoiceProfile `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceProfile sets the VoiceProfile field's value.
+func (s *GetVoiceProfileOutput) SetVoiceProfile(v *VoiceProfile) *GetVoiceProfileOutput {
+	s.VoiceProfile = v
+	return s
+}
+
+type GetVoiceToneAnalysisTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// IsCaller is a required field
+	IsCaller *bool `location:"querystring" locationName:"isCaller" type:"boolean" required:"true"`
+
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
+
+	// VoiceToneAnalysisTaskId is a required field
+	VoiceToneAnalysisTaskId *string `location:"uri" locationName:"VoiceToneAnalysisTaskId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetVoiceToneAnalysisTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetVoiceToneAnalysisTaskInput"}
+	if s.IsCaller == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsCaller"))
+	}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+	if s.VoiceToneAnalysisTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceToneAnalysisTaskId"))
+	}
+	if s.VoiceToneAnalysisTaskId != nil && len(*s.VoiceToneAnalysisTaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceToneAnalysisTaskId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsCaller sets the IsCaller field's value.
+func (s *GetVoiceToneAnalysisTaskInput) SetIsCaller(v bool) *GetVoiceToneAnalysisTaskInput {
+	s.IsCaller = &v
+	return s
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *GetVoiceToneAnalysisTaskInput) SetVoiceConnectorId(v string) *GetVoiceToneAnalysisTaskInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskId sets the VoiceToneAnalysisTaskId field's value.
+func (s *GetVoiceToneAnalysisTaskInput) SetVoiceToneAnalysisTaskId(v string) *GetVoiceToneAnalysisTaskInput {
+	s.VoiceToneAnalysisTaskId = &v
+	return s
+}
+
+type GetVoiceToneAnalysisTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceToneAnalysisTask *VoiceToneAnalysisTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVoiceToneAnalysisTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceToneAnalysisTask sets the VoiceToneAnalysisTask field's value.
+func (s *GetVoiceToneAnalysisTaskOutput) SetVoiceToneAnalysisTask(v *VoiceToneAnalysisTask) *GetVoiceToneAnalysisTaskOutput {
+	s.VoiceToneAnalysisTask = v
+	return s
+}
+
+type GoneException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GoneException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GoneException) GoString() string {
+	return s.String()
+}
+
+func newErrorGoneException(v protocol.ResponseMetadata) error {
+	return &GoneException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *GoneException) Code() string {
+	return "GoneException"
+}
+
+// Message returns the exception's message.
+func (s *GoneException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *GoneException) OrigErr() error {
+	return nil
+}
+
+func (s *GoneException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *GoneException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *GoneException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type ListAvailableVoiceConnectorRegionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -11905,6 +14570,86 @@ func (s *ListSupportedPhoneNumberCountriesOutput) SetPhoneNumberCountries(v []*P
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ResourceARN is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListTagsForResourceInput's
+	// String and GoString methods.
+	// ResourceARN is a required field
+	ResourceARN *string `location:"querystring" locationName:"arn" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 type ListVoiceConnectorGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -12160,6 +14905,199 @@ func (s *ListVoiceConnectorsOutput) SetVoiceConnectors(v []*VoiceConnector) *Lis
 	return s
 }
 
+type ListVoiceProfileDomainsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfileDomainsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfileDomainsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVoiceProfileDomainsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVoiceProfileDomainsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVoiceProfileDomainsInput) SetMaxResults(v int64) *ListVoiceProfileDomainsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVoiceProfileDomainsInput) SetNextToken(v string) *ListVoiceProfileDomainsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVoiceProfileDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	VoiceProfileDomains []*VoiceProfileDomainSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfileDomainsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfileDomainsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVoiceProfileDomainsOutput) SetNextToken(v string) *ListVoiceProfileDomainsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVoiceProfileDomains sets the VoiceProfileDomains field's value.
+func (s *ListVoiceProfileDomainsOutput) SetVoiceProfileDomains(v []*VoiceProfileDomainSummary) *ListVoiceProfileDomainsOutput {
+	s.VoiceProfileDomains = v
+	return s
+}
+
+type ListVoiceProfilesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+
+	// VoiceProfileDomainId is a required field
+	VoiceProfileDomainId *string `location:"querystring" locationName:"voice-profile-domain-id" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVoiceProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVoiceProfilesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.VoiceProfileDomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileDomainId"))
+	}
+	if s.VoiceProfileDomainId != nil && len(*s.VoiceProfileDomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileDomainId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVoiceProfilesInput) SetMaxResults(v int64) *ListVoiceProfilesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVoiceProfilesInput) SetNextToken(v string) *ListVoiceProfilesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *ListVoiceProfilesInput) SetVoiceProfileDomainId(v string) *ListVoiceProfilesInput {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+type ListVoiceProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	VoiceProfiles []*VoiceProfileSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVoiceProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVoiceProfilesOutput) SetNextToken(v string) *ListVoiceProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVoiceProfiles sets the VoiceProfiles field's value.
+func (s *ListVoiceProfilesOutput) SetVoiceProfiles(v []*VoiceProfileSummary) *ListVoiceProfilesOutput {
+	s.VoiceProfiles = v
+	return s
+}
+
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -12195,6 +15133,60 @@ func (s *LoggingConfiguration) SetEnableMediaMetricLogs(v bool) *LoggingConfigur
 // SetEnableSIPLogs sets the EnableSIPLogs field's value.
 func (s *LoggingConfiguration) SetEnableSIPLogs(v bool) *LoggingConfiguration {
 	s.EnableSIPLogs = &v
+	return s
+}
+
+type MediaInsightsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// ConfigurationArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MediaInsightsConfiguration's
+	// String and GoString methods.
+	ConfigurationArn *string `min:"1" type:"string" sensitive:"true"`
+
+	Disabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaInsightsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaInsightsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaInsightsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaInsightsConfiguration"}
+	if s.ConfigurationArn != nil && len(*s.ConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationArn sets the ConfigurationArn field's value.
+func (s *MediaInsightsConfiguration) SetConfigurationArn(v string) *MediaInsightsConfiguration {
+	s.ConfigurationArn = &v
+	return s
+}
+
+// SetDisabled sets the Disabled field's value.
+func (s *MediaInsightsConfiguration) SetDisabled(v bool) *MediaInsightsConfiguration {
+	s.Disabled = &v
 	return s
 }
 
@@ -14212,6 +17204,56 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+type ServerSideEncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// KmsKeyArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ServerSideEncryptionConfiguration's
+	// String and GoString methods.
+	// KmsKeyArn is a required field
+	KmsKeyArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerSideEncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerSideEncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServerSideEncryptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServerSideEncryptionConfiguration"}
+	if s.KmsKeyArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKeyArn"))
+	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *ServerSideEncryptionConfiguration) SetKmsKeyArn(v string) *ServerSideEncryptionConfiguration {
+	s.KmsKeyArn = &v
+	return s
+}
+
 type ServiceFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14705,6 +17747,563 @@ func (s *SipRuleTargetApplication) SetSipMediaApplicationId(v string) *SipRuleTa
 	return s
 }
 
+type SpeakerSearchDetails struct {
+	_ struct{} `type:"structure"`
+
+	Results []*SpeakerSearchResult `type:"list"`
+
+	VoiceprintGenerationStatus *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchDetails) GoString() string {
+	return s.String()
+}
+
+// SetResults sets the Results field's value.
+func (s *SpeakerSearchDetails) SetResults(v []*SpeakerSearchResult) *SpeakerSearchDetails {
+	s.Results = v
+	return s
+}
+
+// SetVoiceprintGenerationStatus sets the VoiceprintGenerationStatus field's value.
+func (s *SpeakerSearchDetails) SetVoiceprintGenerationStatus(v string) *SpeakerSearchDetails {
+	s.VoiceprintGenerationStatus = &v
+	return s
+}
+
+type SpeakerSearchResult struct {
+	_ struct{} `type:"structure"`
+
+	ConfidenceScore *float64 `type:"float"`
+
+	VoiceProfileId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchResult) GoString() string {
+	return s.String()
+}
+
+// SetConfidenceScore sets the ConfidenceScore field's value.
+func (s *SpeakerSearchResult) SetConfidenceScore(v float64) *SpeakerSearchResult {
+	s.ConfidenceScore = &v
+	return s
+}
+
+// SetVoiceProfileId sets the VoiceProfileId field's value.
+func (s *SpeakerSearchResult) SetVoiceProfileId(v string) *SpeakerSearchResult {
+	s.VoiceProfileId = &v
+	return s
+}
+
+type SpeakerSearchTask struct {
+	_ struct{} `type:"structure"`
+
+	CallDetails *CallDetails `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	SpeakerSearchDetails *SpeakerSearchDetails `type:"structure"`
+
+	SpeakerSearchTaskId *string `min:"1" type:"string"`
+
+	SpeakerSearchTaskStatus *string `type:"string"`
+
+	StartedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	StatusMessage *string `type:"string"`
+
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpeakerSearchTask) GoString() string {
+	return s.String()
+}
+
+// SetCallDetails sets the CallDetails field's value.
+func (s *SpeakerSearchTask) SetCallDetails(v *CallDetails) *SpeakerSearchTask {
+	s.CallDetails = v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *SpeakerSearchTask) SetCreatedTimestamp(v time.Time) *SpeakerSearchTask {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetSpeakerSearchDetails sets the SpeakerSearchDetails field's value.
+func (s *SpeakerSearchTask) SetSpeakerSearchDetails(v *SpeakerSearchDetails) *SpeakerSearchTask {
+	s.SpeakerSearchDetails = v
+	return s
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *SpeakerSearchTask) SetSpeakerSearchTaskId(v string) *SpeakerSearchTask {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+// SetSpeakerSearchTaskStatus sets the SpeakerSearchTaskStatus field's value.
+func (s *SpeakerSearchTask) SetSpeakerSearchTaskStatus(v string) *SpeakerSearchTask {
+	s.SpeakerSearchTaskStatus = &v
+	return s
+}
+
+// SetStartedTimestamp sets the StartedTimestamp field's value.
+func (s *SpeakerSearchTask) SetStartedTimestamp(v time.Time) *SpeakerSearchTask {
+	s.StartedTimestamp = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *SpeakerSearchTask) SetStatusMessage(v string) *SpeakerSearchTask {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *SpeakerSearchTask) SetUpdatedTimestamp(v time.Time) *SpeakerSearchTask {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+type StartSpeakerSearchTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	ClientRequestToken *string `type:"string"`
+
+	// TransactionId is a required field
+	TransactionId *string `min:"1" type:"string" required:"true"`
+
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
+
+	// VoiceProfileDomainId is a required field
+	VoiceProfileDomainId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSpeakerSearchTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSpeakerSearchTaskInput"}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+	if s.VoiceProfileDomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileDomainId"))
+	}
+	if s.VoiceProfileDomainId != nil && len(*s.VoiceProfileDomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileDomainId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSpeakerSearchTaskInput) SetClientRequestToken(v string) *StartSpeakerSearchTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *StartSpeakerSearchTaskInput) SetTransactionId(v string) *StartSpeakerSearchTaskInput {
+	s.TransactionId = &v
+	return s
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *StartSpeakerSearchTaskInput) SetVoiceConnectorId(v string) *StartSpeakerSearchTaskInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *StartSpeakerSearchTaskInput) SetVoiceProfileDomainId(v string) *StartSpeakerSearchTaskInput {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+type StartSpeakerSearchTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	SpeakerSearchTask *SpeakerSearchTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSpeakerSearchTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetSpeakerSearchTask sets the SpeakerSearchTask field's value.
+func (s *StartSpeakerSearchTaskOutput) SetSpeakerSearchTask(v *SpeakerSearchTask) *StartSpeakerSearchTaskOutput {
+	s.SpeakerSearchTask = v
+	return s
+}
+
+type StartVoiceToneAnalysisTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	ClientRequestToken *string `type:"string"`
+
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// TransactionId is a required field
+	TransactionId *string `min:"1" type:"string" required:"true"`
+
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartVoiceToneAnalysisTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartVoiceToneAnalysisTaskInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetClientRequestToken(v string) *StartVoiceToneAnalysisTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetLanguageCode(v string) *StartVoiceToneAnalysisTaskInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetTransactionId(v string) *StartVoiceToneAnalysisTaskInput {
+	s.TransactionId = &v
+	return s
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *StartVoiceToneAnalysisTaskInput) SetVoiceConnectorId(v string) *StartVoiceToneAnalysisTaskInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+type StartVoiceToneAnalysisTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceToneAnalysisTask *VoiceToneAnalysisTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVoiceToneAnalysisTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceToneAnalysisTask sets the VoiceToneAnalysisTask field's value.
+func (s *StartVoiceToneAnalysisTaskOutput) SetVoiceToneAnalysisTask(v *VoiceToneAnalysisTask) *StartVoiceToneAnalysisTaskOutput {
+	s.VoiceToneAnalysisTask = v
+	return s
+}
+
+type StopSpeakerSearchTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// SpeakerSearchTaskId is a required field
+	SpeakerSearchTaskId *string `location:"uri" locationName:"SpeakerSearchTaskId" min:"1" type:"string" required:"true"`
+
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopSpeakerSearchTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopSpeakerSearchTaskInput"}
+	if s.SpeakerSearchTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SpeakerSearchTaskId"))
+	}
+	if s.SpeakerSearchTaskId != nil && len(*s.SpeakerSearchTaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SpeakerSearchTaskId", 1))
+	}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *StopSpeakerSearchTaskInput) SetSpeakerSearchTaskId(v string) *StopSpeakerSearchTaskInput {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *StopSpeakerSearchTaskInput) SetVoiceConnectorId(v string) *StopSpeakerSearchTaskInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+type StopSpeakerSearchTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSpeakerSearchTaskOutput) GoString() string {
+	return s.String()
+}
+
+type StopVoiceToneAnalysisTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
+
+	// VoiceToneAnalysisTaskId is a required field
+	VoiceToneAnalysisTaskId *string `location:"uri" locationName:"VoiceToneAnalysisTaskId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopVoiceToneAnalysisTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopVoiceToneAnalysisTaskInput"}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+	if s.VoiceToneAnalysisTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceToneAnalysisTaskId"))
+	}
+	if s.VoiceToneAnalysisTaskId != nil && len(*s.VoiceToneAnalysisTaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceToneAnalysisTaskId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *StopVoiceToneAnalysisTaskInput) SetVoiceConnectorId(v string) *StopVoiceToneAnalysisTaskInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskId sets the VoiceToneAnalysisTaskId field's value.
+func (s *StopVoiceToneAnalysisTaskInput) SetVoiceToneAnalysisTaskId(v string) *StopVoiceToneAnalysisTaskInput {
+	s.VoiceToneAnalysisTaskId = &v
+	return s
+}
+
+type StopVoiceToneAnalysisTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopVoiceToneAnalysisTaskOutput) GoString() string {
+	return s.String()
+}
+
 type StreamingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -14713,6 +18312,8 @@ type StreamingConfiguration struct {
 
 	// Disabled is a required field
 	Disabled *bool `type:"boolean" required:"true"`
+
+	MediaInsightsConfiguration *MediaInsightsConfiguration `type:"structure"`
 
 	StreamingNotificationTargets []*StreamingNotificationTarget `min:"1" type:"list"`
 }
@@ -14747,6 +18348,11 @@ func (s *StreamingConfiguration) Validate() error {
 	if s.StreamingNotificationTargets != nil && len(s.StreamingNotificationTargets) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StreamingNotificationTargets", 1))
 	}
+	if s.MediaInsightsConfiguration != nil {
+		if err := s.MediaInsightsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MediaInsightsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14763,6 +18369,12 @@ func (s *StreamingConfiguration) SetDataRetentionInHours(v int64) *StreamingConf
 // SetDisabled sets the Disabled field's value.
 func (s *StreamingConfiguration) SetDisabled(v bool) *StreamingConfiguration {
 	s.Disabled = &v
+	return s
+}
+
+// SetMediaInsightsConfiguration sets the MediaInsightsConfiguration field's value.
+func (s *StreamingConfiguration) SetMediaInsightsConfiguration(v *MediaInsightsConfiguration) *StreamingConfiguration {
+	s.MediaInsightsConfiguration = v
 	return s
 }
 
@@ -14800,6 +18412,168 @@ func (s StreamingNotificationTarget) GoString() string {
 func (s *StreamingNotificationTarget) SetNotificationTarget(v string) *StreamingNotificationTarget {
 	s.NotificationTarget = &v
 	return s
+}
+
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Tag's
+	// String and GoString methods.
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Value is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Tag's
+	// String and GoString methods.
+	// Value is a required field
+	Value *string `type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// ResourceARN is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TagResourceInput's
+	// String and GoString methods.
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type Termination struct {
@@ -15042,6 +18816,156 @@ func (s *UnauthorizedClientException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnauthorizedClientException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UnprocessableEntityException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessableEntityException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessableEntityException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnprocessableEntityException(v protocol.ResponseMetadata) error {
+	return &UnprocessableEntityException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnprocessableEntityException) Code() string {
+	return "UnprocessableEntityException"
+}
+
+// Message returns the exception's message.
+func (s *UnprocessableEntityException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnprocessableEntityException) OrigErr() error {
+	return nil
+}
+
+func (s *UnprocessableEntityException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnprocessableEntityException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnprocessableEntityException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// ResourceARN is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UntagResourceInput's
+	// String and GoString methods.
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateGlobalSettingsInput struct {
@@ -15987,6 +19911,194 @@ func (s *UpdateVoiceConnectorOutput) SetVoiceConnector(v *VoiceConnector) *Updat
 	return s
 }
 
+type UpdateVoiceProfileDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `type:"string"`
+
+	Name *string `min:"1" type:"string"`
+
+	// VoiceProfileDomainId is a required field
+	VoiceProfileDomainId *string `location:"uri" locationName:"VoiceProfileDomainId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVoiceProfileDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVoiceProfileDomainInput"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.VoiceProfileDomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileDomainId"))
+	}
+	if s.VoiceProfileDomainId != nil && len(*s.VoiceProfileDomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileDomainId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateVoiceProfileDomainInput) SetDescription(v string) *UpdateVoiceProfileDomainInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateVoiceProfileDomainInput) SetName(v string) *UpdateVoiceProfileDomainInput {
+	s.Name = &v
+	return s
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *UpdateVoiceProfileDomainInput) SetVoiceProfileDomainId(v string) *UpdateVoiceProfileDomainInput {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+type UpdateVoiceProfileDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceProfileDomain *VoiceProfileDomain `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceProfileDomain sets the VoiceProfileDomain field's value.
+func (s *UpdateVoiceProfileDomainOutput) SetVoiceProfileDomain(v *VoiceProfileDomain) *UpdateVoiceProfileDomainOutput {
+	s.VoiceProfileDomain = v
+	return s
+}
+
+type UpdateVoiceProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// SpeakerSearchTaskId is a required field
+	SpeakerSearchTaskId *string `min:"1" type:"string" required:"true"`
+
+	// VoiceProfileId is a required field
+	VoiceProfileId *string `location:"uri" locationName:"VoiceProfileId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVoiceProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVoiceProfileInput"}
+	if s.SpeakerSearchTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SpeakerSearchTaskId"))
+	}
+	if s.SpeakerSearchTaskId != nil && len(*s.SpeakerSearchTaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SpeakerSearchTaskId", 1))
+	}
+	if s.VoiceProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceProfileId"))
+	}
+	if s.VoiceProfileId != nil && len(*s.VoiceProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSpeakerSearchTaskId sets the SpeakerSearchTaskId field's value.
+func (s *UpdateVoiceProfileInput) SetSpeakerSearchTaskId(v string) *UpdateVoiceProfileInput {
+	s.SpeakerSearchTaskId = &v
+	return s
+}
+
+// SetVoiceProfileId sets the VoiceProfileId field's value.
+func (s *UpdateVoiceProfileInput) SetVoiceProfileId(v string) *UpdateVoiceProfileInput {
+	s.VoiceProfileId = &v
+	return s
+}
+
+type UpdateVoiceProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	VoiceProfile *VoiceProfile `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVoiceProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetVoiceProfile sets the VoiceProfile field's value.
+func (s *UpdateVoiceProfileOutput) SetVoiceProfile(v *VoiceProfile) *UpdateVoiceProfileOutput {
+	s.VoiceProfile = v
+	return s
+}
+
 type ValidateE911AddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16420,6 +20532,384 @@ func (s *VoiceConnectorSettings) SetCdrBucket(v string) *VoiceConnectorSettings 
 	return s
 }
 
+type VoiceProfile struct {
+	_ struct{} `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	ExpirationTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// VoiceProfileArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VoiceProfile's
+	// String and GoString methods.
+	VoiceProfileArn *string `min:"1" type:"string" sensitive:"true"`
+
+	VoiceProfileDomainId *string `min:"1" type:"string"`
+
+	VoiceProfileId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfile) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *VoiceProfile) SetCreatedTimestamp(v time.Time) *VoiceProfile {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetExpirationTimestamp sets the ExpirationTimestamp field's value.
+func (s *VoiceProfile) SetExpirationTimestamp(v time.Time) *VoiceProfile {
+	s.ExpirationTimestamp = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *VoiceProfile) SetUpdatedTimestamp(v time.Time) *VoiceProfile {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// SetVoiceProfileArn sets the VoiceProfileArn field's value.
+func (s *VoiceProfile) SetVoiceProfileArn(v string) *VoiceProfile {
+	s.VoiceProfileArn = &v
+	return s
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *VoiceProfile) SetVoiceProfileDomainId(v string) *VoiceProfile {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+// SetVoiceProfileId sets the VoiceProfileId field's value.
+func (s *VoiceProfile) SetVoiceProfileId(v string) *VoiceProfile {
+	s.VoiceProfileId = &v
+	return s
+}
+
+type VoiceProfileDomain struct {
+	_ struct{} `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `type:"string"`
+
+	Name *string `min:"1" type:"string"`
+
+	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
+
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// VoiceProfileDomainArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VoiceProfileDomain's
+	// String and GoString methods.
+	VoiceProfileDomainArn *string `min:"1" type:"string" sensitive:"true"`
+
+	VoiceProfileDomainId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfileDomain) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfileDomain) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *VoiceProfileDomain) SetCreatedTimestamp(v time.Time) *VoiceProfileDomain {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *VoiceProfileDomain) SetDescription(v string) *VoiceProfileDomain {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VoiceProfileDomain) SetName(v string) *VoiceProfileDomain {
+	s.Name = &v
+	return s
+}
+
+// SetServerSideEncryptionConfiguration sets the ServerSideEncryptionConfiguration field's value.
+func (s *VoiceProfileDomain) SetServerSideEncryptionConfiguration(v *ServerSideEncryptionConfiguration) *VoiceProfileDomain {
+	s.ServerSideEncryptionConfiguration = v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *VoiceProfileDomain) SetUpdatedTimestamp(v time.Time) *VoiceProfileDomain {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// SetVoiceProfileDomainArn sets the VoiceProfileDomainArn field's value.
+func (s *VoiceProfileDomain) SetVoiceProfileDomainArn(v string) *VoiceProfileDomain {
+	s.VoiceProfileDomainArn = &v
+	return s
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *VoiceProfileDomain) SetVoiceProfileDomainId(v string) *VoiceProfileDomain {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+type VoiceProfileDomainSummary struct {
+	_ struct{} `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `type:"string"`
+
+	Name *string `min:"1" type:"string"`
+
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// VoiceProfileDomainArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VoiceProfileDomainSummary's
+	// String and GoString methods.
+	VoiceProfileDomainArn *string `min:"1" type:"string" sensitive:"true"`
+
+	VoiceProfileDomainId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfileDomainSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfileDomainSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *VoiceProfileDomainSummary) SetCreatedTimestamp(v time.Time) *VoiceProfileDomainSummary {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *VoiceProfileDomainSummary) SetDescription(v string) *VoiceProfileDomainSummary {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VoiceProfileDomainSummary) SetName(v string) *VoiceProfileDomainSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *VoiceProfileDomainSummary) SetUpdatedTimestamp(v time.Time) *VoiceProfileDomainSummary {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// SetVoiceProfileDomainArn sets the VoiceProfileDomainArn field's value.
+func (s *VoiceProfileDomainSummary) SetVoiceProfileDomainArn(v string) *VoiceProfileDomainSummary {
+	s.VoiceProfileDomainArn = &v
+	return s
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *VoiceProfileDomainSummary) SetVoiceProfileDomainId(v string) *VoiceProfileDomainSummary {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+type VoiceProfileSummary struct {
+	_ struct{} `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	ExpirationTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// VoiceProfileArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VoiceProfileSummary's
+	// String and GoString methods.
+	VoiceProfileArn *string `min:"1" type:"string" sensitive:"true"`
+
+	VoiceProfileDomainId *string `min:"1" type:"string"`
+
+	VoiceProfileId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfileSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceProfileSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *VoiceProfileSummary) SetCreatedTimestamp(v time.Time) *VoiceProfileSummary {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetExpirationTimestamp sets the ExpirationTimestamp field's value.
+func (s *VoiceProfileSummary) SetExpirationTimestamp(v time.Time) *VoiceProfileSummary {
+	s.ExpirationTimestamp = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *VoiceProfileSummary) SetUpdatedTimestamp(v time.Time) *VoiceProfileSummary {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// SetVoiceProfileArn sets the VoiceProfileArn field's value.
+func (s *VoiceProfileSummary) SetVoiceProfileArn(v string) *VoiceProfileSummary {
+	s.VoiceProfileArn = &v
+	return s
+}
+
+// SetVoiceProfileDomainId sets the VoiceProfileDomainId field's value.
+func (s *VoiceProfileSummary) SetVoiceProfileDomainId(v string) *VoiceProfileSummary {
+	s.VoiceProfileDomainId = &v
+	return s
+}
+
+// SetVoiceProfileId sets the VoiceProfileId field's value.
+func (s *VoiceProfileSummary) SetVoiceProfileId(v string) *VoiceProfileSummary {
+	s.VoiceProfileId = &v
+	return s
+}
+
+type VoiceToneAnalysisTask struct {
+	_ struct{} `type:"structure"`
+
+	CallDetails *CallDetails `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	StartedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	StatusMessage *string `type:"string"`
+
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	VoiceToneAnalysisTaskId *string `min:"1" type:"string"`
+
+	VoiceToneAnalysisTaskStatus *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceToneAnalysisTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoiceToneAnalysisTask) GoString() string {
+	return s.String()
+}
+
+// SetCallDetails sets the CallDetails field's value.
+func (s *VoiceToneAnalysisTask) SetCallDetails(v *CallDetails) *VoiceToneAnalysisTask {
+	s.CallDetails = v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *VoiceToneAnalysisTask) SetCreatedTimestamp(v time.Time) *VoiceToneAnalysisTask {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetStartedTimestamp sets the StartedTimestamp field's value.
+func (s *VoiceToneAnalysisTask) SetStartedTimestamp(v time.Time) *VoiceToneAnalysisTask {
+	s.StartedTimestamp = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *VoiceToneAnalysisTask) SetStatusMessage(v string) *VoiceToneAnalysisTask {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *VoiceToneAnalysisTask) SetUpdatedTimestamp(v time.Time) *VoiceToneAnalysisTask {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskId sets the VoiceToneAnalysisTaskId field's value.
+func (s *VoiceToneAnalysisTask) SetVoiceToneAnalysisTaskId(v string) *VoiceToneAnalysisTask {
+	s.VoiceToneAnalysisTaskId = &v
+	return s
+}
+
+// SetVoiceToneAnalysisTaskStatus sets the VoiceToneAnalysisTaskStatus field's value.
+func (s *VoiceToneAnalysisTask) SetVoiceToneAnalysisTaskStatus(v string) *VoiceToneAnalysisTask {
+	s.VoiceToneAnalysisTaskStatus = &v
+	return s
+}
+
 const (
 	// AlexaSkillStatusActive is a AlexaSkillStatus enum value
 	AlexaSkillStatusActive = "ACTIVE"
@@ -16561,6 +21051,18 @@ func GeoMatchLevel_Values() []string {
 	return []string{
 		GeoMatchLevelCountry,
 		GeoMatchLevelAreaCode,
+	}
+}
+
+const (
+	// LanguageCodeEnUs is a LanguageCode enum value
+	LanguageCodeEnUs = "en-US"
+)
+
+// LanguageCode_Values returns all elements of the LanguageCode enum
+func LanguageCode_Values() []string {
+	return []string{
+		LanguageCodeEnUs,
 	}
 }
 

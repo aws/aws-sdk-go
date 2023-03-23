@@ -100,6 +100,10 @@ type SageMakerAPI interface {
 	CreateAutoMLJobWithContext(aws.Context, *sagemaker.CreateAutoMLJobInput, ...request.Option) (*sagemaker.CreateAutoMLJobOutput, error)
 	CreateAutoMLJobRequest(*sagemaker.CreateAutoMLJobInput) (*request.Request, *sagemaker.CreateAutoMLJobOutput)
 
+	CreateAutoMLJobV2(*sagemaker.CreateAutoMLJobV2Input) (*sagemaker.CreateAutoMLJobV2Output, error)
+	CreateAutoMLJobV2WithContext(aws.Context, *sagemaker.CreateAutoMLJobV2Input, ...request.Option) (*sagemaker.CreateAutoMLJobV2Output, error)
+	CreateAutoMLJobV2Request(*sagemaker.CreateAutoMLJobV2Input) (*request.Request, *sagemaker.CreateAutoMLJobV2Output)
+
 	CreateCodeRepository(*sagemaker.CreateCodeRepositoryInput) (*sagemaker.CreateCodeRepositoryOutput, error)
 	CreateCodeRepositoryWithContext(aws.Context, *sagemaker.CreateCodeRepositoryInput, ...request.Option) (*sagemaker.CreateCodeRepositoryOutput, error)
 	CreateCodeRepositoryRequest(*sagemaker.CreateCodeRepositoryInput) (*request.Request, *sagemaker.CreateCodeRepositoryOutput)
@@ -495,6 +499,10 @@ type SageMakerAPI interface {
 	DescribeAutoMLJob(*sagemaker.DescribeAutoMLJobInput) (*sagemaker.DescribeAutoMLJobOutput, error)
 	DescribeAutoMLJobWithContext(aws.Context, *sagemaker.DescribeAutoMLJobInput, ...request.Option) (*sagemaker.DescribeAutoMLJobOutput, error)
 	DescribeAutoMLJobRequest(*sagemaker.DescribeAutoMLJobInput) (*request.Request, *sagemaker.DescribeAutoMLJobOutput)
+
+	DescribeAutoMLJobV2(*sagemaker.DescribeAutoMLJobV2Input) (*sagemaker.DescribeAutoMLJobV2Output, error)
+	DescribeAutoMLJobV2WithContext(aws.Context, *sagemaker.DescribeAutoMLJobV2Input, ...request.Option) (*sagemaker.DescribeAutoMLJobV2Output, error)
+	DescribeAutoMLJobV2Request(*sagemaker.DescribeAutoMLJobV2Input) (*request.Request, *sagemaker.DescribeAutoMLJobV2Output)
 
 	DescribeCodeRepository(*sagemaker.DescribeCodeRepositoryInput) (*sagemaker.DescribeCodeRepositoryOutput, error)
 	DescribeCodeRepositoryWithContext(aws.Context, *sagemaker.DescribeCodeRepositoryInput, ...request.Option) (*sagemaker.DescribeCodeRepositoryOutput, error)

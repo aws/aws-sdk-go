@@ -13,6 +13,8 @@
     "CreateSipRule": null,
     "CreateVoiceConnector": null,
     "CreateVoiceConnectorGroup": null,
+    "CreateVoiceProfile": null,
+    "CreateVoiceProfileDomain": null,
     "DeletePhoneNumber": null,
     "DeleteProxySession": null,
     "DeleteSipMediaApplication": null,
@@ -25,6 +27,8 @@
     "DeleteVoiceConnectorStreamingConfiguration": null,
     "DeleteVoiceConnectorTermination": null,
     "DeleteVoiceConnectorTerminationCredentials": null,
+    "DeleteVoiceProfile": null,
+    "DeleteVoiceProfileDomain": null,
     "DisassociatePhoneNumbersFromVoiceConnector": null,
     "DisassociatePhoneNumbersFromVoiceConnectorGroup": null,
     "GetGlobalSettings": null,
@@ -36,6 +40,7 @@
     "GetSipMediaApplicationAlexaSkillConfiguration": null,
     "GetSipMediaApplicationLoggingConfiguration": null,
     "GetSipRule": null,
+    "GetSpeakerSearchTask": null,
     "GetVoiceConnector": null,
     "GetVoiceConnectorEmergencyCallingConfiguration": null,
     "GetVoiceConnectorGroup": null,
@@ -45,6 +50,9 @@
     "GetVoiceConnectorStreamingConfiguration": null,
     "GetVoiceConnectorTermination": null,
     "GetVoiceConnectorTerminationHealth": null,
+    "GetVoiceProfile": null,
+    "GetVoiceProfileDomain": null,
+    "GetVoiceToneAnalysisTask": null,
     "ListAvailableVoiceConnectorRegions": null,
     "ListPhoneNumberOrders": null,
     "ListPhoneNumbers": null,
@@ -52,9 +60,12 @@
     "ListSipMediaApplications": null,
     "ListSipRules": null,
     "ListSupportedPhoneNumberCountries": null,
+    "ListTagsForResource": null,
     "ListVoiceConnectorGroups": null,
     "ListVoiceConnectorTerminationCredentials": null,
     "ListVoiceConnectors": null,
+    "ListVoiceProfileDomains": null,
+    "ListVoiceProfiles": null,
     "PutSipMediaApplicationAlexaSkillConfiguration": null,
     "PutSipMediaApplicationLoggingConfiguration": null,
     "PutVoiceConnectorEmergencyCallingConfiguration": null,
@@ -66,6 +77,12 @@
     "PutVoiceConnectorTerminationCredentials": null,
     "RestorePhoneNumber": null,
     "SearchAvailablePhoneNumbers": null,
+    "StartSpeakerSearchTask": null,
+    "StartVoiceToneAnalysisTask": null,
+    "StopSpeakerSearchTask": null,
+    "StopVoiceToneAnalysisTask": null,
+    "TagResource": null,
+    "UntagResource": null,
     "UpdateGlobalSettings": null,
     "UpdatePhoneNumber": null,
     "UpdatePhoneNumberSettings": null,
@@ -75,6 +92,8 @@
     "UpdateSipRule": null,
     "UpdateVoiceConnector": null,
     "UpdateVoiceConnectorGroup": null,
+    "UpdateVoiceProfile": null,
+    "UpdateVoiceProfileDomain": null,
     "ValidateE911Address": null
   },
   "shapes": {
@@ -120,6 +139,20 @@
       "base": null,
       "refs": {
         "GeoMatchParams$AreaCode": null
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceARN": null,
+        "MediaInsightsConfiguration$ConfigurationArn": null,
+        "ServerSideEncryptionConfiguration$KmsKeyArn": null,
+        "TagResourceRequest$ResourceARN": null,
+        "UntagResourceRequest$ResourceARN": null,
+        "VoiceProfile$VoiceProfileArn": null,
+        "VoiceProfileDomain$VoiceProfileDomainArn": null,
+        "VoiceProfileDomainSummary$VoiceProfileDomainArn": null,
+        "VoiceProfileSummary$VoiceProfileArn": null
       }
     },
     "AssociatePhoneNumbersWithVoiceConnectorGroupRequest": {
@@ -170,9 +203,12 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "CallDetails$IsCaller": null,
         "CreateVoiceConnectorRequest$RequireEncryption": null,
+        "GetVoiceToneAnalysisTaskRequest$IsCaller": null,
         "LoggingConfiguration$EnableSIPLogs": null,
         "LoggingConfiguration$EnableMediaMetricLogs": null,
+        "MediaInsightsConfiguration$Disabled": null,
         "Origination$Disabled": null,
         "Proxy$Disabled": null,
         "PutVoiceConnectorProxyRequest$Disabled": null,
@@ -182,6 +218,13 @@
         "Termination$Disabled": null,
         "UpdateVoiceConnectorRequest$RequireEncryption": null,
         "VoiceConnector$RequireEncryption": null
+      }
+    },
+    "CallDetails": {
+      "base": null,
+      "refs": {
+        "SpeakerSearchTask$CallDetails": null,
+        "VoiceToneAnalysisTask$CallDetails": null
       }
     },
     "CallingName": {
@@ -236,6 +279,20 @@
         "CreateProxySessionRequest$Capabilities": null,
         "ProxySession$Capabilities": null,
         "UpdateProxySessionRequest$Capabilities": null
+      }
+    },
+    "ClientRequestId": {
+      "base": null,
+      "refs": {
+        "CreateVoiceProfileDomainRequest$ClientRequestToken": null,
+        "StartSpeakerSearchTaskRequest$ClientRequestToken": null,
+        "StartVoiceToneAnalysisTaskRequest$ClientRequestToken": null
+      }
+    },
+    "ConfidenceScore": {
+      "base": null,
+      "refs": {
+        "SpeakerSearchResult$ConfidenceScore": null
       }
     },
     "ConflictException": {
@@ -332,6 +389,26 @@
       "refs": {
       }
     },
+    "CreateVoiceProfileDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVoiceProfileDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVoiceProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVoiceProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Credential": {
       "base": null,
       "refs": {
@@ -418,6 +495,16 @@
       }
     },
     "DeleteVoiceConnectorTerminationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceProfileDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceProfileRequest": {
       "base": null,
       "refs": {
       }
@@ -590,6 +677,16 @@
       "refs": {
       }
     },
+    "GetSpeakerSearchTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSpeakerSearchTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetVoiceConnectorEmergencyCallingConfigurationRequest": {
       "base": null,
       "refs": {
@@ -680,6 +777,41 @@
       "refs": {
       }
     },
+    "GetVoiceProfileDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceProfileDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceToneAnalysisTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceToneAnalysisTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GoneException": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GuidString": {
       "base": null,
       "refs": {
@@ -713,11 +845,33 @@
         "SipMediaApplication$UpdatedTimestamp": null,
         "SipRule$CreatedTimestamp": null,
         "SipRule$UpdatedTimestamp": null,
+        "SpeakerSearchTask$CreatedTimestamp": null,
+        "SpeakerSearchTask$UpdatedTimestamp": null,
+        "SpeakerSearchTask$StartedTimestamp": null,
         "TerminationHealth$Timestamp": null,
         "VoiceConnector$CreatedTimestamp": null,
         "VoiceConnector$UpdatedTimestamp": null,
         "VoiceConnectorGroup$CreatedTimestamp": null,
-        "VoiceConnectorGroup$UpdatedTimestamp": null
+        "VoiceConnectorGroup$UpdatedTimestamp": null,
+        "VoiceProfile$CreatedTimestamp": null,
+        "VoiceProfile$UpdatedTimestamp": null,
+        "VoiceProfile$ExpirationTimestamp": null,
+        "VoiceProfileDomain$CreatedTimestamp": null,
+        "VoiceProfileDomain$UpdatedTimestamp": null,
+        "VoiceProfileDomainSummary$CreatedTimestamp": null,
+        "VoiceProfileDomainSummary$UpdatedTimestamp": null,
+        "VoiceProfileSummary$CreatedTimestamp": null,
+        "VoiceProfileSummary$UpdatedTimestamp": null,
+        "VoiceProfileSummary$ExpirationTimestamp": null,
+        "VoiceToneAnalysisTask$CreatedTimestamp": null,
+        "VoiceToneAnalysisTask$UpdatedTimestamp": null,
+        "VoiceToneAnalysisTask$StartedTimestamp": null
+      }
+    },
+    "LanguageCode": {
+      "base": null,
+      "refs": {
+        "StartVoiceToneAnalysisTaskRequest$LanguageCode": null
       }
     },
     "ListAvailableVoiceConnectorRegionsResponse": {
@@ -785,6 +939,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListVoiceConnectorGroupsRequest": {
       "base": null,
       "refs": {
@@ -815,12 +979,38 @@
       "refs": {
       }
     },
+    "ListVoiceProfileDomainsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceProfileDomainsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceProfilesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceProfilesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LoggingConfiguration": {
       "base": null,
       "refs": {
         "GetVoiceConnectorLoggingConfigurationResponse$LoggingConfiguration": null,
         "PutVoiceConnectorLoggingConfigurationRequest$LoggingConfiguration": null,
         "PutVoiceConnectorLoggingConfigurationResponse$LoggingConfiguration": null
+      }
+    },
+    "MediaInsightsConfiguration": {
+      "base": null,
+      "refs": {
+        "StreamingConfiguration$MediaInsightsConfiguration": null
       }
     },
     "NextTokenString": {
@@ -878,6 +1068,7 @@
         "SipRule$SipRuleId": null,
         "SipRule$TriggerValue": null,
         "SipRuleTargetApplication$SipMediaApplicationId": null,
+        "SpeakerSearchTask$SpeakerSearchTaskStatus": null,
         "UpdateSipMediaApplicationCallRequest$SipMediaApplicationId": null,
         "UpdateSipMediaApplicationCallRequest$TransactionId": null,
         "UpdateSipMediaApplicationRequest$SipMediaApplicationId": null,
@@ -889,25 +1080,65 @@
         "VoiceConnector$VoiceConnectorArn": null,
         "VoiceConnectorGroup$VoiceConnectorGroupId": null,
         "VoiceConnectorGroup$VoiceConnectorGroupArn": null,
-        "VoiceConnectorItem$VoiceConnectorId": null
+        "VoiceConnectorItem$VoiceConnectorId": null,
+        "VoiceToneAnalysisTask$VoiceToneAnalysisTaskStatus": null
       }
     },
     "NonEmptyString128": {
       "base": null,
       "refs": {
+        "CallDetails$VoiceConnectorId": null,
         "CreateProxySessionRequest$VoiceConnectorId": null,
         "DeleteProxySessionRequest$VoiceConnectorId": null,
         "DeleteProxySessionRequest$ProxySessionId": null,
         "DeleteVoiceConnectorProxyRequest$VoiceConnectorId": null,
         "GetProxySessionRequest$VoiceConnectorId": null,
         "GetProxySessionRequest$ProxySessionId": null,
+        "GetSpeakerSearchTaskRequest$VoiceConnectorId": null,
         "GetVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "GetVoiceToneAnalysisTaskRequest$VoiceConnectorId": null,
         "ListProxySessionsRequest$VoiceConnectorId": null,
         "ProxySession$VoiceConnectorId": null,
         "ProxySession$ProxySessionId": null,
         "PutVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "StartSpeakerSearchTaskRequest$VoiceConnectorId": null,
+        "StartVoiceToneAnalysisTaskRequest$VoiceConnectorId": null,
+        "StopSpeakerSearchTaskRequest$VoiceConnectorId": null,
+        "StopVoiceToneAnalysisTaskRequest$VoiceConnectorId": null,
         "UpdateProxySessionRequest$VoiceConnectorId": null,
         "UpdateProxySessionRequest$ProxySessionId": null
+      }
+    },
+    "NonEmptyString256": {
+      "base": null,
+      "refs": {
+        "CallDetails$TransactionId": null,
+        "CreateVoiceProfileRequest$SpeakerSearchTaskId": null,
+        "DeleteVoiceProfileDomainRequest$VoiceProfileDomainId": null,
+        "DeleteVoiceProfileRequest$VoiceProfileId": null,
+        "GetSpeakerSearchTaskRequest$SpeakerSearchTaskId": null,
+        "GetVoiceProfileDomainRequest$VoiceProfileDomainId": null,
+        "GetVoiceProfileRequest$VoiceProfileId": null,
+        "GetVoiceToneAnalysisTaskRequest$VoiceToneAnalysisTaskId": null,
+        "ListVoiceProfilesRequest$VoiceProfileDomainId": null,
+        "SpeakerSearchDetails$VoiceprintGenerationStatus": null,
+        "SpeakerSearchResult$VoiceProfileId": null,
+        "SpeakerSearchTask$SpeakerSearchTaskId": null,
+        "StartSpeakerSearchTaskRequest$TransactionId": null,
+        "StartSpeakerSearchTaskRequest$VoiceProfileDomainId": null,
+        "StartVoiceToneAnalysisTaskRequest$TransactionId": null,
+        "StopSpeakerSearchTaskRequest$SpeakerSearchTaskId": null,
+        "StopVoiceToneAnalysisTaskRequest$VoiceToneAnalysisTaskId": null,
+        "UpdateVoiceProfileDomainRequest$VoiceProfileDomainId": null,
+        "UpdateVoiceProfileRequest$VoiceProfileId": null,
+        "UpdateVoiceProfileRequest$SpeakerSearchTaskId": null,
+        "VoiceProfile$VoiceProfileId": null,
+        "VoiceProfile$VoiceProfileDomainId": null,
+        "VoiceProfileDomain$VoiceProfileDomainId": null,
+        "VoiceProfileDomainSummary$VoiceProfileDomainId": null,
+        "VoiceProfileSummary$VoiceProfileId": null,
+        "VoiceProfileSummary$VoiceProfileDomainId": null,
+        "VoiceToneAnalysisTask$VoiceToneAnalysisTaskId": null
       }
     },
     "NonEmptyStringList": {
@@ -1314,7 +1545,9 @@
         "ListSipMediaApplicationsRequest$MaxResults": null,
         "ListSipRulesRequest$MaxResults": null,
         "ListVoiceConnectorGroupsRequest$MaxResults": null,
-        "ListVoiceConnectorsRequest$MaxResults": null
+        "ListVoiceConnectorsRequest$MaxResults": null,
+        "ListVoiceProfileDomainsRequest$MaxResults": null,
+        "ListVoiceProfilesRequest$MaxResults": null
       }
     },
     "SMACreateCallArgumentsMap": {
@@ -1393,6 +1626,13 @@
       "refs": {
         "DeleteVoiceConnectorTerminationCredentialsRequest$Usernames": null,
         "ListVoiceConnectorTerminationCredentialsResponse$Usernames": null
+      }
+    },
+    "ServerSideEncryptionConfiguration": {
+      "base": null,
+      "refs": {
+        "CreateVoiceProfileDomainRequest$ServerSideEncryptionConfiguration": null,
+        "VoiceProfileDomain$ServerSideEncryptionConfiguration": null
       }
     },
     "ServiceFailureException": {
@@ -1521,6 +1761,61 @@
         "SipRule$TriggerType": null
       }
     },
+    "SpeakerSearchDetails": {
+      "base": null,
+      "refs": {
+        "SpeakerSearchTask$SpeakerSearchDetails": null
+      }
+    },
+    "SpeakerSearchResult": {
+      "base": null,
+      "refs": {
+        "SpeakerSearchResultList$member": null
+      }
+    },
+    "SpeakerSearchResultList": {
+      "base": null,
+      "refs": {
+        "SpeakerSearchDetails$Results": null
+      }
+    },
+    "SpeakerSearchTask": {
+      "base": null,
+      "refs": {
+        "GetSpeakerSearchTaskResponse$SpeakerSearchTask": null,
+        "StartSpeakerSearchTaskResponse$SpeakerSearchTask": null
+      }
+    },
+    "StartSpeakerSearchTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSpeakerSearchTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartVoiceToneAnalysisTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartVoiceToneAnalysisTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopSpeakerSearchTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopVoiceToneAnalysisTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StreamingConfiguration": {
       "base": null,
       "refs": {
@@ -1555,6 +1850,10 @@
         "ListVoiceConnectorGroupsResponse$NextToken": null,
         "ListVoiceConnectorsRequest$NextToken": null,
         "ListVoiceConnectorsResponse$NextToken": null,
+        "ListVoiceProfileDomainsRequest$NextToken": null,
+        "ListVoiceProfileDomainsResponse$NextToken": null,
+        "ListVoiceProfilesRequest$NextToken": null,
+        "ListVoiceProfilesResponse$NextToken": null,
         "NonEmptyStringList$member": null,
         "OriginationRoute$Host": null,
         "PhoneNumberAssociation$Value": null,
@@ -1566,11 +1865,13 @@
         "SearchAvailablePhoneNumbersResponse$NextToken": null,
         "SipMediaApplication$AwsRegion": null,
         "SipRuleTargetApplication$AwsRegion": null,
+        "SpeakerSearchTask$StatusMessage": null,
         "StringList$member": null,
         "TerminationHealth$Source": null,
         "ValidateE911AddressResponse$AddressExternalId": null,
         "VoiceConnector$OutboundHostName": null,
-        "VoiceConnectorSettings$CdrBucket": null
+        "VoiceConnectorSettings$CdrBucket": null,
+        "VoiceToneAnalysisTask$StatusMessage": null
       }
     },
     "String128": {
@@ -1584,6 +1885,44 @@
       "refs": {
         "Proxy$PhoneNumberCountries": null,
         "Termination$CidrAllowedList": null
+      }
+    },
+    "Tag": {
+      "base": null,
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": null,
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": null
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateVoiceProfileDomainRequest$Tags": null,
+        "ListTagsForResourceResponse$Tags": null,
+        "TagResourceRequest$Tags": null
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": null
       }
     },
     "Termination": {
@@ -1612,6 +1951,16 @@
       }
     },
     "UnauthorizedClientException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UnprocessableEntityException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
       "base": null,
       "refs": {
       }
@@ -1704,6 +2053,26 @@
       }
     },
     "UpdateVoiceConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceProfileDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceProfileDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceProfileResponse": {
       "base": null,
       "refs": {
       }
@@ -1809,6 +2178,71 @@
       "refs": {
         "GetGlobalSettingsResponse$VoiceConnector": null,
         "UpdateGlobalSettingsRequest$VoiceConnector": null
+      }
+    },
+    "VoiceProfile": {
+      "base": null,
+      "refs": {
+        "CreateVoiceProfileResponse$VoiceProfile": null,
+        "GetVoiceProfileResponse$VoiceProfile": null,
+        "UpdateVoiceProfileResponse$VoiceProfile": null
+      }
+    },
+    "VoiceProfileDomain": {
+      "base": null,
+      "refs": {
+        "CreateVoiceProfileDomainResponse$VoiceProfileDomain": null,
+        "GetVoiceProfileDomainResponse$VoiceProfileDomain": null,
+        "UpdateVoiceProfileDomainResponse$VoiceProfileDomain": null
+      }
+    },
+    "VoiceProfileDomainDescription": {
+      "base": null,
+      "refs": {
+        "CreateVoiceProfileDomainRequest$Description": null,
+        "UpdateVoiceProfileDomainRequest$Description": null,
+        "VoiceProfileDomain$Description": null,
+        "VoiceProfileDomainSummary$Description": null
+      }
+    },
+    "VoiceProfileDomainName": {
+      "base": null,
+      "refs": {
+        "CreateVoiceProfileDomainRequest$Name": null,
+        "UpdateVoiceProfileDomainRequest$Name": null,
+        "VoiceProfileDomain$Name": null,
+        "VoiceProfileDomainSummary$Name": null
+      }
+    },
+    "VoiceProfileDomainSummary": {
+      "base": null,
+      "refs": {
+        "VoiceProfileDomainSummaryList$member": null
+      }
+    },
+    "VoiceProfileDomainSummaryList": {
+      "base": null,
+      "refs": {
+        "ListVoiceProfileDomainsResponse$VoiceProfileDomains": null
+      }
+    },
+    "VoiceProfileSummary": {
+      "base": null,
+      "refs": {
+        "VoiceProfileSummaryList$member": null
+      }
+    },
+    "VoiceProfileSummaryList": {
+      "base": null,
+      "refs": {
+        "ListVoiceProfilesResponse$VoiceProfiles": null
+      }
+    },
+    "VoiceToneAnalysisTask": {
+      "base": null,
+      "refs": {
+        "GetVoiceToneAnalysisTaskResponse$VoiceToneAnalysisTask": null,
+        "StartVoiceToneAnalysisTaskResponse$VoiceToneAnalysisTask": null
       }
     }
   }

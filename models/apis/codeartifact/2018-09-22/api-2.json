@@ -2482,7 +2482,8 @@
         "arn":{"shape":"Arn"},
         "description":{"shape":"Description"},
         "upstreams":{"shape":"UpstreamRepositoryInfoList"},
-        "externalConnections":{"shape":"RepositoryExternalConnectionInfoList"}
+        "externalConnections":{"shape":"RepositoryExternalConnectionInfoList"},
+        "createdTime":{"shape":"Timestamp"}
       }
     },
     "RepositoryExternalConnectionInfo":{
@@ -2511,7 +2512,8 @@
         "domainName":{"shape":"DomainName"},
         "domainOwner":{"shape":"AccountId"},
         "arn":{"shape":"Arn"},
-        "description":{"shape":"Description"}
+        "description":{"shape":"Description"},
+        "createdTime":{"shape":"Timestamp"}
       }
     },
     "RepositorySummaryList":{

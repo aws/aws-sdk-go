@@ -24,6 +24,10 @@ const (
 	// "ForbiddenException".
 	ErrCodeForbiddenException = "ForbiddenException"
 
+	// ErrCodeGoneException for service response error code
+	// "GoneException".
+	ErrCodeGoneException = "GoneException"
+
 	// ErrCodeNotFoundException for service response error code
 	// "NotFoundException".
 	ErrCodeNotFoundException = "NotFoundException"
@@ -47,6 +51,10 @@ const (
 	// ErrCodeUnauthorizedClientException for service response error code
 	// "UnauthorizedClientException".
 	ErrCodeUnauthorizedClientException = "UnauthorizedClientException"
+
+	// ErrCodeUnprocessableEntityException for service response error code
+	// "UnprocessableEntityException".
+	ErrCodeUnprocessableEntityException = "UnprocessableEntityException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -54,10 +62,12 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"BadRequestException":            newErrorBadRequestException,
 	"ConflictException":              newErrorConflictException,
 	"ForbiddenException":             newErrorForbiddenException,
+	"GoneException":                  newErrorGoneException,
 	"NotFoundException":              newErrorNotFoundException,
 	"ResourceLimitExceededException": newErrorResourceLimitExceededException,
 	"ServiceFailureException":        newErrorServiceFailureException,
 	"ServiceUnavailableException":    newErrorServiceUnavailableException,
 	"ThrottledClientException":       newErrorThrottledClientException,
 	"UnauthorizedClientException":    newErrorUnauthorizedClientException,
+	"UnprocessableEntityException":   newErrorUnprocessableEntityException,
 }

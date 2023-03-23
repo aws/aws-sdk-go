@@ -3339,15 +3339,17 @@ func (c *CodeArtifact) PublishPackageVersionRequest(input *PublishPackageVersion
 // Creates a new package version containing one or more assets (or files).
 //
 // The unfinished flag can be used to keep the package version in the Unfinished
-// state until all of it’s assets have been uploaded (see Package version
-// status (https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status.html#package-version-status)
+// state until all of its assets have been uploaded (see Package version status
+// (https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status.html#package-version-status)
 // in the CodeArtifact user guide). To set the package version’s status to
 // Published, omit the unfinished flag when uploading the final asset, or set
 // the status using UpdatePackageVersionStatus (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html).
 // Once a package version’s status is set to Published, it cannot change back
 // to Unfinished.
 //
-// Only generic packages can be published using this API.
+// Only generic packages can be published using this API. For more information,
+// see Using generic packages (https://docs.aws.amazon.com/codeartifact/latest/ug/using-generic.html)
+// in the CodeArtifact User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4254,6 +4256,8 @@ type AssociateExternalConnectionInput struct {
 	//
 	//    * public:maven-commonsware - for the CommonsWare Android repository.
 	//
+	//    * public:maven-clojars - for the Clojars repository.
+	//
 	// ExternalConnection is a required field
 	ExternalConnection *string `location:"querystring" locationName:"external-connection" min:"2" type:"string" required:"true"`
 
@@ -4481,7 +4485,7 @@ type CopyPackageVersionsInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the versions to be copied.
@@ -5201,6 +5205,8 @@ type DeletePackageInput struct {
 	//
 	//    * Python and NuGet packages do not contain corresponding components, packages
 	//    of those formats do not have a namespace.
+	//
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package to delete.
@@ -5367,7 +5373,7 @@ type DeletePackageVersionsInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions to delete.
@@ -5904,7 +5910,7 @@ type DescribePackageInput struct {
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the requested package.
@@ -6071,7 +6077,7 @@ type DescribePackageVersionInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the requested package version.
@@ -6495,7 +6501,7 @@ type DisposePackageVersionsInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions you want to dispose.
@@ -7156,7 +7162,7 @@ type GetPackageVersionAssetInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the requested asset.
@@ -7382,8 +7388,6 @@ type GetPackageVersionReadmeInput struct {
 	// The namespace of the package version with the requested readme file. The
 	// package version component that specifies its namespace depends on its type.
 	// For example:
-	//
-	//    * The namespace of a Maven package version is its groupId.
 	//
 	//    * The namespace of an npm package version is its scope.
 	//
@@ -8067,7 +8071,7 @@ type ListPackageVersionAssetsInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -8336,7 +8340,7 @@ type ListPackageVersionDependenciesInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -8600,7 +8604,7 @@ type ListPackageVersionsInput struct {
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -8881,7 +8885,7 @@ type ListPackagesInput struct {
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -9509,7 +9513,7 @@ type PackageDescription struct {
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The package origin configuration for the package.
@@ -9673,7 +9677,7 @@ type PackageSummary struct {
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// A PackageOriginConfiguration (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginConfiguration.html)
@@ -9757,7 +9761,7 @@ type PackageVersionDescription struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// A PackageVersionOrigin (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionOrigin.html)
@@ -10069,7 +10073,9 @@ type PublishPackageVersionInput struct {
 	AssetName *string `location:"querystring" locationName:"asset" min:"1" type:"string" required:"true"`
 
 	// The SHA256 hash of the assetContent to publish. This value must be calculated
-	// by the caller and provided with the request.
+	// by the caller and provided with the request (see Publishing a generic package
+	// (https://docs.aws.amazon.com/codeartifact/latest/ug/using-generic.html#publishing-generic-packages)
+	// in the CodeArtifact User Guide).
 	//
 	// This value is used as an integrity check to verify that the assetContent
 	// has not changed after it was originally sent.
@@ -10113,7 +10119,7 @@ type PublishPackageVersionInput struct {
 
 	// Specifies whether the package version should remain in the unfinished state.
 	// If omitted, the package version status will be set to Published (see Package
-	// version status (https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status.html#package-version-status)
+	// version status (https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status)
 	// in the CodeArtifact User Guide).
 	//
 	// Valid values: unfinished
@@ -10502,7 +10508,7 @@ type PutPackageOriginConfigurationInput struct {
 	//    * Python and NuGet packages do not contain a corresponding component,
 	//    packages of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package to be updated.
@@ -10827,6 +10833,9 @@ type RepositoryDescription struct {
 	// The Amazon Resource Name (ARN) of the repository.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// A timestamp that represents the date and time the repository was created.
+	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp"`
+
 	// A text description of the repository.
 	Description *string `locationName:"description" type:"string"`
 
@@ -10877,6 +10886,12 @@ func (s *RepositoryDescription) SetAdministratorAccount(v string) *RepositoryDes
 // SetArn sets the Arn field's value.
 func (s *RepositoryDescription) SetArn(v string) *RepositoryDescription {
 	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *RepositoryDescription) SetCreatedTime(v time.Time) *RepositoryDescription {
+	s.CreatedTime = &v
 	return s
 }
 
@@ -10989,6 +11004,9 @@ type RepositorySummary struct {
 	// The ARN of the repository.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// A timestamp that represents the date and time the repository was created.
+	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp"`
+
 	// The description of the repository.
 	Description *string `locationName:"description" type:"string"`
 
@@ -11030,6 +11048,12 @@ func (s *RepositorySummary) SetAdministratorAccount(v string) *RepositorySummary
 // SetArn sets the Arn field's value.
 func (s *RepositorySummary) SetArn(v string) *RepositorySummary {
 	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *RepositorySummary) SetCreatedTime(v time.Time) *RepositorySummary {
+	s.CreatedTime = &v
 	return s
 }
 
@@ -11638,7 +11662,7 @@ type UpdatePackageVersionsStatusInput struct {
 	//    * Python and NuGet package versions do not contain a corresponding component,
 	//    package versions of those formats do not have a namespace.
 	//
-	//    * The namespace of a generic package is it’s namespace.
+	//    * The namespace of a generic package is its namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the version statuses to update.

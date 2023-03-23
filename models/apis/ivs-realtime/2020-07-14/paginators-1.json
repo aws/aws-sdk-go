@@ -1,0 +1,9 @@
+{
+  "pagination": {
+    "ListStages": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    }
+  }
+}
