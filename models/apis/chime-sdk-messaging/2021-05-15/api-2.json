@@ -727,6 +727,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "PutChannelExpirationSettings":{
+      "name":"PutChannelExpirationSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/channels/{channelArn}/expiration-settings",
+        "responseCode":200
+      },
+      "input":{"shape":"PutChannelExpirationSettingsRequest"},
+      "output":{"shape":"PutChannelExpirationSettingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "PutChannelMembershipPreferences":{
       "name":"PutChannelMembershipPreferences",
       "http":{
@@ -1051,7 +1070,8 @@
         "LastMessageTimestamp":{"shape":"Timestamp"},
         "LastUpdatedTimestamp":{"shape":"Timestamp"},
         "ChannelFlowArn":{"shape":"ChimeArn"},
-        "ElasticChannelConfiguration":{"shape":"ElasticChannelConfiguration"}
+        "ElasticChannelConfiguration":{"shape":"ElasticChannelConfiguration"},
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
       }
     },
     "ChannelAssociatedWithFlowSummary":{
@@ -1217,7 +1237,8 @@
         "Persistence":{"shape":"ChannelMessagePersistenceType"},
         "Status":{"shape":"ChannelMessageStatusStructure"},
         "MessageAttributes":{"shape":"MessageAttributeMap"},
-        "SubChannelId":{"shape":"SubChannelId"}
+        "SubChannelId":{"shape":"SubChannelId"},
+        "ContentType":{"shape":"ContentType"}
       }
     },
     "ChannelMessageCallback":{
@@ -1229,7 +1250,8 @@
         "Metadata":{"shape":"Metadata"},
         "PushNotification":{"shape":"PushNotificationConfiguration"},
         "MessageAttributes":{"shape":"MessageAttributeMap"},
-        "SubChannelId":{"shape":"SubChannelId"}
+        "SubChannelId":{"shape":"SubChannelId"},
+        "ContentType":{"shape":"ContentType"}
       }
     },
     "ChannelMessagePersistenceType":{
@@ -1268,7 +1290,8 @@
         "Sender":{"shape":"Identity"},
         "Redacted":{"shape":"NonNullableBoolean"},
         "Status":{"shape":"ChannelMessageStatusStructure"},
-        "MessageAttributes":{"shape":"MessageAttributeMap"}
+        "MessageAttributes":{"shape":"MessageAttributeMap"},
+        "ContentType":{"shape":"ContentType"}
       }
     },
     "ChannelMessageSummaryList":{
@@ -1371,6 +1394,13 @@
     "Content":{
       "type":"string",
       "max":4096,
+      "min":0,
+      "pattern":"[\\s\\S]*",
+      "sensitive":true
+    },
+    "ContentType":{
+      "type":"string",
+      "max":45,
       "min":0,
       "pattern":"[\\s\\S]*",
       "sensitive":true
@@ -1512,7 +1542,8 @@
         "ChannelId":{"shape":"ChannelId"},
         "MemberArns":{"shape":"ChannelMemberArns"},
         "ModeratorArns":{"shape":"ChannelModeratorArns"},
-        "ElasticChannelConfiguration":{"shape":"ElasticChannelConfiguration"}
+        "ElasticChannelConfiguration":{"shape":"ElasticChannelConfiguration"},
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
       }
     },
     "CreateChannelResponse":{
@@ -1936,6 +1967,29 @@
         "VoiceConnectorGroupAssociationsExist",
         "PhoneNumberAssociationsExist"
       ]
+    },
+    "ExpirationCriterion":{
+      "type":"string",
+      "enum":[
+        "CREATED_TIMESTAMP",
+        "LAST_MESSAGE_TIMESTAMP"
+      ]
+    },
+    "ExpirationDays":{
+      "type":"integer",
+      "max":5475,
+      "min":1
+    },
+    "ExpirationSettings":{
+      "type":"structure",
+      "required":[
+        "ExpirationDays",
+        "ExpirationCriterion"
+      ],
+      "members":{
+        "ExpirationDays":{"shape":"ExpirationDays"},
+        "ExpirationCriterion":{"shape":"ExpirationCriterion"}
+      }
     },
     "FallbackAction":{
       "type":"string",
@@ -2657,7 +2711,7 @@
     "PushNotificationBody":{
       "type":"string",
       "max":150,
-      "min":0,
+      "min":1,
       "pattern":"[\\s\\S]*",
       "sensitive":true
     },
@@ -2680,7 +2734,7 @@
     "PushNotificationTitle":{
       "type":"string",
       "max":50,
-      "min":0,
+      "min":1,
       "pattern":".*",
       "sensitive":true
     },
@@ -2690,6 +2744,30 @@
         "DEFAULT",
         "VOIP"
       ]
+    },
+    "PutChannelExpirationSettingsRequest":{
+      "type":"structure",
+      "required":["ChannelArn"],
+      "members":{
+        "ChannelArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        },
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
+      }
+    },
+    "PutChannelExpirationSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelArn":{"shape":"ChimeArn"},
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
+      }
     },
     "PutChannelMembershipPreferencesRequest":{
       "type":"structure",
@@ -2899,7 +2977,8 @@
         },
         "PushNotification":{"shape":"PushNotificationConfiguration"},
         "MessageAttributes":{"shape":"MessageAttributeMap"},
-        "SubChannelId":{"shape":"SubChannelId"}
+        "SubChannelId":{"shape":"SubChannelId"},
+        "ContentType":{"shape":"ContentType"}
       }
     },
     "SendChannelMessageResponse":{
@@ -3087,6 +3166,7 @@
       "required":[
         "ChannelArn",
         "MessageId",
+        "Content",
         "ChimeBearer"
       ],
       "members":{
@@ -3100,14 +3180,15 @@
           "location":"uri",
           "locationName":"messageId"
         },
-        "Content":{"shape":"Content"},
+        "Content":{"shape":"NonEmptyContent"},
         "Metadata":{"shape":"Metadata"},
         "ChimeBearer":{
           "shape":"ChimeArn",
           "location":"header",
           "locationName":"x-amz-chime-bearer"
         },
-        "SubChannelId":{"shape":"SubChannelId"}
+        "SubChannelId":{"shape":"SubChannelId"},
+        "ContentType":{"shape":"ContentType"}
       }
     },
     "UpdateChannelMessageResponse":{

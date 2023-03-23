@@ -56,10 +56,13 @@ func (c *Batch) CancelJobRequest(input *CancelJobInput) (req *request.Request, o
 
 // CancelJob API operation for AWS Batch.
 //
-// Cancels a job in an Batch job queue. Jobs that are in the SUBMITTED, PENDING,
-// or RUNNABLE state are canceled. Jobs that progressed to the STARTING or RUNNING
-// state aren't canceled. However, the API operation still succeeds, even if
-// no job is canceled. These jobs must be terminated with the TerminateJob operation.
+// Cancels a job in an Batch job queue. Jobs that are in the SUBMITTED or PENDING
+// are canceled. A job inRUNNABLE remains in RUNNABLE until it reaches the head
+// of the job queue. Then the job status is updated to FAILED.
+//
+// Jobs that progressed to the STARTING or RUNNING state aren't canceled. However,
+// the API operation still succeeds, even if no job is canceled. These jobs
+// must be terminated with the TerminateJob operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2968,8 +2971,17 @@ type ComputeEnvironmentDetail struct {
 	// If the state is DISABLED, then the Batch scheduler doesn't attempt to place
 	// jobs within the environment. Jobs in a STARTING or RUNNING state continue
 	// to progress normally. Managed compute environments in the DISABLED state
-	// don't scale out. However, they scale in to minvCpus value after instances
-	// become idle.
+	// don't scale out.
+	//
+	// Compute environments in a DISABLED state may continue to incur billing charges.
+	// To prevent additional charges, turn off and then delete the compute environment.
+	// For more information, see State (https://docs.aws.amazon.com/batch/latest/userguide/compute_environment_parameters.html#compute_environment_state)
+	// in the Batch User Guide.
+	//
+	// When an instance is idle, the instance scales down to the minvCpus value.
+	// However, the instance size doesn't change. For example, consider a c5.8xlarge
+	// instance with a minvCpus value of 4 and a desiredvCpus value of 36. This
+	// instance doesn't scale down to a c5.large instance.
 	State *string `locationName:"state" type:"string" enum:"CEState"`
 
 	// The current status of the compute environment (for example, CREATING or VALID).
@@ -3648,6 +3660,14 @@ type ComputeResourceUpdate struct {
 	// Batch doesn't support changing the desired number of vCPUs of an existing
 	// compute environment. Don't specify this parameter for compute environments
 	// using Amazon EKS clusters.
+	//
+	// When you update the desiredvCpus setting, the value must be between the minvCpus
+	// and maxvCpus values.
+	//
+	// Additionally, the updated desiredvCpus value must be greater than or equal
+	// to the current desiredvCpus value. For more information, see Troubleshooting
+	// Batch (https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#error-desired-vcpus-update)
+	// in the Batch User Guide.
 	DesiredvCpus *int64 `locationName:"desiredvCpus" type:"integer"`
 
 	// Provides information used to select Amazon Machine Images (AMIs) for EC2
@@ -4035,6 +4055,11 @@ type ContainerDetail struct {
 	// is reserved for variables that Batch sets.
 	Environment []*KeyValuePair `locationName:"environment" type:"list"`
 
+	// The amount of ephemeral storage to allocate for the task. This parameter
+	// is used to expand the total amount of ephemeral storage available, beyond
+	// the default amount, for tasks hosted on Fargate.
+	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the execution role that Batch can assume.
 	// For more information, see Batch execution IAM role (https://docs.aws.amazon.com/batch/latest/userguide/execution-IAM-role.html)
 	// in the Batch User Guide.
@@ -4214,6 +4239,12 @@ func (s *ContainerDetail) SetContainerInstanceArn(v string) *ContainerDetail {
 // SetEnvironment sets the Environment field's value.
 func (s *ContainerDetail) SetEnvironment(v []*KeyValuePair) *ContainerDetail {
 	s.Environment = v
+	return s
+}
+
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *ContainerDetail) SetEphemeralStorage(v *EphemeralStorage) *ContainerDetail {
+	s.EphemeralStorage = v
 	return s
 }
 
@@ -4512,6 +4543,11 @@ type ContainerProperties struct {
 	// is reserved for variables that Batch sets.
 	Environment []*KeyValuePair `locationName:"environment" type:"list"`
 
+	// The amount of ephemeral storage to allocate for the task. This parameter
+	// is used to expand the total amount of ephemeral storage available, beyond
+	// the default amount, for tasks hosted on Fargate.
+	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the execution role that Batch can assume.
 	// For jobs that run on Fargate resources, you must provide an execution role.
 	// For more information, see Batch execution IAM role (https://docs.aws.amazon.com/batch/latest/userguide/execution-IAM-role.html)
@@ -4703,6 +4739,11 @@ func (s ContainerProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ContainerProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ContainerProperties"}
+	if s.EphemeralStorage != nil {
+		if err := s.EphemeralStorage.Validate(); err != nil {
+			invalidParams.AddNested("EphemeralStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LinuxParameters != nil {
 		if err := s.LinuxParameters.Validate(); err != nil {
 			invalidParams.AddNested("LinuxParameters", err.(request.ErrInvalidParams))
@@ -4769,6 +4810,12 @@ func (s *ContainerProperties) SetCommand(v []*string) *ContainerProperties {
 // SetEnvironment sets the Environment field's value.
 func (s *ContainerProperties) SetEnvironment(v []*KeyValuePair) *ContainerProperties {
 	s.Environment = v
+	return s
+}
+
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *ContainerProperties) SetEphemeralStorage(v *EphemeralStorage) *ContainerProperties {
+	s.EphemeralStorage = v
 	return s
 }
 
@@ -4978,8 +5025,17 @@ type CreateComputeEnvironmentInput struct {
 	// If the state is DISABLED, then the Batch scheduler doesn't attempt to place
 	// jobs within the environment. Jobs in a STARTING or RUNNING state continue
 	// to progress normally. Managed compute environments in the DISABLED state
-	// don't scale out. However, they scale in to minvCpus value after instances
-	// become idle.
+	// don't scale out.
+	//
+	// Compute environments in a DISABLED state may continue to incur billing charges.
+	// To prevent additional charges, turn off and then delete the compute environment.
+	// For more information, see State (https://docs.aws.amazon.com/batch/latest/userguide/compute_environment_parameters.html#compute_environment_state)
+	// in the Batch User Guide.
+	//
+	// When an instance is idle, the instance scales down to the minvCpus value.
+	// However, the instance size doesn't change. For example, consider a c5.8xlarge
+	// instance with a minvCpus value of 4 and a desiredvCpus value of 36. This
+	// instance doesn't scale down to a c5.large instance.
 	State *string `locationName:"state" type:"string" enum:"CEState"`
 
 	// The tags that you apply to the compute environment to help you categorize
@@ -7629,6 +7685,36 @@ func (s *EksHostPath) SetPath(v string) *EksHostPath {
 	return s
 }
 
+type EksMetadata struct {
+	_ struct{} `type:"structure"`
+
+	Labels map[string]*string `locationName:"labels" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksMetadata) GoString() string {
+	return s.String()
+}
+
+// SetLabels sets the Labels field's value.
+func (s *EksMetadata) SetLabels(v map[string]*string) *EksMetadata {
+	s.Labels = v
+	return s
+}
+
 // The properties for the pod.
 type EksPodProperties struct {
 	_ struct{} `type:"structure"`
@@ -7654,6 +7740,8 @@ type EksPodProperties struct {
 	// and Pod networking (https://kubernetes.io/docs/concepts/workloads/pods/#pod-networking)
 	// in the Kubernetes documentation.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
+
+	Metadata *EksMetadata `locationName:"metadata" type:"structure"`
 
 	// The name of the service account that's used to run the pod. For more information,
 	// see Kubernetes service accounts (https://docs.aws.amazon.com/eks/latest/userguide/service-accounts.html)
@@ -7729,6 +7817,12 @@ func (s *EksPodProperties) SetDnsPolicy(v string) *EksPodProperties {
 // SetHostNetwork sets the HostNetwork field's value.
 func (s *EksPodProperties) SetHostNetwork(v bool) *EksPodProperties {
 	s.HostNetwork = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *EksPodProperties) SetMetadata(v *EksMetadata) *EksPodProperties {
+	s.Metadata = v
 	return s
 }
 
@@ -7860,6 +7954,8 @@ type EksPodPropertiesOverride struct {
 
 	// The overrides for the container that's used on the Amazon EKS pod.
 	Containers []*EksContainerOverride `locationName:"containers" type:"list"`
+
+	Metadata *EksMetadata `locationName:"metadata" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7903,6 +7999,12 @@ func (s *EksPodPropertiesOverride) Validate() error {
 // SetContainers sets the Containers field's value.
 func (s *EksPodPropertiesOverride) SetContainers(v []*EksContainerOverride) *EksPodPropertiesOverride {
 	s.Containers = v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *EksPodPropertiesOverride) SetMetadata(v *EksMetadata) *EksPodPropertiesOverride {
+	s.Metadata = v
 	return s
 }
 
@@ -8182,6 +8284,56 @@ func (s *EksVolume) SetName(v string) *EksVolume {
 // SetSecret sets the Secret field's value.
 func (s *EksVolume) SetSecret(v *EksSecret) *EksVolume {
 	s.Secret = v
+	return s
+}
+
+// The amount of ephemeral storage to allocate for the task. This parameter
+// is used to expand the total amount of ephemeral storage available, beyond
+// the default amount, for tasks hosted on Fargate.
+type EphemeralStorage struct {
+	_ struct{} `type:"structure"`
+
+	// The total amount, in GiB, of ephemeral storage to set for the task. The minimum
+	// supported value is 21 GiB and the maximum supported value is 200 GiB.
+	//
+	// SizeInGiB is a required field
+	SizeInGiB *int64 `locationName:"sizeInGiB" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EphemeralStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EphemeralStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EphemeralStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EphemeralStorage"}
+	if s.SizeInGiB == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeInGiB"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSizeInGiB sets the SizeInGiB field's value.
+func (s *EphemeralStorage) SetSizeInGiB(v int64) *EphemeralStorage {
+	s.SizeInGiB = &v
 	return s
 }
 
@@ -11058,7 +11210,7 @@ type ResourceRequirement struct {
 	//
 	// value = 8192
 	//
-	// VCPU = 1, 2, 4, or 8
+	// VCPU = 1, 2, or 4
 	//
 	// value = 9216, 10240, 11264, 12288, 13312, 14336, or 15360
 	//
@@ -11610,9 +11762,12 @@ type SubmitJobInput struct {
 	// resources with various properties that override defaults for the job definition.
 	EksPropertiesOverride *EksPropertiesOverride `locationName:"eksPropertiesOverride" type:"structure"`
 
-	// The job definition used by this job. This value can be one of name, name:revision,
-	// or the Amazon Resource Name (ARN) for the job definition. If name is specified
-	// without a revision then the latest active revision is used.
+	// The job definition used by this job. This value can be one of definition-name,
+	// definition-name:revision, or the Amazon Resource Name (ARN) for the job definition,
+	// with or without the revision (arn:aws:batch:region:account:job-definition/definition-name:revision
+	// , or arn:aws:batch:region:account:job-definition/definition-name ).
+	//
+	// If the revision is not specified, then the latest active revision is used.
 	//
 	// JobDefinition is a required field
 	JobDefinition *string `locationName:"jobDefinition" type:"string" required:"true"`
@@ -12369,8 +12524,17 @@ type UpdateComputeEnvironmentInput struct {
 	// If the state is DISABLED, then the Batch scheduler doesn't attempt to place
 	// jobs within the environment. Jobs in a STARTING or RUNNING state continue
 	// to progress normally. Managed compute environments in the DISABLED state
-	// don't scale out. However, they scale in to minvCpus value after instances
-	// become idle.
+	// don't scale out.
+	//
+	// Compute environments in a DISABLED state may continue to incur billing charges.
+	// To prevent additional charges, turn off and then delete the compute environment.
+	// For more information, see State (https://docs.aws.amazon.com/batch/latest/userguide/compute_environment_parameters.html#compute_environment_state)
+	// in the Batch User Guide.
+	//
+	// When an instance is idle, the instance scales down to the minvCpus value.
+	// However, the instance size doesn't change. For example, consider a c5.8xlarge
+	// instance with a minvCpus value of 4 and a desiredvCpus value of 36. This
+	// instance doesn't scale down to a c5.large instance.
 	State *string `locationName:"state" type:"string" enum:"CEState"`
 
 	// The maximum number of vCPUs expected to be used for an unmanaged compute

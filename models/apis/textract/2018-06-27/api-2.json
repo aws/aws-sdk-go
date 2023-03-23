@@ -392,7 +392,9 @@
         "TITLE",
         "QUERY",
         "QUERY_RESULT",
-        "SIGNATURE"
+        "SIGNATURE",
+        "TABLE_TITLE",
+        "TABLE_FOOTER"
       ]
     },
     "BoundingBox":{
@@ -496,7 +498,13 @@
       "enum":[
         "KEY",
         "VALUE",
-        "COLUMN_HEADER"
+        "COLUMN_HEADER",
+        "TABLE_TITLE",
+        "TABLE_FOOTER",
+        "TABLE_SECTION_TITLE",
+        "TABLE_SUMMARY",
+        "STRUCTURED_TABLE",
+        "SEMI_STRUCTURED_TABLE"
       ]
     },
     "EntityTypes":{
@@ -1085,7 +1093,10 @@
         "COMPLEX_FEATURES",
         "MERGED_CELL",
         "TITLE",
-        "ANSWER"
+        "ANSWER",
+        "TABLE",
+        "TABLE_TITLE",
+        "TABLE_FOOTER"
       ]
     },
     "RoleArn":{

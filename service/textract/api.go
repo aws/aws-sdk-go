@@ -342,7 +342,7 @@ func (c *Textract) AnalyzeIDRequest(input *AnalyzeIDInput) (req *request.Request
 //
 // Analyzes identity documents for relevant information. This information is
 // extracted and returned as IdentityDocumentFields, which records both the
-// normalized field and value of the extracted text.Unlike other Amazon Textract
+// normalized field and value of the extracted text. Unlike other Amazon Textract
 // operations, AnalyzeID doesn't return any Geometry data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2422,8 +2422,19 @@ type Block struct {
 	//    information with two or more rows or columns, with a cell span of one
 	//    row and one column each.
 	//
+	//    * TABLE_TITLE - The title of a table. A title is typically a line of text
+	//    above or below a table, or embedded as the first row of a table.
+	//
+	//    * TABLE_FOOTER - The footer associated with a table. A footer is typically
+	//    a line or lines of text below a table or embedded as the last row of a
+	//    table.
+	//
 	//    * CELL - A cell within a detected table. The cell is the parent of the
 	//    block that contains the text in the cell.
+	//
+	//    * MERGED_CELL - A cell in a table whose content spans more than one row
+	//    or column. The Relationships array for this cell contain data from individual
+	//    cells.
 	//
 	//    * SELECTION_ELEMENT - A selection element such as an option button (radio
 	//    button) or a check box that's detected on a document page. Use the value
@@ -2445,20 +2456,42 @@ type Block struct {
 	// ColumnIndex isn't returned by DetectDocumentText and GetDocumentTextDetection.
 	ColumnIndex *int64 `type:"integer"`
 
-	// The number of columns that a table cell spans. Currently this value is always
-	// 1, even if the number of columns spanned is greater than 1. ColumnSpan isn't
-	// returned by DetectDocumentText and GetDocumentTextDetection.
+	// The number of columns that a table cell spans. ColumnSpan isn't returned
+	// by DetectDocumentText and GetDocumentTextDetection.
 	ColumnSpan *int64 `type:"integer"`
 
 	// The confidence score that Amazon Textract has in the accuracy of the recognized
 	// text and the accuracy of the geometry points around the recognized text.
 	Confidence *float64 `type:"float"`
 
-	// The type of entity. The following can be returned:
+	// The type of entity.
+	//
+	// The following entity types can be returned by FORMS analysis:
 	//
 	//    * KEY - An identifier for a field on the document.
 	//
 	//    * VALUE - The field text.
+	//
+	// The following entity types can be returned by TABLES analysis:
+	//
+	//    * COLUMN_HEADER - Identifies a cell that is a header of a column.
+	//
+	//    * TABLE_TITLE - Identifies a cell that is a title within the table.
+	//
+	//    * TABLE_SECTION_TITLE - Identifies a cell that is a title of a section
+	//    within a table. A section title is a cell that typically spans an entire
+	//    row above a section.
+	//
+	//    * TABLE_FOOTER - Identifies a cell that is a footer of a table.
+	//
+	//    * TABLE_SUMMARY - Identifies a summary cell of a table. A summary cell
+	//    can be a row of a table or an additional, smaller table that contains
+	//    summary information for another table.
+	//
+	//    * STRUCTURED_TABLE - Identifies a table with column headers where the
+	//    content of each row corresponds to the headers.
+	//
+	//    * SEMI_STRUCTURED_TABLE - Identifies a non-structured table.
 	//
 	// EntityTypes isn't returned by DetectDocumentText and GetDocumentTextDetection.
 	EntityTypes []*string `type:"list" enum:"EntityType"`
@@ -2477,32 +2510,28 @@ type Block struct {
 	// multipage documents that are in PDF or TIFF format. A scanned image (JPEG/PNG)
 	// provided to an asynchronous operation, even if it contains multiple document
 	// pages, is considered a single-page document. This means that for scanned
-	// images the value of Page is always 1. Synchronous operations operations will
-	// also return a Page value of 1 because every input document is considered
-	// to be a single-page document.
+	// images the value of Page is always 1. Synchronous operations will also return
+	// a Page value of 1 because every input document is considered to be a single-page
+	// document.
 	Page *int64 `type:"integer"`
 
 	// Each query contains the question you want to ask in the Text and the alias
 	// you want to associate.
 	Query *Query `type:"structure"`
 
-	// A list of child blocks of the current block. For example, a LINE object has
-	// child blocks for each WORD block that's part of the line of text. There aren't
-	// Relationship objects in the list for relationships that don't exist, such
-	// as when the current block has no child blocks. The list size can be the following:
-	//
-	//    * 0 - The block has no child blocks.
-	//
-	//    * 1 - The block has child blocks.
+	// A list of relationship objects that describe how blocks are related to each
+	// other. For example, a LINE block object contains a CHILD relationship type
+	// with the WORD blocks that make up the line of text. There aren't Relationship
+	// objects in the list for relationships that don't exist, such as when the
+	// current block has no child blocks.
 	Relationships []*Relationship `type:"list"`
 
 	// The row in which a table cell is located. The first row position is 1. RowIndex
 	// isn't returned by DetectDocumentText and GetDocumentTextDetection.
 	RowIndex *int64 `type:"integer"`
 
-	// The number of rows that a table cell spans. Currently this value is always
-	// 1, even if the number of rows spanned is greater than 1. RowSpan isn't returned
-	// by DetectDocumentText and GetDocumentTextDetection.
+	// The number of rows that a table cell spans. RowSpan isn't returned by DetectDocumentText
+	// and GetDocumentTextDetection.
 	RowSpan *int64 `type:"integer"`
 
 	// The selection status of a selection element, such as an option button or
@@ -2935,8 +2964,9 @@ type DocumentGroup struct {
 	// by logical boundary.
 	SplitDocuments []*SplitDocument `type:"list"`
 
-	// The type of document that Amazon Textract has detected. See LINK for a list
-	// of all types returned by Textract.
+	// The type of document that Amazon Textract has detected. See Analyze Lending
+	// Response Objects (https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html)
+	// for a list of all types returned by Textract.
 	Type *string `type:"string"`
 
 	// A list of any expected signatures not found in a document group.
@@ -6042,12 +6072,29 @@ type Relationship struct {
 	// from the Type element.
 	Ids []*string `type:"list"`
 
-	// The type of relationship that the blocks in the IDs array have with the current
-	// block. The relationship can be VALUE or CHILD. A relationship of type VALUE
-	// is a list that contains the ID of the VALUE block that's associated with
-	// the KEY of a key-value pair. A relationship of type CHILD is a list of IDs
-	// that identify WORD blocks in the case of lines Cell blocks in the case of
-	// Tables, and WORD blocks in the case of Selection Elements.
+	// The type of relationship between the blocks in the IDs array and the current
+	// block. The following list describes the relationship types that can be returned.
+	//
+	//    * VALUE - A list that contains the ID of the VALUE block that's associated
+	//    with the KEY of a key-value pair.
+	//
+	//    * CHILD - A list of IDs that identify blocks found within the current
+	//    block object. For example, WORD blocks have a CHILD relationship to the
+	//    LINE block type.
+	//
+	//    * MERGED_CELL - A list of IDs that identify each of the MERGED_CELL block
+	//    types in a table.
+	//
+	//    * ANSWER - A list that contains the ID of the QUERY_RESULT block that’s
+	//    associated with the corresponding QUERY block.
+	//
+	//    * TABLE - A list of IDs that identify associated TABLE block types.
+	//
+	//    * TABLE_TITLE - A list that contains the ID for the TABLE_TITLE block
+	//    type in a table.
+	//
+	//    * TABLE_FOOTER - A list of IDs that identify the TABLE_FOOTER block types
+	//    in a table.
 	Type *string `type:"string" enum:"RelationshipType"`
 }
 
@@ -7183,6 +7230,12 @@ const (
 
 	// BlockTypeSignature is a BlockType enum value
 	BlockTypeSignature = "SIGNATURE"
+
+	// BlockTypeTableTitle is a BlockType enum value
+	BlockTypeTableTitle = "TABLE_TITLE"
+
+	// BlockTypeTableFooter is a BlockType enum value
+	BlockTypeTableFooter = "TABLE_FOOTER"
 )
 
 // BlockType_Values returns all elements of the BlockType enum
@@ -7200,6 +7253,8 @@ func BlockType_Values() []string {
 		BlockTypeQuery,
 		BlockTypeQueryResult,
 		BlockTypeSignature,
+		BlockTypeTableTitle,
+		BlockTypeTableFooter,
 	}
 }
 
@@ -7228,6 +7283,24 @@ const (
 
 	// EntityTypeColumnHeader is a EntityType enum value
 	EntityTypeColumnHeader = "COLUMN_HEADER"
+
+	// EntityTypeTableTitle is a EntityType enum value
+	EntityTypeTableTitle = "TABLE_TITLE"
+
+	// EntityTypeTableFooter is a EntityType enum value
+	EntityTypeTableFooter = "TABLE_FOOTER"
+
+	// EntityTypeTableSectionTitle is a EntityType enum value
+	EntityTypeTableSectionTitle = "TABLE_SECTION_TITLE"
+
+	// EntityTypeTableSummary is a EntityType enum value
+	EntityTypeTableSummary = "TABLE_SUMMARY"
+
+	// EntityTypeStructuredTable is a EntityType enum value
+	EntityTypeStructuredTable = "STRUCTURED_TABLE"
+
+	// EntityTypeSemiStructuredTable is a EntityType enum value
+	EntityTypeSemiStructuredTable = "SEMI_STRUCTURED_TABLE"
 )
 
 // EntityType_Values returns all elements of the EntityType enum
@@ -7236,6 +7309,12 @@ func EntityType_Values() []string {
 		EntityTypeKey,
 		EntityTypeValue,
 		EntityTypeColumnHeader,
+		EntityTypeTableTitle,
+		EntityTypeTableFooter,
+		EntityTypeTableSectionTitle,
+		EntityTypeTableSummary,
+		EntityTypeStructuredTable,
+		EntityTypeSemiStructuredTable,
 	}
 }
 
@@ -7305,6 +7384,15 @@ const (
 
 	// RelationshipTypeAnswer is a RelationshipType enum value
 	RelationshipTypeAnswer = "ANSWER"
+
+	// RelationshipTypeTable is a RelationshipType enum value
+	RelationshipTypeTable = "TABLE"
+
+	// RelationshipTypeTableTitle is a RelationshipType enum value
+	RelationshipTypeTableTitle = "TABLE_TITLE"
+
+	// RelationshipTypeTableFooter is a RelationshipType enum value
+	RelationshipTypeTableFooter = "TABLE_FOOTER"
 )
 
 // RelationshipType_Values returns all elements of the RelationshipType enum
@@ -7316,6 +7404,9 @@ func RelationshipType_Values() []string {
 		RelationshipTypeMergedCell,
 		RelationshipTypeTitle,
 		RelationshipTypeAnswer,
+		RelationshipTypeTable,
+		RelationshipTypeTableTitle,
+		RelationshipTypeTableFooter,
 	}
 }
 

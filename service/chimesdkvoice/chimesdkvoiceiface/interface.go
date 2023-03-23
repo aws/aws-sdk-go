@@ -104,6 +104,14 @@ type ChimeSDKVoiceAPI interface {
 	CreateVoiceConnectorGroupWithContext(aws.Context, *chimesdkvoice.CreateVoiceConnectorGroupInput, ...request.Option) (*chimesdkvoice.CreateVoiceConnectorGroupOutput, error)
 	CreateVoiceConnectorGroupRequest(*chimesdkvoice.CreateVoiceConnectorGroupInput) (*request.Request, *chimesdkvoice.CreateVoiceConnectorGroupOutput)
 
+	CreateVoiceProfile(*chimesdkvoice.CreateVoiceProfileInput) (*chimesdkvoice.CreateVoiceProfileOutput, error)
+	CreateVoiceProfileWithContext(aws.Context, *chimesdkvoice.CreateVoiceProfileInput, ...request.Option) (*chimesdkvoice.CreateVoiceProfileOutput, error)
+	CreateVoiceProfileRequest(*chimesdkvoice.CreateVoiceProfileInput) (*request.Request, *chimesdkvoice.CreateVoiceProfileOutput)
+
+	CreateVoiceProfileDomain(*chimesdkvoice.CreateVoiceProfileDomainInput) (*chimesdkvoice.CreateVoiceProfileDomainOutput, error)
+	CreateVoiceProfileDomainWithContext(aws.Context, *chimesdkvoice.CreateVoiceProfileDomainInput, ...request.Option) (*chimesdkvoice.CreateVoiceProfileDomainOutput, error)
+	CreateVoiceProfileDomainRequest(*chimesdkvoice.CreateVoiceProfileDomainInput) (*request.Request, *chimesdkvoice.CreateVoiceProfileDomainOutput)
+
 	DeletePhoneNumber(*chimesdkvoice.DeletePhoneNumberInput) (*chimesdkvoice.DeletePhoneNumberOutput, error)
 	DeletePhoneNumberWithContext(aws.Context, *chimesdkvoice.DeletePhoneNumberInput, ...request.Option) (*chimesdkvoice.DeletePhoneNumberOutput, error)
 	DeletePhoneNumberRequest(*chimesdkvoice.DeletePhoneNumberInput) (*request.Request, *chimesdkvoice.DeletePhoneNumberOutput)
@@ -152,6 +160,14 @@ type ChimeSDKVoiceAPI interface {
 	DeleteVoiceConnectorTerminationCredentialsWithContext(aws.Context, *chimesdkvoice.DeleteVoiceConnectorTerminationCredentialsInput, ...request.Option) (*chimesdkvoice.DeleteVoiceConnectorTerminationCredentialsOutput, error)
 	DeleteVoiceConnectorTerminationCredentialsRequest(*chimesdkvoice.DeleteVoiceConnectorTerminationCredentialsInput) (*request.Request, *chimesdkvoice.DeleteVoiceConnectorTerminationCredentialsOutput)
 
+	DeleteVoiceProfile(*chimesdkvoice.DeleteVoiceProfileInput) (*chimesdkvoice.DeleteVoiceProfileOutput, error)
+	DeleteVoiceProfileWithContext(aws.Context, *chimesdkvoice.DeleteVoiceProfileInput, ...request.Option) (*chimesdkvoice.DeleteVoiceProfileOutput, error)
+	DeleteVoiceProfileRequest(*chimesdkvoice.DeleteVoiceProfileInput) (*request.Request, *chimesdkvoice.DeleteVoiceProfileOutput)
+
+	DeleteVoiceProfileDomain(*chimesdkvoice.DeleteVoiceProfileDomainInput) (*chimesdkvoice.DeleteVoiceProfileDomainOutput, error)
+	DeleteVoiceProfileDomainWithContext(aws.Context, *chimesdkvoice.DeleteVoiceProfileDomainInput, ...request.Option) (*chimesdkvoice.DeleteVoiceProfileDomainOutput, error)
+	DeleteVoiceProfileDomainRequest(*chimesdkvoice.DeleteVoiceProfileDomainInput) (*request.Request, *chimesdkvoice.DeleteVoiceProfileDomainOutput)
+
 	DisassociatePhoneNumbersFromVoiceConnector(*chimesdkvoice.DisassociatePhoneNumbersFromVoiceConnectorInput) (*chimesdkvoice.DisassociatePhoneNumbersFromVoiceConnectorOutput, error)
 	DisassociatePhoneNumbersFromVoiceConnectorWithContext(aws.Context, *chimesdkvoice.DisassociatePhoneNumbersFromVoiceConnectorInput, ...request.Option) (*chimesdkvoice.DisassociatePhoneNumbersFromVoiceConnectorOutput, error)
 	DisassociatePhoneNumbersFromVoiceConnectorRequest(*chimesdkvoice.DisassociatePhoneNumbersFromVoiceConnectorInput) (*request.Request, *chimesdkvoice.DisassociatePhoneNumbersFromVoiceConnectorOutput)
@@ -196,6 +212,10 @@ type ChimeSDKVoiceAPI interface {
 	GetSipRuleWithContext(aws.Context, *chimesdkvoice.GetSipRuleInput, ...request.Option) (*chimesdkvoice.GetSipRuleOutput, error)
 	GetSipRuleRequest(*chimesdkvoice.GetSipRuleInput) (*request.Request, *chimesdkvoice.GetSipRuleOutput)
 
+	GetSpeakerSearchTask(*chimesdkvoice.GetSpeakerSearchTaskInput) (*chimesdkvoice.GetSpeakerSearchTaskOutput, error)
+	GetSpeakerSearchTaskWithContext(aws.Context, *chimesdkvoice.GetSpeakerSearchTaskInput, ...request.Option) (*chimesdkvoice.GetSpeakerSearchTaskOutput, error)
+	GetSpeakerSearchTaskRequest(*chimesdkvoice.GetSpeakerSearchTaskInput) (*request.Request, *chimesdkvoice.GetSpeakerSearchTaskOutput)
+
 	GetVoiceConnector(*chimesdkvoice.GetVoiceConnectorInput) (*chimesdkvoice.GetVoiceConnectorOutput, error)
 	GetVoiceConnectorWithContext(aws.Context, *chimesdkvoice.GetVoiceConnectorInput, ...request.Option) (*chimesdkvoice.GetVoiceConnectorOutput, error)
 	GetVoiceConnectorRequest(*chimesdkvoice.GetVoiceConnectorInput) (*request.Request, *chimesdkvoice.GetVoiceConnectorOutput)
@@ -231,6 +251,18 @@ type ChimeSDKVoiceAPI interface {
 	GetVoiceConnectorTerminationHealth(*chimesdkvoice.GetVoiceConnectorTerminationHealthInput) (*chimesdkvoice.GetVoiceConnectorTerminationHealthOutput, error)
 	GetVoiceConnectorTerminationHealthWithContext(aws.Context, *chimesdkvoice.GetVoiceConnectorTerminationHealthInput, ...request.Option) (*chimesdkvoice.GetVoiceConnectorTerminationHealthOutput, error)
 	GetVoiceConnectorTerminationHealthRequest(*chimesdkvoice.GetVoiceConnectorTerminationHealthInput) (*request.Request, *chimesdkvoice.GetVoiceConnectorTerminationHealthOutput)
+
+	GetVoiceProfile(*chimesdkvoice.GetVoiceProfileInput) (*chimesdkvoice.GetVoiceProfileOutput, error)
+	GetVoiceProfileWithContext(aws.Context, *chimesdkvoice.GetVoiceProfileInput, ...request.Option) (*chimesdkvoice.GetVoiceProfileOutput, error)
+	GetVoiceProfileRequest(*chimesdkvoice.GetVoiceProfileInput) (*request.Request, *chimesdkvoice.GetVoiceProfileOutput)
+
+	GetVoiceProfileDomain(*chimesdkvoice.GetVoiceProfileDomainInput) (*chimesdkvoice.GetVoiceProfileDomainOutput, error)
+	GetVoiceProfileDomainWithContext(aws.Context, *chimesdkvoice.GetVoiceProfileDomainInput, ...request.Option) (*chimesdkvoice.GetVoiceProfileDomainOutput, error)
+	GetVoiceProfileDomainRequest(*chimesdkvoice.GetVoiceProfileDomainInput) (*request.Request, *chimesdkvoice.GetVoiceProfileDomainOutput)
+
+	GetVoiceToneAnalysisTask(*chimesdkvoice.GetVoiceToneAnalysisTaskInput) (*chimesdkvoice.GetVoiceToneAnalysisTaskOutput, error)
+	GetVoiceToneAnalysisTaskWithContext(aws.Context, *chimesdkvoice.GetVoiceToneAnalysisTaskInput, ...request.Option) (*chimesdkvoice.GetVoiceToneAnalysisTaskOutput, error)
+	GetVoiceToneAnalysisTaskRequest(*chimesdkvoice.GetVoiceToneAnalysisTaskInput) (*request.Request, *chimesdkvoice.GetVoiceToneAnalysisTaskOutput)
 
 	ListAvailableVoiceConnectorRegions(*chimesdkvoice.ListAvailableVoiceConnectorRegionsInput) (*chimesdkvoice.ListAvailableVoiceConnectorRegionsOutput, error)
 	ListAvailableVoiceConnectorRegionsWithContext(aws.Context, *chimesdkvoice.ListAvailableVoiceConnectorRegionsInput, ...request.Option) (*chimesdkvoice.ListAvailableVoiceConnectorRegionsOutput, error)
@@ -275,6 +307,10 @@ type ChimeSDKVoiceAPI interface {
 	ListSupportedPhoneNumberCountriesWithContext(aws.Context, *chimesdkvoice.ListSupportedPhoneNumberCountriesInput, ...request.Option) (*chimesdkvoice.ListSupportedPhoneNumberCountriesOutput, error)
 	ListSupportedPhoneNumberCountriesRequest(*chimesdkvoice.ListSupportedPhoneNumberCountriesInput) (*request.Request, *chimesdkvoice.ListSupportedPhoneNumberCountriesOutput)
 
+	ListTagsForResource(*chimesdkvoice.ListTagsForResourceInput) (*chimesdkvoice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *chimesdkvoice.ListTagsForResourceInput, ...request.Option) (*chimesdkvoice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*chimesdkvoice.ListTagsForResourceInput) (*request.Request, *chimesdkvoice.ListTagsForResourceOutput)
+
 	ListVoiceConnectorGroups(*chimesdkvoice.ListVoiceConnectorGroupsInput) (*chimesdkvoice.ListVoiceConnectorGroupsOutput, error)
 	ListVoiceConnectorGroupsWithContext(aws.Context, *chimesdkvoice.ListVoiceConnectorGroupsInput, ...request.Option) (*chimesdkvoice.ListVoiceConnectorGroupsOutput, error)
 	ListVoiceConnectorGroupsRequest(*chimesdkvoice.ListVoiceConnectorGroupsInput) (*request.Request, *chimesdkvoice.ListVoiceConnectorGroupsOutput)
@@ -292,6 +328,20 @@ type ChimeSDKVoiceAPI interface {
 
 	ListVoiceConnectorsPages(*chimesdkvoice.ListVoiceConnectorsInput, func(*chimesdkvoice.ListVoiceConnectorsOutput, bool) bool) error
 	ListVoiceConnectorsPagesWithContext(aws.Context, *chimesdkvoice.ListVoiceConnectorsInput, func(*chimesdkvoice.ListVoiceConnectorsOutput, bool) bool, ...request.Option) error
+
+	ListVoiceProfileDomains(*chimesdkvoice.ListVoiceProfileDomainsInput) (*chimesdkvoice.ListVoiceProfileDomainsOutput, error)
+	ListVoiceProfileDomainsWithContext(aws.Context, *chimesdkvoice.ListVoiceProfileDomainsInput, ...request.Option) (*chimesdkvoice.ListVoiceProfileDomainsOutput, error)
+	ListVoiceProfileDomainsRequest(*chimesdkvoice.ListVoiceProfileDomainsInput) (*request.Request, *chimesdkvoice.ListVoiceProfileDomainsOutput)
+
+	ListVoiceProfileDomainsPages(*chimesdkvoice.ListVoiceProfileDomainsInput, func(*chimesdkvoice.ListVoiceProfileDomainsOutput, bool) bool) error
+	ListVoiceProfileDomainsPagesWithContext(aws.Context, *chimesdkvoice.ListVoiceProfileDomainsInput, func(*chimesdkvoice.ListVoiceProfileDomainsOutput, bool) bool, ...request.Option) error
+
+	ListVoiceProfiles(*chimesdkvoice.ListVoiceProfilesInput) (*chimesdkvoice.ListVoiceProfilesOutput, error)
+	ListVoiceProfilesWithContext(aws.Context, *chimesdkvoice.ListVoiceProfilesInput, ...request.Option) (*chimesdkvoice.ListVoiceProfilesOutput, error)
+	ListVoiceProfilesRequest(*chimesdkvoice.ListVoiceProfilesInput) (*request.Request, *chimesdkvoice.ListVoiceProfilesOutput)
+
+	ListVoiceProfilesPages(*chimesdkvoice.ListVoiceProfilesInput, func(*chimesdkvoice.ListVoiceProfilesOutput, bool) bool) error
+	ListVoiceProfilesPagesWithContext(aws.Context, *chimesdkvoice.ListVoiceProfilesInput, func(*chimesdkvoice.ListVoiceProfilesOutput, bool) bool, ...request.Option) error
 
 	PutSipMediaApplicationAlexaSkillConfiguration(*chimesdkvoice.PutSipMediaApplicationAlexaSkillConfigurationInput) (*chimesdkvoice.PutSipMediaApplicationAlexaSkillConfigurationOutput, error)
 	PutSipMediaApplicationAlexaSkillConfigurationWithContext(aws.Context, *chimesdkvoice.PutSipMediaApplicationAlexaSkillConfigurationInput, ...request.Option) (*chimesdkvoice.PutSipMediaApplicationAlexaSkillConfigurationOutput, error)
@@ -340,6 +390,30 @@ type ChimeSDKVoiceAPI interface {
 	SearchAvailablePhoneNumbersPages(*chimesdkvoice.SearchAvailablePhoneNumbersInput, func(*chimesdkvoice.SearchAvailablePhoneNumbersOutput, bool) bool) error
 	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *chimesdkvoice.SearchAvailablePhoneNumbersInput, func(*chimesdkvoice.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
+	StartSpeakerSearchTask(*chimesdkvoice.StartSpeakerSearchTaskInput) (*chimesdkvoice.StartSpeakerSearchTaskOutput, error)
+	StartSpeakerSearchTaskWithContext(aws.Context, *chimesdkvoice.StartSpeakerSearchTaskInput, ...request.Option) (*chimesdkvoice.StartSpeakerSearchTaskOutput, error)
+	StartSpeakerSearchTaskRequest(*chimesdkvoice.StartSpeakerSearchTaskInput) (*request.Request, *chimesdkvoice.StartSpeakerSearchTaskOutput)
+
+	StartVoiceToneAnalysisTask(*chimesdkvoice.StartVoiceToneAnalysisTaskInput) (*chimesdkvoice.StartVoiceToneAnalysisTaskOutput, error)
+	StartVoiceToneAnalysisTaskWithContext(aws.Context, *chimesdkvoice.StartVoiceToneAnalysisTaskInput, ...request.Option) (*chimesdkvoice.StartVoiceToneAnalysisTaskOutput, error)
+	StartVoiceToneAnalysisTaskRequest(*chimesdkvoice.StartVoiceToneAnalysisTaskInput) (*request.Request, *chimesdkvoice.StartVoiceToneAnalysisTaskOutput)
+
+	StopSpeakerSearchTask(*chimesdkvoice.StopSpeakerSearchTaskInput) (*chimesdkvoice.StopSpeakerSearchTaskOutput, error)
+	StopSpeakerSearchTaskWithContext(aws.Context, *chimesdkvoice.StopSpeakerSearchTaskInput, ...request.Option) (*chimesdkvoice.StopSpeakerSearchTaskOutput, error)
+	StopSpeakerSearchTaskRequest(*chimesdkvoice.StopSpeakerSearchTaskInput) (*request.Request, *chimesdkvoice.StopSpeakerSearchTaskOutput)
+
+	StopVoiceToneAnalysisTask(*chimesdkvoice.StopVoiceToneAnalysisTaskInput) (*chimesdkvoice.StopVoiceToneAnalysisTaskOutput, error)
+	StopVoiceToneAnalysisTaskWithContext(aws.Context, *chimesdkvoice.StopVoiceToneAnalysisTaskInput, ...request.Option) (*chimesdkvoice.StopVoiceToneAnalysisTaskOutput, error)
+	StopVoiceToneAnalysisTaskRequest(*chimesdkvoice.StopVoiceToneAnalysisTaskInput) (*request.Request, *chimesdkvoice.StopVoiceToneAnalysisTaskOutput)
+
+	TagResource(*chimesdkvoice.TagResourceInput) (*chimesdkvoice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *chimesdkvoice.TagResourceInput, ...request.Option) (*chimesdkvoice.TagResourceOutput, error)
+	TagResourceRequest(*chimesdkvoice.TagResourceInput) (*request.Request, *chimesdkvoice.TagResourceOutput)
+
+	UntagResource(*chimesdkvoice.UntagResourceInput) (*chimesdkvoice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *chimesdkvoice.UntagResourceInput, ...request.Option) (*chimesdkvoice.UntagResourceOutput, error)
+	UntagResourceRequest(*chimesdkvoice.UntagResourceInput) (*request.Request, *chimesdkvoice.UntagResourceOutput)
+
 	UpdateGlobalSettings(*chimesdkvoice.UpdateGlobalSettingsInput) (*chimesdkvoice.UpdateGlobalSettingsOutput, error)
 	UpdateGlobalSettingsWithContext(aws.Context, *chimesdkvoice.UpdateGlobalSettingsInput, ...request.Option) (*chimesdkvoice.UpdateGlobalSettingsOutput, error)
 	UpdateGlobalSettingsRequest(*chimesdkvoice.UpdateGlobalSettingsInput) (*request.Request, *chimesdkvoice.UpdateGlobalSettingsOutput)
@@ -375,6 +449,14 @@ type ChimeSDKVoiceAPI interface {
 	UpdateVoiceConnectorGroup(*chimesdkvoice.UpdateVoiceConnectorGroupInput) (*chimesdkvoice.UpdateVoiceConnectorGroupOutput, error)
 	UpdateVoiceConnectorGroupWithContext(aws.Context, *chimesdkvoice.UpdateVoiceConnectorGroupInput, ...request.Option) (*chimesdkvoice.UpdateVoiceConnectorGroupOutput, error)
 	UpdateVoiceConnectorGroupRequest(*chimesdkvoice.UpdateVoiceConnectorGroupInput) (*request.Request, *chimesdkvoice.UpdateVoiceConnectorGroupOutput)
+
+	UpdateVoiceProfile(*chimesdkvoice.UpdateVoiceProfileInput) (*chimesdkvoice.UpdateVoiceProfileOutput, error)
+	UpdateVoiceProfileWithContext(aws.Context, *chimesdkvoice.UpdateVoiceProfileInput, ...request.Option) (*chimesdkvoice.UpdateVoiceProfileOutput, error)
+	UpdateVoiceProfileRequest(*chimesdkvoice.UpdateVoiceProfileInput) (*request.Request, *chimesdkvoice.UpdateVoiceProfileOutput)
+
+	UpdateVoiceProfileDomain(*chimesdkvoice.UpdateVoiceProfileDomainInput) (*chimesdkvoice.UpdateVoiceProfileDomainOutput, error)
+	UpdateVoiceProfileDomainWithContext(aws.Context, *chimesdkvoice.UpdateVoiceProfileDomainInput, ...request.Option) (*chimesdkvoice.UpdateVoiceProfileDomainOutput, error)
+	UpdateVoiceProfileDomainRequest(*chimesdkvoice.UpdateVoiceProfileDomainInput) (*request.Request, *chimesdkvoice.UpdateVoiceProfileDomainOutput)
 
 	ValidateE911Address(*chimesdkvoice.ValidateE911AddressInput) (*chimesdkvoice.ValidateE911AddressOutput, error)
 	ValidateE911AddressWithContext(aws.Context, *chimesdkvoice.ValidateE911AddressInput, ...request.Option) (*chimesdkvoice.ValidateE911AddressOutput, error)

@@ -17,16 +17,16 @@
     "DeleteFilter": "<p>Deletes the filter specified by the filter name.</p>",
     "DeleteIPSet": "<p>Deletes the IPSet specified by the <code>ipSetId</code>. IPSets are called trusted IP lists in the console user interface.</p>",
     "DeleteInvitations": "<p>Deletes invitations sent to the current member account by Amazon Web Services accounts specified by their account IDs.</p>",
-    "DeleteMembers": "<p>Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p>",
+    "DeleteMembers": "<p>Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p> <p>With <code>autoEnableOrganizationMembers</code> configuration for your organization set to <code>ALL</code>, you'll receive an error if you attempt to disable GuardDuty for a member account in your organization.</p>",
     "DeletePublishingDestination": "<p>Deletes the publishing definition with the specified <code>destinationId</code>.</p>",
     "DeleteThreatIntelSet": "<p>Deletes the ThreatIntelSet specified by the ThreatIntelSet ID.</p>",
     "DescribeMalwareScans": "<p>Returns a list of malware scans. Each member account can view the malware scans for their own accounts. An administrator can view the malware scans for all the member accounts.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "DescribeOrganizationConfiguration": "<p>Returns information about the account selected as the delegated administrator for GuardDuty.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "DescribePublishingDestination": "<p>Returns information about the publishing destination specified by the provided <code>destinationId</code>.</p>",
     "DisableOrganizationAdminAccount": "<p>Disables an Amazon Web Services account within the Organization as the GuardDuty delegated administrator.</p>",
-    "DisassociateFromAdministratorAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p>",
+    "DisassociateFromAdministratorAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p> <p>With <code>autoEnableOrganizationMembers</code> configuration for your organization set to <code>ALL</code>, you'll receive an error if you attempt to disable GuardDuty in a member account.</p>",
     "DisassociateFromMasterAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p>",
-    "DisassociateMembers": "<p>Disassociates GuardDuty member accounts (to the current administrator account) specified by the account IDs.</p>",
+    "DisassociateMembers": "<p>Disassociates GuardDuty member accounts (to the current administrator account) specified by the account IDs.</p> <p>With <code>autoEnableOrganizationMembers</code> configuration for your organization set to <code>ALL</code>, you'll receive an error if you attempt to disassociate a member account before removing them from your Amazon Web Services organization.</p>",
     "EnableOrganizationAdminAccount": "<p>Enables an Amazon Web Services account within the organization as the GuardDuty delegated administrator.</p>",
     "GetAdministratorAccount": "<p>Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.</p>",
     "GetDetector": "<p>Retrieves an Amazon GuardDuty detector specified by the detectorId.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
@@ -53,8 +53,8 @@
     "ListPublishingDestinations": "<p>Returns a list of publishing destinations associated with the specified <code>detectorId</code>.</p>",
     "ListTagsForResource": "<p>Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, and threat intel sets, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.</p>",
     "ListThreatIntelSets": "<p>Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the ThreatIntelSets associated with the administrator account are returned.</p>",
-    "StartMonitoringMembers": "<p>Turns on GuardDuty monitoring of the specified member accounts. Use this operation to restart monitoring of accounts that you stopped monitoring with the <code>StopMonitoringMembers</code> operation.</p>",
-    "StopMonitoringMembers": "<p>Stops GuardDuty monitoring for the specified member accounts. Use the <code>StartMonitoringMembers</code> operation to restart monitoring for those accounts.</p>",
+    "StartMonitoringMembers": "<p>Turns on GuardDuty monitoring of the specified member accounts. Use this operation to restart monitoring of accounts that you stopped monitoring with the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_StopMonitoringMembers.html\">StopMonitoringMembers</a> operation.</p>",
+    "StopMonitoringMembers": "<p>Stops GuardDuty monitoring for the specified member accounts. Use the <code>StartMonitoringMembers</code> operation to restart monitoring for those accounts.</p> <p>With <code>autoEnableOrganizationMembers</code> configuration for your organization set to <code>ALL</code>, you'll receive an error if you attempt to stop monitoring the member accounts in your organization.</p>",
     "TagResource": "<p>Adds tags to a resource.</p>",
     "UnarchiveFindings": "<p>Unarchives GuardDuty findings specified by the <code>findingIds</code>.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
@@ -64,7 +64,7 @@
     "UpdateIPSet": "<p>Updates the IPSet specified by the IPSet ID.</p>",
     "UpdateMalwareScanSettings": "<p>Updates the malware scan settings.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "UpdateMemberDetectors": "<p>Contains information on member accounts to be updated.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
-    "UpdateOrganizationConfiguration": "<p>Updates the delegated administrator account with the values provided.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
+    "UpdateOrganizationConfiguration": "<p>Configures the delegated administrator account with the provided values. You must provide the value for either <code>autoEnableOrganizationMembers</code> or <code>autoEnable</code>. </p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "UpdatePublishingDestination": "<p>Updates information about the publishing destination specified by the <code>destinationId</code>.</p>",
     "UpdateThreatIntelSet": "<p>Updates the ThreatIntelSet specified by the ThreatIntelSet ID.</p>"
   },
@@ -207,6 +207,13 @@
     "ArchiveFindingsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "AutoEnableMembers": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationConfigurationResponse$AutoEnableOrganizationMembers": "<p>Indicates the auto-enablement configuration of GuardDuty for the member accounts in the organization.</p> <ul> <li> <p> <code>NEW</code>: Indicates that new accounts joining the organization are configured to have GuardDuty enabled automatically.</p> </li> <li> <p> <code>ALL</code>: Indicates that all accounts (new and existing members) in the organization are configured to have GuardDuty enabled automatically.</p> </li> <li> <p> <code>NONE</code>: Indicates that no account in the organization will be configured to have GuardDuty enabled automatically.</p> </li> </ul>",
+        "UpdateOrganizationConfigurationRequest$AutoEnableOrganizationMembers": "<p>Indicates the auto-enablement configuration of GuardDuty for the member accounts in the organization. </p> <ul> <li> <p> <code>NEW</code>: Indicates that new accounts joining the organization are configured to have GuardDuty enabled automatically.</p> </li> <li> <p> <code>ALL</code>: Indicates that all accounts (new and existing members) in the organization are configured to have GuardDuty enabled automatically.</p> </li> <li> <p> <code>NONE</code>: Indicates that no account in the organization will be configured to have GuardDuty enabled automatically.</p> </li> </ul>"
       }
     },
     "AwsApiCallAction": {
@@ -717,7 +724,7 @@
         "UpdateIPSetRequest$DetectorId": "<p>The detectorID that specifies the GuardDuty service whose IPSet you want to update.</p>",
         "UpdateMalwareScanSettingsRequest$DetectorId": "<p>The unique ID of the detector that specifies the GuardDuty service where you want to update scan settings.</p>",
         "UpdateMemberDetectorsRequest$DetectorId": "<p>The detector ID of the administrator account.</p>",
-        "UpdateOrganizationConfigurationRequest$DetectorId": "<p>The ID of the detector to update the delegated administrator for.</p>",
+        "UpdateOrganizationConfigurationRequest$DetectorId": "<p>The ID of the detector that configures the delegated administrator.</p>",
         "UpdatePublishingDestinationRequest$DetectorId": "<p>The ID of the detector associated with the publishing destinations to update.</p>",
         "UpdateThreatIntelSetRequest$DetectorId": "<p>The detectorID that specifies the GuardDuty service whose ThreatIntelSet you want to update.</p>"
       }

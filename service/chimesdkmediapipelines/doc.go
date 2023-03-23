@@ -5,8 +5,8 @@
 //
 // The Amazon Chime SDK media pipeline APIs in this section allow software developers
 // to create Amazon Chime SDK media pipelines that capture, concatenate, or
-// stream your Amazon Chime SDK meetings. For more information about media pipleines,
-// see Amazon Chime SDK media pipelines (http://amazonaws.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Media_Pipelines.html).
+// stream your Amazon Chime SDK meetings. For more information about media pipelines,
+// see Amazon Chime SDK media pipelines (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_Operations_Amazon_Chime_SDK_Media_Pipelines.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-media-pipelines-2021-07-15 for more information on this service.
 //

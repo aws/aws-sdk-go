@@ -246,6 +246,10 @@ type ChimeSDKMessagingAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *chimesdkmessaging.ListTagsForResourceInput, ...request.Option) (*chimesdkmessaging.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*chimesdkmessaging.ListTagsForResourceInput) (*request.Request, *chimesdkmessaging.ListTagsForResourceOutput)
 
+	PutChannelExpirationSettings(*chimesdkmessaging.PutChannelExpirationSettingsInput) (*chimesdkmessaging.PutChannelExpirationSettingsOutput, error)
+	PutChannelExpirationSettingsWithContext(aws.Context, *chimesdkmessaging.PutChannelExpirationSettingsInput, ...request.Option) (*chimesdkmessaging.PutChannelExpirationSettingsOutput, error)
+	PutChannelExpirationSettingsRequest(*chimesdkmessaging.PutChannelExpirationSettingsInput) (*request.Request, *chimesdkmessaging.PutChannelExpirationSettingsOutput)
+
 	PutChannelMembershipPreferences(*chimesdkmessaging.PutChannelMembershipPreferencesInput) (*chimesdkmessaging.PutChannelMembershipPreferencesOutput, error)
 	PutChannelMembershipPreferencesWithContext(aws.Context, *chimesdkmessaging.PutChannelMembershipPreferencesInput, ...request.Option) (*chimesdkmessaging.PutChannelMembershipPreferencesOutput, error)
 	PutChannelMembershipPreferencesRequest(*chimesdkmessaging.PutChannelMembershipPreferencesInput) (*request.Request, *chimesdkmessaging.PutChannelMembershipPreferencesOutput)

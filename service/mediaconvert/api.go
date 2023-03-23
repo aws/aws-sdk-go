@@ -9942,19 +9942,15 @@ type DvbSubDestinationSettings struct {
 	// must be identical.
 	BackgroundOpacity *int64 `locationName:"backgroundOpacity" type:"integer"`
 
-	// Specify how MediaConvert handles the display definition segment (DDS). Keep
-	// the default, None (NONE), to exclude the DDS from this set of captions. Choose
-	// No display window (NO_DISPLAY_WINDOW) to have MediaConvert include the DDS
-	// but not include display window data. In this case, MediaConvert writes that
-	// information to the page composition segment (PCS) instead. Choose Specify
-	// (SPECIFIED) to have MediaConvert set up the display window based on the values
-	// that you specify in related job settings. For video resolutions that are
-	// 576 pixels or smaller in height, MediaConvert doesn't include the DDS, regardless
-	// of the value you choose for DDS handling (ddsHandling). In this case, it
-	// doesn't write the display window data to the PCS either. Related settings:
-	// Use the settings DDS x-coordinate (ddsXCoordinate) and DDS y-coordinate (ddsYCoordinate)
-	// to specify the offset between the top left corner of the display window and
-	// the top left corner of the video frame. All burn-in and DVB-Sub font settings
+	// Specify how MediaConvert handles the display definition segment (DDS). To
+	// exclude the DDS from this set of captions: Keep the default, None. To include
+	// the DDS: Choose Specified. When you do, also specify the offset coordinates
+	// of the display window with DDS x-coordinate and DDS y-coordinate. To include
+	// the DDS, but not include display window data: Choose No display window. When
+	// you do, you can write position metadata to the page composition segment (PCS)
+	// with DDS x-coordinate and DDS y-coordinate. For video resolutions with a
+	// height of 576 pixels or less, MediaConvert doesn't include the DDS, regardless
+	// of the value you choose for DDS handling. All burn-in and DVB-Sub font settings
 	// must match.
 	DdsHandling *string `locationName:"ddsHandling" type:"string" enum:"DvbddsHandling"`
 
@@ -19128,11 +19124,11 @@ type MovSettings struct {
 	// video codec is MPEG2.
 	Mpeg2FourCCControl *string `locationName:"mpeg2FourCCControl" type:"string" enum:"MovMpeg2FourCCControl"`
 
-	// To make this output compatible with Omenon, keep the default value, OMNEON.
-	// Unless you need Omneon compatibility, set this value to NONE. When you keep
-	// the default value, OMNEON, MediaConvert increases the length of the edit
-	// list atom. This might cause file rejections when a recipient of the output
-	// file doesn't expct this extra padding.
+	// Unless you need Omneon compatibility: Keep the default value, None. To make
+	// this output compatible with Omneon: Choose Omneon. When you do, MediaConvert
+	// increases the length of the 'elst' edit list atom. Note that this might cause
+	// file rejections when a recipient of the output file doesn't expect this extra
+	// padding.
 	PaddingControl *string `locationName:"paddingControl" type:"string" enum:"MovPaddingControl"`
 
 	// Always keep the default value (SELF_CONTAINED) for this setting.
@@ -30424,19 +30420,15 @@ func DvbSubtitlingType_Values() []string {
 	}
 }
 
-// Specify how MediaConvert handles the display definition segment (DDS). Keep
-// the default, None (NONE), to exclude the DDS from this set of captions. Choose
-// No display window (NO_DISPLAY_WINDOW) to have MediaConvert include the DDS
-// but not include display window data. In this case, MediaConvert writes that
-// information to the page composition segment (PCS) instead. Choose Specify
-// (SPECIFIED) to have MediaConvert set up the display window based on the values
-// that you specify in related job settings. For video resolutions that are
-// 576 pixels or smaller in height, MediaConvert doesn't include the DDS, regardless
-// of the value you choose for DDS handling (ddsHandling). In this case, it
-// doesn't write the display window data to the PCS either. Related settings:
-// Use the settings DDS x-coordinate (ddsXCoordinate) and DDS y-coordinate (ddsYCoordinate)
-// to specify the offset between the top left corner of the display window and
-// the top left corner of the video frame. All burn-in and DVB-Sub font settings
+// Specify how MediaConvert handles the display definition segment (DDS). To
+// exclude the DDS from this set of captions: Keep the default, None. To include
+// the DDS: Choose Specified. When you do, also specify the offset coordinates
+// of the display window with DDS x-coordinate and DDS y-coordinate. To include
+// the DDS, but not include display window data: Choose No display window. When
+// you do, you can write position metadata to the page composition segment (PCS)
+// with DDS x-coordinate and DDS y-coordinate. For video resolutions with a
+// height of 576 pixels or less, MediaConvert doesn't include the DDS, regardless
+// of the value you choose for DDS handling. All burn-in and DVB-Sub font settings
 // must match.
 const (
 	// DvbddsHandlingNone is a DvbddsHandling enum value
@@ -34818,11 +34810,11 @@ func MovMpeg2FourCCControl_Values() []string {
 	}
 }
 
-// To make this output compatible with Omenon, keep the default value, OMNEON.
-// Unless you need Omneon compatibility, set this value to NONE. When you keep
-// the default value, OMNEON, MediaConvert increases the length of the edit
-// list atom. This might cause file rejections when a recipient of the output
-// file doesn't expct this extra padding.
+// Unless you need Omneon compatibility: Keep the default value, None. To make
+// this output compatible with Omneon: Choose Omneon. When you do, MediaConvert
+// increases the length of the 'elst' edit list atom. Note that this might cause
+// file rejections when a recipient of the output file doesn't expect this extra
+// padding.
 const (
 	// MovPaddingControlOmneon is a MovPaddingControl enum value
 	MovPaddingControlOmneon = "OMNEON"

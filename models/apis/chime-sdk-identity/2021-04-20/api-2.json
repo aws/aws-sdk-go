@@ -51,6 +51,26 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateAppInstanceBot":{
+      "name":"CreateAppInstanceBot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/app-instance-bots",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateAppInstanceBotRequest"},
+      "output":{"shape":"CreateAppInstanceBotResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "CreateAppInstanceUser":{
       "name":"CreateAppInstanceUser",
       "http":{
@@ -97,6 +117,25 @@
         "responseCode":204
       },
       "input":{"shape":"DeleteAppInstanceAdminRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteAppInstanceBot":{
+      "name":"DeleteAppInstanceBot",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/app-instance-bots/{appInstanceBotArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteAppInstanceBotRequest"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
@@ -179,6 +218,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DescribeAppInstanceBot":{
+      "name":"DescribeAppInstanceBot",
+      "http":{
+        "method":"GET",
+        "requestUri":"/app-instance-bots/{appInstanceBotArn}"
+      },
+      "input":{"shape":"DescribeAppInstanceBotRequest"},
+      "output":{"shape":"DescribeAppInstanceBotResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DescribeAppInstanceUser":{
       "name":"DescribeAppInstanceUser",
       "http":{
@@ -241,6 +298,24 @@
       },
       "input":{"shape":"ListAppInstanceAdminsRequest"},
       "output":{"shape":"ListAppInstanceAdminsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListAppInstanceBots":{
+      "name":"ListAppInstanceBots",
+      "http":{
+        "method":"GET",
+        "requestUri":"/app-instance-bots"
+      },
+      "input":{"shape":"ListAppInstanceBotsRequest"},
+      "output":{"shape":"ListAppInstanceBotsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -339,6 +414,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "PutAppInstanceUserExpirationSettings":{
+      "name":"PutAppInstanceUserExpirationSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/app-instance-users/{appInstanceUserArn}/expiration-settings",
+        "responseCode":200
+      },
+      "input":{"shape":"PutAppInstanceUserExpirationSettingsRequest"},
+      "output":{"shape":"PutAppInstanceUserExpirationSettingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "RegisterAppInstanceUserEndpoint":{
       "name":"RegisterAppInstanceUserEndpoint",
       "http":{
@@ -407,6 +501,26 @@
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
         {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateAppInstanceBot":{
+      "name":"UpdateAppInstanceBot",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/app-instance-bots/{appInstanceBotArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAppInstanceBotRequest"},
+      "output":{"shape":"UpdateAppInstanceBotResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
         {"shape":"ThrottledClientException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
@@ -489,6 +603,29 @@
         "Admin":{"shape":"Identity"}
       }
     },
+    "AppInstanceBot":{
+      "type":"structure",
+      "members":{
+        "AppInstanceBotArn":{"shape":"ChimeArn"},
+        "Name":{"shape":"ResourceName"},
+        "Configuration":{"shape":"Configuration"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"},
+        "Metadata":{"shape":"Metadata"}
+      }
+    },
+    "AppInstanceBotList":{
+      "type":"list",
+      "member":{"shape":"AppInstanceBotSummary"}
+    },
+    "AppInstanceBotSummary":{
+      "type":"structure",
+      "members":{
+        "AppInstanceBotArn":{"shape":"ChimeArn"},
+        "Name":{"shape":"ResourceName"},
+        "Metadata":{"shape":"Metadata"}
+      }
+    },
     "AppInstanceList":{
       "type":"list",
       "member":{"shape":"AppInstanceSummary"}
@@ -514,7 +651,8 @@
         "Name":{"shape":"UserName"},
         "Metadata":{"shape":"Metadata"},
         "CreatedTimestamp":{"shape":"Timestamp"},
-        "LastUpdatedTimestamp":{"shape":"Timestamp"}
+        "LastUpdatedTimestamp":{"shape":"Timestamp"},
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
       }
     },
     "AppInstanceUserEndpoint":{
@@ -524,7 +662,7 @@
         "EndpointId":{"shape":"SensitiveString64"},
         "Name":{"shape":"SensitiveString1600"},
         "Type":{"shape":"AppInstanceUserEndpointType"},
-        "ResourceArn":{"shape":"SensitiveChimeArn"},
+        "ResourceArn":{"shape":"ChimeArn"},
         "EndpointAttributes":{"shape":"EndpointAttributes"},
         "CreatedTimestamp":{"shape":"Timestamp"},
         "LastUpdatedTimestamp":{"shape":"Timestamp"},
@@ -592,8 +730,14 @@
       "type":"string",
       "max":64,
       "min":2,
-      "pattern":"[-_a-zA-Z0-9]*",
-      "sensitive":true
+      "pattern":"[-_a-zA-Z0-9]*"
+    },
+    "Configuration":{
+      "type":"structure",
+      "required":["Lex"],
+      "members":{
+        "Lex":{"shape":"LexConfiguration"}
+      }
     },
     "ConflictException":{
       "type":"structure",
@@ -624,6 +768,31 @@
       "members":{
         "AppInstanceAdmin":{"shape":"Identity"},
         "AppInstanceArn":{"shape":"ChimeArn"}
+      }
+    },
+    "CreateAppInstanceBotRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceArn",
+        "ClientRequestToken",
+        "Configuration"
+      ],
+      "members":{
+        "AppInstanceArn":{"shape":"ChimeArn"},
+        "Name":{"shape":"ResourceName"},
+        "Metadata":{"shape":"Metadata"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"TagList"},
+        "Configuration":{"shape":"Configuration"}
+      }
+    },
+    "CreateAppInstanceBotResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceBotArn":{"shape":"ChimeArn"}
       }
     },
     "CreateAppInstanceRequest":{
@@ -665,7 +834,8 @@
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
       }
     },
     "CreateAppInstanceUserResponse":{
@@ -690,6 +860,17 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"appInstanceArn"
+        }
+      }
+    },
+    "DeleteAppInstanceBotRequest":{
+      "type":"structure",
+      "required":["AppInstanceBotArn"],
+      "members":{
+        "AppInstanceBotArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceBotArn"
         }
       }
     },
@@ -757,6 +938,23 @@
       "type":"structure",
       "members":{
         "AppInstanceAdmin":{"shape":"AppInstanceAdmin"}
+      }
+    },
+    "DescribeAppInstanceBotRequest":{
+      "type":"structure",
+      "required":["AppInstanceBotArn"],
+      "members":{
+        "AppInstanceBotArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceBotArn"
+        }
+      }
+    },
+    "DescribeAppInstanceBotResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceBot":{"shape":"AppInstanceBot"}
       }
     },
     "DescribeAppInstanceRequest":{
@@ -868,6 +1066,26 @@
         "PhoneNumberAssociationsExist"
       ]
     },
+    "ExpirationCriterion":{
+      "type":"string",
+      "enum":["CREATED_TIMESTAMP"]
+    },
+    "ExpirationDays":{
+      "type":"integer",
+      "max":5475,
+      "min":1
+    },
+    "ExpirationSettings":{
+      "type":"structure",
+      "required":[
+        "ExpirationDays",
+        "ExpirationCriterion"
+      ],
+      "members":{
+        "ExpirationDays":{"shape":"ExpirationDays"},
+        "ExpirationCriterion":{"shape":"ExpirationCriterion"}
+      }
+    },
     "ForbiddenException":{
       "type":"structure",
       "members":{
@@ -902,6 +1120,32 @@
         "Name":{"shape":"ResourceName"}
       }
     },
+    "LexBotAliasArn":{
+      "type":"string",
+      "max":2048,
+      "min":15,
+      "pattern":"arn:aws:lex:[a-z]{2}-[a-z]+-\\d{1}:\\d{12}:bot-alias/[A-Z0-9]{10}/[A-Z0-9]{10}"
+    },
+    "LexConfiguration":{
+      "type":"structure",
+      "required":[
+        "RespondsTo",
+        "LexBotAliasArn",
+        "LocaleId"
+      ],
+      "members":{
+        "RespondsTo":{"shape":"RespondsTo"},
+        "LexBotAliasArn":{"shape":"LexBotAliasArn"},
+        "LocaleId":{"shape":"String"},
+        "WelcomeIntent":{"shape":"LexIntentName"}
+      }
+    },
+    "LexIntentName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([A-Za-z]_?)+$"
+    },
     "ListAppInstanceAdminsRequest":{
       "type":"structure",
       "required":["AppInstanceArn"],
@@ -928,6 +1172,35 @@
       "members":{
         "AppInstanceArn":{"shape":"ChimeArn"},
         "AppInstanceAdmins":{"shape":"AppInstanceAdminList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAppInstanceBotsRequest":{
+      "type":"structure",
+      "required":["AppInstanceArn"],
+      "members":{
+        "AppInstanceArn":{
+          "shape":"ChimeArn",
+          "location":"querystring",
+          "locationName":"app-instance-arn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListAppInstanceBotsResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceArn":{"shape":"ChimeArn"},
+        "AppInstanceBots":{"shape":"AppInstanceBotList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1060,6 +1333,15 @@
       "pattern":".*",
       "sensitive":true
     },
+    "NotFoundException":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"ErrorCode"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "PutAppInstanceRetentionSettingsRequest":{
       "type":"structure",
       "required":[
@@ -1082,6 +1364,25 @@
         "InitiateDeletionTimestamp":{"shape":"Timestamp"}
       }
     },
+    "PutAppInstanceUserExpirationSettingsRequest":{
+      "type":"structure",
+      "required":["AppInstanceUserArn"],
+      "members":{
+        "AppInstanceUserArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceUserArn"
+        },
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
+      }
+    },
+    "PutAppInstanceUserExpirationSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceUserArn":{"shape":"ChimeArn"},
+        "ExpirationSettings":{"shape":"ExpirationSettings"}
+      }
+    },
     "RegisterAppInstanceUserEndpointRequest":{
       "type":"structure",
       "required":[
@@ -1099,7 +1400,7 @@
         },
         "Name":{"shape":"SensitiveString1600"},
         "Type":{"shape":"AppInstanceUserEndpointType"},
-        "ResourceArn":{"shape":"SensitiveChimeArn"},
+        "ResourceArn":{"shape":"ChimeArn"},
         "EndpointAttributes":{"shape":"EndpointAttributes"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
@@ -1130,6 +1431,10 @@
       "min":0,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*",
       "sensitive":true
+    },
+    "RespondsTo":{
+      "type":"string",
+      "enum":["STANDARD_MESSAGES"]
     },
     "RetentionDays":{
       "type":"integer",
@@ -1252,6 +1557,29 @@
       "members":{
         "ResourceARN":{"shape":"ChimeArn"},
         "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UpdateAppInstanceBotRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceBotArn",
+        "Name",
+        "Metadata"
+      ],
+      "members":{
+        "AppInstanceBotArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceBotArn"
+        },
+        "Name":{"shape":"ResourceName"},
+        "Metadata":{"shape":"Metadata"}
+      }
+    },
+    "UpdateAppInstanceBotResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceBotArn":{"shape":"ChimeArn"}
       }
     },
     "UpdateAppInstanceRequest":{

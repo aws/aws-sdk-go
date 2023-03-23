@@ -1,3 +1,24 @@
+Release v1.44.228 (2023-03-23)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This feature allows Batch to support configuration of ephemeral storage size for jobs running on FARGATE
+* `service/chime-sdk-identity`: Updates service API, documentation, and paginators
+* `service/chime-sdk-media-pipelines`: Updates service API, documentation, and paginators
+* `service/chime-sdk-messaging`: Updates service API and documentation
+* `service/chime-sdk-voice`: Updates service API, documentation, and paginators
+* `service/codeartifact`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Adds AutoEnableOrganizationMembers attribute to DescribeOrganizationConfiguration and UpdateOrganizationConfiguration APIs.
+* `service/ivs-realtime`: Adds new service
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK now supports passthrough of ID3v2 tags for audio inputs to audio-only HLS outputs.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Autopilot adds two new APIs - CreateAutoMLJobV2 and DescribeAutoMLJobV2. Amazon SageMaker Notebook Instances now supports the ml.geospatial.interactive instance type.
+* `service/servicediscovery`: Updates service API
+* `service/textract`: Updates service API and documentation
+
 Release v1.44.227 (2023-03-22)
 ===
 

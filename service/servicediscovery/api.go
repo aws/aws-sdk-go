@@ -92,12 +92,6 @@ func (c *ServiceDiscovery) CreateHttpNamespaceRequest(input *CreateHttpNamespace
 //     The list of tags on the resource is over the quota. The maximum number of
 //     tags that can be applied to a resource is 50.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreateHttpNamespace
 func (c *ServiceDiscovery) CreateHttpNamespace(input *CreateHttpNamespaceInput) (*CreateHttpNamespaceOutput, error) {
 	req, out := c.CreateHttpNamespaceRequest(input)
@@ -200,12 +194,6 @@ func (c *ServiceDiscovery) CreatePrivateDnsNamespaceRequest(input *CreatePrivate
 //   - TooManyTagsException
 //     The list of tags on the resource is over the quota. The maximum number of
 //     tags that can be applied to a resource is 50.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreatePrivateDnsNamespace
 func (c *ServiceDiscovery) CreatePrivateDnsNamespace(input *CreatePrivateDnsNamespaceInput) (*CreatePrivateDnsNamespaceOutput, error) {
@@ -312,12 +300,6 @@ func (c *ServiceDiscovery) CreatePublicDnsNamespaceRequest(input *CreatePublicDn
 //   - TooManyTagsException
 //     The list of tags on the resource is over the quota. The maximum number of
 //     tags that can be applied to a resource is 50.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreatePublicDnsNamespace
 func (c *ServiceDiscovery) CreatePublicDnsNamespace(input *CreatePublicDnsNamespaceInput) (*CreatePublicDnsNamespaceOutput, error) {
@@ -429,12 +411,6 @@ func (c *ServiceDiscovery) CreateServiceRequest(input *CreateServiceInput) (req 
 //     The list of tags on the resource is over the quota. The maximum number of
 //     tags that can be applied to a resource is 50.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreateService
 func (c *ServiceDiscovery) CreateService(input *CreateServiceInput) (*CreateServiceOutput, error) {
 	req, out := c.CreateServiceRequest(input)
@@ -527,12 +503,6 @@ func (c *ServiceDiscovery) DeleteNamespaceRequest(input *DeleteNamespaceInput) (
 //   - DuplicateRequest
 //     The operation is already in progress.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteNamespace
 func (c *ServiceDiscovery) DeleteNamespace(input *DeleteNamespaceInput) (*DeleteNamespaceOutput, error) {
 	req, out := c.DeleteNamespaceRequest(input)
@@ -622,12 +592,6 @@ func (c *ServiceDiscovery) DeleteServiceRequest(input *DeleteServiceInput) (req 
 //   - ResourceInUse
 //     The specified resource can't be deleted because it contains other resources.
 //     For example, you can't delete a service that contains any instances.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteService
 func (c *ServiceDiscovery) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, error) {
@@ -724,12 +688,6 @@ func (c *ServiceDiscovery) DeregisterInstanceRequest(input *DeregisterInstanceIn
 //
 //   - ServiceNotFound
 //     No service exists with the specified ID.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeregisterInstance
 func (c *ServiceDiscovery) DeregisterInstance(input *DeregisterInstanceInput) (*DeregisterInstanceOutput, error) {
@@ -917,12 +875,6 @@ func (c *ServiceDiscovery) GetInstanceRequest(input *GetInstanceInput) (req *req
 //   - ServiceNotFound
 //     No service exists with the specified ID.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetInstance
 func (c *ServiceDiscovery) GetInstance(input *GetInstanceInput) (*GetInstanceOutput, error) {
 	req, out := c.GetInstanceRequest(input)
@@ -1020,12 +972,6 @@ func (c *ServiceDiscovery) GetInstancesHealthStatusRequest(input *GetInstancesHe
 //
 //   - ServiceNotFound
 //     No service exists with the specified ID.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetInstancesHealthStatus
 func (c *ServiceDiscovery) GetInstancesHealthStatus(input *GetInstancesHealthStatusInput) (*GetInstancesHealthStatusOutput, error) {
@@ -1250,12 +1196,6 @@ func (c *ServiceDiscovery) GetOperationRequest(input *GetOperationInput) (req *r
 //   - OperationNotFound
 //     No operation exists with the specified ID.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetOperation
 func (c *ServiceDiscovery) GetOperation(input *GetOperationInput) (*GetOperationOutput, error) {
 	req, out := c.GetOperationRequest(input)
@@ -1339,12 +1279,6 @@ func (c *ServiceDiscovery) GetServiceRequest(input *GetServiceInput) (req *reque
 //
 //   - ServiceNotFound
 //     No service exists with the specified ID.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetService
 func (c *ServiceDiscovery) GetService(input *GetServiceInput) (*GetServiceOutput, error) {
@@ -1436,12 +1370,6 @@ func (c *ServiceDiscovery) ListInstancesRequest(input *ListInstancesInput) (req 
 //     One or more specified values aren't valid. For example, a required value
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListInstances
 func (c *ServiceDiscovery) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
@@ -1576,17 +1504,10 @@ func (c *ServiceDiscovery) ListNamespacesRequest(input *ListNamespacesInput) (re
 // API operation ListNamespaces for usage and error information.
 //
 // Returned Error Types:
-//
 //   - InvalidInput
 //     One or more specified values aren't valid. For example, a required value
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListNamespaces
 func (c *ServiceDiscovery) ListNamespaces(input *ListNamespacesInput) (*ListNamespacesOutput, error) {
@@ -1720,17 +1641,10 @@ func (c *ServiceDiscovery) ListOperationsRequest(input *ListOperationsInput) (re
 // API operation ListOperations for usage and error information.
 //
 // Returned Error Types:
-//
 //   - InvalidInput
 //     One or more specified values aren't valid. For example, a required value
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListOperations
 func (c *ServiceDiscovery) ListOperations(input *ListOperationsInput) (*ListOperationsOutput, error) {
@@ -1865,17 +1779,10 @@ func (c *ServiceDiscovery) ListServicesRequest(input *ListServicesInput) (req *r
 // API operation ListServices for usage and error information.
 //
 // Returned Error Types:
-//
 //   - InvalidInput
 //     One or more specified values aren't valid. For example, a required value
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListServices
 func (c *ServiceDiscovery) ListServices(input *ListServicesInput) (*ListServicesOutput, error) {
@@ -2012,12 +1919,6 @@ func (c *ServiceDiscovery) ListTagsForResourceRequest(input *ListTagsForResource
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListTagsForResource
 func (c *ServiceDiscovery) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
@@ -2145,12 +2046,6 @@ func (c *ServiceDiscovery) RegisterInstanceRequest(input *RegisterInstanceInput)
 //   - ServiceNotFound
 //     No service exists with the specified ID.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/RegisterInstance
 func (c *ServiceDiscovery) RegisterInstance(input *RegisterInstanceInput) (*RegisterInstanceOutput, error) {
 	req, out := c.RegisterInstanceRequest(input)
@@ -2240,12 +2135,6 @@ func (c *ServiceDiscovery) TagResourceRequest(input *TagResourceInput) (req *req
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/TagResource
 func (c *ServiceDiscovery) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
@@ -2330,12 +2219,6 @@ func (c *ServiceDiscovery) UntagResourceRequest(input *UntagResourceInput) (req 
 //     One or more specified values aren't valid. For example, a required value
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UntagResource
 func (c *ServiceDiscovery) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2427,12 +2310,6 @@ func (c *ServiceDiscovery) UpdateHttpNamespaceRequest(input *UpdateHttpNamespace
 //
 //   - DuplicateRequest
 //     The operation is already in progress.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateHttpNamespace
 func (c *ServiceDiscovery) UpdateHttpNamespace(input *UpdateHttpNamespaceInput) (*UpdateHttpNamespaceOutput, error) {
@@ -2535,12 +2412,6 @@ func (c *ServiceDiscovery) UpdateInstanceCustomHealthStatusRequest(input *Update
 //     might be missing, a numeric value might be outside the allowed range, or
 //     a string value might exceed length constraints.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateInstanceCustomHealthStatus
 func (c *ServiceDiscovery) UpdateInstanceCustomHealthStatus(input *UpdateInstanceCustomHealthStatusInput) (*UpdateInstanceCustomHealthStatusOutput, error) {
 	req, out := c.UpdateInstanceCustomHealthStatusRequest(input)
@@ -2632,12 +2503,6 @@ func (c *ServiceDiscovery) UpdatePrivateDnsNamespaceRequest(input *UpdatePrivate
 //   - DuplicateRequest
 //     The operation is already in progress.
 //
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdatePrivateDnsNamespace
 func (c *ServiceDiscovery) UpdatePrivateDnsNamespace(input *UpdatePrivateDnsNamespaceInput) (*UpdatePrivateDnsNamespaceOutput, error) {
 	req, out := c.UpdatePrivateDnsNamespaceRequest(input)
@@ -2728,12 +2593,6 @@ func (c *ServiceDiscovery) UpdatePublicDnsNamespaceRequest(input *UpdatePublicDn
 //
 //   - DuplicateRequest
 //     The operation is already in progress.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdatePublicDnsNamespace
 func (c *ServiceDiscovery) UpdatePublicDnsNamespace(input *UpdatePublicDnsNamespaceInput) (*UpdatePublicDnsNamespaceOutput, error) {
@@ -2839,12 +2698,6 @@ func (c *ServiceDiscovery) UpdateServiceRequest(input *UpdateServiceInput) (req 
 //
 //   - ServiceNotFound
 //     No service exists with the specified ID.
-//
-//   - RequestLimitExceeded
-//     The operation can't be completed because you've reached the quota for the
-//     number of requests. For more information, see Cloud Map API request throttling
-//     quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//     the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateService
 func (c *ServiceDiscovery) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, error) {

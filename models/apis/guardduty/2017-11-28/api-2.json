@@ -1200,6 +1200,14 @@
       "members":{
       }
     },
+    "AutoEnableMembers":{
+      "type":"string",
+      "enum":[
+        "NEW",
+        "ALL",
+        "NONE"
+      ]
+    },
     "AwsApiCallAction":{
       "type":"structure",
       "members":{
@@ -2133,13 +2141,12 @@
     },
     "DescribeOrganizationConfigurationResponse":{
       "type":"structure",
-      "required":[
-        "AutoEnable",
-        "MemberAccountLimitReached"
-      ],
+      "required":["MemberAccountLimitReached"],
       "members":{
         "AutoEnable":{
           "shape":"Boolean",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use AutoEnableOrganizationMembers instead",
           "locationName":"autoEnable"
         },
         "MemberAccountLimitReached":{
@@ -2159,6 +2166,10 @@
         "NextToken":{
           "shape":"String",
           "locationName":"nextToken"
+        },
+        "AutoEnableOrganizationMembers":{
+          "shape":"AutoEnableMembers",
+          "locationName":"autoEnableOrganizationMembers"
         }
       }
     },
@@ -5926,10 +5937,7 @@
     },
     "UpdateOrganizationConfigurationRequest":{
       "type":"structure",
-      "required":[
-        "DetectorId",
-        "AutoEnable"
-      ],
+      "required":["DetectorId"],
       "members":{
         "DetectorId":{
           "shape":"DetectorId",
@@ -5938,6 +5946,8 @@
         },
         "AutoEnable":{
           "shape":"Boolean",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use AutoEnableOrganizationMembers instead",
           "locationName":"autoEnable"
         },
         "DataSources":{
@@ -5949,6 +5959,10 @@
         "Features":{
           "shape":"OrganizationFeaturesConfigurations",
           "locationName":"features"
+        },
+        "AutoEnableOrganizationMembers":{
+          "shape":"AutoEnableMembers",
+          "locationName":"autoEnableOrganizationMembers"
         }
       }
     },

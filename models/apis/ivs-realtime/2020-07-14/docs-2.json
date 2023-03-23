@@ -1,0 +1,358 @@
+{
+  "version": "2.0",
+  "service": "<p> <b>Introduction</b> </p> <p>The Amazon Interactive Video Service (IVS) stage API is REST compatible, using a standard HTTP API and an AWS EventBridge event stream for responses. JSON is used for both requests and responses, including errors. </p> <p>Terminology: The IVS stage API sometimes is referred to as the IVS RealTime API.</p> <p> <b>Resources</b> </p> <p>The following resources contain information about your IVS live stream (see <a href=\"https://docs.aws.amazon.com/ivs/latest/userguide/getting-started.html\">Getting Started with Amazon IVS</a>):</p> <ul> <li> <p> <b>Stage</b> — A stage is a virtual space where multiple participants can exchange audio and video in real time.</p> </li> </ul> <p> <b>Tagging</b> </p> <p>A <i>tag</i> is a metadata label that you assign to an AWS resource. A tag comprises a <i>key</i> and a <i>value</i>, both set by you. For example, you might set a tag as <code>topic:nature</code> to label a particular video category. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS stages has no service-specific constraints beyond what is documented there.</p> <p>Tags can help you identify and organize your AWS resources. For example, you can use the same tag for different resources to indicate that they are related. You can also use tags to manage access (see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html\">Access Tags</a>).</p> <p>The Amazon IVS stage API has these tag-related endpoints: <a>TagResource</a>, <a>UntagResource</a>, and <a>ListTagsForResource</a>. The following resource supports tagging: Stage.</p> <p>At most 50 tags can be applied to a resource.</p> <p> <b>Stages Endpoints</b> </p> <ul> <li> <p> <a>CreateParticipantToken</a> — Creates an additional token for a specified stage. This can be done after stage creation or when tokens expire.</p> </li> <li> <p> <a>CreateStage</a> — Creates a new stage (and optionally participant tokens).</p> </li> <li> <p> <a>DeleteStage</a> — Shuts down and deletes the specified stage (disconnecting all participants).</p> </li> <li> <p> <a>DisconnectParticipant</a> — Disconnects a specified participant and revokes the participant permanently from a specified stage.</p> </li> <li> <p> <a>GetStage</a> — Gets information for the specified stage.</p> </li> <li> <p> <a>ListStages</a> — Gets summary information about all stages in your account, in the AWS region where the API request is processed.</p> </li> <li> <p> <a>UpdateStage</a> — Updates a stage’s configuration.</p> </li> </ul> <p> <b>Tags Endpoints</b> </p> <ul> <li> <p> <a>ListTagsForResource</a> — Gets information about AWS tags for the specified ARN.</p> </li> <li> <p> <a>TagResource</a> — Adds or updates tags for the AWS resource with the specified ARN.</p> </li> <li> <p> <a>UntagResource</a> — Removes tags from the resource with the specified ARN.</p> </li> </ul>",
+  "operations": {
+    "CreateParticipantToken": "<p>Creates an additional token for a specified stage. This can be done after stage creation or when tokens expire. Tokens always are scoped to the stage for which they are created.</p> <p>Encryption keys are owned by Amazon IVS and never used directly by your application.</p>",
+    "CreateStage": "<p>Creates a new stage (and optionally participant tokens).</p>",
+    "DeleteStage": "<p>Shuts down and deletes the specified stage (disconnecting all participants).</p>",
+    "DisconnectParticipant": "<p>Disconnects a specified participant and revokes the participant permanently from a specified stage.</p>",
+    "GetStage": "<p>Gets information for the specified stage.</p>",
+    "ListStages": "<p>Gets summary information about all stages in your account, in the AWS region where the API request is processed.</p>",
+    "ListTagsForResource": "<p>Gets information about AWS tags for the specified ARN.</p>",
+    "TagResource": "<p>Adds or updates tags for the AWS resource with the specified ARN.</p>",
+    "UntagResource": "<p>Removes tags from the resource with the specified ARN.</p>",
+    "UpdateStage": "<p>Updates a stage’s configuration.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ConflictException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "CreateParticipantTokenRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateParticipantTokenResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateStageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateStageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisconnectParticipantReason": {
+      "base": null,
+      "refs": {
+        "DisconnectParticipantRequest$reason": "<p>Description of why this participant is being disconnected.</p>"
+      }
+    },
+    "DisconnectParticipantRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisconnectParticipantResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InternalServerException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ListStagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStagesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxStageResults": {
+      "base": null,
+      "refs": {
+        "ListStagesRequest$maxResults": "<p>Maximum number of results to return. Default: 50.</p>"
+      }
+    },
+    "PaginationToken": {
+      "base": null,
+      "refs": {
+        "ListStagesRequest$nextToken": "<p>The first stage to retrieve. This is used for pagination; see the <code>nextToken</code> response field.</p>",
+        "ListStagesResponse$nextToken": "<p>If there are more rooms than <code>maxResults</code>, use <code>nextToken</code> in the request to get the next set.</p>"
+      }
+    },
+    "ParticipantToken": {
+      "base": "<p>Object specifying a participant token in a stage.</p>",
+      "refs": {
+        "CreateParticipantTokenResponse$participantToken": "<p>The participant token that was created.</p>",
+        "ParticipantTokenList$member": null
+      }
+    },
+    "ParticipantTokenAttributes": {
+      "base": null,
+      "refs": {
+        "CreateParticipantTokenRequest$attributes": "<p>Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>",
+        "ParticipantToken$attributes": "<p>Application-provided attributes to encode into the token and attach to a stage. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>",
+        "ParticipantTokenConfiguration$attributes": "<p>Application-provided attributes to encode into the corresponding participant token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>"
+      }
+    },
+    "ParticipantTokenCapabilities": {
+      "base": null,
+      "refs": {
+        "CreateParticipantTokenRequest$capabilities": "<p>Set of capabilities that the user is allowed to perform in the stage. Default: <code>PUBLISH, SUBSCRIBE</code>.</p>",
+        "ParticipantToken$capabilities": "<p>Set of capabilities that the user is allowed to perform in the stage.</p>",
+        "ParticipantTokenConfiguration$capabilities": "<p>Set of capabilities that the user is allowed to perform in the stage.</p>"
+      }
+    },
+    "ParticipantTokenCapability": {
+      "base": null,
+      "refs": {
+        "ParticipantTokenCapabilities$member": null
+      }
+    },
+    "ParticipantTokenConfiguration": {
+      "base": "<p>Object specifying a participant token configuration in a stage.</p>",
+      "refs": {
+        "ParticipantTokenConfigurations$member": null
+      }
+    },
+    "ParticipantTokenConfigurations": {
+      "base": null,
+      "refs": {
+        "CreateStageRequest$participantTokenConfigurations": "<p>Array of participant token configuration objects to attach to the new stage.</p>"
+      }
+    },
+    "ParticipantTokenDurationMinutes": {
+      "base": null,
+      "refs": {
+        "CreateParticipantTokenRequest$duration": "<p>Duration (in minutes), after which the token expires. Default: 60 (1 hour).</p>",
+        "ParticipantToken$duration": "<p>Duration (in minutes), after which the participant token expires. Default: 60 (1 hour).</p>",
+        "ParticipantTokenConfiguration$duration": "<p>Duration (in minutes), after which the corresponding participant token expires. Default: 60 (1 hour).</p>"
+      }
+    },
+    "ParticipantTokenExpirationTime": {
+      "base": null,
+      "refs": {
+        "ParticipantToken$expirationTime": "<p>ISO 8601 timestamp (returned as a string) for when this token expires.</p>"
+      }
+    },
+    "ParticipantTokenId": {
+      "base": null,
+      "refs": {
+        "DisconnectParticipantRequest$participantId": "<p>Identifier of the participant to be disconnected. This is returned by <a>CreateParticipantToken</a>.</p>",
+        "ParticipantToken$participantId": "<p>Unique identifier for this participant token, assigned by IVS.</p>"
+      }
+    },
+    "ParticipantTokenList": {
+      "base": null,
+      "refs": {
+        "CreateStageResponse$participantTokens": "<p>Participant tokens attached to the stage. These correspond to the <code>participants</code> in the request.</p>"
+      }
+    },
+    "ParticipantTokenString": {
+      "base": null,
+      "refs": {
+        "ParticipantToken$token": "<p>The issued client token, encrypted.</p>"
+      }
+    },
+    "ParticipantTokenUserId": {
+      "base": null,
+      "refs": {
+        "CreateParticipantTokenRequest$userId": "<p>Name that can be specified to help identify the token. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>",
+        "ParticipantToken$userId": "<p>Name to help identify the token. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>",
+        "ParticipantTokenConfiguration$userId": "<p>Name that can be specified to help identify the corresponding participant token. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.</i> </p>"
+      }
+    },
+    "PendingVerification": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource to be retrieved. The ARN must be URL-encoded.</p>",
+        "TagResourceRequest$resourceArn": "<p>The ARN of the resource to be tagged. The ARN must be URL-encoded.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The ARN of the resource to be untagged. The ARN must be URL-encoded.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "Stage": {
+      "base": "<p>Object specifying a stage.</p>",
+      "refs": {
+        "CreateStageResponse$stage": "<p>The stage that was created.</p>",
+        "GetStageResponse$stage": "<p/>",
+        "UpdateStageResponse$stage": "<p>The updated stage. </p>"
+      }
+    },
+    "StageArn": {
+      "base": null,
+      "refs": {
+        "CreateParticipantTokenRequest$stageArn": "<p>ARN of the stage to which this token is scoped.</p>",
+        "DeleteStageRequest$arn": "<p>ARN of the stage to be deleted.</p>",
+        "DisconnectParticipantRequest$stageArn": "<p>ARN of the stage to which the participant is attached.</p>",
+        "GetStageRequest$arn": "<p>ARN of the stage for which the information is to be retrieved.</p>",
+        "Stage$arn": "<p>Stage ARN.</p>",
+        "StageSummary$arn": "<p>Stage ARN.</p>",
+        "UpdateStageRequest$arn": "<p>ARN of the stage to be updated.</p>"
+      }
+    },
+    "StageName": {
+      "base": null,
+      "refs": {
+        "CreateStageRequest$name": "<p>Optional name that can be specified for the stage being created.</p>",
+        "Stage$name": "<p>Stage name.</p>",
+        "StageSummary$name": "<p>Stage name.</p>",
+        "UpdateStageRequest$name": "<p>Name of the stage to be updated.</p>"
+      }
+    },
+    "StageSessionId": {
+      "base": null,
+      "refs": {
+        "Stage$activeSessionId": "<p>ID of the active session within the stage.</p>",
+        "StageSummary$activeSessionId": "<p>ID of the active session within the stage.</p>"
+      }
+    },
+    "StageSummary": {
+      "base": "<p>Summary information about a stage.</p>",
+      "refs": {
+        "StageSummaryList$member": null
+      }
+    },
+    "StageSummaryList": {
+      "base": null,
+      "refs": {
+        "ListStagesResponse$stages": "<p>List of the matching stages (summary information only).</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "ParticipantTokenAttributes$key": null,
+        "ParticipantTokenAttributes$value": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "Tags$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>Array of tags to be removed. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints beyond what is documented there.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tags$value": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "CreateStageRequest$tags": "<p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there. </p>",
+        "ListTagsForResourceResponse$tags": "<p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>.</p>",
+        "Stage$tags": "<p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>",
+        "StageSummary$tags": "<p>Tags attached to the resource. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints on tags beyond what is documented there.</p>",
+        "TagResourceRequest$tags": "<p>Array of tags to be added or updated. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no constraints beyond what is documented there.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateStageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateStageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "errorMessage": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$exceptionMessage": "<p>User does not have sufficient access to perform this action.</p>",
+        "ConflictException$exceptionMessage": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
+        "InternalServerException$exceptionMessage": "<p>Unexpected error during processing of request.</p>",
+        "PendingVerification$exceptionMessage": "<p> Your account is pending verification. </p>",
+        "ResourceNotFoundException$exceptionMessage": "<p>Request references a resource which does not exist.</p>",
+        "ServiceQuotaExceededException$exceptionMessage": "<p>Request would cause a service quota to be exceeded.</p>",
+        "ValidationException$exceptionMessage": "<p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>"
+      }
+    }
+  }
+}

@@ -1343,6 +1343,10 @@ func (c *GuardDuty) DeleteMembersRequest(input *DeleteMembersInput) (req *reques
 // Deletes GuardDuty member accounts (to the current GuardDuty administrator
 // account) specified by the account IDs.
 //
+// With autoEnableOrganizationMembers configuration for your organization set
+// to ALL, you'll receive an error if you attempt to disable GuardDuty for a
+// member account in your organization.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2049,6 +2053,10 @@ func (c *GuardDuty) DisassociateFromAdministratorAccountRequest(input *Disassoci
 // Disassociates the current GuardDuty member account from its administrator
 // account.
 //
+// With autoEnableOrganizationMembers configuration for your organization set
+// to ALL, you'll receive an error if you attempt to disable GuardDuty in a
+// member account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2224,6 +2232,10 @@ func (c *GuardDuty) DisassociateMembersRequest(input *DisassociateMembersInput) 
 //
 // Disassociates GuardDuty member accounts (to the current administrator account)
 // specified by the account IDs.
+//
+// With autoEnableOrganizationMembers configuration for your organization set
+// to ALL, you'll receive an error if you attempt to disassociate a member account
+// before removing them from your Amazon Web Services organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5054,7 +5066,8 @@ func (c *GuardDuty) StartMonitoringMembersRequest(input *StartMonitoringMembersI
 //
 // Turns on GuardDuty monitoring of the specified member accounts. Use this
 // operation to restart monitoring of accounts that you stopped monitoring with
-// the StopMonitoringMembers operation.
+// the StopMonitoringMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_StopMonitoringMembers.html)
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5138,6 +5151,10 @@ func (c *GuardDuty) StopMonitoringMembersRequest(input *StopMonitoringMembersInp
 //
 // Stops GuardDuty monitoring for the specified member accounts. Use the StartMonitoringMembers
 // operation to restart monitoring for those accounts.
+//
+// With autoEnableOrganizationMembers configuration for your organization set
+// to ALL, you'll receive an error if you attempt to stop monitoring the member
+// accounts in your organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5977,7 +5994,8 @@ func (c *GuardDuty) UpdateOrganizationConfigurationRequest(input *UpdateOrganiza
 
 // UpdateOrganizationConfiguration API operation for Amazon GuardDuty.
 //
-// Updates the delegated administrator account with the values provided.
+// Configures the delegated administrator account with the provided values.
+// You must provide the value for either autoEnableOrganizationMembers or autoEnable.
 //
 // There might be regional differences because some data sources might not be
 // available in all the Amazon Web Services Regions where GuardDuty is presently
@@ -9956,8 +9974,21 @@ type DescribeOrganizationConfigurationOutput struct {
 	// Indicates whether GuardDuty is automatically enabled for accounts added to
 	// the organization.
 	//
-	// AutoEnable is a required field
-	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
+	// Deprecated: This field is deprecated, use AutoEnableOrganizationMembers instead
+	AutoEnable *bool `locationName:"autoEnable" deprecated:"true" type:"boolean"`
+
+	// Indicates the auto-enablement configuration of GuardDuty for the member accounts
+	// in the organization.
+	//
+	//    * NEW: Indicates that new accounts joining the organization are configured
+	//    to have GuardDuty enabled automatically.
+	//
+	//    * ALL: Indicates that all accounts (new and existing members) in the organization
+	//    are configured to have GuardDuty enabled automatically.
+	//
+	//    * NONE: Indicates that no account in the organization will be configured
+	//    to have GuardDuty enabled automatically.
+	AutoEnableOrganizationMembers *string `locationName:"autoEnableOrganizationMembers" type:"string" enum:"AutoEnableMembers"`
 
 	// Describes which data sources are enabled automatically for member accounts.
 	//
@@ -9999,6 +10030,12 @@ func (s DescribeOrganizationConfigurationOutput) GoString() string {
 // SetAutoEnable sets the AutoEnable field's value.
 func (s *DescribeOrganizationConfigurationOutput) SetAutoEnable(v bool) *DescribeOrganizationConfigurationOutput {
 	s.AutoEnable = &v
+	return s
+}
+
+// SetAutoEnableOrganizationMembers sets the AutoEnableOrganizationMembers field's value.
+func (s *DescribeOrganizationConfigurationOutput) SetAutoEnableOrganizationMembers(v string) *DescribeOrganizationConfigurationOutput {
+	s.AutoEnableOrganizationMembers = &v
 	return s
 }
 
@@ -20575,15 +20612,28 @@ type UpdateOrganizationConfigurationInput struct {
 
 	// Indicates whether to automatically enable member accounts in the organization.
 	//
-	// AutoEnable is a required field
-	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
+	// Deprecated: This field is deprecated, use AutoEnableOrganizationMembers instead
+	AutoEnable *bool `locationName:"autoEnable" deprecated:"true" type:"boolean"`
+
+	// Indicates the auto-enablement configuration of GuardDuty for the member accounts
+	// in the organization.
+	//
+	//    * NEW: Indicates that new accounts joining the organization are configured
+	//    to have GuardDuty enabled automatically.
+	//
+	//    * ALL: Indicates that all accounts (new and existing members) in the organization
+	//    are configured to have GuardDuty enabled automatically.
+	//
+	//    * NONE: Indicates that no account in the organization will be configured
+	//    to have GuardDuty enabled automatically.
+	AutoEnableOrganizationMembers *string `locationName:"autoEnableOrganizationMembers" type:"string" enum:"AutoEnableMembers"`
 
 	// Describes which data sources will be updated.
 	//
 	// Deprecated: This parameter is deprecated, use Features instead
 	DataSources *OrganizationDataSourceConfigurations `locationName:"dataSources" deprecated:"true" type:"structure"`
 
-	// The ID of the detector to update the delegated administrator for.
+	// The ID of the detector that configures the delegated administrator.
 	//
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
@@ -20613,9 +20663,6 @@ func (s UpdateOrganizationConfigurationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateOrganizationConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateOrganizationConfigurationInput"}
-	if s.AutoEnable == nil {
-		invalidParams.Add(request.NewErrParamRequired("AutoEnable"))
-	}
 	if s.DetectorId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
 	}
@@ -20637,6 +20684,12 @@ func (s *UpdateOrganizationConfigurationInput) Validate() error {
 // SetAutoEnable sets the AutoEnable field's value.
 func (s *UpdateOrganizationConfigurationInput) SetAutoEnable(v bool) *UpdateOrganizationConfigurationInput {
 	s.AutoEnable = &v
+	return s
+}
+
+// SetAutoEnableOrganizationMembers sets the AutoEnableOrganizationMembers field's value.
+func (s *UpdateOrganizationConfigurationInput) SetAutoEnableOrganizationMembers(v string) *UpdateOrganizationConfigurationInput {
+	s.AutoEnableOrganizationMembers = &v
 	return s
 }
 
@@ -21393,6 +21446,26 @@ func AdminStatus_Values() []string {
 	return []string{
 		AdminStatusEnabled,
 		AdminStatusDisableInProgress,
+	}
+}
+
+const (
+	// AutoEnableMembersNew is a AutoEnableMembers enum value
+	AutoEnableMembersNew = "NEW"
+
+	// AutoEnableMembersAll is a AutoEnableMembers enum value
+	AutoEnableMembersAll = "ALL"
+
+	// AutoEnableMembersNone is a AutoEnableMembers enum value
+	AutoEnableMembersNone = "NONE"
+)
+
+// AutoEnableMembers_Values returns all elements of the AutoEnableMembers enum
+func AutoEnableMembers_Values() []string {
+	return []string{
+		AutoEnableMembersNew,
+		AutoEnableMembersAll,
+		AutoEnableMembersNone,
 	}
 }
 

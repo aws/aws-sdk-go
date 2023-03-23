@@ -49,6 +49,46 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateMediaInsightsPipeline":{
+      "name":"CreateMediaInsightsPipeline",
+      "http":{
+        "method":"POST",
+        "requestUri":"/media-insights-pipelines",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateMediaInsightsPipelineRequest"},
+      "output":{"shape":"CreateMediaInsightsPipelineResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateMediaInsightsPipelineConfiguration":{
+      "name":"CreateMediaInsightsPipelineConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/media-insights-pipeline-configurations",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateMediaInsightsPipelineConfigurationRequest"},
+      "output":{"shape":"CreateMediaInsightsPipelineConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "CreateMediaLiveConnectorPipeline":{
       "name":"CreateMediaLiveConnectorPipeline",
       "http":{
@@ -82,6 +122,25 @@
         {"shape":"ThrottledClientException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteMediaInsightsPipelineConfiguration":{
+      "name":"DeleteMediaInsightsPipelineConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/media-insights-pipeline-configurations/{identifier}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteMediaInsightsPipelineConfigurationRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -123,6 +182,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetMediaInsightsPipelineConfiguration":{
+      "name":"GetMediaInsightsPipelineConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/media-insights-pipeline-configurations/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMediaInsightsPipelineConfigurationRequest"},
+      "output":{"shape":"GetMediaInsightsPipelineConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetMediaPipeline":{
       "name":"GetMediaPipeline",
       "http":{
@@ -151,6 +229,25 @@
       },
       "input":{"shape":"ListMediaCapturePipelinesRequest"},
       "output":{"shape":"ListMediaCapturePipelinesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListMediaInsightsPipelineConfigurations":{
+      "name":"ListMediaInsightsPipelineConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/media-insights-pipeline-configurations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListMediaInsightsPipelineConfigurationsRequest"},
+      "output":{"shape":"ListMediaInsightsPipelineConfigurationsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -236,6 +333,45 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
+    },
+    "UpdateMediaInsightsPipelineConfiguration":{
+      "name":"UpdateMediaInsightsPipelineConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/media-insights-pipeline-configurations/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateMediaInsightsPipelineConfigurationRequest"},
+      "output":{"shape":"UpdateMediaInsightsPipelineConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateMediaInsightsPipelineStatus":{
+      "name":"UpdateMediaInsightsPipelineStatus",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/media-insights-pipeline-status/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateMediaInsightsPipelineStatusRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
     }
   },
   "shapes":{
@@ -244,6 +380,43 @@
       "max":1011,
       "min":1,
       "pattern":"^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$"
+    },
+    "AmazonTranscribeCallAnalyticsProcessorConfiguration":{
+      "type":"structure",
+      "required":["LanguageCode"],
+      "members":{
+        "LanguageCode":{"shape":"CallAnalyticsLanguageCode"},
+        "VocabularyName":{"shape":"VocabularyName"},
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "VocabularyFilterMethod":{"shape":"VocabularyFilterMethod"},
+        "LanguageModelName":{"shape":"ModelName"},
+        "EnablePartialResultsStabilization":{"shape":"Boolean"},
+        "PartialResultsStability":{"shape":"PartialResultsStability"},
+        "ContentIdentificationType":{"shape":"ContentType"},
+        "ContentRedactionType":{"shape":"ContentType"},
+        "PiiEntityTypes":{"shape":"PiiEntityTypes"},
+        "FilterPartialResults":{"shape":"Boolean"},
+        "PostCallAnalyticsSettings":{"shape":"PostCallAnalyticsSettings"},
+        "CallAnalyticsStreamCategories":{"shape":"CategoryNameList"}
+      }
+    },
+    "AmazonTranscribeProcessorConfiguration":{
+      "type":"structure",
+      "required":["LanguageCode"],
+      "members":{
+        "LanguageCode":{"shape":"CallAnalyticsLanguageCode"},
+        "VocabularyName":{"shape":"VocabularyName"},
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "VocabularyFilterMethod":{"shape":"VocabularyFilterMethod"},
+        "ShowSpeakerLabel":{"shape":"Boolean"},
+        "EnablePartialResultsStabilization":{"shape":"Boolean"},
+        "PartialResultsStability":{"shape":"PartialResultsStability"},
+        "ContentIdentificationType":{"shape":"ContentType"},
+        "ContentRedactionType":{"shape":"ContentType"},
+        "PiiEntityTypes":{"shape":"PiiEntityTypes"},
+        "LanguageModelName":{"shape":"ModelName"},
+        "FilterPartialResults":{"shape":"Boolean"}
+      }
     },
     "Arn":{
       "type":"string",
@@ -353,6 +526,52 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "Boolean":{"type":"boolean"},
+    "CallAnalyticsLanguageCode":{
+      "type":"string",
+      "enum":[
+        "en-US",
+        "en-GB",
+        "es-US",
+        "fr-CA",
+        "fr-FR",
+        "en-AU",
+        "it-IT",
+        "de-DE",
+        "pt-BR"
+      ]
+    },
+    "CategoryName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "CategoryNameList":{
+      "type":"list",
+      "member":{"shape":"CategoryName"},
+      "max":20,
+      "min":1
+    },
+    "ChannelDefinition":{
+      "type":"structure",
+      "required":["ChannelId"],
+      "members":{
+        "ChannelId":{"shape":"ChannelId"},
+        "ParticipantRole":{"shape":"ParticipantRole"}
+      }
+    },
+    "ChannelDefinitions":{
+      "type":"list",
+      "member":{"shape":"ChannelDefinition"},
+      "max":2,
+      "min":1
+    },
+    "ChannelId":{
+      "type":"integer",
+      "max":1,
+      "min":0
+    },
     "ChimeSdkMeetingConcatenationConfiguration":{
       "type":"structure",
       "required":["ArtifactsConfiguration"],
@@ -445,6 +664,16 @@
       "type":"string",
       "enum":["MediaCapturePipeline"]
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"ErrorCode"},
+        "Message":{"shape":"String"},
+        "RequestId":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "ContentArtifactsConfiguration":{
       "type":"structure",
       "required":["State"],
@@ -464,6 +693,13 @@
       "type":"string",
       "enum":["ContentOnly"]
     },
+    "ContentRedactionOutput":{
+      "type":"string",
+      "enum":[
+        "redacted",
+        "redacted_and_unredacted"
+      ]
+    },
     "ContentShareLayoutOption":{
       "type":"string",
       "enum":[
@@ -471,6 +707,10 @@
         "Horizontal",
         "Vertical"
       ]
+    },
+    "ContentType":{
+      "type":"string",
+      "enum":["PII"]
     },
     "CreateMediaCapturePipelineRequest":{
       "type":"structure",
@@ -521,6 +761,54 @@
         "MediaConcatenationPipeline":{"shape":"MediaConcatenationPipeline"}
       }
     },
+    "CreateMediaInsightsPipelineConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "MediaInsightsPipelineConfigurationName",
+        "ResourceAccessRoleArn",
+        "Elements"
+      ],
+      "members":{
+        "MediaInsightsPipelineConfigurationName":{"shape":"MediaInsightsPipelineConfigurationNameString"},
+        "ResourceAccessRoleArn":{"shape":"Arn"},
+        "RealTimeAlertConfiguration":{"shape":"RealTimeAlertConfiguration"},
+        "Elements":{"shape":"MediaInsightsPipelineConfigurationElements"},
+        "Tags":{"shape":"TagList"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateMediaInsightsPipelineConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "MediaInsightsPipelineConfiguration":{"shape":"MediaInsightsPipelineConfiguration"}
+      }
+    },
+    "CreateMediaInsightsPipelineRequest":{
+      "type":"structure",
+      "required":["MediaInsightsPipelineConfigurationArn"],
+      "members":{
+        "MediaInsightsPipelineConfigurationArn":{"shape":"Arn"},
+        "KinesisVideoStreamSourceRuntimeConfiguration":{"shape":"KinesisVideoStreamSourceRuntimeConfiguration"},
+        "MediaInsightsRuntimeMetadata":{"shape":"MediaInsightsRuntimeMetadata"},
+        "KinesisVideoStreamRecordingSourceRuntimeConfiguration":{"shape":"KinesisVideoStreamRecordingSourceRuntimeConfiguration"},
+        "S3RecordingSinkRuntimeConfiguration":{"shape":"S3RecordingSinkRuntimeConfiguration"},
+        "Tags":{"shape":"TagList"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateMediaInsightsPipelineResponse":{
+      "type":"structure",
+      "required":["MediaInsightsPipeline"],
+      "members":{
+        "MediaInsightsPipeline":{"shape":"MediaInsightsPipeline"}
+      }
+    },
     "CreateMediaLiveConnectorPipelineRequest":{
       "type":"structure",
       "required":[
@@ -558,6 +846,17 @@
           "shape":"GuidString",
           "location":"uri",
           "locationName":"mediaPipelineId"
+        }
+      }
+    },
+    "DeleteMediaInsightsPipelineConfigurationRequest":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
         }
       }
     },
@@ -605,6 +904,30 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "FragmentNumberString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[0-9]+$"
+    },
+    "FragmentSelector":{
+      "type":"structure",
+      "required":[
+        "FragmentSelectorType",
+        "TimestampRange"
+      ],
+      "members":{
+        "FragmentSelectorType":{"shape":"FragmentSelectorType"},
+        "TimestampRange":{"shape":"TimestampRange"}
+      }
+    },
+    "FragmentSelectorType":{
+      "type":"string",
+      "enum":[
+        "ProducerTimestamp",
+        "ServerTimestamp"
+      ]
+    },
     "GetMediaCapturePipelineRequest":{
       "type":"structure",
       "required":["MediaPipelineId"],
@@ -620,6 +943,23 @@
       "type":"structure",
       "members":{
         "MediaCapturePipeline":{"shape":"MediaCapturePipeline"}
+      }
+    },
+    "GetMediaInsightsPipelineConfigurationRequest":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        }
+      }
+    },
+    "GetMediaInsightsPipelineConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "MediaInsightsPipelineConfiguration":{"shape":"MediaInsightsPipelineConfiguration"}
       }
     },
     "GetMediaPipelineRequest":{
@@ -657,6 +997,79 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
+    "IssueDetectionConfiguration":{
+      "type":"structure",
+      "required":["RuleName"],
+      "members":{
+        "RuleName":{"shape":"RuleName"}
+      }
+    },
+    "Keyword":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[\\s0-9a-zA-Z'-]+"
+    },
+    "KeywordMatchConfiguration":{
+      "type":"structure",
+      "required":[
+        "RuleName",
+        "Keywords"
+      ],
+      "members":{
+        "RuleName":{"shape":"RuleName"},
+        "Keywords":{"shape":"KeywordMatchWordList"},
+        "Negate":{"shape":"Boolean"}
+      }
+    },
+    "KeywordMatchWordList":{
+      "type":"list",
+      "member":{"shape":"Keyword"},
+      "max":10,
+      "min":1
+    },
+    "KinesisDataStreamSinkConfiguration":{
+      "type":"structure",
+      "members":{
+        "InsightsTarget":{"shape":"Arn"}
+      }
+    },
+    "KinesisVideoStreamArn":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"arn:[a-z\\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+"
+    },
+    "KinesisVideoStreamRecordingSourceRuntimeConfiguration":{
+      "type":"structure",
+      "required":[
+        "Streams",
+        "FragmentSelector"
+      ],
+      "members":{
+        "Streams":{"shape":"RecordingStreamList"},
+        "FragmentSelector":{"shape":"FragmentSelector"}
+      }
+    },
+    "KinesisVideoStreamSourceRuntimeConfiguration":{
+      "type":"structure",
+      "required":[
+        "Streams",
+        "MediaEncoding",
+        "MediaSampleRate"
+      ],
+      "members":{
+        "Streams":{"shape":"Streams"},
+        "MediaEncoding":{"shape":"MediaEncoding"},
+        "MediaSampleRate":{"shape":"MediaSampleRateHertz"}
+      }
+    },
+    "LambdaFunctionSinkConfiguration":{
+      "type":"structure",
+      "members":{
+        "InsightsTarget":{"shape":"Arn"}
+      }
+    },
     "LayoutOption":{
       "type":"string",
       "enum":["GridView"]
@@ -680,6 +1093,28 @@
       "type":"structure",
       "members":{
         "MediaCapturePipelines":{"shape":"MediaCapturePipelineSummaryList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListMediaInsightsPipelineConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListMediaInsightsPipelineConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "MediaInsightsPipelineConfigurations":{"shape":"MediaInsightsPipelineConfigurationSummaryList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -829,6 +1264,93 @@
         "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
       }
     },
+    "MediaEncoding":{
+      "type":"string",
+      "enum":["pcm"]
+    },
+    "MediaInsightsPipeline":{
+      "type":"structure",
+      "members":{
+        "MediaPipelineId":{"shape":"GuidString"},
+        "MediaPipelineArn":{"shape":"Arn"},
+        "MediaInsightsPipelineConfigurationArn":{"shape":"Arn"},
+        "Status":{"shape":"MediaPipelineStatus"},
+        "KinesisVideoStreamSourceRuntimeConfiguration":{"shape":"KinesisVideoStreamSourceRuntimeConfiguration"},
+        "MediaInsightsRuntimeMetadata":{"shape":"MediaInsightsRuntimeMetadata"},
+        "KinesisVideoStreamRecordingSourceRuntimeConfiguration":{"shape":"KinesisVideoStreamRecordingSourceRuntimeConfiguration"},
+        "S3RecordingSinkRuntimeConfiguration":{"shape":"S3RecordingSinkRuntimeConfiguration"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "MediaInsightsPipelineConfiguration":{
+      "type":"structure",
+      "members":{
+        "MediaInsightsPipelineConfigurationName":{"shape":"MediaInsightsPipelineConfigurationNameString"},
+        "MediaInsightsPipelineConfigurationArn":{"shape":"Arn"},
+        "ResourceAccessRoleArn":{"shape":"Arn"},
+        "RealTimeAlertConfiguration":{"shape":"RealTimeAlertConfiguration"},
+        "Elements":{"shape":"MediaInsightsPipelineConfigurationElements"},
+        "MediaInsightsPipelineConfigurationId":{"shape":"GuidString"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "MediaInsightsPipelineConfigurationElement":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"MediaInsightsPipelineConfigurationElementType"},
+        "AmazonTranscribeCallAnalyticsProcessorConfiguration":{"shape":"AmazonTranscribeCallAnalyticsProcessorConfiguration"},
+        "AmazonTranscribeProcessorConfiguration":{"shape":"AmazonTranscribeProcessorConfiguration"},
+        "KinesisDataStreamSinkConfiguration":{"shape":"KinesisDataStreamSinkConfiguration"},
+        "S3RecordingSinkConfiguration":{"shape":"S3RecordingSinkConfiguration"},
+        "VoiceAnalyticsProcessorConfiguration":{"shape":"VoiceAnalyticsProcessorConfiguration"},
+        "LambdaFunctionSinkConfiguration":{"shape":"LambdaFunctionSinkConfiguration"},
+        "SqsQueueSinkConfiguration":{"shape":"SqsQueueSinkConfiguration"},
+        "SnsTopicSinkConfiguration":{"shape":"SnsTopicSinkConfiguration"}
+      }
+    },
+    "MediaInsightsPipelineConfigurationElementType":{
+      "type":"string",
+      "enum":[
+        "AmazonTranscribeCallAnalyticsProcessor",
+        "VoiceAnalyticsProcessor",
+        "AmazonTranscribeProcessor",
+        "KinesisDataStreamSink",
+        "LambdaFunctionSink",
+        "SqsQueueSink",
+        "SnsTopicSink",
+        "S3RecordingSink"
+      ]
+    },
+    "MediaInsightsPipelineConfigurationElements":{
+      "type":"list",
+      "member":{"shape":"MediaInsightsPipelineConfigurationElement"}
+    },
+    "MediaInsightsPipelineConfigurationNameString":{
+      "type":"string",
+      "max":64,
+      "min":2,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "MediaInsightsPipelineConfigurationSummary":{
+      "type":"structure",
+      "members":{
+        "MediaInsightsPipelineConfigurationName":{"shape":"MediaInsightsPipelineConfigurationNameString"},
+        "MediaInsightsPipelineConfigurationId":{"shape":"GuidString"},
+        "MediaInsightsPipelineConfigurationArn":{"shape":"Arn"}
+      }
+    },
+    "MediaInsightsPipelineConfigurationSummaryList":{
+      "type":"list",
+      "member":{"shape":"MediaInsightsPipelineConfigurationSummary"}
+    },
+    "MediaInsightsRuntimeMetadata":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString"},
+      "value":{"shape":"String"},
+      "sensitive":true
+    },
     "MediaLiveConnectorPipeline":{
       "type":"structure",
       "members":{
@@ -846,7 +1368,8 @@
       "members":{
         "MediaCapturePipeline":{"shape":"MediaCapturePipeline"},
         "MediaLiveConnectorPipeline":{"shape":"MediaLiveConnectorPipeline"},
-        "MediaConcatenationPipeline":{"shape":"MediaConcatenationPipeline"}
+        "MediaConcatenationPipeline":{"shape":"MediaConcatenationPipeline"},
+        "MediaInsightsPipeline":{"shape":"MediaInsightsPipeline"}
       }
     },
     "MediaPipelineList":{
@@ -868,7 +1391,15 @@
         "InProgress",
         "Failed",
         "Stopping",
-        "Stopped"
+        "Stopped",
+        "Paused"
+      ]
+    },
+    "MediaPipelineStatusUpdate":{
+      "type":"string",
+      "enum":[
+        "Pause",
+        "Resume"
       ]
     },
     "MediaPipelineSummary":{
@@ -878,12 +1409,28 @@
         "MediaPipelineArn":{"shape":"AmazonResourceName"}
       }
     },
+    "MediaSampleRateHertz":{
+      "type":"integer",
+      "max":48000,
+      "min":8000
+    },
     "MeetingEventsConcatenationConfiguration":{
       "type":"structure",
       "required":["State"],
       "members":{
         "State":{"shape":"ArtifactsConcatenationState"}
       }
+    },
+    "ModelName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "NonEmptyString":{
+      "type":"string",
+      "max":1024,
+      "pattern":".*\\S.*"
     },
     "NotFoundException":{
       "type":"structure",
@@ -894,6 +1441,45 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "NumberOfChannels":{
+      "type":"integer",
+      "max":2,
+      "min":1
+    },
+    "PartialResultsStability":{
+      "type":"string",
+      "enum":[
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "ParticipantRole":{
+      "type":"string",
+      "enum":[
+        "AGENT",
+        "CUSTOMER"
+      ]
+    },
+    "PiiEntityTypes":{
+      "type":"string",
+      "max":300,
+      "min":1,
+      "pattern":"^[A-Z_, ]+"
+    },
+    "PostCallAnalyticsSettings":{
+      "type":"structure",
+      "required":[
+        "OutputLocation",
+        "DataAccessRoleArn"
+      ],
+      "members":{
+        "OutputLocation":{"shape":"String"},
+        "DataAccessRoleArn":{"shape":"String"},
+        "ContentRedactionOutput":{"shape":"ContentRedactionOutput"},
+        "OutputEncryptionKMSKeyId":{"shape":"String"}
+      }
     },
     "PresenterOnlyConfiguration":{
       "type":"structure",
@@ -909,6 +1495,56 @@
         "BottomLeft",
         "BottomRight"
       ]
+    },
+    "RealTimeAlertConfiguration":{
+      "type":"structure",
+      "members":{
+        "Disabled":{"shape":"Boolean"},
+        "Rules":{"shape":"RealTimeAlertRuleList"}
+      }
+    },
+    "RealTimeAlertRule":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"RealTimeAlertRuleType"},
+        "KeywordMatchConfiguration":{"shape":"KeywordMatchConfiguration"},
+        "SentimentConfiguration":{"shape":"SentimentConfiguration"},
+        "IssueDetectionConfiguration":{"shape":"IssueDetectionConfiguration"}
+      }
+    },
+    "RealTimeAlertRuleList":{
+      "type":"list",
+      "member":{"shape":"RealTimeAlertRule"},
+      "max":3,
+      "min":1
+    },
+    "RealTimeAlertRuleType":{
+      "type":"string",
+      "enum":[
+        "KeywordMatch",
+        "Sentiment",
+        "IssueDetection"
+      ]
+    },
+    "RecordingFileFormat":{
+      "type":"string",
+      "enum":[
+        "Wav",
+        "Opus"
+      ]
+    },
+    "RecordingStreamConfiguration":{
+      "type":"structure",
+      "members":{
+        "StreamArn":{"shape":"KinesisVideoStreamArn"}
+      }
+    },
+    "RecordingStreamList":{
+      "type":"list",
+      "member":{"shape":"RecordingStreamConfiguration"},
+      "max":2,
+      "min":2
     },
     "ResolutionOption":{
       "type":"string",
@@ -932,11 +1568,34 @@
       "max":100,
       "min":1
     },
+    "RuleName":{
+      "type":"string",
+      "max":64,
+      "min":2,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
     "S3BucketSinkConfiguration":{
       "type":"structure",
       "required":["Destination"],
       "members":{
         "Destination":{"shape":"Arn"}
+      }
+    },
+    "S3RecordingSinkConfiguration":{
+      "type":"structure",
+      "members":{
+        "Destination":{"shape":"Arn"}
+      }
+    },
+    "S3RecordingSinkRuntimeConfiguration":{
+      "type":"structure",
+      "required":[
+        "Destination",
+        "RecordingFileFormat"
+      ],
+      "members":{
+        "Destination":{"shape":"Arn"},
+        "RecordingFileFormat":{"shape":"RecordingFileFormat"}
       }
     },
     "SelectedVideoStreams":{
@@ -951,6 +1610,28 @@
       "max":1024,
       "min":1,
       "sensitive":true
+    },
+    "SentimentConfiguration":{
+      "type":"structure",
+      "required":[
+        "RuleName",
+        "SentimentType",
+        "TimePeriod"
+      ],
+      "members":{
+        "RuleName":{"shape":"RuleName"},
+        "SentimentType":{"shape":"SentimentType"},
+        "TimePeriod":{"shape":"SentimentTimePeriodInSeconds"}
+      }
+    },
+    "SentimentTimePeriodInSeconds":{
+      "type":"integer",
+      "max":1800,
+      "min":60
+    },
+    "SentimentType":{
+      "type":"string",
+      "enum":["NEGATIVE"]
     },
     "ServiceFailureException":{
       "type":"structure",
@@ -974,11 +1655,49 @@
       "exception":true,
       "fault":true
     },
+    "SnsTopicSinkConfiguration":{
+      "type":"structure",
+      "members":{
+        "InsightsTarget":{"shape":"Arn"}
+      }
+    },
     "SourceConfiguration":{
       "type":"structure",
       "members":{
         "SelectedVideoStreams":{"shape":"SelectedVideoStreams"}
       }
+    },
+    "SqsQueueSinkConfiguration":{
+      "type":"structure",
+      "members":{
+        "InsightsTarget":{"shape":"Arn"}
+      }
+    },
+    "StreamChannelDefinition":{
+      "type":"structure",
+      "required":["NumberOfChannels"],
+      "members":{
+        "NumberOfChannels":{"shape":"NumberOfChannels"},
+        "ChannelDefinitions":{"shape":"ChannelDefinitions"}
+      }
+    },
+    "StreamConfiguration":{
+      "type":"structure",
+      "required":[
+        "StreamArn",
+        "StreamChannelDefinition"
+      ],
+      "members":{
+        "StreamArn":{"shape":"KinesisVideoStreamArn"},
+        "FragmentNumber":{"shape":"FragmentNumberString"},
+        "StreamChannelDefinition":{"shape":"StreamChannelDefinition"}
+      }
+    },
+    "Streams":{
+      "type":"list",
+      "member":{"shape":"StreamConfiguration"},
+      "max":2,
+      "min":1
     },
     "String":{
       "type":"string",
@@ -1004,13 +1723,13 @@
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"TagKey"},
-      "max":50,
+      "max":200,
       "min":1
     },
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
-      "max":50,
+      "max":200,
       "min":1
     },
     "TagResourceRequest":{
@@ -1043,6 +1762,18 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "Timestamp":{"type":"timestamp"},
+    "TimestampRange":{
+      "type":"structure",
+      "required":[
+        "StartTimestamp",
+        "EndTimestamp"
+      ],
+      "members":{
+        "StartTimestamp":{"shape":"Timestamp"},
+        "EndTimestamp":{"shape":"Timestamp"}
+      }
     },
     "TranscriptionMessagesConcatenationConfiguration":{
       "type":"structure",
@@ -1077,6 +1808,45 @@
       "members":{
       }
     },
+    "UpdateMediaInsightsPipelineConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "ResourceAccessRoleArn",
+        "Elements"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "ResourceAccessRoleArn":{"shape":"Arn"},
+        "RealTimeAlertConfiguration":{"shape":"RealTimeAlertConfiguration"},
+        "Elements":{"shape":"MediaInsightsPipelineConfigurationElements"}
+      }
+    },
+    "UpdateMediaInsightsPipelineConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "MediaInsightsPipelineConfiguration":{"shape":"MediaInsightsPipelineConfiguration"}
+      }
+    },
+    "UpdateMediaInsightsPipelineStatusRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "UpdateStatus"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "UpdateStatus":{"shape":"MediaPipelineStatusUpdate"}
+      }
+    },
     "VideoArtifactsConfiguration":{
       "type":"structure",
       "required":["State"],
@@ -1095,6 +1865,40 @@
     "VideoMuxType":{
       "type":"string",
       "enum":["VideoOnly"]
+    },
+    "VocabularyFilterMethod":{
+      "type":"string",
+      "enum":[
+        "remove",
+        "mask",
+        "tag"
+      ]
+    },
+    "VocabularyFilterName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "VocabularyName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "VoiceAnalyticsConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "VoiceAnalyticsProcessorConfiguration":{
+      "type":"structure",
+      "members":{
+        "SpeakerSearchStatus":{"shape":"VoiceAnalyticsConfigurationStatus"},
+        "VoiceToneAnalysisStatus":{"shape":"VoiceAnalyticsConfigurationStatus"}
+      }
     }
   }
 }
