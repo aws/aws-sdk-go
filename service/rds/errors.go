@@ -49,6 +49,12 @@ const (
 	// CertificateIdentifier doesn't refer to an existing certificate.
 	ErrCodeCertificateNotFoundFault = "CertificateNotFound"
 
+	// ErrCodeCreateCustomDBEngineVersionFault for service response error code
+	// "CreateCustomDBEngineVersionFault".
+	//
+	// An error occurred while trying to create the CEV.
+	ErrCodeCreateCustomDBEngineVersionFault = "CreateCustomDBEngineVersionFault"
+
 	// ErrCodeCustomAvailabilityZoneNotFoundFault for service response error code
 	// "CustomAvailabilityZoneNotFound".
 	//

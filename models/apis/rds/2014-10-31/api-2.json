@@ -270,7 +270,8 @@
         {"shape":"CustomDBEngineVersionAlreadyExistsFault"},
         {"shape":"CustomDBEngineVersionQuotaExceededFault"},
         {"shape":"Ec2ImagePropertiesNotSupportedFault"},
-        {"shape":"KMSKeyNotAccessibleFault"}
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"CreateCustomDBEngineVersionFault"}
       ]
     },
     "CreateDBCluster":{
@@ -3082,6 +3083,17 @@
       "members":{
         "BlueGreenDeployment":{"shape":"BlueGreenDeployment"}
       }
+    },
+    "CreateCustomDBEngineVersionFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CreateCustomDBEngineVersionFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "CreateCustomDBEngineVersionMessage":{
       "type":"structure",

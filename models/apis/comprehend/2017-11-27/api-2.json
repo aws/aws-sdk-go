@@ -2702,7 +2702,8 @@
         "LanguageCode":{"shape":"LanguageCode"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "FlywheelArn":{"shape":"ComprehendFlywheelArn"}
       }
     },
     "EntitiesDetectionJobPropertiesList":{
@@ -3690,7 +3691,8 @@
         "STOP_REQUESTED",
         "STOPPED",
         "IN_ERROR",
-        "TRAINED"
+        "TRAINED",
+        "TRAINED_WITH_WARNING"
       ]
     },
     "ModelType":{
