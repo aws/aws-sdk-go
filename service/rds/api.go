@@ -1444,6 +1444,9 @@ func (c *RDS) CreateCustomDBEngineVersionRequest(input *CreateCustomDBEngineVers
 //   - ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
 //     An error occurred accessing an Amazon Web Services KMS key.
 //
+//   - ErrCodeCreateCustomDBEngineVersionFault "CreateCustomDBEngineVersionFault"
+//     An error occurred while trying to create the CEV.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateCustomDBEngineVersion
 func (c *RDS) CreateCustomDBEngineVersion(input *CreateCustomDBEngineVersionInput) (*CreateCustomDBEngineVersionOutput, error) {
 	req, out := c.CreateCustomDBEngineVersionRequest(input)
@@ -1510,6 +1513,12 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 // CreateDBCluster API operation for Amazon Relational Database Service.
 //
 // Creates a new Amazon Aurora DB cluster or Multi-AZ DB cluster.
+//
+// If you create an Aurora DB cluster, the request creates an empty cluster.
+// You must explicitly create the writer instance for your DB cluster using
+// the CreateDBInstance (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html)
+// operation. If you create a Multi-AZ DB cluster, the request creates a writer
+// and two reader DB instances for you, each in a different Availability Zone.
 //
 // You can use the ReplicationSourceIdentifier parameter to create an Amazon
 // Aurora DB cluster as a read replica of another DB cluster or Amazon RDS MySQL
@@ -14944,11 +14953,11 @@ func (c *RDS) StartExportTaskRequest(input *StartExportTaskInput) (req *request.
 // For more information on exporting DB snapshot data, see Exporting DB snapshot
 // data to Amazon S3 (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ExportSnapshot.html)
 // in the Amazon RDS User Guide or Exporting DB cluster snapshot data to Amazon
-// S3 (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/aurora-export-snapshot.html)
+// S3 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-export-snapshot.html)
 // in the Amazon Aurora User Guide.
 //
 // For more information on exporting DB cluster data, see Exporting DB cluster
-// data to Amazon S3 (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/export-cluster-data.html)
+// data to Amazon S3 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/export-cluster-data.html)
 // in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -19754,9 +19763,7 @@ type CreateDBClusterInput struct {
 	//
 	// Valid Values:
 	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
-	//
-	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
+	//    * aurora-mysql
 	//
 	//    * aurora-postgresql
 	//
@@ -19769,22 +19776,9 @@ type CreateDBClusterInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
-	// global, or multimaster.
-	//
-	// The parallelquery engine mode isn't required for Aurora MySQL version 1.23
-	// and higher 1.x versions, and version 2.09 and higher 2.x versions.
-	//
-	// The global engine mode isn't required for Aurora MySQL version 1.22 and higher
-	// 1.x versions, and global engine mode isn't required for any 2.x versions.
-	//
-	// The multimaster engine mode only applies for DB clusters created with Aurora
-	// MySQL version 5.6.10a.
+	// The DB engine mode of the DB cluster, either provisioned or serverless.
 	//
 	// The serverless engine mode only applies for Aurora Serverless v1 DB clusters.
-	//
-	// For Aurora PostgreSQL, the global engine mode isn't required, and both the
-	// parallelquery and the multimaster engine modes currently aren't supported.
 	//
 	// Limitations and requirements apply to some DB engine modes. For more information,
 	// see the following sections in the Amazon Aurora User Guide:
@@ -19793,26 +19787,22 @@ type CreateDBClusterInput struct {
 	//
 	//    * Requirements for Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html)
 	//
-	//    * Limitations of Parallel Query (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-parallel-query.html#aurora-mysql-parallel-query-limitations)
+	//    * Limitations of parallel query (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-parallel-query.html#aurora-mysql-parallel-query-limitations)
 	//
-	//    * Limitations of Aurora Global Databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.limitations)
-	//
-	//    * Limitations of Multi-Master Clusters (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-multi-master.html#aurora-multi-master-limitations)
+	//    * Limitations of Aurora global databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.limitations)
 	//
 	// Valid for: Aurora DB clusters only
 	EngineMode *string `type:"string"`
 
 	// The version number of the database engine to use.
 	//
-	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
-	// use the following command:
-	//
-	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
-	//
-	// To list all of the available engine versions for MySQL 5.7-compatible and
-	// MySQL 8.0-compatible Aurora, use the following command:
+	// To list all of the available engine versions for Aurora MySQL version 2 (5.7-compatible)
+	// and version 3 (MySQL 8.0-compatible), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
+	//
+	// You can supply either 5.7 or 8.0 to use the default engine version for Aurora
+	// MySQL version 2 or version 3, respectively.
 	//
 	// To list all of the available engine versions for Aurora PostgreSQL, use the
 	// following command:
@@ -19831,7 +19821,7 @@ type CreateDBClusterInput struct {
 	//
 	// Aurora MySQL
 	//
-	// For information, see MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html)
+	// For information, see Database engine updates for Amazon Aurora MySQL (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html)
 	// in the Amazon Aurora User Guide.
 	//
 	// Aurora PostgreSQL
@@ -19842,12 +19832,12 @@ type CreateDBClusterInput struct {
 	//
 	// MySQL
 	//
-	// For information, see MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
+	// For information, see Amazon RDS for MySQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
 	// in the Amazon RDS User Guide.
 	//
 	// PostgreSQL
 	//
-	// For information, see Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
+	// For information, see Amazon RDS for PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
 	// in the Amazon RDS User Guide.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
@@ -19862,8 +19852,7 @@ type CreateDBClusterInput struct {
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for each DB instance in the Multi-AZ DB cluster.
 	//
-	// For information about valid IOPS values, see Amazon RDS Provisioned IOPS
-	// storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// For information about valid IOPS values, see Provisioned IOPS storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	//
 	// This setting is required to create a Multi-AZ DB cluster.
@@ -32709,8 +32698,6 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	// Valid Values:
 	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
-	//
 	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
@@ -36378,8 +36365,6 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//
 	// Valid Values:
 	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
-	//
 	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
@@ -38620,8 +38605,7 @@ type GlobalCluster struct {
 	// is the unique key that identifies a global database cluster.
 	GlobalClusterIdentifier *string `type:"string"`
 
-	// The list of cluster IDs for secondary clusters within the global database
-	// cluster. Currently limited to 1 item.
+	// The list of primary and secondary clusters within the global database cluster.
 	GlobalClusterMembers []*GlobalClusterMember `locationNameList:"GlobalClusterMember" type:"list"`
 
 	// The Amazon Web Services Region-unique, immutable identifier for the global
@@ -40302,13 +40286,8 @@ type ModifyDBClusterInput struct {
 	// this parameter results in an outage. The change is applied during the next
 	// maintenance window unless ApplyImmediately is enabled.
 	//
-	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
-	// use the following command:
-	//
-	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
-	//
-	// To list all of the available engine versions for MySQL 5.7-compatible and
-	// MySQL 8.0-compatible Aurora, use the following command:
+	// To list all of the available engine versions for Aurora MySQL version 2 (5.7-compatible)
+	// and version 3 (MySQL 8.0-compatible), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
@@ -47052,10 +47031,6 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Possible values are audit, error, general, and slowquery.
 	//
-	// Aurora PostgreSQL
-	//
-	// Possible value is postgresql.
-	//
 	// For more information about exporting CloudWatch Logs for Amazon Aurora, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon Aurora User Guide.
@@ -47071,27 +47046,22 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The name of the database engine to be used for this DB cluster.
 	//
-	// Valid Values: aurora (for MySQL 5.6-compatible Aurora) and aurora-mysql (for
-	// MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
+	// Valid Values: aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible
+	// Aurora)
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
 	// The version number of the database engine to use.
 	//
-	// To list all of the available engine versions for aurora (for MySQL 5.6-compatible
-	// Aurora), use the following command:
-	//
-	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
-	//
-	// To list all of the available engine versions for aurora-mysql (for MySQL
-	// 5.7-compatible and MySQL 8.0-compatible Aurora), use the following command:
+	// To list all of the available engine versions for aurora-mysql (MySQL 5.7-compatible
+	// and MySQL 8.0-compatible Aurora), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
 	// Aurora MySQL
 	//
-	// Example: 5.6.10a, 5.6.mysql_aurora.1.19.2, 5.7.mysql_aurora.2.07.1, 8.0.mysql_aurora.3.02.0
+	// Examples: 5.7.mysql_aurora.2.07.1, 8.0.mysql_aurora.3.02.0
 	EngineVersion *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted DB cluster.
@@ -47763,12 +47733,9 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters only
 	EngineMode *string `type:"string"`
 
-	// The version of the database engine to use for the new DB cluster.
-	//
-	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
-	// use the following command:
-	//
-	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
+	// The version of the database engine to use for the new DB cluster. If you
+	// don't specify an engine version, the default version for the database engine
+	// in the Amazon Web Services Region is used.
 	//
 	// To list all of the available engine versions for MySQL 5.7-compatible and
 	// MySQL 8.0-compatible Aurora, use the following command:
@@ -47792,7 +47759,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// Aurora MySQL
 	//
-	// See MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html)
+	// See Database engine updates for Amazon Aurora MySQL (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html)
 	// in the Amazon Aurora User Guide.
 	//
 	// Aurora PostgreSQL
@@ -47802,7 +47769,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// MySQL
 	//
-	// See MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
+	// See Amazon RDS for MySQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
 	// in the Amazon RDS User Guide.
 	//
 	// PostgreSQL
@@ -52024,6 +51991,28 @@ type StartExportTaskInput struct {
 	// The name of the IAM role to use for writing to the Amazon S3 bucket when
 	// exporting a snapshot or cluster.
 	//
+	// In the IAM policy attached to your IAM role, include the following required
+	// actions to allow the transfer of files from Amazon RDS or Amazon Aurora to
+	// an S3 bucket:
+	//
+	//    * s3:PutObject*
+	//
+	//    * s3:GetObject*
+	//
+	//    * s3:ListBucket
+	//
+	//    * s3:DeleteObject*
+	//
+	//    * s3:GetBucketLocation
+	//
+	// In the policy, include the resources to identify the S3 bucket and objects
+	// in the bucket. The following list of resources shows the Amazon Resource
+	// Name (ARN) format for accessing S3:
+	//
+	//    * arn:aws:s3:::your-s3-bucket
+	//
+	//    * arn:aws:s3:::your-s3-bucket/*
+	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
@@ -52924,16 +52913,19 @@ type SwitchoverDetail struct {
 	//
 	// Values:
 	//
-	//    * preparing-for-switchover - The resource is being prepared to switch
-	//    over.
+	//    * PROVISIONING - The resource is being prepared to switch over.
 	//
-	//    * ready-for-switchover - The resource is ready to switch over.
+	//    * AVAILABLE - The resource is ready to switch over.
 	//
-	//    * switchover-in-progress - The resource is being switched over.
+	//    * SWITCHOVER_IN_PROGRESS - The resource is being switched over.
 	//
-	//    * switchover-completed - The resource has been switched over.
+	//    * SWITCHOVER_COMPLETED - The resource has been switched over.
 	//
-	//    * switchover-failed - The resource attempted to switch over but failed.
+	//    * SWITCHOVER_FAILED - The resource attempted to switch over but failed.
+	//
+	//    * MISSING_SOURCE - The source resource has been deleted.
+	//
+	//    * MISSING_TARGET - The target resource has been deleted.
 	Status *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of a resource in the green environment.

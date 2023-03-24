@@ -1,3 +1,13 @@
+Release v1.44.229 (2023-03-24)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/monitoring`: Updates service documentation
+  * Doc-only update to correct alarm actions list
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Added error code CreateCustomDBEngineVersionFault for when the create custom engine version for Custom engines fails.
+
 Release v1.44.228 (2023-03-23)
 ===
 
