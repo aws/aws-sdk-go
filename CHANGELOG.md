@@ -1,3 +1,21 @@
+Release v1.44.230 (2023-03-27)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * Enforces a minimal level of encryption for the workgroup for query and calculation results that are written to Amazon S3. When enabled, workgroup users can set encryption only to the minimum level set by the administrator or higher when they submit queries.
+* `service/chime-sdk-voice`: Updates service documentation
+* `service/connect`: Updates service API and documentation
+* `service/connectparticipant`: Updates service documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports ID3 tag insertion for audio only HLS output groups. AWS Elemental Link devices now support tagging.
+* `service/sagemaker`: Updates service documentation
+  * Fixed some improperly rendered links in SDK documentation.
+* `service/securityhub`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+* `service/voice-id`: Updates service API, documentation, and paginators
+
 Release v1.44.229 (2023-03-24)
 ===
 

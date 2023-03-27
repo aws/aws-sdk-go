@@ -56,6 +56,8 @@ func (c *ChimeSDKVoice) AssociatePhoneNumbersWithVoiceConnectorRequest(input *As
 
 // AssociatePhoneNumbersWithVoiceConnector API operation for Amazon Chime SDK Voice.
 //
+// Associates phone numbers with the specified Amazon Chime SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -66,20 +68,28 @@ func (c *ChimeSDKVoice) AssociatePhoneNumbersWithVoiceConnectorRequest(input *As
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/AssociatePhoneNumbersWithVoiceConnector
 func (c *ChimeSDKVoice) AssociatePhoneNumbersWithVoiceConnector(input *AssociatePhoneNumbersWithVoiceConnectorInput) (*AssociatePhoneNumbersWithVoiceConnectorOutput, error) {
@@ -146,6 +156,9 @@ func (c *ChimeSDKVoice) AssociatePhoneNumbersWithVoiceConnectorGroupRequest(inpu
 
 // AssociatePhoneNumbersWithVoiceConnectorGroup API operation for Amazon Chime SDK Voice.
 //
+// Associates phone numbers with the specified Amazon Chime SDK Voice Connector
+// group.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -156,20 +169,28 @@ func (c *ChimeSDKVoice) AssociatePhoneNumbersWithVoiceConnectorGroupRequest(inpu
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/AssociatePhoneNumbersWithVoiceConnectorGroup
 func (c *ChimeSDKVoice) AssociatePhoneNumbersWithVoiceConnectorGroup(input *AssociatePhoneNumbersWithVoiceConnectorGroupInput) (*AssociatePhoneNumbersWithVoiceConnectorGroupOutput, error) {
@@ -236,6 +257,12 @@ func (c *ChimeSDKVoice) BatchDeletePhoneNumberRequest(input *BatchDeletePhoneNum
 
 // BatchDeletePhoneNumber API operation for Amazon Chime SDK Voice.
 //
+// Moves phone numbers into the Deletion queue. Phone numbers must be disassociated
+// from any users or Amazon Chime SDK Voice Connectors before they can be deleted.
+//
+// Phone numbers remain in the Deletion queue for 7 days before they are deleted
+// permanently.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -246,18 +273,25 @@ func (c *ChimeSDKVoice) BatchDeletePhoneNumberRequest(input *BatchDeletePhoneNum
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/BatchDeletePhoneNumber
 func (c *ChimeSDKVoice) BatchDeletePhoneNumber(input *BatchDeletePhoneNumberInput) (*BatchDeletePhoneNumberOutput, error) {
@@ -324,6 +358,8 @@ func (c *ChimeSDKVoice) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNum
 
 // BatchUpdatePhoneNumber API operation for Amazon Chime SDK Voice.
 //
+// Updates one or more phone numbers.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -334,18 +370,25 @@ func (c *ChimeSDKVoice) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNum
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/BatchUpdatePhoneNumber
 func (c *ChimeSDKVoice) BatchUpdatePhoneNumber(input *BatchUpdatePhoneNumberInput) (*BatchUpdatePhoneNumberOutput, error) {
@@ -412,6 +455,10 @@ func (c *ChimeSDKVoice) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOr
 
 // CreatePhoneNumberOrder API operation for Amazon Chime SDK Voice.
 //
+// Creates an order for phone numbers to be provisioned. For numbers outside
+// the U.S., you must use the Amazon Chime SDK SIP media application dial-in
+// product type.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -422,20 +469,28 @@ func (c *ChimeSDKVoice) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOr
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreatePhoneNumberOrder
 func (c *ChimeSDKVoice) CreatePhoneNumberOrder(input *CreatePhoneNumberOrderInput) (*CreatePhoneNumberOrderOutput, error) {
@@ -502,6 +557,9 @@ func (c *ChimeSDKVoice) CreateProxySessionRequest(input *CreateProxySessionInput
 
 // CreateProxySession API operation for Amazon Chime SDK Voice.
 //
+// Creates a proxy session for the specified Amazon Chime SDK Voice Connector
+// for the specified participant phone numbers.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -512,18 +570,25 @@ func (c *ChimeSDKVoice) CreateProxySessionRequest(input *CreateProxySessionInput
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateProxySession
 func (c *ChimeSDKVoice) CreateProxySession(input *CreateProxySessionInput) (*CreateProxySessionOutput, error) {
@@ -590,6 +655,10 @@ func (c *ChimeSDKVoice) CreateSipMediaApplicationRequest(input *CreateSipMediaAp
 
 // CreateSipMediaApplication API operation for Amazon Chime SDK Voice.
 //
+// Creates a SIP media application. For more information about SIP media applications,
+// see Managing SIP media applications and rules (https://docs.aws.amazon.com/chime-sdk/latest/ag/manage-sip-applications.html)
+// in the Amazon Chime SDK Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -600,22 +669,31 @@ func (c *ChimeSDKVoice) CreateSipMediaApplicationRequest(input *CreateSipMediaAp
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateSipMediaApplication
 func (c *ChimeSDKVoice) CreateSipMediaApplication(input *CreateSipMediaApplicationInput) (*CreateSipMediaApplicationOutput, error) {
@@ -682,6 +760,9 @@ func (c *ChimeSDKVoice) CreateSipMediaApplicationCallRequest(input *CreateSipMed
 
 // CreateSipMediaApplicationCall API operation for Amazon Chime SDK Voice.
 //
+// Creates an outbound call to a phone number from the phone number specified
+// in the request, and it invokes the endpoint of the specified sipMediaApplicationId.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -692,20 +773,28 @@ func (c *ChimeSDKVoice) CreateSipMediaApplicationCallRequest(input *CreateSipMed
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateSipMediaApplicationCall
 func (c *ChimeSDKVoice) CreateSipMediaApplicationCall(input *CreateSipMediaApplicationCallInput) (*CreateSipMediaApplicationCallOutput, error) {
@@ -772,6 +861,11 @@ func (c *ChimeSDKVoice) CreateSipRuleRequest(input *CreateSipRuleInput) (req *re
 
 // CreateSipRule API operation for Amazon Chime SDK Voice.
 //
+// Creates a SIP rule, which can be used to run a SIP media application as a
+// target for a specific trigger type. For more information about SIP rules,
+// see Managing SIP media applications and rules (https://docs.aws.amazon.com/chime-sdk/latest/ag/manage-sip-applications.html)
+// in the Amazon Chime SDK Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -782,22 +876,31 @@ func (c *ChimeSDKVoice) CreateSipRuleRequest(input *CreateSipRuleInput) (req *re
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateSipRule
 func (c *ChimeSDKVoice) CreateSipRule(input *CreateSipRuleInput) (*CreateSipRuleOutput, error) {
@@ -864,6 +967,10 @@ func (c *ChimeSDKVoice) CreateVoiceConnectorRequest(input *CreateVoiceConnectorI
 
 // CreateVoiceConnector API operation for Amazon Chime SDK Voice.
 //
+// Creates an Amazon Chime SDK Voice Connector. For more information about Voice
+// Connectors, see Managing Amazon Chime SDK Voice Connector groups (https://docs.aws.amazon.com/chime-sdk/latest/ag/voice-connector-groups.html)
+// in the Amazon Chime SDK Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -874,20 +981,28 @@ func (c *ChimeSDKVoice) CreateVoiceConnectorRequest(input *CreateVoiceConnectorI
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceConnector
 func (c *ChimeSDKVoice) CreateVoiceConnector(input *CreateVoiceConnectorInput) (*CreateVoiceConnectorOutput, error) {
@@ -954,6 +1069,14 @@ func (c *ChimeSDKVoice) CreateVoiceConnectorGroupRequest(input *CreateVoiceConne
 
 // CreateVoiceConnectorGroup API operation for Amazon Chime SDK Voice.
 //
+// Creates an Amazon Chime SDK Voice Connector group under the administrator's
+// AWS account. You can associate Amazon Chime SDK Voice Connectors with the
+// Voice Connector group by including VoiceConnectorItems in the request.
+//
+// You can include Voice Connectors from different AWS Regions in your group.
+// This creates a fault tolerant mechanism for fallback in case of availability
+// events.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -964,20 +1087,28 @@ func (c *ChimeSDKVoice) CreateVoiceConnectorGroupRequest(input *CreateVoiceConne
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceConnectorGroup
 func (c *ChimeSDKVoice) CreateVoiceConnectorGroup(input *CreateVoiceConnectorGroupInput) (*CreateVoiceConnectorGroupOutput, error) {
@@ -1044,6 +1175,18 @@ func (c *ChimeSDKVoice) CreateVoiceProfileRequest(input *CreateVoiceProfileInput
 
 // CreateVoiceProfile API operation for Amazon Chime SDK Voice.
 //
+// Creates a voice profile, which consists of an enrolled user and their latest
+// voice print.
+//
+// Before creating any voice profiles, you must provide all notices and obtain
+// all consents from the speaker as required under applicable privacy and biometrics
+// laws, and as required under the AWS service terms (https://aws.amazon.com/service-terms/)
+// for the Amazon Chime SDK.
+//
+// For more information about voice profiles and voice analytics, see Using
+// Amazon Chime SDK Voice Analytics (https://docs.aws.amazon.com/chime-sdk/latest/dg/pstn-voice-analytics.html)
+// in the Amazon Chime SDK Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1054,26 +1197,38 @@ func (c *ChimeSDKVoice) CreateVoiceProfileRequest(input *CreateVoiceProfileInput
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - GoneException
+//     Access to the target resource is no longer available at the origin server.
+//     This condition is likely to be permanent.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceProfile
 func (c *ChimeSDKVoice) CreateVoiceProfile(input *CreateVoiceProfileInput) (*CreateVoiceProfileOutput, error) {
@@ -1140,6 +1295,18 @@ func (c *ChimeSDKVoice) CreateVoiceProfileDomainRequest(input *CreateVoiceProfil
 
 // CreateVoiceProfileDomain API operation for Amazon Chime SDK Voice.
 //
+// Creates a voice profile domain, a collection of voice profiles, their voice
+// prints, and encrypted enrollment audio.
+//
+// Before creating any voice profiles, you must provide all notices and obtain
+// all consents from the speaker as required under applicable privacy and biometrics
+// laws, and as required under the AWS service terms (https://aws.amazon.com/service-terms/)
+// for the Amazon Chime SDK.
+//
+// For more information about voice profile domains, see Using Amazon Chime
+// SDK Voice Analytics (https://docs.aws.amazon.com/chime-sdk/latest/dg/pstn-voice-analytics.html)
+// in the Amazon Chime SDK Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1150,22 +1317,31 @@ func (c *ChimeSDKVoice) CreateVoiceProfileDomainRequest(input *CreateVoiceProfil
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/CreateVoiceProfileDomain
 func (c *ChimeSDKVoice) CreateVoiceProfileDomain(input *CreateVoiceProfileDomainInput) (*CreateVoiceProfileDomainOutput, error) {
@@ -1233,6 +1409,13 @@ func (c *ChimeSDKVoice) DeletePhoneNumberRequest(input *DeletePhoneNumberInput) 
 
 // DeletePhoneNumber API operation for Amazon Chime SDK Voice.
 //
+// Moves the specified phone number into the Deletion queue. A phone number
+// must be disassociated from any users or Amazon Chime SDK Voice Connectors
+// before it can be deleted.
+//
+// Deleted phone numbers remain in the Deletion queue queue for 7 days before
+// they are deleted permanently.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1243,18 +1426,25 @@ func (c *ChimeSDKVoice) DeletePhoneNumberRequest(input *DeletePhoneNumberInput) 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeletePhoneNumber
 func (c *ChimeSDKVoice) DeletePhoneNumber(input *DeletePhoneNumberInput) (*DeletePhoneNumberOutput, error) {
@@ -1322,6 +1512,9 @@ func (c *ChimeSDKVoice) DeleteProxySessionRequest(input *DeleteProxySessionInput
 
 // DeleteProxySession API operation for Amazon Chime SDK Voice.
 //
+// Deletes the specified proxy session from the specified Amazon Chime SDK Voice
+// Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1332,18 +1525,25 @@ func (c *ChimeSDKVoice) DeleteProxySessionRequest(input *DeleteProxySessionInput
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteProxySession
 func (c *ChimeSDKVoice) DeleteProxySession(input *DeleteProxySessionInput) (*DeleteProxySessionOutput, error) {
@@ -1411,6 +1611,8 @@ func (c *ChimeSDKVoice) DeleteSipMediaApplicationRequest(input *DeleteSipMediaAp
 
 // DeleteSipMediaApplication API operation for Amazon Chime SDK Voice.
 //
+// Deletes a SIP media application.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1421,20 +1623,28 @@ func (c *ChimeSDKVoice) DeleteSipMediaApplicationRequest(input *DeleteSipMediaAp
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteSipMediaApplication
 func (c *ChimeSDKVoice) DeleteSipMediaApplication(input *DeleteSipMediaApplicationInput) (*DeleteSipMediaApplicationOutput, error) {
@@ -1502,6 +1712,8 @@ func (c *ChimeSDKVoice) DeleteSipRuleRequest(input *DeleteSipRuleInput) (req *re
 
 // DeleteSipRule API operation for Amazon Chime SDK Voice.
 //
+// Deletes a SIP rule.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1512,20 +1724,28 @@ func (c *ChimeSDKVoice) DeleteSipRuleRequest(input *DeleteSipRuleInput) (req *re
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteSipRule
 func (c *ChimeSDKVoice) DeleteSipRule(input *DeleteSipRuleInput) (*DeleteSipRuleOutput, error) {
@@ -1593,6 +1813,10 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorRequest(input *DeleteVoiceConnectorI
 
 // DeleteVoiceConnector API operation for Amazon Chime SDK Voice.
 //
+// Deletes an Amazon Chime SDK Voice Connector. Any phone numbers associated
+// with the Amazon Chime SDK Voice Connector must be disassociated from it before
+// it can be deleted.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1603,20 +1827,28 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorRequest(input *DeleteVoiceConnectorI
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnector
 func (c *ChimeSDKVoice) DeleteVoiceConnector(input *DeleteVoiceConnectorInput) (*DeleteVoiceConnectorOutput, error) {
@@ -1684,6 +1916,9 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorEmergencyCallingConfigurationRequest
 
 // DeleteVoiceConnectorEmergencyCallingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Deletes the emergency calling details from the specified Amazon Chime SDK
+// Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1694,18 +1929,25 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorEmergencyCallingConfigurationRequest
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorEmergencyCallingConfiguration
 func (c *ChimeSDKVoice) DeleteVoiceConnectorEmergencyCallingConfiguration(input *DeleteVoiceConnectorEmergencyCallingConfigurationInput) (*DeleteVoiceConnectorEmergencyCallingConfigurationOutput, error) {
@@ -1773,6 +2015,10 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorGroupRequest(input *DeleteVoiceConne
 
 // DeleteVoiceConnectorGroup API operation for Amazon Chime SDK Voice.
 //
+// Deletes an Amazon Chime SDK Voice Connector group. Any VoiceConnectorItems
+// and phone numbers associated with the group must be removed before it can
+// be deleted.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1783,20 +2029,28 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorGroupRequest(input *DeleteVoiceConne
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorGroup
 func (c *ChimeSDKVoice) DeleteVoiceConnectorGroup(input *DeleteVoiceConnectorGroupInput) (*DeleteVoiceConnectorGroupOutput, error) {
@@ -1864,6 +2118,12 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorOriginationRequest(input *DeleteVoic
 
 // DeleteVoiceConnectorOrigination API operation for Amazon Chime SDK Voice.
 //
+// Deletes the origination settings for the specified Amazon Chime SDK Voice
+// Connector.
+//
+// If emergency calling is configured for the Voice Connector, it must be deleted
+// prior to deleting the origination settings.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1874,18 +2134,25 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorOriginationRequest(input *DeleteVoic
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorOrigination
 func (c *ChimeSDKVoice) DeleteVoiceConnectorOrigination(input *DeleteVoiceConnectorOriginationInput) (*DeleteVoiceConnectorOriginationOutput, error) {
@@ -1953,6 +2220,9 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorProxyRequest(input *DeleteVoiceConne
 
 // DeleteVoiceConnectorProxy API operation for Amazon Chime SDK Voice.
 //
+// Deletes the proxy configuration from the specified Amazon Chime SDK Voice
+// Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1963,18 +2233,25 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorProxyRequest(input *DeleteVoiceConne
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorProxy
 func (c *ChimeSDKVoice) DeleteVoiceConnectorProxy(input *DeleteVoiceConnectorProxyInput) (*DeleteVoiceConnectorProxyOutput, error) {
@@ -2042,6 +2319,8 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorStreamingConfigurationRequest(input 
 
 // DeleteVoiceConnectorStreamingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Deletes a Voice Connector's streaming configuration.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2052,18 +2331,25 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorStreamingConfigurationRequest(input 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorStreamingConfiguration
 func (c *ChimeSDKVoice) DeleteVoiceConnectorStreamingConfiguration(input *DeleteVoiceConnectorStreamingConfigurationInput) (*DeleteVoiceConnectorStreamingConfigurationOutput, error) {
@@ -2131,6 +2417,12 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorTerminationRequest(input *DeleteVoic
 
 // DeleteVoiceConnectorTermination API operation for Amazon Chime SDK Voice.
 //
+// Deletes the termination settings for the specified Amazon Chime SDK Voice
+// Connector.
+//
+// If emergency calling is configured for the Voice Connector, it must be deleted
+// prior to deleting the termination settings.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2141,18 +2433,25 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorTerminationRequest(input *DeleteVoic
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorTermination
 func (c *ChimeSDKVoice) DeleteVoiceConnectorTermination(input *DeleteVoiceConnectorTerminationInput) (*DeleteVoiceConnectorTerminationOutput, error) {
@@ -2220,6 +2519,9 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorTerminationCredentialsRequest(input 
 
 // DeleteVoiceConnectorTerminationCredentials API operation for Amazon Chime SDK Voice.
 //
+// Deletes the specified SIP credentials used by your equipment to authenticate
+// during call termination.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2230,18 +2532,25 @@ func (c *ChimeSDKVoice) DeleteVoiceConnectorTerminationCredentialsRequest(input 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceConnectorTerminationCredentials
 func (c *ChimeSDKVoice) DeleteVoiceConnectorTerminationCredentials(input *DeleteVoiceConnectorTerminationCredentialsInput) (*DeleteVoiceConnectorTerminationCredentialsOutput, error) {
@@ -2309,6 +2618,9 @@ func (c *ChimeSDKVoice) DeleteVoiceProfileRequest(input *DeleteVoiceProfileInput
 
 // DeleteVoiceProfile API operation for Amazon Chime SDK Voice.
 //
+// Deletes a voice profile, including its voice print and enrollment data. WARNING:
+// This action is not reversible.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2319,22 +2631,31 @@ func (c *ChimeSDKVoice) DeleteVoiceProfileRequest(input *DeleteVoiceProfileInput
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceProfile
 func (c *ChimeSDKVoice) DeleteVoiceProfile(input *DeleteVoiceProfileInput) (*DeleteVoiceProfileOutput, error) {
@@ -2402,6 +2723,8 @@ func (c *ChimeSDKVoice) DeleteVoiceProfileDomainRequest(input *DeleteVoiceProfil
 
 // DeleteVoiceProfileDomain API operation for Amazon Chime SDK Voice.
 //
+// Deletes all voice profiles in the domain. WARNING: This action is not reversible.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2412,22 +2735,31 @@ func (c *ChimeSDKVoice) DeleteVoiceProfileDomainRequest(input *DeleteVoiceProfil
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DeleteVoiceProfileDomain
 func (c *ChimeSDKVoice) DeleteVoiceProfileDomain(input *DeleteVoiceProfileDomainInput) (*DeleteVoiceProfileDomainOutput, error) {
@@ -2494,6 +2826,9 @@ func (c *ChimeSDKVoice) DisassociatePhoneNumbersFromVoiceConnectorRequest(input 
 
 // DisassociatePhoneNumbersFromVoiceConnector API operation for Amazon Chime SDK Voice.
 //
+// Disassociates the specified phone numbers from the specified Amazon Chime
+// SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2504,18 +2839,25 @@ func (c *ChimeSDKVoice) DisassociatePhoneNumbersFromVoiceConnectorRequest(input 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DisassociatePhoneNumbersFromVoiceConnector
 func (c *ChimeSDKVoice) DisassociatePhoneNumbersFromVoiceConnector(input *DisassociatePhoneNumbersFromVoiceConnectorInput) (*DisassociatePhoneNumbersFromVoiceConnectorOutput, error) {
@@ -2582,6 +2924,9 @@ func (c *ChimeSDKVoice) DisassociatePhoneNumbersFromVoiceConnectorGroupRequest(i
 
 // DisassociatePhoneNumbersFromVoiceConnectorGroup API operation for Amazon Chime SDK Voice.
 //
+// Disassociates the specified phone numbers from the specified Amazon Chime
+// SDK Voice Connector group.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2592,18 +2937,25 @@ func (c *ChimeSDKVoice) DisassociatePhoneNumbersFromVoiceConnectorGroupRequest(i
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/DisassociatePhoneNumbersFromVoiceConnectorGroup
 func (c *ChimeSDKVoice) DisassociatePhoneNumbersFromVoiceConnectorGroup(input *DisassociatePhoneNumbersFromVoiceConnectorGroupInput) (*DisassociatePhoneNumbersFromVoiceConnectorGroupOutput, error) {
@@ -2670,6 +3022,9 @@ func (c *ChimeSDKVoice) GetGlobalSettingsRequest(input *GetGlobalSettingsInput) 
 
 // GetGlobalSettings API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the global settings for the Amazon Chime SDK Voice Connectors in
+// an AWS account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2680,16 +3035,22 @@ func (c *ChimeSDKVoice) GetGlobalSettingsRequest(input *GetGlobalSettingsInput) 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetGlobalSettings
 func (c *ChimeSDKVoice) GetGlobalSettings(input *GetGlobalSettingsInput) (*GetGlobalSettingsOutput, error) {
@@ -2756,6 +3117,9 @@ func (c *ChimeSDKVoice) GetPhoneNumberRequest(input *GetPhoneNumberInput) (req *
 
 // GetPhoneNumber API operation for Amazon Chime SDK Voice.
 //
+// Retrieves details for the specified phone number ID, such as associations,
+// capabilities, and product type.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2766,18 +3130,25 @@ func (c *ChimeSDKVoice) GetPhoneNumberRequest(input *GetPhoneNumberInput) (req *
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetPhoneNumber
 func (c *ChimeSDKVoice) GetPhoneNumber(input *GetPhoneNumberInput) (*GetPhoneNumberOutput, error) {
@@ -2844,6 +3215,10 @@ func (c *ChimeSDKVoice) GetPhoneNumberOrderRequest(input *GetPhoneNumberOrderInp
 
 // GetPhoneNumberOrder API operation for Amazon Chime SDK Voice.
 //
+// Retrieves details for the specified phone number order, such as the order
+// creation timestamp, phone numbers in E.164 format, product type, and order
+// status.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2854,18 +3229,25 @@ func (c *ChimeSDKVoice) GetPhoneNumberOrderRequest(input *GetPhoneNumberOrderInp
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetPhoneNumberOrder
 func (c *ChimeSDKVoice) GetPhoneNumberOrder(input *GetPhoneNumberOrderInput) (*GetPhoneNumberOrderOutput, error) {
@@ -2932,6 +3314,9 @@ func (c *ChimeSDKVoice) GetPhoneNumberSettingsRequest(input *GetPhoneNumberSetti
 
 // GetPhoneNumberSettings API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the phone number settings for the administrator's AWS account,
+// such as the default outbound calling name.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2942,16 +3327,22 @@ func (c *ChimeSDKVoice) GetPhoneNumberSettingsRequest(input *GetPhoneNumberSetti
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetPhoneNumberSettings
 func (c *ChimeSDKVoice) GetPhoneNumberSettings(input *GetPhoneNumberSettingsInput) (*GetPhoneNumberSettingsOutput, error) {
@@ -3018,6 +3409,9 @@ func (c *ChimeSDKVoice) GetProxySessionRequest(input *GetProxySessionInput) (req
 
 // GetProxySession API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the specified proxy session details for the specified Amazon Chime
+// SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3028,18 +3422,25 @@ func (c *ChimeSDKVoice) GetProxySessionRequest(input *GetProxySessionInput) (req
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetProxySession
 func (c *ChimeSDKVoice) GetProxySession(input *GetProxySessionInput) (*GetProxySessionOutput, error) {
@@ -3106,6 +3507,9 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationRequest(input *GetSipMediaApplicat
 
 // GetSipMediaApplication API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the information for a SIP media application, including name, AWS
+// Region, and endpoints.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3116,18 +3520,25 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationRequest(input *GetSipMediaApplicat
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSipMediaApplication
 func (c *ChimeSDKVoice) GetSipMediaApplication(input *GetSipMediaApplicationInput) (*GetSipMediaApplicationOutput, error) {
@@ -3194,6 +3605,8 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfigurationRequest(inp
 
 // GetSipMediaApplicationAlexaSkillConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Gets the Alexa Skill configuration for the SIP media application.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3204,18 +3617,25 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfigurationRequest(inp
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSipMediaApplicationAlexaSkillConfiguration
 func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfiguration(input *GetSipMediaApplicationAlexaSkillConfigurationInput) (*GetSipMediaApplicationAlexaSkillConfigurationOutput, error) {
@@ -3282,6 +3702,8 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationLoggingConfigurationRequest(input 
 
 // GetSipMediaApplicationLoggingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the logging configuration for the specified SIP media application.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3292,18 +3714,25 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationLoggingConfigurationRequest(input 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSipMediaApplicationLoggingConfiguration
 func (c *ChimeSDKVoice) GetSipMediaApplicationLoggingConfiguration(input *GetSipMediaApplicationLoggingConfigurationInput) (*GetSipMediaApplicationLoggingConfigurationOutput, error) {
@@ -3370,6 +3799,9 @@ func (c *ChimeSDKVoice) GetSipRuleRequest(input *GetSipRuleInput) (req *request.
 
 // GetSipRule API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the details of a SIP rule, such as the rule ID, name, triggers,
+// and target endpoints.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3380,18 +3812,25 @@ func (c *ChimeSDKVoice) GetSipRuleRequest(input *GetSipRuleInput) (req *request.
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSipRule
 func (c *ChimeSDKVoice) GetSipRule(input *GetSipRuleInput) (*GetSipRuleOutput, error) {
@@ -3458,6 +3897,8 @@ func (c *ChimeSDKVoice) GetSpeakerSearchTaskRequest(input *GetSpeakerSearchTaskI
 
 // GetSpeakerSearchTask API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the details of the specified speaker search task.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3468,22 +3909,31 @@ func (c *ChimeSDKVoice) GetSpeakerSearchTaskRequest(input *GetSpeakerSearchTaskI
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSpeakerSearchTask
 func (c *ChimeSDKVoice) GetSpeakerSearchTask(input *GetSpeakerSearchTaskInput) (*GetSpeakerSearchTaskOutput, error) {
@@ -3550,6 +4000,9 @@ func (c *ChimeSDKVoice) GetVoiceConnectorRequest(input *GetVoiceConnectorInput) 
 
 // GetVoiceConnector API operation for Amazon Chime SDK Voice.
 //
+// Retrieves details for the specified Amazon Chime SDK Voice Connector, such
+// as timestamps,name, outbound host, and encryption requirements.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3560,18 +4013,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorRequest(input *GetVoiceConnectorInput) 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnector
 func (c *ChimeSDKVoice) GetVoiceConnector(input *GetVoiceConnectorInput) (*GetVoiceConnectorOutput, error) {
@@ -3638,6 +4098,9 @@ func (c *ChimeSDKVoice) GetVoiceConnectorEmergencyCallingConfigurationRequest(in
 
 // GetVoiceConnectorEmergencyCallingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the emergency calling configuration details for the specified Voice
+// Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3648,18 +4111,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorEmergencyCallingConfigurationRequest(in
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorEmergencyCallingConfiguration
 func (c *ChimeSDKVoice) GetVoiceConnectorEmergencyCallingConfiguration(input *GetVoiceConnectorEmergencyCallingConfigurationInput) (*GetVoiceConnectorEmergencyCallingConfigurationOutput, error) {
@@ -3726,6 +4196,9 @@ func (c *ChimeSDKVoice) GetVoiceConnectorGroupRequest(input *GetVoiceConnectorGr
 
 // GetVoiceConnectorGroup API operation for Amazon Chime SDK Voice.
 //
+// Retrieves details for the specified Amazon Chime SDK Voice Connector group,
+// such as timestamps,name, and associated VoiceConnectorItems.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3736,18 +4209,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorGroupRequest(input *GetVoiceConnectorGr
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorGroup
 func (c *ChimeSDKVoice) GetVoiceConnectorGroup(input *GetVoiceConnectorGroupInput) (*GetVoiceConnectorGroupOutput, error) {
@@ -3814,6 +4294,10 @@ func (c *ChimeSDKVoice) GetVoiceConnectorLoggingConfigurationRequest(input *GetV
 
 // GetVoiceConnectorLoggingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the logging configuration settings for the specified Voice Connector.
+// Shows whether SIP message logs are enabled for sending to Amazon CloudWatch
+// Logs.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3824,18 +4308,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorLoggingConfigurationRequest(input *GetV
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorLoggingConfiguration
 func (c *ChimeSDKVoice) GetVoiceConnectorLoggingConfiguration(input *GetVoiceConnectorLoggingConfigurationInput) (*GetVoiceConnectorLoggingConfigurationOutput, error) {
@@ -3902,6 +4393,8 @@ func (c *ChimeSDKVoice) GetVoiceConnectorOriginationRequest(input *GetVoiceConne
 
 // GetVoiceConnectorOrigination API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the origination settings for the specified Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3912,18 +4405,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorOriginationRequest(input *GetVoiceConne
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorOrigination
 func (c *ChimeSDKVoice) GetVoiceConnectorOrigination(input *GetVoiceConnectorOriginationInput) (*GetVoiceConnectorOriginationOutput, error) {
@@ -3990,6 +4490,9 @@ func (c *ChimeSDKVoice) GetVoiceConnectorProxyRequest(input *GetVoiceConnectorPr
 
 // GetVoiceConnectorProxy API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the proxy configuration details for the specified Amazon Chime
+// SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4000,18 +4503,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorProxyRequest(input *GetVoiceConnectorPr
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorProxy
 func (c *ChimeSDKVoice) GetVoiceConnectorProxy(input *GetVoiceConnectorProxyInput) (*GetVoiceConnectorProxyOutput, error) {
@@ -4078,6 +4588,11 @@ func (c *ChimeSDKVoice) GetVoiceConnectorStreamingConfigurationRequest(input *Ge
 
 // GetVoiceConnectorStreamingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the streaming configuration details for the specified Amazon Chime
+// SDK Voice Connector. Shows whether media streaming is enabled for sending
+// to Amazon Kinesis. It also shows the retention period, in hours, for the
+// Amazon Kinesis data.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4088,18 +4603,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorStreamingConfigurationRequest(input *Ge
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorStreamingConfiguration
 func (c *ChimeSDKVoice) GetVoiceConnectorStreamingConfiguration(input *GetVoiceConnectorStreamingConfigurationInput) (*GetVoiceConnectorStreamingConfigurationOutput, error) {
@@ -4166,6 +4688,8 @@ func (c *ChimeSDKVoice) GetVoiceConnectorTerminationRequest(input *GetVoiceConne
 
 // GetVoiceConnectorTermination API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the termination setting details for the specified Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4176,18 +4700,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorTerminationRequest(input *GetVoiceConne
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorTermination
 func (c *ChimeSDKVoice) GetVoiceConnectorTermination(input *GetVoiceConnectorTerminationInput) (*GetVoiceConnectorTerminationOutput, error) {
@@ -4254,6 +4785,9 @@ func (c *ChimeSDKVoice) GetVoiceConnectorTerminationHealthRequest(input *GetVoic
 
 // GetVoiceConnectorTerminationHealth API operation for Amazon Chime SDK Voice.
 //
+// Retrieves information about the last time a SIP OPTIONS ping was received
+// from your SIP infrastructure for the specified Amazon Chime SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4264,18 +4798,25 @@ func (c *ChimeSDKVoice) GetVoiceConnectorTerminationHealthRequest(input *GetVoic
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceConnectorTerminationHealth
 func (c *ChimeSDKVoice) GetVoiceConnectorTerminationHealth(input *GetVoiceConnectorTerminationHealthInput) (*GetVoiceConnectorTerminationHealthOutput, error) {
@@ -4342,6 +4883,8 @@ func (c *ChimeSDKVoice) GetVoiceProfileRequest(input *GetVoiceProfileInput) (req
 
 // GetVoiceProfile API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the details of the specified voice profile.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4352,20 +4895,28 @@ func (c *ChimeSDKVoice) GetVoiceProfileRequest(input *GetVoiceProfileInput) (req
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceProfile
 func (c *ChimeSDKVoice) GetVoiceProfile(input *GetVoiceProfileInput) (*GetVoiceProfileOutput, error) {
@@ -4432,6 +4983,8 @@ func (c *ChimeSDKVoice) GetVoiceProfileDomainRequest(input *GetVoiceProfileDomai
 
 // GetVoiceProfileDomain API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the details of the specified voice profile domain.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4442,20 +4995,28 @@ func (c *ChimeSDKVoice) GetVoiceProfileDomainRequest(input *GetVoiceProfileDomai
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceProfileDomain
 func (c *ChimeSDKVoice) GetVoiceProfileDomain(input *GetVoiceProfileDomainInput) (*GetVoiceProfileDomainOutput, error) {
@@ -4522,6 +5083,8 @@ func (c *ChimeSDKVoice) GetVoiceToneAnalysisTaskRequest(input *GetVoiceToneAnaly
 
 // GetVoiceToneAnalysisTask API operation for Amazon Chime SDK Voice.
 //
+// Retrieves the details of a voice tone analysis task.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4532,22 +5095,31 @@ func (c *ChimeSDKVoice) GetVoiceToneAnalysisTaskRequest(input *GetVoiceToneAnaly
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetVoiceToneAnalysisTask
 func (c *ChimeSDKVoice) GetVoiceToneAnalysisTask(input *GetVoiceToneAnalysisTaskInput) (*GetVoiceToneAnalysisTaskOutput, error) {
@@ -4614,6 +5186,9 @@ func (c *ChimeSDKVoice) ListAvailableVoiceConnectorRegionsRequest(input *ListAva
 
 // ListAvailableVoiceConnectorRegions API operation for Amazon Chime SDK Voice.
 //
+// Lists the available AWS Regions in which you can create an Amazon Chime SDK
+// Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4624,16 +5199,22 @@ func (c *ChimeSDKVoice) ListAvailableVoiceConnectorRegionsRequest(input *ListAva
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListAvailableVoiceConnectorRegions
 func (c *ChimeSDKVoice) ListAvailableVoiceConnectorRegions(input *ListAvailableVoiceConnectorRegionsInput) (*ListAvailableVoiceConnectorRegionsOutput, error) {
@@ -4706,6 +5287,8 @@ func (c *ChimeSDKVoice) ListPhoneNumberOrdersRequest(input *ListPhoneNumberOrder
 
 // ListPhoneNumberOrders API operation for Amazon Chime SDK Voice.
 //
+// Lists the phone numbers for an administrator's Amazon Chime SDK account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4716,16 +5299,22 @@ func (c *ChimeSDKVoice) ListPhoneNumberOrdersRequest(input *ListPhoneNumberOrder
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListPhoneNumberOrders
 func (c *ChimeSDKVoice) ListPhoneNumberOrders(input *ListPhoneNumberOrdersInput) (*ListPhoneNumberOrdersOutput, error) {
@@ -4849,6 +5438,10 @@ func (c *ChimeSDKVoice) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (r
 
 // ListPhoneNumbers API operation for Amazon Chime SDK Voice.
 //
+// Lists the phone numbers for the specified Amazon Chime SDK account, Amazon
+// Chime SDK user, Amazon Chime SDK Voice Connector, or Amazon Chime SDK Voice
+// Connector group.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4859,18 +5452,25 @@ func (c *ChimeSDKVoice) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (r
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListPhoneNumbers
 func (c *ChimeSDKVoice) ListPhoneNumbers(input *ListPhoneNumbersInput) (*ListPhoneNumbersOutput, error) {
@@ -4994,6 +5594,8 @@ func (c *ChimeSDKVoice) ListProxySessionsRequest(input *ListProxySessionsInput) 
 
 // ListProxySessions API operation for Amazon Chime SDK Voice.
 //
+// Lists the proxy sessions for the specified Amazon Chime SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5004,18 +5606,25 @@ func (c *ChimeSDKVoice) ListProxySessionsRequest(input *ListProxySessionsInput) 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListProxySessions
 func (c *ChimeSDKVoice) ListProxySessions(input *ListProxySessionsInput) (*ListProxySessionsOutput, error) {
@@ -5139,6 +5748,8 @@ func (c *ChimeSDKVoice) ListSipMediaApplicationsRequest(input *ListSipMediaAppli
 
 // ListSipMediaApplications API operation for Amazon Chime SDK Voice.
 //
+// Lists the SIP media applications under the administrator's AWS account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5149,16 +5760,22 @@ func (c *ChimeSDKVoice) ListSipMediaApplicationsRequest(input *ListSipMediaAppli
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListSipMediaApplications
 func (c *ChimeSDKVoice) ListSipMediaApplications(input *ListSipMediaApplicationsInput) (*ListSipMediaApplicationsOutput, error) {
@@ -5282,6 +5899,8 @@ func (c *ChimeSDKVoice) ListSipRulesRequest(input *ListSipRulesInput) (req *requ
 
 // ListSipRules API operation for Amazon Chime SDK Voice.
 //
+// Lists the SIP rules under the administrator's AWS account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5292,16 +5911,22 @@ func (c *ChimeSDKVoice) ListSipRulesRequest(input *ListSipRulesInput) (req *requ
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListSipRules
 func (c *ChimeSDKVoice) ListSipRules(input *ListSipRulesInput) (*ListSipRulesOutput, error) {
@@ -5419,6 +6044,8 @@ func (c *ChimeSDKVoice) ListSupportedPhoneNumberCountriesRequest(input *ListSupp
 
 // ListSupportedPhoneNumberCountries API operation for Amazon Chime SDK Voice.
 //
+// Lists the countries that you can order phone numbers from.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5429,18 +6056,25 @@ func (c *ChimeSDKVoice) ListSupportedPhoneNumberCountriesRequest(input *ListSupp
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListSupportedPhoneNumberCountries
 func (c *ChimeSDKVoice) ListSupportedPhoneNumberCountries(input *ListSupportedPhoneNumberCountriesInput) (*ListSupportedPhoneNumberCountriesOutput, error) {
@@ -5507,6 +6141,8 @@ func (c *ChimeSDKVoice) ListTagsForResourceRequest(input *ListTagsForResourceInp
 
 // ListTagsForResource API operation for Amazon Chime SDK Voice.
 //
+// Returns a list of the tags in a given resource.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5517,16 +6153,22 @@ func (c *ChimeSDKVoice) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListTagsForResource
 func (c *ChimeSDKVoice) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5599,6 +6241,9 @@ func (c *ChimeSDKVoice) ListVoiceConnectorGroupsRequest(input *ListVoiceConnecto
 
 // ListVoiceConnectorGroups API operation for Amazon Chime SDK Voice.
 //
+// Lists the Amazon Chime SDK Voice Connector groups in the administrator's
+// AWS account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5609,16 +6254,22 @@ func (c *ChimeSDKVoice) ListVoiceConnectorGroupsRequest(input *ListVoiceConnecto
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceConnectorGroups
 func (c *ChimeSDKVoice) ListVoiceConnectorGroups(input *ListVoiceConnectorGroupsInput) (*ListVoiceConnectorGroupsOutput, error) {
@@ -5736,6 +6387,8 @@ func (c *ChimeSDKVoice) ListVoiceConnectorTerminationCredentialsRequest(input *L
 
 // ListVoiceConnectorTerminationCredentials API operation for Amazon Chime SDK Voice.
 //
+// Lists the SIP credentials for the specified Amazon Chime SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5746,18 +6399,25 @@ func (c *ChimeSDKVoice) ListVoiceConnectorTerminationCredentialsRequest(input *L
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceConnectorTerminationCredentials
 func (c *ChimeSDKVoice) ListVoiceConnectorTerminationCredentials(input *ListVoiceConnectorTerminationCredentialsInput) (*ListVoiceConnectorTerminationCredentialsOutput, error) {
@@ -5830,6 +6490,8 @@ func (c *ChimeSDKVoice) ListVoiceConnectorsRequest(input *ListVoiceConnectorsInp
 
 // ListVoiceConnectors API operation for Amazon Chime SDK Voice.
 //
+// Lists the Amazon Chime SDK Voice Connectors in the administrators AWS account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5840,16 +6502,22 @@ func (c *ChimeSDKVoice) ListVoiceConnectorsRequest(input *ListVoiceConnectorsInp
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceConnectors
 func (c *ChimeSDKVoice) ListVoiceConnectors(input *ListVoiceConnectorsInput) (*ListVoiceConnectorsOutput, error) {
@@ -5973,6 +6641,8 @@ func (c *ChimeSDKVoice) ListVoiceProfileDomainsRequest(input *ListVoiceProfileDo
 
 // ListVoiceProfileDomains API operation for Amazon Chime SDK Voice.
 //
+// Lists the specified voice profile domains in the administrator's AWS account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5983,18 +6653,25 @@ func (c *ChimeSDKVoice) ListVoiceProfileDomainsRequest(input *ListVoiceProfileDo
 // Returned Error Types:
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceProfileDomains
 func (c *ChimeSDKVoice) ListVoiceProfileDomains(input *ListVoiceProfileDomainsInput) (*ListVoiceProfileDomainsOutput, error) {
@@ -6118,6 +6795,8 @@ func (c *ChimeSDKVoice) ListVoiceProfilesRequest(input *ListVoiceProfilesInput) 
 
 // ListVoiceProfiles API operation for Amazon Chime SDK Voice.
 //
+// Lists the voice profiles in a voice profile domain.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6128,18 +6807,25 @@ func (c *ChimeSDKVoice) ListVoiceProfilesRequest(input *ListVoiceProfilesInput) 
 // Returned Error Types:
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ListVoiceProfiles
 func (c *ChimeSDKVoice) ListVoiceProfiles(input *ListVoiceProfilesInput) (*ListVoiceProfilesOutput, error) {
@@ -6257,6 +6943,8 @@ func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfigurationRequest(inp
 
 // PutSipMediaApplicationAlexaSkillConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Updates the Alexa Skill configuration for the SIP media application.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6267,18 +6955,25 @@ func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfigurationRequest(inp
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutSipMediaApplicationAlexaSkillConfiguration
 func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfiguration(input *PutSipMediaApplicationAlexaSkillConfigurationInput) (*PutSipMediaApplicationAlexaSkillConfigurationOutput, error) {
@@ -6345,6 +7040,8 @@ func (c *ChimeSDKVoice) PutSipMediaApplicationLoggingConfigurationRequest(input 
 
 // PutSipMediaApplicationLoggingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Updates the logging configuration for the specified SIP media application.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6355,18 +7052,25 @@ func (c *ChimeSDKVoice) PutSipMediaApplicationLoggingConfigurationRequest(input 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutSipMediaApplicationLoggingConfiguration
 func (c *ChimeSDKVoice) PutSipMediaApplicationLoggingConfiguration(input *PutSipMediaApplicationLoggingConfigurationInput) (*PutSipMediaApplicationLoggingConfigurationOutput, error) {
@@ -6433,6 +7137,8 @@ func (c *ChimeSDKVoice) PutVoiceConnectorEmergencyCallingConfigurationRequest(in
 
 // PutVoiceConnectorEmergencyCallingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Updates a Voice Connector's emergency calling configuration.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6443,18 +7149,25 @@ func (c *ChimeSDKVoice) PutVoiceConnectorEmergencyCallingConfigurationRequest(in
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorEmergencyCallingConfiguration
 func (c *ChimeSDKVoice) PutVoiceConnectorEmergencyCallingConfiguration(input *PutVoiceConnectorEmergencyCallingConfigurationInput) (*PutVoiceConnectorEmergencyCallingConfigurationOutput, error) {
@@ -6521,6 +7234,8 @@ func (c *ChimeSDKVoice) PutVoiceConnectorLoggingConfigurationRequest(input *PutV
 
 // PutVoiceConnectorLoggingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Updates a Voice Connector's logging configuration.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6531,18 +7246,25 @@ func (c *ChimeSDKVoice) PutVoiceConnectorLoggingConfigurationRequest(input *PutV
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorLoggingConfiguration
 func (c *ChimeSDKVoice) PutVoiceConnectorLoggingConfiguration(input *PutVoiceConnectorLoggingConfigurationInput) (*PutVoiceConnectorLoggingConfigurationOutput, error) {
@@ -6609,6 +7331,8 @@ func (c *ChimeSDKVoice) PutVoiceConnectorOriginationRequest(input *PutVoiceConne
 
 // PutVoiceConnectorOrigination API operation for Amazon Chime SDK Voice.
 //
+// Updates a Voice Connector's origination settings.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6619,18 +7343,25 @@ func (c *ChimeSDKVoice) PutVoiceConnectorOriginationRequest(input *PutVoiceConne
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorOrigination
 func (c *ChimeSDKVoice) PutVoiceConnectorOrigination(input *PutVoiceConnectorOriginationInput) (*PutVoiceConnectorOriginationOutput, error) {
@@ -6697,6 +7428,9 @@ func (c *ChimeSDKVoice) PutVoiceConnectorProxyRequest(input *PutVoiceConnectorPr
 
 // PutVoiceConnectorProxy API operation for Amazon Chime SDK Voice.
 //
+// Puts the specified proxy configuration to the specified Amazon Chime SDK
+// Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6707,20 +7441,28 @@ func (c *ChimeSDKVoice) PutVoiceConnectorProxyRequest(input *PutVoiceConnectorPr
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorProxy
 func (c *ChimeSDKVoice) PutVoiceConnectorProxy(input *PutVoiceConnectorProxyInput) (*PutVoiceConnectorProxyOutput, error) {
@@ -6787,6 +7529,8 @@ func (c *ChimeSDKVoice) PutVoiceConnectorStreamingConfigurationRequest(input *Pu
 
 // PutVoiceConnectorStreamingConfiguration API operation for Amazon Chime SDK Voice.
 //
+// Updates a Voice Connector's streaming configuration settings.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6797,18 +7541,25 @@ func (c *ChimeSDKVoice) PutVoiceConnectorStreamingConfigurationRequest(input *Pu
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorStreamingConfiguration
 func (c *ChimeSDKVoice) PutVoiceConnectorStreamingConfiguration(input *PutVoiceConnectorStreamingConfigurationInput) (*PutVoiceConnectorStreamingConfigurationOutput, error) {
@@ -6875,6 +7626,8 @@ func (c *ChimeSDKVoice) PutVoiceConnectorTerminationRequest(input *PutVoiceConne
 
 // PutVoiceConnectorTermination API operation for Amazon Chime SDK Voice.
 //
+// Updates a Voice Connector's termination settings.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6885,20 +7638,28 @@ func (c *ChimeSDKVoice) PutVoiceConnectorTerminationRequest(input *PutVoiceConne
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorTermination
 func (c *ChimeSDKVoice) PutVoiceConnectorTermination(input *PutVoiceConnectorTerminationInput) (*PutVoiceConnectorTerminationOutput, error) {
@@ -6966,6 +7727,8 @@ func (c *ChimeSDKVoice) PutVoiceConnectorTerminationCredentialsRequest(input *Pu
 
 // PutVoiceConnectorTerminationCredentials API operation for Amazon Chime SDK Voice.
 //
+// Updates a Voice Connector's termination credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6976,18 +7739,25 @@ func (c *ChimeSDKVoice) PutVoiceConnectorTerminationCredentialsRequest(input *Pu
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutVoiceConnectorTerminationCredentials
 func (c *ChimeSDKVoice) PutVoiceConnectorTerminationCredentials(input *PutVoiceConnectorTerminationCredentialsInput) (*PutVoiceConnectorTerminationCredentialsOutput, error) {
@@ -7054,6 +7824,8 @@ func (c *ChimeSDKVoice) RestorePhoneNumberRequest(input *RestorePhoneNumberInput
 
 // RestorePhoneNumber API operation for Amazon Chime SDK Voice.
 //
+// Restores a deleted phone number.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7064,20 +7836,28 @@ func (c *ChimeSDKVoice) RestorePhoneNumberRequest(input *RestorePhoneNumberInput
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/RestorePhoneNumber
 func (c *ChimeSDKVoice) RestorePhoneNumber(input *RestorePhoneNumberInput) (*RestorePhoneNumberOutput, error) {
@@ -7150,6 +7930,8 @@ func (c *ChimeSDKVoice) SearchAvailablePhoneNumbersRequest(input *SearchAvailabl
 
 // SearchAvailablePhoneNumbers API operation for Amazon Chime SDK Voice.
 //
+// Searches the provisioned phone numbers in an organization.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7160,18 +7942,25 @@ func (c *ChimeSDKVoice) SearchAvailablePhoneNumbersRequest(input *SearchAvailabl
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/SearchAvailablePhoneNumbers
 func (c *ChimeSDKVoice) SearchAvailablePhoneNumbers(input *SearchAvailablePhoneNumbersInput) (*SearchAvailablePhoneNumbersOutput, error) {
@@ -7289,6 +8078,13 @@ func (c *ChimeSDKVoice) StartSpeakerSearchTaskRequest(input *StartSpeakerSearchT
 
 // StartSpeakerSearchTask API operation for Amazon Chime SDK Voice.
 //
+// Starts a speaker search task.
+//
+// Before starting any speaker search tasks, you must provide all notices and
+// obtain all consents from the speaker as required under applicable privacy
+// and biometrics laws, and as required under the AWS service terms (https://aws.amazon.com/service-terms/)
+// for the Amazon Chime SDK.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7299,28 +8095,41 @@ func (c *ChimeSDKVoice) StartSpeakerSearchTaskRequest(input *StartSpeakerSearchT
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - GoneException
+//     Access to the target resource is no longer available at the origin server.
+//     This condition is likely to be permanent.
 //
 //   - UnprocessableEntityException
+//     A well-formed request couldn't be followed due to semantic errors.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StartSpeakerSearchTask
 func (c *ChimeSDKVoice) StartSpeakerSearchTask(input *StartSpeakerSearchTaskInput) (*StartSpeakerSearchTaskOutput, error) {
@@ -7387,6 +8196,15 @@ func (c *ChimeSDKVoice) StartVoiceToneAnalysisTaskRequest(input *StartVoiceToneA
 
 // StartVoiceToneAnalysisTask API operation for Amazon Chime SDK Voice.
 //
+// Starts a voice tone analysis task. For more information about voice tone
+// analysis, see Using Amazon Chime SDK voice analytics (https://docs.aws.amazon.com/chime-sdk/latest/dg/pstn-voice-analytics.html)
+// in the Amazon Chime SDK Developer Guide.
+//
+// Before starting any voice tone analysis tasks, you must provide all notices
+// and obtain all consents from the speaker as required under applicable privacy
+// and biometrics laws, and as required under the AWS service terms (https://aws.amazon.com/service-terms/)
+// for the Amazon Chime SDK.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7397,28 +8215,41 @@ func (c *ChimeSDKVoice) StartVoiceToneAnalysisTaskRequest(input *StartVoiceToneA
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - GoneException
+//     Access to the target resource is no longer available at the origin server.
+//     This condition is likely to be permanent.
 //
 //   - UnprocessableEntityException
+//     A well-formed request couldn't be followed due to semantic errors.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StartVoiceToneAnalysisTask
 func (c *ChimeSDKVoice) StartVoiceToneAnalysisTask(input *StartVoiceToneAnalysisTaskInput) (*StartVoiceToneAnalysisTaskOutput, error) {
@@ -7486,6 +8317,8 @@ func (c *ChimeSDKVoice) StopSpeakerSearchTaskRequest(input *StopSpeakerSearchTas
 
 // StopSpeakerSearchTask API operation for Amazon Chime SDK Voice.
 //
+// Stops a speaker search task.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7496,24 +8329,34 @@ func (c *ChimeSDKVoice) StopSpeakerSearchTaskRequest(input *StopSpeakerSearchTas
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - UnprocessableEntityException
+//     A well-formed request couldn't be followed due to semantic errors.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StopSpeakerSearchTask
 func (c *ChimeSDKVoice) StopSpeakerSearchTask(input *StopSpeakerSearchTaskInput) (*StopSpeakerSearchTaskOutput, error) {
@@ -7581,6 +8424,8 @@ func (c *ChimeSDKVoice) StopVoiceToneAnalysisTaskRequest(input *StopVoiceToneAna
 
 // StopVoiceToneAnalysisTask API operation for Amazon Chime SDK Voice.
 //
+// Stops a voice tone analysis task.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7591,24 +8436,34 @@ func (c *ChimeSDKVoice) StopVoiceToneAnalysisTaskRequest(input *StopVoiceToneAna
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - UnprocessableEntityException
+//     A well-formed request couldn't be followed due to semantic errors.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/StopVoiceToneAnalysisTask
 func (c *ChimeSDKVoice) StopVoiceToneAnalysisTask(input *StopVoiceToneAnalysisTaskInput) (*StopVoiceToneAnalysisTaskOutput, error) {
@@ -7676,6 +8531,8 @@ func (c *ChimeSDKVoice) TagResourceRequest(input *TagResourceInput) (req *reques
 
 // TagResource API operation for Amazon Chime SDK Voice.
 //
+// Adds a tag to the specified resource.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7686,18 +8543,25 @@ func (c *ChimeSDKVoice) TagResourceRequest(input *TagResourceInput) (req *reques
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/TagResource
 func (c *ChimeSDKVoice) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -7765,6 +8629,8 @@ func (c *ChimeSDKVoice) UntagResourceRequest(input *UntagResourceInput) (req *re
 
 // UntagResource API operation for Amazon Chime SDK Voice.
 //
+// Removes tags from a resource.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7775,16 +8641,22 @@ func (c *ChimeSDKVoice) UntagResourceRequest(input *UntagResourceInput) (req *re
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UntagResource
 func (c *ChimeSDKVoice) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -7852,6 +8724,9 @@ func (c *ChimeSDKVoice) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsI
 
 // UpdateGlobalSettings API operation for Amazon Chime SDK Voice.
 //
+// Updates global settings for the Amazon Chime SDK Voice Connectors in an AWS
+// account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7862,16 +8737,22 @@ func (c *ChimeSDKVoice) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsI
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateGlobalSettings
 func (c *ChimeSDKVoice) UpdateGlobalSettings(input *UpdateGlobalSettingsInput) (*UpdateGlobalSettingsOutput, error) {
@@ -7938,6 +8819,18 @@ func (c *ChimeSDKVoice) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) 
 
 // UpdatePhoneNumber API operation for Amazon Chime SDK Voice.
 //
+// Updates phone number details, such as product type or calling name, for the
+// specified phone number ID. You can update one phone number detail at a time.
+// For example, you can update either the product type or the calling name in
+// one action.
+//
+// For numbers outside the U.S., you must use the Amazon Chime SDK SIP Media
+// Application Dial-In product type.
+//
+// Updates to outbound calling names can take 72 hours to complete. Pending
+// updates to outbound calling names must be complete before you can request
+// another update.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7948,20 +8841,28 @@ func (c *ChimeSDKVoice) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) 
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdatePhoneNumber
 func (c *ChimeSDKVoice) UpdatePhoneNumber(input *UpdatePhoneNumberInput) (*UpdatePhoneNumberOutput, error) {
@@ -8029,6 +8930,11 @@ func (c *ChimeSDKVoice) UpdatePhoneNumberSettingsRequest(input *UpdatePhoneNumbe
 
 // UpdatePhoneNumberSettings API operation for Amazon Chime SDK Voice.
 //
+// Updates the phone number settings for the administrator's AWS account, such
+// as the default outbound calling name. You can update the default outbound
+// calling name once every seven days. Outbound calling names can take up to
+// 72 hours to update.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8039,16 +8945,22 @@ func (c *ChimeSDKVoice) UpdatePhoneNumberSettingsRequest(input *UpdatePhoneNumbe
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdatePhoneNumberSettings
 func (c *ChimeSDKVoice) UpdatePhoneNumberSettings(input *UpdatePhoneNumberSettingsInput) (*UpdatePhoneNumberSettingsOutput, error) {
@@ -8115,6 +9027,8 @@ func (c *ChimeSDKVoice) UpdateProxySessionRequest(input *UpdateProxySessionInput
 
 // UpdateProxySession API operation for Amazon Chime SDK Voice.
 //
+// Updates the specified proxy session details, such as voice or SMS capabilities.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8125,18 +9039,25 @@ func (c *ChimeSDKVoice) UpdateProxySessionRequest(input *UpdateProxySessionInput
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateProxySession
 func (c *ChimeSDKVoice) UpdateProxySession(input *UpdateProxySessionInput) (*UpdateProxySessionOutput, error) {
@@ -8203,6 +9124,8 @@ func (c *ChimeSDKVoice) UpdateSipMediaApplicationRequest(input *UpdateSipMediaAp
 
 // UpdateSipMediaApplication API operation for Amazon Chime SDK Voice.
 //
+// Updates the details of the specified SIP media application.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8213,20 +9136,28 @@ func (c *ChimeSDKVoice) UpdateSipMediaApplicationRequest(input *UpdateSipMediaAp
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateSipMediaApplication
 func (c *ChimeSDKVoice) UpdateSipMediaApplication(input *UpdateSipMediaApplicationInput) (*UpdateSipMediaApplicationOutput, error) {
@@ -8293,6 +9224,10 @@ func (c *ChimeSDKVoice) UpdateSipMediaApplicationCallRequest(input *UpdateSipMed
 
 // UpdateSipMediaApplicationCall API operation for Amazon Chime SDK Voice.
 //
+// Invokes the AWS Lambda function associated with the SIP media application
+// and transaction ID in an update request. The Lambda function can then return
+// a new set of actions.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8303,20 +9238,28 @@ func (c *ChimeSDKVoice) UpdateSipMediaApplicationCallRequest(input *UpdateSipMed
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateSipMediaApplicationCall
 func (c *ChimeSDKVoice) UpdateSipMediaApplicationCall(input *UpdateSipMediaApplicationCallInput) (*UpdateSipMediaApplicationCallOutput, error) {
@@ -8383,6 +9326,8 @@ func (c *ChimeSDKVoice) UpdateSipRuleRequest(input *UpdateSipRuleInput) (req *re
 
 // UpdateSipRule API operation for Amazon Chime SDK Voice.
 //
+// Updates the details of the specified SIP rule.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8393,22 +9338,31 @@ func (c *ChimeSDKVoice) UpdateSipRuleRequest(input *UpdateSipRuleInput) (req *re
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ResourceLimitExceededException
+//     The request exceeds the resource limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateSipRule
 func (c *ChimeSDKVoice) UpdateSipRule(input *UpdateSipRuleInput) (*UpdateSipRuleOutput, error) {
@@ -8475,6 +9429,8 @@ func (c *ChimeSDKVoice) UpdateVoiceConnectorRequest(input *UpdateVoiceConnectorI
 
 // UpdateVoiceConnector API operation for Amazon Chime SDK Voice.
 //
+// Updates the details for the specified Amazon Chime SDK Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8485,18 +9441,25 @@ func (c *ChimeSDKVoice) UpdateVoiceConnectorRequest(input *UpdateVoiceConnectorI
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceConnector
 func (c *ChimeSDKVoice) UpdateVoiceConnector(input *UpdateVoiceConnectorInput) (*UpdateVoiceConnectorOutput, error) {
@@ -8563,6 +9526,8 @@ func (c *ChimeSDKVoice) UpdateVoiceConnectorGroupRequest(input *UpdateVoiceConne
 
 // UpdateVoiceConnectorGroup API operation for Amazon Chime SDK Voice.
 //
+// Updates the settings for the specified Amazon Chime SDK Voice Connector group.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8573,20 +9538,28 @@ func (c *ChimeSDKVoice) UpdateVoiceConnectorGroupRequest(input *UpdateVoiceConne
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceConnectorGroup
 func (c *ChimeSDKVoice) UpdateVoiceConnectorGroup(input *UpdateVoiceConnectorGroupInput) (*UpdateVoiceConnectorGroupOutput, error) {
@@ -8653,6 +9626,21 @@ func (c *ChimeSDKVoice) UpdateVoiceProfileRequest(input *UpdateVoiceProfileInput
 
 // UpdateVoiceProfile API operation for Amazon Chime SDK Voice.
 //
+// Updates the specified voice profile’s voice print and refreshes its expiration
+// timestamp.
+//
+// As a condition of using this feature, you acknowledge that the collection,
+// use, storage, and retention of your caller’s biometric identifiers and
+// biometric information (“biometric data”) in the form of a digital voiceprint
+// requires the caller’s informed consent via a written release. Such consent
+// is required under various state laws, including biometrics laws in Illinois,
+// Texas, Washington and other state privacy laws.
+//
+// You must provide a written release to each caller through a process that
+// clearly reflects each caller’s informed consent before using Amazon Chime
+// SDK Voice Insights service, as required under the terms of your agreement
+// with AWS governing your use of the service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8663,24 +9651,35 @@ func (c *ChimeSDKVoice) UpdateVoiceProfileRequest(input *UpdateVoiceProfileInput
 // Returned Error Types:
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ConflictException
+//     Multiple instances of the same request were made simultaneously.
 //
 //   - GoneException
+//     Access to the target resource is no longer available at the origin server.
+//     This condition is likely to be permanent.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceProfile
 func (c *ChimeSDKVoice) UpdateVoiceProfile(input *UpdateVoiceProfileInput) (*UpdateVoiceProfileOutput, error) {
@@ -8747,6 +9746,8 @@ func (c *ChimeSDKVoice) UpdateVoiceProfileDomainRequest(input *UpdateVoiceProfil
 
 // UpdateVoiceProfileDomain API operation for Amazon Chime SDK Voice.
 //
+// Updates the settings for the specified voice profile domain.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8757,20 +9758,28 @@ func (c *ChimeSDKVoice) UpdateVoiceProfileDomainRequest(input *UpdateVoiceProfil
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - AccessDeniedException
+//     You don't have the permissions needed to run this action.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/UpdateVoiceProfileDomain
 func (c *ChimeSDKVoice) UpdateVoiceProfileDomain(input *UpdateVoiceProfileDomainInput) (*UpdateVoiceProfileDomainOutput, error) {
@@ -8837,6 +9846,12 @@ func (c *ChimeSDKVoice) ValidateE911AddressRequest(input *ValidateE911AddressInp
 
 // ValidateE911Address API operation for Amazon Chime SDK Voice.
 //
+// Validates an address to be used for 911 calls made with Amazon Chime SDK
+// Voice Connectors. You can use validated addresses in a Presence Information
+// Data Format Location Object file that you include in SIP requests. That helps
+// ensure that addresses are routed to the appropriate Public Safety Answering
+// Point.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8847,18 +9862,25 @@ func (c *ChimeSDKVoice) ValidateE911AddressRequest(input *ValidateE911AddressInp
 // Returned Error Types:
 //
 //   - UnauthorizedClientException
+//     The client isn't authorized to request a resource.
 //
 //   - NotFoundException
+//     The requested resource couldn't be found.
 //
 //   - ForbiddenException
+//     The client is permanently forbidden from making the request.
 //
 //   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ThrottledClientException
+//     The number of customer requests exceeds the request rate limit.
 //
 //   - ServiceUnavailableException
+//     The service is currently unavailable.
 //
 //   - ServiceFailureException
+//     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/ValidateE911Address
 func (c *ChimeSDKVoice) ValidateE911Address(input *ValidateE911AddressInput) (*ValidateE911AddressOutput, error) {
@@ -8882,6 +9904,7 @@ func (c *ChimeSDKVoice) ValidateE911AddressWithContext(ctx aws.Context, input *V
 	return out, req.Send()
 }
 
+// You don't have the permissions needed to run this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8945,54 +9968,76 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A validated address.
 type Address struct {
 	_ struct{} `type:"structure"`
 
+	// The city of an address.
+	//
 	// City is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	City *string `locationName:"city" type:"string" sensitive:"true"`
 
+	// The country of an address.
+	//
 	// Country is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	Country *string `locationName:"country" type:"string" sensitive:"true"`
 
+	// An address suffix location, such as the S. Unit A in Central Park S. Unit
+	// A.
+	//
 	// PostDirectional is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	PostDirectional *string `locationName:"postDirectional" type:"string" sensitive:"true"`
 
+	// The postal code of an address.
+	//
 	// PostalCode is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	PostalCode *string `locationName:"postalCode" type:"string" sensitive:"true"`
 
+	// The zip + 4 or postal code + 4 of an address.
+	//
 	// PostalCodePlus4 is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	PostalCodePlus4 *string `locationName:"postalCodePlus4" type:"string" sensitive:"true"`
 
+	// An address prefix location, such as the N in N. Third St.
+	//
 	// PreDirectional is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	PreDirectional *string `locationName:"preDirectional" type:"string" sensitive:"true"`
 
+	// The state of an address.
+	//
 	// State is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	State *string `locationName:"state" type:"string" sensitive:"true"`
 
+	// The address street, such as 8th Avenue.
+	//
 	// StreetName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	StreetName *string `locationName:"streetName" type:"string" sensitive:"true"`
 
+	// The numeric portion of an address.
+	//
 	// StreetNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
 	StreetNumber *string `locationName:"streetNumber" type:"string" sensitive:"true"`
 
+	// The address suffix, such as the N in 8th Avenue N.
+	//
 	// StreetSuffix is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Address's
 	// String and GoString methods.
@@ -9080,11 +10125,19 @@ func (s *Address) SetStreetSuffix(v string) *Address {
 type AssociatePhoneNumbersWithVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// List of phone numbers, in E.164 format.
+	//
 	// E164PhoneNumbers is a required field
 	E164PhoneNumbers []*string `type:"list" required:"true"`
 
+	// If true, associates the provided phone numbers with the provided Amazon Chime
+	// SDK Voice Connector Group and removes any previously existing associations.
+	// If false, does not associate any phone numbers that have previously existing
+	// associations.
 	ForceAssociate *bool `type:"boolean"`
 
+	// The Amazon Chime SDK Voice Connector group ID.
+	//
 	// VoiceConnectorGroupId is a required field
 	VoiceConnectorGroupId *string `location:"uri" locationName:"voiceConnectorGroupId" type:"string" required:"true"`
 }
@@ -9147,6 +10200,9 @@ func (s *AssociatePhoneNumbersWithVoiceConnectorGroupInput) SetVoiceConnectorGro
 type AssociatePhoneNumbersWithVoiceConnectorGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If the action fails for one or more of the phone numbers in the request,
+	// a list of the phone numbers is returned, along with error codes and error
+	// messages.
 	PhoneNumberErrors []*PhoneNumberError `type:"list"`
 }
 
@@ -9177,11 +10233,19 @@ func (s *AssociatePhoneNumbersWithVoiceConnectorGroupOutput) SetPhoneNumberError
 type AssociatePhoneNumbersWithVoiceConnectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// List of phone numbers, in E.164 format.
+	//
 	// E164PhoneNumbers is a required field
 	E164PhoneNumbers []*string `type:"list" required:"true"`
 
+	// If true, associates the provided phone numbers with the provided Amazon Chime
+	// SDK Voice Connector and removes any previously existing associations. If
+	// false, does not associate any phone numbers that have previously existing
+	// associations.
 	ForceAssociate *bool `type:"boolean"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -9244,6 +10308,9 @@ func (s *AssociatePhoneNumbersWithVoiceConnectorInput) SetVoiceConnectorId(v str
 type AssociatePhoneNumbersWithVoiceConnectorOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If the action fails for one or more of the phone numbers in the request,
+	// a list of the phone numbers is returned, along with error codes and error
+	// messages.
 	PhoneNumberErrors []*PhoneNumberError `type:"list"`
 }
 
@@ -9271,6 +10338,7 @@ func (s *AssociatePhoneNumbersWithVoiceConnectorOutput) SetPhoneNumberErrors(v [
 	return s
 }
 
+// The input parameters don't match the service's restrictions.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9337,6 +10405,8 @@ func (s *BadRequestException) RequestID() string {
 type BatchDeletePhoneNumberInput struct {
 	_ struct{} `type:"structure"`
 
+	// List of phone number IDs.
+	//
 	// PhoneNumberIds is a required field
 	PhoneNumberIds []*string `min:"1" type:"list" required:"true"`
 }
@@ -9384,6 +10454,9 @@ func (s *BatchDeletePhoneNumberInput) SetPhoneNumberIds(v []*string) *BatchDelet
 type BatchDeletePhoneNumberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If the action fails for one or more of the phone numbers in the request,
+	// a list of the phone numbers is returned, along with error codes and error
+	// messages.
 	PhoneNumberErrors []*PhoneNumberError `type:"list"`
 }
 
@@ -9414,6 +10487,8 @@ func (s *BatchDeletePhoneNumberOutput) SetPhoneNumberErrors(v []*PhoneNumberErro
 type BatchUpdatePhoneNumberInput struct {
 	_ struct{} `type:"structure"`
 
+	// Lists the phone numbers in the update request.
+	//
 	// UpdatePhoneNumberRequestItems is a required field
 	UpdatePhoneNumberRequestItems []*UpdatePhoneNumberRequestItem `type:"list" required:"true"`
 }
@@ -9468,6 +10543,7 @@ func (s *BatchUpdatePhoneNumberInput) SetUpdatePhoneNumberRequestItems(v []*Upda
 type BatchUpdatePhoneNumberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of failed phone numbers and their error messages.
 	PhoneNumberErrors []*PhoneNumberError `type:"list"`
 }
 
@@ -9495,13 +10571,17 @@ func (s *BatchUpdatePhoneNumberOutput) SetPhoneNumberErrors(v []*PhoneNumberErro
 	return s
 }
 
+// The details of an Amazon Chime SDK Voice Connector call.
 type CallDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Identifies a person as the caller or the callee.
 	IsCaller *bool `type:"boolean"`
 
+	// The transaction ID of a Voice Connector call.
 	TransactionId *string `min:"1" type:"string"`
 
+	// The Voice Connector ID.
 	VoiceConnectorId *string `min:"1" type:"string"`
 }
 
@@ -9541,39 +10621,54 @@ func (s *CallDetails) SetVoiceConnectorId(v string) *CallDetails {
 	return s
 }
 
+// A suggested address.
 type CandidateAddress struct {
 	_ struct{} `type:"structure"`
 
+	// The city of the candidate address.
+	//
 	// City is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CandidateAddress's
 	// String and GoString methods.
 	City *string `locationName:"city" type:"string" sensitive:"true"`
 
+	// The country of the candidate address.
+	//
 	// Country is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CandidateAddress's
 	// String and GoString methods.
 	Country *string `locationName:"country" type:"string" sensitive:"true"`
 
+	// The postal code of the candidate address.
+	//
 	// PostalCode is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CandidateAddress's
 	// String and GoString methods.
 	PostalCode *string `locationName:"postalCode" type:"string" sensitive:"true"`
 
+	// The zip + 4 or postal code +4 of the candidate address.
+	//
 	// PostalCodePlus4 is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CandidateAddress's
 	// String and GoString methods.
 	PostalCodePlus4 *string `locationName:"postalCodePlus4" type:"string" sensitive:"true"`
 
+	// The state of the candidate address.
+	//
 	// State is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CandidateAddress's
 	// String and GoString methods.
 	State *string `locationName:"state" type:"string" sensitive:"true"`
 
+	// The street information of the candidate address.
+	//
 	// StreetInfo is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CandidateAddress's
 	// String and GoString methods.
 	StreetInfo *string `locationName:"streetInfo" type:"string" sensitive:"true"`
 
+	// The numeric portion of the candidate address.
+	//
 	// StreetNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CandidateAddress's
 	// String and GoString methods.
@@ -9640,6 +10735,7 @@ func (s *CandidateAddress) SetStreetNumber(v string) *CandidateAddress {
 	return s
 }
 
+// Multiple instances of the same request were made simultaneously.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9706,9 +10802,13 @@ func (s *ConflictException) RequestID() string {
 type CreatePhoneNumberOrderInput struct {
 	_ struct{} `type:"structure"`
 
+	// List of phone numbers, in E.164 format.
+	//
 	// E164PhoneNumbers is a required field
 	E164PhoneNumbers []*string `type:"list" required:"true"`
 
+	// The phone number product type.
+	//
 	// ProductType is a required field
 	ProductType *string `type:"string" required:"true" enum:"PhoneNumberProductType"`
 }
@@ -9762,6 +10862,7 @@ func (s *CreatePhoneNumberOrderInput) SetProductType(v string) *CreatePhoneNumbe
 type CreatePhoneNumberOrderOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The phone number order details.
 	PhoneNumberOrder *PhoneNumberOrder `type:"structure"`
 }
 
@@ -9792,25 +10893,39 @@ func (s *CreatePhoneNumberOrderOutput) SetPhoneNumberOrder(v *PhoneNumberOrder) 
 type CreateProxySessionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session's capabilities.
+	//
 	// Capabilities is a required field
 	Capabilities []*string `type:"list" required:"true" enum:"Capability"`
 
+	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`
 
+	// The preference for matching the country or area code of the proxy phone number
+	// with that of the first participant.
 	GeoMatchLevel *string `type:"string" enum:"GeoMatchLevel"`
 
+	// The country and area code for the proxy phone number.
 	GeoMatchParams *GeoMatchParams `type:"structure"`
 
+	// The name of the proxy session.
+	//
 	// Name is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateProxySessionInput's
 	// String and GoString methods.
 	Name *string `type:"string" sensitive:"true"`
 
+	// The preference for proxy phone number reuse, or stickiness, between the same
+	// participants across sessions.
 	NumberSelectionBehavior *string `type:"string" enum:"NumberSelectionBehavior"`
 
+	// The participant phone numbers.
+	//
 	// ParticipantPhoneNumbers is a required field
 	ParticipantPhoneNumbers []*string `min:"2" type:"list" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -9917,6 +11032,7 @@ func (s *CreateProxySessionInput) SetVoiceConnectorId(v string) *CreateProxySess
 type CreateProxySessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session details.
 	ProxySession *ProxySession `type:"structure"`
 }
 
@@ -9947,22 +11063,34 @@ func (s *CreateProxySessionOutput) SetProxySession(v *ProxySession) *CreateProxy
 type CreateSipMediaApplicationCallInput struct {
 	_ struct{} `type:"structure"`
 
+	// Context passed to a CreateSipMediaApplication API call. For example, you
+	// could pass key-value pairs such as: "FirstName": "John", "LastName": "Doe"
 	ArgumentsMap map[string]*string `type:"map"`
 
+	// The phone number that a user calls from. This is a phone number in your Amazon
+	// Chime SDK phone number inventory.
+	//
 	// FromPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateSipMediaApplicationCallInput's
 	// String and GoString methods.
+	//
 	// FromPhoneNumber is a required field
 	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
+	// The SIP headers added to an outbound call leg.
 	SipHeaders map[string]*string `type:"map"`
 
+	// The ID of the SIP media application.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 
+	// The phone number that the service should call.
+	//
 	// ToPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateSipMediaApplicationCallInput's
 	// String and GoString methods.
+	//
 	// ToPhoneNumber is a required field
 	ToPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 }
@@ -10040,6 +11168,7 @@ func (s *CreateSipMediaApplicationCallInput) SetToPhoneNumber(v string) *CreateS
 type CreateSipMediaApplicationCallOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The actual call.
 	SipMediaApplicationCall *SipMediaApplicationCall `type:"structure"`
 }
 
@@ -10070,12 +11199,18 @@ func (s *CreateSipMediaApplicationCallOutput) SetSipMediaApplicationCall(v *SipM
 type CreateSipMediaApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS Region assigned to the SIP media application.
+	//
 	// AwsRegion is a required field
 	AwsRegion *string `type:"string" required:"true"`
 
+	// List of endpoints (Lambda ARNs) specified for the SIP media application.
+	//
 	// Endpoints is a required field
 	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list" required:"true"`
 
+	// The SIP media application's name.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
@@ -10144,6 +11279,7 @@ func (s *CreateSipMediaApplicationInput) SetName(v string) *CreateSipMediaApplic
 type CreateSipMediaApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The SIP media application details.
 	SipMediaApplication *SipMediaApplication `type:"structure"`
 }
 
@@ -10174,16 +11310,32 @@ func (s *CreateSipMediaApplicationOutput) SetSipMediaApplication(v *SipMediaAppl
 type CreateSipRuleInput struct {
 	_ struct{} `type:"structure"`
 
+	// Disables or enables a SIP rule. You must disable SIP rules before you can
+	// delete them.
 	Disabled *bool `type:"boolean"`
 
+	// The name of the SIP rule.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// List of SIP media applications, with priority and AWS Region. Only one SIP
+	// application per AWS Region can be used.
 	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list"`
 
+	// The type of trigger assigned to the SIP rule in TriggerValue, currently RequestUriHostname
+	// or ToPhoneNumber.
+	//
 	// TriggerType is a required field
 	TriggerType *string `type:"string" required:"true" enum:"SipRuleTriggerType"`
 
+	// If TriggerType is RequestUriHostname, the value can be the outbound host
+	// name of a Voice Connector. If TriggerType is ToPhoneNumber, the value can
+	// be a customer-owned phone number in the E164 format. The SipMediaApplication
+	// specified in the SipRule is triggered if the request URI in an incoming SIP
+	// request matches the RequestUriHostname, or if the To header in the incoming
+	// SIP request matches the ToPhoneNumber value.
+	//
 	// TriggerValue is a required field
 	TriggerValue *string `type:"string" required:"true"`
 }
@@ -10274,6 +11426,7 @@ func (s *CreateSipRuleInput) SetTriggerValue(v string) *CreateSipRuleInput {
 type CreateSipRuleOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The SIP rule information, including the rule ID, triggers, and target applications.
 	SipRule *SipRule `type:"structure"`
 }
 
@@ -10304,9 +11457,12 @@ func (s *CreateSipRuleOutput) SetSipRule(v *SipRule) *CreateSipRuleOutput {
 type CreateVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the Voice Connector group.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Lists the Voice Connectors that inbound calls are routed to.
 	VoiceConnectorItems []*VoiceConnectorItem `type:"list"`
 }
 
@@ -10369,6 +11525,7 @@ func (s *CreateVoiceConnectorGroupInput) SetVoiceConnectorItems(v []*VoiceConnec
 type CreateVoiceConnectorGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the Voice Connector group.
 	VoiceConnectorGroup *VoiceConnectorGroup `type:"structure"`
 }
 
@@ -10399,11 +11556,17 @@ func (s *CreateVoiceConnectorGroupOutput) SetVoiceConnectorGroup(v *VoiceConnect
 type CreateVoiceConnectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS Region in which the Amazon Chime SDK Voice Connector is created.
+	// Default value: us-east-1 .
 	AwsRegion *string `type:"string" enum:"VoiceConnectorAwsRegion"`
 
+	// The name of the Voice Connector.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Enables or disables encryption for the Voice Connector.
+	//
 	// RequireEncryption is a required field
 	RequireEncryption *bool `type:"boolean" required:"true"`
 }
@@ -10466,6 +11629,7 @@ func (s *CreateVoiceConnectorInput) SetRequireEncryption(v bool) *CreateVoiceCon
 type CreateVoiceConnectorOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the Voice Connector.
 	VoiceConnector *VoiceConnector `type:"structure"`
 }
 
@@ -10496,16 +11660,24 @@ func (s *CreateVoiceConnectorOutput) SetVoiceConnector(v *VoiceConnector) *Creat
 type CreateVoiceProfileDomainInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for the client request. Use a different token for different
+	// domain creation requests.
 	ClientRequestToken *string `type:"string"`
 
+	// A description of the voice profile domain.
 	Description *string `type:"string"`
 
+	// The name of the voice profile domain.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The server-side encryption configuration for the request.
+	//
 	// ServerSideEncryptionConfiguration is a required field
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure" required:"true"`
 
+	// The tags assigned to the domain.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -10597,6 +11769,7 @@ func (s *CreateVoiceProfileDomainInput) SetTags(v []*Tag) *CreateVoiceProfileDom
 type CreateVoiceProfileDomainOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The requested voice profile domain.
 	VoiceProfileDomain *VoiceProfileDomain `type:"structure"`
 }
 
@@ -10627,6 +11800,8 @@ func (s *CreateVoiceProfileDomainOutput) SetVoiceProfileDomain(v *VoiceProfileDo
 type CreateVoiceProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the speaker search task.
+	//
 	// SpeakerSearchTaskId is a required field
 	SpeakerSearchTaskId *string `min:"1" type:"string" required:"true"`
 }
@@ -10674,6 +11849,7 @@ func (s *CreateVoiceProfileInput) SetSpeakerSearchTaskId(v string) *CreateVoiceP
 type CreateVoiceProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The requested voice profile.
 	VoiceProfile *VoiceProfile `type:"structure"`
 }
 
@@ -10701,14 +11877,22 @@ func (s *CreateVoiceProfileOutput) SetVoiceProfile(v *VoiceProfile) *CreateVoice
 	return s
 }
 
+// The SIP credentials used to authenticate requests to an Amazon Chime SDK
+// Voice Connector.
 type Credential struct {
 	_ struct{} `type:"structure"`
 
+	// The RFC2617 compliant password associated with the SIP credentials, in US-ASCII
+	// format.
+	//
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Credential's
 	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
+	// The RFC2617 compliant user name associated with the SIP credentials, in US-ASCII
+	// format.
+	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Credential's
 	// String and GoString methods.
@@ -10745,18 +11929,29 @@ func (s *Credential) SetUsername(v string) *Credential {
 	return s
 }
 
+// The Dialed Number Identification Service (DNIS) emergency calling configuration
+// details associated with an Amazon Chime SDK Voice Connector's emergency calling
+// configuration.
 type DNISEmergencyCallingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The country from which emergency calls are allowed, in ISO 3166-1 alpha-2
+	// format.
+	//
 	// CallingCountry is a required field
 	CallingCountry *string `type:"string" required:"true"`
 
+	// The DNIS phone number that you route emergency calls to, in E.164 format.
+	//
 	// EmergencyPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DNISEmergencyCallingConfiguration's
 	// String and GoString methods.
+	//
 	// EmergencyPhoneNumber is a required field
 	EmergencyPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
+	// The DNIS phone number for routing test emergency calls to, in E.164 format.
+	//
 	// TestPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DNISEmergencyCallingConfiguration's
 	// String and GoString methods.
@@ -10818,9 +12013,12 @@ func (s *DNISEmergencyCallingConfiguration) SetTestPhoneNumber(v string) *DNISEm
 type DeletePhoneNumberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The phone number ID.
+	//
 	// PhoneNumberId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeletePhoneNumberInput's
 	// String and GoString methods.
+	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"phoneNumberId" type:"string" required:"true" sensitive:"true"`
 }
@@ -10890,9 +12088,13 @@ func (s DeletePhoneNumberOutput) GoString() string {
 type DeleteProxySessionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The proxy session ID.
+	//
 	// ProxySessionId is a required field
 	ProxySessionId *string `location:"uri" locationName:"proxySessionId" min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -10974,6 +12176,8 @@ func (s DeleteProxySessionOutput) GoString() string {
 type DeleteSipMediaApplicationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The SIP media application ID.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 }
@@ -11043,6 +12247,8 @@ func (s DeleteSipMediaApplicationOutput) GoString() string {
 type DeleteSipRuleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The SIP rule ID.
+	//
 	// SipRuleId is a required field
 	SipRuleId *string `location:"uri" locationName:"sipRuleId" type:"string" required:"true"`
 }
@@ -11112,6 +12318,8 @@ func (s DeleteSipRuleOutput) GoString() string {
 type DeleteVoiceConnectorEmergencyCallingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -11181,6 +12389,8 @@ func (s DeleteVoiceConnectorEmergencyCallingConfigurationOutput) GoString() stri
 type DeleteVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector Group ID.
+	//
 	// VoiceConnectorGroupId is a required field
 	VoiceConnectorGroupId *string `location:"uri" locationName:"voiceConnectorGroupId" type:"string" required:"true"`
 }
@@ -11250,6 +12460,8 @@ func (s DeleteVoiceConnectorGroupOutput) GoString() string {
 type DeleteVoiceConnectorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -11297,6 +12509,8 @@ func (s *DeleteVoiceConnectorInput) SetVoiceConnectorId(v string) *DeleteVoiceCo
 type DeleteVoiceConnectorOriginationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -11388,6 +12602,8 @@ func (s DeleteVoiceConnectorOutput) GoString() string {
 type DeleteVoiceConnectorProxyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -11457,6 +12673,8 @@ func (s DeleteVoiceConnectorProxyOutput) GoString() string {
 type DeleteVoiceConnectorStreamingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -11526,9 +12744,14 @@ func (s DeleteVoiceConnectorStreamingConfigurationOutput) GoString() string {
 type DeleteVoiceConnectorTerminationCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The RFC2617 compliant username associated with the SIP credentials, in US-ASCII
+	// format.
+	//
 	// Usernames is a required field
 	Usernames []*string `type:"list" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -11607,6 +12830,8 @@ func (s DeleteVoiceConnectorTerminationCredentialsOutput) GoString() string {
 type DeleteVoiceConnectorTerminationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -11676,6 +12901,8 @@ func (s DeleteVoiceConnectorTerminationOutput) GoString() string {
 type DeleteVoiceProfileDomainInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The voice profile domain ID.
+	//
 	// VoiceProfileDomainId is a required field
 	VoiceProfileDomainId *string `location:"uri" locationName:"VoiceProfileDomainId" min:"1" type:"string" required:"true"`
 }
@@ -11745,6 +12972,8 @@ func (s DeleteVoiceProfileDomainOutput) GoString() string {
 type DeleteVoiceProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The voice profile ID.
+	//
 	// VoiceProfileId is a required field
 	VoiceProfileId *string `location:"uri" locationName:"VoiceProfileId" min:"1" type:"string" required:"true"`
 }
@@ -11814,9 +13043,13 @@ func (s DeleteVoiceProfileOutput) GoString() string {
 type DisassociatePhoneNumbersFromVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of phone numbers, in E.164 format.
+	//
 	// E164PhoneNumbers is a required field
 	E164PhoneNumbers []*string `type:"list" required:"true"`
 
+	// The Voice Connector group ID.
+	//
 	// VoiceConnectorGroupId is a required field
 	VoiceConnectorGroupId *string `location:"uri" locationName:"voiceConnectorGroupId" type:"string" required:"true"`
 }
@@ -11873,6 +13106,9 @@ func (s *DisassociatePhoneNumbersFromVoiceConnectorGroupInput) SetVoiceConnector
 type DisassociatePhoneNumbersFromVoiceConnectorGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If the action fails for one or more of the phone numbers in the request,
+	// a list of the phone numbers is returned, along with error codes and error
+	// messages.
 	PhoneNumberErrors []*PhoneNumberError `type:"list"`
 }
 
@@ -11903,9 +13139,13 @@ func (s *DisassociatePhoneNumbersFromVoiceConnectorGroupOutput) SetPhoneNumberEr
 type DisassociatePhoneNumbersFromVoiceConnectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// List of phone numbers, in E.164 format.
+	//
 	// E164PhoneNumbers is a required field
 	E164PhoneNumbers []*string `type:"list" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -11962,6 +13202,9 @@ func (s *DisassociatePhoneNumbersFromVoiceConnectorInput) SetVoiceConnectorId(v 
 type DisassociatePhoneNumbersFromVoiceConnectorOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If the action fails for one or more of the phone numbers in the request,
+	// a list of the phone numbers is returned, along with error codes and error
+	// messages.
 	PhoneNumberErrors []*PhoneNumberError `type:"list"`
 }
 
@@ -11989,9 +13232,13 @@ func (s *DisassociatePhoneNumbersFromVoiceConnectorOutput) SetPhoneNumberErrors(
 	return s
 }
 
+// The emergency calling configuration details associated with an Amazon Chime
+// SDK Voice Connector.
 type EmergencyCallingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The Dialed Number Identification Service (DNIS) emergency calling configuration
+	// details.
 	DNIS []*DNISEmergencyCallingConfiguration `type:"list"`
 }
 
@@ -12039,6 +13286,7 @@ func (s *EmergencyCallingConfiguration) SetDNIS(v []*DNISEmergencyCallingConfigu
 	return s
 }
 
+// The client is permanently forbidden from making the request.
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12102,12 +13350,17 @@ func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The country and area code for a proxy phone number in a proxy phone session.
 type GeoMatchParams struct {
 	_ struct{} `type:"structure"`
 
+	// The area code.
+	//
 	// AreaCode is a required field
 	AreaCode *string `type:"string" required:"true"`
 
+	// The country.
+	//
 	// Country is a required field
 	Country *string `type:"string" required:"true"`
 }
@@ -12183,6 +13436,7 @@ func (s GetGlobalSettingsInput) GoString() string {
 type GetGlobalSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Voice Connector settings.
 	VoiceConnector *VoiceConnectorSettings `type:"structure"`
 }
 
@@ -12213,9 +13467,12 @@ func (s *GetGlobalSettingsOutput) SetVoiceConnector(v *VoiceConnectorSettings) *
 type GetPhoneNumberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The phone number ID.
+	//
 	// PhoneNumberId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetPhoneNumberInput's
 	// String and GoString methods.
+	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"phoneNumberId" type:"string" required:"true" sensitive:"true"`
 }
@@ -12263,6 +13520,8 @@ func (s *GetPhoneNumberInput) SetPhoneNumberId(v string) *GetPhoneNumberInput {
 type GetPhoneNumberOrderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the phone number order .
+	//
 	// PhoneNumberOrderId is a required field
 	PhoneNumberOrderId *string `location:"uri" locationName:"phoneNumberOrderId" type:"string" required:"true"`
 }
@@ -12310,6 +13569,7 @@ func (s *GetPhoneNumberOrderInput) SetPhoneNumberOrderId(v string) *GetPhoneNumb
 type GetPhoneNumberOrderOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The phone number order details.
 	PhoneNumberOrder *PhoneNumberOrder `type:"structure"`
 }
 
@@ -12340,6 +13600,7 @@ func (s *GetPhoneNumberOrderOutput) SetPhoneNumberOrder(v *PhoneNumberOrder) *Ge
 type GetPhoneNumberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The phone number details.
 	PhoneNumber *PhoneNumber `type:"structure"`
 }
 
@@ -12392,11 +13653,14 @@ func (s GetPhoneNumberSettingsInput) GoString() string {
 type GetPhoneNumberSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The default outbound calling name for the account.
+	//
 	// CallingName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetPhoneNumberSettingsOutput's
 	// String and GoString methods.
 	CallingName *string `type:"string" sensitive:"true"`
 
+	// The updated outbound calling name timestamp, in ISO 8601 format.
 	CallingNameUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -12433,9 +13697,13 @@ func (s *GetPhoneNumberSettingsOutput) SetCallingNameUpdatedTimestamp(v time.Tim
 type GetProxySessionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The proxy session ID.
+	//
 	// ProxySessionId is a required field
 	ProxySessionId *string `location:"uri" locationName:"proxySessionId" min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -12495,6 +13763,7 @@ func (s *GetProxySessionInput) SetVoiceConnectorId(v string) *GetProxySessionInp
 type GetProxySessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session details.
 	ProxySession *ProxySession `type:"structure"`
 }
 
@@ -12525,6 +13794,8 @@ func (s *GetProxySessionOutput) SetProxySession(v *ProxySession) *GetProxySessio
 type GetSipMediaApplicationAlexaSkillConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The SIP media application ID.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 }
@@ -12572,6 +13843,7 @@ func (s *GetSipMediaApplicationAlexaSkillConfigurationInput) SetSipMediaApplicat
 type GetSipMediaApplicationAlexaSkillConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the Alexa Skill configuration.
 	SipMediaApplicationAlexaSkillConfiguration *SipMediaApplicationAlexaSkillConfiguration `type:"structure"`
 }
 
@@ -12602,6 +13874,8 @@ func (s *GetSipMediaApplicationAlexaSkillConfigurationOutput) SetSipMediaApplica
 type GetSipMediaApplicationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The SIP media application ID .
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 }
@@ -12649,6 +13923,8 @@ func (s *GetSipMediaApplicationInput) SetSipMediaApplicationId(v string) *GetSip
 type GetSipMediaApplicationLoggingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The SIP media application ID.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 }
@@ -12696,6 +13972,7 @@ func (s *GetSipMediaApplicationLoggingConfigurationInput) SetSipMediaApplication
 type GetSipMediaApplicationLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The actual logging configuration.
 	SipMediaApplicationLoggingConfiguration *SipMediaApplicationLoggingConfiguration `type:"structure"`
 }
 
@@ -12726,6 +14003,7 @@ func (s *GetSipMediaApplicationLoggingConfigurationOutput) SetSipMediaApplicatio
 type GetSipMediaApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the SIP media application.
 	SipMediaApplication *SipMediaApplication `type:"structure"`
 }
 
@@ -12756,6 +14034,8 @@ func (s *GetSipMediaApplicationOutput) SetSipMediaApplication(v *SipMediaApplica
 type GetSipRuleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The SIP rule ID.
+	//
 	// SipRuleId is a required field
 	SipRuleId *string `location:"uri" locationName:"sipRuleId" type:"string" required:"true"`
 }
@@ -12803,6 +14083,7 @@ func (s *GetSipRuleInput) SetSipRuleId(v string) *GetSipRuleInput {
 type GetSipRuleOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The SIP rule details.
 	SipRule *SipRule `type:"structure"`
 }
 
@@ -12833,9 +14114,13 @@ func (s *GetSipRuleOutput) SetSipRule(v *SipRule) *GetSipRuleOutput {
 type GetSpeakerSearchTaskInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the speaker search task.
+	//
 	// SpeakerSearchTaskId is a required field
 	SpeakerSearchTaskId *string `location:"uri" locationName:"SpeakerSearchTaskId" min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -12895,6 +14180,7 @@ func (s *GetSpeakerSearchTaskInput) SetVoiceConnectorId(v string) *GetSpeakerSea
 type GetSpeakerSearchTaskOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the speaker search task.
 	SpeakerSearchTask *SpeakerSearchTask `type:"structure"`
 }
 
@@ -12925,6 +14211,8 @@ func (s *GetSpeakerSearchTaskOutput) SetSpeakerSearchTask(v *SpeakerSearchTask) 
 type GetVoiceConnectorEmergencyCallingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -12972,6 +14260,7 @@ func (s *GetVoiceConnectorEmergencyCallingConfigurationInput) SetVoiceConnectorI
 type GetVoiceConnectorEmergencyCallingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the emergency calling configuration.
 	EmergencyCallingConfiguration *EmergencyCallingConfiguration `type:"structure"`
 }
 
@@ -13002,6 +14291,8 @@ func (s *GetVoiceConnectorEmergencyCallingConfigurationOutput) SetEmergencyCalli
 type GetVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector group ID.
+	//
 	// VoiceConnectorGroupId is a required field
 	VoiceConnectorGroupId *string `location:"uri" locationName:"voiceConnectorGroupId" type:"string" required:"true"`
 }
@@ -13049,6 +14340,7 @@ func (s *GetVoiceConnectorGroupInput) SetVoiceConnectorGroupId(v string) *GetVoi
 type GetVoiceConnectorGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the Voice Connector group.
 	VoiceConnectorGroup *VoiceConnectorGroup `type:"structure"`
 }
 
@@ -13079,6 +14371,8 @@ func (s *GetVoiceConnectorGroupOutput) SetVoiceConnectorGroup(v *VoiceConnectorG
 type GetVoiceConnectorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -13126,6 +14420,8 @@ func (s *GetVoiceConnectorInput) SetVoiceConnectorId(v string) *GetVoiceConnecto
 type GetVoiceConnectorLoggingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -13173,6 +14469,7 @@ func (s *GetVoiceConnectorLoggingConfigurationInput) SetVoiceConnectorId(v strin
 type GetVoiceConnectorLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The logging configuration details .
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
@@ -13203,6 +14500,8 @@ func (s *GetVoiceConnectorLoggingConfigurationOutput) SetLoggingConfiguration(v 
 type GetVoiceConnectorOriginationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -13250,6 +14549,7 @@ func (s *GetVoiceConnectorOriginationInput) SetVoiceConnectorId(v string) *GetVo
 type GetVoiceConnectorOriginationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The origination setting details.
 	Origination *Origination `type:"structure"`
 }
 
@@ -13280,6 +14580,7 @@ func (s *GetVoiceConnectorOriginationOutput) SetOrigination(v *Origination) *Get
 type GetVoiceConnectorOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Voice Connector details.
 	VoiceConnector *VoiceConnector `type:"structure"`
 }
 
@@ -13310,6 +14611,8 @@ func (s *GetVoiceConnectorOutput) SetVoiceConnector(v *VoiceConnector) *GetVoice
 type GetVoiceConnectorProxyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -13357,6 +14660,7 @@ func (s *GetVoiceConnectorProxyInput) SetVoiceConnectorId(v string) *GetVoiceCon
 type GetVoiceConnectorProxyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy configuration details.
 	Proxy *Proxy `type:"structure"`
 }
 
@@ -13387,6 +14691,8 @@ func (s *GetVoiceConnectorProxyOutput) SetProxy(v *Proxy) *GetVoiceConnectorProx
 type GetVoiceConnectorStreamingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -13434,6 +14740,7 @@ func (s *GetVoiceConnectorStreamingConfigurationInput) SetVoiceConnectorId(v str
 type GetVoiceConnectorStreamingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the streaming configuration.
 	StreamingConfiguration *StreamingConfiguration `type:"structure"`
 }
 
@@ -13464,6 +14771,8 @@ func (s *GetVoiceConnectorStreamingConfigurationOutput) SetStreamingConfiguratio
 type GetVoiceConnectorTerminationHealthInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -13511,6 +14820,7 @@ func (s *GetVoiceConnectorTerminationHealthInput) SetVoiceConnectorId(v string) 
 type GetVoiceConnectorTerminationHealthOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The termination health details.
 	TerminationHealth *TerminationHealth `type:"structure"`
 }
 
@@ -13541,6 +14851,8 @@ func (s *GetVoiceConnectorTerminationHealthOutput) SetTerminationHealth(v *Termi
 type GetVoiceConnectorTerminationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -13588,6 +14900,7 @@ func (s *GetVoiceConnectorTerminationInput) SetVoiceConnectorId(v string) *GetVo
 type GetVoiceConnectorTerminationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The termination setting details.
 	Termination *Termination `type:"structure"`
 }
 
@@ -13618,6 +14931,8 @@ func (s *GetVoiceConnectorTerminationOutput) SetTermination(v *Termination) *Get
 type GetVoiceProfileDomainInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The voice profile domain ID.
+	//
 	// VoiceProfileDomainId is a required field
 	VoiceProfileDomainId *string `location:"uri" locationName:"VoiceProfileDomainId" min:"1" type:"string" required:"true"`
 }
@@ -13665,6 +14980,7 @@ func (s *GetVoiceProfileDomainInput) SetVoiceProfileDomainId(v string) *GetVoice
 type GetVoiceProfileDomainOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the voice profile domain.
 	VoiceProfileDomain *VoiceProfileDomain `type:"structure"`
 }
 
@@ -13695,6 +15011,8 @@ func (s *GetVoiceProfileDomainOutput) SetVoiceProfileDomain(v *VoiceProfileDomai
 type GetVoiceProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The voice profile ID.
+	//
 	// VoiceProfileId is a required field
 	VoiceProfileId *string `location:"uri" locationName:"VoiceProfileId" min:"1" type:"string" required:"true"`
 }
@@ -13742,6 +15060,7 @@ func (s *GetVoiceProfileInput) SetVoiceProfileId(v string) *GetVoiceProfileInput
 type GetVoiceProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The voice profile details.
 	VoiceProfile *VoiceProfile `type:"structure"`
 }
 
@@ -13772,12 +15091,19 @@ func (s *GetVoiceProfileOutput) SetVoiceProfile(v *VoiceProfile) *GetVoiceProfil
 type GetVoiceToneAnalysisTaskInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Specifies whether the voice being analyzed is the caller (originator) or
+	// the callee (responder).
+	//
 	// IsCaller is a required field
 	IsCaller *bool `location:"querystring" locationName:"isCaller" type:"boolean" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
 
+	// The ID of the voice tone anlysis task.
+	//
 	// VoiceToneAnalysisTaskId is a required field
 	VoiceToneAnalysisTaskId *string `location:"uri" locationName:"VoiceToneAnalysisTaskId" min:"1" type:"string" required:"true"`
 }
@@ -13846,6 +15172,7 @@ func (s *GetVoiceToneAnalysisTaskInput) SetVoiceToneAnalysisTaskId(v string) *Ge
 type GetVoiceToneAnalysisTaskOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the voice tone analysis task.
 	VoiceToneAnalysisTask *VoiceToneAnalysisTask `type:"structure"`
 }
 
@@ -13873,6 +15200,8 @@ func (s *GetVoiceToneAnalysisTaskOutput) SetVoiceToneAnalysisTask(v *VoiceToneAn
 	return s
 }
 
+// Access to the target resource is no longer available at the origin server.
+// This condition is likely to be permanent.
 type GoneException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13961,6 +15290,7 @@ func (s ListAvailableVoiceConnectorRegionsInput) GoString() string {
 type ListAvailableVoiceConnectorRegionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of AWS Regions.
 	VoiceConnectorRegions []*string `type:"list" enum:"VoiceConnectorAwsRegion"`
 }
 
@@ -13991,8 +15321,10 @@ func (s *ListAvailableVoiceConnectorRegionsOutput) SetVoiceConnectorRegions(v []
 type ListPhoneNumberOrdersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
@@ -14042,8 +15374,10 @@ func (s *ListPhoneNumberOrdersInput) SetNextToken(v string) *ListPhoneNumberOrde
 type ListPhoneNumberOrdersOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to retrieve the next page of results.
 	NextToken *string `type:"string"`
 
+	// The phone number order details.
 	PhoneNumberOrders []*PhoneNumberOrder `type:"list"`
 }
 
@@ -14080,16 +15414,22 @@ func (s *ListPhoneNumberOrdersOutput) SetPhoneNumberOrders(v []*PhoneNumberOrder
 type ListPhoneNumbersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The filter to limit the number of results.
 	FilterName *string `location:"querystring" locationName:"filter-name" type:"string" enum:"PhoneNumberAssociationName"`
 
+	// The filter value.
 	FilterValue *string `location:"querystring" locationName:"filter-value" type:"string"`
 
+	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to return the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
+	// The phone number product types.
 	ProductType *string `location:"querystring" locationName:"product-type" type:"string" enum:"PhoneNumberProductType"`
 
+	// The status of your organization's phone numbers.
 	Status *string `location:"querystring" locationName:"status" type:"string"`
 }
 
@@ -14163,8 +15503,10 @@ func (s *ListPhoneNumbersInput) SetStatus(v string) *ListPhoneNumbersInput {
 type ListPhoneNumbersOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
 
+	// The phone number details.
 	PhoneNumbers []*PhoneNumber `type:"list"`
 }
 
@@ -14201,12 +15543,17 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumbers(v []*PhoneNumber) *ListPhoneNum
 type ListProxySessionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
+	// The proxy session status.
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"ProxySessionStatus"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -14275,8 +15622,10 @@ func (s *ListProxySessionsInput) SetVoiceConnectorId(v string) *ListProxySession
 type ListProxySessionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to retrieve the next page of results.
 	NextToken *string `type:"string"`
 
+	// The proxy sessions' details.
 	ProxySessions []*ProxySession `type:"list"`
 }
 
@@ -14313,8 +15662,10 @@ func (s *ListProxySessionsOutput) SetProxySessions(v []*ProxySession) *ListProxy
 type ListSipMediaApplicationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results to return in a single call. Defaults to 100.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to return the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
@@ -14364,8 +15715,10 @@ func (s *ListSipMediaApplicationsInput) SetNextToken(v string) *ListSipMediaAppl
 type ListSipMediaApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
 
+	// The list of SIP media applications and application details.
 	SipMediaApplications []*SipMediaApplication `type:"list"`
 }
 
@@ -14402,10 +15755,13 @@ func (s *ListSipMediaApplicationsOutput) SetSipMediaApplications(v []*SipMediaAp
 type ListSipRulesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results to return in a single call. Defaults to 100.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to return the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
+	// The SIP media application ID.
 	SipMediaApplicationId *string `location:"querystring" locationName:"sip-media-application" type:"string"`
 }
 
@@ -14461,8 +15817,10 @@ func (s *ListSipRulesInput) SetSipMediaApplicationId(v string) *ListSipRulesInpu
 type ListSipRulesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
 
+	// The list of SIP rules and details.
 	SipRules []*SipRule `type:"list"`
 }
 
@@ -14499,6 +15857,8 @@ func (s *ListSipRulesOutput) SetSipRules(v []*SipRule) *ListSipRulesOutput {
 type ListSupportedPhoneNumberCountriesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The phone number product type.
+	//
 	// ProductType is a required field
 	ProductType *string `location:"querystring" locationName:"product-type" type:"string" required:"true" enum:"PhoneNumberProductType"`
 }
@@ -14543,6 +15903,7 @@ func (s *ListSupportedPhoneNumberCountriesInput) SetProductType(v string) *ListS
 type ListSupportedPhoneNumberCountriesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The supported phone number countries.
 	PhoneNumberCountries []*PhoneNumberCountry `type:"list"`
 }
 
@@ -14573,9 +15934,12 @@ func (s *ListSupportedPhoneNumberCountriesOutput) SetPhoneNumberCountries(v []*P
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The resource ARN.
+	//
 	// ResourceARN is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ListTagsForResourceInput's
 	// String and GoString methods.
+	//
 	// ResourceARN is a required field
 	ResourceARN *string `location:"querystring" locationName:"arn" min:"1" type:"string" required:"true" sensitive:"true"`
 }
@@ -14623,6 +15987,7 @@ func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The tags in the list.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -14653,8 +16018,10 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type ListVoiceConnectorGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to return the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
@@ -14704,8 +16071,10 @@ func (s *ListVoiceConnectorGroupsInput) SetNextToken(v string) *ListVoiceConnect
 type ListVoiceConnectorGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
 
+	// The details of the Voice Connector groups.
 	VoiceConnectorGroups []*VoiceConnectorGroup `type:"list"`
 }
 
@@ -14742,6 +16111,8 @@ func (s *ListVoiceConnectorGroupsOutput) SetVoiceConnectorGroups(v []*VoiceConne
 type ListVoiceConnectorTerminationCredentialsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -14789,6 +16160,7 @@ func (s *ListVoiceConnectorTerminationCredentialsInput) SetVoiceConnectorId(v st
 type ListVoiceConnectorTerminationCredentialsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of user names.
 	Usernames []*string `type:"list"`
 }
 
@@ -14819,8 +16191,10 @@ func (s *ListVoiceConnectorTerminationCredentialsOutput) SetUsernames(v []*strin
 type ListVoiceConnectorsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to return the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
@@ -14870,8 +16244,10 @@ func (s *ListVoiceConnectorsInput) SetNextToken(v string) *ListVoiceConnectorsIn
 type ListVoiceConnectorsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
 
+	// The details of the Voice Connectors.
 	VoiceConnectors []*VoiceConnector `type:"list"`
 }
 
@@ -14908,8 +16284,10 @@ func (s *ListVoiceConnectorsOutput) SetVoiceConnectors(v []*VoiceConnector) *Lis
 type ListVoiceProfileDomainsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to return the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
@@ -14959,8 +16337,10 @@ func (s *ListVoiceProfileDomainsInput) SetNextToken(v string) *ListVoiceProfileD
 type ListVoiceProfileDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
 
+	// The list of voice profile domains.
 	VoiceProfileDomains []*VoiceProfileDomainSummary `type:"list"`
 }
 
@@ -14997,10 +16377,14 @@ func (s *ListVoiceProfileDomainsOutput) SetVoiceProfileDomains(v []*VoiceProfile
 type ListVoiceProfilesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of results in the request.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
+	// The ID of the voice profile domain.
+	//
 	// VoiceProfileDomainId is a required field
 	VoiceProfileDomainId *string `location:"querystring" locationName:"voice-profile-domain-id" min:"1" type:"string" required:"true"`
 }
@@ -15063,8 +16447,10 @@ func (s *ListVoiceProfilesInput) SetVoiceProfileDomainId(v string) *ListVoicePro
 type ListVoiceProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token used to retrieve the next page of results.
 	NextToken *string `type:"string"`
 
+	// The list of voice profiles.
 	VoiceProfiles []*VoiceProfileSummary `type:"list"`
 }
 
@@ -15098,11 +16484,15 @@ func (s *ListVoiceProfilesOutput) SetVoiceProfiles(v []*VoiceProfileSummary) *Li
 	return s
 }
 
+// The logging configuration associated with an Amazon Chime SDK Voice Connector.
+// Specifies whether SIP message logs can be sent to Amazon CloudWatch Logs.
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Enables or disables media metrics logging.
 	EnableMediaMetricLogs *bool `type:"boolean"`
 
+	// Boolean that enables sending SIP message logs to Amazon CloudWatch logs.
 	EnableSIPLogs *bool `type:"boolean"`
 }
 
@@ -15136,14 +16526,18 @@ func (s *LoggingConfiguration) SetEnableSIPLogs(v bool) *LoggingConfiguration {
 	return s
 }
 
+// The configuration for a call analytics task.
 type MediaInsightsConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration's ARN.
+	//
 	// ConfigurationArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by MediaInsightsConfiguration's
 	// String and GoString methods.
 	ConfigurationArn *string `min:"1" type:"string" sensitive:"true"`
 
+	// Denotes the configration as enabled or disabled.
 	Disabled *bool `type:"boolean"`
 }
 
@@ -15190,6 +16584,7 @@ func (s *MediaInsightsConfiguration) SetDisabled(v bool) *MediaInsightsConfigura
 	return s
 }
 
+// The requested resource couldn't be found.
 type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15253,14 +16648,18 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A phone number for which an order has been placed.
 type OrderedPhoneNumber struct {
 	_ struct{} `type:"structure"`
 
+	// The phone number, in E.164 format.
+	//
 	// E164PhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by OrderedPhoneNumber's
 	// String and GoString methods.
 	E164PhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The phone number status.
 	Status *string `type:"string" enum:"OrderedPhoneNumberStatus"`
 }
 
@@ -15294,11 +16693,21 @@ func (s *OrderedPhoneNumber) SetStatus(v string) *OrderedPhoneNumber {
 	return s
 }
 
+// Origination settings enable your SIP hosts to receive inbound calls using
+// your Amazon Chime SDK Voice Connector.
+//
+// The parameters listed below are not required, but you must use at least one.
 type Origination struct {
 	_ struct{} `type:"structure"`
 
+	// When origination settings are disabled, inbound calls are not enabled for
+	// your Amazon Chime SDK Voice Connector. This parameter is not required, but
+	// you must specify this parameter or Routes.
 	Disabled *bool `type:"boolean"`
 
+	// The call distribution properties defined for your SIP hosts. Valid range:
+	// Minimum value of 1. Maximum value of 20. This parameter is not required,
+	// but you must specify this parameter or Disabled.
 	Routes []*OriginationRoute `type:"list"`
 }
 
@@ -15352,17 +16761,30 @@ func (s *Origination) SetRoutes(v []*OriginationRoute) *Origination {
 	return s
 }
 
+// Origination routes define call distribution properties for your SIP hosts
+// to receive inbound calls using an Amazon Chime SDK Voice Connector. Limit:
+// Ten origination routes for each Voice Connector.
+//
+// The parameters listed below are not required, but you must use at least one.
 type OriginationRoute struct {
 	_ struct{} `type:"structure"`
 
+	// The FQDN or IP address to contact for origination traffic.
 	Host *string `type:"string"`
 
+	// The designated origination route port. Defaults to 5060.
 	Port *int64 `type:"integer"`
 
+	// The priority associated with the host, with 1 being the highest priority.
+	// Higher priority hosts are attempted first.
 	Priority *int64 `min:"1" type:"integer"`
 
+	// The protocol to use for the origination route. Encryption-enabled Amazon
+	// Chime SDK Voice Connectors use TCP protocol by default.
 	Protocol *string `type:"string" enum:"OriginationRouteProtocol"`
 
+	// The weight assigned to an origination route. When hosts have equal priority,
+	// calls are distributed between them based on their relative weights.
 	Weight *int64 `min:"1" type:"integer"`
 }
 
@@ -15430,14 +16852,20 @@ func (s *OriginationRoute) SetWeight(v int64) *OriginationRoute {
 	return s
 }
 
+// The phone number and proxy phone number for a participant in an Amazon Chime
+// SDK Voice Connector proxy session.
 type Participant struct {
 	_ struct{} `type:"structure"`
 
+	// The participant's phone number.
+	//
 	// PhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Participant's
 	// String and GoString methods.
 	PhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The participant's proxy phone number.
+	//
 	// ProxyPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Participant's
 	// String and GoString methods.
@@ -15474,44 +16902,62 @@ func (s *Participant) SetProxyPhoneNumber(v string) *Participant {
 	return s
 }
 
+// A phone number used to call an Amazon Chime SDK Voice Connector.
 type PhoneNumber struct {
 	_ struct{} `type:"structure"`
 
+	// The phone number's associations.
 	Associations []*PhoneNumberAssociation `type:"list"`
 
+	// The outbound calling name associated with the phone number.
+	//
 	// CallingName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PhoneNumber's
 	// String and GoString methods.
 	CallingName *string `type:"string" sensitive:"true"`
 
+	// The outbound calling name status.
 	CallingNameStatus *string `type:"string" enum:"CallingNameStatus"`
 
+	// The phone number's capabilities.
 	Capabilities *PhoneNumberCapabilities `type:"structure"`
 
+	// The phone number's country. Format: ISO 3166-1 alpha-2.
 	Country *string `type:"string"`
 
+	// The phone number creation timestamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The deleted phone number timestamp, in ISO 8601 format.
 	DeletionTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The phone number, in E.164 format.
+	//
 	// E164PhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PhoneNumber's
 	// String and GoString methods.
 	E164PhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The phone number's order ID.
 	OrderId *string `type:"string"`
 
+	// The phone number's ID.
+	//
 	// PhoneNumberId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PhoneNumber's
 	// String and GoString methods.
 	PhoneNumberId *string `type:"string" sensitive:"true"`
 
+	// The phone number's product type.
 	ProductType *string `type:"string" enum:"PhoneNumberProductType"`
 
+	// The phone number's status.
 	Status *string `type:"string" enum:"PhoneNumberStatus"`
 
+	// The phone number's type.
 	Type *string `type:"string" enum:"PhoneNumberType"`
 
+	// The updated phone number timestamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -15617,13 +17063,19 @@ func (s *PhoneNumber) SetUpdatedTimestamp(v time.Time) *PhoneNumber {
 	return s
 }
 
+// The phone number associations, such as an Amazon Chime SDK account ID, user
+// ID, Voice Connector ID, or Voice Connector group ID.
 type PhoneNumberAssociation struct {
 	_ struct{} `type:"structure"`
 
+	// The timestamp of the phone number association, in ISO 8601 format.
 	AssociatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Defines the association with an Amazon Chime SDK account ID, user ID, Voice
+	// Connector ID, or Voice Connector group ID.
 	Name *string `type:"string" enum:"PhoneNumberAssociationName"`
 
+	// Contains the ID for the entity specified in Name.
 	Value *string `type:"string"`
 }
 
@@ -15663,19 +17115,27 @@ func (s *PhoneNumberAssociation) SetValue(v string) *PhoneNumberAssociation {
 	return s
 }
 
+// The phone number capabilities for Amazon Chime SDK phone numbers, such as
+// enabled inbound and outbound calling, and text messaging.
 type PhoneNumberCapabilities struct {
 	_ struct{} `type:"structure"`
 
+	// Allows or denies inbound calling for the specified phone number.
 	InboundCall *bool `type:"boolean"`
 
+	// Allows or denies inbound MMS messaging for the specified phone number.
 	InboundMMS *bool `type:"boolean"`
 
+	// Allows or denies inbound SMS messaging for the specified phone number.
 	InboundSMS *bool `type:"boolean"`
 
+	// Allows or denies outbound calling for the specified phone number.
 	OutboundCall *bool `type:"boolean"`
 
+	// Allows or denies inbound MMS messaging for the specified phone number.
 	OutboundMMS *bool `type:"boolean"`
 
+	// Allows or denies outbound SMS messaging for the specified phone number.
 	OutboundSMS *bool `type:"boolean"`
 }
 
@@ -15733,11 +17193,14 @@ func (s *PhoneNumberCapabilities) SetOutboundSMS(v bool) *PhoneNumberCapabilitie
 	return s
 }
 
+// The phone number's country.
 type PhoneNumberCountry struct {
 	_ struct{} `type:"structure"`
 
+	// The phone number country code. Format: ISO 3166-1 alpha-2.
 	CountryCode *string `type:"string"`
 
+	// The supported phone number types.
 	SupportedPhoneNumberTypes []*string `type:"list" enum:"PhoneNumberType"`
 }
 
@@ -15771,13 +17234,20 @@ func (s *PhoneNumberCountry) SetSupportedPhoneNumberTypes(v []*string) *PhoneNum
 	return s
 }
 
+// If a phone number action fails for one or more of the phone numbers in a
+// request, a list of the failed phone numbers is returned, along with error
+// codes and error messages.
 type PhoneNumberError struct {
 	_ struct{} `type:"structure"`
 
+	// The error code.
 	ErrorCode *string `type:"string" enum:"ErrorCode"`
 
+	// The error message.
 	ErrorMessage *string `type:"string"`
 
+	// The phone number ID for which the action failed.
+	//
 	// PhoneNumberId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PhoneNumberError's
 	// String and GoString methods.
@@ -15820,21 +17290,30 @@ func (s *PhoneNumberError) SetPhoneNumberId(v string) *PhoneNumberError {
 	return s
 }
 
+// The details of an Amazon Chime SDK phone number order.
 type PhoneNumberOrder struct {
 	_ struct{} `type:"structure"`
 
+	// The phone number order creation time stamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The type of phone number being ordered, local or toll-free.
 	OrderType *string `type:"string" enum:"PhoneNumberOrderType"`
 
+	// The ordered phone number details, such as the phone number in E.164 format
+	// and the phone number status.
 	OrderedPhoneNumbers []*OrderedPhoneNumber `type:"list"`
 
+	// The ID of the phone order.
 	PhoneNumberOrderId *string `type:"string"`
 
+	// The phone number order product type.
 	ProductType *string `type:"string" enum:"PhoneNumberProductType"`
 
+	// The status of the phone number order.
 	Status *string `type:"string" enum:"PhoneNumberOrderStatus"`
 
+	// The updated phone number order time stamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -15898,18 +17377,25 @@ func (s *PhoneNumberOrder) SetUpdatedTimestamp(v time.Time) *PhoneNumberOrder {
 	return s
 }
 
+// The proxy configuration for an Amazon Chime SDK Voice Connector.
 type Proxy struct {
 	_ struct{} `type:"structure"`
 
+	// The default number of minutes allowed for proxy sessions.
 	DefaultSessionExpiryMinutes *int64 `type:"integer"`
 
+	// When true, stops proxy sessions from being created on the specified Amazon
+	// Chime SDK Voice Connector.
 	Disabled *bool `type:"boolean"`
 
+	// The phone number to route calls to after a proxy session expires.
+	//
 	// FallBackPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Proxy's
 	// String and GoString methods.
 	FallBackPhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The countries for proxy phone numbers to be selected from.
 	PhoneNumberCountries []*string `type:"list"`
 }
 
@@ -15955,33 +17441,49 @@ func (s *Proxy) SetPhoneNumberCountries(v []*string) *Proxy {
 	return s
 }
 
+// The proxy session for an Amazon Chime SDK Voice Connector.
 type ProxySession struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session capabilities.
 	Capabilities []*string `type:"list" enum:"Capability"`
 
+	// The created time stamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ended time stamp, in ISO 8601 format.
 	EndedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`
 
+	// The preference for matching the country or area code of the proxy phone number
+	// with that of the first participant.
 	GeoMatchLevel *string `type:"string" enum:"GeoMatchLevel"`
 
+	// The country and area code for the proxy phone number.
 	GeoMatchParams *GeoMatchParams `type:"structure"`
 
+	// The proxy session name.
 	Name *string `type:"string"`
 
+	// The preference for proxy phone number reuse, or stickiness, between the same
+	// participants across sessions.
 	NumberSelectionBehavior *string `type:"string" enum:"NumberSelectionBehavior"`
 
+	// The proxy session participants.
 	Participants []*Participant `type:"list"`
 
+	// The proxy session ID.
 	ProxySessionId *string `min:"1" type:"string"`
 
+	// The proxy session status.
 	Status *string `type:"string" enum:"ProxySessionStatus"`
 
+	// The updated time stamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The Voice Connector ID.
 	VoiceConnectorId *string `min:"1" type:"string"`
 }
 
@@ -16084,8 +17586,11 @@ func (s *ProxySession) SetVoiceConnectorId(v string) *ProxySession {
 type PutSipMediaApplicationAlexaSkillConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Alexa Skill configuration.
 	SipMediaApplicationAlexaSkillConfiguration *SipMediaApplicationAlexaSkillConfiguration `type:"structure"`
 
+	// The SIP media application ID.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 }
@@ -16144,6 +17649,7 @@ func (s *PutSipMediaApplicationAlexaSkillConfigurationInput) SetSipMediaApplicat
 type PutSipMediaApplicationAlexaSkillConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the Alexa Skill configuration.
 	SipMediaApplicationAlexaSkillConfiguration *SipMediaApplicationAlexaSkillConfiguration `type:"structure"`
 }
 
@@ -16174,9 +17680,12 @@ func (s *PutSipMediaApplicationAlexaSkillConfigurationOutput) SetSipMediaApplica
 type PutSipMediaApplicationLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The SIP media application ID.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 
+	// The logging configuration for the specified SIP media application.
 	SipMediaApplicationLoggingConfiguration *SipMediaApplicationLoggingConfiguration `type:"structure"`
 }
 
@@ -16229,6 +17738,7 @@ func (s *PutSipMediaApplicationLoggingConfigurationInput) SetSipMediaApplication
 type PutSipMediaApplicationLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated logging configuration for the specified SIP media application.
 	SipMediaApplicationLoggingConfiguration *SipMediaApplicationLoggingConfiguration `type:"structure"`
 }
 
@@ -16259,9 +17769,13 @@ func (s *PutSipMediaApplicationLoggingConfigurationOutput) SetSipMediaApplicatio
 type PutVoiceConnectorEmergencyCallingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration being updated.
+	//
 	// EmergencyCallingConfiguration is a required field
 	EmergencyCallingConfiguration *EmergencyCallingConfiguration `type:"structure" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -16323,6 +17837,7 @@ func (s *PutVoiceConnectorEmergencyCallingConfigurationInput) SetVoiceConnectorI
 type PutVoiceConnectorEmergencyCallingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated configuration.
 	EmergencyCallingConfiguration *EmergencyCallingConfiguration `type:"structure"`
 }
 
@@ -16353,9 +17868,13 @@ func (s *PutVoiceConnectorEmergencyCallingConfigurationOutput) SetEmergencyCalli
 type PutVoiceConnectorLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The logging configuration being updated.
+	//
 	// LoggingConfiguration is a required field
 	LoggingConfiguration *LoggingConfiguration `type:"structure" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -16412,6 +17931,7 @@ func (s *PutVoiceConnectorLoggingConfigurationInput) SetVoiceConnectorId(v strin
 type PutVoiceConnectorLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated logging configuration.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
@@ -16442,9 +17962,13 @@ func (s *PutVoiceConnectorLoggingConfigurationOutput) SetLoggingConfiguration(v 
 type PutVoiceConnectorOriginationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The origination settings being updated.
+	//
 	// Origination is a required field
 	Origination *Origination `type:"structure" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -16506,6 +18030,7 @@ func (s *PutVoiceConnectorOriginationInput) SetVoiceConnectorId(v string) *PutVo
 type PutVoiceConnectorOriginationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated origination settings.
 	Origination *Origination `type:"structure"`
 }
 
@@ -16536,19 +18061,29 @@ func (s *PutVoiceConnectorOriginationOutput) SetOrigination(v *Origination) *Put
 type PutVoiceConnectorProxyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The default number of minutes allowed for proxy session.
+	//
 	// DefaultSessionExpiryMinutes is a required field
 	DefaultSessionExpiryMinutes *int64 `type:"integer" required:"true"`
 
+	// When true, stops proxy sessions from being created on the specified Amazon
+	// Chime SDK Voice Connector.
 	Disabled *bool `type:"boolean"`
 
+	// The phone number to route calls to after a proxy session expires.
+	//
 	// FallBackPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutVoiceConnectorProxyInput's
 	// String and GoString methods.
 	FallBackPhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The countries for proxy phone numbers to be selected from.
+	//
 	// PhoneNumberPoolCountries is a required field
 	PhoneNumberPoolCountries []*string `min:"1" type:"list" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -16629,6 +18164,7 @@ func (s *PutVoiceConnectorProxyInput) SetVoiceConnectorId(v string) *PutVoiceCon
 type PutVoiceConnectorProxyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy configuration details.
 	Proxy *Proxy `type:"structure"`
 }
 
@@ -16659,9 +18195,13 @@ func (s *PutVoiceConnectorProxyOutput) SetProxy(v *Proxy) *PutVoiceConnectorProx
 type PutVoiceConnectorStreamingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The streaming settings being updated.
+	//
 	// StreamingConfiguration is a required field
 	StreamingConfiguration *StreamingConfiguration `type:"structure" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -16723,6 +18263,7 @@ func (s *PutVoiceConnectorStreamingConfigurationInput) SetVoiceConnectorId(v str
 type PutVoiceConnectorStreamingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated streaming settings.
 	StreamingConfiguration *StreamingConfiguration `type:"structure"`
 }
 
@@ -16753,8 +18294,11 @@ func (s *PutVoiceConnectorStreamingConfigurationOutput) SetStreamingConfiguratio
 type PutVoiceConnectorTerminationCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The termination credentials being updated.
 	Credentials []*Credential `type:"list"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -16830,9 +18374,13 @@ func (s PutVoiceConnectorTerminationCredentialsOutput) GoString() string {
 type PutVoiceConnectorTerminationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The termination settings to be updated.
+	//
 	// Termination is a required field
 	Termination *Termination `type:"structure" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -16894,6 +18442,7 @@ func (s *PutVoiceConnectorTerminationInput) SetVoiceConnectorId(v string) *PutVo
 type PutVoiceConnectorTerminationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated termination settings.
 	Termination *Termination `type:"structure"`
 }
 
@@ -16921,6 +18470,7 @@ func (s *PutVoiceConnectorTerminationOutput) SetTermination(v *Termination) *Put
 	return s
 }
 
+// The request exceeds the resource limit.
 type ResourceLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16987,9 +18537,12 @@ func (s *ResourceLimitExceededException) RequestID() string {
 type RestorePhoneNumberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the phone number being restored.
+	//
 	// PhoneNumberId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RestorePhoneNumberInput's
 	// String and GoString methods.
+	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"phoneNumberId" type:"string" required:"true" sensitive:"true"`
 }
@@ -17037,6 +18590,7 @@ func (s *RestorePhoneNumberInput) SetPhoneNumberId(v string) *RestorePhoneNumber
 type RestorePhoneNumberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The restored phone number.
 	PhoneNumber *PhoneNumber `type:"structure"`
 }
 
@@ -17067,20 +18621,34 @@ func (s *RestorePhoneNumberOutput) SetPhoneNumber(v *PhoneNumber) *RestorePhoneN
 type SearchAvailablePhoneNumbersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Confines a search to just the phone numbers associated with the specified
+	// area code.
 	AreaCode *string `location:"querystring" locationName:"area-code" type:"string"`
 
+	// Confines a search to just the phone numbers associated with the specified
+	// city.
 	City *string `location:"querystring" locationName:"city" type:"string"`
 
+	// Confines a search to just the phone numbers associated with the specified
+	// country.
 	Country *string `location:"querystring" locationName:"country" type:"string"`
 
+	// The maximum number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token used to return the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
+	// Confines a search to just the phone numbers associated with the specified
+	// phone number type, either local or toll-free.
 	PhoneNumberType *string `location:"querystring" locationName:"phone-number-type" type:"string" enum:"PhoneNumberType"`
 
+	// Confines a search to just the phone numbers associated with the specified
+	// state.
 	State *string `location:"querystring" locationName:"state" type:"string"`
 
+	// Confines a search to just the phone numbers associated with the specified
+	// toll-free prefix.
 	TollFreePrefix *string `location:"querystring" locationName:"toll-free-prefix" min:"3" type:"string"`
 }
 
@@ -17169,8 +18737,10 @@ func (s *SearchAvailablePhoneNumbersInput) SetTollFreePrefix(v string) *SearchAv
 type SearchAvailablePhoneNumbersOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Confines a search to just the phone numbers in the E.164 format.
 	E164PhoneNumbers []*string `type:"list"`
 
+	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -17204,12 +18774,20 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+// A structure that contains the configuration settings for server-side encryption.
+//
+// We only support symmetric keys. Do not use asymmetric or HMAC keys, or KMS
+// aliases.
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the KMS key used to encrypt the enrollment data in a voice profile
+	// domain. Asymmetric customer managed keys are not supported.
+	//
 	// KmsKeyArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ServerSideEncryptionConfiguration's
 	// String and GoString methods.
+	//
 	// KmsKeyArn is a required field
 	KmsKeyArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
@@ -17254,6 +18832,7 @@ func (s *ServerSideEncryptionConfiguration) SetKmsKeyArn(v string) *ServerSideEn
 	return s
 }
 
+// The service encountered an unexpected error.
 type ServiceFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17317,6 +18896,7 @@ func (s *ServiceFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The service is currently unavailable.
 type ServiceUnavailableException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17380,19 +18960,28 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The details of the SIP media application, including name and endpoints. An
+// AWS account can have multiple SIP media applications.
 type SipMediaApplication struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS Region in which the SIP media application is created.
 	AwsRegion *string `type:"string"`
 
+	// The SIP media application creation timestamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// List of endpoints for SIP media application. Currently, only one endpoint
+	// per SIP media application is permitted.
 	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list"`
 
+	// The SIP media application's name.
 	Name *string `min:"1" type:"string"`
 
+	// A SIP media application's ID.
 	SipMediaApplicationId *string `type:"string"`
 
+	// The time at which the SIP media application was updated.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -17450,12 +19039,17 @@ func (s *SipMediaApplication) SetUpdatedTimestamp(v time.Time) *SipMediaApplicat
 	return s
 }
 
+// The Alexa Skill configuration of a SIP media application.
 type SipMediaApplicationAlexaSkillConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Alexa Skill configuration.
+	//
 	// AlexaSkillIds is a required field
 	AlexaSkillIds []*string `min:"1" type:"list" required:"true"`
 
+	// The status of the Alexa Skill configuration.
+	//
 	// AlexaSkillStatus is a required field
 	AlexaSkillStatus *string `type:"string" required:"true" enum:"AlexaSkillStatus"`
 }
@@ -17509,9 +19103,11 @@ func (s *SipMediaApplicationAlexaSkillConfiguration) SetAlexaSkillStatus(v strin
 	return s
 }
 
+// A Call instance for a SIP media application.
 type SipMediaApplicationCall struct {
 	_ struct{} `type:"structure"`
 
+	// The call's transaction ID.
 	TransactionId *string `type:"string"`
 }
 
@@ -17539,9 +19135,13 @@ func (s *SipMediaApplicationCall) SetTransactionId(v string) *SipMediaApplicatio
 	return s
 }
 
+// The endpoint assigned to a SIP media application.
 type SipMediaApplicationEndpoint struct {
 	_ struct{} `type:"structure"`
 
+	// Valid Amazon Resource Name (ARN) of the Lambda function, version, or alias.
+	// The function must be created in the same AWS Region as the SIP media application.
+	//
 	// LambdaArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SipMediaApplicationEndpoint's
 	// String and GoString methods.
@@ -17572,9 +19172,11 @@ func (s *SipMediaApplicationEndpoint) SetLambdaArn(v string) *SipMediaApplicatio
 	return s
 }
 
+// The logging configuration of a SIP media application.
 type SipMediaApplicationLoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Enables message logging for the specified SIP media application.
 	EnableSipMediaApplicationMessageLogs *bool `type:"boolean"`
 }
 
@@ -17602,23 +19204,38 @@ func (s *SipMediaApplicationLoggingConfiguration) SetEnableSipMediaApplicationMe
 	return s
 }
 
+// The details of a SIP rule, including name, triggers, and target applications.
+// An AWS account can have multiple SIP rules.
 type SipRule struct {
 	_ struct{} `type:"structure"`
 
+	// The time at which the SIP rule was created, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Indicates whether the SIP rule is enabled or disabled. You must disable a
+	// rule before you can delete it.
 	Disabled *bool `type:"boolean"`
 
+	// A SIP rule's name.
 	Name *string `min:"1" type:"string"`
 
+	// A SIP rule's ID.
 	SipRuleId *string `type:"string"`
 
+	// The target SIP media application and other details, such as priority and
+	// AWS Region, to be specified in the SIP rule. Only one SIP rule per AWS Region
+	// can be provided.
 	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list"`
 
+	// The type of trigger set for a SIP rule, either a phone number or a URI request
+	// host name.
 	TriggerType *string `type:"string" enum:"SipRuleTriggerType"`
 
+	// The value set for a SIP rule's trigger type. Either a phone number or a URI
+	// hostname.
 	TriggerValue *string `type:"string"`
 
+	// The time at which the SIP rule was updated, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -17688,13 +19305,19 @@ func (s *SipRule) SetUpdatedTimestamp(v time.Time) *SipRule {
 	return s
 }
 
+// A target SIP media application and other details, such as priority and AWS
+// Region, to be specified in the SIP rule. Only one SIP rule per AWS Region
+// can be provided.
 type SipRuleTargetApplication struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS Region of a rule's target SIP media application.
 	AwsRegion *string `type:"string"`
 
+	// The priority setting of a rule's target SIP media application.
 	Priority *int64 `min:"1" type:"integer"`
 
+	// The ID of a rule's target SIP media application.
 	SipMediaApplicationId *string `type:"string"`
 }
 
@@ -17747,11 +19370,15 @@ func (s *SipRuleTargetApplication) SetSipMediaApplicationId(v string) *SipRuleTa
 	return s
 }
 
+// The details of a speaker search task.
 type SpeakerSearchDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The result value in the speaker search details.
 	Results []*SpeakerSearchResult `type:"list"`
 
+	// The status of a voice print generation operation, VoiceprintGenerationSuccess
+	// or VoiceprintGenerationFailure..
 	VoiceprintGenerationStatus *string `min:"1" type:"string"`
 }
 
@@ -17785,11 +19412,14 @@ func (s *SpeakerSearchDetails) SetVoiceprintGenerationStatus(v string) *SpeakerS
 	return s
 }
 
+// The result of a speaker search analysis.
 type SpeakerSearchResult struct {
 	_ struct{} `type:"structure"`
 
+	// The confidence score in the speaker search analysis.
 	ConfidenceScore *float64 `type:"float"`
 
+	// The voice profile ID.
 	VoiceProfileId *string `min:"1" type:"string"`
 }
 
@@ -17823,23 +19453,34 @@ func (s *SpeakerSearchResult) SetVoiceProfileId(v string) *SpeakerSearchResult {
 	return s
 }
 
+// A representation of an asynchronous request to perform speaker search analysis
+// on a Voice Connector call.
 type SpeakerSearchTask struct {
 	_ struct{} `type:"structure"`
 
+	// The call details of a speaker search task.
 	CallDetails *CallDetails `type:"structure"`
 
+	// The time at which a speaker search task was created.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The details of a speaker search task.
 	SpeakerSearchDetails *SpeakerSearchDetails `type:"structure"`
 
+	// The speaker search task ID.
 	SpeakerSearchTaskId *string `min:"1" type:"string"`
 
+	// The status of the speaker search task, IN_QUEUE, IN_PROGRESS, PARTIAL_SUCCESS,
+	// SUCCEEDED, FAILED, or STOPPED.
 	SpeakerSearchTaskStatus *string `type:"string"`
 
+	// The time at which the speaker search task began.
 	StartedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// A detailed message about the status of a speaker search.
 	StatusMessage *string `type:"string"`
 
+	// The time at which a speaker search task was updated.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -17912,14 +19553,22 @@ func (s *SpeakerSearchTask) SetUpdatedTimestamp(v time.Time) *SpeakerSearchTask 
 type StartSpeakerSearchTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for the client request. Use a different token for different
+	// speaker search tasks.
 	ClientRequestToken *string `type:"string"`
 
+	// The transaction ID of the call being analyzed.
+	//
 	// TransactionId is a required field
 	TransactionId *string `min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
 
+	// The ID of the voice profile domain that will store the voice profile.
+	//
 	// VoiceProfileDomainId is a required field
 	VoiceProfileDomainId *string `min:"1" type:"string" required:"true"`
 }
@@ -17997,6 +19646,7 @@ func (s *StartSpeakerSearchTaskInput) SetVoiceProfileDomainId(v string) *StartSp
 type StartSpeakerSearchTaskOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the speaker search task.
 	SpeakerSearchTask *SpeakerSearchTask `type:"structure"`
 }
 
@@ -18027,14 +19677,22 @@ func (s *StartSpeakerSearchTaskOutput) SetSpeakerSearchTask(v *SpeakerSearchTask
 type StartVoiceToneAnalysisTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier for the client request. Use a different token for different
+	// voice tone analysis tasks.
 	ClientRequestToken *string `type:"string"`
 
+	// The language code.
+	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
+	// The transaction ID.
+	//
 	// TransactionId is a required field
 	TransactionId *string `min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -18109,6 +19767,7 @@ func (s *StartVoiceToneAnalysisTaskInput) SetVoiceConnectorId(v string) *StartVo
 type StartVoiceToneAnalysisTaskOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the voice tone analysis task.
 	VoiceToneAnalysisTask *VoiceToneAnalysisTask `type:"structure"`
 }
 
@@ -18139,9 +19798,13 @@ func (s *StartVoiceToneAnalysisTaskOutput) SetVoiceToneAnalysisTask(v *VoiceTone
 type StopSpeakerSearchTaskInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The speaker search task ID.
+	//
 	// SpeakerSearchTaskId is a required field
 	SpeakerSearchTaskId *string `location:"uri" locationName:"SpeakerSearchTaskId" min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -18223,9 +19886,13 @@ func (s StopSpeakerSearchTaskOutput) GoString() string {
 type StopVoiceToneAnalysisTaskInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"VoiceConnectorId" min:"1" type:"string" required:"true"`
 
+	// The ID of the voice tone analysis task.
+	//
 	// VoiceToneAnalysisTaskId is a required field
 	VoiceToneAnalysisTaskId *string `location:"uri" locationName:"VoiceToneAnalysisTaskId" min:"1" type:"string" required:"true"`
 }
@@ -18304,17 +19971,26 @@ func (s StopVoiceToneAnalysisTaskOutput) GoString() string {
 	return s.String()
 }
 
+// The streaming configuration associated with an Amazon Chime SDK Voice Connector.
+// Specifies whether media streaming is enabled for sending to Amazon Kinesis,
+// and shows the retention period for the Amazon Kinesis data, in hours.
 type StreamingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The amount of time, in hours, to the Kinesis data.
+	//
 	// DataRetentionInHours is a required field
 	DataRetentionInHours *int64 `type:"integer" required:"true"`
 
+	// When true, streaming to Kinesis is off.
+	//
 	// Disabled is a required field
 	Disabled *bool `type:"boolean" required:"true"`
 
+	// The call analytics configuration.
 	MediaInsightsConfiguration *MediaInsightsConfiguration `type:"structure"`
 
+	// The streaming notification targets.
 	StreamingNotificationTargets []*StreamingNotificationTarget `min:"1" type:"list"`
 }
 
@@ -18384,9 +20060,11 @@ func (s *StreamingConfiguration) SetStreamingNotificationTargets(v []*StreamingN
 	return s
 }
 
+// The target recipient for a streaming configuration notification.
 type StreamingNotificationTarget struct {
 	_ struct{} `type:"structure"`
 
+	// The streaming notification target.
 	NotificationTarget *string `type:"string" enum:"NotificationTarget"`
 }
 
@@ -18414,18 +20092,25 @@ func (s *StreamingNotificationTarget) SetNotificationTarget(v string) *Streaming
 	return s
 }
 
+// Describes a tag applied to a resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
+	// The tag's key.
+	//
 	// Key is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Tag's
 	// String and GoString methods.
+	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// The tag's value.
+	//
 	// Value is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Tag's
 	// String and GoString methods.
+	//
 	// Value is a required field
 	Value *string `type:"string" required:"true" sensitive:"true"`
 }
@@ -18482,12 +20167,17 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the resource being tagged.
+	//
 	// ResourceARN is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by TagResourceInput's
 	// String and GoString methods.
+	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// A list of the tags being added to the resource.
+	//
 	// Tags is a required field
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
@@ -18576,20 +20266,29 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Termination settings enable SIP hosts to make outbound calls using an Amazon
+// Chime SDK Voice Connector.
 type Termination struct {
 	_ struct{} `type:"structure"`
 
+	// The countries to which calls are allowed, in ISO 3166-1 alpha-2 format. Required.
 	CallingRegions []*string `type:"list"`
 
+	// The IP addresses allowed to make calls, in CIDR format.
 	CidrAllowedList []*string `type:"list"`
 
+	// The limit on calls per second. Max value based on account service quota.
+	// Default value of 1.
 	CpsLimit *int64 `min:"1" type:"integer"`
 
+	// The default outbound calling number.
+	//
 	// DefaultPhoneNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Termination's
 	// String and GoString methods.
 	DefaultPhoneNumber *string `type:"string" sensitive:"true"`
 
+	// When termination is disabled, outbound calls cannot be made.
 	Disabled *bool `type:"boolean"`
 }
 
@@ -18654,11 +20353,15 @@ func (s *Termination) SetDisabled(v bool) *Termination {
 	return s
 }
 
+// The termination health details, including the source IP address and timestamp
+// of the last successful SIP OPTIONS message from your SIP infrastructure.
 type TerminationHealth struct {
 	_ struct{} `type:"structure"`
 
+	// The source IP address.
 	Source *string `type:"string"`
 
+	// The timestamp, in ISO 8601 format.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -18692,6 +20395,7 @@ func (s *TerminationHealth) SetTimestamp(v time.Time) *TerminationHealth {
 	return s
 }
 
+// The number of customer requests exceeds the request rate limit.
 type ThrottledClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18755,6 +20459,7 @@ func (s *ThrottledClientException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The client isn't authorized to request a resource.
 type UnauthorizedClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18818,6 +20523,7 @@ func (s *UnauthorizedClientException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A well-formed request couldn't be followed due to semantic errors.
 type UnprocessableEntityException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18884,12 +20590,17 @@ func (s *UnprocessableEntityException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the resource having its tags removed.
+	//
 	// ResourceARN is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UntagResourceInput's
 	// String and GoString methods.
+	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// The keys of the tags being removed from the resource.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
@@ -18971,6 +20682,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateGlobalSettingsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Voice Connector settings.
 	VoiceConnector *VoiceConnectorSettings `type:"structure"`
 }
 
@@ -19023,17 +20735,23 @@ func (s UpdateGlobalSettingsOutput) GoString() string {
 type UpdatePhoneNumberInput struct {
 	_ struct{} `type:"structure"`
 
+	// The outbound calling name associated with the phone number.
+	//
 	// CallingName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdatePhoneNumberInput's
 	// String and GoString methods.
 	CallingName *string `type:"string" sensitive:"true"`
 
+	// The phone number ID.
+	//
 	// PhoneNumberId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdatePhoneNumberInput's
 	// String and GoString methods.
+	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"phoneNumberId" type:"string" required:"true" sensitive:"true"`
 
+	// The product type.
 	ProductType *string `type:"string" enum:"PhoneNumberProductType"`
 }
 
@@ -19092,6 +20810,7 @@ func (s *UpdatePhoneNumberInput) SetProductType(v string) *UpdatePhoneNumberInpu
 type UpdatePhoneNumberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated phone number details.
 	PhoneNumber *PhoneNumber `type:"structure"`
 }
 
@@ -19119,20 +20838,28 @@ func (s *UpdatePhoneNumberOutput) SetPhoneNumber(v *PhoneNumber) *UpdatePhoneNum
 	return s
 }
 
+// The phone number ID, product type, or calling name fields to update, used
+// with the BatchUpdatePhoneNumber and UpdatePhoneNumber actions.
 type UpdatePhoneNumberRequestItem struct {
 	_ struct{} `type:"structure"`
 
+	// The outbound calling name to update.
+	//
 	// CallingName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdatePhoneNumberRequestItem's
 	// String and GoString methods.
 	CallingName *string `type:"string" sensitive:"true"`
 
+	// The phone number ID to update.
+	//
 	// PhoneNumberId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdatePhoneNumberRequestItem's
 	// String and GoString methods.
+	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `type:"string" required:"true" sensitive:"true"`
 
+	// The product type to update.
 	ProductType *string `type:"string" enum:"PhoneNumberProductType"`
 }
 
@@ -19188,9 +20915,12 @@ func (s *UpdatePhoneNumberRequestItem) SetProductType(v string) *UpdatePhoneNumb
 type UpdatePhoneNumberSettingsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The default outbound calling name for the account.
+	//
 	// CallingName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdatePhoneNumberSettingsInput's
 	// String and GoString methods.
+	//
 	// CallingName is a required field
 	CallingName *string `type:"string" required:"true" sensitive:"true"`
 }
@@ -19257,14 +20987,21 @@ func (s UpdatePhoneNumberSettingsOutput) GoString() string {
 type UpdateProxySessionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session capabilities.
+	//
 	// Capabilities is a required field
 	Capabilities []*string `type:"list" required:"true" enum:"Capability"`
 
+	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`
 
+	// The proxy session ID.
+	//
 	// ProxySessionId is a required field
 	ProxySessionId *string `location:"uri" locationName:"proxySessionId" min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -19342,6 +21079,7 @@ func (s *UpdateProxySessionInput) SetVoiceConnectorId(v string) *UpdateProxySess
 type UpdateProxySessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated proxy session details.
 	ProxySession *ProxySession `type:"structure"`
 }
 
@@ -19372,12 +21110,19 @@ func (s *UpdateProxySessionOutput) SetProxySession(v *ProxySession) *UpdateProxy
 type UpdateSipMediaApplicationCallInput struct {
 	_ struct{} `type:"structure"`
 
+	// Arguments made available to the Lambda function as part of the CALL_UPDATE_REQUESTED
+	// event. Can contain 0-20 key-value pairs.
+	//
 	// Arguments is a required field
 	Arguments map[string]*string `type:"map" required:"true"`
 
+	// The ID of the SIP media application handling the call.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 
+	// The ID of the call transaction.
+	//
 	// TransactionId is a required field
 	TransactionId *string `location:"uri" locationName:"transactionId" type:"string" required:"true"`
 }
@@ -19446,6 +21191,7 @@ func (s *UpdateSipMediaApplicationCallInput) SetTransactionId(v string) *UpdateS
 type UpdateSipMediaApplicationCallOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A Call instance for a SIP media application.
 	SipMediaApplicationCall *SipMediaApplicationCall `type:"structure"`
 }
 
@@ -19476,10 +21222,14 @@ func (s *UpdateSipMediaApplicationCallOutput) SetSipMediaApplicationCall(v *SipM
 type UpdateSipMediaApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The new set of endpoints for the specified SIP media application.
 	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list"`
 
+	// The new name for the specified SIP media application.
 	Name *string `min:"1" type:"string"`
 
+	// The SIP media application ID.
+	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 }
@@ -19545,6 +21295,7 @@ func (s *UpdateSipMediaApplicationInput) SetSipMediaApplicationId(v string) *Upd
 type UpdateSipMediaApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated SIP media application’s details.
 	SipMediaApplication *SipMediaApplication `type:"structure"`
 }
 
@@ -19575,14 +21326,20 @@ func (s *UpdateSipMediaApplicationOutput) SetSipMediaApplication(v *SipMediaAppl
 type UpdateSipRuleInput struct {
 	_ struct{} `type:"structure"`
 
+	// The new value that indicates whether the rule is disabled.
 	Disabled *bool `type:"boolean"`
 
+	// The new name for the specified SIP rule.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The SIP rule ID.
+	//
 	// SipRuleId is a required field
 	SipRuleId *string `location:"uri" locationName:"sipRuleId" type:"string" required:"true"`
 
+	// The new list of target applications.
 	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list"`
 }
 
@@ -19666,6 +21423,7 @@ func (s *UpdateSipRuleInput) SetTargetApplications(v []*SipRuleTargetApplication
 type UpdateSipRuleOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated SIP rule details.
 	SipRule *SipRule `type:"structure"`
 }
 
@@ -19696,12 +21454,18 @@ func (s *UpdateSipRuleOutput) SetSipRule(v *SipRule) *UpdateSipRuleOutput {
 type UpdateVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the Voice Connector group.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorGroupId is a required field
 	VoiceConnectorGroupId *string `location:"uri" locationName:"voiceConnectorGroupId" type:"string" required:"true"`
 
+	// The VoiceConnectorItems to associate with the Voice Connector group.
+	//
 	// VoiceConnectorItems is a required field
 	VoiceConnectorItems []*VoiceConnectorItem `type:"list" required:"true"`
 }
@@ -19780,6 +21544,7 @@ func (s *UpdateVoiceConnectorGroupInput) SetVoiceConnectorItems(v []*VoiceConnec
 type UpdateVoiceConnectorGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated Voice Connector group.
 	VoiceConnectorGroup *VoiceConnectorGroup `type:"structure"`
 }
 
@@ -19810,12 +21575,18 @@ func (s *UpdateVoiceConnectorGroupOutput) SetVoiceConnectorGroup(v *VoiceConnect
 type UpdateVoiceConnectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the Voice Connector.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// When enabled, requires encryption for the Voice Connector.
+	//
 	// RequireEncryption is a required field
 	RequireEncryption *bool `type:"boolean" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
 }
@@ -19884,6 +21655,7 @@ func (s *UpdateVoiceConnectorInput) SetVoiceConnectorId(v string) *UpdateVoiceCo
 type UpdateVoiceConnectorOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated Voice Connector details.
 	VoiceConnector *VoiceConnector `type:"structure"`
 }
 
@@ -19914,10 +21686,14 @@ func (s *UpdateVoiceConnectorOutput) SetVoiceConnector(v *VoiceConnector) *Updat
 type UpdateVoiceProfileDomainInput struct {
 	_ struct{} `type:"structure"`
 
+	// The description of the voice profile domain.
 	Description *string `type:"string"`
 
+	// The name of the voice profile domain.
 	Name *string `min:"1" type:"string"`
 
+	// The domain ID.
+	//
 	// VoiceProfileDomainId is a required field
 	VoiceProfileDomainId *string `location:"uri" locationName:"VoiceProfileDomainId" min:"1" type:"string" required:"true"`
 }
@@ -19980,6 +21756,7 @@ func (s *UpdateVoiceProfileDomainInput) SetVoiceProfileDomainId(v string) *Updat
 type UpdateVoiceProfileDomainOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated details of the voice profile domain.
 	VoiceProfileDomain *VoiceProfileDomain `type:"structure"`
 }
 
@@ -20010,9 +21787,13 @@ func (s *UpdateVoiceProfileDomainOutput) SetVoiceProfileDomain(v *VoiceProfileDo
 type UpdateVoiceProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the speaker search task.
+	//
 	// SpeakerSearchTaskId is a required field
 	SpeakerSearchTaskId *string `min:"1" type:"string" required:"true"`
 
+	// The profile ID.
+	//
 	// VoiceProfileId is a required field
 	VoiceProfileId *string `location:"uri" locationName:"VoiceProfileId" min:"1" type:"string" required:"true"`
 }
@@ -20072,6 +21853,7 @@ func (s *UpdateVoiceProfileInput) SetVoiceProfileId(v string) *UpdateVoiceProfil
 type UpdateVoiceProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated voice profile settings.
 	VoiceProfile *VoiceProfile `type:"structure"`
 }
 
@@ -20102,42 +21884,62 @@ func (s *UpdateVoiceProfileOutput) SetVoiceProfile(v *VoiceProfile) *UpdateVoice
 type ValidateE911AddressInput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS account ID.
+	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `type:"string" required:"true"`
 
+	// The address city, such as Portland.
+	//
 	// City is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
 	// String and GoString methods.
+	//
 	// City is a required field
 	City *string `type:"string" required:"true" sensitive:"true"`
 
+	// The country in the address being validated.
+	//
 	// Country is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
 	// String and GoString methods.
+	//
 	// Country is a required field
 	Country *string `type:"string" required:"true" sensitive:"true"`
 
+	// The dress postal code, such 04352.
+	//
 	// PostalCode is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
 	// String and GoString methods.
+	//
 	// PostalCode is a required field
 	PostalCode *string `type:"string" required:"true" sensitive:"true"`
 
+	// The address state, such as ME.
+	//
 	// State is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
 	// String and GoString methods.
+	//
 	// State is a required field
 	State *string `type:"string" required:"true" sensitive:"true"`
 
+	// The address street information, such as 8th Avenue.
+	//
 	// StreetInfo is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
 	// String and GoString methods.
+	//
 	// StreetInfo is a required field
 	StreetInfo *string `type:"string" required:"true" sensitive:"true"`
 
+	// The address street number, such as 200 or 2121.
+	//
 	// StreetNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ValidateE911AddressInput's
 	// String and GoString methods.
+	//
 	// StreetNumber is a required field
 	StreetNumber *string `type:"string" required:"true" sensitive:"true"`
 }
@@ -20236,12 +22038,18 @@ func (s *ValidateE911AddressInput) SetStreetNumber(v string) *ValidateE911Addres
 type ValidateE911AddressOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The validated address.
 	Address *Address `type:"structure"`
 
+	// The ID that represents the address.
 	AddressExternalId *string `type:"string"`
 
+	// The list of address suggestions..
 	CandidateAddressList []*CandidateAddress `type:"list"`
 
+	// Number indicating the result of address validation. 0 means the address was
+	// perfect as-is and successfully validated. 1 means the address was corrected.
+	// 2 means the address sent was not close enough and was not validated.
 	ValidationResult *int64 `type:"integer"`
 }
 
@@ -20287,23 +22095,33 @@ func (s *ValidateE911AddressOutput) SetValidationResult(v int64) *ValidateE911Ad
 	return s
 }
 
+// The Amazon Chime SDK Voice Connector configuration, including outbound host
+// name and encryption settings.
 type VoiceConnector struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS Region in which the Voice Connector is created. Default: us-east-1.
 	AwsRegion *string `type:"string" enum:"VoiceConnectorAwsRegion"`
 
+	// The Voice Connector's creation timestamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The Voice Connector's name.
 	Name *string `min:"1" type:"string"`
 
+	// The outbound host name for the Voice Connector.
 	OutboundHostName *string `type:"string"`
 
+	// Enables or disables encryption for the Voice Connector.
 	RequireEncryption *bool `type:"boolean"`
 
+	// The Voice Connector's updated timestamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ARN of the Voice Connector.
 	VoiceConnectorArn *string `type:"string"`
 
+	// The Voice Connector's ID.
 	VoiceConnectorId *string `type:"string"`
 }
 
@@ -20373,19 +22191,29 @@ func (s *VoiceConnector) SetVoiceConnectorId(v string) *VoiceConnector {
 	return s
 }
 
+// The Amazon Chime SDK Voice Connector group configuration, including associated
+// Voice Connectors. You can include Voice Connectors from different AWS Regions
+// in a group. This creates a fault tolerant mechanism for fallback in case
+// of availability events.
 type VoiceConnectorGroup struct {
 	_ struct{} `type:"structure"`
 
+	// The Voice Connector group's creation time stamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The name of a Voice Connector group.
 	Name *string `min:"1" type:"string"`
 
+	// The Voice Connector group's creation time stamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ARN of the Voice Connector group.
 	VoiceConnectorGroupArn *string `type:"string"`
 
+	// The ID of a Voice Connector group.
 	VoiceConnectorGroupId *string `type:"string"`
 
+	// The Voice Connectors to which you route inbound calls.
 	VoiceConnectorItems []*VoiceConnectorItem `type:"list"`
 }
 
@@ -20443,12 +22271,22 @@ func (s *VoiceConnectorGroup) SetVoiceConnectorItems(v []*VoiceConnectorItem) *V
 	return s
 }
 
+// For Amazon Chime SDK Voice Connector groups, the Amazon Chime SDK Voice Connectors
+// to which you route inbound calls. Includes priority configuration settings.
+// Limit: 3 VoiceConnectorItems per Voice Connector group.
 type VoiceConnectorItem struct {
 	_ struct{} `type:"structure"`
 
+	// The priority setting of a Voice Connector item. Calls are routed to hosts
+	// in priority order, with 1 as the highest priority. When hosts have equal
+	// priority, the system distributes calls among them based on their relative
+	// weight.
+	//
 	// Priority is a required field
 	Priority *int64 `min:"1" type:"integer" required:"true"`
 
+	// The Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `type:"string" required:"true"`
 }
@@ -20502,9 +22340,12 @@ func (s *VoiceConnectorItem) SetVoiceConnectorId(v string) *VoiceConnectorItem {
 	return s
 }
 
+// The Amazon Chime SDK Voice Connector settings. Includes any Amazon S3 buckets
+// designated for storing call detail records.
 type VoiceConnectorSettings struct {
 	_ struct{} `type:"structure"`
 
+	// The S3 bucket that stores the Voice Connector's call detail records.
 	CdrBucket *string `type:"string"`
 }
 
@@ -20532,22 +22373,31 @@ func (s *VoiceConnectorSettings) SetCdrBucket(v string) *VoiceConnectorSettings 
 	return s
 }
 
+// The combination of a voice print and caller ID.
 type VoiceProfile struct {
 	_ struct{} `type:"structure"`
 
+	// The time at which the voice profile was created and enrolled.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The time at which a voice profile expires unless you re-enroll the caller
+	// via the UpdateVoiceProfile API.
 	ExpirationTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The time at which the voice profile was last updated.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ARN of the voice profile.
+	//
 	// VoiceProfileArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by VoiceProfile's
 	// String and GoString methods.
 	VoiceProfileArn *string `min:"1" type:"string" sensitive:"true"`
 
+	// The ID of the domain that contains the voice profile.
 	VoiceProfileDomainId *string `min:"1" type:"string"`
 
+	// The ID of the voice profile.
 	VoiceProfileId *string `min:"1" type:"string"`
 }
 
@@ -20605,24 +22455,33 @@ func (s *VoiceProfile) SetVoiceProfileId(v string) *VoiceProfile {
 	return s
 }
 
+// A collection of voice profiles.
 type VoiceProfileDomain struct {
 	_ struct{} `type:"structure"`
 
+	// The time at which the voice profile domain was created.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The description of the voice profile domain.
 	Description *string `type:"string"`
 
+	// The name of the voice profile domain.
 	Name *string `min:"1" type:"string"`
 
+	// A structure that contains the configuration settings for server-side encryption.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 
+	// The time at which the voice profile was last updated.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The voice profile domain's Amazon Resource Number (ARN).
+	//
 	// VoiceProfileDomainArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by VoiceProfileDomain's
 	// String and GoString methods.
 	VoiceProfileDomainArn *string `min:"1" type:"string" sensitive:"true"`
 
+	// The ID of the voice profile domain.
 	VoiceProfileDomainId *string `min:"1" type:"string"`
 }
 
@@ -20686,22 +22545,30 @@ func (s *VoiceProfileDomain) SetVoiceProfileDomainId(v string) *VoiceProfileDoma
 	return s
 }
 
+// A high-level overview of a voice profile domain.
 type VoiceProfileDomainSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The time at which the voice profile domain summary was created.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Describes the voice profile domain summary.
 	Description *string `type:"string"`
 
+	// The name of the voice profile domain summary.
 	Name *string `min:"1" type:"string"`
 
+	// The time at which the voice profile domain summary was last updated.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ARN of a voice profile in a voice profile domain summary.
+	//
 	// VoiceProfileDomainArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by VoiceProfileDomainSummary's
 	// String and GoString methods.
 	VoiceProfileDomainArn *string `min:"1" type:"string" sensitive:"true"`
 
+	// The ID of the voice profile domain summary.
 	VoiceProfileDomainId *string `min:"1" type:"string"`
 }
 
@@ -20759,22 +22626,32 @@ func (s *VoiceProfileDomainSummary) SetVoiceProfileDomainId(v string) *VoiceProf
 	return s
 }
 
+// A high-level summary of a voice profile.
 type VoiceProfileSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The time at which a voice profile summary was created.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Extends the life of the voice profile. You can use UpdateVoiceProfile to
+	// refresh an existing voice profile's voice print and extend the life of the
+	// summary.
 	ExpirationTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The time at which a voice profile summary was last updated.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ARN of the voice profile in a voice profile summary.
+	//
 	// VoiceProfileArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by VoiceProfileSummary's
 	// String and GoString methods.
 	VoiceProfileArn *string `min:"1" type:"string" sensitive:"true"`
 
+	// The ID of the voice profile domain in a voice profile summary.
 	VoiceProfileDomainId *string `min:"1" type:"string"`
 
+	// The ID of the voice profile in a voice profile summary.
 	VoiceProfileId *string `min:"1" type:"string"`
 }
 
@@ -20832,21 +22709,31 @@ func (s *VoiceProfileSummary) SetVoiceProfileId(v string) *VoiceProfileSummary {
 	return s
 }
 
+// A representation of an asynchronous request to perform voice tone analysis
+// on a Voice Connector call.
 type VoiceToneAnalysisTask struct {
 	_ struct{} `type:"structure"`
 
+	// The call details of a voice tone analysis task.
 	CallDetails *CallDetails `type:"structure"`
 
+	// The time at which a voice tone analysis task was created.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The time at which a voice tone analysis task started.
 	StartedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The status of a voice tone analysis task.
 	StatusMessage *string `type:"string"`
 
+	// The time at which a voice tone analysis task was updated.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ID of the voice tone analysis task.
 	VoiceToneAnalysisTaskId *string `min:"1" type:"string"`
 
+	// The status of a voice tone analysis task, IN_QUEUE, IN_PROGRESS, PARTIAL_SUCCESS,
+	// SUCCEEDED, FAILED, or STOPPED.
 	VoiceToneAnalysisTaskStatus *string `type:"string"`
 }
 

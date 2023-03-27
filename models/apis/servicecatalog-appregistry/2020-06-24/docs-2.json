@@ -3,16 +3,16 @@
   "service": "<p> Amazon Web Services Service Catalog AppRegistry enables organizations to understand the application context of their Amazon Web Services resources. AppRegistry provides a repository of your applications, their resources, and the application metadata that you use within your enterprise.</p>",
   "operations": {
     "AssociateAttributeGroup": "<p>Associates an attribute group with an application to augment the application's metadata with the group's attributes. This feature enables applications to be described with user-defined details that are machine-readable, such as third-party integrations.</p>",
-    "AssociateResource": "<p>Associates a resource with an application. Both the resource and the application can be specified either by ID or name.</p>",
+    "AssociateResource": "<p> Associates a resource with an application. The resource can be specified by its ARN or name. The application can be specified by ARN, ID, or name. </p>",
     "CreateApplication": "<p>Creates a new application that is the top-level node in a hierarchy of related cloud resource abstractions.</p>",
     "CreateAttributeGroup": "<p>Creates a new attribute group as a container for user-defined attributes. This feature enables users to have full control over their cloud application's metadata in a rich machine-readable format to facilitate integration with automated workflows and third-party tools.</p>",
-    "DeleteApplication": "<p>Deletes an application that is specified either by its application ID or name. All associated attribute groups and resources must be disassociated from it before deleting an application.</p>",
-    "DeleteAttributeGroup": "<p>Deletes an attribute group, specified either by its attribute group ID or name.</p>",
+    "DeleteApplication": "<p>Deletes an application that is specified either by its application ID, name, or ARN. All associated attribute groups and resources must be disassociated from it before deleting an application.</p>",
+    "DeleteAttributeGroup": "<p>Deletes an attribute group, specified either by its attribute group ID, name, or ARN.</p>",
     "DisassociateAttributeGroup": "<p>Disassociates an attribute group from an application to remove the extra attributes contained in the attribute group from the application's metadata. This operation reverts <code>AssociateAttributeGroup</code>.</p>",
     "DisassociateResource": "<p>Disassociates a resource from application. Both the resource and the application can be specified either by ID or name.</p>",
-    "GetApplication": "<p>Retrieves metadata information about one of your applications. The application can be specified either by its unique ID or by its name (which is unique within one account in one region at a given point in time). Specify by ID in automated workflows if you want to make sure that the exact same application is returned or a <code>ResourceNotFoundException</code> is thrown, avoiding the ABA addressing problem.</p>",
+    "GetApplication": "<p> Retrieves metadata information about one of your applications. The application can be specified by its ARN, ID, or name (which is unique within one account in one region at a given point in time). Specify by ARN or ID in automated workflows if you want to make sure that the exact same application is returned or a <code>ResourceNotFoundException</code> is thrown, avoiding the ABA addressing problem. </p>",
     "GetAssociatedResource": "<p>Gets the resource associated with the application.</p>",
-    "GetAttributeGroup": "<p>Retrieves an attribute group, either by its name or its ID. The attribute group can be specified either by its unique ID or by its name.</p>",
+    "GetAttributeGroup": "<p> Retrieves an attribute group by its ARN, ID, or name. The attribute group can be specified by its ARN, ID, or name. </p>",
     "GetConfiguration": "<p> Retrieves a <code>TagKey</code> configuration from an account. </p>",
     "ListApplications": "<p>Retrieves a list of all of your applications. Results are paginated.</p>",
     "ListAssociatedAttributeGroups": "<p>Lists all attribute groups that are associated with specified application. Results are paginated.</p>",
@@ -29,7 +29,7 @@
   },
   "shapes": {
     "AppRegistryConfiguration": {
-      "base": "<p> Includes all of the Service Catalog AppRegistry settings. </p>",
+      "base": "<p> Includes all of the AppRegistry settings. </p>",
       "refs": {
         "GetConfigurationResponse$configuration": "<p> Retrieves <code>TagKey</code> configuration from an account. </p>",
         "PutConfigurationRequest$configuration": "<p> Associates a <code>TagKey</code> configuration to an account. </p>"
@@ -66,17 +66,17 @@
     "ApplicationSpecifier": {
       "base": null,
       "refs": {
-        "AssociateAttributeGroupRequest$application": "<p>The name or ID of the application.</p>",
-        "AssociateResourceRequest$application": "<p>The name or ID of the application.</p>",
-        "DeleteApplicationRequest$application": "<p>The name or ID of the application.</p>",
-        "DisassociateAttributeGroupRequest$application": "<p>The name or ID of the application.</p>",
+        "AssociateAttributeGroupRequest$application": "<p> The name, ID, or ARN of the application. </p>",
+        "AssociateResourceRequest$application": "<p> The name, ID, or ARN of the application. </p>",
+        "DeleteApplicationRequest$application": "<p> The name, ID, or ARN of the application. </p>",
+        "DisassociateAttributeGroupRequest$application": "<p> The name, ID, or ARN of the application. </p>",
         "DisassociateResourceRequest$application": "<p>The name or ID of the application.</p>",
-        "GetApplicationRequest$application": "<p>The name or ID of the application.</p>",
-        "GetAssociatedResourceRequest$application": "<p>The name or ID of the application.</p>",
+        "GetApplicationRequest$application": "<p> The name, ID, or ARN of the application. </p>",
+        "GetAssociatedResourceRequest$application": "<p> The name, ID, or ARN of the application. </p>",
         "ListAssociatedAttributeGroupsRequest$application": "<p>The name or ID of the application.</p>",
-        "ListAssociatedResourcesRequest$application": "<p>The name or ID of the application.</p>",
+        "ListAssociatedResourcesRequest$application": "<p> The name, ID, or ARN of the application. </p>",
         "ListAttributeGroupsForApplicationRequest$application": "<p>The name or ID of the application.</p>",
-        "UpdateApplicationRequest$application": "<p>The name or ID of the application that will be updated.</p>"
+        "UpdateApplicationRequest$application": "<p> The name, ID, or ARN of the application that will be updated. </p>"
       }
     },
     "ApplicationSummaries": {
@@ -180,11 +180,11 @@
     "AttributeGroupSpecifier": {
       "base": null,
       "refs": {
-        "AssociateAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
-        "DeleteAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
-        "DisassociateAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
-        "GetAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
-        "UpdateAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>"
+        "AssociateAttributeGroupRequest$attributeGroup": "<p> The name, ID, or ARN of the attribute group that holds the attributes to describe the application. </p>",
+        "DeleteAttributeGroupRequest$attributeGroup": "<p> The name, ID, or ARN of the attribute group that holds the attributes to describe the application. </p>",
+        "DisassociateAttributeGroupRequest$attributeGroup": "<p> The name, ID, or ARN of the attribute group that holds the attributes to describe the application. </p>",
+        "GetAttributeGroupRequest$attributeGroup": "<p> The name, ID, or ARN of the attribute group that holds the attributes to describe the application. </p>",
+        "UpdateAttributeGroupRequest$attributeGroup": "<p> The name, ID, or ARN of the attribute group that holds the attributes to describe the application. </p>"
       }
     },
     "AttributeGroupSummaries": {
@@ -238,6 +238,14 @@
     "CreateAttributeGroupResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreatedBy": {
+      "base": null,
+      "refs": {
+        "AttributeGroupDetails$createdBy": "<p>The service principal that created the attribute group.</p>",
+        "AttributeGroupSummary$createdBy": "<p>The service principal that created the attribute group.</p>",
+        "GetAttributeGroupResponse$createdBy": "<p>The service principal that created the attribute group.</p>"
       }
     },
     "DeleteApplicationRequest": {
@@ -517,7 +525,7 @@
       }
     },
     "ServiceQuotaExceededException": {
-      "base": "<p>The maximum number of resources per account has been reached.</p>",
+      "base": "<p> The maximum number of resources per account has been reached.</p>",
       "refs": {
       }
     },
@@ -535,6 +543,8 @@
         "ResourceGroup$errorMessage": "<p>The error message that generates when the propagation process for the resource group fails.</p>",
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
+        "ThrottlingException$message": "<p>A message associated with the Throttling exception.</p>",
+        "ThrottlingException$serviceCode": "<p>The originating service code.</p>",
         "ValidationException$message": null
       }
     },
@@ -607,6 +617,11 @@
         "GetAttributeGroupResponse$tags": "<p>Key-value pairs associated with the attribute group.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags on the resource.</p>",
         "TagResourceRequest$tags": "<p>The new or modified tags for the resource.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p> The maximum number of API requests has been exceeded. </p>",
+      "refs": {
       }
     },
     "Timestamp": {

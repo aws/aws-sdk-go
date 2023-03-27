@@ -1433,8 +1433,11 @@ func (c *SecurityHub) DeclineInvitationsRequest(input *DeclineInvitationsInput) 
 //
 // Declines invitations to become a member account.
 //
-// This operation is only used by accounts that are not part of an organization.
-// Organization accounts do not receive invitations.
+// A prospective member account uses this operation to decline an invitation
+// to become a member.
+//
+// This operation is only called by member accounts that aren't part of an organization.
+// Organization accounts don't receive invitations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1815,8 +1818,12 @@ func (c *SecurityHub) DeleteInvitationsRequest(input *DeleteInvitationsInput) (r
 // Deletes invitations received by the Amazon Web Services account to become
 // a member account.
 //
-// This operation is only used by accounts that are not part of an organization.
-// Organization accounts do not receive invitations.
+// A Security Hub administrator account can use this operation to delete invitations
+// sent to one or more member accounts.
+//
+// This operation is only used to delete invitations that are sent to member
+// accounts that aren't part of an organization. Organization accounts don't
+// receive invitations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7533,6 +7540,125 @@ func (s AssociatedStandard) GoString() string {
 // SetStandardsId sets the StandardsId field's value.
 func (s *AssociatedStandard) SetStandardsId(v string) *AssociatedStandard {
 	s.StandardsId = &v
+	return s
+}
+
+// The associations between a route table and one or more subnets or a gateway.
+type AssociationSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the association between a route table and a subnet or gateway.
+	AssociationState *AssociationStateDetails `type:"structure"`
+
+	// The ID of the internet gateway or virtual private gateway.
+	GatewayId *string `type:"string"`
+
+	// Indicates whether this is the main route table.
+	Main *bool `type:"boolean"`
+
+	// The ID of the association.
+	RouteTableAssociationId *string `type:"string"`
+
+	// The ID of the route table.
+	RouteTableId *string `type:"string"`
+
+	// The ID of the subnet. A subnet ID is not returned for an implicit association.
+	SubnetId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociationSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociationSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssociationState sets the AssociationState field's value.
+func (s *AssociationSetDetails) SetAssociationState(v *AssociationStateDetails) *AssociationSetDetails {
+	s.AssociationState = v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *AssociationSetDetails) SetGatewayId(v string) *AssociationSetDetails {
+	s.GatewayId = &v
+	return s
+}
+
+// SetMain sets the Main field's value.
+func (s *AssociationSetDetails) SetMain(v bool) *AssociationSetDetails {
+	s.Main = &v
+	return s
+}
+
+// SetRouteTableAssociationId sets the RouteTableAssociationId field's value.
+func (s *AssociationSetDetails) SetRouteTableAssociationId(v string) *AssociationSetDetails {
+	s.RouteTableAssociationId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *AssociationSetDetails) SetRouteTableId(v string) *AssociationSetDetails {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *AssociationSetDetails) SetSubnetId(v string) *AssociationSetDetails {
+	s.SubnetId = &v
+	return s
+}
+
+// Describes the state of an association between a route table and a subnet
+// or gateway.
+type AssociationStateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the association.
+	State *string `type:"string"`
+
+	// The status message, if applicable.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociationStateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociationStateDetails) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *AssociationStateDetails) SetState(v string) *AssociationStateDetails {
+	s.State = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *AssociationStateDetails) SetStatusMessage(v string) *AssociationStateDetails {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -14557,6 +14683,9 @@ type AwsEc2InstanceDetails struct {
 	// Details about the metadata options for the Amazon EC2 instance.
 	MetadataOptions *AwsEc2InstanceMetadataOptions `type:"structure"`
 
+	// Describes the type of monitoring that’s turned on for an instance.
+	Monitoring *AwsEc2InstanceMonitoringDetails `type:"structure"`
+
 	// The identifiers of the network interfaces for the EC2 instance. The details
 	// for each network interface are in a corresponding AwsEc2NetworkInterfacesDetails
 	// object.
@@ -14633,6 +14762,12 @@ func (s *AwsEc2InstanceDetails) SetLaunchedAt(v string) *AwsEc2InstanceDetails {
 // SetMetadataOptions sets the MetadataOptions field's value.
 func (s *AwsEc2InstanceDetails) SetMetadataOptions(v *AwsEc2InstanceMetadataOptions) *AwsEc2InstanceDetails {
 	s.MetadataOptions = v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *AwsEc2InstanceDetails) SetMonitoring(v *AwsEc2InstanceMonitoringDetails) *AwsEc2InstanceDetails {
+	s.Monitoring = v
 	return s
 }
 
@@ -14732,6 +14867,39 @@ func (s *AwsEc2InstanceMetadataOptions) SetHttpTokens(v string) *AwsEc2InstanceM
 // SetInstanceMetadataTags sets the InstanceMetadataTags field's value.
 func (s *AwsEc2InstanceMetadataOptions) SetInstanceMetadataTags(v string) *AwsEc2InstanceMetadataOptions {
 	s.InstanceMetadataTags = &v
+	return s
+}
+
+// The type of monitoring that’s turned on for an Amazon EC2 instance.
+type AwsEc2InstanceMonitoringDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether detailed monitoring is turned on. Otherwise, basic monitoring
+	// is turned on.
+	State *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2InstanceMonitoringDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2InstanceMonitoringDetails) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *AwsEc2InstanceMonitoringDetails) SetState(v string) *AwsEc2InstanceMonitoringDetails {
+	s.State = &v
 	return s
 }
 
@@ -17550,6 +17718,83 @@ func (s *AwsEc2NetworkInterfaceSecurityGroup) SetGroupId(v string) *AwsEc2Networ
 // SetGroupName sets the GroupName field's value.
 func (s *AwsEc2NetworkInterfaceSecurityGroup) SetGroupName(v string) *AwsEc2NetworkInterfaceSecurityGroup {
 	s.GroupName = &v
+	return s
+}
+
+// Provides details about a route table for the specified VPC.
+type AwsEc2RouteTableDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The associations between a route table and one or more subnets or a gateway.
+	AssociationSet []*AssociationSetDetails `type:"list"`
+
+	// The ID of the Amazon Web Services account that owns the route table.
+	OwnerId *string `type:"string"`
+
+	// Describes a virtual private gateway propagating route.
+	PropagatingVgwSet []*PropagatingVgwSetDetails `type:"list"`
+
+	// The routes in the route table.
+	RouteSet []*RouteSetDetails `type:"list"`
+
+	// The ID of the route table.
+	RouteTableId *string `type:"string"`
+
+	// The ID of the virtual private cloud (VPC).
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2RouteTableDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2RouteTableDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssociationSet sets the AssociationSet field's value.
+func (s *AwsEc2RouteTableDetails) SetAssociationSet(v []*AssociationSetDetails) *AwsEc2RouteTableDetails {
+	s.AssociationSet = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *AwsEc2RouteTableDetails) SetOwnerId(v string) *AwsEc2RouteTableDetails {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPropagatingVgwSet sets the PropagatingVgwSet field's value.
+func (s *AwsEc2RouteTableDetails) SetPropagatingVgwSet(v []*PropagatingVgwSetDetails) *AwsEc2RouteTableDetails {
+	s.PropagatingVgwSet = v
+	return s
+}
+
+// SetRouteSet sets the RouteSet field's value.
+func (s *AwsEc2RouteTableDetails) SetRouteSet(v []*RouteSetDetails) *AwsEc2RouteTableDetails {
+	s.RouteSet = v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *AwsEc2RouteTableDetails) SetRouteTableId(v string) *AwsEc2RouteTableDetails {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsEc2RouteTableDetails) SetVpcId(v string) *AwsEc2RouteTableDetails {
+	s.VpcId = &v
 	return s
 }
 
@@ -23508,6 +23753,12 @@ func (s *AwsEksClusterLoggingDetails) SetClusterLogging(v []*AwsEksClusterLoggin
 type AwsEksClusterResourcesVpcConfigDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether the Amazon EKS public API server endpoint is turned on.
+	// If the Amazon EKS public API server endpoint is turned off, your cluster's
+	// Kubernetes API server can only receive requests that originate from within
+	// the cluster VPC.
+	EndpointPublicAccess *bool `type:"boolean"`
+
 	// The security groups that are associated with the cross-account elastic network
 	// interfaces that are used to allow communication between your nodes and the
 	// Amazon EKS control plane.
@@ -23533,6 +23784,12 @@ func (s AwsEksClusterResourcesVpcConfigDetails) String() string {
 // value will be replaced with "sensitive".
 func (s AwsEksClusterResourcesVpcConfigDetails) GoString() string {
 	return s.String()
+}
+
+// SetEndpointPublicAccess sets the EndpointPublicAccess field's value.
+func (s *AwsEksClusterResourcesVpcConfigDetails) SetEndpointPublicAccess(v bool) *AwsEksClusterResourcesVpcConfigDetails {
+	s.EndpointPublicAccess = &v
+	return s
 }
 
 // SetSecurityGroupIds sets the SecurityGroupIds field's value.
@@ -33555,6 +33812,10 @@ type AwsS3BucketDetails struct {
 	// 2020-03-22T13:22:13.933Z.
 	CreatedAt *string `type:"string"`
 
+	// Specifies which rule Amazon S3 applies by default to every new object placed
+	// in the specified bucket.
+	ObjectLockConfiguration *AwsS3BucketObjectLockConfiguration `type:"structure"`
+
 	// The Amazon Web Services account identifier of the account that owns the S3
 	// bucket.
 	OwnerAccountId *string `type:"string"`
@@ -33630,6 +33891,12 @@ func (s *AwsS3BucketDetails) SetBucketWebsiteConfiguration(v *AwsS3BucketWebsite
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *AwsS3BucketDetails) SetCreatedAt(v string) *AwsS3BucketDetails {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetObjectLockConfiguration sets the ObjectLockConfiguration field's value.
+func (s *AwsS3BucketDetails) SetObjectLockConfiguration(v *AwsS3BucketObjectLockConfiguration) *AwsS3BucketDetails {
+	s.ObjectLockConfiguration = v
 	return s
 }
 
@@ -33908,6 +34175,136 @@ func (s *AwsS3BucketNotificationConfigurationS3KeyFilterRule) SetName(v string) 
 // SetValue sets the Value field's value.
 func (s *AwsS3BucketNotificationConfigurationS3KeyFilterRule) SetValue(v string) *AwsS3BucketNotificationConfigurationS3KeyFilterRule {
 	s.Value = &v
+	return s
+}
+
+// The container element for S3 Object Lock configuration parameters. In Amazon
+// S3, Object Lock can help prevent objects from being deleted or overwritten
+// for a fixed amount of time or indefinitely.
+type AwsS3BucketObjectLockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the bucket has an Object Lock configuration enabled.
+	ObjectLockEnabled *string `type:"string"`
+
+	// Specifies the Object Lock rule for the specified object.
+	Rule *AwsS3BucketObjectLockConfigurationRuleDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3BucketObjectLockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3BucketObjectLockConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetObjectLockEnabled sets the ObjectLockEnabled field's value.
+func (s *AwsS3BucketObjectLockConfiguration) SetObjectLockEnabled(v string) *AwsS3BucketObjectLockConfiguration {
+	s.ObjectLockEnabled = &v
+	return s
+}
+
+// SetRule sets the Rule field's value.
+func (s *AwsS3BucketObjectLockConfiguration) SetRule(v *AwsS3BucketObjectLockConfigurationRuleDetails) *AwsS3BucketObjectLockConfiguration {
+	s.Rule = v
+	return s
+}
+
+// The default S3 Object Lock retention mode and period that you want to apply
+// to new objects placed in the specified Amazon S3 bucket.
+type AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days that you want to specify for the default retention period.
+	Days *int64 `type:"integer"`
+
+	// The default Object Lock retention mode you want to apply to new objects placed
+	// in the specified bucket.
+	Mode *string `type:"string"`
+
+	// The number of years that you want to specify for the default retention period.
+	Years *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails) GoString() string {
+	return s.String()
+}
+
+// SetDays sets the Days field's value.
+func (s *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails) SetDays(v int64) *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails {
+	s.Days = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails) SetMode(v string) *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails {
+	s.Mode = &v
+	return s
+}
+
+// SetYears sets the Years field's value.
+func (s *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails) SetYears(v int64) *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails {
+	s.Years = &v
+	return s
+}
+
+// Specifies the S3 Object Lock rule for the specified object. In Amazon S3,
+// Object Lock can help prevent objects from being deleted or overwritten for
+// a fixed amount of time or indefinitely.
+type AwsS3BucketObjectLockConfigurationRuleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The default Object Lock retention mode and period that you want to apply
+	// to new objects placed in the specified bucket.
+	DefaultRetention *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3BucketObjectLockConfigurationRuleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3BucketObjectLockConfigurationRuleDetails) GoString() string {
+	return s.String()
+}
+
+// SetDefaultRetention sets the DefaultRetention field's value.
+func (s *AwsS3BucketObjectLockConfigurationRuleDetails) SetDefaultRetention(v *AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails) *AwsS3BucketObjectLockConfigurationRuleDetails {
+	s.DefaultRetention = v
 	return s
 }
 
@@ -35528,7 +35925,8 @@ type AwsSecurityFindingFilters struct {
 	// The name of the process.
 	ProcessName []*StringFilter `type:"list"`
 
-	// The parent process ID.
+	// The parent process ID. This field accepts positive integers between O and
+	// 2147483647.
 	ProcessParentPid []*NumberFilter `type:"list"`
 
 	// The path to the process executable.
@@ -41203,8 +41601,7 @@ func (s *DateRange) SetValue(v int64) *DateRange {
 type DeclineInvitationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of account IDs for the accounts from which to decline the invitations
-	// to Security Hub.
+	// The list of prospective member account IDs for which to decline an invitation.
 	//
 	// AccountIds is a required field
 	AccountIds []*string `type:"list" required:"true"`
@@ -41517,7 +41914,8 @@ func (s *DeleteInsightOutput) SetInsightArn(v string) *DeleteInsightOutput {
 type DeleteInvitationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of the account IDs that sent the invitations to delete.
+	// The list of member account IDs that received the invitations you want to
+	// delete.
 	//
 	// AccountIds is a required field
 	AccountIds []*string `type:"list" required:"true"`
@@ -41833,7 +42231,7 @@ type DescribeHubOutput struct {
 	// The value for this field in a member account matches the value in the administrator
 	// account. For accounts that aren't part of an organization, the default value
 	// of this field is SECURITY_CONTROL if you enabled Security Hub on or after
-	// February 9, 2023.
+	// February 23, 2023.
 	ControlFindingGenerator *string `type:"string" enum:"ControlFindingGenerator"`
 
 	// The ARN of the Hub resource that was retrieved.
@@ -42841,7 +43239,7 @@ type EnableSecurityHubInput struct {
 	// The value for this field in a member account matches the value in the administrator
 	// account. For accounts that aren't part of an organization, the default value
 	// of this field is SECURITY_CONTROL if you enabled Security Hub on or after
-	// February 9, 2023.
+	// February 23, 2023.
 	ControlFindingGenerator *string `type:"string" enum:"ControlFindingGenerator"`
 
 	// Whether to enable the security standards that Security Hub has designated
@@ -47197,7 +47595,8 @@ type ProcessDetails struct {
 	// The name of the process.
 	Name *string `type:"string"`
 
-	// The parent process ID.
+	// The parent process ID. This field accepts positive integers between O and
+	// 2147483647.
 	ParentPid *int64 `type:"integer"`
 
 	// The path to the process executable.
@@ -47388,6 +47787,38 @@ func (s *Product) SetProductName(v string) *Product {
 // SetProductSubscriptionResourcePolicy sets the ProductSubscriptionResourcePolicy field's value.
 func (s *Product) SetProductSubscriptionResourcePolicy(v string) *Product {
 	s.ProductSubscriptionResourcePolicy = &v
+	return s
+}
+
+// Describes a virtual private gateway propagating route.
+type PropagatingVgwSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the virtual private gateway.
+	GatewayId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropagatingVgwSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropagatingVgwSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *PropagatingVgwSetDetails) SetGatewayId(v string) *PropagatingVgwSetDetails {
+	s.GatewayId = &v
 	return s
 }
 
@@ -47901,6 +48332,11 @@ type ResourceDetails struct {
 	// Details for an EC2 network interface.
 	AwsEc2NetworkInterface *AwsEc2NetworkInterfaceDetails `type:"structure"`
 
+	// Provides details about a route table. A route table contains a set of rules,
+	// called routes, that determine where to direct network traffic from your subnet
+	// or gateway.
+	AwsEc2RouteTable *AwsEc2RouteTableDetails `type:"structure"`
+
 	// Details for an EC2 security group.
 	AwsEc2SecurityGroup *AwsEc2SecurityGroupDetails `type:"structure"`
 
@@ -48261,6 +48697,12 @@ func (s *ResourceDetails) SetAwsEc2NetworkAcl(v *AwsEc2NetworkAclDetails) *Resou
 // SetAwsEc2NetworkInterface sets the AwsEc2NetworkInterface field's value.
 func (s *ResourceDetails) SetAwsEc2NetworkInterface(v *AwsEc2NetworkInterfaceDetails) *ResourceDetails {
 	s.AwsEc2NetworkInterface = v
+	return s
+}
+
+// SetAwsEc2RouteTable sets the AwsEc2RouteTable field's value.
+func (s *ResourceDetails) SetAwsEc2RouteTable(v *AwsEc2RouteTableDetails) *ResourceDetails {
+	s.AwsEc2RouteTable = v
 	return s
 }
 
@@ -48740,6 +49182,173 @@ func (s *Result) SetAccountId(v string) *Result {
 // SetProcessingResult sets the ProcessingResult field's value.
 func (s *Result) SetProcessingResult(v string) *Result {
 	s.ProcessingResult = &v
+	return s
+}
+
+// Provides details about the routes in the route table.
+type RouteSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the carrier gateway.
+	CarrierGatewayId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the core network.
+	CoreNetworkArn *string `type:"string"`
+
+	// The IPv4 CIDR block used for the destination match.
+	DestinationCidrBlock *string `type:"string"`
+
+	// The IPv6 CIDR block used for the destination match.
+	DestinationIpv6CidrBlock *string `type:"string"`
+
+	// The prefix of the destination Amazon Web Service.
+	DestinationPrefixListId *string `type:"string"`
+
+	// The ID of the egress-only internet gateway.
+	EgressOnlyInternetGatewayId *string `type:"string"`
+
+	// The ID of a gateway attached to your VPC.
+	GatewayId *string `type:"string"`
+
+	// The ID of a NAT instance in your VPC.
+	InstanceId *string `type:"string"`
+
+	// The ID of the Amazon Web Services account that owns the instance.
+	InstanceOwnerId *string `type:"string"`
+
+	// The ID of the local gateway.
+	LocalGatewayId *string `type:"string"`
+
+	// The ID of a NAT gateway.
+	NatGatewayId *string `type:"string"`
+
+	// The ID of the network interface.
+	NetworkInterfaceId *string `type:"string"`
+
+	// Describes how the route was created.
+	Origin *string `type:"string"`
+
+	// The state of the route.
+	State *string `type:"string"`
+
+	// The ID of a transit gateway.
+	TransitGatewayId *string `type:"string"`
+
+	// The ID of a VPC peering connection.
+	VpcPeeringConnectionId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetCarrierGatewayId sets the CarrierGatewayId field's value.
+func (s *RouteSetDetails) SetCarrierGatewayId(v string) *RouteSetDetails {
+	s.CarrierGatewayId = &v
+	return s
+}
+
+// SetCoreNetworkArn sets the CoreNetworkArn field's value.
+func (s *RouteSetDetails) SetCoreNetworkArn(v string) *RouteSetDetails {
+	s.CoreNetworkArn = &v
+	return s
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *RouteSetDetails) SetDestinationCidrBlock(v string) *RouteSetDetails {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDestinationIpv6CidrBlock sets the DestinationIpv6CidrBlock field's value.
+func (s *RouteSetDetails) SetDestinationIpv6CidrBlock(v string) *RouteSetDetails {
+	s.DestinationIpv6CidrBlock = &v
+	return s
+}
+
+// SetDestinationPrefixListId sets the DestinationPrefixListId field's value.
+func (s *RouteSetDetails) SetDestinationPrefixListId(v string) *RouteSetDetails {
+	s.DestinationPrefixListId = &v
+	return s
+}
+
+// SetEgressOnlyInternetGatewayId sets the EgressOnlyInternetGatewayId field's value.
+func (s *RouteSetDetails) SetEgressOnlyInternetGatewayId(v string) *RouteSetDetails {
+	s.EgressOnlyInternetGatewayId = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *RouteSetDetails) SetGatewayId(v string) *RouteSetDetails {
+	s.GatewayId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *RouteSetDetails) SetInstanceId(v string) *RouteSetDetails {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceOwnerId sets the InstanceOwnerId field's value.
+func (s *RouteSetDetails) SetInstanceOwnerId(v string) *RouteSetDetails {
+	s.InstanceOwnerId = &v
+	return s
+}
+
+// SetLocalGatewayId sets the LocalGatewayId field's value.
+func (s *RouteSetDetails) SetLocalGatewayId(v string) *RouteSetDetails {
+	s.LocalGatewayId = &v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *RouteSetDetails) SetNatGatewayId(v string) *RouteSetDetails {
+	s.NatGatewayId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *RouteSetDetails) SetNetworkInterfaceId(v string) *RouteSetDetails {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetOrigin sets the Origin field's value.
+func (s *RouteSetDetails) SetOrigin(v string) *RouteSetDetails {
+	s.Origin = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RouteSetDetails) SetState(v string) *RouteSetDetails {
+	s.State = &v
+	return s
+}
+
+// SetTransitGatewayId sets the TransitGatewayId field's value.
+func (s *RouteSetDetails) SetTransitGatewayId(v string) *RouteSetDetails {
+	s.TransitGatewayId = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *RouteSetDetails) SetVpcPeeringConnectionId(v string) *RouteSetDetails {
+	s.VpcPeeringConnectionId = &v
 	return s
 }
 

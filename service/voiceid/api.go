@@ -13,6 +13,111 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAssociateFraudster = "AssociateFraudster"
+
+// AssociateFraudsterRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateFraudster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateFraudster for more information on using the AssociateFraudster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateFraudsterRequest method.
+//	req, resp := client.AssociateFraudsterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/AssociateFraudster
+func (c *VoiceID) AssociateFraudsterRequest(input *AssociateFraudsterInput) (req *request.Request, output *AssociateFraudsterOutput) {
+	op := &request.Operation{
+		Name:       opAssociateFraudster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateFraudsterInput{}
+	}
+
+	output = &AssociateFraudsterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateFraudster API operation for Amazon Voice ID.
+//
+// Associates the fraudsters with the watchlist specified in the same domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation AssociateFraudster for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceQuotaExceededException
+//     The request exceeded the service quota. Refer to Voice ID Service Quotas
+//     (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/AssociateFraudster
+func (c *VoiceID) AssociateFraudster(input *AssociateFraudsterInput) (*AssociateFraudsterOutput, error) {
+	req, out := c.AssociateFraudsterRequest(input)
+	return out, req.Send()
+}
+
+// AssociateFraudsterWithContext is the same as AssociateFraudster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateFraudster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) AssociateFraudsterWithContext(ctx aws.Context, input *AssociateFraudsterInput, opts ...request.Option) (*AssociateFraudsterOutput, error) {
+	req, out := c.AssociateFraudsterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDomain = "CreateDomain"
 
 // CreateDomainRequest generates a "aws/request.Request" representing the
@@ -57,7 +162,8 @@ func (c *VoiceID) CreateDomainRequest(input *CreateDomainInput) (req *request.Re
 // CreateDomain API operation for Amazon Voice ID.
 //
 // Creates a domain that contains all Amazon Connect Voice ID data, such as
-// speakers, fraudsters, customer audio, and voiceprints.
+// speakers, fraudsters, customer audio, and voiceprints. Every domain is created
+// with a default watchlist that fraudsters can be a part of.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -114,6 +220,111 @@ func (c *VoiceID) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, e
 // for more information on using Contexts.
 func (c *VoiceID) CreateDomainWithContext(ctx aws.Context, input *CreateDomainInput, opts ...request.Option) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateWatchlist = "CreateWatchlist"
+
+// CreateWatchlistRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWatchlist operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateWatchlist for more information on using the CreateWatchlist
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateWatchlistRequest method.
+//	req, resp := client.CreateWatchlistRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/CreateWatchlist
+func (c *VoiceID) CreateWatchlistRequest(input *CreateWatchlistInput) (req *request.Request, output *CreateWatchlistOutput) {
+	op := &request.Operation{
+		Name:       opCreateWatchlist,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateWatchlistInput{}
+	}
+
+	output = &CreateWatchlistOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateWatchlist API operation for Amazon Voice ID.
+//
+// Creates a watchlist that fraudsters can be a part of.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation CreateWatchlist for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceQuotaExceededException
+//     The request exceeded the service quota. Refer to Voice ID Service Quotas
+//     (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#voiceid-quotas)
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/CreateWatchlist
+func (c *VoiceID) CreateWatchlist(input *CreateWatchlistInput) (*CreateWatchlistOutput, error) {
+	req, out := c.CreateWatchlistRequest(input)
+	return out, req.Send()
+}
+
+// CreateWatchlistWithContext is the same as CreateWatchlist with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateWatchlist for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) CreateWatchlistWithContext(ctx aws.Context, input *CreateWatchlistInput, opts ...request.Option) (*CreateWatchlistOutput, error) {
+	req, out := c.CreateWatchlistRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -264,7 +475,8 @@ func (c *VoiceID) DeleteFraudsterRequest(input *DeleteFraudsterInput) (req *requ
 
 // DeleteFraudster API operation for Amazon Voice ID.
 //
-// Deletes the specified fraudster from Voice ID.
+// Deletes the specified fraudster from Voice ID. This action disassociates
+// the fraudster from any watchlists it is a part of.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -417,6 +629,110 @@ func (c *VoiceID) DeleteSpeaker(input *DeleteSpeakerInput) (*DeleteSpeakerOutput
 // for more information on using Contexts.
 func (c *VoiceID) DeleteSpeakerWithContext(ctx aws.Context, input *DeleteSpeakerInput, opts ...request.Option) (*DeleteSpeakerOutput, error) {
 	req, out := c.DeleteSpeakerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteWatchlist = "DeleteWatchlist"
+
+// DeleteWatchlistRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWatchlist operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWatchlist for more information on using the DeleteWatchlist
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteWatchlistRequest method.
+//	req, resp := client.DeleteWatchlistRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteWatchlist
+func (c *VoiceID) DeleteWatchlistRequest(input *DeleteWatchlistInput) (req *request.Request, output *DeleteWatchlistOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWatchlist,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteWatchlistInput{}
+	}
+
+	output = &DeleteWatchlistOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteWatchlist API operation for Amazon Voice ID.
+//
+// Deletes the specified watchlist from Voice ID. This API throws an exception
+// when there are fraudsters in the watchlist that you are trying to delete.
+// You must delete the fraudsters, and then delete the watchlist. Every domain
+// has a default watchlist which cannot be deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation DeleteWatchlist for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DeleteWatchlist
+func (c *VoiceID) DeleteWatchlist(input *DeleteWatchlistInput) (*DeleteWatchlistOutput, error) {
+	req, out := c.DeleteWatchlistRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWatchlistWithContext is the same as DeleteWatchlist with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWatchlist for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) DeleteWatchlistWithContext(ctx aws.Context, input *DeleteWatchlistInput, opts ...request.Option) (*DeleteWatchlistOutput, error) {
+	req, out := c.DeleteWatchlistRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -902,6 +1218,205 @@ func (c *VoiceID) DescribeSpeakerEnrollmentJobWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDescribeWatchlist = "DescribeWatchlist"
+
+// DescribeWatchlistRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWatchlist operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeWatchlist for more information on using the DescribeWatchlist
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeWatchlistRequest method.
+//	req, resp := client.DescribeWatchlistRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeWatchlist
+func (c *VoiceID) DescribeWatchlistRequest(input *DescribeWatchlistInput) (req *request.Request, output *DescribeWatchlistOutput) {
+	op := &request.Operation{
+		Name:       opDescribeWatchlist,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeWatchlistInput{}
+	}
+
+	output = &DescribeWatchlistOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeWatchlist API operation for Amazon Voice ID.
+//
+// Describes the specified watchlist.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation DescribeWatchlist for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DescribeWatchlist
+func (c *VoiceID) DescribeWatchlist(input *DescribeWatchlistInput) (*DescribeWatchlistOutput, error) {
+	req, out := c.DescribeWatchlistRequest(input)
+	return out, req.Send()
+}
+
+// DescribeWatchlistWithContext is the same as DescribeWatchlist with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeWatchlist for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) DescribeWatchlistWithContext(ctx aws.Context, input *DescribeWatchlistInput, opts ...request.Option) (*DescribeWatchlistOutput, error) {
+	req, out := c.DescribeWatchlistRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateFraudster = "DisassociateFraudster"
+
+// DisassociateFraudsterRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateFraudster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateFraudster for more information on using the DisassociateFraudster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateFraudsterRequest method.
+//	req, resp := client.DisassociateFraudsterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DisassociateFraudster
+func (c *VoiceID) DisassociateFraudsterRequest(input *DisassociateFraudsterInput) (req *request.Request, output *DisassociateFraudsterOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateFraudster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateFraudsterInput{}
+	}
+
+	output = &DisassociateFraudsterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateFraudster API operation for Amazon Voice ID.
+//
+// Disassociates the fraudsters from the watchlist specified. Voice ID always
+// expects a fraudster to be a part of at least one watchlist. If you try to
+// disassociate a fraudster from its only watchlist, a ValidationException is
+// thrown.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation DisassociateFraudster for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/DisassociateFraudster
+func (c *VoiceID) DisassociateFraudster(input *DisassociateFraudsterInput) (*DisassociateFraudsterOutput, error) {
+	req, out := c.DisassociateFraudsterRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateFraudsterWithContext is the same as DisassociateFraudster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateFraudster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) DisassociateFraudsterWithContext(ctx aws.Context, input *DisassociateFraudsterInput, opts ...request.Option) (*DisassociateFraudsterOutput, error) {
+	req, out := c.DisassociateFraudsterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opEvaluateSession = "EvaluateSession"
 
 // EvaluateSessionRequest generates a "aws/request.Request" representing the
@@ -1300,6 +1815,159 @@ func (c *VoiceID) ListFraudsterRegistrationJobsPagesWithContext(ctx aws.Context,
 
 	for p.Next() {
 		if !fn(p.Page().(*ListFraudsterRegistrationJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFraudsters = "ListFraudsters"
+
+// ListFraudstersRequest generates a "aws/request.Request" representing the
+// client's request for the ListFraudsters operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFraudsters for more information on using the ListFraudsters
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFraudstersRequest method.
+//	req, resp := client.ListFraudstersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListFraudsters
+func (c *VoiceID) ListFraudstersRequest(input *ListFraudstersInput) (req *request.Request, output *ListFraudstersOutput) {
+	op := &request.Operation{
+		Name:       opListFraudsters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFraudstersInput{}
+	}
+
+	output = &ListFraudstersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFraudsters API operation for Amazon Voice ID.
+//
+// Lists all fraudsters in a specified watchlist or domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation ListFraudsters for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListFraudsters
+func (c *VoiceID) ListFraudsters(input *ListFraudstersInput) (*ListFraudstersOutput, error) {
+	req, out := c.ListFraudstersRequest(input)
+	return out, req.Send()
+}
+
+// ListFraudstersWithContext is the same as ListFraudsters with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFraudsters for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) ListFraudstersWithContext(ctx aws.Context, input *ListFraudstersInput, opts ...request.Option) (*ListFraudstersOutput, error) {
+	req, out := c.ListFraudstersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFraudstersPages iterates over the pages of a ListFraudsters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFraudsters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFraudsters operation.
+//	pageNum := 0
+//	err := client.ListFraudstersPages(params,
+//	    func(page *voiceid.ListFraudstersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *VoiceID) ListFraudstersPages(input *ListFraudstersInput, fn func(*ListFraudstersOutput, bool) bool) error {
+	return c.ListFraudstersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFraudstersPagesWithContext same as ListFraudstersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) ListFraudstersPagesWithContext(ctx aws.Context, input *ListFraudstersInput, fn func(*ListFraudstersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFraudstersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFraudstersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFraudstersOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1709,6 +2377,159 @@ func (c *VoiceID) ListTagsForResourceWithContext(ctx aws.Context, input *ListTag
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListWatchlists = "ListWatchlists"
+
+// ListWatchlistsRequest generates a "aws/request.Request" representing the
+// client's request for the ListWatchlists operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListWatchlists for more information on using the ListWatchlists
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListWatchlistsRequest method.
+//	req, resp := client.ListWatchlistsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListWatchlists
+func (c *VoiceID) ListWatchlistsRequest(input *ListWatchlistsInput) (req *request.Request, output *ListWatchlistsOutput) {
+	op := &request.Operation{
+		Name:       opListWatchlists,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListWatchlistsInput{}
+	}
+
+	output = &ListWatchlistsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListWatchlists API operation for Amazon Voice ID.
+//
+// Lists all watchlists in a specified domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation ListWatchlists for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/ListWatchlists
+func (c *VoiceID) ListWatchlists(input *ListWatchlistsInput) (*ListWatchlistsOutput, error) {
+	req, out := c.ListWatchlistsRequest(input)
+	return out, req.Send()
+}
+
+// ListWatchlistsWithContext is the same as ListWatchlists with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListWatchlists for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) ListWatchlistsWithContext(ctx aws.Context, input *ListWatchlistsInput, opts ...request.Option) (*ListWatchlistsOutput, error) {
+	req, out := c.ListWatchlistsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListWatchlistsPages iterates over the pages of a ListWatchlists operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListWatchlists method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListWatchlists operation.
+//	pageNum := 0
+//	err := client.ListWatchlistsPages(params,
+//	    func(page *voiceid.ListWatchlistsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *VoiceID) ListWatchlistsPages(input *ListWatchlistsInput, fn func(*ListWatchlistsOutput, bool) bool) error {
+	return c.ListWatchlistsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListWatchlistsPagesWithContext same as ListWatchlistsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) ListWatchlistsPagesWithContext(ctx aws.Context, input *ListWatchlistsInput, fn func(*ListWatchlistsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListWatchlistsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListWatchlistsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListWatchlistsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opOptOutSpeaker = "OptOutSpeaker"
@@ -2335,6 +3156,107 @@ func (c *VoiceID) UpdateDomainWithContext(ctx aws.Context, input *UpdateDomainIn
 	return out, req.Send()
 }
 
+const opUpdateWatchlist = "UpdateWatchlist"
+
+// UpdateWatchlistRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateWatchlist operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateWatchlist for more information on using the UpdateWatchlist
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateWatchlistRequest method.
+//	req, resp := client.UpdateWatchlistRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/UpdateWatchlist
+func (c *VoiceID) UpdateWatchlistRequest(input *UpdateWatchlistInput) (req *request.Request, output *UpdateWatchlistOutput) {
+	op := &request.Operation{
+		Name:       opUpdateWatchlist,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateWatchlistInput{}
+	}
+
+	output = &UpdateWatchlistOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateWatchlist API operation for Amazon Voice ID.
+//
+// Updates the specified watchlist. Every domain has a default watchlist which
+// cannot be updated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Voice ID's
+// API operation UpdateWatchlist for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found. Check the ResourceType and error
+//     message for more details.
+//
+//   - ValidationException
+//     The request failed one or more validations; check the error message for more
+//     details.
+//
+//   - ConflictException
+//     The request failed due to a conflict. Check the ConflictType and error message
+//     for more details.
+//
+//   - InternalServerException
+//     The request failed due to an unknown error on the server side.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. Please slow down your request
+//     rate. Refer to Amazon Connect Voice ID Service API throttling quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html##voiceid-api-quotas)
+//     and try your request again.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action. Check the
+//     error message and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/voice-id-2021-09-27/UpdateWatchlist
+func (c *VoiceID) UpdateWatchlist(input *UpdateWatchlistInput) (*UpdateWatchlistOutput, error) {
+	req, out := c.UpdateWatchlistRequest(input)
+	return out, req.Send()
+}
+
+// UpdateWatchlistWithContext is the same as UpdateWatchlist with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateWatchlist for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VoiceID) UpdateWatchlistWithContext(ctx aws.Context, input *UpdateWatchlistInput, opts ...request.Option) (*UpdateWatchlistOutput, error) {
+	req, out := c.UpdateWatchlistRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You do not have sufficient permissions to perform this action. Check the
 // error message and try again.
 type AccessDeniedException struct {
@@ -2400,6 +3322,124 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type AssociateFraudsterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the domain that contains the fraudster.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The identifier of the fraudster to be associated with the watchlist.
+	//
+	// FraudsterId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociateFraudsterInput's
+	// String and GoString methods.
+	//
+	// FraudsterId is a required field
+	FraudsterId *string `min:"25" type:"string" required:"true" sensitive:"true"`
+
+	// The identifier of the watchlist you want to associate with the fraudster.
+	//
+	// WatchlistId is a required field
+	WatchlistId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFraudsterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFraudsterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateFraudsterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateFraudsterInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.FraudsterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FraudsterId"))
+	}
+	if s.FraudsterId != nil && len(*s.FraudsterId) < 25 {
+		invalidParams.Add(request.NewErrParamMinLen("FraudsterId", 25))
+	}
+	if s.WatchlistId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WatchlistId"))
+	}
+	if s.WatchlistId != nil && len(*s.WatchlistId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *AssociateFraudsterInput) SetDomainId(v string) *AssociateFraudsterInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetFraudsterId sets the FraudsterId field's value.
+func (s *AssociateFraudsterInput) SetFraudsterId(v string) *AssociateFraudsterInput {
+	s.FraudsterId = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *AssociateFraudsterInput) SetWatchlistId(v string) *AssociateFraudsterInput {
+	s.WatchlistId = &v
+	return s
+}
+
+type AssociateFraudsterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains all the information about a fraudster.
+	Fraudster *Fraudster `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFraudsterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateFraudsterOutput) GoString() string {
+	return s.String()
+}
+
+// SetFraudster sets the Fraudster field's value.
+func (s *AssociateFraudsterOutput) SetFraudster(v *Fraudster) *AssociateFraudsterOutput {
+	s.Fraudster = v
+	return s
+}
+
 // The configuration used to authenticate a speaker during a session.
 type AuthenticationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -2439,12 +3479,10 @@ func (s *AuthenticationConfiguration) SetAcceptanceThreshold(v int64) *Authentic
 type AuthenticationResult struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp indicating when audio aggregation ended for this authentication
-	// result.
+	// A timestamp of when audio aggregation ended for this authentication result.
 	AudioAggregationEndedAt *time.Time `type:"timestamp"`
 
-	// A timestamp indicating when audio aggregation started for this authentication
-	// result.
+	// A timestamp of when audio aggregation started for this authentication result.
 	AudioAggregationStartedAt *time.Time `type:"timestamp"`
 
 	// The unique identifier for this authentication result. Because there can be
@@ -2633,11 +3671,13 @@ func (s *ConflictException) RequestID() string {
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// The idempotency token for creating a new domain. If not provided, Amazon
-	// Web Services SDK populates this field.
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// A brief description of the domain.
+	// A brief description of this domain.
 	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateDomainInput's
@@ -2784,6 +3824,138 @@ func (s *CreateDomainOutput) SetDomain(v *Domain) *CreateDomainOutput {
 	return s
 }
 
+type CreateWatchlistInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A brief description of this watchlist.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateWatchlistInput's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
+
+	// The identifier of the domain that contains the watchlist.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The name of the watchlist.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateWatchlistInput's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWatchlistInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWatchlistInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWatchlistInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWatchlistInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateWatchlistInput) SetClientToken(v string) *CreateWatchlistInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateWatchlistInput) SetDescription(v string) *CreateWatchlistInput {
+	s.Description = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *CreateWatchlistInput) SetDomainId(v string) *CreateWatchlistInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateWatchlistInput) SetName(v string) *CreateWatchlistInput {
+	s.Name = &v
+	return s
+}
+
+type CreateWatchlistOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the newly created watchlist.
+	Watchlist *Watchlist `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWatchlistOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWatchlistOutput) GoString() string {
+	return s.String()
+}
+
+// SetWatchlist sets the Watchlist field's value.
+func (s *CreateWatchlistOutput) SetWatchlist(v *Watchlist) *CreateWatchlistOutput {
+	s.Watchlist = v
+	return s
+}
+
 type DeleteDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2858,7 +4030,7 @@ func (s DeleteDomainOutput) GoString() string {
 type DeleteFraudsterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain containing the fraudster.
+	// The identifier of the domain that contains the fraudster.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -2950,7 +4122,7 @@ func (s DeleteFraudsterOutput) GoString() string {
 type DeleteSpeakerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain containing the speaker.
+	// The identifier of the domain that contains the speaker.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -3039,10 +4211,98 @@ func (s DeleteSpeakerOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteWatchlistInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the domain that contains the watchlist.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The identifier of the watchlist to be deleted.
+	//
+	// WatchlistId is a required field
+	WatchlistId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWatchlistInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWatchlistInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWatchlistInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWatchlistInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.WatchlistId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WatchlistId"))
+	}
+	if s.WatchlistId != nil && len(*s.WatchlistId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *DeleteWatchlistInput) SetDomainId(v string) *DeleteWatchlistInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *DeleteWatchlistInput) SetWatchlistId(v string) *DeleteWatchlistInput {
+	s.WatchlistId = &v
+	return s
+}
+
+type DeleteWatchlistOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWatchlistOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWatchlistOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain you are describing.
+	// The identifier of the domain that you are describing.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -3122,7 +4382,7 @@ func (s *DescribeDomainOutput) SetDomain(v *Domain) *DescribeDomainOutput {
 type DescribeFraudsterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain containing the fraudster.
+	// The identifier of the domain that contains the fraudster.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -3223,12 +4483,12 @@ func (s *DescribeFraudsterOutput) SetFraudster(v *Fraudster) *DescribeFraudsterO
 type DescribeFraudsterRegistrationJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the domain containing the fraudster registration job.
+	// The identifier of the domain that contains the fraudster registration job.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
 
-	// The identifier for the fraudster registration job you are describing.
+	// The identifier of the fraudster registration job you are describing.
 	//
 	// JobId is a required field
 	JobId *string `min:"22" type:"string" required:"true"`
@@ -3320,7 +4580,7 @@ func (s *DescribeFraudsterRegistrationJobOutput) SetJob(v *FraudsterRegistration
 type DescribeSpeakerEnrollmentJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain containing the speaker enrollment job.
+	// The identifier of the domain that contains the speaker enrollment job.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -3515,6 +4775,221 @@ func (s *DescribeSpeakerOutput) SetSpeaker(v *Speaker) *DescribeSpeakerOutput {
 	return s
 }
 
+type DescribeWatchlistInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the domain that contains the watchlist.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The identifier of the watchlist that you are describing.
+	//
+	// WatchlistId is a required field
+	WatchlistId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWatchlistInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWatchlistInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWatchlistInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWatchlistInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.WatchlistId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WatchlistId"))
+	}
+	if s.WatchlistId != nil && len(*s.WatchlistId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *DescribeWatchlistInput) SetDomainId(v string) *DescribeWatchlistInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *DescribeWatchlistInput) SetWatchlistId(v string) *DescribeWatchlistInput {
+	s.WatchlistId = &v
+	return s
+}
+
+type DescribeWatchlistOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the specified watchlist.
+	Watchlist *Watchlist `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWatchlistOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWatchlistOutput) GoString() string {
+	return s.String()
+}
+
+// SetWatchlist sets the Watchlist field's value.
+func (s *DescribeWatchlistOutput) SetWatchlist(v *Watchlist) *DescribeWatchlistOutput {
+	s.Watchlist = v
+	return s
+}
+
+type DisassociateFraudsterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the domain that contains the fraudster.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The identifier of the fraudster to be disassociated from the watchlist.
+	//
+	// FraudsterId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DisassociateFraudsterInput's
+	// String and GoString methods.
+	//
+	// FraudsterId is a required field
+	FraudsterId *string `min:"25" type:"string" required:"true" sensitive:"true"`
+
+	// The identifier of the watchlist that you want to disassociate from the fraudster.
+	//
+	// WatchlistId is a required field
+	WatchlistId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFraudsterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFraudsterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateFraudsterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateFraudsterInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.FraudsterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FraudsterId"))
+	}
+	if s.FraudsterId != nil && len(*s.FraudsterId) < 25 {
+		invalidParams.Add(request.NewErrParamMinLen("FraudsterId", 25))
+	}
+	if s.WatchlistId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WatchlistId"))
+	}
+	if s.WatchlistId != nil && len(*s.WatchlistId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *DisassociateFraudsterInput) SetDomainId(v string) *DisassociateFraudsterInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetFraudsterId sets the FraudsterId field's value.
+func (s *DisassociateFraudsterInput) SetFraudsterId(v string) *DisassociateFraudsterInput {
+	s.FraudsterId = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *DisassociateFraudsterInput) SetWatchlistId(v string) *DisassociateFraudsterInput {
+	s.WatchlistId = &v
+	return s
+}
+
+type DisassociateFraudsterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains all the information about a fraudster.
+	Fraudster *Fraudster `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFraudsterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateFraudsterOutput) GoString() string {
+	return s.String()
+}
+
+// SetFraudster sets the Fraudster field's value.
+func (s *DisassociateFraudsterOutput) SetFraudster(v *Fraudster) *DisassociateFraudsterOutput {
+	s.Fraudster = v
+	return s
+}
+
 // Contains all the information about a domain.
 type Domain struct {
 	_ struct{} `type:"structure"`
@@ -3522,23 +4997,23 @@ type Domain struct {
 	// The Amazon Resource Name (ARN) for the domain.
 	Arn *string `type:"string"`
 
-	// The timestamp at which the domain is created.
+	// The timestamp of when the domain was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The client-provided description of the domain.
+	// The description of the domain.
 	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Domain's
 	// String and GoString methods.
 	Description *string `min:"1" type:"string" sensitive:"true"`
 
-	// The service-generated identifier for the domain.
+	// The identifier of the domain.
 	DomainId *string `min:"22" type:"string"`
 
 	// The current status of the domain.
 	DomainStatus *string `type:"string" enum:"DomainStatus"`
 
-	// The client-provided name for the domain.
+	// The name for the domain.
 	//
 	// Name is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Domain's
@@ -3555,8 +5030,12 @@ type Domain struct {
 	// is complete, the domain's data can only be accessed using the new KMS key.
 	ServerSideEncryptionUpdateDetails *ServerSideEncryptionUpdateDetails `type:"structure"`
 
-	// The timestamp showing the domain's last update.
+	// The timestamp of when the domain was last update.
 	UpdatedAt *time.Time `type:"timestamp"`
+
+	// The watchlist details of a domain. Contains the default watchlist ID of the
+	// domain.
+	WatchlistDetails *WatchlistDetails `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3631,6 +5110,12 @@ func (s *Domain) SetUpdatedAt(v time.Time) *Domain {
 	return s
 }
 
+// SetWatchlistDetails sets the WatchlistDetails field's value.
+func (s *Domain) SetWatchlistDetails(v *WatchlistDetails) *Domain {
+	s.WatchlistDetails = v
+	return s
+}
+
 // Contains a summary of information about a domain.
 type DomainSummary struct {
 	_ struct{} `type:"structure"`
@@ -3638,17 +5123,17 @@ type DomainSummary struct {
 	// The Amazon Resource Name (ARN) for the domain.
 	Arn *string `type:"string"`
 
-	// The timestamp showing when the domain is created.
+	// The timestamp of when the domain was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The client-provided description of the domain.
+	// The description of the domain.
 	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DomainSummary's
 	// String and GoString methods.
 	Description *string `min:"1" type:"string" sensitive:"true"`
 
-	// The service-generated identifier for the domain.
+	// The identifier of the domain.
 	DomainId *string `min:"22" type:"string"`
 
 	// The current status of the domain.
@@ -3671,8 +5156,11 @@ type DomainSummary struct {
 	// is complete, the domain's data can only be accessed using the new KMS key.
 	ServerSideEncryptionUpdateDetails *ServerSideEncryptionUpdateDetails `type:"structure"`
 
-	// The timestamp showing the domain's last update.
+	// The timestamp of when the domain was last updated.
 	UpdatedAt *time.Time `type:"timestamp"`
+
+	// Provides information about watchlistDetails and DefaultWatchlistID.
+	WatchlistDetails *WatchlistDetails `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3747,6 +5235,12 @@ func (s *DomainSummary) SetUpdatedAt(v time.Time) *DomainSummary {
 	return s
 }
 
+// SetWatchlistDetails sets the WatchlistDetails field's value.
+func (s *DomainSummary) SetWatchlistDetails(v *WatchlistDetails) *DomainSummary {
+	s.WatchlistDetails = v
+	return s
+}
+
 // Contains configurations defining enrollment behavior for the batch job.
 type EnrollmentConfig struct {
 	_ struct{} `type:"structure"`
@@ -3780,6 +5274,21 @@ func (s EnrollmentConfig) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnrollmentConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnrollmentConfig"}
+	if s.FraudDetectionConfig != nil {
+		if err := s.FraudDetectionConfig.Validate(); err != nil {
+			invalidParams.AddNested("FraudDetectionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetExistingEnrollmentAction sets the ExistingEnrollmentAction field's value.
 func (s *EnrollmentConfig) SetExistingEnrollmentAction(v string) *EnrollmentConfig {
 	s.ExistingEnrollmentAction = &v
@@ -3792,9 +5301,8 @@ func (s *EnrollmentConfig) SetFraudDetectionConfig(v *EnrollmentJobFraudDetectio
 	return s
 }
 
-// The configuration defining the action to take when a speaker is flagged by
-// the fraud detection system during a batch speaker enrollment job, and the
-// risk threshold to use for identification.
+// The fraud detection configuration to be used during the batch speaker enrollment
+// job.
 type EnrollmentJobFraudDetectionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -3808,6 +5316,9 @@ type EnrollmentJobFraudDetectionConfig struct {
 	// fraudulent. If the detected risk score calculated by Voice ID is greater
 	// than or equal to the threshold, the speaker is considered a fraudster.
 	RiskThreshold *int64 `type:"integer"`
+
+	// The identifier of watchlists against which fraud detection is performed.
+	WatchlistIds []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -3828,6 +5339,19 @@ func (s EnrollmentJobFraudDetectionConfig) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnrollmentJobFraudDetectionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnrollmentJobFraudDetectionConfig"}
+	if s.WatchlistIds != nil && len(s.WatchlistIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetFraudDetectionAction sets the FraudDetectionAction field's value.
 func (s *EnrollmentJobFraudDetectionConfig) SetFraudDetectionAction(v string) *EnrollmentJobFraudDetectionConfig {
 	s.FraudDetectionAction = &v
@@ -3837,6 +5361,12 @@ func (s *EnrollmentJobFraudDetectionConfig) SetFraudDetectionAction(v string) *E
 // SetRiskThreshold sets the RiskThreshold field's value.
 func (s *EnrollmentJobFraudDetectionConfig) SetRiskThreshold(v int64) *EnrollmentJobFraudDetectionConfig {
 	s.RiskThreshold = &v
+	return s
+}
+
+// SetWatchlistIds sets the WatchlistIds field's value.
+func (s *EnrollmentJobFraudDetectionConfig) SetWatchlistIds(v []*string) *EnrollmentJobFraudDetectionConfig {
+	s.WatchlistIds = v
 	return s
 }
 
@@ -3914,7 +5444,7 @@ type EvaluateSessionOutput struct {
 	// decision and authentication score.
 	AuthenticationResult *AuthenticationResult `type:"structure"`
 
-	// The identifier of the domain containing the session.
+	// The identifier of the domain that contains the session.
 	DomainId *string `min:"22" type:"string"`
 
 	// Details resulting from the fraud detection process, such as fraud detection
@@ -4041,9 +5571,10 @@ type FraudDetectionConfiguration struct {
 	// Threshold value for determining whether the speaker is a fraudster. If the
 	// detected risk score calculated by Voice ID is higher than the threshold,
 	// the speaker is considered a fraudster.
-	//
-	// RiskThreshold is a required field
-	RiskThreshold *int64 `type:"integer" required:"true"`
+	RiskThreshold *int64 `type:"integer"`
+
+	// The identifier of the watchlist against which fraud detection is performed.
+	WatchlistId *string `min:"22" type:"string"`
 }
 
 // String returns the string representation.
@@ -4070,17 +5601,21 @@ func (s *FraudDetectionConfiguration) SetRiskThreshold(v int64) *FraudDetectionC
 	return s
 }
 
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *FraudDetectionConfiguration) SetWatchlistId(v string) *FraudDetectionConfiguration {
+	s.WatchlistId = &v
+	return s
+}
+
 // The fraud detection result produced by Voice ID, processed against the current
 // session state and streamed audio of the speaker.
 type FraudDetectionResult struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp indicating when audio aggregation ended for this fraud detection
-	// result.
+	// A timestamp of when audio aggregation ended for this fraud detection result.
 	AudioAggregationEndedAt *time.Time `type:"timestamp"`
 
-	// A timestamp indicating when audio aggregation started for this fraud detection
-	// result.
+	// A timestamp of when audio aggregation started for this fraud detection result.
 	AudioAggregationStartedAt *time.Time `type:"timestamp"`
 
 	// The FraudDetectionConfiguration used to generate this fraud detection result.
@@ -4217,14 +5752,17 @@ func (s *FraudRiskDetails) SetVoiceSpoofingRisk(v *VoiceSpoofingRisk) *FraudRisk
 type Fraudster struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp when Voice ID identified the fraudster.
+	// The timestamp of when Voice ID identified the fraudster.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The identifier for the domain containing the fraudster.
+	// The identifier of the domain that contains the fraudster.
 	DomainId *string `min:"22" type:"string"`
 
 	// The service-generated identifier for the fraudster.
 	GeneratedFraudsterId *string `min:"25" type:"string"`
+
+	// The identifier of the watchlists the fraudster is a part of.
+	WatchlistIds []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -4263,11 +5801,17 @@ func (s *Fraudster) SetGeneratedFraudsterId(v string) *Fraudster {
 	return s
 }
 
+// SetWatchlistIds sets the WatchlistIds field's value.
+func (s *Fraudster) SetWatchlistIds(v []*string) *Fraudster {
+	s.WatchlistIds = v
+	return s
+}
+
 // Contains all the information about a fraudster registration job.
 type FraudsterRegistrationJob struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp showing the creation time of the fraudster registration job.
+	// A timestamp of when the fraudster registration job was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The IAM role Amazon Resource Name (ARN) that grants Voice ID permissions
@@ -4275,10 +5819,10 @@ type FraudsterRegistrationJob struct {
 	// job output file.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
-	// The identifier of the domain containing the fraudster registration job.
+	// The identifier of the domain that contains the fraudster registration job.
 	DomainId *string `min:"22" type:"string"`
 
-	// A timestamp showing when the fraudster registration job ended.
+	// A timestamp of when the fraudster registration job ended.
 	EndedAt *time.Time `type:"timestamp"`
 
 	// Contains details that are populated when an entire batch job fails. In cases
@@ -4414,13 +5958,13 @@ func (s *FraudsterRegistrationJob) SetRegistrationConfig(v *RegistrationConfig) 
 type FraudsterRegistrationJobSummary struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp showing when the fraudster registration job is created.
+	// A timestamp of when the fraudster registration job was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The identifier of the domain containing the fraudster registration job.
+	// The identifier of the domain that contains the fraudster registration job.
 	DomainId *string `min:"22" type:"string"`
 
-	// A timestamp showing when the fraudster registration job ended.
+	// A timestamp of when the fraudster registration job ended.
 	EndedAt *time.Time `type:"timestamp"`
 
 	// Contains details that are populated when an entire batch job fails. In cases
@@ -4511,6 +6055,65 @@ func (s *FraudsterRegistrationJobSummary) SetJobProgress(v *JobProgress) *Frauds
 // SetJobStatus sets the JobStatus field's value.
 func (s *FraudsterRegistrationJobSummary) SetJobStatus(v string) *FraudsterRegistrationJobSummary {
 	s.JobStatus = &v
+	return s
+}
+
+// Contains a summary of information about a fraudster.
+type FraudsterSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the fraudster summary was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The identifier of the domain that contains the fraudster summary.
+	DomainId *string `min:"22" type:"string"`
+
+	// The service-generated identifier for the fraudster.
+	GeneratedFraudsterId *string `min:"25" type:"string"`
+
+	// The identifier of the watchlists the fraudster is a part of.
+	WatchlistIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FraudsterSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FraudsterSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *FraudsterSummary) SetCreatedAt(v time.Time) *FraudsterSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *FraudsterSummary) SetDomainId(v string) *FraudsterSummary {
+	s.DomainId = &v
+	return s
+}
+
+// SetGeneratedFraudsterId sets the GeneratedFraudsterId field's value.
+func (s *FraudsterSummary) SetGeneratedFraudsterId(v string) *FraudsterSummary {
+	s.GeneratedFraudsterId = &v
+	return s
+}
+
+// SetWatchlistIds sets the WatchlistIds field's value.
+func (s *FraudsterSummary) SetWatchlistIds(v []*string) *FraudsterSummary {
+	s.WatchlistIds = v
 	return s
 }
 
@@ -4708,7 +6311,9 @@ func (s *KnownFraudsterRisk) SetRiskScore(v int64) *KnownFraudsterRisk {
 type ListDomainsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of domains to list per API call.
+	// The maximum number of results that are returned per call. You can use NextToken
+	// to obtain more pages of results. The default is 100; the maximum allowed
+	// page size is also 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If NextToken is returned, there are more results available. The value of
@@ -4807,7 +6412,7 @@ func (s *ListDomainsOutput) SetNextToken(v string) *ListDomainsOutput {
 type ListFraudsterRegistrationJobsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain containing the fraudster registration Jobs.
+	// The identifier of the domain that contains the fraudster registration Jobs.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -4816,7 +6421,7 @@ type ListFraudsterRegistrationJobsInput struct {
 	JobStatus *string `type:"string" enum:"FraudsterRegistrationJobStatus"`
 
 	// The maximum number of results that are returned per call. You can use NextToken
-	// to obtain further pages of results. The default is 100; the maximum allowed
+	// to obtain more pages of results. The default is 100; the maximum allowed
 	// page size is also 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -4931,10 +6536,142 @@ func (s *ListFraudsterRegistrationJobsOutput) SetNextToken(v string) *ListFrauds
 	return s
 }
 
+type ListFraudstersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the domain.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The maximum number of results that are returned per call. You can use NextToken
+	// to obtain more pages of results. The default is 100; the maximum allowed
+	// page size is also 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours.
+	NextToken *string `type:"string"`
+
+	// The identifier of the watchlist. If provided, all fraudsters in the watchlist
+	// are listed. If not provided, all fraudsters in the domain are listed.
+	WatchlistId *string `min:"22" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFraudstersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFraudstersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFraudstersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFraudstersInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.WatchlistId != nil && len(*s.WatchlistId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *ListFraudstersInput) SetDomainId(v string) *ListFraudstersInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFraudstersInput) SetMaxResults(v int64) *ListFraudstersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFraudstersInput) SetNextToken(v string) *ListFraudstersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *ListFraudstersInput) SetWatchlistId(v string) *ListFraudstersInput {
+	s.WatchlistId = &v
+	return s
+}
+
+type ListFraudstersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list that contains details about each fraudster in the Amazon Web Services
+	// account.
+	FraudsterSummaries []*FraudsterSummary `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFraudstersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFraudstersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFraudsterSummaries sets the FraudsterSummaries field's value.
+func (s *ListFraudstersOutput) SetFraudsterSummaries(v []*FraudsterSummary) *ListFraudstersOutput {
+	s.FraudsterSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFraudstersOutput) SetNextToken(v string) *ListFraudstersOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListSpeakerEnrollmentJobsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain containing the speaker enrollment jobs.
+	// The identifier of the domain that contains the speaker enrollment jobs.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -4943,7 +6680,7 @@ type ListSpeakerEnrollmentJobsInput struct {
 	JobStatus *string `type:"string" enum:"SpeakerEnrollmentJobStatus"`
 
 	// The maximum number of results that are returned per call. You can use NextToken
-	// to obtain further pages of results. The default is 100; the maximum allowed
+	// to obtain more pages of results. The default is 100; the maximum allowed
 	// page size is also 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -5067,7 +6804,7 @@ type ListSpeakersInput struct {
 	DomainId *string `min:"22" type:"string" required:"true"`
 
 	// The maximum number of results that are returned per call. You can use NextToken
-	// to obtain further pages of results. The default is 100; the maximum allowed
+	// to obtain more pages of results. The default is 100; the maximum allowed
 	// page size is also 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -5257,10 +6994,129 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+type ListWatchlistsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the domain.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The maximum number of results that are returned per call. You can use NextToken
+	// to obtain more pages of results. The default is 100; the maximum allowed
+	// page size is also 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWatchlistsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWatchlistsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWatchlistsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWatchlistsInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *ListWatchlistsInput) SetDomainId(v string) *ListWatchlistsInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListWatchlistsInput) SetMaxResults(v int64) *ListWatchlistsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWatchlistsInput) SetNextToken(v string) *ListWatchlistsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListWatchlistsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list that contains details about each watchlist in the Amazon Web Services
+	// account.
+	WatchlistSummaries []*WatchlistSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWatchlistsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWatchlistsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWatchlistsOutput) SetNextToken(v string) *ListWatchlistsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWatchlistSummaries sets the WatchlistSummaries field's value.
+func (s *ListWatchlistsOutput) SetWatchlistSummaries(v []*WatchlistSummary) *ListWatchlistsOutput {
+	s.WatchlistSummaries = v
+	return s
+}
+
 type OptOutSpeakerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the domain containing the speaker.
+	// The identifier of the domain that contains the speaker.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -5421,9 +7277,8 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 	return s
 }
 
-// The configuration defining the action to take when a duplicate fraudster
-// is detected, and the similarity threshold to use for detecting a duplicate
-// fraudster during a batch fraudster registration job.
+// The registration configuration to be used during the batch fraudster registration
+// job.
 type RegistrationConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -5436,6 +7291,10 @@ type RegistrationConfig struct {
 	// The minimum similarity score between the new and old fraudsters in order
 	// to consider the new fraudster a duplicate.
 	FraudsterSimilarityThreshold *int64 `type:"integer"`
+
+	// The identifiers of watchlists that a fraudster is registered to. If a watchlist
+	// isn't provided, the fraudsters are registered to the default watchlist.
+	WatchlistIds []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -5456,6 +7315,19 @@ func (s RegistrationConfig) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegistrationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegistrationConfig"}
+	if s.WatchlistIds != nil && len(s.WatchlistIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetDuplicateRegistrationAction sets the DuplicateRegistrationAction field's value.
 func (s *RegistrationConfig) SetDuplicateRegistrationAction(v string) *RegistrationConfig {
 	s.DuplicateRegistrationAction = &v
@@ -5465,6 +7337,12 @@ func (s *RegistrationConfig) SetDuplicateRegistrationAction(v string) *Registrat
 // SetFraudsterSimilarityThreshold sets the FraudsterSimilarityThreshold field's value.
 func (s *RegistrationConfig) SetFraudsterSimilarityThreshold(v int64) *RegistrationConfig {
 	s.FraudsterSimilarityThreshold = &v
+	return s
+}
+
+// SetWatchlistIds sets the WatchlistIds field's value.
+func (s *RegistrationConfig) SetWatchlistIds(v []*string) *RegistrationConfig {
+	s.WatchlistIds = v
 	return s
 }
 
@@ -5718,7 +7596,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type Speaker struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp showing when the speaker is created.
+	// A timestamp of when the speaker was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The client-provided identifier for the speaker.
@@ -5734,14 +7612,14 @@ type Speaker struct {
 	// The service-generated identifier for the speaker.
 	GeneratedSpeakerId *string `min:"25" type:"string"`
 
-	// The timestamp when the speaker was last accessed for enrollment, re-enrollment
+	// The timestamp of when the speaker was last accessed for enrollment, re-enrollment
 	// or a successful authentication. This timestamp is accurate to one hour.
 	LastAccessedAt *time.Time `type:"timestamp"`
 
 	// The current status of the speaker.
 	Status *string `type:"string" enum:"SpeakerStatus"`
 
-	// A timestamp showing the speaker's last update.
+	// A timestamp of the speaker's last update.
 	UpdatedAt *time.Time `type:"timestamp"`
 }
 
@@ -5809,7 +7687,7 @@ func (s *Speaker) SetUpdatedAt(v time.Time) *Speaker {
 type SpeakerEnrollmentJob struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp showing the creation of the speaker enrollment job.
+	// A timestamp of when the speaker enrollment job was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The IAM role Amazon Resource Name (ARN) that grants Voice ID permissions
@@ -5820,7 +7698,7 @@ type SpeakerEnrollmentJob struct {
 	// The identifier of the domain that contains the speaker enrollment job.
 	DomainId *string `min:"22" type:"string"`
 
-	// A timestamp showing when the speaker enrollment job ended.
+	// A timestamp of when the speaker enrollment job ended.
 	EndedAt *time.Time `type:"timestamp"`
 
 	// The configuration that defines the action to take when the speaker is already
@@ -5954,13 +7832,13 @@ func (s *SpeakerEnrollmentJob) SetOutputDataConfig(v *OutputDataConfig) *Speaker
 type SpeakerEnrollmentJobSummary struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp showing the creation time of the speaker enrollment job.
+	// A timestamp of when of the speaker enrollment job was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The identifier of the domain that contains the speaker enrollment job.
 	DomainId *string `min:"22" type:"string"`
 
-	// A timestamp showing when the speaker enrollment job ended.
+	// A timestamp of when the speaker enrollment job ended.
 	EndedAt *time.Time `type:"timestamp"`
 
 	// Contains details that are populated when an entire batch job fails. In cases
@@ -6148,8 +8026,10 @@ func (s *SpeakerSummary) SetUpdatedAt(v time.Time) *SpeakerSummary {
 type StartFraudsterRegistrationJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The idempotency token for starting a new fraudster registration job. If not
-	// provided, Amazon Web Services SDK populates this field.
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The IAM role Amazon Resource Name (ARN) that grants Voice ID permissions
@@ -6160,8 +8040,8 @@ type StartFraudsterRegistrationJobInput struct {
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
 
-	// The identifier of the domain containing the fraudster registration job and
-	// in which the fraudsters are registered.
+	// The identifier of the domain that contains the fraudster registration job
+	// and in which the fraudsters are registered.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"22" type:"string" required:"true"`
@@ -6244,6 +8124,11 @@ func (s *StartFraudsterRegistrationJobInput) Validate() error {
 	if s.OutputDataConfig != nil {
 		if err := s.OutputDataConfig.Validate(); err != nil {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RegistrationConfig != nil {
+		if err := s.RegistrationConfig.Validate(); err != nil {
+			invalidParams.AddNested("RegistrationConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6329,8 +8214,10 @@ func (s *StartFraudsterRegistrationJobOutput) SetJob(v *FraudsterRegistrationJob
 type StartSpeakerEnrollmentJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The idempotency token for starting a new speaker enrollment Job. If not provided,
-	// Amazon Web Services SDK populates this field.
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The IAM role Amazon Resource Name (ARN) that grants Voice ID permissions
@@ -6417,6 +8304,11 @@ func (s *StartSpeakerEnrollmentJobInput) Validate() error {
 	}
 	if s.OutputDataConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.EnrollmentConfig != nil {
+		if err := s.EnrollmentConfig.Validate(); err != nil {
+			invalidParams.AddNested("EnrollmentConfig", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.InputDataConfig != nil {
 		if err := s.InputDataConfig.Validate(); err != nil {
@@ -6833,7 +8725,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// A brief description of the domain.
+	// A brief description about this domain.
 	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateDomainInput's
@@ -6971,6 +8863,135 @@ func (s *UpdateDomainOutput) SetDomain(v *Domain) *UpdateDomainOutput {
 	return s
 }
 
+type UpdateWatchlistInput struct {
+	_ struct{} `type:"structure"`
+
+	// A brief description about this watchlist.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateWatchlistInput's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
+
+	// The identifier of the domain that contains the watchlist.
+	//
+	// DomainId is a required field
+	DomainId *string `min:"22" type:"string" required:"true"`
+
+	// The name of the watchlist.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateWatchlistInput's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The identifier of the watchlist to be updated.
+	//
+	// WatchlistId is a required field
+	WatchlistId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWatchlistInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWatchlistInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateWatchlistInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateWatchlistInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 22))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WatchlistId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WatchlistId"))
+	}
+	if s.WatchlistId != nil && len(*s.WatchlistId) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("WatchlistId", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateWatchlistInput) SetDescription(v string) *UpdateWatchlistInput {
+	s.Description = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *UpdateWatchlistInput) SetDomainId(v string) *UpdateWatchlistInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateWatchlistInput) SetName(v string) *UpdateWatchlistInput {
+	s.Name = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *UpdateWatchlistInput) SetWatchlistId(v string) *UpdateWatchlistInput {
+	s.WatchlistId = &v
+	return s
+}
+
+type UpdateWatchlistOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the updated watchlist.
+	Watchlist *Watchlist `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWatchlistOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWatchlistOutput) GoString() string {
+	return s.String()
+}
+
+// SetWatchlist sets the Watchlist field's value.
+func (s *UpdateWatchlistOutput) SetWatchlist(v *Watchlist) *UpdateWatchlistOutput {
+	s.Watchlist = v
+	return s
+}
+
 // The request failed one or more validations; check the error message for more
 // details.
 type ValidationException struct {
@@ -7070,6 +9091,228 @@ func (s *VoiceSpoofingRisk) SetRiskScore(v int64) *VoiceSpoofingRisk {
 	return s
 }
 
+// Contains all the information about a watchlist.
+type Watchlist struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the watchlist was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// Whether the specified watchlist is the default watchlist of a domain.
+	DefaultWatchlist *bool `type:"boolean"`
+
+	// The description of the watchlist.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Watchlist's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
+
+	// The identifier of the domain that contains the watchlist.
+	DomainId *string `min:"22" type:"string"`
+
+	// The name for the watchlist.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Watchlist's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The timestamp of when the watchlist was updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+
+	// The identifier of the watchlist.
+	WatchlistId *string `min:"22" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Watchlist) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Watchlist) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Watchlist) SetCreatedAt(v time.Time) *Watchlist {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDefaultWatchlist sets the DefaultWatchlist field's value.
+func (s *Watchlist) SetDefaultWatchlist(v bool) *Watchlist {
+	s.DefaultWatchlist = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Watchlist) SetDescription(v string) *Watchlist {
+	s.Description = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *Watchlist) SetDomainId(v string) *Watchlist {
+	s.DomainId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Watchlist) SetName(v string) *Watchlist {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *Watchlist) SetUpdatedAt(v time.Time) *Watchlist {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *Watchlist) SetWatchlistId(v string) *Watchlist {
+	s.WatchlistId = &v
+	return s
+}
+
+// Details of the watchlists in a domain.
+type WatchlistDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the default watchlist.
+	//
+	// DefaultWatchlistId is a required field
+	DefaultWatchlistId *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WatchlistDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WatchlistDetails) GoString() string {
+	return s.String()
+}
+
+// SetDefaultWatchlistId sets the DefaultWatchlistId field's value.
+func (s *WatchlistDetails) SetDefaultWatchlistId(v string) *WatchlistDetails {
+	s.DefaultWatchlistId = &v
+	return s
+}
+
+// Contains a summary of information about a watchlist.
+type WatchlistSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the watchlist was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// Whether the specified watchlist is the default watchlist of a domain.
+	DefaultWatchlist *bool `type:"boolean"`
+
+	// The description of the watchlist.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by WatchlistSummary's
+	// String and GoString methods.
+	Description *string `min:"1" type:"string" sensitive:"true"`
+
+	// The identifier of the domain that contains the watchlist.
+	DomainId *string `min:"22" type:"string"`
+
+	// The name for the watchlist.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by WatchlistSummary's
+	// String and GoString methods.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The timestamp of when the watchlist was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+
+	// The identifier of the watchlist.
+	WatchlistId *string `min:"22" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WatchlistSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WatchlistSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *WatchlistSummary) SetCreatedAt(v time.Time) *WatchlistSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDefaultWatchlist sets the DefaultWatchlist field's value.
+func (s *WatchlistSummary) SetDefaultWatchlist(v bool) *WatchlistSummary {
+	s.DefaultWatchlist = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *WatchlistSummary) SetDescription(v string) *WatchlistSummary {
+	s.Description = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *WatchlistSummary) SetDomainId(v string) *WatchlistSummary {
+	s.DomainId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *WatchlistSummary) SetName(v string) *WatchlistSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *WatchlistSummary) SetUpdatedAt(v time.Time) *WatchlistSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetWatchlistId sets the WatchlistId field's value.
+func (s *WatchlistSummary) SetWatchlistId(v string) *WatchlistSummary {
+	s.WatchlistId = &v
+	return s
+}
+
 const (
 	// AuthenticationDecisionAccept is a AuthenticationDecision enum value
 	AuthenticationDecisionAccept = "ACCEPT"
@@ -7130,6 +9373,12 @@ const (
 
 	// ConflictTypeDomainLockedFromEncryptionUpdates is a ConflictType enum value
 	ConflictTypeDomainLockedFromEncryptionUpdates = "DOMAIN_LOCKED_FROM_ENCRYPTION_UPDATES"
+
+	// ConflictTypeCannotDeleteNonEmptyWatchlist is a ConflictType enum value
+	ConflictTypeCannotDeleteNonEmptyWatchlist = "CANNOT_DELETE_NON_EMPTY_WATCHLIST"
+
+	// ConflictTypeFraudsterMustBelongToAtLeastOneWatchlist is a ConflictType enum value
+	ConflictTypeFraudsterMustBelongToAtLeastOneWatchlist = "FRAUDSTER_MUST_BELONG_TO_AT_LEAST_ONE_WATCHLIST"
 )
 
 // ConflictType_Values returns all elements of the ConflictType enum
@@ -7143,6 +9392,8 @@ func ConflictType_Values() []string {
 		ConflictTypeSpeakerOptedOut,
 		ConflictTypeConcurrentChanges,
 		ConflictTypeDomainLockedFromEncryptionUpdates,
+		ConflictTypeCannotDeleteNonEmptyWatchlist,
+		ConflictTypeFraudsterMustBelongToAtLeastOneWatchlist,
 	}
 }
 
@@ -7296,6 +9547,9 @@ const (
 
 	// ResourceTypeSpeaker is a ResourceType enum value
 	ResourceTypeSpeaker = "SPEAKER"
+
+	// ResourceTypeWatchlist is a ResourceType enum value
+	ResourceTypeWatchlist = "WATCHLIST"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -7307,6 +9561,7 @@ func ResourceType_Values() []string {
 		ResourceTypeFraudster,
 		ResourceTypeSession,
 		ResourceTypeSpeaker,
+		ResourceTypeWatchlist,
 	}
 }
 

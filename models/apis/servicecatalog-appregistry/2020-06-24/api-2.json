@@ -42,7 +42,8 @@
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateApplication":{
@@ -58,7 +59,8 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateAttributeGroup":{
@@ -130,7 +132,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetApplication":{
@@ -300,7 +303,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "TagResource":{
@@ -343,7 +348,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateAttributeGroup":{
@@ -395,7 +401,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"[-.\\w]+"
+      "pattern":"([-.\\w]+)|(arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/applications/[-.\\w]+)"
     },
     "ApplicationSummaries":{
       "type":"list",
@@ -494,7 +500,7 @@
     },
     "AttributeGroupArn":{
       "type":"string",
-      "pattern":"arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/attribute-groups/[a-z0-9]+"
+      "pattern":"arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/attribute-groups/[-.\\w]+"
     },
     "AttributeGroupDetails":{
       "type":"structure",
@@ -505,7 +511,8 @@
           "shape":"Name",
           "deprecated":true,
           "deprecatedMessage":"This field is deprecated. We recommend not using the field when using ListAttributeGroupsForApplication."
-        }
+        },
+        "createdBy":{"shape":"CreatedBy"}
       }
     },
     "AttributeGroupDetailsList":{
@@ -514,9 +521,9 @@
     },
     "AttributeGroupId":{
       "type":"string",
-      "max":26,
-      "min":26,
-      "pattern":"[a-z0-9]+"
+      "max":256,
+      "min":1,
+      "pattern":"[-.\\w]+"
     },
     "AttributeGroupIds":{
       "type":"list",
@@ -524,9 +531,9 @@
     },
     "AttributeGroupSpecifier":{
       "type":"string",
-      "max":256,
+      "max":512,
       "min":1,
-      "pattern":"[-.\\w]+"
+      "pattern":"([-.\\w]+)|(arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/attribute-groups/[-.\\w]+)"
     },
     "AttributeGroupSummaries":{
       "type":"list",
@@ -540,7 +547,8 @@
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "createdBy":{"shape":"CreatedBy"}
       }
     },
     "Attributes":{
@@ -608,6 +616,12 @@
       "members":{
         "attributeGroup":{"shape":"AttributeGroup"}
       }
+    },
+    "CreatedBy":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!-)([a-z0-9-]+\\.)+(aws\\.internal|amazonaws\\.com(\\.cn)?)$"
     },
     "DeleteApplicationRequest":{
       "type":"structure",
@@ -782,7 +796,8 @@
         "attributes":{"shape":"Attributes"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "createdBy":{"shape":"CreatedBy"}
       }
     },
     "GetConfigurationResponse":{
@@ -1156,6 +1171,16 @@
       "value":{"shape":"TagValue"},
       "max":50,
       "min":0
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"},
+        "serviceCode":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
     },
     "Timestamp":{
       "type":"timestamp",

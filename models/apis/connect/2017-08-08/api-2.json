@@ -8763,7 +8763,8 @@
         },
         "ChatDurationInMinutes":{"shape":"ChatDurationInMinutes"},
         "SupportedMessagingContentTypes":{"shape":"SupportedMessagingContentTypes"},
-        "PersistentChat":{"shape":"PersistentChat"}
+        "PersistentChat":{"shape":"PersistentChat"},
+        "RelatedContactId":{"shape":"ContactId"}
       }
     },
     "StartChatContactResponse":{

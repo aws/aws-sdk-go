@@ -2453,6 +2453,101 @@ func (c *IoTWireless) DeleteWirelessDeviceWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDeleteWirelessDeviceImportTask = "DeleteWirelessDeviceImportTask"
+
+// DeleteWirelessDeviceImportTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWirelessDeviceImportTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWirelessDeviceImportTask for more information on using the DeleteWirelessDeviceImportTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteWirelessDeviceImportTaskRequest method.
+//	req, resp := client.DeleteWirelessDeviceImportTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteWirelessDeviceImportTask
+func (c *IoTWireless) DeleteWirelessDeviceImportTaskRequest(input *DeleteWirelessDeviceImportTaskInput) (req *request.Request, output *DeleteWirelessDeviceImportTaskOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWirelessDeviceImportTask,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/wireless_device_import_task/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteWirelessDeviceImportTaskInput{}
+	}
+
+	output = &DeleteWirelessDeviceImportTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteWirelessDeviceImportTask API operation for AWS IoT Wireless.
+//
+// Delete an import task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DeleteWirelessDeviceImportTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteWirelessDeviceImportTask
+func (c *IoTWireless) DeleteWirelessDeviceImportTask(input *DeleteWirelessDeviceImportTaskInput) (*DeleteWirelessDeviceImportTaskOutput, error) {
+	req, out := c.DeleteWirelessDeviceImportTaskRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWirelessDeviceImportTaskWithContext is the same as DeleteWirelessDeviceImportTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWirelessDeviceImportTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DeleteWirelessDeviceImportTaskWithContext(ctx aws.Context, input *DeleteWirelessDeviceImportTaskInput, opts ...request.Option) (*DeleteWirelessDeviceImportTaskOutput, error) {
+	req, out := c.DeleteWirelessDeviceImportTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteWirelessGateway = "DeleteWirelessGateway"
 
 // DeleteWirelessGatewayRequest generates a "aws/request.Request" representing the
@@ -2725,6 +2820,95 @@ func (c *IoTWireless) DeleteWirelessGatewayTaskDefinition(input *DeleteWirelessG
 // for more information on using Contexts.
 func (c *IoTWireless) DeleteWirelessGatewayTaskDefinitionWithContext(ctx aws.Context, input *DeleteWirelessGatewayTaskDefinitionInput, opts ...request.Option) (*DeleteWirelessGatewayTaskDefinitionOutput, error) {
 	req, out := c.DeleteWirelessGatewayTaskDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeregisterWirelessDevice = "DeregisterWirelessDevice"
+
+// DeregisterWirelessDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterWirelessDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeregisterWirelessDevice for more information on using the DeregisterWirelessDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeregisterWirelessDeviceRequest method.
+//	req, resp := client.DeregisterWirelessDeviceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeregisterWirelessDevice
+func (c *IoTWireless) DeregisterWirelessDeviceRequest(input *DeregisterWirelessDeviceInput) (req *request.Request, output *DeregisterWirelessDeviceOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterWirelessDevice,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/wireless-devices/{Identifier}/deregister",
+	}
+
+	if input == nil {
+		input = &DeregisterWirelessDeviceInput{}
+	}
+
+	output = &DeregisterWirelessDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeregisterWirelessDevice API operation for AWS IoT Wireless.
+//
+// Deregister a wireless device from AWS IoT Wireless.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DeregisterWirelessDevice for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeregisterWirelessDevice
+func (c *IoTWireless) DeregisterWirelessDevice(input *DeregisterWirelessDeviceInput) (*DeregisterWirelessDeviceOutput, error) {
+	req, out := c.DeregisterWirelessDeviceRequest(input)
+	return out, req.Send()
+}
+
+// DeregisterWirelessDeviceWithContext is the same as DeregisterWirelessDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterWirelessDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DeregisterWirelessDeviceWithContext(ctx aws.Context, input *DeregisterWirelessDeviceInput, opts ...request.Option) (*DeregisterWirelessDeviceOutput, error) {
+	req, out := c.DeregisterWirelessDeviceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5043,6 +5227,101 @@ func (c *IoTWireless) GetWirelessDeviceWithContext(ctx aws.Context, input *GetWi
 	return out, req.Send()
 }
 
+const opGetWirelessDeviceImportTask = "GetWirelessDeviceImportTask"
+
+// GetWirelessDeviceImportTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetWirelessDeviceImportTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetWirelessDeviceImportTask for more information on using the GetWirelessDeviceImportTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetWirelessDeviceImportTaskRequest method.
+//	req, resp := client.GetWirelessDeviceImportTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetWirelessDeviceImportTask
+func (c *IoTWireless) GetWirelessDeviceImportTaskRequest(input *GetWirelessDeviceImportTaskInput) (req *request.Request, output *GetWirelessDeviceImportTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetWirelessDeviceImportTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/wireless_device_import_task/{Id}",
+	}
+
+	if input == nil {
+		input = &GetWirelessDeviceImportTaskInput{}
+	}
+
+	output = &GetWirelessDeviceImportTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetWirelessDeviceImportTask API operation for AWS IoT Wireless.
+//
+// Get information about an import task and count of device onboarding summary
+// information for the import task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetWirelessDeviceImportTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetWirelessDeviceImportTask
+func (c *IoTWireless) GetWirelessDeviceImportTask(input *GetWirelessDeviceImportTaskInput) (*GetWirelessDeviceImportTaskOutput, error) {
+	req, out := c.GetWirelessDeviceImportTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetWirelessDeviceImportTaskWithContext is the same as GetWirelessDeviceImportTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetWirelessDeviceImportTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetWirelessDeviceImportTaskWithContext(ctx aws.Context, input *GetWirelessDeviceImportTaskInput, opts ...request.Option) (*GetWirelessDeviceImportTaskOutput, error) {
+	req, out := c.GetWirelessDeviceImportTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetWirelessDeviceStatistics = "GetWirelessDeviceStatistics"
 
 // GetWirelessDeviceStatisticsRequest generates a "aws/request.Request" representing the
@@ -5969,6 +6248,100 @@ func (c *IoTWireless) ListDeviceProfilesPagesWithContext(ctx aws.Context, input 
 	}
 
 	return p.Err()
+}
+
+const opListDevicesForWirelessDeviceImportTask = "ListDevicesForWirelessDeviceImportTask"
+
+// ListDevicesForWirelessDeviceImportTaskRequest generates a "aws/request.Request" representing the
+// client's request for the ListDevicesForWirelessDeviceImportTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDevicesForWirelessDeviceImportTask for more information on using the ListDevicesForWirelessDeviceImportTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDevicesForWirelessDeviceImportTaskRequest method.
+//	req, resp := client.ListDevicesForWirelessDeviceImportTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListDevicesForWirelessDeviceImportTask
+func (c *IoTWireless) ListDevicesForWirelessDeviceImportTaskRequest(input *ListDevicesForWirelessDeviceImportTaskInput) (req *request.Request, output *ListDevicesForWirelessDeviceImportTaskOutput) {
+	op := &request.Operation{
+		Name:       opListDevicesForWirelessDeviceImportTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/wireless_device_import_task",
+	}
+
+	if input == nil {
+		input = &ListDevicesForWirelessDeviceImportTaskInput{}
+	}
+
+	output = &ListDevicesForWirelessDeviceImportTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDevicesForWirelessDeviceImportTask API operation for AWS IoT Wireless.
+//
+// List the Sidewalk devices in an import task and their onboarding status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ListDevicesForWirelessDeviceImportTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListDevicesForWirelessDeviceImportTask
+func (c *IoTWireless) ListDevicesForWirelessDeviceImportTask(input *ListDevicesForWirelessDeviceImportTaskInput) (*ListDevicesForWirelessDeviceImportTaskOutput, error) {
+	req, out := c.ListDevicesForWirelessDeviceImportTaskRequest(input)
+	return out, req.Send()
+}
+
+// ListDevicesForWirelessDeviceImportTaskWithContext is the same as ListDevicesForWirelessDeviceImportTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDevicesForWirelessDeviceImportTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListDevicesForWirelessDeviceImportTaskWithContext(ctx aws.Context, input *ListDevicesForWirelessDeviceImportTaskInput, opts ...request.Option) (*ListDevicesForWirelessDeviceImportTaskOutput, error) {
+	req, out := c.ListDevicesForWirelessDeviceImportTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListEventConfigurations = "ListEventConfigurations"
@@ -7271,6 +7644,100 @@ func (c *IoTWireless) ListTagsForResource(input *ListTagsForResourceInput) (*Lis
 // for more information on using Contexts.
 func (c *IoTWireless) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListWirelessDeviceImportTasks = "ListWirelessDeviceImportTasks"
+
+// ListWirelessDeviceImportTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListWirelessDeviceImportTasks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListWirelessDeviceImportTasks for more information on using the ListWirelessDeviceImportTasks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListWirelessDeviceImportTasksRequest method.
+//	req, resp := client.ListWirelessDeviceImportTasksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListWirelessDeviceImportTasks
+func (c *IoTWireless) ListWirelessDeviceImportTasksRequest(input *ListWirelessDeviceImportTasksInput) (req *request.Request, output *ListWirelessDeviceImportTasksOutput) {
+	op := &request.Operation{
+		Name:       opListWirelessDeviceImportTasks,
+		HTTPMethod: "GET",
+		HTTPPath:   "/wireless_device_import_tasks",
+	}
+
+	if input == nil {
+		input = &ListWirelessDeviceImportTasksInput{}
+	}
+
+	output = &ListWirelessDeviceImportTasksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListWirelessDeviceImportTasks API operation for AWS IoT Wireless.
+//
+// List wireless devices that have been added to an import task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ListWirelessDeviceImportTasks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListWirelessDeviceImportTasks
+func (c *IoTWireless) ListWirelessDeviceImportTasks(input *ListWirelessDeviceImportTasksInput) (*ListWirelessDeviceImportTasksOutput, error) {
+	req, out := c.ListWirelessDeviceImportTasksRequest(input)
+	return out, req.Send()
+}
+
+// ListWirelessDeviceImportTasksWithContext is the same as ListWirelessDeviceImportTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListWirelessDeviceImportTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListWirelessDeviceImportTasksWithContext(ctx aws.Context, input *ListWirelessDeviceImportTasksInput, opts ...request.Option) (*ListWirelessDeviceImportTasksOutput, error) {
+	req, out := c.ListWirelessDeviceImportTasksRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8597,6 +9064,195 @@ func (c *IoTWireless) StartMulticastGroupSessionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opStartSingleWirelessDeviceImportTask = "StartSingleWirelessDeviceImportTask"
+
+// StartSingleWirelessDeviceImportTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartSingleWirelessDeviceImportTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSingleWirelessDeviceImportTask for more information on using the StartSingleWirelessDeviceImportTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSingleWirelessDeviceImportTaskRequest method.
+//	req, resp := client.StartSingleWirelessDeviceImportTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartSingleWirelessDeviceImportTask
+func (c *IoTWireless) StartSingleWirelessDeviceImportTaskRequest(input *StartSingleWirelessDeviceImportTaskInput) (req *request.Request, output *StartSingleWirelessDeviceImportTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartSingleWirelessDeviceImportTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/wireless_single_device_import_task",
+	}
+
+	if input == nil {
+		input = &StartSingleWirelessDeviceImportTaskInput{}
+	}
+
+	output = &StartSingleWirelessDeviceImportTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSingleWirelessDeviceImportTask API operation for AWS IoT Wireless.
+//
+// Start import task for a single wireless device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation StartSingleWirelessDeviceImportTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartSingleWirelessDeviceImportTask
+func (c *IoTWireless) StartSingleWirelessDeviceImportTask(input *StartSingleWirelessDeviceImportTaskInput) (*StartSingleWirelessDeviceImportTaskOutput, error) {
+	req, out := c.StartSingleWirelessDeviceImportTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartSingleWirelessDeviceImportTaskWithContext is the same as StartSingleWirelessDeviceImportTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSingleWirelessDeviceImportTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) StartSingleWirelessDeviceImportTaskWithContext(ctx aws.Context, input *StartSingleWirelessDeviceImportTaskInput, opts ...request.Option) (*StartSingleWirelessDeviceImportTaskOutput, error) {
+	req, out := c.StartSingleWirelessDeviceImportTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartWirelessDeviceImportTask = "StartWirelessDeviceImportTask"
+
+// StartWirelessDeviceImportTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartWirelessDeviceImportTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartWirelessDeviceImportTask for more information on using the StartWirelessDeviceImportTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartWirelessDeviceImportTaskRequest method.
+//	req, resp := client.StartWirelessDeviceImportTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartWirelessDeviceImportTask
+func (c *IoTWireless) StartWirelessDeviceImportTaskRequest(input *StartWirelessDeviceImportTaskInput) (req *request.Request, output *StartWirelessDeviceImportTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartWirelessDeviceImportTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/wireless_device_import_task",
+	}
+
+	if input == nil {
+		input = &StartWirelessDeviceImportTaskInput{}
+	}
+
+	output = &StartWirelessDeviceImportTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartWirelessDeviceImportTask API operation for AWS IoT Wireless.
+//
+// Start import task for provisioning Sidewalk devices in bulk using an S3 CSV
+// file.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation StartWirelessDeviceImportTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartWirelessDeviceImportTask
+func (c *IoTWireless) StartWirelessDeviceImportTask(input *StartWirelessDeviceImportTaskInput) (*StartWirelessDeviceImportTaskOutput, error) {
+	req, out := c.StartWirelessDeviceImportTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartWirelessDeviceImportTaskWithContext is the same as StartWirelessDeviceImportTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartWirelessDeviceImportTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) StartWirelessDeviceImportTaskWithContext(ctx aws.Context, input *StartWirelessDeviceImportTaskInput, opts ...request.Option) (*StartWirelessDeviceImportTaskOutput, error) {
+	req, out := c.StartWirelessDeviceImportTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -9902,6 +10558,101 @@ func (c *IoTWireless) UpdateWirelessDevice(input *UpdateWirelessDeviceInput) (*U
 // for more information on using Contexts.
 func (c *IoTWireless) UpdateWirelessDeviceWithContext(ctx aws.Context, input *UpdateWirelessDeviceInput, opts ...request.Option) (*UpdateWirelessDeviceOutput, error) {
 	req, out := c.UpdateWirelessDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateWirelessDeviceImportTask = "UpdateWirelessDeviceImportTask"
+
+// UpdateWirelessDeviceImportTaskRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateWirelessDeviceImportTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateWirelessDeviceImportTask for more information on using the UpdateWirelessDeviceImportTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateWirelessDeviceImportTaskRequest method.
+//	req, resp := client.UpdateWirelessDeviceImportTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateWirelessDeviceImportTask
+func (c *IoTWireless) UpdateWirelessDeviceImportTaskRequest(input *UpdateWirelessDeviceImportTaskInput) (req *request.Request, output *UpdateWirelessDeviceImportTaskOutput) {
+	op := &request.Operation{
+		Name:       opUpdateWirelessDeviceImportTask,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/wireless_device_import_task/{Id}",
+	}
+
+	if input == nil {
+		input = &UpdateWirelessDeviceImportTaskInput{}
+	}
+
+	output = &UpdateWirelessDeviceImportTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateWirelessDeviceImportTask API operation for AWS IoT Wireless.
+//
+// Update an import task to add more devices to the task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateWirelessDeviceImportTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateWirelessDeviceImportTask
+func (c *IoTWireless) UpdateWirelessDeviceImportTask(input *UpdateWirelessDeviceImportTaskInput) (*UpdateWirelessDeviceImportTaskOutput, error) {
+	req, out := c.UpdateWirelessDeviceImportTaskRequest(input)
+	return out, req.Send()
+}
+
+// UpdateWirelessDeviceImportTaskWithContext is the same as UpdateWirelessDeviceImportTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateWirelessDeviceImportTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateWirelessDeviceImportTaskWithContext(ctx aws.Context, input *UpdateWirelessDeviceImportTaskInput, opts ...request.Option) (*UpdateWirelessDeviceImportTaskOutput, error) {
+	req, out := c.UpdateWirelessDeviceImportTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11864,6 +12615,9 @@ type CreateDeviceProfileInput struct {
 	// The name of the new resource.
 	Name *string `type:"string"`
 
+	// The Sidewalk-related information for creating the Sidewalk device profile.
+	Sidewalk *SidewalkCreateDeviceProfile `type:"structure"`
+
 	// The tags to attach to the new device profile. Tags are metadata that you
 	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
@@ -11930,6 +12684,12 @@ func (s *CreateDeviceProfileInput) SetLoRaWAN(v *LoRaWANDeviceProfile) *CreateDe
 // SetName sets the Name field's value.
 func (s *CreateDeviceProfileInput) SetName(v string) *CreateDeviceProfileInput {
 	s.Name = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *CreateDeviceProfileInput) SetSidewalk(v *SidewalkCreateDeviceProfile) *CreateDeviceProfileInput {
+	s.Sidewalk = v
 	return s
 }
 
@@ -12642,6 +13402,9 @@ type CreateWirelessDeviceInput struct {
 	// information.
 	Positioning *string `type:"string" enum:"PositioningConfigStatus"`
 
+	// The device configuration information to use to create the Sidewalk device.
+	Sidewalk *SidewalkCreateWirelessDevice `type:"structure"`
+
 	// The tags to attach to the new wireless device. Tags are metadata that you
 	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
@@ -12737,6 +13500,12 @@ func (s *CreateWirelessDeviceInput) SetName(v string) *CreateWirelessDeviceInput
 // SetPositioning sets the Positioning field's value.
 func (s *CreateWirelessDeviceInput) SetPositioning(v string) *CreateWirelessDeviceInput {
 	s.Positioning = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *CreateWirelessDeviceInput) SetSidewalk(v *SidewalkCreateWirelessDevice) *CreateWirelessDeviceInput {
+	s.Sidewalk = v
 	return s
 }
 
@@ -13180,6 +13949,78 @@ func (s *CreateWirelessGatewayTaskOutput) SetStatus(v string) *CreateWirelessGat
 // SetWirelessGatewayTaskDefinitionId sets the WirelessGatewayTaskDefinitionId field's value.
 func (s *CreateWirelessGatewayTaskOutput) SetWirelessGatewayTaskDefinitionId(v string) *CreateWirelessGatewayTaskOutput {
 	s.WirelessGatewayTaskDefinitionId = &v
+	return s
+}
+
+// The device attestation key (DAK) information.
+type DakCertificateMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The advertised product ID (APID) that's used for pre-production and production
+	// applications.
+	ApId *string `type:"string"`
+
+	// The certificate ID for the DAK.
+	//
+	// CertificateId is a required field
+	CertificateId *string `type:"string" required:"true"`
+
+	// The device type ID that's used for prototyping applications.
+	DeviceTypeId *string `type:"string"`
+
+	// Whether factory support has been enabled.
+	FactorySupport *bool `type:"boolean"`
+
+	// The maximum number of signatures that the DAK can sign. A value of -1 indicates
+	// that there's no device limit.
+	MaxAllowedSignature *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DakCertificateMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DakCertificateMetadata) GoString() string {
+	return s.String()
+}
+
+// SetApId sets the ApId field's value.
+func (s *DakCertificateMetadata) SetApId(v string) *DakCertificateMetadata {
+	s.ApId = &v
+	return s
+}
+
+// SetCertificateId sets the CertificateId field's value.
+func (s *DakCertificateMetadata) SetCertificateId(v string) *DakCertificateMetadata {
+	s.CertificateId = &v
+	return s
+}
+
+// SetDeviceTypeId sets the DeviceTypeId field's value.
+func (s *DakCertificateMetadata) SetDeviceTypeId(v string) *DakCertificateMetadata {
+	s.DeviceTypeId = &v
+	return s
+}
+
+// SetFactorySupport sets the FactorySupport field's value.
+func (s *DakCertificateMetadata) SetFactorySupport(v bool) *DakCertificateMetadata {
+	s.FactorySupport = &v
+	return s
+}
+
+// SetMaxAllowedSignature sets the MaxAllowedSignature field's value.
+func (s *DakCertificateMetadata) SetMaxAllowedSignature(v int64) *DakCertificateMetadata {
+	s.MaxAllowedSignature = &v
 	return s
 }
 
@@ -13705,6 +14546,77 @@ func (s DeleteServiceProfileOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteWirelessDeviceImportTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the import task to be deleted.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWirelessDeviceImportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWirelessDeviceImportTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWirelessDeviceImportTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWirelessDeviceImportTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteWirelessDeviceImportTaskInput) SetId(v string) *DeleteWirelessDeviceImportTaskInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteWirelessDeviceImportTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWirelessDeviceImportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWirelessDeviceImportTaskOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteWirelessDeviceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -13986,6 +14898,87 @@ func (s DeleteWirelessGatewayTaskOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteWirelessGatewayTaskOutput) GoString() string {
+	return s.String()
+}
+
+type DeregisterWirelessDeviceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the wireless device to deregister from AWS IoT Wireless.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" type:"string" required:"true"`
+
+	// The type of wireless device to deregister from AWS IoT Wireless, which can
+	// be LoRaWAN or Sidewalk.
+	WirelessDeviceType *string `location:"querystring" locationName:"WirelessDeviceType" type:"string" enum:"WirelessDeviceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterWirelessDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterWirelessDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterWirelessDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterWirelessDeviceInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeregisterWirelessDeviceInput) SetIdentifier(v string) *DeregisterWirelessDeviceInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetWirelessDeviceType sets the WirelessDeviceType field's value.
+func (s *DeregisterWirelessDeviceInput) SetWirelessDeviceType(v string) *DeregisterWirelessDeviceInput {
+	s.WirelessDeviceType = &v
+	return s
+}
+
+type DeregisterWirelessDeviceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterWirelessDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterWirelessDeviceOutput) GoString() string {
 	return s.String()
 }
 
@@ -15353,6 +16346,9 @@ type GetDeviceProfileOutput struct {
 
 	// The name of the resource.
 	Name *string `type:"string"`
+
+	// Information about the Sidewalk parameters in the device profile.
+	Sidewalk *SidewalkGetDeviceProfile `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15394,6 +16390,12 @@ func (s *GetDeviceProfileOutput) SetLoRaWAN(v *LoRaWANDeviceProfile) *GetDeviceP
 // SetName sets the Name field's value.
 func (s *GetDeviceProfileOutput) SetName(v string) *GetDeviceProfileOutput {
 	s.Name = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *GetDeviceProfileOutput) SetSidewalk(v *SidewalkGetDeviceProfile) *GetDeviceProfileOutput {
+	s.Sidewalk = v
 	return s
 }
 
@@ -17110,6 +18112,182 @@ func (s *GetServiceProfileOutput) SetName(v string) *GetServiceProfileOutput {
 	return s
 }
 
+type GetWirelessDeviceImportTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the import task for which information is requested.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWirelessDeviceImportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWirelessDeviceImportTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetWirelessDeviceImportTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetWirelessDeviceImportTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetWirelessDeviceImportTaskInput) SetId(v string) *GetWirelessDeviceImportTaskInput {
+	s.Id = &v
+	return s
+}
+
+type GetWirelessDeviceImportTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the import task.
+	Arn *string `type:"string"`
+
+	// The time at which the import task was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The name of the destination that's assigned to the wireless devices in the
+	// import task.
+	DestinationName *string `type:"string"`
+
+	// The number of devices in the import task that failed to onboard to the import
+	// task.
+	FailedImportedDeviceCount *int64 `type:"long"`
+
+	// The identifier of the import task for which information is retrieved.
+	Id *string `type:"string"`
+
+	// The number of devices in the import task that are waiting for the control
+	// log to start processing.
+	InitializedImportedDeviceCount *int64 `type:"long"`
+
+	// The number of devices in the import task that have been onboarded to the
+	// import task.
+	OnboardedImportedDeviceCount *int64 `type:"long"`
+
+	// The number of devices in the import task that are waiting in the import task
+	// queue to be onboarded.
+	PendingImportedDeviceCount *int64 `type:"long"`
+
+	// The Sidewalk-related information about an import task.
+	Sidewalk *SidewalkGetStartImportInfo `type:"structure"`
+
+	// The import task status.
+	Status *string `type:"string" enum:"ImportTaskStatus"`
+
+	// The reason for the provided status information, such as a validation error
+	// that causes the import task to fail.
+	StatusReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWirelessDeviceImportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWirelessDeviceImportTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetArn(v string) *GetWirelessDeviceImportTaskOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetCreationTime(v time.Time) *GetWirelessDeviceImportTaskOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetDestinationName(v string) *GetWirelessDeviceImportTaskOutput {
+	s.DestinationName = &v
+	return s
+}
+
+// SetFailedImportedDeviceCount sets the FailedImportedDeviceCount field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetFailedImportedDeviceCount(v int64) *GetWirelessDeviceImportTaskOutput {
+	s.FailedImportedDeviceCount = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetId(v string) *GetWirelessDeviceImportTaskOutput {
+	s.Id = &v
+	return s
+}
+
+// SetInitializedImportedDeviceCount sets the InitializedImportedDeviceCount field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetInitializedImportedDeviceCount(v int64) *GetWirelessDeviceImportTaskOutput {
+	s.InitializedImportedDeviceCount = &v
+	return s
+}
+
+// SetOnboardedImportedDeviceCount sets the OnboardedImportedDeviceCount field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetOnboardedImportedDeviceCount(v int64) *GetWirelessDeviceImportTaskOutput {
+	s.OnboardedImportedDeviceCount = &v
+	return s
+}
+
+// SetPendingImportedDeviceCount sets the PendingImportedDeviceCount field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetPendingImportedDeviceCount(v int64) *GetWirelessDeviceImportTaskOutput {
+	s.PendingImportedDeviceCount = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetSidewalk(v *SidewalkGetStartImportInfo) *GetWirelessDeviceImportTaskOutput {
+	s.Sidewalk = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetStatus(v string) *GetWirelessDeviceImportTaskOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *GetWirelessDeviceImportTaskOutput) SetStatusReason(v string) *GetWirelessDeviceImportTaskOutput {
+	s.StatusReason = &v
+	return s
+}
+
 type GetWirelessDeviceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -18514,6 +19692,98 @@ func (s *GsmObj) SetRxLevel(v int64) *GsmObj {
 	return s
 }
 
+// Information about a Sidewalk device that has been added to an import task.
+type ImportedSidewalkDevice struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the status information was last updated.
+	LastUpdateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The onboarding status of the Sidewalk device in the import task.
+	OnboardingStatus *string `type:"string" enum:"OnboardStatus"`
+
+	// The reason for the onboarding status information for the Sidewalk device.
+	OnboardingStatusReason *string `type:"string"`
+
+	// The Sidewalk manufacturing serial number (SMSN) of the Sidewalk device.
+	SidewalkManufacturingSn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportedSidewalkDevice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportedSidewalkDevice) GoString() string {
+	return s.String()
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *ImportedSidewalkDevice) SetLastUpdateTime(v time.Time) *ImportedSidewalkDevice {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetOnboardingStatus sets the OnboardingStatus field's value.
+func (s *ImportedSidewalkDevice) SetOnboardingStatus(v string) *ImportedSidewalkDevice {
+	s.OnboardingStatus = &v
+	return s
+}
+
+// SetOnboardingStatusReason sets the OnboardingStatusReason field's value.
+func (s *ImportedSidewalkDevice) SetOnboardingStatusReason(v string) *ImportedSidewalkDevice {
+	s.OnboardingStatusReason = &v
+	return s
+}
+
+// SetSidewalkManufacturingSn sets the SidewalkManufacturingSn field's value.
+func (s *ImportedSidewalkDevice) SetSidewalkManufacturingSn(v string) *ImportedSidewalkDevice {
+	s.SidewalkManufacturingSn = &v
+	return s
+}
+
+// Information about a wireless device that has been added to an import task.
+type ImportedWirelessDevice struct {
+	_ struct{} `type:"structure"`
+
+	// The Sidewalk-related information about a device that has been added to an
+	// import task.
+	Sidewalk *ImportedSidewalkDevice `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportedWirelessDevice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportedWirelessDevice) GoString() string {
+	return s.String()
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *ImportedWirelessDevice) SetSidewalk(v *ImportedSidewalkDevice) *ImportedWirelessDevice {
+	s.Sidewalk = v
+	return s
+}
+
 // An unexpected error occurred while processing a request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -18785,6 +20055,10 @@ func (s *ListDestinationsOutput) SetNextToken(v string) *ListDestinationsOutput 
 type ListDeviceProfilesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// A filter to list only device profiles that use this type, which can be LoRaWAN
+	// or Sidewalk.
+	DeviceProfileType *string `location:"querystring" locationName:"deviceProfileType" type:"string" enum:"DeviceProfileType"`
+
 	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
@@ -18809,6 +20083,12 @@ func (s ListDeviceProfilesInput) String() string {
 // value will be replaced with "sensitive".
 func (s ListDeviceProfilesInput) GoString() string {
 	return s.String()
+}
+
+// SetDeviceProfileType sets the DeviceProfileType field's value.
+func (s *ListDeviceProfilesInput) SetDeviceProfileType(v string) *ListDeviceProfilesInput {
+	s.DeviceProfileType = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -18860,6 +20140,132 @@ func (s *ListDeviceProfilesOutput) SetDeviceProfileList(v []*DeviceProfile) *Lis
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDeviceProfilesOutput) SetNextToken(v string) *ListDeviceProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDevicesForWirelessDeviceImportTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the import task for which wireless devices are listed.
+	//
+	// Id is a required field
+	Id *string `location:"querystring" locationName:"id" type:"string" required:"true"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The status of the devices in the import task.
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"OnboardStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDevicesForWirelessDeviceImportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDevicesForWirelessDeviceImportTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDevicesForWirelessDeviceImportTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDevicesForWirelessDeviceImportTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *ListDevicesForWirelessDeviceImportTaskInput) SetId(v string) *ListDevicesForWirelessDeviceImportTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDevicesForWirelessDeviceImportTaskInput) SetMaxResults(v int64) *ListDevicesForWirelessDeviceImportTaskInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicesForWirelessDeviceImportTaskInput) SetNextToken(v string) *ListDevicesForWirelessDeviceImportTaskInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListDevicesForWirelessDeviceImportTaskInput) SetStatus(v string) *ListDevicesForWirelessDeviceImportTaskInput {
+	s.Status = &v
+	return s
+}
+
+type ListDevicesForWirelessDeviceImportTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Sidewalk destination that describes the IoT rule to route
+	// messages received from devices in an import task that are onboarded to AWS
+	// IoT Wireless.
+	DestinationName *string `type:"string"`
+
+	// List of wireless devices in an import task and their onboarding status.
+	ImportedWirelessDeviceList []*ImportedWirelessDevice `type:"list"`
+
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDevicesForWirelessDeviceImportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDevicesForWirelessDeviceImportTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *ListDevicesForWirelessDeviceImportTaskOutput) SetDestinationName(v string) *ListDevicesForWirelessDeviceImportTaskOutput {
+	s.DestinationName = &v
+	return s
+}
+
+// SetImportedWirelessDeviceList sets the ImportedWirelessDeviceList field's value.
+func (s *ListDevicesForWirelessDeviceImportTaskOutput) SetImportedWirelessDeviceList(v []*ImportedWirelessDevice) *ListDevicesForWirelessDeviceImportTaskOutput {
+	s.ImportedWirelessDeviceList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicesForWirelessDeviceImportTaskOutput) SetNextToken(v string) *ListDevicesForWirelessDeviceImportTaskOutput {
 	s.NextToken = &v
 	return s
 }
@@ -19779,6 +21185,89 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type ListWirelessDeviceImportTasksInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWirelessDeviceImportTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWirelessDeviceImportTasksInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListWirelessDeviceImportTasksInput) SetMaxResults(v int64) *ListWirelessDeviceImportTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWirelessDeviceImportTasksInput) SetNextToken(v string) *ListWirelessDeviceImportTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListWirelessDeviceImportTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
+	NextToken *string `type:"string"`
+
+	// List of import tasks and summary information of onboarding status of devices
+	// in each import task.
+	WirelessDeviceImportTaskList []*WirelessDeviceImportTask `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWirelessDeviceImportTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWirelessDeviceImportTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWirelessDeviceImportTasksOutput) SetNextToken(v string) *ListWirelessDeviceImportTasksOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWirelessDeviceImportTaskList sets the WirelessDeviceImportTaskList field's value.
+func (s *ListWirelessDeviceImportTasksOutput) SetWirelessDeviceImportTaskList(v []*WirelessDeviceImportTask) *ListWirelessDeviceImportTasksOutput {
+	s.WirelessDeviceImportTaskList = v
 	return s
 }
 
@@ -23814,6 +25303,61 @@ func (s *SidewalkAccountInfoWithFingerprint) SetFingerprint(v string) *SidewalkA
 	return s
 }
 
+// Sidewalk object for creating a device profile.
+type SidewalkCreateDeviceProfile struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkCreateDeviceProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkCreateDeviceProfile) GoString() string {
+	return s.String()
+}
+
+// Sidewalk object for creating a wireless device.
+type SidewalkCreateWirelessDevice struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Sidewalk device profile.
+	DeviceProfileId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkCreateWirelessDevice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkCreateWirelessDevice) GoString() string {
+	return s.String()
+}
+
+// SetDeviceProfileId sets the DeviceProfileId field's value.
+func (s *SidewalkCreateWirelessDevice) SetDeviceProfileId(v string) *SidewalkCreateWirelessDevice {
+	s.DeviceProfileId = &v
+	return s
+}
+
 // Sidewalk device object.
 type SidewalkDevice struct {
 	_ struct{} `type:"structure"`
@@ -23821,14 +25365,26 @@ type SidewalkDevice struct {
 	// The Sidewalk Amazon ID.
 	AmazonId *string `type:"string"`
 
+	// The ID of the Sidewalk device profile.
+	CertificateId *string `type:"string"`
+
 	// The sidewalk device certificates for Ed25519 and P256r1.
 	DeviceCertificates []*CertificateList `type:"list"`
+
+	// The ID of the Sidewalk device profile.
+	DeviceProfileId *string `type:"string"`
+
+	// The Sidewalk device private keys that will be used for onboarding the device.
+	PrivateKeys []*CertificateList `type:"list"`
 
 	// The sidewalk device identification.
 	SidewalkId *string `type:"string"`
 
 	// The Sidewalk manufacturing series number.
 	SidewalkManufacturingSn *string `type:"string"`
+
+	// The Sidewalk device status, such as provisioned or registered.
+	Status *string `type:"string" enum:"WirelessDeviceSidewalkStatus"`
 }
 
 // String returns the string representation.
@@ -23855,9 +25411,27 @@ func (s *SidewalkDevice) SetAmazonId(v string) *SidewalkDevice {
 	return s
 }
 
+// SetCertificateId sets the CertificateId field's value.
+func (s *SidewalkDevice) SetCertificateId(v string) *SidewalkDevice {
+	s.CertificateId = &v
+	return s
+}
+
 // SetDeviceCertificates sets the DeviceCertificates field's value.
 func (s *SidewalkDevice) SetDeviceCertificates(v []*CertificateList) *SidewalkDevice {
 	s.DeviceCertificates = v
+	return s
+}
+
+// SetDeviceProfileId sets the DeviceProfileId field's value.
+func (s *SidewalkDevice) SetDeviceProfileId(v string) *SidewalkDevice {
+	s.DeviceProfileId = &v
+	return s
+}
+
+// SetPrivateKeys sets the PrivateKeys field's value.
+func (s *SidewalkDevice) SetPrivateKeys(v []*CertificateList) *SidewalkDevice {
+	s.PrivateKeys = v
 	return s
 }
 
@@ -23870,6 +25444,12 @@ func (s *SidewalkDevice) SetSidewalkId(v string) *SidewalkDevice {
 // SetSidewalkManufacturingSn sets the SidewalkManufacturingSn field's value.
 func (s *SidewalkDevice) SetSidewalkManufacturingSn(v string) *SidewalkDevice {
 	s.SidewalkManufacturingSn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SidewalkDevice) SetStatus(v string) *SidewalkDevice {
+	s.Status = &v
 	return s
 }
 
@@ -23965,6 +25545,103 @@ func (s *SidewalkEventNotificationConfigurations) SetAmazonIdEventTopic(v string
 	return s
 }
 
+// Gets information about a Sidewalk device profile.
+type SidewalkGetDeviceProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The Sidewalk application server public key.
+	//
+	// ApplicationServerPublicKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SidewalkGetDeviceProfile's
+	// String and GoString methods.
+	ApplicationServerPublicKey *string `min:"1" type:"string" sensitive:"true"`
+
+	// The DAK certificate information of the Sidewalk device profile.
+	DakCertificateMetadata []*DakCertificateMetadata `type:"list"`
+
+	// Gets information about the certification status of a Sidewalk device profile.
+	QualificationStatus *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkGetDeviceProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkGetDeviceProfile) GoString() string {
+	return s.String()
+}
+
+// SetApplicationServerPublicKey sets the ApplicationServerPublicKey field's value.
+func (s *SidewalkGetDeviceProfile) SetApplicationServerPublicKey(v string) *SidewalkGetDeviceProfile {
+	s.ApplicationServerPublicKey = &v
+	return s
+}
+
+// SetDakCertificateMetadata sets the DakCertificateMetadata field's value.
+func (s *SidewalkGetDeviceProfile) SetDakCertificateMetadata(v []*DakCertificateMetadata) *SidewalkGetDeviceProfile {
+	s.DakCertificateMetadata = v
+	return s
+}
+
+// SetQualificationStatus sets the QualificationStatus field's value.
+func (s *SidewalkGetDeviceProfile) SetQualificationStatus(v bool) *SidewalkGetDeviceProfile {
+	s.QualificationStatus = &v
+	return s
+}
+
+// Sidewalk-related information for devices in an import task that are being
+// onboarded.
+type SidewalkGetStartImportInfo struct {
+	_ struct{} `type:"structure"`
+
+	// List of Sidewalk devices that are added to the import task.
+	DeviceCreationFileList []*string `type:"list"`
+
+	// The IAM role that allows AWS IoT Wireless to access the CSV file in the S3
+	// bucket.
+	Role *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkGetStartImportInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkGetStartImportInfo) GoString() string {
+	return s.String()
+}
+
+// SetDeviceCreationFileList sets the DeviceCreationFileList field's value.
+func (s *SidewalkGetStartImportInfo) SetDeviceCreationFileList(v []*string) *SidewalkGetStartImportInfo {
+	s.DeviceCreationFileList = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *SidewalkGetStartImportInfo) SetRole(v string) *SidewalkGetStartImportInfo {
+	s.Role = &v
+	return s
+}
+
 // Sidewalk object used by list functions.
 type SidewalkListDevice struct {
 	_ struct{} `type:"structure"`
@@ -23975,11 +25652,17 @@ type SidewalkListDevice struct {
 	// The sidewalk device certificates for Ed25519 and P256r1.
 	DeviceCertificates []*CertificateList `type:"list"`
 
+	// Sidewalk object used by list functions.
+	DeviceProfileId *string `type:"string"`
+
 	// The sidewalk device identification.
 	SidewalkId *string `type:"string"`
 
 	// The Sidewalk manufacturing series number.
 	SidewalkManufacturingSn *string `type:"string"`
+
+	// The status of the Sidewalk devices, such as provisioned or registered.
+	Status *string `type:"string" enum:"WirelessDeviceSidewalkStatus"`
 }
 
 // String returns the string representation.
@@ -24012,6 +25695,12 @@ func (s *SidewalkListDevice) SetDeviceCertificates(v []*CertificateList) *Sidewa
 	return s
 }
 
+// SetDeviceProfileId sets the DeviceProfileId field's value.
+func (s *SidewalkListDevice) SetDeviceProfileId(v string) *SidewalkListDevice {
+	s.DeviceProfileId = &v
+	return s
+}
+
 // SetSidewalkId sets the SidewalkId field's value.
 func (s *SidewalkListDevice) SetSidewalkId(v string) *SidewalkListDevice {
 	s.SidewalkId = &v
@@ -24021,6 +25710,12 @@ func (s *SidewalkListDevice) SetSidewalkId(v string) *SidewalkListDevice {
 // SetSidewalkManufacturingSn sets the SidewalkManufacturingSn field's value.
 func (s *SidewalkListDevice) SetSidewalkManufacturingSn(v string) *SidewalkListDevice {
 	s.SidewalkManufacturingSn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SidewalkListDevice) SetStatus(v string) *SidewalkListDevice {
+	s.Status = &v
 	return s
 }
 
@@ -24107,6 +25802,82 @@ func (s *SidewalkSendDataToDevice) SetSeq(v int64) *SidewalkSendDataToDevice {
 	return s
 }
 
+// Information about an import task created for an individual Sidewalk device.
+type SidewalkSingleStartImportInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The Sidewalk manufacturing serial number (SMSN) of the device added to the
+	// import task.
+	SidewalkManufacturingSn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkSingleStartImportInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkSingleStartImportInfo) GoString() string {
+	return s.String()
+}
+
+// SetSidewalkManufacturingSn sets the SidewalkManufacturingSn field's value.
+func (s *SidewalkSingleStartImportInfo) SetSidewalkManufacturingSn(v string) *SidewalkSingleStartImportInfo {
+	s.SidewalkManufacturingSn = &v
+	return s
+}
+
+// Information about an import task created for bulk provisioning.
+type SidewalkStartImportInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The CSV file contained in an S3 bucket that's used for adding devices to
+	// an import task.
+	DeviceCreationFile *string `type:"string"`
+
+	// The IAM role that allows AWS IoT Wireless to access the CSV file in the S3
+	// bucket.
+	Role *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkStartImportInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkStartImportInfo) GoString() string {
+	return s.String()
+}
+
+// SetDeviceCreationFile sets the DeviceCreationFile field's value.
+func (s *SidewalkStartImportInfo) SetDeviceCreationFile(v string) *SidewalkStartImportInfo {
+	s.DeviceCreationFile = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *SidewalkStartImportInfo) SetRole(v string) *SidewalkStartImportInfo {
+	s.Role = &v
+	return s
+}
+
 // Sidewalk update.
 type SidewalkUpdateAccount struct {
 	_ struct{} `type:"structure"`
@@ -24153,6 +25924,39 @@ func (s *SidewalkUpdateAccount) Validate() error {
 // SetAppServerPrivateKey sets the AppServerPrivateKey field's value.
 func (s *SidewalkUpdateAccount) SetAppServerPrivateKey(v string) *SidewalkUpdateAccount {
 	s.AppServerPrivateKey = &v
+	return s
+}
+
+// Sidewalk object information for updating an import task.
+type SidewalkUpdateImportInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The CSV file contained in an S3 bucket that's used for appending devices
+	// to an existing import task.
+	DeviceCreationFile *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkUpdateImportInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkUpdateImportInfo) GoString() string {
+	return s.String()
+}
+
+// SetDeviceCreationFile sets the DeviceCreationFile field's value.
+func (s *SidewalkUpdateImportInfo) SetDeviceCreationFile(v string) *SidewalkUpdateImportInfo {
+	s.DeviceCreationFile = &v
 	return s
 }
 
@@ -24526,6 +26330,290 @@ func (s StartMulticastGroupSessionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StartMulticastGroupSessionOutput) GoString() string {
 	return s.String()
+}
+
+type StartSingleWirelessDeviceImportTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// Each resource must have a unique client request token. If you try to create
+	// a new resource with the same token as a resource that already exists, an
+	// exception occurs. If you omit this value, AWS SDKs will automatically generate
+	// a unique client request.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the Sidewalk destination that describes the IoT rule to route
+	// messages from the device in the import task that will be onboarded to AWS
+	// IoT Wireless.
+	//
+	// DestinationName is a required field
+	DestinationName *string `type:"string" required:"true"`
+
+	// The name of the wireless device for which an import task is being started.
+	DeviceName *string `type:"string"`
+
+	// The Sidewalk-related parameters for importing a single wireless device.
+	//
+	// Sidewalk is a required field
+	Sidewalk *SidewalkSingleStartImportInfo `type:"structure" required:"true"`
+
+	// The tag to attach to the specified resource. Tags are metadata that you can
+	// use to manage a resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSingleWirelessDeviceImportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSingleWirelessDeviceImportTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSingleWirelessDeviceImportTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSingleWirelessDeviceImportTaskInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DestinationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationName"))
+	}
+	if s.Sidewalk == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sidewalk"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSingleWirelessDeviceImportTaskInput) SetClientRequestToken(v string) *StartSingleWirelessDeviceImportTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *StartSingleWirelessDeviceImportTaskInput) SetDestinationName(v string) *StartSingleWirelessDeviceImportTaskInput {
+	s.DestinationName = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *StartSingleWirelessDeviceImportTaskInput) SetDeviceName(v string) *StartSingleWirelessDeviceImportTaskInput {
+	s.DeviceName = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *StartSingleWirelessDeviceImportTaskInput) SetSidewalk(v *SidewalkSingleStartImportInfo) *StartSingleWirelessDeviceImportTaskInput {
+	s.Sidewalk = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartSingleWirelessDeviceImportTaskInput) SetTags(v []*Tag) *StartSingleWirelessDeviceImportTaskInput {
+	s.Tags = v
+	return s
+}
+
+type StartSingleWirelessDeviceImportTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the import task.
+	Arn *string `type:"string"`
+
+	// The import task ID.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSingleWirelessDeviceImportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSingleWirelessDeviceImportTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartSingleWirelessDeviceImportTaskOutput) SetArn(v string) *StartSingleWirelessDeviceImportTaskOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StartSingleWirelessDeviceImportTaskOutput) SetId(v string) *StartSingleWirelessDeviceImportTaskOutput {
+	s.Id = &v
+	return s
+}
+
+type StartWirelessDeviceImportTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// Each resource must have a unique client request token. If you try to create
+	// a new resource with the same token as a resource that already exists, an
+	// exception occurs. If you omit this value, AWS SDKs will automatically generate
+	// a unique client request.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the Sidewalk destination that describes the IoT rule to route
+	// messages from the devices in the import task that are onboarded to AWS IoT
+	// Wireless.
+	//
+	// DestinationName is a required field
+	DestinationName *string `type:"string" required:"true"`
+
+	// The Sidewalk-related parameters for importing wireless devices that need
+	// to be provisioned in bulk.
+	//
+	// Sidewalk is a required field
+	Sidewalk *SidewalkStartImportInfo `type:"structure" required:"true"`
+
+	// The tag to attach to the specified resource. Tags are metadata that you can
+	// use to manage a resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWirelessDeviceImportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWirelessDeviceImportTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartWirelessDeviceImportTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartWirelessDeviceImportTaskInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DestinationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationName"))
+	}
+	if s.Sidewalk == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sidewalk"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartWirelessDeviceImportTaskInput) SetClientRequestToken(v string) *StartWirelessDeviceImportTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *StartWirelessDeviceImportTaskInput) SetDestinationName(v string) *StartWirelessDeviceImportTaskInput {
+	s.DestinationName = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *StartWirelessDeviceImportTaskInput) SetSidewalk(v *SidewalkStartImportInfo) *StartWirelessDeviceImportTaskInput {
+	s.Sidewalk = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartWirelessDeviceImportTaskInput) SetTags(v []*Tag) *StartWirelessDeviceImportTaskInput {
+	s.Tags = v
+	return s
+}
+
+type StartWirelessDeviceImportTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the import task.
+	Arn *string `type:"string"`
+
+	// The import task ID.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWirelessDeviceImportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWirelessDeviceImportTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartWirelessDeviceImportTaskOutput) SetArn(v string) *StartWirelessDeviceImportTaskOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StartWirelessDeviceImportTaskOutput) SetId(v string) *StartWirelessDeviceImportTaskOutput {
+	s.Id = &v
+	return s
 }
 
 // A simple label consisting of a customer-defined key-value pair
@@ -26619,6 +28707,91 @@ func (s UpdateResourcePositionOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateWirelessDeviceImportTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the import task to be updated.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The Sidewalk-related parameters of the import task to be updated.
+	//
+	// Sidewalk is a required field
+	Sidewalk *SidewalkUpdateImportInfo `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWirelessDeviceImportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWirelessDeviceImportTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateWirelessDeviceImportTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateWirelessDeviceImportTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Sidewalk == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sidewalk"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateWirelessDeviceImportTaskInput) SetId(v string) *UpdateWirelessDeviceImportTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *UpdateWirelessDeviceImportTaskInput) SetSidewalk(v *SidewalkUpdateImportInfo) *UpdateWirelessDeviceImportTaskInput {
+	s.Sidewalk = v
+	return s
+}
+
+type UpdateWirelessDeviceImportTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWirelessDeviceImportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWirelessDeviceImportTaskOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateWirelessDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27355,7 +29528,7 @@ type WiFiAccessPoint struct {
 	// MacAddress is a required field
 	MacAddress *string `min:"12" type:"string" required:"true"`
 
-	// Recived signal strength of the WLAN measurement data.
+	// Received signal strength (dBm) of the WLAN measurement data.
 	//
 	// Rss is a required field
 	Rss *int64 `type:"integer" required:"true"`
@@ -27478,6 +29651,134 @@ func (s *WirelessDeviceEventLogOption) SetEvent(v string) *WirelessDeviceEventLo
 // SetLogLevel sets the LogLevel field's value.
 func (s *WirelessDeviceEventLogOption) SetLogLevel(v string) *WirelessDeviceEventLogOption {
 	s.LogLevel = &v
+	return s
+}
+
+// Information about an import task for wireless devices.
+type WirelessDeviceImportTask struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the wireless device import task.
+	Arn *string `type:"string"`
+
+	// The time at which the import task was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The name of the Sidewalk destination that that describes the IoT rule to
+	// route messages from the device in the import task that will be onboarded
+	// to AWS IoT Wireless
+	DestinationName *string `type:"string"`
+
+	// The summary information of count of wireless devices in an import task that
+	// failed to onboarded to the import task.
+	FailedImportedDeviceCount *int64 `type:"long"`
+
+	// The ID of the wireless device import task.
+	Id *string `type:"string"`
+
+	// The summary information of count of wireless devices that are waiting for
+	// the control log to be added to an import task.
+	InitializedImportedDeviceCount *int64 `type:"long"`
+
+	// The summary information of count of wireless devices in an import task that
+	// have been onboarded to the import task.
+	OnboardedImportedDeviceCount *int64 `type:"long"`
+
+	// The summary information of count of wireless devices in an import task that
+	// are waiting in the queue to be onboarded.
+	PendingImportedDeviceCount *int64 `type:"long"`
+
+	// The Sidewalk-related information of the wireless device import task.
+	Sidewalk *SidewalkGetStartImportInfo `type:"structure"`
+
+	// The status information of the wireless device import task.
+	Status *string `type:"string" enum:"ImportTaskStatus"`
+
+	// The reason that provides additional information about the import task status.
+	StatusReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WirelessDeviceImportTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WirelessDeviceImportTask) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *WirelessDeviceImportTask) SetArn(v string) *WirelessDeviceImportTask {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *WirelessDeviceImportTask) SetCreationTime(v time.Time) *WirelessDeviceImportTask {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *WirelessDeviceImportTask) SetDestinationName(v string) *WirelessDeviceImportTask {
+	s.DestinationName = &v
+	return s
+}
+
+// SetFailedImportedDeviceCount sets the FailedImportedDeviceCount field's value.
+func (s *WirelessDeviceImportTask) SetFailedImportedDeviceCount(v int64) *WirelessDeviceImportTask {
+	s.FailedImportedDeviceCount = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *WirelessDeviceImportTask) SetId(v string) *WirelessDeviceImportTask {
+	s.Id = &v
+	return s
+}
+
+// SetInitializedImportedDeviceCount sets the InitializedImportedDeviceCount field's value.
+func (s *WirelessDeviceImportTask) SetInitializedImportedDeviceCount(v int64) *WirelessDeviceImportTask {
+	s.InitializedImportedDeviceCount = &v
+	return s
+}
+
+// SetOnboardedImportedDeviceCount sets the OnboardedImportedDeviceCount field's value.
+func (s *WirelessDeviceImportTask) SetOnboardedImportedDeviceCount(v int64) *WirelessDeviceImportTask {
+	s.OnboardedImportedDeviceCount = &v
+	return s
+}
+
+// SetPendingImportedDeviceCount sets the PendingImportedDeviceCount field's value.
+func (s *WirelessDeviceImportTask) SetPendingImportedDeviceCount(v int64) *WirelessDeviceImportTask {
+	s.PendingImportedDeviceCount = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *WirelessDeviceImportTask) SetSidewalk(v *SidewalkGetStartImportInfo) *WirelessDeviceImportTask {
+	s.Sidewalk = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *WirelessDeviceImportTask) SetStatus(v string) *WirelessDeviceImportTask {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *WirelessDeviceImportTask) SetStatusReason(v string) *WirelessDeviceImportTask {
+	s.StatusReason = &v
 	return s
 }
 
@@ -28018,6 +30319,22 @@ func ConnectionStatus_Values() []string {
 	}
 }
 
+const (
+	// DeviceProfileTypeSidewalk is a DeviceProfileType enum value
+	DeviceProfileTypeSidewalk = "Sidewalk"
+
+	// DeviceProfileTypeLoRaWan is a DeviceProfileType enum value
+	DeviceProfileTypeLoRaWan = "LoRaWAN"
+)
+
+// DeviceProfileType_Values returns all elements of the DeviceProfileType enum
+func DeviceProfileType_Values() []string {
+	return []string{
+		DeviceProfileTypeSidewalk,
+		DeviceProfileTypeLoRaWan,
+	}
+}
+
 // Device state defines the device status of sidewalk device.
 const (
 	// DeviceStateProvisioned is a DeviceState enum value
@@ -28283,6 +30600,38 @@ func IdentifierType_Values() []string {
 	}
 }
 
+const (
+	// ImportTaskStatusInitializing is a ImportTaskStatus enum value
+	ImportTaskStatusInitializing = "INITIALIZING"
+
+	// ImportTaskStatusInitialized is a ImportTaskStatus enum value
+	ImportTaskStatusInitialized = "INITIALIZED"
+
+	// ImportTaskStatusPending is a ImportTaskStatus enum value
+	ImportTaskStatusPending = "PENDING"
+
+	// ImportTaskStatusComplete is a ImportTaskStatus enum value
+	ImportTaskStatusComplete = "COMPLETE"
+
+	// ImportTaskStatusFailed is a ImportTaskStatus enum value
+	ImportTaskStatusFailed = "FAILED"
+
+	// ImportTaskStatusDeleting is a ImportTaskStatus enum value
+	ImportTaskStatusDeleting = "DELETING"
+)
+
+// ImportTaskStatus_Values returns all elements of the ImportTaskStatus enum
+func ImportTaskStatus_Values() []string {
+	return []string{
+		ImportTaskStatusInitializing,
+		ImportTaskStatusInitialized,
+		ImportTaskStatusPending,
+		ImportTaskStatusComplete,
+		ImportTaskStatusFailed,
+		ImportTaskStatusDeleting,
+	}
+}
+
 // The log level for a log message. The log levels can be disabled, or set to
 // ERROR to display less verbose logs containing only error information, or
 // to INFO for more detailed logs.
@@ -28328,6 +30677,30 @@ func MessageType_Values() []string {
 		MessageTypeCustomCommandIdGet,
 		MessageTypeCustomCommandIdSet,
 		MessageTypeCustomCommandIdResp,
+	}
+}
+
+const (
+	// OnboardStatusInitialized is a OnboardStatus enum value
+	OnboardStatusInitialized = "INITIALIZED"
+
+	// OnboardStatusPending is a OnboardStatus enum value
+	OnboardStatusPending = "PENDING"
+
+	// OnboardStatusOnboarded is a OnboardStatus enum value
+	OnboardStatusOnboarded = "ONBOARDED"
+
+	// OnboardStatusFailed is a OnboardStatus enum value
+	OnboardStatusFailed = "FAILED"
+)
+
+// OnboardStatus_Values returns all elements of the OnboardStatus enum
+func OnboardStatus_Values() []string {
+	return []string{
+		OnboardStatusInitialized,
+		OnboardStatusPending,
+		OnboardStatusOnboarded,
+		OnboardStatusFailed,
 	}
 }
 
@@ -28461,6 +30834,33 @@ const (
 
 	// SupportedRfRegionAs9231 is a SupportedRfRegion enum value
 	SupportedRfRegionAs9231 = "AS923-1"
+
+	// SupportedRfRegionAs9232 is a SupportedRfRegion enum value
+	SupportedRfRegionAs9232 = "AS923-2"
+
+	// SupportedRfRegionAs9233 is a SupportedRfRegion enum value
+	SupportedRfRegionAs9233 = "AS923-3"
+
+	// SupportedRfRegionAs9234 is a SupportedRfRegion enum value
+	SupportedRfRegionAs9234 = "AS923-4"
+
+	// SupportedRfRegionEu433 is a SupportedRfRegion enum value
+	SupportedRfRegionEu433 = "EU433"
+
+	// SupportedRfRegionCn470 is a SupportedRfRegion enum value
+	SupportedRfRegionCn470 = "CN470"
+
+	// SupportedRfRegionCn779 is a SupportedRfRegion enum value
+	SupportedRfRegionCn779 = "CN779"
+
+	// SupportedRfRegionRu864 is a SupportedRfRegion enum value
+	SupportedRfRegionRu864 = "RU864"
+
+	// SupportedRfRegionKr920 is a SupportedRfRegion enum value
+	SupportedRfRegionKr920 = "KR920"
+
+	// SupportedRfRegionIn865 is a SupportedRfRegion enum value
+	SupportedRfRegionIn865 = "IN865"
 )
 
 // SupportedRfRegion_Values returns all elements of the SupportedRfRegion enum
@@ -28470,6 +30870,15 @@ func SupportedRfRegion_Values() []string {
 		SupportedRfRegionUs915,
 		SupportedRfRegionAu915,
 		SupportedRfRegionAs9231,
+		SupportedRfRegionAs9232,
+		SupportedRfRegionAs9233,
+		SupportedRfRegionAs9234,
+		SupportedRfRegionEu433,
+		SupportedRfRegionCn470,
+		SupportedRfRegionCn779,
+		SupportedRfRegionRu864,
+		SupportedRfRegionKr920,
+		SupportedRfRegionIn865,
 	}
 }
 
@@ -28542,6 +30951,30 @@ func WirelessDeviceIdType_Values() []string {
 		WirelessDeviceIdTypeDevEui,
 		WirelessDeviceIdTypeThingName,
 		WirelessDeviceIdTypeSidewalkManufacturingSn,
+	}
+}
+
+const (
+	// WirelessDeviceSidewalkStatusProvisioned is a WirelessDeviceSidewalkStatus enum value
+	WirelessDeviceSidewalkStatusProvisioned = "PROVISIONED"
+
+	// WirelessDeviceSidewalkStatusRegistered is a WirelessDeviceSidewalkStatus enum value
+	WirelessDeviceSidewalkStatusRegistered = "REGISTERED"
+
+	// WirelessDeviceSidewalkStatusActivated is a WirelessDeviceSidewalkStatus enum value
+	WirelessDeviceSidewalkStatusActivated = "ACTIVATED"
+
+	// WirelessDeviceSidewalkStatusUnknown is a WirelessDeviceSidewalkStatus enum value
+	WirelessDeviceSidewalkStatusUnknown = "UNKNOWN"
+)
+
+// WirelessDeviceSidewalkStatus_Values returns all elements of the WirelessDeviceSidewalkStatus enum
+func WirelessDeviceSidewalkStatus_Values() []string {
+	return []string{
+		WirelessDeviceSidewalkStatusProvisioned,
+		WirelessDeviceSidewalkStatusRegistered,
+		WirelessDeviceSidewalkStatusActivated,
+		WirelessDeviceSidewalkStatusUnknown,
 	}
 }
 

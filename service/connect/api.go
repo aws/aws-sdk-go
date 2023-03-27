@@ -7531,7 +7531,7 @@ func (c *Connect) GetMetricDataV2Request(input *GetMetricDataV2Input) (req *requ
 // the previous version of this API. It has new metrics, offers filtering at
 // a metric level, and offers the ability to filter and group data by channels,
 // queues, routing profiles, agents, and agent hierarchy levels. It can retrieve
-// historical data for last the 14 days, in 24-hour intervals.
+// historical data for the last 14 days, in 24-hour intervals.
 //
 // For a description of the historical metrics that are supported by GetMetricDataV2
 // and GetMetricData, see Historical metrics definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
@@ -42852,7 +42852,7 @@ type StartChatContactInput struct {
 	Attributes map[string]*string `type:"map"`
 
 	// The total duration of the newly started chat session. If not specified, the
-	// chat session duration defaults to 25 hour. The minumum configurable time
+	// chat session duration defaults to 25 hour. The minimum configurable time
 	// is 60 minutes. The maximum configurable time is 10,080 minutes (7 days).
 	ChatDurationInMinutes *int64 `min:"60" type:"integer"`
 
@@ -42893,11 +42893,24 @@ type StartChatContactInput struct {
 	// chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html).
 	PersistentChat *PersistentChat `type:"structure"`
 
-	// The supported chat message content types. Content types must always contain
-	// text/plain. You can then put any other supported type in the list. For example,
-	// all the following lists are valid because they contain text/plain: [text/plain,
-	// text/markdown, application/json], [text/markdown, text/plain], [text/plain,
-	// application/json].
+	// The unique identifier for an Amazon Connect contact. This identifier is related
+	// to the chat starting.
+	//
+	// You cannot provide data for both RelatedContactId and PersistentChat.
+	RelatedContactId *string `min:"1" type:"string"`
+
+	// The supported chat message content types. Supported types are text/plain,
+	// text/markdown, application/json, application/vnd.amazonaws.connect.message.interactive,
+	// and application/vnd.amazonaws.connect.message.interactive.response.
+	//
+	// Content types must always contain text/plain. You can then put any other
+	// supported type in the list. For example, all the following lists are valid
+	// because they contain text/plain: [text/plain, text/markdown, application/json],
+	// [text/markdown, text/plain], [text/plain, application/json, application/vnd.amazonaws.connect.message.interactive.response].
+	//
+	// The type application/vnd.amazonaws.connect.message.interactive is required
+	// to use the Show view (https://docs.aws.amazon.com/connect/latest/adminguide/show-view-block.html)
+	// flow block.
 	SupportedMessagingContentTypes []*string `type:"list"`
 }
 
@@ -42936,6 +42949,9 @@ func (s *StartChatContactInput) Validate() error {
 	}
 	if s.ParticipantDetails == nil {
 		invalidParams.Add(request.NewErrParamRequired("ParticipantDetails"))
+	}
+	if s.RelatedContactId != nil && len(*s.RelatedContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RelatedContactId", 1))
 	}
 	if s.InitialMessage != nil {
 		if err := s.InitialMessage.Validate(); err != nil {
@@ -43004,6 +43020,12 @@ func (s *StartChatContactInput) SetParticipantDetails(v *ParticipantDetails) *St
 // SetPersistentChat sets the PersistentChat field's value.
 func (s *StartChatContactInput) SetPersistentChat(v *PersistentChat) *StartChatContactInput {
 	s.PersistentChat = v
+	return s
+}
+
+// SetRelatedContactId sets the RelatedContactId field's value.
+func (s *StartChatContactInput) SetRelatedContactId(v string) *StartChatContactInput {
+	s.RelatedContactId = &v
 	return s
 }
 

@@ -9,8 +9,8 @@
     "CreateNamedQuery": "<p>Creates a named query in the specified workgroup. Requires that you have access to the workgroup.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "CreateNotebook": "<p>Creates an empty <code>ipynb</code> file in the specified Apache Spark enabled workgroup. Throws an error if a file in the workgroup with the same name already exists.</p>",
     "CreatePreparedStatement": "<p>Creates a prepared statement for use with SQL queries in Athena.</p>",
-    "CreatePresignedNotebookUrl": "<p>Gets an authentication token and the URL at which the notebook can be accessed. During programmatic access, <code>CreatePresignedNotebookUrl</code> must be called every 10 minutes to refresh the authentication token.</p>",
-    "CreateWorkGroup": "<p>Creates a workgroup with the specified name. Only one of <code>Configurations</code> or <code>Configuration</code> can be specified; <code>Configurations</code> for a workgroup with multi engine support (for example, an Apache Spark enabled workgroup) or <code>Configuration</code> for an Athena SQL workgroup.</p>",
+    "CreatePresignedNotebookUrl": "<p>Gets an authentication token and the URL at which the notebook can be accessed. During programmatic access, <code>CreatePresignedNotebookUrl</code> must be called every 10 minutes to refresh the authentication token. For information about granting programmatic access, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/setting-up.html#setting-up-grant-programmatic-access\">Grant programmatic access</a>.</p>",
+    "CreateWorkGroup": "<p>Creates a workgroup with the specified name. A workgroup can be an Apache Spark enabled workgroup or an Athena SQL workgroup.</p>",
     "DeleteDataCatalog": "<p>Deletes a data catalog.</p>",
     "DeleteNamedQuery": "<p>Deletes the named query if you have access to the workgroup in which the query was saved.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "DeleteNotebook": "<p>Deletes the specified notebook.</p>",
@@ -18,7 +18,7 @@
     "DeleteWorkGroup": "<p>Deletes the workgroup with the specified name. The primary workgroup cannot be deleted.</p>",
     "ExportNotebook": "<p>Exports the specified notebook and its metadata.</p>",
     "GetCalculationExecution": "<p>Describes a previously submitted calculation execution.</p>",
-    "GetCalculationExecutionCode": "<p>Retrieves a pre-signed URL to a copy of the code that was executed for the calculation.</p>",
+    "GetCalculationExecutionCode": "<p>Retrieves the unencrypted code that was executed for the calculation.</p>",
     "GetCalculationExecutionStatus": "<p>Gets the status of a current calculation.</p>",
     "GetDataCatalog": "<p>Returns the specified data catalog.</p>",
     "GetDatabase": "<p>Returns a database object for the specified database and data catalog.</p>",
@@ -26,19 +26,19 @@
     "GetNotebookMetadata": "<p>Retrieves notebook metadata for the specified notebook ID.</p>",
     "GetPreparedStatement": "<p>Retrieves the prepared statement with the specified name from the specified workgroup.</p>",
     "GetQueryExecution": "<p>Returns information about a single execution of a query if you have access to the workgroup in which the query ran. Each time a query executes, information about the query execution is saved with a unique ID.</p>",
-    "GetQueryResults": "<p>Streams the results of a single query execution specified by <code>QueryExecutionId</code> from the Athena query results location in Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a> in the <i>Amazon Athena User Guide</i>. This request does not execute the query but returns results. Use <a>StartQueryExecution</a> to run a query.</p> <p>To stream query results successfully, the IAM principal with permission to call <code>GetQueryResults</code> also must have permissions to the Amazon S3 <code>GetObject</code> action for the Athena query results location.</p> <important> <p>IAM principals with permission to the Amazon S3 <code>GetObject</code> action for the query results location are able to retrieve query results from Amazon S3 even if permission to the <code>GetQueryResults</code> action is denied. To restrict user or role access, ensure that Amazon S3 permissions to the Athena query location are denied.</p> </important>",
+    "GetQueryResults": "<p>Streams the results of a single query execution specified by <code>QueryExecutionId</code> from the Athena query results location in Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Working with query results, recent queries, and output files</a> in the <i>Amazon Athena User Guide</i>. This request does not execute the query but returns results. Use <a>StartQueryExecution</a> to run a query.</p> <p>To stream query results successfully, the IAM principal with permission to call <code>GetQueryResults</code> also must have permissions to the Amazon S3 <code>GetObject</code> action for the Athena query results location.</p> <important> <p>IAM principals with permission to the Amazon S3 <code>GetObject</code> action for the query results location are able to retrieve query results from Amazon S3 even if permission to the <code>GetQueryResults</code> action is denied. To restrict user or role access, ensure that Amazon S3 permissions to the Athena query location are denied.</p> </important>",
     "GetQueryRuntimeStatistics": "<p>Returns query execution runtime statistics related to a single execution of a query if you have access to the workgroup in which the query ran. Query execution runtime statistics are returned only when <a>QueryExecutionStatus$State</a> is in a SUCCEEDED or FAILED state. Stage-level input and output row count and data size statistics are not shown when a query has row-level filters defined in Lake Formation.</p>",
     "GetSession": "<p>Gets the full details of a previously created session, including the session status and configuration.</p>",
     "GetSessionStatus": "<p>Gets the current status of a session.</p>",
     "GetTableMetadata": "<p>Returns table metadata for the specified catalog, database, and table.</p>",
     "GetWorkGroup": "<p>Returns information about the workgroup with the specified name.</p>",
     "ImportNotebook": "<p>Imports a single <code>ipynb</code> file to a Spark enabled workgroup. The maximum file size that can be imported is 10 megabytes. If an <code>ipynb</code> file with the same name already exists in the workgroup, throws an error.</p>",
-    "ListApplicationDPUSizes": "<p>Returns the supported DPU sizes for the supported application runtimes (for example, <code>Jupyter 1.0</code>). </p>",
+    "ListApplicationDPUSizes": "<p>Returns the supported DPU sizes for the supported application runtimes (for example, <code>Athena notebook version 1</code>). </p>",
     "ListCalculationExecutions": "<p>Lists the calculations that have been submitted to a session in descending order. Newer calculations are listed first; older calculations are listed later.</p>",
     "ListDataCatalogs": "<p>Lists the data catalogs in the current Amazon Web Services account.</p> <note> <p>In the Athena console, data catalogs are listed as \"data sources\" on the <b>Data sources</b> page under the <b>Data source name</b> column.</p> </note>",
     "ListDatabases": "<p>Lists the databases in the specified data catalog.</p>",
     "ListEngineVersions": "<p>Returns a list of engine versions that are available to choose from, including the Auto option.</p>",
-    "ListExecutors": "<p>Lists, in descending order, the executors that have been submitted to a session. Newer executors are listed first; older executors are listed later. The result can be optionally filtered by state.</p>",
+    "ListExecutors": "<p>Lists, in descending order, the executors that joined a session. Newer executors are listed first; older executors are listed later. The result can be optionally filtered by state.</p>",
     "ListNamedQueries": "<p>Provides a list of available query IDs only for queries saved in the specified workgroup. Requires that you have access to the specified workgroup. If a workgroup is not specified, lists the saved queries for the primary workgroup.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "ListNotebookMetadata": "<p>Displays the notebook files for the specified workgroup in paginated format.</p>",
     "ListNotebookSessions": "<p>Lists, in descending order, the sessions that have been created in a notebook that are in an active state like <code>CREATING</code>, <code>CREATED</code>, <code>IDLE</code> or <code>BUSY</code>. Newer sessions are listed first; older sessions are listed later.</p>",
@@ -48,12 +48,12 @@
     "ListTableMetadata": "<p>Lists the metadata for the tables in the specified data catalog database.</p>",
     "ListTagsForResource": "<p>Lists the tags associated with an Athena workgroup or data catalog resource.</p>",
     "ListWorkGroups": "<p>Lists available workgroups for the account.</p>",
-    "StartCalculationExecution": "<p>Submits calculations for execution within a session. You can supply the code to run as an inline code block within the request or as an Amazon S3 URL.</p>",
+    "StartCalculationExecution": "<p>Submits calculations for execution within a session. You can supply the code to run as an inline code block within the request.</p>",
     "StartQueryExecution": "<p>Runs the SQL query statements contained in the <code>Query</code>. Requires you to have access to the workgroup in which the query ran. Running queries against an external catalog requires <a>GetDataCatalog</a> permission to the catalog. For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "StartSession": "<p>Creates a session for running calculations within a workgroup. The session is ready when it reaches an <code>IDLE</code> state.</p>",
     "StopCalculationExecution": "<p>Requests the cancellation of a calculation. A <code>StopCalculationExecution</code> call on a calculation that is already in a terminal state (for example, <code>STOPPED</code>, <code>FAILED</code>, or <code>COMPLETED</code>) succeeds but has no effect.</p> <note> <p>Cancelling a calculation is done on a best effort basis. If a calculation cannot be cancelled, you can be charged for its completion. If you are concerned about being charged for a calculation that cannot be cancelled, consider terminating the session in which the calculation is running.</p> </note>",
     "StopQueryExecution": "<p>Stops a query execution. Requires you to have access to the workgroup in which the query ran.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
-    "TagResource": "<p>Adds one or more tags to an Athena resource. A tag is a label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see <a href=\"https://aws.amazon.com/answers/account-management/aws-tagging-strategies/\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas.</p>",
+    "TagResource": "<p>Adds one or more tags to an Athena resource. A tag is a label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas.</p>",
     "TerminateSession": "<p>Terminates an active session. A <code>TerminateSession</code> call on a session that is already inactive (for example, in a <code>FAILED</code>, <code>TERMINATED</code> or <code>TERMINATING</code> state) succeeds but has no effect. Calculations running in the session when <code>TerminateSession</code> is called are forcefully stopped, but may display as <code>FAILED</code> instead of <code>STOPPED</code>.</p>",
     "UntagResource": "<p>Removes one or more tags from a data catalog or workgroup resource.</p>",
     "UpdateDataCatalog": "<p>Updates the data catalog that has the specified name.</p>",
@@ -61,7 +61,7 @@
     "UpdateNotebook": "<p>Updates the contents of a Spark notebook.</p>",
     "UpdateNotebookMetadata": "<p>Updates the metadata for a notebook.</p>",
     "UpdatePreparedStatement": "<p>Updates a prepared statement.</p>",
-    "UpdateWorkGroup": "<p>Updates the workgroup with the specified name. The workgroup's name cannot be changed. Only one of <code>ConfigurationsUpdates</code> or <code>ConfigurationUpdates</code> can be specified; <code>ConfigurationsUpdates</code> for a workgroup with multi engine support (for example, an Apache Spark enabled workgroup) or <code>ConfigurationUpdates</code> for an Athena SQL workgroup.</p>"
+    "UpdateWorkGroup": "<p>Updates the workgroup with the specified name. The workgroup's name cannot be changed. Only <code>ConfigurationUpdates</code> can be specified.</p>"
   },
   "shapes": {
     "AclConfiguration": {
@@ -159,7 +159,7 @@
     "BoxedBoolean": {
       "base": null,
       "refs": {
-        "DeleteWorkGroupInput$RecursiveDeleteOption": "<p>The option to delete the workgroup and its contents even if the workgroup contains any named queries or query executions.</p>",
+        "DeleteWorkGroupInput$RecursiveDeleteOption": "<p>The option to delete the workgroup and its contents even if the workgroup contains any named queries, query executions, or notebooks.</p>",
         "ResultConfigurationUpdates$RemoveOutputLocation": "<p>If set to \"true\", indicates that the previously-specified query results location (also known as a client-side setting) for queries in this workgroup should be ignored and set to null. If set to \"false\" or not set, and a value is present in the <code>OutputLocation</code> in <code>ResultConfigurationUpdates</code> (the client-side setting), the <code>OutputLocation</code> in the workgroup's <code>ResultConfiguration</code> will be updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "ResultConfigurationUpdates$RemoveEncryptionConfiguration": "<p>If set to \"true\", indicates that the previously-specified encryption configuration (also known as the client-side setting) for queries in this workgroup should be ignored and set to null. If set to \"false\" or not set, and a value is present in the <code>EncryptionConfiguration</code> in <code>ResultConfigurationUpdates</code> (the client-side setting), the <code>EncryptionConfiguration</code> in the workgroup's <code>ResultConfiguration</code> will be updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "ResultConfigurationUpdates$RemoveExpectedBucketOwner": "<p>If set to \"true\", removes the Amazon Web Services account ID previously specified for <a>ResultConfiguration$ExpectedBucketOwner</a>. If set to \"false\" or not set, and a value is present in the <code>ExpectedBucketOwner</code> in <code>ResultConfigurationUpdates</code> (the client-side setting), the <code>ExpectedBucketOwner</code> in the workgroup's <code>ResultConfiguration</code> is updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
@@ -167,11 +167,13 @@
         "WorkGroupConfiguration$EnforceWorkGroupConfiguration": "<p>If set to \"true\", the settings for the workgroup override client-side settings. If set to \"false\", client-side settings are used. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "WorkGroupConfiguration$PublishCloudWatchMetricsEnabled": "<p>Indicates that the Amazon CloudWatch metrics are enabled for the workgroup.</p>",
         "WorkGroupConfiguration$RequesterPaysEnabled": "<p>If set to <code>true</code>, allows members assigned to a workgroup to reference Amazon S3 Requester Pays buckets in queries. If set to <code>false</code>, workgroup members cannot query data from Requester Pays buckets, and queries that retrieve data from Requester Pays buckets cause an error. The default is <code>false</code>. For more information about Requester Pays buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html\">Requester Pays Buckets</a> in the <i>Amazon Simple Storage Service Developer Guide</i>.</p>",
+        "WorkGroupConfiguration$EnableMinimumEncryptionConfiguration": "<p>Enforces a minimal level of encryption for the workgroup for query and calculation results that are written to Amazon S3. When enabled, workgroup users can set encryption only to the minimum level set by the administrator or higher when they submit queries.</p> <p>The <code>EnforceWorkGroupConfiguration</code> setting takes precedence over the <code>EnableMinimumEncryptionConfiguration</code> flag. This means that if <code>EnforceWorkGroupConfiguration</code> is true, the <code>EnableMinimumEncryptionConfiguration</code> flag is ignored, and the workgroup configuration for encryption is used.</p>",
         "WorkGroupConfigurationUpdates$EnforceWorkGroupConfiguration": "<p>If set to \"true\", the settings for the workgroup override client-side settings. If set to \"false\" client-side settings are used. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "WorkGroupConfigurationUpdates$PublishCloudWatchMetricsEnabled": "<p>Indicates whether this workgroup enables publishing metrics to Amazon CloudWatch.</p>",
         "WorkGroupConfigurationUpdates$RemoveBytesScannedCutoffPerQuery": "<p>Indicates that the data usage control limit per query is removed. <a>WorkGroupConfiguration$BytesScannedCutoffPerQuery</a> </p>",
         "WorkGroupConfigurationUpdates$RequesterPaysEnabled": "<p>If set to <code>true</code>, allows members assigned to a workgroup to specify Amazon S3 Requester Pays buckets in queries. If set to <code>false</code>, workgroup members cannot query data from Requester Pays buckets, and queries that retrieve data from Requester Pays buckets cause an error. The default is <code>false</code>. For more information about Requester Pays buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html\">Requester Pays Buckets</a> in the <i>Amazon Simple Storage Service Developer Guide</i>.</p>",
-        "WorkGroupConfigurationUpdates$RemoveCustomerContentEncryptionConfiguration": "<p>Removes content encryption configuration for a workgroup.</p>"
+        "WorkGroupConfigurationUpdates$RemoveCustomerContentEncryptionConfiguration": "<p>Removes content encryption configuration for a workgroup.</p>",
+        "WorkGroupConfigurationUpdates$EnableMinimumEncryptionConfiguration": "<p>Enforces a minimal level of encryption for the workgroup for query and calculation results that are written to Amazon S3. When enabled, workgroup users can set encryption only to the minimum level set by the administrator or higher when they submit queries. This setting does not apply to Spark-enabled workgroups.</p> <p>The <code>EnforceWorkGroupConfiguration</code> setting takes precedence over the <code>EnableMinimumEncryptionConfiguration</code> flag. This means that if <code>EnforceWorkGroupConfiguration</code> is true, the <code>EnableMinimumEncryptionConfiguration</code> flag is ignored, and the workgroup configuration for encryption is used.</p>"
       }
     },
     "BytesScannedCutoffValue": {
@@ -276,7 +278,7 @@
       "base": null,
       "refs": {
         "CalculationConfiguration$CodeBlock": "<p>A string that contains the code for the calculation.</p>",
-        "GetCalculationExecutionCodeResponse$CodeBlock": "<p>A pre-signed URL to the code that executed the calculation.</p>",
+        "GetCalculationExecutionCodeResponse$CodeBlock": "<p>The unencrypted code that was executed for the calculation.</p>",
         "StartCalculationExecutionRequest$CodeBlock": "<p>A string that contains the code of the calculation.</p>"
       }
     },
@@ -544,10 +546,10 @@
       }
     },
     "EncryptionConfiguration": {
-      "base": "<p>If query results are encrypted in Amazon S3, indicates the encryption option used (for example, <code>SSE_KMS</code> or <code>CSE_KMS</code>) and key information.</p>",
+      "base": "<p>If query and calculation results are encrypted in Amazon S3, indicates the encryption option used (for example, <code>SSE_KMS</code> or <code>CSE_KMS</code>) and key information.</p>",
       "refs": {
-        "ResultConfiguration$EncryptionConfiguration": "<p>If query results are encrypted in Amazon S3, indicates the encryption option used (for example, <code>SSE_KMS</code> or <code>CSE_KMS</code>) and key information. This is a client-side setting. If workgroup settings override client-side settings, then the query uses the encryption configuration that is specified for the workgroup, and also uses the location for storing query results specified in the workgroup. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a> and <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
-        "ResultConfigurationUpdates$EncryptionConfiguration": "<p>The encryption configuration for the query results.</p>",
+        "ResultConfiguration$EncryptionConfiguration": "<p>If query and calculation results are encrypted in Amazon S3, indicates the encryption option used (for example, <code>SSE_KMS</code> or <code>CSE_KMS</code>) and key information. This is a client-side setting. If workgroup settings override client-side settings, then the query uses the encryption configuration that is specified for the workgroup, and also uses the location for storing query results specified in the workgroup. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a> and <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
+        "ResultConfigurationUpdates$EncryptionConfiguration": "<p>The encryption configuration for query and calculation results.</p>",
         "SessionConfiguration$EncryptionConfiguration": null
       }
     },
@@ -1170,7 +1172,7 @@
     "NameString": {
       "base": null,
       "refs": {
-        "ApplicationDPUSizes$ApplicationRuntimeId": "<p>The name of the supported application runtime (for example, <code>Jupyter 1.0</code>).</p>",
+        "ApplicationDPUSizes$ApplicationRuntimeId": "<p>The name of the supported application runtime (for example, <code>Athena notebook version 1</code>).</p>",
         "Column$Name": "<p>The name of the column.</p>",
         "CreateNamedQueryInput$Name": "<p>The query name.</p>",
         "Database$Name": "<p>The name of the database.</p>",
@@ -1184,7 +1186,7 @@
         "ListTableMetadataInput$DatabaseName": "<p>The name of the database for which table metadata should be returned.</p>",
         "NamedQuery$Name": "<p>The query name.</p>",
         "SessionSummary$NotebookVersion": "<p>The notebook version.</p>",
-        "StartSessionRequest$NotebookVersion": "<p>The notebook version. This value is required only when requesting that a notebook server be started for the session. The only valid notebook version is <code>Jupyter1.0</code>.</p>",
+        "StartSessionRequest$NotebookVersion": "<p>The notebook version. This value is supplied automatically for notebook sessions in the Athena console and is not required for programmatic session access. The only valid notebook version is <code>Athena notebook version 1</code>. If you specify a value for <code>NotebookVersion</code>, you must also specify a value for <code>NotebookId</code>. See <a>EngineConfiguration$AdditionalConfigs</a>.</p>",
         "TableMetadata$Name": "<p>The name of the table.</p>",
         "UpdateNamedQueryInput$Name": "<p>The name of the query.</p>",
         "WorkGroupConfiguration$AdditionalConfiguration": "<p>Specifies a user defined JSON string that is passed to the notebook engine.</p>",
@@ -1236,7 +1238,7 @@
         "DeleteNotebookInput$NotebookId": "<p>The ID of the notebook to delete.</p>",
         "ExportNotebookInput$NotebookId": "<p>The ID of the notebook to export.</p>",
         "GetNotebookMetadataInput$NotebookId": "<p>The ID of the notebook whose metadata is to be retrieved.</p>",
-        "ImportNotebookOutput$NotebookId": "<p>The ID of the notebook to import.</p>",
+        "ImportNotebookOutput$NotebookId": "<p>The ID assigned to the imported notebook.</p>",
         "ListNotebookSessionsRequest$NotebookId": "<p>The ID of the notebook to list sessions for.</p>",
         "NotebookMetadata$NotebookId": "<p>The notebook ID.</p>",
         "UpdateNotebookInput$NotebookId": "<p>The ID of the notebook to update.</p>",
@@ -1293,7 +1295,7 @@
         "CreateDataCatalogInput$Parameters": "<p>Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> <li> <p>The <code>GLUE</code> type takes a catalog ID parameter and is required. The <code> <i>catalog_id</i> </code> is the account ID of the Amazon Web Services account to which the Glue Data Catalog belongs.</p> <p> <code>catalog-id=<i>catalog_id</i> </code> </p> <ul> <li> <p>The <code>GLUE</code> data catalog type also applies to the default <code>AwsDataCatalog</code> that already exists in your account, of which you can have only one and cannot modify.</p> </li> <li> <p>Queries that specify a Glue Data Catalog other than the default <code>AwsDataCatalog</code> must be run on Athena engine version 2.</p> </li> <li> <p>In Regions where Athena engine version 2 is not available, creating new Glue data catalogs results in an <code>INVALID_INPUT</code> error.</p> </li> </ul> </li> </ul>",
         "DataCatalog$Parameters": "<p>Specifies the Lambda function or functions to use for the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> <li> <p>The <code>GLUE</code> type takes a catalog ID parameter and is required. The <code> <i>catalog_id</i> </code> is the account ID of the Amazon Web Services account to which the Glue catalog belongs.</p> <p> <code>catalog-id=<i>catalog_id</i> </code> </p> <ul> <li> <p>The <code>GLUE</code> data catalog type also applies to the default <code>AwsDataCatalog</code> that already exists in your account, of which you can have only one and cannot modify.</p> </li> <li> <p>Queries that specify a Glue Data Catalog other than the default <code>AwsDataCatalog</code> must be run on Athena engine version 2.</p> </li> </ul> </li> </ul>",
         "Database$Parameters": "<p>A set of custom key/value pairs.</p>",
-        "EngineConfiguration$AdditionalConfigs": "<p>Contains additional notebook engine <code>MAP&lt;string, string&gt;</code> parameter mappings in the form of key-value pairs. To specify an Amazon S3 URI that the Jupyter server will download and serve, specify a value for the <a>StartSessionRequest$NotebookVersion</a> field, and then add a key named <code>NotebookFileURI</code> to <code>AdditionalConfigs</code> that has value of the Amazon S3 URI.</p>",
+        "EngineConfiguration$AdditionalConfigs": "<p>Contains additional notebook engine <code>MAP&lt;string, string&gt;</code> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the <a>StartSessionRequest$NotebookVersion</a> field, and then add a key named <code>NotebookId</code> to <code>AdditionalConfigs</code> that has the value of the Athena notebook ID.</p>",
         "TableMetadata$Parameters": "<p>A set of custom key/value pairs for table properties.</p>",
         "UpdateDataCatalogInput$Parameters": "<p>Specifies the Lambda function or functions to use for updating the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> </ul>"
       }
@@ -1464,11 +1466,11 @@
       }
     },
     "ResultConfiguration": {
-      "base": "<p>The location in Amazon S3 where query results are stored and the encryption option, if any, used for query results. These are known as \"client-side settings\". If workgroup settings override client-side settings, then the query uses the workgroup settings.</p>",
+      "base": "<p>The location in Amazon S3 where query and calculation results are stored and the encryption option, if any, used for query and calculation results. These are known as \"client-side settings\". If workgroup settings override client-side settings, then the query uses the workgroup settings.</p>",
       "refs": {
-        "QueryExecution$ResultConfiguration": "<p>The location in Amazon S3 where query results were stored and the encryption option, if any, used for query results. These are known as \"client-side settings\". If workgroup settings override client-side settings, then the query uses the location for the query results and the encryption configuration that are specified for the workgroup.</p>",
+        "QueryExecution$ResultConfiguration": "<p>The location in Amazon S3 where query and calculation results are stored and the encryption option, if any, used for query results. These are known as \"client-side settings\". If workgroup settings override client-side settings, then the query uses the location for the query results and the encryption configuration that are specified for the workgroup.</p>",
         "StartQueryExecutionInput$ResultConfiguration": "<p>Specifies information about where and how to save the results of the query execution. If the query runs in a workgroup, then workgroup's settings may override query settings. This affects the query results location. The workgroup settings override is specified in EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
-        "WorkGroupConfiguration$ResultConfiguration": "<p>The configuration for the workgroup, which includes the location in Amazon S3 where query results are stored and the encryption option, if any, used for query results. To run the query, you must specify the query results location using one of the ways: either in the workgroup using this setting, or for individual queries (client-side), using <a>ResultConfiguration$OutputLocation</a>. If none of them is set, Athena issues an error that no output location is provided. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a>.</p>"
+        "WorkGroupConfiguration$ResultConfiguration": "<p>The configuration for the workgroup, which includes the location in Amazon S3 where query and calculation results are stored and the encryption option, if any, used for query and calculation results. To run the query, you must specify the query results location using one of the ways: either in the workgroup using this setting, or for individual queries (client-side), using <a>ResultConfiguration$OutputLocation</a>. If none of them is set, Athena issues an error that no output location is provided. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Working with query results, recent queries, and output files</a>.</p>"
       }
     },
     "ResultConfigurationUpdates": {
@@ -1480,8 +1482,8 @@
     "ResultOutputLocation": {
       "base": null,
       "refs": {
-        "ResultConfiguration$OutputLocation": "<p>The location in Amazon S3 where your query results are stored, such as <code>s3://path/to/query/bucket/</code>. To run the query, you must specify the query results location using one of the ways: either for individual queries using either this setting (client-side), or in the workgroup, using <a>WorkGroupConfiguration</a>. If none of them is set, Athena issues an error that no output location is provided. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a>. If workgroup settings override client-side settings, then the query uses the settings specified for the workgroup. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
-        "ResultConfigurationUpdates$OutputLocation": "<p>The location in Amazon S3 where your query results are stored, such as <code>s3://path/to/query/bucket/</code>. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a> If workgroup settings override client-side settings, then the query uses the location for the query results and the encryption configuration that are specified for the workgroup. The \"workgroup settings override\" is specified in <code>EnforceWorkGroupConfiguration</code> (true/false) in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
+        "ResultConfiguration$OutputLocation": "<p>The location in Amazon S3 where your query and calculation results are stored, such as <code>s3://path/to/query/bucket/</code>. To run the query, you must specify the query results location using one of the ways: either for individual queries using either this setting (client-side), or in the workgroup, using <a>WorkGroupConfiguration</a>. If none of them is set, Athena issues an error that no output location is provided. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Working with query results, recent queries, and output files</a>. If workgroup settings override client-side settings, then the query uses the settings specified for the workgroup. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
+        "ResultConfigurationUpdates$OutputLocation": "<p>The location in Amazon S3 where your query and calculation results are stored, such as <code>s3://path/to/query/bucket/</code>. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Working with query results, recent queries, and output files</a>. If workgroup settings override client-side settings, then the query uses the location for the query results and the encryption configuration that are specified for the workgroup. The \"workgroup settings override\" is specified in <code>EnforceWorkGroupConfiguration</code> (true/false) in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
         "SessionConfiguration$WorkingDirectory": "<p>The Amazon S3 location that stores information for the notebook.</p>"
       }
     },
@@ -1520,7 +1522,7 @@
       "base": null,
       "refs": {
         "SessionConfiguration$ExecutionRole": "<p>The ARN of the execution role used for the session.</p>",
-        "WorkGroupConfiguration$ExecutionRole": "<p>Role used in a notebook session for accessing the user's resources.</p>",
+        "WorkGroupConfiguration$ExecutionRole": "<p>Role used in a session for accessing the user's resources.</p>",
         "WorkGroupConfigurationUpdates$ExecutionRole": "<p>Contains the ARN of the execution role for the workgroup</p>"
       }
     },
@@ -1579,7 +1581,7 @@
         "StartCalculationExecutionRequest$SessionId": "<p>The session ID.</p>",
         "StartSessionResponse$SessionId": "<p>The session ID.</p>",
         "TerminateSessionRequest$SessionId": "<p>The session ID.</p>",
-        "UpdateNotebookInput$SessionId": "<p>The ID of the session in which the notebook will be updated.</p>"
+        "UpdateNotebookInput$SessionId": "<p>The active notebook session ID. Required if the notebook has an active session.</p>"
       }
     },
     "SessionIdleTimeoutInMinutes": {
@@ -1609,13 +1611,13 @@
       }
     },
     "SessionStatistics": {
-      "base": "<p>Contains statistics for a notebook session.</p>",
+      "base": "<p>Contains statistics for a session.</p>",
       "refs": {
         "GetSessionResponse$Statistics": "<p>Contains the DPU execution time.</p>"
       }
     },
     "SessionStatus": {
-      "base": "<p>Contains information about the status of a notebook session.</p>",
+      "base": "<p>Contains information about the status of a session.</p>",
       "refs": {
         "GetSessionResponse$Status": "<p>Contains information about the status of the session.</p>",
         "GetSessionStatusResponse$Status": "<p>Contains information about the status of the session.</p>",
@@ -1623,7 +1625,7 @@
       }
     },
     "SessionSummary": {
-      "base": "<p>Contains summary information about a notebook session.</p>",
+      "base": "<p>Contains summary information about a session.</p>",
       "refs": {
         "SessionsList$member": null
       }
@@ -1756,7 +1758,7 @@
       }
     },
     "Tag": {
-      "base": "<p>A label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see <a href=\"https://aws.amazon.com/answers/account-management/aws-tagging-strategies/\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas. </p>",
+      "base": "<p>A label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas. </p>",
       "refs": {
         "TagList$member": null
       }
@@ -1977,14 +1979,14 @@
       }
     },
     "WorkGroupConfiguration": {
-      "base": "<p>The configuration of the workgroup, which includes the location in Amazon S3 where query results are stored, the encryption option, if any, used for query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup and whether workgroup settings override query settings, and the data usage limits for the amount of data scanned per query or per workgroup. The workgroup settings override is specified in <code>EnforceWorkGroupConfiguration</code> (true/false) in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>. </p>",
+      "base": "<p>The configuration of the workgroup, which includes the location in Amazon S3 where query and calculation results are stored, the encryption option, if any, used for query and calculation results, whether the Amazon CloudWatch Metrics are enabled for the workgroup and whether workgroup settings override query settings, and the data usage limits for the amount of data scanned per query or per workgroup. The workgroup settings override is specified in <code>EnforceWorkGroupConfiguration</code> (true/false) in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>. </p>",
       "refs": {
-        "CreateWorkGroupInput$Configuration": "<p>Contains configuration information for creating an Athena SQL workgroup, which includes the location in Amazon S3 where query results are stored, the encryption configuration, if any, used for encrypting query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup, the limit for the amount of bytes scanned (cutoff) per query, if it is specified, and whether workgroup's settings (specified with <code>EnforceWorkGroupConfiguration</code>) in the <code>WorkGroupConfiguration</code> override client-side settings. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
-        "WorkGroup$Configuration": "<p>The configuration of the workgroup, which includes the location in Amazon S3 where query results are stored, the encryption configuration, if any, used for query results; whether the Amazon CloudWatch Metrics are enabled for the workgroup; whether workgroup settings override client-side settings; and the data usage limits for the amount of data scanned per query or per workgroup. The workgroup settings override is specified in <code>EnforceWorkGroupConfiguration</code> (true/false) in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>"
+        "CreateWorkGroupInput$Configuration": "<p>Contains configuration information for creating an Athena SQL workgroup or Spark enabled Athena workgroup. Athena SQL workgroup configuration includes the location in Amazon S3 where query and calculation results are stored, the encryption configuration, if any, used for encrypting query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup, the limit for the amount of bytes scanned (cutoff) per query, if it is specified, and whether workgroup's settings (specified with <code>EnforceWorkGroupConfiguration</code>) in the <code>WorkGroupConfiguration</code> override client-side settings. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
+        "WorkGroup$Configuration": "<p>The configuration of the workgroup, which includes the location in Amazon S3 where query and calculation results are stored, the encryption configuration, if any, used for query and calculation results; whether the Amazon CloudWatch Metrics are enabled for the workgroup; whether workgroup settings override client-side settings; and the data usage limits for the amount of data scanned per query or per workgroup. The workgroup settings override is specified in <code>EnforceWorkGroupConfiguration</code> (true/false) in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>"
       }
     },
     "WorkGroupConfigurationUpdates": {
-      "base": "<p>The configuration information that will be updated for this workgroup, which includes the location in Amazon S3 where query results are stored, the encryption option, if any, used for query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup, whether the workgroup settings override the client-side settings, and the data usage limit for the amount of bytes scanned per query, if it is specified.</p>",
+      "base": "<p>The configuration information that will be updated for this workgroup, which includes the location in Amazon S3 where query and calculation results are stored, the encryption option, if any, used for query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup, whether the workgroup settings override the client-side settings, and the data usage limit for the amount of bytes scanned per query, if it is specified.</p>",
       "refs": {
         "UpdateWorkGroupInput$ConfigurationUpdates": "<p>Contains configuration updates for an Athena SQL workgroup.</p>"
       }

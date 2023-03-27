@@ -15,11 +15,11 @@
     "CreateFindingAggregator": "<p>Used to enable finding aggregation. Must be called from the aggregation Region.</p> <p>For more details about cross-Region replication, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/finding-aggregation.html\">Configuring finding aggregation</a> in the <i>Security Hub User Guide</i>. </p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
     "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the administrator account. If you are integrated with Organizations, then the administrator account is designated by the organization management account.</p> <p> <code>CreateMembers</code> is always used to add accounts that are not organization members.</p> <p>For accounts that are managed using Organizations, <code>CreateMembers</code> is only used in the following cases:</p> <ul> <li> <p>Security Hub is not configured to automatically add new organization accounts.</p> </li> <li> <p>The account was disassociated or deleted in Security Hub.</p> </li> </ul> <p>This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the <code>EnableSecurityHub</code> operation.</p> <p>For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the <code>InviteMembers</code> operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub.</p> <p>Accounts that are managed using Organizations do not receive an invitation. They automatically become a member account in Security Hub.</p> <ul> <li> <p>If the organization account does not have Security Hub enabled, then Security Hub and the default standards are automatically enabled. Note that Security Hub cannot be enabled automatically for the organization management account. The organization management account must enable Security Hub before the administrator account enables it as a member account.</p> </li> <li> <p>For organization accounts that already have Security Hub enabled, Security Hub does not make any other changes to those accounts. It does not change their enabled standards or controls.</p> </li> </ul> <p>A permissions policy is added that permits the administrator account to view the findings generated in the member account.</p> <p>To remove the association between the administrator and member accounts, use the <code>DisassociateFromMasterAccount</code> or <code>DisassociateMembers</code> operation.</p>",
-    "DeclineInvitations": "<p>Declines invitations to become a member account.</p> <p>This operation is only used by accounts that are not part of an organization. Organization accounts do not receive invitations.</p>",
+    "DeclineInvitations": "<p>Declines invitations to become a member account.</p> <p>A prospective member account uses this operation to decline an invitation to become a member.</p> <p>This operation is only called by member accounts that aren't part of an organization. Organization accounts don't receive invitations.</p>",
     "DeleteActionTarget": "<p>Deletes a custom action target from Security Hub.</p> <p>Deleting a custom action target does not affect any findings or insights that were already sent to Amazon CloudWatch Events using the custom action.</p>",
     "DeleteFindingAggregator": "<p>Deletes a finding aggregator. When you delete the finding aggregator, you stop finding aggregation.</p> <p>When you stop finding aggregation, findings that were already aggregated to the aggregation Region are still visible from the aggregation Region. New findings and finding updates are not aggregated. </p>",
     "DeleteInsight": "<p>Deletes the insight specified by the <code>InsightArn</code>.</p>",
-    "DeleteInvitations": "<p>Deletes invitations received by the Amazon Web Services account to become a member account.</p> <p>This operation is only used by accounts that are not part of an organization. Organization accounts do not receive invitations.</p>",
+    "DeleteInvitations": "<p>Deletes invitations received by the Amazon Web Services account to become a member account.</p> <p>A Security Hub administrator account can use this operation to delete invitations sent to one or more member accounts.</p> <p>This operation is only used to delete invitations that are sent to member accounts that aren't part of an organization. Organization accounts don't receive invitations.</p>",
     "DeleteMembers": "<p>Deletes the specified member accounts from Security Hub.</p> <p>Can be used to delete member accounts that belong to an organization as well as member accounts that were invited manually.</p>",
     "DescribeActionTargets": "<p>Returns a list of the custom action targets in Security Hub in your account.</p>",
     "DescribeHub": "<p>Returns details about the Hub resource in your account, including the <code>HubArn</code> and the time when you enabled Security Hub.</p>",
@@ -114,8 +114,8 @@
     "AccountIdList": {
       "base": null,
       "refs": {
-        "DeclineInvitationsRequest$AccountIds": "<p>The list of account IDs for the accounts from which to decline the invitations to Security Hub.</p>",
-        "DeleteInvitationsRequest$AccountIds": "<p>The list of the account IDs that sent the invitations to delete.</p>",
+        "DeclineInvitationsRequest$AccountIds": "<p>The list of prospective member account IDs for which to decline an invitation.</p>",
+        "DeleteInvitationsRequest$AccountIds": "<p>The list of member account IDs that received the invitations you want to delete.</p>",
         "DeleteMembersRequest$AccountIds": "<p>The list of account IDs for the member accounts to delete.</p>",
         "DisassociateMembersRequest$AccountIds": "<p>The account IDs of the member accounts to disassociate from the administrator account.</p>",
         "GetMembersRequest$AccountIds": "<p>The list of account IDs for the Security Hub member accounts to return the details for. </p>",
@@ -220,6 +220,24 @@
       "base": null,
       "refs": {
         "Compliance$AssociatedStandards": "<p>The enabled security standards in which a security control is currently enabled. </p>"
+      }
+    },
+    "AssociationSetDetails": {
+      "base": "<p> The associations between a route table and one or more subnets or a gateway. </p>",
+      "refs": {
+        "AssociationSetList$member": null
+      }
+    },
+    "AssociationSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2RouteTableDetails$AssociationSet": "<p> The associations between a route table and one or more subnets or a gateway. </p>"
+      }
+    },
+    "AssociationStateDetails": {
+      "base": "<p> Describes the state of an association between a route table and a subnet or gateway. </p>",
+      "refs": {
+        "AssociationSetDetails$AssociationState": "<p> The state of the association between a route table and a subnet or gateway. </p>"
       }
     },
     "AssociationStatus": {
@@ -955,6 +973,12 @@
         "AwsEc2InstanceDetails$MetadataOptions": "<p>Details about the metadata options for the Amazon EC2 instance. </p>"
       }
     },
+    "AwsEc2InstanceMonitoringDetails": {
+      "base": "<p> The type of monitoring that’s turned on for an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2InstanceDetails$Monitoring": "<p> Describes the type of monitoring that’s turned on for an instance. </p>"
+      }
+    },
     "AwsEc2InstanceNetworkInterfacesDetails": {
       "base": "<p>Identifies a network interface for the Amazon EC2 instance.</p>",
       "refs": {
@@ -1307,6 +1331,12 @@
       "base": null,
       "refs": {
         "AwsEc2NetworkInterfaceDetails$SecurityGroups": "<p>Security groups for the network interface.</p>"
+      }
+    },
+    "AwsEc2RouteTableDetails": {
+      "base": "<p> Provides details about a route table for the specified VPC. </p>",
+      "refs": {
+        "ResourceDetails$AwsEc2RouteTable": "<p> Provides details about a route table. A route table contains a set of rules, called routes, that determine where to direct network traffic from your subnet or gateway. </p>"
       }
     },
     "AwsEc2SecurityGroupDetails": {
@@ -3186,6 +3216,24 @@
         "AwsS3BucketNotificationConfigurationS3KeyFilter$FilterRules": "<p>The filter rules for the filter.</p>"
       }
     },
+    "AwsS3BucketObjectLockConfiguration": {
+      "base": "<p> The container element for S3 Object Lock configuration parameters. In Amazon S3, Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. </p>",
+      "refs": {
+        "AwsS3BucketDetails$ObjectLockConfiguration": "<p> Specifies which rule Amazon S3 applies by default to every new object placed in the specified bucket. </p>"
+      }
+    },
+    "AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails": {
+      "base": "<p> The default S3 Object Lock retention mode and period that you want to apply to new objects placed in the specified Amazon S3 bucket. </p>",
+      "refs": {
+        "AwsS3BucketObjectLockConfigurationRuleDetails$DefaultRetention": "<p> The default Object Lock retention mode and period that you want to apply to new objects placed in the specified bucket. </p>"
+      }
+    },
+    "AwsS3BucketObjectLockConfigurationRuleDetails": {
+      "base": "<p> Specifies the S3 Object Lock rule for the specified object. In Amazon S3, Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. </p>",
+      "refs": {
+        "AwsS3BucketObjectLockConfiguration$Rule": "<p> Specifies the Object Lock rule for the specified object. </p>"
+      }
+    },
     "AwsS3BucketServerSideEncryptionByDefault": {
       "base": "<p>Specifies the default server-side encryption to apply to new objects in the bucket.</p>",
       "refs": {
@@ -3730,6 +3778,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "AssociationSetDetails$Main": "<p> Indicates whether this is the main route table. </p>",
         "AwsApiGatewayCanarySettings$UseStageCache": "<p>Indicates whether the canary deployment uses the stage cache.</p>",
         "AwsApiGatewayMethodSettings$MetricsEnabled": "<p>Indicates whether CloudWatch metrics are enabled for the method. </p>",
         "AwsApiGatewayMethodSettings$DataTraceEnabled": "<p>Indicates whether data trace logging is enabled for the method. Data trace logging affects the log entries that are pushed to CloudWatch Logs.</p>",
@@ -3817,6 +3866,7 @@
         "AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails$ReadOnly": "<p>Whether the container has read-only access to the volume.</p>",
         "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$Autoprovision": "<p>Whether to create the Docker volume automatically if it does not already exist.</p>",
         "AwsEksClusterLoggingClusterLoggingDetails$Enabled": "<p>Whether the logging types that are listed in <code>Types</code> are enabled.</p>",
+        "AwsEksClusterResourcesVpcConfigDetails$EndpointPublicAccess": "<p> Indicates whether the Amazon EKS public API server endpoint is turned on. If the Amazon EKS public API server endpoint is turned off, your cluster's Kubernetes API server can only receive requests that originate from within the cluster VPC. </p>",
         "AwsElasticsearchDomainDomainEndpointOptions$EnforceHTTPS": "<p>Whether to require that all traffic to the domain arrive over HTTPS.</p>",
         "AwsElasticsearchDomainElasticsearchClusterConfigDetails$DedicatedMasterEnabled": "<p>Whether to use a dedicated master node for the Elasticsearch domain. A dedicated master node performs cluster management tasks, but doesn't hold data or respond to data upload requests.</p>",
         "AwsElasticsearchDomainElasticsearchClusterConfigDetails$ZoneAwarenessEnabled": "<p>Whether to enable zone awareness for the Elasticsearch domain. When zone awareness is enabled, OpenSearch allocates the cluster's nodes and replica index shards across Availability Zones in the same Region. This prevents data loss and minimizes downtime if a node or data center fails.</p>",
@@ -3996,8 +4046,8 @@
     "ControlFindingGenerator": {
       "base": null,
       "refs": {
-        "DescribeHubResponse$ControlFindingGenerator": "<p>Specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to <code>SECURITY_CONTROL</code>, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.</p> <p>If the value for this field is set to <code>STANDARD_CONTROL</code>, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.</p> <p>The value for this field in a member account matches the value in the administrator account. For accounts that aren't part of an organization, the default value of this field is <code>SECURITY_CONTROL</code> if you enabled Security Hub on or after February 9, 2023.</p>",
-        "EnableSecurityHubRequest$ControlFindingGenerator": "<p>This field, used when enabling Security Hub, specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to <code>SECURITY_CONTROL</code>, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.</p> <p>If the value for this field is set to <code>STANDARD_CONTROL</code>, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.</p> <p>The value for this field in a member account matches the value in the administrator account. For accounts that aren't part of an organization, the default value of this field is <code>SECURITY_CONTROL</code> if you enabled Security Hub on or after February 9, 2023.</p>",
+        "DescribeHubResponse$ControlFindingGenerator": "<p>Specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to <code>SECURITY_CONTROL</code>, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.</p> <p>If the value for this field is set to <code>STANDARD_CONTROL</code>, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.</p> <p>The value for this field in a member account matches the value in the administrator account. For accounts that aren't part of an organization, the default value of this field is <code>SECURITY_CONTROL</code> if you enabled Security Hub on or after February 23, 2023.</p>",
+        "EnableSecurityHubRequest$ControlFindingGenerator": "<p>This field, used when enabling Security Hub, specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to <code>SECURITY_CONTROL</code>, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.</p> <p>If the value for this field is set to <code>STANDARD_CONTROL</code>, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.</p> <p>The value for this field in a member account matches the value in the administrator account. For accounts that aren't part of an organization, the default value of this field is <code>SECURITY_CONTROL</code> if you enabled Security Hub on or after February 23, 2023.</p>",
         "UpdateSecurityHubConfigurationRequest$ControlFindingGenerator": "<p>Updates whether the calling account has consolidated control findings turned on. If the value for this field is set to <code>SECURITY_CONTROL</code>, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.</p> <p>If the value for this field is set to <code>STANDARD_CONTROL</code>, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards.</p> <p>For accounts that are part of an organization, this value can only be updated in the administrator account.</p>"
       }
     },
@@ -4790,6 +4840,8 @@
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$NoncurrentVersionExpirationInDays": "<p>The number of days that an object is noncurrent before Amazon S3 can perform the associated action.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails$Days": "<p>The number of days that an object is noncurrent before Amazon S3 can perform the associated action.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails$Days": "<p>The number of days after which to transition the object to the specified storage class. If you provide <code>Days</code>, you cannot provide <code>Date</code>.</p>",
+        "AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails$Days": "<p> The number of days that you want to specify for the default retention period. </p>",
+        "AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails$Years": "<p> The number of years that you want to specify for the default retention period. </p>",
         "AwsSageMakerNotebookInstanceDetails$VolumeSizeInGB": "<p> The size, in GB, of the ML storage volume to attach to the notebook instance. </p>",
         "AwsSecretsManagerSecretRotationRules$AutomaticallyAfterDays": "<p>The number of days after the previous rotation to rotate the secret.</p>",
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
@@ -4836,7 +4888,7 @@
         "PortRangeFromTo$From": "<p>The first port in the port range.</p>",
         "PortRangeFromTo$To": "<p>The last port in the port range.</p>",
         "ProcessDetails$Pid": "<p>The process ID.</p>",
-        "ProcessDetails$ParentPid": "<p>The parent process ID.</p>",
+        "ProcessDetails$ParentPid": "<p>The parent process ID. This field accepts positive integers between <code>O</code> and <code>2147483647</code>.</p>",
         "RuleGroupSourceStatelessRuleMatchAttributesDestinationPorts$FromPort": "<p>The starting port value for the port range.</p>",
         "RuleGroupSourceStatelessRuleMatchAttributesDestinationPorts$ToPort": "<p>The ending port value for the port range.</p>",
         "RuleGroupSourceStatelessRuleMatchAttributesProtocolsList$member": null,
@@ -5253,6 +5305,12 @@
         "AdminAccount$AccountId": "<p>The Amazon Web Services account identifier of the Security Hub administrator account.</p>",
         "ArnList$member": null,
         "AssociatedStandard$StandardsId": "<p>The unique identifier of a standard in which a control is enabled. This field consists of the resource portion of the Amazon Resource Name (ARN) returned for a standard in the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html\">DescribeStandards</a> API response. </p>",
+        "AssociationSetDetails$GatewayId": "<p> The ID of the internet gateway or virtual private gateway. </p>",
+        "AssociationSetDetails$RouteTableAssociationId": "<p> The ID of the association. </p>",
+        "AssociationSetDetails$RouteTableId": "<p> The ID of the route table. </p>",
+        "AssociationSetDetails$SubnetId": "<p> The ID of the subnet. A subnet ID is not returned for an implicit association. </p>",
+        "AssociationStateDetails$State": "<p> The state of the association. </p>",
+        "AssociationStateDetails$StatusMessage": "<p> The status message, if applicable. </p>",
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZone$SubnetId": "<p>The ID of the subnet. You can specify one subnet per Availability Zone.</p>",
         "AwsApiCallAction$Api": "<p>The name of the API method that was issued.</p>",
@@ -5539,6 +5597,7 @@
         "AwsEc2InstanceMetadataOptions$HttpProtocolIpv6": "<p>Enables or disables the IPv6 endpoint for the instance metadata service. </p>",
         "AwsEc2InstanceMetadataOptions$HttpTokens": "<p>The state of token usage for your instance metadata requests. </p>",
         "AwsEc2InstanceMetadataOptions$InstanceMetadataTags": "<p>Specifies whether to allow access to instance tags from the instance metadata. </p>",
+        "AwsEc2InstanceMonitoringDetails$State": "<p> Indicates whether detailed monitoring is turned on. Otherwise, basic monitoring is turned on. </p>",
         "AwsEc2InstanceNetworkInterfacesDetails$NetworkInterfaceId": "<p>The identifier of the network interface. The details are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code> object.</p>",
         "AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails$DeviceName": "<p> The device name. </p>",
         "AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails$NoDevice": "<p> Omits the device from the block device mapping when an empty string is specified. </p>",
@@ -5617,6 +5676,9 @@
         "AwsEc2NetworkInterfacePrivateIpAddressDetail$PrivateDnsName": "<p>The private DNS name for the IP address.</p>",
         "AwsEc2NetworkInterfaceSecurityGroup$GroupName": "<p>The name of the security group.</p>",
         "AwsEc2NetworkInterfaceSecurityGroup$GroupId": "<p>The ID of the security group.</p>",
+        "AwsEc2RouteTableDetails$OwnerId": "<p> The ID of the Amazon Web Services account that owns the route table. </p>",
+        "AwsEc2RouteTableDetails$RouteTableId": "<p> The ID of the route table. </p>",
+        "AwsEc2RouteTableDetails$VpcId": "<p> The ID of the virtual private cloud (VPC). </p>",
         "AwsEc2SecurityGroupDetails$GroupName": "<p>The name of the security group.</p>",
         "AwsEc2SecurityGroupDetails$GroupId": "<p>The ID of the security group.</p>",
         "AwsEc2SecurityGroupDetails$OwnerId": "<p>The Amazon Web Services account ID of the owner of the security group.</p>",
@@ -6237,6 +6299,8 @@
         "AwsS3BucketNotificationConfigurationDetail$Type": "<p>Indicates the type of notification. Notifications can be generated using Lambda functions, Amazon SQS queues, or Amazon SNS topics, with corresponding valid values as follows:</p> <ul> <li> <p> <code>LambdaConfiguration</code> </p> </li> <li> <p> <code>QueueConfiguration</code> </p> </li> <li> <p> <code>TopicConfiguration</code> </p> </li> </ul>",
         "AwsS3BucketNotificationConfigurationEvents$member": null,
         "AwsS3BucketNotificationConfigurationS3KeyFilterRule$Value": "<p>The filter value.</p>",
+        "AwsS3BucketObjectLockConfiguration$ObjectLockEnabled": "<p> Indicates whether the bucket has an Object Lock configuration enabled. </p>",
+        "AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails$Mode": "<p> The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. </p>",
         "AwsS3BucketServerSideEncryptionByDefault$SSEAlgorithm": "<p>Server-side encryption algorithm to use for the default encryption. Valid values are <code>aws: kms</code> or <code>AES256</code>.</p>",
         "AwsS3BucketServerSideEncryptionByDefault$KMSMasterKeyID": "<p>KMS key ID to use for the default encryption.</p>",
         "AwsS3BucketWebsiteConfiguration$ErrorDocument": "<p>The name of the error document for the website.</p>",
@@ -6528,6 +6592,7 @@
         "Product$ActivationUrl": "<p>The URL to the service or product documentation about the integration with Security Hub, including how to activate the integration.</p>",
         "Product$ProductSubscriptionResourcePolicy": "<p>The resource policy associated with the product.</p>",
         "ProductSubscriptionArnList$member": null,
+        "PropagatingVgwSetDetails$GatewayId": "<p> The ID of the virtual private gateway. </p>",
         "Recommendation$Text": "<p>Describes the recommended steps to take to remediate an issue identified in a finding.</p>",
         "Recommendation$Url": "<p>A URL to a page or site that contains information about how to remediate a finding.</p>",
         "Record$JsonPath": "<p>The path, as a JSONPath expression, to the field in the record that contains the data. If the field name is longer than 20 characters, it is truncated. If the path is longer than 250 characters, it is truncated.</p>",
@@ -6543,6 +6608,22 @@
         "ResourceNotFoundException$Message": null,
         "ResourceNotFoundException$Code": null,
         "Result$ProcessingResult": "<p>The reason that the account was not processed.</p>",
+        "RouteSetDetails$CarrierGatewayId": "<p> The ID of the carrier gateway. </p>",
+        "RouteSetDetails$CoreNetworkArn": "<p> The Amazon Resource Name (ARN) of the core network. </p>",
+        "RouteSetDetails$DestinationCidrBlock": "<p> The IPv4 CIDR block used for the destination match. </p>",
+        "RouteSetDetails$DestinationIpv6CidrBlock": "<p> The IPv6 CIDR block used for the destination match. </p>",
+        "RouteSetDetails$DestinationPrefixListId": "<p> The prefix of the destination Amazon Web Service. </p>",
+        "RouteSetDetails$EgressOnlyInternetGatewayId": "<p> The ID of the egress-only internet gateway. </p>",
+        "RouteSetDetails$GatewayId": "<p> The ID of a gateway attached to your VPC. </p>",
+        "RouteSetDetails$InstanceId": "<p> The ID of a NAT instance in your VPC. </p>",
+        "RouteSetDetails$InstanceOwnerId": "<p> The ID of the Amazon Web Services account that owns the instance. </p>",
+        "RouteSetDetails$LocalGatewayId": "<p> The ID of the local gateway. </p>",
+        "RouteSetDetails$NatGatewayId": "<p> The ID of a NAT gateway. </p>",
+        "RouteSetDetails$NetworkInterfaceId": "<p> The ID of the network interface. </p>",
+        "RouteSetDetails$Origin": "<p> Describes how the route was created. </p>",
+        "RouteSetDetails$State": "<p> The state of the route. </p>",
+        "RouteSetDetails$TransitGatewayId": "<p> The ID of a transit gateway. </p>",
+        "RouteSetDetails$VpcPeeringConnectionId": "<p> The ID of a VPC peering connection. </p>",
         "RuleGroupSource$RulesString": "<p>Stateful inspection criteria, provided in Suricata compatible intrusion prevention system (IPS) rules.</p>",
         "RuleGroupSourceCustomActionsDetails$ActionName": "<p>A descriptive name of the custom action.</p>",
         "RuleGroupSourceListDetails$GeneratedRulesType": "<p>Indicates whether to allow or deny access to the domains listed in <code>Targets</code>.</p>",
@@ -6775,7 +6856,7 @@
         "AwsSecurityFindingFilters$NetworkSourcePort": "<p>The source port of network-related information about a finding.</p>",
         "AwsSecurityFindingFilters$NetworkDestinationPort": "<p>The destination port of network-related information about a finding.</p>",
         "AwsSecurityFindingFilters$ProcessPid": "<p>The process ID.</p>",
-        "AwsSecurityFindingFilters$ProcessParentPid": "<p>The parent process ID.</p>",
+        "AwsSecurityFindingFilters$ProcessParentPid": "<p>The parent process ID. This field accepts positive integers between <code>O</code> and <code>2147483647</code>.</p>",
         "AwsSecurityFindingFilters$FindingProviderFieldsConfidence": "<p>The finding provider value for the finding confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFindingFilters$FindingProviderFieldsCriticality": "<p>The finding provider value for the level of importance assigned to the resources associated with the findings.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources. </p>"
       }
@@ -6870,6 +6951,18 @@
       "base": null,
       "refs": {
         "DescribeProductsResponse$Products": "<p>A list of products, including details for each product.</p>"
+      }
+    },
+    "PropagatingVgwSetDetails": {
+      "base": "<p> Describes a virtual private gateway propagating route. </p>",
+      "refs": {
+        "PropagatingVgwSetList$member": null
+      }
+    },
+    "PropagatingVgwSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2RouteTableDetails$PropagatingVgwSet": "<p> Describes a virtual private gateway propagating route. </p>"
       }
     },
     "Range": {
@@ -7008,6 +7101,18 @@
         "DeleteMembersResponse$UnprocessedAccounts": "<p>The list of Amazon Web Services accounts that were not deleted. For each account, the list includes the account ID and the email address.</p>",
         "GetMembersResponse$UnprocessedAccounts": "<p>The list of Amazon Web Services accounts that could not be processed. For each account, the list includes the account ID and the email address.</p>",
         "InviteMembersResponse$UnprocessedAccounts": "<p>The list of Amazon Web Services accounts that could not be processed. For each account, the list includes the account ID and the email address.</p>"
+      }
+    },
+    "RouteSetDetails": {
+      "base": "<p> Provides details about the routes in the route table. </p>",
+      "refs": {
+        "RouteSetList$member": null
+      }
+    },
+    "RouteSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2RouteTableDetails$RouteSet": "<p> The routes in the route table. </p>"
       }
     },
     "RuleGroupDetails": {
