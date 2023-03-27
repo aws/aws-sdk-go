@@ -1126,6 +1126,28 @@
       "type":"list",
       "member":{"shape":"AssociatedStandard"}
     },
+    "AssociationSetDetails":{
+      "type":"structure",
+      "members":{
+        "AssociationState":{"shape":"AssociationStateDetails"},
+        "GatewayId":{"shape":"NonEmptyString"},
+        "Main":{"shape":"Boolean"},
+        "RouteTableAssociationId":{"shape":"NonEmptyString"},
+        "RouteTableId":{"shape":"NonEmptyString"},
+        "SubnetId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AssociationSetList":{
+      "type":"list",
+      "member":{"shape":"AssociationSetDetails"}
+    },
+    "AssociationStateDetails":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"NonEmptyString"},
+        "StatusMessage":{"shape":"NonEmptyString"}
+      }
+    },
     "AssociationStatus":{
       "type":"string",
       "enum":[
@@ -2177,7 +2199,8 @@
         "LaunchedAt":{"shape":"NonEmptyString"},
         "NetworkInterfaces":{"shape":"AwsEc2InstanceNetworkInterfacesList"},
         "VirtualizationType":{"shape":"NonEmptyString"},
-        "MetadataOptions":{"shape":"AwsEc2InstanceMetadataOptions"}
+        "MetadataOptions":{"shape":"AwsEc2InstanceMetadataOptions"},
+        "Monitoring":{"shape":"AwsEc2InstanceMonitoringDetails"}
       }
     },
     "AwsEc2InstanceMetadataOptions":{
@@ -2188,6 +2211,12 @@
         "HttpPutResponseHopLimit":{"shape":"Integer"},
         "HttpTokens":{"shape":"NonEmptyString"},
         "InstanceMetadataTags":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2InstanceMonitoringDetails":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"NonEmptyString"}
       }
     },
     "AwsEc2InstanceNetworkInterfacesDetails":{
@@ -2655,6 +2684,17 @@
     "AwsEc2NetworkInterfaceSecurityGroupList":{
       "type":"list",
       "member":{"shape":"AwsEc2NetworkInterfaceSecurityGroup"}
+    },
+    "AwsEc2RouteTableDetails":{
+      "type":"structure",
+      "members":{
+        "AssociationSet":{"shape":"AssociationSetList"},
+        "OwnerId":{"shape":"NonEmptyString"},
+        "PropagatingVgwSet":{"shape":"PropagatingVgwSetList"},
+        "RouteTableId":{"shape":"NonEmptyString"},
+        "RouteSet":{"shape":"RouteSetList"},
+        "VpcId":{"shape":"NonEmptyString"}
+      }
     },
     "AwsEc2SecurityGroupDetails":{
       "type":"structure",
@@ -3625,7 +3665,8 @@
       "type":"structure",
       "members":{
         "SecurityGroupIds":{"shape":"NonEmptyStringList"},
-        "SubnetIds":{"shape":"NonEmptyStringList"}
+        "SubnetIds":{"shape":"NonEmptyStringList"},
+        "EndpointPublicAccess":{"shape":"Boolean"}
       }
     },
     "AwsElasticBeanstalkEnvironmentDetails":{
@@ -5174,7 +5215,8 @@
         "BucketLoggingConfiguration":{"shape":"AwsS3BucketLoggingConfiguration"},
         "BucketWebsiteConfiguration":{"shape":"AwsS3BucketWebsiteConfiguration"},
         "BucketNotificationConfiguration":{"shape":"AwsS3BucketNotificationConfiguration"},
-        "BucketVersioningConfiguration":{"shape":"AwsS3BucketBucketVersioningConfiguration"}
+        "BucketVersioningConfiguration":{"shape":"AwsS3BucketBucketVersioningConfiguration"},
+        "ObjectLockConfiguration":{"shape":"AwsS3BucketObjectLockConfiguration"}
       }
     },
     "AwsS3BucketLoggingConfiguration":{
@@ -5236,6 +5278,27 @@
     "AwsS3BucketNotificationConfigurationS3KeyFilterRules":{
       "type":"list",
       "member":{"shape":"AwsS3BucketNotificationConfigurationS3KeyFilterRule"}
+    },
+    "AwsS3BucketObjectLockConfiguration":{
+      "type":"structure",
+      "members":{
+        "ObjectLockEnabled":{"shape":"NonEmptyString"},
+        "Rule":{"shape":"AwsS3BucketObjectLockConfigurationRuleDetails"}
+      }
+    },
+    "AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails":{
+      "type":"structure",
+      "members":{
+        "Days":{"shape":"Integer"},
+        "Mode":{"shape":"NonEmptyString"},
+        "Years":{"shape":"Integer"}
+      }
+    },
+    "AwsS3BucketObjectLockConfigurationRuleDetails":{
+      "type":"structure",
+      "members":{
+        "DefaultRetention":{"shape":"AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails"}
+      }
     },
     "AwsS3BucketServerSideEncryptionByDefault":{
       "type":"structure",
@@ -7624,6 +7687,16 @@
       "type":"list",
       "member":{"shape":"Product"}
     },
+    "PropagatingVgwSetDetails":{
+      "type":"structure",
+      "members":{
+        "GatewayId":{"shape":"NonEmptyString"}
+      }
+    },
+    "PropagatingVgwSetList":{
+      "type":"list",
+      "member":{"shape":"PropagatingVgwSetDetails"}
+    },
     "Range":{
       "type":"structure",
       "members":{
@@ -7813,7 +7886,8 @@
         "AwsEc2LaunchTemplate":{"shape":"AwsEc2LaunchTemplateDetails"},
         "AwsSageMakerNotebookInstance":{"shape":"AwsSageMakerNotebookInstanceDetails"},
         "AwsWafv2WebAcl":{"shape":"AwsWafv2WebAclDetails"},
-        "AwsWafv2RuleGroup":{"shape":"AwsWafv2RuleGroupDetails"}
+        "AwsWafv2RuleGroup":{"shape":"AwsWafv2RuleGroupDetails"},
+        "AwsEc2RouteTable":{"shape":"AwsEc2RouteTableDetails"}
       }
     },
     "ResourceList":{
@@ -7839,6 +7913,31 @@
     "ResultList":{
       "type":"list",
       "member":{"shape":"Result"}
+    },
+    "RouteSetDetails":{
+      "type":"structure",
+      "members":{
+        "CarrierGatewayId":{"shape":"NonEmptyString"},
+        "CoreNetworkArn":{"shape":"NonEmptyString"},
+        "DestinationCidrBlock":{"shape":"NonEmptyString"},
+        "DestinationIpv6CidrBlock":{"shape":"NonEmptyString"},
+        "DestinationPrefixListId":{"shape":"NonEmptyString"},
+        "EgressOnlyInternetGatewayId":{"shape":"NonEmptyString"},
+        "GatewayId":{"shape":"NonEmptyString"},
+        "InstanceId":{"shape":"NonEmptyString"},
+        "InstanceOwnerId":{"shape":"NonEmptyString"},
+        "LocalGatewayId":{"shape":"NonEmptyString"},
+        "NatGatewayId":{"shape":"NonEmptyString"},
+        "NetworkInterfaceId":{"shape":"NonEmptyString"},
+        "Origin":{"shape":"NonEmptyString"},
+        "State":{"shape":"NonEmptyString"},
+        "TransitGatewayId":{"shape":"NonEmptyString"},
+        "VpcPeeringConnectionId":{"shape":"NonEmptyString"}
+      }
+    },
+    "RouteSetList":{
+      "type":"list",
+      "member":{"shape":"RouteSetDetails"}
     },
     "RuleGroupDetails":{
       "type":"structure",

@@ -12545,6 +12545,8 @@ type DescribeInputDeviceOutput struct {
 
 	SerialNumber *string `locationName:"serialNumber" type:"string"`
 
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
 	// The type of the input device. For an AWS Elemental Link device that outputs
 	// resolutions up to 1080, choose "HD".
 	Type *string `locationName:"type" type:"string" enum:"InputDeviceType"`
@@ -12629,6 +12631,12 @@ func (s *DescribeInputDeviceOutput) SetNetworkSettings(v *InputDeviceNetworkSett
 // SetSerialNumber sets the SerialNumber field's value.
 func (s *DescribeInputDeviceOutput) SetSerialNumber(v string) *DescribeInputDeviceOutput {
 	s.SerialNumber = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeInputDeviceOutput) SetTags(v map[string]*string) *DescribeInputDeviceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -18086,12 +18094,13 @@ func (s *HlsGroupSettings) SetTsFileMode(v string) *HlsGroupSettings {
 type HlsId3SegmentTaggingScheduleActionSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Base64 string formatted according to the ID3 specification: http://id3.org/id3v2.4.0-structure
+	Id3 *string `locationName:"id3" type:"string"`
+
 	// ID3 tag to insert into each segment. Supports special keyword identifiers
 	// to substitute in segment-related values.\nSupported keyword identifiers:
 	// https://docs.aws.amazon.com/medialive/latest/ug/variable-data-identifiers.html
-	//
-	// Tag is a required field
-	Tag *string `locationName:"tag" type:"string" required:"true"`
+	Tag *string `locationName:"tag" type:"string"`
 }
 
 // String returns the string representation.
@@ -18112,17 +18121,10 @@ func (s HlsId3SegmentTaggingScheduleActionSettings) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *HlsId3SegmentTaggingScheduleActionSettings) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "HlsId3SegmentTaggingScheduleActionSettings"}
-	if s.Tag == nil {
-		invalidParams.Add(request.NewErrParamRequired("Tag"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
+// SetId3 sets the Id3 field's value.
+func (s *HlsId3SegmentTaggingScheduleActionSettings) SetId3(v string) *HlsId3SegmentTaggingScheduleActionSettings {
+	s.Id3 = &v
+	return s
 }
 
 // SetTag sets the Tag field's value.
@@ -19496,6 +19498,9 @@ type InputDeviceSummary struct {
 	// The unique serial number of the input device.
 	SerialNumber *string `locationName:"serialNumber" type:"string"`
 
+	// A collection of key-value pairs.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
 	// The type of the input device.
 	Type *string `locationName:"type" type:"string" enum:"InputDeviceType"`
 
@@ -19578,6 +19583,12 @@ func (s *InputDeviceSummary) SetNetworkSettings(v *InputDeviceNetworkSettings) *
 // SetSerialNumber sets the SerialNumber field's value.
 func (s *InputDeviceSummary) SetSerialNumber(v string) *InputDeviceSummary {
 	s.SerialNumber = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *InputDeviceSummary) SetTags(v map[string]*string) *InputDeviceSummary {
+	s.Tags = v
 	return s
 }
 
@@ -27178,11 +27189,6 @@ func (s ScheduleActionSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ScheduleActionSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ScheduleActionSettings"}
-	if s.HlsId3SegmentTaggingSettings != nil {
-		if err := s.HlsId3SegmentTaggingSettings.Validate(); err != nil {
-			invalidParams.AddNested("HlsId3SegmentTaggingSettings", err.(request.ErrInvalidParams))
-		}
-	}
 	if s.HlsTimedMetadataSettings != nil {
 		if err := s.HlsTimedMetadataSettings.Validate(); err != nil {
 			invalidParams.AddNested("HlsTimedMetadataSettings", err.(request.ErrInvalidParams))
@@ -30665,6 +30671,8 @@ type UpdateInputDeviceOutput struct {
 
 	SerialNumber *string `locationName:"serialNumber" type:"string"`
 
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
 	// The type of the input device. For an AWS Elemental Link device that outputs
 	// resolutions up to 1080, choose "HD".
 	Type *string `locationName:"type" type:"string" enum:"InputDeviceType"`
@@ -30749,6 +30757,12 @@ func (s *UpdateInputDeviceOutput) SetNetworkSettings(v *InputDeviceNetworkSettin
 // SetSerialNumber sets the SerialNumber field's value.
 func (s *UpdateInputDeviceOutput) SetSerialNumber(v string) *UpdateInputDeviceOutput {
 	s.SerialNumber = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateInputDeviceOutput) SetTags(v map[string]*string) *UpdateInputDeviceOutput {
+	s.Tags = v
 	return s
 }
 

@@ -1206,7 +1206,8 @@ type CreateParticipantConnectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// Amazon Connect Participant is used to mark the participant as connected for
-	// message streaming.
+	// customer participant in message streaming, as well as for agent or manager
+	// participant in non-streaming chats.
 	ConnectParticipant *bool `type:"boolean"`
 
 	// This is a header parameter.
@@ -2135,11 +2136,14 @@ type SendMessageInput struct {
 	//    * For application/json, the Length Constraints are Minimum of 1, Maximum
 	//    of 12000.
 	//
+	//    * For application/vnd.amazonaws.connect.message.interactive.response,
+	//    the Length Constraints are Minimum of 1, Maximum of 12288.
+	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The type of the content. Supported types are text/plain, text/markdown, and
-	// application/json.
+	// The type of the content. Supported types are text/plain, text/markdown, application/json,
+	// and application/vnd.amazonaws.connect.message.interactive.response.
 	//
 	// ContentType is a required field
 	ContentType *string `min:"1" type:"string" required:"true"`

@@ -28,9 +28,11 @@
     "DeleteQueuedMessages": "<p>Remove queued messages from the downlink queue.</p>",
     "DeleteServiceProfile": "<p>Deletes a service profile.</p>",
     "DeleteWirelessDevice": "<p>Deletes a wireless device.</p>",
+    "DeleteWirelessDeviceImportTask": "<p>Delete an import task.</p>",
     "DeleteWirelessGateway": "<p>Deletes a wireless gateway.</p>",
     "DeleteWirelessGatewayTask": "<p>Deletes a wireless gateway task.</p>",
     "DeleteWirelessGatewayTaskDefinition": "<p>Deletes a wireless gateway task definition. Deleting this task definition does not affect tasks that are currently in progress.</p>",
+    "DeregisterWirelessDevice": "<p>Deregister a wireless device from AWS IoT Wireless.</p>",
     "DisassociateAwsAccountFromPartnerAccount": "<p>Disassociates your AWS account from a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code> are <code>null</code>, disassociates your AWS account from all partner accounts.</p>",
     "DisassociateMulticastGroupFromFuotaTask": "<p>Disassociates a multicast group from a fuota task.</p>",
     "DisassociateWirelessDeviceFromFuotaTask": "<p>Disassociates a wireless device from a FUOTA task.</p>",
@@ -56,6 +58,7 @@
     "GetServiceEndpoint": "<p>Gets the account-specific endpoint for Configuration and Update Server (CUPS) protocol or LoRaWAN Network Server (LNS) connections.</p>",
     "GetServiceProfile": "<p>Gets information about a service profile.</p>",
     "GetWirelessDevice": "<p>Gets information about a wireless device.</p>",
+    "GetWirelessDeviceImportTask": "<p>Get information about an import task and count of device onboarding summary information for the import task.</p>",
     "GetWirelessDeviceStatistics": "<p>Gets operating information about a wireless device.</p>",
     "GetWirelessGateway": "<p>Gets information about a wireless gateway.</p>",
     "GetWirelessGatewayCertificate": "<p>Gets the ID of the certificate that is currently associated with a wireless gateway.</p>",
@@ -65,6 +68,7 @@
     "GetWirelessGatewayTaskDefinition": "<p>Gets information about a wireless gateway task definition.</p>",
     "ListDestinations": "<p>Lists the destinations registered to your AWS account.</p>",
     "ListDeviceProfiles": "<p>Lists the device profiles registered to your AWS account.</p>",
+    "ListDevicesForWirelessDeviceImportTask": "<p>List the Sidewalk devices in an import task and their onboarding status.</p>",
     "ListEventConfigurations": "<p>List event configurations where at least one event topic has been enabled.</p>",
     "ListFuotaTasks": "<p>Lists the FUOTA tasks registered to your AWS account.</p>",
     "ListMulticastGroups": "<p>Lists the multicast groups registered to your AWS account.</p>",
@@ -75,6 +79,7 @@
     "ListQueuedMessages": "<p>List queued messages in the downlink queue.</p>",
     "ListServiceProfiles": "<p>Lists the service profiles registered to your AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
+    "ListWirelessDeviceImportTasks": "<p>List wireless devices that have been added to an import task.</p>",
     "ListWirelessDevices": "<p>Lists the wireless devices registered to your AWS account.</p>",
     "ListWirelessGatewayTaskDefinitions": "<p>List the wireless gateway tasks definitions registered to your AWS account.</p>",
     "ListWirelessGateways": "<p>Lists the wireless gateways registered to your AWS account.</p>",
@@ -88,6 +93,8 @@
     "StartBulkDisassociateWirelessDeviceFromMulticastGroup": "<p>Starts a bulk disassociatin of all qualifying wireless devices from a multicast group.</p>",
     "StartFuotaTask": "<p>Starts a FUOTA task.</p>",
     "StartMulticastGroupSession": "<p>Starts a multicast group session.</p>",
+    "StartSingleWirelessDeviceImportTask": "<p>Start import task for a single wireless device.</p>",
+    "StartWirelessDeviceImportTask": "<p>Start import task for provisioning Sidewalk devices in bulk using an S3 CSV file.</p>",
     "TagResource": "<p>Adds a tag to a resource.</p>",
     "TestWirelessDevice": "<p>Simulates a provisioned device by sending an uplink data payload of <code>Hello</code>.</p>",
     "UntagResource": "<p>Removes one or more tags from a resource.</p>",
@@ -102,6 +109,7 @@
     "UpdateResourceEventConfiguration": "<p>Update the event configuration for a particular resource identifier.</p>",
     "UpdateResourcePosition": "<p>Update the position information of a given wireless device or a wireless gateway resource. The position coordinates are based on the <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\"> World Geodetic System (WGS84)</a>.</p>",
     "UpdateWirelessDevice": "<p>Updates properties of a wireless device.</p>",
+    "UpdateWirelessDeviceImportTask": "<p>Update an import task to add more devices to the task.</p>",
     "UpdateWirelessGateway": "<p>Updates properties of a wireless gateway.</p>"
   },
   "shapes": {
@@ -165,6 +173,12 @@
         "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource to remove tags from.</p>"
       }
     },
+    "ApId": {
+      "base": null,
+      "refs": {
+        "DakCertificateMetadata$ApId": "<p>The advertised product ID (APID) that's used for pre-production and production applications.</p>"
+      }
+    },
     "AppEui": {
       "base": null,
       "refs": {
@@ -202,6 +216,12 @@
       "base": null,
       "refs": {
         "ApplicationConfig$Type": "<p>Application type, which can be specified to obtain real-time position information of your LoRaWAN device.</p>"
+      }
+    },
+    "ApplicationServerPublicKey": {
+      "base": null,
+      "refs": {
+        "SidewalkGetDeviceProfile$ApplicationServerPublicKey": "<p>The Sidewalk application server public key.</p>"
       }
     },
     "Applications": {
@@ -426,7 +446,8 @@
     "CertificateList": {
       "base": "<p>List of sidewalk certificates.</p>",
       "refs": {
-        "DeviceCertificateList$member": null
+        "DeviceCertificateList$member": null,
+        "PrivateKeysList$member": null
       }
     },
     "CertificatePEM": {
@@ -471,7 +492,9 @@
         "CreateServiceProfileRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
         "CreateWirelessDeviceRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
         "CreateWirelessGatewayRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
-        "CreateWirelessGatewayTaskDefinitionRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>"
+        "CreateWirelessGatewayTaskDefinitionRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
+        "StartSingleWirelessDeviceImportTaskRequest$ClientRequestToken": null,
+        "StartWirelessDeviceImportTaskRequest$ClientRequestToken": null
       }
     },
     "ConflictException": {
@@ -626,6 +649,32 @@
         "GetPositionEstimateRequest$Timestamp": "<p>Optional information that specifies the time when the position information will be resolved. It uses the Unix timestamp format. If not specified, the time at which the request was received will be used.</p>"
       }
     },
+    "CreationTime": {
+      "base": null,
+      "refs": {
+        "GetWirelessDeviceImportTaskResponse$CreationTime": "<p>The time at which the import task was created.</p>",
+        "WirelessDeviceImportTask$CreationTime": "<p>The time at which the import task was created.</p>"
+      }
+    },
+    "DakCertificateId": {
+      "base": null,
+      "refs": {
+        "DakCertificateMetadata$CertificateId": "<p>The certificate ID for the DAK.</p>",
+        "SidewalkDevice$CertificateId": "<p>The ID of the Sidewalk device profile.</p>"
+      }
+    },
+    "DakCertificateMetadata": {
+      "base": "<p>The device attestation key (DAK) information.</p>",
+      "refs": {
+        "DakCertificateMetadataList$member": null
+      }
+    },
+    "DakCertificateMetadataList": {
+      "base": null,
+      "refs": {
+        "SidewalkGetDeviceProfile$DakCertificateMetadata": "<p>The DAK certificate information of the Sidewalk device profile.</p>"
+      }
+    },
     "DeleteDestinationRequest": {
       "base": null,
       "refs": {
@@ -696,6 +745,16 @@
       "refs": {
       }
     },
+    "DeleteWirelessDeviceImportTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWirelessDeviceImportTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteWirelessDeviceRequest": {
       "base": null,
       "refs": {
@@ -732,6 +791,16 @@
       }
     },
     "DeleteWirelessGatewayTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterWirelessDeviceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterWirelessDeviceResponse": {
       "base": null,
       "refs": {
       }
@@ -787,12 +856,17 @@
         "GetDestinationRequest$Name": "<p>The name of the resource to get.</p>",
         "GetDestinationResponse$Name": "<p>The name of the resource.</p>",
         "GetPositionConfigurationResponse$Destination": "<p>The position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.</p>",
+        "GetWirelessDeviceImportTaskResponse$DestinationName": "<p>The name of the destination that's assigned to the wireless devices in the import task.</p>",
         "GetWirelessDeviceResponse$DestinationName": "<p>The name of the destination to which the device is assigned.</p>",
+        "ListDevicesForWirelessDeviceImportTaskResponse$DestinationName": "<p>The name of the Sidewalk destination that describes the IoT rule to route messages received from devices in an import task that are onboarded to AWS IoT Wireless.</p>",
         "ListWirelessDevicesRequest$DestinationName": "<p>A filter to list only the wireless devices that use this destination.</p>",
         "PositionConfigurationItem$Destination": "<p>The position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.</p>",
         "PutPositionConfigurationRequest$Destination": "<p>The position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.</p>",
+        "StartSingleWirelessDeviceImportTaskRequest$DestinationName": "<p>The name of the Sidewalk destination that describes the IoT rule to route messages from the device in the import task that will be onboarded to AWS IoT Wireless.</p>",
+        "StartWirelessDeviceImportTaskRequest$DestinationName": "<p>The name of the Sidewalk destination that describes the IoT rule to route messages from the devices in the import task that are onboarded to AWS IoT Wireless.</p>",
         "UpdateDestinationRequest$Name": "<p>The new name of the resource.</p>",
         "UpdateWirelessDeviceRequest$DestinationName": "<p>The name of the new destination for the device.</p>",
+        "WirelessDeviceImportTask$DestinationName": "<p>The name of the Sidewalk destination that that describes the IoT rule to route messages from the device in the import task that will be onboarded to AWS IoT Wireless</p>",
         "WirelessDeviceStatistics$DestinationName": "<p>The name of the destination to which the device is assigned.</p>"
       }
     },
@@ -830,6 +904,26 @@
         "SidewalkListDevice$DeviceCertificates": "<p>The sidewalk device certificates for Ed25519 and P256r1.</p>"
       }
     },
+    "DeviceCreationFile": {
+      "base": null,
+      "refs": {
+        "DeviceCreationFileList$member": null,
+        "SidewalkStartImportInfo$DeviceCreationFile": "<p>The CSV file contained in an S3 bucket that's used for adding devices to an import task.</p>",
+        "SidewalkUpdateImportInfo$DeviceCreationFile": "<p>The CSV file contained in an S3 bucket that's used for appending devices to an existing import task.</p>"
+      }
+    },
+    "DeviceCreationFileList": {
+      "base": null,
+      "refs": {
+        "SidewalkGetStartImportInfo$DeviceCreationFileList": "<p>List of Sidewalk devices that are added to the import task.</p>"
+      }
+    },
+    "DeviceName": {
+      "base": null,
+      "refs": {
+        "StartSingleWirelessDeviceImportTaskRequest$DeviceName": "<p>The name of the wireless device for which an import task is being started.</p>"
+      }
+    },
     "DeviceProfile": {
       "base": "<p>Describes a device profile.</p>",
       "refs": {
@@ -854,7 +948,10 @@
         "GetDeviceProfileResponse$Id": "<p>The ID of the device profile.</p>",
         "ListWirelessDevicesRequest$DeviceProfileId": "<p>A filter to list only the wireless devices that use this device profile.</p>",
         "LoRaWANDevice$DeviceProfileId": "<p>The ID of the device profile for the new wireless device.</p>",
-        "LoRaWANUpdateDevice$DeviceProfileId": "<p>The ID of the device profile for the wireless device.</p>"
+        "LoRaWANUpdateDevice$DeviceProfileId": "<p>The ID of the device profile for the wireless device.</p>",
+        "SidewalkCreateWirelessDevice$DeviceProfileId": "<p>The ID of the Sidewalk device profile.</p>",
+        "SidewalkDevice$DeviceProfileId": "<p>The ID of the Sidewalk device profile.</p>",
+        "SidewalkListDevice$DeviceProfileId": "<p>Sidewalk object used by list functions.</p>"
       }
     },
     "DeviceProfileList": {
@@ -869,6 +966,12 @@
         "CreateDeviceProfileRequest$Name": "<p>The name of the new resource.</p>",
         "DeviceProfile$Name": "<p>The name of the resource.</p>",
         "GetDeviceProfileResponse$Name": "<p>The name of the resource.</p>"
+      }
+    },
+    "DeviceProfileType": {
+      "base": null,
+      "refs": {
+        "ListDeviceProfilesRequest$DeviceProfileType": "<p>A filter to list only device profiles that use this type, which can be <code>LoRaWAN</code> or <code>Sidewalk</code>.</p>"
       }
     },
     "DeviceRegistrationStateEventConfiguration": {
@@ -890,6 +993,12 @@
       "base": "<p>Device state defines the device status of sidewalk device.</p>",
       "refs": {
         "SidewalkDeviceMetadata$DeviceState": "<p>Device state defines the device status of sidewalk device.</p>"
+      }
+    },
+    "DeviceTypeId": {
+      "base": null,
+      "refs": {
+        "DakCertificateMetadata$DeviceTypeId": "<p>The device type ID that's used for prototyping applications.</p>"
       }
     },
     "DisassociateAwsAccountFromPartnerAccountRequest": {
@@ -1185,6 +1294,12 @@
       "base": null,
       "refs": {
         "LoRaWANDeviceProfile$FactoryPresetFreqsList": "<p>The list of values that make up the FactoryPresetFreqs value.</p>"
+      }
+    },
+    "FactorySupport": {
+      "base": null,
+      "refs": {
+        "DakCertificateMetadata$FactorySupport": "<p>Whether factory support has been enabled.</p>"
       }
     },
     "Fingerprint": {
@@ -1500,6 +1615,16 @@
       "refs": {
       }
     },
+    "GetWirelessDeviceImportTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWirelessDeviceImportTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetWirelessDeviceRequest": {
       "base": null,
       "refs": {
@@ -1669,6 +1794,7 @@
     "Identifier": {
       "base": null,
       "refs": {
+        "DeregisterWirelessDeviceRequest$Identifier": "<p>The identifier of the wireless device to deregister from AWS IoT Wireless.</p>",
         "EventConfigurationItem$Identifier": "<p>Resource identifier opted in for event messaging.</p>",
         "GetResourceEventConfigurationRequest$Identifier": "<p>Resource identifier to opt in for event messaging.</p>",
         "GetWirelessDeviceRequest$Identifier": "<p>The identifier of the wireless device to get.</p>",
@@ -1682,6 +1808,66 @@
         "EventConfigurationItem$IdentifierType": "<p>Identifier type of the particular resource identifier for event configuration.</p>",
         "GetResourceEventConfigurationRequest$IdentifierType": "<p>Identifier type of the particular resource identifier for event configuration.</p>",
         "UpdateResourceEventConfigurationRequest$IdentifierType": "<p>Identifier type of the particular resource identifier for event configuration.</p>"
+      }
+    },
+    "ImportTaskArn": {
+      "base": null,
+      "refs": {
+        "GetWirelessDeviceImportTaskResponse$Arn": "<p>The ARN (Amazon Resource Name) of the import task.</p>",
+        "StartSingleWirelessDeviceImportTaskResponse$Arn": "<p>The ARN (Amazon Resource Name) of the import task.</p>",
+        "StartWirelessDeviceImportTaskResponse$Arn": "<p>The ARN (Amazon Resource Name) of the import task.</p>",
+        "WirelessDeviceImportTask$Arn": "<p>The ARN (Amazon Resource Name) of the wireless device import task.</p>"
+      }
+    },
+    "ImportTaskId": {
+      "base": null,
+      "refs": {
+        "DeleteWirelessDeviceImportTaskRequest$Id": "<p>The unique identifier of the import task to be deleted.</p>",
+        "GetWirelessDeviceImportTaskRequest$Id": "<p>The identifier of the import task for which information is requested.</p>",
+        "GetWirelessDeviceImportTaskResponse$Id": "<p>The identifier of the import task for which information is retrieved.</p>",
+        "ListDevicesForWirelessDeviceImportTaskRequest$Id": "<p>The identifier of the import task for which wireless devices are listed.</p>",
+        "StartSingleWirelessDeviceImportTaskResponse$Id": "<p>The import task ID.</p>",
+        "StartWirelessDeviceImportTaskResponse$Id": "<p>The import task ID.</p>",
+        "UpdateWirelessDeviceImportTaskRequest$Id": "<p>The identifier of the import task to be updated.</p>",
+        "WirelessDeviceImportTask$Id": "<p>The ID of the wireless device import task.</p>"
+      }
+    },
+    "ImportTaskStatus": {
+      "base": null,
+      "refs": {
+        "GetWirelessDeviceImportTaskResponse$Status": "<p>The import task status.</p>",
+        "WirelessDeviceImportTask$Status": "<p>The status information of the wireless device import task.</p>"
+      }
+    },
+    "ImportedSidewalkDevice": {
+      "base": "<p>Information about a Sidewalk device that has been added to an import task.</p>",
+      "refs": {
+        "ImportedWirelessDevice$Sidewalk": "<p>The Sidewalk-related information about a device that has been added to an import task.</p>"
+      }
+    },
+    "ImportedWirelessDevice": {
+      "base": "<p>Information about a wireless device that has been added to an import task.</p>",
+      "refs": {
+        "ImportedWirelessDeviceList$member": null
+      }
+    },
+    "ImportedWirelessDeviceCount": {
+      "base": null,
+      "refs": {
+        "GetWirelessDeviceImportTaskResponse$InitializedImportedDeviceCount": "<p>The number of devices in the import task that are waiting for the control log to start processing.</p>",
+        "GetWirelessDeviceImportTaskResponse$PendingImportedDeviceCount": "<p>The number of devices in the import task that are waiting in the import task queue to be onboarded.</p>",
+        "GetWirelessDeviceImportTaskResponse$OnboardedImportedDeviceCount": "<p>The number of devices in the import task that have been onboarded to the import task.</p>",
+        "GetWirelessDeviceImportTaskResponse$FailedImportedDeviceCount": "<p>The number of devices in the import task that failed to onboard to the import task.</p>",
+        "WirelessDeviceImportTask$InitializedImportedDeviceCount": "<p>The summary information of count of wireless devices that are waiting for the control log to be added to an import task.</p>",
+        "WirelessDeviceImportTask$PendingImportedDeviceCount": "<p>The summary information of count of wireless devices in an import task that are waiting in the queue to be onboarded.</p>",
+        "WirelessDeviceImportTask$OnboardedImportedDeviceCount": "<p>The summary information of count of wireless devices in an import task that have been onboarded to the import task.</p>",
+        "WirelessDeviceImportTask$FailedImportedDeviceCount": "<p>The summary information of count of wireless devices in an import task that failed to onboarded to the import task.</p>"
+      }
+    },
+    "ImportedWirelessDeviceList": {
+      "base": null,
+      "refs": {
+        "ListDevicesForWirelessDeviceImportTaskResponse$ImportedWirelessDeviceList": "<p>List of wireless devices in an import task and their onboarding status.</p>"
       }
     },
     "Integer": {
@@ -1757,6 +1943,12 @@
         "WcdmaObj$Lac": "<p>Location Area Code.</p>"
       }
     },
+    "LastUpdateTime": {
+      "base": null,
+      "refs": {
+        "ImportedSidewalkDevice$LastUpdateTime": "<p>The time at which the status information was last updated.</p>"
+      }
+    },
     "ListDestinationsRequest": {
       "base": null,
       "refs": {
@@ -1773,6 +1965,16 @@
       }
     },
     "ListDeviceProfilesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDevicesForWirelessDeviceImportTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDevicesForWirelessDeviceImportTaskResponse": {
       "base": null,
       "refs": {
       }
@@ -1873,6 +2075,16 @@
       }
     },
     "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWirelessDeviceImportTasksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWirelessDeviceImportTasksResponse": {
       "base": null,
       "refs": {
       }
@@ -2155,6 +2367,12 @@
         "LoRaWANDeviceProfile$MacVersion": "<p>The MAC version (such as OTAA 1.1 or OTAA 1.0.3) to use with this device profile.</p>"
       }
     },
+    "MaxAllowedSignature": {
+      "base": null,
+      "refs": {
+        "DakCertificateMetadata$MaxAllowedSignature": "<p>The maximum number of signatures that the DAK can sign. A value of <code>-1</code> indicates that there's no device limit.</p>"
+      }
+    },
     "MaxDutyCycle": {
       "base": null,
       "refs": {
@@ -2172,6 +2390,7 @@
       "refs": {
         "ListDestinationsRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListDeviceProfilesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
+        "ListDevicesForWirelessDeviceImportTaskRequest$MaxResults": null,
         "ListEventConfigurationsRequest$MaxResults": null,
         "ListFuotaTasksRequest$MaxResults": null,
         "ListMulticastGroupsByFuotaTaskRequest$MaxResults": null,
@@ -2181,6 +2400,7 @@
         "ListPositionConfigurationsRequest$MaxResults": null,
         "ListQueuedMessagesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListServiceProfilesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
+        "ListWirelessDeviceImportTasksRequest$MaxResults": null,
         "ListWirelessDevicesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListWirelessGatewayTaskDefinitionsRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListWirelessGatewaysRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>"
@@ -2397,6 +2617,8 @@
         "ListDestinationsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListDeviceProfilesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListDeviceProfilesResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListDevicesForWirelessDeviceImportTaskRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <code>null</code> to receive the first set of results.</p>",
+        "ListDevicesForWirelessDeviceImportTaskResponse$NextToken": "<p>The token to use to get the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListEventConfigurationsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListEventConfigurationsResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListFuotaTasksRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
@@ -2415,6 +2637,8 @@
         "ListQueuedMessagesResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListServiceProfilesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListServiceProfilesResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListWirelessDeviceImportTasksRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <code>null</code> to receive the first set of results.</p>",
+        "ListWirelessDeviceImportTasksResponse$NextToken": "<p>The token to use to get the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListWirelessDevicesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListWirelessDevicesResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListWirelessGatewayTaskDefinitionsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
@@ -2457,6 +2681,19 @@
       "base": null,
       "refs": {
         "SessionKeysAbpV1_0_x$NwkSKey": "<p>The NwkSKey value.</p>"
+      }
+    },
+    "OnboardStatus": {
+      "base": null,
+      "refs": {
+        "ImportedSidewalkDevice$OnboardingStatus": "<p>The onboarding status of the Sidewalk device in the import task.</p>",
+        "ListDevicesForWirelessDeviceImportTaskRequest$Status": "<p>The status of the devices in the import task.</p>"
+      }
+    },
+    "OnboardStatusReason": {
+      "base": null,
+      "refs": {
+        "ImportedSidewalkDevice$OnboardingStatusReason": "<p>The reason for the onboarding status information for the Sidewalk device.</p>"
       }
     },
     "OtaaV1_0_x": {
@@ -2692,6 +2929,12 @@
         "FactoryPresetFreqsList$member": null
       }
     },
+    "PrivateKeysList": {
+      "base": null,
+      "refs": {
+        "SidewalkDevice$PrivateKeys": "<p>The Sidewalk device private keys that will be used for onboarding the device.</p>"
+      }
+    },
     "ProximityEventConfiguration": {
       "base": "<p>Proximity event configuration object for enabling and disabling relevant topics.</p>",
       "refs": {
@@ -2727,6 +2970,12 @@
       "refs": {
       }
     },
+    "QualificationStatus": {
+      "base": null,
+      "refs": {
+        "SidewalkGetDeviceProfile$QualificationStatus": "<p>Gets information about the certification status of a Sidewalk device profile.</p>"
+      }
+    },
     "QueryString": {
       "base": "<p>Query string used to search for wireless devices as part of the bulk associate and disassociate process.</p>",
       "refs": {
@@ -2760,7 +3009,7 @@
     "RSS": {
       "base": null,
       "refs": {
-        "WiFiAccessPoint$Rss": "<p>Recived signal strength of the WLAN measurement data.</p>"
+        "WiFiAccessPoint$Rss": "<p>Received signal strength (dBm) of the WLAN measurement data.</p>"
       }
     },
     "RaAllowed": {
@@ -2863,6 +3112,13 @@
         "LoRaWANDeviceProfile$RfRegion": "<p>The frequency band (RFRegion) value.</p>",
         "LoRaWANFuotaTaskGetInfo$RfRegion": null,
         "LoRaWANGateway$RfRegion": "<p>The frequency band (RFRegion) value.</p>"
+      }
+    },
+    "Role": {
+      "base": null,
+      "refs": {
+        "SidewalkGetStartImportInfo$Role": "<p>The IAM role that allows AWS IoT Wireless to access the CSV file in the S3 bucket.</p>",
+        "SidewalkStartImportInfo$Role": "<p>The IAM role that allows AWS IoT Wireless to access the CSV file in the S3 bucket.</p>"
       }
     },
     "RoleArn": {
@@ -3034,6 +3290,18 @@
         "ListPartnerAccountsResponse$Sidewalk": "<p>The Sidewalk account credentials.</p>"
       }
     },
+    "SidewalkCreateDeviceProfile": {
+      "base": "<p>Sidewalk object for creating a device profile.</p>",
+      "refs": {
+        "CreateDeviceProfileRequest$Sidewalk": "<p>The Sidewalk-related information for creating the Sidewalk device profile.</p>"
+      }
+    },
+    "SidewalkCreateWirelessDevice": {
+      "base": "<p>Sidewalk object for creating a wireless device.</p>",
+      "refs": {
+        "CreateWirelessDeviceRequest$Sidewalk": "<p>The device configuration information to use to create the Sidewalk device.</p>"
+      }
+    },
     "SidewalkDevice": {
       "base": "<p>Sidewalk device object.</p>",
       "refs": {
@@ -3054,6 +3322,19 @@
         "ProximityEventConfiguration$Sidewalk": "<p>Proximity event configuration object for enabling or disabling Sidewalk related event topics.</p>"
       }
     },
+    "SidewalkGetDeviceProfile": {
+      "base": "<p>Gets information about a Sidewalk device profile.</p>",
+      "refs": {
+        "GetDeviceProfileResponse$Sidewalk": "<p>Information about the Sidewalk parameters in the device profile.</p>"
+      }
+    },
+    "SidewalkGetStartImportInfo": {
+      "base": "<p>Sidewalk-related information for devices in an import task that are being onboarded.</p>",
+      "refs": {
+        "GetWirelessDeviceImportTaskResponse$Sidewalk": "<p>The Sidewalk-related information about an import task.</p>",
+        "WirelessDeviceImportTask$Sidewalk": "<p>The Sidewalk-related information of the wireless device import task.</p>"
+      }
+    },
     "SidewalkId": {
       "base": "<p>The sidewalk device identification.</p>",
       "refs": {
@@ -3070,8 +3351,10 @@
     "SidewalkManufacturingSn": {
       "base": null,
       "refs": {
+        "ImportedSidewalkDevice$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing serial number (SMSN) of the Sidewalk device.</p>",
         "SidewalkDevice$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing series number.</p>",
-        "SidewalkListDevice$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing series number.</p>"
+        "SidewalkListDevice$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing series number.</p>",
+        "SidewalkSingleStartImportInfo$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing serial number (SMSN) of the device added to the import task.</p>"
       }
     },
     "SidewalkResourceTypeEventConfiguration": {
@@ -3088,10 +3371,28 @@
         "WirelessMetadata$Sidewalk": "<p>The Sidewalk account credentials.</p>"
       }
     },
+    "SidewalkSingleStartImportInfo": {
+      "base": "<p>Information about an import task created for an individual Sidewalk device.</p>",
+      "refs": {
+        "StartSingleWirelessDeviceImportTaskRequest$Sidewalk": "<p>The Sidewalk-related parameters for importing a single wireless device.</p>"
+      }
+    },
+    "SidewalkStartImportInfo": {
+      "base": "<p>Information about an import task created for bulk provisioning.</p>",
+      "refs": {
+        "StartWirelessDeviceImportTaskRequest$Sidewalk": "<p>The Sidewalk-related parameters for importing wireless devices that need to be provisioned in bulk.</p>"
+      }
+    },
     "SidewalkUpdateAccount": {
       "base": "<p>Sidewalk update.</p>",
       "refs": {
         "UpdatePartnerAccountRequest$Sidewalk": "<p>The Sidewalk account credentials.</p>"
+      }
+    },
+    "SidewalkUpdateImportInfo": {
+      "base": "<p>Sidewalk object information for updating an import task.</p>",
+      "refs": {
+        "UpdateWirelessDeviceImportTaskRequest$Sidewalk": "<p>The Sidewalk-related parameters of the import task to be updated.</p>"
       }
     },
     "SigningAlg": {
@@ -3140,6 +3441,16 @@
       "refs": {
       }
     },
+    "StartSingleWirelessDeviceImportTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSingleWirelessDeviceImportTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartTime": {
       "base": "<p>Start time of a FUOTA task.</p>",
       "refs": {
@@ -3147,10 +3458,27 @@
         "LoRaWANStartFuotaTask$StartTime": null
       }
     },
+    "StartWirelessDeviceImportTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartWirelessDeviceImportTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Station": {
       "base": null,
       "refs": {
         "LoRaWANGatewayVersion$Station": "<p>The basic station version of the wireless gateway.</p>"
+      }
+    },
+    "StatusReason": {
+      "base": null,
+      "refs": {
+        "GetWirelessDeviceImportTaskResponse$StatusReason": "<p>The reason for the provided status information, such as a validation error that causes the import task to fail.</p>",
+        "WirelessDeviceImportTask$StatusReason": "<p>The reason that provides additional information about the import task status.</p>"
       }
     },
     "SubBand": {
@@ -3244,6 +3572,8 @@
         "ListTagsForResourceResponse$Tags": "<p>The tags to attach to the specified resource. Tags are metadata that you can use to manage a resource.</p>",
         "StartBulkAssociateWirelessDeviceWithMulticastGroupRequest$Tags": null,
         "StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest$Tags": null,
+        "StartSingleWirelessDeviceImportTaskRequest$Tags": null,
+        "StartWirelessDeviceImportTaskRequest$Tags": null,
         "TagResourceRequest$Tags": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that you can use to manage a resource.</p>"
       }
     },
@@ -3535,6 +3865,16 @@
         "LoRaWANUpdateGatewayTaskCreate$UpdateSignature": "<p>The signature used to verify the update firmware.</p>"
       }
     },
+    "UpdateWirelessDeviceImportTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWirelessDeviceImportTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateWirelessDeviceRequest": {
       "base": null,
       "refs": {
@@ -3698,6 +4038,18 @@
         "GetWirelessDeviceRequest$IdentifierType": "<p>The type of identifier used in <code>identifier</code>.</p>"
       }
     },
+    "WirelessDeviceImportTask": {
+      "base": "<p>Information about an import task for wireless devices.</p>",
+      "refs": {
+        "WirelessDeviceImportTaskList$member": null
+      }
+    },
+    "WirelessDeviceImportTaskList": {
+      "base": null,
+      "refs": {
+        "ListWirelessDeviceImportTasksResponse$WirelessDeviceImportTaskList": "<p>List of import tasks and summary information of onboarding status of devices in each import task.</p>"
+      }
+    },
     "WirelessDeviceList": {
       "base": null,
       "refs": {
@@ -3729,6 +4081,13 @@
         "WirelessDeviceStatistics$Name": "<p>The name of the resource.</p>"
       }
     },
+    "WirelessDeviceSidewalkStatus": {
+      "base": null,
+      "refs": {
+        "SidewalkDevice$Status": "<p>The Sidewalk device status, such as provisioned or registered.</p>",
+        "SidewalkListDevice$Status": "<p>The status of the Sidewalk devices, such as provisioned or registered.</p>"
+      }
+    },
     "WirelessDeviceStatistics": {
       "base": "<p>Information about a wireless device's operation.</p>",
       "refs": {
@@ -3746,6 +4105,7 @@
       "refs": {
         "CreateWirelessDeviceRequest$Type": "<p>The wireless device type.</p>",
         "DeleteQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, which can be either Sidewalk or LoRaWAN.</p>",
+        "DeregisterWirelessDeviceRequest$WirelessDeviceType": "<p>The type of wireless device to deregister from AWS IoT Wireless, which can be <code>LoRaWAN</code> or <code>Sidewalk</code>.</p>",
         "GetWirelessDeviceResponse$Type": "<p>The wireless device type.</p>",
         "ListQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, whic can be either Sidewalk or LoRaWAN.</p>",
         "ListWirelessDevicesRequest$WirelessDeviceType": "<p>A filter to list only the wireless devices that use this wireless device type.</p>",

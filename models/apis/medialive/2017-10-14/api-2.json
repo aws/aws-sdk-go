@@ -4946,6 +4946,10 @@
         "UhdDeviceSettings": {
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
+        },
+	  "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -7399,11 +7403,12 @@
         "Tag": {
           "shape": "__string",
           "locationName": "tag"
+        },
+        "Id3": {
+          "shape": "__string",
+          "locationName": "id3"
         }
-      },
-      "required": [
-        "Tag"
-      ]
+      }
     },
     "HlsId3SegmentTaggingState": {
       "type": "string",
@@ -7946,6 +7951,10 @@
         "UhdDeviceSettings": {
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
+        },
+	"Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -8156,6 +8165,10 @@
         "UhdDeviceSettings": {
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
+        },
+	  "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -12912,6 +12925,10 @@
         "UhdDeviceSettings": {
           "shape": "InputDeviceUhdSettings",
           "locationName": "uhdDeviceSettings"
+        },
+	"Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },

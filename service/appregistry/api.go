@@ -151,8 +151,8 @@ func (c *AppRegistry) AssociateResourceRequest(input *AssociateResourceInput) (r
 
 // AssociateResource API operation for AWS Service Catalog App Registry.
 //
-// Associates a resource with an application. Both the resource and the application
-// can be specified either by ID or name.
+// Associates a resource with an application. The resource can be specified
+// by its ARN or name. The application can be specified by ARN, ID, or name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -178,6 +178,9 @@ func (c *AppRegistry) AssociateResourceRequest(input *AssociateResourceInput) (r
 //
 //   - ValidationException
 //     The request has invalid or missing parameters.
+//
+//   - ThrottlingException
+//     The maximum number of API requests has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/AssociateResource
 func (c *AppRegistry) AssociateResource(input *AssociateResourceInput) (*AssociateResourceOutput, error) {
@@ -268,6 +271,9 @@ func (c *AppRegistry) CreateApplicationRequest(input *CreateApplicationInput) (r
 //
 //   - ValidationException
 //     The request has invalid or missing parameters.
+//
+//   - ThrottlingException
+//     The maximum number of API requests has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/CreateApplication
 func (c *AppRegistry) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -426,8 +432,8 @@ func (c *AppRegistry) DeleteApplicationRequest(input *DeleteApplicationInput) (r
 
 // DeleteApplication API operation for AWS Service Catalog App Registry.
 //
-// Deletes an application that is specified either by its application ID or
-// name. All associated attribute groups and resources must be disassociated
+// Deletes an application that is specified either by its application ID, name,
+// or ARN. All associated attribute groups and resources must be disassociated
 // from it before deleting an application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -513,8 +519,8 @@ func (c *AppRegistry) DeleteAttributeGroupRequest(input *DeleteAttributeGroupInp
 
 // DeleteAttributeGroup API operation for AWS Service Catalog App Registry.
 //
-// Deletes an attribute group, specified either by its attribute group ID or
-// name.
+// Deletes an attribute group, specified either by its attribute group ID, name,
+// or ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -707,6 +713,9 @@ func (c *AppRegistry) DisassociateResourceRequest(input *DisassociateResourceInp
 //   - ValidationException
 //     The request has invalid or missing parameters.
 //
+//   - ThrottlingException
+//     The maximum number of API requests has been exceeded.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DisassociateResource
 func (c *AppRegistry) DisassociateResource(input *DisassociateResourceInput) (*DisassociateResourceOutput, error) {
 	req, out := c.DisassociateResourceRequest(input)
@@ -773,11 +782,10 @@ func (c *AppRegistry) GetApplicationRequest(input *GetApplicationInput) (req *re
 // GetApplication API operation for AWS Service Catalog App Registry.
 //
 // Retrieves metadata information about one of your applications. The application
-// can be specified either by its unique ID or by its name (which is unique
-// within one account in one region at a given point in time). Specify by ID
-// in automated workflows if you want to make sure that the exact same application
-// is returned or a ResourceNotFoundException is thrown, avoiding the ABA addressing
-// problem.
+// can be specified by its ARN, ID, or name (which is unique within one account
+// in one region at a given point in time). Specify by ARN or ID in automated
+// workflows if you want to make sure that the exact same application is returned
+// or a ResourceNotFoundException is thrown, avoiding the ABA addressing problem.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -951,8 +959,8 @@ func (c *AppRegistry) GetAttributeGroupRequest(input *GetAttributeGroupInput) (r
 
 // GetAttributeGroup API operation for AWS Service Catalog App Registry.
 //
-// Retrieves an attribute group, either by its name or its ID. The attribute
-// group can be specified either by its unique ID or by its name.
+// Retrieves an attribute group by its ARN, ID, or name. The attribute group
+// can be specified by its ARN, ID, or name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2029,6 +2037,12 @@ func (c *AppRegistry) SyncResourceRequest(input *SyncResourceInput) (req *reques
 //     There was a conflict when processing the request (for example, a resource
 //     with the given name already exists within the account).
 //
+//   - ThrottlingException
+//     The maximum number of API requests has been exceeded.
+//
+//   - ValidationException
+//     The request has invalid or missing parameters.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/SyncResource
 func (c *AppRegistry) SyncResource(input *SyncResourceInput) (*SyncResourceOutput, error) {
 	req, out := c.SyncResourceRequest(input)
@@ -2297,6 +2311,9 @@ func (c *AppRegistry) UpdateApplicationRequest(input *UpdateApplicationInput) (r
 //   - InternalServerException
 //     The service is experiencing internal problems.
 //
+//   - ThrottlingException
+//     The maximum number of API requests has been exceeded.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/UpdateApplication
 func (c *AppRegistry) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
 	req, out := c.UpdateApplicationRequest(input)
@@ -2408,7 +2425,7 @@ func (c *AppRegistry) UpdateAttributeGroupWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
-// Includes all of the Service Catalog AppRegistry settings.
+// Includes all of the AppRegistry settings.
 type AppRegistryConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2611,13 +2628,13 @@ func (s *ApplicationSummary) SetName(v string) *ApplicationSummary {
 type AssociateAttributeGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the application.
+	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// The name, ID, or ARN of the attribute group that holds the attributes to
+	// describe the application.
 	//
 	// AttributeGroup is a required field
 	AttributeGroup *string `location:"uri" locationName:"attributeGroup" min:"1" type:"string" required:"true"`
@@ -2720,7 +2737,7 @@ func (s *AssociateAttributeGroupOutput) SetAttributeGroupArn(v string) *Associat
 type AssociateResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the application.
+	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
@@ -2857,7 +2874,7 @@ type AttributeGroup struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The globally unique attribute group identifier of the attribute group.
-	Id *string `locationName:"id" min:"26" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was last
 	// updated. This time is the same as the creationTime for a newly created attribute
@@ -2938,8 +2955,11 @@ type AttributeGroupDetails struct {
 	// The Amazon resource name (ARN) that specifies the attribute group.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The service principal that created the attribute group.
+	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
+
 	// The unique identifier of the attribute group.
-	Id *string `locationName:"id" min:"26" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	//
 	// This field is no longer supported. We recommend you don't use the field when
@@ -2975,6 +2995,12 @@ func (s *AttributeGroupDetails) SetArn(v string) *AttributeGroupDetails {
 	return s
 }
 
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *AttributeGroupDetails) SetCreatedBy(v string) *AttributeGroupDetails {
+	s.CreatedBy = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *AttributeGroupDetails) SetId(v string) *AttributeGroupDetails {
 	s.Id = &v
@@ -2995,6 +3021,9 @@ type AttributeGroupSummary struct {
 	// services.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The service principal that created the attribute group.
+	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
+
 	// The ISO-8601 formatted timestamp of the moment the attribute group was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -3002,7 +3031,7 @@ type AttributeGroupSummary struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The globally unique attribute group identifier of the attribute group.
-	Id *string `locationName:"id" min:"26" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was last
 	// updated. This time is the same as the creationTime for a newly created attribute
@@ -3034,6 +3063,12 @@ func (s AttributeGroupSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *AttributeGroupSummary) SetArn(v string) *AttributeGroupSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *AttributeGroupSummary) SetCreatedBy(v string) *AttributeGroupSummary {
+	s.CreatedBy = &v
 	return s
 }
 
@@ -3382,7 +3417,7 @@ func (s *CreateAttributeGroupOutput) SetAttributeGroup(v *AttributeGroup) *Creat
 type DeleteApplicationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the application.
+	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
@@ -3462,8 +3497,8 @@ func (s *DeleteApplicationOutput) SetApplication(v *ApplicationSummary) *DeleteA
 type DeleteAttributeGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// The name, ID, or ARN of the attribute group that holds the attributes to
+	// describe the application.
 	//
 	// AttributeGroup is a required field
 	AttributeGroup *string `location:"uri" locationName:"attributeGroup" min:"1" type:"string" required:"true"`
@@ -3543,13 +3578,13 @@ func (s *DeleteAttributeGroupOutput) SetAttributeGroup(v *AttributeGroupSummary)
 type DisassociateAttributeGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the application.
+	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// The name, ID, or ARN of the attribute group that holds the attributes to
+	// describe the application.
 	//
 	// AttributeGroup is a required field
 	AttributeGroup *string `location:"uri" locationName:"attributeGroup" min:"1" type:"string" required:"true"`
@@ -3773,7 +3808,7 @@ func (s *DisassociateResourceOutput) SetResourceArn(v string) *DisassociateResou
 type GetApplicationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the application.
+	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
@@ -3928,7 +3963,7 @@ func (s *GetApplicationOutput) SetTags(v map[string]*string) *GetApplicationOutp
 type GetAssociatedResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the application.
+	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
@@ -4042,8 +4077,8 @@ func (s *GetAssociatedResourceOutput) SetResource(v *Resource) *GetAssociatedRes
 type GetAttributeGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// The name, ID, or ARN of the attribute group that holds the attributes to
+	// describe the application.
 	//
 	// AttributeGroup is a required field
 	AttributeGroup *string `location:"uri" locationName:"attributeGroup" min:"1" type:"string" required:"true"`
@@ -4100,6 +4135,9 @@ type GetAttributeGroupOutput struct {
 	// in the group and describes an application and its components.
 	Attributes *string `locationName:"attributes" min:"1" type:"string"`
 
+	// The service principal that created the attribute group.
+	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
+
 	// The ISO-8601 formatted timestamp of the moment the attribute group was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -4107,7 +4145,7 @@ type GetAttributeGroupOutput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The identifier of the attribute group.
-	Id *string `locationName:"id" min:"26" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was last
 	// updated. This time is the same as the creationTime for a newly created attribute
@@ -4148,6 +4186,12 @@ func (s *GetAttributeGroupOutput) SetArn(v string) *GetAttributeGroupOutput {
 // SetAttributes sets the Attributes field's value.
 func (s *GetAttributeGroupOutput) SetAttributes(v string) *GetAttributeGroupOutput {
 	s.Attributes = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *GetAttributeGroupOutput) SetCreatedBy(v string) *GetAttributeGroupOutput {
+	s.CreatedBy = &v
 	return s
 }
 
@@ -4550,7 +4594,7 @@ func (s *ListAssociatedAttributeGroupsOutput) SetNextToken(v string) *ListAssoci
 type ListAssociatedResourcesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name or ID of the application.
+	// The name, ID, or ARN of the application.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
@@ -5629,6 +5673,74 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The maximum number of API requests has been exceeded.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message associated with the Throttling exception.
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The originating service code.
+	ServiceCode *string `locationName:"serviceCode" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5717,7 +5829,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the application that will be updated.
+	// The name, ID, or ARN of the application that will be updated.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
@@ -5822,8 +5934,8 @@ func (s *UpdateApplicationOutput) SetApplication(v *Application) *UpdateApplicat
 type UpdateAttributeGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// The name, ID, or ARN of the attribute group that holds the attributes to
+	// describe the application.
 	//
 	// AttributeGroup is a required field
 	AttributeGroup *string `location:"uri" locationName:"attributeGroup" min:"1" type:"string" required:"true"`

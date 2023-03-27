@@ -2926,7 +2926,8 @@
         "EngineVersion":{"shape":"EngineVersion"},
         "AdditionalConfiguration":{"shape":"NameString"},
         "ExecutionRole":{"shape":"RoleArn"},
-        "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"}
+        "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"},
+        "EnableMinimumEncryptionConfiguration":{"shape":"BoxedBoolean"}
       }
     },
     "WorkGroupConfigurationUpdates":{
@@ -2942,7 +2943,8 @@
         "RemoveCustomerContentEncryptionConfiguration":{"shape":"BoxedBoolean"},
         "AdditionalConfiguration":{"shape":"NameString"},
         "ExecutionRole":{"shape":"RoleArn"},
-        "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"}
+        "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"},
+        "EnableMinimumEncryptionConfiguration":{"shape":"BoxedBoolean"}
       }
     },
     "WorkGroupDescriptionString":{
