@@ -252,9 +252,9 @@ func (c *SSMIncidents) CreateTimelineEventRequest(input *CreateTimelineEventInpu
 // CreateTimelineEvent API operation for AWS Systems Manager Incident Manager.
 //
 // Creates a custom timeline event on the incident details page of an incident
-// record. Timeline events are automatically created by Incident Manager, marking
-// key moment during an incident. You can create custom timeline events to mark
-// important events that are automatically detected by Incident Manager.
+// record. Incident Manager automatically creates timeline events that mark
+// key moments during an incident. You can create custom timeline events to
+// mark important events that Incident Manager can detect automatically.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3823,7 +3823,8 @@ func (s *CreateResponsePlanOutput) SetArn(v string) *CreateResponsePlanOutput {
 type CreateTimelineEventInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token that ensures that a client calls the action only once with the specified
+	// details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// A short description of the event.
@@ -3831,13 +3832,13 @@ type CreateTimelineEventInput struct {
 	// EventData is a required field
 	EventData *string `locationName:"eventData" type:"string" required:"true"`
 
-	// Adds one or more references to the TimelineEvent. A reference can be an Amazon
-	// Web Services resource involved in the incident or in some way associated
-	// with it. When you specify a reference, you enter the Amazon Resource Name
-	// (ARN) of the resource. You can also specify a related item. As an example,
-	// you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table
-	// for this example is the resource. You could also specify a Amazon CloudWatch
-	// metric for that table. The metric is the related item.
+	// Adds one or more references to the TimelineEvent. A reference is an Amazon
+	// Web Services resource involved or associated with the incident. To specify
+	// a reference, enter its Amazon Resource Name (ARN). You can also specify a
+	// related item associated with a resource. For example, to specify an Amazon
+	// DynamoDB (DynamoDB) table as a resource, use the table's ARN. You can also
+	// specify an Amazon CloudWatch metric associated with the DynamoDB table as
+	// a related item.
 	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
 
 	// The time that the event occurred.
@@ -3845,13 +3846,13 @@ type CreateTimelineEventInput struct {
 	// EventTime is a required field
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp" required:"true"`
 
-	// The type of the event. You can create timeline events of type Custom Event.
+	// The type of event. You can create timeline events of type Custom Event.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the incident record to which the event
-	// will be added.
+	// The Amazon Resource Name (ARN) of the incident record that the action adds
+	// the incident to.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
@@ -4316,7 +4317,8 @@ func (s DeleteResponsePlanOutput) GoString() string {
 type DeleteTimelineEventInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the event you are updating. You can find this by using ListTimelineEvents.
+	// The ID of the event to update. You can use ListTimelineEvents to find an
+	// event's ID.
 	//
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
@@ -5854,8 +5856,8 @@ func (s *ItemValue) SetUrl(v string) *ItemValue {
 type ListIncidentRecordsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters the list of incident records through which you are searching. You
-	// can filter on the following keys:
+	// Filters the list of incident records you want to search through. You can
+	// filter on the following keys:
 	//
 	//    * creationTime
 	//
@@ -5865,7 +5867,7 @@ type ListIncidentRecordsInput struct {
 	//
 	//    * createdBy
 	//
-	// Note the following when deciding how to use Filters:
+	// Note the following when when you use Filters:
 	//
 	//    * If you don't specify a Filter, the response includes all incident records.
 	//
@@ -6370,7 +6372,7 @@ type ListTimelineEventsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters the timeline events based on the provided conditional values. You
-	// can filter timeline events using the following keys:
+	// can filter timeline events with the following keys:
 	//
 	//    * eventTime
 	//
@@ -6399,7 +6401,7 @@ type ListTimelineEventsInput struct {
 	// The pagination token to continue to the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Sort by the specified key value pair.
+	// Sort timeline events by the specified key value pair.
 	SortBy *string `locationName:"sortBy" type:"string" enum:"TimelineEventSort"`
 
 	// Sorts the order of timeline events by the value specified in the sortBy field.
@@ -7609,7 +7611,8 @@ type StartIncidentInput struct {
 	Impact *int64 `locationName:"impact" min:"1" type:"integer"`
 
 	// Add related items to the incident for other responders to use. Related items
-	// are AWS resources, external links, or files uploaded to an Amazon S3 bucket.
+	// are Amazon Web Services resources, external links, or files uploaded to an
+	// Amazon S3 bucket.
 	RelatedItems []*RelatedItem `locationName:"relatedItems" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the response plan that pre-defines summary,
@@ -8281,12 +8284,13 @@ type UpdateIncidentRecordInput struct {
 	// The Chatbot chat channel where responders can collaborate.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
-	// A token that ensures that the operation is called only once with the specified
-	// details.
+	// A token that ensures that a client calls the operation only once with the
+	// specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// Defines the impact of the incident to customers and applications. Providing
-	// an impact overwrites the impact provided by the response plan.
+	// Defines the impact of the incident to customers and applications. If you
+	// provide an impact for an incident, it overwrites the impact provided by the
+	// response plan.
 	//
 	// Possible impacts:
 	//
@@ -8303,13 +8307,14 @@ type UpdateIncidentRecordInput struct {
 	//    is needed to avoid impact.
 	Impact *int64 `locationName:"impact" min:"1" type:"integer"`
 
-	// The Amazon SNS targets that are notified when updates are made to an incident.
+	// The Amazon SNS targets that Incident Manager notifies when a client updates
+	// an incident.
 	//
 	// Using multiple SNS topics creates redundancy in the event that a Region is
 	// down during the incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
-	// The status of the incident. An incident can be Open or Resolved.
+	// The status of the incident. Possible statuses are Open or Resolved.
 	Status *string `locationName:"status" type:"string" enum:"IncidentRecordStatus"`
 
 	// A longer description of what occurred during the incident.
@@ -8431,17 +8436,17 @@ func (s UpdateIncidentRecordOutput) GoString() string {
 type UpdateRelatedItemsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the operation is called only once with the specified
-	// details.
+	// A token that ensures that a client calls the operation only once with the
+	// specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the incident record containing the related
-	// items you are updating.
+	// The Amazon Resource Name (ARN) of the incident record that contains the related
+	// items that you update.
 	//
 	// IncidentRecordArn is a required field
 	IncidentRecordArn *string `locationName:"incidentRecordArn" type:"string" required:"true"`
 
-	// Details about the item you are adding or deleting.
+	// Details about the item that you are add to, or delete from, an incident.
 	//
 	// RelatedItemsUpdate is a required field
 	RelatedItemsUpdate *RelatedItemsUpdate `locationName:"relatedItemsUpdate" type:"structure" required:"true"`
@@ -8924,35 +8929,36 @@ func (s UpdateResponsePlanOutput) GoString() string {
 type UpdateTimelineEventInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token ensuring that the operation is called only once with the specified
-	// details.
+	// A token that ensures that a client calls the operation only once with the
+	// specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// A short description of the event.
 	EventData *string `locationName:"eventData" type:"string"`
 
-	// The ID of the event you are updating. You can find this by using ListTimelineEvents.
+	// The ID of the event to update. You can use ListTimelineEvents to find an
+	// event's ID.
 	//
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
-	// Updates all existing references in a TimelineEvent. A reference can be an
-	// Amazon Web Services resource involved in the incident or in some way associated
-	// with it. When you specify a reference, you enter the Amazon Resource Name
-	// (ARN) of the resource. You can also specify a related item. As an example,
-	// you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table
-	// for this example is the resource. You could also specify a Amazon CloudWatch
-	// metric for that table. The metric is the related item.
+	// Updates all existing references in a TimelineEvent. A reference is an Amazon
+	// Web Services resource involved or associated with the incident. To specify
+	// a reference, enter its Amazon Resource Name (ARN). You can also specify a
+	// related item associated with that resource. For example, to specify an Amazon
+	// DynamoDB (DynamoDB) table as a resource, use its ARN. You can also specify
+	// an Amazon CloudWatch metric associated with the DynamoDB table as a related
+	// item.
 	//
 	// This update action overrides all existing references. If you want to keep
 	// existing references, you must specify them in the call. If you don't, this
-	// action removes them and enters only new references.
+	// action removes any existing references and enters only new references.
 	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
 
 	// The time that the event occurred.
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp"`
 
-	// The type of the event. You can update events of type Custom Event.
+	// The type of event. You can update events of type Custom Event.
 	EventType *string `locationName:"eventType" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the incident that includes the timeline

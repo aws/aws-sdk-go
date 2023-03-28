@@ -1095,7 +1095,7 @@
     },
     "IncidentSummary":{
       "type":"string",
-      "max":4000,
+      "max":8000,
       "min":0
     },
     "IncidentTemplate":{
@@ -1400,7 +1400,7 @@
     },
     "RawData":{
       "type":"string",
-      "max":4000,
+      "max":10000,
       "min":0
     },
     "RegionInfo":{

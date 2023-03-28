@@ -4,7 +4,7 @@
   "operations": {
     "CreateReplicationSet": "<p>A replication set replicates and encrypts your data to the provided Regions with the provided KMS key. </p>",
     "CreateResponsePlan": "<p>Creates a response plan that automates the initial response to incidents. A response plan engages contacts, starts chat channel collaboration, and initiates runbooks at the beginning of an incident.</p>",
-    "CreateTimelineEvent": "<p>Creates a custom timeline event on the incident details page of an incident record. Timeline events are automatically created by Incident Manager, marking key moment during an incident. You can create custom timeline events to mark important events that are automatically detected by Incident Manager.</p>",
+    "CreateTimelineEvent": "<p>Creates a custom timeline event on the incident details page of an incident record. Incident Manager automatically creates timeline events that mark key moments during an incident. You can create custom timeline events to mark important events that Incident Manager can detect automatically.</p>",
     "DeleteIncidentRecord": "<p>Delete an incident record from Incident Manager. </p>",
     "DeleteReplicationSet": "<p>Deletes all Regions in your replication set. Deleting the replication set deletes all Incident Manager data.</p>",
     "DeleteResourcePolicy": "<p>Deletes the resource policy that Resource Access Manager uses to share your Incident Manager resource.</p>",
@@ -64,7 +64,7 @@
         "AutomationExecution$ssmExecutionArn": "<p>The Amazon Resource Name (ARN) of the automation process.</p>",
         "CreateReplicationSetOutput$arn": "<p>The Amazon Resource Name (ARN) of the replication set. </p>",
         "CreateResponsePlanOutput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
-        "CreateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record to which the event will be added.</p>",
+        "CreateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record that the action adds the incident to.</p>",
         "CreateTimelineEventOutput$incidentRecordArn": "<p>The ARN of the incident record that you added the event to.</p>",
         "DeleteIncidentRecordInput$arn": "<p>The Amazon Resource Name (ARN) of the incident record you are deleting.</p>",
         "DeleteReplicationSetInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you're deleting.</p>",
@@ -100,7 +100,7 @@
         "TriggerDetails$triggerArn": "<p>The Amazon Resource Name (ARN) of the source that detected the incident.</p>",
         "UpdateDeletionProtectionInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set to update.</p>",
         "UpdateIncidentRecordInput$arn": "<p>The Amazon Resource Name (ARN) of the incident record you are updating.</p>",
-        "UpdateRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record containing the related items you are updating.</p>",
+        "UpdateRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record that contains the related items that you update.</p>",
         "UpdateReplicationSetInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you're updating.</p>",
         "UpdateResponsePlanInput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
         "UpdateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>"
@@ -153,14 +153,14 @@
       "refs": {
         "CreateReplicationSetInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
         "CreateResponsePlanInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
-        "CreateTimelineEventInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
+        "CreateTimelineEventInput$clientToken": "<p>A token that ensures that a client calls the action only once with the specified details.</p>",
         "StartIncidentInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
         "UpdateDeletionProtectionInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
-        "UpdateIncidentRecordInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
-        "UpdateRelatedItemsInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateIncidentRecordInput$clientToken": "<p>A token that ensures that a client calls the operation only once with the specified details.</p>",
+        "UpdateRelatedItemsInput$clientToken": "<p>A token that ensures that a client calls the operation only once with the specified details.</p>",
         "UpdateReplicationSetInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
         "UpdateResponsePlanInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
-        "UpdateTimelineEventInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>"
+        "UpdateTimelineEventInput$clientToken": "<p>A token that ensures that a client calls the operation only once with the specified details.</p>"
       }
     },
     "Condition": {
@@ -317,10 +317,10 @@
     "EventReferenceList": {
       "base": null,
       "refs": {
-        "CreateTimelineEventInput$eventReferences": "<p>Adds one or more references to the <code>TimelineEvent</code>. A reference can be an Amazon Web Services resource involved in the incident or in some way associated with it. When you specify a reference, you enter the Amazon Resource Name (ARN) of the resource. You can also specify a related item. As an example, you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table for this example is the resource. You could also specify a Amazon CloudWatch metric for that table. The metric is the related item.</p>",
+        "CreateTimelineEventInput$eventReferences": "<p>Adds one or more references to the <code>TimelineEvent</code>. A reference is an Amazon Web Services resource involved or associated with the incident. To specify a reference, enter its Amazon Resource Name (ARN). You can also specify a related item associated with a resource. For example, to specify an Amazon DynamoDB (DynamoDB) table as a resource, use the table's ARN. You can also specify an Amazon CloudWatch metric associated with the DynamoDB table as a related item.</p>",
         "EventSummary$eventReferences": "<p>A list of references in a <code>TimelineEvent</code>.</p>",
         "TimelineEvent$eventReferences": "<p>A list of references in a <code>TimelineEvent</code>.</p>",
-        "UpdateTimelineEventInput$eventReferences": "<p>Updates all existing references in a <code>TimelineEvent</code>. A reference can be an Amazon Web Services resource involved in the incident or in some way associated with it. When you specify a reference, you enter the Amazon Resource Name (ARN) of the resource. You can also specify a related item. As an example, you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table for this example is the resource. You could also specify a Amazon CloudWatch metric for that table. The metric is the related item.</p> <important> <p>This update action overrides all existing references. If you want to keep existing references, you must specify them in the call. If you don't, this action removes them and enters only new references.</p> </important>"
+        "UpdateTimelineEventInput$eventReferences": "<p>Updates all existing references in a <code>TimelineEvent</code>. A reference is an Amazon Web Services resource involved or associated with the incident. To specify a reference, enter its Amazon Resource Name (ARN). You can also specify a related item associated with that resource. For example, to specify an Amazon DynamoDB (DynamoDB) table as a resource, use its ARN. You can also specify an Amazon CloudWatch metric associated with the DynamoDB table as a related item.</p> <important> <p>This update action overrides all existing references. If you want to keep existing references, you must specify them in the call. If you don't, this action removes any existing references and enters only new references.</p> </important>"
       }
     },
     "EventSummary": {
@@ -362,8 +362,8 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "ListIncidentRecordsInput$filters": "<p>Filters the list of incident records through which you are searching. You can filter on the following keys:</p> <ul> <li> <p> <code>creationTime</code> </p> </li> <li> <p> <code>impact</code> </p> </li> <li> <p> <code>status</code> </p> </li> <li> <p> <code>createdBy</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all incident records.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns incident records that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns incident records that match any of the values provided.</p> </li> </ul>",
-        "ListTimelineEventsInput$filters": "<p>Filters the timeline events based on the provided conditional values. You can filter timeline events using the following keys:</p> <ul> <li> <p> <code>eventTime</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all timeline events.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns timeline events that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns timeline events that match any of the values provided.</p> </li> </ul>"
+        "ListIncidentRecordsInput$filters": "<p>Filters the list of incident records you want to search through. You can filter on the following keys:</p> <ul> <li> <p> <code>creationTime</code> </p> </li> <li> <p> <code>impact</code> </p> </li> <li> <p> <code>status</code> </p> </li> <li> <p> <code>createdBy</code> </p> </li> </ul> <p>Note the following when when you use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all incident records.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns incident records that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns incident records that match any of the values provided.</p> </li> </ul>",
+        "ListTimelineEventsInput$filters": "<p>Filters the timeline events based on the provided conditional values. You can filter timeline events with the following keys:</p> <ul> <li> <p> <code>eventTime</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all timeline events.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns timeline events that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns timeline events that match any of the values provided.</p> </li> </ul>"
       }
     },
     "GeneratedId": {
@@ -430,7 +430,7 @@
         "IncidentRecordSummary$impact": "<p>Defines the impact to customers and applications.</p>",
         "IncidentTemplate$impact": "<p>The impact of the incident on your customers and applications. </p>",
         "StartIncidentInput$impact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, this typically relates to full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer might aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
-        "UpdateIncidentRecordInput$impact": "<p>Defines the impact of the incident to customers and applications. Providing an impact overwrites the impact provided by the response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
+        "UpdateIncidentRecordInput$impact": "<p>Defines the impact of the incident to customers and applications. If you provide an impact for an incident, it overwrites the impact provided by the response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
         "UpdateResponsePlanInput$incidentTemplateImpact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>5</code> - Severe impact</p> </li> <li> <p> <code>4</code> - High impact</p> </li> <li> <p> <code>3</code> - Medium impact</p> </li> <li> <p> <code>2</code> - Low impact</p> </li> <li> <p> <code>1</code> - No impact</p> </li> </ul>"
       }
     },
@@ -452,7 +452,7 @@
       "refs": {
         "IncidentRecord$status": "<p>The current status of the incident.</p>",
         "IncidentRecordSummary$status": "<p>The current status of the incident.</p>",
-        "UpdateIncidentRecordInput$status": "<p>The status of the incident. An incident can be <code>Open</code> or <code>Resolved</code>.</p>"
+        "UpdateIncidentRecordInput$status": "<p>The status of the incident. Possible statuses are <code>Open</code> or <code>Resolved</code>.</p>"
       }
     },
     "IncidentRecordSummary": {
@@ -656,7 +656,7 @@
       "refs": {
         "IncidentRecord$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>",
         "IncidentTemplate$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>",
-        "UpdateIncidentRecordInput$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p> <p>Using multiple SNS topics creates redundancy in the event that a Region is down during the incident.</p>",
+        "UpdateIncidentRecordInput$notificationTargets": "<p>The Amazon SNS targets that Incident Manager notifies when a client updates an incident.</p> <p>Using multiple SNS topics creates redundancy in the event that a Region is down during the incident.</p>",
         "UpdateResponsePlanInput$incidentTemplateNotificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>"
       }
     },
@@ -789,7 +789,7 @@
       "base": null,
       "refs": {
         "ListRelatedItemsOutput$relatedItems": "<p>Details about each related item.</p>",
-        "StartIncidentInput$relatedItems": "<p>Add related items to the incident for other responders to use. Related items are AWS resources, external links, or files uploaded to an Amazon S3 bucket. </p>"
+        "StartIncidentInput$relatedItems": "<p>Add related items to the incident for other responders to use. Related items are Amazon Web Services resources, external links, or files uploaded to an Amazon S3 bucket. </p>"
       }
     },
     "RelatedItemTitleString": {
@@ -801,7 +801,7 @@
     "RelatedItemsUpdate": {
       "base": "<p>Details about the related item you're adding.</p>",
       "refs": {
-        "UpdateRelatedItemsInput$relatedItemsUpdate": "<p>Details about the item you are adding or deleting.</p>"
+        "UpdateRelatedItemsInput$relatedItemsUpdate": "<p>Details about the item that you are add to, or delete from, an incident.</p>"
       }
     },
     "ReplicationSet": {
@@ -1072,16 +1072,16 @@
     "TimelineEventSort": {
       "base": null,
       "refs": {
-        "ListTimelineEventsInput$sortBy": "<p>Sort by the specified key value pair.</p>"
+        "ListTimelineEventsInput$sortBy": "<p>Sort timeline events by the specified key value pair.</p>"
       }
     },
     "TimelineEventType": {
       "base": null,
       "refs": {
-        "CreateTimelineEventInput$eventType": "<p>The type of the event. You can create timeline events of type <code>Custom Event</code>.</p>",
+        "CreateTimelineEventInput$eventType": "<p>The type of event. You can create timeline events of type <code>Custom Event</code>.</p>",
         "EventSummary$eventType": "<p>The type of event. The timeline event must be <code>Custom Event</code>.</p>",
         "TimelineEvent$eventType": "<p>The type of event that occurred. Currently Incident Manager supports only the <code>Custom Event</code> type.</p>",
-        "UpdateTimelineEventInput$eventType": "<p>The type of the event. You can update events of type <code>Custom Event</code>.</p>"
+        "UpdateTimelineEventInput$eventType": "<p>The type of event. You can update events of type <code>Custom Event</code>.</p>"
       }
     },
     "Timestamp": {
@@ -1117,11 +1117,11 @@
       "base": null,
       "refs": {
         "CreateTimelineEventOutput$eventId": "<p>The ID of the event for easy reference later. </p>",
-        "DeleteTimelineEventInput$eventId": "<p>The ID of the event you are updating. You can find this by using <code>ListTimelineEvents</code>.</p>",
+        "DeleteTimelineEventInput$eventId": "<p>The ID of the event to update. You can use <code>ListTimelineEvents</code> to find an event's ID.</p>",
         "EventSummary$eventId": "<p>The timeline event ID.</p>",
         "GetTimelineEventInput$eventId": "<p>The ID of the event. You can get an event's ID when you create it, or by using <code>ListTimelineEvents</code>.</p>",
         "TimelineEvent$eventId": "<p>The ID of the timeline event.</p>",
-        "UpdateTimelineEventInput$eventId": "<p>The ID of the event you are updating. You can find this by using <code>ListTimelineEvents</code>.</p>"
+        "UpdateTimelineEventInput$eventId": "<p>The ID of the event to update. You can use <code>ListTimelineEvents</code> to find an event's ID.</p>"
       }
     },
     "UntagResourceRequest": {
