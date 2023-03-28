@@ -1,3 +1,11 @@
+Release v1.44.231 (2023-03-28)
+===
+
+### Service Client Updates
+* `service/iot-data`: Adds new service
+* `service/ssm-contacts`: Updates service API, documentation, paginators, and examples
+* `service/ssm-incidents`: Updates service API and documentation
+
 Release v1.44.230 (2023-03-27)
 ===
 
