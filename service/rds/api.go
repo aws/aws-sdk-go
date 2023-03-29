@@ -1521,15 +1521,15 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 // and two reader DB instances for you, each in a different Availability Zone.
 //
 // You can use the ReplicationSourceIdentifier parameter to create an Amazon
-// Aurora DB cluster as a read replica of another DB cluster or Amazon RDS MySQL
-// or PostgreSQL DB instance. For more information about Amazon Aurora, see
-// What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// Aurora DB cluster as a read replica of another DB cluster or Amazon RDS for
+// MySQL or PostgreSQL DB instance. For more information about Amazon Aurora,
+// see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
 // You can also use the ReplicationSourceIdentifier parameter to create a Multi-AZ
-// DB cluster read replica with an RDS for PostgreSQL DB instance as the source.
-// For more information about Multi-AZ DB clusters, see Multi-AZ DB cluster
-// deployments (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// DB cluster read replica with an RDS for MySQL or PostgreSQL DB instance as
+// the source. For more information about Multi-AZ DB clusters, see Multi-AZ
+// DB cluster deployments (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2145,19 +2145,22 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 // CreateDBInstanceReadReplica API operation for Amazon Relational Database Service.
 //
 // Creates a new DB instance that acts as a read replica for an existing source
-// DB instance. You can create a read replica for a DB instance running MySQL,
-// MariaDB, Oracle, PostgreSQL, or SQL Server. For more information, see Working
-// with Read Replicas (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
+// DB instance or Multi-AZ DB cluster. You can create a read replica for a DB
+// instance running MySQL, MariaDB, Oracle, PostgreSQL, or SQL Server. You can
+// create a read replica for a Multi-AZ DB cluster running MySQL or PostgreSQL.
+// For more information, see Working with read replicas (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
+// and Migrating from a Multi-AZ DB cluster to a DB instance using a read replica
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html#multi-az-db-clusters-migrating-to-instance-with-read-replica)
 // in the Amazon RDS User Guide.
 //
 // Amazon Aurora doesn't support this operation. Call the CreateDBInstance operation
 // to create a DB instance for an Aurora DB cluster.
 //
 // All read replica DB instances are created with backups disabled. All other
-// DB instance attributes (including DB security groups and DB parameter groups)
-// are inherited from the source DB instance, except as specified.
+// attributes (including DB security groups and DB parameter groups) are inherited
+// from the source DB instance or cluster, except as specified.
 //
-// Your source DB instance must have backup retention enabled.
+// Your source DB instance or cluster must have backup retention enabled.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2191,8 +2194,14 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 //   - ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
 //     DBInstanceIdentifier doesn't refer to an existing DB instance.
 //
+//   - ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//     DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
 //   - ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
 //     The DB instance isn't in a valid state.
+//
+//   - ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//     The requested operation can't be performed while the cluster is in this state.
 //
 //   - ErrCodeDBSubnetGroupNotFoundFault "DBSubnetGroupNotFoundFault"
 //     DBSubnetGroupName doesn't refer to an existing DB subnet group.
@@ -3379,6 +3388,9 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 // you delete a DB cluster, all automated backups for that DB cluster are deleted
 // and can't be recovered. Manual DB cluster snapshots of the specified DB cluster
 // are not deleted.
+//
+// If you're deleting a Multi-AZ DB cluster with read replicas, all cluster
+// members are terminated and read replicas are promoted to standalone instances.
 //
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
@@ -20179,7 +20191,7 @@ type CreateDBClusterInput struct {
 	// The Amazon Resource Name (ARN) of the source DB instance or DB cluster if
 	// this DB cluster is created as a read replica.
 	//
-	// Valid for: Aurora DB clusters and RDS for PostgreSQL Multi-AZ DB clusters
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	ReplicationSourceIdentifier *string `type:"string"`
 
 	// For DB clusters in serverless DB engine mode, the scaling properties of the
@@ -22466,8 +22478,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
-	// Specify the name of the IAM role to be used when making API calls to the
-	// Directory Service.
+	// The name of the IAM role to be used when making API calls to the Directory
+	// Service.
 	//
 	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
@@ -22526,9 +22538,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	// ARN, or alias name for the KMS key.
 	//
 	// If you create an encrypted read replica in the same Amazon Web Services Region
-	// as the source DB instance, then do not specify a value for this parameter.
-	// A read replica in the same Amazon Web Services Region is always encrypted
-	// with the same KMS key as the source DB instance.
+	// as the source DB instance or Multi-AZ DB cluster, don't specify a value for
+	// this parameter. A read replica in the same Amazon Web Services Region is
+	// always encrypted with the same KMS key as the source DB instance or cluster.
 	//
 	// If you create an encrypted read replica in a different Amazon Web Services
 	// Region, then you must specify a KMS key identifier for the destination Amazon
@@ -22536,7 +22548,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// that they are created in, and you can't use KMS keys from one Amazon Web
 	// Services Region in another Amazon Web Services Region.
 	//
-	// You can't create an encrypted read replica from an unencrypted DB instance.
+	// You can't create an encrypted read replica from an unencrypted DB instance
+	// or Multi-AZ DB cluster.
 	//
 	// This setting doesn't apply to RDS Custom, which uses the same KMS key as
 	// the primary replica.
@@ -22580,7 +22593,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	// You can create a read replica as a Multi-AZ DB instance. RDS creates a standby
 	// of your replica in another Availability Zone for failover support for the
 	// replica. Creating your read replica as a Multi-AZ DB instance is independent
-	// of whether the source database is a Multi-AZ DB instance.
+	// of whether the source is a Multi-AZ DB instance or a Multi-AZ DB cluster.
 	//
 	// This setting doesn't apply to RDS Custom.
 	MultiAZ *bool `type:"boolean"`
@@ -22602,10 +22615,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	NetworkType *string `type:"string"`
 
 	// The option group the DB instance is associated with. If omitted, the option
-	// group associated with the source instance is used.
+	// group associated with the source instance or cluster is used.
 	//
-	// For SQL Server, you must use the option group associated with the source
-	// instance.
+	// For SQL Server, you must use the option group associated with the source.
 	//
 	// This setting doesn't apply to RDS Custom.
 	OptionGroupName *string `type:"string"`
@@ -22665,6 +22677,10 @@ type CreateDBInstanceReadReplicaInput struct {
 	// This setting applies only to Amazon Web Services GovCloud (US) Regions and
 	// China Amazon Web Services Regions. It's ignored in other Amazon Web Services
 	// Regions.
+	//
+	// This setting applies only when replicating from a source DB instance. Source
+	// DB clusters aren't supported in Amazon Web Services GovCloud (US) Regions
+	// and China Amazon Web Services Regions.
 	//
 	// You must specify this parameter when you create an encrypted read replica
 	// from another Amazon Web Services Region by using the Amazon RDS API. Don't
@@ -22759,27 +22775,42 @@ type CreateDBInstanceReadReplicaInput struct {
 	// open mode manually.
 	ReplicaMode *string `type:"string" enum:"ReplicaMode"`
 
+	// The identifier of the Multi-AZ DB cluster that will act as the source for
+	// the read replica. Each DB cluster can have up to 15 read replicas.
+	//
+	// Constraints:
+	//
+	//    * Must be the identifier of an existing Multi-AZ DB cluster.
+	//
+	//    * Can't be specified if the SourceDBInstanceIdentifier parameter is also
+	//    specified.
+	//
+	//    * The specified DB cluster must have automatic backups enabled, that is,
+	//    its backup retention period must be greater than 0.
+	//
+	//    * The source DB cluster must be in the same Amazon Web Services Region
+	//    as the read replica. Cross-Region replication isn't supported.
+	SourceDBClusterIdentifier *string `type:"string"`
+
 	// The identifier of the DB instance that will act as the source for the read
-	// replica. Each DB instance can have up to five read replicas.
+	// replica. Each DB instance can have up to 15 read replicas, with the exception
+	// of Oracle and SQL Server, which can have up to five.
 	//
 	// Constraints:
 	//
 	//    * Must be the identifier of an existing MySQL, MariaDB, Oracle, PostgreSQL,
 	//    or SQL Server DB instance.
 	//
-	//    * Can specify a DB instance that is a MySQL read replica only if the source
-	//    is running MySQL 5.6 or later.
+	//    * Can't be specified if the SourceDBClusterIdentifier parameter is also
+	//    specified.
 	//
-	//    * For the limitations of Oracle read replicas, see Read Replica Limitations
-	//    with Oracle (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-read-replicas.html)
+	//    * For the limitations of Oracle read replicas, see Version and licensing
+	//    considerations for RDS for Oracle replicas (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-read-replicas.limitations.html#oracle-read-replicas.limitations.versions-and-licenses)
 	//    in the Amazon RDS User Guide.
 	//
-	//    * For the limitations of SQL Server read replicas, see Read Replica Limitations
-	//    with Microsoft SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/SQLServer.ReadReplicas.Limitations.html)
+	//    * For the limitations of SQL Server read replicas, see Read replica limitations
+	//    with SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/SQLServer.ReadReplicas.html#SQLServer.ReadReplicas.Limitations)
 	//    in the Amazon RDS User Guide.
-	//
-	//    * Can specify a PostgreSQL DB instance only if the source is running PostgreSQL
-	//    9.3.5 or later (9.4.7 and higher for cross-Region replication).
 	//
 	//    * The specified DB instance must have automatic backups enabled, that
 	//    is, its backup retention period must be greater than 0.
@@ -22792,9 +22823,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//    see Constructing an ARN for Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing)
 	//    in the Amazon RDS User Guide. This doesn't apply to SQL Server or RDS
 	//    Custom, which don't support cross-Region replicas.
-	//
-	// SourceDBInstanceIdentifier is a required field
-	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
+	SourceDBInstanceIdentifier *string `type:"string"`
 
 	// SourceRegion is the source region where the resource exists. This is not
 	// sent over the wire and is only used for presigning. This value should always
@@ -22856,9 +22885,6 @@ func (s *CreateDBInstanceReadReplicaInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDBInstanceReadReplicaInput"}
 	if s.DBInstanceIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
-	}
-	if s.SourceDBInstanceIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceDBInstanceIdentifier"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -23056,6 +23082,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetPubliclyAccessible(v bool) *Create
 // SetReplicaMode sets the ReplicaMode field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetReplicaMode(v string) *CreateDBInstanceReadReplicaInput {
 	s.ReplicaMode = &v
+	return s
+}
+
+// SetSourceDBClusterIdentifier sets the SourceDBClusterIdentifier field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetSourceDBClusterIdentifier(v string) *CreateDBInstanceReadReplicaInput {
+	s.SourceDBClusterIdentifier = &v
 	return s
 }
 
@@ -26861,6 +26893,10 @@ type DBInstance struct {
 	// DB instance.
 	ReadReplicaDBInstanceIdentifiers []*string `locationNameList:"ReadReplicaDBInstanceIdentifier" type:"list"`
 
+	// Contains the identifier of the source DB cluster if this DB instance is a
+	// read replica.
+	ReadReplicaSourceDBClusterIdentifier *string `type:"string"`
+
 	// Contains the identifier of the source DB instance if this DB instance is
 	// a read replica.
 	ReadReplicaSourceDBInstanceIdentifier *string `type:"string"`
@@ -27337,6 +27373,12 @@ func (s *DBInstance) SetReadReplicaDBClusterIdentifiers(v []*string) *DBInstance
 // SetReadReplicaDBInstanceIdentifiers sets the ReadReplicaDBInstanceIdentifiers field's value.
 func (s *DBInstance) SetReadReplicaDBInstanceIdentifiers(v []*string) *DBInstance {
 	s.ReadReplicaDBInstanceIdentifiers = v
+	return s
+}
+
+// SetReadReplicaSourceDBClusterIdentifier sets the ReadReplicaSourceDBClusterIdentifier field's value.
+func (s *DBInstance) SetReadReplicaSourceDBClusterIdentifier(v string) *DBInstance {
+	s.ReadReplicaSourceDBClusterIdentifier = &v
 	return s
 }
 
@@ -40286,10 +40328,19 @@ type ModifyDBClusterInput struct {
 	// this parameter results in an outage. The change is applied during the next
 	// maintenance window unless ApplyImmediately is enabled.
 	//
+	// If the cluster that you're modifying has one or more read replicas, all replicas
+	// must be running an engine version that's the same or later than the version
+	// you specify.
+	//
 	// To list all of the available engine versions for Aurora MySQL version 2 (5.7-compatible)
 	// and version 3 (MySQL 8.0-compatible), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
+	//
+	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
+	// use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
 	// To list all of the available engine versions for Aurora PostgreSQL, use the
 	// following command:
@@ -41453,6 +41504,10 @@ type ModifyDBInstanceInput struct {
 	// If you specify only a major version, Amazon RDS will update the DB instance
 	// to the default minor version if the current minor version is lower. For information
 	// about valid engine versions, see CreateDBInstance, or call DescribeDBEngineVersions.
+	//
+	// If the instance that you're modifying is acting as a read replica, the engine
+	// version that you specify must be the same or later than the version that
+	// the source DB instance or cluster is running.
 	//
 	// In RDS Custom for Oracle, this parameter is supported for read replicas only
 	// if they are in the PATCH_DB_FAILURE lifecycle.
@@ -52555,7 +52610,7 @@ type StopDBInstanceAutomatedBackupsReplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the source DB instance for which to stop
-	// replicating automated backups, for example, arn:aws:rds:us-west-2:123456789012:db:mydatabase.
+	// replicating automate backups, for example, arn:aws:rds:us-west-2:123456789012:db:mydatabase.
 	//
 	// SourceDBInstanceArn is a required field
 	SourceDBInstanceArn *string `type:"string" required:"true"`

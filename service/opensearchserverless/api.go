@@ -244,13 +244,17 @@ func (c *OpenSearchServerless) CreateAccessPolicyRequest(input *CreateAccessPoli
 //     Thrown when an error internal to the service occurs while processing a request.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
 //     Thrown when the HTTP request contains invalid input or is missing required
 //     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/CreateAccessPolicy
 func (c *OpenSearchServerless) CreateAccessPolicy(input *CreateAccessPolicyInput) (*CreateAccessPolicyOutput, error) {
@@ -329,17 +333,24 @@ func (c *OpenSearchServerless) CreateCollectionRequest(input *CreateCollectionIn
 //
 // Returned Error Types:
 //
+//   - OcuLimitExceededException
+//     OCU Limit Exceeded for service limits
+//
 //   - InternalServerException
 //     Thrown when an error internal to the service occurs while processing a request.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
 //     Thrown when the HTTP request contains invalid input or is missing required
 //     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/CreateCollection
 func (c *OpenSearchServerless) CreateCollection(input *CreateCollectionInput) (*CreateCollectionOutput, error) {
@@ -422,13 +433,17 @@ func (c *OpenSearchServerless) CreateSecurityConfigRequest(input *CreateSecurity
 //     Thrown when an error internal to the service occurs while processing a request.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
 //     Thrown when the HTTP request contains invalid input or is missing required
 //     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/CreateSecurityConfig
 func (c *OpenSearchServerless) CreateSecurityConfig(input *CreateSecurityConfigInput) (*CreateSecurityConfigOutput, error) {
@@ -515,13 +530,17 @@ func (c *OpenSearchServerless) CreateSecurityPolicyRequest(input *CreateSecurity
 //     Thrown when an error internal to the service occurs while processing a request.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
 //     Thrown when the HTTP request contains invalid input or is missing required
 //     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/CreateSecurityPolicy
 func (c *OpenSearchServerless) CreateSecurityPolicy(input *CreateSecurityPolicyInput) (*CreateSecurityPolicyOutput, error) {
@@ -605,13 +624,17 @@ func (c *OpenSearchServerless) CreateVpcEndpointRequest(input *CreateVpcEndpoint
 //     Thrown when an error internal to the service occurs while processing a request.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
 //     Thrown when the HTTP request contains invalid input or is missing required
 //     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/CreateVpcEndpoint
 func (c *OpenSearchServerless) CreateVpcEndpoint(input *CreateVpcEndpointInput) (*CreateVpcEndpointOutput, error) {
@@ -698,8 +721,8 @@ func (c *OpenSearchServerless) DeleteAccessPolicyRequest(input *DeleteAccessPoli
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -790,8 +813,8 @@ func (c *OpenSearchServerless) DeleteCollectionRequest(input *DeleteCollectionIn
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -883,8 +906,8 @@ func (c *OpenSearchServerless) DeleteSecurityConfigRequest(input *DeleteSecurity
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -975,8 +998,8 @@ func (c *OpenSearchServerless) DeleteSecurityPolicyRequest(input *DeleteSecurity
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -1067,8 +1090,8 @@ func (c *OpenSearchServerless) DeleteVpcEndpointRequest(input *DeleteVpcEndpoint
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -2381,13 +2404,17 @@ func (c *OpenSearchServerless) TagResourceRequest(input *TagResourceInput) (req 
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
 //     Thrown when the HTTP request contains invalid input or is missing required
 //     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/TagResource
 func (c *OpenSearchServerless) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2474,8 +2501,8 @@ func (c *OpenSearchServerless) UntagResourceRequest(input *UntagResourceInput) (
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -2566,8 +2593,8 @@ func (c *OpenSearchServerless) UpdateAccessPolicyRequest(input *UpdateAccessPoli
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -2640,7 +2667,8 @@ func (c *OpenSearchServerless) UpdateAccountSettingsRequest(input *UpdateAccount
 // UpdateAccountSettings API operation for OpenSearch Service Serverless.
 //
 // Update the OpenSearch Serverless settings for the current Amazon Web Services
-// account. For more information, see Autoscaling (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html#serverless-scaling).
+// account. For more information, see Managing capacity limits for Amazon OpenSearch
+// Serverless (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2738,8 +2766,8 @@ func (c *OpenSearchServerless) UpdateCollectionRequest(input *UpdateCollectionIn
 //     Thrown when an error internal to the service occurs while processing a request.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -2830,8 +2858,8 @@ func (c *OpenSearchServerless) UpdateSecurityConfigRequest(input *UpdateSecurity
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -2923,13 +2951,17 @@ func (c *OpenSearchServerless) UpdateSecurityPolicyRequest(input *UpdateSecurity
 //     Thrown when accessing or deleting a resource that does not exist.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
 //     Thrown when the HTTP request contains invalid input or is missing required
 //     input.
+//
+//   - ServiceQuotaExceededException
+//     Thrown when you attempt to create more resources than the service allows
+//     based on service quotas.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearchserverless-2021-11-01/UpdateSecurityPolicy
 func (c *OpenSearchServerless) UpdateSecurityPolicy(input *UpdateSecurityPolicyInput) (*UpdateSecurityPolicyOutput, error) {
@@ -3012,8 +3044,8 @@ func (c *OpenSearchServerless) UpdateVpcEndpointRequest(input *UpdateVpcEndpoint
 //     Thrown when an error internal to the service occurs while processing a request.
 //
 //   - ConflictException
-//     When creating a collection, thrown when a collection with the same name already
-//     exists or is being created. When deleting a collection, thrown when the collection
+//     When creating a resource, thrown when a resource with the same name already
+//     exists or is being created. When deleting a resource, thrown when the resource
 //     is not in the ACTIVE or FAILED state.
 //
 //   - ValidationException
@@ -3050,7 +3082,7 @@ type AccessPolicyDetail struct {
 	CreatedDate *int64 `locationName:"createdDate" type:"long"`
 
 	// The description of the policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The timestamp of when the policy was last modified.
 	LastModifiedDate *int64 `locationName:"lastModifiedDate" type:"long"`
@@ -3159,7 +3191,7 @@ type AccessPolicySummary struct {
 	CreatedDate *int64 `locationName:"createdDate" type:"long"`
 
 	// The description of the access policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The date and time when the collection was last modified.
 	LastModifiedDate *int64 `locationName:"lastModifiedDate" type:"long"`
@@ -3234,7 +3266,8 @@ type AccountSettingsDetail struct {
 
 	// The maximum capacity limits for all OpenSearch Serverless collections, in
 	// OpenSearch Compute Units (OCUs). These limits are used to scale your collections
-	// based on the current workload. For more information, see Autoscaling (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html#serverless-scaling).
+	// based on the current workload. For more information, see Managing capacity
+	// limits for Amazon OpenSearch Serverless (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html).
 	CapacityLimits *CapacityLimits `locationName:"capacityLimits" type:"structure"`
 }
 
@@ -3452,7 +3485,8 @@ func (s *BatchGetVpcEndpointOutput) SetVpcEndpointErrorDetails(v []*VpcEndpointE
 
 // The maximum capacity limits for all OpenSearch Serverless collections, in
 // OpenSearch Compute Units (OCUs). These limits are used to scale your collections
-// based on the current workload. For more information, see Autoscaling (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html#serverless-scaling).
+// based on the current workload. For more information, see Managing capacity
+// limits for Amazon OpenSearch Serverless (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html).
 type CapacityLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -3809,8 +3843,8 @@ func (s *CollectionSummary) SetStatus(v string) *CollectionSummary {
 	return s
 }
 
-// When creating a collection, thrown when a collection with the same name already
-// exists or is being created. When deleting a collection, thrown when the collection
+// When creating a resource, thrown when a resource with the same name already
+// exists or is being created. When deleting a resource, thrown when the resource
 // is not in the ACTIVE or FAILED state.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -3883,7 +3917,7 @@ type CreateAccessPolicyInput struct {
 
 	// A description of the policy. Typically used to store information about the
 	// permissions defined in the policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The name of the policy.
 	//
@@ -3924,9 +3958,6 @@ func (s *CreateAccessPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAccessPolicyInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -4259,7 +4290,8 @@ type CreateSecurityConfigInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
 
-	// Describes SAML options in in the form of a key-value map.
+	// Describes SAML options in in the form of a key-value map. This field is required
+	// if you specify saml for the type parameter.
 	SamlOptions *SamlConfigOptions `locationName:"samlOptions" type:"structure"`
 
 	// The type of security configuration.
@@ -4385,7 +4417,7 @@ type CreateSecurityPolicyInput struct {
 
 	// A description of the policy. Typically used to store information about the
 	// permissions defined in the policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The name of the policy.
 	//
@@ -4426,9 +4458,6 @@ func (s *CreateSecurityPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSecurityPolicyInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -5747,7 +5776,8 @@ type ListAccessPoliciesInput struct {
 	// which returns results in the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Resource filters (can be collection or indexes) that policies can apply to.
+	// Resource filters (can be collections or indexes) that policies can apply
+	// to.
 	Resource []*string `locationName:"resource" min:"1" type:"list"`
 
 	// The type of access policy.
@@ -6397,6 +6427,71 @@ func (s *ListVpcEndpointsOutput) SetVpcEndpointSummaries(v []*VpcEndpointSummary
 	return s
 }
 
+// OCU Limit Exceeded for service limits
+type OcuLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Description of the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OcuLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OcuLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorOcuLimitExceededException(v protocol.ResponseMetadata) error {
+	return &OcuLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *OcuLimitExceededException) Code() string {
+	return "OcuLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *OcuLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *OcuLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *OcuLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *OcuLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *OcuLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Thrown when accessing or deleting a resource that does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -6474,8 +6569,7 @@ type SamlConfigOptions struct {
 	// Metadata is a required field
 	Metadata *string `locationName:"metadata" min:"1" type:"string" required:"true"`
 
-	// The session timeout, in minutes. Minimum is 15 minutes and maximum is 1440
-	// minutes (24 hours or 1 day). Default is 60 minutes.
+	// The session timeout, in minutes. Default is 60 minutes (12 hours).
 	SessionTimeout *int64 `locationName:"sessionTimeout" min:"5" type:"integer"`
 
 	// A user attribute for this SAML integration.
@@ -6752,7 +6846,7 @@ type SecurityPolicyDetail struct {
 	CreatedDate *int64 `locationName:"createdDate" type:"long"`
 
 	// The description of the security policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The timestamp of when the policy was last modified.
 	LastModifiedDate *int64 `locationName:"lastModifiedDate" type:"long"`
@@ -6870,7 +6964,7 @@ type SecurityPolicySummary struct {
 	CreatedDate *int64 `locationName:"createdDate" type:"long"`
 
 	// The description of the security policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The timestamp of when the policy was last modified.
 	LastModifiedDate *int64 `locationName:"lastModifiedDate" type:"long"`
@@ -6937,6 +7031,86 @@ func (s *SecurityPolicySummary) SetPolicyVersion(v string) *SecurityPolicySummar
 func (s *SecurityPolicySummary) SetType(v string) *SecurityPolicySummary {
 	s.Type = &v
 	return s
+}
+
+// Thrown when you attempt to create more resources than the service allows
+// based on service quotas.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Description of the error.
+	Message_ *string `locationName:"message" type:"string"`
+
+	// Service Quotas requirement to identify originating quota.
+	QuotaCode *string `locationName:"quotaCode" type:"string"`
+
+	// Identifier of the resource affected.
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// Type of the resource affected.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+
+	// Service Quotas requirement to identify originating service.
+	//
+	// ServiceCode is a required field
+	ServiceCode *string `locationName:"serviceCode" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // A map of key-value pairs associated to an OpenSearch Serverless resource.
@@ -7197,7 +7371,7 @@ type UpdateAccessPolicyInput struct {
 
 	// A description of the policy. Typically used to store information about the
 	// permissions defined in the policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The name of the policy.
 	//
@@ -7241,9 +7415,6 @@ func (s *UpdateAccessPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAccessPolicyInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -7342,7 +7513,8 @@ type UpdateAccountSettingsInput struct {
 
 	// The maximum capacity limits for all OpenSearch Serverless collections, in
 	// OpenSearch Compute Units (OCUs). These limits are used to scale your collections
-	// based on the current workload. For more information, see Autoscaling (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html#serverless-scaling).
+	// based on the current workload. For more information, see Managing capacity
+	// limits for Amazon OpenSearch Serverless (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html).
 	CapacityLimits *CapacityLimits `locationName:"capacityLimits" type:"structure"`
 }
 
@@ -7759,7 +7931,7 @@ type UpdateSecurityPolicyInput struct {
 
 	// A description of the policy. Typically used to store information about the
 	// permissions defined in the policy.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	Description *string `locationName:"description" type:"string"`
 
 	// The name of the policy.
 	//
@@ -7803,9 +7975,6 @@ func (s *UpdateSecurityPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateSecurityPolicyInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -8207,7 +8376,7 @@ type VpcEndpointDetail struct {
 	// The ID of the subnets from which you access OpenSearch Serverless.
 	SubnetIds []*string `locationName:"subnetIds" min:"1" type:"list"`
 
-	// The ID of the VPC from which you access OpenSearch Serverless
+	// The ID of the VPC from which you access OpenSearch Serverless.
 	VpcId *string `locationName:"vpcId" min:"1" type:"string"`
 }
 

@@ -605,8 +605,12 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 				fmt.Println(rds.ErrCodeStorageQuotaExceededFault, aerr.Error())
 			case rds.ErrCodeDBInstanceNotFoundFault:
 				fmt.Println(rds.ErrCodeDBInstanceNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBClusterNotFoundFault:
+				fmt.Println(rds.ErrCodeDBClusterNotFoundFault, aerr.Error())
 			case rds.ErrCodeInvalidDBInstanceStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBInstanceStateFault, aerr.Error())
+			case rds.ErrCodeInvalidDBClusterStateFault:
+				fmt.Println(rds.ErrCodeInvalidDBClusterStateFault, aerr.Error())
 			case rds.ErrCodeDBSubnetGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBSubnetGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBSubnetGroupDoesNotCoverEnoughAZs:

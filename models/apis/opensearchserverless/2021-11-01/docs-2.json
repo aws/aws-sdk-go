@@ -28,7 +28,7 @@
     "TagResource": "<p>Associates tags with an OpenSearch Serverless resource. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-collection.html\">Tagging Amazon OpenSearch Serverless collections</a>.</p>",
     "UntagResource": "<p>Removes a tag or set of tags from an OpenSearch Serverless resource. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-collection.html\">Tagging Amazon OpenSearch Serverless collections</a>.</p>",
     "UpdateAccessPolicy": "<p>Updates an OpenSearch Serverless access policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html\">Data access control for Amazon OpenSearch Serverless</a>.</p>",
-    "UpdateAccountSettings": "<p>Update the OpenSearch Serverless settings for the current Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html#serverless-scaling\">Autoscaling</a>.</p>",
+    "UpdateAccountSettings": "<p>Update the OpenSearch Serverless settings for the current Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html\">Managing capacity limits for Amazon OpenSearch Serverless</a>.</p>",
     "UpdateCollection": "<p>Updates an OpenSearch Serverless collection.</p>",
     "UpdateSecurityConfig": "<p>Updates a security configuration for OpenSearch Serverless. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-saml.html\">SAML authentication for Amazon OpenSearch Serverless</a>.</p>",
     "UpdateSecurityPolicy": "<p>Updates an OpenSearch Serverless security policy. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-network.html\">Network access for Amazon OpenSearch Serverless</a> and <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html\">Encryption at rest for Amazon OpenSearch Serverless</a>.</p>",
@@ -109,7 +109,7 @@
       }
     },
     "CapacityLimits": {
-      "base": "<p>The maximum capacity limits for all OpenSearch Serverless collections, in OpenSearch Compute Units (OCUs). These limits are used to scale your collections based on the current workload. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-overview.html#serverless-scaling\">Autoscaling</a>.</p>",
+      "base": "<p>The maximum capacity limits for all OpenSearch Serverless collections, in OpenSearch Compute Units (OCUs). These limits are used to scale your collections based on the current workload. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html\">Managing capacity limits for Amazon OpenSearch Serverless</a>.</p>",
       "refs": {
         "AccountSettingsDetail$capacityLimits": null,
         "UpdateAccountSettingsRequest$capacityLimits": null
@@ -253,7 +253,7 @@
       }
     },
     "ConflictException": {
-      "base": "<p>When creating a collection, thrown when a collection with the same name already exists or is being created. When deleting a collection, thrown when the collection is not in the ACTIVE or FAILED state.</p>",
+      "base": "<p>When creating a resource, thrown when a resource with the same name already exists or is being created. When deleting a resource, thrown when the resource is not in the ACTIVE or FAILED state.</p>",
       "refs": {
       }
     },
@@ -469,7 +469,7 @@
     "ListAccessPoliciesRequestResourceList": {
       "base": null,
       "refs": {
-        "ListAccessPoliciesRequest$resource": "<p>Resource filters (can be collection or indexes) that policies can apply to.</p>"
+        "ListAccessPoliciesRequest$resource": "<p>Resource filters (can be collections or indexes) that policies can apply to.</p>"
       }
     },
     "ListAccessPoliciesResponse": {
@@ -587,6 +587,11 @@
         "VpcEndpointDetail$createdDate": "<p>The date the endpoint was created.</p>"
       }
     },
+    "OcuLimitExceededException": {
+      "base": "<p>OCU Limit Exceeded for service limits</p>",
+      "refs": {
+      }
+    },
     "PolicyDescription": {
       "base": null,
       "refs": {
@@ -655,7 +660,7 @@
     "SamlConfigOptions": {
       "base": "<p>Describes SAML options for an OpenSearch Serverless security configuration in the form of a key-value map.</p>",
       "refs": {
-        "CreateSecurityConfigRequest$samlOptions": "<p>Describes SAML options in in the form of a key-value map.</p>",
+        "CreateSecurityConfigRequest$samlOptions": "<p>Describes SAML options in in the form of a key-value map. This field is required if you specify <code>saml</code> for the <code>type</code> parameter.</p>",
         "SecurityConfigDetail$samlOptions": "<p>SAML options for the security configuration in the form of a key-value map.</p>",
         "UpdateSecurityConfigRequest$samlOptions": "<p>SAML options in in the form of a key-value map.</p>"
       }
@@ -663,7 +668,7 @@
     "SamlConfigOptionsSessionTimeoutInteger": {
       "base": null,
       "refs": {
-        "SamlConfigOptions$sessionTimeout": "<p>The session timeout, in minutes. Minimum is 15 minutes and maximum is 1440 minutes (24 hours or 1 day). Default is 60 minutes.</p>"
+        "SamlConfigOptions$sessionTimeout": "<p>The session timeout, in minutes. Default is 60 minutes (12 hours).</p>"
       }
     },
     "SearchCapacityValue": {
@@ -771,6 +776,11 @@
         "UpdateSecurityPolicyRequest$type": "<p>The type of access policy.</p>"
       }
     },
+    "ServiceQuotaExceededException": {
+      "base": "<p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>",
+      "refs": {
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -797,7 +807,13 @@
         "ListSecurityPoliciesResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListVpcEndpointsRequest$nextToken": "<p>If your initial <code>ListVpcEndpoints</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListVpcEndpoints</code> operations, which returns results in the next page. </p>",
         "ListVpcEndpointsResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "OcuLimitExceededException$message": "<p>Description of the error.</p>",
         "ResourceNotFoundException$message": null,
+        "ServiceQuotaExceededException$message": "<p>Description of the error.</p>",
+        "ServiceQuotaExceededException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
+        "ServiceQuotaExceededException$resourceId": "<p>Identifier of the resource affected.</p>",
+        "ServiceQuotaExceededException$resourceType": "<p>Type of the resource affected.</p>",
+        "ServiceQuotaExceededException$serviceCode": "<p>Service Quotas requirement to identify originating service.</p>",
         "UpdateCollectionDetail$arn": "<p>The Amazon Resource Name (ARN) of the collection.</p>",
         "UpdateCollectionDetail$description": "<p>The description of the collection.</p>",
         "ValidationException$message": null,
@@ -1045,7 +1061,7 @@
       "base": null,
       "refs": {
         "CreateVpcEndpointRequest$vpcId": "<p>The ID of the VPC from which you'll access OpenSearch Serverless.</p>",
-        "VpcEndpointDetail$vpcId": "<p>The ID of the VPC from which you access OpenSearch Serverless</p>"
+        "VpcEndpointDetail$vpcId": "<p>The ID of the VPC from which you access OpenSearch Serverless.</p>"
       }
     },
     "samlGroupAttribute": {
