@@ -64,6 +64,9 @@
         },
         {
           "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
         }
       ],
       "http": {
@@ -82,6 +85,9 @@
     "CreateCollection": {
       "errors": [
         {
+          "shape": "OcuLimitExceededException"
+        },
+        {
           "shape": "InternalServerException"
         },
         {
@@ -89,6 +95,9 @@
         },
         {
           "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
         }
       ],
       "http": {
@@ -114,6 +123,9 @@
         },
         {
           "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
         }
       ],
       "http": {
@@ -139,6 +151,9 @@
         },
         {
           "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
         }
       ],
       "http": {
@@ -164,6 +179,9 @@
         },
         {
           "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
         }
       ],
       "http": {
@@ -572,6 +590,9 @@
         },
         {
           "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
         }
       ],
       "http": {
@@ -728,6 +749,9 @@
         },
         {
           "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
         }
       ],
       "http": {
@@ -1753,9 +1777,21 @@
       "box": true,
       "type": "long"
     },
+    "OcuLimitExceededException": {
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "type": "structure"
+    },
     "PolicyDescription": {
       "max": 1000,
-      "min": 1,
+      "min": 0,
       "type": "string"
     },
     "PolicyDocument": {
@@ -1976,6 +2012,31 @@
         "network"
       ],
       "type": "string"
+    },
+    "ServiceQuotaExceededException": {
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "String"
+        },
+        "quotaCode": {
+          "shape": "String"
+        },
+        "resourceId": {
+          "shape": "String"
+        },
+        "resourceType": {
+          "shape": "String"
+        },
+        "serviceCode": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "message",
+        "serviceCode"
+      ],
+      "type": "structure"
     },
     "String": {
       "type": "string"

@@ -1,3 +1,11 @@
+Release v1.44.232 (2023-03-29)
+===
+
+### Service Client Updates
+* `service/opensearchserverless`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Add support for creating a read replica DB instance from a Multi-AZ DB cluster.
+
 Release v1.44.231 (2023-03-28)
 ===
 
