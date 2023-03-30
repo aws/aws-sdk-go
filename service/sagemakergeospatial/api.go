@@ -84,8 +84,10 @@ func (c *SageMakerGeospatial) DeleteEarthObservationJobRequest(input *DeleteEart
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/DeleteEarthObservationJob
 func (c *SageMakerGeospatial) DeleteEarthObservationJob(input *DeleteEarthObservationJobInput) (*DeleteEarthObservationJobOutput, error) {
@@ -179,8 +181,10 @@ func (c *SageMakerGeospatial) DeleteVectorEnrichmentJobRequest(input *DeleteVect
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/DeleteVectorEnrichmentJob
 func (c *SageMakerGeospatial) DeleteVectorEnrichmentJob(input *DeleteVectorEnrichmentJobInput) (*DeleteVectorEnrichmentJobOutput, error) {
@@ -248,7 +252,7 @@ func (c *SageMakerGeospatial) ExportEarthObservationJobRequest(input *ExportEart
 // ExportEarthObservationJob API operation for Amazon SageMaker geospatial capabilities.
 //
 // Use this operation to export results of an Earth Observation job and optionally
-// source images used as input to the EOJ to an S3 location.
+// source images used as input to the EOJ to an Amazon S3 location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -277,8 +281,10 @@ func (c *SageMakerGeospatial) ExportEarthObservationJobRequest(input *ExportEart
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/ExportEarthObservationJob
 func (c *SageMakerGeospatial) ExportEarthObservationJob(input *ExportEarthObservationJobInput) (*ExportEarthObservationJobOutput, error) {
@@ -345,7 +351,8 @@ func (c *SageMakerGeospatial) ExportVectorEnrichmentJobRequest(input *ExportVect
 
 // ExportVectorEnrichmentJob API operation for Amazon SageMaker geospatial capabilities.
 //
-// Use this operation to copy results of a Vector Enrichment job to an S3 location.
+// Use this operation to copy results of a Vector Enrichment job to an Amazon
+// S3 location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -374,8 +381,10 @@ func (c *SageMakerGeospatial) ExportVectorEnrichmentJobRequest(input *ExportVect
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/ExportVectorEnrichmentJob
 func (c *SageMakerGeospatial) ExportVectorEnrichmentJob(input *ExportVectorEnrichmentJobInput) (*ExportVectorEnrichmentJobOutput, error) {
@@ -468,6 +477,7 @@ func (c *SageMakerGeospatial) GetEarthObservationJobRequest(input *GetEarthObser
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/GetEarthObservationJob
 func (c *SageMakerGeospatial) GetEarthObservationJob(input *GetEarthObservationJobInput) (*GetEarthObservationJobOutput, error) {
@@ -560,6 +570,7 @@ func (c *SageMakerGeospatial) GetRasterDataCollectionRequest(input *GetRasterDat
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/GetRasterDataCollection
 func (c *SageMakerGeospatial) GetRasterDataCollection(input *GetRasterDataCollectionInput) (*GetRasterDataCollectionOutput, error) {
@@ -652,6 +663,7 @@ func (c *SageMakerGeospatial) GetTileRequest(input *GetTileInput) (req *request.
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/GetTile
 func (c *SageMakerGeospatial) GetTile(input *GetTileInput) (*GetTileOutput, error) {
@@ -745,6 +757,7 @@ func (c *SageMakerGeospatial) GetVectorEnrichmentJobRequest(input *GetVectorEnri
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/GetVectorEnrichmentJob
 func (c *SageMakerGeospatial) GetVectorEnrichmentJob(input *GetVectorEnrichmentJobInput) (*GetVectorEnrichmentJobOutput, error) {
@@ -844,6 +857,7 @@ func (c *SageMakerGeospatial) ListEarthObservationJobsRequest(input *ListEarthOb
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/ListEarthObservationJobs
 func (c *SageMakerGeospatial) ListEarthObservationJobs(input *ListEarthObservationJobsInput) (*ListEarthObservationJobsOutput, error) {
@@ -993,6 +1007,7 @@ func (c *SageMakerGeospatial) ListRasterDataCollectionsRequest(input *ListRaster
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/ListRasterDataCollections
 func (c *SageMakerGeospatial) ListRasterDataCollections(input *ListRasterDataCollectionsInput) (*ListRasterDataCollectionsOutput, error) {
@@ -1136,6 +1151,7 @@ func (c *SageMakerGeospatial) ListTagsForResourceRequest(input *ListTagsForResou
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/ListTagsForResource
 func (c *SageMakerGeospatial) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1234,6 +1250,7 @@ func (c *SageMakerGeospatial) ListVectorEnrichmentJobsRequest(input *ListVectorE
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/ListVectorEnrichmentJobs
 func (c *SageMakerGeospatial) ListVectorEnrichmentJobs(input *ListVectorEnrichmentJobsInput) (*ListVectorEnrichmentJobsOutput, error) {
@@ -1384,6 +1401,7 @@ func (c *SageMakerGeospatial) SearchRasterDataCollectionRequest(input *SearchRas
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/SearchRasterDataCollection
 func (c *SageMakerGeospatial) SearchRasterDataCollection(input *SearchRasterDataCollectionInput) (*SearchRasterDataCollectionOutput, error) {
@@ -1530,8 +1548,10 @@ func (c *SageMakerGeospatial) StartEarthObservationJobRequest(input *StartEarthO
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/StartEarthObservationJob
 func (c *SageMakerGeospatial) StartEarthObservationJob(input *StartEarthObservationJobInput) (*StartEarthObservationJobOutput, error) {
@@ -1628,8 +1648,10 @@ func (c *SageMakerGeospatial) StartVectorEnrichmentJobRequest(input *StartVector
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/StartVectorEnrichmentJob
 func (c *SageMakerGeospatial) StartVectorEnrichmentJob(input *StartVectorEnrichmentJobInput) (*StartVectorEnrichmentJobOutput, error) {
@@ -1723,8 +1745,10 @@ func (c *SageMakerGeospatial) StopEarthObservationJobRequest(input *StopEarthObs
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/StopEarthObservationJob
 func (c *SageMakerGeospatial) StopEarthObservationJob(input *StopEarthObservationJobInput) (*StopEarthObservationJobOutput, error) {
@@ -1818,8 +1842,10 @@ func (c *SageMakerGeospatial) StopVectorEnrichmentJobRequest(input *StopVectorEn
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 //   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/StopVectorEnrichmentJob
 func (c *SageMakerGeospatial) StopVectorEnrichmentJob(input *StopVectorEnrichmentJobInput) (*StopVectorEnrichmentJobOutput, error) {
@@ -1913,6 +1939,7 @@ func (c *SageMakerGeospatial) TagResourceRequest(input *TagResourceInput) (req *
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/TagResource
 func (c *SageMakerGeospatial) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2006,6 +2033,7 @@ func (c *SageMakerGeospatial) UntagResourceRequest(input *UntagResourceInput) (r
 //     or failure.
 //
 //   - ResourceNotFoundException
+//     The request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-geospatial-2020-05-27/UntagResource
 func (c *SageMakerGeospatial) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2093,9 +2121,11 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The geographic extent of the Earth Observation job.
 type AreaOfInterest struct {
 	_ struct{} `type:"structure"`
 
+	// A GeoJSON object representing the geographic extent in the coordinate space.
 	AreaOfInterestGeometry *AreaOfInterestGeometry `type:"structure"`
 }
 
@@ -2138,11 +2168,14 @@ func (s *AreaOfInterest) SetAreaOfInterestGeometry(v *AreaOfInterestGeometry) *A
 	return s
 }
 
+// A GeoJSON object representing the geographic extent in the coordinate space.
 type AreaOfInterestGeometry struct {
 	_ struct{} `type:"structure"`
 
+	// The structure representing the MultiPolygon Geometry.
 	MultiPolygonGeometry *MultiPolygonGeometryInput_ `type:"structure"`
 
+	// The structure representing Polygon Geometry.
 	PolygonGeometry *PolygonGeometryInput_ `type:"structure"`
 }
 
@@ -2196,9 +2229,11 @@ func (s *AreaOfInterestGeometry) SetPolygonGeometry(v *PolygonGeometryInput_) *A
 	return s
 }
 
+// The structure containing the asset properties.
 type AssetValue struct {
 	_ struct{} `type:"structure"`
 
+	// Link to the asset object.
 	Href *string `type:"string"`
 }
 
@@ -2226,11 +2261,16 @@ func (s *AssetValue) SetHref(v string) *AssetValue {
 	return s
 }
 
+// Input structure for the BandMath operation type. Defines Predefined and CustomIndices
+// to be computed using BandMath.
 type BandMathConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// CustomIndices that are computed.
 	CustomIndices *CustomIndicesInput_ `type:"structure"`
 
+	// One or many of the supported predefined indices to compute. Allowed values:
+	// NDVI, EVI2, MSAVI, NDWI, NDMI, NDSI, and WDRVI.
 	PredefinedIndices []*string `min:"1" type:"list"`
 }
 
@@ -2282,6 +2322,7 @@ func (s *BandMathConfigInput_) SetPredefinedIndices(v []*string) *BandMathConfig
 	return s
 }
 
+// Input structure for CloudMasking operation type.
 type CloudMaskingConfigInput_ struct {
 	_ struct{} `type:"structure"`
 }
@@ -2304,6 +2345,7 @@ func (s CloudMaskingConfigInput_) GoString() string {
 	return s.String()
 }
 
+// Input structure for Cloud Removal Operation type
 type CloudRemovalConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -2313,6 +2355,7 @@ type CloudRemovalConfigInput_ struct {
 	// The interpolation value you provide for cloud removal.
 	InterpolationValue *string `type:"string"`
 
+	// TargetBands to be returned in the output of CloudRemoval operation.
 	TargetBands []*string `min:"1" type:"list"`
 }
 
@@ -2365,14 +2408,15 @@ func (s *CloudRemovalConfigInput_) SetTargetBands(v []*string) *CloudRemovalConf
 	return s
 }
 
+// Updating or deleting a resource can cause an inconsistent state.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// ResourceId is a required field
-	ResourceId *string `type:"string" required:"true"`
+	// Identifier of the resource affected.
+	ResourceId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -2431,9 +2475,11 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Input object defining the custom BandMath indices to compute.
 type CustomIndicesInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// A list of BandMath indices to compute.
 	Operations []*Operation `min:"1" type:"list"`
 }
 
@@ -2630,8 +2676,10 @@ func (s DeleteVectorEnrichmentJobOutput) GoString() string {
 type EarthObservationJobErrorDetails struct {
 	_ struct{} `type:"structure"`
 
+	// A detailed message describing the error in an Earth Observation job.
 	Message *string `type:"string"`
 
+	// The type of error in an Earth Observation job.
 	Type *string `type:"string" enum:"EarthObservationJobErrorType"`
 }
 
@@ -2665,12 +2713,17 @@ func (s *EarthObservationJobErrorDetails) SetType(v string) *EarthObservationJob
 	return s
 }
 
+// The structure representing the EoCloudCover filter.
 type EoCloudCoverInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// Lower bound for EoCloudCover.
+	//
 	// LowerBound is a required field
 	LowerBound *float64 `type:"float" required:"true"`
 
+	// Upper bound for EoCloudCover.
+	//
 	// UpperBound is a required field
 	UpperBound *float64 `type:"float" required:"true"`
 }
@@ -2721,10 +2774,13 @@ func (s *EoCloudCoverInput_) SetUpperBound(v float64) *EoCloudCoverInput_ {
 	return s
 }
 
+// Union representing different data sources to be used as input for an Earth
+// Observation job.
 type EojDataSourceConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// Path to Amazon S3 storage location for input data.
+	// The input structure for S3Data; representing the Amazon S3 location of the
+	// input data objects.
 	S3Data *S3DataInput_ `type:"structure"`
 }
 
@@ -2775,11 +2831,14 @@ type ExportEarthObservationJobInput struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
+	// A unique token that guarantees that the call to this API is idempotent.
+	ClientToken *string `min:"36" type:"string" idempotencyToken:"true"`
+
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// The source images provided to the Earth Observation job being exported.
 	ExportSourceImages *bool `type:"boolean"`
@@ -2814,8 +2873,14 @@ func (s *ExportEarthObservationJobInput) Validate() error {
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
 	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
 	if s.ExecutionRoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
 	}
 	if s.OutputConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
@@ -2835,6 +2900,12 @@ func (s *ExportEarthObservationJobInput) Validate() error {
 // SetArn sets the Arn field's value.
 func (s *ExportEarthObservationJobInput) SetArn(v string) *ExportEarthObservationJobInput {
 	s.Arn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ExportEarthObservationJobInput) SetClientToken(v string) *ExportEarthObservationJobInput {
+	s.ClientToken = &v
 	return s
 }
 
@@ -2868,13 +2939,13 @@ type ExportEarthObservationJobOutput struct {
 	// The creation time.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// The source images provided to the Earth Observation job being exported.
 	ExportSourceImages *bool `type:"boolean"`
@@ -2948,8 +3019,12 @@ func (s *ExportEarthObservationJobOutput) SetOutputConfig(v *OutputConfigInput_)
 type ExportErrorDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The structure for returning the export error details while exporting results
+	// of an Earth Observation job.
 	ExportResults *ExportErrorDetailsOutput_ `type:"structure"`
 
+	// The structure for returning the export error details while exporting the
+	// source images of an Earth Observation job.
 	ExportSourceImages *ExportErrorDetailsOutput_ `type:"structure"`
 }
 
@@ -2983,11 +3058,15 @@ func (s *ExportErrorDetails) SetExportSourceImages(v *ExportErrorDetailsOutput_)
 	return s
 }
 
+// The structure representing the errors in an export EarthObservationJob operation.
 type ExportErrorDetailsOutput_ struct {
 	_ struct{} `type:"structure"`
 
+	// A detailed message describing the error in an export EarthObservationJob
+	// operation.
 	Message *string `type:"string"`
 
+	// The type of error in an export EarthObservationJob operation.
 	Type *string `type:"string" enum:"ExportErrorType"`
 }
 
@@ -3021,10 +3100,12 @@ func (s *ExportErrorDetailsOutput_) SetType(v string) *ExportErrorDetailsOutput_
 	return s
 }
 
+// The structure containing the Amazon S3 path to export the Earth Observation
+// job output.
 type ExportS3DataInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The URL to the Amazon S3 data input.
@@ -3084,11 +3165,14 @@ type ExportVectorEnrichmentJobInput struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
+	// A unique token that guarantees that the call to this API is idempotent.
+	ClientToken *string `min:"36" type:"string" idempotencyToken:"true"`
+
 	// The Amazon Resource Name (ARN) of the IAM rolewith permission to upload to
 	// the location in OutputConfig.
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// Output location information for exporting Vector Enrichment Job results.
 	//
@@ -3120,8 +3204,14 @@ func (s *ExportVectorEnrichmentJobInput) Validate() error {
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
 	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
 	if s.ExecutionRoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
 	}
 	if s.OutputConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
@@ -3141,6 +3231,12 @@ func (s *ExportVectorEnrichmentJobInput) Validate() error {
 // SetArn sets the Arn field's value.
 func (s *ExportVectorEnrichmentJobInput) SetArn(v string) *ExportVectorEnrichmentJobInput {
 	s.Arn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ExportVectorEnrichmentJobInput) SetClientToken(v string) *ExportVectorEnrichmentJobInput {
+	s.ClientToken = &v
 	return s
 }
 
@@ -3167,13 +3263,13 @@ type ExportVectorEnrichmentJobOutput struct {
 	// The creation time.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role with permission to upload
 	// to the location in OutputConfig.
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// The status of the results the Vector Enrichment job being exported.
 	//
@@ -3238,7 +3334,8 @@ func (s *ExportVectorEnrichmentJobOutput) SetOutputConfig(v *ExportVectorEnrichm
 type ExportVectorEnrichmentJobOutputConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 data for the Vector Enrichment job.
+	// The input structure for Amazon S3 data; representing the Amazon S3 location
+	// of the input data objects.
 	//
 	// S3Data is a required field
 	S3Data *VectorEnrichmentJobS3Data `type:"structure" required:"true"`
@@ -3403,12 +3500,18 @@ func (s *GeoMosaicConfigInput_) SetTargetBands(v []*string) *GeoMosaicConfigInpu
 	return s
 }
 
+// The structure representing a Geometry in terms of Type and Coordinates as
+// per GeoJson spec.
 type Geometry struct {
 	_ struct{} `type:"structure"`
 
+	// The coordinates of the GeoJson Geometry.
+	//
 	// Coordinates is a required field
 	Coordinates [][][]*float64 `min:"1" type:"list" required:"true"`
 
+	// GeoJson Geometry types like Polygon and MultiPolygon.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true"`
 }
@@ -3503,7 +3606,7 @@ type GetEarthObservationJobOutput struct {
 	// The creation time of the initiated Earth Observation job.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The duration of Earth Observation job, in seconds.
 	//
@@ -3515,7 +3618,7 @@ type GetEarthObservationJobOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
-	ExecutionRoleArn *string `type:"string"`
+	ExecutionRoleArn *string `min:"20" type:"string"`
 
 	// Details about the errors generated during ExportEarthObservationJob.
 	ExportErrorDetails *ExportErrorDetails `type:"structure"`
@@ -3533,7 +3636,7 @@ type GetEarthObservationJobOutput struct {
 	// JobConfig is a required field
 	JobConfig *JobConfigInput_ `type:"structure" required:"true"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the Earth Observation job.
@@ -3541,6 +3644,7 @@ type GetEarthObservationJobOutput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// Bands available in the output of an operation.
 	OutputBands []*OutputBand `type:"list"`
 
 	// The status of a previously initiated Earth Observation job.
@@ -3721,6 +3825,8 @@ type GetRasterDataCollectionOutput struct {
 	// DescriptionPageUrl is a required field
 	DescriptionPageUrl *string `type:"string" required:"true"`
 
+	// The list of image source bands in the raster data collection.
+	//
 	// ImageSourceBands is a required field
 	ImageSourceBands []*string `type:"list" required:"true"`
 
@@ -3817,6 +3923,9 @@ type GetTileInput struct {
 	// Arn is a required field
 	Arn *string `location:"querystring" locationName:"Arn" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the IAM role that you specify.
+	ExecutionRoleArn *string `location:"querystring" locationName:"ExecutionRoleArn" min:"20" type:"string"`
+
 	// The particular assets or bands to tile.
 	//
 	// ImageAssets is a required field
@@ -3883,6 +3992,9 @@ func (s *GetTileInput) Validate() error {
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
 	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
 	if s.ImageAssets == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImageAssets"))
 	}
@@ -3911,6 +4023,12 @@ func (s *GetTileInput) Validate() error {
 // SetArn sets the Arn field's value.
 func (s *GetTileInput) SetArn(v string) *GetTileInput {
 	s.Arn = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *GetTileInput) SetExecutionRoleArn(v string) *GetTileInput {
+	s.ExecutionRoleArn = &v
 	return s
 }
 
@@ -4065,7 +4183,7 @@ type GetVectorEnrichmentJobOutput struct {
 	// The creation time.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The duration of the Vector Enrichment job, in seconds.
 	//
@@ -4079,7 +4197,7 @@ type GetVectorEnrichmentJobOutput struct {
 	// job.
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// Details about the errors generated during the ExportVectorEnrichmentJob.
 	ExportErrorDetails *VectorEnrichmentJobExportErrorDetails `type:"structure"`
@@ -4097,7 +4215,7 @@ type GetVectorEnrichmentJobOutput struct {
 	// JobConfig is a required field
 	JobConfig *VectorEnrichmentJobConfig `type:"structure" required:"true"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the Vector Enrichment job.
@@ -4231,6 +4349,8 @@ type InputConfigInput_ struct {
 	// The Amazon Resource Name (ARN) of the previous Earth Observation job.
 	PreviousEarthObservationJobArn *string `type:"string"`
 
+	// The structure representing the RasterDataCollection Query consisting of the
+	// Area of Interest, RasterDataCollectionArn,TimeRange and Property Filters.
 	RasterDataCollectionQuery *RasterDataCollectionQueryInput_ `type:"structure"`
 }
 
@@ -4300,6 +4420,9 @@ type InputConfigOutput_ struct {
 	// The Amazon Resource Name (ARN) of the previous Earth Observation job.
 	PreviousEarthObservationJobArn *string `type:"string"`
 
+	// The structure representing the RasterDataCollection Query consisting of the
+	// Area of Interest, RasterDataCollectionArn, RasterDataCollectionName, TimeRange,
+	// and Property Filters.
 	RasterDataCollectionQuery *RasterDataCollectionQueryOutput_ `type:"structure"`
 }
 
@@ -4347,8 +4470,7 @@ type InternalServerException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// ResourceId is a required field
-	ResourceId *string `type:"string" required:"true"`
+	ResourceId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -4407,15 +4529,21 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Structure representing the items in the response for SearchRasterDataCollection.
+// The structure representing the items in the response for SearchRasterDataCollection.
 type ItemSource struct {
 	_ struct{} `type:"structure"`
 
+	// This is a dictionary of Asset Objects data associated with the Item that
+	// can be downloaded or streamed, each with a unique key.
 	Assets map[string]*AssetValue `type:"map"`
 
+	// The searchable date and time of the item, in UTC.
+	//
 	// DateTime is a required field
 	DateTime *time.Time `type:"timestamp" required:"true"`
 
+	// The item Geometry in GeoJson format.
+	//
 	// Geometry is a required field
 	Geometry *Geometry `type:"structure" required:"true"`
 
@@ -4424,6 +4552,7 @@ type ItemSource struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// This field contains additional properties of the item.
 	Properties *Properties `type:"structure"`
 }
 
@@ -4479,6 +4608,7 @@ func (s *ItemSource) SetProperties(v *Properties) *ItemSource {
 type JobConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// An object containing information about the job configuration for BandMath.
 	BandMathConfig *BandMathConfigInput_ `type:"structure"`
 
 	// An object containing information about the job configuration for cloud masking.
@@ -4497,6 +4627,8 @@ type JobConfigInput_ struct {
 	// An object containing information about the job configuration for resampling.
 	ResamplingConfig *ResamplingConfigInput_ `type:"structure"`
 
+	// An object containing information about the job configuration for a Stacking
+	// Earth Observation job.
 	StackConfig *StackConfigInput_ `type:"structure"`
 
 	// An object containing information about the job configuration for temporal
@@ -4624,6 +4756,7 @@ func (s *JobConfigInput_) SetZonalStatisticsConfig(v *ZonalStatisticsConfigInput
 	return s
 }
 
+// The input structure for Land Cover Operation type.
 type LandCoverSegmentationConfigInput_ struct {
 	_ struct{} `type:"structure"`
 }
@@ -4646,12 +4779,19 @@ func (s LandCoverSegmentationConfigInput_) GoString() string {
 	return s.String()
 }
 
+// The structure representing Land Cloud Cover property for Landsat data collection.
 type LandsatCloudCoverLandInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The minimum value for Land Cloud Cover property filter. This will filter
+	// items having Land Cloud Cover greater than or equal to this value.
+	//
 	// LowerBound is a required field
 	LowerBound *float64 `type:"float" required:"true"`
 
+	// The maximum value for Land Cloud Cover property filter. This will filter
+	// items having Land Cloud Cover less than or equal to this value.
+	//
 	// UpperBound is a required field
 	UpperBound *float64 `type:"float" required:"true"`
 }
@@ -4714,7 +4854,7 @@ type ListEarthObservationJobOutputConfig struct {
 	// The creation time.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The duration of the session, in seconds.
 	//
@@ -4726,6 +4866,8 @@ type ListEarthObservationJobOutputConfig struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The operation type for an Earth Observation job.
+	//
 	// OperationType is a required field
 	OperationType *string `type:"string" required:"true"`
 
@@ -5128,7 +5270,7 @@ type ListVectorEnrichmentJobOutputConfig struct {
 	// The creation time.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The duration of the session, in seconds.
 	//
@@ -5347,9 +5489,13 @@ func (s *ListVectorEnrichmentJobsOutput) SetVectorEnrichmentJobSummaries(v []*Li
 	return s
 }
 
+// The input structure for Map Matching operation type.
 type MapMatchingConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The field name for the data that describes the identifier representing a
+	// collection of GPS points belonging to an individual trace.
+	//
 	// IdAttributeName is a required field
 	IdAttributeName *string `type:"string" required:"true"`
 
@@ -5433,6 +5579,7 @@ func (s *MapMatchingConfig) SetYAttributeName(v string) *MapMatchingConfig {
 	return s
 }
 
+// The structure representing Polygon Geometry based on the GeoJson spec (https://www.rfc-editor.org/rfc/rfc7946#section-3.1.6).
 type MultiPolygonGeometryInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -5479,9 +5626,13 @@ func (s *MultiPolygonGeometryInput_) SetCoordinates(v [][][][]*float64) *MultiPo
 	return s
 }
 
+// Represents an arithmetic operation to compute spectral index.
 type Operation struct {
 	_ struct{} `type:"structure"`
 
+	// Textual representation of the math operation; Equation used to compute the
+	// spectral index.
+	//
 	// Equation is a required field
 	Equation *string `type:"string" required:"true"`
 
@@ -5643,9 +5794,14 @@ func (s *OutputConfigInput_) SetS3Data(v *ExportS3DataInput_) *OutputConfigInput
 	return s
 }
 
+// OutputResolution Configuration indicating the target resolution for the output
+// of Resampling operation.
 type OutputResolutionResamplingInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// User Defined Resolution for the output of Resampling operation defined by
+	// value and unit.
+	//
 	// UserDefined is a required field
 	UserDefined *UserDefined `type:"structure" required:"true"`
 }
@@ -5692,11 +5848,16 @@ func (s *OutputResolutionResamplingInput_) SetUserDefined(v *UserDefined) *Outpu
 	return s
 }
 
+// The input structure representing Output Resolution for Stacking Operation.
 type OutputResolutionStackInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// A string value representing Predefined Output Resolution for a stacking operation.
+	// Allowed values are HIGHEST, LOWEST, and AVERAGE.
 	Predefined *string `type:"string" enum:"PredefinedResolution"`
 
+	// The structure representing User Output Resolution for a Stacking operation
+	// defined as a value and unit.
 	UserDefined *UserDefined `type:"structure"`
 }
 
@@ -5745,9 +5906,13 @@ func (s *OutputResolutionStackInput_) SetUserDefined(v *UserDefined) *OutputReso
 	return s
 }
 
+// The input structure for specifying Platform. Platform refers to the unique
+// name of the specific platform the instrument is attached to. For satellites
+// it is the name of the satellite, eg. landsat-8 (Landsat-8), sentinel-2a.
 type PlatformInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The ComparisonOperator to use with PlatformInput.
 	ComparisonOperator *string `type:"string" enum:"ComparisonOperator"`
 
 	// The value of the platform.
@@ -5799,9 +5964,12 @@ func (s *PlatformInput_) SetValue(v string) *PlatformInput_ {
 	return s
 }
 
+// The structure representing Polygon Geometry based on the GeoJson spec (https://www.rfc-editor.org/rfc/rfc7946#section-3.1.6).
 type PolygonGeometryInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// Coordinates representing a Polygon based on the GeoJson spec (https://www.rfc-editor.org/rfc/rfc7946#section-3.1.6).
+	//
 	// Coordinates is a required field
 	Coordinates [][][]*float64 `min:"1" type:"list" required:"true"`
 }
@@ -5846,19 +6014,34 @@ func (s *PolygonGeometryInput_) SetCoordinates(v [][][]*float64) *PolygonGeometr
 	return s
 }
 
+// Properties associated with the Item.
 type Properties struct {
 	_ struct{} `type:"structure"`
 
+	// Estimate of cloud cover.
 	EoCloudCover *float64 `type:"float"`
 
+	// Land cloud cover for Landsat Data Collection.
 	LandsatCloudCoverLand *float64 `type:"float"`
 
+	// Platform property. Platform refers to the unique name of the specific platform
+	// the instrument is attached to. For satellites it is the name of the satellite,
+	// eg. landsat-8 (Landsat-8), sentinel-2a.
 	Platform *string `type:"string"`
 
+	// The angle from the sensor between nadir (straight down) and the scene center.
+	// Measured in degrees (0-90).
 	ViewOffNadir *float64 `type:"float"`
 
+	// The sun azimuth angle. From the scene center point on the ground, this is
+	// the angle between truth north and the sun. Measured clockwise in degrees
+	// (0-360).
 	ViewSunAzimuth *float64 `type:"float"`
 
+	// The sun elevation angle. The angle from the tangent of the scene center point
+	// to the sun. Measured from the horizon in degrees (-90-90). Negative values
+	// indicate the sun is below the horizon, e.g. sun elevation of -10° means
+	// the data was captured during nautical twilight (https://www.timeanddate.com/astronomy/different-types-twilight.html).
 	ViewSunElevation *float64 `type:"float"`
 }
 
@@ -5916,19 +6099,32 @@ func (s *Properties) SetViewSunElevation(v float64) *Properties {
 	return s
 }
 
+// Represents a single searchable property to search on.
 type Property struct {
 	_ struct{} `type:"structure"`
 
+	// The structure representing EoCloudCover property filter containing a lower
+	// bound and upper bound.
 	EoCloudCover *EoCloudCoverInput_ `type:"structure"`
 
+	// The structure representing Land Cloud Cover property filter for Landsat collection
+	// containing a lower bound and upper bound.
 	LandsatCloudCoverLand *LandsatCloudCoverLandInput_ `type:"structure"`
 
+	// The structure representing Platform property filter consisting of value and
+	// comparison operator.
 	Platform *PlatformInput_ `type:"structure"`
 
+	// The structure representing ViewOffNadir property filter containing a lower
+	// bound and upper bound.
 	ViewOffNadir *ViewOffNadirInput_ `type:"structure"`
 
+	// The structure representing ViewSunAzimuth property filter containing a lower
+	// bound and upper bound.
 	ViewSunAzimuth *ViewSunAzimuthInput_ `type:"structure"`
 
+	// The structure representing ViewSunElevation property filter containing a
+	// lower bound and upper bound.
 	ViewSunElevation *ViewSunElevationInput_ `type:"structure"`
 }
 
@@ -6026,9 +6222,12 @@ func (s *Property) SetViewSunElevation(v *ViewSunElevationInput_) *Property {
 	return s
 }
 
+// The structure representing a single PropertyFilter.
 type PropertyFilter struct {
 	_ struct{} `type:"structure"`
 
+	// Represents a single property to match with when searching a raster data collection.
+	//
 	// Property is a required field
 	Property *Property `type:"structure" required:"true"`
 }
@@ -6075,11 +6274,14 @@ func (s *PropertyFilter) SetProperty(v *Property) *PropertyFilter {
 	return s
 }
 
+// A list of PropertyFilter objects.
 type PropertyFilters struct {
 	_ struct{} `type:"structure"`
 
+	// The Logical Operator used to combine the Property Filters.
 	LogicalOperator *string `type:"string" enum:"LogicalOperator"`
 
+	// A list of Property Filters.
 	Properties []*PropertyFilter `type:"list"`
 }
 
@@ -6155,6 +6357,8 @@ type RasterDataCollectionMetadata struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The list of filters supported by the raster data collection.
+	//
 	// SupportedFilters is a required field
 	SupportedFilters []*Filter `type:"list" required:"true"`
 
@@ -6227,12 +6431,15 @@ func (s *RasterDataCollectionMetadata) SetType(v string) *RasterDataCollectionMe
 	return s
 }
 
+// The input structure for Raster Data Collection Query containing the Area
+// of Interest, TimeRange Filters, and Property Filters.
 type RasterDataCollectionQueryInput_ struct {
 	_ struct{} `type:"structure"`
 
 	// The area of interest being queried for the raster data collection.
 	AreaOfInterest *AreaOfInterest `type:"structure"`
 
+	// The list of Property filters used in the Raster Data Collection Query.
 	PropertyFilters *PropertyFilters `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the raster data collection.
@@ -6240,7 +6447,7 @@ type RasterDataCollectionQueryInput_ struct {
 	// RasterDataCollectionArn is a required field
 	RasterDataCollectionArn *string `type:"string" required:"true"`
 
-	// The input for the time-range filter.
+	// The TimeRange Filter used in the RasterDataCollection Query.
 	//
 	// TimeRangeFilter is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RasterDataCollectionQueryInput_'s
@@ -6323,13 +6530,19 @@ func (s *RasterDataCollectionQueryInput_) SetTimeRangeFilter(v *TimeRangeFilterI
 	return s
 }
 
+// The output structure contains the Raster Data Collection Query input along
+// with some additional metadata.
 type RasterDataCollectionQueryOutput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The Area of Interest used in the search.
 	AreaOfInterest *AreaOfInterest `type:"structure"`
 
+	// Property filters used in the search.
 	PropertyFilters *PropertyFilters `type:"structure"`
 
+	// The ARN of the Raster Data Collection against which the search is done.
+	//
 	// RasterDataCollectionArn is a required field
 	RasterDataCollectionArn *string `type:"string" required:"true"`
 
@@ -6338,14 +6551,14 @@ type RasterDataCollectionQueryOutput_ struct {
 	// RasterDataCollectionName is a required field
 	RasterDataCollectionName *string `type:"string" required:"true"`
 
-	// The input for the time-range filter.
+	// The TimeRange filter used in the search.
 	//
 	// TimeRangeFilter is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RasterDataCollectionQueryOutput_'s
 	// String and GoString methods.
 	//
 	// TimeRangeFilter is a required field
-	TimeRangeFilter *TimeRangeFilterInput_ `type:"structure" required:"true" sensitive:"true"`
+	TimeRangeFilter *TimeRangeFilterOutput_ `type:"structure" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6391,7 +6604,7 @@ func (s *RasterDataCollectionQueryOutput_) SetRasterDataCollectionName(v string)
 }
 
 // SetTimeRangeFilter sets the TimeRangeFilter field's value.
-func (s *RasterDataCollectionQueryOutput_) SetTimeRangeFilter(v *TimeRangeFilterInput_) *RasterDataCollectionQueryOutput_ {
+func (s *RasterDataCollectionQueryOutput_) SetTimeRangeFilter(v *TimeRangeFilterOutput_) *RasterDataCollectionQueryOutput_ {
 	s.TimeRangeFilter = v
 	return s
 }
@@ -6401,13 +6614,16 @@ func (s *RasterDataCollectionQueryOutput_) SetTimeRangeFilter(v *TimeRangeFilter
 type RasterDataCollectionQueryWithBandFilterInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The Area of interest to be used in the search query.
 	AreaOfInterest *AreaOfInterest `type:"structure"`
 
+	// The list of Bands to be displayed in the result for each item.
 	BandFilter []*string `min:"1" type:"list"`
 
+	// The Property Filters used in the search query.
 	PropertyFilters *PropertyFilters `type:"structure"`
 
-	// The input for the time-range filter.
+	// The TimeRange Filter used in the search query.
 	//
 	// TimeRangeFilter is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RasterDataCollectionQueryWithBandFilterInput_'s
@@ -6490,15 +6706,21 @@ func (s *RasterDataCollectionQueryWithBandFilterInput_) SetTimeRangeFilter(v *Ti
 	return s
 }
 
+// The structure representing input for resampling operation.
 type ResamplingConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the algorithm used for resampling.
 	AlgorithmName *string `type:"string" enum:"AlgorithmNameResampling"`
 
+	// The structure representing output resolution (in target georeferenced units)
+	// of the result of resampling operation.
+	//
 	// OutputResolution is a required field
 	OutputResolution *OutputResolutionResamplingInput_ `type:"structure" required:"true"`
 
+	// Bands used in the operation. If no target bands are specified, it uses all
+	// bands available in the input.
 	TargetBands []*string `min:"1" type:"list"`
 }
 
@@ -6559,14 +6781,15 @@ func (s *ResamplingConfigInput_) SetTargetBands(v []*string) *ResamplingConfigIn
 	return s
 }
 
+// The request references a resource which does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// ResourceId is a required field
-	ResourceId *string `type:"string" required:"true"`
+	// Identifier of the resource that was not found.
+	ResourceId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -6625,12 +6848,19 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The input structure for Reverse Geocoding operation type.
 type ReverseGeocodingConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The field name for the data that describes x-axis coordinate, eg. longitude
+	// of a point.
+	//
 	// XAttributeName is a required field
 	XAttributeName *string `type:"string" required:"true"`
 
+	// The field name for the data that describes y-axis coordinate, eg. latitude
+	// of a point.
+	//
 	// YAttributeName is a required field
 	YAttributeName *string `type:"string" required:"true"`
 }
@@ -6685,9 +6915,11 @@ func (s *ReverseGeocodingConfig) SetYAttributeName(v string) *ReverseGeocodingCo
 type S3DataInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
+	// Metadata provider from whom the Amazon S3 data has been acquired.
+	//
 	// MetadataProvider is a required field
 	MetadataProvider *string `type:"string" required:"true" enum:"MetadataProvider"`
 
@@ -6765,8 +6997,10 @@ type SearchRasterDataCollectionInput struct {
 	// String and GoString methods.
 	NextToken *string `type:"string" sensitive:"true"`
 
-	// This is a RasterDataCollectionQueryInput containing AreaOfInterest, Time
-	// Range filter and Property filters.
+	// RasterDataCollectionQuery consisting of AreaOfInterest(AOI) (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_AreaOfInterest.html),
+	// PropertyFilters (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_PropertyFilter.html)
+	// and TimeRangeFilterInput (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_TimeRangeFilterInput.html)
+	// used in SearchRasterDataCollection (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_SearchRasterDataCollection.html).
 	//
 	// RasterDataCollectionQuery is a required field
 	RasterDataCollectionQuery *RasterDataCollectionQueryWithBandFilterInput_ `type:"structure" required:"true"`
@@ -6832,9 +7066,12 @@ func (s *SearchRasterDataCollectionInput) SetRasterDataCollectionQuery(v *Raster
 type SearchRasterDataCollectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Approximate number of results in the response.
+	//
 	// ApproximateResultCount is a required field
 	ApproximateResultCount *int64 `type:"integer" required:"true"`
 
+	// List of items matching the Raster DataCollectionQuery.
 	Items []*ItemSource `type:"list"`
 
 	// If the previous response was truncated, you receive this token. Use it in
@@ -6889,8 +7126,8 @@ type ServiceQuotaExceededException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// ResourceId is a required field
-	ResourceId *string `type:"string" required:"true"`
+	// Identifier of the resource affected.
+	ResourceId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -6949,11 +7186,17 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The input structure for Stacking Operation.
 type StackConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The structure representing output resolution (in target georeferenced units)
+	// of the result of stacking operation.
 	OutputResolution *OutputResolutionStackInput_ `type:"structure"`
 
+	// A list of bands to be stacked in the specified order. When the parameter
+	// is not provided, all the available bands in the data collection are stacked
+	// in the alphabetical order of their asset names.
 	TargetBands []*string `min:"1" type:"list"`
 }
 
@@ -7009,11 +7252,11 @@ type StartEarthObservationJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique token that guarantees that the call to this API is idempotent.
-	ClientToken *string `type:"string" idempotencyToken:"true"`
+	ClientToken *string `min:"36" type:"string" idempotencyToken:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
-	ExecutionRoleArn *string `type:"string"`
+	ExecutionRoleArn *string `min:"20" type:"string"`
 
 	// Input configuration information for the Earth Observation job.
 	//
@@ -7025,7 +7268,7 @@ type StartEarthObservationJobInput struct {
 	// JobConfig is a required field
 	JobConfig *JobConfigInput_ `type:"structure" required:"true"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the Earth Observation job.
@@ -7058,6 +7301,12 @@ func (s StartEarthObservationJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartEarthObservationJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartEarthObservationJobInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
 	if s.InputConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputConfig"))
 	}
@@ -7137,7 +7386,7 @@ type StartEarthObservationJobOutput struct {
 	// The creation time.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The duration of the session, in seconds.
 	//
@@ -7146,7 +7395,7 @@ type StartEarthObservationJobOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
-	ExecutionRoleArn *string `type:"string"`
+	ExecutionRoleArn *string `min:"20" type:"string"`
 
 	// Input configuration information for the Earth Observation job.
 	InputConfig *InputConfigOutput_ `type:"structure"`
@@ -7156,7 +7405,7 @@ type StartEarthObservationJobOutput struct {
 	// JobConfig is a required field
 	JobConfig *JobConfigInput_ `type:"structure" required:"true"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the Earth Observation job.
@@ -7255,13 +7504,13 @@ type StartVectorEnrichmentJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique token that guarantees that the call to this API is idempotent.
-	ClientToken *string `type:"string" idempotencyToken:"true"`
+	ClientToken *string `min:"36" type:"string" idempotencyToken:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// job.
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// Input configuration information for the Vector Enrichment job.
 	//
@@ -7273,7 +7522,7 @@ type StartVectorEnrichmentJobInput struct {
 	// JobConfig is a required field
 	JobConfig *VectorEnrichmentJobConfig `type:"structure" required:"true"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the Vector Enrichment job.
@@ -7306,8 +7555,14 @@ func (s StartVectorEnrichmentJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartVectorEnrichmentJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartVectorEnrichmentJobInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
 	if s.ExecutionRoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
 	}
 	if s.InputConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputConfig"))
@@ -7388,7 +7643,7 @@ type StartVectorEnrichmentJobOutput struct {
 	// The creation time.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" required:"true"`
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The duration of the Vector Enrichment job, in seconds.
 	//
@@ -7399,7 +7654,7 @@ type StartVectorEnrichmentJobOutput struct {
 	// job.
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// Input configuration information for starting the Vector Enrichment job.
 	//
@@ -7411,7 +7666,7 @@ type StartVectorEnrichmentJobOutput struct {
 	// JobConfig is a required field
 	JobConfig *VectorEnrichmentJobConfig `type:"structure" required:"true"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the Vector Enrichment job.
@@ -7738,14 +7993,19 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The structure representing the configuration for Temporal Statistics operation.
 type TemporalStatisticsConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The input for the temporal statistics grouping by time frequency option.
 	GroupBy *string `type:"string" enum:"GroupBy"`
 
+	// The list of the statistics method options.
+	//
 	// Statistics is a required field
 	Statistics []*string `min:"1" type:"list" required:"true" enum:"TemporalStatistics"`
 
+	// The list of target band names for the temporal statistic to calculate.
 	TargetBands []*string `min:"1" type:"list"`
 }
 
@@ -7811,8 +8071,7 @@ type ThrottlingException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// ResourceId is a required field
-	ResourceId *string `type:"string" required:"true"`
+	ResourceId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -7932,6 +8191,51 @@ func (s *TimeRangeFilterInput_) SetStartTime(v time.Time) *TimeRangeFilterInput_
 	return s
 }
 
+// The output structure of the time range filter.
+type TimeRangeFilterOutput_ struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The ending time for the time range filter.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The starting time for the time range filter.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeRangeFilterOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeRangeFilterOutput_) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *TimeRangeFilterOutput_) SetEndTime(v time.Time) *TimeRangeFilterOutput_ {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *TimeRangeFilterOutput_) SetStartTime(v time.Time) *TimeRangeFilterOutput_ {
+	s.StartTime = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8020,12 +8324,18 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The output resolution (in target georeferenced units) of the result of the
+// operation
 type UserDefined struct {
 	_ struct{} `type:"structure"`
 
+	// The units for output resolution of the result.
+	//
 	// Unit is a required field
 	Unit *string `type:"string" required:"true" enum:"Unit"`
 
+	// The value for output resolution of the result.
+	//
 	// Value is a required field
 	Value *float64 `type:"float" required:"true"`
 }
@@ -8084,8 +8394,7 @@ type ValidationException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// ResourceId is a required field
-	ResourceId *string `type:"string" required:"true"`
+	ResourceId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -8148,8 +8457,10 @@ func (s *ValidationException) RequestID() string {
 type VectorEnrichmentJobConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The input structure for Map Matching operation type.
 	MapMatchingConfig *MapMatchingConfig `type:"structure"`
 
+	// The input structure for Reverse Geocoding operation type.
 	ReverseGeocodingConfig *ReverseGeocodingConfig `type:"structure"`
 }
 
@@ -8203,10 +8514,13 @@ func (s *VectorEnrichmentJobConfig) SetReverseGeocodingConfig(v *ReverseGeocodin
 	return s
 }
 
+// The input structure for the data source that represents the storage type
+// of the input data objects.
 type VectorEnrichmentJobDataSourceConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 data for the Vector Enrichment job.
+	// The input structure for the Amazon S3 data that represents the Amazon S3
+	// location of the input data objects.
 	S3Data *VectorEnrichmentJobS3Data `type:"structure"`
 }
 
@@ -8299,6 +8613,7 @@ type VectorEnrichmentJobExportErrorDetails struct {
 	// Enrichment job.
 	Message *string `type:"string"`
 
+	// The output error details for an Export operation on a Vector Enrichment job.
 	Type *string `type:"string" enum:"VectorEnrichmentJobExportErrorType"`
 }
 
@@ -8336,9 +8651,14 @@ func (s *VectorEnrichmentJobExportErrorDetails) SetType(v string) *VectorEnrichm
 type VectorEnrichmentJobInputConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The input structure for the data source that represents the storage type
+	// of the input data objects.
+	//
 	// DataSourceConfig is a required field
 	DataSourceConfig *VectorEnrichmentJobDataSourceConfigInput_ `type:"structure" required:"true"`
 
+	// The input structure that defines the data source file type.
+	//
 	// DocumentType is a required field
 	DocumentType *string `type:"string" required:"true" enum:"VectorEnrichmentJobDocumentType"`
 }
@@ -8398,7 +8718,7 @@ func (s *VectorEnrichmentJobInputConfig) SetDocumentType(v string) *VectorEnrich
 type VectorEnrichmentJobS3Data struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Key Management Service (KMS) key ID for server-side encryption.
+	// The Key Management Service key ID for server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// The URL to the Amazon S3 data for the Vector Enrichment job.
@@ -8450,12 +8770,21 @@ func (s *VectorEnrichmentJobS3Data) SetS3Uri(v string) *VectorEnrichmentJobS3Dat
 	return s
 }
 
+// The input structure for specifying ViewOffNadir property filter. ViewOffNadir
+// refers to the angle from the sensor between nadir (straight down) and the
+// scene center. Measured in degrees (0-90).
 type ViewOffNadirInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The minimum value for ViewOffNadir property filter. This filters items having
+	// ViewOffNadir greater than or equal to this value.
+	//
 	// LowerBound is a required field
 	LowerBound *float64 `type:"float" required:"true"`
 
+	// The maximum value for ViewOffNadir property filter. This filters items having
+	// ViewOffNadir lesser than or equal to this value.
+	//
 	// UpperBound is a required field
 	UpperBound *float64 `type:"float" required:"true"`
 }
@@ -8506,12 +8835,22 @@ func (s *ViewOffNadirInput_) SetUpperBound(v float64) *ViewOffNadirInput_ {
 	return s
 }
 
+// The input structure for specifying ViewSunAzimuth property filter. ViewSunAzimuth
+// refers to the Sun azimuth angle. From the scene center point on the ground,
+// this is the angle between truth north and the sun. Measured clockwise in
+// degrees (0-360).
 type ViewSunAzimuthInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The minimum value for ViewSunAzimuth property filter. This filters items
+	// having ViewSunAzimuth greater than or equal to this value.
+	//
 	// LowerBound is a required field
 	LowerBound *float64 `type:"float" required:"true"`
 
+	// The maximum value for ViewSunAzimuth property filter. This filters items
+	// having ViewSunAzimuth lesser than or equal to this value.
+	//
 	// UpperBound is a required field
 	UpperBound *float64 `type:"float" required:"true"`
 }
@@ -8562,6 +8901,7 @@ func (s *ViewSunAzimuthInput_) SetUpperBound(v float64) *ViewSunAzimuthInput_ {
 	return s
 }
 
+// The input structure for specifying ViewSunElevation angle property filter.
 type ViewSunElevationInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -8622,16 +8962,39 @@ func (s *ViewSunElevationInput_) SetUpperBound(v float64) *ViewSunElevationInput
 	return s
 }
 
+// The structure representing input configuration of ZonalStatistics operation.
 type ZonalStatisticsConfigInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// List of zonal statistics to compute.
+	//
 	// Statistics is a required field
 	Statistics []*string `min:"1" type:"list" required:"true" enum:"ZonalStatistics"`
 
+	// Bands used in the operation. If no target bands are specified, it uses all
+	// bands available input.
 	TargetBands []*string `min:"1" type:"list"`
 
+	// The Amazon S3 path pointing to the GeoJSON containing the polygonal zones.
+	//
 	// ZoneS3Path is a required field
 	ZoneS3Path *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) or an ID of a Amazon Web Services Key Management
+	// Service (Amazon Web Services KMS) key that Amazon SageMaker uses to decrypt
+	// your output artifacts with Amazon S3 server-side encryption. The SageMaker
+	// execution role must have kms:GenerateDataKey permission.
+	//
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:<region>:<account>:key/<key-id-12ab-34cd-56ef-1234567890ab>"
+	//
+	// For more information about key identifiers, see Key identifiers (KeyID) (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-id)
+	// in the Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// documentation.
+	ZoneS3PathKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -8689,6 +9052,12 @@ func (s *ZonalStatisticsConfigInput_) SetTargetBands(v []*string) *ZonalStatisti
 // SetZoneS3Path sets the ZoneS3Path field's value.
 func (s *ZonalStatisticsConfigInput_) SetZoneS3Path(v string) *ZonalStatisticsConfigInput_ {
 	s.ZoneS3Path = &v
+	return s
+}
+
+// SetZoneS3PathKmsKeyId sets the ZoneS3PathKmsKeyId field's value.
+func (s *ZonalStatisticsConfigInput_) SetZoneS3PathKmsKeyId(v string) *ZonalStatisticsConfigInput_ {
+	s.ZoneS3PathKmsKeyId = &v
 	return s
 }
 

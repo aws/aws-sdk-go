@@ -1007,7 +1007,8 @@
       "members":{
         "State":{"shape":"ClusterState"},
         "StateChangeReason":{"shape":"ClusterStateChangeReason"},
-        "Timeline":{"shape":"ClusterTimeline"}
+        "Timeline":{"shape":"ClusterTimeline"},
+        "ErrorDetails":{"shape":"ErrorDetailList"}
       }
     },
     "ClusterSummary":{
@@ -1373,6 +1374,22 @@
       "type":"string",
       "max":256,
       "min":1
+    },
+    "ErrorData":{
+      "type":"list",
+      "member":{"shape":"StringMap"}
+    },
+    "ErrorDetail":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorData":{"shape":"ErrorData"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "ErrorDetailList":{
+      "type":"list",
+      "member":{"shape":"ErrorDetail"}
     },
     "ErrorMessage":{"type":"string"},
     "ExecutionEngineConfig":{

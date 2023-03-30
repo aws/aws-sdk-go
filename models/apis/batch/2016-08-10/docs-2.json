@@ -536,7 +536,7 @@
     "EksLabelsMap": {
       "base": null,
       "refs": {
-        "EksMetadata$labels": null
+        "EksMetadata$labels": "<p>Key-value pairs used to identify, sort, and organize cube resources. Can contain up to 63 uppercase letters, lowercase letters, numbers, hyphens (-), and underscores (_). Labels can be added or modified at any time. Each resource can have multiple labels, but each key must be unique for a given object.</p>"
       }
     },
     "EksLimits": {
@@ -546,10 +546,11 @@
       }
     },
     "EksMetadata": {
-      "base": null,
+      "base": "<p>Describes and uniquely identifies Kubernetes resources. For example, the compute environment that a pod runs in or the <code>jobID</code> for a job running in the pod. For more information, see <a href=\"https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/\">Understanding Kubernetes Objects</a> in the <i>Kubernetes documentation</i>.</p>",
       "refs": {
-        "EksPodProperties$metadata": null,
-        "EksPodPropertiesOverride$metadata": null
+        "EksPodProperties$metadata": "<p>Metadata about the Kubernetes pod. For more information, see <a href=\"https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/\">Understanding Kubernetes Objects</a> in the <i>Kubernetes documentation</i>.</p>",
+        "EksPodPropertiesDetail$metadata": null,
+        "EksPodPropertiesOverride$metadata": "<p>Metadata about the overrides for the container that's used on the Amazon EKS pod.</p>"
       }
     },
     "EksPodProperties": {
@@ -625,7 +626,7 @@
     "EphemeralStorage": {
       "base": "<p>The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate.</p>",
       "refs": {
-        "ContainerDetail$ephemeralStorage": null,
+        "ContainerDetail$ephemeralStorage": "<p>The amount of ephemeral storage allocated for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate.</p>",
         "ContainerProperties$ephemeralStorage": "<p>The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate.</p>"
       }
     },

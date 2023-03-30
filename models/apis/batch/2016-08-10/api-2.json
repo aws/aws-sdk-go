@@ -1094,7 +1094,8 @@
         "containers":{"shape":"EksContainerDetails"},
         "volumes":{"shape":"EksVolumes"},
         "podName":{"shape":"String"},
-        "nodeName":{"shape":"String"}
+        "nodeName":{"shape":"String"},
+        "metadata":{"shape":"EksMetadata"}
       }
     },
     "EksPodPropertiesOverride":{

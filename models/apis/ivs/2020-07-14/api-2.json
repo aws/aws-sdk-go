@@ -510,6 +510,7 @@
         "arn":{"shape":"ChannelArn"},
         "authorized":{"shape":"IsAuthorized"},
         "ingestEndpoint":{"shape":"IngestEndpoint"},
+        "insecureIngest":{"shape":"InsecureIngest"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
         "playbackUrl":{"shape":"PlaybackURL"},
@@ -569,6 +570,7 @@
       "members":{
         "arn":{"shape":"ChannelArn"},
         "authorized":{"shape":"IsAuthorized"},
+        "insecureIngest":{"shape":"InsecureIngest"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
@@ -601,6 +603,7 @@
       "type":"structure",
       "members":{
         "authorized":{"shape":"Boolean"},
+        "insecureIngest":{"shape":"Boolean"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
@@ -787,6 +790,7 @@
       }
     },
     "IngestEndpoint":{"type":"string"},
+    "InsecureIngest":{"type":"boolean"},
     "Integer":{"type":"long"},
     "InternalServerException":{
       "type":"structure",
@@ -1323,7 +1327,7 @@
     "TargetIntervalSeconds":{
       "type":"long",
       "max":60,
-      "min":5
+      "min":1
     },
     "ThrottlingException":{
       "type":"structure",
@@ -1377,6 +1381,7 @@
       "members":{
         "arn":{"shape":"ChannelArn"},
         "authorized":{"shape":"Boolean"},
+        "insecureIngest":{"shape":"Boolean"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},

@@ -5388,7 +5388,6 @@
         "UpdateCrawlerScheduleRequest$CrawlerName": "<p>The name of the crawler whose schedule to update.</p>",
         "UpdateCsvClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "UpdateDataQualityRulesetRequest$Name": "<p>The name of the data quality ruleset.</p>",
-        "UpdateDataQualityRulesetRequest$UpdatedName": "<p>The new name of the ruleset, if you are renaming it.</p>",
         "UpdateDataQualityRulesetResponse$Name": "<p>The name of the data quality ruleset.</p>",
         "UpdateDatabaseRequest$Name": "<p>The name of the database to update in the catalog. For Hive compatibility, this is folded to lowercase.</p>",
         "UpdateGrokClassifierRequest$Name": "<p>The name of the <code>GrokClassifier</code>.</p>",

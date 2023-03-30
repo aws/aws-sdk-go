@@ -4055,9 +4055,9 @@ type ContainerDetail struct {
 	// is reserved for variables that Batch sets.
 	Environment []*KeyValuePair `locationName:"environment" type:"list"`
 
-	// The amount of ephemeral storage to allocate for the task. This parameter
-	// is used to expand the total amount of ephemeral storage available, beyond
-	// the default amount, for tasks hosted on Fargate.
+	// The amount of ephemeral storage allocated for the task. This parameter is
+	// used to expand the total amount of ephemeral storage available, beyond the
+	// default amount, for tasks hosted on Fargate.
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the execution role that Batch can assume.
@@ -7685,9 +7685,17 @@ func (s *EksHostPath) SetPath(v string) *EksHostPath {
 	return s
 }
 
+// Describes and uniquely identifies Kubernetes resources. For example, the
+// compute environment that a pod runs in or the jobID for a job running in
+// the pod. For more information, see Understanding Kubernetes Objects (https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+// in the Kubernetes documentation.
 type EksMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// Key-value pairs used to identify, sort, and organize cube resources. Can
+	// contain up to 63 uppercase letters, lowercase letters, numbers, hyphens (-),
+	// and underscores (_). Labels can be added or modified at any time. Each resource
+	// can have multiple labels, but each key must be unique for a given object.
 	Labels map[string]*string `locationName:"labels" type:"map"`
 }
 
@@ -7741,6 +7749,9 @@ type EksPodProperties struct {
 	// in the Kubernetes documentation.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
 
+	// Metadata about the Kubernetes pod. For more information, see Understanding
+	// Kubernetes Objects (https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+	// in the Kubernetes documentation.
 	Metadata *EksMetadata `locationName:"metadata" type:"structure"`
 
 	// The name of the service account that's used to run the pod. For more information,
@@ -7870,6 +7881,12 @@ type EksPodPropertiesDetail struct {
 	// in the Kubernetes documentation.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
 
+	// Describes and uniquely identifies Kubernetes resources. For example, the
+	// compute environment that a pod runs in or the jobID for a job running in
+	// the pod. For more information, see Understanding Kubernetes Objects (https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+	// in the Kubernetes documentation.
+	Metadata *EksMetadata `locationName:"metadata" type:"structure"`
+
 	// The name of the node for this job.
 	NodeName *string `locationName:"nodeName" type:"string"`
 
@@ -7923,6 +7940,12 @@ func (s *EksPodPropertiesDetail) SetHostNetwork(v bool) *EksPodPropertiesDetail 
 	return s
 }
 
+// SetMetadata sets the Metadata field's value.
+func (s *EksPodPropertiesDetail) SetMetadata(v *EksMetadata) *EksPodPropertiesDetail {
+	s.Metadata = v
+	return s
+}
+
 // SetNodeName sets the NodeName field's value.
 func (s *EksPodPropertiesDetail) SetNodeName(v string) *EksPodPropertiesDetail {
 	s.NodeName = &v
@@ -7955,6 +7978,8 @@ type EksPodPropertiesOverride struct {
 	// The overrides for the container that's used on the Amazon EKS pod.
 	Containers []*EksContainerOverride `locationName:"containers" type:"list"`
 
+	// Metadata about the overrides for the container that's used on the Amazon
+	// EKS pod.
 	Metadata *EksMetadata `locationName:"metadata" type:"structure"`
 }
 

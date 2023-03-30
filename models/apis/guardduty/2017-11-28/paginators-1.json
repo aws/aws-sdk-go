@@ -16,6 +16,12 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListCoverage": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Resources"
+    },
     "ListDetectors": {
       "input_token": "NextToken",
       "output_token": "NextToken",

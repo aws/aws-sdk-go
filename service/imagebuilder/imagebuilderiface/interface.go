@@ -164,6 +164,14 @@ type ImagebuilderAPI interface {
 	GetInfrastructureConfigurationWithContext(aws.Context, *imagebuilder.GetInfrastructureConfigurationInput, ...request.Option) (*imagebuilder.GetInfrastructureConfigurationOutput, error)
 	GetInfrastructureConfigurationRequest(*imagebuilder.GetInfrastructureConfigurationInput) (*request.Request, *imagebuilder.GetInfrastructureConfigurationOutput)
 
+	GetWorkflowExecution(*imagebuilder.GetWorkflowExecutionInput) (*imagebuilder.GetWorkflowExecutionOutput, error)
+	GetWorkflowExecutionWithContext(aws.Context, *imagebuilder.GetWorkflowExecutionInput, ...request.Option) (*imagebuilder.GetWorkflowExecutionOutput, error)
+	GetWorkflowExecutionRequest(*imagebuilder.GetWorkflowExecutionInput) (*request.Request, *imagebuilder.GetWorkflowExecutionOutput)
+
+	GetWorkflowStepExecution(*imagebuilder.GetWorkflowStepExecutionInput) (*imagebuilder.GetWorkflowStepExecutionOutput, error)
+	GetWorkflowStepExecutionWithContext(aws.Context, *imagebuilder.GetWorkflowStepExecutionInput, ...request.Option) (*imagebuilder.GetWorkflowStepExecutionOutput, error)
+	GetWorkflowStepExecutionRequest(*imagebuilder.GetWorkflowStepExecutionInput) (*request.Request, *imagebuilder.GetWorkflowStepExecutionOutput)
+
 	ImportComponent(*imagebuilder.ImportComponentInput) (*imagebuilder.ImportComponentOutput, error)
 	ImportComponentWithContext(aws.Context, *imagebuilder.ImportComponentInput, ...request.Option) (*imagebuilder.ImportComponentOutput, error)
 	ImportComponentRequest(*imagebuilder.ImportComponentInput) (*request.Request, *imagebuilder.ImportComponentOutput)
@@ -235,6 +243,20 @@ type ImagebuilderAPI interface {
 	ListImageRecipesPages(*imagebuilder.ListImageRecipesInput, func(*imagebuilder.ListImageRecipesOutput, bool) bool) error
 	ListImageRecipesPagesWithContext(aws.Context, *imagebuilder.ListImageRecipesInput, func(*imagebuilder.ListImageRecipesOutput, bool) bool, ...request.Option) error
 
+	ListImageScanFindingAggregations(*imagebuilder.ListImageScanFindingAggregationsInput) (*imagebuilder.ListImageScanFindingAggregationsOutput, error)
+	ListImageScanFindingAggregationsWithContext(aws.Context, *imagebuilder.ListImageScanFindingAggregationsInput, ...request.Option) (*imagebuilder.ListImageScanFindingAggregationsOutput, error)
+	ListImageScanFindingAggregationsRequest(*imagebuilder.ListImageScanFindingAggregationsInput) (*request.Request, *imagebuilder.ListImageScanFindingAggregationsOutput)
+
+	ListImageScanFindingAggregationsPages(*imagebuilder.ListImageScanFindingAggregationsInput, func(*imagebuilder.ListImageScanFindingAggregationsOutput, bool) bool) error
+	ListImageScanFindingAggregationsPagesWithContext(aws.Context, *imagebuilder.ListImageScanFindingAggregationsInput, func(*imagebuilder.ListImageScanFindingAggregationsOutput, bool) bool, ...request.Option) error
+
+	ListImageScanFindings(*imagebuilder.ListImageScanFindingsInput) (*imagebuilder.ListImageScanFindingsOutput, error)
+	ListImageScanFindingsWithContext(aws.Context, *imagebuilder.ListImageScanFindingsInput, ...request.Option) (*imagebuilder.ListImageScanFindingsOutput, error)
+	ListImageScanFindingsRequest(*imagebuilder.ListImageScanFindingsInput) (*request.Request, *imagebuilder.ListImageScanFindingsOutput)
+
+	ListImageScanFindingsPages(*imagebuilder.ListImageScanFindingsInput, func(*imagebuilder.ListImageScanFindingsOutput, bool) bool) error
+	ListImageScanFindingsPagesWithContext(aws.Context, *imagebuilder.ListImageScanFindingsInput, func(*imagebuilder.ListImageScanFindingsOutput, bool) bool, ...request.Option) error
+
 	ListImages(*imagebuilder.ListImagesInput) (*imagebuilder.ListImagesOutput, error)
 	ListImagesWithContext(aws.Context, *imagebuilder.ListImagesInput, ...request.Option) (*imagebuilder.ListImagesOutput, error)
 	ListImagesRequest(*imagebuilder.ListImagesInput) (*request.Request, *imagebuilder.ListImagesOutput)
@@ -252,6 +274,20 @@ type ImagebuilderAPI interface {
 	ListTagsForResource(*imagebuilder.ListTagsForResourceInput) (*imagebuilder.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *imagebuilder.ListTagsForResourceInput, ...request.Option) (*imagebuilder.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*imagebuilder.ListTagsForResourceInput) (*request.Request, *imagebuilder.ListTagsForResourceOutput)
+
+	ListWorkflowExecutions(*imagebuilder.ListWorkflowExecutionsInput) (*imagebuilder.ListWorkflowExecutionsOutput, error)
+	ListWorkflowExecutionsWithContext(aws.Context, *imagebuilder.ListWorkflowExecutionsInput, ...request.Option) (*imagebuilder.ListWorkflowExecutionsOutput, error)
+	ListWorkflowExecutionsRequest(*imagebuilder.ListWorkflowExecutionsInput) (*request.Request, *imagebuilder.ListWorkflowExecutionsOutput)
+
+	ListWorkflowExecutionsPages(*imagebuilder.ListWorkflowExecutionsInput, func(*imagebuilder.ListWorkflowExecutionsOutput, bool) bool) error
+	ListWorkflowExecutionsPagesWithContext(aws.Context, *imagebuilder.ListWorkflowExecutionsInput, func(*imagebuilder.ListWorkflowExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListWorkflowStepExecutions(*imagebuilder.ListWorkflowStepExecutionsInput) (*imagebuilder.ListWorkflowStepExecutionsOutput, error)
+	ListWorkflowStepExecutionsWithContext(aws.Context, *imagebuilder.ListWorkflowStepExecutionsInput, ...request.Option) (*imagebuilder.ListWorkflowStepExecutionsOutput, error)
+	ListWorkflowStepExecutionsRequest(*imagebuilder.ListWorkflowStepExecutionsInput) (*request.Request, *imagebuilder.ListWorkflowStepExecutionsOutput)
+
+	ListWorkflowStepExecutionsPages(*imagebuilder.ListWorkflowStepExecutionsInput, func(*imagebuilder.ListWorkflowStepExecutionsOutput, bool) bool) error
+	ListWorkflowStepExecutionsPagesWithContext(aws.Context, *imagebuilder.ListWorkflowStepExecutionsInput, func(*imagebuilder.ListWorkflowStepExecutionsOutput, bool) bool, ...request.Option) error
 
 	PutComponentPolicy(*imagebuilder.PutComponentPolicyInput) (*imagebuilder.PutComponentPolicyOutput, error)
 	PutComponentPolicyWithContext(aws.Context, *imagebuilder.PutComponentPolicyInput, ...request.Option) (*imagebuilder.PutComponentPolicyOutput, error)

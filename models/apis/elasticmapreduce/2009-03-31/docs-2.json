@@ -661,6 +661,24 @@
         "InvalidRequestException$ErrorCode": "<p>The error code associated with the exception.</p>"
       }
     },
+    "ErrorData": {
+      "base": null,
+      "refs": {
+        "ErrorDetail$ErrorData": "<p>A list of key value pairs that provide contextual information to explain why the error may have occured.</p>"
+      }
+    },
+    "ErrorDetail": {
+      "base": "<p>A tuple that provides information about an error that caused a cluster to terminate.</p>",
+      "refs": {
+        "ErrorDetailList$member": null
+      }
+    },
+    "ErrorDetailList": {
+      "base": null,
+      "refs": {
+        "ClusterStatus$ErrorDetails": "<p>A list of tuples that provide information about the errors that caused a cluster termination. This structure may have up to 10 different <code>ErrorDetail</code> tuples.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -1971,6 +1989,8 @@
         "Ec2InstanceAttributes$EmrManagedMasterSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the master node.</p>",
         "Ec2InstanceAttributes$EmrManagedSlaveSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the core and task nodes.</p>",
         "Ec2InstanceAttributes$ServiceAccessSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the Amazon EMR service to access clusters in VPC private subnets.</p>",
+        "ErrorDetail$ErrorCode": "<p>The name or code that's associated with the error.</p>",
+        "ErrorDetail$ErrorMessage": "<p>A message describing the error that occured.</p>",
         "FailureDetails$Reason": "<p>The reason for the step failure. In the case where the service cannot successfully determine the root cause of the failure, it returns \"Unknown Error\" as a reason.</p>",
         "FailureDetails$Message": "<p>The descriptive message including the error the Amazon EMR service has identified as the cause of step failure. This is text from an error log that describes the root cause of the failure.</p>",
         "FailureDetails$LogFile": "<p>The path to the log file where the step failure root cause was originally recorded.</p>",
@@ -2027,6 +2047,7 @@
       "refs": {
         "Application$AdditionalInfo": "<p>This option is for advanced users only. This is meta information about third-party applications that third-party vendors use for testing purposes.</p>",
         "Configuration$Properties": "<p>A set of properties specified within a configuration classification.</p>",
+        "ErrorData$member": null,
         "HadoopStepConfig$Properties": "<p>The list of Java properties that are set when the step runs. You can use these properties to pass key-value pairs to your main function.</p>"
       }
     },

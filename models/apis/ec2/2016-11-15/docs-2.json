@@ -453,6 +453,7 @@
     "GetVerifiedAccessGroupPolicy": "<p>Shows the contents of the Verified Access policy associated with the group.</p>",
     "GetVpnConnectionDeviceSampleConfiguration": "<p>Download an Amazon Web Services-provided sample configuration file to be used with the customer gateway device specified for your Site-to-Site VPN connection.</p>",
     "GetVpnConnectionDeviceTypes": "<p>Obtain a list of customer gateway devices for which sample configuration files can be provided. The request has no additional parameters. You can also see the list of device types with sample configuration files available under <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/your-cgw.html\">Your customer gateway device</a> in the <i>Amazon Web Services Site-to-Site VPN User Guide</i>.</p>",
+    "GetVpnTunnelReplacementStatus": "<p>Get details of available tunnel endpoint maintenance.</p>",
     "ImportClientVpnClientCertificateRevocationList": "<p>Uploads a client certificate revocation list to the specified Client VPN endpoint. Uploading a client certificate revocation list overwrites the existing client certificate revocation list.</p> <p>Uploading a client certificate revocation list resets existing client connections.</p>",
     "ImportImage": "<note> <p>To import your virtual machines (VMs) with a console-based experience, you can use the <i>Import virtual machine images to Amazon Web Services</i> template in the <a href=\"https://console.aws.amazon.com/migrationhub/orchestrator\">Migration Hub Orchestrator console</a>. For more information, see the <a href=\"https://docs.aws.amazon.com/migrationhub-orchestrator/latest/userguide/import-vm-images.html\"> <i>Migration Hub Orchestrator User Guide</i> </a>.</p> </note> <p>Import single or multi-volume disk images or EBS snapshots into an Amazon Machine Image (AMI).</p> <important> <p>Amazon Web Services VM Import/Export strongly recommends specifying a value for either the <code>--license-type</code> or <code>--usage-operation</code> parameter when you create a new VM Import task. This ensures your operating system is licensed appropriately and your billing is optimized.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html\">Importing a VM as an image using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "ImportInstance": "<p>Creates an import instance task using metadata from the specified disk image.</p> <p>This API action supports only single-volume VMs. To import multi-volume VMs, use <a>ImportImage</a> instead.</p> <p>This API action is not supported by the Command Line Interface (CLI). For information about using the Amazon EC2 CLI, which is deprecated, see <a href=\"https://awsdocs.s3.amazonaws.com/EC2/ec2-clt.pdf#UsingVirtualMachinesinAmazonEC2\">Importing a VM to Amazon EC2</a> in the <i>Amazon EC2 CLI Reference</i> PDF file.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
@@ -553,6 +554,7 @@
     "ReplaceRoute": "<p>Replaces an existing route within a route table in a VPC.</p> <p>You must specify either a destination CIDR block or a prefix list ID. You must also specify exactly one of the resources from the parameter list, or reset the local route to its default target.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "ReplaceRouteTableAssociation": "<p>Changes the route table associated with a given subnet, internet gateway, or virtual private gateway in a VPC. After the operation completes, the subnet or gateway uses the routes in the new route table. For more information about route tables, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>You can also use this operation to change which table is the main route table in the VPC. Specify the main route table's association ID and the route table ID of the new main route table.</p>",
     "ReplaceTransitGatewayRoute": "<p>Replaces the specified route in the specified transit gateway route table.</p>",
+    "ReplaceVpnTunnel": "<p>Trigger replacement of specified VPN tunnel.</p>",
     "ReportInstanceStatus": "<p>Submits feedback about the status of an instance. The instance must be in the <code>running</code> state. If your experience with the instance differs from the instance status returned by <a>DescribeInstanceStatus</a>, use <a>ReportInstanceStatus</a> to report your experience with the instance. Amazon EC2 collects this information to improve the accuracy of status checks.</p> <p>Use of this action does not change the value returned by <a>DescribeInstanceStatus</a>.</p>",
     "RequestSpotFleet": "<p>Creates a Spot Fleet request.</p> <p>The Spot Fleet request specifies the total target capacity and the On-Demand target capacity. Amazon EC2 calculates the difference between the total capacity and On-Demand capacity, and launches the difference as Spot capacity.</p> <p>You can submit a single request that includes multiple launch specifications that vary by instance type, AMI, Availability Zone, or subnet.</p> <p>By default, the Spot Fleet requests Spot Instances in the Spot Instance pool where the price per unit is the lowest. Each launch specification can include its own instance weighting that reflects the value of the instance type to your application workload.</p> <p>Alternatively, you can specify that the Spot Fleet distribute the target capacity across the Spot pools included in its launch specifications. By ensuring that the Spot Instances in your Spot Fleet are in different Spot pools, you can improve the availability of your fleet.</p> <p>You can specify tags for the Spot Fleet request and instances launched by the fleet. You cannot tag other resource types in a Spot Fleet request because only the <code>spot-fleet-request</code> and <code>instance</code> resource types are supported.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-requests.html\">Spot Fleet requests</a> in the <i>Amazon EC2 User Guide</i>.</p> <important> <p>We strongly discourage using the RequestSpotFleet API because it is a legacy API with no planned investment. For options for requesting Spot Instances, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html#which-spot-request-method-to-use\">Which is the best Spot request method to use?</a> in the <i>Amazon EC2 User Guide</i>.</p> </important>",
     "RequestSpotInstances": "<p>Creates a Spot Instance request.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html\">Spot Instance requests</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <important> <p>We strongly discourage using the RequestSpotInstances API because it is a legacy API with no planned investment. For options for requesting Spot Instances, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html#which-spot-request-method-to-use\">Which is the best Spot request method to use?</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> </important> <note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> </note>",
@@ -1707,6 +1709,12 @@
         "AvailabilityZone$Messages": "<p>Any messages about the Availability Zone, Local Zone, or Wavelength Zone.</p>"
       }
     },
+    "AvailabilityZoneName": {
+      "base": null,
+      "refs": {
+        "CreateVolumeRequest$AvailabilityZone": "<p>The Availability Zone in which to create the volume.</p>"
+      }
+    },
     "AvailabilityZoneOptInStatus": {
       "base": null,
       "refs": {
@@ -2385,6 +2393,7 @@
         "GetVerifiedAccessGroupPolicyResult$PolicyEnabled": "<p>The status of the Verified Access policy.</p>",
         "GetVpnConnectionDeviceSampleConfigurationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetVpnConnectionDeviceTypesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "GetVpnTunnelReplacementStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "HibernationOptions$Configured": "<p>If this parameter is set to <code>true</code>, your instance is enabled for hibernation; otherwise, it is not enabled for hibernation.</p>",
         "HibernationOptionsRequest$Configured": "<p>If you set this parameter to <code>true</code>, your instance is enabled for hibernation.</p> <p>Default: <code>false</code> </p>",
         "Host$MemberOfServiceLinkedResourceGroup": "<p>Indicates whether the Dedicated Host is in a host resource group. If <b>memberOfServiceLinkedResourceGroup</b> is <code>true</code>, the host is in a host resource group; otherwise, it is not.</p>",
@@ -2537,6 +2546,8 @@
         "ModifyVpnConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpnTunnelCertificateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpnTunnelOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyVpnTunnelOptionsRequest$SkipTunnelReplacement": "<p>Choose whether or not to trigger immediate tunnel replacement.</p> <p>Valid values: <code>True</code> | <code>False</code> </p>",
+        "ModifyVpnTunnelOptionsSpecification$EnableTunnelLifecycleControl": "<p>Turn on or off tunnel endpoint lifecycle control feature.</p>",
         "MonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveAddressToVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveByoipCidrToIpamRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2601,6 +2612,9 @@
         "ReplaceRouteTableAssociationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ReplaceTransitGatewayRouteRequest$Blackhole": "<p>Indicates whether traffic matching this route is to be dropped.</p>",
         "ReplaceTransitGatewayRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ReplaceVpnTunnelRequest$ApplyPendingMaintenance": "<p>Trigger pending tunnel endpoint maintenance.</p>",
+        "ReplaceVpnTunnelRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ReplaceVpnTunnelResult$Return": "<p>Confirmation of replace tunnel operation.</p>",
         "ReportInstanceStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RequestLaunchTemplateData$EbsOptimized": "<p>Indicates whether the instance is optimized for Amazon EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal Amazon EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS-optimized instance.</p>",
         "RequestLaunchTemplateData$DisableApiTermination": "<p>If you set this parameter to <code>true</code>, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after launch, use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html\">ModifyInstanceAttribute</a>. Alternatively, if you set <code>InstanceInitiatedShutdownBehavior</code> to <code>terminate</code>, you can terminate the instance by running the shutdown command from the instance.</p>",
@@ -2695,6 +2709,7 @@
         "TransitGatewayPrefixListReference$Blackhole": "<p>Indicates whether traffic that matches this route is dropped.</p>",
         "TransitGatewayRouteTable$DefaultAssociationRouteTable": "<p>Indicates whether this is the default association route table for the transit gateway.</p>",
         "TransitGatewayRouteTable$DefaultPropagationRouteTable": "<p>Indicates whether this is the default propagation route table for the transit gateway.</p>",
+        "TunnelOption$EnableTunnelLifecycleControl": "<p>Status of tunnel endpoint lifecycle control feature.</p>",
         "UnassignPrivateNatGatewayAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UnmonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsEgressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2724,6 +2739,7 @@
         "VpnConnectionOptions$StaticRoutesOnly": "<p>Indicates whether the VPN connection uses static routes only. Static routes must be used for devices that don't support BGP.</p>",
         "VpnConnectionOptionsSpecification$EnableAcceleration": "<p>Indicate whether to enable acceleration for the VPN connection.</p> <p>Default: <code>false</code> </p>",
         "VpnConnectionOptionsSpecification$StaticRoutesOnly": "<p>Indicate whether the VPN connection uses static routes only. If you are creating a VPN connection for a device that does not support BGP, you must specify <code>true</code>. Use <a>CreateVpnConnectionRoute</a> to create a static route.</p> <p>Default: <code>false</code> </p>",
+        "VpnTunnelOptionsSpecification$EnableTunnelLifecycleControl": "<p>Turn on or off tunnel endpoint lifecycle control feature.</p>",
         "WithdrawByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>"
       }
     },
@@ -4729,6 +4745,7 @@
         "CreateVpnConnectionRequest$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
         "CustomerGatewayIdStringList$member": null,
         "DeleteCustomerGatewayRequest$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
+        "GetVpnTunnelReplacementStatusResult$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
         "ModifyVpnConnectionRequest$CustomerGatewayId": "<p>The ID of the customer gateway at your end of the VPN connection.</p>"
       }
     },
@@ -9905,6 +9922,16 @@
       "refs": {
       }
     },
+    "GetVpnTunnelReplacementStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVpnTunnelReplacementStatusResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GpuDeviceCount": {
       "base": null,
       "refs": {
@@ -13499,6 +13526,12 @@
         "VpnGateway$AmazonSideAsn": "<p>The private Autonomous System Number (ASN) for the Amazon side of a BGP session.</p>"
       }
     },
+    "MaintenanceDetails": {
+      "base": "<p>Details for Site-to-Site VPN tunnel endpoint maintenance events.</p>",
+      "refs": {
+        "GetVpnTunnelReplacementStatusResult$MaintenanceDetails": "<p>Get details of pending tunnel endpoint maintenance.</p>"
+      }
+    },
     "ManagedPrefixList": {
       "base": "<p>Describes a managed prefix list.</p>",
       "refs": {
@@ -13700,6 +13733,8 @@
         "IpamDiscoveredAccount$LastSuccessfulDiscoveryTime": "<p>The last successful resource discovery time.</p>",
         "IpamDiscoveredResourceCidr$SampleTime": "<p>The last successful resource discovery time.</p>",
         "KeyPairInfo$CreateTime": "<p>If you used Amazon EC2 to create the key pair, this is the date and time when the key was created, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p> <p>If you imported an existing key pair to Amazon EC2, this is the date and time the key was imported, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p>",
+        "MaintenanceDetails$MaintenanceAutoAppliedAfter": "<p>The timestamp after which Amazon Web Services will automatically apply maintenance.</p>",
+        "MaintenanceDetails$LastMaintenanceApplied": "<p>Timestamp of last applied maintenance.</p>",
         "MetricPoint$StartDate": "<p>The start date for the metric point. The starting date for the metric point. The starting time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-10T12:00:00.000Z</code>.</p>",
         "MetricPoint$EndDate": "<p>The end date for the metric point. The ending time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-12T12:00:00.000Z</code>.</p>",
         "ModifyCapacityReservationFleetRequest$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires. When the Capacity Reservation Fleet expires, its state changes to <code>expired</code> and all of the Capacity Reservations in the Fleet expire.</p> <p>The Capacity Reservation Fleet expires within an hour after the specified time. For example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code> on <code>5/31/2019</code>.</p> <p>You can't specify <b>EndDate</b> and <b> RemoveEndDate</b> in the same request.</p>",
@@ -16363,6 +16398,16 @@
       "refs": {
       }
     },
+    "ReplaceVpnTunnelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ReplaceVpnTunnelResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ReplacementStrategy": {
       "base": null,
       "refs": {
@@ -18460,7 +18505,6 @@
         "CreateVerifiedAccessTrustProviderRequest$Description": "<p>A description for the Amazon Web Services Verified Access trust provider.</p>",
         "CreateVerifiedAccessTrustProviderRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateVolumePermission$UserId": "<p>The ID of the Amazon Web Services account to be added or removed.</p>",
-        "CreateVolumeRequest$AvailabilityZone": "<p>The Availability Zone in which to create the volume.</p>",
         "CreateVolumeRequest$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost.</p>",
         "CreateVolumeRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensure Idempotency</a>.</p>",
         "CreateVpcEndpointConnectionNotificationRequest$ConnectionNotificationArn": "<p>The ARN of the SNS topic for the notifications.</p>",
@@ -18925,6 +18969,8 @@
         "GetVerifiedAccessEndpointPolicyResult$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
         "GetVerifiedAccessGroupPolicyResult$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
         "GetVpnConnectionDeviceSampleConfigurationRequest$InternetKeyExchangeVersion": "<p>The IKE version to be used in the sample configuration file for your customer gateway device. You can specify one of the following versions: <code>ikev1</code> or <code>ikev2</code>.</p>",
+        "GetVpnTunnelReplacementStatusRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
+        "GetVpnTunnelReplacementStatusResult$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
         "GroupIdentifier$GroupName": "<p>The name of the security group.</p>",
         "GroupIdentifier$GroupId": "<p>The ID of the security group.</p>",
         "Host$AvailabilityZone": "<p>The Availability Zone of the Dedicated Host.</p>",
@@ -19267,6 +19313,7 @@
         "LocalGatewayVirtualInterface$OwnerId": "<p>The ID of the Amazon Web Services account that owns the local gateway virtual interface.</p>",
         "LocalGatewayVirtualInterfaceGroup$LocalGatewayId": "<p>The ID of the local gateway.</p>",
         "LocalGatewayVirtualInterfaceGroup$OwnerId": "<p>The ID of the Amazon Web Services account that owns the local gateway virtual interface group.</p>",
+        "MaintenanceDetails$PendingMaintenance": "<p>Verify existence of a pending maintenance.</p>",
         "ManagedPrefixList$AddressFamily": "<p>The IP address version.</p>",
         "ManagedPrefixList$StateMessage": "<p>The state message.</p>",
         "ManagedPrefixList$PrefixListName": "<p>The name of the prefix list.</p>",
@@ -19530,6 +19577,7 @@
         "ReplaceRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
         "ReplaceRouteTableAssociationResult$NewAssociationId": "<p>The ID of the new association.</p>",
         "ReplaceTransitGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR range used for the destination match. Routing decisions are based on the most specific match.</p>",
+        "ReplaceVpnTunnelRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
         "ReportInstanceStatusRequest$Description": "<p>Descriptive text about the health state of your instance.</p>",
         "RequestIpamResourceTag$Key": "<p>The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p>",
         "RequestIpamResourceTag$Value": "<p>The value for the tag.</p>",
@@ -21141,6 +21189,7 @@
         "CreateTransitGatewayVpcAttachmentRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
         "CreateVpnConnectionRequest$TransitGatewayId": "<p>The ID of the transit gateway. If you specify a transit gateway, you cannot specify a virtual private gateway.</p>",
         "DeleteTransitGatewayRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
+        "GetVpnTunnelReplacementStatusResult$TransitGatewayId": "<p>The ID of the transit gateway associated with the VPN connection.</p>",
         "ModifyTransitGatewayRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
         "ModifyVpnConnectionRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
         "ReplaceRouteRequest$TransitGatewayId": "<p>The ID of a transit gateway.</p>",
@@ -22938,10 +22987,13 @@
         "DeleteVpnConnectionRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
         "DeleteVpnConnectionRouteRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
         "GetVpnConnectionDeviceSampleConfigurationRequest$VpnConnectionId": "<p>The <code>VpnConnectionId</code> specifies the Site-to-Site VPN connection used for the sample configuration.</p>",
+        "GetVpnTunnelReplacementStatusRequest$VpnConnectionId": "<p>The ID of the Site-to-Site VPN connection. </p>",
+        "GetVpnTunnelReplacementStatusResult$VpnConnectionId": "<p>The ID of the Site-to-Site VPN connection. </p>",
         "ModifyVpnConnectionOptionsRequest$VpnConnectionId": "<p>The ID of the Site-to-Site VPN connection. </p>",
         "ModifyVpnConnectionRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
         "ModifyVpnTunnelCertificateRequest$VpnConnectionId": "<p>The ID of the Amazon Web Services Site-to-Site VPN connection.</p>",
         "ModifyVpnTunnelOptionsRequest$VpnConnectionId": "<p>The ID of the Amazon Web Services Site-to-Site VPN connection.</p>",
+        "ReplaceVpnTunnelRequest$VpnConnectionId": "<p>The ID of the Site-to-Site VPN connection. </p>",
         "TerminateClientVpnConnectionsRequest$ConnectionId": "<p>The ID of the client connection to be terminated.</p>",
         "VpnConnectionIdStringList$member": null
       }
@@ -22994,6 +23046,7 @@
         "DetachVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
         "DisableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway.</p>",
         "EnableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway that is attached to a VPC. The virtual private gateway must be attached to the same VPC that the routing tables are associated with. </p>",
+        "GetVpnTunnelReplacementStatusResult$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
         "ModifyVpnConnectionRequest$VpnGatewayId": "<p>The ID of the virtual private gateway at the Amazon Web Services side of the VPN connection.</p>",
         "VpnGatewayIdStringList$member": null
       }

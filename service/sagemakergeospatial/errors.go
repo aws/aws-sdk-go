@@ -16,6 +16,8 @@ const (
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
+	//
+	// Updating or deleting a resource can cause an inconsistent state.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
@@ -27,6 +29,8 @@ const (
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
+	//
+	// The request references a resource which does not exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code

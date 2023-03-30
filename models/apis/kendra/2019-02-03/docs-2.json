@@ -5,13 +5,15 @@
     "AssociateEntitiesToExperience": "<p>Grants users or groups in your IAM Identity Center identity source access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "AssociatePersonasToEntities": "<p>Defines the specific permissions of users or groups in your IAM Identity Center identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <code>BatchPutDocument</code> API.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using Amazon Web Services CloudWatch. Any error messages related to the processing of the batch are sent to you CloudWatch log.</p>",
+    "BatchDeleteFeaturedResultsSet": "<p>Removes one or more sets of featured results. Features results are placed above all other results for certain queries. If there's an exact match of a query, then one or more specific documents are featured in the search results.</p>",
     "BatchGetDocumentStatus": "<p>Returns the indexing status for one or more documents submitted with the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\"> BatchPutDocument</a> API.</p> <p>When you use the <code>BatchPutDocument</code> API, documents are indexed asynchronously. You can use the <code>BatchGetDocumentStatus</code> API to get the current status of a list of documents so that you can determine if they have been successfully indexed.</p> <p>You can also use the <code>BatchGetDocumentStatus</code> API to check the status of the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html\"> BatchDeleteDocument</a> API. When a document is deleted from the index, Amazon Kendra returns <code>NOT_FOUND</code> as the status.</p>",
     "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> API enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this API to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using Amazon Web Services CloudWatch. Any error messages related to processing the batch are sent to your Amazon Web Services CloudWatch log.</p> <p>For an example of ingesting inline documents using Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-adding-binary-doc.html\">Adding files directly to an index</a>.</p>",
     "ClearQuerySuggestions": "<p>Clears existing query suggestions from an index.</p> <p>This deletes existing suggestions only, not the queries in the query log. After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. If you do not see any new suggestions, then please allow Amazon Kendra to collect enough queries to learn new suggestions.</p> <p> <code>ClearQuerySuggestions</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "CreateAccessControlConfiguration": "<p>Creates an access configuration for your documents. This includes user and group access information for your documents. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents.</p> <p>You can use this to re-configure your existing document level access control without indexing all of your documents again. For example, your index contains top-secret company documents that only certain employees or users should access. One of these users leaves the company or switches to a team that should be blocked from accessing top-secret documents. The user still has access to top-secret documents because the user had access when your documents were previously indexed. You can create a specific access control configuration for the user with deny access. You can later update the access control configuration to allow access if the user returns to the company and re-joins the 'top-secret' team. You can re-configure access control for your documents as circumstances change.</p> <p>To apply your access control configuration to certain documents, you call the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\">BatchPutDocument</a> API with the <code>AccessControlConfigurationId</code> included in the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_Document.html\">Document</a> object. If you use an S3 bucket as a data source, you update the <code>.metadata.json</code> with the <code>AccessControlConfigurationId</code> and synchronize your data source. Amazon Kendra currently only supports access control configuration for S3 data sources and documents indexed using the <code>BatchPutDocument</code> API.</p>",
-    "CreateDataSource": "<p>Creates a data source connector that you want to use with an Amazon Kendra index.</p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information for the data source connector.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p> <p>Amazon S3 and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-custom.html\">custom</a> data sources are the only supported data sources in the Amazon Web Services GovCloud (US-West) region.</p> <p>For an example of creating an index and data source using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html\">Getting started with Python SDK</a>. For an example of creating an index and data source using the Java SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html\">Getting started with Java SDK</a>.</p>",
+    "CreateDataSource": "<p>Creates a data source connector that you want to use with an Amazon Kendra index.</p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information for the data source connector.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p> <p>For an example of creating an index and data source using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html\">Getting started with Python SDK</a>. For an example of creating an index and data source using the Java SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html\">Getting started with Java SDK</a>.</p>",
     "CreateExperience": "<p>Creates an Amazon Kendra experience such as a search application. For more information on creating a search application experience, including using the Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
-    "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p> <p>Adding FAQs to an index is an asynchronous operation.</p> <p>For an example of adding an FAQ to an index using Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html#using-faq-file\">Using your FAQ file</a>.</p>",
+    "CreateFaq": "<p>Creates a set of frequently ask questions (FAQs) using a specified FAQ file stored in an Amazon S3 bucket.</p> <p>Adding FAQs to an index is an asynchronous operation.</p> <p>For an example of adding an FAQ to an index using Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html#using-faq-file\">Using your FAQ file</a>.</p>",
+    "CreateFeaturedResultsSet": "<p>Creates a set of featured results to display at the top of the search results page. Featured results are placed above all other results for certain queries. You map specific queries to specific documents for featuring in the results. If a query contains an exact match, then one or more specific documents are featured in the search results.</p> <p>You can create up to 50 sets of featured results per index. You can request to increase this limit by contacting <a href=\"http://aws.amazon.com/contact-us/\">Support</a>.</p>",
     "CreateIndex": "<p>Creates an Amazon Kendra index. Index creation is an asynchronous API. To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the <code>BatchPutDocument</code> API or using one of the supported data sources.</p> <p>For an example of creating an index and data source using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html\">Getting started with Python SDK</a>. For an example of creating an index and data source using the Java SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html\">Getting started with Java SDK</a>.</p>",
     "CreateQuerySuggestionsBlockList": "<p>Creates a block list to exlcude certain queries from suggestions.</p> <p>Any query that contains words or phrases specified in the block list is blocked or filtered out from being shown as a suggestion.</p> <p>You need to provide the file location of your block list text file in your S3 bucket. In your text file, enter each block word or phrase on a separate line.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>CreateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p> <p>For an example of creating a block list for query suggestions using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#suggestions-block-list\">Query suggestions block list</a>.</p>",
     "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p> <p>For an example of adding a thesaurus file to an index, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/index-synonyms-adding-thesaurus-file.html\">Adding custom synonyms to an index</a>.</p>",
@@ -27,6 +29,7 @@
     "DescribeDataSource": "<p>Gets information about an Amazon Kendra data source connector.</p>",
     "DescribeExperience": "<p>Gets information about your Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "DescribeFaq": "<p>Gets information about an FAQ list.</p>",
+    "DescribeFeaturedResultsSet": "<p>Gets information about a set of featured results. Features results are placed above all other results for certain queries. If there's an exact match of a query, then one or more specific documents are featured in the search results.</p>",
     "DescribeIndex": "<p>Gets information about an existing Amazon Kendra index.</p>",
     "DescribePrincipalMapping": "<p>Describes the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping users to their groups. This includes information on the status of actions currently processing or yet to be processed, when actions were last updated, when actions were received by Amazon Kendra, the latest action that should process and apply after other actions, and useful error messages if an action could not be processed.</p> <p> <code>DescribePrincipalMapping</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "DescribeQuerySuggestionsBlockList": "<p>Gets information about a block list used for query suggestions for an index.</p> <p>This is used to check the current settings that are applied to a block list.</p> <p> <code>DescribeQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
@@ -43,12 +46,13 @@
     "ListExperienceEntities": "<p>Lists users or groups in your IAM Identity Center identity source that are granted access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "ListExperiences": "<p>Lists one or more Amazon Kendra experiences. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "ListFaqs": "<p>Gets a list of FAQ lists associated with an index.</p>",
+    "ListFeaturedResultsSets": "<p>Lists all your sets of featured results for a given index. Features results are placed above all other results for certain queries. If there's an exact match of a query, then one or more specific documents are featured in the search results.</p>",
     "ListGroupsOlderThanOrderingId": "<p>Provides a list of groups that are mapped to users before a given ordering or timestamp identifier.</p> <p> <code>ListGroupsOlderThanOrderingId</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "ListIndices": "<p>Lists the Amazon Kendra indexes that you created.</p>",
     "ListQuerySuggestionsBlockLists": "<p>Lists the block lists used for query suggestions for an index.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>ListQuerySuggestionsBlockLists</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a specified resource. Indexes, FAQs, and data sources can have tags associated with them.</p>",
     "ListThesauri": "<p>Lists the thesauri for an index.</p>",
-    "PutPrincipalMapping": "<p>Maps users to their groups so that you only need to provide the user ID when you issue the query.</p> <p>You can also map sub groups to groups. For example, the group \"Company Intellectual Property Teams\" includes sub groups \"Research\" and \"Engineering\". These sub groups include their own list of users or people who work in these teams. Only users who work in research and engineering, and therefore belong in the intellectual property group, can see top-secret company documents in their search results.</p> <p>This is useful for user context filtering, where search results are filtered based on the user or their group access to documents. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">Filtering on user context</a>.</p> <p>If more than five <code>PUT</code> actions for a group are currently processing, a validation exception is thrown.</p> <p> <code>PutPrincipalMapping</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
+    "PutPrincipalMapping": "<p>Maps users to their groups so that you only need to provide the user ID when you issue the query.</p> <p>You can also map sub groups to groups. For example, the group \"Company Intellectual Property Teams\" includes sub groups \"Research\" and \"Engineering\". These sub groups include their own list of users or people who work in these teams. Only users who work in research and engineering, and therefore belong in the intellectual property group, can see top-secret company documents in their search results.</p> <p>This is useful for user context filtering, where search results are filtered based on the user or their group access to documents. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">Filtering on user context</a>.</p> <p>If more than five <code>PUT</code> actions for a group are currently processing, a validation exception is thrown.</p>",
     "Query": "<p>Searches an active index. Use this API to search your documents using query. The <code>Query</code> API enables to do faceted search and to filter results based on document attributes.</p> <p>It also enables you to provide user context that Amazon Kendra uses to enforce document access control in the search results.</p> <p>Amazon Kendra searches your index for text content and question and answer (FAQ) content. By default the response contains three types of results.</p> <ul> <li> <p>Relevant passages</p> </li> <li> <p>Matching FAQs</p> </li> <li> <p>Relevant documents</p> </li> </ul> <p>You can specify that the query return only one type of result using the <code>QueryResultTypeFilter</code> parameter.</p> <p>Each query returns the 100 most relevant results. </p>",
     "StartDataSourceSyncJob": "<p>Starts a synchronization job for a data source connector. If a synchronization job is already in progress, Amazon Kendra returns a <code>ResourceInUseException</code> exception.</p>",
     "StopDataSourceSyncJob": "<p>Stops a synchronization job that is currently running. You can't stop a scheduled synchronization job.</p>",
@@ -58,6 +62,7 @@
     "UpdateAccessControlConfiguration": "<p>Updates an access control configuration for your documents in an index. This includes user and group access information for your documents. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents.</p> <p>You can update an access control configuration you created without indexing all of your documents again. For example, your index contains top-secret company documents that only certain employees or users should access. You created an 'allow' access control configuration for one user who recently joined the 'top-secret' team, switching from a team with 'deny' access to top-secret documents. However, the user suddenly returns to their previous team and should no longer have access to top secret documents. You can update the access control configuration to re-configure access control for your documents as circumstances change.</p> <p>You call the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\">BatchPutDocument</a> API to apply the updated access control configuration, with the <code>AccessControlConfigurationId</code> included in the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_Document.html\">Document</a> object. If you use an S3 bucket as a data source, you synchronize your data source to apply the <code>AccessControlConfigurationId</code> in the <code>.metadata.json</code> file. Amazon Kendra currently only supports access control configuration for S3 data sources and documents indexed using the <code>BatchPutDocument</code> API.</p>",
     "UpdateDataSource": "<p>Updates an existing Amazon Kendra data source connector.</p>",
     "UpdateExperience": "<p>Updates your Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+    "UpdateFeaturedResultsSet": "<p>Updates a set of featured results. Features results are placed above all other results for certain queries. You map specific queries to specific documents for featuring in the results. If a query contains an exact match of a query, then one or more specific documents are featured in the search results.</p>",
     "UpdateIndex": "<p>Updates an existing Amazon Kendra index.</p>",
     "UpdateQuerySuggestionsBlockList": "<p>Updates a block list used for query suggestions for an index.</p> <p>Updates to a block list might not take effect right away. Amazon Kendra needs to refresh the entire suggestions list to apply any updates to the block list. Other changes not related to the block list apply immediately.</p> <p>If a block list is updating, then you need to wait for the first update to finish before submitting another update.</p> <p>Amazon Kendra supports partial updates, so you only need to provide the fields you want to update.</p> <p> <code>UpdateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "UpdateQuerySuggestionsConfig": "<p>Updates the settings of query suggestions for an index.</p> <p>Amazon Kendra supports partial updates, so you only need to provide the fields you want to update.</p> <p>If an update is currently processing (i.e. 'happening'), you need to wait for the update to finish before making another update.</p> <p>Updates to query suggestions settings might not take effect right away. The time for your updated settings to take effect depends on the updates made and the number of search queries in your index.</p> <p>You can still enable/disable query suggestions at any time.</p> <p> <code>UpdateQuerySuggestionsConfig</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
@@ -121,6 +126,7 @@
     "AdditionalResultAttributeList": {
       "base": null,
       "refs": {
+        "FeaturedResultsItem$AdditionalAttributes": "<p>One or more additional attributes associated with the featured result.</p>",
         "QueryResultItem$AdditionalAttributes": "<p>One or more additional attributes associated with the query result.</p>"
       }
     },
@@ -241,6 +247,28 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponse$FailedDocuments": "<p>A list of documents that could not be removed from the index. Each entry contains an error message that indicates why the document couldn't be removed from the index.</p>"
+      }
+    },
+    "BatchDeleteFeaturedResultsSetError": {
+      "base": "<p>Provides information about a set of featured results that couldn't be removed from an index by the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteFeaturedResultsSet.html\">BatchDeleteFeaturedResultsSet</a> API.</p>",
+      "refs": {
+        "BatchDeleteFeaturedResultsSetErrors$member": null
+      }
+    },
+    "BatchDeleteFeaturedResultsSetErrors": {
+      "base": null,
+      "refs": {
+        "BatchDeleteFeaturedResultsSetResponse$Errors": "<p>The list of errors for the featured results set IDs, explaining why they couldn't be removed from the index.</p>"
+      }
+    },
+    "BatchDeleteFeaturedResultsSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteFeaturedResultsSetResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "BatchGetDocumentStatusRequest": {
@@ -392,6 +420,7 @@
         "CreateDataSourceRequest$ClientToken": "<p>A token that you provide to identify the request to create a data source connector. Multiple calls to the <code>CreateDataSource</code> API with the same client token will create only one data source connector.</p>",
         "CreateExperienceRequest$ClientToken": "<p>A token that you provide to identify the request to create your Amazon Kendra experience. Multiple calls to the <code>CreateExperience</code> API with the same client token creates only one Amazon Kendra experience.</p>",
         "CreateFaqRequest$ClientToken": "<p>A token that you provide to identify the request to create a FAQ. Multiple calls to the <code>CreateFaqRequest</code> API with the same client token will create only one FAQ. </p>",
+        "CreateFeaturedResultsSetRequest$ClientToken": "<p>A token that you provide to identify the request to create a set of featured results. Multiple calls to the <code>CreateFeaturedResultsSet</code> API with the same client token will create only one featured results set.</p>",
         "CreateIndexRequest$ClientToken": "<p>A token that you provide to identify the request to create an index. Multiple calls to the <code>CreateIndex</code> API with the same client token will create only one index.</p>",
         "CreateQuerySuggestionsBlockListRequest$ClientToken": "<p>A token that you provide to identify the request to create a query suggestions block list.</p>",
         "CreateThesaurusRequest$ClientToken": "<p>A token that you provide to identify the request to create a thesaurus. Multiple calls to the <code>CreateThesaurus</code> API with the same client token will create only one thesaurus. </p>"
@@ -422,6 +451,18 @@
     "ConflictException": {
       "base": "<p>A conflict occurred with the request. Please fix any inconsistences with your resources and try again.</p>",
       "refs": {
+      }
+    },
+    "ConflictingItem": {
+      "base": "<p>Information about a conflicting query used across different sets of featured results. When you create a featured results set, you must check that the queries are unique per featured results set for each index.</p>",
+      "refs": {
+        "ConflictingItems$member": null
+      }
+    },
+    "ConflictingItems": {
+      "base": null,
+      "refs": {
+        "FeaturedResultsConflictException$ConflictingItems": "<p>A list of the conflicting queries, including the query text, the name for the featured results set, and the identifier of the featured results set.</p>"
       }
     },
     "ConfluenceAttachmentConfiguration": {
@@ -584,7 +625,7 @@
     "CrawlDepth": {
       "base": null,
       "refs": {
-        "WebCrawlerConfiguration$CrawlDepth": "<p>Specifies the number of levels in a website that you want to crawl.</p> <p>The first level begins from the website seed or starting point URL. For example, if a website has 3 levels – index level (i.e. seed in this example), sections level, and subsections level – and you are only interested in crawling information up to the sections level (i.e. levels 0-1), you can set your depth to 1.</p> <p>The default crawl depth is set to 2.</p>"
+        "WebCrawlerConfiguration$CrawlDepth": "<p>Specifies the number of levels in a website that you want to crawl.</p> <p>The first level begins from the website seed or starting point URL. For example, if a website has three levels—index level (the seed in this example), sections level, and subsections level—and you are only interested in crawling information up to the sections level (levels 0-1), you can set your depth to 1.</p> <p>The default crawl depth is set to 2.</p>"
       }
     },
     "CreateAccessControlConfigurationRequest": {
@@ -623,6 +664,16 @@
       }
     },
     "CreateFaqResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFeaturedResultsSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFeaturedResultsSetResponse": {
       "base": null,
       "refs": {
       }
@@ -1049,6 +1100,16 @@
       "refs": {
       }
     },
+    "DescribeFeaturedResultsSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFeaturedResultsSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeIndexRequest": {
       "base": null,
       "refs": {
@@ -1107,7 +1168,7 @@
         "CreateExperienceRequest$Description": "<p>A description for your Amazon Kendra experience.</p>",
         "CreateFaqRequest$Description": "<p>A description for the FAQ.</p>",
         "CreateIndexRequest$Description": "<p>A description for the index.</p>",
-        "CreateQuerySuggestionsBlockListRequest$Description": "<p>A user-friendly description for the block list.</p> <p>For example, the description \"List of all offensive words that can appear in user queries and need to be blocked from suggestions.\"</p>",
+        "CreateQuerySuggestionsBlockListRequest$Description": "<p>A description for the block list.</p> <p>For example, the description \"List of all offensive words that can appear in user queries and need to be blocked from suggestions.\"</p>",
         "CreateThesaurusRequest$Description": "<p>A description for the thesaurus.</p>",
         "DescribeAccessControlConfigurationResponse$Description": "<p>The description for the access control configuration.</p>",
         "DescribeDataSourceResponse$Description": "<p>The description for the data source connector.</p>",
@@ -1199,6 +1260,7 @@
       "refs": {
         "Document$Attributes": "<p>Custom attributes to apply to the document. Use the custom attributes to provide additional information for searching, to provide facets for refining searches, and to provide additional information in the query response.</p> <p>For example, 'DataSourceId' and 'DataSourceSyncJobId' are custom attributes that provide information on the synchronization of documents running on a data source. Note, 'DataSourceSyncJobId' could be an optional custom attribute as Amazon Kendra will use the ID of a running sync job.</p>",
         "DocumentInfo$Attributes": "<p>Attributes that identify a specific version of a document to check.</p> <p>The only valid attributes are:</p> <ul> <li> <p>version</p> </li> <li> <p>datasourceId</p> </li> <li> <p>jobExecutionId</p> </li> </ul> <p>The attributes follow these rules:</p> <ul> <li> <p> <code>dataSourceId</code> and <code>jobExecutionId</code> must be used together.</p> </li> <li> <p> <code>version</code> is ignored if <code>dataSourceId</code> and <code>jobExecutionId</code> are not provided.</p> </li> <li> <p>If <code>dataSourceId</code> and <code>jobExecutionId</code> are provided, but <code>version</code> is not, the version defaults to \"0\".</p> </li> </ul>",
+        "FeaturedResultsItem$DocumentAttributes": "<p>An array of document attributes assigned to a featured document in the search results. For example, the document author (<code>_author</code>) or the source URI (<code>_source_uri</code>) of the document.</p>",
         "QueryResultItem$DocumentAttributes": "<p>An array of document attributes assigned to a document in the search results. For example, the document author (<code>_author</code>) or the source URI (<code>_source_uri</code>) of the document.</p>"
       }
     },
@@ -1257,6 +1319,10 @@
         "Document$Id": "<p>A identifier of the document in the index.</p> <p>Note, each document ID must be unique per index. You cannot create a data source to index your documents with their unique IDs and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa. You can delete a data source and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa.</p>",
         "DocumentIdList$member": null,
         "DocumentInfo$DocumentId": "<p>The identifier of the document.</p>",
+        "FeaturedDocument$Id": "<p>The identifier of the document to feature in the search results. You can use the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_Query.html\">Query</a> API to search for specific documents with their document IDs included in the result items, or you can use the console.</p>",
+        "FeaturedDocumentMissing$Id": "<p>The identifier of the document that doesn't exist but you have specified as a featured document.</p>",
+        "FeaturedDocumentWithMetadata$Id": "<p>The identifier of the featured document with its metadata. You can use the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_Query.html\">Query</a> API to search for specific documents with their document IDs included in the result items, or you can use the console.</p>",
+        "FeaturedResultsItem$DocumentId": "<p>The identifier of the featured document.</p>",
         "QueryResultItem$DocumentId": "<p>The identifier for the document.</p>",
         "Status$DocumentId": "<p>The identifier of the document.</p>"
       }
@@ -1282,7 +1348,7 @@
     "DocumentList": {
       "base": null,
       "refs": {
-        "BatchPutDocumentRequest$Documents": "<p>One or more documents to add to the index.</p> <p>Documents have the following file size limits.</p> <ul> <li> <p>5 MB total size for inline documents</p> </li> <li> <p>50 MB total size for files from an S3 bucket</p> </li> <li> <p>5 MB extracted text for any file</p> </li> </ul> <p>For more information about file size and transaction per second quotas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>"
+        "BatchPutDocumentRequest$Documents": "<p>One or more documents to add to the index.</p> <p>Documents have the following file size limits.</p> <ul> <li> <p>50 MB total size for any file</p> </li> <li> <p>5 MB extracted text for any file</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>"
       }
     },
     "DocumentMetadataBoolean": {
@@ -1430,6 +1496,7 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponseFailedDocument$ErrorCode": "<p>The error code for why the document couldn't be removed from the index.</p>",
+        "BatchDeleteFeaturedResultsSetError$ErrorCode": "<p>The error code for why the set of featured results couldn't be removed from the index.</p>",
         "BatchGetDocumentStatusResponseError$ErrorCode": "<p>Indicates the source of the error.</p>",
         "BatchPutDocumentResponseFailedDocument$ErrorCode": "<p>The type of error that caused the document to fail to be indexed.</p>",
         "DataSourceSyncJob$ErrorCode": "<p>If the <code>Status</code> field is set to <code>FAILED</code>, the <code>ErrorCode</code> field indicates the reason the synchronization failed.</p>"
@@ -1440,6 +1507,7 @@
       "refs": {
         "AccessDeniedException$Message": null,
         "BatchDeleteDocumentResponseFailedDocument$ErrorMessage": "<p>An explanation for why the document couldn't be removed from the index.</p>",
+        "BatchDeleteFeaturedResultsSetError$ErrorMessage": "<p>An explanation for why the set of featured results couldn't be removed from the index.</p>",
         "BatchGetDocumentStatusResponseError$ErrorMessage": "<p>States that the API could not get the status of a document. This could be because the request is not valid or there is a system error.</p>",
         "BatchPutDocumentResponseFailedDocument$ErrorMessage": "<p>A description of the reason why the document could not be indexed.</p>",
         "ConflictException$Message": null,
@@ -1519,7 +1587,7 @@
       "refs": {
         "AssociateEntitiesToExperienceRequest$Id": "<p>The identifier of your Amazon Kendra experience.</p>",
         "AssociatePersonasToEntitiesRequest$Id": "<p>The identifier of your Amazon Kendra experience.</p>",
-        "CreateExperienceResponse$Id": "<p>The identifier for your created Amazon Kendra experience.</p>",
+        "CreateExperienceResponse$Id": "<p>The identifier of your Amazon Kendra experience.</p>",
         "DeleteExperienceRequest$Id": "<p>The identifier of your Amazon Kendra experience you want to delete.</p>",
         "DescribeExperienceRequest$Id": "<p>The identifier of your Amazon Kendra experience you want to get information on.</p>",
         "DescribeExperienceResponse$Id": "<p>Shows the identifier of your Amazon Kendra experience.</p>",
@@ -1581,7 +1649,7 @@
     "FacetResultList": {
       "base": null,
       "refs": {
-        "DocumentAttributeValueCountPair$FacetResults": "<p>Contains the results of a document attribute that is a nested facet. A <code>FacetResult</code> contains the counts for each facet nested within a facet.</p> <p>For example, the document attribute or facet \"Department\" includes a value called \"Engineering\". In addition, the document attribute or facet \"SubDepartment\" includes the values \"Frontend\" and \"Backend\" for documents assigned to \"Engineering\". You can display nested facets in the search results so that documents can be searched not only by department but also by a sub department within a department. The counts for documents that belong to \"Frontend\" and \"Backend\" within \"Engineering\" are returned for a query.</p>",
+        "DocumentAttributeValueCountPair$FacetResults": "<p>Contains the results of a document attribute that is a nested facet. A <code>FacetResult</code> contains the counts for each facet nested within a facet.</p> <p>For example, the document attribute or facet \"Department\" includes a value called \"Engineering\". In addition, the document attribute or facet \"SubDepartment\" includes the values \"Frontend\" and \"Backend\" for documents assigned to \"Engineering\". You can display nested facets in the search results so that documents can be searched not only by department but also by a sub department within a department. The counts for documents that belong to \"Frontend\" and \"Backend\" within \"Engineering\" are returned for a query.</p> <p/> <p/>",
         "QueryResult$FacetResults": "<p>Contains the facet results. A <code>FacetResult</code> contains the counts for each attribute key that was specified in the <code>Facets</code> input parameter.</p>"
       }
     },
@@ -1664,9 +1732,131 @@
         "ListFaqsResponse$FaqSummaryItems": "<p>information about the FAQs associated with the specified index.</p>"
       }
     },
+    "FeaturedDocument": {
+      "base": "<p>A featured document. This document is displayed at the top of the search results page, placed above all other results for certain queries. If there's an exact match of a query, then the document is featured in the search results.</p>",
+      "refs": {
+        "FeaturedDocumentList$member": null
+      }
+    },
+    "FeaturedDocumentList": {
+      "base": null,
+      "refs": {
+        "CreateFeaturedResultsSetRequest$FeaturedDocuments": "<p>A list of document IDs for the documents you want to feature at the top of the search results page. For more information on the list of documents, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_FeaturedResultsSet.html\">FeaturedResultsSet</a>.</p>",
+        "FeaturedResultsSet$FeaturedDocuments": "<p>The list of document IDs for the documents you want to feature at the top of the search results page. You can use the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_Query.html\">Query</a> API to search for specific documents with their document IDs included in the result items, or you can use the console.</p> <p>You can add up to four featured documents. You can request to increase this limit by contacting <a href=\"http://aws.amazon.com/contact-us/\">Support</a>.</p> <p>Specific queries are mapped to specific documents for featuring in the results. If a query contains an exact match, then one or more specific documents are featured in the results. The exact match applies to the full query. For example, if you only specify 'Kendra', queries such as 'How does kendra semantically rank results?' will not render the featured results. Featured results are designed for specific queries, rather than queries that are too broad in scope.</p>",
+        "UpdateFeaturedResultsSetRequest$FeaturedDocuments": "<p>A list of document IDs for the documents you want to feature at the top of the search results page. For more information on the list of featured documents, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_FeaturedResultsSet.html\">FeaturedResultsSet</a>.</p>"
+      }
+    },
+    "FeaturedDocumentMissing": {
+      "base": "<p>A document ID doesn't exist but you have specified as a featured document. Amazon Kendra cannot feature the document if it doesn't exist in the index. You can check the status of a document and its ID or check for documents with status errors using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchGetDocumentStatus.html\">BatchGetDocumentStatus</a> API.</p>",
+      "refs": {
+        "FeaturedDocumentMissingList$member": null
+      }
+    },
+    "FeaturedDocumentMissingList": {
+      "base": null,
+      "refs": {
+        "DescribeFeaturedResultsSetResponse$FeaturedDocumentsMissing": "<p>The list of document IDs that don't exist but you have specified as featured documents. Amazon Kendra cannot feature these documents if they don't exist in the index. You can check the status of a document and its ID or check for documents with status errors using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchGetDocumentStatus.html\">BatchGetDocumentStatus</a> API.</p>"
+      }
+    },
+    "FeaturedDocumentWithMetadata": {
+      "base": "<p>A featured document with its metadata information. This document is displayed at the top of the search results page, placed above all other results for certain queries. If there's an exact match of a query, then the document is featured in the search results.</p>",
+      "refs": {
+        "FeaturedDocumentWithMetadataList$member": null
+      }
+    },
+    "FeaturedDocumentWithMetadataList": {
+      "base": null,
+      "refs": {
+        "DescribeFeaturedResultsSetResponse$FeaturedDocumentsWithMetadata": "<p>The list of document IDs for the documents you want to feature with their metadata information. For more information on the list of featured documents, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_FeaturedResultsSet.html\">FeaturedResultsSet</a>.</p>"
+      }
+    },
+    "FeaturedResultsConflictException": {
+      "base": "<p>An error message with a list of conflicting queries used across different sets of featured results. This occurred with the request for a new featured results set. Check that the queries you specified for featured results are unique per featured results set for each index.</p>",
+      "refs": {
+      }
+    },
+    "FeaturedResultsItem": {
+      "base": "<p>A single featured result item. A featured result is displayed at the top of the search results page, placed above all other results for certain queries. If there's an exact match of a query, then certain documents are featured in the search results.</p>",
+      "refs": {
+        "FeaturedResultsItemList$member": null
+      }
+    },
+    "FeaturedResultsItemList": {
+      "base": null,
+      "refs": {
+        "QueryResult$FeaturedResultsItems": "<p>The list of featured result items. Featured results are displayed at the top of the search results page, placed above all other results for certain queries. If there's an exact match of a query, then certain documents are featured in the search results.</p>"
+      }
+    },
+    "FeaturedResultsSet": {
+      "base": "<p>A set of featured results that are displayed at the top of your search results. Featured results are placed above all other results for certain queries. If there's an exact match of a query, then one or more specific documents are featured in the search results.</p>",
+      "refs": {
+        "CreateFeaturedResultsSetResponse$FeaturedResultsSet": "<p>Information on the set of featured results. This includes the identifier of the featured results set, whether the featured results set is active or inactive, when the featured results set was created, and more.</p>",
+        "UpdateFeaturedResultsSetResponse$FeaturedResultsSet": "<p>Information on the set of featured results. This includes the identifier of the featured results set, whether the featured results set is active or inactive, when the featured results set was last updated, and more.</p>"
+      }
+    },
+    "FeaturedResultsSetDescription": {
+      "base": null,
+      "refs": {
+        "CreateFeaturedResultsSetRequest$Description": "<p>A description for the set of featured results.</p>",
+        "DescribeFeaturedResultsSetResponse$Description": "<p>The description for the set of featured results.</p>",
+        "FeaturedResultsSet$Description": "<p>The description for the set of featured results.</p>",
+        "UpdateFeaturedResultsSetRequest$Description": "<p>A new description for the set of featured results.</p>"
+      }
+    },
+    "FeaturedResultsSetId": {
+      "base": null,
+      "refs": {
+        "BatchDeleteFeaturedResultsSetError$Id": "<p>The identifier of the set of featured results that couldn't be removed from the index.</p>",
+        "DescribeFeaturedResultsSetRequest$FeaturedResultsSetId": "<p>The identifier of the set of featured results that you want to get information on.</p>",
+        "DescribeFeaturedResultsSetResponse$FeaturedResultsSetId": "<p>The identifier of the set of featured results.</p>",
+        "FeaturedResultsSet$FeaturedResultsSetId": "<p>The identifier of the set of featured results.</p>",
+        "FeaturedResultsSetIdList$member": null,
+        "FeaturedResultsSetSummary$FeaturedResultsSetId": "<p>The identifier of the set of featured results.</p>",
+        "UpdateFeaturedResultsSetRequest$FeaturedResultsSetId": "<p>The identifier of the index used for featuring results.</p>"
+      }
+    },
+    "FeaturedResultsSetIdList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteFeaturedResultsSetRequest$FeaturedResultsSetIds": "<p>The identifiers of the featured results sets that you want to delete.</p>"
+      }
+    },
+    "FeaturedResultsSetName": {
+      "base": null,
+      "refs": {
+        "CreateFeaturedResultsSetRequest$FeaturedResultsSetName": "<p>A name for the set of featured results.</p>",
+        "DescribeFeaturedResultsSetResponse$FeaturedResultsSetName": "<p>The name for the set of featured results.</p>",
+        "FeaturedResultsSet$FeaturedResultsSetName": "<p>The name for the set of featured results.</p>",
+        "FeaturedResultsSetSummary$FeaturedResultsSetName": "<p>The name for the set of featured results.</p>",
+        "UpdateFeaturedResultsSetRequest$FeaturedResultsSetName": "<p>A new name for the set of featured results.</p>"
+      }
+    },
+    "FeaturedResultsSetStatus": {
+      "base": null,
+      "refs": {
+        "CreateFeaturedResultsSetRequest$Status": "<p>The current status of the set of featured results. When the value is <code>ACTIVE</code>, featured results are ready for use. You can still configure your settings before setting the status to <code>ACTIVE</code>. You can set the status to <code>ACTIVE</code> or <code>INACTIVE</code> using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html\">UpdateFeaturedResultsSet</a> API. The queries you specify for featured results must be unique per featured results set for each index, whether the status is <code>ACTIVE</code> or <code>INACTIVE</code>.</p>",
+        "DescribeFeaturedResultsSetResponse$Status": "<p>The current status of the set of featured results. When the value is <code>ACTIVE</code>, featured results are ready for use. You can still configure your settings before setting the status to <code>ACTIVE</code>. You can set the status to <code>ACTIVE</code> or <code>INACTIVE</code> using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html\">UpdateFeaturedResultsSet</a> API. The queries you specify for featured results must be unique per featured results set for each index, whether the status is <code>ACTIVE</code> or <code>INACTIVE</code>.</p>",
+        "FeaturedResultsSet$Status": "<p>The current status of the set of featured results. When the value is <code>ACTIVE</code>, featured results are ready for use. You can still configure your settings before setting the status to <code>ACTIVE</code>. You can set the status to <code>ACTIVE</code> or <code>INACTIVE</code> using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html\">UpdateFeaturedResultsSet</a> API. The queries you specify for featured results must be unique per featured results set for each index, whether the status is <code>ACTIVE</code> or <code>INACTIVE</code>.</p>",
+        "FeaturedResultsSetSummary$Status": "<p>The current status of the set of featured results. When the value is <code>ACTIVE</code>, featured results are ready for use. You can still configure your settings before setting the status to <code>ACTIVE</code>. You can set the status to <code>ACTIVE</code> or <code>INACTIVE</code> using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html\">UpdateFeaturedResultsSet</a> API. The queries you specify for featured results must be unique per featured results set for each index, whether the status is <code>ACTIVE</code> or <code>INACTIVE</code>.</p>",
+        "UpdateFeaturedResultsSetRequest$Status": "<p>You can set the status to <code>ACTIVE</code> or <code>INACTIVE</code>. When the value is <code>ACTIVE</code>, featured results are ready for use. You can still configure your settings before setting the status to <code>ACTIVE</code>. The queries you specify for featured results must be unique per featured results set for each index, whether the status is <code>ACTIVE</code> or <code>INACTIVE</code>.</p>"
+      }
+    },
+    "FeaturedResultsSetSummary": {
+      "base": "<p>Summary information for a set of featured results. Featured results are placed above all other results for certain queries. If there's an exact match of a query, then one or more specific documents are featured in the search results.</p>",
+      "refs": {
+        "FeaturedResultsSetSummaryItems$member": null
+      }
+    },
+    "FeaturedResultsSetSummaryItems": {
+      "base": null,
+      "refs": {
+        "ListFeaturedResultsSetsResponse$FeaturedResultsSetSummaryItems": "<p>An array of summary information for one or more featured results sets.</p>"
+      }
+    },
     "FeedbackToken": {
       "base": null,
       "refs": {
+        "FeaturedResultsItem$FeedbackToken": "<p>A token that identifies a particular featured result from a particular query. Use this token to provide click-through feedback for the result. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/submitting-feedback.html\">Submitting feedback</a>.</p>",
         "QueryResultItem$FeedbackToken": "<p>A token that identifies a particular result from a particular query. Use this token to provide click-through feedback for the result. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/submitting-feedback.html\">Submitting feedback </a>.</p>"
       }
     },
@@ -1764,7 +1954,7 @@
     "GroupOrderingIdSummaries": {
       "base": null,
       "refs": {
-        "DescribePrincipalMappingResponse$GroupOrderingIdSummaries": "<p>Shows the following information on the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping users to their groups:</p> <ul> <li> <p>Status – the status can be either <code>PROCESSING</code>, <code>SUCCEEDED</code>, <code>DELETING</code>, <code>DELETED</code>, or <code>FAILED</code>.</p> </li> <li> <p>Last updated – the last date-time an action was updated.</p> </li> <li> <p>Received – the last date-time an action was received or submitted.</p> </li> <li> <p>Ordering ID – the latest action that should process and apply after other actions.</p> </li> <li> <p>Failure reason – the reason an action could not be processed.</p> </li> </ul>"
+        "DescribePrincipalMappingResponse$GroupOrderingIdSummaries": "<p>Shows the following information on the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping users to their groups:</p> <ul> <li> <p>Status—the status can be either <code>PROCESSING</code>, <code>SUCCEEDED</code>, <code>DELETING</code>, <code>DELETED</code>, or <code>FAILED</code>.</p> </li> <li> <p>Last updated—the last date-time an action was updated.</p> </li> <li> <p>Received—the last date-time an action was received or submitted.</p> </li> <li> <p>Ordering ID—the latest action that should process and apply after other actions.</p> </li> <li> <p>Failure reason—the reason an action could not be processed.</p> </li> </ul>"
       }
     },
     "GroupOrderingIdSummary": {
@@ -1860,7 +2050,7 @@
     "IndexEdition": {
       "base": null,
       "refs": {
-        "CreateIndexRequest$Edition": "<p>The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code> for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code> for your production databases. Once you set the edition for an index, it can't be changed.</p> <p>The <code>Edition</code> parameter is optional. If you don't supply a value, the default is <code>ENTERPRISE_EDITION</code>.</p> <p>For more information on quota limits for enterprise and developer editions, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>",
+        "CreateIndexRequest$Edition": "<p>The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code> for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code> for production. Once you set the edition for an index, it can't be changed.</p> <p>The <code>Edition</code> parameter is optional. If you don't supply a value, the default is <code>ENTERPRISE_EDITION</code>.</p> <p>For more information on quota limits for Enterprise and Developer editions, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>",
         "DescribeIndexResponse$Edition": "<p>The Amazon Kendra edition used for the index. You decide the edition when you create the index.</p>",
         "IndexConfigurationSummary$Edition": "<p>Indicates whether the index is a Enterprise Edition index or a Developer Edition index. </p>"
       }
@@ -1881,6 +2071,7 @@
         "AssociateEntitiesToExperienceRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
         "AssociatePersonasToEntitiesRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
         "BatchDeleteDocumentRequest$IndexId": "<p>The identifier of the index that contains the documents to delete.</p>",
+        "BatchDeleteFeaturedResultsSetRequest$IndexId": "<p>The identifier of the index used for featuring results.</p>",
         "BatchGetDocumentStatusRequest$IndexId": "<p>The identifier of the index to add documents to. The index ID is returned by the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html\">CreateIndex </a> API.</p>",
         "BatchPutDocumentRequest$IndexId": "<p>The identifier of the index to add the documents to. You need to create the index first using the <code>CreateIndex</code> API.</p>",
         "ClearQuerySuggestionsRequest$IndexId": "<p>The identifier of the index you want to clear query suggestions from.</p>",
@@ -1888,6 +2079,7 @@
         "CreateDataSourceRequest$IndexId": "<p>The identifier of the index you want to use with the data source connector.</p>",
         "CreateExperienceRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
         "CreateFaqRequest$IndexId": "<p>The identifier of the index for the FAQ.</p>",
+        "CreateFeaturedResultsSetRequest$IndexId": "<p>The identifier of the index that you want to use for featuring results.</p>",
         "CreateIndexResponse$Id": "<p>The identifier of the index. Use this identifier when you query an index, set up a data source, or index a document.</p>",
         "CreateQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the index you want to create a query suggestions block list for.</p>",
         "CreateThesaurusRequest$IndexId": "<p>The identifier of the index for the thesaurus.</p>",
@@ -1906,6 +2098,7 @@
         "DescribeExperienceResponse$IndexId": "<p>Shows the identifier of the index for your Amazon Kendra experience.</p>",
         "DescribeFaqRequest$IndexId": "<p>The identifier of the index for the FAQ.</p>",
         "DescribeFaqResponse$IndexId": "<p>The identifier of the index for the FAQ.</p>",
+        "DescribeFeaturedResultsSetRequest$IndexId": "<p>The identifier of the index used for featuring results.</p>",
         "DescribeIndexRequest$Id": "<p>The identifier of the index you want to get information on.</p>",
         "DescribeIndexResponse$Id": "<p>The identifier of the index.</p>",
         "DescribePrincipalMappingRequest$IndexId": "<p>The identifier of the index required to check the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping users to their groups.</p>",
@@ -1927,6 +2120,7 @@
         "ListExperienceEntitiesRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
         "ListExperiencesRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
         "ListFaqsRequest$IndexId": "<p>The index that contains the FAQ lists.</p>",
+        "ListFeaturedResultsSetsRequest$IndexId": "<p>The identifier of the index used for featuring results.</p>",
         "ListGroupsOlderThanOrderingIdRequest$IndexId": "<p>The identifier of the index for getting a list of groups mapped to users before a given ordering or timestamp identifier.</p>",
         "ListQuerySuggestionsBlockListsRequest$IndexId": "<p>The identifier of the index for a list of all block lists that exist for that index.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
         "ListThesauriRequest$IndexId": "<p>The identifier of the index with one or more thesauri.</p>",
@@ -1938,6 +2132,7 @@
         "UpdateAccessControlConfigurationRequest$IndexId": "<p>The identifier of the index for an access control configuration.</p>",
         "UpdateDataSourceRequest$IndexId": "<p>The identifier of the index used with the data source connector.</p>",
         "UpdateExperienceRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
+        "UpdateFeaturedResultsSetRequest$IndexId": "<p>The identifier of the index used for featuring results.</p>",
         "UpdateIndexRequest$Id": "<p>The identifier of the index you want to update.</p>",
         "UpdateQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the index for the block list.</p>",
         "UpdateQuerySuggestionsConfigRequest$IndexId": "<p> The identifier of the index with query suggestions you want to update.</p>",
@@ -2020,7 +2215,7 @@
       }
     },
     "InternalServerException": {
-      "base": "<p>An issue occurred with the internal server used for your Amazon Kendra service. Please wait a few minutes and try again, or contact <a href=\"http://aws.amazon.com/aws.amazon.com/contact-us\"> Support</a> for help.</p>",
+      "base": "<p>An issue occurred with the internal server used for your Amazon Kendra service. Please wait a few minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>",
       "refs": {
       }
     },
@@ -2189,6 +2384,16 @@
       "refs": {
       }
     },
+    "ListFeaturedResultsSetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFeaturedResultsSetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListGroupsOlderThanOrderingIdRequest": {
       "base": null,
       "refs": {
@@ -2248,11 +2453,17 @@
     "Long": {
       "base": null,
       "refs": {
+        "DescribeFeaturedResultsSetResponse$LastUpdatedTimestamp": "<p>The timestamp when the set of featured results was last updated.</p>",
+        "DescribeFeaturedResultsSetResponse$CreationTimestamp": "<p>The Unix timestamp when the set of the featured results was created.</p>",
         "DescribeQuerySuggestionsBlockListResponse$FileSizeBytes": "<p>The current size of the block list text file in S3.</p>",
         "DescribeThesaurusResponse$FileSizeBytes": "<p>The size of the thesaurus file in bytes.</p>",
         "DescribeThesaurusResponse$TermCount": "<p>The number of unique terms in the thesaurus file. For example, the synonyms <code>a,b,c</code> and <code>a=&gt;d</code>, the term count would be 4. </p>",
         "DescribeThesaurusResponse$SynonymRuleCount": "<p>The number of synonym rules in the thesaurus file.</p>",
-        "DocumentAttributeValue$LongValue": "<p>A long integer value.</p>"
+        "DocumentAttributeValue$LongValue": "<p>A long integer value.</p>",
+        "FeaturedResultsSet$LastUpdatedTimestamp": "<p>The Unix timestamp when the set of featured results was last updated.</p>",
+        "FeaturedResultsSet$CreationTimestamp": "<p>The Unix timestamp when the set of featured results was created.</p>",
+        "FeaturedResultsSetSummary$LastUpdatedTimestamp": "<p>The Unix timestamp when the set of featured results was last updated.</p>",
+        "FeaturedResultsSetSummary$CreationTimestamp": "<p>The Unix timestamp when the set of featured results was created.</p>"
       }
     },
     "LookBackPeriod": {
@@ -2264,13 +2475,13 @@
     "MaxContentSizePerPageInMegaBytes": {
       "base": null,
       "refs": {
-        "WebCrawlerConfiguration$MaxContentSizePerPageInMegaBytes": "<p>The maximum size (in MB) of a webpage or attachment to crawl.</p> <p>Files larger than this size (in MB) are skipped/not crawled.</p> <p>The default maximum size of a webpage or attachment is set to 50 MB.</p>"
+        "WebCrawlerConfiguration$MaxContentSizePerPageInMegaBytes": "<p>The maximum size (in MB) of a web page or attachment to crawl.</p> <p>Files larger than this size (in MB) are skipped/not crawled.</p> <p>The default maximum size of a web page or attachment is set to 50 MB.</p>"
       }
     },
     "MaxLinksPerPage": {
       "base": null,
       "refs": {
-        "WebCrawlerConfiguration$MaxLinksPerPage": "<p>The maximum number of URLs on a webpage to include when crawling a website. This number is per webpage.</p> <p>As a website’s webpages are crawled, any URLs the webpages link to are also crawled. URLs on a webpage are crawled in order of appearance.</p> <p>The default maximum links per page is 100.</p>"
+        "WebCrawlerConfiguration$MaxLinksPerPage": "<p>The maximum number of URLs on a web page to include when crawling a website. This number is per web page.</p> <p>As a website’s web pages are crawled, any URLs the web pages link to are also crawled. URLs on a web page are crawled in order of appearance.</p> <p>The default maximum links per page is 100.</p>"
       }
     },
     "MaxResultsIntegerForListAccessControlConfigurationsRequest": {
@@ -2307,6 +2518,12 @@
       "base": null,
       "refs": {
         "ListFaqsRequest$MaxResults": "<p>The maximum number of FAQs to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>"
+      }
+    },
+    "MaxResultsIntegerForListFeaturedResultsSetsRequest": {
+      "base": null,
+      "refs": {
+        "ListFeaturedResultsSetsRequest$MaxResults": "<p>The maximum number of featured results sets to return.</p>"
       }
     },
     "MaxResultsIntegerForListIndicesRequest": {
@@ -2433,6 +2650,8 @@
         "ListExperiencesResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token, which you can use in a later request to retrieve the next set of Amazon Kendra experiences.</p>",
         "ListFaqsRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of FAQs.</p>",
         "ListFaqsResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of FAQs.</p>",
+        "ListFeaturedResultsSetsRequest$NextToken": "<p>If the response is truncated, Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of featured results sets.</p>",
+        "ListFeaturedResultsSetsResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns a pagination token in the response.</p>",
         "ListGroupsOlderThanOrderingIdRequest$NextToken": "<p> If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of groups that are mapped to users before a given ordering or timestamp identifier. </p>",
         "ListGroupsOlderThanOrderingIdResponse$NextToken": "<p> If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of groups that are mapped to users before a given ordering or timestamp identifier. </p>",
         "ListIndicesRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of indexes. </p>",
@@ -2559,11 +2778,11 @@
     "PrincipalOrderingId": {
       "base": null,
       "refs": {
-        "DeletePrincipalMappingRequest$OrderingId": "<p>The timestamp identifier you specify to ensure Amazon Kendra does not override the latest <code>DELETE</code> action with previous actions. The highest number ID, which is the ordering ID, is the latest action you want to process and apply on top of other actions with lower number IDs. This prevents previous actions with lower number IDs from possibly overriding the latest action.</p> <p>The ordering ID can be the UNIX time of the last update you made to a group members list. You would then provide this list when calling <code>PutPrincipalMapping</code>. This ensures your <code>DELETE</code> action for that updated group with the latest members list doesn't get overwritten by earlier <code>DELETE</code> actions for the same group which are yet to be processed.</p> <p>The default ordering ID is the current UNIX time in milliseconds that the action was received by Amazon Kendra. </p>",
+        "DeletePrincipalMappingRequest$OrderingId": "<p>The timestamp identifier you specify to ensure Amazon Kendra does not override the latest <code>DELETE</code> action with previous actions. The highest number ID, which is the ordering ID, is the latest action you want to process and apply on top of other actions with lower number IDs. This prevents previous actions with lower number IDs from possibly overriding the latest action.</p> <p>The ordering ID can be the Unix time of the last update you made to a group members list. You would then provide this list when calling <code>PutPrincipalMapping</code>. This ensures your <code>DELETE</code> action for that updated group with the latest members list doesn't get overwritten by earlier <code>DELETE</code> actions for the same group which are yet to be processed.</p> <p>The default ordering ID is the current Unix time in milliseconds that the action was received by Amazon Kendra. </p>",
         "GroupOrderingIdSummary$OrderingId": "<p>The order in which actions should complete processing. An action can be a <code>PUT</code> or <code>DELETE</code> action for mapping users to their groups.</p>",
         "GroupSummary$OrderingId": "<p>The timestamp identifier used for the latest <code>PUT</code> or <code>DELETE</code> action.</p>",
         "ListGroupsOlderThanOrderingIdRequest$OrderingId": "<p>The timestamp identifier used for the latest <code>PUT</code> or <code>DELETE</code> action for mapping users to their groups.</p>",
-        "PutPrincipalMappingRequest$OrderingId": "<p>The timestamp identifier you specify to ensure Amazon Kendra does not override the latest <code>PUT</code> action with previous actions. The highest number ID, which is the ordering ID, is the latest action you want to process and apply on top of other actions with lower number IDs. This prevents previous actions with lower number IDs from possibly overriding the latest action.</p> <p>The ordering ID can be the UNIX time of the last update you made to a group members list. You would then provide this list when calling <code>PutPrincipalMapping</code>. This ensures your <code>PUT</code> action for that updated group with the latest members list doesn't get overwritten by earlier <code>PUT</code> actions for the same group which are yet to be processed.</p> <p>The default ordering ID is the current UNIX time in milliseconds that the action was received by Amazon Kendra.</p>"
+        "PutPrincipalMappingRequest$OrderingId": "<p>The timestamp identifier you specify to ensure Amazon Kendra does not override the latest <code>PUT</code> action with previous actions. The highest number ID, which is the ordering ID, is the latest action you want to process and apply on top of other actions with lower number IDs. This prevents previous actions with lower number IDs from possibly overriding the latest action.</p> <p>The ordering ID can be the Unix time of the last update you made to a group members list. You would then provide this list when calling <code>PutPrincipalMapping</code>. This ensures your <code>PUT</code> action for that updated group with the latest members list doesn't get overwritten by earlier <code>PUT</code> actions for the same group which are yet to be processed.</p> <p>The default ordering ID is the current Unix time in milliseconds that the action was received by Amazon Kendra.</p>"
       }
     },
     "PrincipalType": {
@@ -2653,6 +2872,7 @@
     "QueryResultType": {
       "base": null,
       "refs": {
+        "FeaturedResultsItem$Type": "<p>The type of document within the featured result response. For example, a response could include a question-answer type that's relevant to the query.</p>",
         "QueryRequest$QueryResultTypeFilter": "<p>Sets the type of query. Only results for the specified query type are returned.</p>",
         "QueryResultItem$Type": "<p>The type of document within the response. For example, a response could include a question-answer that's relevant to the query.</p>"
       }
@@ -2660,7 +2880,7 @@
     "QuerySuggestionsBlockListId": {
       "base": null,
       "refs": {
-        "CreateQuerySuggestionsBlockListResponse$Id": "<p>The identifier of the created block list.</p>",
+        "CreateQuerySuggestionsBlockListResponse$Id": "<p>The identifier of the block list.</p>",
         "DeleteQuerySuggestionsBlockListRequest$Id": "<p>The identifier of the block list you want to delete.</p>",
         "DescribeQuerySuggestionsBlockListRequest$Id": "<p>The identifier of the block list you want to get information on.</p>",
         "DescribeQuerySuggestionsBlockListResponse$Id": "<p>The identifier of the block list.</p>",
@@ -2671,7 +2891,7 @@
     "QuerySuggestionsBlockListName": {
       "base": null,
       "refs": {
-        "CreateQuerySuggestionsBlockListRequest$Name": "<p>A user friendly name for the block list.</p> <p>For example, the block list named 'offensive-words' includes all offensive words that could appear in user queries and need to be blocked from suggestions.</p>",
+        "CreateQuerySuggestionsBlockListRequest$Name": "<p>A name for the block list.</p> <p>For example, the name 'offensive-words', which includes all offensive words that could appear in user queries and need to be blocked from suggestions.</p>",
         "DescribeQuerySuggestionsBlockListResponse$Name": "<p>The name of the block list.</p>",
         "QuerySuggestionsBlockListSummary$Name": "<p>The name of the block list.</p>",
         "UpdateQuerySuggestionsBlockListRequest$Name": "<p>A new name for the block list.</p>"
@@ -2711,7 +2931,18 @@
     "QueryText": {
       "base": null,
       "refs": {
-        "QueryRequest$QueryText": "<p>The input query text for the search. Amazon Kendra truncates queries at 30 token words, which excludes punctuation and stop words. Truncation still applies if you use Boolean or more advanced, complex queries. </p>"
+        "ConflictingItem$QueryText": "<p>The text of the conflicting query.</p>",
+        "QueryRequest$QueryText": "<p>The input query text for the search. Amazon Kendra truncates queries at 30 token words, which excludes punctuation and stop words. Truncation still applies if you use Boolean or more advanced, complex queries. </p>",
+        "QueryTextList$member": null
+      }
+    },
+    "QueryTextList": {
+      "base": null,
+      "refs": {
+        "CreateFeaturedResultsSetRequest$QueryTexts": "<p>A list of queries for featuring results. For more information on the list of queries, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_FeaturedResultsSet.html\">FeaturedResultsSet</a>.</p>",
+        "DescribeFeaturedResultsSetResponse$QueryTexts": "<p>The list of queries for featuring results. For more information on the list of queries, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_FeaturedResultsSet.html\">FeaturedResultsSet</a>.</p>",
+        "FeaturedResultsSet$QueryTexts": "<p>The list of queries for featuring results.</p> <p>Specific queries are mapped to specific documents for featuring in the results. If a query contains an exact match, then one or more specific documents are featured in the results. The exact match applies to the full query. For example, if you only specify 'Kendra', queries such as 'How does kendra semantically rank results?' will not render the featured results. Featured results are designed for specific queries, rather than queries that are too broad in scope.</p>",
+        "UpdateFeaturedResultsSetRequest$QueryTexts": "<p>A list of queries for featuring results. For more information on the list of queries, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_FeaturedResultsSet.html\">FeaturedResultsSet</a>.</p>"
       }
     },
     "QuipConfiguration": {
@@ -2748,7 +2979,7 @@
     "RelevanceType": {
       "base": null,
       "refs": {
-        "RelevanceFeedback$RelevanceValue": "<p>Whether to document was relevant or not relevant to the search.</p>"
+        "RelevanceFeedback$RelevanceValue": "<p>Whether the document was relevant or not relevant to the search.</p>"
       }
     },
     "RepositoryName": {
@@ -2787,6 +3018,7 @@
       "base": null,
       "refs": {
         "ClickFeedback$ResultId": "<p>The identifier of the search result that was clicked.</p>",
+        "FeaturedResultsItem$Id": "<p>The identifier of the featured result.</p>",
         "QueryResultItem$Id": "<p>The identifier for the query result.</p>",
         "RelevanceFeedback$ResultId": "<p>The identifier of the search result that the user provided relevance feedback for.</p>",
         "Suggestion$Id": "<p>The UUID (universally unique identifier) of a single query suggestion.</p>"
@@ -2795,13 +3027,13 @@
     "RoleArn": {
       "base": null,
       "refs": {
-        "BatchPutDocumentRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role that is allowed to run the <code>BatchPutDocument</code> API. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p>",
-        "CreateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source and required resources. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p> <p>You can't specify the <code>RoleArn</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>RoleArn</code> parameter is required for all other data sources.</p>",
-        "CreateExperienceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and IAM Identity Center that stores your user and group information. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
-        "CreateFaqRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p>",
-        "CreateIndexRequest$RoleArn": "<p>An Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role you use when you call the <code>BatchPutDocument</code> API to index documents from an Amazon S3 bucket.</p>",
-        "CreateQuerySuggestionsBlockListRequest$RoleArn": "<p>The IAM (Identity and Access Management) role used by Amazon Kendra to access the block list text file in your S3 bucket.</p> <p>You need permissions to the role ARN (Amazon Web Services Resource Name). The role needs S3 read permissions to your file in S3 and needs to give STS (Security Token Service) assume role permissions to Amazon Kendra.</p>",
-        "CreateThesaurusRequest$RoleArn": "<p>An IAM role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>. </p>",
+        "BatchPutDocumentRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access your S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM access roles for Amazon Kendra</a>.</p>",
+        "CreateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access the data source and required resources. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM access roles for Amazon Kendra.</a>.</p> <p>You can't specify the <code>RoleArn</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>RoleArn</code> parameter is required for all other data sources.</p>",
+        "CreateExperienceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access <code>Query</code> API, <code>GetQuerySuggestions</code> API, and other required APIs. The role also must include permission to access IAM Identity Center (successor to Single Sign-On) that stores your user and group information. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM access roles for Amazon Kendra</a>.</p>",
+        "CreateFaqRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access the S3 bucket that contains the FAQs. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM access roles for Amazon Kendra</a>.</p>",
+        "CreateIndexRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access your Amazon CloudWatch logs and metrics. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM access roles for Amazon Kendra</a>.</p>",
+        "CreateQuerySuggestionsBlockListRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access your S3 bucket that contains the block list text file. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM access roles for Amazon Kendra</a>.</p>",
+        "CreateThesaurusRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access your S3 bucket that contains the thesaurus file. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM access roles for Amazon Kendra</a>.</p>",
         "CustomDocumentEnrichmentConfiguration$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to run <code>PreExtractionHookConfiguration</code> and <code>PostExtractionHookConfiguration</code> for altering document metadata and content during the document ingestion process. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
         "DescribeDataSourceResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role with permission to access the data source and required resources.</p>",
         "DescribeExperienceResponse$RoleArn": "<p>Shows the Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and IAM Identity Center that stores your user and group information.</p>",
@@ -2854,7 +3086,7 @@
         "GroupMembers$S3PathforGroupMembers": "<p>If you have more than 1000 users and/or sub groups for a single group, you need to provide the path to the S3 file that lists your users and sub groups for a group. Your sub groups can contain more than 1000 users, but the list of sub groups that belong to a group (and/or users) must be no more than 1000.</p> <p>You can download this <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/samples/group_members.zip\">example S3 file</a> that uses the correct format for listing group members. Note, <code>dataSourceId</code> is optional. The value of <code>type</code> for a group is always <code>GROUP</code> and for a user it is always <code>USER</code>.</p>",
         "OnPremiseConfiguration$SslCertificateS3Path": "<p>The path to the SSL certificate stored in an Amazon S3 bucket. You use this to connect to GitHub if you require a secure SSL connection.</p> <p>You can simply generate a self-signed X509 certificate on any computer using OpenSSL. For an example of using OpenSSL to create an X509 certificate, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html\">Create and sign an X509 certificate</a>.</p>",
         "OneDriveUsers$OneDriveUserS3Path": "<p>The S3 bucket location of a file containing a list of users whose documents should be indexed.</p>",
-        "SharePointConfiguration$SslCertificateS3Path": "<p>The path to the SSL certificate stored in an Amazon S3 bucket. You use this to connect to SharePoint Server if you require a secure SSL connection.</p> <p>You can simply generate a self-signed X509 certificate on any computer using OpenSSL. For an example of using OpenSSL to create an X509 certificate, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html\">Create and sign an X509 certificate</a>.</p>",
+        "SharePointConfiguration$SslCertificateS3Path": "<p>The path to the SSL certificate stored in an Amazon S3 bucket. You use this to connect to SharePoint Server if you require a secure SSL connection.</p> <p>You can generate a self-signed X509 certificate on any computer using OpenSSL. For an example of using OpenSSL to create an X509 certificate, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html\">Create and sign an X509 certificate</a>.</p>",
         "UpdateQuerySuggestionsBlockListRequest$SourceS3Path": "<p>The S3 path where your block list text file sits in S3.</p> <p>If you update your block list and provide the same path to the block list text file in S3, then Amazon Kendra reloads the file to refresh the block list. Amazon Kendra does not automatically refresh your block list. You need to call the <code>UpdateQuerySuggestionsBlockList</code> API to refresh you block list.</p> <p>If you update your block list, then Amazon Kendra asynchronously refreshes all query suggestions with the latest content in the S3 file. This means changes might not take effect immediately.</p>",
         "UpdateThesaurusRequest$SourceS3Path": null
       }
@@ -2958,7 +3190,7 @@
     "ScanSchedule": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$Schedule": "<p>Sets the frequency for Amazon Kendra to check the documents in your data source repository and update the index. If you don't set a schedule Amazon Kendra will not periodically update the index. You can call the <code>StartDataSourceSyncJob</code> API to update the index.</p> <p>You can't specify the <code>Schedule</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p>",
+        "CreateDataSourceRequest$Schedule": "<p>Sets the frequency for Amazon Kendra to check the documents in your data source repository and update the index. If you don't set a schedule Amazon Kendra will not periodically update the index. You can call the <code>StartDataSourceSyncJob</code> API to update the index.</p> <p>Specify a <code>cron-</code> format schedule string or an empty string to indicate that the index is updated on demand.</p> <p>You can't specify the <code>Schedule</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p>",
         "DescribeDataSourceResponse$Schedule": "<p>The schedule for Amazon Kendra to update the index.</p>",
         "UpdateDataSourceRequest$Schedule": "<p>The sync schedule you want to update for the data source connector.</p>"
       }
@@ -2996,9 +3228,9 @@
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user name should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
         "QuipConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs that are required to connect to your Quip. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>accessToken—The token created in Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html\">Using a Quip data source</a>.</p> </li> </ul>",
-        "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
+        "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
         "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance. You can also provide OAuth authentication credentials of user name, password, client ID, and client secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html\">Using a ServiceNow data source</a>.</p>",
-        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the SharePoint instance. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>.</p> <p>You can also provide OAuth authentication credentials of user name, password, client ID, and client secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a SharePoint data source</a>.</p>",
+        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the SharePoint instance. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Microsoft SharePoint</a>.</p>",
         "SlackConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Slack workspace team. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>slackToken—The user or bot token created in Slack. For more information on creating a token in Slack, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#slack-authentication\">Authentication for a Slack data source</a>.</p> </li> </ul>"
       }
     },
@@ -3015,9 +3247,9 @@
       }
     },
     "SeedUrlConfiguration": {
-      "base": "<p>Provides the configuration information for the seed or starting point URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "base": "<p>Provides the configuration information for the seed or starting point URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own web pages, or web pages that you have authorization to index.</i> </p>",
       "refs": {
-        "Urls$SeedUrlConfiguration": "<p>Configuration of the seed or starting point URLs of the websites you want to crawl.</p> <p>You can choose to crawl only the website host names, or the website host names with subdomains, or the website host names with subdomains and other domains that the webpages link to.</p> <p>You can list up to 100 seed URLs.</p>"
+        "Urls$SeedUrlConfiguration": "<p>Configuration of the seed or starting point URLs of the websites you want to crawl.</p> <p>You can choose to crawl only the website host names, or the website host names with subdomains, or the website host names with subdomains and other domains that the web pages link to.</p> <p>You can list up to 100 seed URLs.</p>"
       }
     },
     "SeedUrlList": {
@@ -3076,7 +3308,7 @@
       }
     },
     "ServiceQuotaExceededException": {
-      "base": "<p>You have exceeded the set limits for your Amazon Kendra service. Please see Quotas[hyperlink Kendra Quotas pg] for more information, or contact <a href=\"http://aws.amazon.com/aws.amazon.com/contact-us\"> Support</a> to inquire about an increase of limits.</p>",
+      "base": "<p>You have exceeded the set limits for your Amazon Kendra service. Please see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a> for more information, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> to inquire about an increase of limits.</p>",
       "refs": {
       }
     },
@@ -3089,7 +3321,7 @@
     "SharePointOnlineAuthenticationType": {
       "base": null,
       "refs": {
-        "SharePointConfiguration$AuthenticationType": "<p>Whether you want to connect to SharePoint using basic authentication of user name and password, or OAuth authentication of user name, password, client ID, and client secret. You can use OAuth authentication for SharePoint Online.</p>"
+        "SharePointConfiguration$AuthenticationType": "<p>Whether you want to connect to SharePoint Online using basic authentication of user name and password, or OAuth authentication of user name, password, client ID, and client secret, or AD App-only authentication of client secret.</p>"
       }
     },
     "SharePointUrlList": {
@@ -3129,7 +3361,7 @@
       }
     },
     "SiteMapsConfiguration": {
-      "base": "<p>Provides the configuration information for the sitemap URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "base": "<p>Provides the configuration information for the sitemap URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own web pages, or web pages that you have authorization to index.</i> </p>",
       "refs": {
         "Urls$SiteMapsConfiguration": "<p>Configuration of the sitemap URLs of the websites you want to crawl.</p> <p>Only URLs belonging to the same website host names are crawled. You can list up to three sitemap URLs.</p>"
       }
@@ -3249,11 +3481,15 @@
       "base": null,
       "refs": {
         "AdditionalResultAttribute$Key": "<p>The key that identifies the attribute.</p>",
+        "ConflictingItem$SetName": "<p>The name for the set of featured results that the conflicting query belongs to.</p>",
+        "ConflictingItem$SetId": "<p>The identifier of the set of featured results that the conflicting query belongs to.</p>",
         "Correction$Term": "<p>The string or text of a misspelled word in a query.</p>",
         "Correction$CorrectedTerm": "<p>The string or text of a corrected misspelled word in a query.</p>",
         "DataSourceSyncJob$ExecutionId": "<p>A identifier for the synchronization job.</p>",
         "DataSourceSyncJob$DataSourceErrorCode": "<p>If the reason that the synchronization failed is due to an error with the underlying data source, this field contains a code that identifies the error.</p>",
         "DocumentAttributeStringListValue$member": null,
+        "FeaturedDocumentWithMetadata$Title": "<p>The main title of the featured document.</p>",
+        "FeaturedResultsConflictException$Message": "<p>An explanation for the conflicting queries.</p>",
         "IssueType$member": null,
         "JiraStatus$member": null,
         "JsonTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>",
@@ -3408,11 +3644,12 @@
     "TagList": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$Tags": "<p>A list of key-value pairs that identify the data source connector. You can use the tags to identify and organize your resources and to control access to resources.</p>",
+        "CreateDataSourceRequest$Tags": "<p>A list of key-value pairs that identify or categorize the data source connector. You can also use tags to help control access to the data source connector. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>",
         "CreateFaqRequest$Tags": "<p>A list of key-value pairs that identify the FAQ. You can use the tags to identify and organize your resources and to control access to resources.</p>",
-        "CreateIndexRequest$Tags": "<p>A list of key-value pairs that identify the index. You can use the tags to identify and organize your resources and to control access to resources.</p>",
-        "CreateQuerySuggestionsBlockListRequest$Tags": "<p>A tag that you can assign to a block list that categorizes the block list.</p>",
-        "CreateThesaurusRequest$Tags": "<p>A list of key-value pairs that identify the thesaurus. You can use the tags to identify and organize your resources and to control access to resources. </p>",
+        "CreateFeaturedResultsSetRequest$Tags": "<p>A list of key-value pairs that identify or categorize the featured results set. You can also use tags to help control access to the featured results set. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols:_ . : / = + - @.</p>",
+        "CreateIndexRequest$Tags": "<p>A list of key-value pairs that identify or categorize the index. You can also use tags to help control access to the index. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>",
+        "CreateQuerySuggestionsBlockListRequest$Tags": "<p>A list of key-value pairs that identify or categorize the block list. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>",
+        "CreateThesaurusRequest$Tags": "<p>A list of key-value pairs that identify or categorize the thesaurus. You can also use tags to help control access to the thesaurus. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tags associated with the index, FAQ, or data source.</p>",
         "TagResourceRequest$Tags": "<p>A list of tag keys to add to the index, FAQ, or data source. If a tag already exists, the existing value is replaced with the new value.</p>"
       }
@@ -3467,6 +3704,8 @@
       "base": "<p>Provides text and information about where to highlight the text.</p>",
       "refs": {
         "AdditionalResultAttributeValue$TextWithHighlightsValue": "<p>The text associated with the attribute and information about the highlight to apply to the text.</p>",
+        "FeaturedResultsItem$DocumentTitle": null,
+        "FeaturedResultsItem$DocumentExcerpt": null,
         "QueryResultItem$DocumentTitle": "<p>The title of the document. Contains the text of the title and information for highlighting the relevant terms in the title.</p>",
         "QueryResultItem$DocumentExcerpt": "<p>An extract of the text in the document. Contains information about highlighting the relevant terms in the excerpt.</p>"
       }
@@ -3518,48 +3757,48 @@
     "TimeRange": {
       "base": "<p>Provides a range of time.</p>",
       "refs": {
-        "GetSnapshotsResponse$SnapShotTimeFilter": "<p>The date-time for the beginning and end of the time window for the search metrics data.</p>",
+        "GetSnapshotsResponse$SnapShotTimeFilter": "<p>The Unix timestamp for the beginning and end of the time window for the search metrics data.</p>",
         "ListDataSourceSyncJobsRequest$StartTimeFilter": "<p>When specified, the synchronization jobs returned in the list are limited to jobs between the specified dates.</p>"
       }
     },
     "Timestamp": {
       "base": null,
       "refs": {
-        "ClickFeedback$ClickTime": "<p>The Unix timestamp of the date and time that the result was clicked.</p>",
-        "DataSourceSummary$CreatedAt": "<p>The UNIX datetime that the data source was created.</p>",
-        "DataSourceSummary$UpdatedAt": "<p>The UNIX datetime that the data source was lasted updated. </p>",
-        "DataSourceSyncJob$StartTime": "<p>The UNIX datetime that the synchronization job started.</p>",
-        "DataSourceSyncJob$EndTime": "<p>The UNIX datetime that the synchronization job completed.</p>",
-        "DescribeDataSourceResponse$CreatedAt": "<p>The Unix timestamp of when the data source connector was created.</p>",
-        "DescribeDataSourceResponse$UpdatedAt": "<p>The Unix timestamp of when the data source connector was last updated.</p>",
-        "DescribeExperienceResponse$CreatedAt": "<p>Shows the date-time your Amazon Kendra experience was created.</p>",
-        "DescribeExperienceResponse$UpdatedAt": "<p>Shows the date-time your Amazon Kendra experience was last updated.</p>",
-        "DescribeFaqResponse$CreatedAt": "<p>The date and time that the FAQ was created.</p>",
-        "DescribeFaqResponse$UpdatedAt": "<p>The date and time that the FAQ was last updated.</p>",
-        "DescribeIndexResponse$CreatedAt": "<p>The Unix datetime that the index was created.</p>",
-        "DescribeIndexResponse$UpdatedAt": "<p>The Unix datetime that the index was last updated.</p>",
-        "DescribeQuerySuggestionsBlockListResponse$CreatedAt": "<p>The date-time a block list for query suggestions was created.</p>",
-        "DescribeQuerySuggestionsBlockListResponse$UpdatedAt": "<p>The date-time a block list for query suggestions was last updated.</p>",
-        "DescribeQuerySuggestionsConfigResponse$LastSuggestionsBuildTime": "<p>The date-time query suggestions for an index was last updated.</p>",
-        "DescribeQuerySuggestionsConfigResponse$LastClearTime": "<p>The date-time query suggestions for an index was last cleared.</p> <p>After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. Amazon Kendra only considers re-occurences of a query from the time you cleared suggestions. </p>",
-        "DescribeThesaurusResponse$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
-        "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
+        "ClickFeedback$ClickTime": "<p>The Unix timestamp when the result was clicked.</p>",
+        "DataSourceSummary$CreatedAt": "<p>The Unix timestamp when the data source connector was created.</p>",
+        "DataSourceSummary$UpdatedAt": "<p>The Unix timestamp when the data source connector was last updated.</p>",
+        "DataSourceSyncJob$StartTime": "<p>The Unix timestamp when the synchronization job started.</p>",
+        "DataSourceSyncJob$EndTime": "<p>The Unix timestamp when the synchronization job completed.</p>",
+        "DescribeDataSourceResponse$CreatedAt": "<p>The Unix timestamp when the data source connector was created.</p>",
+        "DescribeDataSourceResponse$UpdatedAt": "<p>The Unix timestamp when the data source connector was last updated.</p>",
+        "DescribeExperienceResponse$CreatedAt": "<p>The Unix timestamp when your Amazon Kendra experience was created.</p>",
+        "DescribeExperienceResponse$UpdatedAt": "<p>The Unix timestamp when your Amazon Kendra experience was last updated.</p>",
+        "DescribeFaqResponse$CreatedAt": "<p>The Unix timestamp when the FAQ was created.</p>",
+        "DescribeFaqResponse$UpdatedAt": "<p>The Unix timestamp when the FAQ was last updated.</p>",
+        "DescribeIndexResponse$CreatedAt": "<p>The Unix timestamp when the index was created.</p>",
+        "DescribeIndexResponse$UpdatedAt": "<p>The Unix when the index was last updated.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$CreatedAt": "<p>The Unix timestamp when a block list for query suggestions was created.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$UpdatedAt": "<p>The Unix timestamp when a block list for query suggestions was last updated.</p>",
+        "DescribeQuerySuggestionsConfigResponse$LastSuggestionsBuildTime": "<p>The Unix timestamp when query suggestions for an index was last updated.</p>",
+        "DescribeQuerySuggestionsConfigResponse$LastClearTime": "<p>The Unix timestamp when query suggestions for an index was last cleared.</p> <p>After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. Amazon Kendra only considers re-occurences of a query from the time you cleared suggestions. </p>",
+        "DescribeThesaurusResponse$CreatedAt": "<p>The Unix timestamp when the thesaurus was created.</p>",
+        "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix timestamp when the thesaurus was last updated.</p>",
         "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p> <p>It is important for the time zone to be included in the ISO 8601 date-time format. For example, 2012-03-25T12:30:10+01:00 is the ISO 8601 date-time format for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.</p>",
-        "ExperiencesSummary$CreatedAt": "<p>The date-time your Amazon Kendra experience was created.</p>",
-        "FaqSummary$CreatedAt": "<p>The UNIX datetime that the FAQ was added to the index.</p>",
-        "FaqSummary$UpdatedAt": "<p>The UNIX datetime that the FAQ was last updated.</p>",
-        "GroupOrderingIdSummary$LastUpdatedAt": "<p>The last date-time an action was updated. An action can be a <code>PUT</code> or <code>DELETE</code> action for mapping users to their groups.</p>",
-        "GroupOrderingIdSummary$ReceivedAt": "<p>The date-time an action was received by Amazon Kendra. An action can be a <code>PUT</code> or <code>DELETE</code> action for mapping users to their groups.</p>",
+        "ExperiencesSummary$CreatedAt": "<p>The Unix timestamp when your Amazon Kendra experience was created.</p>",
+        "FaqSummary$CreatedAt": "<p>The Unix timestamp when the FAQ was created.</p>",
+        "FaqSummary$UpdatedAt": "<p>The Unix timestamp when the FAQ was last updated.</p>",
+        "GroupOrderingIdSummary$LastUpdatedAt": "<p>The Unix timestamp when an action was last updated. An action can be a <code>PUT</code> or <code>DELETE</code> action for mapping users to their groups.</p>",
+        "GroupOrderingIdSummary$ReceivedAt": "<p>The Unix timestamp when an action was received by Amazon Kendra. An action can be a <code>PUT</code> or <code>DELETE</code> action for mapping users to their groups.</p>",
         "IndexConfigurationSummary$CreatedAt": "<p>The Unix timestamp when the index was created.</p>",
-        "IndexConfigurationSummary$UpdatedAt": "<p>The Unix timestamp when the index was last updated by the <code>UpdateIndex</code> API.</p>",
-        "PersonasSummary$CreatedAt": "<p>The date-time the summary information was created.</p>",
-        "PersonasSummary$UpdatedAt": "<p>The date-time the summary information was last updated.</p>",
-        "QuerySuggestionsBlockListSummary$CreatedAt": "<p>The date-time summary information for a query suggestions block list was last created.</p>",
-        "QuerySuggestionsBlockListSummary$UpdatedAt": "<p>The date-time the block list was last updated.</p>",
-        "ThesaurusSummary$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
-        "ThesaurusSummary$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
-        "TimeRange$StartTime": "<p>The UNIX datetime of the beginning of the time range.</p>",
-        "TimeRange$EndTime": "<p>The UNIX datetime of the end of the time range.</p>"
+        "IndexConfigurationSummary$UpdatedAt": "<p>The Unix timestamp when the index was last updated.</p>",
+        "PersonasSummary$CreatedAt": "<p>The Unix timestamp when the summary information was created.</p>",
+        "PersonasSummary$UpdatedAt": "<p>The Unix timestamp when the summary information was last updated.</p>",
+        "QuerySuggestionsBlockListSummary$CreatedAt": "<p>The Unix timestamp when the block list was created.</p>",
+        "QuerySuggestionsBlockListSummary$UpdatedAt": "<p>The Unix timestamp when the block list was last updated.</p>",
+        "ThesaurusSummary$CreatedAt": "<p>The Unix timestamp when the thesaurus was created.</p>",
+        "ThesaurusSummary$UpdatedAt": "<p>The Unix timestamp when the thesaurus was last updated.</p>",
+        "TimeRange$StartTime": "<p>The Unix timestamp for the beginning of the time range.</p>",
+        "TimeRange$EndTime": "<p>The Unix timestamp for the end of the time range.</p>"
       }
     },
     "Title": {
@@ -3616,6 +3855,16 @@
       "refs": {
       }
     },
+    "UpdateFeaturedResultsSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFeaturedResultsSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateIndexRequest": {
       "base": null,
       "refs": {
@@ -3640,6 +3889,8 @@
       "base": null,
       "refs": {
         "ConfluenceConfiguration$ServerUrl": "<p>The URL of your Confluence instance. Use the full URL of the server. For example, <i>https://server.example.com:port/</i>. You can also use an IP address, for example, <i>https://192.168.1.113/</i>.</p>",
+        "FeaturedDocumentWithMetadata$URI": "<p>The source URI location of the featured document.</p>",
+        "FeaturedResultsItem$DocumentURI": "<p>The source URI location of the featured document.</p>",
         "JwtTokenTypeConfiguration$URL": "<p>The signing key URL.</p>",
         "OnPremiseConfiguration$HostUrl": "<p>The GitHub host URL or API endpoint URL. For example, <i>https://on-prem-host-url/api/v3/</i> </p>",
         "QueryResultItem$DocumentURI": "<p>The URI of the original location of the document.</p>",
@@ -3649,9 +3900,9 @@
       }
     },
     "Urls": {
-      "base": "<p>Provides the configuration information of the URLs to crawl.</p> <p>You can only crawl websites that use the secure communication protocol, Hypertext Transfer Protocol Secure (HTTPS). If you receive an error when crawling a website, it could be that the website is blocked from crawling.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "base": "<p>Provides the configuration information of the URLs to crawl.</p> <p>You can only crawl websites that use the secure communication protocol, Hypertext Transfer Protocol Secure (HTTPS). If you receive an error when crawling a website, it could be that the website is blocked from crawling.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own web pages, or web pages that you have authorization to index.</i> </p>",
       "refs": {
-        "WebCrawlerConfiguration$Urls": "<p>Specifies the seed or starting point URLs of the websites or the sitemap URLs of the websites you want to crawl.</p> <p>You can include website subdomains. You can list up to 100 seed URLs and up to three sitemap URLs.</p> <p>You can only crawl websites that use the secure communication protocol, Hypertext Transfer Protocol Secure (HTTPS). If you receive an error when crawling a website, it could be that the website is blocked from crawling.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>"
+        "WebCrawlerConfiguration$Urls": "<p>Specifies the seed or starting point URLs of the websites or the sitemap URLs of the websites you want to crawl.</p> <p>You can include website subdomains. You can list up to 100 seed URLs and up to three sitemap URLs.</p> <p>You can only crawl websites that use the secure communication protocol, Hypertext Transfer Protocol Secure (HTTPS). If you receive an error when crawling a website, it could be that the website is blocked from crawling.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own web pages, or web pages that you have authorization to index.</i> </p>"
       }
     },
     "UserAccount": {
@@ -3675,9 +3926,9 @@
       }
     },
     "UserGroupResolutionConfiguration": {
-      "base": "<p>Provides the configuration information to fetch access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents. You can also use the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html\">PutPrincipalMapping</a> API to map users to their groups so that you only need to provide the user ID when you issue the query.</p> <p>To set up an IAM Identity Center identity source in the console to use with Amazon Kendra, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an IAM Identity Center identity source</a>. You must also grant the required permissions to use IAM Identity Center with Amazon Kendra. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso\">IAM roles for IAM Identity Center</a>.</p> <p>Amazon Kendra currently does not support using <code>UserGroupResolutionConfiguration</code> with an Amazon Web Services organization member account for your IAM Identity Center identify source. You must create your index in the management account for the organization in order to use <code>UserGroupResolutionConfiguration</code>.</p>",
+      "base": "<p>Provides the configuration information to get users and groups from an IAM Identity Center (successor to Single Sign-On) identity source. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents. You can also use the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html\">PutPrincipalMapping</a> API to map users to their groups so that you only need to provide the user ID when you issue the query.</p> <p>To set up an IAM Identity Center identity source in the console to use with Amazon Kendra, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an IAM Identity Center identity source</a>. You must also grant the required permissions to use IAM Identity Center with Amazon Kendra. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso\">IAM roles for IAM Identity Center</a>.</p> <p>Amazon Kendra currently does not support using <code>UserGroupResolutionConfiguration</code> with an Amazon Web Services organization member account for your IAM Identity Center identify source. You must create your index in the management account for the organization in order to use <code>UserGroupResolutionConfiguration</code>.</p>",
       "refs": {
-        "CreateIndexRequest$UserGroupResolutionConfiguration": "<p>Enables fetching access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>",
+        "CreateIndexRequest$UserGroupResolutionConfiguration": "<p>Gets users and groups from IAM Identity Center (successor to Single Sign-On) identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>",
         "DescribeIndexResponse$UserGroupResolutionConfiguration": "<p>Whether you have enabled the configuration for fetching access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source.</p>",
         "UpdateIndexRequest$UserGroupResolutionConfiguration": "<p>Enables fetching access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>"
       }
@@ -3685,7 +3936,7 @@
     "UserGroupResolutionMode": {
       "base": null,
       "refs": {
-        "UserGroupResolutionConfiguration$UserGroupResolutionMode": "<p>The identity store provider (mode) you want to use to fetch access levels of groups and users. IAM Identity Center (successor to Single Sign-On) is currently the only available mode. Your users and groups must exist in an IAM Identity Center identity source in order to use this mode.</p>"
+        "UserGroupResolutionConfiguration$UserGroupResolutionMode": "<p>The identity store provider (mode) you want to use to get users and groups. IAM Identity Center (successor to Single Sign-On) is currently the only available mode. Your users and groups must exist in an IAM Identity Center identity source in order to use this mode.</p>"
       }
     },
     "UserId": {
@@ -3782,7 +4033,7 @@
     "WebCrawlerMode": {
       "base": null,
       "refs": {
-        "SeedUrlConfiguration$WebCrawlerMode": "<p>You can choose one of the following modes:</p> <ul> <li> <p> <code>HOST_ONLY</code> – crawl only the website host names. For example, if the seed URL is \"abc.example.com\", then only URLs with host name \"abc.example.com\" are crawled.</p> </li> <li> <p> <code>SUBDOMAINS</code> – crawl the website host names with subdomains. For example, if the seed URL is \"abc.example.com\", then \"a.abc.example.com\" and \"b.abc.example.com\" are also crawled.</p> </li> <li> <p> <code>EVERYTHING</code> – crawl the website host names with subdomains and other domains that the webpages link to.</p> </li> </ul> <p>The default mode is set to <code>HOST_ONLY</code>.</p>"
+        "SeedUrlConfiguration$WebCrawlerMode": "<p>You can choose one of the following modes:</p> <ul> <li> <p> <code>HOST_ONLY</code> – crawl only the website host names. For example, if the seed URL is \"abc.example.com\", then only URLs with host name \"abc.example.com\" are crawled.</p> </li> <li> <p> <code>SUBDOMAINS</code> – crawl the website host names with subdomains. For example, if the seed URL is \"abc.example.com\", then \"a.abc.example.com\" and \"b.abc.example.com\" are also crawled.</p> </li> <li> <p> <code>EVERYTHING</code> – crawl the website host names with subdomains and other domains that the web pages link to.</p> </li> </ul> <p>The default mode is set to <code>HOST_ONLY</code>.</p>"
       }
     },
     "WorkDocsConfiguration": {

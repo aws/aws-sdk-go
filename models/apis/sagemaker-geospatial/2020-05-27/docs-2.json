@@ -4,8 +4,8 @@
   "operations": {
     "DeleteEarthObservationJob": "<p>Use this operation to delete an Earth Observation job.</p>",
     "DeleteVectorEnrichmentJob": "<p>Use this operation to delete a Vector Enrichment job.</p>",
-    "ExportEarthObservationJob": "<p>Use this operation to export results of an Earth Observation job and optionally source images used as input to the EOJ to an S3 location.</p>",
-    "ExportVectorEnrichmentJob": "<p>Use this operation to copy results of a Vector Enrichment job to an S3 location.</p>",
+    "ExportEarthObservationJob": "<p>Use this operation to export results of an Earth Observation job and optionally source images used as input to the EOJ to an Amazon S3 location.</p>",
+    "ExportVectorEnrichmentJob": "<p>Use this operation to copy results of a Vector Enrichment job to an Amazon S3 location.</p>",
     "GetEarthObservationJob": "<p>Get the details for a previously initiated Earth Observation job.</p>",
     "GetRasterDataCollection": "<p>Use this operation to get details of a specific raster data collection.</p>",
     "GetTile": "<p>Gets a web mercator tile for the given Earth Observation job.</p>",
@@ -47,17 +47,17 @@
       }
     },
     "AreaOfInterest": {
-      "base": "<p/>",
+      "base": "<p>The geographic extent of the Earth Observation job.</p>",
       "refs": {
         "RasterDataCollectionQueryInput$AreaOfInterest": "<p>The area of interest being queried for the raster data collection.</p>",
-        "RasterDataCollectionQueryOutput$AreaOfInterest": "<p/>",
-        "RasterDataCollectionQueryWithBandFilterInput$AreaOfInterest": "<p/>"
+        "RasterDataCollectionQueryOutput$AreaOfInterest": "<p>The Area of Interest used in the search.</p>",
+        "RasterDataCollectionQueryWithBandFilterInput$AreaOfInterest": "<p>The Area of interest to be used in the search query.</p>"
       }
     },
     "AreaOfInterestGeometry": {
-      "base": "<p/>",
+      "base": "<p>A GeoJSON object representing the geographic extent in the coordinate space.</p>",
       "refs": {
-        "AreaOfInterest$AreaOfInterestGeometry": "<p/>"
+        "AreaOfInterest$AreaOfInterestGeometry": "<p>A GeoJSON object representing the geographic extent in the coordinate space.</p>"
       }
     },
     "Arn": {
@@ -69,7 +69,7 @@
       }
     },
     "AssetValue": {
-      "base": "<p/>",
+      "base": "<p>The structure containing the asset properties.</p>",
       "refs": {
         "AssetsMap$value": null
       }
@@ -77,13 +77,13 @@
     "AssetsMap": {
       "base": null,
       "refs": {
-        "ItemSource$Assets": "<p/>"
+        "ItemSource$Assets": "<p>This is a dictionary of Asset Objects data associated with the Item that can be downloaded or streamed, each with a unique key.</p>"
       }
     },
     "BandMathConfigInput": {
-      "base": "<p/>",
+      "base": "<p>Input structure for the BandMath operation type. Defines Predefined and CustomIndices to be computed using BandMath.</p>",
       "refs": {
-        "JobConfigInput$BandMathConfig": "<p/>"
+        "JobConfigInput$BandMathConfig": "<p>An object containing information about the job configuration for BandMath.</p>"
       }
     },
     "BinaryFile": {
@@ -101,13 +101,13 @@
       }
     },
     "CloudMaskingConfigInput": {
-      "base": "<p/>",
+      "base": "<p>Input structure for CloudMasking operation type.</p>",
       "refs": {
         "JobConfigInput$CloudMaskingConfig": "<p>An object containing information about the job configuration for cloud masking.</p>"
       }
     },
     "CloudRemovalConfigInput": {
-      "base": "<p/>",
+      "base": "<p>Input structure for Cloud Removal Operation type</p>",
       "refs": {
         "JobConfigInput$CloudRemovalConfig": "<p>An object containing information about the job configuration for cloud removal.</p>"
       }
@@ -115,18 +115,18 @@
     "ComparisonOperator": {
       "base": null,
       "refs": {
-        "PlatformInput$ComparisonOperator": "<p/>"
+        "PlatformInput$ComparisonOperator": "<p>The ComparisonOperator to use with PlatformInput.</p>"
       }
     },
     "ConflictException": {
-      "base": "<p/>",
+      "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
       "refs": {
       }
     },
     "CustomIndicesInput": {
-      "base": "<p/>",
+      "base": "<p>Input object defining the custom BandMath indices to compute.</p>",
       "refs": {
-        "BandMathConfigInput$CustomIndices": "<p/>"
+        "BandMathConfigInput$CustomIndices": "<p>CustomIndices that are computed.</p>"
       }
     },
     "DataCollectionArn": {
@@ -135,6 +135,8 @@
         "GetRasterDataCollectionInput$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
         "GetRasterDataCollectionOutput$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
         "RasterDataCollectionMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
+        "RasterDataCollectionQueryInput$RasterDataCollectionArn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
+        "RasterDataCollectionQueryOutput$RasterDataCollectionArn": "<p>The ARN of the Raster Data Collection against which the search is done.</p>",
         "SearchRasterDataCollectionInput$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>"
       }
     },
@@ -185,6 +187,8 @@
         "ExportEarthObservationJobOutput$Arn": "<p>The output Amazon Resource Name (ARN) of the Earth Observation job being exported.</p>",
         "GetEarthObservationJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job.</p>",
         "GetTileInput$Arn": "<p>The Amazon Resource Name (ARN) of the tile operation.</p>",
+        "InputConfigInput$PreviousEarthObservationJobArn": "<p>The Amazon Resource Name (ARN) of the previous Earth Observation job.</p>",
+        "InputConfigOutput$PreviousEarthObservationJobArn": "<p>The Amazon Resource Name (ARN) of the previous Earth Observation job.</p>",
         "StopEarthObservationJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job being stopped.</p>"
       }
     },
@@ -197,7 +201,7 @@
     "EarthObservationJobErrorType": {
       "base": null,
       "refs": {
-        "EarthObservationJobErrorDetails$Type": "<p/>"
+        "EarthObservationJobErrorDetails$Type": "<p>The type of error in an Earth Observation job.</p>"
       }
     },
     "EarthObservationJobExportStatus": {
@@ -216,7 +220,7 @@
     "EarthObservationJobOutputBands": {
       "base": null,
       "refs": {
-        "GetEarthObservationJobOutput$OutputBands": "<p/>"
+        "GetEarthObservationJobOutput$OutputBands": "<p>Bands available in the output of an operation.</p>"
       }
     },
     "EarthObservationJobStatus": {
@@ -229,21 +233,43 @@
       }
     },
     "EoCloudCoverInput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing the EoCloudCover filter.</p>",
       "refs": {
-        "Property$EoCloudCover": "<p/>"
+        "Property$EoCloudCover": "<p>The structure representing EoCloudCover property filter containing a lower bound and upper bound.</p>"
       }
     },
     "EojDataSourceConfigInput": {
-      "base": "<p/>",
+      "base": "<p>Union representing different data sources to be used as input for an Earth Observation job.</p>",
       "refs": {
         "InputConfigInput$DataSourceConfig": "<p>The location of the input data.&gt;</p>",
         "InputConfigOutput$DataSourceConfig": "<p>The location of the input data.</p>"
       }
     },
+    "ExecutionRoleArn": {
+      "base": null,
+      "refs": {
+        "ExportEarthObservationJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "ExportEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "ExportVectorEnrichmentJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM rolewith permission to upload to the location in OutputConfig.</p>",
+        "ExportVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permission to upload to the location in OutputConfig.</p>",
+        "GetEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "GetTileInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specify.</p>",
+        "GetVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartEarthObservationJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartVectorEnrichmentJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>"
+      }
+    },
     "ExportEarthObservationJobInput": {
       "base": null,
       "refs": {
+      }
+    },
+    "ExportEarthObservationJobInputClientTokenString": {
+      "base": null,
+      "refs": {
+        "ExportEarthObservationJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>"
       }
     },
     "ExportEarthObservationJobOutput": {
@@ -258,20 +284,20 @@
       }
     },
     "ExportErrorDetailsOutput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing the errors in an export EarthObservationJob operation.</p>",
       "refs": {
-        "ExportErrorDetails$ExportResults": "<p/>",
-        "ExportErrorDetails$ExportSourceImages": "<p/>"
+        "ExportErrorDetails$ExportResults": "<p>The structure for returning the export error details while exporting results of an Earth Observation job.</p>",
+        "ExportErrorDetails$ExportSourceImages": "<p>The structure for returning the export error details while exporting the source images of an Earth Observation job.</p>"
       }
     },
     "ExportErrorType": {
       "base": null,
       "refs": {
-        "ExportErrorDetailsOutput$Type": "<p/>"
+        "ExportErrorDetailsOutput$Type": "<p>The type of error in an export EarthObservationJob operation.</p>"
       }
     },
     "ExportS3DataInput": {
-      "base": "<p/>",
+      "base": "<p>The structure containing the Amazon S3 path to export the Earth Observation job output.</p>",
       "refs": {
         "OutputConfigInput$S3Data": "<p>Path to Amazon S3 storage location for the output configuration file.</p>"
       }
@@ -279,6 +305,12 @@
     "ExportVectorEnrichmentJobInput": {
       "base": null,
       "refs": {
+      }
+    },
+    "ExportVectorEnrichmentJobInputClientTokenString": {
+      "base": null,
+      "refs": {
+        "ExportVectorEnrichmentJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>"
       }
     },
     "ExportVectorEnrichmentJobOutput": {
@@ -303,28 +335,28 @@
       "base": null,
       "refs": {
         "GetRasterDataCollectionOutput$SupportedFilters": "<p>The filters supported by the raster data collection.</p>",
-        "RasterDataCollectionMetadata$SupportedFilters": "<p/>"
+        "RasterDataCollectionMetadata$SupportedFilters": "<p>The list of filters supported by the raster data collection.</p>"
       }
     },
     "Float": {
       "base": null,
       "refs": {
-        "EoCloudCoverInput$LowerBound": "<p/>",
-        "EoCloudCoverInput$UpperBound": "<p/>",
+        "EoCloudCoverInput$LowerBound": "<p>Lower bound for EoCloudCover.</p>",
+        "EoCloudCoverInput$UpperBound": "<p>Upper bound for EoCloudCover.</p>",
         "Filter$Maximum": "<p>The maximum value of the filter.</p>",
         "Filter$Minimum": "<p>The minimum value of the filter.</p>",
-        "LandsatCloudCoverLandInput$LowerBound": "<p/>",
-        "LandsatCloudCoverLandInput$UpperBound": "<p/>",
-        "Properties$EoCloudCover": "<p/>",
-        "Properties$LandsatCloudCoverLand": "<p/>",
-        "Properties$ViewOffNadir": "<p/>",
-        "Properties$ViewSunAzimuth": "<p/>",
-        "Properties$ViewSunElevation": "<p/>",
-        "UserDefined$Value": "<p/>",
-        "ViewOffNadirInput$LowerBound": "<p/>",
-        "ViewOffNadirInput$UpperBound": "<p/>",
-        "ViewSunAzimuthInput$LowerBound": "<p/>",
-        "ViewSunAzimuthInput$UpperBound": "<p/>",
+        "LandsatCloudCoverLandInput$LowerBound": "<p>The minimum value for Land Cloud Cover property filter. This will filter items having Land Cloud Cover greater than or equal to this value.</p>",
+        "LandsatCloudCoverLandInput$UpperBound": "<p>The maximum value for Land Cloud Cover property filter. This will filter items having Land Cloud Cover less than or equal to this value.</p>",
+        "Properties$EoCloudCover": "<p>Estimate of cloud cover.</p>",
+        "Properties$LandsatCloudCoverLand": "<p>Land cloud cover for Landsat Data Collection.</p>",
+        "Properties$ViewOffNadir": "<p>The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).</p>",
+        "Properties$ViewSunAzimuth": "<p>The sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).</p>",
+        "Properties$ViewSunElevation": "<p>The sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (-90-90). Negative values indicate the sun is below the horizon, e.g. sun elevation of -10° means the data was captured during <a href=\"https://www.timeanddate.com/astronomy/different-types-twilight.html\">nautical twilight</a>.</p>",
+        "UserDefined$Value": "<p>The value for output resolution of the result.</p>",
+        "ViewOffNadirInput$LowerBound": "<p>The minimum value for ViewOffNadir property filter. This filters items having ViewOffNadir greater than or equal to this value. </p>",
+        "ViewOffNadirInput$UpperBound": "<p>The maximum value for ViewOffNadir property filter. This filters items having ViewOffNadir lesser than or equal to this value.</p>",
+        "ViewSunAzimuthInput$LowerBound": "<p>The minimum value for ViewSunAzimuth property filter. This filters items having ViewSunAzimuth greater than or equal to this value.</p>",
+        "ViewSunAzimuthInput$UpperBound": "<p>The maximum value for ViewSunAzimuth property filter. This filters items having ViewSunAzimuth lesser than or equal to this value.</p>",
         "ViewSunElevationInput$LowerBound": "<p>The lower bound to view the sun elevation.</p>",
         "ViewSunElevationInput$UpperBound": "<p>The upper bound to view the sun elevation.</p>"
       }
@@ -336,9 +368,9 @@
       }
     },
     "Geometry": {
-      "base": "<p/>",
+      "base": "<p>The structure representing a Geometry in terms of Type and Coordinates as per GeoJson spec.</p>",
       "refs": {
-        "ItemSource$Geometry": "<p/>"
+        "ItemSource$Geometry": "<p>The item Geometry in GeoJson format.</p>"
       }
     },
     "GetEarthObservationJobInput": {
@@ -384,13 +416,13 @@
     "GroupBy": {
       "base": null,
       "refs": {
-        "TemporalStatisticsConfigInput$GroupBy": "<p/>"
+        "TemporalStatisticsConfigInput$GroupBy": "<p>The input for the temporal statistics grouping by time frequency option.</p>"
       }
     },
     "ImageSourceBandList": {
       "base": null,
       "refs": {
-        "GetRasterDataCollectionOutput$ImageSourceBands": "<p/>"
+        "GetRasterDataCollectionOutput$ImageSourceBands": "<p>The list of image source bands in the raster data collection.</p>"
       }
     },
     "InputConfigInput": {
@@ -416,7 +448,7 @@
         "GetVectorEnrichmentJobOutput$DurationInSeconds": "<p>The duration of the Vector Enrichment job, in seconds.</p>",
         "ListEarthObservationJobOutputConfig$DurationInSeconds": "<p>The duration of the session, in seconds.</p>",
         "ListVectorEnrichmentJobOutputConfig$DurationInSeconds": "<p>The duration of the session, in seconds.</p>",
-        "SearchRasterDataCollectionOutput$ApproximateResultCount": "<p/>",
+        "SearchRasterDataCollectionOutput$ApproximateResultCount": "<p>Approximate number of results in the response.</p>",
         "StartEarthObservationJobOutput$DurationInSeconds": "<p>The duration of the session, in seconds.</p>",
         "StartVectorEnrichmentJobOutput$DurationInSeconds": "<p>The duration of the Vector Enrichment job, in seconds.</p>"
       }
@@ -427,7 +459,7 @@
       }
     },
     "ItemSource": {
-      "base": "<p>Structure representing the items in the response for SearchRasterDataCollection.</p>",
+      "base": "<p>The structure representing the items in the response for SearchRasterDataCollection.</p>",
       "refs": {
         "ItemSourceList$member": null
       }
@@ -435,7 +467,7 @@
     "ItemSourceList": {
       "base": null,
       "refs": {
-        "SearchRasterDataCollectionOutput$Items": "<p/>"
+        "SearchRasterDataCollectionOutput$Items": "<p>List of items matching the Raster DataCollectionQuery.</p>"
       }
     },
     "JobConfigInput": {
@@ -446,16 +478,31 @@
         "StartEarthObservationJobOutput$JobConfig": "<p>An object containing information about the job configuration.</p>"
       }
     },
+    "KmsKey": {
+      "base": null,
+      "refs": {
+        "ExportS3DataInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "GetEarthObservationJobOutput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "GetVectorEnrichmentJobOutput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "S3DataInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "StartEarthObservationJobInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "StartEarthObservationJobOutput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "StartVectorEnrichmentJobInput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "StartVectorEnrichmentJobOutput$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "VectorEnrichmentJobS3Data$KmsKeyId": "<p>The Key Management Service key ID for server-side encryption.</p>",
+        "ZonalStatisticsConfigInput$ZoneS3PathKmsKeyId": "<p>The Amazon Resource Name (ARN) or an ID of a Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to decrypt your output artifacts with Amazon S3 server-side encryption. The SageMaker execution role must have <code>kms:GenerateDataKey</code> permission.</p> <p>The <code>KmsKeyId</code> can be any of the following formats:</p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:&lt;region&gt;:&lt;account&gt;:key/&lt;key-id-12ab-34cd-56ef-1234567890ab&gt;\"</code> </p> </li> </ul> <p>For more information about key identifiers, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-id\">Key identifiers (KeyID)</a> in the Amazon Web Services Key Management Service (Amazon Web Services KMS) documentation.</p>"
+      }
+    },
     "LandCoverSegmentationConfigInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for Land Cover Operation type.</p>",
       "refs": {
         "JobConfigInput$LandCoverSegmentationConfig": "<p>An object containing information about the job configuration for land cover segmentation.</p>"
       }
     },
     "LandsatCloudCoverLandInput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing Land Cloud Cover property for Landsat data collection.</p>",
       "refs": {
-        "Property$LandsatCloudCoverLand": "<p/>"
+        "Property$LandsatCloudCoverLand": "<p>The structure representing Land Cloud Cover property filter for Landsat collection containing a lower bound and upper bound.</p>"
       }
     },
     "LinearRing": {
@@ -467,9 +514,9 @@
     "LinearRings": {
       "base": null,
       "refs": {
-        "Geometry$Coordinates": "<p/>",
+        "Geometry$Coordinates": "<p>The coordinates of the GeoJson Geometry.</p>",
         "LinearRingsList$member": null,
-        "PolygonGeometryInput$Coordinates": "<p/>"
+        "PolygonGeometryInput$Coordinates": "<p>Coordinates representing a Polygon based on the <a href=\"https://www.rfc-editor.org/rfc/rfc7946#section-3.1.6\">GeoJson spec</a>.</p>"
       }
     },
     "LinearRingsList": {
@@ -551,25 +598,25 @@
     "LogicalOperator": {
       "base": null,
       "refs": {
-        "PropertyFilters$LogicalOperator": "<p/>"
+        "PropertyFilters$LogicalOperator": "<p>The Logical Operator used to combine the Property Filters.</p>"
       }
     },
     "MapMatchingConfig": {
-      "base": "<p/>",
+      "base": "<p>The input structure for Map Matching operation type.</p>",
       "refs": {
-        "VectorEnrichmentJobConfig$MapMatchingConfig": "<p/>"
+        "VectorEnrichmentJobConfig$MapMatchingConfig": "<p>The input structure for Map Matching operation type.</p>"
       }
     },
     "MetadataProvider": {
       "base": null,
       "refs": {
-        "S3DataInput$MetadataProvider": "<p/>"
+        "S3DataInput$MetadataProvider": "<p>Metadata provider from whom the Amazon S3 data has been acquired.</p>"
       }
     },
     "MultiPolygonGeometryInput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing Polygon Geometry based on the <a href=\"https://www.rfc-editor.org/rfc/rfc7946#section-3.1.6\">GeoJson spec</a>.</p>",
       "refs": {
-        "AreaOfInterestGeometry$MultiPolygonGeometry": "<p/>"
+        "AreaOfInterestGeometry$MultiPolygonGeometry": "<p>The structure representing the MultiPolygon Geometry.</p>"
       }
     },
     "NextToken": {
@@ -586,7 +633,7 @@
       }
     },
     "Operation": {
-      "base": "<p/>",
+      "base": "<p>Represents an arithmetic operation to compute spectral index.</p>",
       "refs": {
         "OperationsListInput$member": null
       }
@@ -594,7 +641,7 @@
     "OperationsListInput": {
       "base": null,
       "refs": {
-        "CustomIndicesInput$Operations": "<p/>"
+        "CustomIndicesInput$Operations": "<p>A list of BandMath indices to compute.</p>"
       }
     },
     "OutputBand": {
@@ -611,15 +658,15 @@
       }
     },
     "OutputResolutionResamplingInput": {
-      "base": "<p/>",
+      "base": "<p>OutputResolution Configuration indicating the target resolution for the output of Resampling operation.</p>",
       "refs": {
-        "ResamplingConfigInput$OutputResolution": "<p/>"
+        "ResamplingConfigInput$OutputResolution": "<p>The structure representing output resolution (in target georeferenced units) of the result of resampling operation.</p>"
       }
     },
     "OutputResolutionStackInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure representing Output Resolution for Stacking Operation.</p>",
       "refs": {
-        "StackConfigInput$OutputResolution": "<p/>"
+        "StackConfigInput$OutputResolution": "<p>The structure representing output resolution (in target georeferenced units) of the result of stacking operation.</p>"
       }
     },
     "OutputType": {
@@ -631,15 +678,15 @@
       }
     },
     "PlatformInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for specifying Platform. Platform refers to the unique name of the specific platform the instrument is attached to. For satellites it is the name of the satellite, eg. landsat-8 (Landsat-8), sentinel-2a.</p>",
       "refs": {
-        "Property$Platform": "<p/>"
+        "Property$Platform": "<p>The structure representing Platform property filter consisting of value and comparison operator.</p>"
       }
     },
     "PolygonGeometryInput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing Polygon Geometry based on the <a href=\"https://www.rfc-editor.org/rfc/rfc7946#section-3.1.6\">GeoJson spec</a>.</p>",
       "refs": {
-        "AreaOfInterestGeometry$PolygonGeometry": "<p/>"
+        "AreaOfInterestGeometry$PolygonGeometry": "<p>The structure representing Polygon Geometry.</p>"
       }
     },
     "Position": {
@@ -651,39 +698,39 @@
     "PredefinedResolution": {
       "base": null,
       "refs": {
-        "OutputResolutionStackInput$Predefined": "<p/>"
+        "OutputResolutionStackInput$Predefined": "<p>A string value representing Predefined Output Resolution for a stacking operation. Allowed values are <code>HIGHEST</code>, <code>LOWEST</code>, and <code>AVERAGE</code>.</p>"
       }
     },
     "Properties": {
-      "base": "<p/>",
+      "base": "<p>Properties associated with the Item.</p>",
       "refs": {
-        "ItemSource$Properties": "<p/>"
+        "ItemSource$Properties": "<p>This field contains additional properties of the item.</p>"
       }
     },
     "Property": {
-      "base": "<p/>",
+      "base": "<p>Represents a single searchable property to search on.</p>",
       "refs": {
-        "PropertyFilter$Property": "<p/>"
+        "PropertyFilter$Property": "<p>Represents a single property to match with when searching a raster data collection.</p>"
       }
     },
     "PropertyFilter": {
-      "base": "<p/>",
+      "base": "<p>The structure representing a single PropertyFilter.</p>",
       "refs": {
         "PropertyFiltersList$member": null
       }
     },
     "PropertyFilters": {
-      "base": "<p/>",
+      "base": "<p>A list of PropertyFilter objects.</p>",
       "refs": {
-        "RasterDataCollectionQueryInput$PropertyFilters": "<p/>",
-        "RasterDataCollectionQueryOutput$PropertyFilters": "<p/>",
-        "RasterDataCollectionQueryWithBandFilterInput$PropertyFilters": "<p/>"
+        "RasterDataCollectionQueryInput$PropertyFilters": "<p>The list of Property filters used in the Raster Data Collection Query.</p>",
+        "RasterDataCollectionQueryOutput$PropertyFilters": "<p>Property filters used in the search.</p>",
+        "RasterDataCollectionQueryWithBandFilterInput$PropertyFilters": "<p>The Property Filters used in the search query.</p>"
       }
     },
     "PropertyFiltersList": {
       "base": null,
       "refs": {
-        "PropertyFilters$Properties": "<p/>"
+        "PropertyFilters$Properties": "<p>A list of Property Filters.</p>"
       }
     },
     "RasterDataCollectionMetadata": {
@@ -693,44 +740,53 @@
       }
     },
     "RasterDataCollectionQueryInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for Raster Data Collection Query containing the Area of Interest, TimeRange Filters, and Property Filters.</p>",
       "refs": {
-        "InputConfigInput$RasterDataCollectionQuery": "<p/>"
+        "InputConfigInput$RasterDataCollectionQuery": "<p>The structure representing the RasterDataCollection Query consisting of the Area of Interest, RasterDataCollectionArn,TimeRange and Property Filters.</p>"
       }
     },
     "RasterDataCollectionQueryOutput": {
-      "base": "<p/>",
+      "base": "<p>The output structure contains the Raster Data Collection Query input along with some additional metadata.</p>",
       "refs": {
-        "InputConfigOutput$RasterDataCollectionQuery": "<p/>"
+        "InputConfigOutput$RasterDataCollectionQuery": "<p>The structure representing the RasterDataCollection Query consisting of the Area of Interest, RasterDataCollectionArn, RasterDataCollectionName, TimeRange, and Property Filters.</p>"
       }
     },
     "RasterDataCollectionQueryWithBandFilterInput": {
       "base": "<p>This is a RasterDataCollectionQueryInput containing AreaOfInterest, Time Range filter and Property filters.</p>",
       "refs": {
-        "SearchRasterDataCollectionInput$RasterDataCollectionQuery": "<p/>"
+        "SearchRasterDataCollectionInput$RasterDataCollectionQuery": "<p>RasterDataCollectionQuery consisting of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_AreaOfInterest.html\">AreaOfInterest(AOI)</a>, <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_PropertyFilter.html\">PropertyFilters</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_TimeRangeFilterInput.html\">TimeRangeFilterInput</a> used in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_SearchRasterDataCollection.html\">SearchRasterDataCollection</a>.</p>"
       }
     },
     "ResamplingConfigInput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing input for resampling operation.</p>",
       "refs": {
         "JobConfigInput$ResamplingConfig": "<p>An object containing information about the job configuration for resampling.</p>"
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p/>",
+      "base": "<p>The request references a resource which does not exist.</p>",
       "refs": {
       }
     },
     "ReverseGeocodingConfig": {
-      "base": "<p/>",
+      "base": "<p>The input structure for Reverse Geocoding operation type.</p>",
       "refs": {
-        "VectorEnrichmentJobConfig$ReverseGeocodingConfig": "<p/>"
+        "VectorEnrichmentJobConfig$ReverseGeocodingConfig": "<p>The input structure for Reverse Geocoding operation type.</p>"
       }
     },
     "S3DataInput": {
       "base": "<p>Path to Amazon S3 storage location for input data.</p>",
       "refs": {
-        "EojDataSourceConfigInput$S3Data": "<p/>"
+        "EojDataSourceConfigInput$S3Data": "<p>The input structure for S3Data; representing the Amazon S3 location of the input data objects.</p>"
+      }
+    },
+    "S3Uri": {
+      "base": null,
+      "refs": {
+        "ExportS3DataInput$S3Uri": "<p>The URL to the Amazon S3 data input.</p>",
+        "S3DataInput$S3Uri": "<p>The URL to the Amazon S3 input.</p>",
+        "VectorEnrichmentJobS3Data$S3Uri": "<p>The URL to the Amazon S3 data for the Vector Enrichment job.</p>",
+        "ZonalStatisticsConfigInput$ZoneS3Path": "<p>The Amazon S3 path pointing to the GeoJSON containing the polygonal zones.</p>"
       }
     },
     "SearchRasterDataCollectionInput": {
@@ -756,14 +812,26 @@
       }
     },
     "StackConfigInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for Stacking Operation.</p>",
       "refs": {
-        "JobConfigInput$StackConfig": "<p/>"
+        "JobConfigInput$StackConfig": "<p>An object containing information about the job configuration for a Stacking Earth Observation job.</p>"
       }
     },
     "StartEarthObservationJobInput": {
       "base": null,
       "refs": {
+      }
+    },
+    "StartEarthObservationJobInputClientTokenString": {
+      "base": null,
+      "refs": {
+        "StartEarthObservationJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>"
+      }
+    },
+    "StartEarthObservationJobInputNameString": {
+      "base": null,
+      "refs": {
+        "StartEarthObservationJobInput$Name": "<p>The name of the Earth Observation job.</p>"
       }
     },
     "StartEarthObservationJobOutput": {
@@ -774,6 +842,18 @@
     "StartVectorEnrichmentJobInput": {
       "base": null,
       "refs": {
+      }
+    },
+    "StartVectorEnrichmentJobInputClientTokenString": {
+      "base": null,
+      "refs": {
+        "StartVectorEnrichmentJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>"
+      }
+    },
+    "StartVectorEnrichmentJobInputNameString": {
+      "base": null,
+      "refs": {
+        "StartVectorEnrichmentJobInput$Name": "<p>The name of the Vector Enrichment job.</p>"
       }
     },
     "StartVectorEnrichmentJobOutput": {
@@ -805,25 +885,17 @@
       "base": null,
       "refs": {
         "AccessDeniedException$Message": null,
-        "AssetValue$Href": "<p/>",
+        "AssetValue$Href": "<p>Link to the asset object.</p>",
         "AssetsMap$key": null,
         "CloudRemovalConfigInput$InterpolationValue": "<p>The interpolation value you provide for cloud removal.</p>",
         "ConflictException$Message": null,
-        "ConflictException$ResourceId": "<p/>",
-        "EarthObservationJobErrorDetails$Message": "<p/>",
-        "ExportEarthObservationJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "ExportEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "ExportErrorDetailsOutput$Message": "<p/>",
-        "ExportS3DataInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
-        "ExportS3DataInput$S3Uri": "<p>The URL to the Amazon S3 data input.</p>",
-        "ExportVectorEnrichmentJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM rolewith permission to upload to the location in OutputConfig.</p>",
-        "ExportVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permission to upload to the location in OutputConfig.</p>",
+        "ConflictException$ResourceId": "<p>Identifier of the resource affected.</p>",
+        "EarthObservationJobErrorDetails$Message": "<p>A detailed message describing the error in an Earth Observation job.</p>",
+        "ExportErrorDetailsOutput$Message": "<p>A detailed message describing the error in an export EarthObservationJob operation.</p>",
         "Filter$Name": "<p>The name of the filter.</p>",
         "Filter$Type": "<p>The type of the filter being used.</p>",
-        "Geometry$Type": "<p/>",
+        "Geometry$Type": "<p>GeoJson Geometry types like Polygon and MultiPolygon.</p>",
         "GetEarthObservationJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job.</p>",
-        "GetEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "GetEarthObservationJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
         "GetEarthObservationJobOutput$Name": "<p>The name of the Earth Observation job.</p>",
         "GetRasterDataCollectionOutput$Description": "<p>A description of the raster data collection.</p>",
         "GetRasterDataCollectionOutput$DescriptionPageUrl": "<p>The URL of the description page.</p>",
@@ -832,59 +904,39 @@
         "GetTileInput$PropertyFilters": "<p>Property filters for the imagery to tile.</p>",
         "GetTileInput$TimeRangeFilter": "<p>Time range filter applied to imagery to find the images to tile.</p>",
         "GetVectorEnrichmentJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job.</p>",
-        "GetVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "GetVectorEnrichmentJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
         "GetVectorEnrichmentJobOutput$Name": "<p>The name of the Vector Enrichment job.</p>",
         "ImageSourceBandList$member": null,
-        "InputConfigInput$PreviousEarthObservationJobArn": "<p>The Amazon Resource Name (ARN) of the previous Earth Observation job.</p>",
-        "InputConfigOutput$PreviousEarthObservationJobArn": "<p>The Amazon Resource Name (ARN) of the previous Earth Observation job.</p>",
         "InternalServerException$Message": null,
         "InternalServerException$ResourceId": "<p/>",
         "ItemSource$Id": "<p>A unique Id for the source item.</p>",
         "ListEarthObservationJobInput$SortBy": "<p>The parameter by which to sort the results.</p>",
         "ListEarthObservationJobOutputConfig$Arn": "<p>The Amazon Resource Name (ARN) of the list of the Earth Observation jobs.</p>",
         "ListEarthObservationJobOutputConfig$Name": "<p>The names of the Earth Observation jobs in the list.</p>",
-        "ListEarthObservationJobOutputConfig$OperationType": "<p/>",
+        "ListEarthObservationJobOutputConfig$OperationType": "<p>The operation type for an Earth Observation job.</p>",
         "ListVectorEnrichmentJobInput$SortBy": "<p>The parameter by which to sort the results.</p>",
         "ListVectorEnrichmentJobInput$StatusEquals": "<p>A filter that retrieves only jobs with a specific status.</p>",
         "ListVectorEnrichmentJobOutputConfig$Name": "<p>The names of the Vector Enrichment jobs in the list.</p>",
-        "MapMatchingConfig$IdAttributeName": "<p/>",
+        "MapMatchingConfig$IdAttributeName": "<p>The field name for the data that describes the identifier representing a collection of GPS points belonging to an individual trace.</p>",
         "MapMatchingConfig$TimestampAttributeName": "<p>The name of the timestamp attribute.</p>",
         "MapMatchingConfig$XAttributeName": "<p>The name of the X-attribute</p>",
         "MapMatchingConfig$YAttributeName": "<p>The name of the Y-attribute</p>",
-        "Operation$Equation": "<p/>",
+        "Operation$Equation": "<p>Textual representation of the math operation; Equation used to compute the spectral index.</p>",
         "Operation$Name": "<p>The name of the operation.</p>",
         "OutputBand$BandName": "<p>The name of the band.</p>",
         "PlatformInput$Value": "<p>The value of the platform.</p>",
-        "Properties$Platform": "<p/>",
+        "Properties$Platform": "<p>Platform property. Platform refers to the unique name of the specific platform the instrument is attached to. For satellites it is the name of the satellite, eg. landsat-8 (Landsat-8), sentinel-2a.</p>",
         "RasterDataCollectionMetadata$Description": "<p>A description of the raster data collection.</p>",
         "RasterDataCollectionMetadata$DescriptionPageUrl": "<p>The description URL of the raster data collection.</p>",
         "RasterDataCollectionMetadata$Name": "<p>The name of the raster data collection.</p>",
-        "RasterDataCollectionQueryInput$RasterDataCollectionArn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
-        "RasterDataCollectionQueryOutput$RasterDataCollectionArn": "<p/>",
         "RasterDataCollectionQueryOutput$RasterDataCollectionName": "<p>The name of the raster data collection.</p>",
         "ResourceNotFoundException$Message": null,
-        "ResourceNotFoundException$ResourceId": "<p/>",
-        "ReverseGeocodingConfig$XAttributeName": "<p/>",
-        "ReverseGeocodingConfig$YAttributeName": "<p/>",
-        "S3DataInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
-        "S3DataInput$S3Uri": "<p>The URL to the Amazon S3 input.</p>",
+        "ResourceNotFoundException$ResourceId": "<p>Identifier of the resource that was not found.</p>",
+        "ReverseGeocodingConfig$XAttributeName": "<p>The field name for the data that describes x-axis coordinate, eg. longitude of a point.</p>",
+        "ReverseGeocodingConfig$YAttributeName": "<p>The field name for the data that describes y-axis coordinate, eg. latitude of a point.</p>",
         "ServiceQuotaExceededException$Message": null,
-        "ServiceQuotaExceededException$ResourceId": "<p/>",
-        "StartEarthObservationJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>",
-        "StartEarthObservationJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "StartEarthObservationJobInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
-        "StartEarthObservationJobInput$Name": "<p>The name of the Earth Observation job.</p>",
+        "ServiceQuotaExceededException$ResourceId": "<p>Identifier of the resource affected.</p>",
         "StartEarthObservationJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job.</p>",
-        "StartEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "StartEarthObservationJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
         "StartEarthObservationJobOutput$Name": "<p>The name of the Earth Observation job.</p>",
-        "StartVectorEnrichmentJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>",
-        "StartVectorEnrichmentJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "StartVectorEnrichmentJobInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
-        "StartVectorEnrichmentJobInput$Name": "<p>The name of the Vector Enrichment job.</p>",
-        "StartVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
-        "StartVectorEnrichmentJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
         "StartVectorEnrichmentJobOutput$Name": "<p>The name of the Vector Enrichment job.</p>",
         "StringListInput$member": null,
         "TagKeyList$member": null,
@@ -895,24 +947,36 @@
         "ValidationException$Message": null,
         "ValidationException$ResourceId": "<p/>",
         "VectorEnrichmentJobErrorDetails$ErrorMessage": "<p>A message that you define and then is processed and rendered by the Vector Enrichment job when the error occurs.</p>",
-        "VectorEnrichmentJobExportErrorDetails$Message": "<p>The message providing details about the errors generated during the Vector Enrichment job.</p>",
-        "VectorEnrichmentJobS3Data$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
-        "VectorEnrichmentJobS3Data$S3Uri": "<p>The URL to the Amazon S3 data for the Vector Enrichment job.</p>",
-        "ZonalStatisticsConfigInput$ZoneS3Path": "<p/>"
+        "VectorEnrichmentJobExportErrorDetails$Message": "<p>The message providing details about the errors generated during the Vector Enrichment job.</p>"
       }
     },
     "StringListInput": {
       "base": null,
       "refs": {
-        "BandMathConfigInput$PredefinedIndices": "<p/>",
-        "CloudRemovalConfigInput$TargetBands": "<p/>",
+        "BandMathConfigInput$PredefinedIndices": "<p>One or many of the supported predefined indices to compute. Allowed values: <code>NDVI</code>, <code>EVI2</code>, <code>MSAVI</code>, <code>NDWI</code>, <code>NDMI</code>, <code>NDSI</code>, and <code>WDRVI</code>.</p>",
+        "CloudRemovalConfigInput$TargetBands": "<p>TargetBands to be returned in the output of CloudRemoval operation.</p>",
         "GeoMosaicConfigInput$TargetBands": "<p>The target bands for geomosaic.</p>",
         "GetTileInput$ImageAssets": "<p>The particular assets or bands to tile.</p>",
-        "RasterDataCollectionQueryWithBandFilterInput$BandFilter": "<p/>",
-        "ResamplingConfigInput$TargetBands": "<p/>",
-        "StackConfigInput$TargetBands": "<p/>",
-        "TemporalStatisticsConfigInput$TargetBands": "<p/>",
-        "ZonalStatisticsConfigInput$TargetBands": "<p/>"
+        "RasterDataCollectionQueryWithBandFilterInput$BandFilter": "<p>The list of Bands to be displayed in the result for each item.</p>",
+        "ResamplingConfigInput$TargetBands": "<p>Bands used in the operation. If no target bands are specified, it uses all bands available in the input.</p>",
+        "StackConfigInput$TargetBands": "<p>A list of bands to be stacked in the specified order. When the parameter is not provided, all the available bands in the data collection are stacked in the alphabetical order of their asset names.</p>",
+        "TemporalStatisticsConfigInput$TargetBands": "<p>The list of target band names for the temporal statistic to calculate.</p>",
+        "ZonalStatisticsConfigInput$TargetBands": "<p>Bands used in the operation. If no target bands are specified, it uses all bands available input.</p>"
+      }
+    },
+    "SyntheticTimestamp_date_time": {
+      "base": null,
+      "refs": {
+        "ExportEarthObservationJobOutput$CreationTime": "<p>The creation time.</p>",
+        "ExportVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
+        "GetEarthObservationJobOutput$CreationTime": "<p>The creation time of the initiated Earth Observation job.</p>",
+        "GetVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
+        "ListEarthObservationJobOutputConfig$CreationTime": "<p>The creation time.</p>",
+        "ListVectorEnrichmentJobOutputConfig$CreationTime": "<p>The creation time.</p>",
+        "StartEarthObservationJobOutput$CreationTime": "<p>The creation time.</p>",
+        "StartVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
+        "TimeRangeFilterOutput$EndTime": "<p>The ending time for the time range filter.</p>",
+        "TimeRangeFilterOutput$StartTime": "<p>The starting time for the time range filter.</p>"
       }
     },
     "TagKeyList": {
@@ -961,7 +1025,7 @@
       }
     },
     "TemporalStatisticsConfigInput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing the configuration for Temporal Statistics operation.</p>",
       "refs": {
         "JobConfigInput$TemporalStatisticsConfig": "<p>An object containing information about the job configuration for temporal statistics.</p>"
       }
@@ -969,7 +1033,7 @@
     "TemporalStatisticsListInput": {
       "base": null,
       "refs": {
-        "TemporalStatisticsConfigInput$Statistics": "<p/>"
+        "TemporalStatisticsConfigInput$Statistics": "<p>The list of the statistics method options.</p>"
       }
     },
     "ThrottlingException": {
@@ -980,23 +1044,20 @@
     "TimeRangeFilterInput": {
       "base": "<p>The input for the time-range filter.</p>",
       "refs": {
-        "RasterDataCollectionQueryInput$TimeRangeFilter": "<p/>",
-        "RasterDataCollectionQueryOutput$TimeRangeFilter": "<p/>",
-        "RasterDataCollectionQueryWithBandFilterInput$TimeRangeFilter": "<p/>"
+        "RasterDataCollectionQueryInput$TimeRangeFilter": "<p>The TimeRange Filter used in the RasterDataCollection Query.</p>",
+        "RasterDataCollectionQueryWithBandFilterInput$TimeRangeFilter": "<p>The TimeRange Filter used in the search query.</p>"
+      }
+    },
+    "TimeRangeFilterOutput": {
+      "base": "<p>The output structure of the time range filter.</p>",
+      "refs": {
+        "RasterDataCollectionQueryOutput$TimeRangeFilter": "<p>The TimeRange filter used in the search.</p>"
       }
     },
     "Timestamp": {
       "base": null,
       "refs": {
-        "ExportEarthObservationJobOutput$CreationTime": "<p>The creation time.</p>",
-        "ExportVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
-        "GetEarthObservationJobOutput$CreationTime": "<p>The creation time of the initiated Earth Observation job.</p>",
-        "GetVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
-        "ItemSource$DateTime": "<p/>",
-        "ListEarthObservationJobOutputConfig$CreationTime": "<p>The creation time.</p>",
-        "ListVectorEnrichmentJobOutputConfig$CreationTime": "<p>The creation time.</p>",
-        "StartEarthObservationJobOutput$CreationTime": "<p>The creation time.</p>",
-        "StartVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
+        "ItemSource$DateTime": "<p>The searchable date and time of the item, in UTC.</p>",
         "TimeRangeFilterInput$EndTime": "<p>The end time for the time-range filter.</p>",
         "TimeRangeFilterInput$StartTime": "<p>The start time for the time-range filter.</p>"
       }
@@ -1004,7 +1065,7 @@
     "Unit": {
       "base": null,
       "refs": {
-        "UserDefined$Unit": "<p/>"
+        "UserDefined$Unit": "<p>The units for output resolution of the result.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -1018,10 +1079,10 @@
       }
     },
     "UserDefined": {
-      "base": "<p/>",
+      "base": "<p>The output resolution (in target georeferenced units) of the result of the operation</p>",
       "refs": {
-        "OutputResolutionResamplingInput$UserDefined": "<p/>",
-        "OutputResolutionStackInput$UserDefined": "<p/>"
+        "OutputResolutionResamplingInput$UserDefined": "<p>User Defined Resolution for the output of Resampling operation defined by value and unit.</p>",
+        "OutputResolutionStackInput$UserDefined": "<p>The structure representing User Output Resolution for a Stacking operation defined as a value and unit.</p>"
       }
     },
     "ValidationException": {
@@ -1050,15 +1111,15 @@
       }
     },
     "VectorEnrichmentJobDataSourceConfigInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for the data source that represents the storage type of the input data objects.</p>",
       "refs": {
-        "VectorEnrichmentJobInputConfig$DataSourceConfig": "<p/>"
+        "VectorEnrichmentJobInputConfig$DataSourceConfig": "<p>The input structure for the data source that represents the storage type of the input data objects.</p>"
       }
     },
     "VectorEnrichmentJobDocumentType": {
       "base": null,
       "refs": {
-        "VectorEnrichmentJobInputConfig$DocumentType": "<p/>"
+        "VectorEnrichmentJobInputConfig$DocumentType": "<p>The input structure that defines the data source file type.</p>"
       }
     },
     "VectorEnrichmentJobErrorDetails": {
@@ -1082,7 +1143,7 @@
     "VectorEnrichmentJobExportErrorType": {
       "base": null,
       "refs": {
-        "VectorEnrichmentJobExportErrorDetails$Type": "<p/>"
+        "VectorEnrichmentJobExportErrorDetails$Type": "<p>The output error details for an Export operation on a Vector Enrichment job.</p>"
       }
     },
     "VectorEnrichmentJobExportStatus": {
@@ -1109,8 +1170,8 @@
     "VectorEnrichmentJobS3Data": {
       "base": "<p>The Amazon S3 data for the Vector Enrichment job.</p>",
       "refs": {
-        "ExportVectorEnrichmentJobOutputConfig$S3Data": "<p/>",
-        "VectorEnrichmentJobDataSourceConfigInput$S3Data": "<p/>"
+        "ExportVectorEnrichmentJobOutputConfig$S3Data": "<p>The input structure for Amazon S3 data; representing the Amazon S3 location of the input data objects.</p>",
+        "VectorEnrichmentJobDataSourceConfigInput$S3Data": "<p>The input structure for the Amazon S3 data that represents the Amazon S3 location of the input data objects.</p>"
       }
     },
     "VectorEnrichmentJobStatus": {
@@ -1130,21 +1191,21 @@
       }
     },
     "ViewOffNadirInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for specifying ViewOffNadir property filter. ViewOffNadir refers to the angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).</p>",
       "refs": {
-        "Property$ViewOffNadir": "<p/>"
+        "Property$ViewOffNadir": "<p>The structure representing ViewOffNadir property filter containing a lower bound and upper bound.</p>"
       }
     },
     "ViewSunAzimuthInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for specifying ViewSunAzimuth property filter. ViewSunAzimuth refers to the Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).</p>",
       "refs": {
-        "Property$ViewSunAzimuth": "<p/>"
+        "Property$ViewSunAzimuth": "<p>The structure representing ViewSunAzimuth property filter containing a lower bound and upper bound.</p>"
       }
     },
     "ViewSunElevationInput": {
-      "base": "<p/>",
+      "base": "<p>The input structure for specifying ViewSunElevation angle property filter. </p>",
       "refs": {
-        "Property$ViewSunElevation": "<p/>"
+        "Property$ViewSunElevation": "<p>The structure representing ViewSunElevation property filter containing a lower bound and upper bound.</p>"
       }
     },
     "ZonalStatistics": {
@@ -1154,7 +1215,7 @@
       }
     },
     "ZonalStatisticsConfigInput": {
-      "base": "<p/>",
+      "base": "<p>The structure representing input configuration of ZonalStatistics operation.</p>",
       "refs": {
         "JobConfigInput$ZonalStatisticsConfig": "<p>An object containing information about the job configuration for zonal statistics.</p>"
       }
@@ -1162,7 +1223,7 @@
     "ZonalStatisticsListInput": {
       "base": null,
       "refs": {
-        "ZonalStatisticsConfigInput$Statistics": "<p/>"
+        "ZonalStatisticsConfigInput$Statistics": "<p>List of zonal statistics to compute.</p>"
       }
     }
   }

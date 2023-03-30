@@ -68605,9 +68605,6 @@ type UpdateDataQualityRulesetInput struct {
 	// A Data Quality Definition Language (DQDL) ruleset. For more information,
 	// see the Glue developer guide.
 	Ruleset *string `min:"1" type:"string"`
-
-	// The new name of the ruleset, if you are renaming it.
-	UpdatedName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -68640,9 +68637,6 @@ func (s *UpdateDataQualityRulesetInput) Validate() error {
 	if s.Ruleset != nil && len(*s.Ruleset) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Ruleset", 1))
 	}
-	if s.UpdatedName != nil && len(*s.UpdatedName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("UpdatedName", 1))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -68665,12 +68659,6 @@ func (s *UpdateDataQualityRulesetInput) SetName(v string) *UpdateDataQualityRule
 // SetRuleset sets the Ruleset field's value.
 func (s *UpdateDataQualityRulesetInput) SetRuleset(v string) *UpdateDataQualityRulesetInput {
 	s.Ruleset = &v
-	return s
-}
-
-// SetUpdatedName sets the UpdatedName field's value.
-func (s *UpdateDataQualityRulesetInput) SetUpdatedName(v string) *UpdateDataQualityRulesetInput {
-	s.UpdatedName = &v
 	return s
 }
 

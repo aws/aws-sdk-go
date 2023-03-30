@@ -58,6 +58,29 @@
         "title": "To attach a load balancer to an Auto Scaling group"
       }
     ],
+    "AttachTrafficSources": [
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group",
+          "TrafficSources": [
+            {
+              "Identifier": "arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"
+            }
+          ]
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example attaches the specified target group to the specified Auto Scaling group.",
+        "id": "to-attach-a-target-group-to-an-auto-scaling-group-1680036570089",
+        "title": "To attach a target group to an Auto Scaling group"
+      }
+    ],
     "CancelInstanceRefresh": [
       {
         "input": {
@@ -1005,6 +1028,32 @@
         "title": "To describe termination policy types"
       }
     ],
+    "DescribeTrafficSources": [
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group"
+        },
+        "output": {
+          "NextToken": "",
+          "TrafficSources": [
+            {
+              "Identifier": "arn:aws:vpc-lattice:us-west-2:123456789012:targetgroup/tg-0e2f2665eEXAMPLE",
+              "State": "InService",
+              "Type": "vpc-lattice"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example describes the target groups attached to the specified Auto Scaling group.",
+        "id": "to-describe-the-target-groups-for-an-auto-scaling-group-1680040714521",
+        "title": "To describe the target groups for an Auto Scaling group"
+      }
+    ],
     "DetachInstances": [
       {
         "input": {
@@ -1075,6 +1124,29 @@
         "description": "This example detaches the specified load balancer from the specified Auto Scaling group.",
         "id": "autoscaling-detach-load-balancers-1",
         "title": "To detach a load balancer from an Auto Scaling group"
+      }
+    ],
+    "DetachTrafficSources": [
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group",
+          "TrafficSources": [
+            {
+              "Identifier": "arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"
+            }
+          ]
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example detaches the specified target group from the specified Auto Scaling group.",
+        "id": "to-detach-a-target-group-from-an-auto-scaling-group-1680040404169",
+        "title": "To detach a target group from an Auto Scaling group"
       }
     ],
     "DisableMetricsCollection": [
