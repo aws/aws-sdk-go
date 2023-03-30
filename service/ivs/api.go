@@ -3113,6 +3113,9 @@ type Channel struct {
 	// when you set up streaming software.
 	IngestEndpoint *string `locationName:"ingestEndpoint" type:"string"`
 
+	// Whether the channel allows insecure RTMP ingest. Default: false.
+	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
+
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
 	// Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW.
 	// (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low
@@ -3187,6 +3190,12 @@ func (s *Channel) SetAuthorized(v bool) *Channel {
 // SetIngestEndpoint sets the IngestEndpoint field's value.
 func (s *Channel) SetIngestEndpoint(v string) *Channel {
 	s.IngestEndpoint = &v
+	return s
+}
+
+// SetInsecureIngest sets the InsecureIngest field's value.
+func (s *Channel) SetInsecureIngest(v bool) *Channel {
+	s.InsecureIngest = &v
 	return s
 }
 
@@ -3303,6 +3312,9 @@ type ChannelSummary struct {
 	// false.
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
+	// Whether the channel allows insecure RTMP ingest. Default: false.
+	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
+
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
 	// Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW.
 	// (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low
@@ -3351,6 +3363,12 @@ func (s *ChannelSummary) SetArn(v string) *ChannelSummary {
 // SetAuthorized sets the Authorized field's value.
 func (s *ChannelSummary) SetAuthorized(v bool) *ChannelSummary {
 	s.Authorized = &v
+	return s
+}
+
+// SetInsecureIngest sets the InsecureIngest field's value.
+func (s *ChannelSummary) SetInsecureIngest(v bool) *ChannelSummary {
+	s.InsecureIngest = &v
 	return s
 }
 
@@ -3451,6 +3469,9 @@ type CreateChannelInput struct {
 	// false.
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
+	// Whether the channel allows insecure RTMP ingest. Default: false.
+	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
+
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
 	// Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the
 	// Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard,
@@ -3509,6 +3530,12 @@ func (s CreateChannelInput) GoString() string {
 // SetAuthorized sets the Authorized field's value.
 func (s *CreateChannelInput) SetAuthorized(v bool) *CreateChannelInput {
 	s.Authorized = &v
+	return s
+}
+
+// SetInsecureIngest sets the InsecureIngest field's value.
+func (s *CreateChannelInput) SetInsecureIngest(v bool) *CreateChannelInput {
+	s.InsecureIngest = &v
 	return s
 }
 
@@ -7048,7 +7075,7 @@ type ThumbnailConfiguration struct {
 	// IVS Streaming Configuration (https://docs.aws.amazon.com/ivs/latest/userguide/streaming-config.html)
 	// for information on setting IDR/Keyframe to the recommended value in video-encoder
 	// settings.
-	TargetIntervalSeconds *int64 `locationName:"targetIntervalSeconds" min:"5" type:"long"`
+	TargetIntervalSeconds *int64 `locationName:"targetIntervalSeconds" min:"1" type:"long"`
 }
 
 // String returns the string representation.
@@ -7072,8 +7099,8 @@ func (s ThumbnailConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ThumbnailConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ThumbnailConfiguration"}
-	if s.TargetIntervalSeconds != nil && *s.TargetIntervalSeconds < 5 {
-		invalidParams.Add(request.NewErrParamMinValue("TargetIntervalSeconds", 5))
+	if s.TargetIntervalSeconds != nil && *s.TargetIntervalSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TargetIntervalSeconds", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7194,6 +7221,9 @@ type UpdateChannelInput struct {
 	// Whether the channel is private (enabled for playback authorization).
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
+	// Whether the channel allows insecure RTMP ingest. Default: false.
+	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
+
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
 	// Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the
 	// Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard,
@@ -7269,6 +7299,12 @@ func (s *UpdateChannelInput) SetArn(v string) *UpdateChannelInput {
 // SetAuthorized sets the Authorized field's value.
 func (s *UpdateChannelInput) SetAuthorized(v bool) *UpdateChannelInput {
 	s.Authorized = &v
+	return s
+}
+
+// SetInsecureIngest sets the InsecureIngest field's value.
+func (s *UpdateChannelInput) SetInsecureIngest(v bool) *UpdateChannelInput {
+	s.InsecureIngest = &v
 	return s
 }
 

@@ -124,6 +124,41 @@ func ExampleAutoScaling_AttachLoadBalancers_shared00() {
 	fmt.Println(result)
 }
 
+// To attach a target group to an Auto Scaling group
+// This example attaches the specified target group to the specified Auto Scaling group.
+func ExampleAutoScaling_AttachTrafficSources_shared00() {
+	svc := autoscaling.New(session.New())
+	input := &autoscaling.AttachTrafficSourcesInput{
+		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
+		TrafficSources: []*autoscaling.TrafficSourceIdentifier{
+			{
+				Identifier: aws.String("arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"),
+			},
+		},
+	}
+
+	result, err := svc.AttachTrafficSources(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case autoscaling.ErrCodeResourceContentionFault:
+				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
+			case autoscaling.ErrCodeServiceLinkedRoleFailure:
+				fmt.Println(autoscaling.ErrCodeServiceLinkedRoleFailure, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To cancel an instance refresh
 // This example cancels an instance refresh operation in progress.
 func ExampleAutoScaling_CancelInstanceRefresh_shared00() {
@@ -1241,6 +1276,36 @@ func ExampleAutoScaling_DescribeTerminationPolicyTypes_shared00() {
 	fmt.Println(result)
 }
 
+// To describe the target groups for an Auto Scaling group
+// This example describes the target groups attached to the specified Auto Scaling group.
+func ExampleAutoScaling_DescribeTrafficSources_shared00() {
+	svc := autoscaling.New(session.New())
+	input := &autoscaling.DescribeTrafficSourcesInput{
+		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
+	}
+
+	result, err := svc.DescribeTrafficSources(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case autoscaling.ErrCodeResourceContentionFault:
+				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
+			case autoscaling.ErrCodeInvalidNextToken:
+				fmt.Println(autoscaling.ErrCodeInvalidNextToken, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To detach an instance from an Auto Scaling group
 // This example detaches the specified instance from the specified Auto Scaling group.
 func ExampleAutoScaling_DetachInstances_shared00() {
@@ -1318,6 +1383,40 @@ func ExampleAutoScaling_DetachLoadBalancers_shared00() {
 	}
 
 	result, err := svc.DetachLoadBalancers(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case autoscaling.ErrCodeResourceContentionFault:
+				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To detach a target group from an Auto Scaling group
+// This example detaches the specified target group from the specified Auto Scaling
+// group.
+func ExampleAutoScaling_DetachTrafficSources_shared00() {
+	svc := autoscaling.New(session.New())
+	input := &autoscaling.DetachTrafficSourcesInput{
+		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
+		TrafficSources: []*autoscaling.TrafficSourceIdentifier{
+			{
+				Identifier: aws.String("arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"),
+			},
+		},
+	}
+
+	result, err := svc.DetachTrafficSources(input)
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {

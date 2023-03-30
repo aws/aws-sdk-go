@@ -22,11 +22,20 @@ const (
 	// your resources and try again.
 	ErrCodeConflictException = "ConflictException"
 
+	// ErrCodeFeaturedResultsConflictException for service response error code
+	// "FeaturedResultsConflictException".
+	//
+	// An error message with a list of conflicting queries used across different
+	// sets of featured results. This occurred with the request for a new featured
+	// results set. Check that the queries you specified for featured results are
+	// unique per featured results set for each index.
+	ErrCodeFeaturedResultsConflictException = "FeaturedResultsConflictException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
 	// An issue occurred with the internal server used for your Amazon Kendra service.
-	// Please wait a few minutes and try again, or contact Support (http://aws.amazon.com/aws.amazon.com/contact-us)
+	// Please wait a few minutes and try again, or contact Support (http://aws.amazon.com/contact-us/)
 	// for help.
 	ErrCodeInternalServerException = "InternalServerException"
 
@@ -69,9 +78,9 @@ const (
 	// "ServiceQuotaExceededException".
 	//
 	// You have exceeded the set limits for your Amazon Kendra service. Please see
-	// Quotas[hyperlink Kendra Quotas pg] for more information, or contact Support
-	// (http://aws.amazon.com/aws.amazon.com/contact-us) to inquire about an increase
-	// of limits.
+	// Quotas (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html) for more
+	// information, or contact Support (http://aws.amazon.com/contact-us/) to inquire
+	// about an increase of limits.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
@@ -90,15 +99,16 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":         newErrorAccessDeniedException,
-	"ConflictException":             newErrorConflictException,
-	"InternalServerException":       newErrorInternalServerException,
-	"InvalidRequestException":       newErrorInvalidRequestException,
-	"ResourceAlreadyExistException": newErrorResourceAlreadyExistException,
-	"ResourceInUseException":        newErrorResourceInUseException,
-	"ResourceNotFoundException":     newErrorResourceNotFoundException,
-	"ResourceUnavailableException":  newErrorResourceUnavailableException,
-	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
-	"ThrottlingException":           newErrorThrottlingException,
-	"ValidationException":           newErrorValidationException,
+	"AccessDeniedException":            newErrorAccessDeniedException,
+	"ConflictException":                newErrorConflictException,
+	"FeaturedResultsConflictException": newErrorFeaturedResultsConflictException,
+	"InternalServerException":          newErrorInternalServerException,
+	"InvalidRequestException":          newErrorInvalidRequestException,
+	"ResourceAlreadyExistException":    newErrorResourceAlreadyExistException,
+	"ResourceInUseException":           newErrorResourceInUseException,
+	"ResourceNotFoundException":        newErrorResourceNotFoundException,
+	"ResourceUnavailableException":     newErrorResourceUnavailableException,
+	"ServiceQuotaExceededException":    newErrorServiceQuotaExceededException,
+	"ThrottlingException":              newErrorThrottlingException,
+	"ValidationException":              newErrorValidationException,
 }

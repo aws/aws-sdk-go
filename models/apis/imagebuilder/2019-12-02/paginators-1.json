@@ -54,6 +54,17 @@
       "limit_key": "maxResults",
       "result_key": "imageRecipeSummaryList"
     },
+    "ListImageScanFindingAggregations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "result_key": "responses"
+    },
+    "ListImageScanFindings": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "findings"
+    },
     "ListImages": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -65,6 +76,18 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "infrastructureConfigurationSummaryList"
+    },
+    "ListWorkflowExecutions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "workflowExecutions"
+    },
+    "ListWorkflowStepExecutions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "steps"
     }
   }
 }

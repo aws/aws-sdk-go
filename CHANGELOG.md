@@ -1,3 +1,37 @@
+Release v1.44.233 (2023-03-30)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API
+  * Make DefaultExecutorDpuSize and CoordinatorDpuSize  fields optional  in StartSession
+* `service/autoscaling`: Updates service API, documentation, paginators, and examples
+  * Amazon EC2 Auto Scaling now supports Elastic Load Balancing traffic sources with the AttachTrafficSources, DetachTrafficSources, and DescribeTrafficSources APIs. This release also introduces a new activity status, "WaitingForConnectionDraining", for VPC Lattice to the DescribeScalingActivities API.
+* `service/batch`: Updates service API and documentation
+  * This feature allows Batch on EKS to support configuration of Pod Labels through Metadata for Batch on EKS Jobs.
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/drs`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for Tunnel Endpoint Lifecycle control, a new feature that provides Site-to-Site VPN customers with better visibility and control of their VPN tunnel maintenance updates.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Updated DescribeCluster and ListClusters API responses to include ErrorDetail that specifies error code, programmatically accessible error data,and an error message. ErrorDetail provides the underlying reason for cluster failure and recommends actions to simplify troubleshooting of EMR clusters.
+* `service/glue`: Updates service API and documentation
+  * This release adds support for AWS Glue Data Quality, which helps you evaluate and monitor the quality of your data and includes the API for creating, deleting, or updating data quality rulesets, runs and evaluations.
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * Added EKS Runtime Monitoring feature support to existing detector, finding APIs and introducing new Coverage APIs
+* `service/imagebuilder`: Updates service API, documentation, and paginators
+* `service/ivs`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * AWS Kendra now supports featured results for a query.
+* `service/network-firewall`: Updates service API, documentation, and paginators
+* `service/sagemaker-geospatial`: Updates service API and documentation
+* `service/vpc-lattice`: Adds new service
+* `service/wellarchitected`: Updates service API, documentation, and paginators
+
+### SDK Bugs
+
+* `aws/session`: Fix `AWS_USE_FIPS_ENDPOINT` not being inferred on resolved credentials.
+  * Defer resolving default credentials chain until after other config is resolved.
+
 Release v1.44.232 (2023-03-29)
 ===
 

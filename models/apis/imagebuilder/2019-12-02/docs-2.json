@@ -6,54 +6,66 @@
     "CreateComponent": "<p>Creates a new component that can be used to build, validate, test, and assess your image. The component is based on a YAML document that you specify using exactly one of the following methods:</p> <ul> <li> <p>Inline, using the <code>data</code> property in the request body.</p> </li> <li> <p>A URL that points to a YAML document file stored in Amazon S3, using the <code>uri</code> property in the request body.</p> </li> </ul>",
     "CreateContainerRecipe": "<p>Creates a new container recipe. Container recipes define how images are configured, tested, and assessed.</p>",
     "CreateDistributionConfiguration": "<p>Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>",
-    "CreateImage": "<p> Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration. You must specify exactly one recipe for your image, using either a ContainerRecipeArn or an ImageRecipeArn.</p>",
-    "CreateImagePipeline": "<p> Creates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p>",
-    "CreateImageRecipe": "<p> Creates a new image recipe. Image recipes define how images are configured, tested, and assessed.</p>",
-    "CreateInfrastructureConfiguration": "<p> Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>",
-    "DeleteComponent": "<p> Deletes a component build version.</p>",
+    "CreateImage": "<p>Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration. You must specify exactly one recipe for your image, using either a ContainerRecipeArn or an ImageRecipeArn.</p>",
+    "CreateImagePipeline": "<p>Creates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p>",
+    "CreateImageRecipe": "<p>Creates a new image recipe. Image recipes define how images are configured, tested, and assessed.</p>",
+    "CreateInfrastructureConfiguration": "<p>Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>",
+    "DeleteComponent": "<p>Deletes a component build version.</p>",
     "DeleteContainerRecipe": "<p>Deletes a container recipe.</p>",
-    "DeleteDistributionConfiguration": "<p> Deletes a distribution configuration.</p>",
+    "DeleteDistributionConfiguration": "<p>Deletes a distribution configuration.</p>",
     "DeleteImage": "<p>Deletes an Image Builder image resource. This does not delete any EC2 AMIs or ECR container images that are created during the image build process. You must clean those up separately, using the appropriate Amazon EC2 or Amazon ECR console actions, or API or CLI commands.</p> <ul> <li> <p>To deregister an EC2 Linux AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/deregister-ami.html\">Deregister your Linux AMI</a> in the <i> <i>Amazon EC2 User Guide</i> </i>.</p> </li> <li> <p>To deregister an EC2 Windows AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/deregister-ami.html\">Deregister your Windows AMI</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i>.</p> </li> <li> <p>To delete a container image from Amazon ECR, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html\">Deleting an image</a> in the <i>Amazon ECR User Guide</i>.</p> </li> </ul>",
-    "DeleteImagePipeline": "<p> Deletes an image pipeline.</p>",
-    "DeleteImageRecipe": "<p> Deletes an image recipe.</p>",
-    "DeleteInfrastructureConfiguration": "<p> Deletes an infrastructure configuration.</p>",
-    "GetComponent": "<p> Gets a component object.</p>",
-    "GetComponentPolicy": "<p> Gets a component policy.</p>",
+    "DeleteImagePipeline": "<p>Deletes an image pipeline.</p>",
+    "DeleteImageRecipe": "<p>Deletes an image recipe.</p>",
+    "DeleteInfrastructureConfiguration": "<p>Deletes an infrastructure configuration.</p>",
+    "GetComponent": "<p>Gets a component object.</p>",
+    "GetComponentPolicy": "<p>Gets a component policy.</p>",
     "GetContainerRecipe": "<p>Retrieves a container recipe.</p>",
     "GetContainerRecipePolicy": "<p>Retrieves the policy for a container recipe.</p>",
-    "GetDistributionConfiguration": "<p> Gets a distribution configuration.</p>",
-    "GetImage": "<p> Gets an image.</p>",
-    "GetImagePipeline": "<p> Gets an image pipeline.</p>",
-    "GetImagePolicy": "<p> Gets an image policy.</p>",
-    "GetImageRecipe": "<p> Gets an image recipe.</p>",
-    "GetImageRecipePolicy": "<p> Gets an image recipe policy.</p>",
-    "GetInfrastructureConfiguration": "<p> Gets an infrastructure configuration.</p>",
+    "GetDistributionConfiguration": "<p>Gets a distribution configuration.</p>",
+    "GetImage": "<p>Gets an image.</p>",
+    "GetImagePipeline": "<p>Gets an image pipeline.</p>",
+    "GetImagePolicy": "<p>Gets an image policy.</p>",
+    "GetImageRecipe": "<p>Gets an image recipe.</p>",
+    "GetImageRecipePolicy": "<p>Gets an image recipe policy.</p>",
+    "GetInfrastructureConfiguration": "<p>Gets an infrastructure configuration.</p>",
+    "GetWorkflowExecution": "<p>Get the runtime information that was logged for a specific runtime instance of the workflow.</p>",
+    "GetWorkflowStepExecution": "<p>Get the runtime information that was logged for a specific runtime instance of the workflow step.</p>",
     "ImportComponent": "<p>Imports a component and transforms its data into a component document.</p>",
     "ImportVmImage": "<p>When you export your virtual machine (VM) from its virtualization environment, that process creates a set of one or more disk container files that act as snapshots of your VM’s environment, settings, and data. The Amazon EC2 API <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportImage.html\">ImportImage</a> action uses those files to import your VM and create an AMI. To import using the CLI command, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html\">import-image</a> </p> <p>You can reference the task ID from the VM import to pull in the AMI that the import created as the base image for your Image Builder recipe.</p>",
-    "ListComponentBuildVersions": "<p> Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+    "ListComponentBuildVersions": "<p>Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
     "ListComponents": "<p>Returns the list of components that can be filtered by name, or by using the listed <code>filters</code> to streamline results. Newly created components can take up to two minutes to appear in the ListComponents API Results.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
     "ListContainerRecipes": "<p>Returns a list of container recipes.</p>",
     "ListDistributionConfigurations": "<p>Returns a list of distribution configurations.</p>",
-    "ListImageBuildVersions": "<p> Returns a list of image build versions.</p>",
+    "ListImageBuildVersions": "<p>Returns a list of image build versions.</p>",
     "ListImagePackages": "<p>List the Packages that are associated with an Image Build Version, as determined by Amazon Web Services Systems Manager Inventory at build time.</p>",
     "ListImagePipelineImages": "<p>Returns a list of images created by the specified pipeline.</p>",
     "ListImagePipelines": "<p>Returns a list of image pipelines.</p>",
-    "ListImageRecipes": "<p> Returns a list of image recipes.</p>",
+    "ListImageRecipes": "<p>Returns a list of image recipes.</p>",
+    "ListImageScanFindingAggregations": "<p>Returns a list of image scan aggregations for your account. You can filter by the type of key that Image Builder uses to group results. For example, if you want to get a list of findings by severity level for one of your pipelines, you might specify your pipeline with the <code>imagePipelineArn</code> filter. If you don't specify a filter, Image Builder returns an aggregation for your account.</p> <p>To streamline results, you can use the following filters in your request:</p> <ul> <li> <p> <code>accountId</code> </p> </li> <li> <p> <code>imageBuildVersionArn</code> </p> </li> <li> <p> <code>imagePipelineArn</code> </p> </li> <li> <p> <code>vulnerabilityId</code> </p> </li> </ul>",
+    "ListImageScanFindings": "<p>Returns a list of image scan findings for your account.</p>",
     "ListImages": "<p>Returns the list of images that you have access to. Newly created images can take up to two minutes to appear in the ListImages API Results.</p>",
-    "ListInfrastructureConfigurations": "<p> Returns a list of infrastructure configurations.</p>",
-    "ListTagsForResource": "<p> Returns the list of tags for the specified resource.</p>",
-    "PutComponentPolicy": "<p> Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
+    "ListInfrastructureConfigurations": "<p>Returns a list of infrastructure configurations.</p>",
+    "ListTagsForResource": "<p>Returns the list of tags for the specified resource.</p>",
+    "ListWorkflowExecutions": "<p>Returns a list of workflow runtime instance metadata objects for a specific image build version.</p>",
+    "ListWorkflowStepExecutions": "<p>Shows runtime data for each step in a runtime instance of the workflow that you specify in the request.</p>",
+    "PutComponentPolicy": "<p>Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutContainerRecipePolicy": "<p>Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html) to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>, you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html) in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutImagePolicy": "<p>Applies a policy to an image. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImagePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
-    "PutImageRecipePolicy": "<p> Applies a policy to an image recipe. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
-    "StartImagePipelineExecution": "<p> Manually triggers a pipeline to create an image.</p>",
-    "TagResource": "<p> Adds a tag to a resource.</p>",
-    "UntagResource": "<p> Removes a tag from a resource.</p>",
-    "UpdateDistributionConfiguration": "<p> Updates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>",
-    "UpdateImagePipeline": "<p> Updates an image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p> <note> <p>UpdateImagePipeline does not support selective updates for the pipeline. You must specify all of the required properties in the update request, not just the properties that have changed.</p> </note>",
-    "UpdateInfrastructureConfiguration": "<p> Updates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>"
+    "PutImageRecipePolicy": "<p>Applies a policy to an image recipe. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
+    "StartImagePipelineExecution": "<p>Manually triggers a pipeline to create an image.</p>",
+    "TagResource": "<p>Adds a tag to a resource.</p>",
+    "UntagResource": "<p>Removes a tag from a resource.</p>",
+    "UpdateDistributionConfiguration": "<p>Updates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>",
+    "UpdateImagePipeline": "<p>Updates an image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p> <note> <p>UpdateImagePipeline does not support selective updates for the pipeline. You must specify all of the required properties in the update request, not just the properties that have changed.</p> </note>",
+    "UpdateInfrastructureConfiguration": "<p>Updates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>"
   },
   "shapes": {
+    "AccountAggregation": {
+      "base": "<p>Contains counts of vulnerability findings from image scans that run when you create new Image Builder images, or build new versions of existing images. The vulnerability counts are grouped by severity level. The counts are aggregated across resources to create the final tally for the account that owns them.</p>",
+      "refs": {
+        "ImageScanFindingAggregation$accountAggregation": "<p>Returns an object that contains severity counts based on an account ID.</p>"
+      }
+    },
     "AccountId": {
       "base": null,
       "refs": {
@@ -77,13 +89,13 @@
       }
     },
     "Ami": {
-      "base": "<p> Details of an Amazon EC2 AMI.</p>",
+      "base": "<p>Details of an Amazon EC2 AMI.</p>",
       "refs": {
         "AmiList$member": null
       }
     },
     "AmiDistributionConfiguration": {
-      "base": "<p> Define and configure the output AMIs of the pipeline.</p>",
+      "base": "<p>Define and configure the output AMIs of the pipeline.</p>",
       "refs": {
         "Distribution$amiDistributionConfiguration": "<p>The specific AMI settings; for example, launch permissions or AMI tags.</p>"
       }
@@ -159,14 +171,14 @@
         "CreateComponentResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CreateContainerRecipeRequest$clientToken": "<p>The client token used to make this request idempotent.</p>",
         "CreateContainerRecipeResponse$clientToken": "<p>The client token used to make this request idempotent.</p>",
-        "CreateDistributionConfigurationRequest$clientToken": "<p> The idempotency token of the distribution configuration.</p>",
-        "CreateDistributionConfigurationResponse$clientToken": "<p> The idempotency token used to make this request idempotent.</p>",
-        "CreateImagePipelineRequest$clientToken": "<p> The idempotency token used to make this request idempotent.</p>",
-        "CreateImagePipelineResponse$clientToken": "<p> The idempotency token used to make this request idempotent.</p>",
+        "CreateDistributionConfigurationRequest$clientToken": "<p>The idempotency token of the distribution configuration.</p>",
+        "CreateDistributionConfigurationResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
+        "CreateImagePipelineRequest$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
+        "CreateImagePipelineResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CreateImageRecipeRequest$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CreateImageRecipeResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
-        "CreateImageRequest$clientToken": "<p> The idempotency token used to make this request idempotent.</p>",
-        "CreateImageResponse$clientToken": "<p> The idempotency token used to make this request idempotent.</p>",
+        "CreateImageRequest$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
+        "CreateImageResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CreateInfrastructureConfigurationRequest$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CreateInfrastructureConfigurationResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "ImportComponentRequest$clientToken": "<p>The idempotency token of the component.</p>",
@@ -192,9 +204,9 @@
     "ComponentBuildVersionArn": {
       "base": null,
       "refs": {
-        "CreateComponentResponse$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component that was created by this request.</p>",
+        "CreateComponentResponse$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component that this request created.</p>",
         "DeleteComponentRequest$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component build version to delete.</p>",
-        "DeleteComponentResponse$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component build version that was deleted.</p>",
+        "DeleteComponentResponse$componentBuildVersionArn": "<p>The ARN of the component build version that this request deleted.</p>",
         "GetComponentPolicyRequest$componentArn": "<p>The Amazon Resource Name (ARN) of the component whose policy you want to retrieve.</p>",
         "ImportComponentResponse$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the imported component.</p>",
         "PutComponentPolicyRequest$componentArn": "<p>The Amazon Resource Name (ARN) of the component that this policy should be applied to.</p>",
@@ -202,7 +214,7 @@
       }
     },
     "ComponentConfiguration": {
-      "base": "<p> Configuration details of the component.</p>",
+      "base": "<p>Configuration details of the component.</p>",
       "refs": {
         "ComponentConfigurationList$member": null
       }
@@ -334,7 +346,7 @@
       "base": null,
       "refs": {
         "ComponentConfiguration$componentArn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
-        "GetComponentRequest$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component that you want to retrieve. Regex requires \"/\\d+$\" suffix.</p>"
+        "GetComponentRequest$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component that you want to get. Regex requires the suffix <code>/\\d+$</code>.</p>"
       }
     },
     "ComponentVersionList": {
@@ -479,6 +491,36 @@
       "refs": {
       }
     },
+    "CvssScore": {
+      "base": "<p>Amazon Inspector generates a risk score for each finding. This score helps you to prioritize findings, to focus on the most critical findings and the most vulnerable resources. The score uses the Common Vulnerability Scoring System (CVSS) format. This format is a modification of the base CVSS score that the National Vulnerability Database (NVD) provides. For more information about severity levels, see <a href=\"https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-severity.html\">Severity levels for Amazon Inspector findings</a> in the <i>Amazon Inspector User Guide</i>.</p>",
+      "refs": {
+        "CvssScoreList$member": null
+      }
+    },
+    "CvssScoreAdjustment": {
+      "base": "<p>Details about an adjustment that Amazon Inspector made to the CVSS score for a finding.</p>",
+      "refs": {
+        "CvssScoreAdjustmentList$member": null
+      }
+    },
+    "CvssScoreAdjustmentList": {
+      "base": null,
+      "refs": {
+        "CvssScoreDetails$adjustments": "<p>An object that contains details about an adjustment that Amazon Inspector made to the CVSS score for the finding.</p>"
+      }
+    },
+    "CvssScoreDetails": {
+      "base": "<p>Details about the source of the score, and the factors that determined the adjustments to create the final score.</p>",
+      "refs": {
+        "InspectorScoreDetails$adjustedCvss": "<p>An object that contains details about an adjustment that Amazon Inspector made to the CVSS score for the finding.</p>"
+      }
+    },
+    "CvssScoreList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$cvss": "<p>CVSS scores for one or more vulnerabilities that Amazon Inspector identified for a package.</p>"
+      }
+    },
     "DateTime": {
       "base": null,
       "refs": {
@@ -491,6 +533,10 @@
         "DistributionConfiguration$dateUpdated": "<p>The date on which this distribution configuration was last updated.</p>",
         "DistributionConfigurationSummary$dateCreated": "<p>The date on which the distribution configuration was created.</p>",
         "DistributionConfigurationSummary$dateUpdated": "<p>The date on which the distribution configuration was updated.</p>",
+        "GetWorkflowExecutionResponse$startTime": "<p>The timestamp when the specified runtime instance of the workflow started.</p>",
+        "GetWorkflowExecutionResponse$endTime": "<p>The timestamp when the specified runtime instance of the workflow finished.</p>",
+        "GetWorkflowStepExecutionResponse$startTime": "<p>The timestamp when the specified runtime version of the workflow step started.</p>",
+        "GetWorkflowStepExecutionResponse$endTime": "<p>The timestamp when the specified runtime instance of the workflow step finished.</p>",
         "Image$dateCreated": "<p>The date on which Image Builder created this image.</p>",
         "ImagePipeline$dateCreated": "<p>The date on which this image pipeline was created.</p>",
         "ImagePipeline$dateUpdated": "<p>The date on which this image pipeline was last updated.</p>",
@@ -503,7 +549,20 @@
         "InfrastructureConfiguration$dateCreated": "<p>The date on which the infrastructure configuration was created.</p>",
         "InfrastructureConfiguration$dateUpdated": "<p>The date on which the infrastructure configuration was last updated.</p>",
         "InfrastructureConfigurationSummary$dateCreated": "<p>The date on which the infrastructure configuration was created.</p>",
-        "InfrastructureConfigurationSummary$dateUpdated": "<p>The date on which the infrastructure configuration was last updated.</p>"
+        "InfrastructureConfigurationSummary$dateUpdated": "<p>The date on which the infrastructure configuration was last updated.</p>",
+        "WorkflowExecutionMetadata$startTime": "<p>The timestamp when the runtime instance of this workflow started.</p>",
+        "WorkflowExecutionMetadata$endTime": "<p>The timestamp when this runtime instance of the workflow finished.</p>",
+        "WorkflowStepMetadata$startTime": "<p>The timestamp when the workflow step started.</p>",
+        "WorkflowStepMetadata$endTime": "<p>The timestamp when the workflow step finished.</p>"
+      }
+    },
+    "DateTimeTimestamp": {
+      "base": null,
+      "refs": {
+        "ImageScanFinding$firstObservedAt": "<p>The date and time when the finding was first observed.</p>",
+        "ImageScanFinding$updatedAt": "<p>The timestamp when the finding was last updated.</p>",
+        "PackageVulnerabilityDetails$vendorCreatedAt": "<p>The date and time when this vulnerability was first added to the vendor's database.</p>",
+        "PackageVulnerabilityDetails$vendorUpdatedAt": "<p>The date and time when the vendor last updated this vulnerability in their database.</p>"
       }
     },
     "DeleteComponentRequest": {
@@ -583,7 +642,7 @@
       }
     },
     "Distribution": {
-      "base": "<p> Defines the settings for a specific Region.</p>",
+      "base": "<p>Defines the settings for a specific Region.</p>",
       "refs": {
         "DistributionList$member": null
       }
@@ -598,15 +657,15 @@
     "DistributionConfigurationArn": {
       "base": null,
       "refs": {
-        "CreateDistributionConfigurationResponse$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that was created by this request.</p>",
-        "CreateImagePipelineRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that will be used to configure and distribute images created by this image pipeline.</p>",
-        "CreateImageRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of your pipeline.</p>",
+        "CreateDistributionConfigurationResponse$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that was created by this request.</p>",
+        "CreateImagePipelineRequest$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that will be used to configure and distribute images created by this image pipeline.</p>",
+        "CreateImageRequest$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of your pipeline.</p>",
         "DeleteDistributionConfigurationRequest$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration to delete.</p>",
         "DeleteDistributionConfigurationResponse$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that was deleted.</p>",
         "GetDistributionConfigurationRequest$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that you want to retrieve.</p>",
         "UpdateDistributionConfigurationRequest$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that you want to update.</p>",
         "UpdateDistributionConfigurationResponse$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that was updated by this request.</p>",
-        "UpdateImagePipelineRequest$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that will be used to configure and distribute images updated by this image pipeline.</p>"
+        "UpdateImagePipelineRequest$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration that Image Builder uses to configure and distribute images that this image pipeline has updated.</p>"
       }
     },
     "DistributionConfigurationSummary": {
@@ -624,7 +683,7 @@
     "DistributionList": {
       "base": null,
       "refs": {
-        "CreateDistributionConfigurationRequest$distributions": "<p> The distributions of the distribution configuration.</p>",
+        "CreateDistributionConfigurationRequest$distributions": "<p>The distributions of the distribution configuration.</p>",
         "DistributionConfiguration$distributions": "<p>The distribution objects that apply Region-specific settings for the deployment of the image to targeted Regions.</p>",
         "UpdateDistributionConfigurationRequest$distributions": "<p>The distributions of the distribution configuration.</p>"
       }
@@ -662,13 +721,19 @@
     "EbsVolumeThroughput": {
       "base": null,
       "refs": {
-        "EbsInstanceBlockDeviceSpecification$throughput": "<p> <b>For GP3 volumes only</b> – The throughput in MiB/s that the volume supports. </p>"
+        "EbsInstanceBlockDeviceSpecification$throughput": "<p> <b>For GP3 volumes only</b> – The throughput in MiB/s that the volume supports.</p>"
       }
     },
     "EbsVolumeType": {
       "base": null,
       "refs": {
         "EbsInstanceBlockDeviceSpecification$volumeType": "<p>Use to override the device's volume type.</p>"
+      }
+    },
+    "EcrConfiguration": {
+      "base": "<p>Settings that Image Builder uses to configure the ECR repository and the output container images that Amazon Inspector scans.</p>",
+      "refs": {
+        "ImageScanningConfiguration$ecrConfiguration": "<p>Contains Amazon ECR settings for vulnerability scans.</p>"
       }
     },
     "EmptyString": {
@@ -726,7 +791,8 @@
     "Filter": {
       "base": "<p>A filter name and value pair that is used to return a more specific list of results from a list operation. Filters can be used to match a set of resources by specific criteria, such as tags, attributes, or IDs.</p>",
       "refs": {
-        "FilterList$member": null
+        "FilterList$member": null,
+        "ListImageScanFindingAggregationsRequest$filter": null
       }
     },
     "FilterList": {
@@ -746,13 +812,15 @@
     "FilterName": {
       "base": null,
       "refs": {
-        "Filter$name": "<p>The name of the filter. Filter names are case-sensitive.</p>"
+        "Filter$name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
+        "ImageScanFindingsFilter$name": "<p>The name of the image scan finding filter. Filter names are case-sensitive.</p>"
       }
     },
     "FilterValue": {
       "base": null,
       "refs": {
-        "FilterValues$member": null
+        "FilterValues$member": null,
+        "ImageScanFindingsFilterValues$member": null
       }
     },
     "FilterValues": {
@@ -867,12 +935,32 @@
       }
     },
     "GetInfrastructureConfigurationRequest": {
-      "base": "<p> GetInfrastructureConfiguration request object.</p>",
+      "base": "<p>GetInfrastructureConfiguration request object.</p>",
       "refs": {
       }
     },
     "GetInfrastructureConfigurationResponse": {
       "base": "<p>GetInfrastructureConfiguration response object.</p>",
+      "refs": {
+      }
+    },
+    "GetWorkflowExecutionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkflowExecutionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkflowStepExecutionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkflowStepExecutionResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -899,16 +987,36 @@
         "GetImageResponse$image": "<p>The image object.</p>"
       }
     },
+    "ImageAggregation": {
+      "base": "<p>Contains vulnerability counts for a specific image.</p>",
+      "refs": {
+        "ImageScanFindingAggregation$imageAggregation": "<p>Returns an object that contains severity counts based on the Amazon Resource Name (ARN) for a specific image.</p>"
+      }
+    },
+    "ImageBuildMessage": {
+      "base": null,
+      "refs": {
+        "ListWorkflowExecutionsResponse$message": "<p>The output message from the list action, if applicable.</p>",
+        "ListWorkflowStepExecutionsResponse$message": "<p>The output message from the list action, if applicable.</p>"
+      }
+    },
     "ImageBuildVersionArn": {
       "base": null,
       "refs": {
-        "CancelImageCreationRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image whose creation you want to cancel.</p>",
-        "CancelImageCreationResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image whose creation has been cancelled.</p>",
-        "CreateImageResponse$imageBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the image that was created by this request.</p>",
+        "CancelImageCreationRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that you want to cancel creation for.</p>",
+        "CancelImageCreationResponse$imageBuildVersionArn": "<p>The ARN of the image whose creation this request canceled.</p>",
+        "CreateImageResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that this request created.</p>",
         "DeleteImageRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the Image Builder image resource to delete.</p>",
-        "DeleteImageResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the Image Builder image resource that was deleted.</p>",
+        "DeleteImageResponse$imageBuildVersionArn": "<p>The ARN of the Image Builder image resource that this request deleted.</p>",
         "GetImagePolicyRequest$imageArn": "<p>The Amazon Resource Name (ARN) of the image whose policy you want to retrieve.</p>",
+        "GetWorkflowExecutionResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image resource build version that the specified runtime instance of the workflow created.</p>",
+        "GetWorkflowStepExecutionResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image resource build version that the specified runtime instance of the workflow step creates.</p>",
+        "ImageAggregation$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) that identifies the image for this aggregation.</p>",
+        "ImageScanFinding$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image build version that's associated with the finding.</p>",
         "ListImagePackagesRequest$imageBuildVersionArn": "<p>Filter results for the ListImagePackages request by the Image Build Version ARN</p>",
+        "ListWorkflowExecutionsRequest$imageBuildVersionArn": "<p>List all workflow runtime instances for the specified image build version resource ARN.</p>",
+        "ListWorkflowExecutionsResponse$imageBuildVersionArn": "<p>The resource ARN of the image build version for which you requested a list of workflow runtime details.</p>",
+        "ListWorkflowStepExecutionsResponse$imageBuildVersionArn": "<p>The image build version resource ARN that's associated with the specified runtime instance of the workflow.</p>",
         "PutImagePolicyRequest$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy should be applied to.</p>",
         "PutImagePolicyResponse$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy was applied to.</p>",
         "StartImagePipelineExecutionResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that was created by this request.</p>"
@@ -956,13 +1064,21 @@
         "ImagePipelineList$member": null
       }
     },
+    "ImagePipelineAggregation": {
+      "base": "<p>Contains vulnerability counts for a specific image pipeline.</p>",
+      "refs": {
+        "ImageScanFindingAggregation$imagePipelineAggregation": "<p>Returns an object that contains severity counts based on an image pipeline ARN.</p>"
+      }
+    },
     "ImagePipelineArn": {
       "base": null,
       "refs": {
-        "CreateImagePipelineResponse$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that was created by this request.</p>",
+        "CreateImagePipelineResponse$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that was created by this request.</p>",
         "DeleteImagePipelineRequest$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline to delete.</p>",
         "DeleteImagePipelineResponse$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that was deleted.</p>",
         "GetImagePipelineRequest$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that you want to retrieve.</p>",
+        "ImagePipelineAggregation$imagePipelineArn": "<p>The Amazon Resource Name (ARN) that identifies the image pipeline for this aggregation.</p>",
+        "ImageScanFinding$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that's associated with the finding.</p>",
         "ListImagePipelineImagesRequest$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline whose images you want to view.</p>",
         "StartImagePipelineExecutionRequest$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that you want to manually invoke.</p>",
         "UpdateImagePipelineRequest$imagePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that you want to update.</p>",
@@ -985,9 +1101,9 @@
     "ImageRecipeArn": {
       "base": null,
       "refs": {
-        "CreateImagePipelineRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that will be used to configure images created by this image pipeline.</p>",
+        "CreateImagePipelineRequest$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe that will be used to configure images created by this image pipeline.</p>",
         "CreateImageRecipeResponse$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe that was created by this request.</p>",
-        "CreateImageRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.</p>",
+        "CreateImageRequest$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.</p>",
         "DeleteImageRecipeRequest$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe to delete.</p>",
         "DeleteImageRecipeResponse$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe that was deleted.</p>",
         "GetImageRecipePolicyRequest$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe whose policy you want to retrieve.</p>",
@@ -1009,6 +1125,70 @@
         "ListImageRecipesResponse$imageRecipeSummaryList": "<p>The list of image pipelines.</p>"
       }
     },
+    "ImageScanFinding": {
+      "base": "<p>Contains details about a vulnerability scan finding.</p>",
+      "refs": {
+        "ImageScanFindingsList$member": null
+      }
+    },
+    "ImageScanFindingAggregation": {
+      "base": "<p>This returns exactly one type of aggregation, based on the filter that Image Builder applies in its API action.</p>",
+      "refs": {
+        "ImageScanFindingAggregationsList$member": null
+      }
+    },
+    "ImageScanFindingAggregationsList": {
+      "base": null,
+      "refs": {
+        "ListImageScanFindingAggregationsResponse$responses": "<p>An array of image scan finding aggregations that match the filter criteria.</p>"
+      }
+    },
+    "ImageScanFindingsFilter": {
+      "base": "<p>A name value pair that Image Builder applies to streamline results from the vulnerability scan findings list action.</p>",
+      "refs": {
+        "ImageScanFindingsFilterList$member": null
+      }
+    },
+    "ImageScanFindingsFilterList": {
+      "base": null,
+      "refs": {
+        "ListImageScanFindingsRequest$filters": "<p>An array of name value pairs that you can use to filter your results. You can use the following filters to streamline results:</p> <ul> <li> <p> <code>imageBuildVersionArn</code> </p> </li> <li> <p> <code>imagePipelineArn</code> </p> </li> <li> <p> <code>vulnerabilityId</code> </p> </li> <li> <p> <code>severity</code> </p> </li> </ul> <p>If you don't request a filter, then all findings in your account are listed.</p>"
+      }
+    },
+    "ImageScanFindingsFilterValues": {
+      "base": null,
+      "refs": {
+        "ImageScanFindingsFilter$values": "<p>The filter values. Filter values are case-sensitive.</p>"
+      }
+    },
+    "ImageScanFindingsList": {
+      "base": null,
+      "refs": {
+        "ListImageScanFindingsResponse$findings": "<p>The image scan findings for your account that meet your request filter criteria.</p>"
+      }
+    },
+    "ImageScanState": {
+      "base": "<p>Shows the vulnerability scan status for a specific image, and the reason for that status.</p>",
+      "refs": {
+        "Image$scanState": "<p>Contains information about the current state of scans for this image.</p>"
+      }
+    },
+    "ImageScanStatus": {
+      "base": null,
+      "refs": {
+        "ImageScanState$status": "<p>The current state of vulnerability scans for the image.</p>"
+      }
+    },
+    "ImageScanningConfiguration": {
+      "base": "<p>Contains settings for Image Builder image resource and container image scans.</p>",
+      "refs": {
+        "CreateImagePipelineRequest$imageScanningConfiguration": "<p>Contains settings for vulnerability scans.</p>",
+        "CreateImageRequest$imageScanningConfiguration": "<p>Contains settings for vulnerability scans.</p>",
+        "Image$imageScanningConfiguration": "<p>Contains settings for vulnerability scans.</p>",
+        "ImagePipeline$imageScanningConfiguration": "<p>Contains settings for vulnerability scans.</p>",
+        "UpdateImagePipelineRequest$imageScanningConfiguration": "<p>Contains settings for vulnerability scans.</p>"
+      }
+    },
     "ImageSource": {
       "base": null,
       "refs": {
@@ -1018,7 +1198,7 @@
       }
     },
     "ImageState": {
-      "base": "<p> Image state shows the image status and the reason for that status.</p>",
+      "base": "<p>Image status and the reason for that status.</p>",
       "refs": {
         "Ami$state": null,
         "Image$state": "<p>The state of the image.</p>",
@@ -1047,8 +1227,8 @@
     "ImageTestsConfiguration": {
       "base": "<p>Configure image tests for your pipeline build. Tests run after building the image, to verify that the AMI or container image is valid before distributing it.</p>",
       "refs": {
-        "CreateImagePipelineRequest$imageTestsConfiguration": "<p> The image test configuration of the image pipeline.</p>",
-        "CreateImageRequest$imageTestsConfiguration": "<p> The image tests configuration of the image.</p>",
+        "CreateImagePipelineRequest$imageTestsConfiguration": "<p>The image test configuration of the image pipeline.</p>",
+        "CreateImageRequest$imageTestsConfiguration": "<p>The image tests configuration of the image.</p>",
         "Image$imageTestsConfiguration": "<p>The image tests that ran when that Image Builder created this image.</p>",
         "ImagePipeline$imageTestsConfiguration": "<p>The image tests configuration of the image pipeline.</p>",
         "UpdateImagePipelineRequest$imageTestsConfiguration": "<p>The image test configuration of the image pipeline.</p>"
@@ -1084,7 +1264,7 @@
     "ImageVersionArnOrBuildVersionArn": {
       "base": null,
       "refs": {
-        "GetImageRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that you want to retrieve.</p>"
+        "GetImageRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that you want to get.</p>"
       }
     },
     "ImageVersionList": {
@@ -1123,13 +1303,13 @@
     "InfrastructureConfigurationArn": {
       "base": null,
       "refs": {
-        "CreateImagePipelineRequest$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that will be used to build images created by this image pipeline.</p>",
-        "CreateImageRequest$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that defines the environment in which your image will be built and tested.</p>",
+        "CreateImagePipelineRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that will be used to build images created by this image pipeline.</p>",
+        "CreateImageRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that defines the environment in which your image will be built and tested.</p>",
         "CreateInfrastructureConfigurationResponse$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that was created by this request.</p>",
         "DeleteInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration to delete.</p>",
         "DeleteInfrastructureConfigurationResponse$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that was deleted.</p>",
         "GetInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that you want to retrieve.</p>",
-        "UpdateImagePipelineRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that will be used to build images updated by this image pipeline.</p>",
+        "UpdateImagePipelineRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that Image Builder uses to build images that this image pipeline has updated.</p>",
         "UpdateInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that you want to update.</p>",
         "UpdateInfrastructureConfigurationResponse$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that was updated by this request.</p>"
       }
@@ -1156,6 +1336,12 @@
       "base": null,
       "refs": {
         "CreateContainerRecipeRequest$dockerfileTemplateData": "<p>The Dockerfile template used to build your image as an inline data blob.</p>"
+      }
+    },
+    "InspectorScoreDetails": {
+      "base": "<p>Information about the factors that influenced the score that Amazon Inspector assigned for a finding.</p>",
+      "refs": {
+        "ImageScanFinding$inspectorScoreDetails": "<p>An object that contains details of the Amazon Inspector score.</p>"
       }
     },
     "InstanceBlockDeviceMapping": {
@@ -1232,7 +1418,7 @@
       }
     },
     "InvalidRequestException": {
-      "base": "<p>You have made a request for an action that is not supported by the service.</p>",
+      "base": "<p>You have requested an action that that the service doesn't support.</p>",
       "refs": {
       }
     },
@@ -1244,7 +1430,7 @@
     "LaunchPermissionConfiguration": {
       "base": "<p>Describes the configuration for a launch permission. The launch permission modification request is sent to the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html\">Amazon EC2 ModifyImageAttribute</a> API on behalf of the user for each Region they have selected to distribute the AMI. To make an AMI public, set the launch permission authorized accounts to <code>all</code>. See the examples for making an AMI public at <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html\">Amazon EC2 ModifyImageAttribute</a>.</p>",
       "refs": {
-        "AmiDistributionConfiguration$launchPermission": "<p> Launch permissions can be used to configure which Amazon Web Services accounts can use the AMI to launch instances.</p>"
+        "AmiDistributionConfiguration$launchPermission": "<p>Launch permissions can be used to configure which Amazon Web Services accounts can use the AMI to launch instances.</p>"
       }
     },
     "LaunchTemplateConfiguration": {
@@ -1368,6 +1554,26 @@
       "refs": {
       }
     },
+    "ListImageScanFindingAggregationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImageScanFindingAggregationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImageScanFindingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImageScanFindingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListImagesRequest": {
       "base": null,
       "refs": {
@@ -1398,6 +1604,26 @@
       "refs": {
       }
     },
+    "ListWorkflowExecutionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkflowExecutionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkflowStepExecutionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkflowStepExecutionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Logging": {
       "base": "<p>Logging configuration defines where Image Builder uploads your logs.</p>",
       "refs": {
@@ -1415,6 +1641,7 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "AccountAggregation$accountId": "<p>Identifies the account that owns the aggregated resource findings.</p>",
         "Ami$region": "<p>The Amazon Web Services Region of the Amazon EC2 AMI.</p>",
         "Ami$image": "<p>The AMI ID of the Amazon EC2 AMI.</p>",
         "Ami$name": "<p>The name of the Amazon EC2 AMI.</p>",
@@ -1454,19 +1681,28 @@
         "CreateContainerRecipeRequest$workingDirectory": "<p>The working directory for use during build and test workflows.</p>",
         "CreateContainerRecipeRequest$kmsKeyId": "<p>Identifies which KMS key is used to encrypt the container image.</p>",
         "CreateContainerRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
-        "CreateDistributionConfigurationRequest$description": "<p> The description of the distribution configuration.</p>",
-        "CreateDistributionConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request.</p>",
-        "CreateImagePipelineRequest$description": "<p> The description of the image pipeline.</p>",
-        "CreateImagePipelineResponse$requestId": "<p> The request ID that uniquely identifies this request.</p>",
-        "CreateImageRecipeRequest$description": "<p> The description of the image recipe.</p>",
+        "CreateDistributionConfigurationRequest$description": "<p>The description of the distribution configuration.</p>",
+        "CreateDistributionConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "CreateImagePipelineRequest$description": "<p>The description of the image pipeline.</p>",
+        "CreateImagePipelineResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "CreateImageRecipeRequest$description": "<p>The description of the image recipe.</p>",
         "CreateImageRecipeRequest$parentImage": "<p>The base image of the image recipe. The value of the string can be the ARN of the base image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x</code>. You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder.</p>",
         "CreateImageRecipeRequest$workingDirectory": "<p>The working directory used during build and test workflows.</p>",
         "CreateImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
-        "CreateImageResponse$requestId": "<p> The request ID that uniquely identifies this request.</p>",
+        "CreateImageResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateInfrastructureConfigurationRequest$description": "<p>The description of the infrastructure configuration.</p>",
         "CreateInfrastructureConfigurationRequest$subnetId": "<p>The subnet ID in which to place the instance used to customize your Amazon EC2 AMI.</p>",
         "CreateInfrastructureConfigurationRequest$keyPair": "<p>The key pair of the infrastructure configuration. You can use this to log on to and debug the instance used to create your image.</p>",
         "CreateInfrastructureConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "CvssScore$scoringVector": "<p>The vector string of the CVSS score.</p>",
+        "CvssScore$version": "<p>The CVSS version that generated the score.</p>",
+        "CvssScore$source": "<p>The source of the CVSS score.</p>",
+        "CvssScoreAdjustment$metric": "<p>The metric that Amazon Inspector used to adjust the CVSS score.</p>",
+        "CvssScoreAdjustment$reason": "<p>The reason for the CVSS score adjustment.</p>",
+        "CvssScoreDetails$scoreSource": "<p>The source for the CVSS score.</p>",
+        "CvssScoreDetails$cvssSource": "<p>The source of the finding.</p>",
+        "CvssScoreDetails$version": "<p>The CVSS version that generated the score.</p>",
+        "CvssScoreDetails$scoringVector": "<p>A vector that measures the severity of the vulnerability.</p>",
         "DeleteComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "DeleteContainerRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "DeleteDistributionConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
@@ -1479,6 +1715,7 @@
         "DistributionConfigurationSummary$description": "<p>The description of the distribution configuration.</p>",
         "EbsInstanceBlockDeviceSpecification$kmsKeyId": "<p>Use to configure the KMS key to use when encrypting the device.</p>",
         "EbsInstanceBlockDeviceSpecification$snapshotId": "<p>The snapshot that defines the device contents.</p>",
+        "EcrConfiguration$repositoryName": "<p>The name of the container repository that Amazon Inspector scans to identify findings for your container images. The name includes the path for the repository location. If you don’t provide this information, Image Builder creates a repository in your account named <code>image-builder-image-scanning-repository</code> for vulnerability scans of your output container images.</p>",
         "FastLaunchLaunchTemplateSpecification$launchTemplateName": "<p>The name of the launch template to use for faster launching for a Windows AMI.</p>",
         "FastLaunchLaunchTemplateSpecification$launchTemplateVersion": "<p>The version of the launch template to use for faster launching for a Windows AMI.</p>",
         "GetComponentPolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
@@ -1492,6 +1729,9 @@
         "GetImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "GetImageResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "GetInfrastructureConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "GetWorkflowExecutionResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "GetWorkflowStepExecutionResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "GetWorkflowStepExecutionResponse$onFailure": "<p>The action to perform if the workflow step fails.</p>",
         "ImagePackage$packageName": "<p>The name of the package as reported to the operating system package manager.</p>",
         "ImagePackage$packageVersion": "<p>The version of the package as reported to the operating system package manager.</p>",
         "ImagePipeline$description": "<p>The description of the image pipeline.</p>",
@@ -1501,11 +1741,18 @@
         "ImageRecipe$workingDirectory": "<p>The working directory to be used during build and test workflows.</p>",
         "ImageRecipeSummary$owner": "<p>The owner of the image recipe.</p>",
         "ImageRecipeSummary$parentImage": "<p>The base image of the image recipe.</p>",
-        "ImageState$reason": "<p>The reason for the image's status.</p>",
+        "ImageScanFinding$awsAccountId": "<p>The Amazon Web Services account ID that's associated with the finding.</p>",
+        "ImageScanFinding$type": "<p>The type of the finding. Image Builder looks for findings of the type <code>PACKAGE_VULNERABILITY</code> that apply to output images, and excludes other types.</p>",
+        "ImageScanFinding$description": "<p>The description of the finding.</p>",
+        "ImageScanFinding$title": "<p>The title of the finding.</p>",
+        "ImageScanFinding$severity": "<p>The severity of the finding.</p>",
+        "ImageScanFinding$fixAvailable": "<p>Details about whether a fix is available for any of the packages that are identified in the finding through a version update.</p>",
+        "ImageScanState$reason": "<p>The reason for the scan status for the image.</p>",
+        "ImageState$reason": "<p>The reason for the status of the image.</p>",
         "ImageSummary$owner": "<p>The owner of the image.</p>",
         "ImageVersion$owner": "<p>The owner of the image version.</p>",
         "ImportComponentRequest$description": "<p>The description of the component. Describes the contents of the component.</p>",
-        "ImportComponentRequest$changeDescription": "<p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.</p>",
+        "ImportComponentRequest$changeDescription": "<p>The change description of the component. This description indicates the change that has been made in this version, or what makes this version different from other versions of this component.</p>",
         "ImportComponentRequest$data": "<p>The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>",
         "ImportComponentRequest$kmsKeyId": "<p>The ID of the KMS key that should be used to encrypt this component.</p>",
         "ImportComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
@@ -1523,22 +1770,33 @@
         "InstanceConfiguration$image": "<p>The AMI ID to use as the base image for a container build and test instance. If not specified, Image Builder will use the appropriate ECS-optimized AMI as a base image.</p>",
         "ListComponentBuildVersionsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListComponentsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
-        "ListContainerRecipesRequest$nextToken": "<p>Provides a token for pagination, which determines where to begin the next set of results when the current set reaches the maximum for one request.</p>",
+        "ListContainerRecipesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
         "ListContainerRecipesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
-        "ListContainerRecipesResponse$nextToken": "<p>The next token field is used for paginated responses. When this is not empty, there are additional container recipes that the service has not included in this response. Use this token with the next request to retrieve additional list items.</p>",
+        "ListContainerRecipesResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListDistributionConfigurationsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListImageBuildVersionsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListImagePackagesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListImagePipelineImagesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListImagePipelinesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListImageRecipesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "ListImageScanFindingAggregationsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "ListImageScanFindingAggregationsResponse$aggregationType": "<p>The aggregation type specifies what type of key is used to group the image scan findings. Image Builder returns results based on the request filter. If you didn't specify a filter in the request, the type defaults to <code>accountId</code>.</p> <p class=\"title\"> <b>Aggregation types</b> </p> <ul> <li> <p>accountId</p> </li> <li> <p>imageBuildVersionArn</p> </li> <li> <p>imagePipelineArn</p> </li> <li> <p>vulnerabilityId</p> </li> </ul> <p>Each aggregation includes counts by severity level for medium severity and higher level findings, plus a total for all of the findings for each key value.</p>",
+        "ListImageScanFindingsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListImagesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListInfrastructureConfigurationsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "ListWorkflowExecutionsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "ListWorkflowStepExecutionsResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "NonEmptyStringList$member": null,
+        "PackageVulnerabilityDetails$source": "<p>The source of the vulnerability information.</p>",
+        "PackageVulnerabilityDetails$sourceUrl": "<p>A link to the source of the vulnerability information.</p>",
+        "PackageVulnerabilityDetails$vendorSeverity": "<p>The severity that the vendor assigned to this vulnerability type.</p>",
         "PutComponentPolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "PutContainerRecipePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "PutImagePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "PutImageRecipePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "RegionList$member": null,
+        "RemediationRecommendation$text": "<p>The recommended course of action to remediate the finding.</p>",
+        "RemediationRecommendation$url": "<p>A link to more information about the recommended remediation for this vulnerability.</p>",
         "S3ExportConfiguration$roleName": "<p>The name of the role that grants VM Import/Export permission to export images to your S3 bucket.</p>",
         "S3ExportConfiguration$s3Bucket": "<p>The S3 bucket in which to store the output disk images for your VM.</p>",
         "S3ExportConfiguration$s3Prefix": "<p>The Amazon S3 path for the bucket where the output disk images for your VM are stored.</p>",
@@ -1556,7 +1814,29 @@
         "UpdateInfrastructureConfigurationRequest$description": "<p>The description of the infrastructure configuration.</p>",
         "UpdateInfrastructureConfigurationRequest$subnetId": "<p>The subnet ID to place the instance used to customize your Amazon EC2 AMI in.</p>",
         "UpdateInfrastructureConfigurationRequest$keyPair": "<p>The key pair of the infrastructure configuration. You can use this to log on to and debug the instance used to create your image.</p>",
-        "UpdateInfrastructureConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>"
+        "UpdateInfrastructureConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "VulnerabilityIdAggregation$vulnerabilityId": "<p>The vulnerability Id for this set of counts.</p>",
+        "VulnerablePackage$name": "<p>The name of the vulnerable package.</p>",
+        "VulnerablePackage$version": "<p>The version of the vulnerable package.</p>",
+        "VulnerablePackage$release": "<p>The release of the vulnerable package.</p>",
+        "VulnerablePackage$packageManager": "<p>The package manager of the vulnerable package.</p>",
+        "VulnerablePackage$filePath": "<p>The file path of the vulnerable package.</p>",
+        "VulnerablePackage$fixedInVersion": "<p>The version of the package that contains the vulnerability fix.</p>",
+        "VulnerablePackage$remediation": "<p>The code to run in your environment to update packages with a fix available.</p>"
+      }
+    },
+    "NonEmptyStringList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$referenceUrls": "<p>Links to web pages that contain details about the vulnerabilities that Amazon Inspector identified for the package.</p>"
+      }
+    },
+    "NonNegativeDouble": {
+      "base": null,
+      "refs": {
+        "CvssScore$baseScore": "<p>The CVSS base score.</p>",
+        "CvssScoreDetails$score": "<p>The CVSS score.</p>",
+        "ImageScanFinding$inspectorScore": "<p>The score that Amazon Inspector assigned for the finding.</p>"
       }
     },
     "NullableBoolean": {
@@ -1564,18 +1844,19 @@
       "refs": {
         "Component$encrypted": "<p>The encryption status of the component.</p>",
         "ContainerRecipe$encrypted": "<p>A flag that indicates if the target container is encrypted.</p>",
-        "CreateImagePipelineRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
-        "CreateImageRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
+        "CreateImagePipelineRequest$enhancedImageMetadataEnabled": "<p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
+        "CreateImageRequest$enhancedImageMetadataEnabled": "<p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
         "CreateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>",
         "EbsInstanceBlockDeviceSpecification$encrypted": "<p>Use to configure device encryption.</p>",
         "EbsInstanceBlockDeviceSpecification$deleteOnTermination": "<p>Use to configure delete on termination of the associated device.</p>",
         "Image$enhancedImageMetadataEnabled": "<p>Indicates whether Image Builder collects additional information about the image, such as the operating system (OS) version and package list.</p>",
-        "ImagePipeline$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
+        "ImagePipeline$enhancedImageMetadataEnabled": "<p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
+        "ImageScanningConfiguration$imageScanningEnabled": "<p>A setting that indicates whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the build instance when you create a new image.</p>",
         "ImageTestsConfiguration$imageTestsEnabled": "<p>Determines if tests should run after building the image. Image Builder defaults to enable tests to run following the image build, before image distribution.</p>",
         "InfrastructureConfiguration$terminateInstanceOnFailure": "<p>The terminate instance on failure configuration of the infrastructure configuration.</p>",
         "ListImagesRequest$includeDeprecated": "<p>Includes deprecated images in the response list.</p>",
         "SystemsManagerAgent$uninstallAfterBuild": "<p>Controls whether the Systems Manager agent is removed from your final build image, prior to creating the new AMI. If this is set to true, then the agent is removed from the final image. If it's set to false, then the agent is left in, so that it is included in the new AMI. The default value is false.</p>",
-        "UpdateImagePipelineRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
+        "UpdateImagePipelineRequest$enhancedImageMetadataEnabled": "<p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
         "UpdateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>"
       }
     },
@@ -1619,7 +1900,7 @@
         "Component$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, Image Builder performs a prefix match against the base image OS version during image recipe creation.</p>",
         "ComponentSummary$supportedOsVersions": "<p>The operating system (OS) version that the component supports. If the OS information is available, Image Builder performs a prefix match against the base image OS version during image recipe creation.</p>",
         "ComponentVersion$supportedOsVersions": "<p>he operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>",
-        "CreateComponentRequest$supportedOsVersions": "<p> The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>"
+        "CreateComponentRequest$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>"
       }
     },
     "OutputResources": {
@@ -1638,29 +1919,55 @@
         "ListImagesRequest$owner": "<p>The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers.</p>"
       }
     },
+    "PackageArchitecture": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$arch": "<p>The architecture of the vulnerable package.</p>"
+      }
+    },
+    "PackageEpoch": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$epoch": "<p>The epoch of the vulnerable package.</p>"
+      }
+    },
+    "PackageVulnerabilityDetails": {
+      "base": "<p>Information about package vulnerability findings.</p>",
+      "refs": {
+        "ImageScanFinding$packageVulnerabilityDetails": "<p>An object that contains the details of a package vulnerability finding.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
         "ListComponentBuildVersionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListComponentBuildVersionsResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListComponentBuildVersionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListComponentsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListComponentsResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListComponentsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListDistributionConfigurationsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListDistributionConfigurationsResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListDistributionConfigurationsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListImageBuildVersionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListImageBuildVersionsResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListImageBuildVersionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListImagePackagesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListImagePackagesResponse$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
+        "ListImagePackagesResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListImagePipelineImagesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListImagePipelineImagesResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListImagePipelineImagesResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListImagePipelinesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListImagePipelinesResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListImagePipelinesResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListImageRecipesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListImageRecipesResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListImageRecipesResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListImageScanFindingAggregationsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
+        "ListImageScanFindingAggregationsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListImageScanFindingsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
+        "ListImageScanFindingsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListImagesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListImagesResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListImagesResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListInfrastructureConfigurationsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
-        "ListInfrastructureConfigurationsResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>"
+        "ListInfrastructureConfigurationsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListWorkflowExecutionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
+        "ListWorkflowExecutionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListWorkflowStepExecutionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
+        "ListWorkflowStepExecutionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service has'ot included in this request. Use this token with the next request to retrieve additional objects.</p>"
       }
     },
     "PipelineExecutionStartCondition": {
@@ -1672,7 +1979,7 @@
     "PipelineStatus": {
       "base": null,
       "refs": {
-        "CreateImagePipelineRequest$status": "<p> The status of the image pipeline.</p>",
+        "CreateImagePipelineRequest$status": "<p>The status of the image pipeline.</p>",
         "ImagePipeline$status": "<p>The status of the image pipeline.</p>",
         "UpdateImagePipelineRequest$status": "<p>The status of the image pipeline.</p>"
       }
@@ -1743,6 +2050,18 @@
         "DistributionConfigurationSummary$regions": "<p>A list of Regions where the container image is distributed to.</p>"
       }
     },
+    "Remediation": {
+      "base": "<p>Information about how to remediate a finding.</p>",
+      "refs": {
+        "ImageScanFinding$remediation": "<p>An object that contains the details about how to remediate the finding.</p>"
+      }
+    },
+    "RemediationRecommendation": {
+      "base": "<p>Details about the recommended course of action to remediate the finding.</p>",
+      "refs": {
+        "Remediation$recommendation": "<p>An object that contains information about the recommended course of action to remediate the finding.</p>"
+      }
+    },
     "ResourceAlreadyExistsException": {
       "base": "<p>The resource that you are trying to create already exists.</p>",
       "refs": {
@@ -1768,9 +2087,9 @@
         "ContainerRecipeSummary$name": "<p>The name of the container recipe.</p>",
         "CreateComponentRequest$name": "<p>The name of the component.</p>",
         "CreateContainerRecipeRequest$name": "<p>The name of the container recipe.</p>",
-        "CreateDistributionConfigurationRequest$name": "<p> The name of the distribution configuration.</p>",
-        "CreateImagePipelineRequest$name": "<p> The name of the image pipeline.</p>",
-        "CreateImageRecipeRequest$name": "<p> The name of the image recipe.</p>",
+        "CreateDistributionConfigurationRequest$name": "<p>The name of the distribution configuration.</p>",
+        "CreateImagePipelineRequest$name": "<p>The name of the image pipeline.</p>",
+        "CreateImageRecipeRequest$name": "<p>The name of the image recipe.</p>",
         "CreateInfrastructureConfigurationRequest$name": "<p>The name of the infrastructure configuration.</p>",
         "DistributionConfiguration$name": "<p>The name of the distribution configuration.</p>",
         "DistributionConfigurationSummary$name": "<p>The name of the distribution configuration.</p>",
@@ -1781,7 +2100,7 @@
         "ImageRecipeSummary$name": "<p>The name of the image recipe.</p>",
         "ImageSummary$name": "<p>The name of the image.</p>",
         "ImageVersion$name": "<p>The name of this specific version of an Image Builder image.</p>",
-        "ImportComponentRequest$name": "<p> The name of the component.</p>",
+        "ImportComponentRequest$name": "<p>The name of the component.</p>",
         "InfrastructureConfiguration$name": "<p>The name of the infrastructure configuration.</p>",
         "InfrastructureConfigurationSummary$name": "<p>The name of the infrastructure configuration.</p>"
       }
@@ -1818,15 +2137,18 @@
       "refs": {
         "ListComponentBuildVersionsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListComponentsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
-        "ListContainerRecipesRequest$maxResults": "<p>The maximum number of results to return in the list.</p>",
+        "ListContainerRecipesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListDistributionConfigurationsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListImageBuildVersionsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
-        "ListImagePackagesRequest$maxResults": "<p>The maxiumum number of results to return from the ListImagePackages request.</p>",
+        "ListImagePackagesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListImagePipelineImagesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListImagePipelinesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListImageRecipesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
+        "ListImageScanFindingsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListImagesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
-        "ListInfrastructureConfigurationsRequest$maxResults": "<p>The maximum items to return in a request.</p>"
+        "ListInfrastructureConfigurationsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
+        "ListWorkflowExecutionsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
+        "ListWorkflowStepExecutionsRequest$maxResults": "<p>The maximum items to return in a request.</p>"
       }
     },
     "S3ExportConfiguration": {
@@ -1844,7 +2166,7 @@
     "Schedule": {
       "base": "<p>A schedule configures how often and when a pipeline will automatically create a new image.</p>",
       "refs": {
-        "CreateImagePipelineRequest$schedule": "<p> The schedule of the image pipeline.</p>",
+        "CreateImagePipelineRequest$schedule": "<p>The schedule of the image pipeline.</p>",
         "ImagePipeline$schedule": "<p>The schedule of the image pipeline.</p>",
         "UpdateImagePipelineRequest$schedule": "<p>The schedule of the image pipeline.</p>"
       }
@@ -1872,11 +2194,35 @@
       "refs": {
       }
     },
+    "SeverityCountNumber": {
+      "base": null,
+      "refs": {
+        "SeverityCounts$all": "<p>The total number of findings across all severity levels for the specified filter.</p>",
+        "SeverityCounts$critical": "<p>The number of critical severity findings for the specified filter.</p>",
+        "SeverityCounts$high": "<p>The number of high severity findings for the specified filter.</p>",
+        "SeverityCounts$medium": "<p>The number of medium severity findings for the specified filter.</p>"
+      }
+    },
+    "SeverityCounts": {
+      "base": "<p>Includes counts by severity level for medium severity and higher level findings, plus a total for all of the findings for the specified filter.</p>",
+      "refs": {
+        "AccountAggregation$severityCounts": "<p>Counts by severity level for medium severity and higher level findings, plus a total for all of the findings.</p>",
+        "ImageAggregation$severityCounts": "<p>Counts by severity level for medium severity and higher level findings, plus a total for all of the findings for the specified image.</p>",
+        "ImagePipelineAggregation$severityCounts": "<p>Counts by severity level for medium severity and higher level findings, plus a total for all of the findings for the specified image pipeline.</p>",
+        "VulnerabilityIdAggregation$severityCounts": "<p>Counts by severity level for medium severity and higher level findings, plus a total for all of the findings for the specified vulnerability.</p>"
+      }
+    },
     "SnsTopicArn": {
       "base": null,
       "refs": {
         "CreateInfrastructureConfigurationRequest$snsTopicArn": "<p>The Amazon Resource Name (ARN) for the SNS topic to which we send image build event notifications.</p> <note> <p>EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys from other accounts. The key that is used to encrypt the SNS topic must reside in the account that the Image Builder service runs under.</p> </note>",
         "UpdateInfrastructureConfigurationRequest$snsTopicArn": "<p>The Amazon Resource Name (ARN) for the SNS topic to which we send image build event notifications.</p> <note> <p>EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys from other accounts. The key that is used to encrypt the SNS topic must reside in the account that the Image Builder service runs under.</p> </note>"
+      }
+    },
+    "SourceLayerHash": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$sourceLayerHash": "<p>The source layer hash of the vulnerable package.</p>"
       }
     },
     "StartImagePipelineExecutionRequest": {
@@ -1894,6 +2240,7 @@
       "refs": {
         "Container$imageUris": "<p>A list of URIs for containers created in the context Region.</p>",
         "ContainerDistributionConfiguration$containerTags": "<p>Tags that are attached to the container distribution configuration.</p>",
+        "EcrConfiguration$containerTags": "<p>Tags for Image Builder to apply to the output container image that &amp;INS; scans. Tags can help you identify and manage your scanned images.</p>",
         "LaunchPermissionConfiguration$userGroups": "<p>The name of the group.</p>"
       }
     },
@@ -1927,10 +2274,10 @@
         "ContainerRecipeSummary$tags": "<p>Tags that are attached to the container recipe.</p>",
         "CreateComponentRequest$tags": "<p>The tags that apply to the component.</p>",
         "CreateContainerRecipeRequest$tags": "<p>Tags that are attached to the container recipe.</p>",
-        "CreateDistributionConfigurationRequest$tags": "<p> The tags of the distribution configuration.</p>",
-        "CreateImagePipelineRequest$tags": "<p> The tags of the image pipeline.</p>",
-        "CreateImageRecipeRequest$tags": "<p> The tags of the image recipe.</p>",
-        "CreateImageRequest$tags": "<p> The tags of the image.</p>",
+        "CreateDistributionConfigurationRequest$tags": "<p>The tags of the distribution configuration.</p>",
+        "CreateImagePipelineRequest$tags": "<p>The tags of the image pipeline.</p>",
+        "CreateImageRecipeRequest$tags": "<p>The tags of the image recipe.</p>",
+        "CreateImageRequest$tags": "<p>The tags of the image.</p>",
         "CreateInfrastructureConfigurationRequest$tags": "<p>The tags of the infrastructure configuration.</p>",
         "DistributionConfiguration$tags": "<p>The tags of the distribution configuration.</p>",
         "DistributionConfigurationSummary$tags": "<p>The tags associated with the distribution configuration.</p>",
@@ -2054,6 +2401,185 @@
         "ImageVersion$version": "<p>Details for a specific version of an Image Builder image. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
         "ImportComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
         "ImportVmImageRequest$semanticVersion": "<p>The semantic version to attach to the base image that was created during the import process. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>"
+      }
+    },
+    "VulnerabilityId": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$vulnerabilityId": "<p>A unique identifier for this vulnerability.</p>",
+        "VulnerabilityIdList$member": null
+      }
+    },
+    "VulnerabilityIdAggregation": {
+      "base": "<p>Includes counts of image and pipeline resource findings by vulnerability.</p>",
+      "refs": {
+        "ImageScanFindingAggregation$vulnerabilityIdAggregation": "<p>Returns an object that contains severity counts based on vulnerability ID.</p>"
+      }
+    },
+    "VulnerabilityIdList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$relatedVulnerabilities": "<p>Vulnerabilities that are often related to the findings for the package.</p>"
+      }
+    },
+    "VulnerablePackage": {
+      "base": "<p>Information about a vulnerable package that Amazon Inspector identifies in a finding.</p>",
+      "refs": {
+        "VulnerablePackageList$member": null
+      }
+    },
+    "VulnerablePackageList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$vulnerablePackages": "<p>The packages that this vulnerability impacts.</p>"
+      }
+    },
+    "WorkflowBuildVersionArn": {
+      "base": null,
+      "refs": {
+        "GetWorkflowExecutionResponse$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the build version for the Image Builder workflow resource that defines the specified runtime instance of the workflow.</p>",
+        "GetWorkflowStepExecutionResponse$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the build version for the Image Builder workflow resource that defines this workflow step.</p>",
+        "ListWorkflowStepExecutionsResponse$workflowBuildVersionArn": "<p>The build version ARN for the Image Builder workflow resource that defines the steps for this runtime instance of the workflow.</p>",
+        "WorkflowExecutionMetadata$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the workflow resource build version that ran.</p>"
+      }
+    },
+    "WorkflowExecutionId": {
+      "base": null,
+      "refs": {
+        "GetWorkflowExecutionRequest$workflowExecutionId": "<p>Use the unique identifier for a runtime instance of the workflow to get runtime details.</p>",
+        "GetWorkflowExecutionResponse$workflowExecutionId": "<p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>",
+        "GetWorkflowStepExecutionResponse$workflowExecutionId": "<p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>",
+        "ListWorkflowStepExecutionsRequest$workflowExecutionId": "<p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>",
+        "ListWorkflowStepExecutionsResponse$workflowExecutionId": "<p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>",
+        "WorkflowExecutionMetadata$workflowExecutionId": "<p>Unique identifier that Image Builder assigns to keep track of runtime resources each time it runs a workflow.</p>"
+      }
+    },
+    "WorkflowExecutionMessage": {
+      "base": null,
+      "refs": {
+        "GetWorkflowExecutionResponse$message": "<p>The output message from the specified runtime instance of the workflow, if applicable.</p>",
+        "WorkflowExecutionMetadata$message": "<p>The runtime output message from the workflow, if applicable.</p>"
+      }
+    },
+    "WorkflowExecutionMetadata": {
+      "base": "<p>Metadata that includes details and status from this runtime instance of the workflow.</p>",
+      "refs": {
+        "WorkflowExecutionsList$member": null
+      }
+    },
+    "WorkflowExecutionStatus": {
+      "base": null,
+      "refs": {
+        "GetWorkflowExecutionResponse$status": "<p>The current runtime status for the specified runtime instance of the workflow.</p>",
+        "WorkflowExecutionMetadata$status": "<p>The current runtime status for this workflow.</p>"
+      }
+    },
+    "WorkflowExecutionsList": {
+      "base": null,
+      "refs": {
+        "ListWorkflowExecutionsResponse$workflowExecutions": "<p>Contains an array of runtime details that represents each time a workflow ran for the requested image build version.</p>"
+      }
+    },
+    "WorkflowStepAction": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$action": "<p>The name of the action that the specified step performs.</p>",
+        "WorkflowStepMetadata$action": "<p>The step action name.</p>"
+      }
+    },
+    "WorkflowStepCount": {
+      "base": null,
+      "refs": {
+        "GetWorkflowExecutionResponse$totalStepCount": "<p>The total number of steps in the specified runtime instance of the workflow that ran. This number should equal the sum of the step counts for steps that succeeded, were skipped, and failed.</p>",
+        "GetWorkflowExecutionResponse$totalStepsSucceeded": "<p>A runtime count for the number of steps that ran successfully in the specified runtime instance of the workflow.</p>",
+        "GetWorkflowExecutionResponse$totalStepsFailed": "<p>A runtime count for the number of steps that failed in the specified runtime instance of the workflow.</p>",
+        "GetWorkflowExecutionResponse$totalStepsSkipped": "<p>A runtime count for the number of steps that were skipped in the specified runtime instance of the workflow.</p>",
+        "WorkflowExecutionMetadata$totalStepCount": "<p>The total number of steps in the workflow. This should equal the sum of the step counts for steps that succeeded, were skipped, and failed.</p>",
+        "WorkflowExecutionMetadata$totalStepsSucceeded": "<p>A runtime count for the number of steps in the workflow that ran successfully.</p>",
+        "WorkflowExecutionMetadata$totalStepsFailed": "<p>A runtime count for the number of steps in the workflow that failed.</p>",
+        "WorkflowExecutionMetadata$totalStepsSkipped": "<p>A runtime count for the number of steps in the workflow that were skipped.</p>"
+      }
+    },
+    "WorkflowStepDescription": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$description": "<p>Describes the specified workflow step.</p>",
+        "WorkflowStepMetadata$description": "<p>Description of the workflow step.</p>"
+      }
+    },
+    "WorkflowStepExecutionId": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionRequest$stepExecutionId": "<p>Use the unique identifier for a specific runtime instance of the workflow step to get runtime details for that step.</p>",
+        "GetWorkflowStepExecutionResponse$stepExecutionId": "<p>The unique identifier for the runtime version of the workflow step that you specified in the request.</p>",
+        "WorkflowStepMetadata$stepExecutionId": "<p>A unique identifier for the workflow step, assigned at runtime.</p>"
+      }
+    },
+    "WorkflowStepExecutionRollbackStatus": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$rollbackStatus": "<p>Reports on the rollback status of the specified runtime version of the workflow step, if applicable.</p>",
+        "WorkflowStepMetadata$rollbackStatus": "<p>Reports on the rollback status of the step, if applicable.</p>"
+      }
+    },
+    "WorkflowStepExecutionStatus": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$status": "<p>The current status for the specified runtime version of the workflow step.</p>",
+        "WorkflowStepMetadata$status": "<p>Runtime status for the workflow step.</p>"
+      }
+    },
+    "WorkflowStepExecutionsList": {
+      "base": null,
+      "refs": {
+        "ListWorkflowStepExecutionsResponse$steps": "<p>Contains an array of runtime details that represents each step in this runtime instance of the workflow.</p>"
+      }
+    },
+    "WorkflowStepInputs": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$inputs": "<p>Input parameters that Image Builder provided for the specified runtime instance of the workflow step.</p>",
+        "WorkflowStepMetadata$inputs": "<p>Input parameters that Image Builder provides for the workflow step.</p>"
+      }
+    },
+    "WorkflowStepMessage": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$message": "<p>The output message from the specified runtime instance of the workflow step, if applicable.</p>",
+        "WorkflowStepMetadata$message": "<p>Detailed output message that the workflow step provides at runtime.</p>"
+      }
+    },
+    "WorkflowStepMetadata": {
+      "base": "<p>Runtime details and status for the workflow step.</p>",
+      "refs": {
+        "WorkflowStepExecutionsList$member": null
+      }
+    },
+    "WorkflowStepName": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$name": "<p>The name of the specified runtime instance of the workflow step.</p>",
+        "WorkflowStepMetadata$name": "<p>The name of the workflow step.</p>"
+      }
+    },
+    "WorkflowStepOutputs": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$outputs": "<p>The file names that the specified runtime version of the workflow step created as output.</p>",
+        "WorkflowStepMetadata$outputs": "<p>The file names that the workflow step created as output for this runtime instance of the workflow.</p>"
+      }
+    },
+    "WorkflowStepTimeoutSecondsInteger": {
+      "base": null,
+      "refs": {
+        "GetWorkflowStepExecutionResponse$timeoutSeconds": "<p>The maximum duration in seconds for this step to complete its action.</p>"
+      }
+    },
+    "WorkflowType": {
+      "base": null,
+      "refs": {
+        "GetWorkflowExecutionResponse$type": "<p>The type of workflow that Image Builder ran for the specified runtime instance of the workflow.</p>",
+        "WorkflowExecutionMetadata$type": "<p>Indicates what type of workflow that Image Builder ran for this runtime instance of the workflow.</p>"
       }
     }
   }

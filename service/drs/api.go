@@ -2462,7 +2462,12 @@ const opRetryDataReplication = "RetryDataReplication"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/RetryDataReplication
+//
+// Deprecated: WARNING: RetryDataReplication is deprecated
 func (c *Drs) RetryDataReplicationRequest(input *RetryDataReplicationInput) (req *request.Request, output *RetryDataReplicationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, RetryDataReplication, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opRetryDataReplication,
 		HTTPMethod: "POST",
@@ -2480,10 +2485,11 @@ func (c *Drs) RetryDataReplicationRequest(input *RetryDataReplicationInput) (req
 
 // RetryDataReplication API operation for Elastic Disaster Recovery Service.
 //
-// Causes the data replication initiation sequence to begin immediately upon
-// next Handshake for the specified Source Server ID, regardless of when the
-// previous initiation started. This command will work only if the Source Server
-// is stalled or is in a DISCONNECTED or STOPPED state.
+// WARNING: RetryDataReplication is deprecated. Causes the data replication
+// initiation sequence to begin immediately upon next Handshake for the specified
+// Source Server ID, regardless of when the previous initiation started. This
+// command will work only if the Source Server is stalled or is in a DISCONNECTED
+// or STOPPED state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2511,6 +2517,8 @@ func (c *Drs) RetryDataReplicationRequest(input *RetryDataReplicationInput) (req
 //     The account performing the request has not been initialized.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/RetryDataReplication
+//
+// Deprecated: WARNING: RetryDataReplication is deprecated
 func (c *Drs) RetryDataReplication(input *RetryDataReplicationInput) (*RetryDataReplicationOutput, error) {
 	req, out := c.RetryDataReplicationRequest(input)
 	return out, req.Send()
@@ -2525,6 +2533,8 @@ func (c *Drs) RetryDataReplication(input *RetryDataReplicationInput) (*RetryData
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: WARNING: RetryDataReplication is deprecated
 func (c *Drs) RetryDataReplicationWithContext(ctx aws.Context, input *RetryDataReplicationInput, opts ...request.Option) (*RetryDataReplicationOutput, error) {
 	req, out := c.RetryDataReplicationRequest(input)
 	req.SetContext(ctx)
@@ -4159,6 +4169,10 @@ type CreateReplicationConfigurationTemplateInput struct {
 	// AssociateDefaultSecurityGroup is a required field
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean" required:"true"`
 
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
+
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
 	//
@@ -4319,6 +4333,12 @@ func (s *CreateReplicationConfigurationTemplateInput) SetAssociateDefaultSecurit
 	return s
 }
 
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *CreateReplicationConfigurationTemplateInput) SetAutoReplicateNewDisks(v bool) *CreateReplicationConfigurationTemplateInput {
+	s.AutoReplicateNewDisks = &v
+	return s
+}
+
 // SetBandwidthThrottling sets the BandwidthThrottling field's value.
 func (s *CreateReplicationConfigurationTemplateInput) SetBandwidthThrottling(v int64) *CreateReplicationConfigurationTemplateInput {
 	s.BandwidthThrottling = &v
@@ -4407,6 +4427,10 @@ type CreateReplicationConfigurationTemplateOutput struct {
 	// with the Replication Configuration Template.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
+
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
@@ -4491,6 +4515,12 @@ func (s *CreateReplicationConfigurationTemplateOutput) SetArn(v string) *CreateR
 // SetAssociateDefaultSecurityGroup sets the AssociateDefaultSecurityGroup field's value.
 func (s *CreateReplicationConfigurationTemplateOutput) SetAssociateDefaultSecurityGroup(v bool) *CreateReplicationConfigurationTemplateOutput {
 	s.AssociateDefaultSecurityGroup = &v
+	return s
+}
+
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *CreateReplicationConfigurationTemplateOutput) SetAutoReplicateNewDisks(v bool) *CreateReplicationConfigurationTemplateOutput {
+	s.AutoReplicateNewDisks = &v
 	return s
 }
 
@@ -6635,6 +6665,10 @@ type GetReplicationConfigurationOutput struct {
 	// with the Replication Configuration.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
+
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
@@ -6709,6 +6743,12 @@ func (s GetReplicationConfigurationOutput) GoString() string {
 // SetAssociateDefaultSecurityGroup sets the AssociateDefaultSecurityGroup field's value.
 func (s *GetReplicationConfigurationOutput) SetAssociateDefaultSecurityGroup(v bool) *GetReplicationConfigurationOutput {
 	s.AssociateDefaultSecurityGroup = &v
+	return s
+}
+
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *GetReplicationConfigurationOutput) SetAutoReplicateNewDisks(v bool) *GetReplicationConfigurationOutput {
+	s.AutoReplicateNewDisks = &v
 	return s
 }
 
@@ -8764,6 +8804,10 @@ type ReplicationConfigurationTemplate struct {
 	// with the Replication Configuration Template.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
+
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
@@ -8848,6 +8892,12 @@ func (s *ReplicationConfigurationTemplate) SetArn(v string) *ReplicationConfigur
 // SetAssociateDefaultSecurityGroup sets the AssociateDefaultSecurityGroup field's value.
 func (s *ReplicationConfigurationTemplate) SetAssociateDefaultSecurityGroup(v bool) *ReplicationConfigurationTemplate {
 	s.AssociateDefaultSecurityGroup = &v
+	return s
+}
+
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *ReplicationConfigurationTemplate) SetAutoReplicateNewDisks(v bool) *ReplicationConfigurationTemplate {
+	s.AutoReplicateNewDisks = &v
 	return s
 }
 
@@ -9007,8 +9057,9 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Deprecated: WARNING: RetryDataReplication is deprecated
 type RetryDataReplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The ID of the Source Server whose data replication should be retried.
 	//
@@ -10959,6 +11010,10 @@ type UpdateReplicationConfigurationInput struct {
 	// with the Replication Configuration.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
+
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
@@ -11070,6 +11125,12 @@ func (s *UpdateReplicationConfigurationInput) SetAssociateDefaultSecurityGroup(v
 	return s
 }
 
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *UpdateReplicationConfigurationInput) SetAutoReplicateNewDisks(v bool) *UpdateReplicationConfigurationInput {
+	s.AutoReplicateNewDisks = &v
+	return s
+}
+
 // SetBandwidthThrottling sets the BandwidthThrottling field's value.
 func (s *UpdateReplicationConfigurationInput) SetBandwidthThrottling(v int64) *UpdateReplicationConfigurationInput {
 	s.BandwidthThrottling = &v
@@ -11167,6 +11228,10 @@ type UpdateReplicationConfigurationOutput struct {
 	// with the Replication Configuration.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
+
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
@@ -11241,6 +11306,12 @@ func (s UpdateReplicationConfigurationOutput) GoString() string {
 // SetAssociateDefaultSecurityGroup sets the AssociateDefaultSecurityGroup field's value.
 func (s *UpdateReplicationConfigurationOutput) SetAssociateDefaultSecurityGroup(v bool) *UpdateReplicationConfigurationOutput {
 	s.AssociateDefaultSecurityGroup = &v
+	return s
+}
+
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *UpdateReplicationConfigurationOutput) SetAutoReplicateNewDisks(v bool) *UpdateReplicationConfigurationOutput {
+	s.AutoReplicateNewDisks = &v
 	return s
 }
 
@@ -11343,6 +11414,10 @@ type UpdateReplicationConfigurationTemplateInput struct {
 	// Whether to associate the default Elastic Disaster Recovery Security group
 	// with the Replication Configuration Template.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
+
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
 
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
@@ -11458,6 +11533,12 @@ func (s *UpdateReplicationConfigurationTemplateInput) SetAssociateDefaultSecurit
 	return s
 }
 
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *UpdateReplicationConfigurationTemplateInput) SetAutoReplicateNewDisks(v bool) *UpdateReplicationConfigurationTemplateInput {
+	s.AutoReplicateNewDisks = &v
+	return s
+}
+
 // SetBandwidthThrottling sets the BandwidthThrottling field's value.
 func (s *UpdateReplicationConfigurationTemplateInput) SetBandwidthThrottling(v int64) *UpdateReplicationConfigurationTemplateInput {
 	s.BandwidthThrottling = &v
@@ -11546,6 +11627,10 @@ type UpdateReplicationConfigurationTemplateOutput struct {
 	// with the Replication Configuration Template.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
+	// Whether to allow the AWS replication agent to automatically replicate newly
+	// added disks.
+	AutoReplicateNewDisks *bool `locationName:"autoReplicateNewDisks" type:"boolean"`
+
 	// Configure bandwidth throttling for the outbound data transfer rate of the
 	// Source Server in Mbps.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
@@ -11630,6 +11715,12 @@ func (s *UpdateReplicationConfigurationTemplateOutput) SetArn(v string) *UpdateR
 // SetAssociateDefaultSecurityGroup sets the AssociateDefaultSecurityGroup field's value.
 func (s *UpdateReplicationConfigurationTemplateOutput) SetAssociateDefaultSecurityGroup(v bool) *UpdateReplicationConfigurationTemplateOutput {
 	s.AssociateDefaultSecurityGroup = &v
+	return s
+}
+
+// SetAutoReplicateNewDisks sets the AutoReplicateNewDisks field's value.
+func (s *UpdateReplicationConfigurationTemplateOutput) SetAutoReplicateNewDisks(v bool) *UpdateReplicationConfigurationTemplateOutput {
+	s.AutoReplicateNewDisks = &v
 	return s
 }
 

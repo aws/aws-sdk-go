@@ -1072,7 +1072,8 @@
         "EffectiveRecommendationPreferencesInferredWorkloadTypes",
         "InferredWorkloadTypes",
         "RecommendationOptionsMigrationEffort",
-        "EffectiveRecommendationPreferencesExternalMetricsSource"
+        "EffectiveRecommendationPreferencesExternalMetricsSource",
+        "InstanceState"
       ]
     },
     "ExportableInstanceFields":{
@@ -1144,7 +1145,8 @@
         "CurrentPerformanceRisk",
         "RecommendationOptionsSavingsOpportunityPercentage",
         "RecommendationOptionsEstimatedMonthlySavingsCurrency",
-        "RecommendationOptionsEstimatedMonthlySavingsValue"
+        "RecommendationOptionsEstimatedMonthlySavingsValue",
+        "RootVolume"
       ]
     },
     "ExportableVolumeFields":{
@@ -1492,7 +1494,8 @@
         "lastRefreshTimestamp":{"shape":"LastRefreshTimestamp"},
         "currentPerformanceRisk":{"shape":"CurrentPerformanceRisk"},
         "effectiveRecommendationPreferences":{"shape":"EffectiveRecommendationPreferences"},
-        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypes"}
+        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypes"},
+        "instanceState":{"shape":"InstanceState"}
       }
     },
     "InstanceRecommendationFindingReasonCode":{
@@ -1535,6 +1538,17 @@
     "InstanceRecommendations":{
       "type":"list",
       "member":{"shape":"InstanceRecommendation"}
+    },
+    "InstanceState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "running",
+        "shutting-down",
+        "terminated",
+        "stopping",
+        "stopped"
+      ]
     },
     "InstanceType":{"type":"string"},
     "InternalServerException":{
@@ -1989,6 +2003,7 @@
         "EcsService"
       ]
     },
+    "RootVolume":{"type":"boolean"},
     "S3Destination":{
       "type":"structure",
       "members":{
@@ -2136,7 +2151,8 @@
         "volumeBaselineIOPS":{"shape":"VolumeBaselineIOPS"},
         "volumeBurstIOPS":{"shape":"VolumeBurstIOPS"},
         "volumeBaselineThroughput":{"shape":"VolumeBaselineThroughput"},
-        "volumeBurstThroughput":{"shape":"VolumeBurstThroughput"}
+        "volumeBurstThroughput":{"shape":"VolumeBurstThroughput"},
+        "rootVolume":{"shape":"RootVolume"}
       }
     },
     "VolumeRecommendation":{

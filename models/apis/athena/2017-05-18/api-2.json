@@ -1073,7 +1073,8 @@
     },
     "CoordinatorDpuSize":{
       "type":"integer",
-      "max":5000,
+      "box":true,
+      "max":1,
       "min":1
     },
     "CreateDataCatalogInput":{
@@ -1258,7 +1259,8 @@
     },
     "DefaultExecutorDpuSize":{
       "type":"integer",
-      "max":5000,
+      "box":true,
+      "max":1,
       "min":1
     },
     "DeleteDataCatalogInput":{

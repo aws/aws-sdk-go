@@ -112,6 +112,36 @@
         "shape": "BatchDeleteDocumentResponse"
       }
     },
+    "BatchDeleteFeaturedResultsSet": {
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InternalServerException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "BatchDeleteFeaturedResultsSetRequest"
+      },
+      "name": "BatchDeleteFeaturedResultsSet",
+      "output": {
+        "shape": "BatchDeleteFeaturedResultsSetResponse"
+      }
+    },
     "BatchGetDocumentStatus": {
       "errors": [
         {
@@ -356,6 +386,42 @@
       "name": "CreateFaq",
       "output": {
         "shape": "CreateFaqResponse"
+      }
+    },
+    "CreateFeaturedResultsSet": {
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "FeaturedResultsConflictException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "InternalServerException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "CreateFeaturedResultsSetRequest"
+      },
+      "name": "CreateFeaturedResultsSet",
+      "output": {
+        "shape": "CreateFeaturedResultsSetResponse"
       }
     },
     "CreateIndex": {
@@ -830,6 +896,36 @@
       "name": "DescribeFaq",
       "output": {
         "shape": "DescribeFaqResponse"
+      }
+    },
+    "DescribeFeaturedResultsSet": {
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InternalServerException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "DescribeFeaturedResultsSetRequest"
+      },
+      "name": "DescribeFeaturedResultsSet",
+      "output": {
+        "shape": "DescribeFeaturedResultsSetResponse"
       }
     },
     "DescribeIndex": {
@@ -1318,6 +1414,36 @@
         "shape": "ListFaqsResponse"
       }
     },
+    "ListFeaturedResultsSets": {
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InternalServerException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "ListFeaturedResultsSetsRequest"
+      },
+      "name": "ListFeaturedResultsSets",
+      "output": {
+        "shape": "ListFeaturedResultsSetsResponse"
+      }
+    },
     "ListGroupsOlderThanOrderingId": {
       "errors": [
         {
@@ -1785,6 +1911,39 @@
         "shape": "UpdateExperienceRequest"
       },
       "name": "UpdateExperience"
+    },
+    "UpdateFeaturedResultsSet": {
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "FeaturedResultsConflictException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InternalServerException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "UpdateFeaturedResultsSetRequest"
+      },
+      "name": "UpdateFeaturedResultsSet",
+      "output": {
+        "shape": "UpdateFeaturedResultsSetResponse"
+      }
     },
     "UpdateIndex": {
       "errors": [
@@ -2262,6 +2421,57 @@
       },
       "type": "list"
     },
+    "BatchDeleteFeaturedResultsSetError": {
+      "members": {
+        "ErrorCode": {
+          "shape": "ErrorCode"
+        },
+        "ErrorMessage": {
+          "shape": "ErrorMessage"
+        },
+        "Id": {
+          "shape": "FeaturedResultsSetId"
+        }
+      },
+      "required": [
+        "Id",
+        "ErrorCode",
+        "ErrorMessage"
+      ],
+      "type": "structure"
+    },
+    "BatchDeleteFeaturedResultsSetErrors": {
+      "member": {
+        "shape": "BatchDeleteFeaturedResultsSetError"
+      },
+      "type": "list"
+    },
+    "BatchDeleteFeaturedResultsSetRequest": {
+      "members": {
+        "FeaturedResultsSetIds": {
+          "shape": "FeaturedResultsSetIdList"
+        },
+        "IndexId": {
+          "shape": "IndexId"
+        }
+      },
+      "required": [
+        "IndexId",
+        "FeaturedResultsSetIds"
+      ],
+      "type": "structure"
+    },
+    "BatchDeleteFeaturedResultsSetResponse": {
+      "members": {
+        "Errors": {
+          "shape": "BatchDeleteFeaturedResultsSetErrors"
+        }
+      },
+      "required": [
+        "Errors"
+      ],
+      "type": "structure"
+    },
     "BatchGetDocumentStatusRequest": {
       "members": {
         "DocumentInfoList": {
@@ -2532,6 +2742,26 @@
         }
       },
       "type": "structure"
+    },
+    "ConflictingItem": {
+      "members": {
+        "QueryText": {
+          "shape": "QueryText"
+        },
+        "SetId": {
+          "shape": "String"
+        },
+        "SetName": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ConflictingItems": {
+      "member": {
+        "shape": "ConflictingItem"
+      },
+      "type": "list"
     },
     "ConfluenceAttachmentConfiguration": {
       "members": {
@@ -3062,6 +3292,47 @@
       "members": {
         "Id": {
           "shape": "FaqId"
+        }
+      },
+      "type": "structure"
+    },
+    "CreateFeaturedResultsSetRequest": {
+      "members": {
+        "ClientToken": {
+          "shape": "ClientTokenName"
+        },
+        "Description": {
+          "shape": "FeaturedResultsSetDescription"
+        },
+        "FeaturedDocuments": {
+          "shape": "FeaturedDocumentList"
+        },
+        "FeaturedResultsSetName": {
+          "shape": "FeaturedResultsSetName"
+        },
+        "IndexId": {
+          "shape": "IndexId"
+        },
+        "QueryTexts": {
+          "shape": "QueryTextList"
+        },
+        "Status": {
+          "shape": "FeaturedResultsSetStatus"
+        },
+        "Tags": {
+          "shape": "TagList"
+        }
+      },
+      "required": [
+        "IndexId",
+        "FeaturedResultsSetName"
+      ],
+      "type": "structure"
+    },
+    "CreateFeaturedResultsSetResponse": {
+      "members": {
+        "FeaturedResultsSet": {
+          "shape": "FeaturedResultsSet"
         }
       },
       "type": "structure"
@@ -3925,6 +4196,53 @@
         },
         "UpdatedAt": {
           "shape": "Timestamp"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeFeaturedResultsSetRequest": {
+      "members": {
+        "FeaturedResultsSetId": {
+          "shape": "FeaturedResultsSetId"
+        },
+        "IndexId": {
+          "shape": "IndexId"
+        }
+      },
+      "required": [
+        "IndexId",
+        "FeaturedResultsSetId"
+      ],
+      "type": "structure"
+    },
+    "DescribeFeaturedResultsSetResponse": {
+      "members": {
+        "CreationTimestamp": {
+          "shape": "Long"
+        },
+        "Description": {
+          "shape": "FeaturedResultsSetDescription"
+        },
+        "FeaturedDocumentsMissing": {
+          "shape": "FeaturedDocumentMissingList"
+        },
+        "FeaturedDocumentsWithMetadata": {
+          "shape": "FeaturedDocumentWithMetadataList"
+        },
+        "FeaturedResultsSetId": {
+          "shape": "FeaturedResultsSetId"
+        },
+        "FeaturedResultsSetName": {
+          "shape": "FeaturedResultsSetName"
+        },
+        "LastUpdatedTimestamp": {
+          "shape": "Long"
+        },
+        "QueryTexts": {
+          "shape": "QueryTextList"
+        },
+        "Status": {
+          "shape": "FeaturedResultsSetStatus"
         }
       },
       "type": "structure"
@@ -4938,6 +5256,192 @@
       },
       "type": "list"
     },
+    "FeaturedDocument": {
+      "members": {
+        "Id": {
+          "shape": "DocumentId"
+        }
+      },
+      "type": "structure"
+    },
+    "FeaturedDocumentList": {
+      "member": {
+        "shape": "FeaturedDocument"
+      },
+      "type": "list"
+    },
+    "FeaturedDocumentMissing": {
+      "members": {
+        "Id": {
+          "shape": "DocumentId"
+        }
+      },
+      "type": "structure"
+    },
+    "FeaturedDocumentMissingList": {
+      "member": {
+        "shape": "FeaturedDocumentMissing"
+      },
+      "type": "list"
+    },
+    "FeaturedDocumentWithMetadata": {
+      "members": {
+        "Id": {
+          "shape": "DocumentId"
+        },
+        "Title": {
+          "shape": "String"
+        },
+        "URI": {
+          "shape": "Url"
+        }
+      },
+      "type": "structure"
+    },
+    "FeaturedDocumentWithMetadataList": {
+      "member": {
+        "shape": "FeaturedDocumentWithMetadata"
+      },
+      "type": "list"
+    },
+    "FeaturedResultsConflictException": {
+      "exception": true,
+      "members": {
+        "ConflictingItems": {
+          "shape": "ConflictingItems"
+        },
+        "Message": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "FeaturedResultsItem": {
+      "members": {
+        "AdditionalAttributes": {
+          "shape": "AdditionalResultAttributeList"
+        },
+        "DocumentAttributes": {
+          "shape": "DocumentAttributeList"
+        },
+        "DocumentExcerpt": {
+          "shape": "TextWithHighlights"
+        },
+        "DocumentId": {
+          "shape": "DocumentId"
+        },
+        "DocumentTitle": {
+          "shape": "TextWithHighlights"
+        },
+        "DocumentURI": {
+          "shape": "Url"
+        },
+        "FeedbackToken": {
+          "shape": "FeedbackToken"
+        },
+        "Id": {
+          "shape": "ResultId"
+        },
+        "Type": {
+          "shape": "QueryResultType"
+        }
+      },
+      "type": "structure"
+    },
+    "FeaturedResultsItemList": {
+      "member": {
+        "shape": "FeaturedResultsItem"
+      },
+      "type": "list"
+    },
+    "FeaturedResultsSet": {
+      "members": {
+        "CreationTimestamp": {
+          "shape": "Long"
+        },
+        "Description": {
+          "shape": "FeaturedResultsSetDescription"
+        },
+        "FeaturedDocuments": {
+          "shape": "FeaturedDocumentList"
+        },
+        "FeaturedResultsSetId": {
+          "shape": "FeaturedResultsSetId"
+        },
+        "FeaturedResultsSetName": {
+          "shape": "FeaturedResultsSetName"
+        },
+        "LastUpdatedTimestamp": {
+          "shape": "Long"
+        },
+        "QueryTexts": {
+          "shape": "QueryTextList"
+        },
+        "Status": {
+          "shape": "FeaturedResultsSetStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "FeaturedResultsSetDescription": {
+      "max": 1000,
+      "min": 0,
+      "pattern": "^\\P{C}*$",
+      "type": "string"
+    },
+    "FeaturedResultsSetId": {
+      "max": 36,
+      "min": 36,
+      "pattern": "^[a-zA-Z-0-9]*",
+      "type": "string"
+    },
+    "FeaturedResultsSetIdList": {
+      "max": 50,
+      "member": {
+        "shape": "FeaturedResultsSetId"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "FeaturedResultsSetName": {
+      "max": 1000,
+      "min": 1,
+      "pattern": "[a-zA-Z0-9][ a-zA-Z0-9_-]*",
+      "type": "string"
+    },
+    "FeaturedResultsSetStatus": {
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ],
+      "type": "string"
+    },
+    "FeaturedResultsSetSummary": {
+      "members": {
+        "CreationTimestamp": {
+          "shape": "Long"
+        },
+        "FeaturedResultsSetId": {
+          "shape": "FeaturedResultsSetId"
+        },
+        "FeaturedResultsSetName": {
+          "shape": "FeaturedResultsSetName"
+        },
+        "LastUpdatedTimestamp": {
+          "shape": "Long"
+        },
+        "Status": {
+          "shape": "FeaturedResultsSetStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "FeaturedResultsSetSummaryItems": {
+      "member": {
+        "shape": "FeaturedResultsSetSummary"
+      },
+      "type": "list"
+    },
     "FeedbackToken": {
       "max": 2048,
       "min": 1,
@@ -5887,6 +6391,34 @@
       },
       "type": "structure"
     },
+    "ListFeaturedResultsSetsRequest": {
+      "members": {
+        "IndexId": {
+          "shape": "IndexId"
+        },
+        "MaxResults": {
+          "shape": "MaxResultsIntegerForListFeaturedResultsSetsRequest"
+        },
+        "NextToken": {
+          "shape": "NextToken"
+        }
+      },
+      "required": [
+        "IndexId"
+      ],
+      "type": "structure"
+    },
+    "ListFeaturedResultsSetsResponse": {
+      "members": {
+        "FeaturedResultsSetSummaryItems": {
+          "shape": "FeaturedResultsSetSummaryItems"
+        },
+        "NextToken": {
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
     "ListGroupsOlderThanOrderingIdRequest": {
       "members": {
         "DataSourceId": {
@@ -6069,6 +6601,11 @@
       "type": "integer"
     },
     "MaxResultsIntegerForListFaqsRequest": {
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "MaxResultsIntegerForListFeaturedResultsSetsRequest": {
       "max": 100,
       "min": 1,
       "type": "integer"
@@ -6510,6 +7047,9 @@
         "FacetResults": {
           "shape": "FacetResultList"
         },
+        "FeaturedResultsItems": {
+          "shape": "FeaturedResultsItemList"
+        },
         "QueryId": {
           "shape": "QueryId"
         },
@@ -6658,6 +7198,14 @@
       "max": 1000,
       "min": 1,
       "type": "string"
+    },
+    "QueryTextList": {
+      "max": 49,
+      "member": {
+        "shape": "QueryText"
+      },
+      "min": 0,
+      "type": "list"
     },
     "QuipConfiguration": {
       "members": {
@@ -8110,6 +8658,44 @@
         "Id",
         "IndexId"
       ],
+      "type": "structure"
+    },
+    "UpdateFeaturedResultsSetRequest": {
+      "members": {
+        "Description": {
+          "shape": "FeaturedResultsSetDescription"
+        },
+        "FeaturedDocuments": {
+          "shape": "FeaturedDocumentList"
+        },
+        "FeaturedResultsSetId": {
+          "shape": "FeaturedResultsSetId"
+        },
+        "FeaturedResultsSetName": {
+          "shape": "FeaturedResultsSetName"
+        },
+        "IndexId": {
+          "shape": "IndexId"
+        },
+        "QueryTexts": {
+          "shape": "QueryTextList"
+        },
+        "Status": {
+          "shape": "FeaturedResultsSetStatus"
+        }
+      },
+      "required": [
+        "IndexId",
+        "FeaturedResultsSetId"
+      ],
+      "type": "structure"
+    },
+    "UpdateFeaturedResultsSetResponse": {
+      "members": {
+        "FeaturedResultsSet": {
+          "shape": "FeaturedResultsSet"
+        }
+      },
       "type": "structure"
     },
     "UpdateIndexRequest": {

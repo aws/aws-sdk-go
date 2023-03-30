@@ -478,10 +478,7 @@
     },
     "ConflictException":{
       "type":"structure",
-      "required":[
-        "Message",
-        "ResourceId"
-      ],
+      "required":["Message"],
       "members":{
         "Message":{"shape":"String"},
         "ResourceId":{"shape":"String"}
@@ -615,6 +612,12 @@
       },
       "union":true
     },
+    "ExecutionRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:(aws[a-z-]*):iam::([0-9]{12}):role/[a-zA-Z0-9+=,.@_/-]+$"
+    },
     "ExportEarthObservationJobInput":{
       "type":"structure",
       "required":[
@@ -624,10 +627,19 @@
       ],
       "members":{
         "Arn":{"shape":"EarthObservationJobArn"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "ClientToken":{
+          "shape":"ExportEarthObservationJobInputClientTokenString",
+          "idempotencyToken":true
+        },
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "ExportSourceImages":{"shape":"Boolean"},
         "OutputConfig":{"shape":"OutputConfigInput"}
       }
+    },
+    "ExportEarthObservationJobInputClientTokenString":{
+      "type":"string",
+      "max":64,
+      "min":36
     },
     "ExportEarthObservationJobOutput":{
       "type":"structure",
@@ -640,8 +652,8 @@
       ],
       "members":{
         "Arn":{"shape":"EarthObservationJobArn"},
-        "CreationTime":{"shape":"Timestamp"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "ExportSourceImages":{"shape":"Boolean"},
         "ExportStatus":{"shape":"EarthObservationJobExportStatus"},
         "OutputConfig":{"shape":"OutputConfigInput"}
@@ -672,8 +684,8 @@
       "type":"structure",
       "required":["S3Uri"],
       "members":{
-        "KmsKeyId":{"shape":"String"},
-        "S3Uri":{"shape":"String"}
+        "KmsKeyId":{"shape":"KmsKey"},
+        "S3Uri":{"shape":"S3Uri"}
       }
     },
     "ExportVectorEnrichmentJobInput":{
@@ -685,9 +697,18 @@
       ],
       "members":{
         "Arn":{"shape":"VectorEnrichmentJobArn"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "ClientToken":{
+          "shape":"ExportVectorEnrichmentJobInputClientTokenString",
+          "idempotencyToken":true
+        },
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "OutputConfig":{"shape":"ExportVectorEnrichmentJobOutputConfig"}
       }
+    },
+    "ExportVectorEnrichmentJobInputClientTokenString":{
+      "type":"string",
+      "max":64,
+      "min":36
     },
     "ExportVectorEnrichmentJobOutput":{
       "type":"structure",
@@ -700,8 +721,8 @@
       ],
       "members":{
         "Arn":{"shape":"VectorEnrichmentJobArn"},
-        "CreationTime":{"shape":"Timestamp"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "ExportStatus":{"shape":"VectorEnrichmentJobExportStatus"},
         "OutputConfig":{"shape":"ExportVectorEnrichmentJobOutputConfig"}
       }
@@ -776,15 +797,15 @@
       ],
       "members":{
         "Arn":{"shape":"String"},
-        "CreationTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
         "DurationInSeconds":{"shape":"Integer"},
         "ErrorDetails":{"shape":"EarthObservationJobErrorDetails"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "ExportErrorDetails":{"shape":"ExportErrorDetails"},
         "ExportStatus":{"shape":"EarthObservationJobExportStatus"},
         "InputConfig":{"shape":"InputConfigOutput"},
         "JobConfig":{"shape":"JobConfigInput"},
-        "KmsKeyId":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKey"},
         "Name":{"shape":"String"},
         "OutputBands":{"shape":"EarthObservationJobOutputBands"},
         "Status":{"shape":"EarthObservationJobStatus"},
@@ -839,6 +860,11 @@
           "shape":"EarthObservationJobArn",
           "location":"querystring",
           "locationName":"Arn"
+        },
+        "ExecutionRoleArn":{
+          "shape":"ExecutionRoleArn",
+          "location":"querystring",
+          "locationName":"ExecutionRoleArn"
         },
         "ImageAssets":{
           "shape":"StringListInput",
@@ -925,15 +951,15 @@
       ],
       "members":{
         "Arn":{"shape":"String"},
-        "CreationTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
         "DurationInSeconds":{"shape":"Integer"},
         "ErrorDetails":{"shape":"VectorEnrichmentJobErrorDetails"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "ExportErrorDetails":{"shape":"VectorEnrichmentJobExportErrorDetails"},
         "ExportStatus":{"shape":"VectorEnrichmentJobExportStatus"},
         "InputConfig":{"shape":"VectorEnrichmentJobInputConfig"},
         "JobConfig":{"shape":"VectorEnrichmentJobConfig"},
-        "KmsKeyId":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKey"},
         "Name":{"shape":"String"},
         "Status":{"shape":"VectorEnrichmentJobStatus"},
         "Tags":{"shape":"Tags"},
@@ -955,7 +981,7 @@
       "type":"structure",
       "members":{
         "DataSourceConfig":{"shape":"EojDataSourceConfigInput"},
-        "PreviousEarthObservationJobArn":{"shape":"String"},
+        "PreviousEarthObservationJobArn":{"shape":"EarthObservationJobArn"},
         "RasterDataCollectionQuery":{"shape":"RasterDataCollectionQueryInput"}
       }
     },
@@ -963,7 +989,7 @@
       "type":"structure",
       "members":{
         "DataSourceConfig":{"shape":"EojDataSourceConfigInput"},
-        "PreviousEarthObservationJobArn":{"shape":"String"},
+        "PreviousEarthObservationJobArn":{"shape":"EarthObservationJobArn"},
         "RasterDataCollectionQuery":{"shape":"RasterDataCollectionQueryOutput"}
       }
     },
@@ -973,10 +999,7 @@
     },
     "InternalServerException":{
       "type":"structure",
-      "required":[
-        "Message",
-        "ResourceId"
-      ],
+      "required":["Message"],
       "members":{
         "Message":{"shape":"String"},
         "ResourceId":{"shape":"String"}
@@ -1018,6 +1041,11 @@
         "ZonalStatisticsConfig":{"shape":"ZonalStatisticsConfigInput"}
       },
       "union":true
+    },
+    "KmsKey":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "LandCoverSegmentationConfigInput":{
       "type":"structure",
@@ -1085,7 +1113,7 @@
       ],
       "members":{
         "Arn":{"shape":"String"},
-        "CreationTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
         "DurationInSeconds":{"shape":"Integer"},
         "Name":{"shape":"String"},
         "OperationType":{"shape":"String"},
@@ -1175,7 +1203,7 @@
       ],
       "members":{
         "Arn":{"shape":"VectorEnrichmentJobArn"},
-        "CreationTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
         "DurationInSeconds":{"shape":"Integer"},
         "Name":{"shape":"String"},
         "Status":{"shape":"VectorEnrichmentJobStatus"},
@@ -1377,7 +1405,7 @@
       "members":{
         "AreaOfInterest":{"shape":"AreaOfInterest"},
         "PropertyFilters":{"shape":"PropertyFilters"},
-        "RasterDataCollectionArn":{"shape":"String"},
+        "RasterDataCollectionArn":{"shape":"DataCollectionArn"},
         "TimeRangeFilter":{"shape":"TimeRangeFilterInput"}
       }
     },
@@ -1391,9 +1419,9 @@
       "members":{
         "AreaOfInterest":{"shape":"AreaOfInterest"},
         "PropertyFilters":{"shape":"PropertyFilters"},
-        "RasterDataCollectionArn":{"shape":"String"},
+        "RasterDataCollectionArn":{"shape":"DataCollectionArn"},
         "RasterDataCollectionName":{"shape":"String"},
-        "TimeRangeFilter":{"shape":"TimeRangeFilterInput"}
+        "TimeRangeFilter":{"shape":"TimeRangeFilterOutput"}
       }
     },
     "RasterDataCollectionQueryWithBandFilterInput":{
@@ -1417,10 +1445,7 @@
     },
     "ResourceNotFoundException":{
       "type":"structure",
-      "required":[
-        "Message",
-        "ResourceId"
-      ],
+      "required":["Message"],
       "members":{
         "Message":{"shape":"String"},
         "ResourceId":{"shape":"String"}
@@ -1449,10 +1474,14 @@
         "S3Uri"
       ],
       "members":{
-        "KmsKeyId":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKey"},
         "MetadataProvider":{"shape":"MetadataProvider"},
-        "S3Uri":{"shape":"String"}
+        "S3Uri":{"shape":"S3Uri"}
       }
+    },
+    "S3Uri":{
+      "type":"string",
+      "pattern":"^s3://([^/]+)/?(.*)$"
     },
     "SearchRasterDataCollectionInput":{
       "type":"structure",
@@ -1477,10 +1506,7 @@
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
-      "required":[
-        "Message",
-        "ResourceId"
-      ],
+      "required":["Message"],
       "members":{
         "Message":{"shape":"String"},
         "ResourceId":{"shape":"String"}
@@ -1514,16 +1540,26 @@
       ],
       "members":{
         "ClientToken":{
-          "shape":"String",
+          "shape":"StartEarthObservationJobInputClientTokenString",
           "idempotencyToken":true
         },
-        "ExecutionRoleArn":{"shape":"String"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "InputConfig":{"shape":"InputConfigInput"},
         "JobConfig":{"shape":"JobConfigInput"},
-        "KmsKeyId":{"shape":"String"},
-        "Name":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKey"},
+        "Name":{"shape":"StartEarthObservationJobInputNameString"},
         "Tags":{"shape":"Tags"}
       }
+    },
+    "StartEarthObservationJobInputClientTokenString":{
+      "type":"string",
+      "max":64,
+      "min":36
+    },
+    "StartEarthObservationJobInputNameString":{
+      "type":"string",
+      "max":200,
+      "min":0
     },
     "StartEarthObservationJobOutput":{
       "type":"structure",
@@ -1537,12 +1573,12 @@
       ],
       "members":{
         "Arn":{"shape":"String"},
-        "CreationTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
         "DurationInSeconds":{"shape":"Integer"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "InputConfig":{"shape":"InputConfigOutput"},
         "JobConfig":{"shape":"JobConfigInput"},
-        "KmsKeyId":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKey"},
         "Name":{"shape":"String"},
         "Status":{"shape":"EarthObservationJobStatus"},
         "Tags":{"shape":"Tags"}
@@ -1558,16 +1594,26 @@
       ],
       "members":{
         "ClientToken":{
-          "shape":"String",
+          "shape":"StartVectorEnrichmentJobInputClientTokenString",
           "idempotencyToken":true
         },
-        "ExecutionRoleArn":{"shape":"String"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "InputConfig":{"shape":"VectorEnrichmentJobInputConfig"},
         "JobConfig":{"shape":"VectorEnrichmentJobConfig"},
-        "KmsKeyId":{"shape":"String"},
-        "Name":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKey"},
+        "Name":{"shape":"StartVectorEnrichmentJobInputNameString"},
         "Tags":{"shape":"Tags"}
       }
+    },
+    "StartVectorEnrichmentJobInputClientTokenString":{
+      "type":"string",
+      "max":64,
+      "min":36
+    },
+    "StartVectorEnrichmentJobInputNameString":{
+      "type":"string",
+      "max":200,
+      "min":0
     },
     "StartVectorEnrichmentJobOutput":{
       "type":"structure",
@@ -1584,12 +1630,12 @@
       ],
       "members":{
         "Arn":{"shape":"VectorEnrichmentJobArn"},
-        "CreationTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"SyntheticTimestamp_date_time"},
         "DurationInSeconds":{"shape":"Integer"},
-        "ExecutionRoleArn":{"shape":"String"},
+        "ExecutionRoleArn":{"shape":"ExecutionRoleArn"},
         "InputConfig":{"shape":"VectorEnrichmentJobInputConfig"},
         "JobConfig":{"shape":"VectorEnrichmentJobConfig"},
-        "KmsKeyId":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKey"},
         "Name":{"shape":"String"},
         "Status":{"shape":"VectorEnrichmentJobStatus"},
         "Tags":{"shape":"Tags"},
@@ -1625,6 +1671,10 @@
       "type":"list",
       "member":{"shape":"String"},
       "min":1
+    },
+    "SyntheticTimestamp_date_time":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
     },
     "TagKeyList":{
       "type":"list",
@@ -1688,10 +1738,7 @@
     },
     "ThrottlingException":{
       "type":"structure",
-      "required":[
-        "Message",
-        "ResourceId"
-      ],
+      "required":["Message"],
       "members":{
         "Message":{"shape":"String"},
         "ResourceId":{"shape":"String"}
@@ -1711,6 +1758,18 @@
       "members":{
         "EndTime":{"shape":"Timestamp"},
         "StartTime":{"shape":"Timestamp"}
+      },
+      "sensitive":true
+    },
+    "TimeRangeFilterOutput":{
+      "type":"structure",
+      "required":[
+        "EndTime",
+        "StartTime"
+      ],
+      "members":{
+        "EndTime":{"shape":"SyntheticTimestamp_date_time"},
+        "StartTime":{"shape":"SyntheticTimestamp_date_time"}
       },
       "sensitive":true
     },
@@ -1756,10 +1815,7 @@
     },
     "ValidationException":{
       "type":"structure",
-      "required":[
-        "Message",
-        "ResourceId"
-      ],
+      "required":["Message"],
       "members":{
         "Message":{"shape":"String"},
         "ResourceId":{"shape":"String"}
@@ -1848,8 +1904,8 @@
       "type":"structure",
       "required":["S3Uri"],
       "members":{
-        "KmsKeyId":{"shape":"String"},
-        "S3Uri":{"shape":"String"}
+        "KmsKeyId":{"shape":"KmsKey"},
+        "S3Uri":{"shape":"S3Uri"}
       }
     },
     "VectorEnrichmentJobStatus":{
@@ -1925,7 +1981,8 @@
       "members":{
         "Statistics":{"shape":"ZonalStatisticsListInput"},
         "TargetBands":{"shape":"StringListInput"},
-        "ZoneS3Path":{"shape":"String"}
+        "ZoneS3Path":{"shape":"S3Uri"},
+        "ZoneS3PathKmsKeyId":{"shape":"KmsKey"}
       }
     },
     "ZonalStatisticsListInput":{

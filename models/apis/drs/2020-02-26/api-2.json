@@ -383,7 +383,9 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"UninitializedAccountException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"WARNING: RetryDataReplication is deprecated"
     },
     "ReverseReplication":{
       "name":"ReverseReplication",
@@ -700,8 +702,8 @@
     },
     "ConversionMap":{
       "type":"map",
-      "key":{"shape":"ebsSnapshot"},
-      "value":{"shape":"ebsSnapshot"}
+      "key":{"shape":"EbsSnapshot"},
+      "value":{"shape":"EbsSnapshot"}
     },
     "ConversionProperties":{
       "type":"structure",
@@ -751,6 +753,7 @@
       ],
       "members":{
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
+        "autoReplicateNewDisks":{"shape":"Boolean"},
         "bandwidthThrottling":{"shape":"PositiveInteger"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
@@ -1113,9 +1116,13 @@
       "max":255,
       "min":0
     },
+    "EbsSnapshot":{
+      "type":"string",
+      "pattern":"^snap-[0-9a-zA-Z]{17}$"
+    },
     "EbsSnapshotsList":{
       "type":"list",
-      "member":{"shape":"ebsSnapshot"}
+      "member":{"shape":"EbsSnapshot"}
     },
     "EbsVolumeID":{
       "type":"string",
@@ -1794,6 +1801,7 @@
       "type":"structure",
       "members":{
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
+        "autoReplicateNewDisks":{"shape":"Boolean"},
         "bandwidthThrottling":{"shape":"PositiveInteger"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
@@ -1869,6 +1877,7 @@
       "members":{
         "arn":{"shape":"ARN"},
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
+        "autoReplicateNewDisks":{"shape":"Boolean"},
         "bandwidthThrottling":{"shape":"PositiveInteger"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
@@ -1933,7 +1942,9 @@
       "required":["sourceServerID"],
       "members":{
         "sourceServerID":{"shape":"SourceServerID"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"WARNING: RetryDataReplication is deprecated"
     },
     "ReverseReplicationRequest":{
       "type":"structure",
@@ -2280,6 +2291,7 @@
       "required":["sourceServerID"],
       "members":{
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
+        "autoReplicateNewDisks":{"shape":"Boolean"},
         "bandwidthThrottling":{"shape":"PositiveInteger"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
@@ -2303,6 +2315,7 @@
       "members":{
         "arn":{"shape":"ARN"},
         "associateDefaultSecurityGroup":{"shape":"Boolean"},
+        "autoReplicateNewDisks":{"shape":"Boolean"},
         "bandwidthThrottling":{"shape":"PositiveInteger"},
         "createPublicIP":{"shape":"Boolean"},
         "dataPlaneRouting":{"shape":"ReplicationConfigurationDataPlaneRouting"},
@@ -2361,10 +2374,6 @@
       "type":"map",
       "key":{"shape":"LargeBoundedString"},
       "value":{"shape":"PositiveInteger"}
-    },
-    "ebsSnapshot":{
-      "type":"string",
-      "pattern":"^snap-[0-9a-zA-Z]{17}$"
     }
   }
 }

@@ -11899,7 +11899,6 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"NameString"},
-        "UpdatedName":{"shape":"NameString"},
         "Description":{"shape":"DescriptionString"},
         "Ruleset":{"shape":"DataQualityRulesetString"}
       }

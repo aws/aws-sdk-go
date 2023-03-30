@@ -112,6 +112,13 @@ type WellArchitectedAPI interface {
 	GetAnswerWithContext(aws.Context, *wellarchitected.GetAnswerInput, ...request.Option) (*wellarchitected.GetAnswerOutput, error)
 	GetAnswerRequest(*wellarchitected.GetAnswerInput) (*request.Request, *wellarchitected.GetAnswerOutput)
 
+	GetConsolidatedReport(*wellarchitected.GetConsolidatedReportInput) (*wellarchitected.GetConsolidatedReportOutput, error)
+	GetConsolidatedReportWithContext(aws.Context, *wellarchitected.GetConsolidatedReportInput, ...request.Option) (*wellarchitected.GetConsolidatedReportOutput, error)
+	GetConsolidatedReportRequest(*wellarchitected.GetConsolidatedReportInput) (*request.Request, *wellarchitected.GetConsolidatedReportOutput)
+
+	GetConsolidatedReportPages(*wellarchitected.GetConsolidatedReportInput, func(*wellarchitected.GetConsolidatedReportOutput, bool) bool) error
+	GetConsolidatedReportPagesWithContext(aws.Context, *wellarchitected.GetConsolidatedReportInput, func(*wellarchitected.GetConsolidatedReportOutput, bool) bool, ...request.Option) error
+
 	GetLens(*wellarchitected.GetLensInput) (*wellarchitected.GetLensOutput, error)
 	GetLensWithContext(aws.Context, *wellarchitected.GetLensInput, ...request.Option) (*wellarchitected.GetLensOutput, error)
 	GetLensRequest(*wellarchitected.GetLensInput) (*request.Request, *wellarchitected.GetLensOutput)

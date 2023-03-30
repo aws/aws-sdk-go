@@ -1795,10 +1795,7 @@
     },
     "DescribeTrafficSourcesRequest":{
       "type":"structure",
-      "required":[
-        "AutoScalingGroupName",
-        "TrafficSourceType"
-      ],
+      "required":["AutoScalingGroupName"],
       "members":{
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
         "TrafficSourceType":{"shape":"XmlStringMaxLen255"},
@@ -3138,7 +3135,8 @@
         "WaitingForInstanceWarmup",
         "Successful",
         "Failed",
-        "Cancelled"
+        "Cancelled",
+        "WaitingForConnectionDraining"
       ]
     },
     "ScalingPolicies":{
@@ -3453,15 +3451,23 @@
     },
     "TrafficSourceIdentifier":{
       "type":"structure",
+      "required":["Identifier"],
       "members":{
-        "Identifier":{"shape":"XmlStringMaxLen511"}
+        "Identifier":{"shape":"XmlStringMaxLen511"},
+        "Type":{"shape":"XmlStringMaxLen511"}
       }
     },
     "TrafficSourceState":{
       "type":"structure",
       "members":{
-        "TrafficSource":{"shape":"XmlStringMaxLen511"},
-        "State":{"shape":"XmlStringMaxLen255"}
+        "TrafficSource":{
+          "shape":"XmlStringMaxLen511",
+          "deprecated":true,
+          "deprecatedMessage":"TrafficSource has been replaced by Identifier"
+        },
+        "State":{"shape":"XmlStringMaxLen255"},
+        "Identifier":{"shape":"XmlStringMaxLen511"},
+        "Type":{"shape":"XmlStringMaxLen511"}
       }
     },
     "TrafficSourceStates":{

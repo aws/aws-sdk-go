@@ -6853,6 +6853,11 @@ func (s *ClusterStateChangeReason) SetMessage(v string) *ClusterStateChangeReaso
 type ClusterStatus struct {
 	_ struct{} `type:"structure"`
 
+	// A list of tuples that provide information about the errors that caused a
+	// cluster termination. This structure may have up to 10 different ErrorDetail
+	// tuples.
+	ErrorDetails []*ErrorDetail `type:"list"`
+
 	// The current state of the cluster.
 	State *string `type:"string" enum:"ClusterState"`
 
@@ -6880,6 +6885,12 @@ func (s ClusterStatus) String() string {
 // value will be replaced with "sensitive".
 func (s ClusterStatus) GoString() string {
 	return s.String()
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *ClusterStatus) SetErrorDetails(v []*ErrorDetail) *ClusterStatus {
+	s.ErrorDetails = v
+	return s
 }
 
 // SetState sets the State field's value.
@@ -9004,6 +9015,58 @@ func (s *Ec2InstanceAttributes) SetRequestedEc2SubnetIds(v []*string) *Ec2Instan
 // SetServiceAccessSecurityGroup sets the ServiceAccessSecurityGroup field's value.
 func (s *Ec2InstanceAttributes) SetServiceAccessSecurityGroup(v string) *Ec2InstanceAttributes {
 	s.ServiceAccessSecurityGroup = &v
+	return s
+}
+
+// A tuple that provides information about an error that caused a cluster to
+// terminate.
+type ErrorDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The name or code that's associated with the error.
+	ErrorCode *string `type:"string"`
+
+	// A list of key value pairs that provide contextual information to explain
+	// why the error may have occured.
+	ErrorData []map[string]*string `type:"list"`
+
+	// A message describing the error that occured.
+	ErrorMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorDetail) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ErrorDetail) SetErrorCode(v string) *ErrorDetail {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorData sets the ErrorData field's value.
+func (s *ErrorDetail) SetErrorData(v []map[string]*string) *ErrorDetail {
+	s.ErrorData = v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ErrorDetail) SetErrorMessage(v string) *ErrorDetail {
+	s.ErrorMessage = &v
 	return s
 }
 

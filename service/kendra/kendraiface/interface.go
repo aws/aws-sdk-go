@@ -72,6 +72,10 @@ type KendraAPI interface {
 	BatchDeleteDocumentWithContext(aws.Context, *kendra.BatchDeleteDocumentInput, ...request.Option) (*kendra.BatchDeleteDocumentOutput, error)
 	BatchDeleteDocumentRequest(*kendra.BatchDeleteDocumentInput) (*request.Request, *kendra.BatchDeleteDocumentOutput)
 
+	BatchDeleteFeaturedResultsSet(*kendra.BatchDeleteFeaturedResultsSetInput) (*kendra.BatchDeleteFeaturedResultsSetOutput, error)
+	BatchDeleteFeaturedResultsSetWithContext(aws.Context, *kendra.BatchDeleteFeaturedResultsSetInput, ...request.Option) (*kendra.BatchDeleteFeaturedResultsSetOutput, error)
+	BatchDeleteFeaturedResultsSetRequest(*kendra.BatchDeleteFeaturedResultsSetInput) (*request.Request, *kendra.BatchDeleteFeaturedResultsSetOutput)
+
 	BatchGetDocumentStatus(*kendra.BatchGetDocumentStatusInput) (*kendra.BatchGetDocumentStatusOutput, error)
 	BatchGetDocumentStatusWithContext(aws.Context, *kendra.BatchGetDocumentStatusInput, ...request.Option) (*kendra.BatchGetDocumentStatusOutput, error)
 	BatchGetDocumentStatusRequest(*kendra.BatchGetDocumentStatusInput) (*request.Request, *kendra.BatchGetDocumentStatusOutput)
@@ -99,6 +103,10 @@ type KendraAPI interface {
 	CreateFaq(*kendra.CreateFaqInput) (*kendra.CreateFaqOutput, error)
 	CreateFaqWithContext(aws.Context, *kendra.CreateFaqInput, ...request.Option) (*kendra.CreateFaqOutput, error)
 	CreateFaqRequest(*kendra.CreateFaqInput) (*request.Request, *kendra.CreateFaqOutput)
+
+	CreateFeaturedResultsSet(*kendra.CreateFeaturedResultsSetInput) (*kendra.CreateFeaturedResultsSetOutput, error)
+	CreateFeaturedResultsSetWithContext(aws.Context, *kendra.CreateFeaturedResultsSetInput, ...request.Option) (*kendra.CreateFeaturedResultsSetOutput, error)
+	CreateFeaturedResultsSetRequest(*kendra.CreateFeaturedResultsSetInput) (*request.Request, *kendra.CreateFeaturedResultsSetOutput)
 
 	CreateIndex(*kendra.CreateIndexInput) (*kendra.CreateIndexOutput, error)
 	CreateIndexWithContext(aws.Context, *kendra.CreateIndexInput, ...request.Option) (*kendra.CreateIndexOutput, error)
@@ -159,6 +167,10 @@ type KendraAPI interface {
 	DescribeFaq(*kendra.DescribeFaqInput) (*kendra.DescribeFaqOutput, error)
 	DescribeFaqWithContext(aws.Context, *kendra.DescribeFaqInput, ...request.Option) (*kendra.DescribeFaqOutput, error)
 	DescribeFaqRequest(*kendra.DescribeFaqInput) (*request.Request, *kendra.DescribeFaqOutput)
+
+	DescribeFeaturedResultsSet(*kendra.DescribeFeaturedResultsSetInput) (*kendra.DescribeFeaturedResultsSetOutput, error)
+	DescribeFeaturedResultsSetWithContext(aws.Context, *kendra.DescribeFeaturedResultsSetInput, ...request.Option) (*kendra.DescribeFeaturedResultsSetOutput, error)
+	DescribeFeaturedResultsSetRequest(*kendra.DescribeFeaturedResultsSetInput) (*request.Request, *kendra.DescribeFeaturedResultsSetOutput)
 
 	DescribeIndex(*kendra.DescribeIndexInput) (*kendra.DescribeIndexOutput, error)
 	DescribeIndexWithContext(aws.Context, *kendra.DescribeIndexInput, ...request.Option) (*kendra.DescribeIndexOutput, error)
@@ -248,6 +260,10 @@ type KendraAPI interface {
 	ListFaqsPages(*kendra.ListFaqsInput, func(*kendra.ListFaqsOutput, bool) bool) error
 	ListFaqsPagesWithContext(aws.Context, *kendra.ListFaqsInput, func(*kendra.ListFaqsOutput, bool) bool, ...request.Option) error
 
+	ListFeaturedResultsSets(*kendra.ListFeaturedResultsSetsInput) (*kendra.ListFeaturedResultsSetsOutput, error)
+	ListFeaturedResultsSetsWithContext(aws.Context, *kendra.ListFeaturedResultsSetsInput, ...request.Option) (*kendra.ListFeaturedResultsSetsOutput, error)
+	ListFeaturedResultsSetsRequest(*kendra.ListFeaturedResultsSetsInput) (*request.Request, *kendra.ListFeaturedResultsSetsOutput)
+
 	ListGroupsOlderThanOrderingId(*kendra.ListGroupsOlderThanOrderingIdInput) (*kendra.ListGroupsOlderThanOrderingIdOutput, error)
 	ListGroupsOlderThanOrderingIdWithContext(aws.Context, *kendra.ListGroupsOlderThanOrderingIdInput, ...request.Option) (*kendra.ListGroupsOlderThanOrderingIdOutput, error)
 	ListGroupsOlderThanOrderingIdRequest(*kendra.ListGroupsOlderThanOrderingIdInput) (*request.Request, *kendra.ListGroupsOlderThanOrderingIdOutput)
@@ -319,6 +335,10 @@ type KendraAPI interface {
 	UpdateExperience(*kendra.UpdateExperienceInput) (*kendra.UpdateExperienceOutput, error)
 	UpdateExperienceWithContext(aws.Context, *kendra.UpdateExperienceInput, ...request.Option) (*kendra.UpdateExperienceOutput, error)
 	UpdateExperienceRequest(*kendra.UpdateExperienceInput) (*request.Request, *kendra.UpdateExperienceOutput)
+
+	UpdateFeaturedResultsSet(*kendra.UpdateFeaturedResultsSetInput) (*kendra.UpdateFeaturedResultsSetOutput, error)
+	UpdateFeaturedResultsSetWithContext(aws.Context, *kendra.UpdateFeaturedResultsSetInput, ...request.Option) (*kendra.UpdateFeaturedResultsSetOutput, error)
+	UpdateFeaturedResultsSetRequest(*kendra.UpdateFeaturedResultsSetInput) (*request.Request, *kendra.UpdateFeaturedResultsSetOutput)
 
 	UpdateIndex(*kendra.UpdateIndexInput) (*kendra.UpdateIndexOutput, error)
 	UpdateIndexWithContext(aws.Context, *kendra.UpdateIndexInput, ...request.Option) (*kendra.UpdateIndexOutput, error)

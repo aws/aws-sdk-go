@@ -569,6 +569,118 @@ func (c *NetworkFirewall) CreateRuleGroupWithContext(ctx aws.Context, input *Cre
 	return out, req.Send()
 }
 
+const opCreateTLSInspectionConfiguration = "CreateTLSInspectionConfiguration"
+
+// CreateTLSInspectionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTLSInspectionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTLSInspectionConfiguration for more information on using the CreateTLSInspectionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTLSInspectionConfigurationRequest method.
+//	req, resp := client.CreateTLSInspectionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/CreateTLSInspectionConfiguration
+func (c *NetworkFirewall) CreateTLSInspectionConfigurationRequest(input *CreateTLSInspectionConfigurationInput) (req *request.Request, output *CreateTLSInspectionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateTLSInspectionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateTLSInspectionConfigurationInput{}
+	}
+
+	output = &CreateTLSInspectionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTLSInspectionConfiguration API operation for AWS Network Firewall.
+//
+// Creates an Network Firewall TLS inspection configuration. A TLS inspection
+// configuration contains the Certificate Manager certificate references that
+// Network Firewall uses to decrypt and re-encrypt inbound traffic.
+//
+// After you create a TLS inspection configuration, you associate it with a
+// firewall policy.
+//
+// To update the settings for a TLS inspection configuration, use UpdateTLSInspectionConfiguration.
+//
+// To manage a TLS inspection configuration's tags, use the standard Amazon
+// Web Services resource tagging operations, ListTagsForResource, TagResource,
+// and UntagResource.
+//
+// To retrieve information about TLS inspection configurations, use ListTLSInspectionConfigurations
+// and DescribeTLSInspectionConfiguration.
+//
+// For more information about TLS inspection configurations, see Decrypting
+// SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+// in the Network Firewall Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Firewall's
+// API operation CreateTLSInspectionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The operation failed because of a problem with your request. Examples include:
+//
+//   - You specified an unsupported parameter name or value.
+//
+//   - You tried to update a property with a value that isn't among the available
+//     types.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource that isn't valid in the context of the request.
+//
+//   - ThrottlingException
+//     Unable to process the request due to throttling limitations.
+//
+//   - InternalServerError
+//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     because of a system problem. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/CreateTLSInspectionConfiguration
+func (c *NetworkFirewall) CreateTLSInspectionConfiguration(input *CreateTLSInspectionConfigurationInput) (*CreateTLSInspectionConfigurationOutput, error) {
+	req, out := c.CreateTLSInspectionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateTLSInspectionConfigurationWithContext is the same as CreateTLSInspectionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTLSInspectionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) CreateTLSInspectionConfigurationWithContext(ctx aws.Context, input *CreateTLSInspectionConfigurationInput, opts ...request.Option) (*CreateTLSInspectionConfigurationOutput, error) {
+	req, out := c.CreateTLSInspectionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFirewall = "DeleteFirewall"
 
 // DeleteFirewallRequest generates a "aws/request.Request" representing the
@@ -988,6 +1100,107 @@ func (c *NetworkFirewall) DeleteRuleGroup(input *DeleteRuleGroupInput) (*DeleteR
 // for more information on using Contexts.
 func (c *NetworkFirewall) DeleteRuleGroupWithContext(ctx aws.Context, input *DeleteRuleGroupInput, opts ...request.Option) (*DeleteRuleGroupOutput, error) {
 	req, out := c.DeleteRuleGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTLSInspectionConfiguration = "DeleteTLSInspectionConfiguration"
+
+// DeleteTLSInspectionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTLSInspectionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTLSInspectionConfiguration for more information on using the DeleteTLSInspectionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTLSInspectionConfigurationRequest method.
+//	req, resp := client.DeleteTLSInspectionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DeleteTLSInspectionConfiguration
+func (c *NetworkFirewall) DeleteTLSInspectionConfigurationRequest(input *DeleteTLSInspectionConfigurationInput) (req *request.Request, output *DeleteTLSInspectionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTLSInspectionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteTLSInspectionConfigurationInput{}
+	}
+
+	output = &DeleteTLSInspectionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteTLSInspectionConfiguration API operation for AWS Network Firewall.
+//
+// Deletes the specified TLSInspectionConfiguration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Firewall's
+// API operation DeleteTLSInspectionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The operation failed because of a problem with your request. Examples include:
+//
+//   - You specified an unsupported parameter name or value.
+//
+//   - You tried to update a property with a value that isn't among the available
+//     types.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource that isn't valid in the context of the request.
+//
+//   - InternalServerError
+//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     because of a system problem. Retry your request.
+//
+//   - ResourceNotFoundException
+//     Unable to locate a resource using the parameters that you provided.
+//
+//   - ThrottlingException
+//     Unable to process the request due to throttling limitations.
+//
+//   - InvalidOperationException
+//     The operation failed because it's not valid. For example, you might have
+//     tried to delete a rule group or firewall policy that's in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DeleteTLSInspectionConfiguration
+func (c *NetworkFirewall) DeleteTLSInspectionConfiguration(input *DeleteTLSInspectionConfigurationInput) (*DeleteTLSInspectionConfigurationOutput, error) {
+	req, out := c.DeleteTLSInspectionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTLSInspectionConfigurationWithContext is the same as DeleteTLSInspectionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTLSInspectionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) DeleteTLSInspectionConfigurationWithContext(ctx aws.Context, input *DeleteTLSInspectionConfigurationInput, opts ...request.Option) (*DeleteTLSInspectionConfigurationOutput, error) {
+	req, out := c.DeleteTLSInspectionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1578,6 +1791,103 @@ func (c *NetworkFirewall) DescribeRuleGroupMetadataWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opDescribeTLSInspectionConfiguration = "DescribeTLSInspectionConfiguration"
+
+// DescribeTLSInspectionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTLSInspectionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTLSInspectionConfiguration for more information on using the DescribeTLSInspectionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTLSInspectionConfigurationRequest method.
+//	req, resp := client.DescribeTLSInspectionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DescribeTLSInspectionConfiguration
+func (c *NetworkFirewall) DescribeTLSInspectionConfigurationRequest(input *DescribeTLSInspectionConfigurationInput) (req *request.Request, output *DescribeTLSInspectionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTLSInspectionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeTLSInspectionConfigurationInput{}
+	}
+
+	output = &DescribeTLSInspectionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTLSInspectionConfiguration API operation for AWS Network Firewall.
+//
+// Returns the data objects for the specified TLS inspection configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Firewall's
+// API operation DescribeTLSInspectionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The operation failed because of a problem with your request. Examples include:
+//
+//   - You specified an unsupported parameter name or value.
+//
+//   - You tried to update a property with a value that isn't among the available
+//     types.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource that isn't valid in the context of the request.
+//
+//   - InternalServerError
+//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     because of a system problem. Retry your request.
+//
+//   - ResourceNotFoundException
+//     Unable to locate a resource using the parameters that you provided.
+//
+//   - ThrottlingException
+//     Unable to process the request due to throttling limitations.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DescribeTLSInspectionConfiguration
+func (c *NetworkFirewall) DescribeTLSInspectionConfiguration(input *DescribeTLSInspectionConfigurationInput) (*DescribeTLSInspectionConfigurationOutput, error) {
+	req, out := c.DescribeTLSInspectionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTLSInspectionConfigurationWithContext is the same as DescribeTLSInspectionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTLSInspectionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) DescribeTLSInspectionConfigurationWithContext(ctx aws.Context, input *DescribeTLSInspectionConfigurationInput, opts ...request.Option) (*DescribeTLSInspectionConfigurationOutput, error) {
+	req, out := c.DescribeTLSInspectionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateSubnets = "DisassociateSubnets"
 
 // DisassociateSubnetsRequest generates a "aws/request.Request" representing the
@@ -2139,6 +2449,159 @@ func (c *NetworkFirewall) ListRuleGroupsPagesWithContext(ctx aws.Context, input 
 
 	for p.Next() {
 		if !fn(p.Page().(*ListRuleGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTLSInspectionConfigurations = "ListTLSInspectionConfigurations"
+
+// ListTLSInspectionConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTLSInspectionConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTLSInspectionConfigurations for more information on using the ListTLSInspectionConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTLSInspectionConfigurationsRequest method.
+//	req, resp := client.ListTLSInspectionConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/ListTLSInspectionConfigurations
+func (c *NetworkFirewall) ListTLSInspectionConfigurationsRequest(input *ListTLSInspectionConfigurationsInput) (req *request.Request, output *ListTLSInspectionConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListTLSInspectionConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTLSInspectionConfigurationsInput{}
+	}
+
+	output = &ListTLSInspectionConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTLSInspectionConfigurations API operation for AWS Network Firewall.
+//
+// Retrieves the metadata for the TLS inspection configurations that you have
+// defined. Depending on your setting for max results and the number of TLS
+// inspection configurations, a single call might not return the full list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Firewall's
+// API operation ListTLSInspectionConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The operation failed because of a problem with your request. Examples include:
+//
+//   - You specified an unsupported parameter name or value.
+//
+//   - You tried to update a property with a value that isn't among the available
+//     types.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource that isn't valid in the context of the request.
+//
+//   - InternalServerError
+//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     because of a system problem. Retry your request.
+//
+//   - ThrottlingException
+//     Unable to process the request due to throttling limitations.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/ListTLSInspectionConfigurations
+func (c *NetworkFirewall) ListTLSInspectionConfigurations(input *ListTLSInspectionConfigurationsInput) (*ListTLSInspectionConfigurationsOutput, error) {
+	req, out := c.ListTLSInspectionConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListTLSInspectionConfigurationsWithContext is the same as ListTLSInspectionConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTLSInspectionConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) ListTLSInspectionConfigurationsWithContext(ctx aws.Context, input *ListTLSInspectionConfigurationsInput, opts ...request.Option) (*ListTLSInspectionConfigurationsOutput, error) {
+	req, out := c.ListTLSInspectionConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTLSInspectionConfigurationsPages iterates over the pages of a ListTLSInspectionConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTLSInspectionConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTLSInspectionConfigurations operation.
+//	pageNum := 0
+//	err := client.ListTLSInspectionConfigurationsPages(params,
+//	    func(page *networkfirewall.ListTLSInspectionConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *NetworkFirewall) ListTLSInspectionConfigurationsPages(input *ListTLSInspectionConfigurationsInput, fn func(*ListTLSInspectionConfigurationsOutput, bool) bool) error {
+	return c.ListTLSInspectionConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTLSInspectionConfigurationsPagesWithContext same as ListTLSInspectionConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) ListTLSInspectionConfigurationsPagesWithContext(ctx aws.Context, input *ListTLSInspectionConfigurationsInput, fn func(*ListTLSInspectionConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTLSInspectionConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTLSInspectionConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTLSInspectionConfigurationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3483,6 +3946,113 @@ func (c *NetworkFirewall) UpdateSubnetChangeProtection(input *UpdateSubnetChange
 // for more information on using Contexts.
 func (c *NetworkFirewall) UpdateSubnetChangeProtectionWithContext(ctx aws.Context, input *UpdateSubnetChangeProtectionInput, opts ...request.Option) (*UpdateSubnetChangeProtectionOutput, error) {
 	req, out := c.UpdateSubnetChangeProtectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateTLSInspectionConfiguration = "UpdateTLSInspectionConfiguration"
+
+// UpdateTLSInspectionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTLSInspectionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTLSInspectionConfiguration for more information on using the UpdateTLSInspectionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTLSInspectionConfigurationRequest method.
+//	req, resp := client.UpdateTLSInspectionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/UpdateTLSInspectionConfiguration
+func (c *NetworkFirewall) UpdateTLSInspectionConfigurationRequest(input *UpdateTLSInspectionConfigurationInput) (req *request.Request, output *UpdateTLSInspectionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTLSInspectionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTLSInspectionConfigurationInput{}
+	}
+
+	output = &UpdateTLSInspectionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTLSInspectionConfiguration API operation for AWS Network Firewall.
+//
+// Updates the TLS inspection configuration settings for the specified TLS inspection
+// configuration. You use a TLS inspection configuration by reference in one
+// or more firewall policies. When you modify a TLS inspection configuration,
+// you modify all firewall policies that use the TLS inspection configuration.
+//
+// To update a TLS inspection configuration, first call DescribeTLSInspectionConfiguration
+// to retrieve the current TLSInspectionConfiguration object, update the object
+// as needed, and then provide the updated object to this call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Firewall's
+// API operation UpdateTLSInspectionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The operation failed because of a problem with your request. Examples include:
+//
+//   - You specified an unsupported parameter name or value.
+//
+//   - You tried to update a property with a value that isn't among the available
+//     types.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource that isn't valid in the context of the request.
+//
+//   - ResourceNotFoundException
+//     Unable to locate a resource using the parameters that you provided.
+//
+//   - ThrottlingException
+//     Unable to process the request due to throttling limitations.
+//
+//   - InternalServerError
+//     Your request is valid, but Network Firewall couldn’t perform the operation
+//     because of a system problem. Retry your request.
+//
+//   - InvalidTokenException
+//     The token you provided is stale or isn't valid for the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/UpdateTLSInspectionConfiguration
+func (c *NetworkFirewall) UpdateTLSInspectionConfiguration(input *UpdateTLSInspectionConfigurationInput) (*UpdateTLSInspectionConfigurationOutput, error) {
+	req, out := c.UpdateTLSInspectionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTLSInspectionConfigurationWithContext is the same as UpdateTLSInspectionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTLSInspectionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) UpdateTLSInspectionConfigurationWithContext(ctx aws.Context, input *UpdateTLSInspectionConfigurationInput, opts ...request.Option) (*UpdateTLSInspectionConfigurationOutput, error) {
+	req, out := c.UpdateTLSInspectionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4848,6 +5418,200 @@ func (s *CreateRuleGroupOutput) SetUpdateToken(v string) *CreateRuleGroupOutput 
 	return s
 }
 
+type CreateTLSInspectionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the TLS inspection configuration.
+	Description *string `type:"string"`
+
+	// A complex type that contains optional Amazon Web Services Key Management
+	// Service (KMS) encryption settings for your Network Firewall resources. Your
+	// data is encrypted by default with an Amazon Web Services owned key that Amazon
+	// Web Services owns and manages for you. You can use either the Amazon Web
+	// Services owned key, or provide your own customer managed key. To learn more
+	// about KMS encryption of your Network Firewall resources, see Encryption at
+	// rest with Amazon Web Services Key Managment Service (https://docs.aws.amazon.com/kms/latest/developerguide/kms-encryption-at-rest.html)
+	// in the Network Firewall Developer Guide.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// The object that defines a TLS inspection configuration. This, along with
+	// TLSInspectionConfigurationResponse, define the TLS inspection configuration.
+	// You can retrieve all objects for a TLS inspection configuration by calling
+	// DescribeTLSInspectionConfiguration.
+	//
+	// Network Firewall uses a TLS inspection configuration to decrypt traffic.
+	// Network Firewall re-encrypts the traffic before sending it to its destination.
+	//
+	// To use a TLS inspection configuration, you add it to a Network Firewall firewall
+	// policy, then you apply the firewall policy to a firewall. Network Firewall
+	// acts as a proxy service to decrypt and inspect inbound traffic. You can reference
+	// a TLS inspection configuration from more than one firewall policy, and you
+	// can use a firewall policy in more than one firewall. For more information
+	// about using TLS inspection configurations, see Decrypting SSL/TLS traffic
+	// with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+	// in the Network Firewall Developer Guide.
+	//
+	// TLSInspectionConfiguration is a required field
+	TLSInspectionConfiguration *TLSInspectionConfiguration `type:"structure" required:"true"`
+
+	// The descriptive name of the TLS inspection configuration. You can't change
+	// the name of a TLS inspection configuration after you create it.
+	//
+	// TLSInspectionConfigurationName is a required field
+	TLSInspectionConfigurationName *string `min:"1" type:"string" required:"true"`
+
+	// The key:value pairs to associate with the resource.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTLSInspectionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTLSInspectionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTLSInspectionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTLSInspectionConfigurationInput"}
+	if s.TLSInspectionConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("TLSInspectionConfiguration"))
+	}
+	if s.TLSInspectionConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TLSInspectionConfigurationName"))
+	}
+	if s.TLSInspectionConfigurationName != nil && len(*s.TLSInspectionConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationName", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TLSInspectionConfiguration != nil {
+		if err := s.TLSInspectionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TLSInspectionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateTLSInspectionConfigurationInput) SetDescription(v string) *CreateTLSInspectionConfigurationInput {
+	s.Description = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *CreateTLSInspectionConfigurationInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *CreateTLSInspectionConfigurationInput {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetTLSInspectionConfiguration sets the TLSInspectionConfiguration field's value.
+func (s *CreateTLSInspectionConfigurationInput) SetTLSInspectionConfiguration(v *TLSInspectionConfiguration) *CreateTLSInspectionConfigurationInput {
+	s.TLSInspectionConfiguration = v
+	return s
+}
+
+// SetTLSInspectionConfigurationName sets the TLSInspectionConfigurationName field's value.
+func (s *CreateTLSInspectionConfigurationInput) SetTLSInspectionConfigurationName(v string) *CreateTLSInspectionConfigurationInput {
+	s.TLSInspectionConfigurationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTLSInspectionConfigurationInput) SetTags(v []*Tag) *CreateTLSInspectionConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateTLSInspectionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The high-level properties of a TLS inspection configuration. This, along
+	// with the TLSInspectionConfiguration, define the TLS inspection configuration.
+	// You can retrieve all objects for a TLS inspection configuration by calling
+	// DescribeTLSInspectionConfiguration.
+	//
+	// TLSInspectionConfigurationResponse is a required field
+	TLSInspectionConfigurationResponse *TLSInspectionConfigurationResponse `type:"structure" required:"true"`
+
+	// A token used for optimistic locking. Network Firewall returns a token to
+	// your requests that access the TLS inspection configuration. The token marks
+	// the state of the TLS inspection configuration resource at the time of the
+	// request.
+	//
+	// To make changes to the TLS inspection configuration, you provide the token
+	// in your request. Network Firewall uses the token to ensure that the TLS inspection
+	// configuration hasn't changed since you last retrieved it. If it has changed,
+	// the operation fails with an InvalidTokenException. If this happens, retrieve
+	// the TLS inspection configuration again to get a current copy of it with a
+	// current token. Reapply your changes as needed, then try the operation again
+	// using the new token.
+	//
+	// UpdateToken is a required field
+	UpdateToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTLSInspectionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTLSInspectionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTLSInspectionConfigurationResponse sets the TLSInspectionConfigurationResponse field's value.
+func (s *CreateTLSInspectionConfigurationOutput) SetTLSInspectionConfigurationResponse(v *TLSInspectionConfigurationResponse) *CreateTLSInspectionConfigurationOutput {
+	s.TLSInspectionConfigurationResponse = v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *CreateTLSInspectionConfigurationOutput) SetUpdateToken(v string) *CreateTLSInspectionConfigurationOutput {
+	s.UpdateToken = &v
+	return s
+}
+
 // An optional, non-standard action to use for stateless packet handling. You
 // can define this in addition to the standard action that you must specify.
 //
@@ -5318,6 +6082,103 @@ func (s DeleteRuleGroupOutput) GoString() string {
 // SetRuleGroupResponse sets the RuleGroupResponse field's value.
 func (s *DeleteRuleGroupOutput) SetRuleGroupResponse(v *RuleGroupResponse) *DeleteRuleGroupOutput {
 	s.RuleGroupResponse = v
+	return s
+}
+
+type DeleteTLSInspectionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the TLS inspection configuration.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	TLSInspectionConfigurationArn *string `min:"1" type:"string"`
+
+	// The descriptive name of the TLS inspection configuration. You can't change
+	// the name of a TLS inspection configuration after you create it.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	TLSInspectionConfigurationName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTLSInspectionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTLSInspectionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTLSInspectionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTLSInspectionConfigurationInput"}
+	if s.TLSInspectionConfigurationArn != nil && len(*s.TLSInspectionConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationArn", 1))
+	}
+	if s.TLSInspectionConfigurationName != nil && len(*s.TLSInspectionConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTLSInspectionConfigurationArn sets the TLSInspectionConfigurationArn field's value.
+func (s *DeleteTLSInspectionConfigurationInput) SetTLSInspectionConfigurationArn(v string) *DeleteTLSInspectionConfigurationInput {
+	s.TLSInspectionConfigurationArn = &v
+	return s
+}
+
+// SetTLSInspectionConfigurationName sets the TLSInspectionConfigurationName field's value.
+func (s *DeleteTLSInspectionConfigurationInput) SetTLSInspectionConfigurationName(v string) *DeleteTLSInspectionConfigurationInput {
+	s.TLSInspectionConfigurationName = &v
+	return s
+}
+
+type DeleteTLSInspectionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The high-level properties of a TLS inspection configuration. This, along
+	// with the TLSInspectionConfiguration, define the TLS inspection configuration.
+	// You can retrieve all objects for a TLS inspection configuration by calling
+	// DescribeTLSInspectionConfiguration.
+	//
+	// TLSInspectionConfigurationResponse is a required field
+	TLSInspectionConfigurationResponse *TLSInspectionConfigurationResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTLSInspectionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTLSInspectionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTLSInspectionConfigurationResponse sets the TLSInspectionConfigurationResponse field's value.
+func (s *DeleteTLSInspectionConfigurationOutput) SetTLSInspectionConfigurationResponse(v *TLSInspectionConfigurationResponse) *DeleteTLSInspectionConfigurationOutput {
+	s.TLSInspectionConfigurationResponse = v
 	return s
 }
 
@@ -6084,6 +6945,149 @@ func (s *DescribeRuleGroupOutput) SetUpdateToken(v string) *DescribeRuleGroupOut
 	return s
 }
 
+type DescribeTLSInspectionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the TLS inspection configuration.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	TLSInspectionConfigurationArn *string `min:"1" type:"string"`
+
+	// The descriptive name of the TLS inspection configuration. You can't change
+	// the name of a TLS inspection configuration after you create it.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	TLSInspectionConfigurationName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTLSInspectionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTLSInspectionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTLSInspectionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTLSInspectionConfigurationInput"}
+	if s.TLSInspectionConfigurationArn != nil && len(*s.TLSInspectionConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationArn", 1))
+	}
+	if s.TLSInspectionConfigurationName != nil && len(*s.TLSInspectionConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTLSInspectionConfigurationArn sets the TLSInspectionConfigurationArn field's value.
+func (s *DescribeTLSInspectionConfigurationInput) SetTLSInspectionConfigurationArn(v string) *DescribeTLSInspectionConfigurationInput {
+	s.TLSInspectionConfigurationArn = &v
+	return s
+}
+
+// SetTLSInspectionConfigurationName sets the TLSInspectionConfigurationName field's value.
+func (s *DescribeTLSInspectionConfigurationInput) SetTLSInspectionConfigurationName(v string) *DescribeTLSInspectionConfigurationInput {
+	s.TLSInspectionConfigurationName = &v
+	return s
+}
+
+type DescribeTLSInspectionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The object that defines a TLS inspection configuration. This, along with
+	// TLSInspectionConfigurationResponse, define the TLS inspection configuration.
+	// You can retrieve all objects for a TLS inspection configuration by calling
+	// DescribeTLSInspectionConfiguration.
+	//
+	// Network Firewall uses a TLS inspection configuration to decrypt traffic.
+	// Network Firewall re-encrypts the traffic before sending it to its destination.
+	//
+	// To use a TLS inspection configuration, you add it to a Network Firewall firewall
+	// policy, then you apply the firewall policy to a firewall. Network Firewall
+	// acts as a proxy service to decrypt and inspect inbound traffic. You can reference
+	// a TLS inspection configuration from more than one firewall policy, and you
+	// can use a firewall policy in more than one firewall. For more information
+	// about using TLS inspection configurations, see Decrypting SSL/TLS traffic
+	// with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+	// in the Network Firewall Developer Guide.
+	TLSInspectionConfiguration *TLSInspectionConfiguration `type:"structure"`
+
+	// The high-level properties of a TLS inspection configuration. This, along
+	// with the TLSInspectionConfiguration, define the TLS inspection configuration.
+	// You can retrieve all objects for a TLS inspection configuration by calling
+	// DescribeTLSInspectionConfiguration.
+	//
+	// TLSInspectionConfigurationResponse is a required field
+	TLSInspectionConfigurationResponse *TLSInspectionConfigurationResponse `type:"structure" required:"true"`
+
+	// A token used for optimistic locking. Network Firewall returns a token to
+	// your requests that access the TLS inspection configuration. The token marks
+	// the state of the TLS inspection configuration resource at the time of the
+	// request.
+	//
+	// To make changes to the TLS inspection configuration, you provide the token
+	// in your request. Network Firewall uses the token to ensure that the TLS inspection
+	// configuration hasn't changed since you last retrieved it. If it has changed,
+	// the operation fails with an InvalidTokenException. If this happens, retrieve
+	// the TLS inspection configuration again to get a current copy of it with a
+	// current token. Reapply your changes as needed, then try the operation again
+	// using the new token.
+	//
+	// UpdateToken is a required field
+	UpdateToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTLSInspectionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTLSInspectionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTLSInspectionConfiguration sets the TLSInspectionConfiguration field's value.
+func (s *DescribeTLSInspectionConfigurationOutput) SetTLSInspectionConfiguration(v *TLSInspectionConfiguration) *DescribeTLSInspectionConfigurationOutput {
+	s.TLSInspectionConfiguration = v
+	return s
+}
+
+// SetTLSInspectionConfigurationResponse sets the TLSInspectionConfigurationResponse field's value.
+func (s *DescribeTLSInspectionConfigurationOutput) SetTLSInspectionConfigurationResponse(v *TLSInspectionConfigurationResponse) *DescribeTLSInspectionConfigurationOutput {
+	s.TLSInspectionConfigurationResponse = v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *DescribeTLSInspectionConfigurationOutput) SetUpdateToken(v string) *DescribeTLSInspectionConfigurationOutput {
+	s.UpdateToken = &v
+	return s
+}
+
 // The value to use in an Amazon CloudWatch custom metric dimension. This is
 // used in the PublishMetrics CustomAction. A CloudWatch custom metric dimension
 // is a name/value pair that's part of the identity of a metric.
@@ -6668,6 +7672,9 @@ type FirewallPolicy struct {
 	// References to the stateless rule groups that are used in the policy. These
 	// define the matching criteria in stateless rules.
 	StatelessRuleGroupReferences []*StatelessRuleGroupReference `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the TLS inspection configuration.
+	TLSInspectionConfigurationArn *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -6696,6 +7703,9 @@ func (s *FirewallPolicy) Validate() error {
 	}
 	if s.StatelessFragmentDefaultActions == nil {
 		invalidParams.Add(request.NewErrParamRequired("StatelessFragmentDefaultActions"))
+	}
+	if s.TLSInspectionConfigurationArn != nil && len(*s.TLSInspectionConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationArn", 1))
 	}
 	if s.StatefulRuleGroupReferences != nil {
 		for i, v := range s.StatefulRuleGroupReferences {
@@ -6773,6 +7783,12 @@ func (s *FirewallPolicy) SetStatelessFragmentDefaultActions(v []*string) *Firewa
 // SetStatelessRuleGroupReferences sets the StatelessRuleGroupReferences field's value.
 func (s *FirewallPolicy) SetStatelessRuleGroupReferences(v []*StatelessRuleGroupReference) *FirewallPolicy {
 	s.StatelessRuleGroupReferences = v
+	return s
+}
+
+// SetTLSInspectionConfigurationArn sets the TLSInspectionConfigurationArn field's value.
+func (s *FirewallPolicy) SetTLSInspectionConfigurationArn(v string) *FirewallPolicy {
+	s.TLSInspectionConfigurationArn = &v
 	return s
 }
 
@@ -7312,17 +8328,18 @@ func (s *IPSetMetadata) SetResolvedCIDRCount(v int64) *IPSetMetadata {
 
 // Configures one or more IP set references for a Suricata-compatible rule group.
 // This is used in CreateRuleGroup or UpdateRuleGroup. An IP set reference is
-// a rule variable that references a resource that you create and manage in
-// another Amazon Web Services service, such as an Amazon VPC prefix list. Network
-// Firewall IP set references enable you to dynamically update the contents
-// of your rules. When you create, update, or delete the IP set you are referencing
-// in your rule, Network Firewall automatically updates the rule's content with
-// the changes. For more information about IP set references in Network Firewall,
+// a rule variable that references resources that you create and manage in another
+// Amazon Web Services service, such as an Amazon VPC prefix list. Network Firewall
+// IP set references enable you to dynamically update the contents of your rules.
+// When you create, update, or delete the resource you are referencing in your
+// rule, Network Firewall automatically updates the rule's content with the
+// changes. For more information about IP set references in Network Firewall,
 // see Using IP set references (https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-ip-set-references)
 // in the Network Firewall Developer Guide.
 //
-// Network Firewall currently supports only Amazon VPC prefix lists (https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html)
-// as IP set references.
+// Network Firewall currently supports Amazon VPC prefix lists (https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html)
+// and resource groups (https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-ip-set-references.html#rule-groups-referencing-resource-groups)
+// in IP set references.
 type IPSetReference struct {
 	_ struct{} `type:"structure"`
 
@@ -8193,6 +9210,115 @@ func (s *ListRuleGroupsOutput) SetNextToken(v string) *ListRuleGroupsOutput {
 // SetRuleGroups sets the RuleGroups field's value.
 func (s *ListRuleGroupsOutput) SetRuleGroups(v []*RuleGroupMetadata) *ListRuleGroupsOutput {
 	s.RuleGroups = v
+	return s
+}
+
+type ListTLSInspectionConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Network Firewall to return for
+	// this request. If more objects are available, in the response, Network Firewall
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Network Firewall returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTLSInspectionConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTLSInspectionConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTLSInspectionConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTLSInspectionConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTLSInspectionConfigurationsInput) SetMaxResults(v int64) *ListTLSInspectionConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTLSInspectionConfigurationsInput) SetNextToken(v string) *ListTLSInspectionConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTLSInspectionConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Network Firewall returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+
+	// The TLS inspection configuration metadata objects that you've defined. Depending
+	// on your setting for max results and the number of TLS inspection configurations,
+	// this might not be the full list.
+	TLSInspectionConfigurations []*TLSInspectionConfigurationMetadata `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTLSInspectionConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTLSInspectionConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTLSInspectionConfigurationsOutput) SetNextToken(v string) *ListTLSInspectionConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTLSInspectionConfigurations sets the TLSInspectionConfigurations field's value.
+func (s *ListTLSInspectionConfigurationsOutput) SetTLSInspectionConfigurations(v []*TLSInspectionConfigurationMetadata) *ListTLSInspectionConfigurationsOutput {
+	s.TLSInspectionConfigurations = v
 	return s
 }
 
@@ -9931,6 +11057,275 @@ func (s *RulesSourceList) SetTargets(v []*string) *RulesSourceList {
 	return s
 }
 
+// Any Certificate Manager Secure Sockets Layer/Transport Layer Security (SSL/TLS)
+// server certificate that's associated with a ServerCertificateConfiguration
+// used in a TLSInspectionConfiguration. You must request or import a SSL/TLS
+// certificate into ACM for each domain Network Firewall needs to decrypt and
+// inspect. Network Firewall uses the SSL/TLS certificates to decrypt specified
+// inbound SSL/TLS traffic going to your firewall. For information about working
+// with certificates in Certificate Manager, see Request a public certificate
+// (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
+// or Importing certificates (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
+// in the Certificate Manager User Guide.
+type ServerCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Certificate Manager SSL/TLS server
+	// certificate.
+	ResourceArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServerCertificate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServerCertificate"}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ServerCertificate) SetResourceArn(v string) *ServerCertificate {
+	s.ResourceArn = &v
+	return s
+}
+
+// Configures the associated Certificate Manager Secure Sockets Layer/Transport
+// Layer Security (SSL/TLS) server certificates and scope settings Network Firewall
+// uses to decrypt traffic in a TLSInspectionConfiguration. For information
+// about working with SSL/TLS certificates for TLS inspection, see Requirements
+// for using SSL/TLS server certficiates with TLS inspection configurations
+// (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html)
+// in the Network Firewall Developer Guide.
+//
+// If a server certificate that's associated with your TLSInspectionConfiguration
+// is revoked, deleted, or expired it can result in client-side TLS errors.
+type ServerCertificateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of a server certificate configuration's scopes.
+	Scopes []*ServerCertificateScope `type:"list"`
+
+	// The list of a server certificate configuration's Certificate Manager SSL/TLS
+	// certificates.
+	ServerCertificates []*ServerCertificate `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServerCertificateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServerCertificateConfiguration"}
+	if s.Scopes != nil {
+		for i, v := range s.Scopes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Scopes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ServerCertificates != nil {
+		for i, v := range s.ServerCertificates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ServerCertificates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScopes sets the Scopes field's value.
+func (s *ServerCertificateConfiguration) SetScopes(v []*ServerCertificateScope) *ServerCertificateConfiguration {
+	s.Scopes = v
+	return s
+}
+
+// SetServerCertificates sets the ServerCertificates field's value.
+func (s *ServerCertificateConfiguration) SetServerCertificates(v []*ServerCertificate) *ServerCertificateConfiguration {
+	s.ServerCertificates = v
+	return s
+}
+
+// Settings that define the Secure Sockets Layer/Transport Layer Security (SSL/TLS)
+// traffic that Network Firewall should decrypt for inspection by the stateful
+// rule engine.
+type ServerCertificateScope struct {
+	_ struct{} `type:"structure"`
+
+	// The destination ports to decrypt for inspection, in Transmission Control
+	// Protocol (TCP) format. If not specified, this matches with any destination
+	// port.
+	//
+	// You can specify individual ports, for example 1994, and you can specify port
+	// ranges, such as 1990:1994.
+	DestinationPorts []*PortRange `type:"list"`
+
+	// The destination IP addresses and address ranges to decrypt for inspection,
+	// in CIDR notation. If not specified, this matches with any destination address.
+	Destinations []*Address `type:"list"`
+
+	// The protocols to decrypt for inspection, specified using each protocol's
+	// assigned internet protocol number (IANA). Network Firewall currently supports
+	// only TCP.
+	Protocols []*int64 `type:"list"`
+
+	// The source ports to decrypt for inspection, in Transmission Control Protocol
+	// (TCP) format. If not specified, this matches with any source port.
+	//
+	// You can specify individual ports, for example 1994, and you can specify port
+	// ranges, such as 1990:1994.
+	SourcePorts []*PortRange `type:"list"`
+
+	// The source IP addresses and address ranges to decrypt for inspection, in
+	// CIDR notation. If not specified, this matches with any source address.
+	Sources []*Address `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificateScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificateScope) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServerCertificateScope) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServerCertificateScope"}
+	if s.DestinationPorts != nil {
+		for i, v := range s.DestinationPorts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DestinationPorts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Destinations != nil {
+		for i, v := range s.Destinations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Destinations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SourcePorts != nil {
+		for i, v := range s.SourcePorts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SourcePorts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationPorts sets the DestinationPorts field's value.
+func (s *ServerCertificateScope) SetDestinationPorts(v []*PortRange) *ServerCertificateScope {
+	s.DestinationPorts = v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *ServerCertificateScope) SetDestinations(v []*Address) *ServerCertificateScope {
+	s.Destinations = v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *ServerCertificateScope) SetProtocols(v []*int64) *ServerCertificateScope {
+	s.Protocols = v
+	return s
+}
+
+// SetSourcePorts sets the SourcePorts field's value.
+func (s *ServerCertificateScope) SetSourcePorts(v []*PortRange) *ServerCertificateScope {
+	s.SourcePorts = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *ServerCertificateScope) SetSources(v []*Address) *ServerCertificateScope {
+	s.Sources = v
+	return s
+}
+
 // High-level information about the managed rule group that your own rule group
 // is copied from. You can use the the metadata to track version updates made
 // to the originating rule group. You can retrieve all objects for a rule group
@@ -10752,6 +12147,246 @@ func (s *TCPFlagField) SetMasks(v []*string) *TCPFlagField {
 	return s
 }
 
+// The object that defines a TLS inspection configuration. This, along with
+// TLSInspectionConfigurationResponse, define the TLS inspection configuration.
+// You can retrieve all objects for a TLS inspection configuration by calling
+// DescribeTLSInspectionConfiguration.
+//
+// Network Firewall uses a TLS inspection configuration to decrypt traffic.
+// Network Firewall re-encrypts the traffic before sending it to its destination.
+//
+// To use a TLS inspection configuration, you add it to a Network Firewall firewall
+// policy, then you apply the firewall policy to a firewall. Network Firewall
+// acts as a proxy service to decrypt and inspect inbound traffic. You can reference
+// a TLS inspection configuration from more than one firewall policy, and you
+// can use a firewall policy in more than one firewall. For more information
+// about using TLS inspection configurations, see Decrypting SSL/TLS traffic
+// with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+// in the Network Firewall Developer Guide.
+type TLSInspectionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the server certificate configurations that are associated with the
+	// TLS configuration.
+	ServerCertificateConfigurations []*ServerCertificateConfiguration `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSInspectionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSInspectionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TLSInspectionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TLSInspectionConfiguration"}
+	if s.ServerCertificateConfigurations != nil {
+		for i, v := range s.ServerCertificateConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ServerCertificateConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServerCertificateConfigurations sets the ServerCertificateConfigurations field's value.
+func (s *TLSInspectionConfiguration) SetServerCertificateConfigurations(v []*ServerCertificateConfiguration) *TLSInspectionConfiguration {
+	s.ServerCertificateConfigurations = v
+	return s
+}
+
+// High-level information about a TLS inspection configuration, returned by
+// ListTLSInspectionConfigurations. You can use the information provided in
+// the metadata to retrieve and manage a TLS configuration.
+type TLSInspectionConfigurationMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the TLS inspection configuration.
+	Arn *string `min:"1" type:"string"`
+
+	// The descriptive name of the TLS inspection configuration. You can't change
+	// the name of a TLS inspection configuration after you create it.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSInspectionConfigurationMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSInspectionConfigurationMetadata) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *TLSInspectionConfigurationMetadata) SetArn(v string) *TLSInspectionConfigurationMetadata {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TLSInspectionConfigurationMetadata) SetName(v string) *TLSInspectionConfigurationMetadata {
+	s.Name = &v
+	return s
+}
+
+// The high-level properties of a TLS inspection configuration. This, along
+// with the TLSInspectionConfiguration, define the TLS inspection configuration.
+// You can retrieve all objects for a TLS inspection configuration by calling
+// DescribeTLSInspectionConfiguration.
+type TLSInspectionConfigurationResponse struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the certificates associated with the TLS inspection configuration.
+	Certificates []*TlsCertificateData `type:"list"`
+
+	// A description of the TLS inspection configuration.
+	Description *string `type:"string"`
+
+	// A complex type that contains the Amazon Web Services KMS encryption configuration
+	// settings for your TLS inspection configuration.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// The last time that the TLS inspection configuration was changed.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The number of firewall policies that use this TLS inspection configuration.
+	NumberOfAssociations *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the TLS inspection configuration.
+	//
+	// TLSInspectionConfigurationArn is a required field
+	TLSInspectionConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the TLS inspection configuration. This ID is returned
+	// in the responses to create and list commands. You provide it to operations
+	// such as update and delete.
+	//
+	// TLSInspectionConfigurationId is a required field
+	TLSInspectionConfigurationId *string `min:"36" type:"string" required:"true"`
+
+	// The descriptive name of the TLS inspection configuration. You can't change
+	// the name of a TLS inspection configuration after you create it.
+	//
+	// TLSInspectionConfigurationName is a required field
+	TLSInspectionConfigurationName *string `min:"1" type:"string" required:"true"`
+
+	// Detailed information about the current status of a TLSInspectionConfiguration.
+	// You can retrieve this for a TLS inspection configuration by calling DescribeTLSInspectionConfiguration
+	// and providing the TLS inspection configuration name and ARN.
+	TLSInspectionConfigurationStatus *string `type:"string" enum:"ResourceStatus"`
+
+	// The key:value pairs to associate with the resource.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSInspectionConfigurationResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSInspectionConfigurationResponse) GoString() string {
+	return s.String()
+}
+
+// SetCertificates sets the Certificates field's value.
+func (s *TLSInspectionConfigurationResponse) SetCertificates(v []*TlsCertificateData) *TLSInspectionConfigurationResponse {
+	s.Certificates = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TLSInspectionConfigurationResponse) SetDescription(v string) *TLSInspectionConfigurationResponse {
+	s.Description = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *TLSInspectionConfigurationResponse) SetEncryptionConfiguration(v *EncryptionConfiguration) *TLSInspectionConfigurationResponse {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *TLSInspectionConfigurationResponse) SetLastModifiedTime(v time.Time) *TLSInspectionConfigurationResponse {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetNumberOfAssociations sets the NumberOfAssociations field's value.
+func (s *TLSInspectionConfigurationResponse) SetNumberOfAssociations(v int64) *TLSInspectionConfigurationResponse {
+	s.NumberOfAssociations = &v
+	return s
+}
+
+// SetTLSInspectionConfigurationArn sets the TLSInspectionConfigurationArn field's value.
+func (s *TLSInspectionConfigurationResponse) SetTLSInspectionConfigurationArn(v string) *TLSInspectionConfigurationResponse {
+	s.TLSInspectionConfigurationArn = &v
+	return s
+}
+
+// SetTLSInspectionConfigurationId sets the TLSInspectionConfigurationId field's value.
+func (s *TLSInspectionConfigurationResponse) SetTLSInspectionConfigurationId(v string) *TLSInspectionConfigurationResponse {
+	s.TLSInspectionConfigurationId = &v
+	return s
+}
+
+// SetTLSInspectionConfigurationName sets the TLSInspectionConfigurationName field's value.
+func (s *TLSInspectionConfigurationResponse) SetTLSInspectionConfigurationName(v string) *TLSInspectionConfigurationResponse {
+	s.TLSInspectionConfigurationName = &v
+	return s
+}
+
+// SetTLSInspectionConfigurationStatus sets the TLSInspectionConfigurationStatus field's value.
+func (s *TLSInspectionConfigurationResponse) SetTLSInspectionConfigurationStatus(v string) *TLSInspectionConfigurationResponse {
+	s.TLSInspectionConfigurationStatus = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TLSInspectionConfigurationResponse) SetTags(v []*Tag) *TLSInspectionConfigurationResponse {
+	s.Tags = v
+	return s
+}
+
 // A key:value pair associated with an Amazon Web Services resource. The key:value
 // pair can be anything you define. Typically, the tag key represents a category
 // (such as "environment") and the tag value represents a specific value within
@@ -10981,6 +12616,66 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains metadata about an Certificate Manager certificate.
+type TlsCertificateData struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the certificate.
+	CertificateArn *string `min:"1" type:"string"`
+
+	// The serial number of the certificate.
+	CertificateSerial *string `type:"string"`
+
+	// The status of the certificate.
+	Status *string `type:"string"`
+
+	// Contains details about the certificate status, including information about
+	// certificate errors.
+	StatusMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TlsCertificateData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TlsCertificateData) GoString() string {
+	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *TlsCertificateData) SetCertificateArn(v string) *TlsCertificateData {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetCertificateSerial sets the CertificateSerial field's value.
+func (s *TlsCertificateData) SetCertificateSerial(v string) *TlsCertificateData {
+	s.CertificateSerial = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TlsCertificateData) SetStatus(v string) *TlsCertificateData {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *TlsCertificateData) SetStatusMessage(v string) *TlsCertificateData {
+	s.StatusMessage = &v
+	return s
 }
 
 // The operation you requested isn't supported by Network Firewall.
@@ -12592,6 +14287,207 @@ func (s *UpdateSubnetChangeProtectionOutput) SetSubnetChangeProtection(v bool) *
 
 // SetUpdateToken sets the UpdateToken field's value.
 func (s *UpdateSubnetChangeProtectionOutput) SetUpdateToken(v string) *UpdateSubnetChangeProtectionOutput {
+	s.UpdateToken = &v
+	return s
+}
+
+type UpdateTLSInspectionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the TLS inspection configuration.
+	Description *string `type:"string"`
+
+	// A complex type that contains the Amazon Web Services KMS encryption configuration
+	// settings for your TLS inspection configuration.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// The object that defines a TLS inspection configuration. This, along with
+	// TLSInspectionConfigurationResponse, define the TLS inspection configuration.
+	// You can retrieve all objects for a TLS inspection configuration by calling
+	// DescribeTLSInspectionConfiguration.
+	//
+	// Network Firewall uses a TLS inspection configuration to decrypt traffic.
+	// Network Firewall re-encrypts the traffic before sending it to its destination.
+	//
+	// To use a TLS inspection configuration, you add it to a Network Firewall firewall
+	// policy, then you apply the firewall policy to a firewall. Network Firewall
+	// acts as a proxy service to decrypt and inspect inbound traffic. You can reference
+	// a TLS inspection configuration from more than one firewall policy, and you
+	// can use a firewall policy in more than one firewall. For more information
+	// about using TLS inspection configurations, see Decrypting SSL/TLS traffic
+	// with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html)
+	// in the Network Firewall Developer Guide.
+	//
+	// TLSInspectionConfiguration is a required field
+	TLSInspectionConfiguration *TLSInspectionConfiguration `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the TLS inspection configuration.
+	TLSInspectionConfigurationArn *string `min:"1" type:"string"`
+
+	// The descriptive name of the TLS inspection configuration. You can't change
+	// the name of a TLS inspection configuration after you create it.
+	TLSInspectionConfigurationName *string `min:"1" type:"string"`
+
+	// A token used for optimistic locking. Network Firewall returns a token to
+	// your requests that access the TLS inspection configuration. The token marks
+	// the state of the TLS inspection configuration resource at the time of the
+	// request.
+	//
+	// To make changes to the TLS inspection configuration, you provide the token
+	// in your request. Network Firewall uses the token to ensure that the TLS inspection
+	// configuration hasn't changed since you last retrieved it. If it has changed,
+	// the operation fails with an InvalidTokenException. If this happens, retrieve
+	// the TLS inspection configuration again to get a current copy of it with a
+	// current token. Reapply your changes as needed, then try the operation again
+	// using the new token.
+	//
+	// UpdateToken is a required field
+	UpdateToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTLSInspectionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTLSInspectionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTLSInspectionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTLSInspectionConfigurationInput"}
+	if s.TLSInspectionConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("TLSInspectionConfiguration"))
+	}
+	if s.TLSInspectionConfigurationArn != nil && len(*s.TLSInspectionConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationArn", 1))
+	}
+	if s.TLSInspectionConfigurationName != nil && len(*s.TLSInspectionConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationName", 1))
+	}
+	if s.UpdateToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateToken"))
+	}
+	if s.UpdateToken != nil && len(*s.UpdateToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UpdateToken", 1))
+	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TLSInspectionConfiguration != nil {
+		if err := s.TLSInspectionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TLSInspectionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateTLSInspectionConfigurationInput) SetDescription(v string) *UpdateTLSInspectionConfigurationInput {
+	s.Description = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *UpdateTLSInspectionConfigurationInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *UpdateTLSInspectionConfigurationInput {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetTLSInspectionConfiguration sets the TLSInspectionConfiguration field's value.
+func (s *UpdateTLSInspectionConfigurationInput) SetTLSInspectionConfiguration(v *TLSInspectionConfiguration) *UpdateTLSInspectionConfigurationInput {
+	s.TLSInspectionConfiguration = v
+	return s
+}
+
+// SetTLSInspectionConfigurationArn sets the TLSInspectionConfigurationArn field's value.
+func (s *UpdateTLSInspectionConfigurationInput) SetTLSInspectionConfigurationArn(v string) *UpdateTLSInspectionConfigurationInput {
+	s.TLSInspectionConfigurationArn = &v
+	return s
+}
+
+// SetTLSInspectionConfigurationName sets the TLSInspectionConfigurationName field's value.
+func (s *UpdateTLSInspectionConfigurationInput) SetTLSInspectionConfigurationName(v string) *UpdateTLSInspectionConfigurationInput {
+	s.TLSInspectionConfigurationName = &v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *UpdateTLSInspectionConfigurationInput) SetUpdateToken(v string) *UpdateTLSInspectionConfigurationInput {
+	s.UpdateToken = &v
+	return s
+}
+
+type UpdateTLSInspectionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The high-level properties of a TLS inspection configuration. This, along
+	// with the TLSInspectionConfiguration, define the TLS inspection configuration.
+	// You can retrieve all objects for a TLS inspection configuration by calling
+	// DescribeTLSInspectionConfiguration.
+	//
+	// TLSInspectionConfigurationResponse is a required field
+	TLSInspectionConfigurationResponse *TLSInspectionConfigurationResponse `type:"structure" required:"true"`
+
+	// A token used for optimistic locking. Network Firewall returns a token to
+	// your requests that access the TLS inspection configuration. The token marks
+	// the state of the TLS inspection configuration resource at the time of the
+	// request.
+	//
+	// To make changes to the TLS inspection configuration, you provide the token
+	// in your request. Network Firewall uses the token to ensure that the TLS inspection
+	// configuration hasn't changed since you last retrieved it. If it has changed,
+	// the operation fails with an InvalidTokenException. If this happens, retrieve
+	// the TLS inspection configuration again to get a current copy of it with a
+	// current token. Reapply your changes as needed, then try the operation again
+	// using the new token.
+	//
+	// UpdateToken is a required field
+	UpdateToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTLSInspectionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTLSInspectionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTLSInspectionConfigurationResponse sets the TLSInspectionConfigurationResponse field's value.
+func (s *UpdateTLSInspectionConfigurationOutput) SetTLSInspectionConfigurationResponse(v *TLSInspectionConfigurationResponse) *UpdateTLSInspectionConfigurationOutput {
+	s.TLSInspectionConfigurationResponse = v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *UpdateTLSInspectionConfigurationOutput) SetUpdateToken(v string) *UpdateTLSInspectionConfigurationOutput {
 	s.UpdateToken = &v
 	return s
 }

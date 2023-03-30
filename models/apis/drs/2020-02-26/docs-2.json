@@ -23,7 +23,7 @@
     "ListExtensibleSourceServers": "<p>Returns a list of source servers on a staging account that are extensible, which means that: a. The source server is not already extended into this Account. b. The source server on the Account we’re reading from is not an extension of another source server. </p>",
     "ListStagingAccounts": "<p>Returns an array of staging accounts for existing extended source servers.</p>",
     "ListTagsForResource": "<p>List all tags for your Elastic Disaster Recovery resources.</p>",
-    "RetryDataReplication": "<p>Causes the data replication initiation sequence to begin immediately upon next Handshake for the specified Source Server ID, regardless of when the previous initiation started. This command will work only if the Source Server is stalled or is in a DISCONNECTED or STOPPED state.</p>",
+    "RetryDataReplication": "<p>WARNING: RetryDataReplication is deprecated. Causes the data replication initiation sequence to begin immediately upon next Handshake for the specified Source Server ID, regardless of when the previous initiation started. This command will work only if the Source Server is stalled or is in a DISCONNECTED or STOPPED state. </p>",
     "ReverseReplication": "<p>Start replication to origin / target region - applies only to protected instances that originated in EC2. For recovery instances on target region - starts replication back to origin region. For failback instances on origin region - starts replication to target region to re-protect them. </p>",
     "StartFailbackLaunch": "<p>Initiates a Job for launching the machine that is being failed back to from the specified Recovery Instance. This will run conversion on the failback client and will reboot your machine, thus completing the failback process.</p>",
     "StartRecovery": "<p>Launches Recovery Instances for the specified Source Servers. For each Source Server you may choose a point in time snapshot to launch from, or use an on demand snapshot.</p>",
@@ -111,6 +111,7 @@
       "refs": {
         "ConversionProperties$forceUefi": "<p>Whether the volume being converted uses UEFI or not</p>",
         "CreateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.</p>",
+        "CreateReplicationConfigurationTemplateRequest$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "CreateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
         "CreateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>",
         "GetFailbackReplicationConfigurationResponse$usePrivateIP": "<p>Whether to use Private IP for the failback replication of the Recovery Instance.</p>",
@@ -122,10 +123,12 @@
         "RecoveryInstance$isDrill": "<p>Whether this Recovery Instance was created for a drill or for an actual Recovery event.</p>",
         "RecoveryInstanceFailback$failbackToOriginalServer": "<p>Whether we are failing back to the original Source Server for this Recovery Instance.</p>",
         "ReplicationConfiguration$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration.</p>",
+        "ReplicationConfiguration$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "ReplicationConfiguration$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
         "ReplicationConfiguration$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>",
         "ReplicationConfigurationReplicatedDisk$isBootDisk": "<p>Whether to boot from this disk or not.</p>",
         "ReplicationConfigurationTemplate$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.</p>",
+        "ReplicationConfigurationTemplate$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "ReplicationConfigurationTemplate$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
         "ReplicationConfigurationTemplate$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>",
         "StartRecoveryRequest$isDrill": "<p>Whether this Source Server Recovery operation is a drill or not.</p>",
@@ -133,9 +136,11 @@
         "UpdateLaunchConfigurationRequest$copyPrivateIp": "<p>Whether we should copy the Private IP of the Source Server to the Recovery Instance.</p>",
         "UpdateLaunchConfigurationRequest$copyTags": "<p>Whether we want to copy the tags of the Source Server to the EC2 machine of the Recovery Instance.</p>",
         "UpdateReplicationConfigurationRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration.</p>",
+        "UpdateReplicationConfigurationRequest$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "UpdateReplicationConfigurationRequest$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
         "UpdateReplicationConfigurationRequest$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>",
         "UpdateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.</p>",
+        "UpdateReplicationConfigurationTemplateRequest$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "UpdateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
         "UpdateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>"
       }
@@ -457,6 +462,14 @@
         "SourceProperties$recommendedInstanceType": "<p>The recommended EC2 instance type that will be used when recovering the Source Server.</p>",
         "UpdateReplicationConfigurationRequest$replicationServerInstanceType": "<p>The instance type to be used for the replication server.</p>",
         "UpdateReplicationConfigurationTemplateRequest$replicationServerInstanceType": "<p>The instance type to be used for the replication server.</p>"
+      }
+    },
+    "EbsSnapshot": {
+      "base": null,
+      "refs": {
+        "ConversionMap$key": null,
+        "ConversionMap$value": null,
+        "EbsSnapshotsList$member": null
       }
     },
     "EbsSnapshotsList": {
@@ -1484,14 +1497,6 @@
       "base": null,
       "refs": {
         "ConversionProperties$volumeToVolumeSize": "<p>A mapping between the volumes and their sizes</p>"
-      }
-    },
-    "ebsSnapshot": {
-      "base": null,
-      "refs": {
-        "ConversionMap$key": null,
-        "ConversionMap$value": null,
-        "EbsSnapshotsList$member": null
       }
     }
   }

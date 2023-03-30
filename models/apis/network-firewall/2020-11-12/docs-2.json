@@ -7,20 +7,24 @@
     "CreateFirewall": "<p>Creates an Network Firewall <a>Firewall</a> and accompanying <a>FirewallStatus</a> for a VPC. </p> <p>The firewall defines the configuration settings for an Network Firewall firewall. The settings that you can define at creation include the firewall policy, the subnets in your VPC to use for the firewall endpoints, and any tags that are attached to the firewall Amazon Web Services resource. </p> <p>After you create a firewall, you can provide additional settings, like the logging configuration. </p> <p>To update the settings for a firewall, you use the operations that apply to the settings themselves, for example <a>UpdateLoggingConfiguration</a>, <a>AssociateSubnets</a>, and <a>UpdateFirewallDeleteProtection</a>. </p> <p>To manage a firewall's tags, use the standard Amazon Web Services resource tagging operations, <a>ListTagsForResource</a>, <a>TagResource</a>, and <a>UntagResource</a>.</p> <p>To retrieve information about firewalls, use <a>ListFirewalls</a> and <a>DescribeFirewall</a>.</p>",
     "CreateFirewallPolicy": "<p>Creates the firewall policy for the firewall according to the specifications. </p> <p>An Network Firewall firewall policy defines the behavior of a firewall, in a collection of stateless and stateful rule groups and other settings. You can use one firewall policy for multiple firewalls. </p>",
     "CreateRuleGroup": "<p>Creates the specified stateless or stateful rule group, which includes the rules for network traffic inspection, a capacity setting, and tags. </p> <p>You provide your rule group specification in your request using either <code>RuleGroup</code> or <code>Rules</code>.</p>",
+    "CreateTLSInspectionConfiguration": "<p>Creates an Network Firewall TLS inspection configuration. A TLS inspection configuration contains the Certificate Manager certificate references that Network Firewall uses to decrypt and re-encrypt inbound traffic.</p> <p>After you create a TLS inspection configuration, you associate it with a firewall policy.</p> <p>To update the settings for a TLS inspection configuration, use <a>UpdateTLSInspectionConfiguration</a>.</p> <p>To manage a TLS inspection configuration's tags, use the standard Amazon Web Services resource tagging operations, <a>ListTagsForResource</a>, <a>TagResource</a>, and <a>UntagResource</a>.</p> <p>To retrieve information about TLS inspection configurations, use <a>ListTLSInspectionConfigurations</a> and <a>DescribeTLSInspectionConfiguration</a>.</p> <p> For more information about TLS inspection configurations, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html\">Decrypting SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall Developer Guide</i>. </p>",
     "DeleteFirewall": "<p>Deletes the specified <a>Firewall</a> and its <a>FirewallStatus</a>. This operation requires the firewall's <code>DeleteProtection</code> flag to be <code>FALSE</code>. You can't revert this operation. </p> <p>You can check whether a firewall is in use by reviewing the route tables for the Availability Zones where you have firewall subnet mappings. Retrieve the subnet mappings by calling <a>DescribeFirewall</a>. You define and update the route tables through Amazon VPC. As needed, update the route tables for the zones to remove the firewall endpoints. When the route tables no longer use the firewall endpoints, you can remove the firewall safely.</p> <p>To delete a firewall, remove the delete protection if you need to using <a>UpdateFirewallDeleteProtection</a>, then delete the firewall by calling <a>DeleteFirewall</a>. </p>",
     "DeleteFirewallPolicy": "<p>Deletes the specified <a>FirewallPolicy</a>. </p>",
     "DeleteResourcePolicy": "<p>Deletes a resource policy that you created in a <a>PutResourcePolicy</a> request. </p>",
     "DeleteRuleGroup": "<p>Deletes the specified <a>RuleGroup</a>. </p>",
+    "DeleteTLSInspectionConfiguration": "<p>Deletes the specified <a>TLSInspectionConfiguration</a>.</p>",
     "DescribeFirewall": "<p>Returns the data objects for the specified firewall. </p>",
     "DescribeFirewallPolicy": "<p>Returns the data objects for the specified firewall policy. </p>",
     "DescribeLoggingConfiguration": "<p>Returns the logging configuration for the specified firewall. </p>",
     "DescribeResourcePolicy": "<p>Retrieves a resource policy that you created in a <a>PutResourcePolicy</a> request. </p>",
     "DescribeRuleGroup": "<p>Returns the data objects for the specified rule group. </p>",
     "DescribeRuleGroupMetadata": "<p>High-level information about a rule group, returned by operations like create and describe. You can use the information provided in the metadata to retrieve and manage a rule group. You can retrieve all objects for a rule group by calling <a>DescribeRuleGroup</a>. </p>",
+    "DescribeTLSInspectionConfiguration": "<p>Returns the data objects for the specified TLS inspection configuration.</p>",
     "DisassociateSubnets": "<p>Removes the specified subnet associations from the firewall. This removes the firewall endpoints from the subnets and removes any network filtering protections that the endpoints were providing. </p>",
     "ListFirewallPolicies": "<p>Retrieves the metadata for the firewall policies that you have defined. Depending on your setting for max results and the number of firewall policies, a single call might not return the full list. </p>",
     "ListFirewalls": "<p>Retrieves the metadata for the firewalls that you have defined. If you provide VPC identifiers in your request, this returns only the firewalls for those VPCs.</p> <p>Depending on your setting for max results and the number of firewalls, a single call might not return the full list. </p>",
     "ListRuleGroups": "<p>Retrieves the metadata for the rule groups that you have defined. Depending on your setting for max results and the number of rule groups, a single call might not return the full list. </p>",
+    "ListTLSInspectionConfigurations": "<p>Retrieves the metadata for the TLS inspection configurations that you have defined. Depending on your setting for max results and the number of TLS inspection configurations, a single call might not return the full list.</p>",
     "ListTagsForResource": "<p>Retrieves the tags associated with the specified resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each Amazon Web Services resource, up to 50 tags for a resource.</p> <p>You can tag the Amazon Web Services resources that you manage through Network Firewall: firewalls, firewall policies, and rule groups. </p>",
     "PutResourcePolicy": "<p>Creates or updates an IAM policy for your rule group or firewall policy. Use this to share rule groups and firewall policies between accounts. This operation works in conjunction with the Amazon Web Services Resource Access Manager (RAM) service to manage resource sharing for Network Firewall. </p> <p>Use this operation to create or update a resource policy for your rule group or firewall policy. In the policy, you specify the accounts that you want to share the resource with and the operations that you want the accounts to be able to perform. </p> <p>When you add an account in the resource policy, you then run the following Resource Access Manager (RAM) operations to access and accept the shared rule group or firewall policy. </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_GetResourceShareInvitations.html\">GetResourceShareInvitations</a> - Returns the Amazon Resource Names (ARNs) of the resource share invitations. </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_AcceptResourceShareInvitation.html\">AcceptResourceShareInvitation</a> - Accepts the share invitation for a specified resource share. </p> </li> </ul> <p>For additional information about resource sharing using RAM, see <a href=\"https://docs.aws.amazon.com/ram/latest/userguide/what-is.html\">Resource Access Manager User Guide</a>.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each Amazon Web Services resource, up to 50 tags for a resource.</p> <p>You can tag the Amazon Web Services resources that you manage through Network Firewall: firewalls, firewall policies, and rule groups. </p>",
@@ -32,7 +36,8 @@
     "UpdateFirewallPolicyChangeProtection": "<p>Modifies the flag, <code>ChangeProtection</code>, which indicates whether it is possible to change the firewall. If the flag is set to <code>TRUE</code>, the firewall is protected from changes. This setting helps protect against accidentally changing a firewall that's in use.</p>",
     "UpdateLoggingConfiguration": "<p>Sets the logging configuration for the specified firewall. </p> <p>To change the logging configuration, retrieve the <a>LoggingConfiguration</a> by calling <a>DescribeLoggingConfiguration</a>, then change it and provide the modified object to this update call. You must change the logging configuration one <a>LogDestinationConfig</a> at a time inside the retrieved <a>LoggingConfiguration</a> object. </p> <p>You can perform only one of the following actions in any call to <code>UpdateLoggingConfiguration</code>: </p> <ul> <li> <p>Create a new log destination object by adding a single <code>LogDestinationConfig</code> array element to <code>LogDestinationConfigs</code>.</p> </li> <li> <p>Delete a log destination object by removing a single <code>LogDestinationConfig</code> array element from <code>LogDestinationConfigs</code>.</p> </li> <li> <p>Change the <code>LogDestination</code> setting in a single <code>LogDestinationConfig</code> array element.</p> </li> </ul> <p>You can't change the <code>LogDestinationType</code> or <code>LogType</code> in a <code>LogDestinationConfig</code>. To change these settings, delete the existing <code>LogDestinationConfig</code> object and create a new one, using two separate calls to this update operation.</p>",
     "UpdateRuleGroup": "<p>Updates the rule settings for the specified rule group. You use a rule group by reference in one or more firewall policies. When you modify a rule group, you modify all firewall policies that use the rule group. </p> <p>To update a rule group, first call <a>DescribeRuleGroup</a> to retrieve the current <a>RuleGroup</a> object, update the object as needed, and then provide the updated object to this call. </p>",
-    "UpdateSubnetChangeProtection": "<p/>"
+    "UpdateSubnetChangeProtection": "<p/>",
+    "UpdateTLSInspectionConfiguration": "<p>Updates the TLS inspection configuration settings for the specified TLS inspection configuration. You use a TLS inspection configuration by reference in one or more firewall policies. When you modify a TLS inspection configuration, you modify all firewall policies that use the TLS inspection configuration. </p> <p>To update a TLS inspection configuration, first call <a>DescribeTLSInspectionConfiguration</a> to retrieve the current <a>TLSInspectionConfiguration</a> object, update the object as needed, and then provide the updated object to this call. </p>"
   },
   "shapes": {
     "ActionDefinition": {
@@ -63,7 +68,9 @@
       "base": null,
       "refs": {
         "MatchAttributes$Sources": "<p>The source IP addresses and address ranges to inspect for, in CIDR notation. If not specified, this matches with any source address. </p>",
-        "MatchAttributes$Destinations": "<p>The destination IP addresses and address ranges to inspect for, in CIDR notation. If not specified, this matches with any destination address. </p>"
+        "MatchAttributes$Destinations": "<p>The destination IP addresses and address ranges to inspect for, in CIDR notation. If not specified, this matches with any destination address. </p>",
+        "ServerCertificateScope$Sources": "<p>The source IP addresses and address ranges to decrypt for inspection, in CIDR notation. If not specified, this matches with any source address.</p>",
+        "ServerCertificateScope$Destinations": "<p>The destination IP addresses and address ranges to decrypt for inspection, in CIDR notation. If not specified, this matches with any destination address.</p>"
       }
     },
     "AssociateFirewallPolicyRequest": {
@@ -158,13 +165,21 @@
         "FirewallStatus$CapacityUsageSummary": "<p>Describes the capacity usage of the resources contained in a firewall's reference sets. Network Firewall calclulates the capacity usage by taking an aggregated count of all of the resources used by all of the reference sets in a firewall.</p>"
       }
     },
+    "Certificates": {
+      "base": null,
+      "refs": {
+        "TLSInspectionConfigurationResponse$Certificates": "<p>A list of the certificates associated with the TLS inspection configuration.</p>"
+      }
+    },
     "CollectionMember_String": {
       "base": null,
       "refs": {
         "RuleTargets$member": null,
         "StatefulActions$member": null,
         "StatelessActions$member": null,
-        "SubnetMapping$SubnetId": "<p>The unique identifier for the subnet. </p>"
+        "SubnetMapping$SubnetId": "<p>The unique identifier for the subnet. </p>",
+        "TlsCertificateData$CertificateSerial": "<p>The serial number of the certificate.</p>",
+        "TlsCertificateData$Status": "<p>The status of the certificate.</p>"
       }
     },
     "ConfigurationSyncState": {
@@ -199,6 +214,16 @@
       }
     },
     "CreateRuleGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTLSInspectionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTLSInspectionConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -252,6 +277,16 @@
       }
     },
     "DeleteRuleGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTLSInspectionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTLSInspectionConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -316,20 +351,33 @@
       "refs": {
       }
     },
+    "DescribeTLSInspectionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTLSInspectionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Description": {
       "base": null,
       "refs": {
         "CreateFirewallPolicyRequest$Description": "<p>A description of the firewall policy.</p>",
         "CreateFirewallRequest$Description": "<p>A description of the firewall.</p>",
         "CreateRuleGroupRequest$Description": "<p>A description of the rule group. </p>",
+        "CreateTLSInspectionConfigurationRequest$Description": "<p>A description of the TLS inspection configuration. </p>",
         "DescribeRuleGroupMetadataResponse$Description": "<p>Returns the metadata objects for the specified rule group. </p>",
         "Firewall$Description": "<p>A description of the firewall.</p>",
         "FirewallPolicyResponse$Description": "<p>A description of the firewall policy.</p>",
         "RuleGroupResponse$Description": "<p>A description of the rule group. </p>",
+        "TLSInspectionConfigurationResponse$Description": "<p>A description of the TLS inspection configuration. </p>",
         "UpdateFirewallDescriptionRequest$Description": "<p>The new description for the firewall. If you omit this setting, Network Firewall removes the description for the firewall.</p>",
         "UpdateFirewallDescriptionResponse$Description": "<p>A description of the firewall.</p>",
         "UpdateFirewallPolicyRequest$Description": "<p>A description of the firewall policy.</p>",
-        "UpdateRuleGroupRequest$Description": "<p>A description of the rule group. </p>"
+        "UpdateRuleGroupRequest$Description": "<p>A description of the rule group. </p>",
+        "UpdateTLSInspectionConfigurationRequest$Description": "<p>A description of the TLS inspection configuration. </p>"
       }
     },
     "Destination": {
@@ -372,13 +420,16 @@
         "CreateFirewallPolicyRequest$EncryptionConfiguration": "<p>A complex type that contains settings for encryption of your firewall policy resources.</p>",
         "CreateFirewallRequest$EncryptionConfiguration": "<p>A complex type that contains settings for encryption of your firewall resources.</p>",
         "CreateRuleGroupRequest$EncryptionConfiguration": "<p>A complex type that contains settings for encryption of your rule group resources.</p>",
+        "CreateTLSInspectionConfigurationRequest$EncryptionConfiguration": null,
         "Firewall$EncryptionConfiguration": "<p>A complex type that contains the Amazon Web Services KMS encryption configuration settings for your firewall.</p>",
         "FirewallPolicyResponse$EncryptionConfiguration": "<p>A complex type that contains the Amazon Web Services KMS encryption configuration settings for your firewall policy.</p>",
         "RuleGroupResponse$EncryptionConfiguration": "<p>A complex type that contains the Amazon Web Services KMS encryption configuration settings for your rule group.</p>",
+        "TLSInspectionConfigurationResponse$EncryptionConfiguration": "<p>A complex type that contains the Amazon Web Services KMS encryption configuration settings for your TLS inspection configuration.</p>",
         "UpdateFirewallEncryptionConfigurationRequest$EncryptionConfiguration": null,
         "UpdateFirewallEncryptionConfigurationResponse$EncryptionConfiguration": null,
         "UpdateFirewallPolicyRequest$EncryptionConfiguration": "<p>A complex type that contains settings for encryption of your firewall policy resources.</p>",
-        "UpdateRuleGroupRequest$EncryptionConfiguration": "<p>A complex type that contains settings for encryption of your rule group resources.</p>"
+        "UpdateRuleGroupRequest$EncryptionConfiguration": "<p>A complex type that contains settings for encryption of your rule group resources.</p>",
+        "UpdateTLSInspectionConfigurationRequest$EncryptionConfiguration": "<p>A complex type that contains the Amazon Web Services KMS encryption configuration settings for your TLS inspection configuration.</p>"
       }
     },
     "EncryptionType": {
@@ -535,7 +586,7 @@
       }
     },
     "IPSetReference": {
-      "base": "<p>Configures one or more IP set references for a Suricata-compatible rule group. This is used in <a>CreateRuleGroup</a> or <a>UpdateRuleGroup</a>. An IP set reference is a rule variable that references a resource that you create and manage in another Amazon Web Services service, such as an Amazon VPC prefix list. Network Firewall IP set references enable you to dynamically update the contents of your rules. When you create, update, or delete the IP set you are referencing in your rule, Network Firewall automatically updates the rule's content with the changes. For more information about IP set references in Network Firewall, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-ip-set-references\">Using IP set references</a> in the <i>Network Firewall Developer Guide</i>.</p> <p> Network Firewall currently supports only <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html\">Amazon VPC prefix lists</a> as IP set references. </p>",
+      "base": "<p>Configures one or more IP set references for a Suricata-compatible rule group. This is used in <a>CreateRuleGroup</a> or <a>UpdateRuleGroup</a>. An IP set reference is a rule variable that references resources that you create and manage in another Amazon Web Services service, such as an Amazon VPC prefix list. Network Firewall IP set references enable you to dynamically update the contents of your rules. When you create, update, or delete the resource you are referencing in your rule, Network Firewall automatically updates the rule's content with the changes. For more information about IP set references in Network Firewall, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-ip-set-references\">Using IP set references</a> in the <i>Network Firewall Developer Guide</i>.</p> <p> Network Firewall currently supports <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html\">Amazon VPC prefix lists</a> and <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-ip-set-references.html#rule-groups-referencing-resource-groups\">resource groups</a> in IP set references. </p>",
       "refs": {
         "IPSetReferenceMap$value": null
       }
@@ -605,7 +656,8 @@
       "refs": {
         "DescribeRuleGroupMetadataResponse$LastModifiedTime": "<p>The last time that the rule group was changed.</p>",
         "FirewallPolicyResponse$LastModifiedTime": "<p>The last time that the firewall policy was changed.</p>",
-        "RuleGroupResponse$LastModifiedTime": "<p>The last time that the rule group was changed.</p>"
+        "RuleGroupResponse$LastModifiedTime": "<p>The last time that the rule group was changed.</p>",
+        "TLSInspectionConfigurationResponse$LastModifiedTime": "<p>The last time that the TLS inspection configuration was changed.</p>"
       }
     },
     "LimitExceededException": {
@@ -639,6 +691,16 @@
       }
     },
     "ListRuleGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTLSInspectionConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTLSInspectionConfigurationsResponse": {
       "base": null,
       "refs": {
       }
@@ -706,7 +768,8 @@
       "base": null,
       "refs": {
         "FirewallPolicyResponse$NumberOfAssociations": "<p>The number of firewalls that are associated with this firewall policy.</p>",
-        "RuleGroupResponse$NumberOfAssociations": "<p>The number of firewall policies that use this rule group.</p>"
+        "RuleGroupResponse$NumberOfAssociations": "<p>The number of firewall policies that use this rule group.</p>",
+        "TLSInspectionConfigurationResponse$NumberOfAssociations": "<p>The number of firewall policies that use this TLS inspection configuration.</p>"
       }
     },
     "OverrideAction": {
@@ -720,7 +783,8 @@
       "refs": {
         "ListFirewallPoliciesRequest$MaxResults": "<p>The maximum number of objects that you want Network Firewall to return for this request. If more objects are available, in the response, Network Firewall provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListFirewallsRequest$MaxResults": "<p>The maximum number of objects that you want Network Firewall to return for this request. If more objects are available, in the response, Network Firewall provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
-        "ListRuleGroupsRequest$MaxResults": "<p>The maximum number of objects that you want Network Firewall to return for this request. If more objects are available, in the response, Network Firewall provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>"
+        "ListRuleGroupsRequest$MaxResults": "<p>The maximum number of objects that you want Network Firewall to return for this request. If more objects are available, in the response, Network Firewall provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
+        "ListTLSInspectionConfigurationsRequest$MaxResults": "<p>The maximum number of objects that you want Network Firewall to return for this request. If more objects are available, in the response, Network Firewall provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>"
       }
     },
     "PaginationToken": {
@@ -732,6 +796,8 @@
         "ListFirewallsResponse$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
         "ListRuleGroupsRequest$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
         "ListRuleGroupsResponse$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
+        "ListTLSInspectionConfigurationsRequest$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
+        "ListTLSInspectionConfigurationsResponse$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
         "ListTagsForResourceRequest$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
         "ListTagsForResourceResponse$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>"
       }
@@ -779,7 +845,9 @@
       "base": null,
       "refs": {
         "MatchAttributes$SourcePorts": "<p>The source ports to inspect for. If not specified, this matches with any source port. This setting is only used for protocols 6 (TCP) and 17 (UDP). </p> <p>You can specify individual ports, for example <code>1994</code> and you can specify port ranges, for example <code>1990:1994</code>. </p>",
-        "MatchAttributes$DestinationPorts": "<p>The destination ports to inspect for. If not specified, this matches with any destination port. This setting is only used for protocols 6 (TCP) and 17 (UDP). </p> <p>You can specify individual ports, for example <code>1994</code> and you can specify port ranges, for example <code>1990:1994</code>. </p>"
+        "MatchAttributes$DestinationPorts": "<p>The destination ports to inspect for. If not specified, this matches with any destination port. This setting is only used for protocols 6 (TCP) and 17 (UDP). </p> <p>You can specify individual ports, for example <code>1994</code> and you can specify port ranges, for example <code>1990:1994</code>. </p>",
+        "ServerCertificateScope$SourcePorts": "<p>The source ports to decrypt for inspection, in Transmission Control Protocol (TCP) format. If not specified, this matches with any source port.</p> <p>You can specify individual ports, for example <code>1994</code>, and you can specify port ranges, such as <code>1990:1994</code>.</p>",
+        "ServerCertificateScope$DestinationPorts": "<p>The destination ports to decrypt for inspection, in Transmission Control Protocol (TCP) format. If not specified, this matches with any destination port.</p> <p>You can specify individual ports, for example <code>1994</code>, and you can specify port ranges, such as <code>1990:1994</code>.</p>"
       }
     },
     "PortSet": {
@@ -811,7 +879,8 @@
     "ProtocolNumbers": {
       "base": null,
       "refs": {
-        "MatchAttributes$Protocols": "<p>The protocols to inspect for, specified using each protocol's assigned internet protocol number (IANA). If not specified, this matches with any protocol. </p>"
+        "MatchAttributes$Protocols": "<p>The protocols to inspect for, specified using each protocol's assigned internet protocol number (IANA). If not specified, this matches with any protocol. </p>",
+        "ServerCertificateScope$Protocols": "<p>The protocols to decrypt for inspection, specified using each protocol's assigned internet protocol number (IANA). Network Firewall currently supports only TCP.</p>"
       }
     },
     "PublishMetricAction": {
@@ -850,6 +919,7 @@
         "DeleteFirewallRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DeleteResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the rule group or firewall policy whose resource policy you want to delete. </p>",
         "DeleteRuleGroupRequest$RuleGroupArn": "<p>The Amazon Resource Name (ARN) of the rule group.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
+        "DeleteTLSInspectionConfigurationRequest$TLSInspectionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the TLS inspection configuration.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeFirewallPolicyRequest$FirewallPolicyArn": "<p>The Amazon Resource Name (ARN) of the firewall policy.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeFirewallRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeLoggingConfigurationRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
@@ -858,11 +928,13 @@
         "DescribeRuleGroupMetadataRequest$RuleGroupArn": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeRuleGroupMetadataResponse$RuleGroupArn": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeRuleGroupRequest$RuleGroupArn": "<p>The Amazon Resource Name (ARN) of the rule group.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
+        "DescribeTLSInspectionConfigurationRequest$TLSInspectionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the TLS inspection configuration.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsResponse$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
         "Firewall$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
         "Firewall$FirewallPolicyArn": "<p>The Amazon Resource Name (ARN) of the firewall policy.</p> <p>The relationship of firewall to firewall policy is many to one. Each firewall requires one firewall policy association, and you can use the same firewall policy for multiple firewalls. </p>",
         "FirewallMetadata$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
+        "FirewallPolicy$TLSInspectionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the TLS inspection configuration.</p>",
         "FirewallPolicyMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the firewall policy.</p>",
         "FirewallPolicyResponse$FirewallPolicyArn": "<p>The Amazon Resource Name (ARN) of the firewall policy.</p> <note> <p>If this response is for a create request that had <code>DryRun</code> set to <code>TRUE</code>, then this ARN is a placeholder that isn't attached to a valid resource.</p> </note>",
         "IPSetReference$ReferenceArn": "<p>The Amazon Resource Name (ARN) of the resource that you are referencing in your rule group.</p>",
@@ -871,10 +943,14 @@
         "RuleGroupMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the rule group.</p>",
         "RuleGroupResponse$RuleGroupArn": "<p>The Amazon Resource Name (ARN) of the rule group.</p> <note> <p>If this response is for a create request that had <code>DryRun</code> set to <code>TRUE</code>, then this ARN is a placeholder that isn't attached to a valid resource.</p> </note>",
         "RuleGroupResponse$SnsTopic": "<p>The Amazon resource name (ARN) of the Amazon Simple Notification Service SNS topic that's used to record changes to the managed rule group. You can subscribe to the SNS topic to receive notifications when the managed rule group is modified, such as for new versions and for version expiration. For more information, see the <a href=\"https://docs.aws.amazon.com/sns/latest/dg/welcome.html\">Amazon Simple Notification Service Developer Guide.</a>.</p>",
+        "ServerCertificate$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Certificate Manager SSL/TLS server certificate.</p>",
         "SourceMetadata$SourceArn": "<p>The Amazon Resource Name (ARN) of the rule group that your own rule group is copied from.</p>",
         "StatefulRuleGroupReference$ResourceArn": "<p>The Amazon Resource Name (ARN) of the stateful rule group.</p>",
         "StatelessRuleGroupReference$ResourceArn": "<p>The Amazon Resource Name (ARN) of the stateless rule group.</p>",
+        "TLSInspectionConfigurationMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the TLS inspection configuration.</p>",
+        "TLSInspectionConfigurationResponse$TLSInspectionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the TLS inspection configuration.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "TlsCertificateData$CertificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UpdateFirewallDeleteProtectionRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "UpdateFirewallDeleteProtectionResponse$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
@@ -889,7 +965,8 @@
         "UpdateLoggingConfigurationResponse$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
         "UpdateRuleGroupRequest$RuleGroupArn": "<p>The Amazon Resource Name (ARN) of the rule group.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "UpdateSubnetChangeProtectionRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
-        "UpdateSubnetChangeProtectionResponse$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>"
+        "UpdateSubnetChangeProtectionResponse$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
+        "UpdateTLSInspectionConfigurationRequest$TLSInspectionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the TLS inspection configuration.</p>"
       }
     },
     "ResourceId": {
@@ -897,7 +974,8 @@
       "refs": {
         "Firewall$FirewallId": "<p>The unique identifier for the firewall. </p>",
         "FirewallPolicyResponse$FirewallPolicyId": "<p>The unique identifier for the firewall policy. </p>",
-        "RuleGroupResponse$RuleGroupId": "<p>The unique identifier for the rule group. </p>"
+        "RuleGroupResponse$RuleGroupId": "<p>The unique identifier for the rule group. </p>",
+        "TLSInspectionConfigurationResponse$TLSInspectionConfigurationId": "<p>A unique identifier for the TLS inspection configuration. This ID is returned in the responses to create and list commands. You provide it to operations such as update and delete.</p>"
       }
     },
     "ResourceManagedStatus": {
@@ -922,15 +1000,18 @@
         "CreateFirewallPolicyRequest$FirewallPolicyName": "<p>The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.</p>",
         "CreateFirewallRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>",
         "CreateRuleGroupRequest$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p>",
+        "CreateTLSInspectionConfigurationRequest$TLSInspectionConfigurationName": "<p>The descriptive name of the TLS inspection configuration. You can't change the name of a TLS inspection configuration after you create it.</p>",
         "DeleteFirewallPolicyRequest$FirewallPolicyName": "<p>The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DeleteFirewallRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DeleteRuleGroupRequest$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
+        "DeleteTLSInspectionConfigurationRequest$TLSInspectionConfigurationName": "<p>The descriptive name of the TLS inspection configuration. You can't change the name of a TLS inspection configuration after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeFirewallPolicyRequest$FirewallPolicyName": "<p>The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeFirewallRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeLoggingConfigurationRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeRuleGroupMetadataRequest$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeRuleGroupMetadataResponse$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeRuleGroupRequest$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
+        "DescribeTLSInspectionConfigurationRequest$TLSInspectionConfigurationName": "<p>The descriptive name of the TLS inspection configuration. You can't change the name of a TLS inspection configuration after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsResponse$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>",
         "Firewall$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>",
@@ -940,6 +1021,8 @@
         "RuleGroupMetadata$Name": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p>",
         "RuleGroupResponse$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p>",
         "SyncStateConfig$key": null,
+        "TLSInspectionConfigurationMetadata$Name": "<p>The descriptive name of the TLS inspection configuration. You can't change the name of a TLS inspection configuration after you create it.</p>",
+        "TLSInspectionConfigurationResponse$TLSInspectionConfigurationName": "<p>The descriptive name of the TLS inspection configuration. You can't change the name of a TLS inspection configuration after you create it.</p>",
         "UpdateFirewallDeleteProtectionRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "UpdateFirewallDeleteProtectionResponse$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>",
         "UpdateFirewallDescriptionRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
@@ -953,7 +1036,8 @@
         "UpdateLoggingConfigurationResponse$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>",
         "UpdateRuleGroupRequest$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "UpdateSubnetChangeProtectionRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
-        "UpdateSubnetChangeProtectionResponse$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>"
+        "UpdateSubnetChangeProtectionResponse$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>",
+        "UpdateTLSInspectionConfigurationRequest$TLSInspectionConfigurationName": "<p>The descriptive name of the TLS inspection configuration. You can't change the name of a TLS inspection configuration after you create it.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -970,7 +1054,8 @@
       "base": null,
       "refs": {
         "FirewallPolicyResponse$FirewallPolicyStatus": "<p>The current status of the firewall policy. You can retrieve this for a firewall policy by calling <a>DescribeFirewallPolicy</a> and providing the firewall policy's name or ARN.</p>",
-        "RuleGroupResponse$RuleGroupStatus": "<p>Detailed information about the current status of a rule group. </p>"
+        "RuleGroupResponse$RuleGroupStatus": "<p>Detailed information about the current status of a rule group. </p>",
+        "TLSInspectionConfigurationResponse$TLSInspectionConfigurationStatus": "<p>Detailed information about the current status of a <a>TLSInspectionConfiguration</a>. You can retrieve this for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a> and providing the TLS inspection configuration name and ARN.</p>"
       }
     },
     "RuleCapacity": {
@@ -1088,6 +1173,42 @@
         "CreateRuleGroupRequest$Rules": "<p>A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. </p> <note> <p>You must provide either this rules setting or a populated <code>RuleGroup</code> setting, but not both. </p> </note> <p>You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a <a>RuleGroup</a> object that Network Firewall has populated from your string. </p>",
         "RulesSource$RulesString": "<p>Stateful inspection criteria, provided in Suricata compatible intrusion prevention system (IPS) rules. Suricata is an open-source network IPS that includes a standard rule-based language for network traffic inspection.</p> <p>These rules contain the inspection criteria and the action to take for traffic that matches the criteria, so this type of rule group doesn't have a separate action setting.</p>",
         "UpdateRuleGroupRequest$Rules": "<p>A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. </p> <note> <p>You must provide either this rules setting or a populated <code>RuleGroup</code> setting, but not both. </p> </note> <p>You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a <a>RuleGroup</a> object that Network Firewall has populated from your string. </p>"
+      }
+    },
+    "ServerCertificate": {
+      "base": "<p>Any Certificate Manager Secure Sockets Layer/Transport Layer Security (SSL/TLS) server certificate that's associated with a <a>ServerCertificateConfiguration</a> used in a <a>TLSInspectionConfiguration</a>. You must request or import a SSL/TLS certificate into ACM for each domain Network Firewall needs to decrypt and inspect. Network Firewall uses the SSL/TLS certificates to decrypt specified inbound SSL/TLS traffic going to your firewall. For information about working with certificates in Certificate Manager, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html\">Request a public certificate </a> or <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html\">Importing certificates</a> in the <i>Certificate Manager User Guide</i>.</p>",
+      "refs": {
+        "ServerCertificates$member": null
+      }
+    },
+    "ServerCertificateConfiguration": {
+      "base": "<p>Configures the associated Certificate Manager Secure Sockets Layer/Transport Layer Security (SSL/TLS) server certificates and scope settings Network Firewall uses to decrypt traffic in a <a>TLSInspectionConfiguration</a>. For information about working with SSL/TLS certificates for TLS inspection, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-certificate-requirements.html\"> Requirements for using SSL/TLS server certficiates with TLS inspection configurations</a> in the <i>Network Firewall Developer Guide</i>.</p> <note> <p>If a server certificate that's associated with your <a>TLSInspectionConfiguration</a> is revoked, deleted, or expired it can result in client-side TLS errors.</p> </note>",
+      "refs": {
+        "ServerCertificateConfigurations$member": null
+      }
+    },
+    "ServerCertificateConfigurations": {
+      "base": null,
+      "refs": {
+        "TLSInspectionConfiguration$ServerCertificateConfigurations": "<p>Lists the server certificate configurations that are associated with the TLS configuration.</p>"
+      }
+    },
+    "ServerCertificateScope": {
+      "base": "<p>Settings that define the Secure Sockets Layer/Transport Layer Security (SSL/TLS) traffic that Network Firewall should decrypt for inspection by the stateful rule engine.</p>",
+      "refs": {
+        "ServerCertificateScopes$member": null
+      }
+    },
+    "ServerCertificateScopes": {
+      "base": null,
+      "refs": {
+        "ServerCertificateConfiguration$Scopes": "<p>A list of a server certificate configuration's scopes.</p>"
+      }
+    },
+    "ServerCertificates": {
+      "base": null,
+      "refs": {
+        "ServerCertificateConfiguration$ServerCertificates": "<p>The list of a server certificate configuration's Certificate Manager SSL/TLS certificates.</p>"
       }
     },
     "Setting": {
@@ -1227,6 +1348,12 @@
         "Attachment$StatusMessage": "<p>If Network Firewall fails to create or delete the firewall endpoint in the subnet, it populates this with the reason for the failure and how to resolve it. Depending on the error, it can take as many as 15 minutes to populate this field. For more information about the errors and solutions available for this field, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html\">Troubleshooting firewall endpoint failures</a> in the <i>Network Firewall Developer Guide</i>.</p>"
       }
     },
+    "StatusReason": {
+      "base": null,
+      "refs": {
+        "TlsCertificateData$StatusMessage": "<p>Contains details about the certificate status, including information about certificate errors.</p>"
+      }
+    },
     "StreamExceptionPolicy": {
       "base": null,
       "refs": {
@@ -1285,6 +1412,35 @@
         "MatchAttributes$TCPFlags": "<p>The TCP flags and masks to inspect for. If not specified, this matches with any settings. This setting is only used for protocol 6 (TCP).</p>"
       }
     },
+    "TLSInspectionConfiguration": {
+      "base": "<p>The object that defines a TLS inspection configuration. This, along with <a>TLSInspectionConfigurationResponse</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p> <p>Network Firewall uses a TLS inspection configuration to decrypt traffic. Network Firewall re-encrypts the traffic before sending it to its destination.</p> <p>To use a TLS inspection configuration, you add it to a Network Firewall firewall policy, then you apply the firewall policy to a firewall. Network Firewall acts as a proxy service to decrypt and inspect inbound traffic. You can reference a TLS inspection configuration from more than one firewall policy, and you can use a firewall policy in more than one firewall. For more information about using TLS inspection configurations, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html\">Decrypting SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall Developer Guide</i>.</p>",
+      "refs": {
+        "CreateTLSInspectionConfigurationRequest$TLSInspectionConfiguration": "<p>The object that defines a TLS inspection configuration. This, along with <a>TLSInspectionConfigurationResponse</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p> <p>Network Firewall uses a TLS inspection configuration to decrypt traffic. Network Firewall re-encrypts the traffic before sending it to its destination.</p> <p>To use a TLS inspection configuration, you add it to a Network Firewall firewall policy, then you apply the firewall policy to a firewall. Network Firewall acts as a proxy service to decrypt and inspect inbound traffic. You can reference a TLS inspection configuration from more than one firewall policy, and you can use a firewall policy in more than one firewall. For more information about using TLS inspection configurations, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html\">Decrypting SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall Developer Guide</i>.</p>",
+        "DescribeTLSInspectionConfigurationResponse$TLSInspectionConfiguration": "<p>The object that defines a TLS inspection configuration. This, along with <a>TLSInspectionConfigurationResponse</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p> <p>Network Firewall uses a TLS inspection configuration to decrypt traffic. Network Firewall re-encrypts the traffic before sending it to its destination.</p> <p>To use a TLS inspection configuration, you add it to a Network Firewall firewall policy, then you apply the firewall policy to a firewall. Network Firewall acts as a proxy service to decrypt and inspect inbound traffic. You can reference a TLS inspection configuration from more than one firewall policy, and you can use a firewall policy in more than one firewall. For more information about using TLS inspection configurations, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html\">Decrypting SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall Developer Guide</i>.</p>",
+        "UpdateTLSInspectionConfigurationRequest$TLSInspectionConfiguration": "<p>The object that defines a TLS inspection configuration. This, along with <a>TLSInspectionConfigurationResponse</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p> <p>Network Firewall uses a TLS inspection configuration to decrypt traffic. Network Firewall re-encrypts the traffic before sending it to its destination.</p> <p>To use a TLS inspection configuration, you add it to a Network Firewall firewall policy, then you apply the firewall policy to a firewall. Network Firewall acts as a proxy service to decrypt and inspect inbound traffic. You can reference a TLS inspection configuration from more than one firewall policy, and you can use a firewall policy in more than one firewall. For more information about using TLS inspection configurations, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html\">Decrypting SSL/TLS traffic with TLS inspection configurations</a> in the <i>Network Firewall Developer Guide</i>.</p>"
+      }
+    },
+    "TLSInspectionConfigurationMetadata": {
+      "base": "<p>High-level information about a TLS inspection configuration, returned by <code>ListTLSInspectionConfigurations</code>. You can use the information provided in the metadata to retrieve and manage a TLS configuration.</p>",
+      "refs": {
+        "TLSInspectionConfigurations$member": null
+      }
+    },
+    "TLSInspectionConfigurationResponse": {
+      "base": "<p>The high-level properties of a TLS inspection configuration. This, along with the <code>TLSInspectionConfiguration</code>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <code>DescribeTLSInspectionConfiguration</code>.</p>",
+      "refs": {
+        "CreateTLSInspectionConfigurationResponse$TLSInspectionConfigurationResponse": "<p>The high-level properties of a TLS inspection configuration. This, along with the <a>TLSInspectionConfiguration</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p>",
+        "DeleteTLSInspectionConfigurationResponse$TLSInspectionConfigurationResponse": "<p>The high-level properties of a TLS inspection configuration. This, along with the <a>TLSInspectionConfiguration</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p>",
+        "DescribeTLSInspectionConfigurationResponse$TLSInspectionConfigurationResponse": "<p>The high-level properties of a TLS inspection configuration. This, along with the <a>TLSInspectionConfiguration</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p>",
+        "UpdateTLSInspectionConfigurationResponse$TLSInspectionConfigurationResponse": "<p>The high-level properties of a TLS inspection configuration. This, along with the <a>TLSInspectionConfiguration</a>, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling <a>DescribeTLSInspectionConfiguration</a>. </p>"
+      }
+    },
+    "TLSInspectionConfigurations": {
+      "base": null,
+      "refs": {
+        "ListTLSInspectionConfigurationsResponse$TLSInspectionConfigurations": "<p>The TLS inspection configuration metadata objects that you've defined. Depending on your setting for max results and the number of TLS inspection configurations, this might not be the full list.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>A key:value pair associated with an Amazon Web Services resource. The key:value pair can be anything you define. Typically, the tag key represents a category (such as \"environment\") and the tag value represents a specific value within that category (such as \"test,\" \"development,\" or \"production\"). You can add up to 50 tags to each Amazon Web Services resource. </p>",
       "refs": {
@@ -1310,10 +1466,12 @@
         "CreateFirewallPolicyRequest$Tags": "<p>The key:value pairs to associate with the resource.</p>",
         "CreateFirewallRequest$Tags": "<p>The key:value pairs to associate with the resource.</p>",
         "CreateRuleGroupRequest$Tags": "<p>The key:value pairs to associate with the resource.</p>",
+        "CreateTLSInspectionConfigurationRequest$Tags": "<p>The key:value pairs to associate with the resource.</p>",
         "Firewall$Tags": "<p/>",
         "FirewallPolicyResponse$Tags": "<p>The key:value pairs to associate with the resource.</p>",
         "ListTagsForResourceResponse$Tags": "<p>The tags that are associated with the resource. </p>",
         "RuleGroupResponse$Tags": "<p>The key:value pairs to associate with the resource.</p>",
+        "TLSInspectionConfigurationResponse$Tags": "<p>The key:value pairs to associate with the resource.</p>",
         "TagResourceRequest$Tags": "<p/>"
       }
     },
@@ -1354,6 +1512,12 @@
     "ThrottlingException": {
       "base": "<p>Unable to process the request due to throttling limitations.</p>",
       "refs": {
+      }
+    },
+    "TlsCertificateData": {
+      "base": "<p>Contains metadata about an Certificate Manager certificate.</p>",
+      "refs": {
+        "Certificates$member": null
       }
     },
     "UnsupportedOperationException": {
@@ -1451,6 +1615,16 @@
       "refs": {
       }
     },
+    "UpdateTLSInspectionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTLSInspectionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateToken": {
       "base": null,
       "refs": {
@@ -1460,9 +1634,11 @@
         "AssociateSubnetsResponse$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "CreateFirewallPolicyResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the firewall policy. The token marks the state of the policy resource at the time of the request. </p> <p>To make changes to the policy, you provide the token in your request. Network Firewall uses the token to ensure that the policy hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall policy again to get a current copy of it with current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "CreateRuleGroupResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the rule group. The token marks the state of the rule group resource at the time of the request. </p> <p>To make changes to the rule group, you provide the token in your request. Network Firewall uses the token to ensure that the rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
+        "CreateTLSInspectionConfigurationResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the TLS inspection configuration. The token marks the state of the TLS inspection configuration resource at the time of the request. </p> <p>To make changes to the TLS inspection configuration, you provide the token in your request. Network Firewall uses the token to ensure that the TLS inspection configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the TLS inspection configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "DescribeFirewallPolicyResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the firewall policy. The token marks the state of the policy resource at the time of the request. </p> <p>To make changes to the policy, you provide the token in your request. Network Firewall uses the token to ensure that the policy hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall policy again to get a current copy of it with current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "DescribeFirewallResponse$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "DescribeRuleGroupResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the rule group. The token marks the state of the rule group resource at the time of the request. </p> <p>To make changes to the rule group, you provide the token in your request. Network Firewall uses the token to ensure that the rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
+        "DescribeTLSInspectionConfigurationResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the TLS inspection configuration. The token marks the state of the TLS inspection configuration resource at the time of the request. </p> <p>To make changes to the TLS inspection configuration, you provide the token in your request. Network Firewall uses the token to ensure that the TLS inspection configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the TLS inspection configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "DisassociateSubnetsRequest$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "DisassociateSubnetsResponse$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "PerObjectStatus$UpdateToken": "<p>The current version of the object that is either in sync or pending synchronization. </p>",
@@ -1480,7 +1656,9 @@
         "UpdateRuleGroupRequest$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the rule group. The token marks the state of the rule group resource at the time of the request. </p> <p>To make changes to the rule group, you provide the token in your request. Network Firewall uses the token to ensure that the rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "UpdateRuleGroupResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the rule group. The token marks the state of the rule group resource at the time of the request. </p> <p>To make changes to the rule group, you provide the token in your request. Network Firewall uses the token to ensure that the rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "UpdateSubnetChangeProtectionRequest$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
-        "UpdateSubnetChangeProtectionResponse$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>"
+        "UpdateSubnetChangeProtectionResponse$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
+        "UpdateTLSInspectionConfigurationRequest$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the TLS inspection configuration. The token marks the state of the TLS inspection configuration resource at the time of the request. </p> <p>To make changes to the TLS inspection configuration, you provide the token in your request. Network Firewall uses the token to ensure that the TLS inspection configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the TLS inspection configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>",
+        "UpdateTLSInspectionConfigurationResponse$UpdateToken": "<p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the TLS inspection configuration. The token marks the state of the TLS inspection configuration resource at the time of the request. </p> <p>To make changes to the TLS inspection configuration, you provide the token in your request. Network Firewall uses the token to ensure that the TLS inspection configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the TLS inspection configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token. </p>"
       }
     },
     "VariableDefinition": {

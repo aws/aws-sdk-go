@@ -7015,28 +7015,28 @@ type InstanceRecommendation struct {
 	//
 	//    * EBSThroughputOverprovisioned — The instance’s EBS throughput configuration
 	//    can be sized down while still meeting the performance requirements of
-	//    your workload. This is identified by analyzing the VolumeReadOps and VolumeWriteOps
-	//    metrics of EBS volumes attached to the current instance during the look-back
-	//    period.
+	//    your workload. This is identified by analyzing the VolumeReadBytes and
+	//    VolumeWriteBytes metrics of EBS volumes attached to the current instance
+	//    during the look-back period.
 	//
 	//    * EBSThroughputUnderprovisioned — The instance’s EBS throughput configuration
 	//    doesn't meet the performance requirements of your workload and there is
 	//    an alternative instance type that provides better EBS throughput performance.
-	//    This is identified by analyzing the VolumeReadOps and VolumeWriteOps metrics
-	//    of EBS volumes attached to the current instance during the look-back period.
+	//    This is identified by analyzing the VolumeReadBytes and VolumeWriteBytes>
+	//    metrics of EBS volumes attached to the current instance during the look-back
+	//    period.
 	//
 	//    * EBSIOPSOverprovisioned — The instance’s EBS IOPS configuration can
 	//    be sized down while still meeting the performance requirements of your
-	//    workload. This is identified by analyzing the VolumeReadBytes and VolumeWriteBytes
+	//    workload. This is identified by analyzing the VolumeReadOps and VolumeWriteOps
 	//    metric of EBS volumes attached to the current instance during the look-back
 	//    period.
 	//
 	//    * EBSIOPSUnderprovisioned — The instance’s EBS IOPS configuration
 	//    doesn't meet the performance requirements of your workload and there is
 	//    an alternative instance type that provides better EBS IOPS performance.
-	//    This is identified by analyzing the VolumeReadBytes and VolumeWriteBytes
-	//    metric of EBS volumes attached to the current instance during the look-back
-	//    period.
+	//    This is identified by analyzing the VolumeReadOps and VolumeWriteOps metric
+	//    of EBS volumes attached to the current instance during the look-back period.
 	//
 	//    * NetworkBandwidthOverprovisioned — The instance’s network bandwidth
 	//    configuration can be sized down while still meeting the performance requirements
@@ -7123,6 +7123,9 @@ type InstanceRecommendation struct {
 	// The name of the current instance.
 	InstanceName *string `locationName:"instanceName" type:"string"`
 
+	// The state of the instance when the recommendation was generated.
+	InstanceState *string `locationName:"instanceState" type:"string" enum:"InstanceState"`
+
 	// The timestamp of when the instance recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
@@ -7208,6 +7211,12 @@ func (s *InstanceRecommendation) SetInstanceArn(v string) *InstanceRecommendatio
 // SetInstanceName sets the InstanceName field's value.
 func (s *InstanceRecommendation) SetInstanceName(v string) *InstanceRecommendation {
 	s.InstanceName = &v
+	return s
+}
+
+// SetInstanceState sets the InstanceState field's value.
+func (s *InstanceRecommendation) SetInstanceState(v string) *InstanceRecommendation {
+	s.InstanceState = &v
 	return s
 }
 
@@ -9795,6 +9804,9 @@ func (s *UtilizationMetric) SetValue(v float64) *UtilizationMetric {
 type VolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the image used to boot the instance during launch.
+	RootVolume *bool `locationName:"rootVolume" type:"boolean"`
+
 	// The baseline IOPS of the volume.
 	VolumeBaselineIOPS *int64 `locationName:"volumeBaselineIOPS" type:"integer"`
 
@@ -9834,6 +9846,12 @@ func (s VolumeConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s VolumeConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetRootVolume sets the RootVolume field's value.
+func (s *VolumeConfiguration) SetRootVolume(v bool) *VolumeConfiguration {
+	s.RootVolume = &v
+	return s
 }
 
 // SetVolumeBaselineIOPS sets the VolumeBaselineIOPS field's value.
@@ -10805,6 +10823,9 @@ const (
 
 	// ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource is a ExportableInstanceField enum value
 	ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource = "EffectiveRecommendationPreferencesExternalMetricsSource"
+
+	// ExportableInstanceFieldInstanceState is a ExportableInstanceField enum value
+	ExportableInstanceFieldInstanceState = "InstanceState"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -10863,6 +10884,7 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldInferredWorkloadTypes,
 		ExportableInstanceFieldRecommendationOptionsMigrationEffort,
 		ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource,
+		ExportableInstanceFieldInstanceState,
 	}
 }
 
@@ -11062,6 +11084,9 @@ const (
 
 	// ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableVolumeField enum value
 	ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
+
+	// ExportableVolumeFieldRootVolume is a ExportableVolumeField enum value
+	ExportableVolumeFieldRootVolume = "RootVolume"
 )
 
 // ExportableVolumeField_Values returns all elements of the ExportableVolumeField enum
@@ -11095,6 +11120,7 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRecommendationOptionsSavingsOpportunityPercentage,
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue,
+		ExportableVolumeFieldRootVolume,
 	}
 }
 
@@ -11319,6 +11345,38 @@ func InstanceRecommendationFindingReasonCode_Values() []string {
 		InstanceRecommendationFindingReasonCodeDiskIopsunderprovisioned,
 		InstanceRecommendationFindingReasonCodeDiskThroughputOverprovisioned,
 		InstanceRecommendationFindingReasonCodeDiskThroughputUnderprovisioned,
+	}
+}
+
+const (
+	// InstanceStatePending is a InstanceState enum value
+	InstanceStatePending = "pending"
+
+	// InstanceStateRunning is a InstanceState enum value
+	InstanceStateRunning = "running"
+
+	// InstanceStateShuttingDown is a InstanceState enum value
+	InstanceStateShuttingDown = "shutting-down"
+
+	// InstanceStateTerminated is a InstanceState enum value
+	InstanceStateTerminated = "terminated"
+
+	// InstanceStateStopping is a InstanceState enum value
+	InstanceStateStopping = "stopping"
+
+	// InstanceStateStopped is a InstanceState enum value
+	InstanceStateStopped = "stopped"
+)
+
+// InstanceState_Values returns all elements of the InstanceState enum
+func InstanceState_Values() []string {
+	return []string{
+		InstanceStatePending,
+		InstanceStateRunning,
+		InstanceStateShuttingDown,
+		InstanceStateTerminated,
+		InstanceStateStopping,
+		InstanceStateStopped,
 	}
 }
 
