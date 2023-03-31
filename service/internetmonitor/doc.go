@@ -5,30 +5,32 @@
 //
 // Amazon CloudWatch Internet Monitor provides visibility into how internet
 // issues impact the performance and availability between your applications
-// hosted on Amazon Web Services and your end users, reducing the time it takes
-// for you to diagnose these issues, from days to minutes. You can explore internet
-// measurements for different time frames and at different geographic granularities,
-// and quickly visualize the impact of issues, and then take action to improve
-// your end users' experience, for example, by switching to other Amazon Web
-// Services services or rerouting traffic to your workload through differentAmazon
-// Web Services Regions.
+// hosted on Amazon Web Services and your end users. It reduces the time it
+// takes for you to diagnose internet issues from days to minutes. Internet
+// Monitor uses the connectivity data that Amazon Web Services captures from
+// its global networking footprint to calculate a baseline of performance and
+// availability for internet traffic. This is the same data that Amazon Web
+// Services uses to monitor internet uptime and availability. With those measurements
+// as a baseline, Internet Monitor raises awareness for you when there are significant
+// problems for your end users in the different geographic locations where your
+// application runs.
 //
-// If the issue is caused by the Amazon Web Services network, you'll automatically
+// Internet Monitor publishes internet measurements to CloudWatch Logs and CloudWatch
+// Metrics, to easily support using CloudWatch tools with health information
+// for geographies and networks specific to your application. Internet Monitor
+// sends health events to Amazon EventBridge so that you can set up notifications.
+// If an issue is caused by the Amazon Web Services network, you also automatically
 // receive an Amazon Web Services Health Dashboard notification with the steps
-// that Amazon Web Services is taking to mitigate the problem. To support integrating
-// health information for geographies and networks specific to your application,
-// Internet Monitor delivers measurements to CloudWatch Logs and CloudWatch
-// Metrics. Internet Monitor also sends health events to Amazon EventBridge,
-// so you can set up notifications. Internet Monitor monitors internet connectivity
-// for your application through Amazon Virtual Private Clouds (VPCs), Amazon
-// CloudFront distributions, and Amazon WorkSpaces directories.
+// that Amazon Web Services is taking to mitigate the problem.
 //
-// To use Internet Monitor, you create a monitor and add resources to it, Virtual
-// Private Clouds (VPCs), Amazon CloudFront distributions, or WorkSpaces directories
-// that show where your application's internet traffic is. Internet Monitor
-// then provides internet measurements from Amazon Web Services that are specific
-// to the locations and networks that communicate with your application. For
-// more information, see Using Amazon CloudWatch Internet Monitor (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-InternetMonitor.html)
+// To use Internet Monitor, you create a monitor and associate your application's
+// resources with it, VPCs, CloudFront distributions, or WorkSpaces directories,
+// to enable Internet Monitor to know where your application's internet traffic
+// is. Internet Monitor then provides internet measurements from Amazon Web
+// Services that are specific to the locations and networks that communicate
+// with your application.
+//
+// For more information, see Using Amazon CloudWatch Internet Monitor (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-InternetMonitor.html)
 // in the Amazon CloudWatch User Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/internetmonitor-2021-06-03 for more information on this service.
