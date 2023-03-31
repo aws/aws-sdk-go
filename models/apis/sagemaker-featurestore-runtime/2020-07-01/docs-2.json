@@ -3,7 +3,7 @@
   "service": "<p>Contains all data plane API operations and data types for the Amazon SageMaker Feature Store. Use this API to put, delete, and retrieve (get) features from a feature store.</p> <p>Use the following operations to configure your <code>OnlineStore</code> and <code>OfflineStore</code> features, and to create and manage feature groups:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFeatureGroup.html\">CreateFeatureGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteFeatureGroup.html\">DeleteFeatureGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeFeatureGroup.html\">DescribeFeatureGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListFeatureGroups.html\">ListFeatureGroups</a> </p> </li> </ul>",
   "operations": {
     "BatchGetRecord": "<p>Retrieves a batch of <code>Records</code> from a <code>FeatureGroup</code>.</p>",
-    "DeleteRecord": "<p>Deletes a <code>Record</code> from a <code>FeatureGroup</code>. When the <code>DeleteRecord</code> API is called a new record will be added to the <code>OfflineStore</code> and the <code>Record</code> will be removed from the <code>OnlineStore</code>. This record will have a value of <code>True</code> in the <code>is_deleted</code> column.</p>",
+    "DeleteRecord": "<p>Deletes a <code>Record</code> from a <code>FeatureGroup</code> in the <code>OnlineStore</code>. Feature Store supports both <code>SOFT_DELETE</code> and <code>HARD_DELETE</code>. For <code>SOFT_DELETE</code> (default), feature columns are set to <code>null</code> and the record is no longer retrievable by <code>GetRecord</code> or <code>BatchGetRecord</code>. For<code> HARD_DELETE</code>, the complete <code>Record</code> is removed from the <code>OnlineStore</code>. In both cases, Feature Store appends the deleted record marker to the <code>OfflineStore</code> with feature values set to <code>null</code>, <code>is_deleted</code> value set to <code>True</code>, and <code>EventTime</code> set to the delete input <code>EventTime</code>.</p> <p>Note that the <code>EventTime</code> specified in <code>DeleteRecord</code> should be set later than the <code>EventTime</code> of the existing record in the <code>OnlineStore</code> for that <code>RecordIdentifer</code>. If it is not, the deletion does not occur:</p> <ul> <li> <p>For <code>SOFT_DELETE</code>, the existing (undeleted) record remains in the <code>OnlineStore</code>, though the delete record marker is still written to the <code>OfflineStore</code>.</p> </li> <li> <p> <code>HARD_DELETE</code> returns <code>EventTime</code>: <code>400 ValidationException</code> to indicate that the delete operation failed. No delete record marker is written to the <code>OfflineStore</code>.</p> </li> </ul>",
     "GetRecord": "<p>Use for <code>OnlineStore</code> serving from a <code>FeatureStore</code>. Only the latest records stored in the <code>OnlineStore</code> can be retrieved. If no Record with <code>RecordIdentifierValue</code> is found, then an empty result is returned. </p>",
     "PutRecord": "<p>Used for data ingestion into the <code>FeatureStore</code>. The <code>PutRecord</code> API writes to both the <code>OnlineStore</code> and <code>OfflineStore</code>. If the record is the latest record for the <code>recordIdentifier</code>, the record is written to both the <code>OnlineStore</code> and <code>OfflineStore</code>. If the record is a historic record, it is written only to the <code>OfflineStore</code>.</p>"
   },
@@ -65,6 +65,12 @@
       "refs": {
       }
     },
+    "DeletionMode": {
+      "base": null,
+      "refs": {
+        "DeleteRecordRequest$DeletionMode": "<p>The name of the deletion mode for deleting the record. By default, the deletion mode is set to <code>SoftDelete</code>.</p>"
+      }
+    },
     "FeatureGroupName": {
       "base": null,
       "refs": {
@@ -113,7 +119,7 @@
       "base": null,
       "refs": {
         "AccessForbidden$Message": null,
-        "BatchGetRecordError$ErrorMessage": "<p>The error message of an error that has occured when attempting to retrieve a record in the batch.</p>",
+        "BatchGetRecordError$ErrorMessage": "<p>The error message of an error that has occurred when attempting to retrieve a record in the batch.</p>",
         "InternalFailure$Message": null,
         "ResourceNotFound$Message": null,
         "ServiceUnavailable$Message": null,
@@ -178,9 +184,9 @@
       "refs": {
         "BatchGetRecordError$FeatureGroupName": "<p>The name of the feature group that the record belongs to.</p>",
         "BatchGetRecordError$RecordIdentifierValueAsString": "<p>The value for the <code>RecordIdentifier</code> in string format of a Record from a <code>FeatureGroup</code> that is causing an error when attempting to be retrieved.</p>",
-        "BatchGetRecordError$ErrorCode": "<p>The error code of an error that has occured when attempting to retrieve a batch of Records. For more information on errors, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors\">Errors</a>.</p>",
+        "BatchGetRecordError$ErrorCode": "<p>The error code of an error that has occurred when attempting to retrieve a batch of Records. For more information on errors, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors\">Errors</a>.</p>",
         "BatchGetRecordResultDetail$FeatureGroupName": "<p>The <code>FeatureGroupName</code> containing Records you retrieved in a batch.</p>",
-        "BatchGetRecordResultDetail$RecordIdentifierValueAsString": "<p>The value of the record identifer in string format.</p>",
+        "BatchGetRecordResultDetail$RecordIdentifierValueAsString": "<p>The value of the record identifier in string format.</p>",
         "DeleteRecordRequest$RecordIdentifierValueAsString": "<p>The value for the <code>RecordIdentifier</code> that uniquely identifies the record, in string format. </p>",
         "DeleteRecordRequest$EventTime": "<p>Timestamp indicating when the deletion event occurred. <code>EventTime</code> can be used to query data at a certain point in time.</p>",
         "FeatureValue$ValueAsString": "<p>The value associated with a feature, in string format. Note that features types can be String, Integral, or Fractional. This value represents all three types as a string.</p>",

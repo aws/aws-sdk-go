@@ -145,10 +145,24 @@ func (c *SageMakerFeatureStoreRuntime) DeleteRecordRequest(input *DeleteRecordIn
 
 // DeleteRecord API operation for Amazon SageMaker Feature Store Runtime.
 //
-// Deletes a Record from a FeatureGroup. When the DeleteRecord API is called
-// a new record will be added to the OfflineStore and the Record will be removed
-// from the OnlineStore. This record will have a value of True in the is_deleted
-// column.
+// Deletes a Record from a FeatureGroup in the OnlineStore. Feature Store supports
+// both SOFT_DELETE and HARD_DELETE. For SOFT_DELETE (default), feature columns
+// are set to null and the record is no longer retrievable by GetRecord or BatchGetRecord.
+// ForHARD_DELETE, the complete Record is removed from the OnlineStore. In both
+// cases, Feature Store appends the deleted record marker to the OfflineStore
+// with feature values set to null, is_deleted value set to True, and EventTime
+// set to the delete input EventTime.
+//
+// Note that the EventTime specified in DeleteRecord should be set later than
+// the EventTime of the existing record in the OnlineStore for that RecordIdentifer.
+// If it is not, the deletion does not occur:
+//
+//   - For SOFT_DELETE, the existing (undeleted) record remains in the OnlineStore,
+//     though the delete record marker is still written to the OfflineStore.
+//
+//   - HARD_DELETE returns EventTime: 400 ValidationException to indicate that
+//     the delete operation failed. No delete record marker is written to the
+//     OfflineStore.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -450,13 +464,13 @@ func (s *AccessForbidden) RequestID() string {
 type BatchGetRecordError struct {
 	_ struct{} `type:"structure"`
 
-	// The error code of an error that has occured when attempting to retrieve a
-	// batch of Records. For more information on errors, see Errors (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors).
+	// The error code of an error that has occurred when attempting to retrieve
+	// a batch of Records. For more information on errors, see Errors (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors).
 	//
 	// ErrorCode is a required field
 	ErrorCode *string `type:"string" required:"true"`
 
-	// The error message of an error that has occured when attempting to retrieve
+	// The error message of an error that has occurred when attempting to retrieve
 	// a record in the batch.
 	//
 	// ErrorMessage is a required field
@@ -727,7 +741,7 @@ type BatchGetRecordResultDetail struct {
 	// Record is a required field
 	Record []*FeatureValue `min:"1" type:"list" required:"true"`
 
-	// The value of the record identifer in string format.
+	// The value of the record identifier in string format.
 	//
 	// RecordIdentifierValueAsString is a required field
 	RecordIdentifierValueAsString *string `type:"string" required:"true"`
@@ -771,6 +785,10 @@ func (s *BatchGetRecordResultDetail) SetRecordIdentifierValueAsString(v string) 
 
 type DeleteRecordInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the deletion mode for deleting the record. By default, the deletion
+	// mode is set to SoftDelete.
+	DeletionMode *string `location:"querystring" locationName:"DeletionMode" type:"string" enum:"DeletionMode"`
 
 	// Timestamp indicating when the deletion event occurred. EventTime can be used
 	// to query data at a certain point in time.
@@ -836,6 +854,12 @@ func (s *DeleteRecordInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeletionMode sets the DeletionMode field's value.
+func (s *DeleteRecordInput) SetDeletionMode(v string) *DeleteRecordInput {
+	s.DeletionMode = &v
+	return s
 }
 
 // SetEventTime sets the EventTime field's value.
@@ -1431,6 +1455,22 @@ func (s *ValidationError) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationError) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// DeletionModeSoftDelete is a DeletionMode enum value
+	DeletionModeSoftDelete = "SoftDelete"
+
+	// DeletionModeHardDelete is a DeletionMode enum value
+	DeletionModeHardDelete = "HardDelete"
+)
+
+// DeletionMode_Values returns all elements of the DeletionMode enum
+func DeletionMode_Values() []string {
+	return []string{
+		DeletionModeSoftDelete,
+		DeletionModeHardDelete,
+	}
 }
 
 const (

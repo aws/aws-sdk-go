@@ -57,14 +57,21 @@ func (c *InternetMonitor) CreateMonitorRequest(input *CreateMonitorInput) (req *
 // CreateMonitor API operation for Amazon CloudWatch Internet Monitor.
 //
 // Creates a monitor in Amazon CloudWatch Internet Monitor. A monitor is built
-// based on information from the application resources that you add: Virtual
-// Private Clouds (VPCs), Amazon CloudFront distributions, and WorkSpaces directories.
+// based on information from the application resources that you add: Amazon
+// Virtual Private Clouds (VPCs), Amazon CloudFront distributions, and WorkSpaces
+// directories. Internet Monitor then publishes internet measurements from Amazon
+// Web Services that are specific to the city-networks, that is, the locations
+// and ASNs (typically internet service providers or ISPs), where clients access
+// your application. For more information, see Using Amazon CloudWatch Internet
+// Monitor (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-InternetMonitor.html)
+// in the Amazon CloudWatch User Guide.
 //
-// After you create a monitor, you can view the internet performance for your
-// application, scoped to a location, as well as any health events that are
-// impairing traffic. Internet Monitor can also diagnose whether the impairment
-// is on the Amazon Web Services network or is an issue with an internet service
-// provider (ISP).
+// When you create a monitor, you set a maximum limit for the number of city-networks
+// where client traffic is monitored. The city-network maximum that you choose
+// is the limit, but you only pay for the number of city-networks that are actually
+// monitored. You can change the maximum at any time by updating your monitor.
+// For more information, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
+// in the Amazon CloudWatch User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1013,8 +1020,15 @@ func (c *InternetMonitor) UpdateMonitorRequest(input *UpdateMonitorInput) (req *
 
 // UpdateMonitor API operation for Amazon CloudWatch Internet Monitor.
 //
-// Updates a monitor. You can update a monitor to add or remove resources, or
-// to change the status of the monitor. You can't change the name of a monitor.
+// Updates a monitor. You can update a monitor to change the maximum number
+// of city-networks (locations and ASNs or internet service providers), to add
+// or remove resources, or to change the status of the monitor. Note that you
+// can't change the name of a monitor.
+//
+// The city-network maximum that you choose is the limit, but you only pay for
+// the number of city-networks that are actually monitored. For more information,
+// see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
+// in the Amazon CloudWatch User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1356,8 +1370,19 @@ type CreateMonitorInput struct {
 	// other API requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The maximum number of city-network combinations (that is, combinations of
-	// a city location and network, such as an ISP) to be monitored for your resources.
+	// Publish internet measurements for Internet Monitor to another location, such
+	// as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch
+	// Logs.
+	InternetMeasurementsLogDelivery *InternetMeasurementsLogDelivery `type:"structure"`
+
+	// The maximum number of city-networks to monitor for your resources. A city-network
+	// is the location (city) where clients access your application resources from
+	// and the network or ASN, such as an internet service provider (ISP), that
+	// clients access the resources through. This limit helps control billing costs.
+	//
+	// To learn more, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
+	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+	// Guide.
 	//
 	// MaxCityNetworksToMonitor is a required field
 	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer" required:"true"`
@@ -1415,6 +1440,11 @@ func (s *CreateMonitorInput) Validate() error {
 	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
 	}
+	if s.InternetMeasurementsLogDelivery != nil {
+		if err := s.InternetMeasurementsLogDelivery.Validate(); err != nil {
+			invalidParams.AddNested("InternetMeasurementsLogDelivery", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1425,6 +1455,12 @@ func (s *CreateMonitorInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateMonitorInput) SetClientToken(v string) *CreateMonitorInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetInternetMeasurementsLogDelivery sets the InternetMeasurementsLogDelivery field's value.
+func (s *CreateMonitorInput) SetInternetMeasurementsLogDelivery(v *InternetMeasurementsLogDelivery) *CreateMonitorInput {
+	s.InternetMeasurementsLogDelivery = v
 	return s
 }
 
@@ -1819,8 +1855,19 @@ type GetMonitorOutput struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The maximum number of city-network combinations (that is, combinations of
-	// a city location and network, such as an ISP) to be monitored for your resources.
+	// Publish internet measurements for Internet Monitor to another location, such
+	// as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch
+	// Logs.
+	InternetMeasurementsLogDelivery *InternetMeasurementsLogDelivery `type:"structure"`
+
+	// The maximum number of city-networks to monitor for your resources. A city-network
+	// is the location (city) where clients access your application resources from
+	// and the network or ASN, such as an internet service provider (ISP), that
+	// clients access the resources through. This limit helps control billing costs.
+	//
+	// To learn more, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
+	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+	// Guide.
 	//
 	// MaxCityNetworksToMonitor is a required field
 	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer" required:"true"`
@@ -1882,6 +1929,12 @@ func (s GetMonitorOutput) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *GetMonitorOutput) SetCreatedAt(v time.Time) *GetMonitorOutput {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetInternetMeasurementsLogDelivery sets the InternetMeasurementsLogDelivery field's value.
+func (s *GetMonitorOutput) SetInternetMeasurementsLogDelivery(v *InternetMeasurementsLogDelivery) *GetMonitorOutput {
+	s.InternetMeasurementsLogDelivery = v
 	return s
 }
 
@@ -2392,8 +2445,8 @@ type InternetHealth struct {
 	//
 	// For more information, see How Internet Monitor calculates performance and
 	// availability scores (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html#IMExperienceScores)
-	// in the Amazon CloudWatch Internet Monitor section of the Amazon CloudWatch
-	// User Guide.
+	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+	// Guide.
 	Availability *AvailabilityMeasurement `type:"structure"`
 
 	// Performance in Internet Monitor represents the estimated percentage of traffic
@@ -2403,8 +2456,8 @@ type InternetHealth struct {
 	//
 	// For more information, see How Internet Monitor calculates performance and
 	// availability scores (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html#IMExperienceScores)
-	// in the Amazon CloudWatch Internet Monitor section of the Amazon CloudWatch
-	// User Guide.
+	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+	// Guide.
 	Performance *PerformanceMeasurement `type:"structure"`
 }
 
@@ -2435,6 +2488,59 @@ func (s *InternetHealth) SetAvailability(v *AvailabilityMeasurement) *InternetHe
 // SetPerformance sets the Performance field's value.
 func (s *InternetHealth) SetPerformance(v *PerformanceMeasurement) *InternetHealth {
 	s.Performance = v
+	return s
+}
+
+// Configuration information for other locations that you choose to publish
+// Amazon CloudWatch Internet Monitor internet measurements to, such as Amazon
+// S3. The measurements are also published to Amazon CloudWatch Logs.
+type InternetMeasurementsLogDelivery struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration information for publishing Internet Monitor internet measurements
+	// to Amazon S3. The configuration includes the bucket name and (optionally)
+	// prefix for the S3 bucket to store the measurements, and the delivery status.
+	// The delivery status is ENABLED or DISABLED, depending on whether you choose
+	// to deliver internet measurements to S3 logs.
+	S3Config *S3Config `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternetMeasurementsLogDelivery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternetMeasurementsLogDelivery) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InternetMeasurementsLogDelivery) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InternetMeasurementsLogDelivery"}
+	if s.S3Config != nil {
+		if err := s.S3Config.Validate(); err != nil {
+			invalidParams.AddNested("S3Config", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Config sets the S3Config field's value.
+func (s *InternetMeasurementsLogDelivery) SetS3Config(v *S3Config) *InternetMeasurementsLogDelivery {
+	s.S3Config = v
 	return s
 }
 
@@ -3084,8 +3190,8 @@ func (s *NotFoundException) RequestID() string {
 //
 // For more information, see How Internet Monitor calculates performance and
 // availability scores (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html#IMExperienceScores)
-// in the Amazon CloudWatch Internet Monitor section of the Amazon CloudWatch
-// User Guide.
+// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
+// Guide.
 type PerformanceMeasurement struct {
 	_ struct{} `type:"structure"`
 
@@ -3291,6 +3397,74 @@ func (s *RoundTripTime) SetP90(v float64) *RoundTripTime {
 // SetP95 sets the P95 field's value.
 func (s *RoundTripTime) SetP95(v float64) *RoundTripTime {
 	s.P95 = &v
+	return s
+}
+
+// The configuration for publishing Amazon CloudWatch Internet Monitor internet
+// measurements to Amazon S3. The configuration includes the bucket name and
+// (optionally) prefix for the S3 bucket to store the measurements, and the
+// delivery status. The delivery status is ENABLED or DISABLED, depending on
+// whether you choose to deliver internet measurements to S3 logs.
+type S3Config struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket name.
+	BucketName *string `min:"3" type:"string"`
+
+	// The Amazon S3 bucket prefix.
+	BucketPrefix *string `type:"string"`
+
+	// The status of publishing Internet Monitor internet measurements to an Amazon
+	// S3 bucket.
+	LogDeliveryStatus *string `type:"string" enum:"LogDeliveryStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Config) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Config) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Config) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Config"}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3Config) SetBucketName(v string) *S3Config {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketPrefix sets the BucketPrefix field's value.
+func (s *S3Config) SetBucketPrefix(v string) *S3Config {
+	s.BucketPrefix = &v
+	return s
+}
+
+// SetLogDeliveryStatus sets the LogDeliveryStatus field's value.
+func (s *S3Config) SetLogDeliveryStatus(v string) *S3Config {
+	s.LogDeliveryStatus = &v
 	return s
 }
 
@@ -3602,8 +3776,15 @@ type UpdateMonitorInput struct {
 	// for other API requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The maximum number of city-network combinations (that is, combinations of
-	// a city location and network, such as an ISP) to be monitored for your resources.
+	// Publish internet measurements for Internet Monitor to another location, such
+	// as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch
+	// Logs.
+	InternetMeasurementsLogDelivery *InternetMeasurementsLogDelivery `type:"structure"`
+
+	// The maximum number of city-networks to monitor for your resources. A city-network
+	// is the location (city) where clients access your application resources from
+	// and the network or ASN, such as an internet service provider, that clients
+	// access the resources through.
 	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer"`
 
 	// The name of the monitor.
@@ -3662,6 +3843,11 @@ func (s *UpdateMonitorInput) Validate() error {
 	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
 	}
+	if s.InternetMeasurementsLogDelivery != nil {
+		if err := s.InternetMeasurementsLogDelivery.Validate(); err != nil {
+			invalidParams.AddNested("InternetMeasurementsLogDelivery", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3672,6 +3858,12 @@ func (s *UpdateMonitorInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *UpdateMonitorInput) SetClientToken(v string) *UpdateMonitorInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetInternetMeasurementsLogDelivery sets the InternetMeasurementsLogDelivery field's value.
+func (s *UpdateMonitorInput) SetInternetMeasurementsLogDelivery(v *InternetMeasurementsLogDelivery) *UpdateMonitorInput {
+	s.InternetMeasurementsLogDelivery = v
 	return s
 }
 
@@ -3842,6 +4034,22 @@ func HealthEventStatus_Values() []string {
 	return []string{
 		HealthEventStatusActive,
 		HealthEventStatusResolved,
+	}
+}
+
+const (
+	// LogDeliveryStatusEnabled is a LogDeliveryStatus enum value
+	LogDeliveryStatusEnabled = "ENABLED"
+
+	// LogDeliveryStatusDisabled is a LogDeliveryStatus enum value
+	LogDeliveryStatusDisabled = "DISABLED"
+)
+
+// LogDeliveryStatus_Values returns all elements of the LogDeliveryStatus enum
+func LogDeliveryStatus_Values() []string {
+	return []string{
+		LogDeliveryStatusEnabled,
+		LogDeliveryStatusDisabled,
 	}
 }
 

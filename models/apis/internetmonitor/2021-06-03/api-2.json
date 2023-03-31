@@ -247,7 +247,8 @@
           "idempotencyToken":true
         },
         "Tags":{"shape":"TagMap"},
-        "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"}
+        "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
+        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"}
       }
     },
     "CreateMonitorOutput":{
@@ -356,7 +357,8 @@
         "ProcessingStatus":{"shape":"MonitorProcessingStatusCode"},
         "ProcessingStatusInfo":{"shape":"String"},
         "Tags":{"shape":"TagMap"},
-        "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"}
+        "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
+        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"}
       }
     },
     "HealthEvent":{
@@ -463,6 +465,12 @@
         "Performance":{"shape":"PerformanceMeasurement"}
       }
     },
+    "InternetMeasurementsLogDelivery":{
+      "type":"structure",
+      "members":{
+        "S3Config":{"shape":"S3Config"}
+      }
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -562,6 +570,13 @@
       "members":{
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "LogDeliveryStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "Long":{
       "type":"long",
@@ -694,6 +709,18 @@
         "P95":{"shape":"Double"}
       }
     },
+    "S3Config":{
+      "type":"structure",
+      "members":{
+        "BucketName":{"shape":"S3ConfigBucketNameString"},
+        "BucketPrefix":{"shape":"String"},
+        "LogDeliveryStatus":{"shape":"LogDeliveryStatus"}
+      }
+    },
+    "S3ConfigBucketNameString":{
+      "type":"string",
+      "min":3
+    },
     "SetOfARNs":{
       "type":"list",
       "member":{"shape":"Arn"}
@@ -817,7 +844,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"}
+        "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
+        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"}
       }
     },
     "UpdateMonitorOutput":{

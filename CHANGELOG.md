@@ -1,3 +1,17 @@
+Release v1.44.234 (2023-03-31)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service documentation
+  * Documentation updates for EC2 On Demand Capacity Reservations
+* `service/internetmonitor`: Updates service API and documentation
+* `service/resiliencehub`: Updates service documentation
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for Amazon S3
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+* `service/sms`: Updates service API
+  * Deprecating AWS Server Migration Service.
+
 Release v1.44.233 (2023-03-30)
 ===
 
