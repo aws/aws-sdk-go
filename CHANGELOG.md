@@ -1,3 +1,16 @@
+Release v1.44.235 (2023-04-03)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Add support for database-level federation
+* `service/lakeformation`: Updates service API and documentation
+* `service/license-manager`: Updates service API and documentation
+* `service/mwaa`: Updates service API and documentation
+* `service/servicecatalog`: Updates service API and documentation
+  * This release introduces Service Catalog support for Terraform open source. It enables 1. The notify* APIs to Service Catalog. These APIs are used by the terraform engine to notify the result of the provisioning engine execution. 2. Adds a new TERRAFORM_OPEN_SOURCE product type in CreateProduct API.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.234 (2023-03-31)
 ===
 

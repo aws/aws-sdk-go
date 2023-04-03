@@ -309,7 +309,7 @@
       }
     },
     "AuditContext": {
-      "base": "<p>A structure containing information for audit.</p>",
+      "base": "<p>A structure containing the Lake Formation audit context.</p>",
       "refs": {
         "GetUnfilteredPartitionMetadataRequest$AuditContext": "<p>A structure containing Lake Formation audit context information.</p>",
         "GetUnfilteredPartitionsMetadataRequest$AuditContext": "<p>A structure containing Lake Formation audit context information.</p>",
@@ -319,7 +319,7 @@
     "AuditContextString": {
       "base": null,
       "refs": {
-        "AuditContext$AdditionalAuditContext": "<p>The context for the audit..</p>"
+        "AuditContext$AdditionalAuditContext": "<p>A string containing the additional audit context information.</p>"
       }
     },
     "AuthTokenString": {
@@ -1236,7 +1236,7 @@
       "base": null,
       "refs": {
         "GetColumnStatisticsForPartitionResponse$ColumnStatisticsList": "<p>List of ColumnStatistics that failed to be retrieved.</p>",
-        "GetColumnStatisticsForTableResponse$ColumnStatisticsList": "<p>List of ColumnStatistics that failed to be retrieved.</p>"
+        "GetColumnStatisticsForTableResponse$ColumnStatisticsList": "<p>List of ColumnStatistics.</p>"
       }
     },
     "ColumnStatisticsType": {
@@ -2183,7 +2183,7 @@
     "DecimalColumnStatisticsData": {
       "base": "<p>Defines column statistics supported for fixed-point number data columns.</p>",
       "refs": {
-        "ColumnStatisticsData$DecimalColumnStatisticsData": "<p>Decimal column statistics data.</p>"
+        "ColumnStatisticsData$DecimalColumnStatisticsData": "<p> Decimal column statistics data. UnscaledValues within are Base64-encoded binary objects storing big-endian, two's complement representations of the decimal's unscaled value. </p>"
       }
     },
     "DecimalNumber": {
@@ -2996,6 +2996,48 @@
       "base": null,
       "refs": {
         "CustomCode$Code": "<p>The custom code that is used to perform the data transformation.</p>"
+      }
+    },
+    "FederatedDatabase": {
+      "base": "<p>A database that points to an entity outside the Glue Data Catalog.</p>",
+      "refs": {
+        "Database$FederatedDatabase": "<p>A <code>FederatedDatabase</code> structure that references an entity outside the Glue Data Catalog.</p>",
+        "DatabaseInput$FederatedDatabase": "<p>A <code>FederatedDatabase</code> structure that references an entity outside the Glue Data Catalog.</p>"
+      }
+    },
+    "FederatedResourceAlreadyExistsException": {
+      "base": "<p>A federated resource already exists.</p>",
+      "refs": {
+      }
+    },
+    "FederatedTable": {
+      "base": "<p>A table that points to an entity outside the Glue Data Catalog.</p>",
+      "refs": {
+        "Table$FederatedTable": "<p>A <code>FederatedTable</code> structure that references an entity outside the Glue Data Catalog.</p>"
+      }
+    },
+    "FederationIdentifier": {
+      "base": null,
+      "refs": {
+        "FederatedDatabase$Identifier": "<p>A unique identifier for the federated database.</p>",
+        "FederatedTable$Identifier": "<p>A unique identifier for the federated table.</p>",
+        "FederatedTable$DatabaseIdentifier": "<p>A unique identifier for the federated database.</p>"
+      }
+    },
+    "FederationSourceErrorCode": {
+      "base": null,
+      "refs": {
+        "FederationSourceException$FederationSourceErrorCode": "<p>The error code of the problem.</p>"
+      }
+    },
+    "FederationSourceException": {
+      "base": "<p>A federation source failed.</p>",
+      "refs": {
+      }
+    },
+    "FederationSourceRetryableException": {
+      "base": null,
+      "refs": {
       }
     },
     "FieldName": {
@@ -3953,6 +3995,7 @@
         "DeleteRegistryResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry being deleted.</p>",
         "DeleteResourcePolicyRequest$ResourceArn": "<p>The ARN of the Glue resource for the resource policy to be deleted.</p>",
         "DeleteSchemaResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema being deleted.</p>",
+        "FederatedResourceAlreadyExistsException$AssociatedGlueResource": "<p>The associated Glue resource already exists.</p>",
         "GetRegistryResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
         "GetResourcePolicyRequest$ResourceArn": "<p>The ARN of the Glue resource for which to retrieve the resource policy. If not supplied, the Data Catalog resource policy is returned. Use <code>GetResourcePolicies</code> to view all existing resource policies. For more information see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/glue-specifying-resource-arns.html\">Specifying Glue Resource ARNs</a>. </p>",
         "GetSchemaByDefinitionResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
@@ -4999,6 +5042,9 @@
         "CrawlerRunningException$Message": "<p>A message describing the problem.</p>",
         "CrawlerStoppingException$Message": "<p>A message describing the problem.</p>",
         "EntityNotFoundException$Message": "<p>A message describing the problem.</p>",
+        "FederatedResourceAlreadyExistsException$Message": "<p>The message describing the problem.</p>",
+        "FederationSourceException$Message": "<p>The message describing the problem.</p>",
+        "FederationSourceRetryableException$Message": null,
         "GlueEncryptionException$Message": "<p>The message describing the problem.</p>",
         "IdempotentParameterMismatchException$Message": "<p>A message describing the problem.</p>",
         "IllegalBlueprintStateException$Message": "<p>A message describing the problem.</p>",
@@ -5010,7 +5056,7 @@
         "MLTransformNotReadyException$Message": "<p>A message describing the problem.</p>",
         "NoScheduleException$Message": "<p>A message describing the problem.</p>",
         "OperationTimeoutException$Message": "<p>A message describing the problem.</p>",
-        "PermissionTypeMismatchException$Message": null,
+        "PermissionTypeMismatchException$Message": "<p>There is a mismatch between the SupportedPermissionType used in the query request and the permissions defined on the target table.</p>",
         "ResourceNotReadyException$Message": "<p>A message describing the problem.</p>",
         "ResourceNumberLimitExceededException$Message": "<p>A message describing the problem.</p>",
         "SchedulerNotRunningException$Message": "<p>A message describing the problem.</p>",
@@ -5245,6 +5291,8 @@
         "EncryptionAtRest$SseAwsKmsKeyId": "<p>The ID of the KMS key to use for encryption at rest.</p>",
         "ErrorByName$key": null,
         "ErrorDetail$ErrorCode": "<p>The code associated with this error.</p>",
+        "FederatedDatabase$ConnectionName": "<p>The name of the connection to the external metastore.</p>",
+        "FederatedTable$ConnectionName": "<p>The name of the connection to the external metastore.</p>",
         "FindMatchesTaskRunProperties$JobName": "<p>The name assigned to the job for the Find Matches task run.</p>",
         "GetBlueprintRequest$Name": "<p>The name of the blueprint.</p>",
         "GetBlueprintRunsRequest$BlueprintName": "<p>The name of the blueprint.</p>",
@@ -5649,12 +5697,14 @@
         "DeltaTarget$WriteManifest": "<p>Specifies whether to write the manifest files to the Delta table path.</p>",
         "DeltaTarget$CreateNativeDeltaTable": "<p>Specifies whether the crawler will create native tables, to allow integration with query engines that support querying of the Delta transaction log directly.</p>",
         "DynamoDBTarget$scanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
+        "EntityNotFoundException$FromFederationSource": "<p>Indicates whether or not the exception relates to a federated source.</p>",
         "FindMatchesParameters$EnforceProvidedLabels": "<p>The value to switch on or off to force the output to match the provided labels from users. If the value is <code>True</code>, the <code>find matches</code> transform forces the output to match the provided labels. The results override the normal conflation results. If the value is <code>False</code>, the <code>find matches</code> transform does not ensure all the labels provided are respected, and the results rely on the trained model.</p> <p>Note that setting this value to true may increase the conflation execution time.</p>",
         "GetBlueprintRequest$IncludeBlueprint": "<p>Specifies whether or not to include the blueprint in the response.</p>",
         "GetBlueprintRequest$IncludeParameterSpec": "<p>Specifies whether or not to include the parameter specification.</p>",
         "GetWorkflowRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "GetWorkflowRunRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
         "GetWorkflowRunsRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
+        "InvalidInputException$FromFederationSource": "<p>Indicates whether or not the exception relates to a federated source.</p>",
         "LakeFormationConfiguration$UseLakeFormationCredentials": "<p>Specifies whether to use Lake Formation credentials for the crawler instead of the IAM role credentials.</p>",
         "MongoDBTarget$ScanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "UpdateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
@@ -5670,7 +5720,7 @@
         "CreateSessionRequest$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that can be allocated when the job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB memory. </p>",
         "DynamoDBTarget$scanRate": "<p>The percentage of the configured read capacity units to use by the Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.</p> <p>The valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).</p>",
         "GetMLTransformResponse$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
-        "Job$MaxCapacity": "<p>For Glue version 1.0 or earlier jobs, using the standard worker type, the number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate a minimum of 2 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul> <p>For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum capacity</code>. Instead, you should specify a <code>Worker type</code> and the <code>Number of workers</code>.</p>",
+        "Job$MaxCapacity": "<p>For Glue version 1.0 or earlier jobs, using the standard worker type, the number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul> <p>For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum capacity</code>. Instead, you should specify a <code>Worker type</code> and the <code>Number of workers</code>.</p>",
         "JobRun$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate a minimum of 2 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "JobRun$DPUSeconds": "<p>This field populates only for Auto Scaling job runs, and represents the total time each executor ran during the lifecycle of a job run in seconds, multiplied by a DPU factor (1 for <code>G.1X</code>, 2 for <code>G.2X</code>, or 0.25 for <code>G.025X</code> workers). This value may be different than the <code>executionEngineRuntime</code> * <code>MaxCapacity</code> as in the case of Auto Scaling jobs, as the number of executors running at a given time may be less than the <code>MaxCapacity</code>. Therefore, it is possible that the value of <code>DPUSeconds</code> is less than <code>executionEngineRuntime</code> * <code>MaxCapacity</code>.</p>",
         "JobUpdate$MaxCapacity": "<p>For Glue version 1.0 or earlier jobs, using the standard worker type, the number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate a minimum of 2 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul> <p>For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum capacity</code>. Instead, you should specify a <code>Worker type</code> and the <code>Number of workers</code>.</p>",
@@ -6095,7 +6145,7 @@
       }
     },
     "PermissionTypeMismatchException": {
-      "base": null,
+      "base": "<p>The operation timed out.</p>",
       "refs": {
       }
     },
@@ -6417,7 +6467,7 @@
     "ResourceShareType": {
       "base": null,
       "refs": {
-        "GetDatabasesRequest$ResourceShareType": "<p>Allows you to specify that you want to list the databases shared with your account. The allowable values are <code>FOREIGN</code> or <code>ALL</code>. </p> <ul> <li> <p>If set to <code>FOREIGN</code>, will list the databases shared with your account. </p> </li> <li> <p>If set to <code>ALL</code>, will list the databases shared with your account, as well as the databases in yor local account. </p> </li> </ul>",
+        "GetDatabasesRequest$ResourceShareType": "<p>Allows you to specify that you want to list the databases shared with your account. The allowable values are <code>FEDERATED</code>, <code>FOREIGN</code> or <code>ALL</code>. </p> <ul> <li> <p>If set to <code>FEDERATED</code>, will list the federated databases (referencing an external entity) shared with your account.</p> </li> <li> <p>If set to <code>FOREIGN</code>, will list the databases shared with your account. </p> </li> <li> <p>If set to <code>ALL</code>, will list the databases shared with your account, as well as the databases in yor local account. </p> </li> </ul>",
         "SearchTablesRequest$ResourceShareType": "<p>Allows you to specify that you want to search the tables shared with your account. The allowable values are <code>FOREIGN</code> or <code>ALL</code>. </p> <ul> <li> <p>If set to <code>FOREIGN</code>, will search the tables shared with your account. </p> </li> <li> <p>If set to <code>ALL</code>, will search the tables shared with your account, as well as the tables in yor local account. </p> </li> </ul>"
       }
     },
@@ -7562,8 +7612,8 @@
         "Action$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>",
         "CreateJobRequest$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "CreateMLTransformRequest$Timeout": "<p>The timeout of the task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
-        "CreateSessionRequest$Timeout": "<p>The number of seconds before request times out. </p>",
-        "CreateSessionRequest$IdleTimeout": "<p>The number of seconds when idle before request times out. </p>",
+        "CreateSessionRequest$Timeout": "<p> The number of minutes before session times out. Default for Spark ETL jobs is 48 hours (2880 minutes), the maximum session lifetime for this job type. Consult the documentation for other job types. </p>",
+        "CreateSessionRequest$IdleTimeout": "<p> The number of minutes when idle before session times out. Default for Spark ETL jobs is value of Timeout. Consult the documentation for other job types. </p>",
         "GetDataQualityRuleRecommendationRunResponse$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "GetDataQualityRulesetEvaluationRunResponse$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "GetMLTransformResponse$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",

@@ -6,8 +6,8 @@
     "CheckInLicense": "<p>Checks in the specified license. Check in a license when it is no longer in use.</p>",
     "CheckoutBorrowLicense": "<p>Checks out the specified license for offline use.</p>",
     "CheckoutLicense": "<p>Checks out the specified license.</p> <note> <p>If the account that created the license is the same that is performing the check out, you must specify the account as the beneficiary.</p> </note>",
-    "CreateGrant": "<p>Creates a grant for the specified license. A grant shares the use of license entitlements with specific Amazon Web Services accounts.</p>",
-    "CreateGrantVersion": "<p>Creates a new version of the specified grant.</p>",
+    "CreateGrant": "<p>Creates a grant for the specified license. A grant shares the use of license entitlements with a specific Amazon Web Services account, an organization, or an organizational unit (OU). For more information, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/granted-licenses.html\">Granted licenses in License Manager</a> in the <i>License Manager User Guide</i>.</p>",
+    "CreateGrantVersion": "<p>Creates a new version of the specified grant. For more information, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/granted-licenses.html\">Granted licenses in License Manager</a> in the <i>License Manager User Guide</i>.</p>",
     "CreateLicense": "<p>Creates a license.</p>",
     "CreateLicenseConfiguration": "<p>Creates a license configuration.</p> <p>A license configuration is an abstraction of a customer license agreement that can be consumed and enforced by License Manager. Components include specifications for the license type (licensing by instance, socket, CPU, or vCPU), allowed tenancy (shared tenancy, Dedicated Instance, Dedicated Host, or all of these), license affinity to host (how long a license must be associated with a host), and the number of licenses purchased and used.</p>",
     "CreateLicenseConversionTaskForResource": "<p>Creates a new license conversion task.</p>",
@@ -37,7 +37,7 @@
     "ListLicenseSpecificationsForResource": "<p>Describes the license configurations for the specified resource.</p>",
     "ListLicenseVersions": "<p>Lists all versions of the specified license.</p>",
     "ListLicenses": "<p>Lists the licenses for your account.</p>",
-    "ListReceivedGrants": "<p>Lists grants that are received but not accepted.</p>",
+    "ListReceivedGrants": "<p>Lists grants that are received. Received grants are grants created while specifying the recipient as this Amazon Web Services account, your organization, or an organizational unit (OU) to which this member account belongs.</p>",
     "ListReceivedGrantsForOrganization": "<p>Lists the grants received for all accounts in the organization.</p>",
     "ListReceivedLicenses": "<p>Lists received licenses.</p>",
     "ListReceivedLicensesForOrganization": "<p>Lists the licenses received for all accounts in the organization.</p>",
@@ -67,6 +67,12 @@
     "AccessDeniedException": {
       "base": "<p>Access to resource denied.</p>",
       "refs": {
+      }
+    },
+    "ActivationOverrideBehavior": {
+      "base": null,
+      "refs": {
+        "Options$ActivationOverrideBehavior": "<p>An activation option for your grant that determines the behavior of activating a grant. Activation options can only be used with granted licenses sourced from the Amazon Web Services Marketplace. Additionally, the operation must specify the value of <code>ACTIVE</code> for the <code>Status</code> parameter.</p> <ul> <li> <p>As a license administrator, you can optionally specify an <code>ActivationOverrideBehavior</code> when activating a grant.</p> </li> <li> <p>As a grantor, you can optionally specify an <code>ActivationOverrideBehavior</code> when you activate a grant for a grantee account in your organization.</p> </li> <li> <p>As a grantee, if the grantor creating the distributed grant doesn’t specify an <code>ActivationOverrideBehavior</code>, you can optionally specify one when you are activating the grant.</p> </li> </ul> <dl> <dt>DISTRIBUTED_GRANTS_ONLY</dt> <dd> <p>Use this value to activate a grant without replacing any member account’s active grants for the same product.</p> </dd> <dt>ALL_GRANTS_PERMITTED_BY_ISSUER</dt> <dd> <p>Use this value to activate a grant and disable other active grants in any member accounts for the same product. This action will also replace their previously activated grants with this activated grant.</p> </dd> </dl>"
       }
     },
     "AllowedOperation": {
@@ -561,7 +567,7 @@
     "FilterValues": {
       "base": null,
       "refs": {
-        "Filter$Values": "<p>Filter values. Filter values are case-sensitive.</p>"
+        "Filter$Values": "<p>The value of the filter, which is case-sensitive. You can only specify one value for the filter.</p>"
       }
     },
     "Filters": {
@@ -809,8 +815,8 @@
     "LicenseConversionContext": {
       "base": "<p>Information about a license type conversion task.</p>",
       "refs": {
-        "CreateLicenseConversionTaskForResourceRequest$SourceLicenseContext": "<p>Information that identifies the license type you are converting from. For the structure of the source license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the Amazon Web Services CLI</a> in the <i>License Manager User Guide</i>.</p>",
-        "CreateLicenseConversionTaskForResourceRequest$DestinationLicenseContext": "<p>Information that identifies the license type you are converting to. For the structure of the destination license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the Amazon Web Services CLI</a> in the <i>License Manager User Guide</i>.</p>",
+        "CreateLicenseConversionTaskForResourceRequest$SourceLicenseContext": "<p>Information that identifies the license type you are converting from. For the structure of the source license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the CLI </a> in the <i>License Manager User Guide</i>.</p>",
+        "CreateLicenseConversionTaskForResourceRequest$DestinationLicenseContext": "<p>Information that identifies the license type you are converting to. For the structure of the destination license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the CLI </a> in the <i>License Manager User Guide</i>.</p>",
         "GetLicenseConversionTaskResponse$SourceLicenseContext": "<p>Information about the license type converted from.</p>",
         "GetLicenseConversionTaskResponse$DestinationLicenseContext": "<p>Information about the license type converted to.</p>",
         "LicenseConversionTask$SourceLicenseContext": "<p>Information about the license type this conversion task converted from.</p>",
@@ -1175,6 +1181,13 @@
       "refs": {
       }
     },
+    "Options": {
+      "base": "<p>The options you can specify when you create a new version of a grant, such as activation override behavior. For more information, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/granted-licenses.html\">Granted licenses in License Manager</a> in the <i>License Manager User Guide</i>.</p>",
+      "refs": {
+        "CreateGrantVersionRequest$Options": "<p>The options specified for the grant.</p>",
+        "Grant$Options": "<p>The options specified for the grant.</p>"
+      }
+    },
     "OrganizationConfiguration": {
       "base": "<p>Configuration information for Organizations.</p>",
       "refs": {
@@ -1185,7 +1198,7 @@
     "PrincipalArnList": {
       "base": null,
       "refs": {
-        "CreateGrantRequest$Principals": "<p>The grant principals. This value should be specified as an Amazon Resource Name (ARN).</p>"
+        "CreateGrantRequest$Principals": "<p>The grant principals. You can specify one of the following as an Amazon Resource Name (ARN):</p> <ul> <li> <p>An Amazon Web Services account, which includes only the account specified.</p> </li> </ul> <ul> <li> <p>An organizational unit (OU), which includes all accounts in the OU.</p> </li> </ul> <ul> <li> <p>An organization, which will include all accounts across your organization.</p> </li> </ul>"
       }
     },
     "ProductInformation": {

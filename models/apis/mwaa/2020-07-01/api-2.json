@@ -281,6 +281,8 @@
         "RequirementsS3Path":{"shape":"RelativePath"},
         "Schedulers":{"shape":"Schedulers"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
+        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "StartupScriptS3Path":{"shape":"RelativePath"},
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
         "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
@@ -370,6 +372,8 @@
         "Schedulers":{"shape":"Schedulers"},
         "ServiceRoleArn":{"shape":"IamRoleArn"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
+        "StartupScriptS3ObjectVersion":{"shape":"String"},
+        "StartupScriptS3Path":{"shape":"String"},
         "Status":{"shape":"EnvironmentStatus"},
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
@@ -833,6 +837,8 @@
         "RequirementsS3Path":{"shape":"RelativePath"},
         "Schedulers":{"shape":"Schedulers"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
+        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "StartupScriptS3Path":{"shape":"RelativePath"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
         "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
       }

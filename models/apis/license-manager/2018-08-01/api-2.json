@@ -914,6 +914,13 @@
       },
       "exception":true
     },
+    "ActivationOverrideBehavior":{
+      "type":"string",
+      "enum":[
+        "DISTRIBUTED_GRANTS_ONLY",
+        "ALL_GRANTS_PERMITTED_BY_ISSUER"
+      ]
+    },
     "AllowedOperation":{
       "type":"string",
       "enum":[
@@ -1127,7 +1134,8 @@
         "AllowedOperations":{"shape":"AllowedOperationList"},
         "Status":{"shape":"GrantStatus"},
         "StatusReason":{"shape":"StatusReasonMessage"},
-        "SourceVersion":{"shape":"String"}
+        "SourceVersion":{"shape":"String"},
+        "Options":{"shape":"Options"}
       }
     },
     "CreateGrantVersionResponse":{
@@ -1719,7 +1727,8 @@
         "GrantStatus":{"shape":"GrantStatus"},
         "StatusReason":{"shape":"StatusReasonMessage"},
         "Version":{"shape":"String"},
-        "GrantedOperations":{"shape":"AllowedOperationList"}
+        "GrantedOperations":{"shape":"AllowedOperationList"},
+        "Options":{"shape":"Options"}
       }
     },
     "GrantList":{
@@ -2325,6 +2334,12 @@
         "Message":{"shape":"Message"}
       },
       "exception":true
+    },
+    "Options":{
+      "type":"structure",
+      "members":{
+        "ActivationOverrideBehavior":{"shape":"ActivationOverrideBehavior"}
+      }
     },
     "OrganizationConfiguration":{
       "type":"structure",

@@ -883,6 +883,16 @@
       "members":{
       }
     },
+    "AssociatedResourceType":{
+      "type":"string",
+      "enum":["CLOUDFRONT"]
+    },
+    "AssociationConfig":{
+      "type":"structure",
+      "members":{
+        "RequestBody":{"shape":"RequestBody"}
+      }
+    },
     "BlockAction":{
       "type":"structure",
       "members":{
@@ -1389,7 +1399,8 @@
         "CustomResponseBodies":{"shape":"CustomResponseBodies"},
         "CaptchaConfig":{"shape":"CaptchaConfig"},
         "ChallengeConfig":{"shape":"ChallengeConfig"},
-        "TokenDomains":{"shape":"TokenDomains"}
+        "TokenDomains":{"shape":"TokenDomains"},
+        "AssociationConfig":{"shape":"AssociationConfig"}
       }
     },
     "CreateWebACLResponse":{
@@ -2746,7 +2757,8 @@
         "OVERSIZE_HANDLING",
         "CHALLENGE_CONFIG",
         "TOKEN_DOMAIN",
-        "ATP_RULE_SET_RESPONSE_INSPECTION"
+        "ATP_RULE_SET_RESPONSE_INSPECTION",
+        "ASSOCIATED_RESOURCE_TYPE"
       ]
     },
     "ParameterExceptionParameter":{
@@ -2966,6 +2978,18 @@
       "members":{
         "ReleaseVersion":{"shape":"VersionKeyString"},
         "Timestamp":{"shape":"Timestamp"}
+      }
+    },
+    "RequestBody":{
+      "type":"map",
+      "key":{"shape":"AssociatedResourceType"},
+      "value":{"shape":"RequestBodyAssociatedResourceTypeConfig"}
+    },
+    "RequestBodyAssociatedResourceTypeConfig":{
+      "type":"structure",
+      "required":["DefaultSizeInspectionLimit"],
+      "members":{
+        "DefaultSizeInspectionLimit":{"shape":"SizeInspectionLimit"}
       }
     },
     "RequestInspection":{
@@ -3327,6 +3351,15 @@
         "TextTransformations":{"shape":"TextTransformations"}
       }
     },
+    "SizeInspectionLimit":{
+      "type":"string",
+      "enum":[
+        "KB_16",
+        "KB_32",
+        "KB_48",
+        "KB_64"
+      ]
+    },
     "SolveTimestamp":{"type":"long"},
     "SqliMatchStatement":{
       "type":"structure",
@@ -3649,7 +3682,8 @@
         "CustomResponseBodies":{"shape":"CustomResponseBodies"},
         "CaptchaConfig":{"shape":"CaptchaConfig"},
         "ChallengeConfig":{"shape":"ChallengeConfig"},
-        "TokenDomains":{"shape":"TokenDomains"}
+        "TokenDomains":{"shape":"TokenDomains"},
+        "AssociationConfig":{"shape":"AssociationConfig"}
       }
     },
     "UpdateWebACLResponse":{
@@ -3863,7 +3897,8 @@
         "CustomResponseBodies":{"shape":"CustomResponseBodies"},
         "CaptchaConfig":{"shape":"CaptchaConfig"},
         "ChallengeConfig":{"shape":"ChallengeConfig"},
-        "TokenDomains":{"shape":"TokenDomains"}
+        "TokenDomains":{"shape":"TokenDomains"},
+        "AssociationConfig":{"shape":"AssociationConfig"}
       }
     },
     "WebACLSummaries":{

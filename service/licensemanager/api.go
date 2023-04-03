@@ -480,7 +480,10 @@ func (c *LicenseManager) CreateGrantRequest(input *CreateGrantInput) (req *reque
 // CreateGrant API operation for AWS License Manager.
 //
 // Creates a grant for the specified license. A grant shares the use of license
-// entitlements with specific Amazon Web Services accounts.
+// entitlements with a specific Amazon Web Services account, an organization,
+// or an organizational unit (OU). For more information, see Granted licenses
+// in License Manager (https://docs.aws.amazon.com/license-manager/latest/userguide/granted-licenses.html)
+// in the License Manager User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -578,7 +581,9 @@ func (c *LicenseManager) CreateGrantVersionRequest(input *CreateGrantVersionInpu
 
 // CreateGrantVersion API operation for AWS License Manager.
 //
-// Creates a new version of the specified grant.
+// Creates a new version of the specified grant. For more information, see Granted
+// licenses in License Manager (https://docs.aws.amazon.com/license-manager/latest/userguide/granted-licenses.html)
+// in the License Manager User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3486,7 +3491,9 @@ func (c *LicenseManager) ListReceivedGrantsRequest(input *ListReceivedGrantsInpu
 
 // ListReceivedGrants API operation for AWS License Manager.
 //
-// Lists grants that are received but not accepted.
+// Lists grants that are received. Received grants are grants created while
+// specifying the recipient as this Amazon Web Services account, your organization,
+// or an organizational unit (OU) to which this member account belongs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5937,8 +5944,14 @@ type CreateGrantInput struct {
 	// LicenseArn is a required field
 	LicenseArn *string `type:"string" required:"true"`
 
-	// The grant principals. This value should be specified as an Amazon Resource
-	// Name (ARN).
+	// The grant principals. You can specify one of the following as an Amazon Resource
+	// Name (ARN):
+	//
+	//    * An Amazon Web Services account, which includes only the account specified.
+	//
+	//    * An organizational unit (OU), which includes all accounts in the OU.
+	//
+	//    * An organization, which will include all accounts across your organization.
 	//
 	// Principals is a required field
 	Principals []*string `min:"1" type:"list" required:"true"`
@@ -6101,6 +6114,9 @@ type CreateGrantVersionInput struct {
 	// Grant name.
 	GrantName *string `type:"string"`
 
+	// The options specified for the grant.
+	Options *Options `type:"structure"`
+
 	// Current version of the grant.
 	SourceVersion *string `type:"string"`
 
@@ -6169,6 +6185,12 @@ func (s *CreateGrantVersionInput) SetGrantArn(v string) *CreateGrantVersionInput
 // SetGrantName sets the GrantName field's value.
 func (s *CreateGrantVersionInput) SetGrantName(v string) *CreateGrantVersionInput {
 	s.GrantName = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *CreateGrantVersionInput) SetOptions(v *Options) *CreateGrantVersionInput {
+	s.Options = v
 	return s
 }
 
@@ -6427,7 +6449,7 @@ type CreateLicenseConversionTaskForResourceInput struct {
 
 	// Information that identifies the license type you are converting to. For the
 	// structure of the destination license, see Convert a license type using the
-	// Amazon Web Services CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
+	// CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
 	// in the License Manager User Guide.
 	//
 	// DestinationLicenseContext is a required field
@@ -6441,7 +6463,7 @@ type CreateLicenseConversionTaskForResourceInput struct {
 
 	// Information that identifies the license type you are converting from. For
 	// the structure of the source license, see Convert a license type using the
-	// Amazon Web Services CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
+	// CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
 	// in the License Manager User Guide.
 	//
 	// SourceLicenseContext is a required field
@@ -8315,7 +8337,8 @@ type Filter struct {
 	// Name of the filter. Filter names are case-sensitive.
 	Name *string `type:"string"`
 
-	// Filter values. Filter values are case-sensitive.
+	// The value of the filter, which is case-sensitive. You can only specify one
+	// value for the filter.
 	Values []*string `type:"list"`
 }
 
@@ -9327,6 +9350,9 @@ type Grant struct {
 	// LicenseArn is a required field
 	LicenseArn *string `type:"string" required:"true"`
 
+	// The options specified for the grant.
+	Options *Options `type:"structure"`
+
 	// Parent ARN.
 	//
 	// ParentArn is a required field
@@ -9398,6 +9424,12 @@ func (s *Grant) SetHomeRegion(v string) *Grant {
 // SetLicenseArn sets the LicenseArn field's value.
 func (s *Grant) SetLicenseArn(v string) *Grant {
 	s.LicenseArn = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *Grant) SetOptions(v *Options) *Grant {
+	s.Options = v
 	return s
 }
 
@@ -12759,6 +12791,65 @@ func (s *NoEntitlementsAllowedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The options you can specify when you create a new version of a grant, such
+// as activation override behavior. For more information, see Granted licenses
+// in License Manager (https://docs.aws.amazon.com/license-manager/latest/userguide/granted-licenses.html)
+// in the License Manager User Guide.
+type Options struct {
+	_ struct{} `type:"structure"`
+
+	// An activation option for your grant that determines the behavior of activating
+	// a grant. Activation options can only be used with granted licenses sourced
+	// from the Amazon Web Services Marketplace. Additionally, the operation must
+	// specify the value of ACTIVE for the Status parameter.
+	//
+	//    * As a license administrator, you can optionally specify an ActivationOverrideBehavior
+	//    when activating a grant.
+	//
+	//    * As a grantor, you can optionally specify an ActivationOverrideBehavior
+	//    when you activate a grant for a grantee account in your organization.
+	//
+	//    * As a grantee, if the grantor creating the distributed grant doesn’t
+	//    specify an ActivationOverrideBehavior, you can optionally specify one
+	//    when you are activating the grant.
+	//
+	// DISTRIBUTED_GRANTS_ONLY
+	//
+	// Use this value to activate a grant without replacing any member account’s
+	// active grants for the same product.
+	//
+	// ALL_GRANTS_PERMITTED_BY_ISSUER
+	//
+	// Use this value to activate a grant and disable other active grants in any
+	// member accounts for the same product. This action will also replace their
+	// previously activated grants with this activated grant.
+	ActivationOverrideBehavior *string `type:"string" enum:"ActivationOverrideBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Options) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Options) GoString() string {
+	return s.String()
+}
+
+// SetActivationOverrideBehavior sets the ActivationOverrideBehavior field's value.
+func (s *Options) SetActivationOverrideBehavior(v string) *Options {
+	s.ActivationOverrideBehavior = &v
+	return s
+}
+
 // Configuration information for Organizations.
 type OrganizationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -14789,6 +14880,22 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// ActivationOverrideBehaviorDistributedGrantsOnly is a ActivationOverrideBehavior enum value
+	ActivationOverrideBehaviorDistributedGrantsOnly = "DISTRIBUTED_GRANTS_ONLY"
+
+	// ActivationOverrideBehaviorAllGrantsPermittedByIssuer is a ActivationOverrideBehavior enum value
+	ActivationOverrideBehaviorAllGrantsPermittedByIssuer = "ALL_GRANTS_PERMITTED_BY_ISSUER"
+)
+
+// ActivationOverrideBehavior_Values returns all elements of the ActivationOverrideBehavior enum
+func ActivationOverrideBehavior_Values() []string {
+	return []string{
+		ActivationOverrideBehaviorDistributedGrantsOnly,
+		ActivationOverrideBehaviorAllGrantsPermittedByIssuer,
+	}
 }
 
 const (

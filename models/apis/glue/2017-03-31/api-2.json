@@ -188,7 +188,9 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"InternalServiceException"},
         {"shape":"GlueEncryptionException"},
-        {"shape":"InvalidStateException"}
+        {"shape":"InvalidStateException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "BatchGetTriggers":{
@@ -436,7 +438,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"FederatedResourceAlreadyExistsException"}
       ]
     },
     "CreateDevEndpoint":{
@@ -1352,7 +1355,8 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
-        {"shape":"GlueEncryptionException"}
+        {"shape":"GlueEncryptionException"},
+        {"shape":"FederationSourceException"}
       ]
     },
     "GetDatabases":{
@@ -1578,7 +1582,9 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
-        {"shape":"GlueEncryptionException"}
+        {"shape":"GlueEncryptionException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "GetPartitionIndexes":{
@@ -1612,7 +1618,9 @@
         {"shape":"InternalServiceException"},
         {"shape":"GlueEncryptionException"},
         {"shape":"InvalidStateException"},
-        {"shape":"ResourceNotReadyException"}
+        {"shape":"ResourceNotReadyException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "GetPlan":{
@@ -1811,7 +1819,9 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"},
-        {"shape":"ResourceNotReadyException"}
+        {"shape":"ResourceNotReadyException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "GetTableVersion":{
@@ -1859,7 +1869,9 @@
         {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"InternalServiceException"},
-        {"shape":"GlueEncryptionException"}
+        {"shape":"GlueEncryptionException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "GetTags":{
@@ -1921,7 +1933,9 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"},
-        {"shape":"PermissionTypeMismatchException"}
+        {"shape":"PermissionTypeMismatchException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "GetUnfilteredPartitionsMetadata":{
@@ -1938,7 +1952,9 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"},
-        {"shape":"PermissionTypeMismatchException"}
+        {"shape":"PermissionTypeMismatchException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "GetUnfilteredTableMetadata":{
@@ -1955,7 +1971,9 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"},
-        {"shape":"PermissionTypeMismatchException"}
+        {"shape":"PermissionTypeMismatchException"},
+        {"shape":"FederationSourceException"},
+        {"shape":"FederationSourceRetryableException"}
       ]
     },
     "GetUserDefinedFunction":{
@@ -5637,7 +5655,8 @@
         "CreateTime":{"shape":"Timestamp"},
         "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
         "TargetDatabase":{"shape":"DatabaseIdentifier"},
-        "CatalogId":{"shape":"CatalogIdString"}
+        "CatalogId":{"shape":"CatalogIdString"},
+        "FederatedDatabase":{"shape":"FederatedDatabase"}
       }
     },
     "DatabaseIdentifier":{
@@ -5656,7 +5675,8 @@
         "LocationUri":{"shape":"URI"},
         "Parameters":{"shape":"ParametersMap"},
         "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
-        "TargetDatabase":{"shape":"DatabaseIdentifier"}
+        "TargetDatabase":{"shape":"DatabaseIdentifier"},
+        "FederatedDatabase":{"shape":"FederatedDatabase"}
       }
     },
     "DatabaseList":{
@@ -6393,7 +6413,8 @@
     "EntityNotFoundException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"MessageString"}
+        "Message":{"shape":"MessageString"},
+        "FromFederationSource":{"shape":"NullableBoolean"}
       },
       "exception":true
     },
@@ -6484,6 +6505,60 @@
     "ExtendedString":{
       "type":"string",
       "pattern":"[\\s\\S]*"
+    },
+    "FederatedDatabase":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"FederationIdentifier"},
+        "ConnectionName":{"shape":"NameString"}
+      }
+    },
+    "FederatedResourceAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"},
+        "AssociatedGlueResource":{"shape":"GlueResourceArn"}
+      },
+      "exception":true
+    },
+    "FederatedTable":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"FederationIdentifier"},
+        "DatabaseIdentifier":{"shape":"FederationIdentifier"},
+        "ConnectionName":{"shape":"NameString"}
+      }
+    },
+    "FederationIdentifier":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "FederationSourceErrorCode":{
+      "type":"string",
+      "enum":[
+        "InvalidResponseException",
+        "OperationTimeoutException",
+        "OperationNotSupportedException",
+        "InternalServiceException",
+        "ThrottlingException"
+      ]
+    },
+    "FederationSourceException":{
+      "type":"structure",
+      "members":{
+        "FederationSourceErrorCode":{"shape":"FederationSourceErrorCode"},
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
+    "FederationSourceRetryableException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
     },
     "FieldName":{
       "type":"string",
@@ -8077,7 +8152,8 @@
     "InvalidInputException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"MessageString"}
+        "Message":{"shape":"MessageString"},
+        "FromFederationSource":{"shape":"NullableBoolean"}
       },
       "exception":true
     },
@@ -9999,7 +10075,8 @@
       "type":"string",
       "enum":[
         "FOREIGN",
-        "ALL"
+        "ALL",
+        "FEDERATED"
       ]
     },
     "ResourceType":{
@@ -11278,7 +11355,8 @@
         "IsRegisteredWithLakeFormation":{"shape":"Boolean"},
         "TargetTable":{"shape":"TableIdentifier"},
         "CatalogId":{"shape":"CatalogIdString"},
-        "VersionId":{"shape":"VersionString"}
+        "VersionId":{"shape":"VersionString"},
+        "FederatedTable":{"shape":"FederatedTable"}
       }
     },
     "TableError":{

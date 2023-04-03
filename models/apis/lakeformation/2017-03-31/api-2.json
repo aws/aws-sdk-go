@@ -2026,7 +2026,8 @@
       "members":{
         "ResourceArn":{"shape":"ResourceArnString"},
         "UseServiceLinkedRole":{"shape":"NullableBoolean"},
-        "RoleArn":{"shape":"IAMRoleArn"}
+        "RoleArn":{"shape":"IAMRoleArn"},
+        "WithFederation":{"shape":"NullableBoolean"}
       }
     },
     "RegisterResourceResponse":{
@@ -2071,7 +2072,8 @@
       "members":{
         "ResourceArn":{"shape":"ResourceArnString"},
         "RoleArn":{"shape":"IAMRoleArn"},
-        "LastModified":{"shape":"LastModifiedTimestamp"}
+        "LastModified":{"shape":"LastModifiedTimestamp"},
+        "WithFederation":{"shape":"NullableBoolean"}
       }
     },
     "ResourceInfoList":{
@@ -2478,7 +2480,8 @@
       ],
       "members":{
         "RoleArn":{"shape":"IAMRoleArn"},
-        "ResourceArn":{"shape":"ResourceArnString"}
+        "ResourceArn":{"shape":"ResourceArnString"},
+        "WithFederation":{"shape":"NullableBoolean"}
       }
     },
     "UpdateResourceResponse":{

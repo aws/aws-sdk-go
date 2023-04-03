@@ -1062,6 +1062,11 @@ func (c *Glue) BatchGetPartitionRequest(input *BatchGetPartitionInput) (req *req
 //   - InvalidStateException
 //     An error that indicates your data is in an invalid state.
 //
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetPartition
 func (c *Glue) BatchGetPartition(input *BatchGetPartitionInput) (*BatchGetPartitionOutput, error) {
 	req, out := c.BatchGetPartitionRequest(input)
@@ -2522,6 +2527,9 @@ func (c *Glue) CreateDatabaseRequest(input *CreateDatabaseInput) (req *request.R
 //
 //   - ConcurrentModificationException
 //     Two processes are trying to modify a resource simultaneously.
+//
+//   - FederatedResourceAlreadyExistsException
+//     A federated resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateDatabase
 func (c *Glue) CreateDatabase(input *CreateDatabaseInput) (*CreateDatabaseOutput, error) {
@@ -8198,6 +8206,9 @@ func (c *Glue) GetDatabaseRequest(input *GetDatabaseInput) (req *request.Request
 //   - EncryptionException
 //     An encryption operation failed.
 //
+//   - FederationSourceException
+//     A federation source failed.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDatabase
 func (c *Glue) GetDatabase(input *GetDatabaseInput) (*GetDatabaseOutput, error) {
 	req, out := c.GetDatabaseRequest(input)
@@ -9899,6 +9910,11 @@ func (c *Glue) GetPartitionRequest(input *GetPartitionInput) (req *request.Reque
 //   - EncryptionException
 //     An encryption operation failed.
 //
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetPartition
 func (c *Glue) GetPartition(input *GetPartitionInput) (*GetPartitionOutput, error) {
 	req, out := c.GetPartitionRequest(input)
@@ -10149,6 +10165,11 @@ func (c *Glue) GetPartitionsRequest(input *GetPartitionsInput) (req *request.Req
 //
 //   - ResourceNotReadyException
 //     A resource was not ready for a transaction.
+//
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetPartitions
 func (c *Glue) GetPartitions(input *GetPartitionsInput) (*GetPartitionsOutput, error) {
@@ -11488,6 +11509,11 @@ func (c *Glue) GetTableRequest(input *GetTableInput) (req *request.Request, outp
 //   - ResourceNotReadyException
 //     A resource was not ready for a transaction.
 //
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetTable
 func (c *Glue) GetTable(input *GetTableInput) (*GetTableOutput, error) {
 	req, out := c.GetTableRequest(input)
@@ -11824,6 +11850,11 @@ func (c *Glue) GetTablesRequest(input *GetTablesInput) (req *request.Request, ou
 //
 //   - EncryptionException
 //     An encryption operation failed.
+//
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetTables
 func (c *Glue) GetTables(input *GetTablesInput) (*GetTablesOutput, error) {
@@ -12293,6 +12324,12 @@ func (c *Glue) GetUnfilteredPartitionMetadataRequest(input *GetUnfilteredPartiti
 //     An encryption operation failed.
 //
 //   - PermissionTypeMismatchException
+//     The operation timed out.
+//
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionMetadata
 func (c *Glue) GetUnfilteredPartitionMetadata(input *GetUnfilteredPartitionMetadataInput) (*GetUnfilteredPartitionMetadataOutput, error) {
@@ -12396,6 +12433,12 @@ func (c *Glue) GetUnfilteredPartitionsMetadataRequest(input *GetUnfilteredPartit
 //     An encryption operation failed.
 //
 //   - PermissionTypeMismatchException
+//     The operation timed out.
+//
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionsMetadata
 func (c *Glue) GetUnfilteredPartitionsMetadata(input *GetUnfilteredPartitionsMetadataInput) (*GetUnfilteredPartitionsMetadataOutput, error) {
@@ -12543,6 +12586,12 @@ func (c *Glue) GetUnfilteredTableMetadataRequest(input *GetUnfilteredTableMetada
 //     An encryption operation failed.
 //
 //   - PermissionTypeMismatchException
+//     The operation timed out.
+//
+//   - FederationSourceException
+//     A federation source failed.
+//
+//   - FederationSourceRetryableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredTableMetadata
 func (c *Glue) GetUnfilteredTableMetadata(input *GetUnfilteredTableMetadataInput) (*GetUnfilteredTableMetadataOutput, error) {
@@ -21325,11 +21374,11 @@ func (s *AthenaConnectorSource) SetSchemaName(v string) *AthenaConnectorSource {
 	return s
 }
 
-// A structure containing information for audit.
+// A structure containing the Lake Formation audit context.
 type AuditContext struct {
 	_ struct{} `type:"structure"`
 
-	// The context for the audit..
+	// A string containing the additional audit context information.
 	AdditionalAuditContext *string `type:"string"`
 
 	// All columns request for audit.
@@ -26749,7 +26798,9 @@ type ColumnStatisticsData struct {
 	// Date column statistics data.
 	DateColumnStatisticsData *DateColumnStatisticsData `type:"structure"`
 
-	// Decimal column statistics data.
+	// Decimal column statistics data. UnscaledValues within are Base64-encoded
+	// binary objects storing big-endian, two's complement representations of the
+	// decimal's unscaled value.
 	DecimalColumnStatisticsData *DecimalColumnStatisticsData `type:"structure"`
 
 	// Double column statistics data.
@@ -31998,7 +32049,8 @@ type CreateSessionInput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The number of seconds when idle before request times out.
+	// The number of minutes when idle before session times out. Default for Spark
+	// ETL jobs is value of Timeout. Consult the documentation for other job types.
 	IdleTimeout *int64 `min:"1" type:"integer"`
 
 	// The number of Glue data processing units (DPUs) that can be allocated when
@@ -32023,7 +32075,9 @@ type CreateSessionInput struct {
 	// The map of key value pairs (tags) belonging to the session.
 	Tags map[string]*string `type:"map"`
 
-	// The number of seconds before request times out.
+	// The number of minutes before session times out. Default for Spark ETL jobs
+	// is 48 hours (2880 minutes), the maximum session lifetime for this job type.
+	// Consult the documentation for other job types.
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// The type of predefined worker that is allocated to use for the session. Accepts
@@ -34354,6 +34408,10 @@ type Database struct {
 	// A description of the database.
 	Description *string `type:"string"`
 
+	// A FederatedDatabase structure that references an entity outside the Glue
+	// Data Catalog.
+	FederatedDatabase *FederatedDatabase `type:"structure"`
+
 	// The location of the database (for example, an HDFS path).
 	LocationUri *string `min:"1" type:"string"`
 
@@ -34410,6 +34468,12 @@ func (s *Database) SetCreateTime(v time.Time) *Database {
 // SetDescription sets the Description field's value.
 func (s *Database) SetDescription(v string) *Database {
 	s.Description = &v
+	return s
+}
+
+// SetFederatedDatabase sets the FederatedDatabase field's value.
+func (s *Database) SetFederatedDatabase(v *FederatedDatabase) *Database {
+	s.FederatedDatabase = v
 	return s
 }
 
@@ -34505,6 +34569,10 @@ type DatabaseInput struct {
 	// A description of the database.
 	Description *string `type:"string"`
 
+	// A FederatedDatabase structure that references an entity outside the Glue
+	// Data Catalog.
+	FederatedDatabase *FederatedDatabase `type:"structure"`
+
 	// The location of the database (for example, an HDFS path).
 	LocationUri *string `min:"1" type:"string"`
 
@@ -34564,6 +34632,11 @@ func (s *DatabaseInput) Validate() error {
 			}
 		}
 	}
+	if s.FederatedDatabase != nil {
+		if err := s.FederatedDatabase.Validate(); err != nil {
+			invalidParams.AddNested("FederatedDatabase", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TargetDatabase != nil {
 		if err := s.TargetDatabase.Validate(); err != nil {
 			invalidParams.AddNested("TargetDatabase", err.(request.ErrInvalidParams))
@@ -34585,6 +34658,12 @@ func (s *DatabaseInput) SetCreateTableDefaultPermissions(v []*PrincipalPermissio
 // SetDescription sets the Description field's value.
 func (s *DatabaseInput) SetDescription(v string) *DatabaseInput {
 	s.Description = &v
+	return s
+}
+
+// SetFederatedDatabase sets the FederatedDatabase field's value.
+func (s *DatabaseInput) SetFederatedDatabase(v *FederatedDatabase) *DatabaseInput {
+	s.FederatedDatabase = v
 	return s
 }
 
@@ -38799,6 +38878,9 @@ type EntityNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Indicates whether or not the exception relates to a federated source.
+	FromFederationSource *bool `type:"boolean"`
+
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -38846,7 +38928,7 @@ func (s *EntityNotFoundException) OrigErr() error {
 }
 
 func (s *EntityNotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -39224,6 +39306,312 @@ func (s ExportLabelsTaskRunProperties) GoString() string {
 func (s *ExportLabelsTaskRunProperties) SetOutputS3Path(v string) *ExportLabelsTaskRunProperties {
 	s.OutputS3Path = &v
 	return s
+}
+
+// A database that points to an entity outside the Glue Data Catalog.
+type FederatedDatabase struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connection to the external metastore.
+	ConnectionName *string `min:"1" type:"string"`
+
+	// A unique identifier for the federated database.
+	Identifier *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederatedDatabase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederatedDatabase) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FederatedDatabase) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FederatedDatabase"}
+	if s.ConnectionName != nil && len(*s.ConnectionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionName", 1))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *FederatedDatabase) SetConnectionName(v string) *FederatedDatabase {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *FederatedDatabase) SetIdentifier(v string) *FederatedDatabase {
+	s.Identifier = &v
+	return s
+}
+
+// A federated resource already exists.
+type FederatedResourceAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The associated Glue resource already exists.
+	AssociatedGlueResource *string `min:"1" type:"string"`
+
+	// The message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederatedResourceAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederatedResourceAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorFederatedResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &FederatedResourceAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *FederatedResourceAlreadyExistsException) Code() string {
+	return "FederatedResourceAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *FederatedResourceAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *FederatedResourceAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *FederatedResourceAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *FederatedResourceAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *FederatedResourceAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A table that points to an entity outside the Glue Data Catalog.
+type FederatedTable struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connection to the external metastore.
+	ConnectionName *string `min:"1" type:"string"`
+
+	// A unique identifier for the federated database.
+	DatabaseIdentifier *string `min:"1" type:"string"`
+
+	// A unique identifier for the federated table.
+	Identifier *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederatedTable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederatedTable) GoString() string {
+	return s.String()
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *FederatedTable) SetConnectionName(v string) *FederatedTable {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetDatabaseIdentifier sets the DatabaseIdentifier field's value.
+func (s *FederatedTable) SetDatabaseIdentifier(v string) *FederatedTable {
+	s.DatabaseIdentifier = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *FederatedTable) SetIdentifier(v string) *FederatedTable {
+	s.Identifier = &v
+	return s
+}
+
+// A federation source failed.
+type FederationSourceException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error code of the problem.
+	FederationSourceErrorCode *string `type:"string" enum:"FederationSourceErrorCode"`
+
+	// The message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederationSourceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederationSourceException) GoString() string {
+	return s.String()
+}
+
+func newErrorFederationSourceException(v protocol.ResponseMetadata) error {
+	return &FederationSourceException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *FederationSourceException) Code() string {
+	return "FederationSourceException"
+}
+
+// Message returns the exception's message.
+func (s *FederationSourceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *FederationSourceException) OrigErr() error {
+	return nil
+}
+
+func (s *FederationSourceException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *FederationSourceException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *FederationSourceException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type FederationSourceRetryableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederationSourceRetryableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FederationSourceRetryableException) GoString() string {
+	return s.String()
+}
+
+func newErrorFederationSourceRetryableException(v protocol.ResponseMetadata) error {
+	return &FederationSourceRetryableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *FederationSourceRetryableException) Code() string {
+	return "FederationSourceRetryableException"
+}
+
+// Message returns the exception's message.
+func (s *FederationSourceRetryableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *FederationSourceRetryableException) OrigErr() error {
+	return nil
+}
+
+func (s *FederationSourceRetryableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *FederationSourceRetryableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *FederationSourceRetryableException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Specifies a transform that locates records in the dataset that have missing
@@ -40615,7 +41003,7 @@ func (s *GetColumnStatisticsForTableInput) SetTableName(v string) *GetColumnStat
 type GetColumnStatisticsForTableOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of ColumnStatistics that failed to be retrieved.
+	// List of ColumnStatistics.
 	ColumnStatisticsList []*ColumnStatistics `type:"list"`
 
 	// List of ColumnStatistics that failed to be retrieved.
@@ -42195,7 +42583,10 @@ type GetDatabasesInput struct {
 	NextToken *string `type:"string"`
 
 	// Allows you to specify that you want to list the databases shared with your
-	// account. The allowable values are FOREIGN or ALL.
+	// account. The allowable values are FEDERATED, FOREIGN or ALL.
+	//
+	//    * If set to FEDERATED, will list the federated databases (referencing
+	//    an external entity) shared with your account.
 	//
 	//    * If set to FOREIGN, will list the databases shared with your account.
 	//
@@ -48897,6 +49288,9 @@ type InvalidInputException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Indicates whether or not the exception relates to a federated source.
+	FromFederationSource *bool `type:"boolean"`
+
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -48944,7 +49338,7 @@ func (s *InvalidInputException) OrigErr() error {
 }
 
 func (s *InvalidInputException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -49583,7 +49977,7 @@ type Job struct {
 	//
 	//    * When you specify an Apache Spark ETL job (JobCommand.Name="glueetl")
 	//    or Apache Spark streaming ETL job (JobCommand.Name="gluestreaming"), you
-	//    can allocate a minimum of 2 DPUs. The default is 10 DPUs. This job type
+	//    can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type
 	//    cannot have a fractional DPU allocation.
 	//
 	// For Glue version 2.0 jobs, you cannot instead specify a Maximum capacity.
@@ -56158,10 +56552,13 @@ func (s *PartitionValueList) SetValues(v []*string) *PartitionValueList {
 	return s
 }
 
+// The operation timed out.
 type PermissionTypeMismatchException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// There is a mismatch between the SupportedPermissionType used in the query
+	// request and the permissions defined on the target table.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -65638,6 +66035,10 @@ type TableData struct {
 	// A description of the table.
 	Description *string `type:"string"`
 
+	// A FederatedTable structure that references an entity outside the Glue Data
+	// Catalog.
+	FederatedTable *FederatedTable `type:"structure"`
+
 	// Indicates whether the table has been registered with Lake Formation.
 	IsRegisteredWithLakeFormation *bool `type:"boolean"`
 
@@ -65754,6 +66155,12 @@ func (s *TableData) SetDatabaseName(v string) *TableData {
 // SetDescription sets the Description field's value.
 func (s *TableData) SetDescription(v string) *TableData {
 	s.Description = &v
+	return s
+}
+
+// SetFederatedTable sets the FederatedTable field's value.
+func (s *TableData) SetFederatedTable(v *FederatedTable) *TableData {
+	s.FederatedTable = v
 	return s
 }
 
@@ -72234,6 +72641,34 @@ func ExistCondition_Values() []string {
 }
 
 const (
+	// FederationSourceErrorCodeInvalidResponseException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeInvalidResponseException = "InvalidResponseException"
+
+	// FederationSourceErrorCodeOperationTimeoutException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeOperationTimeoutException = "OperationTimeoutException"
+
+	// FederationSourceErrorCodeOperationNotSupportedException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeOperationNotSupportedException = "OperationNotSupportedException"
+
+	// FederationSourceErrorCodeInternalServiceException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeInternalServiceException = "InternalServiceException"
+
+	// FederationSourceErrorCodeThrottlingException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeThrottlingException = "ThrottlingException"
+)
+
+// FederationSourceErrorCode_Values returns all elements of the FederationSourceErrorCode enum
+func FederationSourceErrorCode_Values() []string {
+	return []string{
+		FederationSourceErrorCodeInvalidResponseException,
+		FederationSourceErrorCodeOperationTimeoutException,
+		FederationSourceErrorCodeOperationNotSupportedException,
+		FederationSourceErrorCodeInternalServiceException,
+		FederationSourceErrorCodeThrottlingException,
+	}
+}
+
+const (
 	// FieldNameCrawlId is a FieldName enum value
 	FieldNameCrawlId = "CRAWL_ID"
 
@@ -73091,6 +73526,9 @@ const (
 
 	// ResourceShareTypeAll is a ResourceShareType enum value
 	ResourceShareTypeAll = "ALL"
+
+	// ResourceShareTypeFederated is a ResourceShareType enum value
+	ResourceShareTypeFederated = "FEDERATED"
 )
 
 // ResourceShareType_Values returns all elements of the ResourceShareType enum
@@ -73098,6 +73536,7 @@ func ResourceShareType_Values() []string {
 	return []string{
 		ResourceShareTypeForeign,
 		ResourceShareTypeAll,
+		ResourceShareTypeFederated,
 	}
 }
 
