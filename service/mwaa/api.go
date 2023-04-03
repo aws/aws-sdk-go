@@ -1189,8 +1189,8 @@ type CreateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of key-value pairs containing the Apache Airflow configuration options
-	// you want to attach to your environment. To learn more, see Apache Airflow
-	// configuration options (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-env-variables.html).
+	// you want to attach to your environment. For more information, see Apache
+	// Airflow configuration options (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-env-variables.html).
 	//
 	// AirflowConfigurationOptions is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateEnvironmentInput's
@@ -1204,27 +1204,27 @@ type CreateEnvironmentInput struct {
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
-	// dags. To learn more, see Adding or updating DAGs (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html).
+	// dags. For more information, see Adding or updating DAGs (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html).
 	//
 	// DagS3Path is a required field
 	DagS3Path *string `min:"1" type:"string" required:"true"`
 
 	// The environment class type. Valid values: mw1.small, mw1.medium, mw1.large.
-	// To learn more, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
+	// For more information, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
 	EnvironmentClass *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the execution role for your environment.
 	// An execution role is an Amazon Web Services Identity and Access Management
 	// (IAM) role that grants MWAA permission to access Amazon Web Services services
 	// and resources used by your environment. For example, arn:aws:iam::123456789:role/my-execution-role.
-	// To learn more, see Amazon MWAA Execution role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html).
+	// For more information, see Amazon MWAA Execution role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html).
 	//
 	// ExecutionRoleArn is a required field
 	ExecutionRoleArn *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Web Services Key Management Service (KMS) key to encrypt the data
 	// in your environment. You can use an Amazon Web Services owned CMK, or a Customer
-	// managed CMK (advanced). To learn more, see Create an Amazon MWAA environment
+	// managed CMK (advanced). For more information, see Create an Amazon MWAA environment
 	// (https://docs.aws.amazon.com/mwaa/latest/userguide/create-environment.html).
 	KmsKey *string `min:"1" type:"string"`
 
@@ -1252,30 +1252,30 @@ type CreateEnvironmentInput struct {
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 
 	// The VPC networking components used to secure and enable network traffic between
-	// the Amazon Web Services resources for your environment. To learn more, see
-	// About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
+	// the Amazon Web Services resources for your environment. For more information,
+	// see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
 	//
 	// NetworkConfiguration is a required field
 	NetworkConfiguration *NetworkConfiguration `type:"structure" required:"true"`
 
-	// The version of the plugins.zip file on your Amazon S3 bucket. A version must
-	// be specified each time a plugins.zip file is updated. To learn more, see
-	// How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
+	// The version of the plugins.zip file on your Amazon S3 bucket. You must specify
+	// a version each time a plugins.zip file is updated. For more information,
+	// see How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
 	PluginsS3ObjectVersion *string `min:"1" type:"string"`
 
 	// The relative path to the plugins.zip file on your Amazon S3 bucket. For example,
-	// plugins.zip. If specified, then the plugins.zip version is required. To learn
-	// more, see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
+	// plugins.zip. If specified, then the plugins.zip version is required. For
+	// more information, see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
 	PluginsS3Path *string `min:"1" type:"string"`
 
-	// The version of the requirements.txt file on your Amazon S3 bucket. A version
-	// must be specified each time a requirements.txt file is updated. To learn
-	// more, see How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
+	// The version of the requirements.txt file on your Amazon S3 bucket. You must
+	// specify a version each time a requirements.txt file is updated. For more
+	// information, see How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
 	RequirementsS3ObjectVersion *string `min:"1" type:"string"`
 
 	// The relative path to the requirements.txt file on your Amazon S3 bucket.
-	// For example, requirements.txt. If specified, then a file version is required.
-	// To learn more, see Installing Python dependencies (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
+	// For example, requirements.txt. If specified, then a version is required.
+	// For more information, see Installing Python dependencies (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
 	RequirementsS3Path *string `min:"1" type:"string"`
 
 	// The number of Apache Airflow schedulers to run in your environment. Valid
@@ -1288,18 +1288,39 @@ type CreateEnvironmentInput struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon S3 bucket where your DAG code
 	// and supporting files are stored. For example, arn:aws:s3:::my-airflow-bucket-unique-name.
-	// To learn more, see Create an Amazon S3 bucket for Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html).
+	// For more information, see Create an Amazon S3 bucket for Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html).
 	//
 	// SourceBucketArn is a required field
 	SourceBucketArn *string `min:"1" type:"string" required:"true"`
 
+	// The version of the startup shell script in your Amazon S3 bucket. You must
+	// specify the version ID (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html)
+	// that Amazon S3 assigns to the file every time you update the script.
+	//
+	// Version IDs are Unicode, UTF-8 encoded, URL-ready, opaque strings that are
+	// no more than 1,024 bytes long. The following is an example:
+	//
+	// 3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo
+	//
+	// For more information, see Using a startup script (https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html).
+	StartupScriptS3ObjectVersion *string `min:"1" type:"string"`
+
+	// The relative path to the startup shell script in your Amazon S3 bucket. For
+	// example, s3://mwaa-environment/startup.sh.
+	//
+	// Amazon MWAA runs the script as your environment starts, and before running
+	// the Apache Airflow process. You can use this script to install dependencies,
+	// modify Apache Airflow configuration options, and set environment variables.
+	// For more information, see Using a startup script (https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html).
+	StartupScriptS3Path *string `min:"1" type:"string"`
+
 	// The key-value tag pairs you want to associate to your environment. For example,
-	// "Environment": "Staging". To learn more, see Tagging Amazon Web Services
+	// "Environment": "Staging". For more information, see Tagging Amazon Web Services
 	// resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The Apache Airflow Web server access mode. To learn more, see Apache Airflow
-	// access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
+	// The Apache Airflow Web server access mode. For more information, see Apache
+	// Airflow access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
 	WebserverAccessMode *string `type:"string" enum:"WebserverAccessMode"`
 
 	// The day and time of the week in Coordinated Universal Time (UTC) 24-hour
@@ -1383,6 +1404,12 @@ func (s *CreateEnvironmentInput) Validate() error {
 	}
 	if s.SourceBucketArn != nil && len(*s.SourceBucketArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceBucketArn", 1))
+	}
+	if s.StartupScriptS3ObjectVersion != nil && len(*s.StartupScriptS3ObjectVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartupScriptS3ObjectVersion", 1))
+	}
+	if s.StartupScriptS3Path != nil && len(*s.StartupScriptS3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartupScriptS3Path", 1))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
@@ -1506,6 +1533,18 @@ func (s *CreateEnvironmentInput) SetSchedulers(v int64) *CreateEnvironmentInput 
 // SetSourceBucketArn sets the SourceBucketArn field's value.
 func (s *CreateEnvironmentInput) SetSourceBucketArn(v string) *CreateEnvironmentInput {
 	s.SourceBucketArn = &v
+	return s
+}
+
+// SetStartupScriptS3ObjectVersion sets the StartupScriptS3ObjectVersion field's value.
+func (s *CreateEnvironmentInput) SetStartupScriptS3ObjectVersion(v string) *CreateEnvironmentInput {
+	s.StartupScriptS3ObjectVersion = &v
+	return s
+}
+
+// SetStartupScriptS3Path sets the StartupScriptS3Path field's value.
+func (s *CreateEnvironmentInput) SetStartupScriptS3Path(v string) *CreateEnvironmentInput {
+	s.StartupScriptS3Path = &v
 	return s
 }
 
@@ -1790,7 +1829,7 @@ type Environment struct {
 	_ struct{} `type:"structure"`
 
 	// A list of key-value pairs containing the Apache Airflow configuration options
-	// attached to your environment. To learn more, see Apache Airflow configuration
+	// attached to your environment. For more information, see Apache Airflow configuration
 	// options (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-env-variables.html).
 	//
 	// AirflowConfigurationOptions is a sensitive parameter and its value will be
@@ -1808,18 +1847,19 @@ type Environment struct {
 	// The day and time the environment was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
-	// dags. To learn more, see Adding or updating DAGs (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html).
+	// The relative path to the DAGs folder in your Amazon S3 bucket. For example,
+	// s3://mwaa-environment/dags. For more information, see Adding or updating
+	// DAGs (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html).
 	DagS3Path *string `min:"1" type:"string"`
 
 	// The environment class type. Valid values: mw1.small, mw1.medium, mw1.large.
-	// To learn more, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
+	// For more information, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
 	EnvironmentClass *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the execution role in IAM that allows MWAA
 	// to access Amazon Web Services resources in your environment. For example,
-	// arn:aws:iam::123456789:role/my-execution-role. To learn more, see Amazon
-	// MWAA Execution role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html).
+	// arn:aws:iam::123456789:role/my-execution-role. For more information, see
+	// Amazon MWAA Execution role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html).
 	ExecutionRoleArn *string `min:"1" type:"string"`
 
 	// The Amazon Web Services Key Management Service (KMS) encryption key used
@@ -1844,38 +1884,75 @@ type Environment struct {
 	Name *string `min:"1" type:"string"`
 
 	// Describes the VPC networking components used to secure and enable network
-	// traffic between the Amazon Web Services resources for your environment. To
-	// learn more, see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
+	// traffic between the Amazon Web Services resources for your environment. For
+	// more information, see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
 	NetworkConfiguration *NetworkConfiguration `type:"structure"`
 
-	// The version of the plugins.zip file on your Amazon S3 bucket. To learn more,
-	// see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
+	// The version of the plugins.zip file in your Amazon S3 bucket. You must specify
+	// the version ID (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html)
+	// that Amazon S3 assigns to the file.
+	//
+	// Version IDs are Unicode, UTF-8 encoded, URL-ready, opaque strings that are
+	// no more than 1,024 bytes long. The following is an example:
+	//
+	// 3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo
+	//
+	// For more information, see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
 	PluginsS3ObjectVersion *string `min:"1" type:"string"`
 
-	// The relative path to the plugins.zip file on your Amazon S3 bucket. For example,
-	// plugins.zip. To learn more, see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
+	// The relative path to the file in your Amazon S3 bucket. For example, s3://mwaa-environment/plugins.zip.
+	// For more information, see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
 	PluginsS3Path *string `min:"1" type:"string"`
 
-	// The version of the requirements.txt file on your Amazon S3 bucket. To learn
-	// more, see Installing Python dependencies (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
+	// The version of the requirements.txt file on your Amazon S3 bucket. You must
+	// specify the version ID (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html)
+	// that Amazon S3 assigns to the file.
+	//
+	// Version IDs are Unicode, UTF-8 encoded, URL-ready, opaque strings that are
+	// no more than 1,024 bytes long. The following is an example:
+	//
+	// 3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo
+	//
+	// For more information, see Installing Python dependencies (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
 	RequirementsS3ObjectVersion *string `min:"1" type:"string"`
 
-	// The relative path to the requirements.txt file on your Amazon S3 bucket.
-	// For example, requirements.txt. To learn more, see Installing Python dependencies
-	// (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
+	// The relative path to the requirements.txt file in your Amazon S3 bucket.
+	// For example, s3://mwaa-environment/requirements.txt. For more information,
+	// see Installing Python dependencies (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
 	RequirementsS3Path *string `min:"1" type:"string"`
 
 	// The number of Apache Airflow schedulers that run in your Amazon MWAA environment.
 	Schedulers *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) for the service-linked role of the environment.
-	// To learn more, see Amazon MWAA Service-linked role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-slr.html).
+	// For more information, see Amazon MWAA Service-linked role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-slr.html).
 	ServiceRoleArn *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon S3 bucket where your DAG code
 	// and supporting files are stored. For example, arn:aws:s3:::my-airflow-bucket-unique-name.
-	// To learn more, see Create an Amazon S3 bucket for Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html).
+	// For more information, see Create an Amazon S3 bucket for Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html).
 	SourceBucketArn *string `min:"1" type:"string"`
+
+	// The version of the startup shell script in your Amazon S3 bucket. You must
+	// specify the version ID (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html)
+	// that Amazon S3 assigns to the file.
+	//
+	// Version IDs are Unicode, UTF-8 encoded, URL-ready, opaque strings that are
+	// no more than 1,024 bytes long. The following is an example:
+	//
+	// 3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo
+	//
+	// For more information, see Using a startup script (https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html).
+	StartupScriptS3ObjectVersion *string `type:"string"`
+
+	// The relative path to the startup shell script in your Amazon S3 bucket. For
+	// example, s3://mwaa-environment/startup.sh.
+	//
+	// Amazon MWAA runs the script as your environment starts, and before running
+	// the Apache Airflow process. You can use this script to install dependencies,
+	// modify Apache Airflow configuration options, and set environment variables.
+	// For more information, see Using a startup script (https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html).
+	StartupScriptS3Path *string `type:"string"`
 
 	// The status of the Amazon MWAA environment. Valid values:
 	//
@@ -1901,19 +1978,21 @@ type Environment struct {
 	//    and the environment has rolled back successfully and is ready to use.
 	//
 	// We recommend reviewing our troubleshooting guide for a list of common errors
-	// and their solutions. To learn more, see Amazon MWAA troubleshooting (https://docs.aws.amazon.com/mwaa/latest/userguide/troubleshooting.html).
+	// and their solutions. For more information, see Amazon MWAA troubleshooting
+	// (https://docs.aws.amazon.com/mwaa/latest/userguide/troubleshooting.html).
 	Status *string `type:"string" enum:"EnvironmentStatus"`
 
 	// The key-value tag pairs associated to your environment. For example, "Environment":
-	// "Staging". To learn more, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// "Staging". For more information, see Tagging Amazon Web Services resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The Apache Airflow Web server access mode. To learn more, see Apache Airflow
-	// access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
+	// The Apache Airflow Web server access mode. For more information, see Apache
+	// Airflow access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
 	WebserverAccessMode *string `type:"string" enum:"WebserverAccessMode"`
 
 	// The Apache Airflow Web server host name for the Amazon MWAA environment.
-	// To learn more, see Accessing the Apache Airflow UI (https://docs.aws.amazon.com/mwaa/latest/userguide/access-airflow-ui.html).
+	// For more information, see Accessing the Apache Airflow UI (https://docs.aws.amazon.com/mwaa/latest/userguide/access-airflow-ui.html).
 	WebserverUrl *string `min:"1" type:"string"`
 
 	// The day and time of the week in Coordinated Universal Time (UTC) 24-hour
@@ -2063,6 +2142,18 @@ func (s *Environment) SetServiceRoleArn(v string) *Environment {
 // SetSourceBucketArn sets the SourceBucketArn field's value.
 func (s *Environment) SetSourceBucketArn(v string) *Environment {
 	s.SourceBucketArn = &v
+	return s
+}
+
+// SetStartupScriptS3ObjectVersion sets the StartupScriptS3ObjectVersion field's value.
+func (s *Environment) SetStartupScriptS3ObjectVersion(v string) *Environment {
+	s.StartupScriptS3ObjectVersion = &v
+	return s
+}
+
+// SetStartupScriptS3Path sets the StartupScriptS3Path field's value.
+func (s *Environment) SetStartupScriptS3Path(v string) *Environment {
+	s.StartupScriptS3Path = &v
 	return s
 }
 
@@ -2450,8 +2541,8 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The key-value tag pairs associated to your environment. To learn more, see
-	// Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// The key-value tag pairs associated to your environment. For more information,
+	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -2875,17 +2966,17 @@ func (s *ModuleLoggingConfigurationInput) SetLogLevel(v string) *ModuleLoggingCo
 }
 
 // Describes the VPC networking components used to secure and enable network
-// traffic between the Amazon Web Services resources for your environment. To
-// learn more, see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
+// traffic between the Amazon Web Services resources for your environment. For
+// more information, see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
 type NetworkConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A list of security group IDs. To learn more, see Security in your VPC on
-	// Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-security.html).
+	// A list of security group IDs. For more information, see Security in your
+	// VPC on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-security.html).
 	SecurityGroupIds []*string `min:"1" type:"list"`
 
-	// A list of subnet IDs. To learn more, see About networking on Amazon MWAA
-	// (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
+	// A list of subnet IDs. For more information, see About networking on Amazon
+	// MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
 	SubnetIds []*string `min:"2" type:"list"`
 }
 
@@ -3167,7 +3258,7 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" min:"1" type:"string" required:"true"`
 
 	// The key-value tag pairs you want to associate to your environment. For example,
-	// "Environment": "Staging". To learn more, see Tagging Amazon Web Services
+	// "Environment": "Staging". For more information, see Tagging Amazon Web Services
 	// resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	//
 	// Tags is a required field
@@ -3338,8 +3429,8 @@ type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of key-value pairs containing the Apache Airflow configuration options
-	// you want to attach to your environment. To learn more, see Apache Airflow
-	// configuration options (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-env-variables.html).
+	// you want to attach to your environment. For more information, see Apache
+	// Airflow configuration options (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-env-variables.html).
 	//
 	// AirflowConfigurationOptions is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateEnvironmentInput's
@@ -3352,17 +3443,17 @@ type UpdateEnvironmentInput struct {
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,
-	// dags. To learn more, see Adding or updating DAGs (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html).
+	// dags. For more information, see Adding or updating DAGs (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html).
 	DagS3Path *string `min:"1" type:"string"`
 
 	// The environment class type. Valid values: mw1.small, mw1.medium, mw1.large.
-	// To learn more, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
+	// For more information, see Amazon MWAA environment class (https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html).
 	EnvironmentClass *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the execution role in IAM that allows MWAA
 	// to access Amazon Web Services resources in your environment. For example,
-	// arn:aws:iam::123456789:role/my-execution-role. To learn more, see Amazon
-	// MWAA Execution role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html).
+	// arn:aws:iam::123456789:role/my-execution-role. For more information, see
+	// Amazon MWAA Execution role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html).
 	ExecutionRoleArn *string `min:"1" type:"string"`
 
 	// The Apache Airflow log types to send to CloudWatch Logs.
@@ -3389,28 +3480,28 @@ type UpdateEnvironmentInput struct {
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 
 	// The VPC networking components used to secure and enable network traffic between
-	// the Amazon Web Services resources for your environment. To learn more, see
-	// About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
+	// the Amazon Web Services resources for your environment. For more information,
+	// see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
 	NetworkConfiguration *UpdateNetworkConfigurationInput `type:"structure"`
 
-	// The version of the plugins.zip file on your Amazon S3 bucket. A version must
-	// be specified each time a plugins.zip file is updated. To learn more, see
-	// How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
+	// The version of the plugins.zip file on your Amazon S3 bucket. You must specify
+	// a version each time a plugins.zip file is updated. For more information,
+	// see How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
 	PluginsS3ObjectVersion *string `min:"1" type:"string"`
 
 	// The relative path to the plugins.zip file on your Amazon S3 bucket. For example,
-	// plugins.zip. If specified, then the plugins.zip version is required. To learn
-	// more, see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
+	// plugins.zip. If specified, then the plugins.zip version is required. For
+	// more information, see Installing custom plugins (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html).
 	PluginsS3Path *string `min:"1" type:"string"`
 
-	// The version of the requirements.txt file on your Amazon S3 bucket. A version
-	// must be specified each time a requirements.txt file is updated. To learn
-	// more, see How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
+	// The version of the requirements.txt file on your Amazon S3 bucket. You must
+	// specify a version each time a requirements.txt file is updated. For more
+	// information, see How S3 Versioning works (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html).
 	RequirementsS3ObjectVersion *string `min:"1" type:"string"`
 
 	// The relative path to the requirements.txt file on your Amazon S3 bucket.
 	// For example, requirements.txt. If specified, then a file version is required.
-	// To learn more, see Installing Python dependencies (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
+	// For more information, see Installing Python dependencies (https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html).
 	RequirementsS3Path *string `min:"1" type:"string"`
 
 	// The number of Apache Airflow schedulers to run in your Amazon MWAA environment.
@@ -3418,11 +3509,32 @@ type UpdateEnvironmentInput struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon S3 bucket where your DAG code
 	// and supporting files are stored. For example, arn:aws:s3:::my-airflow-bucket-unique-name.
-	// To learn more, see Create an Amazon S3 bucket for Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html).
+	// For more information, see Create an Amazon S3 bucket for Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html).
 	SourceBucketArn *string `min:"1" type:"string"`
 
-	// The Apache Airflow Web server access mode. To learn more, see Apache Airflow
-	// access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
+	// The version of the startup shell script in your Amazon S3 bucket. You must
+	// specify the version ID (https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html)
+	// that Amazon S3 assigns to the file every time you update the script.
+	//
+	// Version IDs are Unicode, UTF-8 encoded, URL-ready, opaque strings that are
+	// no more than 1,024 bytes long. The following is an example:
+	//
+	// 3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo
+	//
+	// For more information, see Using a startup script (https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html).
+	StartupScriptS3ObjectVersion *string `min:"1" type:"string"`
+
+	// The relative path to the startup shell script in your Amazon S3 bucket. For
+	// example, s3://mwaa-environment/startup.sh.
+	//
+	// Amazon MWAA runs the script as your environment starts, and before running
+	// the Apache Airflow process. You can use this script to install dependencies,
+	// modify Apache Airflow configuration options, and set environment variables.
+	// For more information, see Using a startup script (https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html).
+	StartupScriptS3Path *string `min:"1" type:"string"`
+
+	// The Apache Airflow Web server access mode. For more information, see Apache
+	// Airflow access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
 	WebserverAccessMode *string `type:"string" enum:"WebserverAccessMode"`
 
 	// The day and time of the week in Coordinated Universal Time (UTC) 24-hour
@@ -3491,6 +3603,12 @@ func (s *UpdateEnvironmentInput) Validate() error {
 	}
 	if s.SourceBucketArn != nil && len(*s.SourceBucketArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceBucketArn", 1))
+	}
+	if s.StartupScriptS3ObjectVersion != nil && len(*s.StartupScriptS3ObjectVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartupScriptS3ObjectVersion", 1))
+	}
+	if s.StartupScriptS3Path != nil && len(*s.StartupScriptS3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartupScriptS3Path", 1))
 	}
 	if s.WeeklyMaintenanceWindowStart != nil && len(*s.WeeklyMaintenanceWindowStart) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceWindowStart", 1))
@@ -3608,6 +3726,18 @@ func (s *UpdateEnvironmentInput) SetSourceBucketArn(v string) *UpdateEnvironment
 	return s
 }
 
+// SetStartupScriptS3ObjectVersion sets the StartupScriptS3ObjectVersion field's value.
+func (s *UpdateEnvironmentInput) SetStartupScriptS3ObjectVersion(v string) *UpdateEnvironmentInput {
+	s.StartupScriptS3ObjectVersion = &v
+	return s
+}
+
+// SetStartupScriptS3Path sets the StartupScriptS3Path field's value.
+func (s *UpdateEnvironmentInput) SetStartupScriptS3Path(v string) *UpdateEnvironmentInput {
+	s.StartupScriptS3Path = &v
+	return s
+}
+
 // SetWebserverAccessMode sets the WebserverAccessMode field's value.
 func (s *UpdateEnvironmentInput) SetWebserverAccessMode(v string) *UpdateEnvironmentInput {
 	s.WebserverAccessMode = &v
@@ -3694,14 +3824,14 @@ func (s *UpdateError) SetErrorMessage(v string) *UpdateError {
 }
 
 // Defines the VPC networking components used to secure and enable network traffic
-// between the Amazon Web Services resources for your environment. To learn
-// more, see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
+// between the Amazon Web Services resources for your environment. For more
+// information, see About networking on Amazon MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/networking-about.html).
 type UpdateNetworkConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of security group IDs. A security group must be attached to the same
-	// VPC as the subnets. To learn more, see Security in your VPC on Amazon MWAA
-	// (https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-security.html).
+	// VPC as the subnets. For more information, see Security in your VPC on Amazon
+	// MWAA (https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-security.html).
 	//
 	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `min:"1" type:"list" required:"true"`

@@ -69,7 +69,7 @@ func (c *LakeFormation) AddLFTagsToResourceRequest(input *AddLFTagsToResourceInp
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -184,7 +184,7 @@ func (c *LakeFormation) AssumeDecoratedRoleWithSAMLRequest(input *AssumeDecorate
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - AccessDeniedException
 //     Access to a resource was denied.
@@ -435,7 +435,7 @@ func (c *LakeFormation) CancelTransactionRequest(input *CancelTransactionInput) 
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -536,7 +536,7 @@ func (c *LakeFormation) CommitTransactionRequest(input *CommitTransactionInput) 
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -635,7 +635,7 @@ func (c *LakeFormation) CreateDataCellsFilterRequest(input *CreateDataCellsFilte
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - ResourceNumberLimitExceededException
 //     A resource numerical limit was exceeded.
@@ -727,7 +727,7 @@ func (c *LakeFormation) CreateLFTagRequest(input *CreateLFTagInput) (req *reques
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -825,7 +825,7 @@ func (c *LakeFormation) DeleteDataCellsFilterRequest(input *DeleteDataCellsFilte
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -918,7 +918,7 @@ func (c *LakeFormation) DeleteLFTagRequest(input *DeleteLFTagInput) (req *reques
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -1026,7 +1026,7 @@ func (c *LakeFormation) DeleteObjectsOnCancelRequest(input *DeleteObjectsOnCance
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - TransactionCommittedException
 //     Contains details about an error where the specified transaction has already
@@ -1132,7 +1132,7 @@ func (c *LakeFormation) DeregisterResourceRequest(input *DeregisterResourceInput
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeregisterResource
 func (c *LakeFormation) DeregisterResource(input *DeregisterResourceInput) (*DeregisterResourceOutput, error) {
@@ -1221,7 +1221,7 @@ func (c *LakeFormation) DescribeResourceRequest(input *DescribeResourceInput) (r
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DescribeResource
 func (c *LakeFormation) DescribeResource(input *DescribeResourceInput) (*DescribeResourceOutput, error) {
@@ -1300,7 +1300,7 @@ func (c *LakeFormation) DescribeTransactionRequest(input *DescribeTransactionInp
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -1396,7 +1396,7 @@ func (c *LakeFormation) ExtendTransactionRequest(input *ExtendTransactionInput) 
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -1492,7 +1492,7 @@ func (c *LakeFormation) GetDataCellsFilterRequest(input *GetDataCellsFilterInput
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -1590,7 +1590,7 @@ func (c *LakeFormation) GetDataLakeSettingsRequest(input *GetDataLakeSettingsInp
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetDataLakeSettings
 func (c *LakeFormation) GetDataLakeSettings(input *GetDataLakeSettingsInput) (*GetDataLakeSettingsOutput, error) {
@@ -1680,7 +1680,7 @@ func (c *LakeFormation) GetEffectivePermissionsForPathRequest(input *GetEffectiv
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - OperationTimeoutException
 //     The operation timed out.
@@ -1816,7 +1816,7 @@ func (c *LakeFormation) GetLFTagRequest(input *GetLFTagInput) (req *request.Requ
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -2093,7 +2093,7 @@ func (c *LakeFormation) GetResourceLFTagsRequest(input *GetResourceLFTagsInput) 
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -2194,7 +2194,7 @@ func (c *LakeFormation) GetTableObjectsRequest(input *GetTableObjectsInput) (req
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -2356,7 +2356,7 @@ func (c *LakeFormation) GetTemporaryGluePartitionCredentialsRequest(input *GetTe
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - AccessDeniedException
 //     Access to a resource was denied.
@@ -2456,7 +2456,7 @@ func (c *LakeFormation) GetTemporaryGlueTableCredentialsRequest(input *GetTempor
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - AccessDeniedException
 //     Access to a resource was denied.
@@ -2796,7 +2796,7 @@ func (c *LakeFormation) GrantPermissionsRequest(input *GrantPermissionsInput) (r
 //     Two processes are trying to modify a resource simultaneously.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -3029,7 +3029,7 @@ func (c *LakeFormation) ListLFTagsRequest(input *ListLFTagsInput) (req *request.
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -3469,7 +3469,7 @@ func (c *LakeFormation) ListTableStorageOptimizersRequest(input *ListTableStorag
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -3875,7 +3875,7 @@ func (c *LakeFormation) RegisterResourceRequest(input *RegisterResourceInput) (r
 //     A resource to be created or added already exists.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - ResourceNumberLimitExceededException
 //     A resource numerical limit was exceeded.
@@ -3962,7 +3962,7 @@ func (c *LakeFormation) RemoveLFTagsFromResourceRequest(input *RemoveLFTagsFromR
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -4064,7 +4064,7 @@ func (c *LakeFormation) RevokePermissionsRequest(input *RevokePermissionsInput) 
 //     Two processes are trying to modify a resource simultaneously.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -4156,7 +4156,7 @@ func (c *LakeFormation) SearchDatabasesByLFTagsRequest(input *SearchDatabasesByL
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -4311,7 +4311,7 @@ func (c *LakeFormation) SearchTablesByLFTagsRequest(input *SearchTablesByLFTagsI
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -4639,7 +4639,7 @@ func (c *LakeFormation) UpdateDataCellsFilterRequest(input *UpdateDataCellsFilte
 //     The input provided was not valid.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InternalServiceException
 //     An internal service error occurred.
@@ -4733,7 +4733,7 @@ func (c *LakeFormation) UpdateLFTagRequest(input *UpdateLFTagInput) (req *reques
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -4838,7 +4838,7 @@ func (c *LakeFormation) UpdateResourceRequest(input *UpdateResourceInput) (req *
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateResource
 func (c *LakeFormation) UpdateResource(input *UpdateResourceInput) (*UpdateResourceOutput, error) {
@@ -4928,7 +4928,7 @@ func (c *LakeFormation) UpdateTableObjectsRequest(input *UpdateTableObjectsInput
 //     The operation timed out.
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - TransactionCommittedException
 //     Contains details about an error where the specified transaction has already
@@ -5025,7 +5025,7 @@ func (c *LakeFormation) UpdateTableStorageOptimizerRequest(input *UpdateTableSto
 // Returned Error Types:
 //
 //   - EntityNotFoundException
-//     A specified entity does not exist
+//     A specified entity does not exist.
 //
 //   - InvalidInputException
 //     The input provided was not valid.
@@ -7714,7 +7714,7 @@ func (s *DetailsMap) SetResourceShare(v []*string) *DetailsMap {
 	return s
 }
 
-// A specified entity does not exist
+// A specified entity does not exist.
 type EntityNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11658,6 +11658,9 @@ type RegisterResourceInput struct {
 	//
 	// For more information, see Using Service-Linked Roles for Lake Formation (https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html).
 	UseServiceLinkedRole *bool `type:"boolean"`
+
+	// Whether or not the resource is a federated resource.
+	WithFederation *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -11706,6 +11709,12 @@ func (s *RegisterResourceInput) SetRoleArn(v string) *RegisterResourceInput {
 // SetUseServiceLinkedRole sets the UseServiceLinkedRole field's value.
 func (s *RegisterResourceInput) SetUseServiceLinkedRole(v bool) *RegisterResourceInput {
 	s.UseServiceLinkedRole = &v
+	return s
+}
+
+// SetWithFederation sets the WithFederation field's value.
+func (s *RegisterResourceInput) SetWithFederation(v bool) *RegisterResourceInput {
+	s.WithFederation = &v
 	return s
 }
 
@@ -12015,6 +12024,9 @@ type ResourceInfo struct {
 
 	// The IAM role that registered a resource.
 	RoleArn *string `type:"string"`
+
+	// Whether or not the resource is a federated resource.
+	WithFederation *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -12050,6 +12062,12 @@ func (s *ResourceInfo) SetResourceArn(v string) *ResourceInfo {
 // SetRoleArn sets the RoleArn field's value.
 func (s *ResourceInfo) SetRoleArn(v string) *ResourceInfo {
 	s.RoleArn = &v
+	return s
+}
+
+// SetWithFederation sets the WithFederation field's value.
+func (s *ResourceInfo) SetWithFederation(v bool) *ResourceInfo {
+	s.WithFederation = &v
 	return s
 }
 
@@ -13820,6 +13838,9 @@ type UpdateResourceInput struct {
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
+
+	// Whether or not the resource is a federated resource.
+	WithFederation *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -13865,6 +13886,12 @@ func (s *UpdateResourceInput) SetResourceArn(v string) *UpdateResourceInput {
 // SetRoleArn sets the RoleArn field's value.
 func (s *UpdateResourceInput) SetRoleArn(v string) *UpdateResourceInput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetWithFederation sets the WithFederation field's value.
+func (s *UpdateResourceInput) SetWithFederation(v bool) *UpdateResourceInput {
+	s.WithFederation = &v
 	return s
 }
 

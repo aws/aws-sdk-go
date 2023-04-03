@@ -455,6 +455,9 @@ func (c *ServiceCatalog) AssociateServiceActionWithProvisioningArtifactRequest(i
 //     Decrease your resource use or increase your service limits and retry the
 //     operation.
 //
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateServiceActionWithProvisioningArtifact
 func (c *ServiceCatalog) AssociateServiceActionWithProvisioningArtifact(input *AssociateServiceActionWithProvisioningArtifactInput) (*AssociateServiceActionWithProvisioningArtifactOutput, error) {
 	req, out := c.AssociateServiceActionWithProvisioningArtifactRequest(input)
@@ -7149,6 +7152,255 @@ func (c *ServiceCatalog) ListTagOptionsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opNotifyProvisionProductEngineWorkflowResult = "NotifyProvisionProductEngineWorkflowResult"
+
+// NotifyProvisionProductEngineWorkflowResultRequest generates a "aws/request.Request" representing the
+// client's request for the NotifyProvisionProductEngineWorkflowResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See NotifyProvisionProductEngineWorkflowResult for more information on using the NotifyProvisionProductEngineWorkflowResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the NotifyProvisionProductEngineWorkflowResultRequest method.
+//	req, resp := client.NotifyProvisionProductEngineWorkflowResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyProvisionProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyProvisionProductEngineWorkflowResultRequest(input *NotifyProvisionProductEngineWorkflowResultInput) (req *request.Request, output *NotifyProvisionProductEngineWorkflowResultOutput) {
+	op := &request.Operation{
+		Name:       opNotifyProvisionProductEngineWorkflowResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &NotifyProvisionProductEngineWorkflowResultInput{}
+	}
+
+	output = &NotifyProvisionProductEngineWorkflowResultOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// NotifyProvisionProductEngineWorkflowResult API operation for AWS Service Catalog.
+//
+// Notifies the result of the provisioning engine execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation NotifyProvisionProductEngineWorkflowResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyProvisionProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyProvisionProductEngineWorkflowResult(input *NotifyProvisionProductEngineWorkflowResultInput) (*NotifyProvisionProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyProvisionProductEngineWorkflowResultRequest(input)
+	return out, req.Send()
+}
+
+// NotifyProvisionProductEngineWorkflowResultWithContext is the same as NotifyProvisionProductEngineWorkflowResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See NotifyProvisionProductEngineWorkflowResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) NotifyProvisionProductEngineWorkflowResultWithContext(ctx aws.Context, input *NotifyProvisionProductEngineWorkflowResultInput, opts ...request.Option) (*NotifyProvisionProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyProvisionProductEngineWorkflowResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opNotifyTerminateProvisionedProductEngineWorkflowResult = "NotifyTerminateProvisionedProductEngineWorkflowResult"
+
+// NotifyTerminateProvisionedProductEngineWorkflowResultRequest generates a "aws/request.Request" representing the
+// client's request for the NotifyTerminateProvisionedProductEngineWorkflowResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See NotifyTerminateProvisionedProductEngineWorkflowResult for more information on using the NotifyTerminateProvisionedProductEngineWorkflowResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the NotifyTerminateProvisionedProductEngineWorkflowResultRequest method.
+//	req, resp := client.NotifyTerminateProvisionedProductEngineWorkflowResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyTerminateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyTerminateProvisionedProductEngineWorkflowResultRequest(input *NotifyTerminateProvisionedProductEngineWorkflowResultInput) (req *request.Request, output *NotifyTerminateProvisionedProductEngineWorkflowResultOutput) {
+	op := &request.Operation{
+		Name:       opNotifyTerminateProvisionedProductEngineWorkflowResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &NotifyTerminateProvisionedProductEngineWorkflowResultInput{}
+	}
+
+	output = &NotifyTerminateProvisionedProductEngineWorkflowResultOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// NotifyTerminateProvisionedProductEngineWorkflowResult API operation for AWS Service Catalog.
+//
+// Notifies the result of the terminate engine execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation NotifyTerminateProvisionedProductEngineWorkflowResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyTerminateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyTerminateProvisionedProductEngineWorkflowResult(input *NotifyTerminateProvisionedProductEngineWorkflowResultInput) (*NotifyTerminateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyTerminateProvisionedProductEngineWorkflowResultRequest(input)
+	return out, req.Send()
+}
+
+// NotifyTerminateProvisionedProductEngineWorkflowResultWithContext is the same as NotifyTerminateProvisionedProductEngineWorkflowResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See NotifyTerminateProvisionedProductEngineWorkflowResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) NotifyTerminateProvisionedProductEngineWorkflowResultWithContext(ctx aws.Context, input *NotifyTerminateProvisionedProductEngineWorkflowResultInput, opts ...request.Option) (*NotifyTerminateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyTerminateProvisionedProductEngineWorkflowResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opNotifyUpdateProvisionedProductEngineWorkflowResult = "NotifyUpdateProvisionedProductEngineWorkflowResult"
+
+// NotifyUpdateProvisionedProductEngineWorkflowResultRequest generates a "aws/request.Request" representing the
+// client's request for the NotifyUpdateProvisionedProductEngineWorkflowResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See NotifyUpdateProvisionedProductEngineWorkflowResult for more information on using the NotifyUpdateProvisionedProductEngineWorkflowResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the NotifyUpdateProvisionedProductEngineWorkflowResultRequest method.
+//	req, resp := client.NotifyUpdateProvisionedProductEngineWorkflowResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyUpdateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyUpdateProvisionedProductEngineWorkflowResultRequest(input *NotifyUpdateProvisionedProductEngineWorkflowResultInput) (req *request.Request, output *NotifyUpdateProvisionedProductEngineWorkflowResultOutput) {
+	op := &request.Operation{
+		Name:       opNotifyUpdateProvisionedProductEngineWorkflowResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &NotifyUpdateProvisionedProductEngineWorkflowResultInput{}
+	}
+
+	output = &NotifyUpdateProvisionedProductEngineWorkflowResultOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// NotifyUpdateProvisionedProductEngineWorkflowResult API operation for AWS Service Catalog.
+//
+// Notifies the result of the update engine execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation NotifyUpdateProvisionedProductEngineWorkflowResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParametersException
+//     One or more parameters provided to the operation are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/NotifyUpdateProvisionedProductEngineWorkflowResult
+func (c *ServiceCatalog) NotifyUpdateProvisionedProductEngineWorkflowResult(input *NotifyUpdateProvisionedProductEngineWorkflowResultInput) (*NotifyUpdateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyUpdateProvisionedProductEngineWorkflowResultRequest(input)
+	return out, req.Send()
+}
+
+// NotifyUpdateProvisionedProductEngineWorkflowResultWithContext is the same as NotifyUpdateProvisionedProductEngineWorkflowResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See NotifyUpdateProvisionedProductEngineWorkflowResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) NotifyUpdateProvisionedProductEngineWorkflowResultWithContext(ctx aws.Context, input *NotifyUpdateProvisionedProductEngineWorkflowResultInput, opts ...request.Option) (*NotifyUpdateProvisionedProductEngineWorkflowResultOutput, error) {
+	req, out := c.NotifyUpdateProvisionedProductEngineWorkflowResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opProvisionProduct = "ProvisionProduct"
 
 // ProvisionProductRequest generates a "aws/request.Request" representing the
@@ -8719,8 +8971,6 @@ type AcceptPortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -8960,8 +9210,6 @@ type AssociatePrincipalWithPortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -8972,8 +9220,8 @@ type AssociatePrincipalWithPortfolioInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the principal (IAM user, role, or group). This field allows an
-	// ARN with no accountID if PrincipalType is IAM_PATTERN.
+	// The ARN of the principal (user, role, or group). This field allows an ARN
+	// with no accountID if PrincipalType is IAM_PATTERN.
 	//
 	// You can associate multiple IAM patterns even if the account has no principal
 	// with that name. This is useful in Principal Name Sharing if you want to share
@@ -9082,8 +9330,6 @@ type AssociateProductWithPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -9197,8 +9443,6 @@ type AssociateServiceActionWithProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -9403,8 +9647,6 @@ type BatchAssociateServiceActionWithProvisioningArtifactInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -9509,8 +9751,6 @@ type BatchDisassociateServiceActionFromProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -9921,8 +10161,6 @@ type CopyProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -10070,8 +10308,6 @@ type CreateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -10324,8 +10560,6 @@ type CreatePortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -10487,8 +10721,6 @@ type CreatePortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -10631,8 +10863,6 @@ type CreateProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -10884,8 +11114,6 @@ type CreateProvisionedProductPlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -11161,8 +11389,6 @@ type CreateProvisioningArtifactInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11320,8 +11546,6 @@ type CreateServiceActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -11593,8 +11817,6 @@ type DeleteConstraintInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11679,8 +11901,6 @@ type DeletePortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11764,8 +11984,6 @@ type DeletePortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -11879,8 +12097,6 @@ type DeleteProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -11964,8 +12180,6 @@ type DeleteProvisionedProductPlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -12060,8 +12274,6 @@ type DeleteProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -12163,8 +12375,6 @@ type DeleteServiceActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -12321,8 +12531,6 @@ type DescribeConstraintInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -12434,8 +12642,6 @@ type DescribeCopyProductStatusInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -12546,8 +12752,6 @@ type DescribePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -12921,8 +13125,6 @@ type DescribeProductAsAdminInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -13076,8 +13278,6 @@ type DescribeProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -13202,8 +13402,6 @@ type DescribeProductViewInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -13309,8 +13507,6 @@ type DescribeProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13428,8 +13624,6 @@ type DescribeProvisionedProductPlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13561,8 +13755,6 @@ type DescribeProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13708,8 +13900,6 @@ type DescribeProvisioningParametersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -13918,8 +14108,6 @@ type DescribeRecordInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -14054,8 +14242,6 @@ type DescribeServiceActionExecutionParametersInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -14165,8 +14351,6 @@ type DescribeServiceActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -14474,8 +14658,6 @@ type DisassociatePrincipalFromPortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -14486,8 +14668,8 @@ type DisassociatePrincipalFromPortfolioInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the principal (IAM user, role, or group). This field allows an
-	// ARN with no accountID if PrincipalType is IAM_PATTERN.
+	// The ARN of the principal (user, role, or group). This field allows an ARN
+	// with no accountID if PrincipalType is IAM_PATTERN.
 	//
 	// PrincipalARN is a required field
 	PrincipalARN *string `min:"1" type:"string" required:"true"`
@@ -14587,8 +14769,6 @@ type DisassociateProductFromPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -14690,8 +14870,6 @@ type DisassociateServiceActionFromProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -14999,12 +15177,58 @@ func (s EnableAWSOrganizationsAccessOutput) GoString() string {
 	return s.String()
 }
 
+// The ID for the provisioned product resources that are part of a resource
+// group.
+type EngineWorkflowResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The unique key-value pair for a tag that identifies provisioned product resources.
+	UniqueTag *UniqueTagResourceIdentifier `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineWorkflowResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineWorkflowResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EngineWorkflowResourceIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EngineWorkflowResourceIdentifier"}
+	if s.UniqueTag != nil {
+		if err := s.UniqueTag.Validate(); err != nil {
+			invalidParams.AddNested("UniqueTag", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUniqueTag sets the UniqueTag field's value.
+func (s *EngineWorkflowResourceIdentifier) SetUniqueTag(v *UniqueTagResourceIdentifier) *EngineWorkflowResourceIdentifier {
+	s.UniqueTag = v
+	return s
+}
+
 type ExecuteProvisionedProductPlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -15112,8 +15336,6 @@ type ExecuteProvisionedProductServiceActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -15427,8 +15649,6 @@ type GetProvisionedProductOutputsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -15569,8 +15789,6 @@ type ImportAsProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -16108,8 +16326,6 @@ type ListAcceptedPortfolioSharesInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -16221,8 +16437,6 @@ type ListBudgetsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -16345,8 +16559,6 @@ type ListConstraintsForPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -16482,8 +16694,6 @@ type ListLaunchPathsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -16605,8 +16815,6 @@ type ListOrganizationPortfolioAccessInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -16751,8 +16959,6 @@ type ListPortfolioAccessInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -16888,8 +17094,6 @@ type ListPortfoliosForProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -17012,8 +17216,6 @@ type ListPortfoliosInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -17108,8 +17310,6 @@ type ListPrincipalsForPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -17232,8 +17432,6 @@ type ListProvisionedProductPlansInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -17361,8 +17559,6 @@ type ListProvisioningArtifactsForServiceActionInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -17486,8 +17682,6 @@ type ListProvisioningArtifactsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -17590,8 +17784,6 @@ type ListRecordHistoryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -17874,8 +18066,6 @@ type ListServiceActionsForProvisioningArtifactInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -18016,8 +18206,6 @@ type ListServiceActionsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -18113,8 +18301,6 @@ type ListStackInstancesForProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -18404,6 +18590,420 @@ func (s *ListTagOptionsOutput) SetPageToken(v string) *ListTagOptionsOutput {
 func (s *ListTagOptionsOutput) SetTagOptionDetails(v []*TagOptionDetail) *ListTagOptionsOutput {
 	s.TagOptionDetails = v
 	return s
+}
+
+type NotifyProvisionProductEngineWorkflowResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reason why the provisioning engine execution failed.
+	FailureReason *string `min:"1" type:"string"`
+
+	// The idempotency token that identifies the provisioning engine execution.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The output of the provisioning engine execution.
+	Outputs []*RecordOutput `type:"list"`
+
+	// The identifier of the record.
+	//
+	// RecordId is a required field
+	RecordId *string `min:"1" type:"string" required:"true"`
+
+	// The ID for the provisioned product resources that are part of a resource
+	// group.
+	ResourceIdentifier *EngineWorkflowResourceIdentifier `type:"structure"`
+
+	// The status of the provisioning engine execution.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EngineWorkflowStatus"`
+
+	// The encrypted contents of the provisioning engine execution payload that
+	// Service Catalog sends after the Terraform product provisioning workflow starts.
+	//
+	// WorkflowToken is a required field
+	WorkflowToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotifyProvisionProductEngineWorkflowResultInput"}
+	if s.FailureReason != nil && len(*s.FailureReason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailureReason", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.RecordId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordId"))
+	}
+	if s.RecordId != nil && len(*s.RecordId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecordId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.WorkflowToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowToken"))
+	}
+	if s.WorkflowToken != nil && len(*s.WorkflowToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowToken", 1))
+	}
+	if s.ResourceIdentifier != nil {
+		if err := s.ResourceIdentifier.Validate(); err != nil {
+			invalidParams.AddNested("ResourceIdentifier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetFailureReason(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetIdempotencyToken(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetOutputs(v []*RecordOutput) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.Outputs = v
+	return s
+}
+
+// SetRecordId sets the RecordId field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetRecordId(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.RecordId = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetResourceIdentifier(v *EngineWorkflowResourceIdentifier) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.ResourceIdentifier = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetStatus(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.Status = &v
+	return s
+}
+
+// SetWorkflowToken sets the WorkflowToken field's value.
+func (s *NotifyProvisionProductEngineWorkflowResultInput) SetWorkflowToken(v string) *NotifyProvisionProductEngineWorkflowResultInput {
+	s.WorkflowToken = &v
+	return s
+}
+
+type NotifyProvisionProductEngineWorkflowResultOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyProvisionProductEngineWorkflowResultOutput) GoString() string {
+	return s.String()
+}
+
+type NotifyTerminateProvisionedProductEngineWorkflowResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reason why the terminate engine execution failed.
+	FailureReason *string `min:"1" type:"string"`
+
+	// The idempotency token that identifies the terminate engine execution.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The identifier of the record.
+	//
+	// RecordId is a required field
+	RecordId *string `min:"1" type:"string" required:"true"`
+
+	// The status of the terminate engine execution.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EngineWorkflowStatus"`
+
+	// The encrypted contents of the terminate engine execution payload that Service
+	// Catalog sends after the Terraform product terminate workflow starts.
+	//
+	// WorkflowToken is a required field
+	WorkflowToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotifyTerminateProvisionedProductEngineWorkflowResultInput"}
+	if s.FailureReason != nil && len(*s.FailureReason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailureReason", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.RecordId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordId"))
+	}
+	if s.RecordId != nil && len(*s.RecordId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecordId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.WorkflowToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowToken"))
+	}
+	if s.WorkflowToken != nil && len(*s.WorkflowToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetFailureReason(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetIdempotencyToken(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetRecordId sets the RecordId field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetRecordId(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.RecordId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetStatus(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.Status = &v
+	return s
+}
+
+// SetWorkflowToken sets the WorkflowToken field's value.
+func (s *NotifyTerminateProvisionedProductEngineWorkflowResultInput) SetWorkflowToken(v string) *NotifyTerminateProvisionedProductEngineWorkflowResultInput {
+	s.WorkflowToken = &v
+	return s
+}
+
+type NotifyTerminateProvisionedProductEngineWorkflowResultOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyTerminateProvisionedProductEngineWorkflowResultOutput) GoString() string {
+	return s.String()
+}
+
+type NotifyUpdateProvisionedProductEngineWorkflowResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reason why the update engine execution failed.
+	FailureReason *string `min:"1" type:"string"`
+
+	// The idempotency token that identifies the update engine execution.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The output of the update engine execution.
+	Outputs []*RecordOutput `type:"list"`
+
+	// The identifier of the record.
+	//
+	// RecordId is a required field
+	RecordId *string `min:"1" type:"string" required:"true"`
+
+	// The status of the update engine execution.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EngineWorkflowStatus"`
+
+	// The encrypted contents of the update engine execution payload that Service
+	// Catalog sends after the Terraform product update workflow starts.
+	//
+	// WorkflowToken is a required field
+	WorkflowToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotifyUpdateProvisionedProductEngineWorkflowResultInput"}
+	if s.FailureReason != nil && len(*s.FailureReason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailureReason", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.RecordId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordId"))
+	}
+	if s.RecordId != nil && len(*s.RecordId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecordId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.WorkflowToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowToken"))
+	}
+	if s.WorkflowToken != nil && len(*s.WorkflowToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetFailureReason(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetIdempotencyToken(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetOutputs(v []*RecordOutput) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.Outputs = v
+	return s
+}
+
+// SetRecordId sets the RecordId field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetRecordId(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.RecordId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetStatus(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.Status = &v
+	return s
+}
+
+// SetWorkflowToken sets the WorkflowToken field's value.
+func (s *NotifyUpdateProvisionedProductEngineWorkflowResultInput) SetWorkflowToken(v string) *NotifyUpdateProvisionedProductEngineWorkflowResultInput {
+	s.WorkflowToken = &v
+	return s
+}
+
+type NotifyUpdateProvisionedProductEngineWorkflowResultOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyUpdateProvisionedProductEngineWorkflowResultOutput) GoString() string {
+	return s.String()
 }
 
 // The operation is not supported.
@@ -18775,8 +19375,8 @@ func (s *PortfolioShareDetail) SetType(v string) *PortfolioShareDetail {
 type Principal struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the principal (IAM user, role, or group). This field allows for
-	// an ARN with no accountID if the PrincipalType is an IAM_PATTERN.
+	// The ARN of the principal (user, role, or group). This field allows for an
+	// ARN with no accountID if the PrincipalType is an IAM_PATTERN.
 	PrincipalARN *string `min:"1" type:"string"`
 
 	// The principal type. The supported value is IAM if you use a fully defined
@@ -19068,8 +19668,6 @@ type ProvisionProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -19404,11 +20002,10 @@ type ProvisionedProductAttribute struct {
 	// The type of provisioned product. The supported values are CFN_STACK and CFN_STACKSET.
 	Type *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM user.
+	// The Amazon Resource Name (ARN) of the user.
 	UserArn *string `type:"string"`
 
-	// The ARN of the IAM user in the session. This ARN might contain a session
-	// ID.
+	// The ARN of the user in the session. This ARN might contain a session ID.
 	UserArnSession *string `type:"string"`
 }
 
@@ -21076,8 +21673,6 @@ type RejectPortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -21570,8 +22165,6 @@ type ScanProvisionedProductsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -21675,8 +22268,6 @@ type SearchProductsAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -21832,8 +22423,6 @@ type SearchProductsInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -21965,8 +22554,6 @@ type SearchProvisionedProductsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -22881,8 +23468,6 @@ type TerminateProvisionedProductInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -23017,12 +23602,67 @@ func (s *TerminateProvisionedProductOutput) SetRecordDetail(v *RecordDetail) *Te
 	return s
 }
 
+// The unique key-value pair for a tag that identifies provisioned product resources.
+type UniqueTagResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// A unique key that's attached to a resource.
+	Key *string `min:"1" type:"string"`
+
+	// A unique value that's attached to a resource.
+	Value *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UniqueTagResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UniqueTagResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UniqueTagResourceIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UniqueTagResourceIdentifier"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *UniqueTagResourceIdentifier) SetKey(v string) *UniqueTagResourceIdentifier {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *UniqueTagResourceIdentifier) SetValue(v string) *UniqueTagResourceIdentifier {
+	s.Value = &v
+	return s
+}
+
 type UpdateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -23212,8 +23852,6 @@ type UpdatePortfolioInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -23377,8 +24015,6 @@ type UpdatePortfolioShareInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -23523,8 +24159,6 @@ type UpdateProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -23739,8 +24373,6 @@ type UpdateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -23979,8 +24611,6 @@ type UpdateProvisionedProductPropertiesInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -24004,9 +24634,9 @@ type UpdateProvisionedProductPropertiesInput struct {
 	// or ExecuteProvisionedProductServiceAction. Only a role ARN is valid. A user
 	// ARN is invalid.
 	//
-	// The OWNER key accepts IAM user ARNs, IAM role ARNs, and STS assumed-role
-	// ARNs. The owner is the user that has permission to see, update, terminate,
-	// and execute service actions in the provisioned product.
+	// The OWNER key accepts user ARNs, IAM role ARNs, and STS assumed-role ARNs.
+	// The owner is the user that has permission to see, update, terminate, and
+	// execute service actions in the provisioned product.
 	//
 	// The administrator can change the owner of a provisioned product to another
 	// IAM or STS entity within the same account. Both end user owners and administrators
@@ -24155,8 +24785,6 @@ type UpdateProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code.
-	//
-	//    * en - English (default)
 	//
 	//    * jp - Japanese
 	//
@@ -24587,8 +25215,6 @@ type UpdateServiceActionInput struct {
 
 	// The language code.
 	//
-	//    * en - English (default)
-	//
 	//    * jp - Japanese
 	//
 	//    * zh - Chinese
@@ -24969,6 +25595,22 @@ func DescribePortfolioShareType_Values() []string {
 }
 
 const (
+	// EngineWorkflowStatusSucceeded is a EngineWorkflowStatus enum value
+	EngineWorkflowStatusSucceeded = "SUCCEEDED"
+
+	// EngineWorkflowStatusFailed is a EngineWorkflowStatus enum value
+	EngineWorkflowStatusFailed = "FAILED"
+)
+
+// EngineWorkflowStatus_Values returns all elements of the EngineWorkflowStatus enum
+func EngineWorkflowStatus_Values() []string {
+	return []string{
+		EngineWorkflowStatusSucceeded,
+		EngineWorkflowStatusFailed,
+	}
+}
+
+const (
 	// EvaluationTypeStatic is a EvaluationType enum value
 	EvaluationTypeStatic = "STATIC"
 
@@ -25074,6 +25716,12 @@ const (
 
 	// ProductTypeMarketplace is a ProductType enum value
 	ProductTypeMarketplace = "MARKETPLACE"
+
+	// ProductTypeDefaultCustom is a ProductType enum value
+	ProductTypeDefaultCustom = "DEFAULT_CUSTOM"
+
+	// ProductTypeTerraformOpenSource is a ProductType enum value
+	ProductTypeTerraformOpenSource = "TERRAFORM_OPEN_SOURCE"
 )
 
 // ProductType_Values returns all elements of the ProductType enum
@@ -25081,6 +25729,8 @@ func ProductType_Values() []string {
 	return []string{
 		ProductTypeCloudFormationTemplate,
 		ProductTypeMarketplace,
+		ProductTypeDefaultCustom,
+		ProductTypeTerraformOpenSource,
 	}
 }
 
@@ -25265,6 +25915,12 @@ const (
 
 	// ProvisioningArtifactTypeMarketplaceCar is a ProvisioningArtifactType enum value
 	ProvisioningArtifactTypeMarketplaceCar = "MARKETPLACE_CAR"
+
+	// ProvisioningArtifactTypeDefaultCustom is a ProvisioningArtifactType enum value
+	ProvisioningArtifactTypeDefaultCustom = "DEFAULT_CUSTOM"
+
+	// ProvisioningArtifactTypeTerraformOpenSource is a ProvisioningArtifactType enum value
+	ProvisioningArtifactTypeTerraformOpenSource = "TERRAFORM_OPEN_SOURCE"
 )
 
 // ProvisioningArtifactType_Values returns all elements of the ProvisioningArtifactType enum
@@ -25273,6 +25929,8 @@ func ProvisioningArtifactType_Values() []string {
 		ProvisioningArtifactTypeCloudFormationTemplate,
 		ProvisioningArtifactTypeMarketplaceAmi,
 		ProvisioningArtifactTypeMarketplaceCar,
+		ProvisioningArtifactTypeDefaultCustom,
+		ProvisioningArtifactTypeTerraformOpenSource,
 	}
 }
 
@@ -25391,6 +26049,9 @@ const (
 
 	// ServiceActionAssociationErrorCodeThrottling is a ServiceActionAssociationErrorCode enum value
 	ServiceActionAssociationErrorCodeThrottling = "THROTTLING"
+
+	// ServiceActionAssociationErrorCodeInvalidParameter is a ServiceActionAssociationErrorCode enum value
+	ServiceActionAssociationErrorCodeInvalidParameter = "INVALID_PARAMETER"
 )
 
 // ServiceActionAssociationErrorCode_Values returns all elements of the ServiceActionAssociationErrorCode enum
@@ -25401,6 +26062,7 @@ func ServiceActionAssociationErrorCode_Values() []string {
 		ServiceActionAssociationErrorCodeLimitExceeded,
 		ServiceActionAssociationErrorCodeResourceNotFound,
 		ServiceActionAssociationErrorCodeThrottling,
+		ServiceActionAssociationErrorCodeInvalidParameter,
 	}
 }
 

@@ -481,7 +481,7 @@
       }
     },
     "EntityNotFoundException": {
-      "base": "<p>A specified entity does not exist</p>",
+      "base": "<p>A specified entity does not exist.</p>",
       "refs": {
       }
     },
@@ -964,7 +964,10 @@
       "base": null,
       "refs": {
         "DataLakeSettings$AllowExternalDataFiltering": "<p>Whether to allow Amazon EMR clusters to access data managed by Lake Formation. </p> <p>If true, you allow Amazon EMR clusters to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>If false or null, no Amazon EMR clusters will be able to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>For more information, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#emr-switch\">(Optional) Allow Data Filtering on Amazon EMR</a>.</p>",
-        "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates an Identity and Access Management (IAM) service-linked role by registering this role with the Data Catalog. A service-linked role is a unique type of IAM role that is linked directly to Lake Formation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html\">Using Service-Linked Roles for Lake Formation</a>.</p>"
+        "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates an Identity and Access Management (IAM) service-linked role by registering this role with the Data Catalog. A service-linked role is a unique type of IAM role that is linked directly to Lake Formation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html\">Using Service-Linked Roles for Lake Formation</a>.</p>",
+        "RegisterResourceRequest$WithFederation": "<p>Whether or not the resource is a federated resource.</p>",
+        "ResourceInfo$WithFederation": "<p>Whether or not the resource is a federated resource.</p>",
+        "UpdateResourceRequest$WithFederation": "<p>Whether or not the resource is a federated resource.</p>"
       }
     },
     "NumberOfBytes": {
