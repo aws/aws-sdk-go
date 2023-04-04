@@ -1837,7 +1837,7 @@ func (c *AmplifyUIBuilder) PutMetadataFlagRequest(input *PutMetadataFlagInput) (
 
 // PutMetadataFlag API operation for AWS Amplify UI Builder.
 //
-// Stores the metadata information about a feature on a form or view.
+// Stores the metadata information about a feature on a form.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3891,6 +3891,9 @@ type CreateFormData struct {
 	// FormActionType is a required field
 	FormActionType *string `locationName:"formActionType" type:"string" required:"true" enum:"FormActionType"`
 
+	// Specifies an icon or decoration to display on the form.
+	LabelDecorator *string `locationName:"labelDecorator" type:"string" enum:"LabelDecorator"`
+
 	// The name of the form.
 	//
 	// Name is a required field
@@ -4014,6 +4017,12 @@ func (s *CreateFormData) SetFields(v map[string]*FieldConfig) *CreateFormData {
 // SetFormActionType sets the FormActionType field's value.
 func (s *CreateFormData) SetFormActionType(v string) *CreateFormData {
 	s.FormActionType = &v
+	return s
+}
+
+// SetLabelDecorator sets the LabelDecorator field's value.
+func (s *CreateFormData) SetLabelDecorator(v string) *CreateFormData {
+	s.LabelDecorator = &v
 	return s
 }
 
@@ -4832,6 +4841,13 @@ func (s *ExchangeCodeForTokenOutput) SetRefreshToken(v string) *ExchangeCodeForT
 type ExchangeCodeForTokenRequestBody struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the client to request the token from.
+	//
+	// ClientId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ExchangeCodeForTokenRequestBody's
+	// String and GoString methods.
+	ClientId *string `locationName:"clientId" type:"string" sensitive:"true"`
+
 	// The access code to send in the request.
 	//
 	// Code is a sensitive parameter and its value will be
@@ -4879,6 +4895,12 @@ func (s *ExchangeCodeForTokenRequestBody) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *ExchangeCodeForTokenRequestBody) SetClientId(v string) *ExchangeCodeForTokenRequestBody {
+	s.ClientId = &v
+	return s
 }
 
 // SetCode sets the Code field's value.
@@ -5355,6 +5377,9 @@ type FieldInputConfig struct {
 	// The text to display to describe the field.
 	DescriptiveText *string `locationName:"descriptiveText" type:"string"`
 
+	// The configuration for the file uploader field.
+	FileUploaderConfig *FileUploaderFieldConfig `locationName:"fileUploaderConfig" type:"structure"`
+
 	// Specifies whether to render the field as an array. This property is ignored
 	// if the dataSourceType for the form is a Data Store.
 	IsArray *bool `locationName:"isArray" type:"boolean"`
@@ -5416,6 +5441,11 @@ func (s *FieldInputConfig) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.FileUploaderConfig != nil {
+		if err := s.FileUploaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("FileUploaderConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ValueMappings != nil {
 		if err := s.ValueMappings.Validate(); err != nil {
 			invalidParams.AddNested("ValueMappings", err.(request.ErrInvalidParams))
@@ -5449,6 +5479,12 @@ func (s *FieldInputConfig) SetDefaultValue(v string) *FieldInputConfig {
 // SetDescriptiveText sets the DescriptiveText field's value.
 func (s *FieldInputConfig) SetDescriptiveText(v string) *FieldInputConfig {
 	s.DescriptiveText = &v
+	return s
+}
+
+// SetFileUploaderConfig sets the FileUploaderConfig field's value.
+func (s *FieldInputConfig) SetFileUploaderConfig(v *FileUploaderFieldConfig) *FieldInputConfig {
+	s.FileUploaderConfig = v
 	return s
 }
 
@@ -5642,6 +5678,116 @@ func (s *FieldValidationConfiguration) SetValidationMessage(v string) *FieldVali
 	return s
 }
 
+// Describes the configuration for the file uploader field.
+type FileUploaderFieldConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The file types that are allowed to be uploaded by the file uploader. Provide
+	// this information in an array of strings specifying the valid file extensions.
+	//
+	// AcceptedFileTypes is a required field
+	AcceptedFileTypes []*string `locationName:"acceptedFileTypes" type:"list" required:"true"`
+
+	// The access level to assign to the uploaded files in the Amazon S3 bucket
+	// where they are stored. The valid values for this property are private, protected,
+	// or public. For detailed information about the permissions associated with
+	// each access level, see File access levels (https://docs.amplify.aws/lib/storage/configureaccess/q/platform/js/)
+	// in the Amplify documentation.
+	//
+	// AccessLevel is a required field
+	AccessLevel *string `locationName:"accessLevel" type:"string" required:"true" enum:"StorageAccessLevel"`
+
+	// Allows the file upload operation to be paused and resumed. The default value
+	// is false.
+	//
+	// When isResumable is set to true, the file uploader uses a multipart upload
+	// to break the files into chunks before upload. The progress of the upload
+	// isn't continuous, because the file uploader uploads a chunk at a time.
+	IsResumable *bool `locationName:"isResumable" type:"boolean"`
+
+	// Specifies the maximum number of files that can be selected to upload. The
+	// default value is an unlimited number of files.
+	MaxFileCount *int64 `locationName:"maxFileCount" type:"integer"`
+
+	// The maximum file size in bytes that the file uploader will accept. The default
+	// value is an unlimited file size.
+	MaxSize *int64 `locationName:"maxSize" type:"integer"`
+
+	// Specifies whether to display or hide the image preview after selecting a
+	// file for upload. The default value is true to display the image preview.
+	ShowThumbnails *bool `locationName:"showThumbnails" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileUploaderFieldConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileUploaderFieldConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileUploaderFieldConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileUploaderFieldConfig"}
+	if s.AcceptedFileTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceptedFileTypes"))
+	}
+	if s.AccessLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceptedFileTypes sets the AcceptedFileTypes field's value.
+func (s *FileUploaderFieldConfig) SetAcceptedFileTypes(v []*string) *FileUploaderFieldConfig {
+	s.AcceptedFileTypes = v
+	return s
+}
+
+// SetAccessLevel sets the AccessLevel field's value.
+func (s *FileUploaderFieldConfig) SetAccessLevel(v string) *FileUploaderFieldConfig {
+	s.AccessLevel = &v
+	return s
+}
+
+// SetIsResumable sets the IsResumable field's value.
+func (s *FileUploaderFieldConfig) SetIsResumable(v bool) *FileUploaderFieldConfig {
+	s.IsResumable = &v
+	return s
+}
+
+// SetMaxFileCount sets the MaxFileCount field's value.
+func (s *FileUploaderFieldConfig) SetMaxFileCount(v int64) *FileUploaderFieldConfig {
+	s.MaxFileCount = &v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *FileUploaderFieldConfig) SetMaxSize(v int64) *FileUploaderFieldConfig {
+	s.MaxSize = &v
+	return s
+}
+
+// SetShowThumbnails sets the ShowThumbnails field's value.
+func (s *FileUploaderFieldConfig) SetShowThumbnails(v bool) *FileUploaderFieldConfig {
+	s.ShowThumbnails = &v
+	return s
+}
+
 // Contains the configuration settings for a Form user interface (UI) element
 // for an Amplify app. A form is a component you can add to your project by
 // specifying a data source as the default configuration for the form.
@@ -5680,6 +5826,9 @@ type Form struct {
 	//
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// Specifies an icon or decoration to display on the form.
+	LabelDecorator *string `locationName:"labelDecorator" type:"string" enum:"LabelDecorator"`
 
 	// The name of the form.
 	//
@@ -5763,6 +5912,12 @@ func (s *Form) SetFormActionType(v string) *Form {
 // SetId sets the Id field's value.
 func (s *Form) SetId(v string) *Form {
 	s.Id = &v
+	return s
+}
+
+// SetLabelDecorator sets the LabelDecorator field's value.
+func (s *Form) SetLabelDecorator(v string) *Form {
+	s.LabelDecorator = &v
 	return s
 }
 
@@ -6030,10 +6185,95 @@ func (s *FormDataTypeConfig) SetDataTypeName(v string) *FormDataTypeConfig {
 	return s
 }
 
+// Represents the data binding configuration for a form's input fields at runtime.You
+// can use FormInputBindingPropertiesValue to add exposed properties to a form
+// to allow different values to be entered when a form is reused in different
+// places in an app.
+type FormInputBindingPropertiesValue struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the properties to customize with data at runtime.
+	BindingProperties *FormInputBindingPropertiesValueProperties `locationName:"bindingProperties" type:"structure"`
+
+	// The property type.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FormInputBindingPropertiesValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FormInputBindingPropertiesValue) GoString() string {
+	return s.String()
+}
+
+// SetBindingProperties sets the BindingProperties field's value.
+func (s *FormInputBindingPropertiesValue) SetBindingProperties(v *FormInputBindingPropertiesValueProperties) *FormInputBindingPropertiesValue {
+	s.BindingProperties = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FormInputBindingPropertiesValue) SetType(v string) *FormInputBindingPropertiesValue {
+	s.Type = &v
+	return s
+}
+
+// Represents the data binding configuration for a specific property using data
+// stored in Amazon Web Services. For Amazon Web Services connected properties,
+// you can bind a property to data stored in an Amplify DataStore model.
+type FormInputBindingPropertiesValueProperties struct {
+	_ struct{} `type:"structure"`
+
+	// An Amplify DataStore model.
+	Model *string `locationName:"model" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FormInputBindingPropertiesValueProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FormInputBindingPropertiesValueProperties) GoString() string {
+	return s.String()
+}
+
+// SetModel sets the Model field's value.
+func (s *FormInputBindingPropertiesValueProperties) SetModel(v string) *FormInputBindingPropertiesValueProperties {
+	s.Model = &v
+	return s
+}
+
 // Describes the configuration for an input field on a form. Use FormInputValueProperty
 // to specify the values to render or bind by default.
 type FormInputValueProperty struct {
 	_ struct{} `type:"structure"`
+
+	// The information to bind fields to data at runtime.
+	BindingProperties *FormInputValuePropertyBindingProperties `locationName:"bindingProperties" type:"structure"`
+
+	// A list of form properties to concatenate to create the value to assign to
+	// this field property.
+	Concat []*FormInputValueProperty `locationName:"concat" type:"list"`
 
 	// The value to assign to the input field.
 	Value *string `locationName:"value" type:"string"`
@@ -6057,9 +6297,103 @@ func (s FormInputValueProperty) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FormInputValueProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FormInputValueProperty"}
+	if s.BindingProperties != nil {
+		if err := s.BindingProperties.Validate(); err != nil {
+			invalidParams.AddNested("BindingProperties", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Concat != nil {
+		for i, v := range s.Concat {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Concat", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBindingProperties sets the BindingProperties field's value.
+func (s *FormInputValueProperty) SetBindingProperties(v *FormInputValuePropertyBindingProperties) *FormInputValueProperty {
+	s.BindingProperties = v
+	return s
+}
+
+// SetConcat sets the Concat field's value.
+func (s *FormInputValueProperty) SetConcat(v []*FormInputValueProperty) *FormInputValueProperty {
+	s.Concat = v
+	return s
+}
+
 // SetValue sets the Value field's value.
 func (s *FormInputValueProperty) SetValue(v string) *FormInputValueProperty {
 	s.Value = &v
+	return s
+}
+
+// Associates a form property to a binding property. This enables exposed properties
+// on the top level form to propagate data to the form's property values.
+type FormInputValuePropertyBindingProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The data field to bind the property to.
+	Field *string `locationName:"field" type:"string"`
+
+	// The form property to bind to the data field.
+	//
+	// Property is a required field
+	Property *string `locationName:"property" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FormInputValuePropertyBindingProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FormInputValuePropertyBindingProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FormInputValuePropertyBindingProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FormInputValuePropertyBindingProperties"}
+	if s.Property == nil {
+		invalidParams.Add(request.NewErrParamRequired("Property"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetField sets the Field field's value.
+func (s *FormInputValuePropertyBindingProperties) SetField(v string) *FormInputValuePropertyBindingProperties {
+	s.Field = &v
+	return s
+}
+
+// SetProperty sets the Property field's value.
+func (s *FormInputValuePropertyBindingProperties) SetProperty(v string) *FormInputValuePropertyBindingProperties {
+	s.Property = &v
 	return s
 }
 
@@ -7295,6 +7629,9 @@ type Predicate struct {
 	// The value to use when performing the evaluation.
 	Operand *string `locationName:"operand" type:"string"`
 
+	// The type of value to use when performing the evaluation.
+	OperandType *string `locationName:"operandType" type:"string"`
+
 	// The operator to use to perform the evaluation.
 	Operator *string `locationName:"operator" type:"string"`
 
@@ -7338,6 +7675,12 @@ func (s *Predicate) SetOperand(v string) *Predicate {
 	return s
 }
 
+// SetOperandType sets the OperandType field's value.
+func (s *Predicate) SetOperandType(v string) *Predicate {
+	s.OperandType = &v
+	return s
+}
+
 // SetOperator sets the Operator field's value.
 func (s *Predicate) SetOperator(v string) *Predicate {
 	s.Operator = &v
@@ -7350,7 +7693,7 @@ func (s *Predicate) SetOr(v []*Predicate) *Predicate {
 	return s
 }
 
-// Stores the metadata information about a feature on a form or view.
+// Stores the metadata information about a feature on a form.
 type PutMetadataFlagBody struct {
 	_ struct{} `type:"structure"`
 
@@ -7641,6 +7984,13 @@ func (s *RefreshTokenOutput) SetExpiresIn(v int64) *RefreshTokenOutput {
 type RefreshTokenRequestBody struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the client to request the token from.
+	//
+	// ClientId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RefreshTokenRequestBody's
+	// String and GoString methods.
+	ClientId *string `locationName:"clientId" type:"string" sensitive:"true"`
+
 	// The token to use to refresh a previously issued access token that might have
 	// expired.
 	//
@@ -7681,6 +8031,12 @@ func (s *RefreshTokenRequestBody) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *RefreshTokenRequestBody) SetClientId(v string) *RefreshTokenRequestBody {
+	s.ClientId = &v
+	return s
 }
 
 // SetToken sets the Token field's value.
@@ -7823,6 +8179,10 @@ func (s *ResourceNotFoundException) RequestID() string {
 type SectionalElement struct {
 	_ struct{} `type:"structure"`
 
+	// Excludes a sectional element that was generated by default for a specified
+	// data model.
+	Excluded *bool `locationName:"excluded" type:"boolean"`
+
 	// Specifies the size of the font for a Heading sectional element. Valid values
 	// are 1 | 2 | 3 | 4 | 5 | 6.
 	Level *int64 `locationName:"level" type:"integer"`
@@ -7872,6 +8232,12 @@ func (s *SectionalElement) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExcluded sets the Excluded field's value.
+func (s *SectionalElement) SetExcluded(v bool) *SectionalElement {
+	s.Excluded = &v
+	return s
 }
 
 // SetLevel sets the Level field's value.
@@ -8710,6 +9076,9 @@ type UpdateFormData struct {
 	// Specifies whether to perform a create or update action on the form.
 	FormActionType *string `locationName:"formActionType" type:"string" enum:"FormActionType"`
 
+	// Specifies an icon or decoration to display on the form.
+	LabelDecorator *string `locationName:"labelDecorator" type:"string" enum:"LabelDecorator"`
+
 	// The name of the form.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -8801,6 +9170,12 @@ func (s *UpdateFormData) SetFields(v map[string]*FieldConfig) *UpdateFormData {
 // SetFormActionType sets the FormActionType field's value.
 func (s *UpdateFormData) SetFormActionType(v string) *UpdateFormData {
 	s.FormActionType = &v
+	return s
+}
+
+// SetLabelDecorator sets the LabelDecorator field's value.
+func (s *UpdateFormData) SetLabelDecorator(v string) *UpdateFormData {
+	s.LabelDecorator = &v
 	return s
 }
 
@@ -9227,6 +9602,16 @@ func (s *ValueMapping) Validate() error {
 	if s.Value == nil {
 		invalidParams.Add(request.NewErrParamRequired("Value"))
 	}
+	if s.DisplayValue != nil {
+		if err := s.DisplayValue.Validate(); err != nil {
+			invalidParams.AddNested("DisplayValue", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Value != nil {
+		if err := s.Value.Validate(); err != nil {
+			invalidParams.AddNested("Value", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9249,6 +9634,9 @@ func (s *ValueMapping) SetValue(v *FormInputValueProperty) *ValueMapping {
 // Represents the data binding configuration for a value map.
 type ValueMappings struct {
 	_ struct{} `type:"structure"`
+
+	// The information to bind fields to data at runtime.
+	BindingProperties map[string]*FormInputBindingPropertiesValue `locationName:"bindingProperties" type:"map"`
 
 	// The value and display value pairs.
 	//
@@ -9295,6 +9683,12 @@ func (s *ValueMappings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBindingProperties sets the BindingProperties field's value.
+func (s *ValueMappings) SetBindingProperties(v map[string]*FormInputBindingPropertiesValue) *ValueMappings {
+	s.BindingProperties = v
+	return s
 }
 
 // SetValues sets the Values field's value.
@@ -9368,6 +9762,26 @@ func FormDataSourceType_Values() []string {
 }
 
 const (
+	// LabelDecoratorRequired is a LabelDecorator enum value
+	LabelDecoratorRequired = "required"
+
+	// LabelDecoratorOptional is a LabelDecorator enum value
+	LabelDecoratorOptional = "optional"
+
+	// LabelDecoratorNone is a LabelDecorator enum value
+	LabelDecoratorNone = "none"
+)
+
+// LabelDecorator_Values returns all elements of the LabelDecorator enum
+func LabelDecorator_Values() []string {
+	return []string{
+		LabelDecoratorRequired,
+		LabelDecoratorOptional,
+		LabelDecoratorNone,
+	}
+}
+
+const (
 	// SortDirectionAsc is a SortDirection enum value
 	SortDirectionAsc = "ASC"
 
@@ -9380,6 +9794,26 @@ func SortDirection_Values() []string {
 	return []string{
 		SortDirectionAsc,
 		SortDirectionDesc,
+	}
+}
+
+const (
+	// StorageAccessLevelPublic is a StorageAccessLevel enum value
+	StorageAccessLevelPublic = "public"
+
+	// StorageAccessLevelProtected is a StorageAccessLevel enum value
+	StorageAccessLevelProtected = "protected"
+
+	// StorageAccessLevelPrivate is a StorageAccessLevel enum value
+	StorageAccessLevelPrivate = "private"
+)
+
+// StorageAccessLevel_Values returns all elements of the StorageAccessLevel enum
+func StorageAccessLevel_Values() []string {
+	return []string{
+		StorageAccessLevelPublic,
+		StorageAccessLevelProtected,
+		StorageAccessLevelPrivate,
 	}
 }
 

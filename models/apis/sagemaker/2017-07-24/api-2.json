@@ -3957,17 +3957,31 @@
       "type":"structure",
       "members":{
         "SuccessTopic":{"shape":"SnsTopicArn"},
-        "ErrorTopic":{"shape":"SnsTopicArn"}
+        "ErrorTopic":{"shape":"SnsTopicArn"},
+        "IncludeInferenceResponseIn":{"shape":"AsyncNotificationTopicTypeList"}
       }
     },
     "AsyncInferenceOutputConfig":{
       "type":"structure",
-      "required":["S3OutputPath"],
       "members":{
         "KmsKeyId":{"shape":"KmsKeyId"},
         "S3OutputPath":{"shape":"DestinationS3Uri"},
-        "NotificationConfig":{"shape":"AsyncInferenceNotificationConfig"}
+        "NotificationConfig":{"shape":"AsyncInferenceNotificationConfig"},
+        "S3FailurePath":{"shape":"DestinationS3Uri"}
       }
+    },
+    "AsyncNotificationTopicTypeList":{
+      "type":"list",
+      "member":{"shape":"AsyncNotificationTopicTypes"},
+      "max":2,
+      "min":0
+    },
+    "AsyncNotificationTopicTypes":{
+      "type":"string",
+      "enum":[
+        "SUCCESS_NOTIFICATION_TOPIC",
+        "ERROR_NOTIFICATION_TOPIC"
+      ]
     },
     "AthenaCatalog":{
       "type":"string",

@@ -41,6 +41,7 @@
         "InvokeEndpointAsyncInput$Accept": "<p>The desired MIME type of the inference in the response.</p>",
         "InvokeEndpointAsyncOutput$InferenceId": "<p>Identifier for an inference request. This will be the same as the <code>InferenceId</code> specified in the input. Amazon SageMaker will generate an identifier for you if you do not specify one.</p>",
         "InvokeEndpointAsyncOutput$OutputLocation": "<p>The Amazon S3 URI where the inference response payload is stored.</p>",
+        "InvokeEndpointAsyncOutput$FailureLocation": "<p>The Amazon S3 URI where the inference failure response payload is stored.</p>",
         "InvokeEndpointInput$ContentType": "<p>The MIME type of the input data in the request body.</p>",
         "InvokeEndpointInput$Accept": "<p>The desired MIME type of the inference in the response.</p>",
         "InvokeEndpointOutput$ContentType": "<p>The MIME type of the inference returned in the response body.</p>",

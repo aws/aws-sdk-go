@@ -1766,7 +1766,7 @@
     },
     "MaxResults":{
       "type":"integer",
-      "max":25,
+      "max":200,
       "min":1
     },
     "Name":{"type":"string"},

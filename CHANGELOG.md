@@ -1,3 +1,19 @@
+Release v1.44.236 (2023-04-04)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API, documentation, and waiters
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for Amazon EC2 Auto Scaling
+* `service/dataexchange`: Updates service API
+* `service/ec2`: Updates service API
+  * C6in, M6in, M6idn, R6in and R6idn bare metal instances are powered by 3rd Generation Intel Xeon Scalable processors and offer up to 200 Gbps of network bandwidth.
+* `service/elastic-inference`: Updates service API and documentation
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Asynchronous Inference now allows customer's to receive failure model responses in S3 and receive success/failure model responses in SNS notifications.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.235 (2023-04-03)
 ===
 

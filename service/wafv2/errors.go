@@ -85,7 +85,8 @@ const (
 	//
 	// The policy specifications must conform to the following:
 	//
-	//    * The policy must be composed using IAM Policy version 2012-10-17.
+	//    * The policy must be composed using IAM Policy version 2012-10-17 or version
+	//    2015-01-01.
 	//
 	//    * The policy must include specifications for Effect, Action, and Principal.
 	//

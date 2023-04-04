@@ -343,15 +343,15 @@
     "ActionParameters":{
       "type":"structure",
       "members":{
-        "anchor":{"shape":"ComponentProperty"},
-        "fields":{"shape":"ComponentProperties"},
-        "global":{"shape":"ComponentProperty"},
-        "id":{"shape":"ComponentProperty"},
-        "model":{"shape":"String"},
-        "state":{"shape":"MutationActionSetStateParameter"},
-        "target":{"shape":"ComponentProperty"},
         "type":{"shape":"ComponentProperty"},
-        "url":{"shape":"ComponentProperty"}
+        "url":{"shape":"ComponentProperty"},
+        "anchor":{"shape":"ComponentProperty"},
+        "target":{"shape":"ComponentProperty"},
+        "global":{"shape":"ComponentProperty"},
+        "model":{"shape":"String"},
+        "id":{"shape":"ComponentProperty"},
+        "fields":{"shape":"ComponentProperties"},
+        "state":{"shape":"MutationActionSetStateParameter"}
       }
     },
     "Boolean":{
@@ -362,34 +362,34 @@
       "type":"structure",
       "required":[
         "appId",
-        "bindingProperties",
-        "componentType",
-        "createdAt",
         "environmentName",
         "id",
         "name",
-        "overrides",
+        "componentType",
         "properties",
-        "variants"
+        "variants",
+        "overrides",
+        "bindingProperties",
+        "createdAt"
       ],
       "members":{
         "appId":{"shape":"String"},
-        "bindingProperties":{"shape":"ComponentBindingProperties"},
-        "children":{"shape":"ComponentChildList"},
-        "collectionProperties":{"shape":"ComponentCollectionProperties"},
-        "componentType":{"shape":"ComponentType"},
-        "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "environmentName":{"shape":"String"},
-        "events":{"shape":"ComponentEvents"},
-        "id":{"shape":"Uuid"},
-        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"},
-        "name":{"shape":"ComponentName"},
-        "overrides":{"shape":"ComponentOverrides"},
-        "properties":{"shape":"ComponentProperties"},
-        "schemaVersion":{"shape":"String"},
         "sourceId":{"shape":"String"},
+        "id":{"shape":"Uuid"},
+        "name":{"shape":"ComponentName"},
+        "componentType":{"shape":"ComponentType"},
+        "properties":{"shape":"ComponentProperties"},
+        "children":{"shape":"ComponentChildList"},
+        "variants":{"shape":"ComponentVariants"},
+        "overrides":{"shape":"ComponentOverrides"},
+        "bindingProperties":{"shape":"ComponentBindingProperties"},
+        "collectionProperties":{"shape":"ComponentCollectionProperties"},
+        "createdAt":{"shape":"SyntheticTimestamp_date_time"},
+        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"},
         "tags":{"shape":"Tags"},
-        "variants":{"shape":"ComponentVariants"}
+        "events":{"shape":"ComponentEvents"},
+        "schemaVersion":{"shape":"String"}
       }
     },
     "ComponentBindingProperties":{
@@ -400,22 +400,22 @@
     "ComponentBindingPropertiesValue":{
       "type":"structure",
       "members":{
+        "type":{"shape":"String"},
         "bindingProperties":{"shape":"ComponentBindingPropertiesValueProperties"},
-        "defaultValue":{"shape":"String"},
-        "type":{"shape":"String"}
+        "defaultValue":{"shape":"String"}
       }
     },
     "ComponentBindingPropertiesValueProperties":{
       "type":"structure",
       "members":{
-        "bucket":{"shape":"String"},
-        "defaultValue":{"shape":"String"},
-        "field":{"shape":"String"},
-        "key":{"shape":"String"},
         "model":{"shape":"String"},
+        "field":{"shape":"String"},
         "predicates":{"shape":"PredicateList"},
-        "slotName":{"shape":"String"},
-        "userAttribute":{"shape":"String"}
+        "userAttribute":{"shape":"String"},
+        "bucket":{"shape":"String"},
+        "key":{"shape":"String"},
+        "defaultValue":{"shape":"String"},
+        "slotName":{"shape":"String"}
       }
     },
     "ComponentChild":{
@@ -426,11 +426,11 @@
         "properties"
       ],
       "members":{
-        "children":{"shape":"ComponentChildList"},
         "componentType":{"shape":"String"},
-        "events":{"shape":"ComponentEvents"},
         "name":{"shape":"String"},
         "properties":{"shape":"ComponentProperties"},
+        "children":{"shape":"ComponentChildList"},
+        "events":{"shape":"ComponentEvents"},
         "sourceId":{"shape":"String"}
       }
     },
@@ -446,31 +446,31 @@
     "ComponentConditionProperty":{
       "type":"structure",
       "members":{
-        "else":{"shape":"ComponentProperty"},
-        "field":{"shape":"String"},
-        "operand":{"shape":"String"},
-        "operandType":{"shape":"String"},
-        "operator":{"shape":"String"},
         "property":{"shape":"String"},
-        "then":{"shape":"ComponentProperty"}
+        "field":{"shape":"String"},
+        "operator":{"shape":"String"},
+        "operand":{"shape":"String"},
+        "then":{"shape":"ComponentProperty"},
+        "else":{"shape":"ComponentProperty"},
+        "operandType":{"shape":"String"}
       }
     },
     "ComponentDataConfiguration":{
       "type":"structure",
       "required":["model"],
       "members":{
-        "identifiers":{"shape":"IdentifierList"},
         "model":{"shape":"String"},
+        "sort":{"shape":"SortPropertyList"},
         "predicate":{"shape":"Predicate"},
-        "sort":{"shape":"SortPropertyList"}
+        "identifiers":{"shape":"IdentifierList"}
       }
     },
     "ComponentEvent":{
       "type":"structure",
       "members":{
         "action":{"shape":"String"},
-        "bindingEvent":{"shape":"String"},
-        "parameters":{"shape":"ActionParameters"}
+        "parameters":{"shape":"ActionParameters"},
+        "bindingEvent":{"shape":"String"}
       }
     },
     "ComponentEvents":{
@@ -505,29 +505,29 @@
     "ComponentProperty":{
       "type":"structure",
       "members":{
+        "value":{"shape":"String"},
         "bindingProperties":{"shape":"ComponentPropertyBindingProperties"},
-        "bindings":{"shape":"FormBindings"},
         "collectionBindingProperties":{"shape":"ComponentPropertyBindingProperties"},
-        "componentName":{"shape":"String"},
+        "defaultValue":{"shape":"String"},
+        "model":{"shape":"String"},
+        "bindings":{"shape":"FormBindings"},
+        "event":{"shape":"String"},
+        "userAttribute":{"shape":"String"},
         "concat":{"shape":"ComponentPropertyList"},
         "condition":{"shape":"ComponentConditionProperty"},
         "configured":{"shape":"Boolean"},
-        "defaultValue":{"shape":"String"},
-        "event":{"shape":"String"},
-        "importedValue":{"shape":"String"},
-        "model":{"shape":"String"},
-        "property":{"shape":"String"},
         "type":{"shape":"String"},
-        "userAttribute":{"shape":"String"},
-        "value":{"shape":"String"}
+        "importedValue":{"shape":"String"},
+        "componentName":{"shape":"String"},
+        "property":{"shape":"String"}
       }
     },
     "ComponentPropertyBindingProperties":{
       "type":"structure",
       "required":["property"],
       "members":{
-        "field":{"shape":"String"},
-        "property":{"shape":"String"}
+        "property":{"shape":"String"},
+        "field":{"shape":"String"}
       }
     },
     "ComponentPropertyList":{
@@ -538,17 +538,17 @@
       "type":"structure",
       "required":[
         "appId",
-        "componentType",
         "environmentName",
         "id",
-        "name"
+        "name",
+        "componentType"
       ],
       "members":{
         "appId":{"shape":"String"},
-        "componentType":{"shape":"ComponentType"},
         "environmentName":{"shape":"String"},
         "id":{"shape":"Uuid"},
-        "name":{"shape":"ComponentName"}
+        "name":{"shape":"ComponentName"},
+        "componentType":{"shape":"ComponentType"}
       }
     },
     "ComponentSummaryList":{
@@ -563,8 +563,8 @@
     "ComponentVariant":{
       "type":"structure",
       "members":{
-        "overrides":{"shape":"ComponentOverrides"},
-        "variantValues":{"shape":"ComponentVariantValues"}
+        "variantValues":{"shape":"ComponentVariantValues"},
+        "overrides":{"shape":"ComponentOverrides"}
       }
     },
     "ComponentVariantValues":{
@@ -579,34 +579,34 @@
     "CreateComponentData":{
       "type":"structure",
       "required":[
-        "bindingProperties",
-        "componentType",
         "name",
-        "overrides",
+        "componentType",
         "properties",
-        "variants"
+        "variants",
+        "overrides",
+        "bindingProperties"
       ],
       "members":{
-        "bindingProperties":{"shape":"ComponentBindingProperties"},
-        "children":{"shape":"ComponentChildList"},
-        "collectionProperties":{"shape":"ComponentCollectionProperties"},
-        "componentType":{"shape":"ComponentType"},
-        "events":{"shape":"ComponentEvents"},
         "name":{"shape":"ComponentName"},
-        "overrides":{"shape":"ComponentOverrides"},
-        "properties":{"shape":"ComponentProperties"},
-        "schemaVersion":{"shape":"String"},
         "sourceId":{"shape":"String"},
+        "componentType":{"shape":"ComponentType"},
+        "properties":{"shape":"ComponentProperties"},
+        "children":{"shape":"ComponentChildList"},
+        "variants":{"shape":"ComponentVariants"},
+        "overrides":{"shape":"ComponentOverrides"},
+        "bindingProperties":{"shape":"ComponentBindingProperties"},
+        "collectionProperties":{"shape":"ComponentCollectionProperties"},
         "tags":{"shape":"Tags"},
-        "variants":{"shape":"ComponentVariants"}
+        "events":{"shape":"ComponentEvents"},
+        "schemaVersion":{"shape":"String"}
       }
     },
     "CreateComponentRequest":{
       "type":"structure",
       "required":[
         "appId",
-        "componentToCreate",
-        "environmentName"
+        "environmentName",
+        "componentToCreate"
       ],
       "members":{
         "appId":{
@@ -614,18 +614,18 @@
           "location":"uri",
           "locationName":"appId"
         },
+        "environmentName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentName"
+        },
         "clientToken":{
           "shape":"String",
           "idempotencyToken":true,
           "location":"querystring",
           "locationName":"clientToken"
         },
-        "componentToCreate":{"shape":"CreateComponentData"},
-        "environmentName":{
-          "shape":"String",
-          "location":"uri",
-          "locationName":"environmentName"
-        }
+        "componentToCreate":{"shape":"CreateComponentData"}
       },
       "payload":"componentToCreate"
     },
@@ -639,24 +639,25 @@
     "CreateFormData":{
       "type":"structure",
       "required":[
-        "dataType",
-        "fields",
-        "formActionType",
         "name",
-        "schemaVersion",
+        "dataType",
+        "formActionType",
+        "fields",
+        "style",
         "sectionalElements",
-        "style"
+        "schemaVersion"
       ],
       "members":{
-        "cta":{"shape":"FormCTA"},
-        "dataType":{"shape":"FormDataTypeConfig"},
-        "fields":{"shape":"FieldsMap"},
-        "formActionType":{"shape":"FormActionType"},
         "name":{"shape":"FormName"},
-        "schemaVersion":{"shape":"String"},
-        "sectionalElements":{"shape":"SectionalElementMap"},
+        "dataType":{"shape":"FormDataTypeConfig"},
+        "formActionType":{"shape":"FormActionType"},
+        "fields":{"shape":"FieldsMap"},
         "style":{"shape":"FormStyle"},
-        "tags":{"shape":"Tags"}
+        "sectionalElements":{"shape":"SectionalElementMap"},
+        "schemaVersion":{"shape":"String"},
+        "cta":{"shape":"FormCTA"},
+        "tags":{"shape":"Tags"},
+        "labelDecorator":{"shape":"LabelDecorator"}
       }
     },
     "CreateFormRequest":{
@@ -672,16 +673,16 @@
           "location":"uri",
           "locationName":"appId"
         },
+        "environmentName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentName"
+        },
         "clientToken":{
           "shape":"String",
           "idempotencyToken":true,
           "location":"querystring",
           "locationName":"clientToken"
-        },
-        "environmentName":{
-          "shape":"String",
-          "location":"uri",
-          "locationName":"environmentName"
         },
         "formToCreate":{"shape":"CreateFormData"}
       },
@@ -702,9 +703,9 @@
       ],
       "members":{
         "name":{"shape":"ThemeName"},
+        "values":{"shape":"ThemeValuesList"},
         "overrides":{"shape":"ThemeValuesList"},
-        "tags":{"shape":"Tags"},
-        "values":{"shape":"ThemeValuesList"}
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateThemeRequest":{
@@ -720,16 +721,16 @@
           "location":"uri",
           "locationName":"appId"
         },
+        "environmentName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentName"
+        },
         "clientToken":{
           "shape":"String",
           "idempotencyToken":true,
           "location":"querystring",
           "locationName":"clientToken"
-        },
-        "environmentName":{
-          "shape":"String",
-          "location":"uri",
-          "locationName":"environmentName"
         },
         "themeToCreate":{"shape":"CreateThemeData"}
       },
@@ -841,7 +842,8 @@
       ],
       "members":{
         "code":{"shape":"SensitiveString"},
-        "redirectUri":{"shape":"String"}
+        "redirectUri":{"shape":"String"},
+        "clientId":{"shape":"SensitiveString"}
       }
     },
     "ExchangeCodeForTokenResponse":{
@@ -961,10 +963,10 @@
     "FieldConfig":{
       "type":"structure",
       "members":{
-        "excluded":{"shape":"Boolean"},
-        "inputType":{"shape":"FieldInputConfig"},
         "label":{"shape":"String"},
         "position":{"shape":"FieldPosition"},
+        "excluded":{"shape":"Boolean"},
+        "inputType":{"shape":"FieldInputConfig"},
         "validations":{"shape":"ValidationsList"}
       }
     },
@@ -972,29 +974,30 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "defaultChecked":{"shape":"Boolean"},
-        "defaultCountryCode":{"shape":"String"},
+        "type":{"shape":"String"},
+        "required":{"shape":"Boolean"},
+        "readOnly":{"shape":"Boolean"},
+        "placeholder":{"shape":"String"},
         "defaultValue":{"shape":"String"},
         "descriptiveText":{"shape":"String"},
-        "isArray":{"shape":"Boolean"},
-        "maxValue":{"shape":"Float"},
-        "minValue":{"shape":"Float"},
+        "defaultChecked":{"shape":"Boolean"},
+        "defaultCountryCode":{"shape":"String"},
+        "valueMappings":{"shape":"ValueMappings"},
         "name":{"shape":"String"},
-        "placeholder":{"shape":"String"},
-        "readOnly":{"shape":"Boolean"},
-        "required":{"shape":"Boolean"},
+        "minValue":{"shape":"Float"},
+        "maxValue":{"shape":"Float"},
         "step":{"shape":"Float"},
-        "type":{"shape":"String"},
         "value":{"shape":"String"},
-        "valueMappings":{"shape":"ValueMappings"}
+        "isArray":{"shape":"Boolean"},
+        "fileUploaderConfig":{"shape":"FileUploaderFieldConfig"}
       }
     },
     "FieldPosition":{
       "type":"structure",
       "members":{
-        "below":{"shape":"String"},
         "fixed":{"shape":"FixedPosition"},
-        "rightOf":{"shape":"String"}
+        "rightOf":{"shape":"String"},
+        "below":{"shape":"String"}
       },
       "union":true
     },
@@ -1002,9 +1005,9 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "numValues":{"shape":"NumValues"},
-        "strValues":{"shape":"StrValues"},
         "type":{"shape":"String"},
+        "strValues":{"shape":"StrValues"},
+        "numValues":{"shape":"NumValues"},
         "validationMessage":{"shape":"String"}
       }
     },
@@ -1012,6 +1015,21 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"FieldConfig"}
+    },
+    "FileUploaderFieldConfig":{
+      "type":"structure",
+      "required":[
+        "accessLevel",
+        "acceptedFileTypes"
+      ],
+      "members":{
+        "accessLevel":{"shape":"StorageAccessLevel"},
+        "acceptedFileTypes":{"shape":"StrValues"},
+        "showThumbnails":{"shape":"Boolean"},
+        "isResumable":{"shape":"Boolean"},
+        "maxFileCount":{"shape":"Integer"},
+        "maxSize":{"shape":"Integer"}
+      }
     },
     "FixedPosition":{
       "type":"string",
@@ -1025,29 +1043,30 @@
       "type":"structure",
       "required":[
         "appId",
-        "dataType",
         "environmentName",
-        "fields",
-        "formActionType",
         "id",
         "name",
-        "schemaVersion",
+        "formActionType",
+        "style",
+        "dataType",
+        "fields",
         "sectionalElements",
-        "style"
+        "schemaVersion"
       ],
       "members":{
         "appId":{"shape":"String"},
-        "cta":{"shape":"FormCTA"},
-        "dataType":{"shape":"FormDataTypeConfig"},
         "environmentName":{"shape":"String"},
-        "fields":{"shape":"FieldsMap"},
-        "formActionType":{"shape":"FormActionType"},
         "id":{"shape":"Uuid"},
         "name":{"shape":"FormName"},
-        "schemaVersion":{"shape":"String"},
-        "sectionalElements":{"shape":"SectionalElementMap"},
+        "formActionType":{"shape":"FormActionType"},
         "style":{"shape":"FormStyle"},
-        "tags":{"shape":"Tags"}
+        "dataType":{"shape":"FormDataTypeConfig"},
+        "fields":{"shape":"FieldsMap"},
+        "sectionalElements":{"shape":"SectionalElementMap"},
+        "schemaVersion":{"shape":"String"},
+        "tags":{"shape":"Tags"},
+        "cta":{"shape":"FormCTA"},
+        "labelDecorator":{"shape":"LabelDecorator"}
       }
     },
     "FormActionType":{
@@ -1076,8 +1095,8 @@
     "FormButton":{
       "type":"structure",
       "members":{
-        "children":{"shape":"String"},
         "excluded":{"shape":"Boolean"},
+        "children":{"shape":"String"},
         "position":{"shape":"FieldPosition"}
       }
     },
@@ -1092,9 +1111,9 @@
     "FormCTA":{
       "type":"structure",
       "members":{
-        "cancel":{"shape":"FormButton"},
-        "clear":{"shape":"FormButton"},
         "position":{"shape":"FormButtonsPosition"},
+        "clear":{"shape":"FormButton"},
+        "cancel":{"shape":"FormButton"},
         "submit":{"shape":"FormButton"}
       }
     },
@@ -1116,11 +1135,43 @@
         "dataTypeName":{"shape":"String"}
       }
     },
+    "FormInputBindingProperties":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"FormInputBindingPropertiesValue"}
+    },
+    "FormInputBindingPropertiesValue":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"String"},
+        "bindingProperties":{"shape":"FormInputBindingPropertiesValueProperties"}
+      }
+    },
+    "FormInputBindingPropertiesValueProperties":{
+      "type":"structure",
+      "members":{
+        "model":{"shape":"String"}
+      }
+    },
     "FormInputValueProperty":{
       "type":"structure",
       "members":{
-        "value":{"shape":"String"}
+        "value":{"shape":"String"},
+        "bindingProperties":{"shape":"FormInputValuePropertyBindingProperties"},
+        "concat":{"shape":"FormInputValuePropertyList"}
       }
+    },
+    "FormInputValuePropertyBindingProperties":{
+      "type":"structure",
+      "required":["property"],
+      "members":{
+        "property":{"shape":"String"},
+        "field":{"shape":"String"}
+      }
+    },
+    "FormInputValuePropertyList":{
+      "type":"list",
+      "member":{"shape":"FormInputValueProperty"}
     },
     "FormList":{
       "type":"list",
@@ -1135,8 +1186,8 @@
       "type":"structure",
       "members":{
         "horizontalGap":{"shape":"FormStyleConfig"},
-        "outerPadding":{"shape":"FormStyleConfig"},
-        "verticalGap":{"shape":"FormStyleConfig"}
+        "verticalGap":{"shape":"FormStyleConfig"},
+        "outerPadding":{"shape":"FormStyleConfig"}
       }
     },
     "FormStyleConfig":{
@@ -1320,6 +1371,14 @@
       },
       "exception":true
     },
+    "LabelDecorator":{
+      "type":"string",
+      "enum":[
+        "required",
+        "optional",
+        "none"
+      ]
+    },
     "ListComponentsLimit":{
       "type":"integer",
       "max":100,
@@ -1342,15 +1401,15 @@
           "location":"uri",
           "locationName":"environmentName"
         },
-        "maxResults":{
-          "shape":"ListComponentsLimit",
-          "location":"querystring",
-          "locationName":"maxResults"
-        },
         "nextToken":{
           "shape":"String",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ListComponentsLimit",
+          "location":"querystring",
+          "locationName":"maxResults"
         }
       }
     },
@@ -1384,15 +1443,15 @@
           "location":"uri",
           "locationName":"environmentName"
         },
-        "maxResults":{
-          "shape":"ListFormsLimit",
-          "location":"querystring",
-          "locationName":"maxResults"
-        },
         "nextToken":{
           "shape":"String",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ListFormsLimit",
+          "location":"querystring",
+          "locationName":"maxResults"
         }
       }
     },
@@ -1426,15 +1485,15 @@
           "location":"uri",
           "locationName":"environmentName"
         },
-        "maxResults":{
-          "shape":"ListThemesLimit",
-          "location":"querystring",
-          "locationName":"maxResults"
-        },
         "nextToken":{
           "shape":"String",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ListThemesLimit",
+          "location":"querystring",
+          "locationName":"maxResults"
         }
       }
     },
@@ -1463,14 +1522,19 @@
       "type":"list",
       "member":{"shape":"Integer"}
     },
+    "OperandType":{
+      "type":"string",
+      "pattern":"boolean|string|number"
+    },
     "Predicate":{
       "type":"structure",
       "members":{
+        "or":{"shape":"PredicateList"},
         "and":{"shape":"PredicateList"},
         "field":{"shape":"String"},
-        "operand":{"shape":"String"},
         "operator":{"shape":"String"},
-        "or":{"shape":"PredicateList"}
+        "operand":{"shape":"String"},
+        "operandType":{"shape":"OperandType"}
       }
     },
     "PredicateList":{
@@ -1488,9 +1552,9 @@
       "type":"structure",
       "required":[
         "appId",
-        "body",
         "environmentName",
-        "featureName"
+        "featureName",
+        "body"
       ],
       "members":{
         "appId":{
@@ -1498,7 +1562,6 @@
           "location":"uri",
           "locationName":"appId"
         },
-        "body":{"shape":"PutMetadataFlagBody"},
         "environmentName":{
           "shape":"String",
           "location":"uri",
@@ -1508,7 +1571,8 @@
           "shape":"String",
           "location":"uri",
           "locationName":"featureName"
-        }
+        },
+        "body":{"shape":"PutMetadataFlagBody"}
       },
       "payload":"body"
     },
@@ -1532,7 +1596,8 @@
       "type":"structure",
       "required":["token"],
       "members":{
-        "token":{"shape":"SensitiveString"}
+        "token":{"shape":"SensitiveString"},
+        "clientId":{"shape":"SensitiveString"}
       }
     },
     "RefreshTokenResponse":{
@@ -1572,11 +1637,12 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "level":{"shape":"Integer"},
-        "orientation":{"shape":"String"},
+        "type":{"shape":"String"},
         "position":{"shape":"FieldPosition"},
         "text":{"shape":"String"},
-        "type":{"shape":"String"}
+        "level":{"shape":"Integer"},
+        "orientation":{"shape":"String"},
+        "excluded":{"shape":"Boolean"}
       }
     },
     "SectionalElementMap":{
@@ -1609,17 +1675,25 @@
     "SortProperty":{
       "type":"structure",
       "required":[
-        "direction",
-        "field"
+        "field",
+        "direction"
       ],
       "members":{
-        "direction":{"shape":"SortDirection"},
-        "field":{"shape":"String"}
+        "field":{"shape":"String"},
+        "direction":{"shape":"SortDirection"}
       }
     },
     "SortPropertyList":{
       "type":"list",
       "member":{"shape":"SortProperty"}
+    },
+    "StorageAccessLevel":{
+      "type":"string",
+      "enum":[
+        "public",
+        "protected",
+        "private"
+      ]
     },
     "StrValues":{
       "type":"list",
@@ -1634,7 +1708,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+      "pattern":"(?!aws:)[a-zA-Z+-=._:/]+"
     },
     "TagValue":{
       "type":"string",
@@ -1650,22 +1724,22 @@
       "type":"structure",
       "required":[
         "appId",
-        "createdAt",
         "environmentName",
         "id",
         "name",
+        "createdAt",
         "values"
       ],
       "members":{
         "appId":{"shape":"String"},
-        "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "environmentName":{"shape":"String"},
         "id":{"shape":"Uuid"},
-        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"},
         "name":{"shape":"ThemeName"},
+        "createdAt":{"shape":"SyntheticTimestamp_date_time"},
+        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"},
+        "values":{"shape":"ThemeValuesList"},
         "overrides":{"shape":"ThemeValuesList"},
-        "tags":{"shape":"Tags"},
-        "values":{"shape":"ThemeValuesList"}
+        "tags":{"shape":"Tags"}
       }
     },
     "ThemeList":{
@@ -1699,8 +1773,8 @@
     "ThemeValue":{
       "type":"structure",
       "members":{
-        "children":{"shape":"ThemeValuesList"},
-        "value":{"shape":"String"}
+        "value":{"shape":"String"},
+        "children":{"shape":"ThemeValuesList"}
       }
     },
     "ThemeValues":{
@@ -1732,18 +1806,18 @@
     "UpdateComponentData":{
       "type":"structure",
       "members":{
-        "bindingProperties":{"shape":"ComponentBindingProperties"},
-        "children":{"shape":"ComponentChildList"},
-        "collectionProperties":{"shape":"ComponentCollectionProperties"},
-        "componentType":{"shape":"ComponentType"},
-        "events":{"shape":"ComponentEvents"},
         "id":{"shape":"Uuid"},
         "name":{"shape":"ComponentName"},
-        "overrides":{"shape":"ComponentOverrides"},
-        "properties":{"shape":"ComponentProperties"},
-        "schemaVersion":{"shape":"String"},
         "sourceId":{"shape":"String"},
-        "variants":{"shape":"ComponentVariants"}
+        "componentType":{"shape":"ComponentType"},
+        "properties":{"shape":"ComponentProperties"},
+        "children":{"shape":"ComponentChildList"},
+        "variants":{"shape":"ComponentVariants"},
+        "overrides":{"shape":"ComponentOverrides"},
+        "bindingProperties":{"shape":"ComponentBindingProperties"},
+        "collectionProperties":{"shape":"ComponentCollectionProperties"},
+        "events":{"shape":"ComponentEvents"},
+        "schemaVersion":{"shape":"String"}
       }
     },
     "UpdateComponentRequest":{
@@ -1760,12 +1834,6 @@
           "location":"uri",
           "locationName":"appId"
         },
-        "clientToken":{
-          "shape":"String",
-          "idempotencyToken":true,
-          "location":"querystring",
-          "locationName":"clientToken"
-        },
         "environmentName":{
           "shape":"String",
           "location":"uri",
@@ -1775,6 +1843,12 @@
           "shape":"Uuid",
           "location":"uri",
           "locationName":"id"
+        },
+        "clientToken":{
+          "shape":"String",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
         },
         "updatedComponent":{"shape":"UpdateComponentData"}
       },
@@ -1790,14 +1864,15 @@
     "UpdateFormData":{
       "type":"structure",
       "members":{
-        "cta":{"shape":"FormCTA"},
-        "dataType":{"shape":"FormDataTypeConfig"},
-        "fields":{"shape":"FieldsMap"},
-        "formActionType":{"shape":"FormActionType"},
         "name":{"shape":"FormName"},
-        "schemaVersion":{"shape":"String"},
+        "dataType":{"shape":"FormDataTypeConfig"},
+        "formActionType":{"shape":"FormActionType"},
+        "fields":{"shape":"FieldsMap"},
+        "style":{"shape":"FormStyle"},
         "sectionalElements":{"shape":"SectionalElementMap"},
-        "style":{"shape":"FormStyle"}
+        "schemaVersion":{"shape":"String"},
+        "cta":{"shape":"FormCTA"},
+        "labelDecorator":{"shape":"LabelDecorator"}
       }
     },
     "UpdateFormRequest":{
@@ -1814,12 +1889,6 @@
           "location":"uri",
           "locationName":"appId"
         },
-        "clientToken":{
-          "shape":"String",
-          "idempotencyToken":true,
-          "location":"querystring",
-          "locationName":"clientToken"
-        },
         "environmentName":{
           "shape":"String",
           "location":"uri",
@@ -1829,6 +1898,12 @@
           "shape":"Uuid",
           "location":"uri",
           "locationName":"id"
+        },
+        "clientToken":{
+          "shape":"String",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
         },
         "updatedForm":{"shape":"UpdateFormData"}
       },
@@ -1847,8 +1922,8 @@
       "members":{
         "id":{"shape":"Uuid"},
         "name":{"shape":"ThemeName"},
-        "overrides":{"shape":"ThemeValuesList"},
-        "values":{"shape":"ThemeValuesList"}
+        "values":{"shape":"ThemeValuesList"},
+        "overrides":{"shape":"ThemeValuesList"}
       }
     },
     "UpdateThemeRequest":{
@@ -1865,12 +1940,6 @@
           "location":"uri",
           "locationName":"appId"
         },
-        "clientToken":{
-          "shape":"String",
-          "idempotencyToken":true,
-          "location":"querystring",
-          "locationName":"clientToken"
-        },
         "environmentName":{
           "shape":"String",
           "location":"uri",
@@ -1880,6 +1949,12 @@
           "shape":"Uuid",
           "location":"uri",
           "locationName":"id"
+        },
+        "clientToken":{
+          "shape":"String",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
         },
         "updatedTheme":{"shape":"UpdateThemeData"}
       },
@@ -1913,7 +1988,8 @@
       "type":"structure",
       "required":["values"],
       "members":{
-        "values":{"shape":"ValueMappingList"}
+        "values":{"shape":"ValueMappingList"},
+        "bindingProperties":{"shape":"FormInputBindingProperties"}
       }
     }
   }
