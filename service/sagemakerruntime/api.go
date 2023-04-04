@@ -519,6 +519,9 @@ func (s *InvokeEndpointAsyncInput) SetRequestTTLSeconds(v int64) *InvokeEndpoint
 type InvokeEndpointAsyncOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon S3 URI where the inference failure response payload is stored.
+	FailureLocation *string `location:"header" locationName:"X-Amzn-SageMaker-FailureLocation" type:"string"`
+
 	// Identifier for an inference request. This will be the same as the InferenceId
 	// specified in the input. Amazon SageMaker will generate an identifier for
 	// you if you do not specify one.
@@ -544,6 +547,12 @@ func (s InvokeEndpointAsyncOutput) String() string {
 // value will be replaced with "sensitive".
 func (s InvokeEndpointAsyncOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailureLocation sets the FailureLocation field's value.
+func (s *InvokeEndpointAsyncOutput) SetFailureLocation(v string) *InvokeEndpointAsyncOutput {
+	s.FailureLocation = &v
+	return s
 }
 
 // SetInferenceId sets the InferenceId field's value.

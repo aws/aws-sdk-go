@@ -167,6 +167,11 @@
           "shape":"Header",
           "location":"header",
           "locationName":"X-Amzn-SageMaker-OutputLocation"
+        },
+        "FailureLocation":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-FailureLocation"
         }
       }
     },

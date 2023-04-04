@@ -155,12 +155,11 @@ func (c *AutoScaling) AttachLoadBalancerTargetGroupsRequest(input *AttachLoadBal
 
 // AttachLoadBalancerTargetGroups API operation for Auto Scaling.
 //
-// This API call has been replaced with a new "traffic sources" API call (AttachTrafficSources)
-// that can attach multiple traffic sources types. While we continue to support
-// AttachLoadBalancerTargetGroups, and you can use both the original AttachLoadBalancerTargetGroups
-// API call and the new AttachTrafficSources API call on the same Auto Scaling
-// group, we recommend using the new "traffic sources" API call to simplify
-// how you manage traffic sources.
+// This API operation is superseded by AttachTrafficSources, which can attach
+// multiple traffic sources types. We recommend using AttachTrafficSources to
+// simplify how you manage traffic sources. However, we continue to support
+// AttachLoadBalancerTargetGroups. You can use both the original AttachLoadBalancerTargetGroups
+// API operation and AttachTrafficSources on the same Auto Scaling group.
 //
 // Attaches one or more target groups to the specified Auto Scaling group.
 //
@@ -267,12 +266,11 @@ func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput
 
 // AttachLoadBalancers API operation for Auto Scaling.
 //
-// This API call has been replaced with a new "traffic sources" API call (AttachTrafficSources)
-// that can attach multiple traffic sources types. While we continue to support
-// AttachLoadBalancers, and you can use both the original AttachLoadBalancers
-// API call and the new AttachTrafficSources API call on the same Auto Scaling
-// group, we recommend using the new "traffic sources" API call to simplify
-// how you manage traffic sources.
+// This API operation is superseded by AttachTrafficSources, which can attach
+// multiple traffic sources types. We recommend using AttachTrafficSources to
+// simplify how you manage traffic sources. However, we continue to support
+// AttachLoadBalancers. You can use both the original AttachLoadBalancers API
+// operation and AttachTrafficSources on the same Auto Scaling group.
 //
 // Attaches one or more Classic Load Balancers to the specified Auto Scaling
 // group. Amazon EC2 Auto Scaling registers the running instances with these
@@ -379,9 +377,9 @@ func (c *AutoScaling) AttachTrafficSourcesRequest(input *AttachTrafficSourcesInp
 //
 //   - Classic Load Balancer
 //
-//   - Network Load Balancer
-//
 //   - Gateway Load Balancer
+//
+//   - Network Load Balancer
 //
 //   - VPC Lattice
 //
@@ -2827,12 +2825,11 @@ func (c *AutoScaling) DescribeLoadBalancerTargetGroupsRequest(input *DescribeLoa
 
 // DescribeLoadBalancerTargetGroups API operation for Auto Scaling.
 //
-// This API call has been replaced with a new "traffic sources" API call (DescribeTrafficSources)
-// that can describe multiple traffic sources types. While we continue to support
-// DescribeLoadBalancerTargetGroups, and you can use both the original DescribeLoadBalancerTargetGroups
-// API call and the new DescribeTrafficSources API call on the same Auto Scaling
-// group, we recommend using the new "traffic sources" API call to simplify
-// how you manage traffic sources.
+// This API operation is superseded by DescribeTrafficSources, which can describe
+// multiple traffic sources types. We recommend using DetachTrafficSources to
+// simplify how you manage traffic sources. However, we continue to support
+// DescribeLoadBalancerTargetGroups. You can use both the original DescribeLoadBalancerTargetGroups
+// API operation and DescribeTrafficSources on the same Auto Scaling group.
 //
 // Gets information about the Elastic Load Balancing target groups for the specified
 // Auto Scaling group.
@@ -2945,12 +2942,11 @@ func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersI
 
 // DescribeLoadBalancers API operation for Auto Scaling.
 //
-// This API call has been replaced with a new "traffic sources" API call (DescribeTrafficSources)
-// that can describe multiple traffic sources types. While we continue to support
-// DescribeLoadBalancers, and you can use both the original DescribeLoadBalancers
-// API call and the new DescribeTrafficSources API call on the same Auto Scaling
-// group, we recommend using the new "traffic sources" API call to simplify
-// how you manage traffic sources.
+// This API operation is superseded by DescribeTrafficSources, which can describe
+// multiple traffic sources types. We recommend using DescribeTrafficSources
+// to simplify how you manage traffic sources. However, we continue to support
+// DescribeLoadBalancers. You can use both the original DescribeLoadBalancers
+// API operation and DescribeTrafficSources on the same Auto Scaling group.
 //
 // Gets information about the load balancers for the specified Auto Scaling
 // group.
@@ -4371,12 +4367,11 @@ func (c *AutoScaling) DetachLoadBalancerTargetGroupsRequest(input *DetachLoadBal
 
 // DetachLoadBalancerTargetGroups API operation for Auto Scaling.
 //
-// This API call has been replaced with a new "traffic sources" API call (DetachTrafficSources)
-// that can detach multiple traffic sources types. While we continue to support
-// DetachLoadBalancerTargetGroups, and you can use both the original DetachLoadBalancerTargetGroups
-// API call and the new DetachTrafficSources API call on the same Auto Scaling
-// group, we recommend using the new "traffic sources" API call to simplify
-// how you manage traffic sources.
+// This API operation is superseded by DetachTrafficSources, which can detach
+// multiple traffic sources types. We recommend using DetachTrafficSources to
+// simplify how you manage traffic sources. However, we continue to support
+// DetachLoadBalancerTargetGroups. You can use both the original DetachLoadBalancerTargetGroups
+// API operation and DetachTrafficSources on the same Auto Scaling group.
 //
 // Detaches one or more target groups from the specified Auto Scaling group.
 //
@@ -4467,12 +4462,11 @@ func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput
 
 // DetachLoadBalancers API operation for Auto Scaling.
 //
-// This API call has been replaced with a new "traffic sources" API call (DetachTrafficSources)
-// that can detach multiple traffic sources types. While we continue to support
-// DetachLoadBalancers, and you can use both the original DetachLoadBalancers
-// API call and the new DetachTrafficSources API call on the same Auto Scaling
-// group, we recommend using the new "traffic sources" API call to simplify
-// how you manage traffic sources.
+// This API operation is superseded by DetachTrafficSources, which can detach
+// multiple traffic sources types. We recommend using DetachTrafficSources to
+// simplify how you manage traffic sources. However, we continue to support
+// DetachLoadBalancers. You can use both the original DetachLoadBalancers API
+// operation and DetachTrafficSources on the same Auto Scaling group.
 //
 // Detaches one or more Classic Load Balancers from the specified Auto Scaling
 // group.
@@ -8028,12 +8022,14 @@ type CreateAutoScalingGroupInput struct {
 	// Default: 0 seconds
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
-	// A comma-separated list of one or more health check types.
+	// A comma-separated value string of one or more health check types.
 	//
 	// The valid values are EC2, ELB, and VPC_LATTICE. EC2 is the default health
 	// check and cannot be disabled. For more information, see Health checks for
 	// Auto Scaling instances (https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
+	//
+	// Only specify EC2 if you must clear a value that was previously set.
 	HealthCheckType *string `min:"1" type:"string"`
 
 	// The ID of the instance used to base the launch configuration on. If specified,
@@ -12065,8 +12061,8 @@ type DetachTrafficSourcesInput struct {
 	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The unique identifiers of one or more traffic sources you are detaching.
-	// You can specify up to 10 traffic sources.
+	// The unique identifiers of one or more traffic sources. You can specify up
+	// to 10 traffic sources.
 	//
 	// TrafficSources is a required field
 	TrafficSources []*TrafficSourceIdentifier `type:"list" required:"true"`
@@ -13343,7 +13339,7 @@ type Group struct {
 	// The duration of the health check grace period, in seconds.
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
-	// A comma-separated list of one or more health check types.
+	// A comma-separated value string of one or more health check types.
 	//
 	// HealthCheckType is a required field
 	HealthCheckType *string `min:"1" type:"string" required:"true"`
@@ -21043,12 +21039,14 @@ type UpdateAutoScalingGroupInput struct {
 	// in the Amazon EC2 Auto Scaling User Guide.
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
-	// A comma-separated list of one or more health check types.
+	// A comma-separated value string of one or more health check types.
 	//
 	// The valid values are EC2, ELB, and VPC_LATTICE. EC2 is the default health
 	// check and cannot be disabled. For more information, see Health checks for
 	// Auto Scaling instances (https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
+	//
+	// Only specify EC2 if you must clear a value that was previously set.
 	HealthCheckType *string `min:"1" type:"string"`
 
 	// The name of the launch configuration. If you specify LaunchConfigurationName
