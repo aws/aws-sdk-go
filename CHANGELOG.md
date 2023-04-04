@@ -1194,6 +1194,9 @@ Release v1.44.143 (2022-11-21)
 Release v1.44.142 (2022-11-18)
 ===
 
+### Notes
+* Removes old model file for ssm sap and uses the new model file to regenerate client
+
 Release v1.44.141 (2022-11-18)
 ===
 
