@@ -266,6 +266,14 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // Amazon ECS runs another copy of the task in the specified cluster. To update
 // an existing service, see the UpdateService action.
 //
+// Starting April 15, 2023, Amazon Web Services will not onboard new customers
+// to Amazon Elastic Inference (EI), and will help current customers migrate
+// their workloads to options that offer better price and performance. After
+// April 15, 2023, new customers will not be able to launch instances with Amazon
+// EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However,
+// customers who have used Amazon EI at least once during the past 30-day period
+// are considered current customers and will be able to continue using the service.
+//
 // In addition to maintaining the desired count of tasks in your service, you
 // can optionally run your service behind one or more load balancers. The load
 // balancers distribute traffic across the tasks that are associated with the
@@ -4594,6 +4602,14 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 // Alternatively, you can use StartTask to use your own scheduler or place tasks
 // manually on specific container instances.
 //
+// Starting April 15, 2023, Amazon Web Services will not onboard new customers
+// to Amazon Elastic Inference (EI), and will help current customers migrate
+// their workloads to options that offer better price and performance. After
+// April 15, 2023, new customers will not be able to launch instances with Amazon
+// EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However,
+// customers who have used Amazon EI at least once during the past 30-day period
+// are considered current customers and will be able to continue using the service.
+//
 // The Amazon ECS API follows an eventual consistency model. This is because
 // of the distributed nature of the system supporting the API. This means that
 // the result of an API command you run that affects your Amazon ECS resources
@@ -4725,6 +4741,14 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 //
 // Starts a new task from the specified task definition on the specified container
 // instance or instances.
+//
+// Starting April 15, 2023, Amazon Web Services will not onboard new customers
+// to Amazon Elastic Inference (EI), and will help current customers migrate
+// their workloads to options that offer better price and performance. After
+// April 15, 2023, new customers will not be able to launch instances with Amazon
+// EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However,
+// customers who have used Amazon EI at least once during the past 30-day period
+// are considered current customers and will be able to continue using the service.
 //
 // Alternatively, you can use RunTask to place tasks for you. For more information,
 // see Scheduling Tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduling_tasks.html)
@@ -10439,7 +10463,8 @@ type CreateServiceInput struct {
 	// Specifies whether to propagate the tags from the task definition to the task.
 	// If no value is specified, the tags aren't propagated. Tags can only be propagated
 	// to the task during task creation. To add tags to a task after task creation,
-	// use the TagResource API action.
+	// use the TagResource (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)
+	// API action.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
 
 	// The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon
@@ -14593,7 +14618,8 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 // An object representing a container health check. Health check parameters
 // that are specified in a container definition override any Docker health checks
 // that exist in the container image (such as those specified in a parent image
-// or from the image's Dockerfile).
+// or from the image's Dockerfile). This configuration maps to the HEALTHCHECK
+// parameter of docker run (https://docs.docker.com/engine/reference/run/).
 //
 // The Amazon ECS container agent only monitors and reports on the health checks
 // specified in the task definition. Amazon ECS does not monitor Docker health
@@ -14614,8 +14640,8 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 //     container health check defined.
 //
 // The following describes the possible healthStatus values for a task. The
-// container health check status of nonessential containers only affects the
-// health status of a task if no essential containers have health checks defined.
+// container health check status of non-essential containers don't have an effect
+// on the health status of a task.
 //
 //   - HEALTHY-All essential containers within the task have passed their health
 //     checks.
@@ -14624,20 +14650,13 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 //     check.
 //
 //   - UNKNOWN-The essential containers within the task are still having their
-//     health checks evaluated or there are only nonessential containers with
-//     health checks defined.
+//     health checks evaluated, there are only nonessential containers with health
+//     checks defined, or there are no container health checks defined.
 //
 // If a task is run manually, and not as part of a service, the task will continue
 // its lifecycle regardless of its health status. For tasks that are part of
 // a service, if the task reports as unhealthy then the task will be stopped
 // and the service scheduler will replace it.
-//
-// For tasks that are a part of a service and the service uses the ECS rolling
-// deployment type, the deployment is paused while the new tasks have the UNKNOWN
-// task health check status. For example, tasks that define health checks for
-// nonessential containers when no essential containers have health checks will
-// have the UNKNOWN health check status indefinitely which prevents the deployment
-// from completing.
 //
 // The following are notes about container health check support:
 //
@@ -14873,7 +14892,7 @@ type InferenceAccelerator struct {
 	_ struct{} `type:"structure"`
 
 	// The Elastic Inference accelerator device name. The deviceName must also be
-	// referenced in a container definition as a ResourceRequirement.
+	// referenced in a container definition as a ResourceRequirement (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html).
 	//
 	// DeviceName is a required field
 	DeviceName *string `locationName:"deviceName" type:"string" required:"true"`
@@ -15283,7 +15302,8 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Linux-specific options that are applied to the container, such as Linux KernelCapabilities.
+// The Linux-specific options that are applied to the container, such as Linux
+// KernelCapabilities (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html).
 type LinuxParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -16726,9 +16746,6 @@ func (s *ListTasksOutput) SetTaskArns(v []*string) *ListTasksOutput {
 
 // The load balancer configuration to use with a service or task set.
 //
-// For specific notes and restrictions regarding the use of load balancers with
-// services and task sets, see the CreateService and CreateTaskSet actions.
-//
 // When you add, update, or remove a load balancer configuration, Amazon ECS
 // starts a new deployment with the updated Elastic Load Balancing configuration.
 // This causes tasks to register to and deregister from load balancers.
@@ -17147,9 +17164,12 @@ type ManagedScaling struct {
 	// Determines whether to use managed scaling for the capacity provider.
 	Status *string `locationName:"status" type:"string" enum:"ManagedScalingStatus"`
 
-	// The target capacity value for the capacity provider. The specified value
-	// must be greater than 0 and less than or equal to 100. A value of 100 results
-	// in the Amazon EC2 instances in your Auto Scaling group being completely used.
+	// The target capacity utilization as a percentage for the capacity provider.
+	// The specified value must be greater than 0 and less than or equal to 100.
+	// For example, if you want the capacity provider to maintain 10% spare capacity,
+	// then that means the utilization is 90%, so use a targetCapacity of 90. The
+	// default value of 100 percent results in the Amazon EC2 instances in your
+	// Auto Scaling group being completely used.
 	TargetCapacity *int64 `locationName:"targetCapacity" min:"1" type:"integer"`
 }
 
@@ -17287,7 +17307,7 @@ func (s *MissingVersionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Details for a volume mount point that's used in a container definition.
+// The details for a volume mount point that's used in a container definition.
 type MountPoint struct {
 	_ struct{} `type:"structure"`
 
@@ -18119,6 +18139,7 @@ type PortMapping struct {
 	// was previously specified in a running task is also reserved while the task
 	// is running. That is, after a task stops, the host port is released. The current
 	// reserved ports are displayed in the remainingResources of DescribeContainerInstances
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html)
 	// output. A container instance can have up to 100 reserved ports at a time.
 	// This number includes the default reserved ports. Automatically assigned ports
 	// aren't included in the 100 reserved ports quota.
@@ -19776,7 +19797,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 // The type and amount of a resource to assign to a container. The supported
 // resource types are GPUs and Elastic Inference accelerators. For more information,
 // see Working with GPUs on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-gpu.html)
-// or Working with Amazon Elastic Inference on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-inference.html)
+// or Working with Amazon Elastic Inference on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/url-ecs-dev;ecs-inference.html)
 // in the Amazon Elastic Container Service Developer Guide
 type ResourceRequirement struct {
 	_ struct{} `type:"structure"`
@@ -19795,7 +19816,8 @@ type ResourceRequirement struct {
 	// GPUs on the container instance that the task is launched on.
 	//
 	// If the InferenceAccelerator type is used, the value matches the deviceName
-	// for an InferenceAccelerator specified in a task definition.
+	// for an InferenceAccelerator (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_InferenceAccelerator.html)
+	// specified in a task definition.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -20466,7 +20488,7 @@ func (s *ServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Details on a service within a cluster
+// Details on a service within a cluster.
 type Service struct {
 	_ struct{} `type:"structure"`
 
@@ -21106,9 +21128,8 @@ type ServiceConnectService struct {
 	// lowercase letters, numbers, underscores (_), and hyphens (-). The name can't
 	// start with a hyphen.
 	//
-	// If this parameter isn't specified, the default value of discoveryName.namespace
-	// is used. If the discoveryName isn't specified, the port mapping name from
-	// the task definition is used in portName.namespace.
+	// If the discoveryName isn't specified, the port mapping name from the task
+	// definition is used in portName.namespace.
 	DiscoveryName *string `locationName:"discoveryName" type:"string"`
 
 	// The port number for the Service Connect proxy to listen on.
@@ -21222,9 +21243,8 @@ type ServiceConnectServiceResource struct {
 	// lowercase letters, numbers, underscores (_), and hyphens (-). The name can't
 	// start with a hyphen.
 	//
-	// If this parameter isn't specified, the default value of discoveryName.namespace
-	// is used. If the discoveryName isn't specified, the port mapping name from
-	// the task definition is used in portName.namespace.
+	// If the discoveryName isn't specified, the port mapping name from the task
+	// definition is used in portName.namespace.
 	DiscoveryName *string `locationName:"discoveryName" type:"string"`
 }
 
@@ -23500,9 +23520,9 @@ type TaskDefinition struct {
 	// This parameter isn't supported for tasks run on Fargate.
 	RequiresAttributes []*Attribute `locationName:"requiresAttributes" type:"list"`
 
-	// The task launch types the task definition was validated against. To determine
-	// which task launch types the task definition is validated for, see the TaskDefinition$compatibilities
-	// parameter.
+	// The task launch types the task definition was validated against. For more
+	// information, see Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	RequiresCompatibilities []*string `locationName:"requiresCompatibilities" type:"list" enum:"Compatibility"`
 
 	// The revision of the task in a particular family. The revision is a version

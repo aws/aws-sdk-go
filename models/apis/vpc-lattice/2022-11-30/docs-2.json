@@ -9,10 +9,10 @@
     "CreateService": "<p>Creates a service. A service is any software application that can run on instances containers, or serverless functions within an account or virtual private cloud (VPC).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/services.html\">Services</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "CreateServiceNetwork": "<p>Creates a service network. A service network is a logical boundary for a collection of services. You can associate services and VPCs with a service network.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html\">Service networks</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "CreateServiceNetworkServiceAssociation": "<p>Associates a service with a service network.</p> <p>You can't use this operation if the service and service network are already associated or if there is a disassociation or deletion in progress. If the association fails, you can retry the operation by deleting the association and recreating it.</p> <p>You cannot associate a service and service network that are shared with a caller. The caller must own either the service or the service network.</p> <p>As a result of this operation, the association is created in the service network account and the association owner account.</p>",
-    "CreateServiceNetworkVpcAssociation": "<p>Associates a VPC with a service network. When you associate a VPC with the service network, it enables all the resources within that VPC to be clients and communicate with other services in the service network. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-network-associations.html#service-network-vpc-associations\">Manage VPC associations</a> in the <i>Amazon VPC Lattice User Guide</i>.</p> <p>You can't use this operation if there is a disassociation in progress. If the association fails, retry by deleting the association and recreating it.</p> <p>As a result of this operation, the association gets created in the service network account and the VPC owner account.</p> <p>Once a security group is added to the VPC association it cannot be removed. You can add or update the security groups being used for the VPC association once a security group is attached. To remove all security groups you must reassociate the VPC.</p>",
+    "CreateServiceNetworkVpcAssociation": "<p>Associates a VPC with a service network. When you associate a VPC with the service network, it enables all the resources within that VPC to be clients and communicate with other services in the service network. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-network-associations.html#service-network-vpc-associations\">Manage VPC associations</a> in the <i>Amazon VPC Lattice User Guide</i>.</p> <p>You can't use this operation if there is a disassociation in progress. If the association fails, retry by deleting the association and recreating it.</p> <p>As a result of this operation, the association gets created in the service network account and the VPC owner account.</p> <p>If you add a security group to the service network and VPC association, the association must continue to always have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and recreate it without security groups.</p>",
     "CreateTargetGroup": "<p>Creates a target group. A target group is a collection of targets, or compute resources, that run your application or service. A target group can only be used by a single service.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html\">Target groups</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "DeleteAccessLogSubscription": "<p>Deletes the specified access log subscription.</p>",
-    "DeleteAuthPolicy": "<p>Deletes the specified auth policy. If an auth is set to <code>Amazon Web Services_IAM</code> and the auth policy is deleted, all requests will be denied by default. If you are trying to remove the auth policy completely, you must set the auth_type to <code>NONE</code>. If auth is enabled on the resource, but no auth policy is set, all requests will be denied.</p>",
+    "DeleteAuthPolicy": "<p>Deletes the specified auth policy. If an auth is set to <code>AWS_IAM</code> and the auth policy is deleted, all requests will be denied by default. If you are trying to remove the auth policy completely, you must set the auth_type to <code>NONE</code>. If auth is enabled on the resource, but no auth policy is set, all requests will be denied.</p>",
     "DeleteListener": "<p>Deletes the specified listener.</p>",
     "DeleteResourcePolicy": "<p>Deletes the specified resource policy.</p>",
     "DeleteRule": "<p>Deletes a listener rule. Each listener has a default rule for checking connection requests, but you can define additional rules. Each rule consists of a priority, one or more actions, and one or more conditions. You can delete additional listener rules, but you cannot delete the default rule.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/listeners.html#listener-rules\">Listener rules</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
@@ -25,7 +25,7 @@
     "GetAccessLogSubscription": "<p>Retrieves information about the specified access log subscription.</p>",
     "GetAuthPolicy": "<p>Retrieves information about the auth policy for the specified service or service network.</p>",
     "GetListener": "<p>Retrieves information about the specified listener for the specified service.</p>",
-    "GetResourcePolicy": "<p>Retrieves information about the resource policy. The resource policy is an IAM policy created by AWS RAM on behalf of the resource owner when they share a resource.</p>",
+    "GetResourcePolicy": "<p>Retrieves information about the resource policy. The resource policy is an IAM policy created on behalf of the resource owner when they share a resource.</p>",
     "GetRule": "<p>Retrieves information about listener rules. You can also retrieve information about the default listener rule. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/listeners.html#listener-rules\">Listener rules</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "GetService": "<p>Retrieves information about the specified service.</p>",
     "GetServiceNetwork": "<p>Retrieves information about the specified service network.</p>",
@@ -42,7 +42,7 @@
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "ListTargetGroups": "<p>Lists your target groups. You can narrow your search by using the filters below in your request.</p>",
     "ListTargets": "<p>Lists the targets for the target group. By default, all targets are included. You can use this API to check the health status of targets. You can also ﬁlter the results by target. </p>",
-    "PutAuthPolicy": "<p>Creates or updates the auth policy.</p>",
+    "PutAuthPolicy": "<p>Creates or updates the auth policy. The policy string in JSON must not contain newlines or blank lines.</p>",
     "PutResourcePolicy": "<p>Attaches a resource-based permission policy to a service or service network. The policy must contain the same actions and condition statements as the Amazon Web Services Resource Access Manager permission for sharing services and service networks.</p>",
     "RegisterTargets": "<p>Registers the targets with the target group. If it's a Lambda target, you can only have one target in a target group.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource.</p>",
@@ -52,7 +52,7 @@
     "UpdateRule": "<p>Updates a rule for the listener. You can't modify a default listener rule. To modify a default listener rule, use <code>UpdateListener</code>.</p>",
     "UpdateService": "<p>Updates the specified service.</p>",
     "UpdateServiceNetwork": "<p>Updates the specified service network.</p>",
-    "UpdateServiceNetworkVpcAssociation": "<p>Updates the service network and VPC association. Once you add a security group, it cannot be removed.</p>",
+    "UpdateServiceNetworkVpcAssociation": "<p>Updates the service network and VPC association. If you add a security group to the service network and VPC association, the association must continue to always have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and recreate it without security groups.</p>",
     "UpdateTargetGroup": "<p>Updates the specified target group.</p>"
   },
   "shapes": {
@@ -133,16 +133,16 @@
     "AuthPolicyState": {
       "base": null,
       "refs": {
-        "GetAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>Amazon Web Services_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the auth type is <code>NONE</code>, then any auth policy you provide will remain inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
-        "PutAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>Amazon Web Services_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the Auth type is <code>NONE</code>, then, any auth policy you provide will remain inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>"
+        "GetAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>AWS_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the auth type is <code>NONE</code>, then any auth policy you provide will remain inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
+        "PutAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>AWS_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the Auth type is <code>NONE</code>, then, any auth policy you provide will remain inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>"
       }
     },
     "AuthPolicyString": {
       "base": null,
       "refs": {
         "GetAuthPolicyResponse$policy": "<p>The auth policy.</p>",
-        "PutAuthPolicyRequest$policy": "<p>The auth policy.</p>",
-        "PutAuthPolicyResponse$policy": "<p>The auth policy.</p>"
+        "PutAuthPolicyRequest$policy": "<p>The auth policy. The policy string in JSON must not contain newlines or blank lines.</p>",
+        "PutAuthPolicyResponse$policy": "<p>The auth policy. The policy string in JSON must not contain newlines or blank lines.</p>"
       }
     },
     "AuthType": {
@@ -926,8 +926,8 @@
     "PolicyString": {
       "base": null,
       "refs": {
-        "GetResourcePolicyResponse$policy": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
-        "PutResourcePolicyRequest$policy": "<p>An IAM policy.</p>"
+        "GetResourcePolicyResponse$policy": "<p>An IAM policy.</p>",
+        "PutResourcePolicyRequest$policy": "<p>An IAM policy. The policy string in JSON must not contain newlines or blank lines.</p>"
       }
     },
     "Port": {
@@ -988,7 +988,7 @@
         "CreateAccessLogSubscriptionResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
         "DeleteResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "GetAccessLogSubscriptionResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
-        "GetResourcePolicyRequest$resourceArn": "<p>An IAM policy.</p>",
+        "GetResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
         "PutResourcePolicyRequest$resourceArn": "<p>The ID or Amazon Resource Name (ARN) of the service network or service for which the policy is created.</p>",
         "UpdateAccessLogSubscriptionResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the access log subscription.</p>"
       }
@@ -1774,7 +1774,7 @@
     "UpdateServiceNetworkVpcAssociationRequestSecurityGroupIdsList": {
       "base": null,
       "refs": {
-        "UpdateServiceNetworkVpcAssociationRequest$securityGroupIds": "<p>The IDs of the security groups. Once you add a security group, it cannot be removed.</p>"
+        "UpdateServiceNetworkVpcAssociationRequest$securityGroupIds": "<p>The IDs of the security groups. </p>"
       }
     },
     "UpdateServiceNetworkVpcAssociationResponse": {

@@ -3538,7 +3538,7 @@
         "OrganizationManagedRuleMetadata$TagValueScope": "<p>The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key).</p>",
         "PutOrganizationConfigRuleResponse$OrganizationConfigRuleArn": "<p>The Amazon Resource Name (ARN) of an organization Config rule.</p>",
         "PutOrganizationConformancePackResponse$OrganizationConformancePackArn": "<p>ARN of the organization conformance pack.</p>",
-        "RemediationConfiguration$TargetId": "<p>Target ID is the name of the public document.</p>",
+        "RemediationConfiguration$TargetId": "<p>Target ID is the name of the SSM document.</p>",
         "RemediationException$ResourceType": "<p>The type of a resource.</p>",
         "RemediationExceptionResourceKey$ResourceType": "<p>The type of a resource.</p>",
         "RemediationParameters$key": null,

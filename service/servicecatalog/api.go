@@ -25717,9 +25717,6 @@ const (
 	// ProductTypeMarketplace is a ProductType enum value
 	ProductTypeMarketplace = "MARKETPLACE"
 
-	// ProductTypeDefaultCustom is a ProductType enum value
-	ProductTypeDefaultCustom = "DEFAULT_CUSTOM"
-
 	// ProductTypeTerraformOpenSource is a ProductType enum value
 	ProductTypeTerraformOpenSource = "TERRAFORM_OPEN_SOURCE"
 )
@@ -25729,7 +25726,6 @@ func ProductType_Values() []string {
 	return []string{
 		ProductTypeCloudFormationTemplate,
 		ProductTypeMarketplace,
-		ProductTypeDefaultCustom,
 		ProductTypeTerraformOpenSource,
 	}
 }
@@ -25916,9 +25912,6 @@ const (
 	// ProvisioningArtifactTypeMarketplaceCar is a ProvisioningArtifactType enum value
 	ProvisioningArtifactTypeMarketplaceCar = "MARKETPLACE_CAR"
 
-	// ProvisioningArtifactTypeDefaultCustom is a ProvisioningArtifactType enum value
-	ProvisioningArtifactTypeDefaultCustom = "DEFAULT_CUSTOM"
-
 	// ProvisioningArtifactTypeTerraformOpenSource is a ProvisioningArtifactType enum value
 	ProvisioningArtifactTypeTerraformOpenSource = "TERRAFORM_OPEN_SOURCE"
 )
@@ -25929,7 +25922,6 @@ func ProvisioningArtifactType_Values() []string {
 		ProvisioningArtifactTypeCloudFormationTemplate,
 		ProvisioningArtifactTypeMarketplaceAmi,
 		ProvisioningArtifactTypeMarketplaceCar,
-		ProvisioningArtifactTypeDefaultCustom,
 		ProvisioningArtifactTypeTerraformOpenSource,
 	}
 }

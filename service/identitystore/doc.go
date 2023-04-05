@@ -14,7 +14,7 @@
 //	see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed">IAM
 //	Identity Center rename</a>.</p> </note> <p>This reference guide describes
 //	the identity store operations that you can call programatically and includes
-//	detailed information on data types and errors.</p>
+//	detailed information about data types and errors.</p>
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/identitystore-2020-06-15 for more information on this service.
 //

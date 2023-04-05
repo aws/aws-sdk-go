@@ -29563,7 +29563,7 @@ type RemediationConfiguration struct {
 	// throwing an exception.
 	RetryAttemptSeconds *int64 `min:"1" type:"long"`
 
-	// Target ID is the name of the public document.
+	// Target ID is the name of the SSM document.
 	//
 	// TargetId is a required field
 	TargetId *string `min:"1" type:"string" required:"true"`
@@ -34305,6 +34305,75 @@ const (
 
 	// ResourceTypeAwsMediaPackagePackagingConfiguration is a ResourceType enum value
 	ResourceTypeAwsMediaPackagePackagingConfiguration = "AWS::MediaPackage::PackagingConfiguration"
+
+	// ResourceTypeAwsKinesisVideoSignalingChannel is a ResourceType enum value
+	ResourceTypeAwsKinesisVideoSignalingChannel = "AWS::KinesisVideo::SignalingChannel"
+
+	// ResourceTypeAwsAppStreamDirectoryConfig is a ResourceType enum value
+	ResourceTypeAwsAppStreamDirectoryConfig = "AWS::AppStream::DirectoryConfig"
+
+	// ResourceTypeAwsLookoutVisionProject is a ResourceType enum value
+	ResourceTypeAwsLookoutVisionProject = "AWS::LookoutVision::Project"
+
+	// ResourceTypeAwsRoute53recoveryControlCluster is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryControlCluster = "AWS::Route53RecoveryControl::Cluster"
+
+	// ResourceTypeAwsRoute53recoveryControlSafetyRule is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryControlSafetyRule = "AWS::Route53RecoveryControl::SafetyRule"
+
+	// ResourceTypeAwsRoute53recoveryControlControlPanel is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryControlControlPanel = "AWS::Route53RecoveryControl::ControlPanel"
+
+	// ResourceTypeAwsRoute53recoveryControlRoutingControl is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryControlRoutingControl = "AWS::Route53RecoveryControl::RoutingControl"
+
+	// ResourceTypeAwsRoute53recoveryReadinessResourceSet is a ResourceType enum value
+	ResourceTypeAwsRoute53recoveryReadinessResourceSet = "AWS::Route53RecoveryReadiness::ResourceSet"
+
+	// ResourceTypeAwsRoboMakerSimulationApplication is a ResourceType enum value
+	ResourceTypeAwsRoboMakerSimulationApplication = "AWS::RoboMaker::SimulationApplication"
+
+	// ResourceTypeAwsRoboMakerRobotApplication is a ResourceType enum value
+	ResourceTypeAwsRoboMakerRobotApplication = "AWS::RoboMaker::RobotApplication"
+
+	// ResourceTypeAwsHealthLakeFhirdatastore is a ResourceType enum value
+	ResourceTypeAwsHealthLakeFhirdatastore = "AWS::HealthLake::FHIRDatastore"
+
+	// ResourceTypeAwsPinpointSegment is a ResourceType enum value
+	ResourceTypeAwsPinpointSegment = "AWS::Pinpoint::Segment"
+
+	// ResourceTypeAwsPinpointApplicationSettings is a ResourceType enum value
+	ResourceTypeAwsPinpointApplicationSettings = "AWS::Pinpoint::ApplicationSettings"
+
+	// ResourceTypeAwsEventsRule is a ResourceType enum value
+	ResourceTypeAwsEventsRule = "AWS::Events::Rule"
+
+	// ResourceTypeAwsEc2Dhcpoptions is a ResourceType enum value
+	ResourceTypeAwsEc2Dhcpoptions = "AWS::EC2::DHCPOptions"
+
+	// ResourceTypeAwsEc2NetworkInsightsPath is a ResourceType enum value
+	ResourceTypeAwsEc2NetworkInsightsPath = "AWS::EC2::NetworkInsightsPath"
+
+	// ResourceTypeAwsEc2TrafficMirrorFilter is a ResourceType enum value
+	ResourceTypeAwsEc2TrafficMirrorFilter = "AWS::EC2::TrafficMirrorFilter"
+
+	// ResourceTypeAwsEc2Ipam is a ResourceType enum value
+	ResourceTypeAwsEc2Ipam = "AWS::EC2::IPAM"
+
+	// ResourceTypeAwsIoTtwinMakerScene is a ResourceType enum value
+	ResourceTypeAwsIoTtwinMakerScene = "AWS::IoTTwinMaker::Scene"
+
+	// ResourceTypeAwsNetworkManagerTransitGatewayRegistration is a ResourceType enum value
+	ResourceTypeAwsNetworkManagerTransitGatewayRegistration = "AWS::NetworkManager::TransitGatewayRegistration"
+
+	// ResourceTypeAwsCustomerProfilesDomain is a ResourceType enum value
+	ResourceTypeAwsCustomerProfilesDomain = "AWS::CustomerProfiles::Domain"
+
+	// ResourceTypeAwsAutoScalingWarmPool is a ResourceType enum value
+	ResourceTypeAwsAutoScalingWarmPool = "AWS::AutoScaling::WarmPool"
+
+	// ResourceTypeAwsConnectPhoneNumber is a ResourceType enum value
+	ResourceTypeAwsConnectPhoneNumber = "AWS::Connect::PhoneNumber"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -34561,6 +34630,29 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsEventsConnection,
 		ResourceTypeAwsEventSchemasSchema,
 		ResourceTypeAwsMediaPackagePackagingConfiguration,
+		ResourceTypeAwsKinesisVideoSignalingChannel,
+		ResourceTypeAwsAppStreamDirectoryConfig,
+		ResourceTypeAwsLookoutVisionProject,
+		ResourceTypeAwsRoute53recoveryControlCluster,
+		ResourceTypeAwsRoute53recoveryControlSafetyRule,
+		ResourceTypeAwsRoute53recoveryControlControlPanel,
+		ResourceTypeAwsRoute53recoveryControlRoutingControl,
+		ResourceTypeAwsRoute53recoveryReadinessResourceSet,
+		ResourceTypeAwsRoboMakerSimulationApplication,
+		ResourceTypeAwsRoboMakerRobotApplication,
+		ResourceTypeAwsHealthLakeFhirdatastore,
+		ResourceTypeAwsPinpointSegment,
+		ResourceTypeAwsPinpointApplicationSettings,
+		ResourceTypeAwsEventsRule,
+		ResourceTypeAwsEc2Dhcpoptions,
+		ResourceTypeAwsEc2NetworkInsightsPath,
+		ResourceTypeAwsEc2TrafficMirrorFilter,
+		ResourceTypeAwsEc2Ipam,
+		ResourceTypeAwsIoTtwinMakerScene,
+		ResourceTypeAwsNetworkManagerTransitGatewayRegistration,
+		ResourceTypeAwsCustomerProfilesDomain,
+		ResourceTypeAwsAutoScalingWarmPool,
+		ResourceTypeAwsConnectPhoneNumber,
 	}
 }
 

@@ -789,10 +789,11 @@ func (c *VPCLattice) CreateServiceNetworkVpcAssociationRequest(input *CreateServ
 // As a result of this operation, the association gets created in the service
 // network account and the VPC owner account.
 //
-// Once a security group is added to the VPC association it cannot be removed.
-// You can add or update the security groups being used for the VPC association
-// once a security group is attached. To remove all security groups you must
-// reassociate the VPC.
+// If you add a security group to the service network and VPC association, the
+// association must continue to always have at least one security group. You
+// can add or edit security groups at any time. However, to remove all security
+// groups, you must first delete the association and recreate it without security
+// groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1089,11 +1090,11 @@ func (c *VPCLattice) DeleteAuthPolicyRequest(input *DeleteAuthPolicyInput) (req 
 
 // DeleteAuthPolicy API operation for Amazon VPC Lattice.
 //
-// Deletes the specified auth policy. If an auth is set to Amazon Web Services_IAM
-// and the auth policy is deleted, all requests will be denied by default. If
-// you are trying to remove the auth policy completely, you must set the auth_type
-// to NONE. If auth is enabled on the resource, but no auth policy is set, all
-// requests will be denied.
+// Deletes the specified auth policy. If an auth is set to AWS_IAM and the auth
+// policy is deleted, all requests will be denied by default. If you are trying
+// to remove the auth policy completely, you must set the auth_type to NONE.
+// If auth is enabled on the resource, but no auth policy is set, all requests
+// will be denied.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2343,8 +2344,7 @@ func (c *VPCLattice) GetResourcePolicyRequest(input *GetResourcePolicyInput) (re
 // GetResourcePolicy API operation for Amazon VPC Lattice.
 //
 // Retrieves information about the resource policy. The resource policy is an
-// IAM policy created by AWS RAM on behalf of the resource owner when they share
-// a resource.
+// IAM policy created on behalf of the resource owner when they share a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4413,7 +4413,8 @@ func (c *VPCLattice) PutAuthPolicyRequest(input *PutAuthPolicyInput) (req *reque
 
 // PutAuthPolicy API operation for Amazon VPC Lattice.
 //
-// Creates or updates the auth policy.
+// Creates or updates the auth policy. The policy string in JSON must not contain
+// newlines or blank lines.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5362,8 +5363,11 @@ func (c *VPCLattice) UpdateServiceNetworkVpcAssociationRequest(input *UpdateServ
 
 // UpdateServiceNetworkVpcAssociation API operation for Amazon VPC Lattice.
 //
-// Updates the service network and VPC association. Once you add a security
-// group, it cannot be removed.
+// Updates the service network and VPC association. If you add a security group
+// to the service network and VPC association, the association must continue
+// to always have at least one security group. You can add or edit security
+// groups at any time. However, to remove all security groups, you must first
+// delete the association and recreate it without security groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8785,10 +8789,10 @@ type GetAuthPolicyOutput struct {
 	Policy *string `locationName:"policy" type:"string"`
 
 	// The state of the auth policy. The auth policy is only active when the auth
-	// type is set to Amazon Web Services_IAM. If you provide a policy, then authentication
-	// and authorization decisions are made based on this policy and the client's
-	// IAM policy. If the auth type is NONE, then any auth policy you provide will
-	// remain inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
+	// type is set to AWS_IAM. If you provide a policy, then authentication and
+	// authorization decisions are made based on this policy and the client's IAM
+	// policy. If the auth type is NONE, then any auth policy you provide will remain
+	// inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
 	// in the Amazon VPC Lattice User Guide.
 	State *string `locationName:"state" type:"string" enum:"AuthPolicyState"`
 }
@@ -9017,7 +9021,7 @@ func (s *GetListenerOutput) SetServiceId(v string) *GetListenerOutput {
 type GetResourcePolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// An IAM policy.
+	// The Amazon Resource Name (ARN) of the service network or service.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -9066,7 +9070,7 @@ func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInpu
 type GetResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the service network or service.
+	// An IAM policy.
 	Policy *string `locationName:"policy" min:"1" type:"string"`
 }
 
@@ -11976,7 +11980,8 @@ func (s *PathMatchType) SetPrefix(v string) *PathMatchType {
 type PutAuthPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The auth policy.
+	// The auth policy. The policy string in JSON must not contain newlines or blank
+	// lines.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" type:"string" required:"true"`
@@ -12040,13 +12045,14 @@ func (s *PutAuthPolicyInput) SetResourceIdentifier(v string) *PutAuthPolicyInput
 type PutAuthPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The auth policy.
+	// The auth policy. The policy string in JSON must not contain newlines or blank
+	// lines.
 	Policy *string `locationName:"policy" type:"string"`
 
 	// The state of the auth policy. The auth policy is only active when the auth
-	// type is set to Amazon Web Services_IAM. If you provide a policy, then authentication
-	// and authorization decisions are made based on this policy and the client's
-	// IAM policy. If the Auth type is NONE, then, any auth policy you provide will
+	// type is set to AWS_IAM. If you provide a policy, then authentication and
+	// authorization decisions are made based on this policy and the client's IAM
+	// policy. If the Auth type is NONE, then, any auth policy you provide will
 	// remain inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
 	// in the Amazon VPC Lattice User Guide.
 	State *string `locationName:"state" type:"string" enum:"AuthPolicyState"`
@@ -12085,7 +12091,8 @@ func (s *PutAuthPolicyOutput) SetState(v string) *PutAuthPolicyOutput {
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// An IAM policy.
+	// An IAM policy. The policy string in JSON must not contain newlines or blank
+	// lines.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
@@ -14738,8 +14745,7 @@ func (s *UpdateServiceNetworkOutput) SetName(v string) *UpdateServiceNetworkOutp
 type UpdateServiceNetworkVpcAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the security groups. Once you add a security group, it cannot
-	// be removed.
+	// The IDs of the security groups.
 	//
 	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `locationName:"securityGroupIds" min:"1" type:"list" required:"true"`

@@ -1,3 +1,18 @@
+Release v1.44.237 (2023-04-05)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API
+* `service/config`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * This is a document only updated to add information about Amazon Elastic Inference (EI).
+* `service/identitystore`: Updates service documentation
+* `service/ivs-realtime`: Updates service API
+* `service/network-firewall`: Updates service API and documentation
+* `service/servicecatalog`: Updates service API
+  * removed incorrect product type value
+* `service/vpc-lattice`: Updates service documentation
+
 Release v1.44.236 (2023-04-04)
 ===
 

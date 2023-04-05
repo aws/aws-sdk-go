@@ -10883,7 +10883,7 @@ type RulesSource struct {
 	// An array of individual stateful rules inspection criteria to be used together
 	// in a stateful rule group. Use this option to specify simple Suricata rules
 	// with protocol, source and destination, ports, direction, and rule options.
-	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/rules/intro.html#).
+	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.iorules/intro.html#).
 	StatefulRules []*StatefulRule `type:"list"`
 
 	// Stateless inspection criteria to be used in a stateless rule group.
@@ -11453,7 +11453,7 @@ func (s *StatefulEngineOptions) SetStreamExceptionPolicy(v string) *StatefulEngi
 // A single Suricata rules specification, for use in a stateful rule group.
 // Use this option to specify a simple Suricata rule with protocol, source and
 // destination, ports, direction, and rule options. For information about the
-// Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/rules/intro.html#).
+// Suricata Rules format, see Rules Format (https://suricata.readthedocs.iorules/intro.html#).
 type StatefulRule struct {
 	_ struct{} `type:"structure"`
 
@@ -14594,6 +14594,9 @@ const (
 
 	// IPAddressTypeIpv4 is a IPAddressType enum value
 	IPAddressTypeIpv4 = "IPV4"
+
+	// IPAddressTypeIpv6 is a IPAddressType enum value
+	IPAddressTypeIpv6 = "IPV6"
 )
 
 // IPAddressType_Values returns all elements of the IPAddressType enum
@@ -14601,6 +14604,7 @@ func IPAddressType_Values() []string {
 	return []string{
 		IPAddressTypeDualstack,
 		IPAddressTypeIpv4,
+		IPAddressTypeIpv6,
 	}
 }
 
