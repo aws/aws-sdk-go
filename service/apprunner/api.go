@@ -7274,7 +7274,7 @@ type InstanceConfiguration struct {
 	// The number of CPU units reserved for each instance of your App Runner service.
 	//
 	// Default: 1 vCPU
-	Cpu *string `min:"4" type:"string"`
+	Cpu *string `min:"3" type:"string"`
 
 	// The Amazon Resource Name (ARN) of an IAM role that provides permissions to
 	// your App Runner service. These are permissions that your code needs when
@@ -7285,7 +7285,7 @@ type InstanceConfiguration struct {
 	// Runner service.
 	//
 	// Default: 2 GB
-	Memory *string `min:"4" type:"string"`
+	Memory *string `min:"3" type:"string"`
 }
 
 // String returns the string representation.
@@ -7309,14 +7309,14 @@ func (s InstanceConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *InstanceConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InstanceConfiguration"}
-	if s.Cpu != nil && len(*s.Cpu) < 4 {
-		invalidParams.Add(request.NewErrParamMinLen("Cpu", 4))
+	if s.Cpu != nil && len(*s.Cpu) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Cpu", 3))
 	}
 	if s.InstanceRoleArn != nil && len(*s.InstanceRoleArn) < 29 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceRoleArn", 29))
 	}
-	if s.Memory != nil && len(*s.Memory) < 4 {
-		invalidParams.Add(request.NewErrParamMinLen("Memory", 4))
+	if s.Memory != nil && len(*s.Memory) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Memory", 3))
 	}
 
 	if invalidParams.Len() > 0 {

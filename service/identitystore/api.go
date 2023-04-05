@@ -268,7 +268,7 @@ func (c *IdentityStore) CreateUserRequest(input *CreateUserInput) (req *request.
 
 // CreateUser API operation for AWS SSO Identity Store.
 //
-// Creates a new user within the specified identity store.
+// Creates a user within the specified identity store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2346,8 +2346,7 @@ func (s *Address) SetType(v string) *Address {
 
 // A unique identifier for a user or group that is not the primary identifier.
 // This value can be an identifier from an external identity provider (IdP)
-// that is associated with the user, the group, or a unique attribute. For example,
-// a unique GroupDisplayName.
+// that is associated with the user, the group, or a unique attribute.
 type AlternateIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -2541,7 +2540,8 @@ type CreateGroupInput struct {
 	Description *string `min:"1" type:"string" sensitive:"true"`
 
 	// A string containing the name of the group. This value is commonly displayed
-	// when the group is referenced.
+	// when the group is referenced. "Administrator" and "AWSAdministrators" are
+	// reserved names and can't be used for users or groups.
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateGroupInput's
@@ -2793,8 +2793,8 @@ type CreateUserInput struct {
 	// A list of Address objects containing addresses associated with the user.
 	Addresses []*Address `min:"1" type:"list"`
 
-	// A string containing the user's name. This value is typically formatted for
-	// display when the user is referenced. For example, "John Doe."
+	// A string containing the name of the user. This value is typically formatted
+	// for display when the user is referenced. For example, "John Doe."
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
@@ -2809,14 +2809,14 @@ type CreateUserInput struct {
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
-	// A string containing the user's geographical region or location.
+	// A string containing the geographical region or location of the user.
 	//
 	// Locale is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
 	// String and GoString methods.
 	Locale *string `min:"1" type:"string" sensitive:"true"`
 
-	// An object containing the user's name.
+	// An object containing the name of the user.
 	Name *Name `type:"structure"`
 
 	// A string containing an alternate name for the user.
@@ -2838,22 +2838,22 @@ type CreateUserInput struct {
 	// String and GoString methods.
 	PreferredLanguage *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string containing a URL that may be associated with the user.
+	// A string containing a URL that might be associated with the user.
 	//
 	// ProfileUrl is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
 	// String and GoString methods.
 	ProfileUrl *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string containing the user's time zone.
+	// A string containing the time zone of the user.
 	//
 	// Timezone is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
 	// String and GoString methods.
 	Timezone *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string containing the user's title. Possible values are left unspecified
-	// given that they depend on each customer's specific needs.
+	// A string containing the title of the user. Possible values are left unspecified.
+	// The value can vary based on your specific use case.
 	//
 	// Title is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
@@ -2863,15 +2863,17 @@ type CreateUserInput struct {
 	// A unique string used to identify the user. The length limit is 128 characters.
 	// This value can consist of letters, accented characters, symbols, numbers,
 	// and punctuation. This value is specified at the time the user is created
-	// and stored as an attribute of the user object in the identity store.
+	// and stored as an attribute of the user object in the identity store. "Administrator"
+	// and "AWSAdministrators" are reserved names and can't be used for users or
+	// groups.
 	//
 	// UserName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
 	// String and GoString methods.
 	UserName *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string indicating the user's type. Possible values depend on each customer's
-	// specific needs, so they are left unspecified.
+	// A string indicating the type of user. Possible values are left unspecified.
+	// The value can vary based on your specific use case.
 	//
 	// UserType is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUserInput's
@@ -3733,17 +3735,17 @@ func (s *DescribeUserInput) SetUserId(v string) *DescribeUserInput {
 type DescribeUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The user's physical address.
+	// The physical address of the user.
 	Addresses []*Address `min:"1" type:"list"`
 
-	// The user's name value for display.
+	// The display name of the user.
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeUserOutput's
 	// String and GoString methods.
 	DisplayName *string `min:"1" type:"string" sensitive:"true"`
 
-	// The user's email value.
+	// The email address of the user.
 	Emails []*Email `min:"1" type:"list"`
 
 	// A list of ExternalId objects that contains the identifiers issued to this
@@ -3755,7 +3757,7 @@ type DescribeUserOutput struct {
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
-	// A string containing the user's geographical region or location.
+	// A string containing the geographical region or location of the user.
 	//
 	// Locale is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeUserOutput's
@@ -3796,7 +3798,7 @@ type DescribeUserOutput struct {
 	// String and GoString methods.
 	Timezone *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string containing the user's title.
+	// A string containing the title of the user.
 	//
 	// Title is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeUserOutput's
@@ -3818,7 +3820,7 @@ type DescribeUserOutput struct {
 	// String and GoString methods.
 	UserName *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string indicating the user's type.
+	// A string indicating the type of user.
 	//
 	// UserType is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeUserOutput's
@@ -4175,8 +4177,8 @@ type GetGroupIdInput struct {
 
 	// A unique identifier for a user or group that is not the primary identifier.
 	// This value can be an identifier from an external identity provider (IdP)
-	// that is associated with the user, the group, or a unique attribute. For example,
-	// a unique GroupDisplayName.
+	// that is associated with the user, the group, or a unique attribute. For the
+	// unique attribute, the only valid path is displayName.
 	//
 	// AlternateIdentifier is a required field
 	AlternateIdentifier *AlternateIdentifier `type:"structure" required:"true"`
@@ -4421,8 +4423,8 @@ type GetUserIdInput struct {
 
 	// A unique identifier for a user or group that is not the primary identifier.
 	// This value can be an identifier from an external identity provider (IdP)
-	// that is associated with the user, the group, or a unique attribute. For example,
-	// a unique UserDisplayName.
+	// that is associated with the user, the group, or a unique attribute. For the
+	// unique attribute, the only valid paths are userName and emails.value.
 	//
 	// AlternateIdentifier is a required field
 	AlternateIdentifier *AlternateIdentifier `type:"structure" required:"true"`
@@ -4531,7 +4533,8 @@ func (s *GetUserIdOutput) SetUserId(v string) *GetUserIdOutput {
 	return s
 }
 
-// A group object that contains a specified group’s metadata and attributes.
+// A group object that contains the metadata and attributes for a specified
+// group.
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -4542,11 +4545,11 @@ type Group struct {
 	// String and GoString methods.
 	Description *string `min:"1" type:"string" sensitive:"true"`
 
-	// The group’s display name value. The length limit is 1,024 characters. This
-	// value can consist of letters, accented characters, symbols, numbers, punctuation,
-	// tab, new line, carriage return, space, and nonbreaking space in this attribute.
-	// This value is specified at the time the group is created and stored as an
-	// attribute of the group object in the identity store.
+	// The display name value for the group. The length limit is 1,024 characters.
+	// This value can consist of letters, accented characters, symbols, numbers,
+	// punctuation, tab, new line, carriage return, space, and nonbreaking space
+	// in this attribute. This value is specified at the time the group is created
+	// and stored as an attribute of the group object in the identity store.
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Group's
@@ -4749,8 +4752,7 @@ type InternalServerException struct {
 	// then returned inside the exception if the request fails.
 	RequestId *string `min:"1" type:"string"`
 
-	// The number of seconds that you would like to wait before retrying the next
-	// request.
+	// The number of seconds to wait before retrying the next request.
 	RetryAfterSeconds *int64 `type:"integer"`
 }
 
@@ -5932,8 +5934,7 @@ type ThrottlingException struct {
 	// then returned inside the exception if the request fails.
 	RequestId *string `min:"1" type:"string"`
 
-	// The number of seconds that you would like to wait before retrying the next
-	// request.
+	// The number of seconds to wait before retrying the next request.
 	RetryAfterSeconds *int64 `type:"integer"`
 }
 
@@ -6225,15 +6226,15 @@ func (s UpdateUserOutput) GoString() string {
 	return s.String()
 }
 
-// A user object that contains a specified user’s metadata and attributes.
+// A user object that contains the metadata and attributes for a specified user.
 type User struct {
 	_ struct{} `type:"structure"`
 
 	// A list of Address objects containing addresses associated with the user.
 	Addresses []*Address `min:"1" type:"list"`
 
-	// A string containing the user's name that's formatted for display when the
-	// user is referenced. For example, "John Doe."
+	// A string containing the name of the user that is formatted for display when
+	// the user is referenced. For example, "John Doe."
 	//
 	// DisplayName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's
@@ -6252,14 +6253,14 @@ type User struct {
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `min:"1" type:"string" required:"true"`
 
-	// A string containing the user's geographical region or location.
+	// A string containing the geographical region or location of the user.
 	//
 	// Locale is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's
 	// String and GoString methods.
 	Locale *string `min:"1" type:"string" sensitive:"true"`
 
-	// An object containing the user's name.
+	// An object containing the name of the user.
 	Name *Name `type:"structure"`
 
 	// A string containing an alternate name for the user.
@@ -6281,22 +6282,22 @@ type User struct {
 	// String and GoString methods.
 	PreferredLanguage *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string containing a URL that may be associated with the user.
+	// A string containing a URL that might be associated with the user.
 	//
 	// ProfileUrl is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's
 	// String and GoString methods.
 	ProfileUrl *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string containing the user's time zone.
+	// A string containing the time zone of the user.
 	//
 	// Timezone is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's
 	// String and GoString methods.
 	Timezone *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string containing the user's title. Possible values depend on each customer's
-	// specific needs, so they are left unspecified.
+	// A string containing the title of the user. Possible values are left unspecified.
+	// The value can vary based on your specific use case.
 	//
 	// Title is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's
@@ -6318,8 +6319,8 @@ type User struct {
 	// String and GoString methods.
 	UserName *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string indicating the user's type. Possible values depend on each customer's
-	// specific needs, so they are left unspecified.
+	// A string indicating the type of user. Possible values are left unspecified.
+	// The value can vary based on your specific use case.
 	//
 	// UserType is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by User's

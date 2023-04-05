@@ -1248,7 +1248,8 @@
       "type":"string",
       "enum":[
         "DUALSTACK",
-        "IPV4"
+        "IPV4",
+        "IPV6"
       ]
     },
     "IPSet":{

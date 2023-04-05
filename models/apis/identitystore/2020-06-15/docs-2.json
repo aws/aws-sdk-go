@@ -1,10 +1,10 @@
 {
   "version": "2.0",
-  "service": "<p>The Identity Store service used by AWS IAM Identity Center (successor to AWS Single Sign-On) provides a single place to retrieve all of your identities (users and groups). For more information, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\">IAM Identity Center User Guide</a>.</p> <pre><code> &lt;note&gt; &lt;p&gt;Although AWS Single Sign-On was renamed, the &lt;code&gt;sso&lt;/code&gt; and &lt;code&gt;identitystore&lt;/code&gt; API namespaces will continue to retain their original name for backward compatibility purposes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed&quot;&gt;IAM Identity Center rename&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;This reference guide describes the identity store operations that you can call programatically and includes detailed information on data types and errors.&lt;/p&gt; </code></pre>",
+  "service": "<p>The Identity Store service used by AWS IAM Identity Center (successor to AWS Single Sign-On) provides a single place to retrieve all of your identities (users and groups). For more information, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\">IAM Identity Center User Guide</a>.</p> <pre><code> &lt;note&gt; &lt;p&gt;Although AWS Single Sign-On was renamed, the &lt;code&gt;sso&lt;/code&gt; and &lt;code&gt;identitystore&lt;/code&gt; API namespaces will continue to retain their original name for backward compatibility purposes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed&quot;&gt;IAM Identity Center rename&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;This reference guide describes the identity store operations that you can call programatically and includes detailed information about data types and errors.&lt;/p&gt; </code></pre>",
   "operations": {
     "CreateGroup": "<p>Creates a group within the specified identity store.</p>",
     "CreateGroupMembership": "<p>Creates a relationship between a member and a group. The following identifiers must be specified: <code>GroupId</code>, <code>IdentityStoreId</code>, and <code>MemberId</code>.</p>",
-    "CreateUser": "<p>Creates a new user within the specified identity store.</p>",
+    "CreateUser": "<p>Creates a user within the specified identity store.</p>",
     "DeleteGroup": "<p>Delete a group within an identity store given <code>GroupId</code>.</p>",
     "DeleteGroupMembership": "<p>Delete a membership within a group given <code>MembershipId</code>.</p>",
     "DeleteUser": "<p>Deletes a user within an identity store given <code>UserId</code>.</p>",
@@ -38,15 +38,15 @@
       "base": null,
       "refs": {
         "CreateUserRequest$Addresses": "<p>A list of <code>Address</code> objects containing addresses associated with the user.</p>",
-        "DescribeUserResponse$Addresses": "<p>The user's physical address.</p>",
+        "DescribeUserResponse$Addresses": "<p>The physical address of the user.</p>",
         "User$Addresses": "<p>A list of <code>Address</code> objects containing addresses associated with the user.</p>"
       }
     },
     "AlternateIdentifier": {
-      "base": "<p>A unique identifier for a user or group that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the user, the group, or a unique attribute. For example, a unique <code>GroupDisplayName</code>.</p>",
+      "base": "<p>A unique identifier for a user or group that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the user, the group, or a unique attribute.</p>",
       "refs": {
-        "GetGroupIdRequest$AlternateIdentifier": "<p>A unique identifier for a user or group that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the user, the group, or a unique attribute. For example, a unique <code>GroupDisplayName</code>.</p>",
-        "GetUserIdRequest$AlternateIdentifier": "<p>A unique identifier for a user or group that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the user, the group, or a unique attribute. For example, a unique <code>UserDisplayName</code>.</p>"
+        "GetGroupIdRequest$AlternateIdentifier": "<p>A unique identifier for a user or group that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the user, the group, or a unique attribute. For the unique attribute, the only valid path is <code>displayName</code>.</p>",
+        "GetUserIdRequest$AlternateIdentifier": "<p>A unique identifier for a user or group that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the user, the group, or a unique attribute. For the unique attribute, the only valid paths are <code>userName</code> and <code>emails.value</code>.</p>"
       }
     },
     "AttributeOperation": {
@@ -188,7 +188,7 @@
       "base": null,
       "refs": {
         "CreateUserRequest$Emails": "<p>A list of <code>Email</code> objects containing email addresses associated with the user.</p>",
-        "DescribeUserResponse$Emails": "<p>The user's email value.</p>",
+        "DescribeUserResponse$Emails": "<p>The email address of the user.</p>",
         "User$Emails": "<p>A list of <code>Email</code> objects containing email addresses associated with the user.</p>"
       }
     },
@@ -276,7 +276,7 @@
       }
     },
     "Group": {
-      "base": "<p>A group object that contains a specified group’s metadata and attributes.</p>",
+      "base": "<p>A group object that contains the metadata and attributes for a specified group.</p>",
       "refs": {
         "Groups$member": null
       }
@@ -284,9 +284,9 @@
     "GroupDisplayName": {
       "base": null,
       "refs": {
-        "CreateGroupRequest$DisplayName": "<p>A string containing the name of the group. This value is commonly displayed when the group is referenced.</p>",
+        "CreateGroupRequest$DisplayName": "<p>A string containing the name of the group. This value is commonly displayed when the group is referenced. \"Administrator\" and \"AWSAdministrators\" are reserved names and can't be used for users or groups.</p>",
         "DescribeGroupResponse$DisplayName": "<p>The group’s display name value. The length limit is 1,024 characters. This value can consist of letters, accented characters, symbols, numbers, punctuation, tab, new line, carriage return, space, and nonbreaking space in this attribute. This value is specified at the time that the group is created and stored as an attribute of the group object in the identity store.</p>",
-        "Group$DisplayName": "<p>The group’s display name value. The length limit is 1,024 characters. This value can consist of letters, accented characters, symbols, numbers, punctuation, tab, new line, carriage return, space, and nonbreaking space in this attribute. This value is specified at the time the group is created and stored as an attribute of the group object in the identity store.</p>"
+        "Group$DisplayName": "<p>The display name value for the group. The length limit is 1,024 characters. This value can consist of letters, accented characters, symbols, numbers, punctuation, tab, new line, carriage return, space, and nonbreaking space in this attribute. This value is specified at the time the group is created and stored as an attribute of the group object in the identity store.</p>"
       }
     },
     "GroupIds": {
@@ -441,9 +441,9 @@
     "Name": {
       "base": "<p>The full name of the user.</p>",
       "refs": {
-        "CreateUserRequest$Name": "<p>An object containing the user's name.</p>",
+        "CreateUserRequest$Name": "<p>An object containing the name of the user.</p>",
         "DescribeUserResponse$Name": "<p>The name of the user.</p>",
-        "User$Name": "<p>An object containing the user's name.</p>"
+        "User$Name": "<p>An object containing the name of the user.</p>"
       }
     },
     "NextToken": {
@@ -533,8 +533,8 @@
     "RetryAfterSeconds": {
       "base": null,
       "refs": {
-        "InternalServerException$RetryAfterSeconds": "<p>The number of seconds that you would like to wait before retrying the next request.</p>",
-        "ThrottlingException$RetryAfterSeconds": "<p>The number of seconds that you would like to wait before retrying the next request.</p>"
+        "InternalServerException$RetryAfterSeconds": "<p>The number of seconds to wait before retrying the next request.</p>",
+        "ThrottlingException$RetryAfterSeconds": "<p>The number of seconds to wait before retrying the next request.</p>"
       }
     },
     "SensitiveBooleanType": {
@@ -557,22 +557,22 @@
         "Address$Formatted": "<p>A string containing a formatted version of the address for display.</p>",
         "Address$Type": "<p>A string representing the type of address. For example, \"Home.\"</p>",
         "CreateGroupRequest$Description": "<p>A string containing the description of the group.</p>",
-        "CreateUserRequest$DisplayName": "<p>A string containing the user's name. This value is typically formatted for display when the user is referenced. For example, \"John Doe.\"</p>",
+        "CreateUserRequest$DisplayName": "<p>A string containing the name of the user. This value is typically formatted for display when the user is referenced. For example, \"John Doe.\" </p>",
         "CreateUserRequest$NickName": "<p>A string containing an alternate name for the user.</p>",
-        "CreateUserRequest$ProfileUrl": "<p>A string containing a URL that may be associated with the user.</p>",
-        "CreateUserRequest$UserType": "<p>A string indicating the user's type. Possible values depend on each customer's specific needs, so they are left unspecified.</p>",
-        "CreateUserRequest$Title": "<p>A string containing the user's title. Possible values are left unspecified given that they depend on each customer's specific needs.</p>",
+        "CreateUserRequest$ProfileUrl": "<p>A string containing a URL that might be associated with the user.</p>",
+        "CreateUserRequest$UserType": "<p>A string indicating the type of user. Possible values are left unspecified. The value can vary based on your specific use case.</p>",
+        "CreateUserRequest$Title": "<p>A string containing the title of the user. Possible values are left unspecified. The value can vary based on your specific use case.</p>",
         "CreateUserRequest$PreferredLanguage": "<p>A string containing the preferred language of the user. For example, \"American English\" or \"en-us.\"</p>",
-        "CreateUserRequest$Locale": "<p>A string containing the user's geographical region or location.</p>",
-        "CreateUserRequest$Timezone": "<p>A string containing the user's time zone.</p>",
+        "CreateUserRequest$Locale": "<p>A string containing the geographical region or location of the user.</p>",
+        "CreateUserRequest$Timezone": "<p>A string containing the time zone of the user.</p>",
         "DescribeGroupResponse$Description": "<p>A string containing a description of the group.</p>",
-        "DescribeUserResponse$DisplayName": "<p>The user's name value for display.</p>",
+        "DescribeUserResponse$DisplayName": "<p>The display name of the user.</p>",
         "DescribeUserResponse$NickName": "<p>An alternative descriptive name for the user.</p>",
         "DescribeUserResponse$ProfileUrl": "<p>A URL link for the user's profile.</p>",
-        "DescribeUserResponse$UserType": "<p>A string indicating the user's type.</p>",
-        "DescribeUserResponse$Title": "<p>A string containing the user's title.</p>",
+        "DescribeUserResponse$UserType": "<p>A string indicating the type of user.</p>",
+        "DescribeUserResponse$Title": "<p>A string containing the title of the user.</p>",
         "DescribeUserResponse$PreferredLanguage": "<p>The preferred language of the user.</p>",
-        "DescribeUserResponse$Locale": "<p>A string containing the user's geographical region or location.</p>",
+        "DescribeUserResponse$Locale": "<p>A string containing the geographical region or location of the user.</p>",
         "DescribeUserResponse$Timezone": "<p>The time zone for a user.</p>",
         "Email$Value": "<p>A string containing an email address. For example, \"johndoe@amazon.com.\"</p>",
         "Email$Type": "<p>A string representing the type of address. For example, \"Work.\"</p>",
@@ -586,14 +586,14 @@
         "Name$HonorificSuffix": "<p>The honorific suffix of the user. For example, \"M.D.\"</p>",
         "PhoneNumber$Value": "<p>A string containing a phone number. For example, \"8675309\" or \"+1 (800) 123-4567\".</p>",
         "PhoneNumber$Type": "<p>A string representing the type of a phone number. For example, \"Mobile.\"</p>",
-        "User$DisplayName": "<p>A string containing the user's name that's formatted for display when the user is referenced. For example, \"John Doe.\"</p>",
+        "User$DisplayName": "<p>A string containing the name of the user that is formatted for display when the user is referenced. For example, \"John Doe.\"</p>",
         "User$NickName": "<p>A string containing an alternate name for the user.</p>",
-        "User$ProfileUrl": "<p>A string containing a URL that may be associated with the user.</p>",
-        "User$UserType": "<p>A string indicating the user's type. Possible values depend on each customer's specific needs, so they are left unspecified.</p>",
-        "User$Title": "<p>A string containing the user's title. Possible values depend on each customer's specific needs, so they are left unspecified.</p>",
+        "User$ProfileUrl": "<p>A string containing a URL that might be associated with the user.</p>",
+        "User$UserType": "<p>A string indicating the type of user. Possible values are left unspecified. The value can vary based on your specific use case.</p>",
+        "User$Title": "<p>A string containing the title of the user. Possible values are left unspecified. The value can vary based on your specific use case.</p>",
         "User$PreferredLanguage": "<p>A string containing the preferred language of the user. For example, \"American English\" or \"en-us.\"</p>",
-        "User$Locale": "<p>A string containing the user's geographical region or location.</p>",
-        "User$Timezone": "<p>A string containing the user's time zone.</p>"
+        "User$Locale": "<p>A string containing the geographical region or location of the user.</p>",
+        "User$Timezone": "<p>A string containing the time zone of the user.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -633,7 +633,7 @@
       }
     },
     "User": {
-      "base": "<p>A user object that contains a specified user’s metadata and attributes.</p>",
+      "base": "<p>A user object that contains the metadata and attributes for a specified user.</p>",
       "refs": {
         "Users$member": null
       }
@@ -641,7 +641,7 @@
     "UserName": {
       "base": null,
       "refs": {
-        "CreateUserRequest$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
+        "CreateUserRequest$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store. \"Administrator\" and \"AWSAdministrators\" are reserved names and can't be used for users or groups.</p>",
         "DescribeUserResponse$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
         "User$UserName": "<p>A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>"
       }

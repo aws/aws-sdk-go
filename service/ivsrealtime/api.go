@@ -1796,13 +1796,17 @@ type ParticipantToken struct {
 	Duration *int64 `locationName:"duration" min:"1" type:"integer"`
 
 	// ISO 8601 timestamp (returned as a string) for when this token expires.
-	ExpirationTime *time.Time `locationName:"expirationTime" type:"timestamp"`
+	ExpirationTime *time.Time `locationName:"expirationTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Unique identifier for this participant token, assigned by IVS.
 	ParticipantId *string `locationName:"participantId" type:"string"`
 
 	// The issued client token, encrypted.
-	Token *string `locationName:"token" type:"string"`
+	//
+	// Token is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ParticipantToken's
+	// String and GoString methods.
+	Token *string `locationName:"token" type:"string" sensitive:"true"`
 
 	// Name to help identify the token. This can be any UTF-8 encoded text. This
 	// field is exposed to all stage participants and should not be used for personally
