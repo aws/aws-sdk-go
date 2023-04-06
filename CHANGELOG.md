@@ -1,3 +1,14 @@
+Release v1.44.238 (2023-04-06)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service waiters
+  * Including UPDATE_COMPLETE as a failed status for DeleteStack waiter.
+* `service/greengrassv2`: Updates service API and documentation
+* `service/proton`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds and updates the SDK examples
+
 Release v1.44.237 (2023-04-05)
 ===
 

@@ -21401,13 +21401,15 @@ type CreateDBInstanceInput struct {
 	//
 	//    * aurora-postgresql
 	//
-	//    * custom-oracle-ee (for RDS Custom for Oracle instances)
+	//    * custom-oracle-ee (for RDS Custom for Oracle DB instances)
 	//
-	//    * custom-sqlserver-ee (for RDS Custom for SQL Server instances)
+	//    * custom-oracle-ee-cdb (for RDS Custom for Oracle DB instances)
 	//
-	//    * custom-sqlserver-se (for RDS Custom for SQL Server instances)
+	//    * custom-sqlserver-ee (for RDS Custom for SQL Server DB instances)
 	//
-	//    * custom-sqlserver-web (for RDS Custom for SQL Server instances)
+	//    * custom-sqlserver-se (for RDS Custom for SQL Server DB instances)
+	//
+	//    * custom-sqlserver-web (for RDS Custom for SQL Server DB instances)
 	//
 	//    * mariadb
 	//
@@ -22441,9 +22443,6 @@ type CreateDBInstanceReadReplicaInput struct {
 	// specified, then the new DB instance isn't created in a VPC.
 	//
 	// Constraints:
-	//
-	//    * Can only be specified if the source DB instance identifier specifies
-	//    a DB instance in another Amazon Web Services Region.
 	//
 	//    * If supplied, must match the name of an existing DBSubnetGroup.
 	//
@@ -24250,7 +24249,8 @@ type CreateGlobalClusterInput struct {
 	// The engine version of the Aurora global database.
 	EngineVersion *string `type:"string"`
 
-	// The cluster identifier of the new global database cluster.
+	// The cluster identifier of the new global database cluster. This parameter
+	// is stored as a lowercase string.
 	GlobalClusterIdentifier *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) to use as the primary cluster of the global
@@ -29404,7 +29404,8 @@ func (s *DeleteBlueGreenDeploymentOutput) SetBlueGreenDeployment(v *BlueGreenDep
 type DeleteCustomDBEngineVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The database engine. The only supported engine is custom-oracle-ee.
+	// The database engine. The only supported engines are custom-oracle-ee and
+	// custom-oracle-ee-cdb.
 	//
 	// Engine is a required field
 	Engine *string `min:"1" type:"string" required:"true"`
@@ -32585,6 +32586,10 @@ type DescribeDBClustersInput struct {
 	//    * db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon
 	//    Resource Names (ARNs). The results list only includes information about
 	//    the DB clusters identified by these ARNs.
+	//
+	//    * db-cluster-resource-id - Accepts DB cluster resource identifiers. The
+	//    results list will only include information about the DB clusters identified
+	//    by these DB cluster resource identifiers.
 	//
 	//    * domain - Accepts Active Directory directory IDs. The results list only
 	//    includes information about the DB clusters associated with these domains.
@@ -39448,7 +39453,7 @@ type ModifyCustomDBEngineVersionInput struct {
 	// An optional description of your CEV.
 	Description *string `min:"1" type:"string"`
 
-	// The DB engine. The only supported value is custom-oracle-ee.
+	// The DB engine. The only supported values are custom-oracle-ee and custom-oracle-ee-cdb.
 	//
 	// Engine is a required field
 	Engine *string `min:"1" type:"string" required:"true"`
@@ -40127,12 +40132,10 @@ type ModifyDBClusterInput struct {
 	// is disabled, changes to the DB cluster are applied during the next maintenance
 	// window.
 	//
-	// The ApplyImmediately parameter only affects the EnableIAMDatabaseAuthentication,
-	// MasterUserPassword, and NewDBClusterIdentifier values. If the ApplyImmediately
-	// parameter is disabled, then changes to the EnableIAMDatabaseAuthentication,
-	// MasterUserPassword, and NewDBClusterIdentifier values are applied during
-	// the next maintenance window. All other changes are applied immediately, regardless
-	// of the value of the ApplyImmediately parameter.
+	// Most modifications can be applied immediately or during the next scheduled
+	// maintenance window. Some modifications, such as turning on deletion protection
+	// and changing the master password, are applied immediately—regardless of
+	// when you choose to apply them.
 	//
 	// By default, this parameter is disabled.
 	//
