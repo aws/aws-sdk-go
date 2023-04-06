@@ -14,6 +14,8 @@
     "CreateEnvironmentTemplateVersion": "<p>Create a new major or minor version of an environment template. A major version of an environment template is a version that <i>isn't</i> backwards compatible. A minor version of an environment template is a version that's backwards compatible within its major version.</p>",
     "CreateRepository": "<p>Create and register a link to a repository. Proton uses the link to repeatedly access the repository, to either push to it (self-managed provisioning) or pull from it (template sync). You can share a linked repository across multiple resources (like environments using self-managed provisioning, or synced templates). When you create a repository link, Proton creates a <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/using-service-linked-roles.html\">service-linked role</a> for you.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self\">Self-managed provisioning</a>, <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-template-authoring.html#ag-template-bundles\">Template bundles</a>, and <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-template-sync-configs.html\">Template sync configurations</a> in the <i>Proton User Guide</i>.</p>",
     "CreateService": "<p>Create an Proton service. An Proton service is an instantiation of a service template and often includes several service instances and pipeline. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-services.html\">Services</a> in the <i>Proton User Guide</i>.</p>",
+    "CreateServiceInstance": "<p>Create a service instance.</p>",
+    "CreateServiceSyncConfig": "<p>Create the Proton Ops configuration file.</p>",
     "CreateServiceTemplate": "<p>Create a service template. The administrator creates a service template to define standardized infrastructure and an optional CI/CD service pipeline. Developers, in turn, select the service template from Proton. If the selected service template includes a service pipeline definition, they provide a link to their source code repository. Proton then deploys and manages the infrastructure defined by the selected service template. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-templates.html\">Proton templates</a> in the <i>Proton User Guide</i>.</p>",
     "CreateServiceTemplateVersion": "<p>Create a new major or minor version of a service template. A major version of a service template is a version that <i>isn't</i> backward compatible. A minor version of a service template is a version that's backward compatible within its major version.</p>",
     "CreateTemplateSyncConfig": "<p>Set up a template to create new template versions automatically by tracking a linked repository. A linked repository is a repository that has been registered with Proton. For more information, see <a>CreateRepository</a>.</p> <p>When a commit is pushed to your linked repository, Proton checks for changes to your repository template bundles. If it detects a template bundle change, a new major or minor version of its template is created, if the version doesn’t already exist. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-template-sync-configs.html\">Template sync configurations</a> in the <i>Proton User Guide</i>.</p>",
@@ -24,6 +26,7 @@
     "DeleteEnvironmentTemplateVersion": "<p>If no other minor versions of an environment template exist, delete a major version of the environment template if it's not the <code>Recommended</code> version. Delete the <code>Recommended</code> version of the environment template if no other major versions or minor versions of the environment template exist. A major version of an environment template is a version that's not backward compatible.</p> <p>Delete a minor version of an environment template if it <i>isn't</i> the <code>Recommended</code> version. Delete a <code>Recommended</code> minor version of the environment template if no other minor versions of the environment template exist. A minor version of an environment template is a version that's backward compatible.</p>",
     "DeleteRepository": "<p>De-register and unlink your repository.</p>",
     "DeleteService": "<p>Delete a service, with its instances and pipeline.</p> <note> <p>You can't delete a service if it has any service instances that have components attached to them.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html\">Proton components</a> in the <i>Proton User Guide</i>.</p> </note>",
+    "DeleteServiceSyncConfig": "<p>Delete the Proton Ops file.</p>",
     "DeleteServiceTemplate": "<p>If no other major or minor versions of the service template exist, delete the service template.</p>",
     "DeleteServiceTemplateVersion": "<p>If no other minor versions of a service template exist, delete a major version of the service template if it's not the <code>Recommended</code> version. Delete the <code>Recommended</code> version of the service template if no other major versions or minor versions of the service template exist. A major version of a service template is a version that <i>isn't</i> backwards compatible.</p> <p>Delete a minor version of a service template if it's not the <code>Recommended</code> version. Delete a <code>Recommended</code> minor version of the service template if no other minor versions of the service template exist. A minor version of a service template is a version that's backwards compatible.</p>",
     "DeleteTemplateSyncConfig": "<p>Delete a template sync configuration.</p>",
@@ -35,9 +38,12 @@
     "GetEnvironmentTemplateVersion": "<p>Get detailed data for a major or minor version of an environment template.</p>",
     "GetRepository": "<p>Get detail data for a linked repository.</p>",
     "GetRepositorySyncStatus": "<p>Get the sync status of a repository used for Proton template sync. For more information about template sync, see .</p> <note> <p>A repository sync status isn't tied to the Proton Repository resource (or any other Proton resource). Therefore, tags on an Proton Repository resource have no effect on this action. Specifically, you can't use these tags to control access to this action using Attribute-based access control (ABAC).</p> <p>For more information about ABAC, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-tags\">ABAC</a> in the <i>Proton User Guide</i>.</p> </note>",
-    "GetResourcesSummary": "<p>Get counts of Proton resources.</p> <p>For infrastructure-provisioning resources (environments, services, service instances, pipelines), the action returns staleness counts. A resource is stale when it's behind the recommended version of the Proton template that it uses and it needs an update to become current.</p> <p>The action returns staleness counts (counts of resources that are up-to-date, behind a template major version, or behind a template minor version), the total number of resources, and the number of resources that are in a failed state, grouped by resource type. Components, environments, and service templates are exceptions—see the <code>components</code>, <code>environments</code>, and <code>serviceTemplates</code> field descriptions.</p> <p>For context, the action also returns the total number of each type of Proton template in the Amazon Web Services account.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/monitoring-dashboard.html\">Proton dashboard</a> in the <i>Proton User Guide</i>.</p>",
+    "GetResourcesSummary": "<p>Get counts of Proton resources.</p> <p>For infrastructure-provisioning resources (environments, services, service instances, pipelines), the action returns staleness counts. A resource is stale when it's behind the recommended version of the Proton template that it uses and it needs an update to become current.</p> <p>The action returns staleness counts (counts of resources that are up-to-date, behind a template major version, or behind a template minor version), the total number of resources, and the number of resources that are in a failed state, grouped by resource type. Components, environments, and service templates return less information - see the <code>components</code>, <code>environments</code>, and <code>serviceTemplates</code> field descriptions.</p> <p>For context, the action also returns the total number of each type of Proton template in the Amazon Web Services account.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/monitoring-dashboard.html\">Proton dashboard</a> in the <i>Proton User Guide</i>.</p>",
     "GetService": "<p>Get detailed data for a service.</p>",
     "GetServiceInstance": "<p>Get detailed data for a service instance. A service instance is an instantiation of service template and it runs in a specific environment.</p>",
+    "GetServiceInstanceSyncStatus": "<p>Get the status of the synced service instance.</p>",
+    "GetServiceSyncBlockerSummary": "<p>Get detailed data for the service sync blocker summary.</p>",
+    "GetServiceSyncConfig": "<p>Get detailed information for the service sync configuration.</p>",
     "GetServiceTemplate": "<p>Get detailed data for a service template.</p>",
     "GetServiceTemplateVersion": "<p>Get detailed data for a major or minor version of a service template.</p>",
     "GetTemplateSyncConfig": "<p>Get detail data for a template sync configuration.</p>",
@@ -75,6 +81,8 @@
     "UpdateService": "<p>Edit a service description or use a spec to add and delete service instances.</p> <note> <p>Existing service instances and the service pipeline <i>can't</i> be edited using this API. They can only be deleted.</p> </note> <p>Use the <code>description</code> parameter to modify the description.</p> <p>Edit the <code>spec</code> parameter to add or delete instances.</p> <note> <p>You can't delete a service instance (remove it from the spec) if it has an attached component.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html\">Proton components</a> in the <i>Proton User Guide</i>.</p> </note>",
     "UpdateServiceInstance": "<p>Update a service instance.</p> <p>There are a few modes for updating a service instance. The <code>deploymentType</code> field defines the mode.</p> <note> <p>You can't update a service instance while its deployment status, or the deployment status of a component attached to it, is <code>IN_PROGRESS</code>.</p> <p>For more information about components, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html\">Proton components</a> in the <i>Proton User Guide</i>.</p> </note>",
     "UpdateServicePipeline": "<p>Update the service pipeline.</p> <p>There are four modes for updating a service pipeline. The <code>deploymentType</code> field defines the mode.</p> <dl> <dt/> <dd> <p> <code>NONE</code> </p> <p>In this mode, a deployment <i>doesn't</i> occur. Only the requested metadata parameters are updated.</p> </dd> <dt/> <dd> <p> <code>CURRENT_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the new spec that you provide. Only requested parameters are updated. <i>Don’t</i> include major or minor version parameters when you use this <code>deployment-type</code>.</p> </dd> <dt/> <dd> <p> <code>MINOR_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can specify a different minor version of the current major version in use.</p> </dd> <dt/> <dd> <p> <code>MAJOR_VERSION</code> </p> <p>In this mode, the service pipeline is deployed and updated with the published, recommended (latest) major and minor version of the current template by default. You can specify a different major version that's higher than the major version in use and a minor version.</p> </dd> </dl>",
+    "UpdateServiceSyncBlocker": "<p>Update the service sync blocker by resolving it.</p>",
+    "UpdateServiceSyncConfig": "<p>Update the Proton Ops config file.</p>",
     "UpdateServiceTemplate": "<p>Update a service template.</p>",
     "UpdateServiceTemplateVersion": "<p>Update a major or minor version of a service template.</p>",
     "UpdateTemplateSyncConfig": "<p>Update template sync configuration parameters, except for the <code>templateName</code> and <code>templateType</code>. Repository details (branch, name, and provider) should be of a linked repository. A linked repository is a repository that has been registered with Proton. For more information, see <a>CreateRepository</a>.</p>"
@@ -122,6 +130,7 @@
         "NotifyResourceDeploymentStatusChangeInput$resourceArn": "<p>The provisioned resource Amazon Resource Name (ARN).</p>",
         "Repository$connectionArn": "<p>The Amazon Resource Name (ARN) of your AWS CodeStar connection that connects Proton to your repository provider account.</p>",
         "Repository$encryptionKey": "<p>Your customer Amazon Web Services KMS encryption key.</p>",
+        "RepositorySummary$connectionArn": "<p>The Amazon Resource Name (ARN) of the of your connection that connects Proton to your repository.</p>",
         "Service$repositoryConnectionArn": "<p>The Amazon Resource Name (ARN) of the repository connection. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/setting-up-for-service.html#setting-up-vcontrol\">Setting up an AWS CodeStar connection</a> in the <i>Proton User Guide</i>.</p>",
         "ServicePipeline$arn": "<p>The Amazon Resource Name (ARN) of the service pipeline.</p>",
         "ServiceTemplate$encryptionKey": "<p>The customer provided service template encryption key that's used to encrypt data.</p>",
@@ -140,6 +149,18 @@
         "EnvironmentAccountConnectionSummary$environmentAccountId": "<p>The ID of the environment account that's connected to the environment account connection.</p>",
         "EnvironmentAccountConnectionSummary$managementAccountId": "<p>The ID of the management account that's connected to the environment account connection.</p>",
         "EnvironmentSummary$environmentAccountId": "<p>The ID of the environment account that the environment infrastructure resources are provisioned in.</p>"
+      }
+    },
+    "BlockerStatus": {
+      "base": null,
+      "refs": {
+        "SyncBlocker$status": "<p>The status of the sync blocker.</p>"
+      }
+    },
+    "BlockerType": {
+      "base": null,
+      "refs": {
+        "SyncBlocker$type": "<p>The type of the sync blocker.</p>"
       }
     },
     "Boolean": {
@@ -191,9 +212,13 @@
     "ClientToken": {
       "base": null,
       "refs": {
+        "CreateComponentInput$clientToken": "<p>The client token for the created component.</p>",
         "CreateEnvironmentAccountConnectionInput$clientToken": "<p>When included, if two identical requests are made with the same client token, Proton returns the environment account connection that the first request created.</p>",
         "CreateEnvironmentTemplateVersionInput$clientToken": "<p>When included, if two identical requests are made with the same client token, Proton returns the environment template version that the first request created.</p>",
-        "CreateServiceTemplateVersionInput$clientToken": "<p>When included, if two identical requests are made with the same client token, Proton returns the service template version that the first request created.</p>"
+        "CreateServiceInstanceInput$clientToken": "<p>The client token of the service instance to create.</p>",
+        "CreateServiceTemplateVersionInput$clientToken": "<p>When included, if two identical requests are made with the same client token, Proton returns the service template version that the first request created.</p>",
+        "UpdateComponentInput$clientToken": "<p>The client token for the updated component.</p>",
+        "UpdateServiceInstanceInput$clientToken": "<p>The client token of the service instance to update.</p>"
       }
     },
     "CompatibleEnvironmentTemplate": {
@@ -332,7 +357,27 @@
       "refs": {
       }
     },
+    "CreateServiceInstanceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateServiceInstanceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateServiceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateServiceSyncConfigInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateServiceSyncConfigOutput": {
       "base": null,
       "refs": {
       }
@@ -433,6 +478,16 @@
       }
     },
     "DeleteServiceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteServiceSyncConfigInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteServiceSyncConfigOutput": {
       "base": null,
       "refs": {
       }
@@ -850,7 +905,37 @@
       "refs": {
       }
     },
+    "GetServiceInstanceSyncStatusInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetServiceInstanceSyncStatusOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetServiceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetServiceSyncBlockerSummaryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetServiceSyncBlockerSummaryOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetServiceSyncConfigInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetServiceSyncConfigOutput": {
       "base": null,
       "refs": {
       }
@@ -899,6 +984,7 @@
       "base": null,
       "refs": {
         "CreateServiceInput$branchName": "<p>The name of the code repository branch that holds the code that's deployed in Proton. <i>Don't</i> include this parameter if your service template <i>doesn't</i> include a service pipeline.</p>",
+        "CreateServiceSyncConfigInput$branch": "<p>The repository branch for your Proton Ops file.</p>",
         "CreateTemplateSyncConfigInput$branch": "<p>The repository branch for your template.</p>",
         "GetRepositorySyncStatusInput$branch": "<p>The repository branch.</p>",
         "RepositoryBranch$branch": "<p>The repository branch.</p>",
@@ -906,7 +992,9 @@
         "RepositorySyncDefinition$branch": "<p>The repository branch.</p>",
         "Revision$branch": "<p>The repository branch.</p>",
         "Service$branchName": "<p>The name of the code repository branch that holds the code that's deployed in Proton.</p>",
+        "ServiceSyncConfig$branch": "<p>The name of the code repository branch that holds the service code Proton will sync with.</p>",
         "TemplateSyncConfig$branch": "<p>The repository branch.</p>",
+        "UpdateServiceSyncConfigInput$branch": "<p>The name of the code repository branch where the Proton Ops file is found.</p>",
         "UpdateTemplateSyncConfigInput$branch": "<p>The repository branch for your template.</p>"
       }
     },
@@ -923,6 +1011,12 @@
     "InternalServerException": {
       "base": "<p>The request failed to register with the service.</p>",
       "refs": {
+      }
+    },
+    "LatestSyncBlockers": {
+      "base": null,
+      "refs": {
+        "ServiceSyncBlockerSummary$latestBlockers": "<p>The latest active blockers for the synced service.</p>"
       }
     },
     "ListComponentOutputsInput": {
@@ -1218,6 +1312,14 @@
       "refs": {
       }
     },
+    "OpsFilePath": {
+      "base": null,
+      "refs": {
+        "CreateServiceSyncConfigInput$filePath": "<p>The path to the Proton Ops file.</p>",
+        "ServiceSyncConfig$filePath": "<p>The file path to the service sync configuration file.</p>",
+        "UpdateServiceSyncConfigInput$filePath": "<p>The path to the Proton Ops file.</p>"
+      }
+    },
     "Output": {
       "base": "<p>An infrastructure as code defined resource output.</p>",
       "refs": {
@@ -1322,7 +1424,7 @@
       "base": "<p>Detail data for a linked repository branch.</p>",
       "refs": {
         "AccountSettings$pipelineProvisioningRepository": "<p>The linked repository for pipeline provisioning. Required if you have environments configured for self-managed provisioning with services that include pipelines. A linked repository is a repository that has been registered with Proton. For more information, see <a>CreateRepository</a>.</p>",
-        "Environment$provisioningRepository": "<p>The linked repository that you use to host your rendered infrastructure templates for self-managed provisioning. A linked repository is a repository that has been registered with Proton. For more information, see <a>CreateRepository</a>.</p>"
+        "Environment$provisioningRepository": "<p>The linked repository that you use to host your rendered infrastructure templates for self-managed provisioning. A linked repository is a repository that has been registered with Proton. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/APIReference/API_CreateRepository.html\">CreateRepository</a>.</p>"
       }
     },
     "RepositoryBranchInput": {
@@ -1344,6 +1446,7 @@
       "base": null,
       "refs": {
         "CreateRepositoryInput$name": "<p>The repository name (for example, <code>myrepos/myrepo</code>).</p>",
+        "CreateServiceSyncConfigInput$repositoryName": "<p>The repository name.</p>",
         "CreateTemplateSyncConfigInput$repositoryName": "<p>The repository name (for example, <code>myrepos/myrepo</code>).</p>",
         "DeleteRepositoryInput$name": "<p>The repository name.</p>",
         "GetRepositoryInput$name": "<p>The repository name, for example <code>myrepos/myrepo</code>.</p>",
@@ -1354,7 +1457,9 @@
         "RepositoryBranchInput$name": "<p>The repository name.</p>",
         "RepositorySummary$name": "<p>The repository name.</p>",
         "Revision$repositoryName": "<p>The repository name.</p>",
+        "ServiceSyncConfig$repositoryName": "<p>The name of the code repository that holds the service code Proton will sync with.</p>",
         "TemplateSyncConfig$repositoryName": "<p>The repository name (for example, <code>myrepos/myrepo</code>).</p>",
+        "UpdateServiceSyncConfigInput$repositoryName": "<p>The name of the repository where the Proton Ops file is found.</p>",
         "UpdateTemplateSyncConfigInput$repositoryName": "<p>The repository name (for example, <code>myrepos/myrepo</code>).</p>"
       }
     },
@@ -1362,6 +1467,7 @@
       "base": null,
       "refs": {
         "CreateRepositoryInput$provider": "<p>The repository provider.</p>",
+        "CreateServiceSyncConfigInput$repositoryProvider": "<p>The provider type for your repository.</p>",
         "CreateTemplateSyncConfigInput$repositoryProvider": "<p>The provider type for your repository.</p>",
         "DeleteRepositoryInput$provider": "<p>The repository provider.</p>",
         "GetRepositoryInput$provider": "<p>The repository provider.</p>",
@@ -1372,7 +1478,9 @@
         "RepositoryBranchInput$provider": "<p>The repository provider.</p>",
         "RepositorySummary$provider": "<p>The repository provider.</p>",
         "Revision$repositoryProvider": "<p>The repository provider.</p>",
+        "ServiceSyncConfig$repositoryProvider": "<p>The name of the repository provider that holds the repository Proton will sync with.</p>",
         "TemplateSyncConfig$repositoryProvider": "<p>The repository provider.</p>",
+        "UpdateServiceSyncConfigInput$repositoryProvider": "<p>The name of the repository provider where the Proton Ops file is found.</p>",
         "UpdateTemplateSyncConfigInput$repositoryProvider": "<p>The repository provider.</p>"
       }
     },
@@ -1428,7 +1536,7 @@
       "base": "<p>Summary counts of each Proton resource types.</p>",
       "refs": {
         "CountsSummary$components": "<p>The total number of components in the Amazon Web Services account.</p> <p>The semantics of the <code>components</code> field are different from the semantics of results for other infrastructure-provisioning resources. That's because at this time components don't have associated templates, therefore they don't have the concept of staleness. The <code>components</code> object will only contain <code>total</code> and <code>failed</code> members.</p>",
-        "CountsSummary$environmentTemplates": "<p>The total number of environment templates in the Amazon Web Services account.</p>",
+        "CountsSummary$environmentTemplates": "<p>The total number of environment templates in the Amazon Web Services account. The <code>environmentTemplates</code> object will only contain <code>total</code> members.</p>",
         "CountsSummary$environments": "<p>The staleness counts for Proton environments in the Amazon Web Services account. The <code>environments</code> object will only contain <code>total</code> members.</p>",
         "CountsSummary$pipelines": "<p>The staleness counts for Proton pipelines in the Amazon Web Services account.</p>",
         "CountsSummary$serviceInstances": "<p>The staleness counts for Proton service instances in the Amazon Web Services account.</p>",
@@ -1471,6 +1579,9 @@
         "CreateEnvironmentTemplateVersionInput$templateName": "<p>The name of the environment template.</p>",
         "CreateServiceInput$name": "<p>The service name.</p>",
         "CreateServiceInput$templateName": "<p>The name of the service template that's used to create the service.</p>",
+        "CreateServiceInstanceInput$name": "<p>The name of the service instance to create.</p>",
+        "CreateServiceInstanceInput$serviceName": "<p>The name of the service the service instance is added to.</p>",
+        "CreateServiceSyncConfigInput$serviceName": "<p>The name of the service the Proton Ops file is for.</p>",
         "CreateServiceTemplateInput$name": "<p>The name of the service template.</p>",
         "CreateServiceTemplateVersionInput$templateName": "<p>The name of the service template.</p>",
         "CreateTemplateSyncConfigInput$templateName": "<p>The name of your registered template.</p>",
@@ -1479,6 +1590,7 @@
         "DeleteEnvironmentTemplateInput$name": "<p>The name of the environment template to delete.</p>",
         "DeleteEnvironmentTemplateVersionInput$templateName": "<p>The name of the environment template.</p>",
         "DeleteServiceInput$name": "<p>The name of the service to delete.</p>",
+        "DeleteServiceSyncConfigInput$serviceName": "<p>The name of the service that you want to delete the service sync configuration for.</p>",
         "DeleteServiceTemplateInput$name": "<p>The name of the service template to delete.</p>",
         "DeleteServiceTemplateVersionInput$templateName": "<p>The name of the service template.</p>",
         "DeleteTemplateSyncConfigInput$templateName": "<p>The template name.</p>",
@@ -1499,7 +1611,12 @@
         "GetEnvironmentTemplateVersionInput$templateName": "<p>The name of the environment template a version of which you want to get detailed data for.</p>",
         "GetServiceInput$name": "<p>The name of the service that you want to get the detailed data for.</p>",
         "GetServiceInstanceInput$name": "<p>The name of a service instance that you want to get the detailed data for.</p>",
-        "GetServiceInstanceInput$serviceName": "<p>The name of the service that the service instance belongs to.</p>",
+        "GetServiceInstanceInput$serviceName": "<p>The name of the service that you want the service instance input for.</p>",
+        "GetServiceInstanceSyncStatusInput$serviceInstanceName": "<p>The name of the service instance that you want the sync status input for.</p>",
+        "GetServiceInstanceSyncStatusInput$serviceName": "<p>The name of the service that the service instance belongs to.</p>",
+        "GetServiceSyncBlockerSummaryInput$serviceInstanceName": "<p>The name of the service instance that you want to get the service sync blocker summary for. If given bothe the instance name and the service name, only the instance is blocked.</p>",
+        "GetServiceSyncBlockerSummaryInput$serviceName": "<p>The name of the service that you want to get the service sync blocker summary for. If given only the service name, all instances are blocked.</p>",
+        "GetServiceSyncConfigInput$serviceName": "<p>The name of the service that you want to get the service sync configuration for.</p>",
         "GetServiceTemplateInput$name": "<p>The name of the service template that you want to get detailed data for.</p>",
         "GetServiceTemplateVersionInput$templateName": "<p>The name of the service template a version of which you want to get detailed data for.</p>",
         "GetTemplateSyncConfigInput$templateName": "<p>The template name.</p>",
@@ -1534,6 +1651,7 @@
         "ServicePipeline$templateName": "<p>The name of the service template that was used to create the service pipeline.</p>",
         "ServiceSummary$name": "<p>The name of the service.</p>",
         "ServiceSummary$templateName": "<p>The name of the service template.</p>",
+        "ServiceSyncConfig$serviceName": "<p>The name of the service that the service instance is added to.</p>",
         "ServiceTemplate$name": "<p>The name of the service template.</p>",
         "ServiceTemplateSummary$name": "<p>The name of the service template.</p>",
         "ServiceTemplateVersion$templateName": "<p>The name of the version of a service template.</p>",
@@ -1547,6 +1665,9 @@
         "UpdateServiceInstanceInput$name": "<p>The name of the service instance to update.</p>",
         "UpdateServiceInstanceInput$serviceName": "<p>The name of the service that the service instance belongs to.</p>",
         "UpdateServicePipelineInput$serviceName": "<p>The name of the service to that the pipeline is associated with.</p>",
+        "UpdateServiceSyncBlockerOutput$serviceInstanceName": "<p>The name of the service instance that you want to update the service sync blocker for.</p>",
+        "UpdateServiceSyncBlockerOutput$serviceName": "<p>The name of the service that you want to update the service sync blocker for.</p>",
+        "UpdateServiceSyncConfigInput$serviceName": "<p>The name of the service the Proton Ops file is for.</p>",
         "UpdateServiceTemplateInput$name": "<p>The name of the service template to update.</p>",
         "UpdateServiceTemplateVersionInput$templateName": "<p>The name of the service template.</p>",
         "UpdateTemplateSyncConfigInput$templateName": "<p>The synced template name.</p>"
@@ -1567,6 +1688,8 @@
     "ResourceSyncAttempt": {
       "base": "<p>Detail data for a resource sync attempt activated by a push to a repository.</p>",
       "refs": {
+        "GetServiceInstanceSyncStatusOutput$latestSuccessfulSync": "<p>The detailed data of the latest successful sync with the service instance.</p>",
+        "GetServiceInstanceSyncStatusOutput$latestSync": "<p>The detailed data of the latest sync with the service instance.</p>",
         "GetTemplateSyncStatusOutput$latestSuccessfulSync": "<p>The details of the last successful sync that's returned by Proton.</p>",
         "GetTemplateSyncStatusOutput$latestSync": "<p>The details of the last sync that's returned by Proton.</p>"
       }
@@ -1592,6 +1715,7 @@
     "Revision": {
       "base": "<p>Revision detail data for a commit and push that activates a sync attempt</p>",
       "refs": {
+        "GetServiceInstanceSyncStatusOutput$desiredState": "<p>The service instance sync desired state that's returned by Proton</p>",
         "GetTemplateSyncStatusOutput$desiredState": "<p>The template sync desired state that's returned by Proton.</p>",
         "ResourceSyncAttempt$initialRevision": "<p>Detail data for the initial repository commit, path and push.</p>",
         "ResourceSyncAttempt$targetRevision": "<p>Detail data for the target revision.</p>"
@@ -1669,6 +1793,7 @@
       "base": "<p>Detailed data of an Proton service instance resource.</p>",
       "refs": {
         "CancelServiceInstanceDeploymentOutput$serviceInstance": "<p>The service instance summary data that's returned by Proton.</p>",
+        "CreateServiceInstanceOutput$serviceInstance": "<p>The detailed data of the service instance being created.</p>",
         "GetServiceInstanceOutput$serviceInstance": "<p>The detailed data of the requested service instance.</p>",
         "UpdateServiceInstanceOutput$serviceInstance": "<p>The service instance summary data that's returned by Proton.</p>"
       }
@@ -1722,6 +1847,21 @@
       "base": null,
       "refs": {
         "ListServicesOutput$services": "<p>An array of services with summaries of detail data.</p>"
+      }
+    },
+    "ServiceSyncBlockerSummary": {
+      "base": "<p>If a service instance is manually updated, Proton wants to prevent accidentally overriding a manual change.</p> <p>A blocker is created because of the manual update or deletion of a service instance. The summary describes the blocker as being active or resolved.</p>",
+      "refs": {
+        "GetServiceSyncBlockerSummaryOutput$serviceSyncBlockerSummary": "<p>The detailed data of the requested service sync blocker summary.</p>"
+      }
+    },
+    "ServiceSyncConfig": {
+      "base": "<p>Detailed data of the service sync configuration.</p>",
+      "refs": {
+        "CreateServiceSyncConfigOutput$serviceSyncConfig": "<p>The detailed data of the Proton Ops file.</p>",
+        "DeleteServiceSyncConfigOutput$serviceSyncConfig": "<p>The detailed data for the service sync config.</p>",
+        "GetServiceSyncConfigOutput$serviceSyncConfig": "<p>The detailed data of the requested service sync configuration.</p>",
+        "UpdateServiceSyncConfigOutput$serviceSyncConfig": "<p>The detailed data of the Proton Ops file.</p>"
       }
     },
     "ServiceTemplate": {
@@ -1807,6 +1947,7 @@
         "CreateComponentInput$serviceSpec": "<p>The service spec that you want the component to use to access service inputs. Set this only when you attach the component to a service instance.</p>",
         "CreateEnvironmentInput$spec": "<p>A YAML formatted string that provides inputs as defined in the environment template bundle schema file. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html\">Environments</a> in the <i>Proton User Guide</i>.</p>",
         "CreateServiceInput$spec": "<p>A link to a spec file that provides inputs as defined in the service template bundle schema file. The spec file is in YAML format. <i>Don’t</i> include pipeline inputs in the spec if your service template <i>doesn’t</i> include a service pipeline. For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/ag-create-svc.html\">Create a service</a> in the <i>Proton User Guide</i>.</p>",
+        "CreateServiceInstanceInput$spec": "<p>The spec for the service instance you want to create.</p>",
         "Environment$spec": "<p>The environment spec.</p>",
         "Service$spec": "<p>The formatted specification that defines the service.</p>",
         "ServiceInstance$spec": "<p>The service spec that was used to create the service instance.</p>",
@@ -1839,6 +1980,7 @@
     "String": {
       "base": null,
       "refs": {
+        "Component$lastClientRequestToken": "<p>The last token the client requested.</p>",
         "ListTagsForResourceInput$nextToken": "<p>A token that indicates the location of the next resource tag in the array of resource tags, after the list of resource tags that was previously requested.</p>",
         "ListTagsForResourceOutput$nextToken": "<p>A token that indicates the location of the next resource tag in the array of resource tags, after the current requested list of resource tags.</p>",
         "RepositorySyncDefinition$directory": "<p>The directory in the repository.</p>",
@@ -1851,7 +1993,17 @@
         "ResourceSyncEvent$event": "<p>A resource sync event.</p>",
         "ResourceSyncEvent$externalId": "<p>The external ID for the event.</p>",
         "ResourceSyncEvent$type": "<p>The type of event.</p>",
-        "Revision$directory": "<p>The repository directory changed by a commit and push that activated the sync attempt.</p>"
+        "Revision$directory": "<p>The repository directory changed by a commit and push that activated the sync attempt.</p>",
+        "ServiceInstance$lastClientRequestToken": "<p>The last client request token received.</p>",
+        "ServiceSyncBlockerSummary$serviceInstanceName": "<p>The name of the service instance that you want sync your service configuration with.</p>",
+        "ServiceSyncBlockerSummary$serviceName": "<p>The name of the service that you want to get the sync blocker summary for. If given a service instance name and a service name, it will return the blockers only applying to the instance that is blocked.</p> <p>If given only a service name, it will return the blockers that apply to all of the instances. In order to get the blockers for a single instance, you will need to make two distinct calls, one to get the sync blocker summary for the service and the other to get the sync blocker for the service instance.</p>",
+        "SyncBlocker$createdReason": "<p>The reason why the sync blocker was created.</p>",
+        "SyncBlocker$id": "<p>The ID of the sync blocker.</p>",
+        "SyncBlocker$resolvedReason": "<p>The reason the sync blocker was resolved.</p>",
+        "SyncBlockerContext$key": "<p>The key for the sync blocker context.</p>",
+        "SyncBlockerContext$value": "<p>The value of the sync blocker context.</p>",
+        "UpdateServiceSyncBlockerInput$id": "<p>The ID of the service sync blocker.</p>",
+        "UpdateServiceSyncBlockerInput$resolvedReason": "<p>The reason the service sync blocker was resolved.</p>"
       }
     },
     "Subdirectory": {
@@ -1860,6 +2012,25 @@
         "CreateTemplateSyncConfigInput$subdirectory": "<p>A repository subdirectory path to your template bundle directory. When included, Proton limits the template bundle search to this repository directory.</p>",
         "TemplateSyncConfig$subdirectory": "<p>A subdirectory path to your template bundle version.</p>",
         "UpdateTemplateSyncConfigInput$subdirectory": "<p>A subdirectory path to your template bundle version. When included, limits the template bundle search to this repository directory.</p>"
+      }
+    },
+    "SyncBlocker": {
+      "base": "<p>Detailed data of the sync blocker.</p>",
+      "refs": {
+        "LatestSyncBlockers$member": null,
+        "UpdateServiceSyncBlockerOutput$serviceSyncBlocker": "<p>The detailed data on the service sync blocker that was updated.</p>"
+      }
+    },
+    "SyncBlockerContext": {
+      "base": "<p>Detailed data of the context of the sync blocker.</p>",
+      "refs": {
+        "SyncBlockerContexts$member": null
+      }
+    },
+    "SyncBlockerContexts": {
+      "base": null,
+      "refs": {
+        "SyncBlocker$contexts": "<p>The contexts for the sync blocker.</p>"
       }
     },
     "SyncType": {
@@ -1898,6 +2069,7 @@
         "CreateEnvironmentTemplateVersionInput$tags": "<p>An optional list of metadata items that you can associate with the Proton environment template version. A tag is a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton resources and tagging</a> in the <i>Proton User Guide</i>.</p>",
         "CreateRepositoryInput$tags": "<p>An optional list of metadata items that you can associate with the Proton repository. A tag is a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton resources and tagging</a> in the <i>Proton User Guide</i>.</p>",
         "CreateServiceInput$tags": "<p>An optional list of metadata items that you can associate with the Proton service. A tag is a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton resources and tagging</a> in the <i>Proton User Guide</i>.</p>",
+        "CreateServiceInstanceInput$tags": "<p>An optional list of metadata items that you can associate with the Proton service instance. A tag is a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton resources and tagging</a> in the <i>Proton User Guide</i>.</p>",
         "CreateServiceTemplateInput$tags": "<p>An optional list of metadata items that you can associate with the Proton service template. A tag is a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton resources and tagging</a> in the <i>Proton User Guide</i>.</p>",
         "CreateServiceTemplateVersionInput$tags": "<p>An optional list of metadata items that you can associate with the Proton service template version. A tag is a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/proton/latest/userguide/resources.html\">Proton resources and tagging</a> in the <i>Proton User Guide</i>.</p>",
         "ListTagsForResourceOutput$tags": "<p>A list of resource tags with detail data.</p>",
@@ -1970,6 +2142,8 @@
         "CreateEnvironmentTemplateVersionInput$majorVersion": "<p>To create a new minor version of the environment template, include <code>major Version</code>.</p> <p>To create a new major and minor version of the environment template, exclude <code>major Version</code>.</p>",
         "CreateServiceInput$templateMajorVersion": "<p>The major version of the service template that was used to create the service.</p>",
         "CreateServiceInput$templateMinorVersion": "<p>The minor version of the service template that was used to create the service.</p>",
+        "CreateServiceInstanceInput$templateMajorVersion": "<p>To create a new major and minor version of the service template, <i>exclude</i> <code>major Version</code>.</p>",
+        "CreateServiceInstanceInput$templateMinorVersion": "<p>To create a new minor version of the service template, include a <code>major Version</code>.</p>",
         "CreateServiceTemplateVersionInput$majorVersion": "<p>To create a new minor version of the service template, include a <code>major Version</code>.</p> <p>To create a new major and minor version of the service template, <i>exclude</i> <code>major Version</code>.</p>",
         "DeleteEnvironmentTemplateVersionInput$majorVersion": "<p>The environment template major version to delete.</p>",
         "DeleteEnvironmentTemplateVersionInput$minorVersion": "<p>The environment template minor version to delete.</p>",
@@ -2093,7 +2267,9 @@
         "ServiceTemplateVersion$createdAt": "<p>The time when the version of a service template was created.</p>",
         "ServiceTemplateVersion$lastModifiedAt": "<p>The time when the version of a service template was last modified.</p>",
         "ServiceTemplateVersionSummary$createdAt": "<p>The time when the version of a service template was created.</p>",
-        "ServiceTemplateVersionSummary$lastModifiedAt": "<p>The time when the version of a service template was last modified.</p>"
+        "ServiceTemplateVersionSummary$lastModifiedAt": "<p>The time when the version of a service template was last modified.</p>",
+        "SyncBlocker$createdAt": "<p>The time when the sync blocker was created.</p>",
+        "SyncBlocker$resolvedAt": "<p>The time the sync blocker was resolved.</p>"
       }
     },
     "UntagResourceInput": {
@@ -2192,6 +2368,26 @@
       }
     },
     "UpdateServicePipelineOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateServiceSyncBlockerInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateServiceSyncBlockerOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateServiceSyncConfigInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateServiceSyncConfigOutput": {
       "base": null,
       "refs": {
       }
