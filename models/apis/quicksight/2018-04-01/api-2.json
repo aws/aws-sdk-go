@@ -278,6 +278,25 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "CreateRefreshSchedule":{
+      "name":"CreateRefreshSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules"
+      },
+      "input":{"shape":"CreateRefreshScheduleRequest"},
+      "output":{"shape":"CreateRefreshScheduleResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "CreateTemplate":{
       "name":"CreateTemplate",
       "http":{
@@ -441,6 +460,24 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DeleteDataSetRefreshProperties":{
+      "name":"DeleteDataSetRefreshProperties",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties"
+      },
+      "input":{"shape":"DeleteDataSetRefreshPropertiesRequest"},
+      "output":{"shape":"DeleteDataSetRefreshPropertiesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DeleteDataSource":{
       "name":"DeleteDataSource",
       "http":{
@@ -563,6 +600,23 @@
         {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "DeleteRefreshSchedule":{
+      "name":"DeleteRefreshSchedule",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules/{ScheduleId}"
+      },
+      "input":{"shape":"DeleteRefreshScheduleRequest"},
+      "output":{"shape":"DeleteRefreshScheduleResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "DeleteTemplate":{
@@ -857,6 +911,24 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeDataSetRefreshProperties":{
+      "name":"DescribeDataSetRefreshProperties",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties"
+      },
+      "input":{"shape":"DescribeDataSetRefreshPropertiesRequest"},
+      "output":{"shape":"DescribeDataSetRefreshPropertiesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DescribeDataSource":{
       "name":"DescribeDataSource",
       "http":{
@@ -1041,6 +1113,23 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "DescribeRefreshSchedule":{
+      "name":"DescribeRefreshSchedule",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules/{ScheduleId}"
+      },
+      "input":{"shape":"DescribeRefreshScheduleRequest"},
+      "output":{"shape":"DescribeRefreshScheduleResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "DescribeTemplate":{
@@ -1490,6 +1579,23 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "ListRefreshSchedules":{
+      "name":"ListRefreshSchedules",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules"
+      },
+      "input":{"shape":"ListRefreshSchedulesRequest"},
+      "output":{"shape":"ListRefreshSchedulesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -1645,6 +1751,25 @@
         {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "PutDataSetRefreshProperties":{
+      "name":"PutDataSetRefreshProperties",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties"
+      },
+      "input":{"shape":"PutDataSetRefreshPropertiesRequest"},
+      "output":{"shape":"PutDataSetRefreshPropertiesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "RegisterUser":{
@@ -2121,6 +2246,24 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"UnsupportedPricingPlanException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateRefreshSchedule":{
+      "name":"UpdateRefreshSchedule",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules"
+      },
+      "input":{"shape":"UpdateRefreshScheduleRequest"},
+      "output":{"shape":"UpdateRefreshScheduleResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -4198,6 +4341,39 @@
         }
       }
     },
+    "CreateRefreshScheduleRequest":{
+      "type":"structure",
+      "required":[
+        "DataSetId",
+        "AwsAccountId",
+        "Schedule"
+      ],
+      "members":{
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        },
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Schedule":{"shape":"RefreshSchedule"}
+      }
+    },
+    "CreateRefreshScheduleResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"},
+        "ScheduleId":{"shape":"String"},
+        "Arn":{"shape":"Arn"}
+      }
+    },
     "CreateTemplateAliasRequest":{
       "type":"structure",
       "required":[
@@ -5008,6 +5184,13 @@
       "member":{"shape":"DataSetReference"},
       "min":1
     },
+    "DataSetRefreshProperties":{
+      "type":"structure",
+      "required":["RefreshConfiguration"],
+      "members":{
+        "RefreshConfiguration":{"shape":"RefreshConfiguration"}
+      }
+    },
     "DataSetSchema":{
       "type":"structure",
       "members":{
@@ -5351,6 +5534,24 @@
         "CustomValue":{"shape":"SensitiveTimestamp"}
       }
     },
+    "DayOfMonth":{
+      "type":"string",
+      "max":17,
+      "min":1,
+      "pattern":"^(?:LAST_DAY_OF_MONTH|1[0-9]|2[0-8]|[12]|[3-9])$"
+    },
+    "DayOfWeek":{
+      "type":"string",
+      "enum":[
+        "SUNDAY",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY"
+      ]
+    },
     "DecimalDefaultValueList":{
       "type":"list",
       "member":{"shape":"SensitiveDoubleObject"},
@@ -5579,6 +5780,35 @@
         "Arn":{"shape":"Arn"},
         "DashboardId":{"shape":"ShortRestrictiveResourceId"},
         "RequestId":{"shape":"String"}
+      }
+    },
+    "DeleteDataSetRefreshPropertiesRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DataSetId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        }
+      }
+    },
+    "DeleteDataSetRefreshPropertiesResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
       }
     },
     "DeleteDataSetRequest":{
@@ -5851,6 +6081,43 @@
           "shape":"StatusCode",
           "location":"statusCode"
         }
+      }
+    },
+    "DeleteRefreshScheduleRequest":{
+      "type":"structure",
+      "required":[
+        "DataSetId",
+        "AwsAccountId",
+        "ScheduleId"
+      ],
+      "members":{
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        },
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ScheduleId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"ScheduleId"
+        }
+      }
+    },
+    "DeleteRefreshScheduleResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"},
+        "ScheduleId":{"shape":"String"},
+        "Arn":{"shape":"Arn"}
       }
     },
     "DeleteTemplateAliasRequest":{
@@ -6403,6 +6670,36 @@
         }
       }
     },
+    "DescribeDataSetRefreshPropertiesRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DataSetId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        }
+      }
+    },
+    "DescribeDataSetRefreshPropertiesResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "DataSetRefreshProperties":{"shape":"DataSetRefreshProperties"}
+      }
+    },
     "DescribeDataSetRequest":{
       "type":"structure",
       "required":[
@@ -6791,6 +7088,43 @@
           "shape":"StatusCode",
           "location":"statusCode"
         }
+      }
+    },
+    "DescribeRefreshScheduleRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DataSetId",
+        "ScheduleId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        },
+        "ScheduleId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"ScheduleId"
+        }
+      }
+    },
+    "DescribeRefreshScheduleResponse":{
+      "type":"structure",
+      "members":{
+        "RefreshSchedule":{"shape":"RefreshSchedule"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"},
+        "Arn":{"shape":"Arn"}
       }
     },
     "DescribeTemplateAliasRequest":{
@@ -8896,6 +9230,13 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "IncrementalRefresh":{
+      "type":"structure",
+      "required":["LookbackWindow"],
+      "members":{
+        "LookbackWindow":{"shape":"LookbackWindow"}
+      }
+    },
     "Ingestion":{
       "type":"structure",
       "required":[
@@ -8969,7 +9310,8 @@
         "REFRESH_SUPPRESSED_BY_EDIT",
         "PERMISSION_NOT_FOUND",
         "ELASTICSEARCH_CURSOR_NOT_ENABLED",
-        "CURSOR_NOT_ENABLED"
+        "CURSOR_NOT_ENABLED",
+        "DUPLICATE_COLUMN_NAMES_FOUND"
       ]
     },
     "IngestionId":{
@@ -10051,6 +10393,36 @@
         }
       }
     },
+    "ListRefreshSchedulesRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DataSetId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        }
+      }
+    },
+    "ListRefreshSchedulesResponse":{
+      "type":"structure",
+      "members":{
+        "RefreshSchedules":{"shape":"RefreshSchedules"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -10477,6 +10849,27 @@
       "type":"double",
       "max":1800,
       "min":-1800
+    },
+    "LookbackWindow":{
+      "type":"structure",
+      "required":[
+        "ColumnName",
+        "Size",
+        "SizeUnit"
+      ],
+      "members":{
+        "ColumnName":{"shape":"String"},
+        "Size":{"shape":"PositiveLong"},
+        "SizeUnit":{"shape":"LookbackWindowSizeUnit"}
+      }
+    },
+    "LookbackWindowSizeUnit":{
+      "type":"string",
+      "enum":[
+        "HOUR",
+        "DAY",
+        "WEEK"
+      ]
     },
     "ManifestFileLocation":{
       "type":"structure",
@@ -11555,6 +11948,10 @@
       "type":"integer",
       "min":1
     },
+    "PositiveLong":{
+      "type":"long",
+      "min":1
+    },
     "PostgreSqlParameters":{
       "type":"structure",
       "required":[
@@ -11656,6 +12053,37 @@
       "member":{"shape":"String"},
       "max":2000,
       "min":1
+    },
+    "PutDataSetRefreshPropertiesRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DataSetId",
+        "DataSetRefreshProperties"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        },
+        "DataSetRefreshProperties":{"shape":"DataSetRefreshProperties"}
+      }
+    },
+    "PutDataSetRefreshPropertiesResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
     },
     "Query":{
       "type":"string",
@@ -11911,6 +12339,53 @@
         "BEFORE_CUSTOM_LABEL",
         "AFTER_CUSTOM_LABEL"
       ]
+    },
+    "RefreshConfiguration":{
+      "type":"structure",
+      "required":["IncrementalRefresh"],
+      "members":{
+        "IncrementalRefresh":{"shape":"IncrementalRefresh"}
+      }
+    },
+    "RefreshFrequency":{
+      "type":"structure",
+      "required":["Interval"],
+      "members":{
+        "Interval":{"shape":"RefreshInterval"},
+        "RefreshOnDay":{"shape":"ScheduleRefreshOnEntity"},
+        "Timezone":{"shape":"String"},
+        "TimeOfTheDay":{"shape":"String"}
+      }
+    },
+    "RefreshInterval":{
+      "type":"string",
+      "enum":[
+        "MINUTE15",
+        "MINUTE30",
+        "HOURLY",
+        "DAILY",
+        "WEEKLY",
+        "MONTHLY"
+      ]
+    },
+    "RefreshSchedule":{
+      "type":"structure",
+      "required":[
+        "ScheduleId",
+        "ScheduleFrequency",
+        "RefreshType"
+      ],
+      "members":{
+        "ScheduleId":{"shape":"String"},
+        "ScheduleFrequency":{"shape":"RefreshFrequency"},
+        "StartAfterDateTime":{"shape":"Timestamp"},
+        "RefreshType":{"shape":"IngestionType"},
+        "Arn":{"shape":"Arn"}
+      }
+    },
+    "RefreshSchedules":{
+      "type":"list",
+      "member":{"shape":"RefreshSchedule"}
     },
     "RegisterUserRequest":{
       "type":"structure",
@@ -12293,7 +12768,8 @@
       "required":["TagRules"],
       "members":{
         "Status":{"shape":"Status"},
-        "TagRules":{"shape":"RowLevelPermissionTagRuleList"}
+        "TagRules":{"shape":"RowLevelPermissionTagRuleList"},
+        "TagRuleConfigurations":{"shape":"RowLevelPermissionTagRuleConfigurationList"}
       }
     },
     "RowLevelPermissionTagDelimiter":{
@@ -12312,6 +12788,18 @@
         "TagMultiValueDelimiter":{"shape":"RowLevelPermissionTagDelimiter"},
         "MatchAllValue":{"shape":"SessionTagValue"}
       }
+    },
+    "RowLevelPermissionTagRuleConfiguration":{
+      "type":"list",
+      "member":{"shape":"SessionTagKey"},
+      "max":50,
+      "min":1
+    },
+    "RowLevelPermissionTagRuleConfigurationList":{
+      "type":"list",
+      "member":{"shape":"RowLevelPermissionTagRuleConfiguration"},
+      "max":50,
+      "min":1
     },
     "RowLevelPermissionTagRuleList":{
       "type":"list",
@@ -12450,6 +12938,13 @@
         "ChartConfiguration":{"shape":"ScatterPlotConfiguration"},
         "Actions":{"shape":"VisualCustomActionList"},
         "ColumnHierarchies":{"shape":"ColumnHierarchyList"}
+      }
+    },
+    "ScheduleRefreshOnEntity":{
+      "type":"structure",
+      "members":{
+        "DayOfWeek":{"shape":"DayOfWeek"},
+        "DayOfMonth":{"shape":"DayOfMonth"}
       }
     },
     "ScrollBarOptions":{
@@ -15040,6 +15535,39 @@
           "shape":"StatusCode",
           "location":"statusCode"
         }
+      }
+    },
+    "UpdateRefreshScheduleRequest":{
+      "type":"structure",
+      "required":[
+        "DataSetId",
+        "AwsAccountId",
+        "Schedule"
+      ],
+      "members":{
+        "DataSetId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"DataSetId"
+        },
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Schedule":{"shape":"RefreshSchedule"}
+      }
+    },
+    "UpdateRefreshScheduleResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"},
+        "ScheduleId":{"shape":"String"},
+        "Arn":{"shape":"Arn"}
       }
     },
     "UpdateResourcePermissionList":{

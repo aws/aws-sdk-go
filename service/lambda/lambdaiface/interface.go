@@ -200,6 +200,10 @@ type LambdaAPI interface {
 	InvokeAsyncWithContext(aws.Context, *lambda.InvokeAsyncInput, ...request.Option) (*lambda.InvokeAsyncOutput, error)
 	InvokeAsyncRequest(*lambda.InvokeAsyncInput) (*request.Request, *lambda.InvokeAsyncOutput)
 
+	InvokeWithResponseStream(*lambda.InvokeWithResponseStreamInput) (*lambda.InvokeWithResponseStreamOutput, error)
+	InvokeWithResponseStreamWithContext(aws.Context, *lambda.InvokeWithResponseStreamInput, ...request.Option) (*lambda.InvokeWithResponseStreamOutput, error)
+	InvokeWithResponseStreamRequest(*lambda.InvokeWithResponseStreamInput) (*request.Request, *lambda.InvokeWithResponseStreamOutput)
+
 	ListAliases(*lambda.ListAliasesInput) (*lambda.ListAliasesOutput, error)
 	ListAliasesWithContext(aws.Context, *lambda.ListAliasesInput, ...request.Option) (*lambda.ListAliasesOutput, error)
 	ListAliasesRequest(*lambda.ListAliasesInput) (*request.Request, *lambda.ListAliasesOutput)

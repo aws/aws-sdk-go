@@ -187,7 +187,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://dlm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://rds-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -261,7 +261,7 @@
                                                                 }
                                                             ],
                                                             "endpoint": {
-                                                                "url": "https://dlm.{Region}.amazonaws.com",
+                                                                "url": "https://rds.{Region}.amazonaws.com",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -270,7 +270,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://dlm-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                "url": "https://rds-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -328,7 +328,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://dlm.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://rds.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -352,7 +352,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://dlm.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://rds.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
