@@ -16,6 +16,7 @@
     "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy, identified by its Amazon Resource Name (ARN). This policy assignment is attached to the specified groups or users of Amazon QuickSight. Assignment names are unique per Amazon Web Services account. To avoid overwriting rules in other namespaces, use assignment names that are unique.</p>",
     "CreateIngestion": "<p>Creates and starts a new SPICE ingestion for a dataset. You can manually refresh datasets in an Enterprise edition account 32 times in a 24-hour period. You can manually refresh datasets in a Standard edition account 8 times in a 24-hour period. Each 24-hour period is measured starting 24 hours before the current date and time.</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"http://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the Amazon Web Services Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
     "CreateNamespace": "<p>(Enterprise edition only) Creates a new namespace for you to use with Amazon QuickSight.</p> <p>A namespace allows you to isolate the Amazon QuickSight users and groups that are registered for that namespace. Users that access the namespace can share assets only with other users or groups in the same namespace. They can't see users and groups in other namespaces. You can create a namespace after your Amazon Web Services account is subscribed to Amazon QuickSight. The namespace must be unique within the Amazon Web Services account. By default, there is a limit of 100 namespaces per Amazon Web Services account. To increase your limit, create a ticket with Amazon Web Services Support. </p>",
+    "CreateRefreshSchedule": "<p>Creates a refresh schedule for a dataset. You can create up to 5 different schedules for a single dataset.</p>",
     "CreateTemplate": "<p>Creates a template either from a <code>TemplateDefinition</code> or from an existing Amazon QuickSight analysis or template. You can use the resulting template to create additional dashboards, templates, or analyses.</p> <p>A <i>template</i> is an entity in Amazon QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
     "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
     "CreateTheme": "<p>Creates a theme.</p> <p>A <i>theme</i> is set of configuration options for color and layout. Themes apply to analyses and dashboards. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
@@ -25,6 +26,7 @@
     "DeleteAnalysis": "<p>Deletes an analysis from Amazon QuickSight. You can optionally include a recovery window during which you can restore the analysis. If you don't specify a recovery window value, the operation defaults to 30 days. Amazon QuickSight attaches a <code>DeletionTime</code> stamp to the response that specifies the end of the recovery window. At the end of the recovery window, Amazon QuickSight deletes the analysis permanently.</p> <p>At any time before recovery window ends, you can use the <code>RestoreAnalysis</code> API operation to remove the <code>DeletionTime</code> stamp and cancel the deletion of the analysis. The analysis remains visible in the API until it's deleted, so you can describe it but you can't make a template from it.</p> <p>An analysis that's scheduled for deletion isn't accessible in the Amazon QuickSight console. To access it in the console, restore it. Deleting an analysis doesn't delete the dashboards that you publish from it.</p>",
     "DeleteDashboard": "<p>Deletes a dashboard.</p>",
     "DeleteDataSet": "<p>Deletes a dataset.</p>",
+    "DeleteDataSetRefreshProperties": "<p>Deletes the dataset refresh properties of the dataset.</p>",
     "DeleteDataSource": "<p>Deletes the data source permanently. This operation breaks all the datasets that reference the deleted data source.</p>",
     "DeleteFolder": "<p>Deletes an empty folder.</p>",
     "DeleteFolderMembership": "<p>Removes an asset, such as a dashboard, analysis, or dataset, from a folder.</p>",
@@ -32,6 +34,7 @@
     "DeleteGroupMembership": "<p>Removes a user from a group so that the user is no longer a member of the group.</p>",
     "DeleteIAMPolicyAssignment": "<p>Deletes an existing IAM policy assignment.</p>",
     "DeleteNamespace": "<p>Deletes a namespace and the users and groups that are associated with the namespace. This is an asynchronous process. Assets including dashboards, analyses, datasets and data sources are not deleted. To delete these assets, you use the API operations for the relevant asset. </p>",
+    "DeleteRefreshSchedule": "<p>Deletes a refresh schedule from a dataset.</p>",
     "DeleteTemplate": "<p>Deletes a template.</p>",
     "DeleteTemplateAlias": "<p>Deletes the item that the specified template alias points to. If you provide a specific alias, you delete the version of the template that the alias points to.</p>",
     "DeleteTheme": "<p>Deletes a theme.</p>",
@@ -49,6 +52,7 @@
     "DescribeDashboardPermissions": "<p>Describes read and write permissions for a dashboard.</p>",
     "DescribeDataSet": "<p>Describes a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>",
     "DescribeDataSetPermissions": "<p>Describes the permissions on a dataset.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code>.</p>",
+    "DescribeDataSetRefreshProperties": "<p>Describes the refresh properties of a dataset.</p>",
     "DescribeDataSource": "<p>Describes a data source.</p>",
     "DescribeDataSourcePermissions": "<p>Describes the resource permissions for a data source.</p>",
     "DescribeFolder": "<p>Describes a folder.</p>",
@@ -60,6 +64,7 @@
     "DescribeIngestion": "<p>Describes a SPICE ingestion.</p>",
     "DescribeIpRestriction": "<p>Provides a summary and status of IP rules.</p>",
     "DescribeNamespace": "<p>Describes the current namespace.</p>",
+    "DescribeRefreshSchedule": "<p>Provides a summary of a refresh schedule.</p>",
     "DescribeTemplate": "<p>Describes a template's metadata.</p>",
     "DescribeTemplateAlias": "<p>Describes the template alias for a template.</p>",
     "DescribeTemplateDefinition": "<p>Provides a detailed description of the definition of a template.</p> <note> <p>If you do not need to know details about the content of a template, for instance if you are trying to check the status of a recently created or updated template, use the <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeTemplate.html\"> <code>DescribeTemplate</code> </a> instead. </p> </note>",
@@ -85,6 +90,7 @@
     "ListIAMPolicyAssignmentsForUser": "<p>Lists all the IAM policy assignments, including the Amazon Resource Names (ARNs) for the IAM policies assigned to the specified user and group or groups that the user belongs to.</p>",
     "ListIngestions": "<p>Lists the history of SPICE ingestions for a dataset.</p>",
     "ListNamespaces": "<p>Lists the namespaces for the specified Amazon Web Services account. This operation doesn't list deleted namespaces.</p>",
+    "ListRefreshSchedules": "<p>Lists the refresh schedules of a dataset. Each dataset can have up to 5 schedules. </p>",
     "ListTagsForResource": "<p>Lists the tags assigned to a resource.</p>",
     "ListTemplateAliases": "<p>Lists all the aliases of a template.</p>",
     "ListTemplateVersions": "<p>Lists all the versions of the templates in the current Amazon QuickSight account.</p>",
@@ -94,6 +100,7 @@
     "ListThemes": "<p>Lists all the themes in the current Amazon Web Services account.</p>",
     "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p>",
     "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p>",
+    "PutDataSetRefreshProperties": "<p>Creates or updates the dataset refresh properties for the dataset.</p>",
     "RegisterUser": "<p>Creates an Amazon QuickSight user whose identity is associated with the Identity and Access Management (IAM) identity or role specified in the request. When you register a new user from the Amazon QuickSight API, Amazon QuickSight generates a registration URL. The user accesses this registration URL to create their account. Amazon QuickSight doesn't send a registration email to users who are registered from the Amazon QuickSight API. If you want new users to receive a registration email, then add those users in the Amazon QuickSight console. For more information on registering a new user in the Amazon QuickSight console, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/managing-users.html#inviting-users\"> Inviting users to access Amazon QuickSight</a>.</p>",
     "RestoreAnalysis": "<p>Restores an analysis.</p>",
     "SearchAnalyses": "<p>Searches for analyses that belong to the user specified in the filter.</p> <note> <p>This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.</p> </note>",
@@ -121,6 +128,7 @@
     "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
     "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you need to provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
     "UpdatePublicSharingSettings": "<p>Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, turn on session capacity pricing for your Amazon QuickSight account.</p> <p>Before you can turn on public sharing on your account, make sure to give public sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
+    "UpdateRefreshSchedule": "<p>Updates a refresh schedule for a dataset.</p>",
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
     "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
     "UpdateTemplatePermissions": "<p>Updates the resource permissions for a template.</p>",
@@ -438,6 +446,7 @@
         "CreateIAMPolicyAssignmentResponse$PolicyArn": "<p>The ARN for the IAM policy that is applied to the Amazon QuickSight users and groups specified in this assignment.</p>",
         "CreateIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
         "CreateNamespaceResponse$Arn": "<p>The ARN of the Amazon QuickSight namespace you created. </p>",
+        "CreateRefreshScheduleResponse$Arn": "<p>The Amazon Resource Name (ARN) for the refresh schedule.</p>",
         "CreateTemplateResponse$Arn": "<p>The ARN for the template.</p>",
         "CreateTemplateResponse$VersionArn": "<p>The ARN for the template, including the version information of the first version.</p>",
         "CreateThemeResponse$Arn": "<p>The Amazon Resource Name (ARN) for the theme.</p>",
@@ -463,6 +472,7 @@
         "DeleteDataSetResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DeleteDataSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the data source that you deleted.</p>",
         "DeleteFolderResponse$Arn": "<p>The Amazon Resource Name of the deleted folder.</p>",
+        "DeleteRefreshScheduleResponse$Arn": "<p>The Amazon Resource Name (ARN) for the refresh schedule.</p>",
         "DeleteTemplateAliasResponse$Arn": "<p>The Amazon Resource Name (ARN) of the template you want to delete.</p>",
         "DeleteTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "DeleteThemeAliasResponse$Arn": "<p>The Amazon Resource Name (ARN) of the theme resource using the deleted alias.</p>",
@@ -476,6 +486,7 @@
         "DescribeDataSourcePermissionsResponse$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "DescribeFolderPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN) for the folder.</p>",
         "DescribeFolderResolvedPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
+        "DescribeRefreshScheduleResponse$Arn": "<p>The Amazon Resource Name (ARN) for the refresh schedule.</p>",
         "DescribeTemplateDefinitionResponse$ThemeArn": "<p>The ARN of the theme of the template.</p>",
         "DescribeTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "DescribeThemePermissionsResponse$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
@@ -494,6 +505,7 @@
         "MemberIdArnPair$MemberArn": "<p>The Amazon Resource Name (ARN) of the member.</p>",
         "NamespaceInfoV2$Arn": "<p>The namespace ARN.</p>",
         "Path$member": null,
+        "RefreshSchedule$Arn": "<p>The Amazon Resource Name (ARN) for the refresh schedule.</p>",
         "RelationalTable$DataSourceArn": "<p>The Amazon Resource Name (ARN) for the data source.</p>",
         "RestoreAnalysisResponse$Arn": "<p>The Amazon Resource Name (ARN) of the analysis that you're restoring.</p>",
         "RowLevelPermissionDataSet$Arn": "<p>The Amazon Resource Name (ARN) of the dataset that contains permissions for RLS.</p>",
@@ -531,6 +543,7 @@
         "UpdateFolderResponse$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
         "UpdateIAMPolicyAssignmentRequest$PolicyArn": "<p>The ARN for the IAM policy to apply to the Amazon QuickSight users and groups specified in this assignment.</p>",
         "UpdateIAMPolicyAssignmentResponse$PolicyArn": "<p>The ARN for the IAM policy applied to the Amazon QuickSight users and groups specified in this assignment.</p>",
+        "UpdateRefreshScheduleResponse$Arn": "<p>The Amazon Resource Name (ARN) for the refresh schedule.</p>",
         "UpdateTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "UpdateTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) for the template.</p>",
         "UpdateTemplateResponse$VersionArn": "<p>The ARN for the template, including the version information of the first version.</p>",
@@ -601,6 +614,7 @@
         "CreateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to assign an IAM policy to Amazon QuickSight users or groups.</p>",
         "CreateIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create the Amazon QuickSight namespace in.</p>",
+        "CreateRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you creating an alias for.</p>",
         "CreateTemplateRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "CreateThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme for the new theme alias.</p>",
@@ -609,6 +623,7 @@
         "DeleteAccountSubscriptionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account that you want to delete.</p>",
         "DeleteAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to delete an analysis.</p>",
         "DeleteDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're deleting.</p>",
+        "DeleteDataSetRefreshPropertiesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DeleteDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DeleteDataSourceRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DeleteFolderMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
@@ -617,6 +632,7 @@
         "DeleteGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DeleteIAMPolicyAssignmentRequest$AwsAccountId": "<p>The Amazon Web Services account ID where you want to delete the IAM policy assignment.</p>",
         "DeleteNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete the Amazon QuickSight namespace from.</p>",
+        "DeleteRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DeleteTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the item to delete.</p>",
         "DeleteTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're deleting.</p>",
         "DeleteThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme alias to delete.</p>",
@@ -634,6 +650,7 @@
         "DescribeDashboardPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing permissions for.</p>",
         "DescribeDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're describing.</p>",
         "DescribeDataSetPermissionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "DescribeDataSetRefreshPropertiesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeDataSourcePermissionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeDataSourceRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -647,6 +664,7 @@
         "DescribeIpRestrictionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "DescribeIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "DescribeNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespace that you want to describe.</p>",
+        "DescribeRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're describing.</p>",
         "DescribeTemplateDefinitionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template. You must be using the Amazon Web Services account that the template is in.</p>",
         "DescribeTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're describing.</p>",
@@ -672,6 +690,7 @@
         "ListIAMPolicyAssignmentsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains these IAM policy assignments.</p>",
         "ListIngestionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "ListNamespacesRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespaces that you want to list.</p>",
+        "ListRefreshSchedulesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "ListTemplateAliasesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template aliases that you're listing.</p>",
         "ListTemplateVersionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the templates that you're listing.</p>",
         "ListTemplatesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the templates that you're listing.</p>",
@@ -680,6 +699,7 @@
         "ListThemesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the themes that you're listing.</p>",
         "ListUserGroupsRequest$AwsAccountId": "<p>The Amazon Web Services account ID that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "ListUsersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
+        "PutDataSetRefreshPropertiesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "RegisterUserRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "RestoreAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis.</p>",
         "SearchAnalysesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analyses that you're searching for.</p>",
@@ -707,6 +727,7 @@
         "UpdateIpRestrictionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "UpdateIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "UpdatePublicSharingSettingsRequest$AwsAccountId": "<p>The Amazon Web Services account ID associated with your Amazon QuickSight subscription.</p>",
+        "UpdateRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "UpdateTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're updating.</p>",
         "UpdateTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template.</p>",
         "UpdateTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're updating.</p>",
@@ -1798,6 +1819,16 @@
       "refs": {
       }
     },
+    "CreateRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRefreshScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateTemplateAliasRequest": {
       "base": null,
       "refs": {
@@ -2321,6 +2352,13 @@
         "TemplateSourceAnalysis$DataSetReferences": "<p>A structure containing information about the dataset references used as placeholders in the template.</p>"
       }
     },
+    "DataSetRefreshProperties": {
+      "base": "<p>The refresh properties of a dataset.</p>",
+      "refs": {
+        "DescribeDataSetRefreshPropertiesResponse$DataSetRefreshProperties": "<p>The dataset refresh properties.</p>",
+        "PutDataSetRefreshPropertiesRequest$DataSetRefreshProperties": "<p>The dataset refresh properties.</p>"
+      }
+    },
     "DataSetSchema": {
       "base": "<p>Dataset schema.</p>",
       "refs": {
@@ -2559,6 +2597,18 @@
         "DateTimeParameterDeclaration$ValueWhenUnset": "<p>The configuration that defines the default value of a <code>DateTime</code> parameter when a value has not been set.</p>"
       }
     },
+    "DayOfMonth": {
+      "base": null,
+      "refs": {
+        "ScheduleRefreshOnEntity$DayOfMonth": "<p>The day of the month that you want to schedule refresh on.</p>"
+      }
+    },
+    "DayOfWeek": {
+      "base": null,
+      "refs": {
+        "ScheduleRefreshOnEntity$DayOfWeek": "<p>The day of the week that you want to schedule a refresh on.</p>"
+      }
+    },
     "DecimalDefaultValueList": {
       "base": null,
       "refs": {
@@ -2686,6 +2736,16 @@
       "refs": {
       }
     },
+    "DeleteDataSetRefreshPropertiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDataSetRefreshPropertiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDataSetRequest": {
       "base": null,
       "refs": {
@@ -2762,6 +2822,16 @@
       }
     },
     "DeleteNamespaceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRefreshScheduleResponse": {
       "base": null,
       "refs": {
       }
@@ -2932,6 +3002,16 @@
       "refs": {
       }
     },
+    "DescribeDataSetRefreshPropertiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDataSetRefreshPropertiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDataSetRequest": {
       "base": null,
       "refs": {
@@ -3048,6 +3128,16 @@
       }
     },
     "DescribeNamespaceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRefreshScheduleResponse": {
       "base": null,
       "refs": {
       }
@@ -4665,6 +4755,12 @@
       "refs": {
       }
     },
+    "IncrementalRefresh": {
+      "base": "<p>The incremental refresh configuration for a dataset.</p>",
+      "refs": {
+        "RefreshConfiguration$IncrementalRefresh": "<p>The incremental refresh for the dataset.</p>"
+      }
+    },
     "Ingestion": {
       "base": "<p>Information about the SPICE ingestion for a dataset.</p>",
       "refs": {
@@ -4717,7 +4813,8 @@
     "IngestionType": {
       "base": "This defines the type of ingestion user wants to trigger. This is part of create ingestion request.",
       "refs": {
-        "CreateIngestionRequest$IngestionType": "<p>The type of ingestion that you want to create.</p>"
+        "CreateIngestionRequest$IngestionType": "<p>The type of ingestion that you want to create.</p>",
+        "RefreshSchedule$RefreshType": "<p>The type of refresh that a datset undergoes. Valid values are as follows:</p> <ul> <li> <p> <code>FULL_REFRESH</code>: A complete refresh of a dataset.</p> </li> <li> <p> <code>INCREMENTAL_REFRESH</code>: A partial refresh of some rows of a dataset, based on the time window specified.</p> </li> </ul> <p>For more information on full and incremental refreshes, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/refreshing-imported-data.html\">Refreshing SPICE data</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
       }
     },
     "Ingestions": {
@@ -5282,6 +5379,16 @@
       "refs": {
       }
     },
+    "ListRefreshSchedulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRefreshSchedulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -5454,6 +5561,18 @@
       "refs": {
         "GeospatialCoordinateBounds$West": "<p>The longitude of the west bound of the geospatial coordinate bounds.</p>",
         "GeospatialCoordinateBounds$East": "<p>The longitude of the east bound of the geospatial coordinate bounds.</p>"
+      }
+    },
+    "LookbackWindow": {
+      "base": "<p>The lookback window setup of an incremental refresh configuration.</p>",
+      "refs": {
+        "IncrementalRefresh$LookbackWindow": "<p>The lookback window setup for an incremental refresh configuration.</p>"
+      }
+    },
+    "LookbackWindowSizeUnit": {
+      "base": null,
+      "refs": {
+        "LookbackWindow$SizeUnit": "<p>The size unit that is used for the lookback window column. Valid values for this structure are <code>HOUR</code>, <code>DAY</code>, and <code>WEEK</code>.</p>"
       }
     },
     "ManifestFileLocation": {
@@ -6409,6 +6528,12 @@
         "UploadSettings$StartFromRow": "<p>A row number to start reading data from.</p>"
       }
     },
+    "PositiveLong": {
+      "base": null,
+      "refs": {
+        "LookbackWindow$Size": "<p>The lookback window column size.</p>"
+      }
+    },
     "PostgreSqlParameters": {
       "base": "<p>The parameters for PostgreSQL.</p>",
       "refs": {
@@ -6488,6 +6613,16 @@
       "base": null,
       "refs": {
         "ProjectOperation$ProjectedColumns": "<p>Projected columns.</p>"
+      }
+    },
+    "PutDataSetRefreshPropertiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutDataSetRefreshPropertiesResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Query": {
@@ -6684,6 +6819,39 @@
         "ReferenceLineValueLabelConfiguration$RelativePosition": "<p>The relative position of the value label. Choose one of the following options:</p> <ul> <li> <p> <code>BEFORE_CUSTOM_LABEL</code> </p> </li> <li> <p> <code>AFTER_CUSTOM_LABEL</code> </p> </li> </ul>"
       }
     },
+    "RefreshConfiguration": {
+      "base": "<p>The refresh configuration of a dataset.</p>",
+      "refs": {
+        "DataSetRefreshProperties$RefreshConfiguration": "<p>The refresh configuration for a dataset.</p>"
+      }
+    },
+    "RefreshFrequency": {
+      "base": "<p>Specifies the interval between each scheduled refresh of a dataset.</p>",
+      "refs": {
+        "RefreshSchedule$ScheduleFrequency": "<p>The frequency for the refresh schedule.</p>"
+      }
+    },
+    "RefreshInterval": {
+      "base": null,
+      "refs": {
+        "RefreshFrequency$Interval": "<p>The interval between scheduled refreshes. Valid values are as follows:</p> <ul> <li> <p> <code>MINUTE15</code>: The dataset refreshes every 15 minutes. This value is only supported for incremental refreshes. This interval can only be used for one schedule per dataset.</p> </li> <li> <p> <code>MINUTE30</code>:The dataset refreshes every 30 minutes. This value is only supported for incremental refreshes. This interval can only be used for one schedule per dataset.</p> </li> <li> <p> <code>HOURLY</code>: The dataset refreshes every hour. This interval can only be used for one schedule per dataset.</p> </li> <li> <p> <code>DAILY</code>: The dataset refreshes every day.</p> </li> <li> <p> <code>WEEKLY</code>: The dataset refreshes every week.</p> </li> <li> <p> <code>MONTHLY</code>: The dataset refreshes every month.</p> </li> </ul>"
+      }
+    },
+    "RefreshSchedule": {
+      "base": "<p>The refresh schedule of a dataset.</p>",
+      "refs": {
+        "CreateRefreshScheduleRequest$Schedule": "<p>The refresh schedule.</p>",
+        "DescribeRefreshScheduleResponse$RefreshSchedule": "<p>The refresh schedule.</p>",
+        "RefreshSchedules$member": "<p>A list of <code>RefreshSchedule</code> objects.</p>",
+        "UpdateRefreshScheduleRequest$Schedule": "<p>The refresh schedule.</p>"
+      }
+    },
+    "RefreshSchedules": {
+      "base": null,
+      "refs": {
+        "ListRefreshSchedulesResponse$RefreshSchedules": "<p>The list of refresh schedules for the dataset.</p>"
+      }
+    },
     "RegisterUserRequest": {
       "base": null,
       "refs": {
@@ -6809,20 +6977,27 @@
         "CreateDataSetResponse$IngestionId": "<p>The ID of the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE.</p>",
         "CreateDataSourceRequest$DataSourceId": "<p>An ID for the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account. </p>",
         "CreateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "CreateRefreshScheduleRequest$DataSetId": "<p>The ID of the dataset.</p>",
         "DataSet$DataSetId": "<p>The ID of the dataset.</p>",
         "DataSetSummary$DataSetId": "<p>The ID of the dataset.</p>",
         "DataSource$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DataSourceSummary$DataSourceId": "<p>The unique ID of the data source.</p>",
+        "DeleteDataSetRefreshPropertiesRequest$DataSetId": "<p>The ID of the dataset.</p>",
         "DeleteDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DeleteDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DeleteDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DeleteDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteRefreshScheduleRequest$DataSetId": "<p>The ID of the dataset.</p>",
         "DescribeDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DescribeDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeDataSetRefreshPropertiesRequest$DataSetId": "<p>The ID of the dataset.</p>",
         "DescribeDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DescribeDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DescribeDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DescribeDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeRefreshScheduleRequest$DataSetId": "<p>The ID of the dataset.</p>",
+        "ListRefreshSchedulesRequest$DataSetId": "<p>The ID of the dataset.</p>",
+        "PutDataSetRefreshPropertiesRequest$DataSetId": "<p>The ID of the dataset.</p>",
         "UpdateDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
@@ -6831,7 +7006,8 @@
         "UpdateDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account. </p>",
         "UpdateDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account. </p>",
-        "UpdateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>"
+        "UpdateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateRefreshScheduleRequest$DataSetId": "<p>The ID of the dataset.</p>"
       }
     },
     "ResourceName": {
@@ -7051,6 +7227,18 @@
         "RowLevelPermissionTagRuleList$member": null
       }
     },
+    "RowLevelPermissionTagRuleConfiguration": {
+      "base": null,
+      "refs": {
+        "RowLevelPermissionTagRuleConfigurationList$member": null
+      }
+    },
+    "RowLevelPermissionTagRuleConfigurationList": {
+      "base": null,
+      "refs": {
+        "RowLevelPermissionTagConfiguration$TagRuleConfigurations": "<p>A list of tag configuration rules to apply to a dataset. All tag configurations have the OR condition. Tags within each tile will be joined (AND). At least one rule in this structure must have all tag values assigned to it to apply Row-level security (RLS) to the dataset.</p>"
+      }
+    },
     "RowLevelPermissionTagRuleList": {
       "base": null,
       "refs": {
@@ -7151,6 +7339,12 @@
       "base": "<p>A scatter plot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/scatter-plot.html\">Using scatter plots</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
       "refs": {
         "Visual$ScatterPlotVisual": "<p>A scatter plot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/scatter-plot.html\">Using scatter plots</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
+      }
+    },
+    "ScheduleRefreshOnEntity": {
+      "base": "<p>The refresh on entity for weekly or monthly schedules.</p>",
+      "refs": {
+        "RefreshFrequency$RefreshOnDay": "<p>The day of the week that you want to schedule the refresh on. This value is required for weekly and monthly refresh intervals.</p>"
       }
     },
     "ScrollBarOptions": {
@@ -7434,6 +7628,7 @@
       "base": null,
       "refs": {
         "RowLevelPermissionTagRule$TagKey": "<p>The unique key for a tag.</p>",
+        "RowLevelPermissionTagRuleConfiguration$member": null,
         "SessionTag$Key": "<p>The key for the tag.</p>"
       }
     },
@@ -7961,6 +8156,7 @@
         "CreateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -7969,6 +8165,7 @@
         "DeleteAccountSubscriptionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteDataSetRefreshPropertiesResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteFolderMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -7977,6 +8174,7 @@
         "DeleteGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -7993,6 +8191,7 @@
         "DescribeDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardResponse$Status": "<p>The HTTP status of this request.</p>",
         "DescribeDataSetPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeDataSetRefreshPropertiesResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDataSourcePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8005,6 +8204,7 @@
         "DescribeIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
         "DescribeNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplateDefinitionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8030,6 +8230,7 @@
         "ListIAMPolicyAssignmentsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListIngestionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListNamespacesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListRefreshSchedulesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTagsForResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTemplateAliasesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTemplateVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8039,6 +8240,7 @@
         "ListThemesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUserGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUsersResponse$Status": "<p>The HTTP status of the request.</p>",
+        "PutDataSetRefreshPropertiesResponse$Status": "<p>The HTTP status of the request.</p>",
         "RegisterUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "RestoreAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchAnalysesResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8066,6 +8268,7 @@
         "UpdateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
         "UpdatePublicSharingSettingsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -8128,6 +8331,8 @@
         "CreateIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateNamespaceResponse$CapacityRegion": "<p>The Amazon Web Services Region; that you want to use for the free SPICE capacity for the new namespace. This is set to the region that you run CreateNamespace in. </p>",
         "CreateNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "CreateRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "CreateRefreshScheduleResponse$ScheduleId": "<p>The ID of the refresh schedule.</p>",
         "CreateTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -8141,6 +8346,7 @@
         "DeleteAccountSubscriptionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteDataSetRefreshPropertiesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteDataSourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteFolderMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -8149,6 +8355,9 @@
         "DeleteGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteRefreshScheduleRequest$ScheduleId": "<p>The ID of the refresh schedule.</p>",
+        "DeleteRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteRefreshScheduleResponse$ScheduleId": "<p>The ID of the refresh schedule.</p>",
         "DeleteTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteThemeAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -8166,6 +8375,7 @@
         "DescribeDashboardPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSetPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeDataSetRefreshPropertiesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSourcePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -8179,6 +8389,8 @@
         "DescribeIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeIpRestrictionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeRefreshScheduleRequest$ScheduleId": "<p>The ID of the refresh schedule.</p>",
+        "DescribeRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplateDefinitionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -8259,6 +8471,7 @@
         "ListNamespacesRequest$NextToken": "<p>A unique pagination token that can be used in a subsequent request. You will receive a pagination token in the response body of a previous <code>ListNameSpaces</code> API call if there is more data that can be returned. To receive the data, make another <code>ListNamespaces</code> API call with the returned token to retrieve the next page of data. Each token is valid for 24 hours. If you try to make a <code>ListNamespaces</code> API call with an expired token, you will receive a <code>HTTP 400 InvalidNextTokenException</code> error.</p>",
         "ListNamespacesResponse$NextToken": "<p>A unique pagination token that can be used in a subsequent request. Receiving <code>NextToken</code> in your response inticates that there is more data that can be returned. To receive the data, make another <code>ListNamespaces</code> API call with the returned token to retrieve the next page of data. Each token is valid for 24 hours. If you try to make a <code>ListNamespaces</code> API call with an expired token, you will receive a <code>HTTP 400 InvalidNextTokenException</code> error.</p>",
         "ListNamespacesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListRefreshSchedulesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListTagsForResourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListTemplateAliasesRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListTemplateAliasesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -8284,6 +8497,7 @@
         "ListUsersRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUsersResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUsersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "LookbackWindow$ColumnName": "<p>The name of the lookback window column.</p>",
         "MaximumMinimumComputation$Name": "<p>The name of a computation.</p>",
         "MetricComparisonComputation$Name": "<p>The name of a computation.</p>",
         "NamespaceError$Message": "<p>The message for the error.</p>",
@@ -8296,10 +8510,14 @@
         "PreconditionNotMetException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "PrincipalList$member": null,
         "ProjectedColumnList$member": null,
+        "PutDataSetRefreshPropertiesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "QueueInfo$WaitingOnIngestion": "<p>The ID of the queued ingestion.</p>",
         "QueueInfo$QueuedIngestion": "<p>The ID of the ongoing ingestion. The queued ingestion is waiting for the ongoing ingestion to complete.</p>",
         "QuickSightUserNotFoundException$Message": null,
         "QuickSightUserNotFoundException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
+        "RefreshFrequency$Timezone": "<p>The timezone that you want the refresh schedule to use. The timezone ID must match a corresponding ID found on <code>java.util.time.getAvailableIDs()</code>.</p>",
+        "RefreshFrequency$TimeOfTheDay": "<p>The time of day that you want the datset to refresh. This value is expressed in HH:MM format. This field is not required for schedules that refresh hourly.</p>",
+        "RefreshSchedule$ScheduleId": "<p>An identifier for the refresh schedule.</p>",
         "RegisterUserRequest$Email": "<p>The email address of the user that you want to register.</p>",
         "RegisterUserRequest$IamArn": "<p>The ARN of the IAM user or role that you are registering with Amazon QuickSight. </p>",
         "RegisterUserRequest$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> </ul>",
@@ -8373,6 +8591,8 @@
         "UpdateIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateIpRestrictionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdatePublicSharingSettingsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateRefreshScheduleResponse$ScheduleId": "<p>The ID of the refresh schedule.</p>",
         "UpdateTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -9116,6 +9336,7 @@
         "FolderSummary$CreatedTime": "<p>The time that the folder was created.</p>",
         "FolderSummary$LastUpdatedTime": "<p>The time that the folder was last updated.</p>",
         "Ingestion$CreatedTime": "<p>The time that this ingestion started.</p>",
+        "RefreshSchedule$StartAfterDateTime": "<p>Time after which the refresh schedule can be started, expressed in <code>YYYY-MM-DDTHH:MM:SS</code> format.</p>",
         "Template$LastUpdatedTime": "<p>Time when this was last updated.</p>",
         "Template$CreatedTime": "<p>Time when this was created.</p>",
         "TemplateSummary$CreatedTime": "<p>The last time that this template was created.</p>",
@@ -9556,6 +9777,16 @@
       }
     },
     "UpdatePublicSharingSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRefreshScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRefreshScheduleResponse": {
       "base": null,
       "refs": {
       }

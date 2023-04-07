@@ -1,3 +1,19 @@
+Release v1.44.239 (2023-04-07)
+===
+
+### Service Client Updates
+* `service/dlm`: Adds new service
+* `service/docdb`: Updates service API and documentation
+  * This release adds a new parameter 'DBClusterParameterGroupName' to 'RestoreDBClusterFromSnapshot' API to associate the name of the DB cluster parameter group while performing restore.
+* `service/fsx`: Updates service documentation
+* `service/lambda`: Updates service API and documentation
+  * This release adds a new Lambda InvokeWithResponseStream API to support streaming Lambda function responses. The release also adds a new InvokeMode parameter to Function Url APIs to control whether the response will be streamed or buffered.
+* `service/quicksight`: Updates service API and documentation
+  * This release has two changes: adding the OR condition to tag-based RLS rules in CreateDataSet and UpdateDataSet; adding RefreshSchedule and Incremental RefreshProperties operations for users to programmatically configure SPICE dataset ingestions.
+* `service/redshift-data`: Updates service documentation
+* `service/servicecatalog`: Updates service documentation
+  * Updates description for property
+
 Release v1.44.238 (2023-04-06)
 ===
 

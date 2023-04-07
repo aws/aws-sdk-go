@@ -603,6 +603,43 @@
       ],
       "deprecated":true
     },
+    "InvokeWithResponseStream":{
+      "name":"InvokeWithResponseStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-11-15/functions/{FunctionName}/response-streaming-invocations"
+      },
+      "input":{"shape":"InvokeWithResponseStreamRequest"},
+      "output":{"shape":"InvokeWithResponseStreamResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestContentException"},
+        {"shape":"RequestTooLargeException"},
+        {"shape":"UnsupportedMediaTypeException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"EC2UnexpectedException"},
+        {"shape":"SubnetIPAddressLimitReachedException"},
+        {"shape":"ENILimitReachedException"},
+        {"shape":"EFSMountConnectivityException"},
+        {"shape":"EFSMountFailureException"},
+        {"shape":"EFSMountTimeoutException"},
+        {"shape":"EFSIOException"},
+        {"shape":"EC2ThrottledException"},
+        {"shape":"EC2AccessDeniedException"},
+        {"shape":"InvalidSubnetIDException"},
+        {"shape":"InvalidSecurityGroupIDException"},
+        {"shape":"InvalidZipFileException"},
+        {"shape":"KMSDisabledException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSAccessDeniedException"},
+        {"shape":"KMSNotFoundException"},
+        {"shape":"InvalidRuntimeException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ResourceNotReadyException"}
+      ]
+    },
     "ListAliases":{
       "name":"ListAliases",
       "http":{
@@ -1513,7 +1550,8 @@
           "locationName":"Qualifier"
         },
         "AuthType":{"shape":"FunctionUrlAuthType"},
-        "Cors":{"shape":"Cors"}
+        "Cors":{"shape":"Cors"},
+        "InvokeMode":{"shape":"InvokeMode"}
       }
     },
     "CreateFunctionUrlConfigResponse":{
@@ -1529,7 +1567,8 @@
         "FunctionArn":{"shape":"FunctionArn"},
         "AuthType":{"shape":"FunctionUrlAuthType"},
         "Cors":{"shape":"Cors"},
-        "CreationTime":{"shape":"Timestamp"}
+        "CreationTime":{"shape":"Timestamp"},
+        "InvokeMode":{"shape":"InvokeMode"}
       }
     },
     "DatabaseName":{
@@ -2091,7 +2130,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "Cors":{"shape":"Cors"},
-        "AuthType":{"shape":"FunctionUrlAuthType"}
+        "AuthType":{"shape":"FunctionUrlAuthType"},
+        "InvokeMode":{"shape":"InvokeMode"}
       }
     },
     "FunctionUrlConfigList":{
@@ -2295,7 +2335,8 @@
         "AuthType":{"shape":"FunctionUrlAuthType"},
         "Cors":{"shape":"Cors"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModifiedTime":{"shape":"Timestamp"}
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "InvokeMode":{"shape":"InvokeMode"}
       }
     },
     "GetLayerVersionByArnRequest":{
@@ -2640,6 +2681,94 @@
         }
       },
       "deprecated":true
+    },
+    "InvokeMode":{
+      "type":"string",
+      "enum":[
+        "BUFFERED",
+        "RESPONSE_STREAM"
+      ]
+    },
+    "InvokeResponseStreamUpdate":{
+      "type":"structure",
+      "members":{
+        "Payload":{
+          "shape":"Blob",
+          "eventpayload":true
+        }
+      },
+      "event":true
+    },
+    "InvokeWithResponseStreamCompleteEvent":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorDetails":{"shape":"String"},
+        "LogResult":{"shape":"String"}
+      },
+      "event":true
+    },
+    "InvokeWithResponseStreamRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"NamespacedFunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "InvocationType":{
+          "shape":"ResponseStreamingInvocationType",
+          "location":"header",
+          "locationName":"X-Amz-Invocation-Type"
+        },
+        "LogType":{
+          "shape":"LogType",
+          "location":"header",
+          "locationName":"X-Amz-Log-Type"
+        },
+        "ClientContext":{
+          "shape":"String",
+          "location":"header",
+          "locationName":"X-Amz-Client-Context"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        },
+        "Payload":{"shape":"Blob"}
+      },
+      "payload":"Payload"
+    },
+    "InvokeWithResponseStreamResponse":{
+      "type":"structure",
+      "members":{
+        "StatusCode":{
+          "shape":"Integer",
+          "location":"statusCode"
+        },
+        "ExecutedVersion":{
+          "shape":"Version",
+          "location":"header",
+          "locationName":"X-Amz-Executed-Version"
+        },
+        "EventStream":{"shape":"InvokeWithResponseStreamResponseEvent"},
+        "ResponseStreamContentType":{
+          "shape":"String",
+          "location":"header",
+          "locationName":"Content-Type"
+        }
+      },
+      "payload":"EventStream"
+    },
+    "InvokeWithResponseStreamResponseEvent":{
+      "type":"structure",
+      "members":{
+        "PayloadChunk":{"shape":"InvokeResponseStreamUpdate"},
+        "InvokeComplete":{"shape":"InvokeWithResponseStreamCompleteEvent"}
+      },
+      "eventstream":true
     },
     "KMSAccessDeniedException":{
       "type":"structure",
@@ -3674,6 +3803,13 @@
       "error":{"httpStatusCode":502},
       "exception":true
     },
+    "ResponseStreamingInvocationType":{
+      "type":"string",
+      "enum":[
+        "RequestResponse",
+        "DryRun"
+      ]
+    },
     "RoleArn":{
       "type":"string",
       "pattern":"arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+"
@@ -4224,7 +4360,8 @@
           "locationName":"Qualifier"
         },
         "AuthType":{"shape":"FunctionUrlAuthType"},
-        "Cors":{"shape":"Cors"}
+        "Cors":{"shape":"Cors"},
+        "InvokeMode":{"shape":"InvokeMode"}
       }
     },
     "UpdateFunctionUrlConfigResponse":{
@@ -4242,7 +4379,8 @@
         "AuthType":{"shape":"FunctionUrlAuthType"},
         "Cors":{"shape":"Cors"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModifiedTime":{"shape":"Timestamp"}
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "InvokeMode":{"shape":"InvokeMode"}
       }
     },
     "UpdateRuntimeOn":{

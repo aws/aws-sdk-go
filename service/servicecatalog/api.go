@@ -20962,6 +20962,8 @@ type ProvisioningArtifactProperties struct {
 	//
 	//    * MARKETPLACE_CAR - Amazon Web Services Marketplace Clusters and Amazon
 	//    Web Services Resources
+	//
+	//    * TERRAFORM_OPEN_SOURCE - Terraform open source configuration file
 	Type *string `type:"string" enum:"ProvisioningArtifactType"`
 }
 

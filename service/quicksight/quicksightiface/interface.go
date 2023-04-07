@@ -116,6 +116,10 @@ type QuickSightAPI interface {
 	CreateNamespaceWithContext(aws.Context, *quicksight.CreateNamespaceInput, ...request.Option) (*quicksight.CreateNamespaceOutput, error)
 	CreateNamespaceRequest(*quicksight.CreateNamespaceInput) (*request.Request, *quicksight.CreateNamespaceOutput)
 
+	CreateRefreshSchedule(*quicksight.CreateRefreshScheduleInput) (*quicksight.CreateRefreshScheduleOutput, error)
+	CreateRefreshScheduleWithContext(aws.Context, *quicksight.CreateRefreshScheduleInput, ...request.Option) (*quicksight.CreateRefreshScheduleOutput, error)
+	CreateRefreshScheduleRequest(*quicksight.CreateRefreshScheduleInput) (*request.Request, *quicksight.CreateRefreshScheduleOutput)
+
 	CreateTemplate(*quicksight.CreateTemplateInput) (*quicksight.CreateTemplateOutput, error)
 	CreateTemplateWithContext(aws.Context, *quicksight.CreateTemplateInput, ...request.Option) (*quicksight.CreateTemplateOutput, error)
 	CreateTemplateRequest(*quicksight.CreateTemplateInput) (*request.Request, *quicksight.CreateTemplateOutput)
@@ -152,6 +156,10 @@ type QuickSightAPI interface {
 	DeleteDataSetWithContext(aws.Context, *quicksight.DeleteDataSetInput, ...request.Option) (*quicksight.DeleteDataSetOutput, error)
 	DeleteDataSetRequest(*quicksight.DeleteDataSetInput) (*request.Request, *quicksight.DeleteDataSetOutput)
 
+	DeleteDataSetRefreshProperties(*quicksight.DeleteDataSetRefreshPropertiesInput) (*quicksight.DeleteDataSetRefreshPropertiesOutput, error)
+	DeleteDataSetRefreshPropertiesWithContext(aws.Context, *quicksight.DeleteDataSetRefreshPropertiesInput, ...request.Option) (*quicksight.DeleteDataSetRefreshPropertiesOutput, error)
+	DeleteDataSetRefreshPropertiesRequest(*quicksight.DeleteDataSetRefreshPropertiesInput) (*request.Request, *quicksight.DeleteDataSetRefreshPropertiesOutput)
+
 	DeleteDataSource(*quicksight.DeleteDataSourceInput) (*quicksight.DeleteDataSourceOutput, error)
 	DeleteDataSourceWithContext(aws.Context, *quicksight.DeleteDataSourceInput, ...request.Option) (*quicksight.DeleteDataSourceOutput, error)
 	DeleteDataSourceRequest(*quicksight.DeleteDataSourceInput) (*request.Request, *quicksight.DeleteDataSourceOutput)
@@ -179,6 +187,10 @@ type QuickSightAPI interface {
 	DeleteNamespace(*quicksight.DeleteNamespaceInput) (*quicksight.DeleteNamespaceOutput, error)
 	DeleteNamespaceWithContext(aws.Context, *quicksight.DeleteNamespaceInput, ...request.Option) (*quicksight.DeleteNamespaceOutput, error)
 	DeleteNamespaceRequest(*quicksight.DeleteNamespaceInput) (*request.Request, *quicksight.DeleteNamespaceOutput)
+
+	DeleteRefreshSchedule(*quicksight.DeleteRefreshScheduleInput) (*quicksight.DeleteRefreshScheduleOutput, error)
+	DeleteRefreshScheduleWithContext(aws.Context, *quicksight.DeleteRefreshScheduleInput, ...request.Option) (*quicksight.DeleteRefreshScheduleOutput, error)
+	DeleteRefreshScheduleRequest(*quicksight.DeleteRefreshScheduleInput) (*request.Request, *quicksight.DeleteRefreshScheduleOutput)
 
 	DeleteTemplate(*quicksight.DeleteTemplateInput) (*quicksight.DeleteTemplateOutput, error)
 	DeleteTemplateWithContext(aws.Context, *quicksight.DeleteTemplateInput, ...request.Option) (*quicksight.DeleteTemplateOutput, error)
@@ -248,6 +260,10 @@ type QuickSightAPI interface {
 	DescribeDataSetPermissionsWithContext(aws.Context, *quicksight.DescribeDataSetPermissionsInput, ...request.Option) (*quicksight.DescribeDataSetPermissionsOutput, error)
 	DescribeDataSetPermissionsRequest(*quicksight.DescribeDataSetPermissionsInput) (*request.Request, *quicksight.DescribeDataSetPermissionsOutput)
 
+	DescribeDataSetRefreshProperties(*quicksight.DescribeDataSetRefreshPropertiesInput) (*quicksight.DescribeDataSetRefreshPropertiesOutput, error)
+	DescribeDataSetRefreshPropertiesWithContext(aws.Context, *quicksight.DescribeDataSetRefreshPropertiesInput, ...request.Option) (*quicksight.DescribeDataSetRefreshPropertiesOutput, error)
+	DescribeDataSetRefreshPropertiesRequest(*quicksight.DescribeDataSetRefreshPropertiesInput) (*request.Request, *quicksight.DescribeDataSetRefreshPropertiesOutput)
+
 	DescribeDataSource(*quicksight.DescribeDataSourceInput) (*quicksight.DescribeDataSourceOutput, error)
 	DescribeDataSourceWithContext(aws.Context, *quicksight.DescribeDataSourceInput, ...request.Option) (*quicksight.DescribeDataSourceOutput, error)
 	DescribeDataSourceRequest(*quicksight.DescribeDataSourceInput) (*request.Request, *quicksight.DescribeDataSourceOutput)
@@ -291,6 +307,10 @@ type QuickSightAPI interface {
 	DescribeNamespace(*quicksight.DescribeNamespaceInput) (*quicksight.DescribeNamespaceOutput, error)
 	DescribeNamespaceWithContext(aws.Context, *quicksight.DescribeNamespaceInput, ...request.Option) (*quicksight.DescribeNamespaceOutput, error)
 	DescribeNamespaceRequest(*quicksight.DescribeNamespaceInput) (*request.Request, *quicksight.DescribeNamespaceOutput)
+
+	DescribeRefreshSchedule(*quicksight.DescribeRefreshScheduleInput) (*quicksight.DescribeRefreshScheduleOutput, error)
+	DescribeRefreshScheduleWithContext(aws.Context, *quicksight.DescribeRefreshScheduleInput, ...request.Option) (*quicksight.DescribeRefreshScheduleOutput, error)
+	DescribeRefreshScheduleRequest(*quicksight.DescribeRefreshScheduleInput) (*request.Request, *quicksight.DescribeRefreshScheduleOutput)
 
 	DescribeTemplate(*quicksight.DescribeTemplateInput) (*quicksight.DescribeTemplateOutput, error)
 	DescribeTemplateWithContext(aws.Context, *quicksight.DescribeTemplateInput, ...request.Option) (*quicksight.DescribeTemplateOutput, error)
@@ -413,6 +433,10 @@ type QuickSightAPI interface {
 	ListNamespacesPages(*quicksight.ListNamespacesInput, func(*quicksight.ListNamespacesOutput, bool) bool) error
 	ListNamespacesPagesWithContext(aws.Context, *quicksight.ListNamespacesInput, func(*quicksight.ListNamespacesOutput, bool) bool, ...request.Option) error
 
+	ListRefreshSchedules(*quicksight.ListRefreshSchedulesInput) (*quicksight.ListRefreshSchedulesOutput, error)
+	ListRefreshSchedulesWithContext(aws.Context, *quicksight.ListRefreshSchedulesInput, ...request.Option) (*quicksight.ListRefreshSchedulesOutput, error)
+	ListRefreshSchedulesRequest(*quicksight.ListRefreshSchedulesInput) (*request.Request, *quicksight.ListRefreshSchedulesOutput)
+
 	ListTagsForResource(*quicksight.ListTagsForResourceInput) (*quicksight.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *quicksight.ListTagsForResourceInput, ...request.Option) (*quicksight.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*quicksight.ListTagsForResourceInput) (*request.Request, *quicksight.ListTagsForResourceOutput)
@@ -463,6 +487,10 @@ type QuickSightAPI interface {
 	ListUsers(*quicksight.ListUsersInput) (*quicksight.ListUsersOutput, error)
 	ListUsersWithContext(aws.Context, *quicksight.ListUsersInput, ...request.Option) (*quicksight.ListUsersOutput, error)
 	ListUsersRequest(*quicksight.ListUsersInput) (*request.Request, *quicksight.ListUsersOutput)
+
+	PutDataSetRefreshProperties(*quicksight.PutDataSetRefreshPropertiesInput) (*quicksight.PutDataSetRefreshPropertiesOutput, error)
+	PutDataSetRefreshPropertiesWithContext(aws.Context, *quicksight.PutDataSetRefreshPropertiesInput, ...request.Option) (*quicksight.PutDataSetRefreshPropertiesOutput, error)
+	PutDataSetRefreshPropertiesRequest(*quicksight.PutDataSetRefreshPropertiesInput) (*request.Request, *quicksight.PutDataSetRefreshPropertiesOutput)
 
 	RegisterUser(*quicksight.RegisterUserInput) (*quicksight.RegisterUserOutput, error)
 	RegisterUserWithContext(aws.Context, *quicksight.RegisterUserInput, ...request.Option) (*quicksight.RegisterUserOutput, error)
@@ -583,6 +611,10 @@ type QuickSightAPI interface {
 	UpdatePublicSharingSettings(*quicksight.UpdatePublicSharingSettingsInput) (*quicksight.UpdatePublicSharingSettingsOutput, error)
 	UpdatePublicSharingSettingsWithContext(aws.Context, *quicksight.UpdatePublicSharingSettingsInput, ...request.Option) (*quicksight.UpdatePublicSharingSettingsOutput, error)
 	UpdatePublicSharingSettingsRequest(*quicksight.UpdatePublicSharingSettingsInput) (*request.Request, *quicksight.UpdatePublicSharingSettingsOutput)
+
+	UpdateRefreshSchedule(*quicksight.UpdateRefreshScheduleInput) (*quicksight.UpdateRefreshScheduleOutput, error)
+	UpdateRefreshScheduleWithContext(aws.Context, *quicksight.UpdateRefreshScheduleInput, ...request.Option) (*quicksight.UpdateRefreshScheduleOutput, error)
+	UpdateRefreshScheduleRequest(*quicksight.UpdateRefreshScheduleInput) (*request.Request, *quicksight.UpdateRefreshScheduleOutput)
 
 	UpdateTemplate(*quicksight.UpdateTemplateInput) (*quicksight.UpdateTemplateOutput, error)
 	UpdateTemplateWithContext(aws.Context, *quicksight.UpdateTemplateInput, ...request.Option) (*quicksight.UpdateTemplateOutput, error)

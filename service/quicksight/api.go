@@ -1569,6 +1569,111 @@ func (c *QuickSight) CreateNamespaceWithContext(ctx aws.Context, input *CreateNa
 	return out, req.Send()
 }
 
+const opCreateRefreshSchedule = "CreateRefreshSchedule"
+
+// CreateRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRefreshSchedule for more information on using the CreateRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateRefreshScheduleRequest method.
+//	req, resp := client.CreateRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateRefreshSchedule
+func (c *QuickSight) CreateRefreshScheduleRequest(input *CreateRefreshScheduleInput) (req *request.Request, output *CreateRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opCreateRefreshSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules",
+	}
+
+	if input == nil {
+		input = &CreateRefreshScheduleInput{}
+	}
+
+	output = &CreateRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRefreshSchedule API operation for Amazon QuickSight.
+//
+// Creates a refresh schedule for a dataset. You can create up to 5 different
+// schedules for a single dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateRefreshSchedule
+func (c *QuickSight) CreateRefreshSchedule(input *CreateRefreshScheduleInput) (*CreateRefreshScheduleOutput, error) {
+	req, out := c.CreateRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// CreateRefreshScheduleWithContext is the same as CreateRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateRefreshScheduleWithContext(ctx aws.Context, input *CreateRefreshScheduleInput, opts ...request.Option) (*CreateRefreshScheduleOutput, error) {
+	req, out := c.CreateRefreshScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTemplate = "CreateTemplate"
 
 // CreateTemplateRequest generates a "aws/request.Request" representing the
@@ -2518,6 +2623,107 @@ func (c *QuickSight) DeleteDataSetWithContext(ctx aws.Context, input *DeleteData
 	return out, req.Send()
 }
 
+const opDeleteDataSetRefreshProperties = "DeleteDataSetRefreshProperties"
+
+// DeleteDataSetRefreshPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataSetRefreshProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataSetRefreshProperties for more information on using the DeleteDataSetRefreshProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDataSetRefreshPropertiesRequest method.
+//	req, resp := client.DeleteDataSetRefreshPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteDataSetRefreshProperties
+func (c *QuickSight) DeleteDataSetRefreshPropertiesRequest(input *DeleteDataSetRefreshPropertiesInput) (req *request.Request, output *DeleteDataSetRefreshPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataSetRefreshProperties,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties",
+	}
+
+	if input == nil {
+		input = &DeleteDataSetRefreshPropertiesInput{}
+	}
+
+	output = &DeleteDataSetRefreshPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDataSetRefreshProperties API operation for Amazon QuickSight.
+//
+// Deletes the dataset refresh properties of the dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteDataSetRefreshProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteDataSetRefreshProperties
+func (c *QuickSight) DeleteDataSetRefreshProperties(input *DeleteDataSetRefreshPropertiesInput) (*DeleteDataSetRefreshPropertiesOutput, error) {
+	req, out := c.DeleteDataSetRefreshPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataSetRefreshPropertiesWithContext is the same as DeleteDataSetRefreshProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataSetRefreshProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteDataSetRefreshPropertiesWithContext(ctx aws.Context, input *DeleteDataSetRefreshPropertiesInput, opts ...request.Option) (*DeleteDataSetRefreshPropertiesOutput, error) {
+	req, out := c.DeleteDataSetRefreshPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDataSource = "DeleteDataSource"
 
 // DeleteDataSourceRequest generates a "aws/request.Request" representing the
@@ -3226,6 +3432,104 @@ func (c *QuickSight) DeleteNamespace(input *DeleteNamespaceInput) (*DeleteNamesp
 // for more information on using Contexts.
 func (c *QuickSight) DeleteNamespaceWithContext(ctx aws.Context, input *DeleteNamespaceInput, opts ...request.Option) (*DeleteNamespaceOutput, error) {
 	req, out := c.DeleteNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRefreshSchedule = "DeleteRefreshSchedule"
+
+// DeleteRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRefreshSchedule for more information on using the DeleteRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteRefreshScheduleRequest method.
+//	req, resp := client.DeleteRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteRefreshSchedule
+func (c *QuickSight) DeleteRefreshScheduleRequest(input *DeleteRefreshScheduleInput) (req *request.Request, output *DeleteRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRefreshSchedule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules/{ScheduleId}",
+	}
+
+	if input == nil {
+		input = &DeleteRefreshScheduleInput{}
+	}
+
+	output = &DeleteRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteRefreshSchedule API operation for Amazon QuickSight.
+//
+// Deletes a refresh schedule from a dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteRefreshSchedule
+func (c *QuickSight) DeleteRefreshSchedule(input *DeleteRefreshScheduleInput) (*DeleteRefreshScheduleOutput, error) {
+	req, out := c.DeleteRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRefreshScheduleWithContext is the same as DeleteRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteRefreshScheduleWithContext(ctx aws.Context, input *DeleteRefreshScheduleInput, opts ...request.Option) (*DeleteRefreshScheduleOutput, error) {
+	req, out := c.DeleteRefreshScheduleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4982,6 +5286,107 @@ func (c *QuickSight) DescribeDataSetPermissionsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDescribeDataSetRefreshProperties = "DescribeDataSetRefreshProperties"
+
+// DescribeDataSetRefreshPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataSetRefreshProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataSetRefreshProperties for more information on using the DescribeDataSetRefreshProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDataSetRefreshPropertiesRequest method.
+//	req, resp := client.DescribeDataSetRefreshPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeDataSetRefreshProperties
+func (c *QuickSight) DescribeDataSetRefreshPropertiesRequest(input *DescribeDataSetRefreshPropertiesInput) (req *request.Request, output *DescribeDataSetRefreshPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataSetRefreshProperties,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties",
+	}
+
+	if input == nil {
+		input = &DescribeDataSetRefreshPropertiesInput{}
+	}
+
+	output = &DescribeDataSetRefreshPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataSetRefreshProperties API operation for Amazon QuickSight.
+//
+// Describes the refresh properties of a dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeDataSetRefreshProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeDataSetRefreshProperties
+func (c *QuickSight) DescribeDataSetRefreshProperties(input *DescribeDataSetRefreshPropertiesInput) (*DescribeDataSetRefreshPropertiesOutput, error) {
+	req, out := c.DescribeDataSetRefreshPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDataSetRefreshPropertiesWithContext is the same as DescribeDataSetRefreshProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataSetRefreshProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeDataSetRefreshPropertiesWithContext(ctx aws.Context, input *DescribeDataSetRefreshPropertiesInput, opts ...request.Option) (*DescribeDataSetRefreshPropertiesOutput, error) {
+	req, out := c.DescribeDataSetRefreshPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDataSource = "DescribeDataSource"
 
 // DescribeDataSourceRequest generates a "aws/request.Request" representing the
@@ -6066,6 +6471,104 @@ func (c *QuickSight) DescribeNamespace(input *DescribeNamespaceInput) (*Describe
 // for more information on using Contexts.
 func (c *QuickSight) DescribeNamespaceWithContext(ctx aws.Context, input *DescribeNamespaceInput, opts ...request.Option) (*DescribeNamespaceOutput, error) {
 	req, out := c.DescribeNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRefreshSchedule = "DescribeRefreshSchedule"
+
+// DescribeRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRefreshSchedule for more information on using the DescribeRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeRefreshScheduleRequest method.
+//	req, resp := client.DescribeRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeRefreshSchedule
+func (c *QuickSight) DescribeRefreshScheduleRequest(input *DescribeRefreshScheduleInput) (req *request.Request, output *DescribeRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRefreshSchedule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules/{ScheduleId}",
+	}
+
+	if input == nil {
+		input = &DescribeRefreshScheduleInput{}
+	}
+
+	output = &DescribeRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRefreshSchedule API operation for Amazon QuickSight.
+//
+// Provides a summary of a refresh schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeRefreshSchedule
+func (c *QuickSight) DescribeRefreshSchedule(input *DescribeRefreshScheduleInput) (*DescribeRefreshScheduleOutput, error) {
+	req, out := c.DescribeRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRefreshScheduleWithContext is the same as DescribeRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeRefreshScheduleWithContext(ctx aws.Context, input *DescribeRefreshScheduleInput, opts ...request.Option) (*DescribeRefreshScheduleOutput, error) {
+	req, out := c.DescribeRefreshScheduleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9146,6 +9649,104 @@ func (c *QuickSight) ListNamespacesPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListRefreshSchedules = "ListRefreshSchedules"
+
+// ListRefreshSchedulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRefreshSchedules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRefreshSchedules for more information on using the ListRefreshSchedules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRefreshSchedulesRequest method.
+//	req, resp := client.ListRefreshSchedulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListRefreshSchedules
+func (c *QuickSight) ListRefreshSchedulesRequest(input *ListRefreshSchedulesInput) (req *request.Request, output *ListRefreshSchedulesOutput) {
+	op := &request.Operation{
+		Name:       opListRefreshSchedules,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules",
+	}
+
+	if input == nil {
+		input = &ListRefreshSchedulesInput{}
+	}
+
+	output = &ListRefreshSchedulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRefreshSchedules API operation for Amazon QuickSight.
+//
+// Lists the refresh schedules of a dataset. Each dataset can have up to 5 schedules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListRefreshSchedules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListRefreshSchedules
+func (c *QuickSight) ListRefreshSchedules(input *ListRefreshSchedulesInput) (*ListRefreshSchedulesOutput, error) {
+	req, out := c.ListRefreshSchedulesRequest(input)
+	return out, req.Send()
+}
+
+// ListRefreshSchedulesWithContext is the same as ListRefreshSchedules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRefreshSchedules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListRefreshSchedulesWithContext(ctx aws.Context, input *ListRefreshSchedulesInput, opts ...request.Option) (*ListRefreshSchedulesOutput, error) {
+	req, out := c.ListRefreshSchedulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -10324,6 +10925,110 @@ func (c *QuickSight) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) 
 // for more information on using Contexts.
 func (c *QuickSight) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, opts ...request.Option) (*ListUsersOutput, error) {
 	req, out := c.ListUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutDataSetRefreshProperties = "PutDataSetRefreshProperties"
+
+// PutDataSetRefreshPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the PutDataSetRefreshProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutDataSetRefreshProperties for more information on using the PutDataSetRefreshProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutDataSetRefreshPropertiesRequest method.
+//	req, resp := client.PutDataSetRefreshPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/PutDataSetRefreshProperties
+func (c *QuickSight) PutDataSetRefreshPropertiesRequest(input *PutDataSetRefreshPropertiesInput) (req *request.Request, output *PutDataSetRefreshPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opPutDataSetRefreshProperties,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-properties",
+	}
+
+	if input == nil {
+		input = &PutDataSetRefreshPropertiesInput{}
+	}
+
+	output = &PutDataSetRefreshPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutDataSetRefreshProperties API operation for Amazon QuickSight.
+//
+// Creates or updates the dataset refresh properties for the dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation PutDataSetRefreshProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/PutDataSetRefreshProperties
+func (c *QuickSight) PutDataSetRefreshProperties(input *PutDataSetRefreshPropertiesInput) (*PutDataSetRefreshPropertiesOutput, error) {
+	req, out := c.PutDataSetRefreshPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// PutDataSetRefreshPropertiesWithContext is the same as PutDataSetRefreshProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutDataSetRefreshProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) PutDataSetRefreshPropertiesWithContext(ctx aws.Context, input *PutDataSetRefreshPropertiesInput, opts ...request.Option) (*PutDataSetRefreshPropertiesOutput, error) {
+	req, out := c.PutDataSetRefreshPropertiesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13336,6 +14041,107 @@ func (c *QuickSight) UpdatePublicSharingSettings(input *UpdatePublicSharingSetti
 // for more information on using Contexts.
 func (c *QuickSight) UpdatePublicSharingSettingsWithContext(ctx aws.Context, input *UpdatePublicSharingSettingsInput, opts ...request.Option) (*UpdatePublicSharingSettingsOutput, error) {
 	req, out := c.UpdatePublicSharingSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRefreshSchedule = "UpdateRefreshSchedule"
+
+// UpdateRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRefreshSchedule for more information on using the UpdateRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateRefreshScheduleRequest method.
+//	req, resp := client.UpdateRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateRefreshSchedule
+func (c *QuickSight) UpdateRefreshScheduleRequest(input *UpdateRefreshScheduleInput) (req *request.Request, output *UpdateRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRefreshSchedule,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules",
+	}
+
+	if input == nil {
+		input = &UpdateRefreshScheduleInput{}
+	}
+
+	output = &UpdateRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRefreshSchedule API operation for Amazon QuickSight.
+//
+// Updates a refresh schedule for a dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateRefreshSchedule
+func (c *QuickSight) UpdateRefreshSchedule(input *UpdateRefreshScheduleInput) (*UpdateRefreshScheduleOutput, error) {
+	req, out := c.UpdateRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRefreshScheduleWithContext is the same as UpdateRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateRefreshScheduleWithContext(ctx aws.Context, input *UpdateRefreshScheduleInput, opts ...request.Option) (*UpdateRefreshScheduleOutput, error) {
+	req, out := c.UpdateRefreshScheduleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -24630,6 +25436,149 @@ func (s *CreateNamespaceOutput) SetStatus(v int64) *CreateNamespaceOutput {
 	return s
 }
 
+type CreateRefreshScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// The refresh schedule.
+	//
+	// Schedule is a required field
+	Schedule *RefreshSchedule `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.Schedule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Schedule"))
+	}
+	if s.Schedule != nil {
+		if err := s.Schedule.Validate(); err != nil {
+			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateRefreshScheduleInput) SetAwsAccountId(v string) *CreateRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *CreateRefreshScheduleInput) SetDataSetId(v string) *CreateRefreshScheduleInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *CreateRefreshScheduleInput) SetSchedule(v *RefreshSchedule) *CreateRefreshScheduleInput {
+	s.Schedule = v
+	return s
+}
+
+type CreateRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the refresh schedule.
+	Arn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The ID of the refresh schedule.
+	ScheduleId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateRefreshScheduleOutput) SetArn(v string) *CreateRefreshScheduleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateRefreshScheduleOutput) SetRequestId(v string) *CreateRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetScheduleId sets the ScheduleId field's value.
+func (s *CreateRefreshScheduleOutput) SetScheduleId(v string) *CreateRefreshScheduleOutput {
+	s.ScheduleId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateRefreshScheduleOutput) SetStatus(v int64) *CreateRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
 type CreateTemplateAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -28866,6 +29815,58 @@ func (s *DataSetReference) SetDataSetPlaceholder(v string) *DataSetReference {
 	return s
 }
 
+// The refresh properties of a dataset.
+type DataSetRefreshProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The refresh configuration for a dataset.
+	//
+	// RefreshConfiguration is a required field
+	RefreshConfiguration *RefreshConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSetRefreshProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSetRefreshProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSetRefreshProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSetRefreshProperties"}
+	if s.RefreshConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefreshConfiguration"))
+	}
+	if s.RefreshConfiguration != nil {
+		if err := s.RefreshConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RefreshConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRefreshConfiguration sets the RefreshConfiguration field's value.
+func (s *DataSetRefreshProperties) SetRefreshConfiguration(v *RefreshConfiguration) *DataSetRefreshProperties {
+	s.RefreshConfiguration = v
+	return s
+}
+
 // Dataset schema.
 type DataSetSchema struct {
 	_ struct{} `type:"structure"`
@@ -32012,6 +33013,112 @@ func (s *DeleteDataSetOutput) SetStatus(v int64) *DeleteDataSetOutput {
 	return s
 }
 
+type DeleteDataSetRefreshPropertiesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataSetRefreshPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataSetRefreshPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataSetRefreshPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataSetRefreshPropertiesInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteDataSetRefreshPropertiesInput) SetAwsAccountId(v string) *DeleteDataSetRefreshPropertiesInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *DeleteDataSetRefreshPropertiesInput) SetDataSetId(v string) *DeleteDataSetRefreshPropertiesInput {
+	s.DataSetId = &v
+	return s
+}
+
+type DeleteDataSetRefreshPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataSetRefreshPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataSetRefreshPropertiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteDataSetRefreshPropertiesOutput) SetRequestId(v string) *DeleteDataSetRefreshPropertiesOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteDataSetRefreshPropertiesOutput) SetStatus(v int64) *DeleteDataSetRefreshPropertiesOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteDataSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -32906,6 +34013,147 @@ func (s *DeleteNamespaceOutput) SetRequestId(v string) *DeleteNamespaceOutput {
 
 // SetStatus sets the Status field's value.
 func (s *DeleteNamespaceOutput) SetStatus(v int64) *DeleteNamespaceOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteRefreshScheduleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// The ID of the refresh schedule.
+	//
+	// ScheduleId is a required field
+	ScheduleId *string `location:"uri" locationName:"ScheduleId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.ScheduleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleId"))
+	}
+	if s.ScheduleId != nil && len(*s.ScheduleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScheduleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteRefreshScheduleInput) SetAwsAccountId(v string) *DeleteRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *DeleteRefreshScheduleInput) SetDataSetId(v string) *DeleteRefreshScheduleInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetScheduleId sets the ScheduleId field's value.
+func (s *DeleteRefreshScheduleInput) SetScheduleId(v string) *DeleteRefreshScheduleInput {
+	s.ScheduleId = &v
+	return s
+}
+
+type DeleteRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the refresh schedule.
+	Arn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The ID of the refresh schedule.
+	ScheduleId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteRefreshScheduleOutput) SetArn(v string) *DeleteRefreshScheduleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteRefreshScheduleOutput) SetRequestId(v string) *DeleteRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetScheduleId sets the ScheduleId field's value.
+func (s *DeleteRefreshScheduleOutput) SetScheduleId(v string) *DeleteRefreshScheduleOutput {
+	s.ScheduleId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteRefreshScheduleOutput) SetStatus(v int64) *DeleteRefreshScheduleOutput {
 	s.Status = &v
 	return s
 }
@@ -35308,6 +36556,121 @@ func (s *DescribeDataSetPermissionsOutput) SetStatus(v int64) *DescribeDataSetPe
 	return s
 }
 
+type DescribeDataSetRefreshPropertiesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataSetRefreshPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataSetRefreshPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDataSetRefreshPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDataSetRefreshPropertiesInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeDataSetRefreshPropertiesInput) SetAwsAccountId(v string) *DescribeDataSetRefreshPropertiesInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *DescribeDataSetRefreshPropertiesInput) SetDataSetId(v string) *DescribeDataSetRefreshPropertiesInput {
+	s.DataSetId = &v
+	return s
+}
+
+type DescribeDataSetRefreshPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The dataset refresh properties.
+	DataSetRefreshProperties *DataSetRefreshProperties `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataSetRefreshPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataSetRefreshPropertiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataSetRefreshProperties sets the DataSetRefreshProperties field's value.
+func (s *DescribeDataSetRefreshPropertiesOutput) SetDataSetRefreshProperties(v *DataSetRefreshProperties) *DescribeDataSetRefreshPropertiesOutput {
+	s.DataSetRefreshProperties = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeDataSetRefreshPropertiesOutput) SetRequestId(v string) *DescribeDataSetRefreshPropertiesOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeDataSetRefreshPropertiesOutput) SetStatus(v int64) *DescribeDataSetRefreshPropertiesOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeDataSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -36724,6 +38087,147 @@ func (s *DescribeNamespaceOutput) SetRequestId(v string) *DescribeNamespaceOutpu
 
 // SetStatus sets the Status field's value.
 func (s *DescribeNamespaceOutput) SetStatus(v int64) *DescribeNamespaceOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeRefreshScheduleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// The ID of the refresh schedule.
+	//
+	// ScheduleId is a required field
+	ScheduleId *string `location:"uri" locationName:"ScheduleId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.ScheduleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleId"))
+	}
+	if s.ScheduleId != nil && len(*s.ScheduleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScheduleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeRefreshScheduleInput) SetAwsAccountId(v string) *DescribeRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *DescribeRefreshScheduleInput) SetDataSetId(v string) *DescribeRefreshScheduleInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetScheduleId sets the ScheduleId field's value.
+func (s *DescribeRefreshScheduleInput) SetScheduleId(v string) *DescribeRefreshScheduleInput {
+	s.ScheduleId = &v
+	return s
+}
+
+type DescribeRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the refresh schedule.
+	Arn *string `type:"string"`
+
+	// The refresh schedule.
+	RefreshSchedule *RefreshSchedule `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeRefreshScheduleOutput) SetArn(v string) *DescribeRefreshScheduleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRefreshSchedule sets the RefreshSchedule field's value.
+func (s *DescribeRefreshScheduleOutput) SetRefreshSchedule(v *RefreshSchedule) *DescribeRefreshScheduleOutput {
+	s.RefreshSchedule = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeRefreshScheduleOutput) SetRequestId(v string) *DescribeRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeRefreshScheduleOutput) SetStatus(v int64) *DescribeRefreshScheduleOutput {
 	s.Status = &v
 	return s
 }
@@ -47426,6 +48930,58 @@ func (s *IdentityTypeNotSupportedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The incremental refresh configuration for a dataset.
+type IncrementalRefresh struct {
+	_ struct{} `type:"structure"`
+
+	// The lookback window setup for an incremental refresh configuration.
+	//
+	// LookbackWindow is a required field
+	LookbackWindow *LookbackWindow `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IncrementalRefresh) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IncrementalRefresh) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IncrementalRefresh) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IncrementalRefresh"}
+	if s.LookbackWindow == nil {
+		invalidParams.Add(request.NewErrParamRequired("LookbackWindow"))
+	}
+	if s.LookbackWindow != nil {
+		if err := s.LookbackWindow.Validate(); err != nil {
+			invalidParams.AddNested("LookbackWindow", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLookbackWindow sets the LookbackWindow field's value.
+func (s *IncrementalRefresh) SetLookbackWindow(v *LookbackWindow) *IncrementalRefresh {
+	s.LookbackWindow = v
+	return s
+}
+
 // Information about the SPICE ingestion for a dataset.
 type Ingestion struct {
 	_ struct{} `type:"structure"`
@@ -52575,6 +54131,121 @@ func (s *ListNamespacesOutput) SetStatus(v int64) *ListNamespacesOutput {
 	return s
 }
 
+type ListRefreshSchedulesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRefreshSchedulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRefreshSchedulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRefreshSchedulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRefreshSchedulesInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListRefreshSchedulesInput) SetAwsAccountId(v string) *ListRefreshSchedulesInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ListRefreshSchedulesInput) SetDataSetId(v string) *ListRefreshSchedulesInput {
+	s.DataSetId = &v
+	return s
+}
+
+type ListRefreshSchedulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of refresh schedules for the dataset.
+	RefreshSchedules []*RefreshSchedule `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRefreshSchedulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRefreshSchedulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRefreshSchedules sets the RefreshSchedules field's value.
+func (s *ListRefreshSchedulesOutput) SetRefreshSchedules(v []*RefreshSchedule) *ListRefreshSchedulesOutput {
+	s.RefreshSchedules = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListRefreshSchedulesOutput) SetRequestId(v string) *ListRefreshSchedulesOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListRefreshSchedulesOutput) SetStatus(v int64) *ListRefreshSchedulesOutput {
+	s.Status = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -54146,6 +55817,85 @@ func (s *LongFormatText) SetPlainText(v string) *LongFormatText {
 // SetRichText sets the RichText field's value.
 func (s *LongFormatText) SetRichText(v string) *LongFormatText {
 	s.RichText = &v
+	return s
+}
+
+// The lookback window setup of an incremental refresh configuration.
+type LookbackWindow struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the lookback window column.
+	//
+	// ColumnName is a required field
+	ColumnName *string `type:"string" required:"true"`
+
+	// The lookback window column size.
+	//
+	// Size is a required field
+	Size *int64 `min:"1" type:"long" required:"true"`
+
+	// The size unit that is used for the lookback window column. Valid values for
+	// this structure are HOUR, DAY, and WEEK.
+	//
+	// SizeUnit is a required field
+	SizeUnit *string `type:"string" required:"true" enum:"LookbackWindowSizeUnit"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LookbackWindow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LookbackWindow) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LookbackWindow) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LookbackWindow"}
+	if s.ColumnName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ColumnName"))
+	}
+	if s.Size == nil {
+		invalidParams.Add(request.NewErrParamRequired("Size"))
+	}
+	if s.Size != nil && *s.Size < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Size", 1))
+	}
+	if s.SizeUnit == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeUnit"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *LookbackWindow) SetColumnName(v string) *LookbackWindow {
+	s.ColumnName = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *LookbackWindow) SetSize(v int64) *LookbackWindow {
+	s.Size = &v
+	return s
+}
+
+// SetSizeUnit sets the SizeUnit field's value.
+func (s *LookbackWindow) SetSizeUnit(v string) *LookbackWindow {
+	s.SizeUnit = &v
 	return s
 }
 
@@ -60397,6 +62147,131 @@ func (s *ProjectOperation) SetProjectedColumns(v []*string) *ProjectOperation {
 	return s
 }
 
+type PutDataSetRefreshPropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// The dataset refresh properties.
+	//
+	// DataSetRefreshProperties is a required field
+	DataSetRefreshProperties *DataSetRefreshProperties `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataSetRefreshPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataSetRefreshPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutDataSetRefreshPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutDataSetRefreshPropertiesInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.DataSetRefreshProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetRefreshProperties"))
+	}
+	if s.DataSetRefreshProperties != nil {
+		if err := s.DataSetRefreshProperties.Validate(); err != nil {
+			invalidParams.AddNested("DataSetRefreshProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *PutDataSetRefreshPropertiesInput) SetAwsAccountId(v string) *PutDataSetRefreshPropertiesInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *PutDataSetRefreshPropertiesInput) SetDataSetId(v string) *PutDataSetRefreshPropertiesInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetDataSetRefreshProperties sets the DataSetRefreshProperties field's value.
+func (s *PutDataSetRefreshPropertiesInput) SetDataSetRefreshProperties(v *DataSetRefreshProperties) *PutDataSetRefreshPropertiesInput {
+	s.DataSetRefreshProperties = v
+	return s
+}
+
+type PutDataSetRefreshPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataSetRefreshPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutDataSetRefreshPropertiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *PutDataSetRefreshPropertiesOutput) SetRequestId(v string) *PutDataSetRefreshPropertiesOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PutDataSetRefreshPropertiesOutput) SetStatus(v int64) *PutDataSetRefreshPropertiesOutput {
+	s.Status = &v
+	return s
+}
+
 // Information about a queued dataset SPICE ingestion.
 type QueueInfo struct {
 	_ struct{} `type:"structure"`
@@ -61790,6 +63665,265 @@ func (s *ReferenceLineValueLabelConfiguration) SetFormatConfiguration(v *Numeric
 // SetRelativePosition sets the RelativePosition field's value.
 func (s *ReferenceLineValueLabelConfiguration) SetRelativePosition(v string) *ReferenceLineValueLabelConfiguration {
 	s.RelativePosition = &v
+	return s
+}
+
+// The refresh configuration of a dataset.
+type RefreshConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The incremental refresh for the dataset.
+	//
+	// IncrementalRefresh is a required field
+	IncrementalRefresh *IncrementalRefresh `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RefreshConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RefreshConfiguration"}
+	if s.IncrementalRefresh == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncrementalRefresh"))
+	}
+	if s.IncrementalRefresh != nil {
+		if err := s.IncrementalRefresh.Validate(); err != nil {
+			invalidParams.AddNested("IncrementalRefresh", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncrementalRefresh sets the IncrementalRefresh field's value.
+func (s *RefreshConfiguration) SetIncrementalRefresh(v *IncrementalRefresh) *RefreshConfiguration {
+	s.IncrementalRefresh = v
+	return s
+}
+
+// Specifies the interval between each scheduled refresh of a dataset.
+type RefreshFrequency struct {
+	_ struct{} `type:"structure"`
+
+	// The interval between scheduled refreshes. Valid values are as follows:
+	//
+	//    * MINUTE15: The dataset refreshes every 15 minutes. This value is only
+	//    supported for incremental refreshes. This interval can only be used for
+	//    one schedule per dataset.
+	//
+	//    * MINUTE30:The dataset refreshes every 30 minutes. This value is only
+	//    supported for incremental refreshes. This interval can only be used for
+	//    one schedule per dataset.
+	//
+	//    * HOURLY: The dataset refreshes every hour. This interval can only be
+	//    used for one schedule per dataset.
+	//
+	//    * DAILY: The dataset refreshes every day.
+	//
+	//    * WEEKLY: The dataset refreshes every week.
+	//
+	//    * MONTHLY: The dataset refreshes every month.
+	//
+	// Interval is a required field
+	Interval *string `type:"string" required:"true" enum:"RefreshInterval"`
+
+	// The day of the week that you want to schedule the refresh on. This value
+	// is required for weekly and monthly refresh intervals.
+	RefreshOnDay *ScheduleRefreshOnEntity `type:"structure"`
+
+	// The time of day that you want the datset to refresh. This value is expressed
+	// in HH:MM format. This field is not required for schedules that refresh hourly.
+	TimeOfTheDay *string `type:"string"`
+
+	// The timezone that you want the refresh schedule to use. The timezone ID must
+	// match a corresponding ID found on java.util.time.getAvailableIDs().
+	Timezone *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshFrequency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshFrequency) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RefreshFrequency) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RefreshFrequency"}
+	if s.Interval == nil {
+		invalidParams.Add(request.NewErrParamRequired("Interval"))
+	}
+	if s.RefreshOnDay != nil {
+		if err := s.RefreshOnDay.Validate(); err != nil {
+			invalidParams.AddNested("RefreshOnDay", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInterval sets the Interval field's value.
+func (s *RefreshFrequency) SetInterval(v string) *RefreshFrequency {
+	s.Interval = &v
+	return s
+}
+
+// SetRefreshOnDay sets the RefreshOnDay field's value.
+func (s *RefreshFrequency) SetRefreshOnDay(v *ScheduleRefreshOnEntity) *RefreshFrequency {
+	s.RefreshOnDay = v
+	return s
+}
+
+// SetTimeOfTheDay sets the TimeOfTheDay field's value.
+func (s *RefreshFrequency) SetTimeOfTheDay(v string) *RefreshFrequency {
+	s.TimeOfTheDay = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *RefreshFrequency) SetTimezone(v string) *RefreshFrequency {
+	s.Timezone = &v
+	return s
+}
+
+// The refresh schedule of a dataset.
+type RefreshSchedule struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the refresh schedule.
+	Arn *string `type:"string"`
+
+	// The type of refresh that a datset undergoes. Valid values are as follows:
+	//
+	//    * FULL_REFRESH: A complete refresh of a dataset.
+	//
+	//    * INCREMENTAL_REFRESH: A partial refresh of some rows of a dataset, based
+	//    on the time window specified.
+	//
+	// For more information on full and incremental refreshes, see Refreshing SPICE
+	// data (https://docs.aws.amazon.com/quicksight/latest/user/refreshing-imported-data.html)
+	// in the Amazon QuickSight User Guide.
+	//
+	// RefreshType is a required field
+	RefreshType *string `type:"string" required:"true" enum:"IngestionType"`
+
+	// The frequency for the refresh schedule.
+	//
+	// ScheduleFrequency is a required field
+	ScheduleFrequency *RefreshFrequency `type:"structure" required:"true"`
+
+	// An identifier for the refresh schedule.
+	//
+	// ScheduleId is a required field
+	ScheduleId *string `type:"string" required:"true"`
+
+	// Time after which the refresh schedule can be started, expressed in YYYY-MM-DDTHH:MM:SS
+	// format.
+	StartAfterDateTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshSchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RefreshSchedule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RefreshSchedule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RefreshSchedule"}
+	if s.RefreshType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefreshType"))
+	}
+	if s.ScheduleFrequency == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleFrequency"))
+	}
+	if s.ScheduleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleId"))
+	}
+	if s.ScheduleFrequency != nil {
+		if err := s.ScheduleFrequency.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleFrequency", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *RefreshSchedule) SetArn(v string) *RefreshSchedule {
+	s.Arn = &v
+	return s
+}
+
+// SetRefreshType sets the RefreshType field's value.
+func (s *RefreshSchedule) SetRefreshType(v string) *RefreshSchedule {
+	s.RefreshType = &v
+	return s
+}
+
+// SetScheduleFrequency sets the ScheduleFrequency field's value.
+func (s *RefreshSchedule) SetScheduleFrequency(v *RefreshFrequency) *RefreshSchedule {
+	s.ScheduleFrequency = v
+	return s
+}
+
+// SetScheduleId sets the ScheduleId field's value.
+func (s *RefreshSchedule) SetScheduleId(v string) *RefreshSchedule {
+	s.ScheduleId = &v
+	return s
+}
+
+// SetStartAfterDateTime sets the StartAfterDateTime field's value.
+func (s *RefreshSchedule) SetStartAfterDateTime(v time.Time) *RefreshSchedule {
+	s.StartAfterDateTime = &v
 	return s
 }
 
@@ -63670,6 +65804,12 @@ type RowLevelPermissionTagConfiguration struct {
 	// If disabled, the status is DISABLED.
 	Status *string `type:"string" enum:"Status"`
 
+	// A list of tag configuration rules to apply to a dataset. All tag configurations
+	// have the OR condition. Tags within each tile will be joined (AND). At least
+	// one rule in this structure must have all tag values assigned to it to apply
+	// Row-level security (RLS) to the dataset.
+	TagRuleConfigurations [][]*string `min:"1" type:"list"`
+
 	// A set of rules associated with row-level security, such as the tag names
 	// and columns that they are assigned to.
 	//
@@ -63698,6 +65838,9 @@ func (s RowLevelPermissionTagConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RowLevelPermissionTagConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RowLevelPermissionTagConfiguration"}
+	if s.TagRuleConfigurations != nil && len(s.TagRuleConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagRuleConfigurations", 1))
+	}
 	if s.TagRules == nil {
 		invalidParams.Add(request.NewErrParamRequired("TagRules"))
 	}
@@ -63724,6 +65867,12 @@ func (s *RowLevelPermissionTagConfiguration) Validate() error {
 // SetStatus sets the Status field's value.
 func (s *RowLevelPermissionTagConfiguration) SetStatus(v string) *RowLevelPermissionTagConfiguration {
 	s.Status = &v
+	return s
+}
+
+// SetTagRuleConfigurations sets the TagRuleConfigurations field's value.
+func (s *RowLevelPermissionTagConfiguration) SetTagRuleConfigurations(v [][]*string) *RowLevelPermissionTagConfiguration {
+	s.TagRuleConfigurations = v
 	return s
 }
 
@@ -65003,6 +67152,60 @@ func (s *ScatterPlotVisual) SetTitle(v *VisualTitleLabelOptions) *ScatterPlotVis
 // SetVisualId sets the VisualId field's value.
 func (s *ScatterPlotVisual) SetVisualId(v string) *ScatterPlotVisual {
 	s.VisualId = &v
+	return s
+}
+
+// The refresh on entity for weekly or monthly schedules.
+type ScheduleRefreshOnEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The day of the month that you want to schedule refresh on.
+	DayOfMonth *string `min:"1" type:"string"`
+
+	// The day of the week that you want to schedule a refresh on.
+	DayOfWeek *string `type:"string" enum:"DayOfWeek"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduleRefreshOnEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduleRefreshOnEntity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScheduleRefreshOnEntity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScheduleRefreshOnEntity"}
+	if s.DayOfMonth != nil && len(*s.DayOfMonth) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DayOfMonth", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDayOfMonth sets the DayOfMonth field's value.
+func (s *ScheduleRefreshOnEntity) SetDayOfMonth(v string) *ScheduleRefreshOnEntity {
+	s.DayOfMonth = &v
+	return s
+}
+
+// SetDayOfWeek sets the DayOfWeek field's value.
+func (s *ScheduleRefreshOnEntity) SetDayOfWeek(v string) *ScheduleRefreshOnEntity {
+	s.DayOfWeek = &v
 	return s
 }
 
@@ -78024,6 +80227,149 @@ func (s *UpdatePublicSharingSettingsOutput) SetStatus(v int64) *UpdatePublicShar
 	return s
 }
 
+type UpdateRefreshScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// The refresh schedule.
+	//
+	// Schedule is a required field
+	Schedule *RefreshSchedule `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.Schedule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Schedule"))
+	}
+	if s.Schedule != nil {
+		if err := s.Schedule.Validate(); err != nil {
+			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateRefreshScheduleInput) SetAwsAccountId(v string) *UpdateRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *UpdateRefreshScheduleInput) SetDataSetId(v string) *UpdateRefreshScheduleInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *UpdateRefreshScheduleInput) SetSchedule(v *RefreshSchedule) *UpdateRefreshScheduleInput {
+	s.Schedule = v
+	return s
+}
+
+type UpdateRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the refresh schedule.
+	Arn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The ID of the refresh schedule.
+	ScheduleId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateRefreshScheduleOutput) SetArn(v string) *UpdateRefreshScheduleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateRefreshScheduleOutput) SetRequestId(v string) *UpdateRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetScheduleId sets the ScheduleId field's value.
+func (s *UpdateRefreshScheduleOutput) SetScheduleId(v string) *UpdateRefreshScheduleOutput {
+	s.ScheduleId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateRefreshScheduleOutput) SetStatus(v int64) *UpdateRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateTemplateAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -82735,6 +85081,42 @@ func DateAggregationFunction_Values() []string {
 }
 
 const (
+	// DayOfWeekSunday is a DayOfWeek enum value
+	DayOfWeekSunday = "SUNDAY"
+
+	// DayOfWeekMonday is a DayOfWeek enum value
+	DayOfWeekMonday = "MONDAY"
+
+	// DayOfWeekTuesday is a DayOfWeek enum value
+	DayOfWeekTuesday = "TUESDAY"
+
+	// DayOfWeekWednesday is a DayOfWeek enum value
+	DayOfWeekWednesday = "WEDNESDAY"
+
+	// DayOfWeekThursday is a DayOfWeek enum value
+	DayOfWeekThursday = "THURSDAY"
+
+	// DayOfWeekFriday is a DayOfWeek enum value
+	DayOfWeekFriday = "FRIDAY"
+
+	// DayOfWeekSaturday is a DayOfWeek enum value
+	DayOfWeekSaturday = "SATURDAY"
+)
+
+// DayOfWeek_Values returns all elements of the DayOfWeek enum
+func DayOfWeek_Values() []string {
+	return []string{
+		DayOfWeekSunday,
+		DayOfWeekMonday,
+		DayOfWeekTuesday,
+		DayOfWeekWednesday,
+		DayOfWeekThursday,
+		DayOfWeekFriday,
+		DayOfWeekSaturday,
+	}
+}
+
+const (
 	// EditionStandard is a Edition enum value
 	EditionStandard = "STANDARD"
 
@@ -83442,6 +85824,9 @@ const (
 
 	// IngestionErrorTypeCursorNotEnabled is a IngestionErrorType enum value
 	IngestionErrorTypeCursorNotEnabled = "CURSOR_NOT_ENABLED"
+
+	// IngestionErrorTypeDuplicateColumnNamesFound is a IngestionErrorType enum value
+	IngestionErrorTypeDuplicateColumnNamesFound = "DUPLICATE_COLUMN_NAMES_FOUND"
 )
 
 // IngestionErrorType_Values returns all elements of the IngestionErrorType enum
@@ -83491,6 +85876,7 @@ func IngestionErrorType_Values() []string {
 		IngestionErrorTypePermissionNotFound,
 		IngestionErrorTypeElasticsearchCursorNotEnabled,
 		IngestionErrorTypeCursorNotEnabled,
+		IngestionErrorTypeDuplicateColumnNamesFound,
 	}
 }
 
@@ -83779,6 +86165,26 @@ func LineInterpolation_Values() []string {
 		LineInterpolationLinear,
 		LineInterpolationSmooth,
 		LineInterpolationStepped,
+	}
+}
+
+const (
+	// LookbackWindowSizeUnitHour is a LookbackWindowSizeUnit enum value
+	LookbackWindowSizeUnitHour = "HOUR"
+
+	// LookbackWindowSizeUnitDay is a LookbackWindowSizeUnit enum value
+	LookbackWindowSizeUnitDay = "DAY"
+
+	// LookbackWindowSizeUnitWeek is a LookbackWindowSizeUnit enum value
+	LookbackWindowSizeUnitWeek = "WEEK"
+)
+
+// LookbackWindowSizeUnit_Values returns all elements of the LookbackWindowSizeUnit enum
+func LookbackWindowSizeUnit_Values() []string {
+	return []string{
+		LookbackWindowSizeUnitHour,
+		LookbackWindowSizeUnitDay,
+		LookbackWindowSizeUnitWeek,
 	}
 }
 
@@ -84275,6 +86681,38 @@ func ReferenceLineValueLabelRelativePosition_Values() []string {
 	return []string{
 		ReferenceLineValueLabelRelativePositionBeforeCustomLabel,
 		ReferenceLineValueLabelRelativePositionAfterCustomLabel,
+	}
+}
+
+const (
+	// RefreshIntervalMinute15 is a RefreshInterval enum value
+	RefreshIntervalMinute15 = "MINUTE15"
+
+	// RefreshIntervalMinute30 is a RefreshInterval enum value
+	RefreshIntervalMinute30 = "MINUTE30"
+
+	// RefreshIntervalHourly is a RefreshInterval enum value
+	RefreshIntervalHourly = "HOURLY"
+
+	// RefreshIntervalDaily is a RefreshInterval enum value
+	RefreshIntervalDaily = "DAILY"
+
+	// RefreshIntervalWeekly is a RefreshInterval enum value
+	RefreshIntervalWeekly = "WEEKLY"
+
+	// RefreshIntervalMonthly is a RefreshInterval enum value
+	RefreshIntervalMonthly = "MONTHLY"
+)
+
+// RefreshInterval_Values returns all elements of the RefreshInterval enum
+func RefreshInterval_Values() []string {
+	return []string{
+		RefreshIntervalMinute15,
+		RefreshIntervalMinute30,
+		RefreshIntervalHourly,
+		RefreshIntervalDaily,
+		RefreshIntervalWeekly,
+		RefreshIntervalMonthly,
 	}
 }
 

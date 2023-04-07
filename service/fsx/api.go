@@ -552,7 +552,7 @@ func (c *FSx) CreateDataRepositoryAssociationRequest(input *CreateDataRepository
 // repository association is a link between a directory on the file system and
 // an Amazon S3 bucket or prefix. You can have a maximum of 8 data repository
 // associations on a file system. Data repository associations are supported
-// only for file systems with the Persistent_2 deployment type.
+// for all file systems except for Scratch_1 deployment type.
 //
 // Each data repository association must have a unique Amazon FSx file system
 // directory and a unique S3 bucket or prefix associated with it. You can configure
@@ -1705,8 +1705,8 @@ func (c *FSx) DeleteDataRepositoryAssociationRequest(input *DeleteDataRepository
 // Deleting the data repository association unlinks the file system from the
 // Amazon S3 bucket. When deleting a data repository association, you have the
 // option of deleting the data in the file system that corresponds to the data
-// repository association. Data repository associations are supported only for
-// file systems with the Persistent_2 deployment type.
+// repository association. Data repository associations are supported for all
+// file systems except for Scratch_1 deployment type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2475,8 +2475,8 @@ func (c *FSx) DescribeDataRepositoryAssociationsRequest(input *DescribeDataRepos
 // Returns the description of specific Amazon FSx for Lustre or Amazon File
 // Cache data repository associations, if one or more AssociationIds values
 // are provided in the request, or if filters are used in the request. Data
-// repository associations are supported only for Amazon FSx for Lustre file
-// systems with the Persistent_2 deployment type and for Amazon File Cache resources.
+// repository associations are supported on Amazon File Cache resources and
+// all Amazon FSx for Lustre file systems excluding Scratch_1 deployment types.
 //
 // You can use filters to narrow the response to include just data repository
 // associations for specific file systems (use the file-system-id filter with
@@ -4349,7 +4349,7 @@ func (c *FSx) UpdateDataRepositoryAssociationRequest(input *UpdateDataRepository
 //
 // Updates the configuration of an existing data repository association on an
 // Amazon FSx for Lustre file system. Data repository associations are supported
-// only for file systems with the Persistent_2 deployment type.
+// for all file systems except for Scratch_1 deployment type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4547,7 +4547,7 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 // Use this operation to update the configuration of an existing Amazon FSx
 // file system. You can update multiple properties in a single request.
 //
-// For Amazon FSx for Windows File Server file systems, you can update the following
+// For FSx for Windows File Server file systems, you can update the following
 // properties:
 //
 //   - AuditLogConfiguration
@@ -4564,7 +4564,7 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   - WeeklyMaintenanceStartTime
 //
-// For Amazon FSx for Lustre file systems, you can update the following properties:
+// For FSx for Lustre file systems, you can update the following properties:
 //
 //   - AutoImportPolicy
 //
@@ -4580,8 +4580,9 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   - WeeklyMaintenanceStartTime
 //
-// For Amazon FSx for NetApp ONTAP file systems, you can update the following
-// properties:
+// For FSx for ONTAP file systems, you can update the following properties:
+//
+//   - AddRouteTableIds
 //
 //   - AutomaticBackupRetentionDays
 //
@@ -4591,14 +4592,15 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   - FsxAdminPassword
 //
+//   - RemoveRouteTableIds
+//
 //   - StorageCapacity
 //
 //   - ThroughputCapacity
 //
 //   - WeeklyMaintenanceStartTime
 //
-// For the Amazon FSx for OpenZFS file systems, you can update the following
-// properties:
+// For FSx for OpenZFS file systems, you can update the following properties:
 //
 //   - AutomaticBackupRetentionDays
 //
@@ -4607,6 +4609,10 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //   - CopyTagsToVolumes
 //
 //   - DailyAutomaticBackupStartTime
+//
+//   - DiskIopsConfiguration
+//
+//   - StorageCapacity
 //
 //   - ThroughputCapacity
 //
@@ -5352,7 +5358,7 @@ type AssociateFileSystemAliasesInput struct {
 	Aliases []*string `type:"list" required:"true"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -5464,8 +5470,8 @@ func (s *AssociateFileSystemAliasesOutput) SetAliases(v []*Alias) *AssociateFile
 // Amazon FSx for Lustre automatically exports the defined changes asynchronously
 // once your application finishes modifying the file.
 //
-// This AutoExportPolicy is supported only for Amazon FSx for Lustre file systems
-// with the Persistent_2 deployment type.
+// The AutoExportPolicy is only supported on Amazon FSx for Lustre file systems
+// with a data repository association.
 type AutoExportPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -5513,8 +5519,8 @@ func (s *AutoExportPolicy) SetEvents(v []*string) *AutoExportPolicy {
 // listings up to date by importing changes to your Amazon FSx for Lustre file
 // system as you modify objects in a linked S3 bucket.
 //
-// The AutoImportPolicy is supported only for Amazon FSx for Lustre file systems
-// with the Persistent_2 deployment type.
+// The AutoImportPolicy is only supported on Amazon FSx for Lustre file systems
+// with a data repository association.
 type AutoImportPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -6253,8 +6259,7 @@ type CompletionReport struct {
 	// Path you provide must be located within the file system’s ExportPath. An
 	// example Path value is "s3://myBucket/myExportPath/optionalPrefix". The report
 	// provides the following information for each file in the report: FilePath,
-	// FileStatus, and ErrorCode. To learn more about a file system's ExportPath,
-	// see .
+	// FileStatus, and ErrorCode.
 	Path *string `min:"3" type:"string"`
 
 	// Required if Enabled is set to true. Specifies the scope of the CompletionReport;
@@ -6326,7 +6331,7 @@ type CopyBackupInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6505,7 +6510,7 @@ func (s *CopyBackupOutput) SetBackup(v *Backup) *CopyBackupOutput {
 type CreateBackupInput struct {
 	_ struct{} `type:"structure"`
 
-	// (Optional) A string of up to 64 ASCII characters that Amazon FSx uses to
+	// (Optional) A string of up to 63 ASCII characters that Amazon FSx uses to
 	// ensure idempotent creation. This string is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -6639,7 +6644,7 @@ type CreateDataRepositoryAssociationInput struct {
 	BatchImportMetaDataOnCreate *bool `type:"boolean"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6842,7 +6847,7 @@ type CreateDataRepositoryTaskInput struct {
 	CapacityToRelease *int64 `min:"1" type:"long"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -7024,7 +7029,7 @@ func (s *CreateDataRepositoryTaskOutput) SetDataRepositoryTask(v *DataRepository
 type CreateFileCacheInput struct {
 	_ struct{} `type:"structure"`
 
-	// An idempotency token for resource creation, in a string of up to 64 ASCII
+	// An idempotency token for resource creation, in a string of up to 63 ASCII
 	// characters. This token is automatically filled on your behalf when you use
 	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	//
@@ -7386,7 +7391,7 @@ type CreateFileSystemFromBackupInput struct {
 	// BackupId is a required field
 	BackupId *string `min:"12" type:"string" required:"true"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// creation. This string is automatically filled on your behalf when you use
 	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -7420,9 +7425,8 @@ type CreateFileSystemFromBackupInput struct {
 
 	// The Lustre configuration for the file system being created.
 	//
-	// The following parameters are not supported for file systems with the Persistent_2
-	// deployment type. Instead, use CreateDataRepositoryAssociation to create a
-	// data repository association to link your Lustre file system to a data repository.
+	// The following parameters are not supported for file systems with a data repository
+	// association created with .
 	//
 	//    * AutoImportPolicy
 	//
@@ -7674,7 +7678,7 @@ func (s *CreateFileSystemFromBackupOutput) SetFileSystem(v *FileSystem) *CreateF
 type CreateFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// creation. This string is automatically filled on your behalf when you use
 	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -7721,9 +7725,8 @@ type CreateFileSystemInput struct {
 
 	// The Lustre configuration for the file system being created.
 	//
-	// The following parameters are not supported for file systems with the Persistent_2
-	// deployment type. Instead, use CreateDataRepositoryAssociation to create a
-	// data repository association to link your Lustre file system to a data repository.
+	// The following parameters are not supported for file systems with a data repository
+	// association created with .
 	//
 	//    * AutoImportPolicy
 	//
@@ -7982,9 +7985,8 @@ func (s *CreateFileSystemInput) SetWindowsConfiguration(v *CreateFileSystemWindo
 
 // The Lustre configuration for the file system being created.
 //
-// The following parameters are not supported for file systems with the Persistent_2
-// deployment type. Instead, use CreateDataRepositoryAssociation to create a
-// data repository association to link your Lustre file system to a data repository.
+// The following parameters are not supported for file systems with a data repository
+// association created with .
 //
 //   - AutoImportPolicy
 //
@@ -7996,11 +7998,10 @@ func (s *CreateFileSystemInput) SetWindowsConfiguration(v *CreateFileSystemWindo
 type CreateFileSystemLustreConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// (Optional) Available with Scratch and Persistent_1 deployment types. When
-	// you create your file system, your existing S3 objects appear as file and
-	// directory listings. Use this property to choose how Amazon FSx keeps your
-	// file and directory listings up to date as you add or modify objects in your
-	// linked S3 bucket. AutoImportPolicy can have the following values:
+	// (Optional) When you create your file system, your existing S3 objects appear
+	// as file and directory listings. Use this parameter to choose how Amazon FSx
+	// keeps your file and directory listings up to date as you add or modify objects
+	// in your linked S3 bucket. AutoImportPolicy can have the following values:
 	//
 	//    * NONE - (Default) AutoImport is off. Amazon FSx only updates file and
 	//    directory listings from the linked S3 bucket when the file system is created.
@@ -8024,9 +8025,7 @@ type CreateFileSystemLustreConfiguration struct {
 	// For more information, see Automatically import updates from your S3 bucket
 	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/older-deployment-types.html#legacy-auto-import-from-s3).
 	//
-	// This parameter is not supported for file systems with the Persistent_2 deployment
-	// type. Instead, use CreateDataRepositoryAssociation to create a data repository
-	// association to link your Lustre file system to a data repository.
+	// This parameter is not supported for file systems with a data repository association.
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
 	// The number of days to retain automatic backups. Setting this property to
@@ -8091,10 +8090,9 @@ type CreateFileSystemLustreConfiguration struct {
 	//
 	// Encryption of data in transit is automatically turned on when you access
 	// SCRATCH_2, PERSISTENT_1 and PERSISTENT_2 file systems from Amazon EC2 instances
-	// that support automatic encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/data-
-	// protection.html) in the Amazon Web Services Regions where they are available.
-	// For more information about encryption in transit for FSx for Lustre file
-	// systems, see Encrypting data in transit (https://docs.aws.amazon.com/fsx/latest/LustreGuide/encryption-in-transit-fsxl.html)
+	// that support automatic encryption in the Amazon Web Services Regions where
+	// they are available. For more information about encryption in transit for
+	// FSx for Lustre file systems, see Encrypting data in transit (https://docs.aws.amazon.com/fsx/latest/LustreGuide/encryption-in-transit-fsxl.html)
 	// in the Amazon FSx for Lustre User Guide.
 	//
 	// (Default = SCRATCH_1)
@@ -8109,13 +8107,13 @@ type CreateFileSystemLustreConfiguration struct {
 	// This parameter is required when StorageType is set to HDD.
 	DriveCacheType *string `type:"string" enum:"DriveCacheType"`
 
-	// (Optional) Available with Scratch and Persistent_1 deployment types. Specifies
-	// the path in the Amazon S3 bucket where the root of your Amazon FSx file system
-	// is exported. The path must use the same Amazon S3 bucket as specified in
-	// ImportPath. You can provide an optional prefix to which new and changed data
-	// is to be exported from your Amazon FSx for Lustre file system. If an ExportPath
-	// value is not provided, Amazon FSx sets a default export path, s3://import-bucket/FSxLustre[creation-timestamp].
-	// The timestamp is in UTC format, for example s3://import-bucket/FSxLustre20181105T222312Z.
+	// (Optional) Specifies the path in the Amazon S3 bucket where the root of your
+	// Amazon FSx file system is exported. The path must use the same Amazon S3
+	// bucket as specified in ImportPath. You can provide an optional prefix to
+	// which new and changed data is to be exported from your Amazon FSx for Lustre
+	// file system. If an ExportPath value is not provided, Amazon FSx sets a default
+	// export path, s3://import-bucket/FSxLustre[creation-timestamp]. The timestamp
+	// is in UTC format, for example s3://import-bucket/FSxLustre20181105T222312Z.
 	//
 	// The Amazon S3 export bucket must be the same as the import bucket specified
 	// by ImportPath. If you specify only a bucket name, such as s3://import-bucket,
@@ -8125,9 +8123,7 @@ type CreateFileSystemLustreConfiguration struct {
 	// Amazon FSx exports the contents of your file system to that export prefix
 	// in the Amazon S3 bucket.
 	//
-	// This parameter is not supported for file systems with the Persistent_2 deployment
-	// type. Instead, use CreateDataRepositoryAssociation to create a data repository
-	// association to link your Lustre file system to a data repository.
+	// This parameter is not supported for file systems with a data repository association.
 	ExportPath *string `min:"3" type:"string"`
 
 	// (Optional) The path to the Amazon S3 bucket (including the optional prefix)
@@ -8137,9 +8133,7 @@ type CreateFileSystemLustreConfiguration struct {
 	// If you specify a prefix after the Amazon S3 bucket name, only object keys
 	// with that prefix are loaded into the file system.
 	//
-	// This parameter is not supported for file systems with the Persistent_2 deployment
-	// type. Instead, use CreateDataRepositoryAssociation to create a data repository
-	// association to link your Lustre file system to a data repository.
+	// This parameter is not supported for file systems with a data repository association.
 	ImportPath *string `min:"3" type:"string"`
 
 	// (Optional) For files imported from a data repository, this value determines
@@ -8151,9 +8145,7 @@ type CreateFileSystemLustreConfiguration struct {
 	// The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000
 	// MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.
 	//
-	// This parameter is not supported for file systems with the Persistent_2 deployment
-	// type. Instead, use CreateDataRepositoryAssociation to create a data repository
-	// association to link your Lustre file system to a data repository.
+	// This parameter is not supported for file systems with a data repository association.
 	ImportedFileChunkSize *int64 `min:"1" type:"integer"`
 
 	// The Lustre logging configuration used when creating an Amazon FSx for Lustre
@@ -8368,7 +8360,8 @@ type CreateFileSystemOntapConfiguration struct {
 	// By default in the Amazon FSx console, Amazon FSx chooses the last 64 IP addresses
 	// from the VPC’s primary CIDR range to use as the endpoint IP address range
 	// for the file system. You can have overlapping endpoint IP addresses for file
-	// systems deployed in the same VPC/route tables.
+	// systems deployed in the same VPC/route tables, as long as they don't overlap
+	// with any subnet.
 	EndpointIpAddressRange *string `min:"9" type:"string"`
 
 	// The ONTAP administrative password for the fsxadmin user with which you administer
@@ -8989,7 +8982,8 @@ type CreateOntapVolumeConfiguration struct {
 	CopyTagsToBackups *bool `type:"boolean"`
 
 	// Specifies the location in the SVM's namespace where the volume is mounted.
-	// The JunctionPath must have a leading forward slash, such as /vol3.
+	// This parameter is required. The JunctionPath must have a leading forward
+	// slash, such as /vol3.
 	JunctionPath *string `min:"1" type:"string"`
 
 	// Specifies the type of volume you are creating. Valid values are the following:
@@ -9024,6 +9018,8 @@ type CreateOntapVolumeConfiguration struct {
 	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
 
 	// Specifies the size of the volume, in megabytes (MB), that you are creating.
+	// Provide any whole number in the range of 20–104857600 to specify the size
+	// of the volume.
 	//
 	// SizeInMegabytes is a required field
 	SizeInMegabytes *int64 `type:"integer" required:"true"`
@@ -9050,7 +9046,8 @@ type CreateOntapVolumeConfiguration struct {
 	SnapshotPolicy *string `min:"1" type:"string"`
 
 	// Set to true to enable deduplication, compression, and compaction storage
-	// efficiency features on the volume.
+	// efficiency features on the volume, or set to false to disable them. This
+	// parameter is required.
 	StorageEfficiencyEnabled *bool `type:"boolean"`
 
 	// Specifies the ONTAP SVM in which to create the volume.
@@ -9472,7 +9469,7 @@ type CreateSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -9611,7 +9608,7 @@ type CreateStorageVirtualMachineInput struct {
 	ActiveDirectoryConfiguration *CreateSvmActiveDirectoryConfiguration `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -9871,7 +9868,7 @@ type CreateVolumeFromBackupInput struct {
 	BackupId *string `min:"12" type:"string" required:"true"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -10014,7 +10011,7 @@ type CreateVolumeInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -10181,9 +10178,9 @@ func (s *CreateVolumeOutput) SetVolume(v *Volume) *CreateVolumeOutput {
 //
 //   - DescribeDataRepositoryAssociations
 //
-// Data repository associations are supported only for an Amazon FSx for Lustre
-// file system with the Persistent_2 deployment type and for an Amazon File
-// Cache resource.
+// Data repository associations are supported on Amazon File Cache resources
+// and all Amazon FSx for Lustre file systems excluding Scratch_1 deployment
+// types.
 type DataRepositoryAssociation struct {
 	_ struct{} `type:"structure"`
 
@@ -10510,8 +10507,8 @@ func (s *DataRepositoryAssociationNotFound) RequestID() string {
 // The data repository configuration object for Lustre file systems returned
 // in the response of the CreateFileSystem operation.
 //
-// This data type is not supported for file systems with the Persistent_2 deployment
-// type. Instead, use .
+// This data type is not supported on file systems with a data repository association.
+// For file systems with a data repository association, see .
 type DataRepositoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10777,6 +10774,8 @@ type DataRepositoryTask struct {
 	//
 	//    * AUTO_RELEASE_DATA tasks automatically release files from an Amazon File
 	//    Cache resource.
+	//
+	//    * RELEASE_DATA_FROM_FILESYSTEM tasks are not supported.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataRepositoryTaskType"`
@@ -11255,7 +11254,7 @@ type DeleteBackupInput struct {
 	// BackupId is a required field
 	BackupId *string `min:"12" type:"string" required:"true"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// deletion. This parameter is automatically filled on your behalf when using
 	// the CLI or SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -11361,7 +11360,7 @@ type DeleteDataRepositoryAssociationInput struct {
 	AssociationId *string `min:"13" type:"string" required:"true"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -11479,7 +11478,7 @@ type DeleteFileCacheInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -11583,7 +11582,7 @@ func (s *DeleteFileCacheOutput) SetLifecycle(v string) *DeleteFileCacheOutput {
 type DeleteFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// deletion. This token is automatically filled on your behalf when using the
 	// Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -12112,7 +12111,7 @@ type DeleteSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -12216,7 +12215,7 @@ type DeleteStorageVirtualMachineInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -12319,7 +12318,7 @@ type DeleteVolumeInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -13075,7 +13074,7 @@ type DescribeFileSystemAliasesInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -13691,7 +13690,7 @@ type DisassociateFileSystemAliasesInput struct {
 	Aliases []*string `type:"list" required:"true"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -14764,8 +14763,8 @@ type FileSystem struct {
 	OpenZFSConfiguration *OpenZFSFileSystemConfiguration `type:"structure"`
 
 	// The Amazon Web Services account that created the file system. If the file
-	// system was created by an Identity and Access Management (IAM) user, the Amazon
-	// Web Services account to which the IAM user belongs is the owner.
+	// system was created by a user in IAM Identity Center, the Amazon Web Services
+	// account to which the IAM user belongs is the owner.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the file system resource.
@@ -16099,8 +16098,8 @@ type LustreFileSystemConfiguration struct {
 	// The data repository configuration object for Lustre file systems returned
 	// in the response of the CreateFileSystem operation.
 	//
-	// This data type is not supported for file systems with the Persistent_2 deployment
-	// type. Instead, use .
+	// This data type is not supported on file systems with a data repository association.
+	// For file systems with a data repository association, see .
 	DataRepositoryConfiguration *DataRepositoryConfiguration `type:"structure"`
 
 	// The deployment type of the FSx for Lustre file system. Scratch deployment
@@ -16843,13 +16842,13 @@ type OntapFileSystemConfiguration struct {
 	// of provisioned IOPS and the provision mode.
 	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
-	// (Multi-AZ only) The IP address range in which the endpoints to access your
-	// file system are created.
-	//
-	// The Endpoint IP address range you select for your file system must exist
-	// outside the VPC's CIDR range and must be at least /30 or larger. If you do
-	// not specify this optional parameter, Amazon FSx will automatically select
-	// a CIDR block for you.
+	// (Multi-AZ only) Specifies the IP address range in which the endpoints to
+	// access your file system will be created. By default in the Amazon FSx API,
+	// Amazon FSx selects an unused IP address range for you from the 198.19.* range.
+	// By default in the Amazon FSx console, Amazon FSx chooses the last 64 IP addresses
+	// from the VPC’s primary CIDR range to use as the endpoint IP address range
+	// for the file system. You can have overlapping endpoint IP addresses for file
+	// systems deployed in the same VPC/route tables.
 	EndpointIpAddressRange *string `min:"9" type:"string"`
 
 	// The Management and Intercluster endpoints that are used to access data or
@@ -17861,7 +17860,7 @@ type ReleaseFileSystemNfsV3LocksInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -18095,7 +18094,7 @@ type RestoreVolumeFromSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -19810,7 +19809,7 @@ type UpdateDataRepositoryAssociationInput struct {
 	AssociationId *string `min:"13" type:"string" required:"true"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -19930,7 +19929,7 @@ type UpdateFileCacheInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -20092,7 +20091,7 @@ func (s *UpdateFileCacheOutput) SetFileCache(v *FileCache) *UpdateFileCacheOutpu
 type UpdateFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
+	// A string of up to 63 ASCII characters that Amazon FSx uses to ensure idempotent
 	// updates. This string is automatically filled on your behalf when you use
 	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -20112,19 +20111,13 @@ type UpdateFileSystemInput struct {
 	// The configuration updates for an Amazon FSx for OpenZFS file system.
 	OpenZFSConfiguration *UpdateFileSystemOpenZFSConfiguration `type:"structure"`
 
-	// Use this parameter to increase the storage capacity of an Amazon FSx for
-	// Windows File Server, Amazon FSx for Lustre, or Amazon FSx for NetApp ONTAP
-	// file system. Specifies the storage capacity target value, in GiB, to increase
-	// the storage capacity for the file system that you're updating.
+	// Use this parameter to increase the storage capacity of an FSx for Windows
+	// File Server, FSx for Lustre, FSx for OpenZFS, or FSx for ONTAP file system.
+	// Specifies the storage capacity target value, in GiB, to increase the storage
+	// capacity for the file system that you're updating.
 	//
 	// You can't make a storage capacity increase request if there is an existing
 	// storage capacity increase request in progress.
-	//
-	// For Windows file systems, the storage capacity target value must be at least
-	// 10 percent greater than the current storage capacity value. To increase storage
-	// capacity, the file system must have at least 16 MBps of throughput capacity.
-	// For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
-	// in the Amazon FSx for Windows File Server User Guide.
 	//
 	// For Lustre file systems, the storage capacity target value can be the following:
 	//
@@ -20140,7 +20133,18 @@ type UpdateFileSystemInput struct {
 	//    * For SCRATCH_1 file systems, you can't increase the storage capacity.
 	//
 	// For more information, see Managing storage and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
-	// in the Amazon FSx for Lustre User Guide.
+	// in the FSx for Lustre User Guide.
+	//
+	// For FSx for OpenZFS file systems, the storage capacity target value must
+	// be at least 10 percent greater than the current storage capacity value. For
+	// more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-storage-capacity.html)
+	// in the FSx for OpenZFS User Guide.
+	//
+	// For Windows file systems, the storage capacity target value must be at least
+	// 10 percent greater than the current storage capacity value. To increase storage
+	// capacity, the file system must have at least 16 MBps of throughput capacity.
+	// For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+	// in the Amazon FSx for Windows File Server User Guide.
 	//
 	// For ONTAP file systems, the storage capacity target value must be at least
 	// 10 percent greater than the current storage capacity value. For more information,
@@ -20281,9 +20285,7 @@ type UpdateFileSystemLustreConfiguration struct {
 	//    any existing objects that are changed in the S3 bucket, and any objects
 	//    that were deleted in the S3 bucket.
 	//
-	// The AutoImportPolicy parameter is not supported for Lustre file systems with
-	// the Persistent_2 deployment type. Instead, use to update a data repository
-	// association on your Persistent_2 file system.
+	// This parameter is not supported for file systems with a data repository association.
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
 	// The number of days to retain automatic backups. Setting this property to
@@ -21138,7 +21140,7 @@ type UpdateSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -21254,7 +21256,7 @@ type UpdateStorageVirtualMachineInput struct {
 	ActiveDirectoryConfiguration *UpdateSvmActiveDirectoryConfiguration `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -21425,7 +21427,7 @@ type UpdateVolumeInput struct {
 	_ struct{} `type:"structure"`
 
 	// (Optional) An idempotency token for resource creation, in a string of up
-	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// to 63 ASCII characters. This token is automatically filled on your behalf
 	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
