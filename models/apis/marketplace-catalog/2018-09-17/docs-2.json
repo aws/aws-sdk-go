@@ -3,12 +3,15 @@
   "service": "<p>Catalog API actions allow you to manage your entities through list, describe, and update capabilities. An entity can be a product or an offer on AWS Marketplace. </p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
   "operations": {
     "CancelChangeSet": "<p>Used to cancel an open change request. Must be sent before the status of the request changes to <code>APPLYING</code>, the final stage of completing your change request. You can describe a change during the 60-day request history retention period for API calls.</p>",
+    "DeleteResourcePolicy": "<p>Deletes a resource-based policy on an Entity that is identified by its resource ARN.</p>",
     "DescribeChangeSet": "<p>Provides information about a given change set.</p>",
     "DescribeEntity": "<p>Returns the metadata and content of the entity.</p>",
+    "GetResourcePolicy": "<p>Gets a resource-based policy of an Entity that is identified by its resource ARN.</p>",
     "ListChangeSets": "<p>Returns the list of change sets owned by the account being used to make the call. You can filter this list by providing any combination of <code>entityId</code>, <code>ChangeSetName</code>, and status. If you provide more than one filter, the API operation applies a logical AND between the filters.</p> <p>You can describe a change during the 60-day request history retention period for API calls.</p>",
     "ListEntities": "<p>Provides the list of entities of a given type.</p>",
     "ListTagsForResource": "<p>Lists all tags that have been added to a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>",
-    "StartChangeSet": "<p>Allows you to request changes for your entities. Within a single <code>ChangeSet</code>, you can't start the same change type against the same entity multiple times. Additionally, when a <code>ChangeSet</code> is running, all the entities targeted by the different changes are locked until the change set has completed (either succeeded, cancelled, or failed). If you try to start a change set containing a change against an entity that is already locked, you will receive a <code>ResourceInUseException</code> error.</p> <p>For example, you can't start the <code>ChangeSet</code> described in the <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples\">example</a> later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>) against the same entity (<code>entity-id@1</code>).</p> <p>For more information about working with change sets, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\"> Working with change sets</a>.</p>",
+    "PutResourcePolicy": "<p>Attaches a resource-based policy to an Entity. Examples of an entity include: <code>AmiProduct</code> and <code>ContainerProduct</code>.</p>",
+    "StartChangeSet": "<p>Allows you to request changes for your entities. Within a single <code>ChangeSet</code>, you can't start the same change type against the same entity multiple times. Additionally, when a <code>ChangeSet</code> is running, all the entities targeted by the different changes are locked until the change set has completed (either succeeded, cancelled, or failed). If you try to start a change set containing a change against an entity that is already locked, you will receive a <code>ResourceInUseException</code> error.</p> <p>For example, you can't start the <code>ChangeSet</code> described in the <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples\">example</a> later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>) against the same entity (<code>entity-id@1</code>).</p> <p>For more information about working with change sets, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\"> Working with change sets</a>. For information on change types for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Als, for more information on change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
     "TagResource": "<p>Tags a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>",
     "UntagResource": "<p>Removes a tag or list of tags from a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>"
   },
@@ -25,7 +28,7 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p>Access is denied.</p>",
+      "base": "<p>Access is denied.</p> <p>HTTP status code: 403</p>",
       "refs": {
       }
     },
@@ -105,7 +108,7 @@
     "ChangeType": {
       "base": null,
       "refs": {
-        "Change$ChangeType": "<p>Change types are single string values that describe your intention for the change. Each change type is unique for each <code>EntityType</code> provided in the change's scope.</p>",
+        "Change$ChangeType": "<p>Change types are single string values that describe your intention for the change. Each change type is unique for each <code>EntityType</code> provided in the change's scope. For more information on change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information on change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
         "ChangeSummary$ChangeType": "<p>The type of the change.</p>"
       }
     },
@@ -124,6 +127,16 @@
         "DescribeChangeSetResponse$EndTime": "<p>The date and time, in ISO 8601 format (2018-02-27T13:45:22Z), the request transitioned to a terminal state. The change cannot transition to a different state. Null if the request is not in a terminal state. </p>",
         "DescribeEntityResponse$LastModifiedDate": "<p>The last modified date of the entity, in ISO 8601 format (2018-02-27T13:45:22Z).</p>",
         "EntitySummary$LastModifiedDate": "<p>The last time the entity was published, using ISO 8601 format (2018-02-27T13:45:22Z).</p>"
+      }
+    },
+    "DeleteResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DescribeChangeSetRequest": {
@@ -245,6 +258,16 @@
         "ValueList$member": null
       }
     },
+    "GetResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Identifier": {
       "base": null,
       "refs": {
@@ -253,16 +276,22 @@
       }
     },
     "InternalServiceException": {
-      "base": "<p>There was an internal service exception.</p>",
+      "base": "<p>There was an internal service exception.</p> <p>HTTP status code: 500</p>",
       "refs": {
       }
     },
     "Json": {
       "base": null,
       "refs": {
-        "Change$Details": "<p>This object contains details specific to the change type of the requested change.</p>",
+        "Change$Details": "<p>This object contains details specific to the change type of the requested change. For more information on change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information on change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
         "ChangeSummary$Details": "<p>This object contains details specific to the change type of the requested change.</p>",
         "DescribeEntityResponse$Details": "<p>This stringified JSON object includes the details of the entity.</p>"
+      }
+    },
+    "ListChangeSetsMaxResultInteger": {
+      "base": null,
+      "refs": {
+        "ListChangeSetsRequest$MaxResults": "<p>The maximum number of results returned by a single call. This value must be provided in the next call to retrieve the next set of results. By default, this value is 20.</p>"
       }
     },
     "ListChangeSetsRequest": {
@@ -273,6 +302,12 @@
     "ListChangeSetsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListEntitiesMaxResultInteger": {
+      "base": null,
+      "refs": {
+        "ListEntitiesRequest$MaxResults": "<p>Specifies the upper limit of the elements on a single page. If a value isn't provided, the default value is 20.</p>"
       }
     },
     "ListEntitiesRequest": {
@@ -295,13 +330,6 @@
       "refs": {
       }
     },
-    "MaxResultInteger": {
-      "base": null,
-      "refs": {
-        "ListChangeSetsRequest$MaxResults": "<p>The maximum number of results returned by a single call. This value must be provided in the next call to retrieve the next set of results. By default, this value is 20.</p>",
-        "ListEntitiesRequest$MaxResults": "<p>Specifies the upper limit of the elements on a single page. If a value isn't provided, the default value is 20.</p>"
-      }
-    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -309,6 +337,22 @@
         "ListChangeSetsResponse$NextToken": "<p>The value of the next token, if it exists. Null if there are no more results.</p>",
         "ListEntitiesRequest$NextToken": "<p>The value of the next token, if it exists. Null if there are no more results.</p>",
         "ListEntitiesResponse$NextToken": "<p>The value of the next token if it exists. Null if there is no more result.</p>"
+      }
+    },
+    "OwnershipType": {
+      "base": null,
+      "refs": {
+        "ListEntitiesRequest$OwnershipType": null
+      }
+    },
+    "PutResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePolicyResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "RequestedChangeList": {
@@ -320,8 +364,11 @@
     "ResourceARN": {
       "base": null,
       "refs": {
+        "DeleteResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Entity resource that is associated with the resource policy.</p>",
+        "GetResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Entity resource that is associated with the resource policy.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to list tags on.</p>",
         "ListTagsForResourceResponse$ResourceArn": "<p>Required. The ARN associated with the resource you want to list tags on.</p>",
+        "PutResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Entity resource you want to associate with a resource policy. </p>",
         "TagResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to tag.</p>",
         "UntagResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to remove the tag from.</p>"
       }
@@ -352,13 +399,20 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>The specified resource wasn't found.</p>",
+      "base": "<p>The specified resource wasn't found.</p> <p>HTTP status code: 404</p>",
       "refs": {
       }
     },
     "ResourceNotSupportedException": {
       "base": "<p>Currently, the specified resource is not supported.</p>",
       "refs": {
+      }
+    },
+    "ResourcePolicyJson": {
+      "base": null,
+      "refs": {
+        "GetResourcePolicyResponse$Policy": "<p>The policy document to set; formatted in JSON.</p>",
+        "PutResourcePolicyRequest$Policy": "<p>The policy document to set; formatted in JSON.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -440,7 +494,7 @@
       }
     },
     "ThrottlingException": {
-      "base": "<p>Too many requests.</p>",
+      "base": "<p>Too many requests.</p> <p>HTTP status code: 429</p>",
       "refs": {
       }
     },
@@ -455,7 +509,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>An error occurred during validation.</p>",
+      "base": "<p>An error occurred during validation.</p> <p>HTTP status code: 422</p>",
       "refs": {
       }
     },

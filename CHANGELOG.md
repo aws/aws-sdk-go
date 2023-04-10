@@ -1,3 +1,17 @@
+Release v1.44.240 (2023-04-10)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for enabling FIPS compliance on Amazon ECS Fargate tasks
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK now supports conversion of 608 paint-on captions to pop-on captions for SCC sources.
+* `service/omics`: Updates service API
+* `service/rekognition`: Updates service API and documentation
+  * This release adds support for Face Liveness APIs in Amazon Rekognition. Updates UpdateStreamProcessor to return ResourceInUseException Exception. Minor updates to API documentation.
+
 Release v1.44.239 (2023-04-07)
 ===
 

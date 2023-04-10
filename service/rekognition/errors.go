@@ -132,6 +132,12 @@ const (
 	// Developer Guide.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
+	// ErrCodeSessionNotFoundException for service response error code
+	// "SessionNotFoundException".
+	//
+	// Occurs when a given sessionId is not found.
+	ErrCodeSessionNotFoundException = "SessionNotFoundException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -166,6 +172,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceNotFoundException":              newErrorResourceNotFoundException,
 	"ResourceNotReadyException":              newErrorResourceNotReadyException,
 	"ServiceQuotaExceededException":          newErrorServiceQuotaExceededException,
+	"SessionNotFoundException":               newErrorSessionNotFoundException,
 	"ThrottlingException":                    newErrorThrottlingException,
 	"VideoTooLargeException":                 newErrorVideoTooLargeException,
 }

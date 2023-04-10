@@ -20321,11 +20321,14 @@ type ChatMessage struct {
 	//    * For application/json, the Length Constraints are Minimum of 1, Maximum
 	//    of 12000.
 	//
+	//    * For application/vnd.amazonaws.connect.message.interactive.response,
+	//    the Length Constraints are Minimum of 1, Maximum of 12288.
+	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The type of the content. Supported types are text/plain, text/markdown, and
-	// application/json.
+	// The type of the content. Supported types are text/plain, text/markdown, application/json,
+	// and application/vnd.amazonaws.connect.message.interactive.response.
 	//
 	// ContentType is a required field
 	ContentType *string `min:"1" type:"string" required:"true"`
@@ -24446,6 +24449,55 @@ func (s *Credentials) SetRefreshToken(v string) *Credentials {
 // SetRefreshTokenExpiration sets the RefreshTokenExpiration field's value.
 func (s *Credentials) SetRefreshTokenExpiration(v time.Time) *Credentials {
 	s.RefreshTokenExpiration = &v
+	return s
+}
+
+// Defines the cross-channel routing behavior that allows an agent working on
+// a contact in one channel to be offered a contact from a different channel.
+type CrossChannelBehavior struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the other channels that can be routed to an agent handling their
+	// current channel.
+	//
+	// BehaviorType is a required field
+	BehaviorType *string `type:"string" required:"true" enum:"BehaviorType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossChannelBehavior) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossChannelBehavior) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CrossChannelBehavior) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CrossChannelBehavior"}
+	if s.BehaviorType == nil {
+		invalidParams.Add(request.NewErrParamRequired("BehaviorType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBehaviorType sets the BehaviorType field's value.
+func (s *CrossChannelBehavior) SetBehaviorType(v string) *CrossChannelBehavior {
+	s.BehaviorType = &v
 	return s
 }
 
@@ -30417,7 +30469,7 @@ type GetMetricDataV2Input struct {
 
 	// The timestamp, in UNIX Epoch time format, at which to end the reporting interval
 	// for the retrieval of historical metrics data. The time must be later than
-	// the start time timestamp.
+	// the start time timestamp. It cannot be later than the current timestamp.
 	//
 	// The time range between the start and end time must be less than 24 hours.
 	//
@@ -30664,11 +30716,17 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile
 	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
+	//
 	// SUM_CONTACTS_ABANDONED_IN_X
 	//
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile
+	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
 	//
 	// SUM_CONTACTS_DISCONNECTED
 	//
@@ -37504,6 +37562,12 @@ type MediaConcurrency struct {
 	//
 	// Concurrency is a required field
 	Concurrency *int64 `min:"1" type:"integer" required:"true"`
+
+	// Defines the cross-channel routing behavior for each channel that is enabled
+	// for this Routing Profile. For example, this allows you to offer an agent
+	// a different contact from another channel when they are currently working
+	// with a contact from a Voice channel.
+	CrossChannelBehavior *CrossChannelBehavior `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37536,6 +37600,11 @@ func (s *MediaConcurrency) Validate() error {
 	if s.Concurrency != nil && *s.Concurrency < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Concurrency", 1))
 	}
+	if s.CrossChannelBehavior != nil {
+		if err := s.CrossChannelBehavior.Validate(); err != nil {
+			invalidParams.AddNested("CrossChannelBehavior", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -37552,6 +37621,12 @@ func (s *MediaConcurrency) SetChannel(v string) *MediaConcurrency {
 // SetConcurrency sets the Concurrency field's value.
 func (s *MediaConcurrency) SetConcurrency(v int64) *MediaConcurrency {
 	s.Concurrency = &v
+	return s
+}
+
+// SetCrossChannelBehavior sets the CrossChannelBehavior field's value.
+func (s *MediaConcurrency) SetCrossChannelBehavior(v *CrossChannelBehavior) *MediaConcurrency {
+	s.CrossChannelBehavior = v
 	return s
 }
 
@@ -51265,6 +51340,22 @@ func AgentStatusType_Values() []string {
 		AgentStatusTypeRoutable,
 		AgentStatusTypeCustom,
 		AgentStatusTypeOffline,
+	}
+}
+
+const (
+	// BehaviorTypeRouteCurrentChannelOnly is a BehaviorType enum value
+	BehaviorTypeRouteCurrentChannelOnly = "ROUTE_CURRENT_CHANNEL_ONLY"
+
+	// BehaviorTypeRouteAnyChannel is a BehaviorType enum value
+	BehaviorTypeRouteAnyChannel = "ROUTE_ANY_CHANNEL"
+)
+
+// BehaviorType_Values returns all elements of the BehaviorType enum
+func BehaviorType_Values() []string {
+	return []string{
+		BehaviorTypeRouteCurrentChannelOnly,
+		BehaviorTypeRouteAnyChannel,
 	}
 }
 

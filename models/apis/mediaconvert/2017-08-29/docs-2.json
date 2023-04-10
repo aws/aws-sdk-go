@@ -3692,6 +3692,12 @@
         "VideoCodecSettings$Vp9Settings": "Required when you set (Codec) under (VideoDescription)>(CodecSettings) to the value VP9."
       }
     },
+    "WarningGroup": {
+      "base": "Contains any warning codes and their count for the job.",
+      "refs": {
+        "__listOfWarningGroup$member": null
+      }
+    },
     "WatermarkingStrength": {
       "base": "Optional. Ignore this setting unless Nagra support directs you to specify a value. When you don't specify a value here, the Nagra NexGuard library uses its default value.",
       "refs": {
@@ -3971,7 +3977,7 @@
       "base": null,
       "refs": {
         "DescribeEndpointsRequest$MaxResults": "Optional. Max number of endpoints, up to twenty, that will be returned at one time.",
-        "HopDestination$WaitMinutes": "Required for setting up a job to use queue hopping. Minimum wait time in minutes until the job can hop to the destination queue. Valid range is 1 to 1440 minutes, inclusive.",
+        "HopDestination$WaitMinutes": "Required for setting up a job to use queue hopping. Minimum wait time in minutes until the job can hop to the destination queue. Valid range is 1 to 4320 minutes, inclusive.",
         "Job$ErrorCode": "Error code for the job",
         "Job$JobPercentComplete": "An estimate of how far your job has progressed. This estimate is shown as a percentage of the total time from when your job leaves its queue to when your output files appear in your output Amazon S3 bucket. AWS Elemental MediaConvert provides jobPercentComplete in CloudWatch STATUS_UPDATE events and in the response to GetJob and ListJobs requests. The jobPercentComplete estimate is reliable for the following input containers: Quicktime, Transport Stream, MP4, and MXF. For some jobs, the service can't provide information about job progress. In those cases, jobPercentComplete returns a null value.",
         "Job$RetryCount": "The number of times that the service automatically attempted to process your job after encountering an error.",
@@ -3980,6 +3986,8 @@
         "ReservationPlanSettings$ReservedSlots": "Specifies the number of reserved transcode slots (RTS) for this queue. The number of RTS determines how many jobs the queue can process in parallel; each RTS can process one job at a time. You can't decrease the number of RTS in your reserved queue. You can increase the number of RTS by extending your existing commitment with a new 12-month commitment for the larger number. The new commitment begins when you purchase the additional capacity. You can't cancel your commitment or revert to your original commitment after you increase the capacity.",
         "VideoDetail$HeightInPx": "Height in pixels for the output",
         "VideoDetail$WidthInPx": "Width in pixels for the output",
+        "WarningGroup$Code": "Warning code that identifies a specific warning in the job. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/warning_codes.html",
+        "WarningGroup$Count": "The number of times this warning occurred in the job.",
         "Queue$ProgressingJobsCount": "The estimated number of jobs with a PROGRESSING status.",
         "Queue$SubmittedJobsCount": "The estimated number of jobs with a SUBMITTED status."
       }
@@ -4971,6 +4979,12 @@
         "TeletextDestinationSettings$PageTypes": "Specify the page types for this Teletext page. If you don't specify a value here, the service sets the page type to the default value Subtitle (PAGE_TYPE_SUBTITLE). If you pass through the entire set of Teletext data, don't use this field. When you pass through a set of Teletext pages, your output has the same page types as your input."
       }
     },
+    "__listOfWarningGroup": {
+      "base": null,
+      "refs": {
+        "Job$Warnings": "Contains any warning messages for the job. Use to help identify potential issues with your input, output, or job. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/warning_codes.html"
+      }
+    },
     "__listOf__doubleMinNegative60Max6": {
       "base": null,
       "refs": {
@@ -5115,6 +5129,7 @@
         "HlsSettings$SegmentModifier": "Use this setting to add an identifying string to the filename of each segment. The service adds this string between the name modifier and segment index number. You can use format identifiers in the string. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/using-variables-in-your-job-settings.html",
         "HopDestination$Queue": "Optional unless the job is submitted on the default queue. When you set up a job to use queue hopping, you can specify a destination queue. This queue cannot be the original queue to which the job is submitted. If the original queue isn't the default queue and you don't specify the destination queue, the job will move to the default queue.",
         "Job$Arn": "An identifier for this resource that is unique within all of AWS.",
+        "Job$ClientRequestToken": "Prevent duplicate jobs from being created and ensure idempotency for your requests. A client request token can be any string that includes up to 64 ASCII characters. If you reuse a client request token within one minute of a successful request, the API returns the job details of the original request instead. For more information see https://docs.aws.amazon.com/mediaconvert/latest/apireference/idempotency.html.",
         "Job$ErrorMessage": "Error message of Job",
         "Job$Id": "A portion of the job's ARN, unique within your AWS Elemental MediaConvert resources",
         "Job$JobTemplate": "The job template that the job is created from, if it is created from a job template.",

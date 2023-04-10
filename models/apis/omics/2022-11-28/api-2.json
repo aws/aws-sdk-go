@@ -7970,8 +7970,7 @@
         "ACTIVE",
         "UPDATING",
         "DELETED",
-        "FAILED",
-        "INACTIVE"
+        "FAILED"
       ],
       "max": 64,
       "min": 1,
@@ -7987,8 +7986,7 @@
     },
     "WorkflowType": {
       "enum": [
-        "PRIVATE",
-        "SERVICE"
+        "PRIVATE"
       ],
       "max": 64,
       "min": 1,

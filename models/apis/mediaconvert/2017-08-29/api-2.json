@@ -6417,6 +6417,10 @@
           "shape": "BillingTagsSource",
           "locationName": "billingTagsSource"
         },
+        "ClientRequestToken": {
+          "shape": "__string",
+          "locationName": "clientRequestToken"
+        },
         "CreatedAt": {
           "shape": "__timestampUnix",
           "locationName": "createdAt"
@@ -6500,11 +6504,15 @@
         "UserMetadata": {
           "shape": "__mapOf__string",
           "locationName": "userMetadata"
+        },
+        "Warnings": {
+          "shape": "__listOfWarningGroup",
+          "locationName": "warnings"
         }
       },
       "required": [
-        "Role",
-        "Settings"
+        "Settings",
+        "Role"
       ]
     },
     "JobMessages": {
@@ -10283,6 +10291,23 @@
         }
       }
     },
+    "WarningGroup": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "shape": "__integer",
+          "locationName": "code"
+        },
+        "Count": {
+          "shape": "__integer",
+          "locationName": "count"
+        }
+      },
+      "required": [
+        "Count",
+        "Code"
+      ]
+    },
     "WatermarkingStrength": {
       "type": "string",
       "enum": [
@@ -11404,6 +11429,12 @@
       "type": "list",
       "member": {
         "shape": "TeletextPageType"
+      }
+    },
+    "__listOfWarningGroup": {
+      "type": "list",
+      "member": {
+        "shape": "WarningGroup"
       }
     },
     "__listOf__doubleMinNegative60Max6": {

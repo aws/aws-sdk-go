@@ -3169,6 +3169,13 @@
       "min":8,
       "pattern":"[a-z]{2}(-[a-z]+){1,2}(-[0-9])?"
     },
+    "BehaviorType":{
+      "type":"string",
+      "enum":[
+        "ROUTE_CURRENT_CHANNEL_ONLY",
+        "ROUTE_ANY_CHANNEL"
+      ]
+    },
     "Boolean":{"type":"boolean"},
     "BotName":{
       "type":"string",
@@ -4043,6 +4050,13 @@
         "AccessTokenExpiration":{"shape":"timestamp"},
         "RefreshToken":{"shape":"SecurityToken"},
         "RefreshTokenExpiration":{"shape":"timestamp"}
+      }
+    },
+    "CrossChannelBehavior":{
+      "type":"structure",
+      "required":["BehaviorType"],
+      "members":{
+        "BehaviorType":{"shape":"BehaviorType"}
       }
     },
     "CurrentMetric":{
@@ -7139,7 +7153,8 @@
       ],
       "members":{
         "Channel":{"shape":"Channel"},
-        "Concurrency":{"shape":"Concurrency"}
+        "Concurrency":{"shape":"Concurrency"},
+        "CrossChannelBehavior":{"shape":"CrossChannelBehavior"}
       }
     },
     "Message":{"type":"string"},
