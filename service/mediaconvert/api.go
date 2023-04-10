@@ -14844,7 +14844,7 @@ type HopDestination struct {
 
 	// Required for setting up a job to use queue hopping. Minimum wait time in
 	// minutes until the job can hop to the destination queue. Valid range is 1
-	// to 1440 minutes, inclusive.
+	// to 4320 minutes, inclusive.
 	WaitMinutes *int64 `locationName:"waitMinutes" type:"integer"`
 }
 
@@ -16206,6 +16206,13 @@ type Job struct {
 	// Elemental MediaConvert costs on any billing report that you set up.
 	BillingTagsSource *string `locationName:"billingTagsSource" type:"string" enum:"BillingTagsSource"`
 
+	// Prevent duplicate jobs from being created and ensure idempotency for your
+	// requests. A client request token can be any string that includes up to 64
+	// ASCII characters. If you reuse a client request token within one minute of
+	// a successful request, the API returns the job details of the original request
+	// instead. For more information see https://docs.aws.amazon.com/mediaconvert/latest/apireference/idempotency.html.
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string"`
+
 	// The time, in Unix epoch format in seconds, when the job got created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unixTimestamp"`
 
@@ -16294,6 +16301,10 @@ type Job struct {
 	// User-defined metadata that you want to associate with an MediaConvert job.
 	// You specify metadata in key/value pairs.
 	UserMetadata map[string]*string `locationName:"userMetadata" type:"map"`
+
+	// Contains any warning messages for the job. Use to help identify potential
+	// issues with your input, output, or job. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/warning_codes.html
+	Warnings []*WarningGroup `locationName:"warnings" type:"list"`
 }
 
 // String returns the string representation.
@@ -16335,6 +16346,12 @@ func (s *Job) SetArn(v string) *Job {
 // SetBillingTagsSource sets the BillingTagsSource field's value.
 func (s *Job) SetBillingTagsSource(v string) *Job {
 	s.BillingTagsSource = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *Job) SetClientRequestToken(v string) *Job {
+	s.ClientRequestToken = &v
 	return s
 }
 
@@ -16461,6 +16478,12 @@ func (s *Job) SetTiming(v *Timing) *Job {
 // SetUserMetadata sets the UserMetadata field's value.
 func (s *Job) SetUserMetadata(v map[string]*string) *Job {
 	s.UserMetadata = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *Job) SetWarnings(v []*WarningGroup) *Job {
+	s.Warnings = v
 	return s
 }
 
@@ -26090,6 +26113,52 @@ func (s *Vp9Settings) SetQualityTuningLevel(v string) *Vp9Settings {
 // SetRateControlMode sets the RateControlMode field's value.
 func (s *Vp9Settings) SetRateControlMode(v string) *Vp9Settings {
 	s.RateControlMode = &v
+	return s
+}
+
+// Contains any warning codes and their count for the job.
+type WarningGroup struct {
+	_ struct{} `type:"structure"`
+
+	// Warning code that identifies a specific warning in the job. For more information,
+	// see https://docs.aws.amazon.com/mediaconvert/latest/ug/warning_codes.html
+	//
+	// Code is a required field
+	Code *int64 `locationName:"code" type:"integer" required:"true"`
+
+	// The number of times this warning occurred in the job.
+	//
+	// Count is a required field
+	Count *int64 `locationName:"count" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningGroup) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *WarningGroup) SetCode(v int64) *WarningGroup {
+	s.Code = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *WarningGroup) SetCount(v int64) *WarningGroup {
+	s.Count = &v
 	return s
 }
 

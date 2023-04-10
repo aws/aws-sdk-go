@@ -76,6 +76,10 @@ type RekognitionAPI interface {
 	CreateDatasetWithContext(aws.Context, *rekognition.CreateDatasetInput, ...request.Option) (*rekognition.CreateDatasetOutput, error)
 	CreateDatasetRequest(*rekognition.CreateDatasetInput) (*request.Request, *rekognition.CreateDatasetOutput)
 
+	CreateFaceLivenessSession(*rekognition.CreateFaceLivenessSessionInput) (*rekognition.CreateFaceLivenessSessionOutput, error)
+	CreateFaceLivenessSessionWithContext(aws.Context, *rekognition.CreateFaceLivenessSessionInput, ...request.Option) (*rekognition.CreateFaceLivenessSessionOutput, error)
+	CreateFaceLivenessSessionRequest(*rekognition.CreateFaceLivenessSessionInput) (*request.Request, *rekognition.CreateFaceLivenessSessionOutput)
+
 	CreateProject(*rekognition.CreateProjectInput) (*rekognition.CreateProjectOutput, error)
 	CreateProjectWithContext(aws.Context, *rekognition.CreateProjectInput, ...request.Option) (*rekognition.CreateProjectOutput, error)
 	CreateProjectRequest(*rekognition.CreateProjectInput) (*request.Request, *rekognition.CreateProjectOutput)
@@ -194,6 +198,10 @@ type RekognitionAPI interface {
 
 	GetFaceDetectionPages(*rekognition.GetFaceDetectionInput, func(*rekognition.GetFaceDetectionOutput, bool) bool) error
 	GetFaceDetectionPagesWithContext(aws.Context, *rekognition.GetFaceDetectionInput, func(*rekognition.GetFaceDetectionOutput, bool) bool, ...request.Option) error
+
+	GetFaceLivenessSessionResults(*rekognition.GetFaceLivenessSessionResultsInput) (*rekognition.GetFaceLivenessSessionResultsOutput, error)
+	GetFaceLivenessSessionResultsWithContext(aws.Context, *rekognition.GetFaceLivenessSessionResultsInput, ...request.Option) (*rekognition.GetFaceLivenessSessionResultsOutput, error)
+	GetFaceLivenessSessionResultsRequest(*rekognition.GetFaceLivenessSessionResultsInput) (*request.Request, *rekognition.GetFaceLivenessSessionResultsOutput)
 
 	GetFaceSearch(*rekognition.GetFaceSearchInput) (*rekognition.GetFaceSearchOutput, error)
 	GetFaceSearchWithContext(aws.Context, *rekognition.GetFaceSearchInput, ...request.Option) (*rekognition.GetFaceSearchOutput, error)

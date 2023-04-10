@@ -30,6 +30,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/DeleteResourcePolicy"
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "output":{"shape":"DeleteResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeChangeSet":{
       "name":"DescribeChangeSet",
       "http":{
@@ -59,6 +75,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotSupportedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetResourcePolicy":{
+      "name":"GetResourcePolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetResourcePolicy"
+      },
+      "input":{"shape":"GetResourcePolicyRequest"},
+      "output":{"shape":"GetResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
       ]
@@ -107,6 +139,22 @@
         {"shape":"InternalServiceException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/PutResourcePolicy"
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -295,6 +343,22 @@
       "min":20,
       "pattern":"^([\\d]{4})\\-(1[0-2]|0[1-9])\\-(3[01]|0[1-9]|[12][\\d])T(2[0-3]|[01][\\d]):([0-5][\\d]):([0-5][\\d])Z$"
     },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{
+          "shape":"ResourceARN",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "DeleteResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeChangeSetRequest":{
       "type":"structure",
       "required":[
@@ -447,6 +511,23 @@
       "min":1,
       "pattern":"^(.)+$"
     },
+    "GetResourcePolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{
+          "shape":"ResourceARN",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "GetResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"ResourcePolicyJson"}
+      }
+    },
     "Identifier":{
       "type":"string",
       "max":255,
@@ -468,6 +549,12 @@
       "min":2,
       "pattern":"^[\\s]*\\{[\\s\\S]*\\}[\\s]*$"
     },
+    "ListChangeSetsMaxResultInteger":{
+      "type":"integer",
+      "box":true,
+      "max":20,
+      "min":1
+    },
     "ListChangeSetsRequest":{
       "type":"structure",
       "required":["Catalog"],
@@ -475,7 +562,7 @@
         "Catalog":{"shape":"Catalog"},
         "FilterList":{"shape":"FilterList"},
         "Sort":{"shape":"Sort"},
-        "MaxResults":{"shape":"MaxResultInteger"},
+        "MaxResults":{"shape":"ListChangeSetsMaxResultInteger"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -485,6 +572,12 @@
         "ChangeSetSummaryList":{"shape":"ChangeSetSummaryList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListEntitiesMaxResultInteger":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
     },
     "ListEntitiesRequest":{
       "type":"structure",
@@ -498,7 +591,8 @@
         "FilterList":{"shape":"FilterList"},
         "Sort":{"shape":"Sort"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResultInteger"}
+        "MaxResults":{"shape":"ListEntitiesMaxResultInteger"},
+        "OwnershipType":{"shape":"OwnershipType"}
       }
     },
     "ListEntitiesResponse":{
@@ -522,17 +616,34 @@
         "Tags":{"shape":"TagList"}
       }
     },
-    "MaxResultInteger":{
-      "type":"integer",
-      "box":true,
-      "max":20,
-      "min":1
-    },
     "NextToken":{
       "type":"string",
       "max":2048,
       "min":1,
       "pattern":"^[\\w+=.:@\\-\\/]$"
+    },
+    "OwnershipType":{
+      "type":"string",
+      "enum":[
+        "SELF",
+        "SHARED"
+      ]
+    },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Policy"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceARN"},
+        "Policy":{"shape":"ResourcePolicyJson"}
+      }
+    },
+    "PutResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "RequestedChangeList":{
       "type":"list",
@@ -582,6 +693,12 @@
       "error":{"httpStatusCode":415},
       "exception":true,
       "synthetic":true
+    },
+    "ResourcePolicyJson":{
+      "type":"string",
+      "max":10240,
+      "min":1,
+      "pattern":"^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$"
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -656,13 +773,13 @@
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"TagKey"},
-      "max":50,
+      "max":200,
       "min":1
     },
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
-      "max":50,
+      "max":200,
       "min":1
     },
     "TagResourceRequest":{

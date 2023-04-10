@@ -21847,9 +21847,6 @@ const (
 
 	// WorkflowStatusFailed is a WorkflowStatus enum value
 	WorkflowStatusFailed = "FAILED"
-
-	// WorkflowStatusInactive is a WorkflowStatus enum value
-	WorkflowStatusInactive = "INACTIVE"
 )
 
 // WorkflowStatus_Values returns all elements of the WorkflowStatus enum
@@ -21860,22 +21857,17 @@ func WorkflowStatus_Values() []string {
 		WorkflowStatusUpdating,
 		WorkflowStatusDeleted,
 		WorkflowStatusFailed,
-		WorkflowStatusInactive,
 	}
 }
 
 const (
 	// WorkflowTypePrivate is a WorkflowType enum value
 	WorkflowTypePrivate = "PRIVATE"
-
-	// WorkflowTypeService is a WorkflowType enum value
-	WorkflowTypeService = "SERVICE"
 )
 
 // WorkflowType_Values returns all elements of the WorkflowType enum
 func WorkflowType_Values() []string {
 	return []string{
 		WorkflowTypePrivate,
-		WorkflowTypeService,
 	}
 }

@@ -3156,7 +3156,8 @@
         "taskLongArnFormat",
         "containerInstanceLongArnFormat",
         "awsvpcTrunking",
-        "containerInsights"
+        "containerInsights",
+        "fargateFIPSMode"
       ]
     },
     "Settings":{

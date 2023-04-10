@@ -72,20 +72,30 @@ func (c *MarketplaceCatalog) CancelChangeSetRequest(input *CancelChangeSetInput)
 //   - InternalServiceException
 //     There was an internal service exception.
 //
+//     HTTP status code: 500
+//
 //   - AccessDeniedException
 //     Access is denied.
+//
+//     HTTP status code: 403
 //
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
+//
+//     HTTP status code: 404
 //
 //   - ResourceInUseException
 //     The resource is currently in use.
 //
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/CancelChangeSet
 func (c *MarketplaceCatalog) CancelChangeSet(input *CancelChangeSetInput) (*CancelChangeSetOutput, error) {
@@ -104,6 +114,109 @@ func (c *MarketplaceCatalog) CancelChangeSet(input *CancelChangeSetInput) (*Canc
 // for more information on using Contexts.
 func (c *MarketplaceCatalog) CancelChangeSetWithContext(ctx aws.Context, input *CancelChangeSetInput, opts ...request.Option) (*CancelChangeSetOutput, error) {
 	req, out := c.CancelChangeSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DeleteResourcePolicy
+func (c *MarketplaceCatalog) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/DeleteResourcePolicy",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourcePolicy API operation for AWS Marketplace Catalog Service.
+//
+// Deletes a resource-based policy on an Entity that is identified by its resource
+// ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Catalog Service's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceException
+//     There was an internal service exception.
+//
+//     HTTP status code: 500
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//     HTTP status code: 403
+//
+//   - ValidationException
+//     An error occurred during validation.
+//
+//     HTTP status code: 422
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//     HTTP status code: 404
+//
+//   - ThrottlingException
+//     Too many requests.
+//
+//     HTTP status code: 429
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DeleteResourcePolicy
+func (c *MarketplaceCatalog) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCatalog) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -166,17 +279,27 @@ func (c *MarketplaceCatalog) DescribeChangeSetRequest(input *DescribeChangeSetIn
 //   - InternalServiceException
 //     There was an internal service exception.
 //
+//     HTTP status code: 500
+//
 //   - AccessDeniedException
 //     Access is denied.
+//
+//     HTTP status code: 403
 //
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
 //
+//     HTTP status code: 404
+//
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DescribeChangeSet
 func (c *MarketplaceCatalog) DescribeChangeSet(input *DescribeChangeSetInput) (*DescribeChangeSetOutput, error) {
@@ -257,11 +380,17 @@ func (c *MarketplaceCatalog) DescribeEntityRequest(input *DescribeEntityInput) (
 //   - InternalServiceException
 //     There was an internal service exception.
 //
+//     HTTP status code: 500
+//
 //   - AccessDeniedException
 //     Access is denied.
 //
+//     HTTP status code: 403
+//
 //   - ValidationException
 //     An error occurred during validation.
+//
+//     HTTP status code: 422
 //
 //   - ResourceNotSupportedException
 //     Currently, the specified resource is not supported.
@@ -269,8 +398,12 @@ func (c *MarketplaceCatalog) DescribeEntityRequest(input *DescribeEntityInput) (
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
 //
+//     HTTP status code: 404
+//
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DescribeEntity
 func (c *MarketplaceCatalog) DescribeEntity(input *DescribeEntityInput) (*DescribeEntityOutput, error) {
@@ -289,6 +422,108 @@ func (c *MarketplaceCatalog) DescribeEntity(input *DescribeEntityInput) (*Descri
 // for more information on using Contexts.
 func (c *MarketplaceCatalog) DescribeEntityWithContext(ctx aws.Context, input *DescribeEntityInput, opts ...request.Option) (*DescribeEntityOutput, error) {
 	req, out := c.DescribeEntityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResourcePolicy = "GetResourcePolicy"
+
+// GetResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePolicy for more information on using the GetResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/GetResourcePolicy
+func (c *MarketplaceCatalog) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/GetResourcePolicy",
+	}
+
+	if input == nil {
+		input = &GetResourcePolicyInput{}
+	}
+
+	output = &GetResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePolicy API operation for AWS Marketplace Catalog Service.
+//
+// Gets a resource-based policy of an Entity that is identified by its resource
+// ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Catalog Service's
+// API operation GetResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceException
+//     There was an internal service exception.
+//
+//     HTTP status code: 500
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//     HTTP status code: 403
+//
+//   - ValidationException
+//     An error occurred during validation.
+//
+//     HTTP status code: 422
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//     HTTP status code: 404
+//
+//   - ThrottlingException
+//     Too many requests.
+//
+//     HTTP status code: 429
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/GetResourcePolicy
+func (c *MarketplaceCatalog) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePolicyWithContext is the same as GetResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCatalog) GetResourcePolicyWithContext(ctx aws.Context, input *GetResourcePolicyInput, opts ...request.Option) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -363,14 +598,22 @@ func (c *MarketplaceCatalog) ListChangeSetsRequest(input *ListChangeSetsInput) (
 //   - InternalServiceException
 //     There was an internal service exception.
 //
+//     HTTP status code: 500
+//
 //   - AccessDeniedException
 //     Access is denied.
+//
+//     HTTP status code: 403
 //
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListChangeSets
 func (c *MarketplaceCatalog) ListChangeSets(input *ListChangeSetsInput) (*ListChangeSetsOutput, error) {
@@ -508,17 +751,27 @@ func (c *MarketplaceCatalog) ListEntitiesRequest(input *ListEntitiesInput) (req 
 //   - InternalServiceException
 //     There was an internal service exception.
 //
+//     HTTP status code: 500
+//
 //   - AccessDeniedException
 //     Access is denied.
+//
+//     HTTP status code: 403
 //
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
 //
+//     HTTP status code: 404
+//
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListEntities
 func (c *MarketplaceCatalog) ListEntities(input *ListEntitiesInput) (*ListEntitiesOutput, error) {
@@ -651,17 +904,27 @@ func (c *MarketplaceCatalog) ListTagsForResourceRequest(input *ListTagsForResour
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
 //
+//     HTTP status code: 404
+//
 //   - InternalServiceException
 //     There was an internal service exception.
+//
+//     HTTP status code: 500
 //
 //   - AccessDeniedException
 //     Access is denied.
 //
+//     HTTP status code: 403
+//
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListTagsForResource
 func (c *MarketplaceCatalog) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -680,6 +943,109 @@ func (c *MarketplaceCatalog) ListTagsForResource(input *ListTagsForResourceInput
 // for more information on using Contexts.
 func (c *MarketplaceCatalog) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutResourcePolicy = "PutResourcePolicy"
+
+// PutResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourcePolicy for more information on using the PutResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/PutResourcePolicy
+func (c *MarketplaceCatalog) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/PutResourcePolicy",
+	}
+
+	if input == nil {
+		input = &PutResourcePolicyInput{}
+	}
+
+	output = &PutResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutResourcePolicy API operation for AWS Marketplace Catalog Service.
+//
+// Attaches a resource-based policy to an Entity. Examples of an entity include:
+// AmiProduct and ContainerProduct.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Catalog Service's
+// API operation PutResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceException
+//     There was an internal service exception.
+//
+//     HTTP status code: 500
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//     HTTP status code: 403
+//
+//   - ValidationException
+//     An error occurred during validation.
+//
+//     HTTP status code: 422
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//     HTTP status code: 404
+//
+//   - ThrottlingException
+//     Too many requests.
+//
+//     HTTP status code: 429
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/PutResourcePolicy
+func (c *MarketplaceCatalog) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutResourcePolicyWithContext is the same as PutResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCatalog) PutResourcePolicyWithContext(ctx aws.Context, input *PutResourcePolicyInput, opts ...request.Option) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -742,6 +1108,10 @@ func (c *MarketplaceCatalog) StartChangeSetRequest(input *StartChangeSetInput) (
 //
 // For more information about working with change sets, see Working with change
 // sets (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets).
+// For information on change types for single-AMI products, see Working with
+// single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
+// Als, for more information on change types available for container-based products,
+// see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -755,20 +1125,30 @@ func (c *MarketplaceCatalog) StartChangeSetRequest(input *StartChangeSetInput) (
 //   - InternalServiceException
 //     There was an internal service exception.
 //
+//     HTTP status code: 500
+//
 //   - AccessDeniedException
 //     Access is denied.
+//
+//     HTTP status code: 403
 //
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
+//
+//     HTTP status code: 404
 //
 //   - ResourceInUseException
 //     The resource is currently in use.
 //
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 //   - ServiceQuotaExceededException
 //     The maximum number of open requests per account has been exceeded.
@@ -854,17 +1234,27 @@ func (c *MarketplaceCatalog) TagResourceRequest(input *TagResourceInput) (req *r
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
 //
+//     HTTP status code: 404
+//
 //   - InternalServiceException
 //     There was an internal service exception.
+//
+//     HTTP status code: 500
 //
 //   - AccessDeniedException
 //     Access is denied.
 //
+//     HTTP status code: 403
+//
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/TagResource
 func (c *MarketplaceCatalog) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -947,17 +1337,27 @@ func (c *MarketplaceCatalog) UntagResourceRequest(input *UntagResourceInput) (re
 //   - ResourceNotFoundException
 //     The specified resource wasn't found.
 //
+//     HTTP status code: 404
+//
 //   - InternalServiceException
 //     There was an internal service exception.
+//
+//     HTTP status code: 500
 //
 //   - AccessDeniedException
 //     Access is denied.
 //
+//     HTTP status code: 403
+//
 //   - ValidationException
 //     An error occurred during validation.
 //
+//     HTTP status code: 422
+//
 //   - ThrottlingException
 //     Too many requests.
+//
+//     HTTP status code: 429
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/UntagResource
 func (c *MarketplaceCatalog) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -982,6 +1382,8 @@ func (c *MarketplaceCatalog) UntagResourceWithContext(ctx aws.Context, input *Un
 }
 
 // Access is denied.
+//
+// HTTP status code: 403
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1161,13 +1563,19 @@ type Change struct {
 
 	// Change types are single string values that describe your intention for the
 	// change. Each change type is unique for each EntityType provided in the change's
-	// scope.
+	// scope. For more information on change types available for single-AMI products,
+	// see Working with single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
+	// Also, for more information on change types available for container-based
+	// products, see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
 	//
 	// ChangeType is a required field
 	ChangeType *string `min:"1" type:"string" required:"true"`
 
 	// This object contains details specific to the change type of the requested
-	// change.
+	// change. For more information on change types available for single-AMI products,
+	// see Working with single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
+	// Also, for more information on change types available for container-based
+	// products, see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
 	//
 	// Details is a required field
 	Details *string `min:"2" type:"string" required:"true"`
@@ -1447,6 +1855,78 @@ func (s *ChangeSummary) SetEntity(v *Entity) *ChangeSummary {
 func (s *ChangeSummary) SetErrorDetailList(v []*ErrorDetail) *ChangeSummary {
 	s.ErrorDetailList = v
 	return s
+}
+
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the Entity resource that is associated
+	// with the resource policy.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeChangeSetInput struct {
@@ -2031,7 +2511,90 @@ func (s *Filter) SetValueList(v []*string) *Filter {
 	return s
 }
 
+type GetResourcePolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the Entity resource that is associated
+	// with the resource policy.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy document to set; formatted in JSON.
+	Policy *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetResourcePolicyOutput) SetPolicy(v string) *GetResourcePolicyOutput {
+	s.Policy = &v
+	return s
+}
+
 // There was an internal service exception.
+//
+// HTTP status code: 500
 type InternalServiceException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2271,6 +2834,8 @@ type ListEntitiesInput struct {
 	// The value of the next token, if it exists. Null if there are no more results.
 	NextToken *string `min:"1" type:"string"`
 
+	OwnershipType *string `type:"string" enum:"OwnershipType"`
+
 	// An object that contains two attributes, SortBy and SortOrder.
 	Sort *Sort `type:"structure"`
 }
@@ -2366,6 +2931,12 @@ func (s *ListEntitiesInput) SetMaxResults(v int64) *ListEntitiesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListEntitiesInput) SetNextToken(v string) *ListEntitiesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetOwnershipType sets the OwnershipType field's value.
+func (s *ListEntitiesInput) SetOwnershipType(v string) *ListEntitiesInput {
+	s.OwnershipType = &v
 	return s
 }
 
@@ -2506,6 +3077,95 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+type PutResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy document to set; formatted in JSON.
+	//
+	// Policy is a required field
+	Policy *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Entity resource you want to associate
+	// with a resource policy.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourcePolicyInput"}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutResourcePolicyInput) SetPolicy(v string) *PutResourcePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyInput) SetResourceArn(v string) *PutResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type PutResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
 // The resource is currently in use.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
@@ -2571,6 +3231,8 @@ func (s *ResourceInUseException) RequestID() string {
 }
 
 // The specified resource wasn't found.
+//
+// HTTP status code: 404
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3148,6 +3810,8 @@ func (s TagResourceOutput) GoString() string {
 }
 
 // Too many requests.
+//
+// HTTP status code: 429
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3302,6 +3966,8 @@ func (s UntagResourceOutput) GoString() string {
 }
 
 // An error occurred during validation.
+//
+// HTTP status code: 422
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3406,6 +4072,22 @@ func FailureCode_Values() []string {
 	return []string{
 		FailureCodeClientError,
 		FailureCodeServerFault,
+	}
+}
+
+const (
+	// OwnershipTypeSelf is a OwnershipType enum value
+	OwnershipTypeSelf = "SELF"
+
+	// OwnershipTypeShared is a OwnershipType enum value
+	OwnershipTypeShared = "SHARED"
+)
+
+// OwnershipType_Values returns all elements of the OwnershipType enum
+func OwnershipType_Values() []string {
+	return []string{
+		OwnershipTypeSelf,
+		OwnershipTypeShared,
 	}
 }
 

@@ -238,6 +238,9 @@ func (c *Rekognition) CopyProjectVersionRequest(input *CopyProjectVersionInput) 
 // call DescribeProjectVersions and check the value of Status in the ProjectVersionDescription
 // object. The copy operation has finished when the value of Status is COPYING_COMPLETED.
 //
+// This operation requires permissions to perform the rekognition:CopyProjectVersion
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -546,6 +549,102 @@ func (c *Rekognition) CreateDatasetWithContext(ctx aws.Context, input *CreateDat
 	return out, req.Send()
 }
 
+const opCreateFaceLivenessSession = "CreateFaceLivenessSession"
+
+// CreateFaceLivenessSessionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFaceLivenessSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFaceLivenessSession for more information on using the CreateFaceLivenessSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFaceLivenessSessionRequest method.
+//	req, resp := client.CreateFaceLivenessSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) CreateFaceLivenessSessionRequest(input *CreateFaceLivenessSessionInput) (req *request.Request, output *CreateFaceLivenessSessionOutput) {
+	op := &request.Operation{
+		Name:       opCreateFaceLivenessSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFaceLivenessSessionInput{}
+	}
+
+	output = &CreateFaceLivenessSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFaceLivenessSession API operation for Amazon Rekognition.
+//
+// This API operation initiates a Face Liveness session. It returns a SessionId,
+// which you can use to start streaming Face Liveness video and get the results
+// for a Face Liveness session. You can use the OutputConfig option in the Settings
+// parameter to provide an Amazon S3 bucket location. The Amazon S3 bucket stores
+// reference images and audit images. You can use AuditImagesLimit to limit
+// of audit images returned. This number is between 0 and 4. By default, it
+// is set to 0. The limit is best effort and based on the duration of the selfie-video.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation CreateFaceLivenessSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+func (c *Rekognition) CreateFaceLivenessSession(input *CreateFaceLivenessSessionInput) (*CreateFaceLivenessSessionOutput, error) {
+	req, out := c.CreateFaceLivenessSessionRequest(input)
+	return out, req.Send()
+}
+
+// CreateFaceLivenessSessionWithContext is the same as CreateFaceLivenessSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFaceLivenessSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) CreateFaceLivenessSessionWithContext(ctx aws.Context, input *CreateFaceLivenessSessionInput, opts ...request.Option) (*CreateFaceLivenessSessionOutput, error) {
+	req, out := c.CreateFaceLivenessSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateProject = "CreateProject"
 
 // CreateProjectRequest generates a "aws/request.Request" representing the
@@ -845,21 +944,21 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 //
 //   - If you are creating a stream processor for detecting faces, you provide
 //     as input a Kinesis video stream (Input) and a Kinesis data stream (Output)
-//     stream. You also specify the face recognition criteria in Settings. For
-//     example, the collection containing faces that you want to recognize. After
-//     you have finished analyzing a streaming video, use StopStreamProcessor
+//     stream for receiving the output. You must use the FaceSearch option in
+//     Settings, specifying the collection that contains the faces you want to
+//     recognize. After you have finished analyzing a streaming video, use StopStreamProcessor
 //     to stop processing.
 //
 //   - If you are creating a stream processor to detect labels, you provide
 //     as input a Kinesis video stream (Input), Amazon S3 bucket information
 //     (Output), and an Amazon SNS topic ARN (NotificationChannel). You can also
 //     provide a KMS key ID to encrypt the data sent to your Amazon S3 bucket.
-//     You specify what you want to detect in ConnectedHomeSettings, such as
-//     people, packages and people, or pets, people, and packages. You can also
-//     specify where in the frame you want Amazon Rekognition to monitor with
-//     RegionsOfInterest. When you run the StartStreamProcessor operation on
-//     a label detection stream processor, you input start and stop information
-//     to determine the length of the processing time.
+//     You specify what you want to detect by using the ConnectedHome option
+//     in settings, and selecting one of the following: PERSON, PET, PACKAGE,
+//     ALL You can also specify where in the frame you want Amazon Rekognition
+//     to monitor with RegionsOfInterest. When you run the StartStreamProcessor
+//     operation on a label detection stream processor, you input start and stop
+//     information to determine the length of the processing time.
 //
 // Use Name to assign an identifier for the stream processor. You use Name to
 // manage the stream processor. For example, you can start processing the source
@@ -1391,6 +1490,9 @@ func (c *Rekognition) DeleteProjectPolicyRequest(input *DeleteProjectPolicyInput
 //
 // To get a list of project policies attached to a project, call ListProjectPolicies.
 // To attach a project policy to a project, call PutProjectPolicy.
+//
+// This operation requires permissions to perform the rekognition:DeleteProjectPolicy
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2607,7 +2709,7 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // # Response Elements
 //
 // For each object, scene, and concept the API returns one or more labels. The
-// API returns the following types of information regarding labels:
+// API returns the following types of information about labels:
 //
 //   - Name - The name of the detected label.
 //
@@ -2675,8 +2777,7 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // If the object detected is a person, the operation doesn't provide the same
 // facial details that the DetectFaces operation provides.
 //
-// This is a stateless API operation. That is, the operation does not persist
-// any data.
+// This is a stateless API operation that doesn't return any data.
 //
 // This operation requires permissions to perform the rekognition:DetectLabels
 // action.
@@ -3904,6 +4005,104 @@ func (c *Rekognition) GetFaceDetectionPagesWithContext(ctx aws.Context, input *G
 	}
 
 	return p.Err()
+}
+
+const opGetFaceLivenessSessionResults = "GetFaceLivenessSessionResults"
+
+// GetFaceLivenessSessionResultsRequest generates a "aws/request.Request" representing the
+// client's request for the GetFaceLivenessSessionResults operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFaceLivenessSessionResults for more information on using the GetFaceLivenessSessionResults
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetFaceLivenessSessionResultsRequest method.
+//	req, resp := client.GetFaceLivenessSessionResultsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Rekognition) GetFaceLivenessSessionResultsRequest(input *GetFaceLivenessSessionResultsInput) (req *request.Request, output *GetFaceLivenessSessionResultsOutput) {
+	op := &request.Operation{
+		Name:       opGetFaceLivenessSessionResults,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetFaceLivenessSessionResultsInput{}
+	}
+
+	output = &GetFaceLivenessSessionResultsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFaceLivenessSessionResults API operation for Amazon Rekognition.
+//
+// Retrieves the results of a specific Face Liveness session. It requires the
+// sessionId as input, which was created using CreateFaceLivenessSession. Returns
+// the corresponding Face Liveness confidence score, a reference image that
+// includes a face bounding box, and audit images that also contain face bounding
+// boxes. The Face Liveness confidence score ranges from 0 to 100. The reference
+// image can optionally be returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation GetFaceLivenessSessionResults for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform the action.
+//
+//   - InternalServerError
+//     Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   - InvalidParameterException
+//     Input parameter violated a constraint. Validate your parameter before calling
+//     the API operation again.
+//
+//   - SessionNotFoundException
+//     Occurs when a given sessionId is not found.
+//
+//   - ThrottlingException
+//     Amazon Rekognition is temporarily unable to process the request. Try your
+//     call again.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Rekognition.
+func (c *Rekognition) GetFaceLivenessSessionResults(input *GetFaceLivenessSessionResultsInput) (*GetFaceLivenessSessionResultsOutput, error) {
+	req, out := c.GetFaceLivenessSessionResultsRequest(input)
+	return out, req.Send()
+}
+
+// GetFaceLivenessSessionResultsWithContext is the same as GetFaceLivenessSessionResults with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFaceLivenessSessionResults for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) GetFaceLivenessSessionResultsWithContext(ctx aws.Context, input *GetFaceLivenessSessionResultsInput, opts ...request.Option) (*GetFaceLivenessSessionResultsOutput, error) {
+	req, out := c.GetFaceLivenessSessionResultsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetFaceSearch = "GetFaceSearch"
@@ -5773,6 +5972,9 @@ func (c *Rekognition) ListProjectPoliciesRequest(input *ListProjectPoliciesInput
 // To attach a project policy to a project, call PutProjectPolicy. To remove
 // a project policy from a project, call DeleteProjectPolicy.
 //
+// This operation requires permissions to perform the rekognition:ListProjectPolicies
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6184,6 +6386,9 @@ func (c *Rekognition) PutProjectPolicyRequest(input *PutProjectPolicyInput) (req
 // a list of project policies attached to a project, call ListProjectPolicies.
 //
 // You copy a model version by calling CopyProjectVersion.
+//
+// This operation requires permissions to perform the rekognition:PutProjectPolicy
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7916,6 +8121,9 @@ func (c *Rekognition) StopProjectVersionRequest(input *StopProjectVersionInput) 
 // Stops a running model. The operation might take a while to complete. To check
 // the current status, call DescribeProjectVersions.
 //
+// This operation requires permissions to perform the rekognition:StopProjectVersion
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8472,6 +8680,9 @@ func (c *Rekognition) UpdateStreamProcessorRequest(input *UpdateStreamProcessorI
 //   - ProvisionedThroughputExceededException
 //     The number of requests exceeded your throughput limit. If you want to increase
 //     this limit, contact Amazon Rekognition.
+//
+//   - ResourceInUseException
+//     The specified resource is already being used.
 func (c *Rekognition) UpdateStreamProcessor(input *UpdateStreamProcessorInput) (*UpdateStreamProcessorOutput, error) {
 	req, out := c.UpdateStreamProcessorRequest(input)
 	return out, req.Send()
@@ -8710,6 +8921,90 @@ func (s *AudioMetadata) SetNumberOfChannels(v int64) *AudioMetadata {
 // SetSampleRate sets the SampleRate field's value.
 func (s *AudioMetadata) SetSampleRate(v int64) *AudioMetadata {
 	s.SampleRate = &v
+	return s
+}
+
+// An image that is picked from the Face Liveness video and returned for audit
+// trail purposes, returned as Base64-encoded bytes.
+type AuditImage struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the bounding box around the label, face, text, object of interest,
+	// or personal protective equipment. The left (x-coordinate) and top (y-coordinate)
+	// are coordinates representing the top and left sides of the bounding box.
+	// Note that the upper-left corner of the image is the origin (0,0).
+	//
+	// The top and left values returned are ratios of the overall image size. For
+	// example, if the input image is 700x200 pixels, and the top-left coordinate
+	// of the bounding box is 350x50 pixels, the API returns a left value of 0.5
+	// (350/700) and a top value of 0.25 (50/200).
+	//
+	// The width and height values represent the dimensions of the bounding box
+	// as a ratio of the overall image dimension. For example, if the input image
+	// is 700x200 pixels, and the bounding box width is 70 pixels, the width returned
+	// is 0.1.
+	//
+	// The bounding box coordinates can have negative values. For example, if Amazon
+	// Rekognition is able to detect a face that is at the image edge and is only
+	// partially visible, the service can return coordinates that are outside the
+	// image bounds and, depending on the image edge, you might get negative values
+	// or values greater than 1 for the left or top values.
+	BoundingBox *BoundingBox `type:"structure"`
+
+	// The Base64-encoded bytes representing an image selected from the Face Liveness
+	// video and returned for audit purposes.
+	//
+	// Bytes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AuditImage's
+	// String and GoString methods.
+	//
+	// Bytes is automatically base64 encoded/decoded by the SDK.
+	Bytes []byte `min:"1" type:"blob" sensitive:"true"`
+
+	// Provides the S3 bucket name and object name.
+	//
+	// The region for the S3 bucket containing the S3 object must match the region
+	// you use for Amazon Rekognition operations.
+	//
+	// For Amazon Rekognition to process an S3 object, the user must have permission
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
+	S3Object *S3Object `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditImage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditImage) GoString() string {
+	return s.String()
+}
+
+// SetBoundingBox sets the BoundingBox field's value.
+func (s *AuditImage) SetBoundingBox(v *BoundingBox) *AuditImage {
+	s.BoundingBox = v
+	return s
+}
+
+// SetBytes sets the Bytes field's value.
+func (s *AuditImage) SetBytes(v []byte) *AuditImage {
+	s.Bytes = v
+	return s
+}
+
+// SetS3Object sets the S3Object field's value.
+func (s *AuditImage) SetS3Object(v *S3Object) *AuditImage {
+	s.S3Object = v
 	return s
 }
 
@@ -10119,6 +10414,178 @@ func (s CreateDatasetOutput) GoString() string {
 // SetDatasetArn sets the DatasetArn field's value.
 func (s *CreateDatasetOutput) SetDatasetArn(v string) *CreateDatasetOutput {
 	s.DatasetArn = &v
+	return s
+}
+
+type CreateFaceLivenessSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotent token is used to recognize the Face Liveness request. If the same
+	// token is used with multiple CreateFaceLivenessSession requests, the same
+	// session is returned. This token is employed to avoid unintentionally creating
+	// the same session multiple times.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The identifier for your AWS Key Management Service key (AWS KMS key). Used
+	// to encrypt audit images and reference images.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// A session settings object. It contains settings for the operation to be performed.
+	// For Face Liveness, it accepts OutputConfig and AuditImagesLimit.
+	Settings *CreateFaceLivenessSessionRequestSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFaceLivenessSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFaceLivenessSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFaceLivenessSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFaceLivenessSessionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.Settings != nil {
+		if err := s.Settings.Validate(); err != nil {
+			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateFaceLivenessSessionInput) SetClientRequestToken(v string) *CreateFaceLivenessSessionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateFaceLivenessSessionInput) SetKmsKeyId(v string) *CreateFaceLivenessSessionInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *CreateFaceLivenessSessionInput) SetSettings(v *CreateFaceLivenessSessionRequestSettings) *CreateFaceLivenessSessionInput {
+	s.Settings = v
+	return s
+}
+
+type CreateFaceLivenessSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique 128-bit UUID identifying a Face Liveness session.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFaceLivenessSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFaceLivenessSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *CreateFaceLivenessSessionOutput) SetSessionId(v string) *CreateFaceLivenessSessionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// A session settings object. It contains settings for the operation to be performed.
+// It accepts arguments for OutputConfig and AuditImagesLimit.
+type CreateFaceLivenessSessionRequestSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Number of audit images to be returned back. Takes an integer between 0-4.
+	// Any integer less than 0 will return 0, any integer above 4 will return 4
+	// images in the response. By default, it is set to 0. The limit is best effort
+	// and is based on the actual duration of the selfie-video.
+	AuditImagesLimit *int64 `type:"integer"`
+
+	// Can specify the location of an Amazon S3 bucket, where reference and audit
+	// images will be stored. Note that the Amazon S3 bucket must be located in
+	// the caller's AWS account and in the same region as the Face Liveness end-point.
+	// Additionally, the Amazon S3 object keys are auto-generated by the Face Liveness
+	// system.
+	OutputConfig *LivenessOutputConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFaceLivenessSessionRequestSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFaceLivenessSessionRequestSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFaceLivenessSessionRequestSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFaceLivenessSessionRequestSettings"}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditImagesLimit sets the AuditImagesLimit field's value.
+func (s *CreateFaceLivenessSessionRequestSettings) SetAuditImagesLimit(v int64) *CreateFaceLivenessSessionRequestSettings {
+	s.AuditImagesLimit = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *CreateFaceLivenessSessionRequestSettings) SetOutputConfig(v *LivenessOutputConfig) *CreateFaceLivenessSessionRequestSettings {
+	s.OutputConfig = v
 	return s
 }
 
@@ -12916,7 +13383,7 @@ type DetectLabelsInput struct {
 	// properties. Specified filters can be inclusive, exclusive, or a combination
 	// of both. Filters can be used for individual labels or label categories. The
 	// exact label names or label categories must be supplied. For a full list of
-	// labels and label categories, see LINK HERE.
+	// labels and label categories, see Detecting labels (https://docs.aws.amazon.com/rekognition/latest/dg/labels.html).
 	Settings *DetectLabelsSettings `type:"structure"`
 }
 
@@ -14540,7 +15007,8 @@ func (s *Gender) SetValue(v string) *Gender {
 
 // Contains filters for the object labels returned by DetectLabels. Filters
 // can be inclusive, exclusive, or a combination of both and can be applied
-// to individual l abels or entire label categories.
+// to individual labels or entire label categories. To see a list of label categories,
+// see Detecting Labels (https://docs.aws.amazon.com/rekognition/latest/dg/labels.html).
 type GeneralLabelsSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -15207,6 +15675,139 @@ func (s *GetFaceDetectionOutput) SetStatusMessage(v string) *GetFaceDetectionOut
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetFaceDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetFaceDetectionOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+type GetFaceLivenessSessionResultsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique 128-bit UUID. This is used to uniquely identify the session and
+	// also acts as an idempotency token for all operations associated with the
+	// session.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFaceLivenessSessionResultsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFaceLivenessSessionResultsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFaceLivenessSessionResultsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFaceLivenessSessionResultsInput"}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetFaceLivenessSessionResultsInput) SetSessionId(v string) *GetFaceLivenessSessionResultsInput {
+	s.SessionId = &v
+	return s
+}
+
+type GetFaceLivenessSessionResultsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A set of images from the Face Liveness video that can be used for audit purposes.
+	// It includes a bounding box of the face and the Base64-encoded bytes that
+	// return an image. If the CreateFaceLivenessSession request included an OutputConfig
+	// argument, the image will be uploaded to an S3Object specified in the output
+	// configuration.
+	AuditImages []*AuditImage `type:"list"`
+
+	// Probabalistic confidence score for if the person in the given video was live,
+	// represented as a float value between 0 to 100.
+	Confidence *float64 `type:"float"`
+
+	// A high-quality image from the Face Liveness video that can be used for face
+	// comparison or search. It includes a bounding box of the face and the Base64-encoded
+	// bytes that return an image. If the CreateFaceLivenessSession request included
+	// an OutputConfig argument, the image will be uploaded to an S3Object specified
+	// in the output configuration. In case the reference image is not returned,
+	// it's recommended to retry the Liveness check.
+	ReferenceImage *AuditImage `type:"structure"`
+
+	// The sessionId for which this request was called.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+
+	// Represents a status corresponding to the state of the session. Possible statuses
+	// are: CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"LivenessSessionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFaceLivenessSessionResultsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFaceLivenessSessionResultsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuditImages sets the AuditImages field's value.
+func (s *GetFaceLivenessSessionResultsOutput) SetAuditImages(v []*AuditImage) *GetFaceLivenessSessionResultsOutput {
+	s.AuditImages = v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *GetFaceLivenessSessionResultsOutput) SetConfidence(v float64) *GetFaceLivenessSessionResultsOutput {
+	s.Confidence = &v
+	return s
+}
+
+// SetReferenceImage sets the ReferenceImage field's value.
+func (s *GetFaceLivenessSessionResultsOutput) SetReferenceImage(v *AuditImage) *GetFaceLivenessSessionResultsOutput {
+	s.ReferenceImage = v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetFaceLivenessSessionResultsOutput) SetSessionId(v string) *GetFaceLivenessSessionResultsOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetFaceLivenessSessionResultsOutput) SetStatus(v string) *GetFaceLivenessSessionResultsOutput {
+	s.Status = &v
 	return s
 }
 
@@ -16421,7 +17022,8 @@ func (s *IdempotentParameterMismatchException) RequestID() string {
 type Image struct {
 	_ struct{} `type:"structure"`
 
-	// Blob of image bytes up to 5 MBs.
+	// Blob of image bytes up to 5 MBs. Note that the maximum image size you can
+	// pass to DetectCustomLabels is 4MB.
 	// Bytes is automatically base64 encoded/decoded by the SDK.
 	Bytes []byte `min:"1" type:"blob"`
 
@@ -17645,7 +18247,8 @@ type LabelDetectionSettings struct {
 
 	// Contains filters for the object labels returned by DetectLabels. Filters
 	// can be inclusive, exclusive, or a combination of both and can be applied
-	// to individual l abels or entire label categories.
+	// to individual labels or entire label categories. To see a list of label categories,
+	// see Detecting Labels (https://docs.aws.amazon.com/rekognition/latest/dg/labels.html).
 	GeneralLabels *GeneralLabelsSettings `type:"structure"`
 }
 
@@ -18591,6 +19194,69 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// Contains settings that specify the location of an Amazon S3 bucket used to
+// store the output of a Face Liveness session. Note that the S3 bucket must
+// be located in the caller's AWS account and in the same region as the Face
+// Liveness end-point. Additionally, the Amazon S3 object keys are auto-generated
+// by the Face Liveness system.
+type LivenessOutputConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The path to an AWS Amazon S3 bucket used to store Face Liveness session results.
+	//
+	// S3Bucket is a required field
+	S3Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The prefix appended to the output files for the Face Liveness session results.
+	S3KeyPrefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LivenessOutputConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LivenessOutputConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LivenessOutputConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LivenessOutputConfig"}
+	if s.S3Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Bucket"))
+	}
+	if s.S3Bucket != nil && len(*s.S3Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *LivenessOutputConfig) SetS3Bucket(v string) *LivenessOutputConfig {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *LivenessOutputConfig) SetS3KeyPrefix(v string) *LivenessOutputConfig {
+	s.S3KeyPrefix = &v
 	return s
 }
 
@@ -21104,6 +21770,70 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Occurs when a given sessionId is not found.
+type SessionNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorSessionNotFoundException(v protocol.ResponseMetadata) error {
+	return &SessionNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *SessionNotFoundException) Code() string {
+	return "SessionNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *SessionNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *SessionNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *SessionNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *SessionNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *SessionNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -25164,6 +25894,30 @@ func LandmarkType_Values() []string {
 		LandmarkTypeChinBottom,
 		LandmarkTypeMidJawlineRight,
 		LandmarkTypeUpperJawlineRight,
+	}
+}
+
+const (
+	// LivenessSessionStatusCreated is a LivenessSessionStatus enum value
+	LivenessSessionStatusCreated = "CREATED"
+
+	// LivenessSessionStatusInProgress is a LivenessSessionStatus enum value
+	LivenessSessionStatusInProgress = "IN_PROGRESS"
+
+	// LivenessSessionStatusSucceeded is a LivenessSessionStatus enum value
+	LivenessSessionStatusSucceeded = "SUCCEEDED"
+
+	// LivenessSessionStatusFailed is a LivenessSessionStatus enum value
+	LivenessSessionStatusFailed = "FAILED"
+)
+
+// LivenessSessionStatus_Values returns all elements of the LivenessSessionStatus enum
+func LivenessSessionStatus_Values() []string {
+	return []string{
+		LivenessSessionStatusCreated,
+		LivenessSessionStatusInProgress,
+		LivenessSessionStatusSucceeded,
+		LivenessSessionStatusFailed,
 	}
 }
 
