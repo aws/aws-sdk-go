@@ -159,7 +159,7 @@ func (c *IoTDataPlane) GetRetainedMessageRequest(input *GetRetainedMessageInput)
 //
 // This action returns the message payload of the retained message, which can
 // incur messaging costs. To list only the topic names of the retained messages,
-// call ListRetainedMessages (/iot/latest/developerguide/API_iotdata_ListRetainedMessages.html).
+// call ListRetainedMessages (https://docs.aws.amazon.com/iot/latest/apireference/API_iotdata_ListRetainedMessages.html).
 //
 // Requires permission to access the GetRetainedMessage (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiotfleethubfordevicemanagement.html#awsiotfleethubfordevicemanagement-actions-as-permissions)
 // action.
@@ -469,7 +469,7 @@ func (c *IoTDataPlane) ListRetainedMessagesRequest(input *ListRetainedMessagesIn
 // payload, it can still incur messaging costs.
 //
 // To get the message payload of a retained message, call GetRetainedMessage
-// (https://docs.aws.amazon.com/iot/latest/developerguide/API_iotdata_GetRetainedMessage.html)
+// (https://docs.aws.amazon.com/iot/latest/apireference/API_iotdata_GetRetainedMessage.html)
 // with the topic name of the retained message.
 //
 // Requires permission to access the ListRetainedMessages (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiotfleethubfordevicemanagement.html#awsiotfleethubfordevicemanagement-actions-as-permissions)
@@ -1006,6 +1006,16 @@ type GetRetainedMessageOutput struct {
 
 	// The topic name to which the retained message was published.
 	Topic *string `locationName:"topic" type:"string"`
+
+	// A base64-encoded JSON string that includes an array of JSON objects, or null
+	// if the retained message doesn't include any user properties.
+	//
+	// The following example userProperties parameter is a JSON string that represents
+	// two user properties. Note that it will be base64-encoded:
+	//
+	// [{"deviceName": "alpha"}, {"deviceCnt": "45"}]
+	// UserProperties is automatically base64 encoded/decoded by the SDK.
+	UserProperties []byte `locationName:"userProperties" type:"blob"`
 }
 
 // String returns the string representation.
@@ -1047,6 +1057,12 @@ func (s *GetRetainedMessageOutput) SetQos(v int64) *GetRetainedMessageOutput {
 // SetTopic sets the Topic field's value.
 func (s *GetRetainedMessageOutput) SetTopic(v string) *GetRetainedMessageOutput {
 	s.Topic = &v
+	return s
+}
+
+// SetUserProperties sets the UserProperties field's value.
+func (s *GetRetainedMessageOutput) SetUserProperties(v []byte) *GetRetainedMessageOutput {
+	s.UserProperties = v
 	return s
 }
 
