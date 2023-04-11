@@ -68,7 +68,8 @@ func (c *EMRServerless) CancelJobRunRequest(input *CancelJobRunInput) (req *requ
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -153,7 +154,8 @@ func (c *EMRServerless) CreateApplicationRequest(input *CreateApplicationInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -244,7 +246,8 @@ func (c *EMRServerless) DeleteApplicationRequest(input *DeleteApplicationInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -329,7 +332,8 @@ func (c *EMRServerless) GetApplicationRequest(input *GetApplicationInput) (req *
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -414,7 +418,8 @@ func (c *EMRServerless) GetDashboardForJobRunRequest(input *GetDashboardForJobRu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -499,7 +504,8 @@ func (c *EMRServerless) GetJobRunRequest(input *GetJobRunInput) (req *request.Re
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -590,7 +596,8 @@ func (c *EMRServerless) ListApplicationsRequest(input *ListApplicationsInput) (r
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Request processing failed because of an error or failure with the service.
@@ -729,7 +736,8 @@ func (c *EMRServerless) ListJobRunsRequest(input *ListJobRunsInput) (req *reques
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InternalServerException
 //     Request processing failed because of an error or failure with the service.
@@ -862,7 +870,8 @@ func (c *EMRServerless) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -948,7 +957,8 @@ func (c *EMRServerless) StartApplicationRequest(input *StartApplicationInput) (r
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -1036,7 +1046,8 @@ func (c *EMRServerless) StartJobRunRequest(input *StartJobRunInput) (req *reques
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -1128,7 +1139,8 @@ func (c *EMRServerless) StopApplicationRequest(input *StopApplicationInput) (req
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -1202,12 +1214,12 @@ func (c *EMRServerless) TagResourceRequest(input *TagResourceInput) (req *reques
 
 // TagResource API operation for EMR Serverless.
 //
-// Assigns tags to resources. A tag is a label that you assign to an AWS resource.
-// Each tag consists of a key and an optional value, both of which you define.
-// Tags enable you to categorize your AWS resources by attributes such as purpose,
-// owner, or environment. When you have many resources of the same type, you
-// can quickly identify a specific resource based on the tags you've assigned
-// to it.
+// Assigns tags to resources. A tag is a label that you assign to an Amazon
+// Web Services resource. Each tag consists of a key and an optional value,
+// both of which you define. Tags enable you to categorize your Amazon Web Services
+// resources by attributes such as purpose, owner, or environment. When you
+// have many resources of the same type, you can quickly identify a specific
+// resource based on the tags you've assigned to it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1219,7 +1231,8 @@ func (c *EMRServerless) TagResourceRequest(input *TagResourceInput) (req *reques
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -1305,7 +1318,8 @@ func (c *EMRServerless) UntagResourceRequest(input *UntagResourceInput) (req *re
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -1391,7 +1405,8 @@ func (c *EMRServerless) UpdateApplicationRequest(input *UpdateApplicationInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an AWS service.
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - ResourceNotFoundException
 //     The specified resource was not found.
@@ -3187,6 +3202,10 @@ type JobRun struct {
 	// ExecutionRole is a required field
 	ExecutionRole *string `locationName:"executionRole" min:"20" type:"string" required:"true"`
 
+	// Maximum duration for the job run to run. If the job run runs beyond this
+	// duration, it will be automatically cancelled.
+	ExecutionTimeoutMinutes *int64 `locationName:"executionTimeoutMinutes" type:"long"`
+
 	// The job driver for the job run.
 	//
 	// JobDriver is a required field
@@ -3287,6 +3306,12 @@ func (s *JobRun) SetCreatedBy(v string) *JobRun {
 // SetExecutionRole sets the ExecutionRole field's value.
 func (s *JobRun) SetExecutionRole(v string) *JobRun {
 	s.ExecutionRole = &v
+	return s
+}
+
+// SetExecutionTimeoutMinutes sets the ExecutionTimeoutMinutes field's value.
+func (s *JobRun) SetExecutionTimeoutMinutes(v int64) *JobRun {
+	s.ExecutionTimeoutMinutes = &v
 	return s
 }
 
@@ -4565,7 +4590,7 @@ type StartJobRunOutput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `locationName:"applicationId" min:"1" type:"string" required:"true"`
 
-	// The output lists the execution role ARN of the job run.
+	// This output displays the ARN of the job run..
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"60" type:"string" required:"true"`
@@ -5127,7 +5152,8 @@ func (s *UpdateApplicationOutput) SetApplication(v *Application) *UpdateApplicat
 	return s
 }
 
-// The input fails to satisfy the constraints specified by an AWS service.
+// The input fails to satisfy the constraints specified by an Amazon Web Services
+// service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

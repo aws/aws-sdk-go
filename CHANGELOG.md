@@ -1,3 +1,15 @@
+Release v1.44.241 (2023-04-11)
+===
+
+### Service Client Updates
+* `service/ecr-public`: Updates service API and documentation
+* `service/emr-serverless`: Updates service API and documentation
+* `service/eventbridge`: Updates service API and documentation
+* `service/iot`: Adds new service
+  * Re-release to remove unexpected API changes
+* `service/iot-data`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.240 (2023-04-10)
 ===
 

@@ -443,7 +443,7 @@
         "imageIds"
       ],
       "members":{
-        "registryId":{"shape":"RegistryId"},
+        "registryId":{"shape":"RegistryIdOrAlias"},
         "repositoryName":{"shape":"RepositoryName"},
         "imageIds":{"shape":"ImageIdentifierList"}
       }

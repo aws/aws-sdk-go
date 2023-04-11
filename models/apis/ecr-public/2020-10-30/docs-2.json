@@ -708,7 +708,6 @@
     "RegistryId": {
       "base": null,
       "refs": {
-        "BatchDeleteImageRequest$registryId": "<p>The Amazon Web Services account ID that's associated with the registry that contains the image to delete. If you do not specify a registry, the default public registry is assumed.</p>",
         "CompleteLayerUploadResponse$registryId": "<p>The public registry ID that's associated with the request.</p>",
         "DeleteRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID that's associated with the public registry that contains the repository policy to delete. If you do not specify a registry, the default public registry is assumed.</p>",
         "DeleteRepositoryPolicyResponse$registryId": "<p>The registry ID that's associated with the request.</p>",
@@ -733,6 +732,7 @@
       "base": null,
       "refs": {
         "BatchCheckLayerAvailabilityRequest$registryId": "<p>The Amazon Web Services account ID, or registry alias, associated with the public registry that contains the image layers to check. If you do not specify a registry, the default public registry is assumed.</p>",
+        "BatchDeleteImageRequest$registryId": "<p>The Amazon Web Services account ID, or registry alias, that's associated with the registry that contains the image to delete. If you do not specify a registry, the default public registry is assumed.</p>",
         "CompleteLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID, or registry alias, associated with the registry where layers are uploaded. If you do not specify a registry, the default public registry is assumed.</p>",
         "Image$registryId": "<p>The Amazon Web Services account ID that's associated with the registry containing the image.</p>",
         "InitiateLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID, or registry alias, that's associated with the registry to which you intend to upload layers. If you do not specify a registry, the default public registry is assumed.</p>",

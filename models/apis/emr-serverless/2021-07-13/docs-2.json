@@ -14,7 +14,7 @@
     "StartApplication": "<p>Starts a specified application and initializes initial capacity if configured.</p>",
     "StartJobRun": "<p>Starts a job run.</p>",
     "StopApplication": "<p>Stops a specified application and releases initial capacity if configured. All scheduled and running jobs must be completed or cancelled before stopping an application.</p>",
-    "TagResource": "<p>Assigns tags to resources. A tag is a label that you assign to an AWS resource. Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize your AWS resources by attributes such as purpose, owner, or environment. When you have many resources of the same type, you can quickly identify a specific resource based on the tags you've assigned to it. </p>",
+    "TagResource": "<p>Assigns tags to resources. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize your Amazon Web Services resources by attributes such as purpose, owner, or environment. When you have many resources of the same type, you can quickly identify a specific resource based on the tags you've assigned to it. </p>",
     "UntagResource": "<p>Removes tags from resources.</p>",
     "UpdateApplication": "<p>Updates a specified application. An application has to be in a stopped or created state in order to be updated.</p>"
   },
@@ -233,6 +233,7 @@
     "Duration": {
       "base": null,
       "refs": {
+        "JobRun$executionTimeoutMinutes": "<p>Maximum duration for the job run to run. If the job run runs beyond this duration, it will be automatically cancelled.</p>",
         "StartJobRunRequest$executionTimeoutMinutes": "<p>The maximum duration for the job run to run. If the job run runs beyond this duration, it will be automatically cancelled.</p>"
       }
     },
@@ -383,7 +384,7 @@
       "refs": {
         "JobRun$arn": "<p>The execution role ARN of the job run.</p>",
         "JobRunSummary$arn": "<p>The ARN of the job run.</p>",
-        "StartJobRunResponse$arn": "<p>The output lists the execution role ARN of the job run.</p>"
+        "StartJobRunResponse$arn": "<p>This output displays the ARN of the job run..</p>"
       }
     },
     "JobDriver": {
@@ -753,7 +754,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
+      "base": "<p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>",
       "refs": {
       }
     },

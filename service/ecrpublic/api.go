@@ -2656,10 +2656,10 @@ type BatchDeleteImageInput struct {
 	// ImageIds is a required field
 	ImageIds []*ImageIdentifier `locationName:"imageIds" min:"1" type:"list" required:"true"`
 
-	// The Amazon Web Services account ID that's associated with the registry that
-	// contains the image to delete. If you do not specify a registry, the default
-	// public registry is assumed.
-	RegistryId *string `locationName:"registryId" type:"string"`
+	// The Amazon Web Services account ID, or registry alias, that's associated
+	// with the registry that contains the image to delete. If you do not specify
+	// a registry, the default public registry is assumed.
+	RegistryId *string `locationName:"registryId" min:"2" type:"string"`
 
 	// The repository in a public registry that contains the image to delete.
 	//
@@ -2693,6 +2693,9 @@ func (s *BatchDeleteImageInput) Validate() error {
 	}
 	if s.ImageIds != nil && len(s.ImageIds) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ImageIds", 1))
+	}
+	if s.RegistryId != nil && len(*s.RegistryId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("RegistryId", 2))
 	}
 	if s.RepositoryName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))

@@ -36,7 +36,7 @@
 //
 //   - For regional applications, you can use any of the endpoints in the list.
 //     A regional application can be an Application Load Balancer (ALB), an Amazon
-//     API Gateway REST API, an AppSync GraphQL API, a Amazon Cognito user pool,
+//     API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool,
 //     or an App Runner service.
 //
 //   - For Amazon CloudFront applications, you must use the API endpoint listed
