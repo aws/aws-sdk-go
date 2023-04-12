@@ -526,21 +526,27 @@
       "min":1,
       "pattern":"^[\\w-]+$"
     },
+    "AgentCpuCoresList":{
+      "type":"list",
+      "member":{"shape":"Integer"},
+      "max":256,
+      "min":0
+    },
     "AgentDetails":{
       "type":"structure",
       "required":[
         "agentVersion",
         "componentVersions",
         "instanceId",
-        "instanceType",
-        "reservedCpuCores"
+        "instanceType"
       ],
       "members":{
+        "agentCpuCores":{"shape":"AgentCpuCoresList"},
         "agentVersion":{"shape":"VersionString"},
         "componentVersions":{"shape":"ComponentVersionList"},
         "instanceId":{"shape":"InstanceId"},
         "instanceType":{"shape":"InstanceType"},
-        "reservedCpuCores":{"shape":"ReservedCpuCoresList"}
+        "reservedCpuCores":{"shape":"AgentCpuCoresList"}
       }
     },
     "AgentStatus":{
@@ -664,6 +670,31 @@
       "max":20,
       "min":1
     },
+    "CapabilityHealth":{
+      "type":"string",
+      "enum":[
+        "UNHEALTHY",
+        "HEALTHY"
+      ]
+    },
+    "CapabilityHealthReason":{
+      "type":"string",
+      "enum":[
+        "NO_REGISTERED_AGENT",
+        "INVALID_IP_OWNERSHIP",
+        "NOT_AUTHORIZED_TO_CREATE_SLR",
+        "UNVERIFIED_IP_OWNERSHIP",
+        "INITIALIZING_DATAPLANE",
+        "DATAPLANE_FAILURE",
+        "HEALTHY"
+      ]
+    },
+    "CapabilityHealthReasonList":{
+      "type":"list",
+      "member":{"shape":"CapabilityHealthReason"},
+      "max":500,
+      "min":0
+    },
     "ComponentStatusData":{
       "type":"structure",
       "required":[
@@ -676,7 +707,7 @@
         "bytesReceived":{"shape":"Long"},
         "bytesSent":{"shape":"Long"},
         "capabilityArn":{"shape":"CapabilityArn"},
-        "componentType":{"shape":"ComponentType"},
+        "componentType":{"shape":"ComponentTypeString"},
         "dataflowId":{"shape":"Uuid"},
         "packetsDropped":{"shape":"Long"},
         "status":{"shape":"AgentStatus"}
@@ -686,15 +717,11 @@
       "type":"list",
       "member":{"shape":"ComponentStatusData"},
       "max":20,
-      "min":1
+      "min":0
     },
-    "ComponentType":{
+    "ComponentTypeString":{
       "type":"string",
-      "enum":[
-        "LAMINAR_FLOW",
-        "PRISM",
-        "DIGITIZER"
-      ]
+      "pattern":"^[a-zA-Z0-9_]{1,64}$"
     },
     "ComponentVersion":{
       "type":"structure",
@@ -703,7 +730,7 @@
         "versions"
       ],
       "members":{
-        "componentType":{"shape":"ComponentType"},
+        "componentType":{"shape":"ComponentTypeString"},
         "versions":{"shape":"VersionStringList"}
       }
     },
@@ -1162,6 +1189,8 @@
       "members":{
         "awsGroundStationAgentEndpoint":{"shape":"AwsGroundStationAgentEndpoint"},
         "endpoint":{"shape":"DataflowEndpoint"},
+        "healthReasons":{"shape":"CapabilityHealthReasonList"},
+        "healthStatus":{"shape":"CapabilityHealth"},
         "securityDetails":{"shape":"SecurityDetails"}
       }
     },
@@ -1860,12 +1889,6 @@
         "startTime":{"shape":"Timestamp"},
         "tags":{"shape":"TagsMap"}
       }
-    },
-    "ReservedCpuCoresList":{
-      "type":"list",
-      "member":{"shape":"Integer"},
-      "max":256,
-      "min":1
     },
     "ResourceLimitExceededException":{
       "type":"structure",

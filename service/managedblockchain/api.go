@@ -3258,7 +3258,7 @@ type Accessor struct {
 
 	// The type of the accessor.
 	//
-	// Currently accessor type is restricted to BILLING_TOKEN.
+	// Currently, accessor type is restricted to BILLING_TOKEN.
 	Type *string `type:"string" enum:"AccessorType"`
 }
 
@@ -3476,7 +3476,7 @@ type CreateAccessorInput struct {
 
 	// The type of accessor.
 	//
-	// Currently accessor type is restricted to BILLING_TOKEN.
+	// Currently, accessor type is restricted to BILLING_TOKEN.
 	//
 	// AccessorType is a required field
 	AccessorType *string `type:"string" required:"true" enum:"AccessorType"`
@@ -3969,8 +3969,6 @@ type CreateNodeInput struct {
 	//
 	//    * n-ethereum-rinkeby
 	//
-	//    * n-ethereum-ropsten
-	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
 
@@ -4441,8 +4439,6 @@ type DeleteNodeInput struct {
 	//    * n-ethereum-goerli
 	//
 	//    * n-ethereum-rinkeby
-	//
-	//    * n-ethereum-ropsten
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
@@ -6663,15 +6659,15 @@ func (s *MemberFabricAttributes) SetCaEndpoint(v string) *MemberFabricAttributes
 }
 
 // Configuration properties for Hyperledger Fabric for a member in a Managed
-// Blockchain network using the Hyperledger Fabric framework.
+// Blockchain network that is using the Hyperledger Fabric framework.
 type MemberFabricConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The password for the member's initial administrative user. The AdminPassword
-	// must be at least eight characters long and no more than 32 characters. It
-	// must contain at least one uppercase letter, one lowercase letter, and one
-	// digit. It cannot have a single quotation mark (‘), a double quotation marks
-	// (“), a forward slash(/), a backward slash(\), @, or a space.
+	// must be at least 8 characters long and no more than 32 characters. It must
+	// contain at least one uppercase letter, one lowercase letter, and one digit.
+	// It cannot have a single quotation mark (‘), a double quotation marks (“),
+	// a forward slash(/), a backward slash(\), @, or a space.
 	//
 	// AdminPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by MemberFabricConfiguration's
@@ -7051,7 +7047,7 @@ type Network struct {
 	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
 	Tags map[string]*string `type:"map"`
 
-	// The voting rules for the network to decide if a proposal is accepted.
+	// The voting rules that the network uses to decide if a proposal is accepted.
 	VotingPolicy *VotingPolicy `type:"structure"`
 
 	// The VPC endpoint service name of the VPC endpoint service of the network.
@@ -7162,8 +7158,6 @@ type NetworkEthereumAttributes struct {
 	//    * goerli = 5
 	//
 	//    * rinkeby = 4
-	//
-	//    * ropsten = 3
 	ChainId *string `type:"string"`
 }
 
