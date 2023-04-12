@@ -1006,6 +1006,8 @@ func (c *GroundStation) GetAgentConfigurationRequest(input *GetAgentConfiguratio
 
 // GetAgentConfiguration API operation for AWS Ground Station.
 //
+// For use by AWS Ground Station Agent and shouldn't be called directly.
+//
 // Gets the latest configuration information for a registered agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2600,7 +2602,9 @@ func (c *GroundStation) RegisterAgentRequest(input *RegisterAgentInput) (req *re
 
 // RegisterAgent API operation for AWS Ground Station.
 //
-// Registers a new agent with AWS Groundstation.
+// For use by AWS Ground Station Agent and shouldn't be called directly.
+//
+// Registers a new agent with AWS Ground Station.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2942,6 +2946,8 @@ func (c *GroundStation) UpdateAgentStatusRequest(input *UpdateAgentStatusInput) 
 
 // UpdateAgentStatus API operation for AWS Ground Station.
 //
+// For use by AWS Ground Station Agent and shouldn't be called directly.
+//
 // Update the status of the agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3249,6 +3255,9 @@ func (c *GroundStation) UpdateMissionProfileWithContext(ctx aws.Context, input *
 type AgentDetails struct {
 	_ struct{} `type:"structure"`
 
+	// List of CPU cores reserved for the agent.
+	AgentCpuCores []*int64 `locationName:"agentCpuCores" type:"list"`
+
 	// Current agent version.
 	//
 	// AgentVersion is a required field
@@ -3269,10 +3278,12 @@ type AgentDetails struct {
 	// InstanceType is a required field
 	InstanceType *string `locationName:"instanceType" min:"1" type:"string" required:"true"`
 
-	// Number of Cpu cores reserved for agent.
 	//
-	// ReservedCpuCores is a required field
-	ReservedCpuCores []*int64 `locationName:"reservedCpuCores" min:"1" type:"list" required:"true"`
+	// This field should not be used. Use agentCpuCores instead.
+	//
+	// List of CPU cores reserved for processes other than the agent running on
+	// the EC2 instance.
+	ReservedCpuCores []*int64 `locationName:"reservedCpuCores" type:"list"`
 }
 
 // String returns the string representation.
@@ -3320,12 +3331,6 @@ func (s *AgentDetails) Validate() error {
 	if s.InstanceType != nil && len(*s.InstanceType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceType", 1))
 	}
-	if s.ReservedCpuCores == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReservedCpuCores"))
-	}
-	if s.ReservedCpuCores != nil && len(s.ReservedCpuCores) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ReservedCpuCores", 1))
-	}
 	if s.ComponentVersions != nil {
 		for i, v := range s.ComponentVersions {
 			if v == nil {
@@ -3341,6 +3346,12 @@ func (s *AgentDetails) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAgentCpuCores sets the AgentCpuCores field's value.
+func (s *AgentDetails) SetAgentCpuCores(v []*int64) *AgentDetails {
+	s.AgentCpuCores = v
+	return s
 }
 
 // SetAgentVersion sets the AgentVersion field's value.
@@ -3890,7 +3901,7 @@ type ComponentStatusData struct {
 	// The Component type.
 	//
 	// ComponentType is a required field
-	ComponentType *string `locationName:"componentType" type:"string" required:"true" enum:"ComponentType"`
+	ComponentType *string `locationName:"componentType" type:"string" required:"true"`
 
 	// Dataflow UUID associated with the component.
 	//
@@ -3998,7 +4009,7 @@ type ComponentVersion struct {
 	// Component type.
 	//
 	// ComponentType is a required field
-	ComponentType *string `locationName:"componentType" type:"string" required:"true" enum:"ComponentType"`
+	ComponentType *string `locationName:"componentType" type:"string" required:"true"`
 
 	// List of versions.
 	//
@@ -4636,14 +4647,16 @@ func (s *CreateConfigOutput) SetConfigType(v string) *CreateConfigOutput {
 type CreateDataflowEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amount of time, in seconds, after a contact ends for the contact to remain
-	// in a POSTPASS state. A CloudWatch event is emitted when the contact enters
-	// and exits the POSTPASS state.
+	// Amount of time, in seconds, after a contact ends that the Ground Station
+	// Dataflow Endpoint Group will be in a POSTPASS state. A Ground Station Dataflow
+	// Endpoint Group State Change event will be emitted when the Dataflow Endpoint
+	// Group enters and exits the POSTPASS state.
 	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" min:"120" type:"integer"`
 
-	// Amount of time, in seconds, prior to contact start for the contact to remain
-	// in a PREPASS state. A CloudWatch event is emitted when the contact enters
-	// and exits the PREPASS state.
+	// Amount of time, in seconds, before a contact starts that the Ground Station
+	// Dataflow Endpoint Group will be in a PREPASS state. A Ground Station Dataflow
+	// Endpoint Group State Change event will be emitted when the Dataflow Endpoint
+	// Group enters and exits the PREPASS state.
 	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" min:"120" type:"integer"`
 
 	// Endpoint details of each endpoint in the dataflow endpoint group.
@@ -6532,6 +6545,13 @@ type EndpointDetails struct {
 	// A dataflow endpoint.
 	Endpoint *DataflowEndpoint `locationName:"endpoint" type:"structure"`
 
+	// Health reasons for a dataflow endpoint. This field is ignored when calling
+	// CreateDataflowEndpointGroup.
+	HealthReasons []*string `locationName:"healthReasons" type:"list" enum:"CapabilityHealthReason"`
+
+	// A dataflow endpoint health status. This field is ignored when calling CreateDataflowEndpointGroup.
+	HealthStatus *string `locationName:"healthStatus" type:"string" enum:"CapabilityHealth"`
+
 	// Endpoint security details including a list of subnets, a list of security
 	// groups and a role to connect streams to instances.
 	SecurityDetails *SecurityDetails `locationName:"securityDetails" type:"structure"`
@@ -6589,6 +6609,18 @@ func (s *EndpointDetails) SetAwsGroundStationAgentEndpoint(v *AwsGroundStationAg
 // SetEndpoint sets the Endpoint field's value.
 func (s *EndpointDetails) SetEndpoint(v *DataflowEndpoint) *EndpointDetails {
 	s.Endpoint = v
+	return s
+}
+
+// SetHealthReasons sets the HealthReasons field's value.
+func (s *EndpointDetails) SetHealthReasons(v []*string) *EndpointDetails {
+	s.HealthReasons = v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *EndpointDetails) SetHealthStatus(v string) *EndpointDetails {
+	s.HealthStatus = &v
 	return s
 }
 
@@ -7324,14 +7356,16 @@ func (s *GetDataflowEndpointGroupInput) SetDataflowEndpointGroupId(v string) *Ge
 type GetDataflowEndpointGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Amount of time, in seconds, after a contact ends for the contact to remain
-	// in a POSTPASS state. A CloudWatch event is emitted when the contact enters
-	// and exits the POSTPASS state.
+	// Amount of time, in seconds, after a contact ends that the Ground Station
+	// Dataflow Endpoint Group will be in a POSTPASS state. A Ground Station Dataflow
+	// Endpoint Group State Change event will be emitted when the Dataflow Endpoint
+	// Group enters and exits the POSTPASS state.
 	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" min:"120" type:"integer"`
 
-	// Amount of time, in seconds, prior to contact start for the contact to remain
-	// in a PREPASS state. A CloudWatch event is emitted when the contact enters
-	// and exits the PREPASS state.
+	// Amount of time, in seconds, before a contact starts that the Ground Station
+	// Dataflow Endpoint Group will be in a PREPASS state. A Ground Station Dataflow
+	// Endpoint Group State Change event will be emitted when the Dataflow Endpoint
+	// Group enters and exits the PREPASS state.
 	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" min:"120" type:"integer"`
 
 	// ARN of a dataflow endpoint group.
@@ -9161,7 +9195,7 @@ type RegisterAgentInput struct {
 	// AgentDetails is a required field
 	AgentDetails *AgentDetails `locationName:"agentDetails" type:"structure" required:"true"`
 
-	// Data for associating and agent with the capabilities it is managing.
+	// Data for associating an agent with the capabilities it is managing.
 	//
 	// DiscoveryData is a required field
 	DiscoveryData *DiscoveryData `locationName:"discoveryData" type:"structure" required:"true"`
@@ -10517,7 +10551,7 @@ type UpdateAgentStatusInput struct {
 	// List of component statuses for agent.
 	//
 	// ComponentStatuses is a required field
-	ComponentStatuses []*ComponentStatusData `locationName:"componentStatuses" min:"1" type:"list" required:"true"`
+	ComponentStatuses []*ComponentStatusData `locationName:"componentStatuses" type:"list" required:"true"`
 
 	// GUID of agent task.
 	//
@@ -10557,9 +10591,6 @@ func (s *UpdateAgentStatusInput) Validate() error {
 	}
 	if s.ComponentStatuses == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComponentStatuses"))
-	}
-	if s.ComponentStatuses != nil && len(s.ComponentStatuses) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ComponentStatuses", 1))
 	}
 	if s.TaskId == nil {
 		invalidParams.Add(request.NewErrParamRequired("TaskId"))
@@ -11292,22 +11323,54 @@ func BandwidthUnits_Values() []string {
 }
 
 const (
-	// ComponentTypeLaminarFlow is a ComponentType enum value
-	ComponentTypeLaminarFlow = "LAMINAR_FLOW"
+	// CapabilityHealthUnhealthy is a CapabilityHealth enum value
+	CapabilityHealthUnhealthy = "UNHEALTHY"
 
-	// ComponentTypePrism is a ComponentType enum value
-	ComponentTypePrism = "PRISM"
-
-	// ComponentTypeDigitizer is a ComponentType enum value
-	ComponentTypeDigitizer = "DIGITIZER"
+	// CapabilityHealthHealthy is a CapabilityHealth enum value
+	CapabilityHealthHealthy = "HEALTHY"
 )
 
-// ComponentType_Values returns all elements of the ComponentType enum
-func ComponentType_Values() []string {
+// CapabilityHealth_Values returns all elements of the CapabilityHealth enum
+func CapabilityHealth_Values() []string {
 	return []string{
-		ComponentTypeLaminarFlow,
-		ComponentTypePrism,
-		ComponentTypeDigitizer,
+		CapabilityHealthUnhealthy,
+		CapabilityHealthHealthy,
+	}
+}
+
+const (
+	// CapabilityHealthReasonNoRegisteredAgent is a CapabilityHealthReason enum value
+	CapabilityHealthReasonNoRegisteredAgent = "NO_REGISTERED_AGENT"
+
+	// CapabilityHealthReasonInvalidIpOwnership is a CapabilityHealthReason enum value
+	CapabilityHealthReasonInvalidIpOwnership = "INVALID_IP_OWNERSHIP"
+
+	// CapabilityHealthReasonNotAuthorizedToCreateSlr is a CapabilityHealthReason enum value
+	CapabilityHealthReasonNotAuthorizedToCreateSlr = "NOT_AUTHORIZED_TO_CREATE_SLR"
+
+	// CapabilityHealthReasonUnverifiedIpOwnership is a CapabilityHealthReason enum value
+	CapabilityHealthReasonUnverifiedIpOwnership = "UNVERIFIED_IP_OWNERSHIP"
+
+	// CapabilityHealthReasonInitializingDataplane is a CapabilityHealthReason enum value
+	CapabilityHealthReasonInitializingDataplane = "INITIALIZING_DATAPLANE"
+
+	// CapabilityHealthReasonDataplaneFailure is a CapabilityHealthReason enum value
+	CapabilityHealthReasonDataplaneFailure = "DATAPLANE_FAILURE"
+
+	// CapabilityHealthReasonHealthy is a CapabilityHealthReason enum value
+	CapabilityHealthReasonHealthy = "HEALTHY"
+)
+
+// CapabilityHealthReason_Values returns all elements of the CapabilityHealthReason enum
+func CapabilityHealthReason_Values() []string {
+	return []string{
+		CapabilityHealthReasonNoRegisteredAgent,
+		CapabilityHealthReasonInvalidIpOwnership,
+		CapabilityHealthReasonNotAuthorizedToCreateSlr,
+		CapabilityHealthReasonUnverifiedIpOwnership,
+		CapabilityHealthReasonInitializingDataplane,
+		CapabilityHealthReasonDataplaneFailure,
+		CapabilityHealthReasonHealthy,
 	}
 }
 

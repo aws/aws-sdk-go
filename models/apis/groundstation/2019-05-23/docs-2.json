@@ -13,7 +13,7 @@
     "DeleteMissionProfile": "<p>Deletes a mission profile.</p>",
     "DescribeContact": "<p>Describes an existing contact.</p>",
     "DescribeEphemeris": "<p>Describes an existing ephemeris.</p>",
-    "GetAgentConfiguration": "<p>Gets the latest configuration information for a registered agent.</p>",
+    "GetAgentConfiguration": "<note> <p> For use by AWS Ground Station Agent and shouldn't be called directly.</p> </note> <p>Gets the latest configuration information for a registered agent.</p>",
     "GetConfig": "<p>Returns <code>Config</code> information.</p> <p>Only one <code>Config</code> response can be returned.</p>",
     "GetDataflowEndpointGroup": "<p>Returns the dataflow endpoint group.</p>",
     "GetMinuteUsage": "<p>Returns the number of minutes used by account.</p>",
@@ -27,11 +27,11 @@
     "ListMissionProfiles": "<p>Returns a list of mission profiles.</p>",
     "ListSatellites": "<p>Returns a list of satellites.</p>",
     "ListTagsForResource": "<p>Returns a list of tags for a specified resource.</p>",
-    "RegisterAgent": "<p>Registers a new agent with AWS Groundstation.</p>",
+    "RegisterAgent": "<note> <p> For use by AWS Ground Station Agent and shouldn't be called directly.</p> </note> <p> Registers a new agent with AWS Ground Station. </p>",
     "ReserveContact": "<p>Reserves a contact using specified parameters.</p>",
     "TagResource": "<p>Assigns a tag to a resource.</p>",
     "UntagResource": "<p>Deassigns a resource tag.</p>",
-    "UpdateAgentStatus": "<p>Update the status of the agent.</p>",
+    "UpdateAgentStatus": "<note> <p> For use by AWS Ground Station Agent and shouldn't be called directly.</p> </note> <p>Update the status of the agent.</p>",
     "UpdateConfig": "<p>Updates the <code>Config</code> used when scheduling contacts.</p> <p>Updating a <code>Config</code> will not update the execution parameters for existing future contacts scheduled with this <code>Config</code>.</p>",
     "UpdateEphemeris": "<p>Updates an existing ephemeris</p>",
     "UpdateMissionProfile": "<p>Updates a mission profile.</p> <p>Updating a mission profile will not update the execution parameters for existing future contacts.</p>"
@@ -43,6 +43,13 @@
         "GetMissionProfileResponse$region": "<p>Region of a mission profile.</p>",
         "GroundStationData$region": "<p>Ground station Region.</p>",
         "MissionProfileListItem$region": "<p>Region of a mission profile.</p>"
+      }
+    },
+    "AgentCpuCoresList": {
+      "base": null,
+      "refs": {
+        "AgentDetails$agentCpuCores": "<p>List of CPU cores reserved for the agent.</p>",
+        "AgentDetails$reservedCpuCores": "<note> <p>This field should not be used. Use agentCpuCores instead.</p> </note> <p>List of CPU cores reserved for processes other than the agent running on the EC2 instance.</p>"
       }
     },
     "AgentDetails": {
@@ -159,6 +166,24 @@
         "DiscoveryData$capabilityArns": "<p>List of capabilities to associate with agent.</p>"
       }
     },
+    "CapabilityHealth": {
+      "base": null,
+      "refs": {
+        "EndpointDetails$healthStatus": "<p>A dataflow endpoint health status. This field is ignored when calling <code>CreateDataflowEndpointGroup</code>.</p>"
+      }
+    },
+    "CapabilityHealthReason": {
+      "base": null,
+      "refs": {
+        "CapabilityHealthReasonList$member": null
+      }
+    },
+    "CapabilityHealthReasonList": {
+      "base": null,
+      "refs": {
+        "EndpointDetails$healthReasons": "<p>Health reasons for a dataflow endpoint. This field is ignored when calling <code>CreateDataflowEndpointGroup</code>.</p>"
+      }
+    },
     "ComponentStatusData": {
       "base": "<p>Data on the status of agent components.</p>",
       "refs": {
@@ -171,7 +196,7 @@
         "UpdateAgentStatusRequest$componentStatuses": "<p>List of component statuses for agent.</p>"
       }
     },
-    "ComponentType": {
+    "ComponentTypeString": {
       "base": null,
       "refs": {
         "ComponentStatusData$componentType": "<p>The Component type.</p>",
@@ -353,10 +378,10 @@
     "DataflowEndpointGroupDurationInSeconds": {
       "base": null,
       "refs": {
-        "CreateDataflowEndpointGroupRequest$contactPostPassDurationSeconds": "<p>Amount of time, in seconds, after a contact ends for the contact to remain in a <code>POSTPASS</code> state. A CloudWatch event is emitted when the contact enters and exits the <code>POSTPASS</code> state.</p>",
-        "CreateDataflowEndpointGroupRequest$contactPrePassDurationSeconds": "<p>Amount of time, in seconds, prior to contact start for the contact to remain in a <code>PREPASS</code> state. A CloudWatch event is emitted when the contact enters and exits the <code>PREPASS</code> state.</p>",
-        "GetDataflowEndpointGroupResponse$contactPostPassDurationSeconds": "<p>Amount of time, in seconds, after a contact ends for the contact to remain in a <code>POSTPASS</code> state. A CloudWatch event is emitted when the contact enters and exits the <code>POSTPASS</code> state.</p>",
-        "GetDataflowEndpointGroupResponse$contactPrePassDurationSeconds": "<p>Amount of time, in seconds, prior to contact start for the contact to remain in a <code>PREPASS</code> state. A CloudWatch event is emitted when the contact enters and exits the <code>PREPASS</code> state.</p>"
+        "CreateDataflowEndpointGroupRequest$contactPostPassDurationSeconds": "<p>Amount of time, in seconds, after a contact ends that the Ground Station Dataflow Endpoint Group will be in a <code>POSTPASS</code> state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the <code>POSTPASS</code> state.</p>",
+        "CreateDataflowEndpointGroupRequest$contactPrePassDurationSeconds": "<p>Amount of time, in seconds, before a contact starts that the Ground Station Dataflow Endpoint Group will be in a <code>PREPASS</code> state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the <code>PREPASS</code> state.</p>",
+        "GetDataflowEndpointGroupResponse$contactPostPassDurationSeconds": "<p>Amount of time, in seconds, after a contact ends that the Ground Station Dataflow Endpoint Group will be in a <code>POSTPASS</code> state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the <code>POSTPASS</code> state.</p>",
+        "GetDataflowEndpointGroupResponse$contactPrePassDurationSeconds": "<p>Amount of time, in seconds, before a contact starts that the Ground Station Dataflow Endpoint Group will be in a <code>PREPASS</code> state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the <code>PREPASS</code> state.</p>"
       }
     },
     "DataflowEndpointGroupIdResponse": {
@@ -454,7 +479,7 @@
     "DiscoveryData": {
       "base": "<p>Data for agent discovery.</p>",
       "refs": {
-        "RegisterAgentRequest$discoveryData": "<p>Data for associating and agent with the capabilities it is managing.</p>"
+        "RegisterAgentRequest$discoveryData": "<p>Data for associating an agent with the capabilities it is managing.</p>"
       }
     },
     "Double": {
@@ -716,6 +741,7 @@
     "Integer": {
       "base": null,
       "refs": {
+        "AgentCpuCoresList$member": null,
         "ConnectionDetails$mtu": "<p>Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.</p>",
         "GetMinuteUsageResponse$estimatedMinutesRemaining": "<p>Estimated number of minutes remaining for an account, specific to the month being requested.</p>",
         "GetMinuteUsageResponse$totalReservedMinuteAllocation": "<p>Total number of reserved minutes allocated, specific to the month being requested.</p>",
@@ -723,7 +749,6 @@
         "GetMinuteUsageResponse$upcomingMinutesScheduled": "<p>Upcoming minutes scheduled for an account, specific to the month being requested.</p>",
         "IntegerRange$maximum": "<p>A maximum value.</p>",
         "IntegerRange$minimum": "<p>A minimum value.</p>",
-        "ReservedCpuCoresList$member": null,
         "SocketAddress$port": "<p>Port of a socket address.</p>"
       }
     },
@@ -985,12 +1010,6 @@
     "ReserveContactRequest": {
       "base": "<p/>",
       "refs": {
-      }
-    },
-    "ReservedCpuCoresList": {
-      "base": null,
-      "refs": {
-        "AgentDetails$reservedCpuCores": "<p>Number of Cpu cores reserved for agent.</p>"
       }
     },
     "ResourceLimitExceededException": {

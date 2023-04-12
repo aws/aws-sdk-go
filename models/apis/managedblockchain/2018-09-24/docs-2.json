@@ -77,9 +77,9 @@
     "AccessorType": {
       "base": null,
       "refs": {
-        "Accessor$Type": "<p>The type of the accessor.</p> <note> <p>Currently accessor type is restricted to <code>BILLING_TOKEN</code>.</p> </note>",
+        "Accessor$Type": "<p>The type of the accessor.</p> <note> <p>Currently, accessor type is restricted to <code>BILLING_TOKEN</code>.</p> </note>",
         "AccessorSummary$Type": "<p>The type of the accessor.</p> <note> <p>Currently accessor type is restricted to <code>BILLING_TOKEN</code>.</p> </note>",
-        "CreateAccessorInput$AccessorType": "<p>The type of accessor.</p> <note> <p>Currently accessor type is restricted to <code>BILLING_TOKEN</code>.</p> </note>"
+        "CreateAccessorInput$AccessorType": "<p>The type of accessor.</p> <note> <p>Currently, accessor type is restricted to <code>BILLING_TOKEN</code>.</p> </note>"
       }
     },
     "ApprovalThresholdPolicy": {
@@ -493,7 +493,7 @@
       }
     },
     "MemberFabricConfiguration": {
-      "base": "<p>Configuration properties for Hyperledger Fabric for a member in a Managed Blockchain network using the Hyperledger Fabric framework.</p>",
+      "base": "<p>Configuration properties for Hyperledger Fabric for a member in a Managed Blockchain network that is using the Hyperledger Fabric framework.</p>",
       "refs": {
         "MemberFrameworkConfiguration$Fabric": "<p>Attributes of Hyperledger Fabric for a member on a Managed Blockchain network that uses Hyperledger Fabric.</p>"
       }
@@ -735,7 +735,7 @@
     "PasswordString": {
       "base": null,
       "refs": {
-        "MemberFabricConfiguration$AdminPassword": "<p>The password for the member's initial administrative user. The <code>AdminPassword</code> must be at least eight characters long and no more than 32 characters. It must contain at least one uppercase letter, one lowercase letter, and one digit. It cannot have a single quotation mark (‘), a double quotation marks (“), a forward slash(/), a backward slash(\\), @, or a space.</p>"
+        "MemberFabricConfiguration$AdminPassword": "<p>The password for the member's initial administrative user. The <code>AdminPassword</code> must be at least 8 characters long and no more than 32 characters. It must contain at least one uppercase letter, one lowercase letter, and one digit. It cannot have a single quotation mark (‘), a double quotation marks (“), a forward slash(/), a backward slash(\\), @, or a space.</p>"
       }
     },
     "PrincipalString": {
@@ -834,7 +834,7 @@
         "CreateMemberOutput$MemberId": "<p>The unique identifier of the member.</p>",
         "CreateNetworkOutput$NetworkId": "<p>The unique identifier for the network.</p>",
         "CreateNetworkOutput$MemberId": "<p>The unique identifier for the first member within the network.</p>",
-        "CreateNodeInput$NetworkId": "<p>The unique identifier of the network for the node.</p> <p>Ethereum public networks have the following <code>NetworkId</code>s:</p> <ul> <li> <p> <code>n-ethereum-mainnet</code> </p> </li> <li> <p> <code>n-ethereum-goerli</code> </p> </li> <li> <p> <code>n-ethereum-rinkeby</code> </p> </li> <li> <p> <code>n-ethereum-ropsten</code> </p> </li> </ul>",
+        "CreateNodeInput$NetworkId": "<p>The unique identifier of the network for the node.</p> <p>Ethereum public networks have the following <code>NetworkId</code>s:</p> <ul> <li> <p> <code>n-ethereum-mainnet</code> </p> </li> <li> <p> <code>n-ethereum-goerli</code> </p> </li> <li> <p> <code>n-ethereum-rinkeby</code> </p> </li> </ul>",
         "CreateNodeInput$MemberId": "<p>The unique identifier of the member that owns this node.</p> <p>Applies only to Hyperledger Fabric.</p>",
         "CreateNodeOutput$NodeId": "<p>The unique identifier of the node.</p>",
         "CreateProposalInput$NetworkId": "<p> The unique identifier of the network for which the proposal is made.</p>",
@@ -843,7 +843,7 @@
         "DeleteAccessorInput$AccessorId": "<p>The unique identifier of the accessor.</p>",
         "DeleteMemberInput$NetworkId": "<p>The unique identifier of the network from which the member is removed.</p>",
         "DeleteMemberInput$MemberId": "<p>The unique identifier of the member to remove.</p>",
-        "DeleteNodeInput$NetworkId": "<p>The unique identifier of the network that the node is on.</p> <p>Ethereum public networks have the following <code>NetworkId</code>s:</p> <ul> <li> <p> <code>n-ethereum-mainnet</code> </p> </li> <li> <p> <code>n-ethereum-goerli</code> </p> </li> <li> <p> <code>n-ethereum-rinkeby</code> </p> </li> <li> <p> <code>n-ethereum-ropsten</code> </p> </li> </ul>",
+        "DeleteNodeInput$NetworkId": "<p>The unique identifier of the network that the node is on.</p> <p>Ethereum public networks have the following <code>NetworkId</code>s:</p> <ul> <li> <p> <code>n-ethereum-mainnet</code> </p> </li> <li> <p> <code>n-ethereum-goerli</code> </p> </li> <li> <p> <code>n-ethereum-rinkeby</code> </p> </li> </ul>",
         "DeleteNodeInput$MemberId": "<p>The unique identifier of the member that owns this node.</p> <p>Applies only to Hyperledger Fabric and is required for Hyperledger Fabric.</p>",
         "DeleteNodeInput$NodeId": "<p>The unique identifier of the node.</p>",
         "GetAccessorInput$AccessorId": "<p>The unique identifier of the accessor.</p>",
@@ -922,7 +922,7 @@
         "Member$KmsKeyArn": "<p>The Amazon Resource Name (ARN) of the customer managed key in Key Management Service (KMS) that the member uses for encryption at rest. If the value of this parameter is <code>\"AWS Owned KMS Key\"</code>, the member uses an Amazon Web Services owned KMS key for encryption. This parameter is inherited by the nodes that this member owns.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/managed-blockchain-encryption-at-rest.html\">Encryption at Rest</a> in the <i>Amazon Managed Blockchain Hyperledger Fabric Developer Guide</i>.</p>",
         "MemberFabricAttributes$CaEndpoint": "<p>The endpoint used to access the member's certificate authority.</p>",
         "Network$VpcEndpointServiceName": "<p>The VPC endpoint service name of the VPC endpoint service of the network. Members use the VPC endpoint service name to create a VPC endpoint to access network resources.</p>",
-        "NetworkEthereumAttributes$ChainId": "<p>The Ethereum <code>CHAIN_ID</code> associated with the Ethereum network. Chain IDs are as follows:</p> <ul> <li> <p>mainnet = <code>1</code> </p> </li> <li> <p>goerli = <code>5</code> </p> </li> <li> <p>rinkeby = <code>4</code> </p> </li> <li> <p>ropsten = <code>3</code> </p> </li> </ul>",
+        "NetworkEthereumAttributes$ChainId": "<p>The Ethereum <code>CHAIN_ID</code> associated with the Ethereum network. Chain IDs are as follows:</p> <ul> <li> <p>mainnet = <code>1</code> </p> </li> <li> <p>goerli = <code>5</code> </p> </li> <li> <p>rinkeby = <code>4</code> </p> </li> </ul>",
         "NetworkFabricAttributes$OrderingServiceEndpoint": "<p>The endpoint of the ordering service for the network.</p>",
         "Node$KmsKeyArn": "<p>The Amazon Resource Name (ARN) of the customer managed key in Key Management Service (KMS) that the node uses for encryption at rest. If the value of this parameter is <code>\"AWS Owned KMS Key\"</code>, the node uses an Amazon Web Services owned KMS key for encryption. The node inherits this parameter from the member that it belongs to.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/managed-blockchain-encryption-at-rest.html\">Encryption at Rest</a> in the <i>Amazon Managed Blockchain Hyperledger Fabric Developer Guide</i>.</p> <p>Applies only to Hyperledger Fabric.</p>",
         "NodeEthereumAttributes$HttpEndpoint": "<p>The endpoint on which the Ethereum node listens to run Ethereum API methods over HTTP connections from a client. Use this endpoint in client code for smart contracts when using an HTTP connection. Connections to this endpoint are authenticated using <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>.</p>",
@@ -1079,7 +1079,7 @@
       "base": "<p> The voting rules for the network to decide if a proposal is accepted </p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "CreateNetworkInput$VotingPolicy": "<p> The voting rules used by the network to determine if a proposal is approved. </p>",
-        "Network$VotingPolicy": "<p>The voting rules for the network to decide if a proposal is accepted.</p>"
+        "Network$VotingPolicy": "<p>The voting rules that the network uses to decide if a proposal is accepted.</p>"
       }
     }
   }

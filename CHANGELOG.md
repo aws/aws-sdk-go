@@ -1,3 +1,10 @@
+Release v1.44.242 (2023-04-12)
+===
+
+### Service Client Updates
+* `service/groundstation`: Updates service API and documentation
+* `service/managedblockchain`: Updates service documentation
+
 Release v1.44.241 (2023-04-11)
 ===
 
