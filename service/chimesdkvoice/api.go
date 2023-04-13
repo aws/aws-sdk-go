@@ -11213,6 +11213,9 @@ type CreateSipMediaApplicationInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags assigned to the SIP media application.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -11251,6 +11254,19 @@ func (s *CreateSipMediaApplicationInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11273,6 +11289,12 @@ func (s *CreateSipMediaApplicationInput) SetEndpoints(v []*SipMediaApplicationEn
 // SetName sets the Name field's value.
 func (s *CreateSipMediaApplicationInput) SetName(v string) *CreateSipMediaApplicationInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSipMediaApplicationInput) SetTags(v []*Tag) *CreateSipMediaApplicationInput {
+	s.Tags = v
 	return s
 }
 
@@ -11569,6 +11591,9 @@ type CreateVoiceConnectorInput struct {
 	//
 	// RequireEncryption is a required field
 	RequireEncryption *bool `type:"boolean" required:"true"`
+
+	// The tags assigned to the Voice Connector.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -11601,6 +11626,19 @@ func (s *CreateVoiceConnectorInput) Validate() error {
 	if s.RequireEncryption == nil {
 		invalidParams.Add(request.NewErrParamRequired("RequireEncryption"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11623,6 +11661,12 @@ func (s *CreateVoiceConnectorInput) SetName(v string) *CreateVoiceConnectorInput
 // SetRequireEncryption sets the RequireEncryption field's value.
 func (s *CreateVoiceConnectorInput) SetRequireEncryption(v bool) *CreateVoiceConnectorInput {
 	s.RequireEncryption = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVoiceConnectorInput) SetTags(v []*Tag) *CreateVoiceConnectorInput {
+	s.Tags = v
 	return s
 }
 
@@ -16492,7 +16536,7 @@ type LoggingConfiguration struct {
 	// Enables or disables media metrics logging.
 	EnableMediaMetricLogs *bool `type:"boolean"`
 
-	// Boolean that enables sending SIP message logs to Amazon CloudWatch logs.
+	// Boolean that enables sending SIP message logs to Amazon CloudWatch.
 	EnableSIPLogs *bool `type:"boolean"`
 }
 
@@ -18971,12 +19015,15 @@ type SipMediaApplication struct {
 	// The SIP media application creation timestamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// List of endpoints for SIP media application. Currently, only one endpoint
+	// List of endpoints for a SIP media application. Currently, only one endpoint
 	// per SIP media application is permitted.
 	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list"`
 
 	// The SIP media application's name.
 	Name *string `min:"1" type:"string"`
+
+	// The ARN of the SIP media application.
+	SipMediaApplicationArn *string `type:"string"`
 
 	// A SIP media application's ID.
 	SipMediaApplicationId *string `type:"string"`
@@ -19024,6 +19071,12 @@ func (s *SipMediaApplication) SetEndpoints(v []*SipMediaApplicationEndpoint) *Si
 // SetName sets the Name field's value.
 func (s *SipMediaApplication) SetName(v string) *SipMediaApplication {
 	s.Name = &v
+	return s
+}
+
+// SetSipMediaApplicationArn sets the SipMediaApplicationArn field's value.
+func (s *SipMediaApplication) SetSipMediaApplicationArn(v string) *SipMediaApplication {
+	s.SipMediaApplicationArn = &v
 	return s
 }
 

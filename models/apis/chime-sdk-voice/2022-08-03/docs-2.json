@@ -206,7 +206,7 @@
         "CallDetails$IsCaller": "<p>Identifies a person as the caller or the callee.</p>",
         "CreateVoiceConnectorRequest$RequireEncryption": "<p>Enables or disables encryption for the Voice Connector.</p>",
         "GetVoiceToneAnalysisTaskRequest$IsCaller": "<p>Specifies whether the voice being analyzed is the caller (originator) or the callee (responder).</p>",
-        "LoggingConfiguration$EnableSIPLogs": "<p>Boolean that enables sending SIP message logs to Amazon CloudWatch logs.</p>",
+        "LoggingConfiguration$EnableSIPLogs": "<p>Boolean that enables sending SIP message logs to Amazon CloudWatch.</p>",
         "LoggingConfiguration$EnableMediaMetricLogs": "<p>Enables or disables media metrics logging.</p>",
         "MediaInsightsConfiguration$Disabled": "<p>Denotes the configration as enabled or disabled.</p>",
         "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime SDK Voice Connector. This parameter is not required, but you must specify this parameter or <code>Routes</code>.</p>",
@@ -304,7 +304,7 @@
       "base": null,
       "refs": {
         "CountryList$member": null,
-        "GeoMatchParams$Country": "<p>The country. </p>"
+        "GeoMatchParams$Country": "<p>The country.</p>"
       }
     },
     "CountryList": {
@@ -1065,6 +1065,7 @@
         "PutVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Voice Connector ID.</p>",
         "PutVoiceConnectorTerminationRequest$VoiceConnectorId": "<p>The Voice Connector ID.</p>",
         "SipMediaApplication$SipMediaApplicationId": "<p>A SIP media application's ID.</p>",
+        "SipMediaApplication$SipMediaApplicationArn": "<p>The ARN of the SIP media application.</p>",
         "SipRule$SipRuleId": "<p>A SIP rule's ID.</p>",
         "SipRule$TriggerValue": "<p>The value set for a SIP rule's trigger type. Either a phone number or a URI hostname.</p>",
         "SipRuleTargetApplication$SipMediaApplicationId": "<p>The ID of a rule's target SIP media application.</p>",
@@ -1691,7 +1692,7 @@
       "base": null,
       "refs": {
         "CreateSipMediaApplicationRequest$Endpoints": "<p>List of endpoints (Lambda ARNs) specified for the SIP media application.</p>",
-        "SipMediaApplication$Endpoints": "<p>List of endpoints for SIP media application. Currently, only one endpoint per SIP media application is permitted.</p>",
+        "SipMediaApplication$Endpoints": "<p>List of endpoints for a SIP media application. Currently, only one endpoint per SIP media application is permitted.</p>",
         "UpdateSipMediaApplicationRequest$Endpoints": "<p>The new set of endpoints for the specified SIP media application.</p>"
       }
     },
@@ -1909,6 +1910,8 @@
     "TagList": {
       "base": null,
       "refs": {
+        "CreateSipMediaApplicationRequest$Tags": "<p>The tags assigned to the SIP media application.</p>",
+        "CreateVoiceConnectorRequest$Tags": "<p>The tags assigned to the Voice Connector.</p>",
         "CreateVoiceProfileDomainRequest$Tags": "<p>The tags assigned to the domain.</p>",
         "ListTagsForResourceResponse$Tags": "<p>The tags in the list.</p>",
         "TagResourceRequest$Tags": "<p>A list of the tags being added to the resource.</p>"

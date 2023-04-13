@@ -2096,7 +2096,8 @@
       "members":{
         "AwsRegion":{"shape":"String"},
         "Name":{"shape":"SipMediaApplicationName"},
-        "Endpoints":{"shape":"SipMediaApplicationEndpointList"}
+        "Endpoints":{"shape":"SipMediaApplicationEndpointList"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateSipMediaApplicationResponse":{
@@ -2149,7 +2150,8 @@
       "members":{
         "Name":{"shape":"VoiceConnectorName"},
         "AwsRegion":{"shape":"VoiceConnectorAwsRegion"},
-        "RequireEncryption":{"shape":"Boolean"}
+        "RequireEncryption":{"shape":"Boolean"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateVoiceConnectorResponse":{
@@ -3869,7 +3871,8 @@
         "Name":{"shape":"SipMediaApplicationName"},
         "Endpoints":{"shape":"SipMediaApplicationEndpointList"},
         "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
-        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "SipMediaApplicationArn":{"shape":"NonEmptyString"}
       }
     },
     "SipMediaApplicationAlexaSkillConfiguration":{

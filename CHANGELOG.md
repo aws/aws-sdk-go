@@ -1,3 +1,10 @@
+Release v1.44.243 (2023-04-13)
+===
+
+### Service Client Updates
+* `service/chime-sdk-voice`: Updates service API and documentation
+* `service/mediaconnect`: Updates service API, documentation, and paginators
+
 Release v1.44.242 (2023-04-12)
 ===
 

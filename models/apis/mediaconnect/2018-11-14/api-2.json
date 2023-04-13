@@ -11,6 +11,80 @@
     "signatureVersion": "v4"
   },
   "operations": {
+    "AddBridgeOutputs": {
+      "name": "AddBridgeOutputs",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/bridges/{bridgeArn}/outputs",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "AddBridgeOutputsRequest"
+      },
+      "output": {
+        "shape": "AddBridgeOutputsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "AddBridgeSources": {
+      "name": "AddBridgeSources",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/bridges/{bridgeArn}/sources",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "AddBridgeSourcesRequest"
+      },
+      "output": {
+        "shape": "AddBridgeSourcesResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "AddFlowMediaStreams": {
       "name": "AddFlowMediaStreams",
       "http": {
@@ -150,6 +224,43 @@
         }
       ]
     },
+    "CreateBridge": {
+      "name": "CreateBridge",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/bridges",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateBridgeRequest"
+      },
+      "output": {
+        "shape": "CreateBridgeResponse"
+      },
+      "errors": [
+        {
+          "shape": "CreateBridge420Exception"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "CreateFlow": {
       "name": "CreateFlow",
       "http": {
@@ -181,6 +292,80 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "CreateGateway": {
+      "name": "CreateGateway",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/gateways",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateGatewayRequest"
+      },
+      "output": {
+        "shape": "CreateGatewayResponse"
+      },
+      "errors": [
+        {
+          "shape": "CreateGateway420Exception"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DeleteBridge": {
+      "name": "DeleteBridge",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/bridges/{bridgeArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteBridgeRequest"
+      },
+      "output": {
+        "shape": "DeleteBridgeResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
         }
       ]
     },
@@ -218,6 +403,117 @@
         }
       ]
     },
+    "DeleteGateway": {
+      "name": "DeleteGateway",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/gateways/{gatewayArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteGatewayRequest"
+      },
+      "output": {
+        "shape": "DeleteGatewayResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DeregisterGatewayInstance": {
+      "name": "DeregisterGatewayInstance",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/gateway-instances/{gatewayInstanceArn}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeregisterGatewayInstanceRequest"
+      },
+      "output": {
+        "shape": "DeregisterGatewayInstanceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DescribeBridge": {
+      "name": "DescribeBridge",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/bridges/{bridgeArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeBridgeRequest"
+      },
+      "output": {
+        "shape": "DescribeBridgeResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "DescribeFlow": {
       "name": "DescribeFlow",
       "http": {
@@ -249,6 +545,80 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DescribeGateway": {
+      "name": "DescribeGateway",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/gateways/{gatewayArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeGatewayRequest"
+      },
+      "output": {
+        "shape": "DescribeGatewayResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DescribeGatewayInstance": {
+      "name": "DescribeGatewayInstance",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/gateway-instances/{gatewayInstanceArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeGatewayInstanceRequest"
+      },
+      "output": {
+        "shape": "DescribeGatewayInstanceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
         }
       ]
     },
@@ -351,6 +721,37 @@
         }
       ]
     },
+    "ListBridges": {
+      "name": "ListBridges",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/bridges",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListBridgesRequest"
+      },
+      "output": {
+        "shape": "ListBridgesResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "ListEntitlements": {
       "name": "ListEntitlements",
       "http": {
@@ -404,6 +805,68 @@
         },
         {
           "shape": "InternalServerErrorException"
+        }
+      ]
+    },
+    "ListGatewayInstances": {
+      "name": "ListGatewayInstances",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/gateway-instances",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListGatewayInstancesRequest"
+      },
+      "output": {
+        "shape": "ListGatewayInstancesResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "ListGateways": {
+      "name": "ListGateways",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/gateways",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListGatewaysRequest"
+      },
+      "output": {
+        "shape": "ListGatewaysResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ConflictException"
         }
       ]
     },
@@ -519,6 +982,80 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "RemoveBridgeOutput": {
+      "name": "RemoveBridgeOutput",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/bridges/{bridgeArn}/outputs/{outputName}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "RemoveBridgeOutputRequest"
+      },
+      "output": {
+        "shape": "RemoveBridgeOutputResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "RemoveBridgeSource": {
+      "name": "RemoveBridgeSource",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/bridges/{bridgeArn}/sources/{sourceName}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "RemoveBridgeSourceRequest"
+      },
+      "output": {
+        "shape": "RemoveBridgeSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
         }
       ]
     },
@@ -804,6 +1341,154 @@
         }
       ]
     },
+    "UpdateBridge": {
+      "name": "UpdateBridge",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/bridges/{bridgeArn}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateBridgeRequest"
+      },
+      "output": {
+        "shape": "UpdateBridgeResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateBridgeOutput": {
+      "name": "UpdateBridgeOutput",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/bridges/{bridgeArn}/outputs/{outputName}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateBridgeOutputRequest"
+      },
+      "output": {
+        "shape": "UpdateBridgeOutputResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateBridgeSource": {
+      "name": "UpdateBridgeSource",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/bridges/{bridgeArn}/sources/{sourceName}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateBridgeSourceRequest"
+      },
+      "output": {
+        "shape": "UpdateBridgeSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateBridgeState": {
+      "name": "UpdateBridgeState",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/bridges/{bridgeArn}/state",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateBridgeStateRequest"
+      },
+      "output": {
+        "shape": "UpdateBridgeStateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "UpdateFlow": {
       "name": "UpdateFlow",
       "http": {
@@ -973,9 +1658,235 @@
           "shape": "TooManyRequestsException"
         }
       ]
+    },
+    "UpdateGatewayInstance": {
+      "name": "UpdateGatewayInstance",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/gateway-instances/{gatewayInstanceArn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateGatewayInstanceRequest"
+      },
+      "output": {
+        "shape": "UpdateGatewayInstanceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
     }
   },
   "shapes": {
+    "AddBridgeFlowSourceRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
+          "locationName": "flowArn"
+        },
+        "FlowVpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "flowVpcInterfaceAttachment"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "FlowArn",
+        "Name"
+      ]
+    },
+    "AddBridgeNetworkOutputRequest": {
+      "type": "structure",
+      "members": {
+        "IpAddress": {
+          "shape": "__string",
+          "locationName": "ipAddress"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkName": {
+          "shape": "__string",
+          "locationName": "networkName"
+        },
+        "Port": {
+          "shape": "__integer",
+          "locationName": "port"
+        },
+        "Protocol": {
+          "shape": "Protocol",
+          "locationName": "protocol"
+        },
+        "Ttl": {
+          "shape": "__integer",
+          "locationName": "ttl"
+        }
+      },
+      "required": [
+        "NetworkName",
+        "Port",
+        "IpAddress",
+        "Protocol",
+        "Ttl",
+        "Name"
+      ]
+    },
+    "AddBridgeNetworkSourceRequest": {
+      "type": "structure",
+      "members": {
+        "MulticastIp": {
+          "shape": "__string",
+          "locationName": "multicastIp"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkName": {
+          "shape": "__string",
+          "locationName": "networkName"
+        },
+        "Port": {
+          "shape": "__integer",
+          "locationName": "port"
+        },
+        "Protocol": {
+          "shape": "Protocol",
+          "locationName": "protocol"
+        }
+      },
+      "required": [
+        "NetworkName",
+        "MulticastIp",
+        "Port",
+        "Protocol",
+        "Name"
+      ]
+    },
+    "AddBridgeOutputRequest": {
+      "type": "structure",
+      "members": {
+        "NetworkOutput": {
+          "shape": "AddBridgeNetworkOutputRequest",
+          "locationName": "networkOutput"
+        }
+      }
+    },
+    "AddBridgeOutputsRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "Outputs": {
+          "shape": "__listOfAddBridgeOutputRequest",
+          "locationName": "outputs"
+        }
+      },
+      "required": [
+        "BridgeArn",
+        "Outputs"
+      ]
+    },
+    "AddBridgeOutputsResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "Outputs": {
+          "shape": "__listOfBridgeOutput",
+          "locationName": "outputs"
+        }
+      }
+    },
+    "AddBridgeSourceRequest": {
+      "type": "structure",
+      "members": {
+        "FlowSource": {
+          "shape": "AddBridgeFlowSourceRequest",
+          "locationName": "flowSource"
+        },
+        "NetworkSource": {
+          "shape": "AddBridgeNetworkSourceRequest",
+          "locationName": "networkSource"
+        }
+      }
+    },
+    "AddBridgeSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "Sources": {
+          "shape": "__listOfAddBridgeSourceRequest",
+          "locationName": "sources"
+        }
+      },
+      "required": [
+        "BridgeArn",
+        "Sources"
+      ]
+    },
+    "AddBridgeSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "Sources": {
+          "shape": "__listOfBridgeSource",
+          "locationName": "sources"
+        }
+      }
+    },
+    "AddEgressGatewayBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        }
+      },
+      "required": [
+        "MaxBitrate"
+      ]
+    },
     "AddFlowMediaStreamsRequest": {
       "type": "structure",
       "members": {
@@ -1029,6 +1940,7 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -1060,6 +1972,7 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -1091,6 +2004,7 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -1116,6 +2030,23 @@
           "locationName": "vpcInterfaces"
         }
       }
+    },
+    "AddIngressGatewayBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        },
+        "MaxOutputs": {
+          "shape": "__integer",
+          "locationName": "maxOutputs"
+        }
+      },
+      "required": [
+        "MaxOutputs",
+        "MaxBitrate"
+      ]
     },
     "AddMaintenance": {
       "type": "structure",
@@ -1264,6 +2195,223 @@
         "httpStatusCode": 400
       }
     },
+    "Bridge": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "BridgeMessages": {
+          "shape": "__listOfMessageDetail",
+          "locationName": "bridgeMessages"
+        },
+        "BridgeState": {
+          "shape": "BridgeState",
+          "locationName": "bridgeState"
+        },
+        "EgressGatewayBridge": {
+          "shape": "EgressGatewayBridge",
+          "locationName": "egressGatewayBridge"
+        },
+        "IngressGatewayBridge": {
+          "shape": "IngressGatewayBridge",
+          "locationName": "ingressGatewayBridge"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "Outputs": {
+          "shape": "__listOfBridgeOutput",
+          "locationName": "outputs"
+        },
+        "PlacementArn": {
+          "shape": "__string",
+          "locationName": "placementArn"
+        },
+        "SourceFailoverConfig": {
+          "shape": "FailoverConfig",
+          "locationName": "sourceFailoverConfig"
+        },
+        "Sources": {
+          "shape": "__listOfBridgeSource",
+          "locationName": "sources"
+        }
+      },
+      "required": [
+        "BridgeArn",
+        "BridgeState",
+        "PlacementArn",
+        "Name"
+      ]
+    },
+    "BridgeFlowOutput": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "FlowSourceArn": {
+          "shape": "__string",
+          "locationName": "flowSourceArn"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "FlowSourceArn",
+        "FlowArn",
+        "Name"
+      ]
+    },
+    "BridgeFlowSource": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "FlowVpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "flowVpcInterfaceAttachment"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "OutputArn": {
+          "shape": "__string",
+          "locationName": "outputArn"
+        }
+      },
+      "required": [
+        "FlowArn",
+        "Name"
+      ]
+    },
+    "BridgeNetworkOutput": {
+      "type": "structure",
+      "members": {
+        "IpAddress": {
+          "shape": "__string",
+          "locationName": "ipAddress"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkName": {
+          "shape": "__string",
+          "locationName": "networkName"
+        },
+        "Port": {
+          "shape": "__integer",
+          "locationName": "port"
+        },
+        "Protocol": {
+          "shape": "Protocol",
+          "locationName": "protocol"
+        },
+        "Ttl": {
+          "shape": "__integer",
+          "locationName": "ttl"
+        }
+      },
+      "required": [
+        "NetworkName",
+        "Port",
+        "IpAddress",
+        "Protocol",
+        "Ttl",
+        "Name"
+      ]
+    },
+    "BridgeNetworkSource": {
+      "type": "structure",
+      "members": {
+        "MulticastIp": {
+          "shape": "__string",
+          "locationName": "multicastIp"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkName": {
+          "shape": "__string",
+          "locationName": "networkName"
+        },
+        "Port": {
+          "shape": "__integer",
+          "locationName": "port"
+        },
+        "Protocol": {
+          "shape": "Protocol",
+          "locationName": "protocol"
+        }
+      },
+      "required": [
+        "NetworkName",
+        "MulticastIp",
+        "Port",
+        "Protocol",
+        "Name"
+      ]
+    },
+    "BridgeOutput": {
+      "type": "structure",
+      "members": {
+        "FlowOutput": {
+          "shape": "BridgeFlowOutput",
+          "locationName": "flowOutput"
+        },
+        "NetworkOutput": {
+          "shape": "BridgeNetworkOutput",
+          "locationName": "networkOutput"
+        }
+      }
+    },
+    "BridgePlacement": {
+      "type": "string",
+      "enum": [
+        "AVAILABLE",
+        "LOCKED"
+      ]
+    },
+    "BridgeSource": {
+      "type": "structure",
+      "members": {
+        "FlowSource": {
+          "shape": "BridgeFlowSource",
+          "locationName": "flowSource"
+        },
+        "NetworkSource": {
+          "shape": "BridgeNetworkSource",
+          "locationName": "networkSource"
+        }
+      }
+    },
+    "BridgeState": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "STANDBY",
+        "STARTING",
+        "DEPLOYING",
+        "ACTIVE",
+        "STOPPING",
+        "DELETING",
+        "DELETED",
+        "START_FAILED",
+        "START_PENDING",
+        "STOP_FAILED",
+        "UPDATING"
+      ]
+    },
     "Colorimetry": {
       "type": "string",
       "enum": [
@@ -1275,6 +2423,92 @@
         "ST2065-3",
         "XYZ"
       ]
+    },
+    "ConflictException": {
+      "type": "structure",
+      "members": {
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "required": [
+        "Message"
+      ],
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "ConnectionStatus": {
+      "type": "string",
+      "enum": [
+        "CONNECTED",
+        "DISCONNECTED"
+      ]
+    },
+    "CreateBridge420Exception": {
+      "type": "structure",
+      "members": {
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "required": [
+        "Message"
+      ],
+      "exception": true,
+      "error": {
+        "httpStatusCode": 420
+      }
+    },
+    "CreateBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "EgressGatewayBridge": {
+          "shape": "AddEgressGatewayBridgeRequest",
+          "locationName": "egressGatewayBridge"
+        },
+        "IngressGatewayBridge": {
+          "shape": "AddIngressGatewayBridgeRequest",
+          "locationName": "ingressGatewayBridge"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "Outputs": {
+          "shape": "__listOfAddBridgeOutputRequest",
+          "locationName": "outputs"
+        },
+        "PlacementArn": {
+          "shape": "__string",
+          "locationName": "placementArn"
+        },
+        "SourceFailoverConfig": {
+          "shape": "FailoverConfig",
+          "locationName": "sourceFailoverConfig"
+        },
+        "Sources": {
+          "shape": "__listOfAddBridgeSourceRequest",
+          "locationName": "sources"
+        }
+      },
+      "required": [
+        "Sources",
+        "PlacementArn",
+        "Name"
+      ]
+    },
+    "CreateBridgeResponse": {
+      "type": "structure",
+      "members": {
+        "Bridge": {
+          "shape": "Bridge",
+          "locationName": "bridge"
+        }
+      }
     },
     "CreateFlow420Exception": {
       "type": "structure",
@@ -1349,11 +2583,82 @@
         }
       }
     },
+    "CreateGateway420Exception": {
+      "type": "structure",
+      "members": {
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "required": [
+        "Message"
+      ],
+      "exception": true,
+      "error": {
+        "httpStatusCode": 420
+      }
+    },
+    "CreateGatewayRequest": {
+      "type": "structure",
+      "members": {
+        "EgressCidrBlocks": {
+          "shape": "__listOf__string",
+          "locationName": "egressCidrBlocks"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "Networks": {
+          "shape": "__listOfGatewayNetwork",
+          "locationName": "networks"
+        }
+      },
+      "required": [
+        "Networks",
+        "EgressCidrBlocks",
+        "Name"
+      ]
+    },
+    "CreateGatewayResponse": {
+      "type": "structure",
+      "members": {
+        "Gateway": {
+          "shape": "Gateway",
+          "locationName": "gateway"
+        }
+      }
+    },
+    "DeleteBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        }
+      },
+      "required": [
+        "BridgeArn"
+      ]
+    },
+    "DeleteBridgeResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        }
+      }
+    },
     "DeleteFlowRequest": {
       "type": "structure",
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         }
@@ -1375,11 +2680,90 @@
         }
       }
     },
+    "DeleteGatewayRequest": {
+      "type": "structure",
+      "members": {
+        "GatewayArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:gateway:.+$",
+          "location": "uri",
+          "locationName": "gatewayArn"
+        }
+      },
+      "required": [
+        "GatewayArn"
+      ]
+    },
+    "DeleteGatewayResponse": {
+      "type": "structure",
+      "members": {
+        "GatewayArn": {
+          "shape": "__string",
+          "locationName": "gatewayArn"
+        }
+      }
+    },
+    "DeregisterGatewayInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "Force": {
+          "shape": "__boolean",
+          "location": "querystring",
+          "locationName": "force"
+        },
+        "GatewayInstanceArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:gateway:.+:instance:.+$",
+          "location": "uri",
+          "locationName": "gatewayInstanceArn"
+        }
+      },
+      "required": [
+        "GatewayInstanceArn"
+      ]
+    },
+    "DeregisterGatewayInstanceResponse": {
+      "type": "structure",
+      "members": {
+        "GatewayInstanceArn": {
+          "shape": "__string",
+          "locationName": "gatewayInstanceArn"
+        },
+        "InstanceState": {
+          "shape": "InstanceState",
+          "locationName": "instanceState"
+        }
+      }
+    },
+    "DescribeBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        }
+      },
+      "required": [
+        "BridgeArn"
+      ]
+    },
+    "DescribeBridgeResponse": {
+      "type": "structure",
+      "members": {
+        "Bridge": {
+          "shape": "Bridge",
+          "locationName": "bridge"
+        }
+      }
+    },
     "DescribeFlowRequest": {
       "type": "structure",
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         }
@@ -1398,6 +2782,52 @@
         "Messages": {
           "shape": "Messages",
           "locationName": "messages"
+        }
+      }
+    },
+    "DescribeGatewayInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "GatewayInstanceArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:gateway:.+:instance:.+$",
+          "location": "uri",
+          "locationName": "gatewayInstanceArn"
+        }
+      },
+      "required": [
+        "GatewayInstanceArn"
+      ]
+    },
+    "DescribeGatewayInstanceResponse": {
+      "type": "structure",
+      "members": {
+        "GatewayInstance": {
+          "shape": "GatewayInstance",
+          "locationName": "gatewayInstance"
+        }
+      }
+    },
+    "DescribeGatewayRequest": {
+      "type": "structure",
+      "members": {
+        "GatewayArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:gateway:.+$",
+          "location": "uri",
+          "locationName": "gatewayArn"
+        }
+      },
+      "required": [
+        "GatewayArn"
+      ]
+    },
+    "DescribeGatewayResponse": {
+      "type": "structure",
+      "members": {
+        "Gateway": {
+          "shape": "Gateway",
+          "locationName": "gateway"
         }
       }
     },
@@ -1444,6 +2874,14 @@
           "locationName": "reservation"
         }
       }
+    },
+    "DesiredState": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "STANDBY",
+        "DELETED"
+      ]
     },
     "DestinationConfiguration": {
       "type": "structure",
@@ -1498,6 +2936,22 @@
       "type": "string",
       "enum": [
         "MONTHS"
+      ]
+    },
+    "EgressGatewayBridge": {
+      "type": "structure",
+      "members": {
+        "InstanceId": {
+          "shape": "__string",
+          "locationName": "instanceId"
+        },
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        }
+      },
+      "required": [
+        "MaxBitrate"
       ]
     },
     "EncoderProfile": {
@@ -1729,12 +3183,12 @@
       },
       "required": [
         "Status",
+        "AvailabilityZone",
+        "Source",
+        "Name",
         "Entitlements",
         "Outputs",
-        "AvailabilityZone",
-        "FlowArn",
-        "Source",
-        "Name"
+        "FlowArn"
       ]
     },
     "Fmtp": {
@@ -1819,6 +3273,131 @@
         "httpStatusCode": 403
       }
     },
+    "Gateway": {
+      "type": "structure",
+      "members": {
+        "EgressCidrBlocks": {
+          "shape": "__listOf__string",
+          "locationName": "egressCidrBlocks"
+        },
+        "GatewayArn": {
+          "shape": "__string",
+          "locationName": "gatewayArn"
+        },
+        "GatewayMessages": {
+          "shape": "__listOfMessageDetail",
+          "locationName": "gatewayMessages"
+        },
+        "GatewayState": {
+          "shape": "GatewayState",
+          "locationName": "gatewayState"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "Networks": {
+          "shape": "__listOfGatewayNetwork",
+          "locationName": "networks"
+        }
+      },
+      "required": [
+        "GatewayArn",
+        "Networks",
+        "EgressCidrBlocks",
+        "Name"
+      ]
+    },
+    "GatewayBridgeSource": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "VpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "vpcInterfaceAttachment"
+        }
+      },
+      "required": [
+        "BridgeArn"
+      ]
+    },
+    "GatewayInstance": {
+      "type": "structure",
+      "members": {
+        "BridgePlacement": {
+          "shape": "BridgePlacement",
+          "locationName": "bridgePlacement"
+        },
+        "ConnectionStatus": {
+          "shape": "ConnectionStatus",
+          "locationName": "connectionStatus"
+        },
+        "GatewayArn": {
+          "shape": "__string",
+          "locationName": "gatewayArn"
+        },
+        "GatewayInstanceArn": {
+          "shape": "__string",
+          "locationName": "gatewayInstanceArn"
+        },
+        "InstanceId": {
+          "shape": "__string",
+          "locationName": "instanceId"
+        },
+        "InstanceMessages": {
+          "shape": "__listOfMessageDetail",
+          "locationName": "instanceMessages"
+        },
+        "InstanceState": {
+          "shape": "InstanceState",
+          "locationName": "instanceState"
+        },
+        "RunningBridgeCount": {
+          "shape": "__integer",
+          "locationName": "runningBridgeCount"
+        }
+      },
+      "required": [
+        "GatewayArn",
+        "InstanceState",
+        "GatewayInstanceArn",
+        "InstanceId",
+        "RunningBridgeCount",
+        "BridgePlacement",
+        "ConnectionStatus"
+      ]
+    },
+    "GatewayNetwork": {
+      "type": "structure",
+      "members": {
+        "CidrBlock": {
+          "shape": "__string",
+          "locationName": "cidrBlock"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "CidrBlock",
+        "Name"
+      ]
+    },
+    "GatewayState": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "ERROR",
+        "DELETING",
+        "DELETED"
+      ]
+    },
     "GrantEntitlementRequest": {
       "type": "structure",
       "members": {
@@ -1876,6 +3455,7 @@
         },
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         }
@@ -1897,6 +3477,27 @@
           "locationName": "flowArn"
         }
       }
+    },
+    "IngressGatewayBridge": {
+      "type": "structure",
+      "members": {
+        "InstanceId": {
+          "shape": "__string",
+          "locationName": "instanceId"
+        },
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        },
+        "MaxOutputs": {
+          "shape": "__integer",
+          "locationName": "maxOutputs"
+        }
+      },
+      "required": [
+        "MaxOutputs",
+        "MaxBitrate"
+      ]
     },
     "InputConfiguration": {
       "type": "structure",
@@ -1935,6 +3536,17 @@
       "required": [
         "InputPort",
         "Interface"
+      ]
+    },
+    "InstanceState": {
+      "type": "string",
+      "enum": [
+        "REGISTERING",
+        "ACTIVE",
+        "DEREGISTERING",
+        "DEREGISTERED",
+        "REGISTRATION_ERROR",
+        "DEREGISTRATION_ERROR"
       ]
     },
     "Interface": {
@@ -1985,6 +3597,39 @@
         "srt-password"
       ]
     },
+    "ListBridgesRequest": {
+      "type": "structure",
+      "members": {
+        "FilterArn": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "filterArn"
+        },
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListBridgesResponse": {
+      "type": "structure",
+      "members": {
+        "Bridges": {
+          "shape": "__listOfListedBridge",
+          "locationName": "bridges"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
     "ListEntitlementsRequest": {
       "type": "structure",
       "members": {
@@ -2034,6 +3679,67 @@
         "Flows": {
           "shape": "__listOfListedFlow",
           "locationName": "flows"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListGatewayInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "FilterArn": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "filterArn"
+        },
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListGatewayInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "Instances": {
+          "shape": "__listOfListedGatewayInstance",
+          "locationName": "instances"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListGatewaysResponse": {
+      "type": "structure",
+      "members": {
+        "Gateways": {
+          "shape": "__listOfListedGateway",
+          "locationName": "gateways"
         },
         "NextToken": {
           "shape": "__string",
@@ -2119,6 +3825,38 @@
         }
       }
     },
+    "ListedBridge": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "BridgeState": {
+          "shape": "BridgeState",
+          "locationName": "bridgeState"
+        },
+        "BridgeType": {
+          "shape": "__string",
+          "locationName": "bridgeType"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PlacementArn": {
+          "shape": "__string",
+          "locationName": "placementArn"
+        }
+      },
+      "required": [
+        "BridgeArn",
+        "BridgeState",
+        "PlacementArn",
+        "BridgeType",
+        "Name"
+      ]
+    },
     "ListedEntitlement": {
       "type": "structure",
       "members": {
@@ -2179,6 +3917,54 @@
         "AvailabilityZone",
         "FlowArn",
         "Name"
+      ]
+    },
+    "ListedGateway": {
+      "type": "structure",
+      "members": {
+        "GatewayArn": {
+          "shape": "__string",
+          "locationName": "gatewayArn"
+        },
+        "GatewayState": {
+          "shape": "GatewayState",
+          "locationName": "gatewayState"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "GatewayArn",
+        "GatewayState",
+        "Name"
+      ]
+    },
+    "ListedGatewayInstance": {
+      "type": "structure",
+      "members": {
+        "GatewayArn": {
+          "shape": "__string",
+          "locationName": "gatewayArn"
+        },
+        "GatewayInstanceArn": {
+          "shape": "__string",
+          "locationName": "gatewayInstanceArn"
+        },
+        "InstanceId": {
+          "shape": "__string",
+          "locationName": "instanceId"
+        },
+        "InstanceState": {
+          "shape": "InstanceState",
+          "locationName": "instanceState"
+        }
+      },
+      "required": [
+        "GatewayArn",
+        "GatewayInstanceArn",
+        "InstanceId"
       ]
     },
     "Maintenance": {
@@ -2391,6 +4177,27 @@
         "ancillary-data"
       ]
     },
+    "MessageDetail": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "shape": "__string",
+          "locationName": "code"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        },
+        "ResourceName": {
+          "shape": "__string",
+          "locationName": "resourceName"
+        }
+      },
+      "required": [
+        "Message",
+        "Code"
+      ]
+    },
     "Messages": {
       "type": "structure",
       "members": {
@@ -2527,6 +4334,14 @@
         "VpcInterfaceAttachment": {
           "shape": "VpcInterfaceAttachment",
           "locationName": "vpcInterfaceAttachment"
+        },
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "BridgePorts": {
+          "shape": "__listOf__integer",
+          "locationName": "bridgePorts"
         }
       },
       "required": [
@@ -2552,7 +4367,8 @@
         "cdi",
         "srt-listener",
         "srt-caller",
-        "fujitsu-qos"
+        "fujitsu-qos",
+        "udp"
       ]
     },
     "PurchaseOfferingRequest": {
@@ -2595,6 +4411,72 @@
         "FULLPROTECT"
       ]
     },
+    "RemoveBridgeOutputRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "OutputName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "outputName"
+        }
+      },
+      "required": [
+        "OutputName",
+        "BridgeArn"
+      ]
+    },
+    "RemoveBridgeOutputResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "OutputName": {
+          "shape": "__string",
+          "locationName": "outputName"
+        }
+      }
+    },
+    "RemoveBridgeSourceRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "SourceName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "sourceName"
+        }
+      },
+      "required": [
+        "BridgeArn",
+        "SourceName"
+      ]
+    },
+    "RemoveBridgeSourceResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "SourceName": {
+          "shape": "__string",
+          "locationName": "sourceName"
+        }
+      }
+    },
     "RemoveFlowMediaStreamRequest": {
       "type": "structure",
       "members": {
@@ -2633,11 +4515,13 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
         "OutputArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:output:.+$",
           "location": "uri",
           "locationName": "outputArn"
         }
@@ -2665,11 +4549,13 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
         "SourceArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:source:.+$",
           "location": "uri",
           "locationName": "sourceArn"
         }
@@ -2697,6 +4583,7 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -2848,11 +4735,13 @@
       "members": {
         "EntitlementArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:entitlement:.+$",
           "location": "uri",
           "locationName": "entitlementArn"
         },
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         }
@@ -2899,6 +4788,23 @@
         "httpStatusCode": 503
       }
     },
+    "SetGatewayBridgeSourceRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "locationName": "bridgeArn"
+        },
+        "VpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "vpcInterfaceAttachment"
+        }
+      },
+      "required": [
+        "BridgeArn"
+      ]
+    },
     "SetSourceRequest": {
       "type": "structure",
       "members": {
@@ -2912,6 +4818,7 @@
         },
         "EntitlementArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:entitlement:.+$",
           "locationName": "entitlementArn"
         },
         "IngestPort": {
@@ -2973,6 +4880,10 @@
         "WhitelistCidr": {
           "shape": "__string",
           "locationName": "whitelistCidr"
+        },
+        "GatewayBridgeSource": {
+          "shape": "SetGatewayBridgeSourceRequest",
+          "locationName": "gatewayBridgeSource"
         }
       }
     },
@@ -3034,11 +4945,15 @@
         "WhitelistCidr": {
           "shape": "__string",
           "locationName": "whitelistCidr"
+        },
+        "GatewayBridgeSource": {
+          "shape": "GatewayBridgeSource",
+          "locationName": "gatewayBridgeSource"
         }
       },
       "required": [
-        "SourceArn",
-        "Name"
+        "Name",
+        "SourceArn"
       ]
     },
     "SourcePriority": {
@@ -3062,6 +4977,7 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         }
@@ -3107,6 +5023,7 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         }
@@ -3255,6 +5172,220 @@
         "ResourceArn"
       ]
     },
+    "UpdateBridgeFlowSourceRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
+          "locationName": "flowArn"
+        },
+        "FlowVpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "flowVpcInterfaceAttachment"
+        }
+      }
+    },
+    "UpdateBridgeNetworkOutputRequest": {
+      "type": "structure",
+      "members": {
+        "IpAddress": {
+          "shape": "__string",
+          "locationName": "ipAddress"
+        },
+        "NetworkName": {
+          "shape": "__string",
+          "locationName": "networkName"
+        },
+        "Port": {
+          "shape": "__integer",
+          "locationName": "port"
+        },
+        "Protocol": {
+          "shape": "Protocol",
+          "locationName": "protocol"
+        },
+        "Ttl": {
+          "shape": "__integer",
+          "locationName": "ttl"
+        }
+      }
+    },
+    "UpdateBridgeNetworkSourceRequest": {
+      "type": "structure",
+      "members": {
+        "MulticastIp": {
+          "shape": "__string",
+          "locationName": "multicastIp"
+        },
+        "NetworkName": {
+          "shape": "__string",
+          "locationName": "networkName"
+        },
+        "Port": {
+          "shape": "__integer",
+          "locationName": "port"
+        },
+        "Protocol": {
+          "shape": "Protocol",
+          "locationName": "protocol"
+        }
+      }
+    },
+    "UpdateBridgeOutputRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "NetworkOutput": {
+          "shape": "UpdateBridgeNetworkOutputRequest",
+          "locationName": "networkOutput"
+        },
+        "OutputName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "outputName"
+        }
+      },
+      "required": [
+        "OutputName",
+        "BridgeArn"
+      ]
+    },
+    "UpdateBridgeOutputResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "Output": {
+          "shape": "BridgeOutput",
+          "locationName": "output"
+        }
+      }
+    },
+    "UpdateBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "EgressGatewayBridge": {
+          "shape": "UpdateEgressGatewayBridgeRequest",
+          "locationName": "egressGatewayBridge"
+        },
+        "IngressGatewayBridge": {
+          "shape": "UpdateIngressGatewayBridgeRequest",
+          "locationName": "ingressGatewayBridge"
+        },
+        "SourceFailoverConfig": {
+          "shape": "UpdateFailoverConfig",
+          "locationName": "sourceFailoverConfig"
+        }
+      },
+      "required": [
+        "BridgeArn"
+      ]
+    },
+    "UpdateBridgeResponse": {
+      "type": "structure",
+      "members": {
+        "Bridge": {
+          "shape": "Bridge",
+          "locationName": "bridge"
+        }
+      }
+    },
+    "UpdateBridgeSourceRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "FlowSource": {
+          "shape": "UpdateBridgeFlowSourceRequest",
+          "locationName": "flowSource"
+        },
+        "NetworkSource": {
+          "shape": "UpdateBridgeNetworkSourceRequest",
+          "locationName": "networkSource"
+        },
+        "SourceName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "sourceName"
+        }
+      },
+      "required": [
+        "BridgeArn",
+        "SourceName"
+      ]
+    },
+    "UpdateBridgeSourceResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "Source": {
+          "shape": "BridgeSource",
+          "locationName": "source"
+        }
+      }
+    },
+    "UpdateBridgeStateRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "location": "uri",
+          "locationName": "bridgeArn"
+        },
+        "DesiredState": {
+          "shape": "DesiredState",
+          "locationName": "desiredState"
+        }
+      },
+      "required": [
+        "BridgeArn",
+        "DesiredState"
+      ]
+    },
+    "UpdateBridgeStateResponse": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "locationName": "bridgeArn"
+        },
+        "DesiredState": {
+          "shape": "DesiredState",
+          "locationName": "desiredState"
+        }
+      }
+    },
+    "UpdateEgressGatewayBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        }
+      }
+    },
     "UpdateEncryption": {
       "type": "structure",
       "members": {
@@ -3330,6 +5461,7 @@
         },
         "EntitlementArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:entitlement:.+$",
           "location": "uri",
           "locationName": "entitlementArn"
         },
@@ -3339,6 +5471,7 @@
         },
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -3439,6 +5572,7 @@
         },
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -3456,6 +5590,7 @@
         },
         "OutputArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:output:.+$",
           "location": "uri",
           "locationName": "outputArn"
         },
@@ -3515,6 +5650,7 @@
       "members": {
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -3553,10 +5689,12 @@
         },
         "EntitlementArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:entitlement:.+$",
           "locationName": "entitlementArn"
         },
         "FlowArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:flow:.+$",
           "location": "uri",
           "locationName": "flowArn"
         },
@@ -3598,6 +5736,7 @@
         },
         "SourceArn": {
           "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:source:.+$",
           "location": "uri",
           "locationName": "sourceArn"
         },
@@ -3620,6 +5759,10 @@
         "WhitelistCidr": {
           "shape": "__string",
           "locationName": "whitelistCidr"
+        },
+        "GatewayBridgeSource": {
+          "shape": "UpdateGatewayBridgeSourceRequest",
+          "locationName": "gatewayBridgeSource"
         }
       },
       "required": [
@@ -3637,6 +5780,64 @@
         "Source": {
           "shape": "Source",
           "locationName": "source"
+        }
+      }
+    },
+    "UpdateGatewayBridgeSourceRequest": {
+      "type": "structure",
+      "members": {
+        "BridgeArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:bridge:.+$",
+          "locationName": "bridgeArn"
+        },
+        "VpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "vpcInterfaceAttachment"
+        }
+      }
+    },
+    "UpdateGatewayInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "BridgePlacement": {
+          "shape": "BridgePlacement",
+          "locationName": "bridgePlacement"
+        },
+        "GatewayInstanceArn": {
+          "shape": "__string",
+          "pattern": "^arn:.+:mediaconnect.+:gateway:.+:instance:.+$",
+          "location": "uri",
+          "locationName": "gatewayInstanceArn"
+        }
+      },
+      "required": [
+        "GatewayInstanceArn"
+      ]
+    },
+    "UpdateGatewayInstanceResponse": {
+      "type": "structure",
+      "members": {
+        "BridgePlacement": {
+          "shape": "BridgePlacement",
+          "locationName": "bridgePlacement"
+        },
+        "GatewayInstanceArn": {
+          "shape": "__string",
+          "locationName": "gatewayInstanceArn"
+        }
+      }
+    },
+    "UpdateIngressGatewayBridgeRequest": {
+      "type": "structure",
+      "members": {
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        },
+        "MaxOutputs": {
+          "shape": "__integer",
+          "locationName": "maxOutputs"
         }
       }
     },
@@ -3743,6 +5944,18 @@
     "__integer": {
       "type": "integer"
     },
+    "__listOfAddBridgeOutputRequest": {
+      "type": "list",
+      "member": {
+        "shape": "AddBridgeOutputRequest"
+      }
+    },
+    "__listOfAddBridgeSourceRequest": {
+      "type": "list",
+      "member": {
+        "shape": "AddBridgeSourceRequest"
+      }
+    },
     "__listOfAddMediaStreamRequest": {
       "type": "list",
       "member": {
@@ -3753,6 +5966,18 @@
       "type": "list",
       "member": {
         "shape": "AddOutputRequest"
+      }
+    },
+    "__listOfBridgeOutput": {
+      "type": "list",
+      "member": {
+        "shape": "BridgeOutput"
+      }
+    },
+    "__listOfBridgeSource": {
+      "type": "list",
+      "member": {
+        "shape": "BridgeSource"
       }
     },
     "__listOfDestinationConfiguration": {
@@ -3773,6 +5998,12 @@
         "shape": "Entitlement"
       }
     },
+    "__listOfGatewayNetwork": {
+      "type": "list",
+      "member": {
+        "shape": "GatewayNetwork"
+      }
+    },
     "__listOfGrantEntitlementRequest": {
       "type": "list",
       "member": {
@@ -3791,6 +6022,12 @@
         "shape": "InputConfigurationRequest"
       }
     },
+    "__listOfListedBridge": {
+      "type": "list",
+      "member": {
+        "shape": "ListedBridge"
+      }
+    },
     "__listOfListedEntitlement": {
       "type": "list",
       "member": {
@@ -3801,6 +6038,18 @@
       "type": "list",
       "member": {
         "shape": "ListedFlow"
+      }
+    },
+    "__listOfListedGateway": {
+      "type": "list",
+      "member": {
+        "shape": "ListedGateway"
+      }
+    },
+    "__listOfListedGatewayInstance": {
+      "type": "list",
+      "member": {
+        "shape": "ListedGatewayInstance"
       }
     },
     "__listOfMediaStream": {
@@ -3831,6 +6080,12 @@
       "type": "list",
       "member": {
         "shape": "MediaStreamSourceConfigurationRequest"
+      }
+    },
+    "__listOfMessageDetail": {
+      "type": "list",
+      "member": {
+        "shape": "MessageDetail"
       }
     },
     "__listOfOffering": {
