@@ -3583,6 +3583,10 @@ func (c *Lambda) InvokeWithResponseStreamRequest(input *InvokeWithResponseStream
 // For more information, see Configuring a Lambda function to stream responses
 // (https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html).
 //
+// This operation requires permission for the lambda:InvokeFunction (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html)
+// action. For details on how to set up permissions for cross-account invocations,
+// see Granting function access to other accounts (https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3642,6 +3646,18 @@ func (c *Lambda) InvokeWithResponseStreamRequest(input *InvokeWithResponseStream
 //
 //   - EFSIOException
 //     An error occurred when reading from or writing to a connected file system.
+//
+//   - SnapStartException
+//     The afterRestore() runtime hook (https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html)
+//     encountered an error. For more information, check the Amazon CloudWatch logs.
+//
+//   - SnapStartTimeoutException
+//     Lambda couldn't restore the snapshot within the timeout limit.
+//
+//   - SnapStartNotReadyException
+//     Lambda is initializing your function. You can invoke the function when the
+//     function state (https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html)
+//     becomes Active.
 //
 //   - EC2ThrottledException
 //     Amazon EC2 throttled Lambda during Lambda function initialization using the
@@ -11501,6 +11517,8 @@ type EventSourceMappingConfiguration struct {
 	// (Kinesis and DynamoDB Streams only) Discard records older than the specified
 	// age. The default value is -1, which sets the maximum age to infinite. When
 	// the value is set to infinite, Lambda never discards old records.
+	//
+	// The minimum value that can be set is 60 seconds.
 	MaximumRecordAgeInSeconds *int64 `type:"integer"`
 
 	// (Kinesis and DynamoDB Streams only) Discard records after the specified number
@@ -12108,7 +12126,11 @@ type FunctionConfiguration struct {
 	// The function's execution role.
 	Role *string `type:"string"`
 
-	// The runtime environment for the Lambda function.
+	// The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
+	// Runtime is required if the deployment package is a .zip file archive.
+	//
+	// The following list includes deprecated runtimes. For more information, see
+	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
 	Runtime *string `type:"string" enum:"Runtime"`
 
 	// The ARN of the runtime and any errors that occured.

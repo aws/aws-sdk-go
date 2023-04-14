@@ -1,3 +1,15 @@
+Release v1.44.244 (2023-04-14)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service documentation
+  * This release supports  ephemeral storage for AWS Fargate Windows containers.
+* `service/lambda`: Updates service API and documentation
+  * This release adds SnapStart related exceptions to InvokeWithResponseStream API. IAM access related documentation is also added for this API.
+* `service/migration-hub-refactor-spaces`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support of modifying the engine mode of database clusters.
+
 Release v1.44.243 (2023-04-13)
 ===
 

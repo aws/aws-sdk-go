@@ -10824,6 +10824,9 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 //   - ErrCodeDBClusterAlreadyExistsFault "DBClusterAlreadyExistsFault"
 //     The user already has a DB cluster with the given identifier.
 //
+//   - ErrCodeDBInstanceAlreadyExistsFault "DBInstanceAlreadyExists"
+//     The user already has a DB instance with the given identifier.
+//
 //   - ErrCodeDomainNotFoundFault "DomainNotFoundFault"
 //     Domain doesn't refer to an existing Active Directory domain.
 //
@@ -40112,10 +40115,17 @@ type ModifyDBClusterInput struct {
 	// The amount of storage in gibibytes (GiB) to allocate to each DB instance
 	// in the Multi-AZ DB cluster.
 	//
-	// Type: Integer
-	//
 	// Valid for: Multi-AZ DB clusters only
 	AllocatedStorage *int64 `type:"integer"`
+
+	// A value that indicates whether engine mode changes from serverless to provisioned
+	// are allowed.
+	//
+	// Constraints: You must allow engine mode changes when specifying a different
+	// value for the EngineMode parameter from the DB cluster's current engine mode.
+	//
+	// Valid for: Aurora Serverless v1 DB clusters only
+	AllowEngineModeChange *bool `type:"boolean"`
 
 	// A value that indicates whether major version upgrades are allowed.
 	//
@@ -40326,6 +40336,15 @@ type ModifyDBClusterInput struct {
 	//
 	// Valid for: Multi-AZ DB clusters only
 	EnablePerformanceInsights *bool `type:"boolean"`
+
+	// The DB engine mode of the DB cluster, either provisioned or serverless.
+	//
+	// The DB engine mode can be modified only from serverless to provisioned.
+	//
+	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
+	//
+	// Valid for: Aurora DB clusters only
+	EngineMode *string `type:"string"`
 
 	// The version number of the database engine to which you want to upgrade. Changing
 	// this parameter results in an outage. The change is applied during the next
@@ -40677,6 +40696,12 @@ func (s *ModifyDBClusterInput) SetAllocatedStorage(v int64) *ModifyDBClusterInpu
 	return s
 }
 
+// SetAllowEngineModeChange sets the AllowEngineModeChange field's value.
+func (s *ModifyDBClusterInput) SetAllowEngineModeChange(v bool) *ModifyDBClusterInput {
+	s.AllowEngineModeChange = &v
+	return s
+}
+
 // SetAllowMajorVersionUpgrade sets the AllowMajorVersionUpgrade field's value.
 func (s *ModifyDBClusterInput) SetAllowMajorVersionUpgrade(v bool) *ModifyDBClusterInput {
 	s.AllowMajorVersionUpgrade = &v
@@ -40782,6 +40807,12 @@ func (s *ModifyDBClusterInput) SetEnableIAMDatabaseAuthentication(v bool) *Modif
 // SetEnablePerformanceInsights sets the EnablePerformanceInsights field's value.
 func (s *ModifyDBClusterInput) SetEnablePerformanceInsights(v bool) *ModifyDBClusterInput {
 	s.EnablePerformanceInsights = &v
+	return s
+}
+
+// SetEngineMode sets the EngineMode field's value.
+func (s *ModifyDBClusterInput) SetEngineMode(v string) *ModifyDBClusterInput {
+	s.EngineMode = &v
 	return s
 }
 

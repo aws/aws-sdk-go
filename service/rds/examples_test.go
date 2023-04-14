@@ -2961,6 +2961,8 @@ func ExampleRDS_ModifyDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeInvalidDBInstanceStateFault, aerr.Error())
 			case rds.ErrCodeDBClusterAlreadyExistsFault:
 				fmt.Println(rds.ErrCodeDBClusterAlreadyExistsFault, aerr.Error())
+			case rds.ErrCodeDBInstanceAlreadyExistsFault:
+				fmt.Println(rds.ErrCodeDBInstanceAlreadyExistsFault, aerr.Error())
 			case rds.ErrCodeDomainNotFoundFault:
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			default:
