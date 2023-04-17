@@ -406,7 +406,9 @@ func (c *EMRServerless) GetDashboardForJobRunRequest(input *GetDashboardForJobRu
 
 // GetDashboardForJobRun API operation for EMR Serverless.
 //
-// Returns a URL to access the job run dashboard.
+// Returns a URL to access the job run dashboard. The generated URL is valid
+// for one hour, after which you must invoke the API again to generate a new
+// URL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3184,6 +3186,12 @@ type JobRun struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"60" type:"string" required:"true"`
 
+	// The aggregate vCPU, memory, and storage that AWS has billed for the job run.
+	// The billed resources include a 1-minute minimum usage for workers, plus additional
+	// storage over 20 GB per worker. Note that billed resources do not include
+	// usage for idle pre-initialized workers.
+	BilledResourceUtilization *ResourceUtilization `locationName:"billedResourceUtilization" type:"structure"`
+
 	// The configuration settings that are used to override default configuration.
 	ConfigurationOverrides *ConfigurationOverrides `locationName:"configurationOverrides" type:"structure"`
 
@@ -3202,8 +3210,8 @@ type JobRun struct {
 	// ExecutionRole is a required field
 	ExecutionRole *string `locationName:"executionRole" min:"20" type:"string" required:"true"`
 
-	// Maximum duration for the job run to run. If the job run runs beyond this
-	// duration, it will be automatically cancelled.
+	// Returns the job run timeout value from the StartJobRun call. If no timeout
+	// was specified, then it returns the default timeout of 720 minutes.
 	ExecutionTimeoutMinutes *int64 `locationName:"executionTimeoutMinutes" type:"long"`
 
 	// The job driver for the job run.
@@ -3244,9 +3252,9 @@ type JobRun struct {
 	// for job runs in a COMPLETED, FAILED, or CANCELLED state.
 	TotalExecutionDurationSeconds *int64 `locationName:"totalExecutionDurationSeconds" type:"integer"`
 
-	// The aggregate vCPU, memory, and storage resources used from the time job
-	// start executing till the time job is terminated, rounded up to the nearest
-	// second.
+	// The aggregate vCPU, memory, and storage resources used from the time the
+	// job starts to execute, until the time the job terminates, rounded up to the
+	// nearest second.
 	TotalResourceUtilization *TotalResourceUtilization `locationName:"totalResourceUtilization" type:"structure"`
 
 	// The date and time when the job run was updated.
@@ -3282,6 +3290,12 @@ func (s *JobRun) SetApplicationId(v string) *JobRun {
 // SetArn sets the Arn field's value.
 func (s *JobRun) SetArn(v string) *JobRun {
 	s.Arn = &v
+	return s
+}
+
+// SetBilledResourceUtilization sets the BilledResourceUtilization field's value.
+func (s *JobRun) SetBilledResourceUtilization(v *ResourceUtilization) *JobRun {
+	s.BilledResourceUtilization = v
 	return s
 }
 
@@ -4170,6 +4184,59 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The resource utilization for memory, storage, and vCPU for jobs.
+type ResourceUtilization struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregated memory used per hour from the time the job starts executing
+	// until the job is terminated.
+	MemoryGBHour *float64 `locationName:"memoryGBHour" type:"double"`
+
+	// The aggregated storage used per hour from the time the job starts executing
+	// until the job is terminated.
+	StorageGBHour *float64 `locationName:"storageGBHour" type:"double"`
+
+	// The aggregated vCPU used per hour from the time the job starts executing
+	// until the job is terminated.
+	VCPUHour *float64 `locationName:"vCPUHour" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceUtilization) GoString() string {
+	return s.String()
+}
+
+// SetMemoryGBHour sets the MemoryGBHour field's value.
+func (s *ResourceUtilization) SetMemoryGBHour(v float64) *ResourceUtilization {
+	s.MemoryGBHour = &v
+	return s
+}
+
+// SetStorageGBHour sets the StorageGBHour field's value.
+func (s *ResourceUtilization) SetStorageGBHour(v float64) *ResourceUtilization {
+	s.StorageGBHour = &v
+	return s
+}
+
+// SetVCPUHour sets the VCPUHour field's value.
+func (s *ResourceUtilization) SetVCPUHour(v float64) *ResourceUtilization {
+	s.VCPUHour = &v
+	return s
 }
 
 // The Amazon S3 configuration for monitoring log publishing. You can configure

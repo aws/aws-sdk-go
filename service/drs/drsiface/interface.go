@@ -64,6 +64,10 @@ type DrsAPI interface {
 	CreateExtendedSourceServerWithContext(aws.Context, *drs.CreateExtendedSourceServerInput, ...request.Option) (*drs.CreateExtendedSourceServerOutput, error)
 	CreateExtendedSourceServerRequest(*drs.CreateExtendedSourceServerInput) (*request.Request, *drs.CreateExtendedSourceServerOutput)
 
+	CreateLaunchConfigurationTemplate(*drs.CreateLaunchConfigurationTemplateInput) (*drs.CreateLaunchConfigurationTemplateOutput, error)
+	CreateLaunchConfigurationTemplateWithContext(aws.Context, *drs.CreateLaunchConfigurationTemplateInput, ...request.Option) (*drs.CreateLaunchConfigurationTemplateOutput, error)
+	CreateLaunchConfigurationTemplateRequest(*drs.CreateLaunchConfigurationTemplateInput) (*request.Request, *drs.CreateLaunchConfigurationTemplateOutput)
+
 	CreateReplicationConfigurationTemplate(*drs.CreateReplicationConfigurationTemplateInput) (*drs.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateWithContext(aws.Context, *drs.CreateReplicationConfigurationTemplateInput, ...request.Option) (*drs.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateRequest(*drs.CreateReplicationConfigurationTemplateInput) (*request.Request, *drs.CreateReplicationConfigurationTemplateOutput)
@@ -71,6 +75,10 @@ type DrsAPI interface {
 	DeleteJob(*drs.DeleteJobInput) (*drs.DeleteJobOutput, error)
 	DeleteJobWithContext(aws.Context, *drs.DeleteJobInput, ...request.Option) (*drs.DeleteJobOutput, error)
 	DeleteJobRequest(*drs.DeleteJobInput) (*request.Request, *drs.DeleteJobOutput)
+
+	DeleteLaunchConfigurationTemplate(*drs.DeleteLaunchConfigurationTemplateInput) (*drs.DeleteLaunchConfigurationTemplateOutput, error)
+	DeleteLaunchConfigurationTemplateWithContext(aws.Context, *drs.DeleteLaunchConfigurationTemplateInput, ...request.Option) (*drs.DeleteLaunchConfigurationTemplateOutput, error)
+	DeleteLaunchConfigurationTemplateRequest(*drs.DeleteLaunchConfigurationTemplateInput) (*request.Request, *drs.DeleteLaunchConfigurationTemplateOutput)
 
 	DeleteRecoveryInstance(*drs.DeleteRecoveryInstanceInput) (*drs.DeleteRecoveryInstanceOutput, error)
 	DeleteRecoveryInstanceWithContext(aws.Context, *drs.DeleteRecoveryInstanceInput, ...request.Option) (*drs.DeleteRecoveryInstanceOutput, error)
@@ -97,6 +105,13 @@ type DrsAPI interface {
 
 	DescribeJobsPages(*drs.DescribeJobsInput, func(*drs.DescribeJobsOutput, bool) bool) error
 	DescribeJobsPagesWithContext(aws.Context, *drs.DescribeJobsInput, func(*drs.DescribeJobsOutput, bool) bool, ...request.Option) error
+
+	DescribeLaunchConfigurationTemplates(*drs.DescribeLaunchConfigurationTemplatesInput) (*drs.DescribeLaunchConfigurationTemplatesOutput, error)
+	DescribeLaunchConfigurationTemplatesWithContext(aws.Context, *drs.DescribeLaunchConfigurationTemplatesInput, ...request.Option) (*drs.DescribeLaunchConfigurationTemplatesOutput, error)
+	DescribeLaunchConfigurationTemplatesRequest(*drs.DescribeLaunchConfigurationTemplatesInput) (*request.Request, *drs.DescribeLaunchConfigurationTemplatesOutput)
+
+	DescribeLaunchConfigurationTemplatesPages(*drs.DescribeLaunchConfigurationTemplatesInput, func(*drs.DescribeLaunchConfigurationTemplatesOutput, bool) bool) error
+	DescribeLaunchConfigurationTemplatesPagesWithContext(aws.Context, *drs.DescribeLaunchConfigurationTemplatesInput, func(*drs.DescribeLaunchConfigurationTemplatesOutput, bool) bool, ...request.Option) error
 
 	DescribeRecoveryInstances(*drs.DescribeRecoveryInstancesInput) (*drs.DescribeRecoveryInstancesOutput, error)
 	DescribeRecoveryInstancesWithContext(aws.Context, *drs.DescribeRecoveryInstancesInput, ...request.Option) (*drs.DescribeRecoveryInstancesOutput, error)
@@ -215,6 +230,10 @@ type DrsAPI interface {
 	UpdateLaunchConfiguration(*drs.UpdateLaunchConfigurationInput) (*drs.UpdateLaunchConfigurationOutput, error)
 	UpdateLaunchConfigurationWithContext(aws.Context, *drs.UpdateLaunchConfigurationInput, ...request.Option) (*drs.UpdateLaunchConfigurationOutput, error)
 	UpdateLaunchConfigurationRequest(*drs.UpdateLaunchConfigurationInput) (*request.Request, *drs.UpdateLaunchConfigurationOutput)
+
+	UpdateLaunchConfigurationTemplate(*drs.UpdateLaunchConfigurationTemplateInput) (*drs.UpdateLaunchConfigurationTemplateOutput, error)
+	UpdateLaunchConfigurationTemplateWithContext(aws.Context, *drs.UpdateLaunchConfigurationTemplateInput, ...request.Option) (*drs.UpdateLaunchConfigurationTemplateOutput, error)
+	UpdateLaunchConfigurationTemplateRequest(*drs.UpdateLaunchConfigurationTemplateInput) (*request.Request, *drs.UpdateLaunchConfigurationTemplateOutput)
 
 	UpdateReplicationConfiguration(*drs.UpdateReplicationConfigurationInput) (*drs.UpdateReplicationConfigurationOutput, error)
 	UpdateReplicationConfigurationWithContext(aws.Context, *drs.UpdateReplicationConfigurationInput, ...request.Option) (*drs.UpdateReplicationConfigurationOutput, error)

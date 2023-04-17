@@ -21865,7 +21865,7 @@ type LoRaWANDeviceProfile struct {
 	PingSlotFreq *int64 `min:"1e+06" type:"integer"`
 
 	// The PingSlotPeriod value.
-	PingSlotPeriod *int64 `min:"128" type:"integer"`
+	PingSlotPeriod *int64 `min:"32" type:"integer"`
 
 	// The version of regional parameters.
 	RegParamsRevision *string `type:"string"`
@@ -21922,8 +21922,8 @@ func (s *LoRaWANDeviceProfile) Validate() error {
 	if s.PingSlotFreq != nil && *s.PingSlotFreq < 1e+06 {
 		invalidParams.Add(request.NewErrParamMinValue("PingSlotFreq", 1e+06))
 	}
-	if s.PingSlotPeriod != nil && *s.PingSlotPeriod < 128 {
-		invalidParams.Add(request.NewErrParamMinValue("PingSlotPeriod", 128))
+	if s.PingSlotPeriod != nil && *s.PingSlotPeriod < 32 {
+		invalidParams.Add(request.NewErrParamMinValue("PingSlotPeriod", 32))
 	}
 	if s.RxFreq2 != nil && *s.RxFreq2 < 1e+06 {
 		invalidParams.Add(request.NewErrParamMinValue("RxFreq2", 1e+06))
@@ -22136,6 +22136,9 @@ type LoRaWANGateway struct {
 	// A list of JoinEuiRange used by LoRa gateways to filter LoRa frames.
 	JoinEuiFilters [][]*string `type:"list"`
 
+	// The MaxEIRP value.
+	MaxEirp *float64 `type:"float"`
+
 	// A list of NetId values that are used by LoRa gateways to filter the uplink
 	// frames.
 	NetIdFilters []*string `type:"list"`
@@ -22180,6 +22183,12 @@ func (s *LoRaWANGateway) SetGatewayEui(v string) *LoRaWANGateway {
 // SetJoinEuiFilters sets the JoinEuiFilters field's value.
 func (s *LoRaWANGateway) SetJoinEuiFilters(v [][]*string) *LoRaWANGateway {
 	s.JoinEuiFilters = v
+	return s
+}
+
+// SetMaxEirp sets the MaxEirp field's value.
+func (s *LoRaWANGateway) SetMaxEirp(v float64) *LoRaWANGateway {
+	s.MaxEirp = &v
 	return s
 }
 
@@ -22799,6 +22808,9 @@ type LoRaWANMulticastSession struct {
 	// Downlink frequency.
 	DlFreq *int64 `min:"1e+08" type:"integer"`
 
+	// The PingSlotPeriod value.
+	PingSlotPeriod *int64 `min:"32" type:"integer"`
+
 	// Timestamp of when the multicast group session is to start.
 	SessionStartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -22830,6 +22842,9 @@ func (s *LoRaWANMulticastSession) Validate() error {
 	if s.DlFreq != nil && *s.DlFreq < 1e+08 {
 		invalidParams.Add(request.NewErrParamMinValue("DlFreq", 1e+08))
 	}
+	if s.PingSlotPeriod != nil && *s.PingSlotPeriod < 32 {
+		invalidParams.Add(request.NewErrParamMinValue("PingSlotPeriod", 32))
+	}
 	if s.SessionTimeout != nil && *s.SessionTimeout < 60 {
 		invalidParams.Add(request.NewErrParamMinValue("SessionTimeout", 60))
 	}
@@ -22849,6 +22864,12 @@ func (s *LoRaWANMulticastSession) SetDlDr(v int64) *LoRaWANMulticastSession {
 // SetDlFreq sets the DlFreq field's value.
 func (s *LoRaWANMulticastSession) SetDlFreq(v int64) *LoRaWANMulticastSession {
 	s.DlFreq = &v
+	return s
+}
+
+// SetPingSlotPeriod sets the PingSlotPeriod field's value.
+func (s *LoRaWANMulticastSession) SetPingSlotPeriod(v int64) *LoRaWANMulticastSession {
+	s.PingSlotPeriod = &v
 	return s
 }
 
@@ -22936,6 +22957,12 @@ type LoRaWANServiceProfile struct {
 
 	// The DrMin value.
 	DrMin *int64 `type:"integer"`
+
+	// The PRAllowed value that describes whether passive roaming is allowed.
+	PrAllowed *bool `type:"boolean"`
+
+	// The RAAllowed value that describes whether roaming activation is allowed.
+	RaAllowed *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -22971,6 +22998,18 @@ func (s *LoRaWANServiceProfile) SetDrMax(v int64) *LoRaWANServiceProfile {
 // SetDrMin sets the DrMin field's value.
 func (s *LoRaWANServiceProfile) SetDrMin(v int64) *LoRaWANServiceProfile {
 	s.DrMin = &v
+	return s
+}
+
+// SetPrAllowed sets the PrAllowed field's value.
+func (s *LoRaWANServiceProfile) SetPrAllowed(v bool) *LoRaWANServiceProfile {
+	s.PrAllowed = &v
+	return s
+}
+
+// SetRaAllowed sets the RaAllowed field's value.
+func (s *LoRaWANServiceProfile) SetRaAllowed(v bool) *LoRaWANServiceProfile {
+	s.RaAllowed = &v
 	return s
 }
 
@@ -28928,6 +28967,9 @@ type UpdateWirelessGatewayInput struct {
 	// A list of JoinEuiRange used by LoRa gateways to filter LoRa frames.
 	JoinEuiFilters [][]*string `type:"list"`
 
+	// The MaxEIRP value.
+	MaxEirp *float64 `type:"float"`
+
 	// The new name of the resource.
 	Name *string `type:"string"`
 
@@ -28985,6 +29027,12 @@ func (s *UpdateWirelessGatewayInput) SetId(v string) *UpdateWirelessGatewayInput
 // SetJoinEuiFilters sets the JoinEuiFilters field's value.
 func (s *UpdateWirelessGatewayInput) SetJoinEuiFilters(v [][]*string) *UpdateWirelessGatewayInput {
 	s.JoinEuiFilters = v
+	return s
+}
+
+// SetMaxEirp sets the MaxEirp field's value.
+func (s *UpdateWirelessGatewayInput) SetMaxEirp(v float64) *UpdateWirelessGatewayInput {
+	s.MaxEirp = &v
 	return s
 }
 

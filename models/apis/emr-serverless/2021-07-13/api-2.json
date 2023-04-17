@@ -749,7 +749,8 @@
         "executionTimeoutMinutes":{
           "shape":"Duration",
           "box":true
-        }
+        },
+        "billedResourceUtilization":{"shape":"ResourceUtilization"}
       }
     },
     "JobRunId":{
@@ -993,6 +994,14 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ResourceUtilization":{
+      "type":"structure",
+      "members":{
+        "vCPUHour":{"shape":"Double"},
+        "memoryGBHour":{"shape":"Double"},
+        "storageGBHour":{"shape":"Double"}
+      }
     },
     "S3MonitoringConfiguration":{
       "type":"structure",

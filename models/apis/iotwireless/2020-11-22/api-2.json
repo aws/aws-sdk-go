@@ -3334,6 +3334,11 @@
         "DownlinkFrequency":{"shape":"DownlinkFrequency"}
       }
     },
+    "GatewayMaxEirp":{
+      "type":"float",
+      "max":30,
+      "min":0
+    },
     "GenAppKey":{
       "type":"string",
       "pattern":"[a-fA-F0-9]{32}"
@@ -4686,7 +4691,8 @@
         "JoinEuiFilters":{"shape":"JoinEuiFilters"},
         "NetIdFilters":{"shape":"NetIdFilters"},
         "SubBands":{"shape":"SubBands"},
-        "Beaconing":{"shape":"Beaconing"}
+        "Beaconing":{"shape":"Beaconing"},
+        "MaxEirp":{"shape":"GatewayMaxEirp"}
       }
     },
     "LoRaWANGatewayCurrentVersion":{
@@ -4785,7 +4791,8 @@
         "DlDr":{"shape":"DlDr"},
         "DlFreq":{"shape":"DlFreq"},
         "SessionStartTime":{"shape":"SessionStartTimeTimestamp"},
-        "SessionTimeout":{"shape":"SessionTimeout"}
+        "SessionTimeout":{"shape":"SessionTimeout"},
+        "PingSlotPeriod":{"shape":"PingSlotPeriod"}
       }
     },
     "LoRaWANSendDataToDevice":{
@@ -4800,7 +4807,9 @@
       "members":{
         "AddGwMetadata":{"shape":"AddGwMetadata"},
         "DrMin":{"shape":"DrMinBox"},
-        "DrMax":{"shape":"DrMaxBox"}
+        "DrMax":{"shape":"DrMaxBox"},
+        "PrAllowed":{"shape":"PrAllowed"},
+        "RaAllowed":{"shape":"RaAllowed"}
       }
     },
     "LoRaWANStartFuotaTask":{
@@ -5183,7 +5192,7 @@
     "PingSlotPeriod":{
       "type":"integer",
       "max":4096,
-      "min":128
+      "min":32
     },
     "PnOffset":{
       "type":"integer",
@@ -6450,7 +6459,8 @@
         "Name":{"shape":"WirelessGatewayName"},
         "Description":{"shape":"Description"},
         "JoinEuiFilters":{"shape":"JoinEuiFilters"},
-        "NetIdFilters":{"shape":"NetIdFilters"}
+        "NetIdFilters":{"shape":"NetIdFilters"},
+        "MaxEirp":{"shape":"GatewayMaxEirp"}
       }
     },
     "UpdateWirelessGatewayResponse":{

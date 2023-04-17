@@ -235,10 +235,7 @@
     },
     "CreateMonitorInput":{
       "type":"structure",
-      "required":[
-        "MonitorName",
-        "MaxCityNetworksToMonitor"
-      ],
+      "required":["MonitorName"],
       "members":{
         "MonitorName":{"shape":"ResourceName"},
         "Resources":{"shape":"SetOfARNs"},
@@ -248,7 +245,8 @@
         },
         "Tags":{"shape":"TagMap"},
         "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
-        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"}
+        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"},
+        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"}
       }
     },
     "CreateMonitorOutput":{
@@ -344,8 +342,7 @@
         "Resources",
         "Status",
         "CreatedAt",
-        "ModifiedAt",
-        "MaxCityNetworksToMonitor"
+        "ModifiedAt"
       ],
       "members":{
         "MonitorName":{"shape":"ResourceName"},
@@ -358,7 +355,8 @@
         "ProcessingStatusInfo":{"shape":"String"},
         "Tags":{"shape":"TagMap"},
         "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
-        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"}
+        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"},
+        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"}
       }
     },
     "HealthEvent":{
@@ -797,6 +795,11 @@
       "exception":true,
       "retryable":{"throttling":true}
     },
+    "TrafficPercentageToMonitor":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "TriangulationEventType":{
       "type":"string",
       "enum":[
@@ -845,7 +848,8 @@
           "idempotencyToken":true
         },
         "MaxCityNetworksToMonitor":{"shape":"MaxCityNetworksToMonitor"},
-        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"}
+        "InternetMeasurementsLogDelivery":{"shape":"InternetMeasurementsLogDelivery"},
+        "TrafficPercentageToMonitor":{"shape":"TrafficPercentageToMonitor"}
       }
     },
     "UpdateMonitorOutput":{

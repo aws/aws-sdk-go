@@ -1424,6 +1424,13 @@
         "GatewayList$member": null
       }
     },
+    "GatewayMaxEirp": {
+      "base": null,
+      "refs": {
+        "LoRaWANGateway$MaxEirp": "<p>The MaxEIRP value.</p>",
+        "UpdateWirelessGatewayRequest$MaxEirp": "<p>The MaxEIRP value.</p>"
+      }
+    },
     "GenAppKey": {
       "base": null,
       "refs": {
@@ -2795,7 +2802,8 @@
     "PingSlotPeriod": {
       "base": null,
       "refs": {
-        "LoRaWANDeviceProfile$PingSlotPeriod": "<p>The PingSlotPeriod value.</p>"
+        "LoRaWANDeviceProfile$PingSlotPeriod": "<p>The PingSlotPeriod value.</p>",
+        "LoRaWANMulticastSession$PingSlotPeriod": "<p>The PingSlotPeriod value.</p>"
       }
     },
     "PnOffset": {
@@ -2920,7 +2928,8 @@
     "PrAllowed": {
       "base": null,
       "refs": {
-        "LoRaWANGetServiceProfileInfo$PrAllowed": "<p>The PRAllowed value that describes whether passive roaming is allowed.</p>"
+        "LoRaWANGetServiceProfileInfo$PrAllowed": "<p>The PRAllowed value that describes whether passive roaming is allowed.</p>",
+        "LoRaWANServiceProfile$PrAllowed": "<p>The PRAllowed value that describes whether passive roaming is allowed.</p>"
       }
     },
     "PresetFreq": {
@@ -3015,7 +3024,8 @@
     "RaAllowed": {
       "base": null,
       "refs": {
-        "LoRaWANGetServiceProfileInfo$RaAllowed": "<p>The RAAllowed value that describes whether roaming activation is allowed.</p>"
+        "LoRaWANGetServiceProfileInfo$RaAllowed": "<p>The RAAllowed value that describes whether roaming activation is allowed.</p>",
+        "LoRaWANServiceProfile$RaAllowed": "<p>The RAAllowed value that describes whether roaming activation is allowed.</p>"
       }
     },
     "RedundancyPercent": {
