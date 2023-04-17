@@ -22854,6 +22854,9 @@ const (
 
 	// RuntimeNodejs18X is a Runtime enum value
 	RuntimeNodejs18X = "nodejs18.x"
+
+	// RuntimePython310 is a Runtime enum value
+	RuntimePython310 = "python3.10"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -22887,6 +22890,7 @@ func Runtime_Values() []string {
 		RuntimeProvided,
 		RuntimeProvidedAl2,
 		RuntimeNodejs18X,
+		RuntimePython310,
 	}
 }
 

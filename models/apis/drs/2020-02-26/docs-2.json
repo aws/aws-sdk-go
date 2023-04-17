@@ -3,13 +3,16 @@
   "service": "<p>AWS Elastic Disaster Recovery Service.</p>",
   "operations": {
     "CreateExtendedSourceServer": "<p>Create an extended source server in the target Account based on the source server in staging account.</p>",
+    "CreateLaunchConfigurationTemplate": "<p>Creates a new Launch Configuration Template.</p>",
     "CreateReplicationConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
+    "DeleteLaunchConfigurationTemplate": "<p>Deletes a single Launch Configuration Template by ID.</p>",
     "DeleteRecoveryInstance": "<p>Deletes a single Recovery Instance by ID. This deletes the Recovery Instance resource from Elastic Disaster Recovery. The Recovery Instance must be disconnected first in order to delete it.</p>",
     "DeleteReplicationConfigurationTemplate": "<p>Deletes a single Replication Configuration Template by ID</p>",
     "DeleteSourceServer": "<p>Deletes a single Source Server by ID. The Source Server must be disconnected first.</p>",
     "DescribeJobLogItems": "<p>Retrieves a detailed Job log with pagination.</p>",
     "DescribeJobs": "<p>Returns a list of Jobs. Use the JobsID and fromDate and toDate filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are created by the StartRecovery, TerminateRecoveryInstances and StartFailbackLaunch APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>",
+    "DescribeLaunchConfigurationTemplates": "<p>Lists all Launch Configuration Templates, filtered by Launch Configuration Template IDs</p>",
     "DescribeRecoveryInstances": "<p>Lists all Recovery Instances or multiple Recovery Instances by ID.</p>",
     "DescribeRecoverySnapshots": "<p>Lists all Recovery Snapshots for a single Source Server.</p>",
     "DescribeReplicationConfigurationTemplates": "<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>",
@@ -35,6 +38,7 @@
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Elastic Disaster Recovery resources.</p>",
     "UpdateFailbackReplicationConfiguration": "<p>Allows you to update the failback replication configuration of a Recovery Instance by ID.</p>",
     "UpdateLaunchConfiguration": "<p>Updates a LaunchConfiguration by Source Server ID.</p>",
+    "UpdateLaunchConfigurationTemplate": "<p>Updates an existing Launch Configuration Template by ID.</p>",
     "UpdateReplicationConfiguration": "<p>Allows you to update a ReplicationConfiguration by Source Server ID.</p>",
     "UpdateReplicationConfigurationTemplate": "<p>Updates a ReplicationConfigurationTemplate by ID.</p>"
   },
@@ -44,6 +48,7 @@
       "refs": {
         "CreateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
         "Job$arn": "<p>The ARN of a Job.</p>",
+        "LaunchConfigurationTemplate$arn": "<p>ARN of the Launch Configuration Template.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource whose tags should be returned.</p>",
         "RecoveryInstance$arn": "<p>The ARN of the Recovery Instance.</p>",
         "ReplicationConfiguration$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
@@ -110,6 +115,8 @@
       "base": null,
       "refs": {
         "ConversionProperties$forceUefi": "<p>Whether the volume being converted uses UEFI or not</p>",
+        "CreateLaunchConfigurationTemplateRequest$copyPrivateIp": "<p>Copy private IP.</p>",
+        "CreateLaunchConfigurationTemplateRequest$copyTags": "<p>Copy tags.</p>",
         "CreateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.</p>",
         "CreateReplicationConfigurationTemplateRequest$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "CreateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
@@ -117,6 +124,8 @@
         "GetFailbackReplicationConfigurationResponse$usePrivateIP": "<p>Whether to use Private IP for the failback replication of the Recovery Instance.</p>",
         "LaunchConfiguration$copyPrivateIp": "<p>Whether we should copy the Private IP of the Source Server to the Recovery Instance.</p>",
         "LaunchConfiguration$copyTags": "<p>Whether we want to copy the tags of the Source Server to the EC2 machine of the Recovery Instance.</p>",
+        "LaunchConfigurationTemplate$copyPrivateIp": "<p>Copy private IP.</p>",
+        "LaunchConfigurationTemplate$copyTags": "<p>Copy tags.</p>",
         "Licensing$osByol": "<p>Whether to enable \"Bring your own license\" or not.</p>",
         "NetworkInterface$isPrimary": "<p>Whether this is the primary network interface.</p>",
         "PITPolicyRule$enabled": "<p>Whether this rule is enabled or not.</p>",
@@ -131,10 +140,13 @@
         "ReplicationConfigurationTemplate$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "ReplicationConfigurationTemplate$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
         "ReplicationConfigurationTemplate$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>",
+        "SourceProperties$supportsNitroInstances": "<p>Are EC2 nitro instance types supported when recovering the Source Server.</p>",
         "StartRecoveryRequest$isDrill": "<p>Whether this Source Server Recovery operation is a drill or not.</p>",
         "UpdateFailbackReplicationConfigurationRequest$usePrivateIP": "<p>Whether to use Private IP for the failback replication of the Recovery Instance.</p>",
         "UpdateLaunchConfigurationRequest$copyPrivateIp": "<p>Whether we should copy the Private IP of the Source Server to the Recovery Instance.</p>",
         "UpdateLaunchConfigurationRequest$copyTags": "<p>Whether we want to copy the tags of the Source Server to the EC2 machine of the Recovery Instance.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$copyPrivateIp": "<p>Copy private IP.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$copyTags": "<p>Copy tags.</p>",
         "UpdateReplicationConfigurationRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration.</p>",
         "UpdateReplicationConfigurationRequest$autoReplicateNewDisks": "<p>Whether to allow the AWS replication agent to automatically replicate newly added disks.</p>",
         "UpdateReplicationConfigurationRequest$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
@@ -204,6 +216,16 @@
       }
     },
     "CreateExtendedSourceServerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLaunchConfigurationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLaunchConfigurationTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -289,6 +311,16 @@
       "refs": {
       }
     },
+    "DeleteLaunchConfigurationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLaunchConfigurationTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteRecoveryInstanceRequest": {
       "base": null,
       "refs": {
@@ -342,6 +374,16 @@
       }
     },
     "DescribeJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLaunchConfigurationTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLaunchConfigurationTemplatesResponse": {
       "base": null,
       "refs": {
       }
@@ -721,11 +763,43 @@
       "refs": {
       }
     },
+    "LaunchConfigurationTemplate": {
+      "base": "<p>Account level Launch Configuration Template.</p>",
+      "refs": {
+        "CreateLaunchConfigurationTemplateResponse$launchConfigurationTemplate": "<p>Created Launch Configuration Template.</p>",
+        "LaunchConfigurationTemplates$member": null,
+        "UpdateLaunchConfigurationTemplateResponse$launchConfigurationTemplate": "<p>Updated Launch Configuration Template.</p>"
+      }
+    },
+    "LaunchConfigurationTemplateID": {
+      "base": null,
+      "refs": {
+        "DeleteLaunchConfigurationTemplateRequest$launchConfigurationTemplateID": "<p>The ID of the Launch Configuration Template to be deleted.</p>",
+        "LaunchConfigurationTemplate$launchConfigurationTemplateID": "<p>ID of the Launch Configuration Template.</p>",
+        "LaunchConfigurationTemplateIDs$member": null,
+        "UpdateLaunchConfigurationTemplateRequest$launchConfigurationTemplateID": "<p>Launch Configuration Template ID.</p>"
+      }
+    },
+    "LaunchConfigurationTemplateIDs": {
+      "base": null,
+      "refs": {
+        "DescribeLaunchConfigurationTemplatesRequest$launchConfigurationTemplateIDs": "<p>Request to filter Launch Configuration Templates list by Launch Configuration Template ID.</p>"
+      }
+    },
+    "LaunchConfigurationTemplates": {
+      "base": null,
+      "refs": {
+        "DescribeLaunchConfigurationTemplatesResponse$items": "<p>List of items returned by DescribeLaunchConfigurationTemplates.</p>"
+      }
+    },
     "LaunchDisposition": {
       "base": null,
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$launchDisposition": "<p>Launch disposition.</p>",
         "LaunchConfiguration$launchDisposition": "<p>The state of the Recovery Instance in EC2 after the recovery operation.</p>",
-        "UpdateLaunchConfigurationRequest$launchDisposition": "<p>The state of the Recovery Instance in EC2 after the recovery operation.</p>"
+        "LaunchConfigurationTemplate$launchDisposition": "<p>Launch disposition.</p>",
+        "UpdateLaunchConfigurationRequest$launchDisposition": "<p>The state of the Recovery Instance in EC2 after the recovery operation.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$launchDisposition": "<p>Launch disposition.</p>"
       }
     },
     "LaunchStatus": {
@@ -738,8 +812,11 @@
     "Licensing": {
       "base": "<p>Configuration of a machine's license.</p>",
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$licensing": "<p>Licensing.</p>",
         "LaunchConfiguration$licensing": "<p>The licensing configuration to be used for this launch configuration.</p>",
-        "UpdateLaunchConfigurationRequest$licensing": "<p>The licensing configuration to be used for this launch configuration.</p>"
+        "LaunchConfigurationTemplate$licensing": "<p>Licensing.</p>",
+        "UpdateLaunchConfigurationRequest$licensing": "<p>The licensing configuration to be used for this launch configuration.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$licensing": "<p>Licensing.</p>"
       }
     },
     "LifeCycle": {
@@ -802,6 +879,12 @@
         "ListExtensibleSourceServersRequest$maxResults": "<p>The maximum number of extensible source servers to retrieve.</p>"
       }
     },
+    "MaxResultsType": {
+      "base": null,
+      "refs": {
+        "DescribeLaunchConfigurationTemplatesRequest$maxResults": "<p>Maximum results to be returned in DescribeLaunchConfigurationTemplates.</p>"
+      }
+    },
     "NetworkInterface": {
       "base": "<p>Network interface.</p>",
       "refs": {
@@ -857,6 +940,8 @@
         "DescribeJobLogItemsResponse$nextToken": "<p>The token of the next Job log items to retrieve.</p>",
         "DescribeJobsRequest$nextToken": "<p>The token of the next Job to retrieve.</p>",
         "DescribeJobsResponse$nextToken": "<p>The token of the next Job to retrieve.</p>",
+        "DescribeLaunchConfigurationTemplatesRequest$nextToken": "<p>The token of the next Launch Configuration Template to retrieve.</p>",
+        "DescribeLaunchConfigurationTemplatesResponse$nextToken": "<p>The token of the next Launch Configuration Template to retrieve.</p>",
         "DescribeRecoveryInstancesRequest$nextToken": "<p>The token of the next Recovery Instance to retrieve.</p>",
         "DescribeRecoveryInstancesResponse$nextToken": "<p>The token of the next Recovery Instance to retrieve.</p>",
         "DescribeRecoverySnapshotsRequest$nextToken": "<p>The token of the next Recovery Snapshot to retrieve.</p>",
@@ -1395,9 +1480,11 @@
       "base": null,
       "refs": {
         "CreateExtendedSourceServerRequest$tags": "<p>A list of tags associated with the extended source server.</p>",
+        "CreateLaunchConfigurationTemplateRequest$tags": "<p>Request to associate tags during creation of a Launch Configuration Template.</p>",
         "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
         "CreateReplicationConfigurationTemplateRequest$tags": "<p>A set of tags to be associated with the Replication Configuration Template resource.</p>",
         "Job$tags": "<p>A list of tags associated with the Job.</p>",
+        "LaunchConfigurationTemplate$tags": "<p>Tags of the Launch Configuration Template.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags of the requested resource.</p>",
         "RecoveryInstance$tags": "<p>An array of tags that are associated with the Recovery Instance.</p>",
         "ReplicationConfiguration$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
@@ -1415,8 +1502,11 @@
     "TargetInstanceTypeRightSizingMethod": {
       "base": null,
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$targetInstanceTypeRightSizingMethod": "<p>Target instance type right-sizing method.</p>",
         "LaunchConfiguration$targetInstanceTypeRightSizingMethod": "<p>Whether Elastic Disaster Recovery should try to automatically choose the instance type that best matches the OS, CPU, and RAM of your Source Server.</p>",
-        "UpdateLaunchConfigurationRequest$targetInstanceTypeRightSizingMethod": "<p>Whether Elastic Disaster Recovery should try to automatically choose the instance type that best matches the OS, CPU, and RAM of your Source Server.</p>"
+        "LaunchConfigurationTemplate$targetInstanceTypeRightSizingMethod": "<p>Target instance type right-sizing method.</p>",
+        "UpdateLaunchConfigurationRequest$targetInstanceTypeRightSizingMethod": "<p>Whether Elastic Disaster Recovery should try to automatically choose the instance type that best matches the OS, CPU, and RAM of your Source Server.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$targetInstanceTypeRightSizingMethod": "<p>Target instance type right-sizing method.</p>"
       }
     },
     "TerminateRecoveryInstancesRequest": {
@@ -1450,6 +1540,16 @@
       }
     },
     "UpdateLaunchConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLaunchConfigurationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLaunchConfigurationTemplateResponse": {
       "base": null,
       "refs": {
       }

@@ -1,3 +1,17 @@
+Release v1.44.245 (2023-04-17)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/drs`: Updates service API, documentation, and paginators
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for DynamoDB API
+* `service/emr-serverless`: Updates service API and documentation
+* `service/internetmonitor`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/lambda`: Updates service API
+  * Add Python 3.10 (python3.10) support to AWS Lambda
+
 Release v1.44.244 (2023-04-14)
 ===
 

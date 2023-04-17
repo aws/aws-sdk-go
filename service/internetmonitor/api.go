@@ -1370,9 +1370,8 @@ type CreateMonitorInput struct {
 	// other API requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// Publish internet measurements for Internet Monitor to another location, such
-	// as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch
-	// Logs.
+	// Publish internet measurements for Internet Monitor to an Amazon S3 bucket
+	// in addition to CloudWatch Logs.
 	InternetMeasurementsLogDelivery *InternetMeasurementsLogDelivery `type:"structure"`
 
 	// The maximum number of city-networks to monitor for your resources. A city-network
@@ -1383,9 +1382,7 @@ type CreateMonitorInput struct {
 	// To learn more, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
 	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
 	// Guide.
-	//
-	// MaxCityNetworksToMonitor is a required field
-	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer" required:"true"`
+	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer"`
 
 	// The name of the monitor.
 	//
@@ -1405,6 +1402,10 @@ type CreateMonitorInput struct {
 
 	// The tags for a monitor. You can add a maximum of 50 tags in Internet Monitor.
 	Tags map[string]*string `type:"map"`
+
+	// The percentage of the internet-facing traffic for your application that you
+	// want to monitor with this monitor.
+	TrafficPercentageToMonitor *int64 `min:"1" type:"integer"`
 }
 
 // String returns the string representation.
@@ -1428,9 +1429,6 @@ func (s CreateMonitorInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateMonitorInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateMonitorInput"}
-	if s.MaxCityNetworksToMonitor == nil {
-		invalidParams.Add(request.NewErrParamRequired("MaxCityNetworksToMonitor"))
-	}
 	if s.MaxCityNetworksToMonitor != nil && *s.MaxCityNetworksToMonitor < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxCityNetworksToMonitor", 1))
 	}
@@ -1439,6 +1437,9 @@ func (s *CreateMonitorInput) Validate() error {
 	}
 	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+	if s.TrafficPercentageToMonitor != nil && *s.TrafficPercentageToMonitor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TrafficPercentageToMonitor", 1))
 	}
 	if s.InternetMeasurementsLogDelivery != nil {
 		if err := s.InternetMeasurementsLogDelivery.Validate(); err != nil {
@@ -1485,6 +1486,12 @@ func (s *CreateMonitorInput) SetResources(v []*string) *CreateMonitorInput {
 // SetTags sets the Tags field's value.
 func (s *CreateMonitorInput) SetTags(v map[string]*string) *CreateMonitorInput {
 	s.Tags = v
+	return s
+}
+
+// SetTrafficPercentageToMonitor sets the TrafficPercentageToMonitor field's value.
+func (s *CreateMonitorInput) SetTrafficPercentageToMonitor(v int64) *CreateMonitorInput {
+	s.TrafficPercentageToMonitor = &v
 	return s
 }
 
@@ -1868,9 +1875,7 @@ type GetMonitorOutput struct {
 	// To learn more, see Choosing a city-network maximum value (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html)
 	// in the Amazon CloudWatch Internet Monitor section of the CloudWatch User
 	// Guide.
-	//
-	// MaxCityNetworksToMonitor is a required field
-	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer" required:"true"`
+	MaxCityNetworksToMonitor *int64 `min:"1" type:"integer"`
 
 	// The last time that the monitor was modified.
 	//
@@ -1906,6 +1911,10 @@ type GetMonitorOutput struct {
 
 	// The tags that have been added to monitor.
 	Tags map[string]*string `type:"map"`
+
+	// The percentage of the internet-facing traffic for your application that you
+	// want to monitor with this monitor.
+	TrafficPercentageToMonitor *int64 `min:"1" type:"integer"`
 }
 
 // String returns the string representation.
@@ -1989,6 +1998,12 @@ func (s *GetMonitorOutput) SetStatus(v string) *GetMonitorOutput {
 // SetTags sets the Tags field's value.
 func (s *GetMonitorOutput) SetTags(v map[string]*string) *GetMonitorOutput {
 	s.Tags = v
+	return s
+}
+
+// SetTrafficPercentageToMonitor sets the TrafficPercentageToMonitor field's value.
+func (s *GetMonitorOutput) SetTrafficPercentageToMonitor(v int64) *GetMonitorOutput {
+	s.TrafficPercentageToMonitor = &v
 	return s
 }
 
@@ -2491,9 +2506,8 @@ func (s *InternetHealth) SetPerformance(v *PerformanceMeasurement) *InternetHeal
 	return s
 }
 
-// Configuration information for other locations that you choose to publish
-// Amazon CloudWatch Internet Monitor internet measurements to, such as Amazon
-// S3. The measurements are also published to Amazon CloudWatch Logs.
+// Publish internet measurements to an Amazon S3 bucket in addition to CloudWatch
+// Logs.
 type InternetMeasurementsLogDelivery struct {
 	_ struct{} `type:"structure"`
 
@@ -3811,6 +3825,10 @@ type UpdateMonitorInput struct {
 	// API call are the following: ACTIVE and INACTIVE. The following values are
 	// not accepted: PENDING, and ERROR.
 	Status *string `type:"string" enum:"MonitorConfigState"`
+
+	// The percentage of the internet-facing traffic for your application that you
+	// want to monitor with this monitor.
+	TrafficPercentageToMonitor *int64 `min:"1" type:"integer"`
 }
 
 // String returns the string representation.
@@ -3842,6 +3860,9 @@ func (s *UpdateMonitorInput) Validate() error {
 	}
 	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+	if s.TrafficPercentageToMonitor != nil && *s.TrafficPercentageToMonitor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TrafficPercentageToMonitor", 1))
 	}
 	if s.InternetMeasurementsLogDelivery != nil {
 		if err := s.InternetMeasurementsLogDelivery.Validate(); err != nil {
@@ -3894,6 +3915,12 @@ func (s *UpdateMonitorInput) SetResourcesToRemove(v []*string) *UpdateMonitorInp
 // SetStatus sets the Status field's value.
 func (s *UpdateMonitorInput) SetStatus(v string) *UpdateMonitorInput {
 	s.Status = &v
+	return s
+}
+
+// SetTrafficPercentageToMonitor sets the TrafficPercentageToMonitor field's value.
+func (s *UpdateMonitorInput) SetTrafficPercentageToMonitor(v int64) *UpdateMonitorInput {
+	s.TrafficPercentageToMonitor = &v
 	return s
 }
 

@@ -592,6 +592,12 @@
       "pattern":"\\S+",
       "sensitive":true
     },
+    "ClientToken":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[ -~]+"
+    },
     "ClusterIdentifier":{
       "type":"string",
       "max":512,
@@ -1002,7 +1008,11 @@
         "connectorType":{"shape":"ConnectorType"},
         "connectorLabel":{"shape":"ConnectorLabel"},
         "connectionMode":{"shape":"ConnectionMode"},
-        "connectorProfileConfig":{"shape":"ConnectorProfileConfig"}
+        "connectorProfileConfig":{"shape":"ConnectorProfileConfig"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateConnectorProfileResponse":{
@@ -1029,7 +1039,11 @@
         "destinationFlowConfigList":{"shape":"DestinationFlowConfigList"},
         "tasks":{"shape":"Tasks"},
         "tags":{"shape":"TagMap"},
-        "metadataCatalogConfig":{"shape":"MetadataCatalogConfig"}
+        "metadataCatalogConfig":{"shape":"MetadataCatalogConfig"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateFlowResponse":{
@@ -2475,7 +2489,11 @@
         "connectorLabel":{"shape":"ConnectorLabel"},
         "description":{"shape":"Description"},
         "connectorProvisioningType":{"shape":"ConnectorProvisioningType"},
-        "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"}
+        "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "RegisterConnectorResponse":{
@@ -3058,7 +3076,11 @@
       "type":"structure",
       "required":["flowName"],
       "members":{
-        "flowName":{"shape":"FlowName"}
+        "flowName":{"shape":"FlowName"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "StartFlowResponse":{
@@ -3358,7 +3380,11 @@
       "members":{
         "connectorProfileName":{"shape":"ConnectorProfileName"},
         "connectionMode":{"shape":"ConnectionMode"},
-        "connectorProfileConfig":{"shape":"ConnectorProfileConfig"}
+        "connectorProfileConfig":{"shape":"ConnectorProfileConfig"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "UpdateConnectorProfileResponse":{
@@ -3373,7 +3399,11 @@
       "members":{
         "connectorLabel":{"shape":"ConnectorLabel"},
         "description":{"shape":"Description"},
-        "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"}
+        "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "UpdateConnectorRegistrationResponse":{
@@ -3398,7 +3428,11 @@
         "sourceFlowConfig":{"shape":"SourceFlowConfig"},
         "destinationFlowConfigList":{"shape":"DestinationFlowConfigList"},
         "tasks":{"shape":"Tasks"},
-        "metadataCatalogConfig":{"shape":"MetadataCatalogConfig"}
+        "metadataCatalogConfig":{"shape":"MetadataCatalogConfig"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "UpdateFlowResponse":{

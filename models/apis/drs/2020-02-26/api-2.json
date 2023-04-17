@@ -32,6 +32,24 @@
         {"shape":"UninitializedAccountException"}
       ]
     },
+    "CreateLaunchConfigurationTemplate":{
+      "name":"CreateLaunchConfigurationTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateLaunchConfigurationTemplate",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateLaunchConfigurationTemplateRequest"},
+      "output":{"shape":"CreateLaunchConfigurationTemplateResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
     "CreateReplicationConfigurationTemplate":{
       "name":"CreateReplicationConfigurationTemplate",
       "http":{
@@ -59,6 +77,24 @@
       },
       "input":{"shape":"DeleteJobRequest"},
       "output":{"shape":"DeleteJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UninitializedAccountException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteLaunchConfigurationTemplate":{
+      "name":"DeleteLaunchConfigurationTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteLaunchConfigurationTemplate",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteLaunchConfigurationTemplateRequest"},
+      "output":{"shape":"DeleteLaunchConfigurationTemplateResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
@@ -146,6 +182,23 @@
       "input":{"shape":"DescribeJobsRequest"},
       "output":{"shape":"DescribeJobsResponse"},
       "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
+    "DescribeLaunchConfigurationTemplates":{
+      "name":"DescribeLaunchConfigurationTemplates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DescribeLaunchConfigurationTemplates",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeLaunchConfigurationTemplatesRequest"},
+      "output":{"shape":"DescribeLaunchConfigurationTemplatesResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
@@ -576,6 +629,24 @@
       ],
       "idempotent":true
     },
+    "UpdateLaunchConfigurationTemplate":{
+      "name":"UpdateLaunchConfigurationTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateLaunchConfigurationTemplate",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateLaunchConfigurationTemplateRequest"},
+      "output":{"shape":"UpdateLaunchConfigurationTemplateResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
     "UpdateReplicationConfiguration":{
       "name":"UpdateReplicationConfiguration",
       "http":{
@@ -733,6 +804,23 @@
       "type":"structure",
       "members":{
         "sourceServer":{"shape":"SourceServer"}
+      }
+    },
+    "CreateLaunchConfigurationTemplateRequest":{
+      "type":"structure",
+      "members":{
+        "copyPrivateIp":{"shape":"Boolean"},
+        "copyTags":{"shape":"Boolean"},
+        "launchDisposition":{"shape":"LaunchDisposition"},
+        "licensing":{"shape":"Licensing"},
+        "tags":{"shape":"TagsMap"},
+        "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
+      }
+    },
+    "CreateLaunchConfigurationTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "launchConfigurationTemplate":{"shape":"LaunchConfigurationTemplate"}
       }
     },
     "CreateReplicationConfigurationTemplateRequest":{
@@ -895,6 +983,18 @@
       "members":{
       }
     },
+    "DeleteLaunchConfigurationTemplateRequest":{
+      "type":"structure",
+      "required":["launchConfigurationTemplateID"],
+      "members":{
+        "launchConfigurationTemplateID":{"shape":"LaunchConfigurationTemplateID"}
+      }
+    },
+    "DeleteLaunchConfigurationTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteRecoveryInstanceRequest":{
       "type":"structure",
       "required":["recoveryInstanceID"],
@@ -968,6 +1068,21 @@
       "type":"structure",
       "members":{
         "items":{"shape":"JobsList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeLaunchConfigurationTemplatesRequest":{
+      "type":"structure",
+      "members":{
+        "launchConfigurationTemplateIDs":{"shape":"LaunchConfigurationTemplateIDs"},
+        "maxResults":{"shape":"MaxResultsType"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeLaunchConfigurationTemplatesResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"LaunchConfigurationTemplates"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -1393,6 +1508,37 @@
         "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
       }
     },
+    "LaunchConfigurationTemplate":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"ARN"},
+        "copyPrivateIp":{"shape":"Boolean"},
+        "copyTags":{"shape":"Boolean"},
+        "launchConfigurationTemplateID":{"shape":"LaunchConfigurationTemplateID"},
+        "launchDisposition":{"shape":"LaunchDisposition"},
+        "licensing":{"shape":"Licensing"},
+        "tags":{"shape":"TagsMap"},
+        "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
+      }
+    },
+    "LaunchConfigurationTemplateID":{
+      "type":"string",
+      "max":21,
+      "min":21,
+      "pattern":"^lct-[0-9a-zA-Z]{17}$"
+    },
+    "LaunchConfigurationTemplateIDs":{
+      "type":"list",
+      "member":{"shape":"LaunchConfigurationTemplateID"},
+      "max":1,
+      "min":0
+    },
+    "LaunchConfigurationTemplates":{
+      "type":"list",
+      "member":{"shape":"LaunchConfigurationTemplate"},
+      "max":200,
+      "min":0
+    },
     "LaunchDisposition":{
       "type":"string",
       "enum":[
@@ -1505,6 +1651,11 @@
     "MaxResultsReplicatingSourceServers":{
       "type":"integer",
       "max":300,
+      "min":1
+    },
+    "MaxResultsType":{
+      "type":"integer",
+      "max":1000,
       "min":1
     },
     "NetworkInterface":{
@@ -2004,7 +2155,8 @@
         "networkInterfaces":{"shape":"NetworkInterfaces"},
         "os":{"shape":"OS"},
         "ramBytes":{"shape":"PositiveInteger"},
-        "recommendedInstanceType":{"shape":"EC2InstanceType"}
+        "recommendedInstanceType":{"shape":"EC2InstanceType"},
+        "supportsNitroInstances":{"shape":"Boolean"}
       }
     },
     "SourceServer":{
@@ -2284,6 +2436,24 @@
         "name":{"shape":"SmallBoundedString"},
         "sourceServerID":{"shape":"SourceServerID"},
         "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
+      }
+    },
+    "UpdateLaunchConfigurationTemplateRequest":{
+      "type":"structure",
+      "required":["launchConfigurationTemplateID"],
+      "members":{
+        "copyPrivateIp":{"shape":"Boolean"},
+        "copyTags":{"shape":"Boolean"},
+        "launchConfigurationTemplateID":{"shape":"LaunchConfigurationTemplateID"},
+        "launchDisposition":{"shape":"LaunchDisposition"},
+        "licensing":{"shape":"Licensing"},
+        "targetInstanceTypeRightSizingMethod":{"shape":"TargetInstanceTypeRightSizingMethod"}
+      }
+    },
+    "UpdateLaunchConfigurationTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "launchConfigurationTemplate":{"shape":"LaunchConfigurationTemplate"}
       }
     },
     "UpdateReplicationConfigurationRequest":{

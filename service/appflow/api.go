@@ -5083,6 +5083,21 @@ func (s *ConnectorServerException) RequestID() string {
 type CreateConnectorProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The clientToken parameter is an idempotency token. It ensures that your CreateConnectorProfile
+	// request completes only once. You choose the value to pass. For example, if
+	// you don't receive a response from your request, you can safely retry the
+	// request with the same clientToken parameter value.
+	//
+	// If you omit a clientToken value, the Amazon Web Services SDK that you are
+	// using inserts a value for you. This way, the SDK can safely retry requests
+	// multiple times after a network error. You must provide your own value for
+	// other use cases.
+	//
+	// If you specify input parameters that differ from your first request, an error
+	// occurs. If you use a different value for clientToken, Amazon AppFlow considers
+	// it a new call to CreateConnectorProfile. The token is active for 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// Indicates the connection mode and specifies whether it is public or private.
 	// Private flows use Amazon Web Services PrivateLink to route data over Amazon
 	// Web Services infrastructure without exposing it to the public internet.
@@ -5139,6 +5154,9 @@ func (s CreateConnectorProfileInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateConnectorProfileInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateConnectorProfileInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.ConnectionMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectionMode"))
 	}
@@ -5164,6 +5182,12 @@ func (s *CreateConnectorProfileInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateConnectorProfileInput) SetClientToken(v string) *CreateConnectorProfileInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetConnectionMode sets the ConnectionMode field's value.
@@ -5236,6 +5260,21 @@ func (s *CreateConnectorProfileOutput) SetConnectorProfileArn(v string) *CreateC
 type CreateFlowInput struct {
 	_ struct{} `type:"structure"`
 
+	// The clientToken parameter is an idempotency token. It ensures that your CreateFlow
+	// request completes only once. You choose the value to pass. For example, if
+	// you don't receive a response from your request, you can safely retry the
+	// request with the same clientToken parameter value.
+	//
+	// If you omit a clientToken value, the Amazon Web Services SDK that you are
+	// using inserts a value for you. This way, the SDK can safely retry requests
+	// multiple times after a network error. You must provide your own value for
+	// other use cases.
+	//
+	// If you specify input parameters that differ from your first request, an error
+	// occurs. If you use a different value for clientToken, Amazon AppFlow considers
+	// it a new call to CreateFlow. The token is active for 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// A description of the flow you want to create.
 	Description *string `locationName:"description" type:"string"`
 
@@ -5304,6 +5343,9 @@ func (s CreateFlowInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateFlowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateFlowInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.DestinationFlowConfigList == nil {
 		invalidParams.Add(request.NewErrParamRequired("DestinationFlowConfigList"))
 	}
@@ -5362,6 +5404,12 @@ func (s *CreateFlowInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateFlowInput) SetClientToken(v string) *CreateFlowInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -11099,6 +11147,21 @@ func (s RedshiftMetadata) GoString() string {
 type RegisterConnectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// The clientToken parameter is an idempotency token. It ensures that your RegisterConnector
+	// request completes only once. You choose the value to pass. For example, if
+	// you don't receive a response from your request, you can safely retry the
+	// request with the same clientToken parameter value.
+	//
+	// If you omit a clientToken value, the Amazon Web Services SDK that you are
+	// using inserts a value for you. This way, the SDK can safely retry requests
+	// multiple times after a network error. You must provide your own value for
+	// other use cases.
+	//
+	// If you specify input parameters that differ from your first request, an error
+	// occurs. If you use a different value for clientToken, Amazon AppFlow considers
+	// it a new call to RegisterConnector. The token is active for 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// The name of the connector. The name is unique for each ConnectorRegistration
 	// in your Amazon Web Services account.
 	ConnectorLabel *string `locationName:"connectorLabel" type:"string"`
@@ -11136,6 +11199,9 @@ func (s RegisterConnectorInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RegisterConnectorInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RegisterConnectorInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.ConnectorProvisioningConfig != nil {
 		if err := s.ConnectorProvisioningConfig.Validate(); err != nil {
 			invalidParams.AddNested("ConnectorProvisioningConfig", err.(request.ErrInvalidParams))
@@ -11146,6 +11212,12 @@ func (s *RegisterConnectorInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *RegisterConnectorInput) SetClientToken(v string) *RegisterConnectorInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetConnectorLabel sets the ConnectorLabel field's value.
@@ -13858,6 +13930,25 @@ func (s *SourceFlowConfig) SetSourceConnectorProperties(v *SourceConnectorProper
 type StartFlowInput struct {
 	_ struct{} `type:"structure"`
 
+	// The clientToken parameter is an idempotency token. It ensures that your StartFlow
+	// request completes only once. You choose the value to pass. For example, if
+	// you don't receive a response from your request, you can safely retry the
+	// request with the same clientToken parameter value.
+	//
+	// If you omit a clientToken value, the Amazon Web Services SDK that you are
+	// using inserts a value for you. This way, the SDK can safely retry requests
+	// multiple times after a network error. You must provide your own value for
+	// other use cases.
+	//
+	// If you specify input parameters that differ from your first request, an error
+	// occurs for flows that run on a schedule or based on an event. However, the
+	// error doesn't occur for flows that run on demand. You set the conditions
+	// that initiate your flow for the triggerConfig parameter.
+	//
+	// If you use a different value for clientToken, Amazon AppFlow considers it
+	// a new call to StartFlow. The token is active for 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// The specified name of the flow. Spaces are not allowed. Use underscores (_)
 	// or hyphens (-) only.
 	//
@@ -13886,6 +13977,9 @@ func (s StartFlowInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartFlowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartFlowInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.FlowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowName"))
 	}
@@ -13894,6 +13988,12 @@ func (s *StartFlowInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartFlowInput) SetClientToken(v string) *StartFlowInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetFlowName sets the FlowName field's value.
@@ -14863,6 +14963,21 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateConnectorProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The clientToken parameter is an idempotency token. It ensures that your UpdateConnectorProfile
+	// request completes only once. You choose the value to pass. For example, if
+	// you don't receive a response from your request, you can safely retry the
+	// request with the same clientToken parameter value.
+	//
+	// If you omit a clientToken value, the Amazon Web Services SDK that you are
+	// using inserts a value for you. This way, the SDK can safely retry requests
+	// multiple times after a network error. You must provide your own value for
+	// other use cases.
+	//
+	// If you specify input parameters that differ from your first request, an error
+	// occurs. If you use a different value for clientToken, Amazon AppFlow considers
+	// it a new call to UpdateConnectorProfile. The token is active for 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// Indicates the connection mode and if it is public or private.
 	//
 	// ConnectionMode is a required field
@@ -14901,6 +15016,9 @@ func (s UpdateConnectorProfileInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateConnectorProfileInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorProfileInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.ConnectionMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectionMode"))
 	}
@@ -14920,6 +15038,12 @@ func (s *UpdateConnectorProfileInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateConnectorProfileInput) SetClientToken(v string) *UpdateConnectorProfileInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetConnectionMode sets the ConnectionMode field's value.
@@ -14974,6 +15098,21 @@ func (s *UpdateConnectorProfileOutput) SetConnectorProfileArn(v string) *UpdateC
 type UpdateConnectorRegistrationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The clientToken parameter is an idempotency token. It ensures that your UpdateConnectorRegistration
+	// request completes only once. You choose the value to pass. For example, if
+	// you don't receive a response from your request, you can safely retry the
+	// request with the same clientToken parameter value.
+	//
+	// If you omit a clientToken value, the Amazon Web Services SDK that you are
+	// using inserts a value for you. This way, the SDK can safely retry requests
+	// multiple times after a network error. You must provide your own value for
+	// other use cases.
+	//
+	// If you specify input parameters that differ from your first request, an error
+	// occurs. If you use a different value for clientToken, Amazon AppFlow considers
+	// it a new call to UpdateConnectorRegistration. The token is active for 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// The name of the connector. The name is unique for each connector registration
 	// in your AWS account.
 	//
@@ -15008,6 +15147,9 @@ func (s UpdateConnectorRegistrationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateConnectorRegistrationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorRegistrationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.ConnectorLabel == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorLabel"))
 	}
@@ -15021,6 +15163,12 @@ func (s *UpdateConnectorRegistrationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateConnectorRegistrationInput) SetClientToken(v string) *UpdateConnectorRegistrationInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetConnectorLabel sets the ConnectorLabel field's value.
@@ -15074,6 +15222,21 @@ func (s *UpdateConnectorRegistrationOutput) SetConnectorArn(v string) *UpdateCon
 
 type UpdateFlowInput struct {
 	_ struct{} `type:"structure"`
+
+	// The clientToken parameter is an idempotency token. It ensures that your UpdateFlow
+	// request completes only once. You choose the value to pass. For example, if
+	// you don't receive a response from your request, you can safely retry the
+	// request with the same clientToken parameter value.
+	//
+	// If you omit a clientToken value, the Amazon Web Services SDK that you are
+	// using inserts a value for you. This way, the SDK can safely retry requests
+	// multiple times after a network error. You must provide your own value for
+	// other use cases.
+	//
+	// If you specify input parameters that differ from your first request, an error
+	// occurs. If you use a different value for clientToken, Amazon AppFlow considers
+	// it a new call to UpdateFlow. The token is active for 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description of the flow.
 	Description *string `locationName:"description" type:"string"`
@@ -15134,6 +15297,9 @@ func (s UpdateFlowInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateFlowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateFlowInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.DestinationFlowConfigList == nil {
 		invalidParams.Add(request.NewErrParamRequired("DestinationFlowConfigList"))
 	}
@@ -15189,6 +15355,12 @@ func (s *UpdateFlowInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateFlowInput) SetClientToken(v string) *UpdateFlowInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.

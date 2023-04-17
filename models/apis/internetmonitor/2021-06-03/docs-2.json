@@ -167,9 +167,9 @@
       }
     },
     "InternetMeasurementsLogDelivery": {
-      "base": "<p>Configuration information for other locations that you choose to publish Amazon CloudWatch Internet Monitor internet measurements to, such as Amazon S3. The measurements are also published to Amazon CloudWatch Logs.</p>",
+      "base": "<p>Publish internet measurements to an Amazon S3 bucket in addition to CloudWatch Logs.</p>",
       "refs": {
-        "CreateMonitorInput$InternetMeasurementsLogDelivery": "<p>Publish internet measurements for Internet Monitor to another location, such as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch Logs.</p>",
+        "CreateMonitorInput$InternetMeasurementsLogDelivery": "<p>Publish internet measurements for Internet Monitor to an Amazon S3 bucket in addition to CloudWatch Logs.</p>",
         "GetMonitorOutput$InternetMeasurementsLogDelivery": "<p>Publish internet measurements for Internet Monitor to another location, such as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch Logs.</p>",
         "UpdateMonitorInput$InternetMeasurementsLogDelivery": "<p>Publish internet measurements for Internet Monitor to another location, such as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch Logs.</p>"
       }
@@ -450,6 +450,14 @@
     "TooManyRequestsException": {
       "base": "<p>There were too many requests.</p>",
       "refs": {
+      }
+    },
+    "TrafficPercentageToMonitor": {
+      "base": null,
+      "refs": {
+        "CreateMonitorInput$TrafficPercentageToMonitor": "<p>The percentage of the internet-facing traffic for your application that you want to monitor with this monitor.</p>",
+        "GetMonitorOutput$TrafficPercentageToMonitor": "<p>The percentage of the internet-facing traffic for your application that you want to monitor with this monitor.</p>",
+        "UpdateMonitorInput$TrafficPercentageToMonitor": "<p>The percentage of the internet-facing traffic for your application that you want to monitor with this monitor.</p>"
       }
     },
     "TriangulationEventType": {
