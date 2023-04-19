@@ -18793,8 +18793,12 @@ type CreateCustomDBEngineVersionInput struct {
 	// EngineVersion is a required field
 	EngineVersion *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the AMI. An AMI ID is required to create a CEV for RDS Custom for
-	// SQL Server.
+	// The ID of the Amazon Machine Image (AMI). For RDS Custom for SQL Server,
+	// an AMI ID is required to create a CEV. For RDS Custom for Oracle, the default
+	// is the most recent AMI available, but you can specify an AMI ID that was
+	// used in a different Oracle CEV. Find the AMIs used by your CEVs by calling
+	// the DescribeDBEngineVersions (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBEngineVersions.html)
+	// operation.
 	ImageId *string `min:"1" type:"string"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted CEV. A symmetric
@@ -20652,11 +20656,11 @@ type CreateDBClusterParameterGroupInput struct {
 	//
 	// Aurora MySQL
 	//
-	// Example: aurora5.6, aurora-mysql5.7, aurora-mysql8.0
+	// Example: aurora-mysql5.7, aurora-mysql8.0
 	//
 	// Aurora PostgreSQL
 	//
-	// Example: aurora-postgresql9.6
+	// Example: aurora-postgresql14
 	//
 	// RDS for MySQL
 	//
@@ -20682,9 +20686,7 @@ type CreateDBClusterParameterGroupInput struct {
 	//
 	// The following are the valid DB engine values:
 	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
-	//
-	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
+	//    * aurora-mysql
 	//
 	//    * aurora-postgresql
 	//
@@ -21398,11 +21400,9 @@ type CreateDBInstanceInput struct {
 	//
 	// Valid Values:
 	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
+	//    * aurora-mysql (for Aurora MySQL DB instances)
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
-	//
-	//    * aurora-postgresql
+	//    * aurora-postgresql (for Aurora PostgreSQL DB instances)
 	//
 	//    * custom-oracle-ee (for RDS Custom for Oracle DB instances)
 	//
@@ -23195,9 +23195,7 @@ type CreateDBParameterGroupInput struct {
 	//
 	// The following are the valid DB engine values:
 	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
-	//
-	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
+	//    * aurora-mysql
 	//
 	//    * aurora-postgresql
 	//
@@ -26728,14 +26726,11 @@ type DBInstance struct {
 	// True if mapping of Amazon Web Services Identity and Access Management (IAM)
 	// accounts to database accounts is enabled, and otherwise false.
 	//
-	// IAM database authentication can be enabled for the following database engines
+	// IAM database authentication can be enabled for the following database engines:
 	//
-	//    * For MySQL 5.6, minor version 5.6.34 or higher
+	//    * For MySQL 5.7, minor version 5.7.16 or higher.
 	//
-	//    * For MySQL 5.7, minor version 5.7.16 or higher
-	//
-	//    * Aurora 5.6 or higher. To enable IAM database authentication for Aurora,
-	//    see DBCluster Type.
+	//    * For Amazon Aurora, all versions of Aurora MySQL and Aurora PostgreSQL.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// Provides the date and time the DB instance was created.
@@ -32748,9 +32743,11 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	// Valid Values:
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
+	//    * aurora-mysql
 	//
 	//    * aurora-postgresql
+	//
+	//    * custom-oracle-ee
 	//
 	//    * mariadb
 	//
@@ -35103,8 +35100,6 @@ type DescribeEngineDefaultParametersInput struct {
 	//
 	// Valid Values:
 	//
-	//    * aurora5.6
-	//
 	//    * aurora-mysql5.7
 	//
 	//    * aurora-mysql8.0
@@ -36415,9 +36410,11 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//
 	// Valid Values:
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
+	//    * aurora-mysql
 	//
 	//    * aurora-postgresql
+	//
+	//    * custom-oracle-ee
 	//
 	//    * mariadb
 	//
@@ -40354,15 +40351,10 @@ type ModifyDBClusterInput struct {
 	// must be running an engine version that's the same or later than the version
 	// you specify.
 	//
-	// To list all of the available engine versions for Aurora MySQL version 2 (5.7-compatible)
-	// and version 3 (MySQL 8.0-compatible), use the following command:
+	// To list all of the available engine versions for Aurora MySQL, use the following
+	// command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
-	//
-	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
-	// use the following command:
-	//
-	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
 	// To list all of the available engine versions for Aurora PostgreSQL, use the
 	// following command:
@@ -43351,20 +43343,14 @@ type ModifyGlobalClusterInput struct {
 	// this parameter results in an outage. The change is applied during the next
 	// maintenance window unless ApplyImmediately is enabled.
 	//
-	// To list all of the available engine versions for aurora (for MySQL 5.6-compatible
-	// Aurora), use the following command:
-	//
-	// aws rds describe-db-engine-versions --engine aurora --query '*[]|[?SupportsGlobalDatabases
-	// == `true`].[EngineVersion]'
-	//
-	// To list all of the available engine versions for aurora-mysql (for MySQL
-	// 5.7-compatible and MySQL 8.0-compatible Aurora), use the following command:
+	// To list all of the available engine versions for aurora-mysql (for MySQL-based
+	// Aurora global databases), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query '*[]|[?SupportsGlobalDatabases
 	// == `true`].[EngineVersion]'
 	//
-	// To list all of the available engine versions for aurora-postgresql, use the
-	// following command:
+	// To list all of the available engine versions for aurora-postgresql (for PostgreSQL-based
+	// Aurora global databases), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-postgresql --query '*[]|[?SupportsGlobalDatabases
 	// == `true`].[EngineVersion]'
@@ -47078,7 +47064,8 @@ type RestoreDBClusterFromS3Input struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB cluster parameter group to associate with the restored
-	// DB cluster. If this argument is omitted, default.aurora5.6 is used.
+	// DB cluster. If this argument is omitted, the default parameter group for
+	// the engine version is used.
 	//
 	// Constraints:
 	//
@@ -47135,16 +47122,15 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The name of the database engine to be used for this DB cluster.
 	//
-	// Valid Values: aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible
-	// Aurora)
+	// Valid Values: aurora-mysql (for Aurora MySQL)
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
 	// The version number of the database engine to use.
 	//
-	// To list all of the available engine versions for aurora-mysql (MySQL 5.7-compatible
-	// and MySQL 8.0-compatible Aurora), use the following command:
+	// To list all of the available engine versions for aurora-mysql (Aurora MySQL),
+	// use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
@@ -47814,8 +47800,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
-	// global, or multimaster.
+	// The DB engine mode of the DB cluster, either provisioned or serverless.
 	//
 	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
 	//
@@ -47826,8 +47811,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// don't specify an engine version, the default version for the database engine
 	// in the Amazon Web Services Region is used.
 	//
-	// To list all of the available engine versions for MySQL 5.7-compatible and
-	// MySQL 8.0-compatible Aurora, use the following command:
+	// To list all of the available engine versions for Aurora MySQL, use the following
+	// command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
@@ -48557,9 +48542,6 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	//    * copy-on-write - The new DB cluster is restored as a clone of the source
 	//    DB cluster.
-	//
-	// Constraints: You can't specify copy-on-write if the engine version of the
-	// source DB cluster is earlier than 1.11.
 	//
 	// If you don't specify a RestoreType value, then the new DB cluster is restored
 	// as a full copy of the source DB cluster.

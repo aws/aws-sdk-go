@@ -75,6 +75,48 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "CreatePermission":{
+      "name":"CreatePermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/createpermission"
+      },
+      "input":{"shape":"CreatePermissionRequest"},
+      "output":{"shape":"CreatePermissionResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPolicyException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"PermissionAlreadyExistsException"},
+        {"shape":"MalformedPolicyTemplateException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"PermissionLimitExceededException"},
+        {"shape":"IdempotentParameterMismatchException"}
+      ]
+    },
+    "CreatePermissionVersion":{
+      "name":"CreatePermissionVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/createpermissionversion"
+      },
+      "input":{"shape":"CreatePermissionVersionRequest"},
+      "output":{"shape":"CreatePermissionVersionResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPolicyException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnknownResourceException"},
+        {"shape":"MalformedPolicyTemplateException"},
+        {"shape":"MalformedArnException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"PermissionVersionsLimitExceededException"}
+      ]
+    },
     "CreateResourceShare":{
       "name":"CreateResourceShare",
       "http":{
@@ -95,6 +137,43 @@
         {"shape":"TagPolicyViolationException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeletePermission":{
+      "name":"DeletePermission",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/deletepermission"
+      },
+      "input":{"shape":"DeletePermissionRequest"},
+      "output":{"shape":"DeletePermissionResponse"},
+      "errors":[
+        {"shape":"MalformedArnException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnknownResourceException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"IdempotentParameterMismatchException"}
+      ]
+    },
+    "DeletePermissionVersion":{
+      "name":"DeletePermissionVersion",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/deletepermissionversion"
+      },
+      "input":{"shape":"DeletePermissionVersionRequest"},
+      "output":{"shape":"DeletePermissionVersionResponse"},
+      "errors":[
+        {"shape":"MalformedArnException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnknownResourceException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "DeleteResourceShare":{
@@ -279,6 +358,22 @@
         {"shape":"ResourceShareInvitationExpiredException"}
       ]
     },
+    "ListPermissionAssociations":{
+      "name":"ListPermissionAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listpermissionassociations"
+      },
+      "input":{"shape":"ListPermissionAssociationsRequest"},
+      "output":{"shape":"ListPermissionAssociationsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"MalformedArnException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListPermissionVersions":{
       "name":"ListPermissionVersions",
       "http":{
@@ -328,6 +423,21 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListReplacePermissionAssociationsWork":{
+      "name":"ListReplacePermissionAssociationsWork",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listreplacepermissionassociationswork"
+      },
+      "input":{"shape":"ListReplacePermissionAssociationsWorkRequest"},
+      "output":{"shape":"ListReplacePermissionAssociationsWorkResponse"},
+      "errors":[
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "ListResourceSharePermissions":{
@@ -381,6 +491,24 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "PromotePermissionCreatedFromPolicy":{
+      "name":"PromotePermissionCreatedFromPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/promotepermissioncreatedfrompolicy"
+      },
+      "input":{"shape":"PromotePermissionCreatedFromPolicyRequest"},
+      "output":{"shape":"PromotePermissionCreatedFromPolicyResponse"},
+      "errors":[
+        {"shape":"MalformedArnException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnknownResourceException"}
+      ]
+    },
     "PromoteResourceShareCreatedFromPolicy":{
       "name":"PromoteResourceShareCreatedFromPolicy",
       "http":{
@@ -397,7 +525,9 @@
         {"shape":"MissingRequiredParameterException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"},
-        {"shape":"UnknownResourceException"}
+        {"shape":"UnknownResourceException"},
+        {"shape":"InvalidStateTransitionException"},
+        {"shape":"UnmatchedPolicyPermissionException"}
       ]
     },
     "RejectResourceShareInvitation":{
@@ -417,6 +547,43 @@
         {"shape":"ResourceShareInvitationExpiredException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"IdempotentParameterMismatchException"}
+      ]
+    },
+    "ReplacePermissionAssociations":{
+      "name":"ReplacePermissionAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/replacepermissionassociations"
+      },
+      "input":{"shape":"ReplacePermissionAssociationsRequest"},
+      "output":{"shape":"ReplacePermissionAssociationsResponse"},
+      "errors":[
+        {"shape":"MalformedArnException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnknownResourceException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"IdempotentParameterMismatchException"}
+      ]
+    },
+    "SetDefaultPermissionVersion":{
+      "name":"SetDefaultPermissionVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/setdefaultpermissionversion"
+      },
+      "input":{"shape":"SetDefaultPermissionVersionRequest"},
+      "output":{"shape":"SetDefaultPermissionVersionResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"MalformedArnException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnknownResourceException"},
         {"shape":"InvalidClientTokenException"},
         {"shape":"IdempotentParameterMismatchException"}
       ]
@@ -449,7 +616,9 @@
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
+        {"shape":"UnknownResourceException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"MalformedArnException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -529,7 +698,65 @@
         "clientToken":{"shape":"String"}
       }
     },
+    "AssociatedPermission":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"String"},
+        "permissionVersion":{"shape":"String"},
+        "defaultVersion":{"shape":"Boolean"},
+        "resourceType":{"shape":"String"},
+        "status":{"shape":"String"},
+        "featureSet":{"shape":"PermissionFeatureSet"},
+        "lastUpdatedTime":{"shape":"DateTime"},
+        "resourceShareArn":{"shape":"String"}
+      }
+    },
+    "AssociatedPermissionList":{
+      "type":"list",
+      "member":{"shape":"AssociatedPermission"}
+    },
     "Boolean":{"type":"boolean"},
+    "CreatePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "resourceType",
+        "policyTemplate"
+      ],
+      "members":{
+        "name":{"shape":"PermissionName"},
+        "resourceType":{"shape":"String"},
+        "policyTemplate":{"shape":"Policy"},
+        "clientToken":{"shape":"String"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreatePermissionResponse":{
+      "type":"structure",
+      "members":{
+        "permission":{"shape":"ResourceSharePermissionSummary"},
+        "clientToken":{"shape":"String"}
+      }
+    },
+    "CreatePermissionVersionRequest":{
+      "type":"structure",
+      "required":[
+        "permissionArn",
+        "policyTemplate"
+      ],
+      "members":{
+        "permissionArn":{"shape":"String"},
+        "policyTemplate":{"shape":"Policy"},
+        "clientToken":{"shape":"String"}
+      }
+    },
+    "CreatePermissionVersionResponse":{
+      "type":"structure",
+      "members":{
+        "permission":{"shape":"ResourceSharePermissionDetail"},
+        "clientToken":{"shape":"String"}
+      }
+    },
     "CreateResourceShareRequest":{
       "type":"structure",
       "required":["name"],
@@ -551,6 +778,62 @@
       }
     },
     "DateTime":{"type":"timestamp"},
+    "DeletePermissionRequest":{
+      "type":"structure",
+      "required":["permissionArn"],
+      "members":{
+        "permissionArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"permissionArn"
+        },
+        "clientToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "DeletePermissionResponse":{
+      "type":"structure",
+      "members":{
+        "returnValue":{"shape":"Boolean"},
+        "clientToken":{"shape":"String"},
+        "permissionStatus":{"shape":"PermissionStatus"}
+      }
+    },
+    "DeletePermissionVersionRequest":{
+      "type":"structure",
+      "required":[
+        "permissionArn",
+        "permissionVersion"
+      ],
+      "members":{
+        "permissionArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"permissionArn"
+        },
+        "permissionVersion":{
+          "shape":"Integer",
+          "location":"querystring",
+          "locationName":"permissionVersion"
+        },
+        "clientToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "DeletePermissionVersionResponse":{
+      "type":"structure",
+      "members":{
+        "returnValue":{"shape":"Boolean"},
+        "clientToken":{"shape":"String"},
+        "permissionStatus":{"shape":"PermissionStatus"}
+      }
+    },
     "DeleteResourceShareRequest":{
       "type":"structure",
       "required":["resourceShareArn"],
@@ -699,7 +982,8 @@
         "tagFilters":{"shape":"TagFilters"},
         "nextToken":{"shape":"String"},
         "maxResults":{"shape":"MaxResults"},
-        "permissionArn":{"shape":"String"}
+        "permissionArn":{"shape":"String"},
+        "permissionVersion":{"shape":"Integer"}
       }
     },
     "GetResourceSharesResponse":{
@@ -755,6 +1039,15 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "InvalidPolicyException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "InvalidResourceTypeException":{
       "type":"structure",
       "required":["message"],
@@ -790,6 +1083,26 @@
         "nextToken":{"shape":"String"}
       }
     },
+    "ListPermissionAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "permissionArn":{"shape":"String"},
+        "permissionVersion":{"shape":"Integer"},
+        "associationStatus":{"shape":"ResourceShareAssociationStatus"},
+        "resourceType":{"shape":"String"},
+        "featureSet":{"shape":"PermissionFeatureSet"},
+        "defaultVersion":{"shape":"Boolean"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListPermissionAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "permissions":{"shape":"AssociatedPermissionList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
     "ListPermissionVersionsRequest":{
       "type":"structure",
       "required":["permissionArn"],
@@ -811,7 +1124,8 @@
       "members":{
         "resourceType":{"shape":"String"},
         "nextToken":{"shape":"String"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"MaxResults"},
+        "permissionType":{"shape":"PermissionTypeFilter"}
       }
     },
     "ListPermissionsResponse":{
@@ -838,6 +1152,22 @@
       "type":"structure",
       "members":{
         "principals":{"shape":"PrincipalList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListReplacePermissionAssociationsWorkRequest":{
+      "type":"structure",
+      "members":{
+        "workIds":{"shape":"ReplacePermissionAssociationsWorkIdList"},
+        "status":{"shape":"ReplacePermissionAssociationsWorkStatus"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListReplacePermissionAssociationsWorkResponse":{
+      "type":"structure",
+      "members":{
+        "replacePermissionAssociationsWorks":{"shape":"ReplacePermissionAssociationsWorkList"},
         "nextToken":{"shape":"String"}
       }
     },
@@ -902,6 +1232,15 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "MalformedPolicyTemplateException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "MaxResults":{
       "type":"integer",
       "max":500,
@@ -925,9 +1264,74 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "PermissionAlreadyExistsException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "PermissionArnList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "PermissionFeatureSet":{
+      "type":"string",
+      "enum":[
+        "CREATED_FROM_POLICY",
+        "PROMOTING_TO_STANDARD",
+        "STANDARD"
+      ]
+    },
+    "PermissionLimitExceededException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "PermissionName":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"[\\w.-]*"
+    },
+    "PermissionStatus":{
+      "type":"string",
+      "enum":[
+        "ATTACHABLE",
+        "UNATTACHABLE",
+        "DELETING",
+        "DELETED"
+      ]
+    },
+    "PermissionType":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER_MANAGED",
+        "AWS_MANAGED"
+      ]
+    },
+    "PermissionTypeFilter":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "AWS_MANAGED",
+        "CUSTOMER_MANAGED"
+      ]
+    },
+    "PermissionVersionsLimitExceededException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "Policy":{"type":"string"},
     "PolicyList":{
@@ -951,6 +1355,25 @@
     "PrincipalList":{
       "type":"list",
       "member":{"shape":"Principal"}
+    },
+    "PromotePermissionCreatedFromPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "permissionArn",
+        "name"
+      ],
+      "members":{
+        "permissionArn":{"shape":"String"},
+        "name":{"shape":"String"},
+        "clientToken":{"shape":"String"}
+      }
+    },
+    "PromotePermissionCreatedFromPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "permission":{"shape":"ResourceSharePermissionSummary"},
+        "clientToken":{"shape":"String"}
+      }
     },
     "PromoteResourceShareCreatedFromPolicyRequest":{
       "type":"structure",
@@ -983,6 +1406,56 @@
         "resourceShareInvitation":{"shape":"ResourceShareInvitation"},
         "clientToken":{"shape":"String"}
       }
+    },
+    "ReplacePermissionAssociationsRequest":{
+      "type":"structure",
+      "required":[
+        "fromPermissionArn",
+        "toPermissionArn"
+      ],
+      "members":{
+        "fromPermissionArn":{"shape":"String"},
+        "fromPermissionVersion":{"shape":"Integer"},
+        "toPermissionArn":{"shape":"String"},
+        "clientToken":{"shape":"String"}
+      }
+    },
+    "ReplacePermissionAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "replacePermissionAssociationsWork":{"shape":"ReplacePermissionAssociationsWork"},
+        "clientToken":{"shape":"String"}
+      }
+    },
+    "ReplacePermissionAssociationsWork":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"String"},
+        "fromPermissionArn":{"shape":"String"},
+        "fromPermissionVersion":{"shape":"String"},
+        "toPermissionArn":{"shape":"String"},
+        "toPermissionVersion":{"shape":"String"},
+        "status":{"shape":"ReplacePermissionAssociationsWorkStatus"},
+        "statusMessage":{"shape":"String"},
+        "creationTime":{"shape":"DateTime"},
+        "lastUpdatedTime":{"shape":"DateTime"}
+      }
+    },
+    "ReplacePermissionAssociationsWorkIdList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "ReplacePermissionAssociationsWorkList":{
+      "type":"list",
+      "member":{"shape":"ReplacePermissionAssociationsWork"}
+    },
+    "ReplacePermissionAssociationsWorkStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
     },
     "Resource":{
       "type":"structure",
@@ -1194,7 +1667,11 @@
         "permission":{"shape":"String"},
         "creationTime":{"shape":"DateTime"},
         "lastUpdatedTime":{"shape":"DateTime"},
-        "isResourceTypeDefault":{"shape":"Boolean"}
+        "isResourceTypeDefault":{"shape":"Boolean"},
+        "permissionType":{"shape":"PermissionType"},
+        "featureSet":{"shape":"PermissionFeatureSet"},
+        "status":{"shape":"PermissionStatus"},
+        "tags":{"shape":"TagList"}
       }
     },
     "ResourceSharePermissionList":{
@@ -1212,7 +1689,10 @@
         "status":{"shape":"String"},
         "creationTime":{"shape":"DateTime"},
         "lastUpdatedTime":{"shape":"DateTime"},
-        "isResourceTypeDefault":{"shape":"Boolean"}
+        "isResourceTypeDefault":{"shape":"Boolean"},
+        "permissionType":{"shape":"PermissionType"},
+        "featureSet":{"shape":"PermissionFeatureSet"},
+        "tags":{"shape":"TagList"}
       }
     },
     "ResourceShareStatus":{
@@ -1265,6 +1745,25 @@
       "error":{"httpStatusCode":503},
       "exception":true
     },
+    "SetDefaultPermissionVersionRequest":{
+      "type":"structure",
+      "required":[
+        "permissionArn",
+        "permissionVersion"
+      ],
+      "members":{
+        "permissionArn":{"shape":"String"},
+        "permissionVersion":{"shape":"Integer"},
+        "clientToken":{"shape":"String"}
+      }
+    },
+    "SetDefaultPermissionVersionResponse":{
+      "type":"structure",
+      "members":{
+        "returnValue":{"shape":"Boolean"},
+        "clientToken":{"shape":"String"}
+      }
+    },
     "String":{"type":"string"},
     "Tag":{
       "type":"structure",
@@ -1313,13 +1812,11 @@
     },
     "TagResourceRequest":{
       "type":"structure",
-      "required":[
-        "resourceShareArn",
-        "tags"
-      ],
+      "required":["tags"],
       "members":{
         "resourceShareArn":{"shape":"String"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "resourceArn":{"shape":"String"}
       }
     },
     "TagResourceResponse":{
@@ -1350,15 +1847,22 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "UnmatchedPolicyPermissionException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "UntagResourceRequest":{
       "type":"structure",
-      "required":[
-        "resourceShareArn",
-        "tagKeys"
-      ],
+      "required":["tagKeys"],
       "members":{
         "resourceShareArn":{"shape":"String"},
-        "tagKeys":{"shape":"TagKeyList"}
+        "tagKeys":{"shape":"TagKeyList"},
+        "resourceArn":{"shape":"String"}
       }
     },
     "UntagResourceResponse":{

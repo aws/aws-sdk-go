@@ -3157,7 +3157,8 @@
         "containerInstanceLongArnFormat",
         "awsvpcTrunking",
         "containerInsights",
-        "fargateFIPSMode"
+        "fargateFIPSMode",
+        "tagResourceAuthorization"
       ]
     },
     "Settings":{

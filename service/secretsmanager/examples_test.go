@@ -473,6 +473,47 @@ func ExampleSecretsManager_PutSecretValue_shared00() {
 	fmt.Println(result)
 }
 
+// Example
+// The following example replicates a secret to eu-west-3. The replica is encrypted
+// with the AWS managed key aws/secretsmanager.
+func ExampleSecretsManager_ReplicateSecretToRegions_shared00() {
+	svc := secretsmanager.New(session.New())
+	input := &secretsmanager.ReplicateSecretToRegionsInput{
+		AddReplicaRegions: []*secretsmanager.ReplicaRegionType{
+			{
+				Region: aws.String("eu-west-3"),
+			},
+		},
+		ForceOverwriteReplicaSecret: aws.Bool(true),
+		SecretId:                    aws.String("MyTestSecret"),
+	}
+
+	result, err := svc.ReplicateSecretToRegions(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case secretsmanager.ErrCodeResourceNotFoundException:
+				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidRequestException:
+				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidParameterException:
+				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
+			case secretsmanager.ErrCodeInternalServiceError:
+				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To restore a previously deleted secret
 // The following example shows how to restore a secret that you previously scheduled
 // for deletion.

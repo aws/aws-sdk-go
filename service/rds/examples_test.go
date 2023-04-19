@@ -556,8 +556,8 @@ func ExampleRDS_CreateBlueGreenDeployment_shared01() {
 	fmt.Println(result)
 }
 
-// To create a MySQL 5.7--compatible DB cluster
-// The following example create a MySQL 5.7-compatible DB cluster.
+// To create a MySQL 5.7-compatible DB cluster
+// The following example creates a MySQL 5.7-compatible Aurora DB cluster.
 func ExampleRDS_CreateDBCluster_shared00() {
 	svc := rds.New(session.New())
 	input := &rds.CreateDBClusterInput{
@@ -626,8 +626,8 @@ func ExampleRDS_CreateDBCluster_shared00() {
 	fmt.Println(result)
 }
 
-// To create a PostgreSQL--compatible DB cluster
-// The following creates a PostgreSQL-compatible DB cluster.
+// To create a PostgreSQL-compatible DB cluster
+// The following example creates a PostgreSQL-compatible Aurora DB cluster.
 func ExampleRDS_CreateDBCluster_shared01() {
 	svc := rds.New(session.New())
 	input := &rds.CreateDBClusterInput{
@@ -3099,7 +3099,7 @@ func ExampleRDS_ModifyDBClusterSnapshotAttribute_shared00() {
 	fmt.Println(result)
 }
 
-// To modify parameters in a DB cluster parameter group
+// To modify a DB instance
 // The following example associates an option group and a parameter group with a compatible
 // Microsoft SQL Server DB instance. The ApplyImmediately parameter causes the option
 // and parameter groups to be associated immediately, instead of waiting until the next

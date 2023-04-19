@@ -976,6 +976,7 @@
         {"shape":"ResourceUnavailableException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -992,6 +993,7 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1010,6 +1012,7 @@
         {"shape":"ResourceUnavailableException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1026,6 +1029,7 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1058,6 +1062,7 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1074,6 +1079,7 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1090,6 +1096,7 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1106,6 +1113,7 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1122,6 +1130,7 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
         {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1634,7 +1643,8 @@
         "Labels":{"shape":"ListOfLabels"},
         "DocumentMetadata":{"shape":"DocumentMetadata"},
         "DocumentType":{"shape":"ListOfDocumentType"},
-        "Errors":{"shape":"ListOfErrors"}
+        "Errors":{"shape":"ListOfErrors"},
+        "Warnings":{"shape":"ListOfWarnings"}
       },
       "sensitive":true
     },
@@ -2454,6 +2464,21 @@
         "AUGMENTED_MANIFEST"
       ]
     },
+    "DocumentClassifierDocumentTypeFormat":{
+      "type":"string",
+      "enum":[
+        "PLAIN_TEXT_DOCUMENT",
+        "SEMI_STRUCTURED_DOCUMENT"
+      ]
+    },
+    "DocumentClassifierDocuments":{
+      "type":"structure",
+      "required":["S3Uri"],
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "TestS3Uri":{"shape":"S3Uri"}
+      }
+    },
     "DocumentClassifierEndpointArn":{
       "type":"string",
       "max":256,
@@ -2475,7 +2500,10 @@
         "S3Uri":{"shape":"S3Uri"},
         "TestS3Uri":{"shape":"S3Uri"},
         "LabelDelimiter":{"shape":"LabelDelimiter"},
-        "AugmentedManifests":{"shape":"DocumentClassifierAugmentedManifestsList"}
+        "AugmentedManifests":{"shape":"DocumentClassifierAugmentedManifestsList"},
+        "DocumentType":{"shape":"DocumentClassifierDocumentTypeFormat"},
+        "Documents":{"shape":"DocumentClassifierDocuments"},
+        "DocumentReaderConfig":{"shape":"DocumentReaderConfig"}
       }
     },
     "DocumentClassifierMode":{
@@ -3590,6 +3618,10 @@
       "type":"list",
       "member":{"shape":"TargetedSentimentEntity"}
     },
+    "ListOfWarnings":{
+      "type":"list",
+      "member":{"shape":"WarningsListItem"}
+    },
     "ListPiiEntitiesDetectionJobsRequest":{
       "type":"structure",
       "members":{
@@ -3724,6 +3756,13 @@
         "PAGE_CHARACTERS_EXCEEDED",
         "PAGE_SIZE_EXCEEDED",
         "INTERNAL_SERVER_ERROR"
+      ]
+    },
+    "PageBasedWarningCode":{
+      "type":"string",
+      "enum":[
+        "INFERENCING_PLAINTEXT_WITH_NATIVE_TRAINED_MODEL",
+        "INFERENCING_NATIVE_DOCUMENT_WITH_PLAINTEXT_TRAINED_MODEL"
       ]
     },
     "PartOfSpeechTag":{
@@ -4749,6 +4788,14 @@
       "members":{
         "SecurityGroupIds":{"shape":"SecurityGroupIds"},
         "Subnets":{"shape":"Subnets"}
+      }
+    },
+    "WarningsListItem":{
+      "type":"structure",
+      "members":{
+        "Page":{"shape":"Integer"},
+        "WarnCode":{"shape":"PageBasedWarningCode"},
+        "WarnMessage":{"shape":"String"}
       }
     }
   }

@@ -939,10 +939,9 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 // CreateDocumentClassifier API operation for Amazon Comprehend.
 //
 // Creates a new document classifier that you can use to categorize documents.
-// To create a classifier, you provide a set of training documents that labeled
-// with the categories that you want to use. After the classifier is trained
-// you can use it to categorize a set of labeled documents into the categories.
-// For more information, see Document Classification (https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html)
+// To create a classifier, you provide a set of training documents that are
+// labeled with the categories that you want to use. For more information, see
+// Training classifier models (https://docs.aws.amazon.com/comprehend/latest/dg/training-classifier-model.html)
 // in the Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6801,6 +6800,10 @@ func (c *Comprehend) StartDocumentClassificationJobRequest(input *StartDocumentC
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
 //
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
 //
@@ -6895,6 +6898,10 @@ func (c *Comprehend) StartDominantLanguageDetectionJobRequest(input *StartDomina
 //     The request contains more tags than can be associated with a resource (50
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -7004,6 +7011,10 @@ func (c *Comprehend) StartEntitiesDetectionJobRequest(input *StartEntitiesDetect
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
 //
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
 //
@@ -7097,6 +7108,10 @@ func (c *Comprehend) StartEventsDetectionJobRequest(input *StartEventsDetectionJ
 //     The request contains more tags than can be associated with a resource (50
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -7289,6 +7304,10 @@ func (c *Comprehend) StartKeyPhrasesDetectionJobRequest(input *StartKeyPhrasesDe
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
 //
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
 //
@@ -7382,6 +7401,10 @@ func (c *Comprehend) StartPiiEntitiesDetectionJobRequest(input *StartPiiEntities
 //     The request contains more tags than can be associated with a resource (50
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -7477,6 +7500,10 @@ func (c *Comprehend) StartSentimentDetectionJobRequest(input *StartSentimentDete
 //     The request contains more tags than can be associated with a resource (50
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -7574,6 +7601,10 @@ func (c *Comprehend) StartTargetedSentimentDetectionJobRequest(input *StartTarge
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
 //
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
+//
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
 //
@@ -7668,6 +7699,10 @@ func (c *Comprehend) StartTopicsDetectionJobRequest(input *StartTopicsDetectionJ
 //     The request contains more tags than can be associated with a resource (50
 //     tags per resource). The maximum number of tags includes both existing tags
 //     and those included in your current request.
+//
+//   - ResourceInUseException
+//     The specified resource name is already in use. Use a different name and try
+//     your request again.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -10708,6 +10743,14 @@ type ClassifyDocumentOutput struct {
 	// can be just an action movie, or it can be an action movie, a science fiction
 	// movie, and a comedy, all at the same time.
 	Labels []*DocumentLabel `type:"list"`
+
+	// Warnings detected while processing the input document. The response includes
+	// a warning if there is a mismatch between the input document type and the
+	// model type associated with the endpoint that you specified. The response
+	// can also include warnings for individual pages that have a mismatch.
+	//
+	// The field is empty if the system generated no warnings.
+	Warnings []*WarningsListItem `type:"list"`
 }
 
 // String returns the string representation.
@@ -10755,6 +10798,12 @@ func (s *ClassifyDocumentOutput) SetErrors(v []*ErrorsListItem) *ClassifyDocumen
 // SetLabels sets the Labels field's value.
 func (s *ClassifyDocumentOutput) SetLabels(v []*DocumentLabel) *ClassifyDocumentOutput {
 	s.Labels = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *ClassifyDocumentOutput) SetWarnings(v []*WarningsListItem) *ClassifyDocumentOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -11145,8 +11194,9 @@ type CreateDocumentClassifierInput struct {
 	// '{"attribute": "value", "attribute": ["value"]}'
 	ModelPolicy *string `min:"1" type:"string"`
 
-	// Enables the addition of output results configuration parameters for custom
-	// classifier jobs.
+	// Specifies the location for the output files from a custom classifier job.
+	// This parameter is required for a request that creates a native classifier
+	// model.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
 
 	// Tags to associate with the document classifier. A tag is a key-value pair
@@ -15600,6 +15650,65 @@ func (s *DocumentClassificationJobProperties) SetVpcConfig(v *VpcConfig) *Docume
 	return s
 }
 
+// The location of the training documents. This parameter is required in a request
+// to create a native classifier model.
+type DocumentClassifierDocuments struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 URI location of the training documents specified in the S3Uri CSV
+	// file.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+
+	// The S3 URI location of the test documents included in the TestS3Uri CSV file.
+	// This field is not required if you do not specify a test CSV file.
+	TestS3Uri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentClassifierDocuments) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentClassifierDocuments) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentClassifierDocuments) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentClassifierDocuments"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *DocumentClassifierDocuments) SetS3Uri(v string) *DocumentClassifierDocuments {
+	s.S3Uri = &v
+	return s
+}
+
+// SetTestS3Uri sets the TestS3Uri field's value.
+func (s *DocumentClassifierDocuments) SetTestS3Uri(v string) *DocumentClassifierDocuments {
+	s.TestS3Uri = &v
+	return s
+}
+
 // Provides information for filtering a list of document classifiers. You can
 // only specify one filtering parameter in a request. For more information,
 // see the ListDocumentClassifiers operation.
@@ -15696,6 +15805,36 @@ type DocumentClassifierInputDataConfig struct {
 	// default.
 	DataFormat *string `type:"string" enum:"DocumentClassifierDataFormat"`
 
+	// Provides configuration parameters to override the default actions for extracting
+	// text from PDF documents and image files.
+	//
+	// By default, Amazon Comprehend performs the following actions to extract text
+	// from files, based on the input file type:
+	//
+	//    * Word files - Amazon Comprehend parser extracts the text.
+	//
+	//    * Digital PDF files - Amazon Comprehend parser extracts the text.
+	//
+	//    * Image files and scanned PDF files - Amazon Comprehend uses the Amazon
+	//    Textract DetectDocumentText API to extract the text.
+	//
+	// DocumentReaderConfig does not apply to plain text files or Word files.
+	//
+	// For image files and PDF documents, you can override these default actions
+	// using the fields listed below. For more information, see Setting text extraction
+	// options (https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html)
+	// in the Comprehend Developer Guide.
+	DocumentReaderConfig *DocumentReaderConfig `type:"structure"`
+
+	// The type of input documents for training the model. Provide plain-text documents
+	// to create a plain-text model, and provide semi-structured documents to create
+	// a native model.
+	DocumentType *string `type:"string" enum:"DocumentClassifierDocumentTypeFormat"`
+
+	// The S3 location of the training documents. This parameter is required in
+	// a request to create a native classifier model.
+	Documents *DocumentClassifierDocuments `type:"structure"`
+
 	// Indicates the delimiter used to separate each label for training a multi-label
 	// classifier. The default delimiter between labels is a pipe (|). You can use
 	// a different character as a delimiter (if it's an allowed character) by specifying
@@ -15755,6 +15894,16 @@ func (s *DocumentClassifierInputDataConfig) Validate() error {
 			}
 		}
 	}
+	if s.DocumentReaderConfig != nil {
+		if err := s.DocumentReaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentReaderConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Documents != nil {
+		if err := s.Documents.Validate(); err != nil {
+			invalidParams.AddNested("Documents", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15771,6 +15920,24 @@ func (s *DocumentClassifierInputDataConfig) SetAugmentedManifests(v []*Augmented
 // SetDataFormat sets the DataFormat field's value.
 func (s *DocumentClassifierInputDataConfig) SetDataFormat(v string) *DocumentClassifierInputDataConfig {
 	s.DataFormat = &v
+	return s
+}
+
+// SetDocumentReaderConfig sets the DocumentReaderConfig field's value.
+func (s *DocumentClassifierInputDataConfig) SetDocumentReaderConfig(v *DocumentReaderConfig) *DocumentClassifierInputDataConfig {
+	s.DocumentReaderConfig = v
+	return s
+}
+
+// SetDocumentType sets the DocumentType field's value.
+func (s *DocumentClassifierInputDataConfig) SetDocumentType(v string) *DocumentClassifierInputDataConfig {
+	s.DocumentType = &v
+	return s
+}
+
+// SetDocuments sets the Documents field's value.
+func (s *DocumentClassifierInputDataConfig) SetDocuments(v *DocumentClassifierDocuments) *DocumentClassifierInputDataConfig {
+	s.Documents = v
 	return s
 }
 
@@ -15792,7 +15959,8 @@ func (s *DocumentClassifierInputDataConfig) SetTestS3Uri(v string) *DocumentClas
 	return s
 }
 
-// Provides output results configuration parameters for custom classifier jobs.
+// Provide the location for output data from a custom classifier job. This field
+// is mandatory if you are training a native classifier model.
 type DocumentClassifierOutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -15814,9 +15982,9 @@ type DocumentClassifierOutputDataConfig struct {
 
 	// When you use the OutputDataConfig object while creating a custom classifier,
 	// you specify the Amazon S3 location where you want to write the confusion
-	// matrix. The URI must be in the same Region as the API endpoint that you are
-	// calling. The location is used as the prefix for the actual location of this
-	// output file.
+	// matrix and other output files. The URI must be in the same Region as the
+	// API endpoint that you are calling. The location is used as the prefix for
+	// the actual location of this output file.
 	//
 	// When the custom classifier job is finished, the service creates the output
 	// file in a directory specific to the job. The S3Uri field contains the location
@@ -15921,8 +16089,12 @@ type DocumentClassifierProperties struct {
 	SourceModelArn *string `type:"string"`
 
 	// The status of the document classifier. If the status is TRAINED the classifier
-	// is ready to use. If the status is FAILED you can see additional information
-	// about why the classifier wasn't trained in the Message field.
+	// is ready to use. If the status is TRAINED_WITH_WARNINGS the classifier training
+	// succeeded, but you should review the warnings returned in the CreateDocumentClassifier
+	// response.
+	//
+	// If the status is FAILED you can see additional information about why the
+	// classifier wasn't trained in the Message field.
 	Status *string `type:"string" enum:"ModelStatus"`
 
 	// The time that the document classifier was submitted for training.
@@ -16266,7 +16438,8 @@ func (s *DocumentMetadata) SetPages(v int64) *DocumentMetadata {
 //
 // For image files and PDF documents, you can override these default actions
 // using the fields listed below. For more information, see Setting text extraction
-// options (https://docs.aws.amazon.com/comprehend/latest/dg/detecting-cer.html#detecting-cer-pdf).
+// options (https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html)
+// in the Comprehend Developer Guide.
 type DocumentReaderConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -28265,6 +28438,63 @@ func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 	return s
 }
 
+// The system identified one of the following warnings while processing the
+// input document:
+//
+//   - The document to classify is plain text, but the classifier is a native
+//     model.
+//
+//   - The document to classify is semi-structured, but the classifier is a
+//     plain-text model.
+type WarningsListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Page number in the input document.
+	Page *int64 `type:"integer"`
+
+	// The type of warning.
+	WarnCode *string `type:"string" enum:"PageBasedWarningCode"`
+
+	// Text message associated with the warning.
+	WarnMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningsListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningsListItem) GoString() string {
+	return s.String()
+}
+
+// SetPage sets the Page field's value.
+func (s *WarningsListItem) SetPage(v int64) *WarningsListItem {
+	s.Page = &v
+	return s
+}
+
+// SetWarnCode sets the WarnCode field's value.
+func (s *WarningsListItem) SetWarnCode(v string) *WarningsListItem {
+	s.WarnCode = &v
+	return s
+}
+
+// SetWarnMessage sets the WarnMessage field's value.
+func (s *WarningsListItem) SetWarnMessage(v string) *WarningsListItem {
+	s.WarnMessage = &v
+	return s
+}
+
 const (
 	// AugmentedManifestsDocumentTypeFormatPlainTextDocument is a AugmentedManifestsDocumentTypeFormat enum value
 	AugmentedManifestsDocumentTypeFormatPlainTextDocument = "PLAIN_TEXT_DOCUMENT"
@@ -28362,6 +28592,22 @@ func DocumentClassifierDataFormat_Values() []string {
 	return []string{
 		DocumentClassifierDataFormatComprehendCsv,
 		DocumentClassifierDataFormatAugmentedManifest,
+	}
+}
+
+const (
+	// DocumentClassifierDocumentTypeFormatPlainTextDocument is a DocumentClassifierDocumentTypeFormat enum value
+	DocumentClassifierDocumentTypeFormatPlainTextDocument = "PLAIN_TEXT_DOCUMENT"
+
+	// DocumentClassifierDocumentTypeFormatSemiStructuredDocument is a DocumentClassifierDocumentTypeFormat enum value
+	DocumentClassifierDocumentTypeFormatSemiStructuredDocument = "SEMI_STRUCTURED_DOCUMENT"
+)
+
+// DocumentClassifierDocumentTypeFormat_Values returns all elements of the DocumentClassifierDocumentTypeFormat enum
+func DocumentClassifierDocumentTypeFormat_Values() []string {
+	return []string{
+		DocumentClassifierDocumentTypeFormatPlainTextDocument,
+		DocumentClassifierDocumentTypeFormatSemiStructuredDocument,
 	}
 }
 
@@ -28842,6 +29088,22 @@ func PageBasedErrorCode_Values() []string {
 		PageBasedErrorCodePageCharactersExceeded,
 		PageBasedErrorCodePageSizeExceeded,
 		PageBasedErrorCodeInternalServerError,
+	}
+}
+
+const (
+	// PageBasedWarningCodeInferencingPlaintextWithNativeTrainedModel is a PageBasedWarningCode enum value
+	PageBasedWarningCodeInferencingPlaintextWithNativeTrainedModel = "INFERENCING_PLAINTEXT_WITH_NATIVE_TRAINED_MODEL"
+
+	// PageBasedWarningCodeInferencingNativeDocumentWithPlaintextTrainedModel is a PageBasedWarningCode enum value
+	PageBasedWarningCodeInferencingNativeDocumentWithPlaintextTrainedModel = "INFERENCING_NATIVE_DOCUMENT_WITH_PLAINTEXT_TRAINED_MODEL"
+)
+
+// PageBasedWarningCode_Values returns all elements of the PageBasedWarningCode enum
+func PageBasedWarningCode_Values() []string {
+	return []string{
+		PageBasedWarningCodeInferencingPlaintextWithNativeTrainedModel,
+		PageBasedWarningCodeInferencingNativeDocumentWithPlaintextTrainedModel,
 	}
 }
 

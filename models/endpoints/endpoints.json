@@ -1839,8 +1839,10 @@
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ap-southeast-3" : { },
+          "ap-southeast-4" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
+          "eu-central-2" : { },
           "eu-north-1" : { },
           "eu-south-1" : { },
           "eu-south-2" : { },
@@ -18960,9 +18962,29 @@
         },
         "endpoints" : {
           "us-gov-east-1" : {
+            "hostname" : "application-autoscaling.us-gov-east-1.amazonaws.com",
+            "protocols" : [ "http", "https" ],
+            "variants" : [ {
+              "hostname" : "application-autoscaling.us-gov-east-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-gov-east-1-fips" : {
+            "deprecated" : true,
+            "hostname" : "application-autoscaling.us-gov-east-1.amazonaws.com",
             "protocols" : [ "http", "https" ]
           },
           "us-gov-west-1" : {
+            "hostname" : "application-autoscaling.us-gov-west-1.amazonaws.com",
+            "protocols" : [ "http", "https" ],
+            "variants" : [ {
+              "hostname" : "application-autoscaling.us-gov-west-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-gov-west-1-fips" : {
+            "deprecated" : true,
+            "hostname" : "application-autoscaling.us-gov-west-1.amazonaws.com",
             "protocols" : [ "http", "https" ]
           }
         }
