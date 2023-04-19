@@ -335,6 +335,38 @@
         "title": "To store a secret value in a new version of a secret"
       }
     ],
+    "ReplicateSecretToRegions": [
+      {
+        "input": {
+          "AddReplicaRegions": [
+            {
+              "Region": "eu-west-3"
+            }
+          ],
+          "ForceOverwriteReplicaSecret": true,
+          "SecretId": "MyTestSecret"
+        },
+        "output": {
+          "ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestSecret-1a2b3c",
+          "ReplicationStatus": [
+            {
+              "KmsKeyId": "alias/aws/secretsmanager",
+              "Region": "eu-west-3",
+              "Status": "InProgress"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example replicates a secret to eu-west-3. The replica is encrypted with the AWS managed key aws/secretsmanager.",
+        "id": "example-1679591984774",
+        "title": "Example"
+      }
+    ],
     "RestoreSecret": [
       {
         "input": {

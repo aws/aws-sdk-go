@@ -257,21 +257,6 @@
     "DeleteObject": [
       {
         "input": {
-          "Bucket": "ExampleBucket",
-          "Key": "HappyFace.jpg"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example deletes an object from a non-versioned bucket.",
-        "id": "to-delete-an-object-from-a-non-versioned-bucket-1481588533089",
-        "title": "To delete an object (from a non-versioned bucket)"
-      },
-      {
-        "input": {
           "Bucket": "examplebucket",
           "Key": "objectkey.jpg"
         },
@@ -286,9 +271,42 @@
         "description": "The following example deletes an object from an S3 bucket.",
         "id": "to-delete-an-object-1472850136595",
         "title": "To delete an object"
+      },
+      {
+        "input": {
+          "Bucket": "ExampleBucket",
+          "Key": "HappyFace.jpg"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example deletes an object from a non-versioned bucket.",
+        "id": "to-delete-an-object-from-a-non-versioned-bucket-1481588533089",
+        "title": "To delete an object (from a non-versioned bucket)"
       }
     ],
     "DeleteObjectTagging": [
+      {
+        "input": {
+          "Bucket": "examplebucket",
+          "Key": "HappyFace.jpg"
+        },
+        "output": {
+          "VersionId": "null"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example removes tag set associated with the specified object. If the bucket is versioning enabled, the operation removes tag set from the latest object version.",
+        "id": "to-remove-tag-set-from-an-object-1483145342862",
+        "title": "To remove tag set from an object"
+      },
       {
         "input": {
           "Bucket": "examplebucket",
@@ -307,24 +325,6 @@
         "description": "The following example removes tag set associated with the specified object version. The request specifies both the object key and object version.",
         "id": "to-remove-tag-set-from-an-object-version-1483145285913",
         "title": "To remove tag set from an object version"
-      },
-      {
-        "input": {
-          "Bucket": "examplebucket",
-          "Key": "HappyFace.jpg"
-        },
-        "output": {
-          "VersionId": "null"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example removes tag set associated with the specified object. If the bucket is versioning enabled, the operation removes tag set from the latest object version.",
-        "id": "to-remove-tag-set-from-an-object-1483145342862",
-        "title": "To remove tag set from an object"
       }
     ],
     "DeleteObjects": [
@@ -958,15 +958,15 @@
         "output": {
           "Buckets": [
             {
-              "CreationDate": "2012-02-15T21:03:02.000Z",
+              "CreationDate": "2012-02-15T21: 03: 02.000Z",
               "Name": "examplebucket"
             },
             {
-              "CreationDate": "2011-07-24T19:33:50.000Z",
+              "CreationDate": "2011-07-24T19: 33: 50.000Z",
               "Name": "examplebucket2"
             },
             {
-              "CreationDate": "2010-12-17T00:56:49.000Z",
+              "CreationDate": "2010-12-17T00: 56: 49.000Z",
               "Name": "examplebucket3"
             }
           ],
@@ -981,9 +981,9 @@
           "output": {
           }
         },
-        "description": "The following example returns all the buckets owned by the sender of this request.",
-        "id": "to-list-buckets-1481910996058",
-        "title": "To list all buckets"
+        "description": "The following example return versions of an object with specific key name prefix. The request limits the number of items returned to two. If there are are more than two object version, S3 returns NextToken in the response. You can specify this token value in your next request to fetch next set of object versions.",
+        "id": "to-list-object-versions-1481910996058",
+        "title": "To list object versions"
       }
     ],
     "ListMultipartUploads": [
@@ -1184,7 +1184,7 @@
     "ListObjectsV2": [
       {
         "input": {
-          "Bucket": "DOC-EXAMPLE-BUCKET",
+          "Bucket": "examplebucket",
           "MaxKeys": "2"
         },
         "output": {
@@ -1207,7 +1207,7 @@
           "IsTruncated": true,
           "KeyCount": "2",
           "MaxKeys": "2",
-          "Name": "DOC-EXAMPLE-BUCKET",
+          "Name": "examplebucket",
           "NextContinuationToken": "1w41l63U0xa8q7smH50vCxyTQqdxo69O3EmK28Bi5PcROI4wI/EyIJg==",
           "Prefix": ""
         },
@@ -1567,6 +1567,70 @@
     "PutObject": [
       {
         "input": {
+          "Body": "c:\\HappyFace.jpg",
+          "Bucket": "examplebucket",
+          "Key": "HappyFace.jpg",
+          "Tagging": "key1=value1&key2=value2"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "VersionId": "psM2sYY4.o1501dSx8wMvnkOzSBB.V4a"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.",
+        "id": "to-upload-an-object-and-specify-optional-tags-1481762310955",
+        "title": "To upload an object and specify optional tags"
+      },
+      {
+        "input": {
+          "Body": "HappyFace.jpg",
+          "Bucket": "examplebucket",
+          "Key": "HappyFace.jpg"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "VersionId": "tpf3zF08nBplQK1XLOefGskR7mGDwcDk"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads an object to a versioning-enabled bucket. The source file is specified using Windows file syntax. S3 returns VersionId of the newly created object.",
+        "id": "to-upload-an-object-1481760101010",
+        "title": "To upload an object"
+      },
+      {
+        "input": {
+          "Body": "filetoupload",
+          "Bucket": "examplebucket",
+          "Key": "exampleobject",
+          "ServerSideEncryption": "AES256",
+          "Tagging": "key1=value1&key2=value2"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "ServerSideEncryption": "AES256",
+          "VersionId": "Ri.vC6qVlA4dEnjgRV4ZHsHoFIjqEMNt"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads and object. The request specifies the optional server-side encryption option. The request also specifies optional object tags. If the bucket is versioning enabled, S3 returns version ID in response.",
+        "id": "to-upload-an-object-and-specify-server-side-encryption-and-object-tags-1483398331831",
+        "title": "To upload an object and specify server-side encryption and object tags"
+      },
+      {
+        "input": {
           "Body": "filetoupload",
           "Bucket": "examplebucket",
           "Key": "exampleobject",
@@ -1591,14 +1655,16 @@
       },
       {
         "input": {
-          "Body": "c:\\HappyFace.jpg",
+          "Body": "HappyFace.jpg",
           "Bucket": "examplebucket",
           "Key": "HappyFace.jpg",
-          "Tagging": "key1=value1&key2=value2"
+          "ServerSideEncryption": "AES256",
+          "StorageClass": "STANDARD_IA"
         },
         "output": {
           "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "VersionId": "psM2sYY4.o1501dSx8wMvnkOzSBB.V4a"
+          "ServerSideEncryption": "AES256",
+          "VersionId": "CG612hodqujkf8FaaNfp8U..FIhLROcp"
         },
         "comments": {
           "input": {
@@ -1606,9 +1672,9 @@
           "output": {
           }
         },
-        "description": "The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.",
-        "id": "to-upload-an-object-and-specify-optional-tags-1481762310955",
-        "title": "To upload an object and specify optional tags"
+        "description": "The following example uploads an object. The request specifies optional request headers to directs S3 to use specific storage class and use server-side encryption.",
+        "id": "to-upload-an-object-(specify-optional-headers)",
+        "title": "To upload an object (specify optional headers)"
       },
       {
         "input": {
@@ -1650,72 +1716,6 @@
         "description": "The following example creates an object. If the bucket is versioning enabled, S3 returns version ID in response.",
         "id": "to-create-an-object-1483147613675",
         "title": "To create an object."
-      },
-      {
-        "input": {
-          "Body": "HappyFace.jpg",
-          "Bucket": "examplebucket",
-          "Key": "HappyFace.jpg"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "VersionId": "tpf3zF08nBplQK1XLOefGskR7mGDwcDk"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads an object to a versioning-enabled bucket. The source file is specified using Windows file syntax. S3 returns VersionId of the newly created object.",
-        "id": "to-upload-an-object-1481760101010",
-        "title": "To upload an object"
-      },
-      {
-        "input": {
-          "Body": "HappyFace.jpg",
-          "Bucket": "examplebucket",
-          "Key": "HappyFace.jpg",
-          "ServerSideEncryption": "AES256",
-          "StorageClass": "STANDARD_IA"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "ServerSideEncryption": "AES256",
-          "VersionId": "CG612hodqujkf8FaaNfp8U..FIhLROcp"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads an object. The request specifies optional request headers to directs S3 to use specific storage class and use server-side encryption.",
-        "id": "to-upload-an-object-(specify-optional-headers)",
-        "title": "To upload an object (specify optional headers)"
-      },
-      {
-        "input": {
-          "Body": "filetoupload",
-          "Bucket": "examplebucket",
-          "Key": "exampleobject",
-          "ServerSideEncryption": "AES256",
-          "Tagging": "key1=value1&key2=value2"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "ServerSideEncryption": "AES256",
-          "VersionId": "Ri.vC6qVlA4dEnjgRV4ZHsHoFIjqEMNt"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads an object. The request specifies the optional server-side encryption option. The request also specifies optional object tags. If the bucket is versioning enabled, S3 returns version ID in response.",
-        "id": "to-upload-an-object-and-specify-server-side-encryption-and-object-tags-1483398331831",
-        "title": "To upload an object and specify server-side encryption and object tags"
       }
     ],
     "PutObjectAcl": [
@@ -1826,30 +1826,6 @@
         "input": {
           "Bucket": "examplebucket",
           "CopySource": "/bucketname/sourceobjectkey",
-          "Key": "examplelargeobject",
-          "PartNumber": "1",
-          "UploadId": "exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--"
-        },
-        "output": {
-          "CopyPartResult": {
-            "ETag": "\"b0c6f0e7e054ab8fa2536a2677f8734d\"",
-            "LastModified": "2016-12-29T21:24:43.000Z"
-          }
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads a part of a multipart upload by copying data from an existing object as data source.",
-        "id": "to-upload-a-part-by-copying-data-from-an-existing-object-as-data-source-1483046746348",
-        "title": "To upload a part by copying data from an existing object as data source"
-      },
-      {
-        "input": {
-          "Bucket": "examplebucket",
-          "CopySource": "/bucketname/sourceobjectkey",
           "CopySourceRange": "bytes=1-100000",
           "Key": "examplelargeobject",
           "PartNumber": "2",
@@ -1870,6 +1846,30 @@
         "description": "The following example uploads a part of a multipart upload by copying a specified byte range from an existing object as data source.",
         "id": "to-upload-a-part-by-copying-byte-range-from-an-existing-object-as-data-source-1483048068594",
         "title": "To upload a part by copying byte range from an existing object as data source"
+      },
+      {
+        "input": {
+          "Bucket": "examplebucket",
+          "CopySource": "/bucketname/sourceobjectkey",
+          "Key": "examplelargeobject",
+          "PartNumber": "1",
+          "UploadId": "exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--"
+        },
+        "output": {
+          "CopyPartResult": {
+            "ETag": "\"b0c6f0e7e054ab8fa2536a2677f8734d\"",
+            "LastModified": "2016-12-29T21:24:43.000Z"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads a part of a multipart upload by copying data from an existing object as data source.",
+        "id": "to-upload-a-part-by-copying-data-from-an-existing-object-as-data-source-1483046746348",
+        "title": "To upload a part by copying data from an existing object as data source"
       }
     ]
   }

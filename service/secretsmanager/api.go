@@ -2754,8 +2754,8 @@ func (c *SecretsManager) ValidateResourcePolicyRequest(input *ValidateResourcePo
 // be logged. For more information, see Logging Secrets Manager events with
 // CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
-// Required permissions: secretsmanager:ValidateResourcePolicy. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
+// Required permissions: secretsmanager:ValidateResourcePolicy and secretsmanager:PutResourcePolicy.
+// For more information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2963,7 +2963,7 @@ type CreateSecretInput struct {
 	Description *string `type:"string"`
 
 	// Specifies whether to overwrite a secret with the same name in the destination
-	// Region.
+	// Region. By default, secrets aren't overwritten.
 	ForceOverwriteReplicaSecret *bool `type:"boolean"`
 
 	// The ARN, key ID, or alias of the KMS key that Secrets Manager uses to encrypt
@@ -3419,7 +3419,8 @@ type DeleteSecretInput struct {
 
 	// Specifies whether to delete the secret without any recovery window. You can't
 	// use both this parameter and RecoveryWindowInDays in the same call. If you
-	// don't use either, then Secrets Manager defaults to a 30 day recovery window.
+	// don't use either, then by default Secrets Manager uses a 30 day recovery
+	// window.
 	//
 	// Secrets Manager performs the actual deletion with an asynchronous background
 	// process, so there might be a short delay before the secret is permanently
@@ -3435,8 +3436,8 @@ type DeleteSecretInput struct {
 
 	// The number of days from 7 to 30 that Secrets Manager waits before permanently
 	// deleting the secret. You can't use both this parameter and ForceDeleteWithoutRecovery
-	// in the same call. If you don't use either, then Secrets Manager defaults
-	// to a 30 day recovery window.
+	// in the same call. If you don't use either, then by default Secrets Manager
+	// uses a 30 day recovery window.
 	RecoveryWindowInDays *int64 `type:"long"`
 
 	// The ARN or name of the secret to delete.
@@ -4765,7 +4766,8 @@ type ListSecretVersionIdsInput struct {
 
 	// Specifies whether to include versions of secrets that don't have any staging
 	// labels attached to them. Versions without staging labels are considered deprecated
-	// and are subject to deletion by Secrets Manager.
+	// and are subject to deletion by Secrets Manager. By default, versions without
+	// staging labels aren't included.
 	IncludeDeprecated *bool `type:"boolean"`
 
 	// The number of results to include in the response.
@@ -4921,7 +4923,8 @@ type ListSecretsInput struct {
 	// The filters to apply to the list of secrets.
 	Filters []*Filter `type:"list"`
 
-	// Specifies whether to include secrets scheduled for deletion.
+	// Specifies whether to include secrets scheduled for deletion. By default,
+	// secrets scheduled for deletion aren't included.
 	IncludePlannedDeletion *bool `type:"boolean"`
 
 	// The number of results to include in the response.
@@ -5254,7 +5257,8 @@ type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether to block resource-based policies that allow broad access
-	// to the secret, for example those that use a wildcard for the principal.
+	// to the secret, for example those that use a wildcard for the principal. By
+	// default, public policies aren't blocked.
 	BlockPublicPolicy *bool `type:"boolean"`
 
 	// A JSON-formatted string for an Amazon Web Services resource-based policy.
@@ -5762,7 +5766,7 @@ type ReplicateSecretToRegionsInput struct {
 	AddReplicaRegions []*ReplicaRegionType `min:"1" type:"list" required:"true"`
 
 	// Specifies whether to overwrite a secret with the same name in the destination
-	// Region.
+	// Region. By default, secrets aren't overwritten.
 	ForceOverwriteReplicaSecret *bool `type:"boolean"`
 
 	// The ARN or name of the secret to replicate.
@@ -6200,8 +6204,7 @@ type RotateSecretInput struct {
 	// of the Lambda rotation function. The test creates an AWSPENDING version of
 	// the secret and then removes it.
 	//
-	// If you don't specify this value, then by default, Secrets Manager rotates
-	// the secret immediately.
+	// By default, Secrets Manager rotates the secret immediately.
 	RotateImmediately *bool `type:"boolean"`
 
 	// For secrets that use a Lambda rotation function to rotate, the ARN of the

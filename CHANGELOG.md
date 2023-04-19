@@ -1,3 +1,21 @@
+Release v1.44.246 (2023-04-19)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release supports the Account Setting "TagResourceAuthorization" that allows for enhanced Tagging security controls.
+* `service/ram`: Updates service API, documentation, and paginators
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for the ImageId parameter of CreateCustomDBEngineVersion to RDS Custom for Oracle
+* `service/s3`: Updates service API, documentation, and examples
+  * Provides support for "Snow" Storage class.
+* `service/s3control`: Adds new service
+  * Provides support for overriding endpoint when region is "snow". This will enable bucket APIs for Amazon S3 Compatible storage on Snow Family devices.
+* `service/secretsmanager`: Updates service documentation and examples
+  * Documentation updates for Secrets Manager
+* `service/securityhub`: Updates service examples
+
 Release v1.44.245 (2023-04-17)
 ===
 

@@ -550,9 +550,9 @@
           "output": {
           }
         },
-        "description": "The following example create a MySQL 5.7-compatible DB cluster.",
-        "id": "to-create-a-mysql-57--compatible-db-cluster-1679699416154",
-        "title": "To create a MySQL 5.7--compatible DB cluster"
+        "description": "The following example creates a MySQL 5.7-compatible Aurora DB cluster.",
+        "id": "to-create-a-mysql-57-compatible-db-cluster-1679699416154",
+        "title": "To create a MySQL 5.7-compatible DB cluster"
       },
       {
         "input": {
@@ -620,9 +620,9 @@
           "output": {
           }
         },
-        "description": "The following creates a PostgreSQL-compatible DB cluster. ",
-        "id": "to-create-a-postgresql--compatible-db-cluster-1679700161087",
-        "title": "To create a PostgreSQL--compatible DB cluster"
+        "description": "The following example creates a PostgreSQL-compatible Aurora DB cluster.",
+        "id": "to-create-a-postgresql-compatible-db-cluster-1679700161087",
+        "title": "To create a PostgreSQL-compatible DB cluster"
       }
     ],
     "CreateDBClusterEndpoint": [
@@ -3908,14 +3908,14 @@
         },
         "comments": {
           "input": {
-            "DBInstance": "Some output omitted."
           },
           "output": {
+            "DBInstance": "Some output ommitted."
           }
         },
         "description": "The following example associates an option group and a parameter group with a compatible Microsoft SQL Server DB instance. The ApplyImmediately parameter causes the option and parameter groups to be associated immediately, instead of waiting until the next maintenance window.",
-        "id": "to-modify-parameters-in-a-db-cluster-parameter-group-1680377584537",
-        "title": "To modify parameters in a DB cluster parameter group"
+        "id": "to-modify-a-db-instance-1680377584537",
+        "title": "To modify a DB instance"
       }
     ],
     "ModifyDBParameterGroup": [

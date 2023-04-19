@@ -3996,6 +3996,15 @@ func (c *ECS) PutAccountSettingRequest(input *PutAccountSettingInput) (req *requ
 // (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
+// Amazon ECS is introducing tagging authorization for resource creation. Users
+// must have permissions for actions that create the resource, such as ecsCreateCluster.
+// If tags are specified when you create a resource, Amazon Web Services performs
+// additional authorization to verify if users or roles have permissions to
+// create tags. Therefore, you must grant explicit permissions to use the ecs:TagResource
+// action. For more information, see Grant permission to tag resources on creation
+// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/supported-iam-actions-tagging.html)
+// in the Amazon ECS Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -13889,6 +13898,8 @@ func (s *EnvironmentFile) SetValue(v string) *EnvironmentFile {
 // platforms:
 //
 //   - Linux platform version 1.4.0 or later.
+//
+//   - Windows platform version 1.0.0 or later.
 type EphemeralStorage struct {
 	_ struct{} `type:"structure"`
 
@@ -18388,7 +18399,10 @@ type PutAccountSettingDefaultInput struct {
 	// your Amazon ECS container instances is affected. If awsvpcTrunking is specified,
 	// the ENI limit for your Amazon ECS container instances is affected. If containerInsights
 	// is specified, the default setting for Amazon Web Services CloudWatch Container
-	// Insights for your clusters is affected.
+	// Insights for your clusters is affected. If tagResourceAuthorization is specified,
+	// the opt-in option for tagging resources on creation is affected. For information
+	// about the opt-in timeline, see Tagging authorization timeline (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#tag-resources)
+	// in the Amazon ECS Developer Guide.
 	//
 	// When you specify fargateFIPSMode for the name and enabled for the value,
 	// Fargate uses FIPS-140 compliant cryptographic algorithms on your tasks. For
@@ -18495,7 +18509,10 @@ type PutAccountSettingInput struct {
 	// for your Amazon ECS container instances is affected. If containerInsights
 	// is specified, the default setting for Amazon Web Services CloudWatch Container
 	// Insights for your clusters is affected. If fargateFIPSMode is specified,
-	// Fargate FIPS 140 compliance is affected.
+	// Fargate FIPS 140 compliance is affected. If tagResourceAuthorization is specified,
+	// the opt-in option for tagging resources on creation is affected. For information
+	// about the opt-in timeline, see Tagging authorization timeline (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#tag-resources)
+	// in the Amazon ECS Developer Guide.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
@@ -19109,6 +19126,8 @@ type RegisterTaskDefinitionInput struct {
 	// platforms:
 	//
 	//    * Linux platform version 1.4.0 or later.
+	//
+	//    * Windows platform version 1.0.0 or later.
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task execution role that grants the
@@ -21680,8 +21699,8 @@ type StartTaskInput struct {
 	EnableECSManagedTags *bool `locationName:"enableECSManagedTags" type:"boolean"`
 
 	// Whether or not the execute command functionality is turned on for the task.
-	// If true, this enables execute command functionality on all containers in
-	// the task.
+	// If true, this turns on the execute command functionality on all containers
+	// in the task.
 	EnableExecuteCommand *bool `locationName:"enableExecuteCommand" type:"boolean"`
 
 	// The name of the task group to associate with the task. The default value
@@ -27025,6 +27044,9 @@ const (
 
 	// SettingNameFargateFipsmode is a SettingName enum value
 	SettingNameFargateFipsmode = "fargateFIPSMode"
+
+	// SettingNameTagResourceAuthorization is a SettingName enum value
+	SettingNameTagResourceAuthorization = "tagResourceAuthorization"
 )
 
 // SettingName_Values returns all elements of the SettingName enum
@@ -27036,6 +27058,7 @@ func SettingName_Values() []string {
 		SettingNameAwsvpcTrunking,
 		SettingNameContainerInsights,
 		SettingNameFargateFipsmode,
+		SettingNameTagResourceAuthorization,
 	}
 }
 
