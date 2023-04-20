@@ -596,7 +596,9 @@
         "LanguageModelName":{"shape":"TranscribeLanguageModelName"},
         "IdentifyLanguage":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"TranscribeLanguageOptions"},
-        "PreferredLanguage":{"shape":"TranscribeLanguageCode"}
+        "PreferredLanguage":{"shape":"TranscribeLanguageCode"},
+        "VocabularyNames":{"shape":"TranscribeVocabularyNamesOrFilterNamesString"},
+        "VocabularyFilterNames":{"shape":"TranscribeVocabularyNamesOrFilterNamesString"}
       }
     },
     "ExternalMeetingId":{
@@ -985,7 +987,9 @@
         "pt-BR",
         "ja-JP",
         "ko-KR",
-        "zh-CN"
+        "zh-CN",
+        "th-TH",
+        "hi-IN"
       ]
     },
     "TranscribeLanguageModelName":{
@@ -1077,6 +1081,12 @@
         "mask",
         "tag"
       ]
+    },
+    "TranscribeVocabularyNamesOrFilterNamesString":{
+      "type":"string",
+      "max":3000,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9,-._]+"
     },
     "TranscriptionConfiguration":{
       "type":"structure",

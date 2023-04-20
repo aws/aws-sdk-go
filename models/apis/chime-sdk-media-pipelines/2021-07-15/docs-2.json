@@ -56,8 +56,8 @@
         "CreateMediaCapturePipelineRequest$SinkArn": "<p>The ARN of the sink type.</p>",
         "CreateMediaInsightsPipelineConfigurationRequest$ResourceAccessRoleArn": "<p>The ARN of the role used by the service to access Amazon Web Services resources, including <code>Transcribe</code> and <code>Transcribe Call Analytics</code>, on the caller’s behalf.</p>",
         "CreateMediaInsightsPipelineRequest$MediaInsightsPipelineConfigurationArn": "<p>The ARN of the pipeline's configuration.</p>",
-        "KinesisDataStreamSinkConfiguration$InsightsTarget": "<p>The URL of the sink, <a href=\"https://aws.amazon.com/kinesis/data-streams/\">https://aws.amazon.com/kinesis/data-streams/</a>.</p>",
-        "LambdaFunctionSinkConfiguration$InsightsTarget": "<p>The URL of the sink, <a href=\"https://aws.amazon.com/kinesis/data-streams/\">https://aws.amazon.com/kinesis/data-streams/</a>.</p>",
+        "KinesisDataStreamSinkConfiguration$InsightsTarget": "<p>The ARN of the sink.</p>",
+        "LambdaFunctionSinkConfiguration$InsightsTarget": "<p>The ARN of the sink.</p>",
         "MediaCapturePipeline$SourceArn": "<p>ARN of the source from which the media artifacts are saved.</p>",
         "MediaCapturePipeline$SinkArn": "<p>ARN of the destination to which the media artifacts are saved.</p>",
         "MediaCapturePipelineSourceConfiguration$MediaPipelineArn": "<p>The media pipeline ARN in the configuration object of a media capture pipeline.</p>",
@@ -67,10 +67,10 @@
         "MediaInsightsPipelineConfiguration$ResourceAccessRoleArn": "<p>The ARN of the role used by the service to access Amazon Web Services resources.</p>",
         "MediaInsightsPipelineConfigurationSummary$MediaInsightsPipelineConfigurationArn": "<p>The ARN of the media insights pipeline configuration.</p>",
         "S3BucketSinkConfiguration$Destination": "<p>The destination URL of the S3 bucket.</p>",
-        "S3RecordingSinkConfiguration$Destination": "<p>The URL of the Amazon S3 bucket used as the recording sink.</p>",
-        "S3RecordingSinkRuntimeConfiguration$Destination": "<p>The URL of the S3 bucket used as the runtime sink.</p>",
-        "SnsTopicSinkConfiguration$InsightsTarget": "<p>The URL of the SNS sink, <a href=\"https://aws.amazon.com/kinesis/data-streams/\">https://aws.amazon.com/kinesis/data-streams/</a>.</p>",
-        "SqsQueueSinkConfiguration$InsightsTarget": "<p>The URL of the SQS sink, <a href=\"https://aws.amazon.com/kinesis/data-streams/\">https://aws.amazon.com/kinesis/data-streams/</a>.</p>",
+        "S3RecordingSinkConfiguration$Destination": "<p>The default URI of the Amazon S3 bucket used as the recording sink.</p>",
+        "S3RecordingSinkRuntimeConfiguration$Destination": "<p>The URI of the S3 bucket used as the sink.</p>",
+        "SnsTopicSinkConfiguration$InsightsTarget": "<p>The ARN of the SNS sink.</p>",
+        "SqsQueueSinkConfiguration$InsightsTarget": "<p>The ARN of the SQS sink.</p>",
         "UpdateMediaInsightsPipelineConfigurationRequest$ResourceAccessRoleArn": "<p>The ARN of the role used by the service to access Amazon Web Services resources.</p>"
       }
     },
@@ -179,7 +179,7 @@
     "CategoryNameList": {
       "base": null,
       "refs": {
-        "AmazonTranscribeCallAnalyticsProcessorConfiguration$CallAnalyticsStreamCategories": "<p>By default, all <code>CategoryEvents</code> will be sent to the insights target. If this parameter is specified, only included categories will be sent to the insights target. </p>"
+        "AmazonTranscribeCallAnalyticsProcessorConfiguration$CallAnalyticsStreamCategories": "<p>By default, all <code>CategoryEvents</code> are sent to the insights target. If this parameter is specified, only included categories are sent to the insights target. </p>"
       }
     },
     "ChannelDefinition": {
@@ -877,17 +877,17 @@
       "base": null,
       "refs": {
         "AmazonTranscribeCallAnalyticsProcessorConfiguration$PiiEntityTypes": "<p>Specifies the types of personally identifiable information (PII) to redact from a transcript. You can include as many types as you'd like, or you can select <code>ALL</code>.</p> <p>To include <code>PiiEntityTypes</code> in your Call Analytics request, you must also include <code>ContentIdentificationType</code> or <code>ContentRedactionType</code>, but you can't include both. </p> <p>Values must be comma-separated and can include: <code>ADDRESS</code>, <code>BANK_ACCOUNT_NUMBER</code>, <code>BANK_ROUTING</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>, <code>CREDIT_DEBIT_NUMBER</code>, <code>EMAIL</code>, <code>NAME</code>, <code>PHONE</code>, <code>PIN</code>, <code>SSN</code>, or <code>ALL</code>.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 300.</p>",
-        "AmazonTranscribeProcessorConfiguration$PiiEntityTypes": "<p>The types of personally identifiable information (PII) to redact from a transcript. You can include as many types as you'd like, or you can select <code>ALL</code>.</p> <p>To include <code>PiiEntityTypes</code> in your Call Analytics request, you must also include <code>ContentIdentificationType</code> or <code>ContentRedactionType</code>, but you can't include both.</p> <p>Values must be comma-separated and can include: <code>ADDRESS</code>, <code>BANK_ACCOUNT_NUMBER</code>, <code>BANK_ROUTING</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>, <code>CREDIT_DEBIT_NUMBER</code>, <code>EMAIL</code>, <code>NAME</code>, <code>PHONE</code>, <code>PIN</code>, <code>SSN</code>, or <code>ALL</code>.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 300.</p>"
+        "AmazonTranscribeProcessorConfiguration$PiiEntityTypes": "<p>The types of personally identifiable information (PII) to redact from a transcript. You can include as many types as you'd like, or you can select <code>ALL</code>.</p> <p>To include <code>PiiEntityTypes</code> in your Call Analytics request, you must also include <code>ContentIdentificationType</code> or <code>ContentRedactionType</code>, but you can't include both.</p> <p>Values must be comma-separated and can include: <code>ADDRESS</code>, <code>BANK_ACCOUNT_NUMBER</code>, <code>BANK_ROUTING</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>, <code>CREDIT_DEBIT_NUMBER</code>, <code>EMAIL</code>, <code>NAME</code>, <code>PHONE</code>, <code>PIN</code>, <code>SSN</code>, or <code>ALL</code>.</p> <p>If you leave this parameter empty, the default behavior is equivalent to <code>ALL</code>.</p>"
       }
     },
     "PostCallAnalyticsSettings": {
-      "base": "<p>The settings for a post-call voice analytics task.</p>",
+      "base": "<p>Allows you to specify additional settings for your Call Analytics post-call request, including output locations for your redacted transcript, which IAM role to use, and which encryption key to use.</p> <p> <code>DataAccessRoleArn</code> and <code>OutputLocation</code> are required fields.</p> <p> <code>PostCallAnalyticsSettings</code> provides the same insights as a Call Analytics post-call transcription. For more information, refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/tca-post-call.html\">Post-call analytics with real-time transcriptions</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
       "refs": {
         "AmazonTranscribeCallAnalyticsProcessorConfiguration$PostCallAnalyticsSettings": "<p>The settings for a post-call analysis task in an analytics configuration.</p>"
       }
     },
     "PresenterOnlyConfiguration": {
-      "base": "<p>Defines the configuration for a presenter only video tile.</p>",
+      "base": "<p>Defines the configuration for a presenter-only video tile.</p>",
       "refs": {
         "GridViewConfiguration$PresenterOnlyConfiguration": "<p>Defines the configuration options for a presenter only video tile.</p>"
       }
@@ -927,11 +927,12 @@
     "RecordingFileFormat": {
       "base": null,
       "refs": {
-        "S3RecordingSinkRuntimeConfiguration$RecordingFileFormat": "<p>The file formats for the audio and video files sent to the Amazon S3 bucket.</p>"
+        "S3RecordingSinkConfiguration$RecordingFileFormat": "<p>The default file format for the media files sent to the Amazon S3 bucket.</p>",
+        "S3RecordingSinkRuntimeConfiguration$RecordingFileFormat": "<p>The file format for the media files sent to the Amazon S3 bucket.</p>"
       }
     },
     "RecordingStreamConfiguration": {
-      "base": "<p>A structure the holds the settings for recording audio and video.</p>",
+      "base": "<p>A structure that holds the settings for recording media.</p>",
       "refs": {
         "RecordingStreamList$member": null
       }
@@ -976,13 +977,13 @@
       }
     },
     "S3RecordingSinkConfiguration": {
-      "base": "<p>The structure that holds the settings for transmitting audio and video to the Amazon S3 bucket.</p>",
+      "base": "<p>The structure that holds the settings for transmitting media to the Amazon S3 bucket. These values are used as defaults if <code>S3RecordingSinkRuntimeConfiguration</code> is not specified.</p>",
       "refs": {
         "MediaInsightsPipelineConfigurationElement$S3RecordingSinkConfiguration": "<p>The configuration settings for the Amazon S3 recording bucket in a media insights pipeline configuration element.</p>"
       }
     },
     "S3RecordingSinkRuntimeConfiguration": {
-      "base": "<p>A structure that holds the settings for transmitting audio and video recordings to the runtime Amazon S3 bucket.</p>",
+      "base": "<p>A structure that holds the settings for transmitting media files to the Amazon S3 bucket. If specified, the settings in this structure override any settings in <code>S3RecordingSinkConfiguration</code>.</p>",
       "refs": {
         "CreateMediaInsightsPipelineRequest$S3RecordingSinkRuntimeConfiguration": "<p>The runtime configuration for the S3 recording sink.</p>",
         "MediaInsightsPipeline$S3RecordingSinkRuntimeConfiguration": "<p>The runtime configuration of the Amazon S3 bucket that stores recordings in a media insights pipeline.</p>"
@@ -1042,7 +1043,7 @@
       }
     },
     "SqsQueueSinkConfiguration": {
-      "base": "<p>The URL of the SQS sink.</p>",
+      "base": "<p>The configuration settings for the SQS sink.</p>",
       "refs": {
         "MediaInsightsPipelineConfigurationElement$SqsQueueSinkConfiguration": "<p>The configuration settings for an SQS queue sink in a media insights pipeline configuration element.</p>"
       }
@@ -1085,7 +1086,7 @@
         "NotFoundException$RequestId": "<p>The request ID associated with the call responsible for the exception.</p>",
         "PostCallAnalyticsSettings$OutputLocation": "<p>The URL of the Amazon S3 bucket that contains the post-call data.</p>",
         "PostCallAnalyticsSettings$DataAccessRoleArn": "<p>The ARN of the role used by Amazon Web Services Transcribe to upload your post call analysis. For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/tca-post-call.html\">Post-call analytics with real-time transcriptions</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
-        "PostCallAnalyticsSettings$OutputEncryptionKMSKeyId": "<p>The ID of the KMS (Key Management System) key used to encrypt the output.</p>",
+        "PostCallAnalyticsSettings$OutputEncryptionKMSKeyId": "<p>The ID of the KMS (Key Management Service) key used to encrypt the output.</p>",
         "ResourceLimitExceededException$Message": null,
         "ResourceLimitExceededException$RequestId": "<p>The request ID associated with the call responsible for the exception.</p>",
         "ServiceFailureException$Message": null,

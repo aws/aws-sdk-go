@@ -125,6 +125,57 @@
                                 {
                                     "conditions": [
                                         {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://chime.us-east-1.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "chime",
+                                                    "signingRegion": "us-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
                                             "fn": "booleanEquals",
                                             "argv": [
                                                 {
@@ -187,7 +238,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://meetings-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -245,7 +296,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://meetings-chime-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                "url": "https://chime-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -303,7 +354,7 @@
                                                         {
                                                             "conditions": [],
                                                             "endpoint": {
-                                                                "url": "https://meetings-chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "url": "https://chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                 "properties": {},
                                                                 "headers": {}
                                                             },
@@ -327,7 +378,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://meetings-chime.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://chime.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },

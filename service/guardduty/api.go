@@ -15335,6 +15335,113 @@ func (s *KubernetesWorkloadDetails) SetVolumes(v []*Volume) *KubernetesWorkloadD
 	return s
 }
 
+// Information about the Lambda function involved in the finding.
+type LambdaDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Description of the Lambda function.
+	Description *string `locationName:"description" type:"string"`
+
+	// Amazon Resource Name (ARN) of the Lambda function.
+	FunctionArn *string `locationName:"functionArn" type:"string"`
+
+	// Name of the Lambda function.
+	FunctionName *string `locationName:"functionName" type:"string"`
+
+	// The version of the Lambda function.
+	FunctionVersion *string `locationName:"functionVersion" type:"string"`
+
+	// The timestamp when the Lambda function was last modified. This field is in
+	// the UTC date string format (2023-03-22T19:37:20.168Z).
+	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp"`
+
+	// The revision ID of the Lambda function version.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+
+	// The execution role of the Lambda function.
+	Role *string `locationName:"role" type:"string"`
+
+	// A list of tags attached to this resource, listed in the format of key:value
+	// pair.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// Amazon Virtual Private Cloud configuration details associated with your Lambda
+	// function.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaDetails) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *LambdaDetails) SetDescription(v string) *LambdaDetails {
+	s.Description = &v
+	return s
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *LambdaDetails) SetFunctionArn(v string) *LambdaDetails {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *LambdaDetails) SetFunctionName(v string) *LambdaDetails {
+	s.FunctionName = &v
+	return s
+}
+
+// SetFunctionVersion sets the FunctionVersion field's value.
+func (s *LambdaDetails) SetFunctionVersion(v string) *LambdaDetails {
+	s.FunctionVersion = &v
+	return s
+}
+
+// SetLastModifiedAt sets the LastModifiedAt field's value.
+func (s *LambdaDetails) SetLastModifiedAt(v time.Time) *LambdaDetails {
+	s.LastModifiedAt = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *LambdaDetails) SetRevisionId(v string) *LambdaDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *LambdaDetails) SetRole(v string) *LambdaDetails {
+	s.Role = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *LambdaDetails) SetTags(v []*Tag) *LambdaDetails {
+	s.Tags = v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *LambdaDetails) SetVpcConfig(v *VpcConfig) *LambdaDetails {
+	s.VpcConfig = v
+	return s
+}
+
 // Information about the runtime process details.
 type LineageObject struct {
 	_ struct{} `type:"structure"`
@@ -19295,6 +19402,9 @@ type Resource struct {
 	// Details about the Kubernetes user and workload involved in a Kubernetes finding.
 	KubernetesDetails *KubernetesDetails `locationName:"kubernetesDetails" type:"structure"`
 
+	// Contains information about the Lambda function that was involved in a finding.
+	LambdaDetails *LambdaDetails `locationName:"lambdaDetails" type:"structure"`
+
 	// Contains information about the database instance to which an anomalous login
 	// attempt was made.
 	RdsDbInstanceDetails *RdsDbInstanceDetails `locationName:"rdsDbInstanceDetails" type:"structure"`
@@ -19367,6 +19477,12 @@ func (s *Resource) SetInstanceDetails(v *InstanceDetails) *Resource {
 // SetKubernetesDetails sets the KubernetesDetails field's value.
 func (s *Resource) SetKubernetesDetails(v *KubernetesDetails) *Resource {
 	s.KubernetesDetails = v
+	return s
+}
+
+// SetLambdaDetails sets the LambdaDetails field's value.
+func (s *Resource) SetLambdaDetails(v *LambdaDetails) *Resource {
+	s.LambdaDetails = v
 	return s
 }
 
@@ -23184,6 +23300,57 @@ func (s *VolumeMount) SetName(v string) *VolumeMount {
 	return s
 }
 
+// Amazon Virtual Private Cloud configuration details associated with your Lambda
+// function.
+type VpcConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the security group attached to the Lambda function.
+	SecurityGroups []*SecurityGroup `locationName:"securityGroups" type:"list"`
+
+	// The identifiers of the subnets that are associated with your Lambda function.
+	SubnetIds []*string `locationName:"subnetIds" type:"list"`
+
+	// The identifier of the Amazon Virtual Private Cloud.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfig) GoString() string {
+	return s.String()
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *VpcConfig) SetSecurityGroups(v []*SecurityGroup) *VpcConfig {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcConfig) SetVpcId(v string) *VpcConfig {
+	s.VpcId = &v
+	return s
+}
+
 const (
 	// AdminStatusEnabled is a AdminStatus enum value
 	AdminStatusEnabled = "ENABLED"
@@ -23419,6 +23586,9 @@ const (
 
 	// DetectorFeatureEksRuntimeMonitoring is a DetectorFeature enum value
 	DetectorFeatureEksRuntimeMonitoring = "EKS_RUNTIME_MONITORING"
+
+	// DetectorFeatureLambdaNetworkLogs is a DetectorFeature enum value
+	DetectorFeatureLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
 )
 
 // DetectorFeature_Values returns all elements of the DetectorFeature enum
@@ -23429,6 +23599,7 @@ func DetectorFeature_Values() []string {
 		DetectorFeatureEbsMalwareProtection,
 		DetectorFeatureRdsLoginEvents,
 		DetectorFeatureEksRuntimeMonitoring,
+		DetectorFeatureLambdaNetworkLogs,
 	}
 }
 
@@ -23456,6 +23627,9 @@ const (
 
 	// DetectorFeatureResultEksRuntimeMonitoring is a DetectorFeatureResult enum value
 	DetectorFeatureResultEksRuntimeMonitoring = "EKS_RUNTIME_MONITORING"
+
+	// DetectorFeatureResultLambdaNetworkLogs is a DetectorFeatureResult enum value
+	DetectorFeatureResultLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
 )
 
 // DetectorFeatureResult_Values returns all elements of the DetectorFeatureResult enum
@@ -23469,6 +23643,7 @@ func DetectorFeatureResult_Values() []string {
 		DetectorFeatureResultEbsMalwareProtection,
 		DetectorFeatureResultRdsLoginEvents,
 		DetectorFeatureResultEksRuntimeMonitoring,
+		DetectorFeatureResultLambdaNetworkLogs,
 	}
 }
 
@@ -23620,6 +23795,9 @@ const (
 
 	// FreeTrialFeatureResultEksRuntimeMonitoring is a FreeTrialFeatureResult enum value
 	FreeTrialFeatureResultEksRuntimeMonitoring = "EKS_RUNTIME_MONITORING"
+
+	// FreeTrialFeatureResultLambdaNetworkLogs is a FreeTrialFeatureResult enum value
+	FreeTrialFeatureResultLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
 )
 
 // FreeTrialFeatureResult_Values returns all elements of the FreeTrialFeatureResult enum
@@ -23633,6 +23811,7 @@ func FreeTrialFeatureResult_Values() []string {
 		FreeTrialFeatureResultEbsMalwareProtection,
 		FreeTrialFeatureResultRdsLoginEvents,
 		FreeTrialFeatureResultEksRuntimeMonitoring,
+		FreeTrialFeatureResultLambdaNetworkLogs,
 	}
 }
 
@@ -23735,6 +23914,9 @@ const (
 
 	// OrgFeatureEksRuntimeMonitoring is a OrgFeature enum value
 	OrgFeatureEksRuntimeMonitoring = "EKS_RUNTIME_MONITORING"
+
+	// OrgFeatureLambdaNetworkLogs is a OrgFeature enum value
+	OrgFeatureLambdaNetworkLogs = "LAMBDA_NETWORK_LOGS"
 )
 
 // OrgFeature_Values returns all elements of the OrgFeature enum
@@ -23745,6 +23927,7 @@ func OrgFeature_Values() []string {
 		OrgFeatureEbsMalwareProtection,
 		OrgFeatureRdsLoginEvents,
 		OrgFeatureEksRuntimeMonitoring,
+		OrgFeatureLambdaNetworkLogs,
 	}
 }
 

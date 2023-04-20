@@ -4714,7 +4714,8 @@
     "CanvasAppSettings":{
       "type":"structure",
       "members":{
-        "TimeSeriesForecastingSettings":{"shape":"TimeSeriesForecastingSettings"}
+        "TimeSeriesForecastingSettings":{"shape":"TimeSeriesForecastingSettings"},
+        "ModelRegisterSettings":{"shape":"ModelRegisterSettings"}
       }
     },
     "CapacitySize":{
@@ -15099,6 +15100,13 @@
         "EndpointInput":{"shape":"EndpointInput"},
         "BatchTransformInput":{"shape":"BatchTransformInput"},
         "GroundTruthS3Input":{"shape":"MonitoringGroundTruthS3Input"}
+      }
+    },
+    "ModelRegisterSettings":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"FeatureStatus"},
+        "CrossAccountModelRegisterRoleArn":{"shape":"RoleArn"}
       }
     },
     "ModelSortKey":{

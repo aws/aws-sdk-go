@@ -6,7 +6,7 @@
     "CancelJob": "<p>Cancels the specified job. You can only cancel a job before its <code>JobState</code> value changes to <code>PreparingAppliance</code>. Requesting the <code>ListJobs</code> or <code>DescribeJob</code> action returns a job's <code>JobState</code> as part of the response element data returned.</p>",
     "CreateAddress": "<p>Creates an address for a Snow device to be shipped to. In most regions, addresses are validated at the time of creation. The address you provide must be located within the serviceable area of your region. If the address is invalid or unsupported, then an exception is thrown.</p>",
     "CreateCluster": "<p>Creates an empty cluster. Each cluster supports five nodes. You use the <a>CreateJob</a> action separately to create the jobs for each of these nodes. The cluster does not ship until these five node jobs have been created.</p>",
-    "CreateJob": "<p>Creates a job to import or export data between Amazon S3 and your on-premises data center. Your Amazon Web Services account must have the right trust policies and permissions in place to create a job for a Snow device. If you're creating a job for a node in a cluster, you only need to provide the <code>clusterId</code> value; the other job attributes are inherited from the cluster. </p> <note> <p>Only the Snowball; Edge device type is supported when ordering clustered jobs.</p> <p>The device capacity is optional.</p> <p>Availability of device types differ by Amazon Web Services Region. For more information about Region availability, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&amp;loc=4\">Amazon Web Services Regional Services</a>.</p> </note> <p/> <p class=\"title\"> <b>Snow Family devices and their capacities.</b> </p> <ul> <li> <p>Snow Family device type: <b>SNC1_SSD</b> </p> <ul> <li> <p>Capacity: T14</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Snow Family device type: <b>SNC1_HDD</b> </p> <ul> <li> <p>Capacity: T8</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_S</b> </p> <ul> <li> <p>Capacity: T98</p> </li> <li> <p>Description: Snowball Edge Storage Optimized for data transfer only </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_CG</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized with GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_C</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE</b> </p> <ul> <li> <p>Capacity: T100</p> </li> <li> <p>Description: Snowball Edge Storage Optimized with EC2 Compute</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T50</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region </p> </note> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T80</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region. </p> </note> </li> </ul> <p/> </li> </ul>",
+    "CreateJob": "<p>Creates a job to import or export data between Amazon S3 and your on-premises data center. Your Amazon Web Services account must have the right trust policies and permissions in place to create a job for a Snow device. If you're creating a job for a node in a cluster, you only need to provide the <code>clusterId</code> value; the other job attributes are inherited from the cluster. </p> <note> <p>Only the Snowball; Edge device type is supported when ordering clustered jobs.</p> <p>The device capacity is optional.</p> <p>Availability of device types differ by Amazon Web Services Region. For more information about Region availability, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&amp;loc=4\">Amazon Web Services Regional Services</a>.</p> </note> <p/> <p class=\"title\"> <b>Snow Family devices and their capacities.</b> </p> <ul> <li> <p>Device type: <b>SNC1_SSD</b> </p> <ul> <li> <p>Capacity: T14</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>SNC1_HDD</b> </p> <ul> <li> <p>Capacity: T8</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_S</b> </p> <ul> <li> <p>Capacity: T98</p> </li> <li> <p>Description: Snowball Edge Storage Optimized for data transfer only </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_CG</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized with GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_C</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE</b> </p> <ul> <li> <p>Capacity: T100</p> </li> <li> <p>Description: Snowball Edge Storage Optimized with EC2 Compute</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T50</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region </p> </note> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T80</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region. </p> </note> </li> </ul> <p/> </li> <li> <p>Device type: <b>V3_5C</b> </p> <ul> <li> <p>Capacity: T32</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>V3_5S</b> </p> <ul> <li> <p>Capacity: T240</p> </li> <li> <p>Description: Snowball Edge Storage Optimized 210TB</p> </li> </ul> <p/> </li> </ul>",
     "CreateLongTermPricing": "<p>Creates a job with the long-term usage option for a device. The long-term usage is a 1-year or 3-year long-term pricing type for the device. You are billed upfront, and Amazon Web Services provides discounts for long-term pricing. </p>",
     "CreateReturnShippingLabel": "<p>Creates a shipping label that will be used to return the Snow device to Amazon Web Services.</p>",
     "DescribeAddress": "<p>Takes an <code>AddressId</code> and returns specific details about that address in the form of an <code>Address</code> object.</p>",
@@ -20,7 +20,7 @@
     "GetSoftwareUpdates": "<p>Returns an Amazon S3 presigned URL for an update file associated with a specified <code>JobId</code>.</p>",
     "ListClusterJobs": "<p>Returns an array of <code>JobListEntry</code> objects of the specified length. Each <code>JobListEntry</code> object is for a job in the specified cluster and contains a job's state, a job's ID, and other information.</p>",
     "ListClusters": "<p>Returns an array of <code>ClusterListEntry</code> objects of the specified length. Each <code>ClusterListEntry</code> object contains a cluster's state, a cluster's ID, and other important status information.</p>",
-    "ListCompatibleImages": "<p>This action returns a list of the different Amazon EC2 Amazon Machine Images (AMIs) that are owned by your Amazon Web Services accountthat would be supported for use on a Snow device. Currently, supported AMIs are based on the CentOS 7 (x86_64) - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu 16.04 LTS - Xenial (HVM) images, available on the Amazon Web Services Marketplace.</p>",
+    "ListCompatibleImages": "<p>This action returns a list of the different Amazon EC2 Amazon Machine Images (AMIs) that are owned by your Amazon Web Services accountthat would be supported for use on a Snow device. Currently, supported AMIs are based on the Amazon Linux-2, Ubuntu 20.04 LTS - Focal, or Ubuntu 22.04 LTS - Jammy images, available on the Amazon Web Services Marketplace. Ubuntu 16.04 LTS - Xenial (HVM) images are no longer supported in the Market, but still supported for use on devices through Amazon EC2 VM Import/Export and running locally in AMIs.</p>",
     "ListJobs": "<p>Returns an array of <code>JobListEntry</code> objects of the specified length. Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. Calling this API action in one of the US regions will return jobs from the list of all jobs associated with this account in all US regions.</p>",
     "ListLongTermPricing": "<p>Lists all long-term pricing types.</p>",
     "ListServiceVersions": "<p>Lists all supported versions for Snow on-device services. Returns an array of <code>ServiceVersion</code> object containing the supported versions for a particular service.</p>",
@@ -73,6 +73,7 @@
       "base": null,
       "refs": {
         "Address$IsRestricted": "<p>If the address you are creating is a primary address, then set this option to true. This field is not supported in most regions.</p>",
+        "CreateClusterRequest$ForceCreateJobs": "<p>Force to create cluster when user attempts to overprovision or underprovision a cluster. A cluster is overprovisioned or underprovisioned if the initial size of the cluster is more (overprovisioned) or less (underprovisioned) than what needed to meet capacity requirement specified with <code>OnDeviceServiceConfiguration</code>.</p>",
         "JobListEntry$IsMaster": "<p>A value that indicates that this job is a main job. A main job represents a successful request to create an export job. Main jobs aren't associated with any Snowballs. Instead, each main job will have at least one job part, and each job part is associated with a Snowball. It might take some time before the job parts associated with a particular main job are listed, because they are created after the main job is created.</p>",
         "Notification$NotifyAll": "<p>Any change in job state will trigger a notification for this job.</p>",
         "WirelessConnection$IsWifiEnabled": "<p>Enables the Wi-Fi adapter on an Snowcone device.</p>"
@@ -307,7 +308,7 @@
       }
     },
     "Ec2RequestFailedException": {
-      "base": "<p>Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted action.</p>",
+      "base": "<p>Your user lacks the necessary Amazon EC2 permissions to perform the attempted action.</p>",
       "refs": {
       }
     },
@@ -373,6 +374,12 @@
       "base": "<p>The tax documents required in Amazon Web Services Region in India.</p>",
       "refs": {
         "TaxDocuments$IND": null
+      }
+    },
+    "InitialClusterSize": {
+      "base": null,
+      "refs": {
+        "CreateClusterRequest$InitialClusterSize": "<p>If provided, each job will be automatically created and associated with the new cluster. If not provided, will be treated as 0.</p>"
       }
     },
     "Integer": {
@@ -443,6 +450,7 @@
     "JobListEntryList": {
       "base": null,
       "refs": {
+        "CreateClusterResult$JobListEntries": "<p>List of jobs created for this cluster. For syntax, see <a href=\"https://docs.aws.amazon.com/snowball/latest/api-reference/API_ListJobs.html#API_ListJobs_ResponseSyntax\">ListJobsResult$JobListEntries</a> in this guide.</p>",
         "ListClusterJobsResult$JobListEntries": "<p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. </p>",
         "ListJobsResult$JobListEntries": "<p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. </p>"
       }
@@ -632,8 +640,15 @@
         "CreateJobRequest$LongTermPricingId": "<p>The ID of the long-term pricing type for the device.</p>",
         "CreateLongTermPricingResult$LongTermPricingId": "<p>The ID of the long-term pricing type for the device.</p>",
         "JobMetadata$LongTermPricingId": "<p>The ID of the long-term pricing type for the device.</p>",
+        "LongTermPricingIdList$member": null,
         "LongTermPricingListEntry$LongTermPricingId": "<p>The ID of the long-term pricing type for the device.</p>",
         "UpdateLongTermPricingRequest$LongTermPricingId": "<p>The ID of the long-term pricing type for the device.</p>"
+      }
+    },
+    "LongTermPricingIdList": {
+      "base": null,
+      "refs": {
+        "CreateClusterRequest$LongTermPricingIds": "<p>Lists long-term pricing id that will be used to associate with jobs automatically created for the new cluster.</p>"
       }
     },
     "LongTermPricingListEntry": {
@@ -653,6 +668,12 @@
       "base": "<p>An object that represents the metadata and configuration settings for the NFS (Network File System) service on an Amazon Web Services Snow Family device.</p>",
       "refs": {
         "OnDeviceServiceConfiguration$NFSOnDeviceService": "<p>Represents the NFS (Network File System) service on a Snow Family device.</p>"
+      }
+    },
+    "NodeFaultTolerance": {
+      "base": null,
+      "refs": {
+        "S3OnDeviceServiceConfiguration$FaultTolerance": "<p>&gt;Fault tolerance level of the cluster. This indicates the number of nodes that can go down without degrading the performance of the cluster. This additional input helps when the specified <code>StorageLimit</code> matches more than one Amazon S3 compatible storage on Snow family devices service configuration.</p>"
       }
     },
     "Notification": {
@@ -709,6 +730,12 @@
         "UpdateJobRequest$RoleARN": "<p>The new role Amazon Resource Name (ARN) that you want to associate with this job. To create a role ARN, use the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a>Identity and Access Management (IAM) API action.</p>"
       }
     },
+    "S3OnDeviceServiceConfiguration": {
+      "base": "<p>Amazon S3 compatible storage on Snow family devices configuration items.</p>",
+      "refs": {
+        "OnDeviceServiceConfiguration$S3OnDeviceService": "<p>Configuration for Amazon S3 compatible storage on Snow family devices.</p>"
+      }
+    },
     "S3Resource": {
       "base": "<p>Each <code>S3Resource</code> object represents an Amazon S3 bucket that your transferred data will be exported from or imported into. For export jobs, this object can have an optional <code>KeyRange</code> value. The length of the range is defined at job creation, and has either an inclusive <code>BeginMarker</code>, an inclusive <code>EndMarker</code>, or both. Ranges are UTF-8 binary sorted.</p>",
       "refs": {
@@ -721,12 +748,24 @@
         "JobResource$S3Resources": "<p>An array of <code>S3Resource</code> objects.</p>"
       }
     },
+    "S3StorageLimit": {
+      "base": null,
+      "refs": {
+        "S3OnDeviceServiceConfiguration$StorageLimit": "<p>If the specified storage limit value matches storage limit of one of the defined configurations, that configuration will be used. If the specified storage limit value does not match any defined configuration, the request will fail. If more than one configuration has the same storage limit as specified, the other input need to be provided.</p>"
+      }
+    },
     "ServiceName": {
       "base": null,
       "refs": {
         "DependentService$ServiceName": "<p>The name of the dependent service.</p>",
         "ListServiceVersionsRequest$ServiceName": "<p>The name of the service for which you're requesting supported versions.</p>",
         "ListServiceVersionsResult$ServiceName": "<p>The name of the service for which the system provided supported versions.</p>"
+      }
+    },
+    "ServiceSize": {
+      "base": null,
+      "refs": {
+        "S3OnDeviceServiceConfiguration$ServiceSize": "<p>Applicable when creating a cluster. Specifies how many nodes are needed for Amazon S3 compatible storage on Snow family devices. If specified, the other input can be omitted.</p>"
       }
     },
     "ServiceVersion": {
@@ -783,6 +822,7 @@
     "SnowballCapacity": {
       "base": null,
       "refs": {
+        "CreateClusterRequest$SnowballCapacityPreference": "<p>If your job is being created in one of the US regions, you have the option of specifying what size Snow device you'd like for this job. In all other regions, Snowballs come with 80 TB in storage capacity.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
         "CreateJobRequest$SnowballCapacityPreference": "<p>If your job is being created in one of the US regions, you have the option of specifying what size Snow device you'd like for this job. In all other regions, Snowballs come with 80 TB in storage capacity.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
         "JobMetadata$SnowballCapacityPreference": "<p>The Snow device capacity preference for this job, specified at job creation. In US regions, you can choose between 50 TB and 80 TB Snowballs. All other regions use 80 TB capacity Snowballs.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
         "UpdateJobRequest$SnowballCapacityPreference": "<p>The updated <code>SnowballCapacityPreference</code> of this job's <a>JobMetadata</a> object. The 50 TB Snowballs are only available in the US regions.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>"
@@ -823,6 +863,7 @@
       "base": null,
       "refs": {
         "NFSOnDeviceServiceConfiguration$StorageUnit": "<p>The scale unit of the NFS storage on the device.</p> <p>Valid values: TB.</p>",
+        "S3OnDeviceServiceConfiguration$StorageUnit": "<p>Storage unit. Currently the only supported unit is TB.</p>",
         "TGWOnDeviceServiceConfiguration$StorageUnit": "<p>The scale unit of the virtual tapes on the device.</p>"
       }
     },

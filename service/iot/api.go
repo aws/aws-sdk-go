@@ -15651,6 +15651,12 @@ func (c *IoT) ListManagedJobTemplatesRequest(input *ListManagedJobTemplatesInput
 		Name:       opListManagedJobTemplates,
 		HTTPMethod: "GET",
 		HTTPPath:   "/managed-job-templates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -15706,6 +15712,57 @@ func (c *IoT) ListManagedJobTemplatesWithContext(ctx aws.Context, input *ListMan
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListManagedJobTemplatesPages iterates over the pages of a ListManagedJobTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListManagedJobTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListManagedJobTemplates operation.
+//	pageNum := 0
+//	err := client.ListManagedJobTemplatesPages(params,
+//	    func(page *iot.ListManagedJobTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoT) ListManagedJobTemplatesPages(input *ListManagedJobTemplatesInput, fn func(*ListManagedJobTemplatesOutput, bool) bool) error {
+	return c.ListManagedJobTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListManagedJobTemplatesPagesWithContext same as ListManagedJobTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListManagedJobTemplatesPagesWithContext(ctx aws.Context, input *ListManagedJobTemplatesInput, fn func(*ListManagedJobTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListManagedJobTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListManagedJobTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListManagedJobTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListMetricValues = "ListMetricValues"
@@ -17330,6 +17387,12 @@ func (c *IoT) ListRelatedResourcesForAuditFindingRequest(input *ListRelatedResou
 		Name:       opListRelatedResourcesForAuditFinding,
 		HTTPMethod: "GET",
 		HTTPPath:   "/audit/relatedResources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -17410,6 +17473,57 @@ func (c *IoT) ListRelatedResourcesForAuditFindingWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListRelatedResourcesForAuditFindingPages iterates over the pages of a ListRelatedResourcesForAuditFinding operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRelatedResourcesForAuditFinding method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRelatedResourcesForAuditFinding operation.
+//	pageNum := 0
+//	err := client.ListRelatedResourcesForAuditFindingPages(params,
+//	    func(page *iot.ListRelatedResourcesForAuditFindingOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoT) ListRelatedResourcesForAuditFindingPages(input *ListRelatedResourcesForAuditFindingInput, fn func(*ListRelatedResourcesForAuditFindingOutput, bool) bool) error {
+	return c.ListRelatedResourcesForAuditFindingPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRelatedResourcesForAuditFindingPagesWithContext same as ListRelatedResourcesForAuditFindingPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListRelatedResourcesForAuditFindingPagesWithContext(ctx aws.Context, input *ListRelatedResourcesForAuditFindingInput, fn func(*ListRelatedResourcesForAuditFindingOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRelatedResourcesForAuditFindingInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRelatedResourcesForAuditFindingRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRelatedResourcesForAuditFindingOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListRoleAliases = "ListRoleAliases"
@@ -70105,6 +70219,12 @@ const (
 
 	// OTAUpdateStatusCreateFailed is a OTAUpdateStatus enum value
 	OTAUpdateStatusCreateFailed = "CREATE_FAILED"
+
+	// OTAUpdateStatusDeleteInProgress is a OTAUpdateStatus enum value
+	OTAUpdateStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+
+	// OTAUpdateStatusDeleteFailed is a OTAUpdateStatus enum value
+	OTAUpdateStatusDeleteFailed = "DELETE_FAILED"
 )
 
 // OTAUpdateStatus_Values returns all elements of the OTAUpdateStatus enum
@@ -70114,6 +70234,8 @@ func OTAUpdateStatus_Values() []string {
 		OTAUpdateStatusCreateInProgress,
 		OTAUpdateStatusCreateComplete,
 		OTAUpdateStatusCreateFailed,
+		OTAUpdateStatusDeleteInProgress,
+		OTAUpdateStatusDeleteFailed,
 	}
 }
 

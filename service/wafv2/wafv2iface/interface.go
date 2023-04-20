@@ -68,6 +68,10 @@ type WAFV2API interface {
 	CheckCapacityWithContext(aws.Context, *wafv2.CheckCapacityInput, ...request.Option) (*wafv2.CheckCapacityOutput, error)
 	CheckCapacityRequest(*wafv2.CheckCapacityInput) (*request.Request, *wafv2.CheckCapacityOutput)
 
+	CreateAPIKey(*wafv2.CreateAPIKeyInput) (*wafv2.CreateAPIKeyOutput, error)
+	CreateAPIKeyWithContext(aws.Context, *wafv2.CreateAPIKeyInput, ...request.Option) (*wafv2.CreateAPIKeyOutput, error)
+	CreateAPIKeyRequest(*wafv2.CreateAPIKeyInput) (*request.Request, *wafv2.CreateAPIKeyOutput)
+
 	CreateIPSet(*wafv2.CreateIPSetInput) (*wafv2.CreateIPSetOutput, error)
 	CreateIPSetWithContext(aws.Context, *wafv2.CreateIPSetInput, ...request.Option) (*wafv2.CreateIPSetOutput, error)
 	CreateIPSetRequest(*wafv2.CreateIPSetInput) (*request.Request, *wafv2.CreateIPSetOutput)
@@ -124,6 +128,10 @@ type WAFV2API interface {
 	GenerateMobileSdkReleaseUrlWithContext(aws.Context, *wafv2.GenerateMobileSdkReleaseUrlInput, ...request.Option) (*wafv2.GenerateMobileSdkReleaseUrlOutput, error)
 	GenerateMobileSdkReleaseUrlRequest(*wafv2.GenerateMobileSdkReleaseUrlInput) (*request.Request, *wafv2.GenerateMobileSdkReleaseUrlOutput)
 
+	GetDecryptedAPIKey(*wafv2.GetDecryptedAPIKeyInput) (*wafv2.GetDecryptedAPIKeyOutput, error)
+	GetDecryptedAPIKeyWithContext(aws.Context, *wafv2.GetDecryptedAPIKeyInput, ...request.Option) (*wafv2.GetDecryptedAPIKeyOutput, error)
+	GetDecryptedAPIKeyRequest(*wafv2.GetDecryptedAPIKeyInput) (*request.Request, *wafv2.GetDecryptedAPIKeyOutput)
+
 	GetIPSet(*wafv2.GetIPSetInput) (*wafv2.GetIPSetOutput, error)
 	GetIPSetWithContext(aws.Context, *wafv2.GetIPSetInput, ...request.Option) (*wafv2.GetIPSetOutput, error)
 	GetIPSetRequest(*wafv2.GetIPSetInput) (*request.Request, *wafv2.GetIPSetOutput)
@@ -167,6 +175,10 @@ type WAFV2API interface {
 	GetWebACLForResource(*wafv2.GetWebACLForResourceInput) (*wafv2.GetWebACLForResourceOutput, error)
 	GetWebACLForResourceWithContext(aws.Context, *wafv2.GetWebACLForResourceInput, ...request.Option) (*wafv2.GetWebACLForResourceOutput, error)
 	GetWebACLForResourceRequest(*wafv2.GetWebACLForResourceInput) (*request.Request, *wafv2.GetWebACLForResourceOutput)
+
+	ListAPIKeys(*wafv2.ListAPIKeysInput) (*wafv2.ListAPIKeysOutput, error)
+	ListAPIKeysWithContext(aws.Context, *wafv2.ListAPIKeysInput, ...request.Option) (*wafv2.ListAPIKeysOutput, error)
+	ListAPIKeysRequest(*wafv2.ListAPIKeysInput) (*request.Request, *wafv2.ListAPIKeysOutput)
 
 	ListAvailableManagedRuleGroupVersions(*wafv2.ListAvailableManagedRuleGroupVersionsInput) (*wafv2.ListAvailableManagedRuleGroupVersionsOutput, error)
 	ListAvailableManagedRuleGroupVersionsWithContext(aws.Context, *wafv2.ListAvailableManagedRuleGroupVersionsInput, ...request.Option) (*wafv2.ListAvailableManagedRuleGroupVersionsOutput, error)

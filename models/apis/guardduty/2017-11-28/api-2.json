@@ -2542,7 +2542,8 @@
         "EKS_AUDIT_LOGS",
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
-        "EKS_RUNTIME_MONITORING"
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS"
       ]
     },
     "DetectorFeatureConfiguration":{
@@ -2601,7 +2602,8 @@
         "EKS_AUDIT_LOGS",
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
-        "EKS_RUNTIME_MONITORING"
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS"
       ]
     },
     "DetectorId":{
@@ -3219,7 +3221,8 @@
         "EKS_AUDIT_LOGS",
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
-        "EKS_RUNTIME_MONITORING"
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS"
       ]
     },
     "GeoLocation":{
@@ -4141,6 +4144,47 @@
         }
       }
     },
+    "LambdaDetails":{
+      "type":"structure",
+      "members":{
+        "FunctionArn":{
+          "shape":"String",
+          "locationName":"functionArn"
+        },
+        "FunctionName":{
+          "shape":"String",
+          "locationName":"functionName"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "LastModifiedAt":{
+          "shape":"Timestamp",
+          "locationName":"lastModifiedAt"
+        },
+        "RevisionId":{
+          "shape":"String",
+          "locationName":"revisionId"
+        },
+        "FunctionVersion":{
+          "shape":"String",
+          "locationName":"functionVersion"
+        },
+        "Role":{
+          "shape":"String",
+          "locationName":"role"
+        },
+        "VpcConfig":{
+          "shape":"VpcConfig",
+          "locationName":"vpcConfig"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        }
+      }
+    },
     "Lineage":{
       "type":"list",
       "member":{"shape":"LineageObject"}
@@ -4945,7 +4989,8 @@
         "EKS_AUDIT_LOGS",
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
-        "EKS_RUNTIME_MONITORING"
+        "EKS_RUNTIME_MONITORING",
+        "LAMBDA_NETWORK_LOGS"
       ]
     },
     "OrgFeatureAdditionalConfiguration":{
@@ -5541,6 +5586,10 @@
         "RdsDbUserDetails":{
           "shape":"RdsDbUserDetails",
           "locationName":"rdsDbUserDetails"
+        },
+        "LambdaDetails":{
+          "shape":"LambdaDetails",
+          "locationName":"lambdaDetails"
         }
       }
     },
@@ -6135,6 +6184,10 @@
       }
     },
     "String":{"type":"string"},
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Tag":{
       "type":"structure",
       "members":{
@@ -6911,6 +6964,23 @@
     "Volumes":{
       "type":"list",
       "member":{"shape":"Volume"}
+    },
+    "VpcConfig":{
+      "type":"structure",
+      "members":{
+        "SubnetIds":{
+          "shape":"SubnetIds",
+          "locationName":"subnetIds"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "SecurityGroups":{
+          "shape":"SecurityGroups",
+          "locationName":"securityGroups"
+        }
+      }
     }
   }
 }

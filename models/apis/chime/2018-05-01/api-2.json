@@ -5926,7 +5926,6 @@
     },
     "EngineTranscribeSettings":{
       "type":"structure",
-      "required":["LanguageCode"],
       "members":{
         "LanguageCode":{"shape":"TranscribeLanguageCode"},
         "VocabularyFilterMethod":{"shape":"TranscribeVocabularyFilterMethod"},
@@ -5938,7 +5937,12 @@
         "ContentIdentificationType":{"shape":"TranscribeContentIdentificationType"},
         "ContentRedactionType":{"shape":"TranscribeContentRedactionType"},
         "PiiEntityTypes":{"shape":"TranscribePiiEntityTypes"},
-        "LanguageModelName":{"shape":"TranscribeLanguageModelName"}
+        "LanguageModelName":{"shape":"TranscribeLanguageModelName"},
+        "IdentifyLanguage":{"shape":"Boolean"},
+        "LanguageOptions":{"shape":"TranscribeLanguageOptions"},
+        "PreferredLanguage":{"shape":"TranscribeLanguageCode"},
+        "VocabularyNames":{"shape":"TranscribeVocabularyNamesOrFilterNamesString"},
+        "VocabularyFilterNames":{"shape":"TranscribeVocabularyNamesOrFilterNamesString"}
       }
     },
     "ErrorCode":{
@@ -9038,7 +9042,9 @@
         "pt-BR",
         "ja-JP",
         "ko-KR",
-        "zh-CN"
+        "zh-CN",
+        "th-TH",
+        "hi-IN"
       ]
     },
     "TranscribeLanguageModelName":{
@@ -9046,6 +9052,12 @@
       "max":200,
       "min":1,
       "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "TranscribeLanguageOptions":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[a-zA-Z-,]+"
     },
     "TranscribeMedicalContentIdentificationType":{
       "type":"string",
@@ -9123,6 +9135,12 @@
         "mask",
         "tag"
       ]
+    },
+    "TranscribeVocabularyNamesOrFilterNamesString":{
+      "type":"string",
+      "max":3000,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9,-._]+"
     },
     "TranscriptionConfiguration":{
       "type":"structure",

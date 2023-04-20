@@ -353,7 +353,7 @@ func (c *Snowball) CreateClusterRequest(input *CreateClusterInput) (req *request
 //     and try again.
 //
 //   - Ec2RequestFailedException
-//     Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
+//     Your user lacks the necessary Amazon EC2 permissions to perform the attempted
 //     action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateCluster
@@ -438,9 +438,9 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //
 // Snow Family devices and their capacities.
 //
-//   - Snow Family device type: SNC1_SSD Capacity: T14 Description: Snowcone
+//   - Device type: SNC1_SSD Capacity: T14 Description: Snowcone
 //
-//   - Snow Family device type: SNC1_HDD Capacity: T8 Description: Snowcone
+//   - Device type: SNC1_HDD Capacity: T8 Description: Snowcone
 //
 //   - Device type: EDGE_S Capacity: T98 Description: Snowball Edge Storage
 //     Optimized for data transfer only
@@ -461,6 +461,12 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //   - Device type: STANDARD Capacity: T80 Description: Original Snowball device
 //     This device is only available in the Ningxia, Beijing, and Singapore Amazon
 //     Web Services Region.
+//
+//   - Device type: V3_5C Capacity: T32 Description: Snowball Edge Compute
+//     Optimized without GPU
+//
+//   - Device type: V3_5S Capacity: T240 Description: Snowball Edge Storage
+//     Optimized 210TB
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -491,7 +497,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //     five nodes.
 //
 //   - Ec2RequestFailedException
-//     Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
+//     Your user lacks the necessary Amazon EC2 permissions to perform the attempted
 //     action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateJob
@@ -1866,9 +1872,11 @@ func (c *Snowball) ListCompatibleImagesRequest(input *ListCompatibleImagesInput)
 //
 // This action returns a list of the different Amazon EC2 Amazon Machine Images
 // (AMIs) that are owned by your Amazon Web Services accountthat would be supported
-// for use on a Snow device. Currently, supported AMIs are based on the CentOS
-// 7 (x86_64) - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu
-// 16.04 LTS - Xenial (HVM) images, available on the Amazon Web Services Marketplace.
+// for use on a Snow device. Currently, supported AMIs are based on the Amazon
+// Linux-2, Ubuntu 20.04 LTS - Focal, or Ubuntu 22.04 LTS - Jammy images, available
+// on the Amazon Web Services Marketplace. Ubuntu 16.04 LTS - Xenial (HVM) images
+// are no longer supported in the Market, but still supported for use on devices
+// through Amazon EC2 VM Import/Export and running locally in AMIs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1884,7 +1892,7 @@ func (c *Snowball) ListCompatibleImagesRequest(input *ListCompatibleImagesInput)
 //     Run the operation without changing the NextToken string, and try again.
 //
 //   - Ec2RequestFailedException
-//     Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
+//     Your user lacks the necessary Amazon EC2 permissions to perform the attempted
 //     action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListCompatibleImages
@@ -2403,7 +2411,7 @@ func (c *Snowball) UpdateClusterRequest(input *UpdateClusterInput) (req *request
 //     and try again.
 //
 //   - Ec2RequestFailedException
-//     Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
+//     Your user lacks the necessary Amazon EC2 permissions to perform the attempted
 //     action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/UpdateCluster
@@ -2509,7 +2517,7 @@ func (c *Snowball) UpdateJobRequest(input *UpdateJobInput) (req *request.Request
 //     five nodes.
 //
 //   - Ec2RequestFailedException
-//     Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
+//     Your user lacks the necessary Amazon EC2 permissions to perform the attempted
 //     action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/UpdateJob
@@ -3573,9 +3581,19 @@ type CreateClusterInput struct {
 	// Data Cluster-01.
 	Description *string `min:"1" type:"string"`
 
+	// Force to create cluster when user attempts to overprovision or underprovision
+	// a cluster. A cluster is overprovisioned or underprovisioned if the initial
+	// size of the cluster is more (overprovisioned) or less (underprovisioned)
+	// than what needed to meet capacity requirement specified with OnDeviceServiceConfiguration.
+	ForceCreateJobs *bool `type:"boolean"`
+
 	// The forwarding address ID for a cluster. This field is not supported in most
 	// regions.
 	ForwardingAddressId *string `min:"40" type:"string"`
+
+	// If provided, each job will be automatically created and associated with the
+	// new cluster. If not provided, will be treated as 0.
+	InitialClusterSize *int64 `type:"integer"`
 
 	// The type of job for this cluster. Currently, the only job type supported
 	// for clusters is LOCAL_USE.
@@ -3591,6 +3609,10 @@ type CreateClusterInput struct {
 	// values are created by using the CreateKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
 	// API action in Key Management Service (KMS).
 	KmsKeyARN *string `type:"string"`
+
+	// Lists long-term pricing id that will be used to associate with jobs automatically
+	// created for the new cluster.
+	LongTermPricingIds []*string `type:"list"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) notification settings
 	// for this cluster.
@@ -3609,16 +3631,12 @@ type CreateClusterInput struct {
 
 	// The resources associated with the cluster job. These resources include Amazon
 	// S3 buckets and optional Lambda functions written in the Python language.
-	//
-	// Resources is a required field
-	Resources *JobResource `type:"structure" required:"true"`
+	Resources *JobResource `type:"structure"`
 
 	// The RoleARN that you want to associate with this cluster. RoleArn values
 	// are created by using the CreateRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
 	// API action in Identity and Access Management (IAM).
-	//
-	// RoleARN is a required field
-	RoleARN *string `type:"string" required:"true"`
+	RoleARN *string `type:"string"`
 
 	// The shipping speed for each node in this cluster. This speed doesn't dictate
 	// how soon you'll get each Snowball Edge device, rather it represents how quickly
@@ -3652,6 +3670,15 @@ type CreateClusterInput struct {
 	//
 	// ShippingOption is a required field
 	ShippingOption *string `type:"string" required:"true" enum:"ShippingOption"`
+
+	// If your job is being created in one of the US regions, you have the option
+	// of specifying what size Snow device you'd like for this job. In all other
+	// regions, Snowballs come with 80 TB in storage capacity.
+	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
+	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
 
 	// The type of Snow Family devices to use for this cluster.
 	//
@@ -3705,12 +3732,6 @@ func (s *CreateClusterInput) Validate() error {
 	if s.JobType == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobType"))
 	}
-	if s.Resources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Resources"))
-	}
-	if s.RoleARN == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
-	}
 	if s.ShippingOption == nil {
 		invalidParams.Add(request.NewErrParamRequired("ShippingOption"))
 	}
@@ -3751,9 +3772,21 @@ func (s *CreateClusterInput) SetDescription(v string) *CreateClusterInput {
 	return s
 }
 
+// SetForceCreateJobs sets the ForceCreateJobs field's value.
+func (s *CreateClusterInput) SetForceCreateJobs(v bool) *CreateClusterInput {
+	s.ForceCreateJobs = &v
+	return s
+}
+
 // SetForwardingAddressId sets the ForwardingAddressId field's value.
 func (s *CreateClusterInput) SetForwardingAddressId(v string) *CreateClusterInput {
 	s.ForwardingAddressId = &v
+	return s
+}
+
+// SetInitialClusterSize sets the InitialClusterSize field's value.
+func (s *CreateClusterInput) SetInitialClusterSize(v int64) *CreateClusterInput {
+	s.InitialClusterSize = &v
 	return s
 }
 
@@ -3766,6 +3799,12 @@ func (s *CreateClusterInput) SetJobType(v string) *CreateClusterInput {
 // SetKmsKeyARN sets the KmsKeyARN field's value.
 func (s *CreateClusterInput) SetKmsKeyARN(v string) *CreateClusterInput {
 	s.KmsKeyARN = &v
+	return s
+}
+
+// SetLongTermPricingIds sets the LongTermPricingIds field's value.
+func (s *CreateClusterInput) SetLongTermPricingIds(v []*string) *CreateClusterInput {
+	s.LongTermPricingIds = v
 	return s
 }
 
@@ -3805,6 +3844,12 @@ func (s *CreateClusterInput) SetShippingOption(v string) *CreateClusterInput {
 	return s
 }
 
+// SetSnowballCapacityPreference sets the SnowballCapacityPreference field's value.
+func (s *CreateClusterInput) SetSnowballCapacityPreference(v string) *CreateClusterInput {
+	s.SnowballCapacityPreference = &v
+	return s
+}
+
 // SetSnowballType sets the SnowballType field's value.
 func (s *CreateClusterInput) SetSnowballType(v string) *CreateClusterInput {
 	s.SnowballType = &v
@@ -3822,6 +3867,11 @@ type CreateClusterOutput struct {
 
 	// The automatically generated ID for a cluster.
 	ClusterId *string `min:"39" type:"string"`
+
+	// List of jobs created for this cluster. For syntax, see ListJobsResult$JobListEntries
+	// (https://docs.aws.amazon.com/snowball/latest/api-reference/API_ListJobs.html#API_ListJobs_ResponseSyntax)
+	// in this guide.
+	JobListEntries []*JobListEntry `type:"list"`
 }
 
 // String returns the string representation.
@@ -3845,6 +3895,12 @@ func (s CreateClusterOutput) GoString() string {
 // SetClusterId sets the ClusterId field's value.
 func (s *CreateClusterOutput) SetClusterId(v string) *CreateClusterOutput {
 	s.ClusterId = &v
+	return s
+}
+
+// SetJobListEntries sets the JobListEntries field's value.
+func (s *CreateClusterOutput) SetJobListEntries(v []*JobListEntry) *CreateClusterOutput {
+	s.JobListEntries = v
 	return s
 }
 
@@ -5071,7 +5127,7 @@ func (s *Ec2AmiResource) SetSnowballAmiId(v string) *Ec2AmiResource {
 	return s
 }
 
-// Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
+// Your user lacks the necessary Amazon EC2 permissions to perform the attempted
 // action.
 type Ec2RequestFailedException struct {
 	_            struct{}                  `type:"structure"`
@@ -7409,6 +7465,9 @@ type OnDeviceServiceConfiguration struct {
 	// Represents the NFS (Network File System) service on a Snow Family device.
 	NFSOnDeviceService *NFSOnDeviceServiceConfiguration `type:"structure"`
 
+	// Configuration for Amazon S3 compatible storage on Snow family devices.
+	S3OnDeviceService *S3OnDeviceServiceConfiguration `type:"structure"`
+
 	// Represents the Storage Gateway service Tape Gateway type on a Snow Family
 	// device.
 	TGWOnDeviceService *TGWOnDeviceServiceConfiguration `type:"structure"`
@@ -7440,6 +7499,11 @@ func (s *OnDeviceServiceConfiguration) Validate() error {
 			invalidParams.AddNested("EKSOnDeviceService", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.S3OnDeviceService != nil {
+		if err := s.S3OnDeviceService.Validate(); err != nil {
+			invalidParams.AddNested("S3OnDeviceService", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7456,6 +7520,12 @@ func (s *OnDeviceServiceConfiguration) SetEKSOnDeviceService(v *EKSOnDeviceServi
 // SetNFSOnDeviceService sets the NFSOnDeviceService field's value.
 func (s *OnDeviceServiceConfiguration) SetNFSOnDeviceService(v *NFSOnDeviceServiceConfiguration) *OnDeviceServiceConfiguration {
 	s.NFSOnDeviceService = v
+	return s
+}
+
+// SetS3OnDeviceService sets the S3OnDeviceService field's value.
+func (s *OnDeviceServiceConfiguration) SetS3OnDeviceService(v *S3OnDeviceServiceConfiguration) *OnDeviceServiceConfiguration {
+	s.S3OnDeviceService = v
 	return s
 }
 
@@ -7529,6 +7599,90 @@ func (s *ReturnShippingLabelAlreadyExistsException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ReturnShippingLabelAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Amazon S3 compatible storage on Snow family devices configuration items.
+type S3OnDeviceServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// >Fault tolerance level of the cluster. This indicates the number of nodes
+	// that can go down without degrading the performance of the cluster. This additional
+	// input helps when the specified StorageLimit matches more than one Amazon
+	// S3 compatible storage on Snow family devices service configuration.
+	FaultTolerance *int64 `min:"1" type:"integer"`
+
+	// Applicable when creating a cluster. Specifies how many nodes are needed for
+	// Amazon S3 compatible storage on Snow family devices. If specified, the other
+	// input can be omitted.
+	ServiceSize *int64 `min:"3" type:"integer"`
+
+	// If the specified storage limit value matches storage limit of one of the
+	// defined configurations, that configuration will be used. If the specified
+	// storage limit value does not match any defined configuration, the request
+	// will fail. If more than one configuration has the same storage limit as specified,
+	// the other input need to be provided.
+	StorageLimit *float64 `type:"double"`
+
+	// Storage unit. Currently the only supported unit is TB.
+	StorageUnit *string `type:"string" enum:"StorageUnit"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3OnDeviceServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3OnDeviceServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3OnDeviceServiceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3OnDeviceServiceConfiguration"}
+	if s.FaultTolerance != nil && *s.FaultTolerance < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FaultTolerance", 1))
+	}
+	if s.ServiceSize != nil && *s.ServiceSize < 3 {
+		invalidParams.Add(request.NewErrParamMinValue("ServiceSize", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFaultTolerance sets the FaultTolerance field's value.
+func (s *S3OnDeviceServiceConfiguration) SetFaultTolerance(v int64) *S3OnDeviceServiceConfiguration {
+	s.FaultTolerance = &v
+	return s
+}
+
+// SetServiceSize sets the ServiceSize field's value.
+func (s *S3OnDeviceServiceConfiguration) SetServiceSize(v int64) *S3OnDeviceServiceConfiguration {
+	s.ServiceSize = &v
+	return s
+}
+
+// SetStorageLimit sets the StorageLimit field's value.
+func (s *S3OnDeviceServiceConfiguration) SetStorageLimit(v float64) *S3OnDeviceServiceConfiguration {
+	s.StorageLimit = &v
+	return s
+}
+
+// SetStorageUnit sets the StorageUnit field's value.
+func (s *S3OnDeviceServiceConfiguration) SetStorageUnit(v string) *S3OnDeviceServiceConfiguration {
+	s.StorageUnit = &v
+	return s
 }
 
 // Each S3Resource object represents an Amazon S3 bucket that your transferred
@@ -8594,6 +8748,9 @@ const (
 
 	// CapacityNoPreference is a Capacity enum value
 	CapacityNoPreference = "NoPreference"
+
+	// CapacityT240 is a Capacity enum value
+	CapacityT240 = "T240"
 )
 
 // Capacity_Values returns all elements of the Capacity enum
@@ -8608,6 +8765,7 @@ func Capacity_Values() []string {
 		CapacityT14,
 		CapacityT32,
 		CapacityNoPreference,
+		CapacityT240,
 	}
 }
 
@@ -8741,6 +8899,9 @@ const (
 
 	// LongTermPricingTypeThreeYear is a LongTermPricingType enum value
 	LongTermPricingTypeThreeYear = "ThreeYear"
+
+	// LongTermPricingTypeOneMonth is a LongTermPricingType enum value
+	LongTermPricingTypeOneMonth = "OneMonth"
 )
 
 // LongTermPricingType_Values returns all elements of the LongTermPricingType enum
@@ -8748,6 +8909,7 @@ func LongTermPricingType_Values() []string {
 	return []string{
 		LongTermPricingTypeOneYear,
 		LongTermPricingTypeThreeYear,
+		LongTermPricingTypeOneMonth,
 	}
 }
 
@@ -8903,6 +9065,9 @@ const (
 
 	// TypeV35c is a Type enum value
 	TypeV35c = "V3_5C"
+
+	// TypeV35s is a Type enum value
+	TypeV35s = "V3_5S"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -8916,5 +9081,6 @@ func Type_Values() []string {
 		TypeSnc1Hdd,
 		TypeSnc1Ssd,
 		TypeV35c,
+		TypeV35s,
 	}
 }

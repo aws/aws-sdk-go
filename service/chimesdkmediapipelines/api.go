@@ -2058,9 +2058,8 @@ func (c *ChimeSDKMediaPipelines) UpdateMediaInsightsPipelineStatusWithContext(ct
 type AmazonTranscribeCallAnalyticsProcessorConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// By default, all CategoryEvents will be sent to the insights target. If this
-	// parameter is specified, only included categories will be sent to the insights
-	// target.
+	// By default, all CategoryEvents are sent to the insights target. If this parameter
+	// is specified, only included categories are sent to the insights target.
 	CallAnalyticsStreamCategories []*string `min:"1" type:"list"`
 
 	// Labels all personally identifiable information (PII) identified in your transcript.
@@ -2398,7 +2397,8 @@ type AmazonTranscribeProcessorConfiguration struct {
 	// BANK_ROUTING, CREDIT_DEBIT_CVV, CREDIT_DEBIT_EXPIRY, CREDIT_DEBIT_NUMBER,
 	// EMAIL, NAME, PHONE, PIN, SSN, or ALL.
 	//
-	// Length Constraints: Minimum length of 1. Maximum length of 300.
+	// If you leave this parameter empty, the default behavior is equivalent to
+	// ALL.
 	PiiEntityTypes *string `min:"1" type:"string"`
 
 	// Enables speaker partitioning (diarization) in your transcription output.
@@ -5371,7 +5371,7 @@ func (s *KeywordMatchConfiguration) SetRuleName(v string) *KeywordMatchConfigura
 type KinesisDataStreamSinkConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the sink, https://aws.amazon.com/kinesis/data-streams/ (https://aws.amazon.com/kinesis/data-streams/).
+	// The ARN of the sink.
 	//
 	// InsightsTarget is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by KinesisDataStreamSinkConfiguration's
@@ -5602,7 +5602,7 @@ func (s *KinesisVideoStreamSourceRuntimeConfiguration) SetStreams(v []*StreamCon
 type LambdaFunctionSinkConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the sink, https://aws.amazon.com/kinesis/data-streams/ (https://aws.amazon.com/kinesis/data-streams/).
+	// The ARN of the sink.
 	//
 	// InsightsTarget is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by LambdaFunctionSinkConfiguration's
@@ -7280,7 +7280,16 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The settings for a post-call voice analytics task.
+// Allows you to specify additional settings for your Call Analytics post-call
+// request, including output locations for your redacted transcript, which IAM
+// role to use, and which encryption key to use.
+//
+// DataAccessRoleArn and OutputLocation are required fields.
+//
+// PostCallAnalyticsSettings provides the same insights as a Call Analytics
+// post-call transcription. For more information, refer to Post-call analytics
+// with real-time transcriptions (https://docs.aws.amazon.com/transcribe/latest/dg/tca-post-call.html)
+// in the Amazon Transcribe Developer Guide.
 type PostCallAnalyticsSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -7295,7 +7304,7 @@ type PostCallAnalyticsSettings struct {
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `type:"string" required:"true"`
 
-	// The ID of the KMS (Key Management System) key used to encrypt the output.
+	// The ID of the KMS (Key Management Service) key used to encrypt the output.
 	OutputEncryptionKMSKeyId *string `type:"string"`
 
 	// The URL of the Amazon S3 bucket that contains the post-call data.
@@ -7362,7 +7371,7 @@ func (s *PostCallAnalyticsSettings) SetOutputLocation(v string) *PostCallAnalyti
 	return s
 }
 
-// Defines the configuration for a presenter only video tile.
+// Defines the configuration for a presenter-only video tile.
 type PresenterOnlyConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7548,7 +7557,7 @@ func (s *RealTimeAlertRule) SetType(v string) *RealTimeAlertRule {
 	return s
 }
 
-// A structure the holds the settings for recording audio and video.
+// A structure that holds the settings for recording media.
 type RecordingStreamConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7716,17 +7725,21 @@ func (s *S3BucketSinkConfiguration) SetDestination(v string) *S3BucketSinkConfig
 	return s
 }
 
-// The structure that holds the settings for transmitting audio and video to
-// the Amazon S3 bucket.
+// The structure that holds the settings for transmitting media to the Amazon
+// S3 bucket. These values are used as defaults if S3RecordingSinkRuntimeConfiguration
+// is not specified.
 type S3RecordingSinkConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the Amazon S3 bucket used as the recording sink.
+	// The default URI of the Amazon S3 bucket used as the recording sink.
 	//
 	// Destination is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by S3RecordingSinkConfiguration's
 	// String and GoString methods.
 	Destination *string `min:"1" type:"string" sensitive:"true"`
+
+	// The default file format for the media files sent to the Amazon S3 bucket.
+	RecordingFileFormat *string `type:"string" enum:"RecordingFileFormat"`
 }
 
 // String returns the string representation.
@@ -7766,12 +7779,19 @@ func (s *S3RecordingSinkConfiguration) SetDestination(v string) *S3RecordingSink
 	return s
 }
 
-// A structure that holds the settings for transmitting audio and video recordings
-// to the runtime Amazon S3 bucket.
+// SetRecordingFileFormat sets the RecordingFileFormat field's value.
+func (s *S3RecordingSinkConfiguration) SetRecordingFileFormat(v string) *S3RecordingSinkConfiguration {
+	s.RecordingFileFormat = &v
+	return s
+}
+
+// A structure that holds the settings for transmitting media files to the Amazon
+// S3 bucket. If specified, the settings in this structure override any settings
+// in S3RecordingSinkConfiguration.
 type S3RecordingSinkRuntimeConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the S3 bucket used as the runtime sink.
+	// The URI of the S3 bucket used as the sink.
 	//
 	// Destination is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by S3RecordingSinkRuntimeConfiguration's
@@ -7780,7 +7800,7 @@ type S3RecordingSinkRuntimeConfiguration struct {
 	// Destination is a required field
 	Destination *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The file formats for the audio and video files sent to the Amazon S3 bucket.
+	// The file format for the media files sent to the Amazon S3 bucket.
 	//
 	// RecordingFileFormat is a required field
 	RecordingFileFormat *string `type:"string" required:"true" enum:"RecordingFileFormat"`
@@ -8117,7 +8137,7 @@ func (s *ServiceUnavailableException) RequestID() string {
 type SnsTopicSinkConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the SNS sink, https://aws.amazon.com/kinesis/data-streams/ (https://aws.amazon.com/kinesis/data-streams/).
+	// The ARN of the SNS sink.
 	//
 	// InsightsTarget is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SnsTopicSinkConfiguration's
@@ -8210,11 +8230,11 @@ func (s *SourceConfiguration) SetSelectedVideoStreams(v *SelectedVideoStreams) *
 	return s
 }
 
-// The URL of the SQS sink.
+// The configuration settings for the SQS sink.
 type SqsQueueSinkConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the SQS sink, https://aws.amazon.com/kinesis/data-streams/ (https://aws.amazon.com/kinesis/data-streams/).
+	// The ARN of the SQS sink.
 	//
 	// InsightsTarget is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SqsQueueSinkConfiguration's

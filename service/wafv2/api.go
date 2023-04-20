@@ -288,6 +288,119 @@ func (c *WAFV2) CheckCapacityWithContext(ctx aws.Context, input *CheckCapacityIn
 	return out, req.Send()
 }
 
+const opCreateAPIKey = "CreateAPIKey"
+
+// CreateAPIKeyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAPIKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAPIKey for more information on using the CreateAPIKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAPIKeyRequest method.
+//	req, resp := client.CreateAPIKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateAPIKey
+func (c *WAFV2) CreateAPIKeyRequest(input *CreateAPIKeyInput) (req *request.Request, output *CreateAPIKeyOutput) {
+	op := &request.Operation{
+		Name:       opCreateAPIKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateAPIKeyInput{}
+	}
+
+	output = &CreateAPIKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAPIKey API operation for AWS WAFV2.
+//
+// Creates an API key for use in the integration of the CAPTCHA API in your
+// JavaScript client applications. The integration lets you customize the placement
+// and characteristics of the CAPTCHA puzzle for your end users. For more information
+// about the CAPTCHA JavaScript integration, see WAF client application integration
+// (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+//
+// The CAPTCHA API requires a key that authorizes CAPTCHA use from the client
+// application domain. You can use a single key for up to 5 domains. After you
+// generate a key, you can copy it for use in your JavaScript integration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation CreateAPIKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateAPIKey
+func (c *WAFV2) CreateAPIKey(input *CreateAPIKeyInput) (*CreateAPIKeyOutput, error) {
+	req, out := c.CreateAPIKeyRequest(input)
+	return out, req.Send()
+}
+
+// CreateAPIKeyWithContext is the same as CreateAPIKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAPIKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) CreateAPIKeyWithContext(ctx aws.Context, input *CreateAPIKeyInput, opts ...request.Option) (*CreateAPIKeyOutput, error) {
+	req, out := c.CreateAPIKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIPSet = "CreateIPSet"
 
 // CreateIPSetRequest generates a "aws/request.Request" representing the
@@ -2014,6 +2127,109 @@ func (c *WAFV2) GenerateMobileSdkReleaseUrlWithContext(ctx aws.Context, input *G
 	return out, req.Send()
 }
 
+const opGetDecryptedAPIKey = "GetDecryptedAPIKey"
+
+// GetDecryptedAPIKeyRequest generates a "aws/request.Request" representing the
+// client's request for the GetDecryptedAPIKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDecryptedAPIKey for more information on using the GetDecryptedAPIKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDecryptedAPIKeyRequest method.
+//	req, resp := client.GetDecryptedAPIKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetDecryptedAPIKey
+func (c *WAFV2) GetDecryptedAPIKeyRequest(input *GetDecryptedAPIKeyInput) (req *request.Request, output *GetDecryptedAPIKeyOutput) {
+	op := &request.Operation{
+		Name:       opGetDecryptedAPIKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDecryptedAPIKeyInput{}
+	}
+
+	output = &GetDecryptedAPIKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDecryptedAPIKey API operation for AWS WAFV2.
+//
+// Returns your API key in decrypted form. Use this to check the token domains
+// that you have defined for the key.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GetDecryptedAPIKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFInvalidResourceException
+//     WAF couldn’t perform the operation because the resource that you requested
+//     isn’t valid. Check the resource, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetDecryptedAPIKey
+func (c *WAFV2) GetDecryptedAPIKey(input *GetDecryptedAPIKeyInput) (*GetDecryptedAPIKeyOutput, error) {
+	req, out := c.GetDecryptedAPIKeyRequest(input)
+	return out, req.Send()
+}
+
+// GetDecryptedAPIKeyWithContext is the same as GetDecryptedAPIKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDecryptedAPIKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GetDecryptedAPIKeyWithContext(ctx aws.Context, input *GetDecryptedAPIKeyInput, opts ...request.Option) (*GetDecryptedAPIKeyOutput, error) {
+	req, out := c.GetDecryptedAPIKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetIPSet = "GetIPSet"
 
 // GetIPSetRequest generates a "aws/request.Request" representing the
@@ -3196,6 +3412,108 @@ func (c *WAFV2) GetWebACLForResource(input *GetWebACLForResourceInput) (*GetWebA
 // for more information on using Contexts.
 func (c *WAFV2) GetWebACLForResourceWithContext(ctx aws.Context, input *GetWebACLForResourceInput, opts ...request.Option) (*GetWebACLForResourceOutput, error) {
 	req, out := c.GetWebACLForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListAPIKeys = "ListAPIKeys"
+
+// ListAPIKeysRequest generates a "aws/request.Request" representing the
+// client's request for the ListAPIKeys operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAPIKeys for more information on using the ListAPIKeys
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAPIKeysRequest method.
+//	req, resp := client.ListAPIKeysRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAPIKeys
+func (c *WAFV2) ListAPIKeysRequest(input *ListAPIKeysInput) (req *request.Request, output *ListAPIKeysOutput) {
+	op := &request.Operation{
+		Name:       opListAPIKeys,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListAPIKeysInput{}
+	}
+
+	output = &ListAPIKeysOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAPIKeys API operation for AWS WAFV2.
+//
+// Retrieves a list of the API keys that you've defined for the specified scope.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListAPIKeys for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFInvalidResourceException
+//     WAF couldn’t perform the operation because the resource that you requested
+//     isn’t valid. Check the resource, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAPIKeys
+func (c *WAFV2) ListAPIKeys(input *ListAPIKeysInput) (*ListAPIKeysOutput, error) {
+	req, out := c.ListAPIKeysRequest(input)
+	return out, req.Send()
+}
+
+// ListAPIKeysWithContext is the same as ListAPIKeys with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAPIKeys for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListAPIKeysWithContext(ctx aws.Context, input *ListAPIKeysInput, opts ...request.Option) (*ListAPIKeysOutput, error) {
+	req, out := c.ListAPIKeysRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5779,6 +6097,70 @@ func (c *WAFV2) UpdateWebACLWithContext(ctx aws.Context, input *UpdateWebACLInpu
 	return out, req.Send()
 }
 
+// Information for a single API key.
+type APIKeySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The generated, encrypted API key. You can copy this for use in your JavaScript
+	// CAPTCHA integration.
+	//
+	// For information about how to use this in your CAPTCHA JavaScript integration,
+	// see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// in the WAF Developer Guide.
+	APIKey *string `min:"1" type:"string"`
+
+	// The date and time that the key was created.
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// The token domains that are defined in this API key.
+	TokenDomains []*string `type:"list"`
+
+	// Internal value used by WAF to manage the key.
+	Version *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s APIKeySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s APIKeySummary) GoString() string {
+	return s.String()
+}
+
+// SetAPIKey sets the APIKey field's value.
+func (s *APIKeySummary) SetAPIKey(v string) *APIKeySummary {
+	s.APIKey = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *APIKeySummary) SetCreationTimestamp(v time.Time) *APIKeySummary {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *APIKeySummary) SetTokenDomains(v []*string) *APIKeySummary {
+	s.TokenDomains = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *APIKeySummary) SetVersion(v int64) *APIKeySummary {
+	s.Version = &v
+	return s
+}
+
 // Details for your use of the account takeover prevention managed rule group,
 // AWSManagedRulesATPRuleSet. This configuration is used in ManagedRuleGroupConfig.
 type AWSManagedRulesATPRuleSet struct {
@@ -7367,6 +7749,116 @@ func (s *CountAction) Validate() error {
 // SetCustomRequestHandling sets the CustomRequestHandling field's value.
 func (s *CountAction) SetCustomRequestHandling(v *CustomRequestHandling) *CountAction {
 	s.CustomRequestHandling = v
+	return s
+}
+
+type CreateAPIKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
+	// Cognito user pool, or an App Runner service.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The client application domains that you want to use this API key for.
+	//
+	// TokenDomains is a required field
+	TokenDomains []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAPIKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAPIKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAPIKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAPIKeyInput"}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.TokenDomains == nil {
+		invalidParams.Add(request.NewErrParamRequired("TokenDomains"))
+	}
+	if s.TokenDomains != nil && len(s.TokenDomains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TokenDomains", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScope sets the Scope field's value.
+func (s *CreateAPIKeyInput) SetScope(v string) *CreateAPIKeyInput {
+	s.Scope = &v
+	return s
+}
+
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *CreateAPIKeyInput) SetTokenDomains(v []*string) *CreateAPIKeyInput {
+	s.TokenDomains = v
+	return s
+}
+
+type CreateAPIKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The generated, encrypted API key. You can copy this for use in your JavaScript
+	// CAPTCHA integration.
+	//
+	// For information about how to use this in your CAPTCHA JavaScript integration,
+	// see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// in the WAF Developer Guide.
+	APIKey *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAPIKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAPIKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPIKey sets the APIKey field's value.
+func (s *CreateAPIKeyOutput) SetAPIKey(v string) *CreateAPIKeyOutput {
+	s.APIKey = &v
 	return s
 }
 
@@ -10577,6 +11069,120 @@ func (s *GeoMatchStatement) SetForwardedIPConfig(v *ForwardedIPConfig) *GeoMatch
 	return s
 }
 
+type GetDecryptedAPIKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The encrypted API key.
+	//
+	// APIKey is a required field
+	APIKey *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
+	// Cognito user pool, or an App Runner service.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDecryptedAPIKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDecryptedAPIKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDecryptedAPIKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDecryptedAPIKeyInput"}
+	if s.APIKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("APIKey"))
+	}
+	if s.APIKey != nil && len(*s.APIKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("APIKey", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAPIKey sets the APIKey field's value.
+func (s *GetDecryptedAPIKeyInput) SetAPIKey(v string) *GetDecryptedAPIKeyInput {
+	s.APIKey = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *GetDecryptedAPIKeyInput) SetScope(v string) *GetDecryptedAPIKeyInput {
+	s.Scope = &v
+	return s
+}
+
+type GetDecryptedAPIKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the key was created.
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// The token domains that are defined in this API key.
+	TokenDomains []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDecryptedAPIKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDecryptedAPIKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *GetDecryptedAPIKeyOutput) SetCreationTimestamp(v time.Time) *GetDecryptedAPIKeyOutput {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *GetDecryptedAPIKeyOutput) SetTokenDomains(v []*string) *GetDecryptedAPIKeyOutput {
+	s.TokenDomains = v
+	return s
+}
+
 type GetIPSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13239,6 +13845,149 @@ func (s *LabelSummary) SetName(v string) *LabelSummary {
 	return s
 }
 
+type ListAPIKeysInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
+	// Cognito user pool, or an App Runner service.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAPIKeysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAPIKeysInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAPIKeysInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAPIKeysInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListAPIKeysInput) SetLimit(v int64) *ListAPIKeysInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListAPIKeysInput) SetNextMarker(v string) *ListAPIKeysInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListAPIKeysInput) SetScope(v string) *ListAPIKeysInput {
+	s.Scope = &v
+	return s
+}
+
+type ListAPIKeysOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The array of key summaries. If you specified a Limit in your request, this
+	// might not be the full list.
+	APIKeySummaries []*APIKeySummary `type:"list"`
+
+	// The CAPTCHA application integration URL, for use in your JavaScript implementation.
+	//
+	// For information about how to use this in your CAPTCHA JavaScript integration,
+	// see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// in the WAF Developer Guide.
+	ApplicationIntegrationURL *string `type:"string"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAPIKeysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAPIKeysOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPIKeySummaries sets the APIKeySummaries field's value.
+func (s *ListAPIKeysOutput) SetAPIKeySummaries(v []*APIKeySummary) *ListAPIKeysOutput {
+	s.APIKeySummaries = v
+	return s
+}
+
+// SetApplicationIntegrationURL sets the ApplicationIntegrationURL field's value.
+func (s *ListAPIKeysOutput) SetApplicationIntegrationURL(v string) *ListAPIKeysOutput {
+	s.ApplicationIntegrationURL = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListAPIKeysOutput) SetNextMarker(v string) *ListAPIKeysOutput {
+	s.NextMarker = &v
+	return s
+}
+
 type ListAvailableManagedRuleGroupVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13374,7 +14123,8 @@ type ListAvailableManagedRuleGroupVersionsOutput struct {
 	NextMarker *string `min:"1" type:"string"`
 
 	// The versions that are currently available for the specified managed rule
-	// group.
+	// group. If you specified a Limit in your request, this might not be the full
+	// list.
 	Versions []*ManagedRuleGroupVersion `type:"list"`
 }
 
@@ -13503,6 +14253,8 @@ func (s *ListAvailableManagedRuleGroupsInput) SetScope(v string) *ListAvailableM
 type ListAvailableManagedRuleGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Array of managed rule groups that you can use. If you specified a Limit in
+	// your request, this might not be the full list.
 	ManagedRuleGroups []*ManagedRuleGroupSummary `type:"list"`
 
 	// When you request a list of objects with a Limit setting, if the number of
@@ -13631,8 +14383,8 @@ func (s *ListIPSetsInput) SetScope(v string) *ListIPSetsInput {
 type ListIPSetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Array of IPSets. This may not be the full list of IPSets that you have defined.
-	// See the Limit specification for this request.
+	// Array of IPSets. If you specified a Limit in your request, this might not
+	// be the full list.
 	IPSets []*IPSetSummary `type:"list"`
 
 	// When you request a list of objects with a Limit setting, if the number of
@@ -13761,6 +14513,8 @@ func (s *ListLoggingConfigurationsInput) SetScope(v string) *ListLoggingConfigur
 type ListLoggingConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Array of logging configurations. If you specified a Limit in your request,
+	// this might not be the full list.
 	LoggingConfigurations []*LoggingConfiguration `type:"list"`
 
 	// When you request a list of objects with a Limit setting, if the number of
@@ -13889,7 +14643,8 @@ func (s *ListManagedRuleSetsInput) SetScope(v string) *ListManagedRuleSetsInput 
 type ListManagedRuleSetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Your managed rule sets.
+	// Your managed rule sets. If you specified a Limit in your request, this might
+	// not be the full list.
 	ManagedRuleSets []*ManagedRuleSetSummary `type:"list"`
 
 	// When you request a list of objects with a Limit setting, if the number of
@@ -14013,7 +14768,8 @@ type ListMobileSdkReleasesOutput struct {
 	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// High level information for the available SDK releases.
+	// The high level information for the available SDK releases. If you specified
+	// a Limit in your request, this might not be the full list.
 	ReleaseSummaries []*ReleaseSummary `type:"list"`
 }
 
@@ -14142,6 +14898,8 @@ type ListRegexPatternSetsOutput struct {
 	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
+	// Array of regex pattern sets. If you specified a Limit in your request, this
+	// might not be the full list.
 	RegexPatternSets []*RegexPatternSetSummary `type:"list"`
 }
 
@@ -14365,6 +15123,8 @@ type ListRuleGroupsOutput struct {
 	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
+	// Array of rule groups. If you specified a Limit in your request, this might
+	// not be the full list.
 	RuleGroups []*RuleGroupSummary `type:"list"`
 }
 
@@ -14485,7 +15245,8 @@ type ListTagsForResourceOutput struct {
 	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// The collection of tagging definitions for the resource.
+	// The collection of tagging definitions for the resource. If you specified
+	// a Limit in your request, this might not be the full list.
 	TagInfoForResource *TagInfoForResource `type:"structure"`
 }
 
@@ -14614,6 +15375,8 @@ type ListWebACLsOutput struct {
 	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
+	// Array of web ACLs. If you specified a Limit in your request, this might not
+	// be the full list.
 	WebACLs []*WebACLSummary `type:"list"`
 }
 
