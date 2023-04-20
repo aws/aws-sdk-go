@@ -49,6 +49,21 @@
         {"shape":"WAFInvalidOperationException"}
       ]
     },
+    "CreateAPIKey":{
+      "name":"CreateAPIKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAPIKeyRequest"},
+      "output":{"shape":"CreateAPIKeyResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFLimitsExceededException"}
+      ]
+    },
     "CreateIPSet":{
       "name":"CreateIPSet",
       "http":{
@@ -303,6 +318,21 @@
         {"shape":"WAFInvalidOperationException"}
       ]
     },
+    "GetDecryptedAPIKey":{
+      "name":"GetDecryptedAPIKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDecryptedAPIKeyRequest"},
+      "output":{"shape":"GetDecryptedAPIKeyResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFInvalidResourceException"}
+      ]
+    },
     "GetIPSet":{
       "name":"GetIPSet",
       "http":{
@@ -465,6 +495,21 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "ListAPIKeys":{
+      "name":"ListAPIKeys",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAPIKeysRequest"},
+      "output":{"shape":"ListAPIKeysResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFInvalidResourceException"}
       ]
     },
     "ListAvailableManagedRuleGroupVersions":{
@@ -809,6 +854,34 @@
     }
   },
   "shapes":{
+    "APIKey":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "APIKeySummaries":{
+      "type":"list",
+      "member":{"shape":"APIKeySummary"}
+    },
+    "APIKeySummary":{
+      "type":"structure",
+      "members":{
+        "TokenDomains":{"shape":"TokenDomains"},
+        "APIKey":{"shape":"APIKey"},
+        "CreationTimestamp":{"shape":"Timestamp"},
+        "Version":{"shape":"APIKeyVersion"}
+      }
+    },
+    "APIKeyTokenDomains":{
+      "type":"list",
+      "member":{"shape":"TokenDomain"},
+      "min":1
+    },
+    "APIKeyVersion":{
+      "type":"integer",
+      "min":0
+    },
     "AWSManagedRulesATPRuleSet":{
       "type":"structure",
       "required":["LoginPath"],
@@ -1310,6 +1383,23 @@
       "type":"list",
       "member":{"shape":"CountryCode"},
       "min":1
+    },
+    "CreateAPIKeyRequest":{
+      "type":"structure",
+      "required":[
+        "Scope",
+        "TokenDomains"
+      ],
+      "members":{
+        "Scope":{"shape":"Scope"},
+        "TokenDomains":{"shape":"APIKeyTokenDomains"}
+      }
+    },
+    "CreateAPIKeyResponse":{
+      "type":"structure",
+      "members":{
+        "APIKey":{"shape":"APIKey"}
+      }
     },
     "CreateIPSetRequest":{
       "type":"structure",
@@ -1832,6 +1922,24 @@
         "ForwardedIPConfig":{"shape":"ForwardedIPConfig"}
       }
     },
+    "GetDecryptedAPIKeyRequest":{
+      "type":"structure",
+      "required":[
+        "Scope",
+        "APIKey"
+      ],
+      "members":{
+        "Scope":{"shape":"Scope"},
+        "APIKey":{"shape":"APIKey"}
+      }
+    },
+    "GetDecryptedAPIKeyResponse":{
+      "type":"structure",
+      "members":{
+        "TokenDomains":{"shape":"TokenDomains"},
+        "CreationTimestamp":{"shape":"Timestamp"}
+      }
+    },
     "GetIPSetRequest":{
       "type":"structure",
       "required":[
@@ -2267,6 +2375,23 @@
     "Labels":{
       "type":"list",
       "member":{"shape":"Label"}
+    },
+    "ListAPIKeysRequest":{
+      "type":"structure",
+      "required":["Scope"],
+      "members":{
+        "Scope":{"shape":"Scope"},
+        "NextMarker":{"shape":"NextMarker"},
+        "Limit":{"shape":"PaginationLimit"}
+      }
+    },
+    "ListAPIKeysResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"NextMarker"},
+        "APIKeySummaries":{"shape":"APIKeySummaries"},
+        "ApplicationIntegrationURL":{"shape":"OutputUrl"}
+      }
     },
     "ListAvailableManagedRuleGroupVersionsRequest":{
       "type":"structure",

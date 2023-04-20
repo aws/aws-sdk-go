@@ -1584,7 +1584,8 @@
     "S3RecordingSinkConfiguration":{
       "type":"structure",
       "members":{
-        "Destination":{"shape":"Arn"}
+        "Destination":{"shape":"Arn"},
+        "RecordingFileFormat":{"shape":"RecordingFileFormat"}
       }
     },
     "S3RecordingSinkRuntimeConfiguration":{

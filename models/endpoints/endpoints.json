@@ -7433,6 +7433,7 @@
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ap-southeast-3" : { },
+          "ap-southeast-4" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-central-2" : { },
@@ -9032,6 +9033,12 @@
             },
             "deprecated" : true,
             "hostname" : "kms-fips.eu-west-3.amazonaws.com"
+          },
+          "il-central-1-fips" : {
+            "credentialScope" : {
+              "region" : "il-central-1"
+            },
+            "hostname" : "kms-fips.il-central-1.amazonaws.com"
           },
           "me-central-1" : {
             "variants" : [ {

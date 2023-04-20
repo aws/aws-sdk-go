@@ -111,7 +111,8 @@
         {"shape":"NotFoundException"},
         {"shape":"InvalidFleetStatusException"},
         {"shape":"UnsupportedRegionException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "CreateGameServerGroup":{
@@ -4366,7 +4367,8 @@
       "enum":[
         "WINDOWS_2012",
         "AMAZON_LINUX",
-        "AMAZON_LINUX_2"
+        "AMAZON_LINUX_2",
+        "WINDOWS_2016"
       ]
     },
     "OutOfCapacityException":{

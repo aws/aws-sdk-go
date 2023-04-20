@@ -1,3 +1,23 @@
+Release v1.44.247 (2023-04-20)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Adds support for Hindi and Thai languages and additional Amazon Transcribe parameters to the StartMeetingTranscription API.
+* `service/chime-sdk-media-pipelines`: Updates service API and documentation
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift supports creating Builds for Windows 2016 operating system.
+* `service/guardduty`: Updates service API and documentation
+  * This release adds support for the new Lambda Protection feature.
+* `service/iot`: Updates service API and paginators
+  * Support additional OTA states in GetOTAUpdate API
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Canvas adds ModelRegisterSettings support for CanvasAppSettings.
+* `service/snowball`: Updates service API and documentation
+  * Adds support for Amazon S3 compatible storage. AWS Snow Family customers can now use Amazon S3 compatible storage on Snowball Edge devices. Also adds support for V3_5S. This is a refreshed AWS Snowball Edge Storage Optimized device type with 210TB SSD (customer usable).
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.246 (2023-04-19)
 ===
 

@@ -144,6 +144,12 @@
       "output_token": "nextToken",
       "result_key": "jobs"
     },
+    "ListManagedJobTemplates": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "managedJobTemplates"
+    },
     "ListMetricValues": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
@@ -203,6 +209,12 @@
       "limit_key": "maxResults",
       "output_token": "nextToken",
       "result_key": "templates"
+    },
+    "ListRelatedResourcesForAuditFinding": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "relatedResources"
     },
     "ListRoleAliases": {
       "input_token": "marker",

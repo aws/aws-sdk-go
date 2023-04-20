@@ -1576,6 +1576,12 @@
         "KubernetesDetails$KubernetesWorkloadDetails": "<p>Details about the Kubernetes workload involved in a Kubernetes finding.</p>"
       }
     },
+    "LambdaDetails": {
+      "base": "<p>Information about the Lambda function involved in the finding.</p>",
+      "refs": {
+        "Resource$LambdaDetails": "<p>Contains information about the Lambda function that was involved in a finding.</p>"
+      }
+    },
     "Lineage": {
       "base": null,
       "refs": {
@@ -2409,7 +2415,8 @@
     "SecurityGroups": {
       "base": null,
       "refs": {
-        "NetworkInterface$SecurityGroups": "<p>The security groups associated with the EC2 instance.</p>"
+        "NetworkInterface$SecurityGroups": "<p>The security groups associated with the EC2 instance.</p>",
+        "VpcConfig$SecurityGroups": "<p>The identifier of the security group attached to the Lambda function.</p>"
       }
     },
     "Service": {
@@ -2598,6 +2605,12 @@
         "KubernetesWorkloadDetails$Type": "<p>Kubernetes workload type (e.g. Pod, Deployment, etc.).</p>",
         "KubernetesWorkloadDetails$Uid": "<p>Kubernetes workload ID.</p>",
         "KubernetesWorkloadDetails$Namespace": "<p>Kubernetes namespace that the workload is part of.</p>",
+        "LambdaDetails$FunctionArn": "<p>Amazon Resource Name (ARN) of the Lambda function.</p>",
+        "LambdaDetails$FunctionName": "<p>Name of the Lambda function.</p>",
+        "LambdaDetails$Description": "<p>Description of the Lambda function.</p>",
+        "LambdaDetails$RevisionId": "<p>The revision ID of the Lambda function version.</p>",
+        "LambdaDetails$FunctionVersion": "<p>The version of the Lambda function.</p>",
+        "LambdaDetails$Role": "<p>The execution role of the Lambda function.</p>",
         "LineageObject$Name": "<p>The name of the process.</p>",
         "LineageObject$Uuid": "<p>The unique ID assigned to the process by GuardDuty.</p>",
         "LineageObject$ExecutablePath": "<p>The absolute path of the process executable file.</p>",
@@ -2716,6 +2729,7 @@
         "SortCriteria$AttributeName": "<p>Represents the finding attribute, such as <code>accountId</code>, that sorts the findings.</p>",
         "SourceIps$member": null,
         "Sources$member": null,
+        "SubnetIds$member": null,
         "Tag$Key": "<p>The EC2 instance tag key.</p>",
         "Tag$Value": "<p>The EC2 instance tag value.</p>",
         "ThreatIntelSetIds$member": null,
@@ -2738,7 +2752,14 @@
         "VolumeDetail$SnapshotArn": "<p>Snapshot Arn of the EBS volume.</p>",
         "VolumeDetail$KmsKeyArn": "<p>KMS key Arn used to encrypt the EBS volume.</p>",
         "VolumeMount$Name": "<p>Volume mount name.</p>",
-        "VolumeMount$MountPath": "<p>Volume mount path.</p>"
+        "VolumeMount$MountPath": "<p>Volume mount path.</p>",
+        "VpcConfig$VpcId": "<p>The identifier of the Amazon Virtual Private Cloud.</p>"
+      }
+    },
+    "SubnetIds": {
+      "base": null,
+      "refs": {
+        "VpcConfig$SubnetIds": "<p>The identifiers of the subnets that are associated with your Lambda function.</p>"
       }
     },
     "Tag": {
@@ -2800,6 +2821,7 @@
         "EcsTaskDetails$Tags": "<p>The tags of the ECS Task.</p>",
         "EksClusterDetails$Tags": "<p>The EKS cluster tags.</p>",
         "InstanceDetails$Tags": "<p>The tags of the EC2 instance.</p>",
+        "LambdaDetails$Tags": "<p>A list of tags attached to this resource, listed in the format of <code>key</code>:<code>value</code> pair.</p>",
         "RdsDbInstanceDetails$Tags": "<p>Instance tag key-value pairs associated with the database instance ID.</p>",
         "S3BucketDetail$Tags": "<p>All tags attached to the S3 bucket</p>"
       }
@@ -2864,6 +2886,7 @@
         "EcsTaskDetails$TaskCreatedAt": "<p>The Unix timestamp for the time when the task was created.</p>",
         "EcsTaskDetails$StartedAt": "<p>The Unix timestamp for the time when the task started.</p>",
         "EksClusterDetails$CreatedAt": "<p>The timestamp when the EKS cluster was created.</p>",
+        "LambdaDetails$LastModifiedAt": "<p>The timestamp when the Lambda function was last modified. This field is in the UTC date string format <code>(2023-03-22T19:37:20.168Z)</code>.</p>",
         "LineageObject$StartTime": "<p>The time when the process started. This is in UTC format.</p>",
         "MemberAdditionalConfigurationResult$UpdatedAt": "<p>The timestamp at which the additional configuration was set for the member account. This is in UTC format.</p>",
         "MemberFeaturesConfigurationResult$UpdatedAt": "<p>The timestamp at which the feature object was updated.</p>",
@@ -3145,6 +3168,12 @@
       "refs": {
         "EcsTaskDetails$Volumes": "<p>The list of data volume definitions for the task.</p>",
         "KubernetesWorkloadDetails$Volumes": "<p>Volumes used by the Kubernetes workload.</p>"
+      }
+    },
+    "VpcConfig": {
+      "base": "<p>Amazon Virtual Private Cloud configuration details associated with your Lambda function.</p>",
+      "refs": {
+        "LambdaDetails$VpcConfig": "<p>Amazon Virtual Private Cloud configuration details associated with your Lambda function.</p>"
       }
     }
   }
