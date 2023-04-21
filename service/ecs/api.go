@@ -15367,6 +15367,9 @@ type LinuxParameters struct {
 	//
 	// If you're using tasks that use the Fargate launch type, the maxSwap parameter
 	// isn't supported.
+	//
+	// If you're using tasks on Amazon Linux 2023 the swappiness parameter isn't
+	// supported.
 	MaxSwap *int64 `locationName:"maxSwap" type:"integer"`
 
 	// The value for the size (in MiB) of the /dev/shm volume. This parameter maps
@@ -15386,6 +15389,9 @@ type LinuxParameters struct {
 	//
 	// If you're using tasks that use the Fargate launch type, the swappiness parameter
 	// isn't supported.
+	//
+	// If you're using tasks on Amazon Linux 2023 the swappiness parameter isn't
+	// supported.
 	Swappiness *int64 `locationName:"swappiness" type:"integer"`
 
 	// The container path, mount options, and size (in MiB) of the tmpfs mount.
@@ -18042,6 +18048,13 @@ func (s *PlatformUnknownException) RequestID() string {
 // the exposed ports using containerPort. The hostPort can be left blank or
 // it must be the same value as the containerPort.
 //
+// Most fields of this parameter (containerPort, hostPort, protocol) maps to
+// PortBindings in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
+// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
+// and the --publish option to docker run (https://docs.docker.com/engine/reference/commandline/run/).
+// If the network mode of a task definition is set to host, host ports must
+// either be undefined or match the container port in the port mapping.
+//
 // You can't expose the same container port for multiple protocols. If you attempt
 // this, an error is returned.
 //
@@ -18407,7 +18420,7 @@ type PutAccountSettingDefaultInput struct {
 	// When you specify fargateFIPSMode for the name and enabled for the value,
 	// Fargate uses FIPS-140 compliant cryptographic algorithms on your tasks. For
 	// more information about FIPS-140 compliance with Fargate, see Amazon Web Services
-	// Fargate Federal Information Processing Standard (FIPS) 140-2 compliance (https://docs.aws.amazon.com/AWSEC2ContainerServiceDocs/build/server-root/AmazonECS/latest/developerguide/ecs-fips-compliance.html)
+	// Fargate Federal Information Processing Standard (FIPS) 140-2 compliance (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-fips-compliance.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
 	// Name is a required field

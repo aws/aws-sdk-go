@@ -1,3 +1,12 @@
+Release v1.44.248 (2023-04-21)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * Documentation update to address various Amazon ECS tickets.
+* `service/fms`: Updates service API, documentation, and paginators
+
 Release v1.44.247 (2023-04-20)
 ===
 

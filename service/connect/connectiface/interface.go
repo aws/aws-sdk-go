@@ -128,6 +128,10 @@ type ConnectAPI interface {
 	CreateIntegrationAssociationWithContext(aws.Context, *connect.CreateIntegrationAssociationInput, ...request.Option) (*connect.CreateIntegrationAssociationOutput, error)
 	CreateIntegrationAssociationRequest(*connect.CreateIntegrationAssociationInput) (*request.Request, *connect.CreateIntegrationAssociationOutput)
 
+	CreateParticipant(*connect.CreateParticipantInput) (*connect.CreateParticipantOutput, error)
+	CreateParticipantWithContext(aws.Context, *connect.CreateParticipantInput, ...request.Option) (*connect.CreateParticipantOutput, error)
+	CreateParticipantRequest(*connect.CreateParticipantInput) (*request.Request, *connect.CreateParticipantOutput)
+
 	CreateQueue(*connect.CreateQueueInput) (*connect.CreateQueueOutput, error)
 	CreateQueueWithContext(aws.Context, *connect.CreateQueueInput, ...request.Option) (*connect.CreateQueueOutput, error)
 	CreateQueueRequest(*connect.CreateQueueInput) (*request.Request, *connect.CreateQueueOutput)

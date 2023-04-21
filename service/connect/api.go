@@ -1711,6 +1711,101 @@ func (c *Connect) CreateIntegrationAssociationWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opCreateParticipant = "CreateParticipant"
+
+// CreateParticipantRequest generates a "aws/request.Request" representing the
+// client's request for the CreateParticipant operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateParticipant for more information on using the CreateParticipant
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateParticipantRequest method.
+//	req, resp := client.CreateParticipantRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateParticipant
+func (c *Connect) CreateParticipantRequest(input *CreateParticipantInput) (req *request.Request, output *CreateParticipantOutput) {
+	op := &request.Operation{
+		Name:       opCreateParticipant,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/create-participant",
+	}
+
+	if input == nil {
+		input = &CreateParticipantInput{}
+	}
+
+	output = &CreateParticipantOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateParticipant API operation for Amazon Connect Service.
+//
+// Adds a new participant into an on-going chat contact. For more information,
+// see Customize chat flow experiences by integrating custom participants (https://docs.aws.amazon.com/connect/latest/adminguide/chat-customize-flow.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateParticipant for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateParticipant
+func (c *Connect) CreateParticipant(input *CreateParticipantInput) (*CreateParticipantOutput, error) {
+	req, out := c.CreateParticipantRequest(input)
+	return out, req.Send()
+}
+
+// CreateParticipantWithContext is the same as CreateParticipant with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateParticipant for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateParticipantWithContext(ctx aws.Context, input *CreateParticipantInput, opts ...request.Option) (*CreateParticipantOutput, error) {
+	req, out := c.CreateParticipantRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateQueue = "CreateQueue"
 
 // CreateQueueRequest generates a "aws/request.Request" representing the
@@ -22455,6 +22550,152 @@ func (s *CreateIntegrationAssociationOutput) SetIntegrationAssociationId(v strin
 	return s
 }
 
+type CreateParticipantInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact in this instance of Amazon Connect. Only contacts
+	// in the CHAT channel are supported.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// Information identifying the participant.
+	//
+	// The only Valid value for ParticipantRole is CUSTOM_BOT.
+	//
+	// DisplayName is Required.
+	//
+	// ParticipantDetails is a required field
+	ParticipantDetails *ParticipantDetailsToAdd `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateParticipantInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateParticipantInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateParticipantInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateParticipantInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ParticipantDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParticipantDetails"))
+	}
+	if s.ParticipantDetails != nil {
+		if err := s.ParticipantDetails.Validate(); err != nil {
+			invalidParams.AddNested("ParticipantDetails", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateParticipantInput) SetClientToken(v string) *CreateParticipantInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *CreateParticipantInput) SetContactId(v string) *CreateParticipantInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateParticipantInput) SetInstanceId(v string) *CreateParticipantInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetParticipantDetails sets the ParticipantDetails field's value.
+func (s *CreateParticipantInput) SetParticipantDetails(v *ParticipantDetailsToAdd) *CreateParticipantInput {
+	s.ParticipantDetails = v
+	return s
+}
+
+type CreateParticipantOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token used by the chat participant to call CreateParticipantConnection.
+	// The participant token is valid for the lifetime of a chat participant.
+	ParticipantCredentials *ParticipantTokenCredentials `type:"structure"`
+
+	// The identifier for a chat participant. The participantId for a chat participant
+	// is the same throughout the chat lifecycle.
+	ParticipantId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateParticipantOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateParticipantOutput) GoString() string {
+	return s.String()
+}
+
+// SetParticipantCredentials sets the ParticipantCredentials field's value.
+func (s *CreateParticipantOutput) SetParticipantCredentials(v *ParticipantTokenCredentials) *CreateParticipantOutput {
+	s.ParticipantCredentials = v
+	return s
+}
+
+// SetParticipantId sets the ParticipantId field's value.
+func (s *CreateParticipantOutput) SetParticipantId(v string) *CreateParticipantOutput {
+	s.ParticipantId = &v
+	return s
+}
+
 type CreateQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -37679,7 +37920,10 @@ type MetricFilterV2 struct {
 
 	// The key to use for filtering data.
 	//
-	// Valid metric filter keys: INITIATION_METHOD, DISCONNECT_REASON
+	// Valid metric filter keys: INITIATION_METHOD, DISCONNECT_REASON. These are
+	// the same values as the InitiationMethod and DisconnectReason in the contact
+	// record. For more information, see ContactTraceRecord (https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord)
+	// in the Amazon Connect Administrator's Guide.
 	MetricFilterKey *string `type:"string"`
 
 	// The values to use for filtering data.
@@ -38266,6 +38510,60 @@ func (s *ParticipantDetails) SetDisplayName(v string) *ParticipantDetails {
 	return s
 }
 
+// The details to add for the participant.
+type ParticipantDetailsToAdd struct {
+	_ struct{} `type:"structure"`
+
+	// The display name of the participant.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The role of the participant being added.
+	ParticipantRole *string `type:"string" enum:"ParticipantRole"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantDetailsToAdd) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantDetailsToAdd) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParticipantDetailsToAdd) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParticipantDetailsToAdd"}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *ParticipantDetailsToAdd) SetDisplayName(v string) *ParticipantDetailsToAdd {
+	s.DisplayName = &v
+	return s
+}
+
+// SetParticipantRole sets the ParticipantRole field's value.
+func (s *ParticipantDetailsToAdd) SetParticipantRole(v string) *ParticipantDetailsToAdd {
+	s.ParticipantRole = &v
+	return s
+}
+
 // Configuration information for the timer. After the timer configuration is
 // set, it persists for the duration of the chat. It persists across new contacts
 // in the chain, for example, transfer contacts.
@@ -38410,6 +38708,50 @@ func (s *ParticipantTimerValue) SetParticipantTimerAction(v string) *Participant
 // SetParticipantTimerDurationInMinutes sets the ParticipantTimerDurationInMinutes field's value.
 func (s *ParticipantTimerValue) SetParticipantTimerDurationInMinutes(v int64) *ParticipantTimerValue {
 	s.ParticipantTimerDurationInMinutes = &v
+	return s
+}
+
+// The credentials used by the participant.
+type ParticipantTokenCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The expiration of the token. It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ.
+	// For example, 2019-11-08T02:41:28.172Z.
+	Expiry *string `type:"string"`
+
+	// The token used by the chat participant to call CreateParticipantConnection
+	// (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html).
+	// The participant token is valid for the lifetime of a chat participant.
+	ParticipantToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantTokenCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantTokenCredentials) GoString() string {
+	return s.String()
+}
+
+// SetExpiry sets the Expiry field's value.
+func (s *ParticipantTokenCredentials) SetExpiry(v string) *ParticipantTokenCredentials {
+	s.Expiry = &v
+	return s
+}
+
+// SetParticipantToken sets the ParticipantToken field's value.
+func (s *ParticipantTokenCredentials) SetParticipantToken(v string) *ParticipantTokenCredentials {
+	s.ParticipantToken = &v
 	return s
 }
 
@@ -52070,6 +52412,30 @@ const (
 func NotificationDeliveryType_Values() []string {
 	return []string{
 		NotificationDeliveryTypeEmail,
+	}
+}
+
+const (
+	// ParticipantRoleAgent is a ParticipantRole enum value
+	ParticipantRoleAgent = "AGENT"
+
+	// ParticipantRoleCustomer is a ParticipantRole enum value
+	ParticipantRoleCustomer = "CUSTOMER"
+
+	// ParticipantRoleSystem is a ParticipantRole enum value
+	ParticipantRoleSystem = "SYSTEM"
+
+	// ParticipantRoleCustomBot is a ParticipantRole enum value
+	ParticipantRoleCustomBot = "CUSTOM_BOT"
+)
+
+// ParticipantRole_Values returns all elements of the ParticipantRole enum
+func ParticipantRole_Values() []string {
+	return []string{
+		ParticipantRoleAgent,
+		ParticipantRoleCustomer,
+		ParticipantRoleSystem,
+		ParticipantRoleCustomBot,
 	}
 }
 

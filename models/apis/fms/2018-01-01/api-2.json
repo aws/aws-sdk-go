@@ -184,6 +184,21 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "GetAdminScope":{
+      "name":"GetAdminScope",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAdminScopeRequest"},
+      "output":{"shape":"GetAdminScopeResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "GetAppsList":{
       "name":"GetAppsList",
       "http":{
@@ -308,6 +323,34 @@
       },
       "input":{"shape":"GetViolationDetailsRequest"},
       "output":{"shape":"GetViolationDetailsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "ListAdminAccountsForOrganization":{
+      "name":"ListAdminAccountsForOrganization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAdminAccountsForOrganizationRequest"},
+      "output":{"shape":"ListAdminAccountsForOrganizationResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "ListAdminsManagingAccount":{
+      "name":"ListAdminsManagingAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAdminsManagingAccountRequest"},
+      "output":{"shape":"ListAdminsManagingAccountResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidInputException"},
@@ -457,6 +500,20 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "PutAdminAccount":{
+      "name":"PutAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAdminAccountRequest"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "PutAppsList":{
       "name":"PutAppsList",
       "http":{
@@ -577,6 +634,22 @@
       "type":"list",
       "member":{"shape":"AWSAccountId"}
     },
+    "AWSRegion":{
+      "type":"string",
+      "max":32,
+      "min":6,
+      "pattern":"^(af|ap|ca|eu|il|me|mx|sa|us|cn|us-gov)-\\w+-\\d+$"
+    },
+    "AWSRegionList":{
+      "type":"list",
+      "member":{"shape":"AWSRegion"},
+      "max":64,
+      "min":0
+    },
+    "AccountIdList":{
+      "type":"list",
+      "member":{"shape":"AWSAccountId"}
+    },
     "AccountRoleStatus":{
       "type":"string",
       "enum":[
@@ -587,11 +660,40 @@
         "DELETED"
       ]
     },
+    "AccountScope":{
+      "type":"structure",
+      "members":{
+        "Accounts":{"shape":"AccountIdList"},
+        "AllAccountsEnabled":{"shape":"Boolean"},
+        "ExcludeSpecifiedAccounts":{"shape":"Boolean"}
+      }
+    },
     "ActionTarget":{
       "type":"structure",
       "members":{
         "ResourceId":{"shape":"ResourceId"},
         "Description":{"shape":"LengthBoundedString"}
+      }
+    },
+    "AdminAccountSummary":{
+      "type":"structure",
+      "members":{
+        "AdminAccount":{"shape":"AWSAccountId"},
+        "DefaultAdmin":{"shape":"Boolean"},
+        "Status":{"shape":"OrganizationStatus"}
+      }
+    },
+    "AdminAccountSummaryList":{
+      "type":"list",
+      "member":{"shape":"AdminAccountSummary"}
+    },
+    "AdminScope":{
+      "type":"structure",
+      "members":{
+        "AccountScope":{"shape":"AccountScope"},
+        "OrganizationalUnitScope":{"shape":"OrganizationalUnitScope"},
+        "RegionScope":{"shape":"RegionScope"},
+        "PolicyTypeScope":{"shape":"PolicyTypeScope"}
       }
     },
     "App":{
@@ -788,6 +890,13 @@
       "type":"map",
       "key":{"shape":"CustomerPolicyScopeIdType"},
       "value":{"shape":"CustomerPolicyScopeIdList"}
+    },
+    "CustomerPolicyStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "OUT_OF_ADMIN_SCOPE"
+      ]
     },
     "DeleteAppsListRequest":{
       "type":"structure",
@@ -1101,6 +1210,20 @@
         "RoleStatus":{"shape":"AccountRoleStatus"}
       }
     },
+    "GetAdminScopeRequest":{
+      "type":"structure",
+      "required":["AdminAccount"],
+      "members":{
+        "AdminAccount":{"shape":"AWSAccountId"}
+      }
+    },
+    "GetAdminScopeResponse":{
+      "type":"structure",
+      "members":{
+        "AdminScope":{"shape":"AdminScope"},
+        "Status":{"shape":"OrganizationStatus"}
+      }
+    },
     "GetAppsListRequest":{
       "type":"structure",
       "required":["ListId"],
@@ -1312,6 +1435,34 @@
       },
       "exception":true
     },
+    "ListAdminAccountsForOrganizationRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PaginationMaxResults"}
+      }
+    },
+    "ListAdminAccountsForOrganizationResponse":{
+      "type":"structure",
+      "members":{
+        "AdminAccounts":{"shape":"AdminAccountSummaryList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListAdminsManagingAccountRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PaginationMaxResults"}
+      }
+    },
+    "ListAdminsManagingAccountResponse":{
+      "type":"structure",
+      "members":{
+        "AdminAccounts":{"shape":"AccountIdList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListAppsListsRequest":{
       "type":"structure",
       "required":["MaxResults"],
@@ -1479,7 +1630,7 @@
     },
     "ManagedServiceData":{
       "type":"string",
-      "max":8192,
+      "max":10000,
       "min":1,
       "pattern":"^((?!\\\\[nr]).)+"
     },
@@ -1662,6 +1813,33 @@
       "type":"list",
       "member":{"shape":"RemediationActionWithOrder"}
     },
+    "OrganizationStatus":{
+      "type":"string",
+      "enum":[
+        "ONBOARDING",
+        "ONBOARDING_COMPLETE",
+        "OFFBOARDING",
+        "OFFBOARDING_COMPLETE"
+      ]
+    },
+    "OrganizationalUnitId":{
+      "type":"string",
+      "max":68,
+      "min":16,
+      "pattern":"^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$"
+    },
+    "OrganizationalUnitIdList":{
+      "type":"list",
+      "member":{"shape":"OrganizationalUnitId"}
+    },
+    "OrganizationalUnitScope":{
+      "type":"structure",
+      "members":{
+        "OrganizationalUnits":{"shape":"OrganizationalUnitIdList"},
+        "AllOrganizationalUnitsEnabled":{"shape":"Boolean"},
+        "ExcludeSpecifiedOrganizationalUnits":{"shape":"Boolean"}
+      }
+    },
     "PaginationMaxResults":{
       "type":"integer",
       "max":100,
@@ -1707,7 +1885,8 @@
         "IncludeMap":{"shape":"CustomerPolicyScopeMap"},
         "ExcludeMap":{"shape":"CustomerPolicyScopeMap"},
         "ResourceSetIds":{"shape":"ResourceSetIds"},
-        "PolicyDescription":{"shape":"ResourceDescription"}
+        "PolicyDescription":{"shape":"ResourceDescription"},
+        "PolicyStatus":{"shape":"CustomerPolicyStatus"}
       }
     },
     "PolicyComplianceDetail":{
@@ -1767,12 +1946,20 @@
         "ResourceType":{"shape":"ResourceType"},
         "SecurityServiceType":{"shape":"SecurityServiceType"},
         "RemediationEnabled":{"shape":"Boolean"},
-        "DeleteUnusedFMManagedResources":{"shape":"Boolean"}
+        "DeleteUnusedFMManagedResources":{"shape":"Boolean"},
+        "PolicyStatus":{"shape":"CustomerPolicyStatus"}
       }
     },
     "PolicySummaryList":{
       "type":"list",
       "member":{"shape":"PolicySummary"}
+    },
+    "PolicyTypeScope":{
+      "type":"structure",
+      "members":{
+        "PolicyTypes":{"shape":"SecurityServiceTypeList"},
+        "AllPolicyTypesEnabled":{"shape":"Boolean"}
+      }
     },
     "PolicyUpdateToken":{
       "type":"string",
@@ -1857,6 +2044,14 @@
       "type":"list",
       "member":{"shape":"ProtocolsListDataSummary"}
     },
+    "PutAdminAccountRequest":{
+      "type":"structure",
+      "required":["AdminAccount"],
+      "members":{
+        "AdminAccount":{"shape":"AWSAccountId"},
+        "AdminScope":{"shape":"AdminScope"}
+      }
+    },
     "PutAppsListRequest":{
       "type":"structure",
       "required":["AppsList"],
@@ -1933,6 +2128,13 @@
       }
     },
     "ReferenceRule":{"type":"string"},
+    "RegionScope":{
+      "type":"structure",
+      "members":{
+        "Regions":{"shape":"AWSRegionList"},
+        "AllRegionsEnabled":{"shape":"Boolean"}
+      }
+    },
     "RemediationAction":{
       "type":"structure",
       "members":{
@@ -2029,12 +2231,20 @@
         "Description":{"shape":"Description"},
         "UpdateToken":{"shape":"UpdateToken"},
         "ResourceTypeList":{"shape":"ResourceTypeList"},
-        "LastUpdateTime":{"shape":"TimeStamp"}
+        "LastUpdateTime":{"shape":"TimeStamp"},
+        "ResourceSetStatus":{"shape":"ResourceSetStatus"}
       }
     },
     "ResourceSetIds":{
       "type":"list",
       "member":{"shape":"Base62Id"}
+    },
+    "ResourceSetStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "OUT_OF_ADMIN_SCOPE"
+      ]
     },
     "ResourceSetSummary":{
       "type":"structure",
@@ -2042,7 +2252,8 @@
         "Id":{"shape":"Base62Id"},
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
-        "LastUpdateTime":{"shape":"TimeStamp"}
+        "LastUpdateTime":{"shape":"TimeStamp"},
+        "ResourceSetStatus":{"shape":"ResourceSetStatus"}
       }
     },
     "ResourceSetSummaryList":{
@@ -2200,6 +2411,12 @@
         "THIRD_PARTY_FIREWALL",
         "IMPORT_NETWORK_FIREWALL"
       ]
+    },
+    "SecurityServiceTypeList":{
+      "type":"list",
+      "member":{"shape":"SecurityServiceType"},
+      "max":32,
+      "min":0
     },
     "StatefulEngineOptions":{
       "type":"structure",

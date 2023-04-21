@@ -108,6 +108,10 @@ type FMSAPI interface {
 	GetAdminAccountWithContext(aws.Context, *fms.GetAdminAccountInput, ...request.Option) (*fms.GetAdminAccountOutput, error)
 	GetAdminAccountRequest(*fms.GetAdminAccountInput) (*request.Request, *fms.GetAdminAccountOutput)
 
+	GetAdminScope(*fms.GetAdminScopeInput) (*fms.GetAdminScopeOutput, error)
+	GetAdminScopeWithContext(aws.Context, *fms.GetAdminScopeInput, ...request.Option) (*fms.GetAdminScopeOutput, error)
+	GetAdminScopeRequest(*fms.GetAdminScopeInput) (*request.Request, *fms.GetAdminScopeOutput)
+
 	GetAppsList(*fms.GetAppsListInput) (*fms.GetAppsListOutput, error)
 	GetAppsListWithContext(aws.Context, *fms.GetAppsListInput, ...request.Option) (*fms.GetAppsListOutput, error)
 	GetAppsListRequest(*fms.GetAppsListInput) (*request.Request, *fms.GetAppsListOutput)
@@ -143,6 +147,20 @@ type FMSAPI interface {
 	GetViolationDetails(*fms.GetViolationDetailsInput) (*fms.GetViolationDetailsOutput, error)
 	GetViolationDetailsWithContext(aws.Context, *fms.GetViolationDetailsInput, ...request.Option) (*fms.GetViolationDetailsOutput, error)
 	GetViolationDetailsRequest(*fms.GetViolationDetailsInput) (*request.Request, *fms.GetViolationDetailsOutput)
+
+	ListAdminAccountsForOrganization(*fms.ListAdminAccountsForOrganizationInput) (*fms.ListAdminAccountsForOrganizationOutput, error)
+	ListAdminAccountsForOrganizationWithContext(aws.Context, *fms.ListAdminAccountsForOrganizationInput, ...request.Option) (*fms.ListAdminAccountsForOrganizationOutput, error)
+	ListAdminAccountsForOrganizationRequest(*fms.ListAdminAccountsForOrganizationInput) (*request.Request, *fms.ListAdminAccountsForOrganizationOutput)
+
+	ListAdminAccountsForOrganizationPages(*fms.ListAdminAccountsForOrganizationInput, func(*fms.ListAdminAccountsForOrganizationOutput, bool) bool) error
+	ListAdminAccountsForOrganizationPagesWithContext(aws.Context, *fms.ListAdminAccountsForOrganizationInput, func(*fms.ListAdminAccountsForOrganizationOutput, bool) bool, ...request.Option) error
+
+	ListAdminsManagingAccount(*fms.ListAdminsManagingAccountInput) (*fms.ListAdminsManagingAccountOutput, error)
+	ListAdminsManagingAccountWithContext(aws.Context, *fms.ListAdminsManagingAccountInput, ...request.Option) (*fms.ListAdminsManagingAccountOutput, error)
+	ListAdminsManagingAccountRequest(*fms.ListAdminsManagingAccountInput) (*request.Request, *fms.ListAdminsManagingAccountOutput)
+
+	ListAdminsManagingAccountPages(*fms.ListAdminsManagingAccountInput, func(*fms.ListAdminsManagingAccountOutput, bool) bool) error
+	ListAdminsManagingAccountPagesWithContext(aws.Context, *fms.ListAdminsManagingAccountInput, func(*fms.ListAdminsManagingAccountOutput, bool) bool, ...request.Option) error
 
 	ListAppsLists(*fms.ListAppsListsInput) (*fms.ListAppsListsOutput, error)
 	ListAppsListsWithContext(aws.Context, *fms.ListAppsListsInput, ...request.Option) (*fms.ListAppsListsOutput, error)
@@ -201,6 +219,10 @@ type FMSAPI interface {
 
 	ListThirdPartyFirewallFirewallPoliciesPages(*fms.ListThirdPartyFirewallFirewallPoliciesInput, func(*fms.ListThirdPartyFirewallFirewallPoliciesOutput, bool) bool) error
 	ListThirdPartyFirewallFirewallPoliciesPagesWithContext(aws.Context, *fms.ListThirdPartyFirewallFirewallPoliciesInput, func(*fms.ListThirdPartyFirewallFirewallPoliciesOutput, bool) bool, ...request.Option) error
+
+	PutAdminAccount(*fms.PutAdminAccountInput) (*fms.PutAdminAccountOutput, error)
+	PutAdminAccountWithContext(aws.Context, *fms.PutAdminAccountInput, ...request.Option) (*fms.PutAdminAccountOutput, error)
+	PutAdminAccountRequest(*fms.PutAdminAccountInput) (*request.Request, *fms.PutAdminAccountOutput)
 
 	PutAppsList(*fms.PutAppsListInput) (*fms.PutAppsListOutput, error)
 	PutAppsListWithContext(aws.Context, *fms.PutAppsListInput, ...request.Option) (*fms.PutAppsListOutput, error)
