@@ -303,6 +303,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CreateParticipant":{
+      "name":"CreateParticipant",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/create-participant"
+      },
+      "input":{"shape":"CreateParticipantRequest"},
+      "output":{"shape":"CreateParticipantResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateQueue":{
       "name":"CreateQueue",
       "http":{
@@ -3700,6 +3717,30 @@
         "IntegrationAssociationArn":{"shape":"ARN"}
       }
     },
+    "CreateParticipantRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "ParticipantDetails"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "ParticipantDetails":{"shape":"ParticipantDetailsToAdd"}
+      }
+    },
+    "CreateParticipantResponse":{
+      "type":"structure",
+      "members":{
+        "ParticipantCredentials":{"shape":"ParticipantTokenCredentials"},
+        "ParticipantId":{"shape":"ParticipantId"}
+      }
+    },
     "CreateQueueRequest":{
       "type":"structure",
       "required":[
@@ -5788,6 +5829,7 @@
         }
       }
     },
+    "ISO8601Datetime":{"type":"string"},
     "IdempotencyException":{
       "type":"structure",
       "members":{
@@ -7332,10 +7374,26 @@
         "DisplayName":{"shape":"DisplayName"}
       }
     },
+    "ParticipantDetailsToAdd":{
+      "type":"structure",
+      "members":{
+        "ParticipantRole":{"shape":"ParticipantRole"},
+        "DisplayName":{"shape":"DisplayName"}
+      }
+    },
     "ParticipantId":{
       "type":"string",
       "max":256,
       "min":1
+    },
+    "ParticipantRole":{
+      "type":"string",
+      "enum":[
+        "AGENT",
+        "CUSTOMER",
+        "SYSTEM",
+        "CUSTOM_BOT"
+      ]
     },
     "ParticipantTimerAction":{
       "type":"string",
@@ -7384,6 +7442,13 @@
       "type":"string",
       "max":1000,
       "min":1
+    },
+    "ParticipantTokenCredentials":{
+      "type":"structure",
+      "members":{
+        "ParticipantToken":{"shape":"ParticipantToken"},
+        "Expiry":{"shape":"ISO8601Datetime"}
+      }
     },
     "Password":{
       "type":"string",

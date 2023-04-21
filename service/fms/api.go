@@ -57,13 +57,15 @@ func (c *FMS) AssociateAdminAccountRequest(input *AssociateAdminAccountInput) (r
 
 // AssociateAdminAccount API operation for Firewall Management Service.
 //
-// Sets the Firewall Manager administrator account. The account must be a member
+// Sets a Firewall Manager default administrator account. The Firewall Manager
+// default administrator account can manage third-party firewalls and has full
+// administrative scope that allows administration of all policy types, accounts,
+// organizational units, and Regions. This account must be a member account
 // of the organization in Organizations whose resources you want to protect.
-// Firewall Manager sets the permissions that allow the account to administer
-// your Firewall Manager policies.
 //
-// The account that you associate with Firewall Manager is called the Firewall
-// Manager administrator account.
+// For information about working with Firewall Manager administrator accounts,
+// see Managing Firewall Manager administrators (https://docs.aws.amazon.com/organizations/latest/userguide/fms-administrators.html)
+// in the Firewall Manager Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -929,9 +931,15 @@ func (c *FMS) DisassociateAdminAccountRequest(input *DisassociateAdminAccountInp
 
 // DisassociateAdminAccount API operation for Firewall Management Service.
 //
-// Disassociates the account that has been set as the Firewall Manager administrator
-// account. To set a different account as the administrator account, you must
-// submit an AssociateAdminAccount request.
+// Disassociates an Firewall Manager administrator account. To set a different
+// account as an Firewall Manager administrator, submit a PutAdminAccount request.
+// To set an account as a default administrator account, you must submit an
+// AssociateAdminAccount request.
+//
+// Disassociation of the default administrator account follows the first in,
+// last out principle. If you are the default administrator, all Firewall Manager
+// administrators within the organization must first disassociate their accounts
+// before you can disassociate your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1120,7 +1128,7 @@ func (c *FMS) GetAdminAccountRequest(input *GetAdminAccountInput) (req *request.
 // GetAdminAccount API operation for Firewall Management Service.
 //
 // Returns the Organizations account that is associated with Firewall Manager
-// as the Firewall Manager administrator.
+// as the Firewall Manager default administrator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1163,6 +1171,102 @@ func (c *FMS) GetAdminAccount(input *GetAdminAccountInput) (*GetAdminAccountOutp
 // for more information on using Contexts.
 func (c *FMS) GetAdminAccountWithContext(ctx aws.Context, input *GetAdminAccountInput, opts ...request.Option) (*GetAdminAccountOutput, error) {
 	req, out := c.GetAdminAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAdminScope = "GetAdminScope"
+
+// GetAdminScopeRequest generates a "aws/request.Request" representing the
+// client's request for the GetAdminScope operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAdminScope for more information on using the GetAdminScope
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAdminScopeRequest method.
+//	req, resp := client.GetAdminScopeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/GetAdminScope
+func (c *FMS) GetAdminScopeRequest(input *GetAdminScopeInput) (req *request.Request, output *GetAdminScopeOutput) {
+	op := &request.Operation{
+		Name:       opGetAdminScope,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetAdminScopeInput{}
+	}
+
+	output = &GetAdminScopeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAdminScope API operation for Firewall Management Service.
+//
+// Returns information about the specified account's administrative scope. The
+// admistrative scope defines the resources that an Firewall Manager administrator
+// can manage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation GetAdminScope for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/GetAdminScope
+func (c *FMS) GetAdminScope(input *GetAdminScopeInput) (*GetAdminScopeOutput, error) {
+	req, out := c.GetAdminScopeRequest(input)
+	return out, req.Send()
+}
+
+// GetAdminScopeWithContext is the same as GetAdminScope with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAdminScope for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) GetAdminScopeWithContext(ctx aws.Context, input *GetAdminScopeInput, opts ...request.Option) (*GetAdminScopeOutput, error) {
+	req, out := c.GetAdminScopeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2013,6 +2117,303 @@ func (c *FMS) GetViolationDetailsWithContext(ctx aws.Context, input *GetViolatio
 	return out, req.Send()
 }
 
+const opListAdminAccountsForOrganization = "ListAdminAccountsForOrganization"
+
+// ListAdminAccountsForOrganizationRequest generates a "aws/request.Request" representing the
+// client's request for the ListAdminAccountsForOrganization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAdminAccountsForOrganization for more information on using the ListAdminAccountsForOrganization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAdminAccountsForOrganizationRequest method.
+//	req, resp := client.ListAdminAccountsForOrganizationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListAdminAccountsForOrganization
+func (c *FMS) ListAdminAccountsForOrganizationRequest(input *ListAdminAccountsForOrganizationInput) (req *request.Request, output *ListAdminAccountsForOrganizationOutput) {
+	op := &request.Operation{
+		Name:       opListAdminAccountsForOrganization,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAdminAccountsForOrganizationInput{}
+	}
+
+	output = &ListAdminAccountsForOrganizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAdminAccountsForOrganization API operation for Firewall Management Service.
+//
+// Returns a AdminAccounts object that lists the Firewall Manager administrators
+// within the organization that are onboarded to Firewall Manager by AssociateAdminAccount.
+//
+// This operation can be called only from the organization's management account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation ListAdminAccountsForOrganization for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListAdminAccountsForOrganization
+func (c *FMS) ListAdminAccountsForOrganization(input *ListAdminAccountsForOrganizationInput) (*ListAdminAccountsForOrganizationOutput, error) {
+	req, out := c.ListAdminAccountsForOrganizationRequest(input)
+	return out, req.Send()
+}
+
+// ListAdminAccountsForOrganizationWithContext is the same as ListAdminAccountsForOrganization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAdminAccountsForOrganization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListAdminAccountsForOrganizationWithContext(ctx aws.Context, input *ListAdminAccountsForOrganizationInput, opts ...request.Option) (*ListAdminAccountsForOrganizationOutput, error) {
+	req, out := c.ListAdminAccountsForOrganizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAdminAccountsForOrganizationPages iterates over the pages of a ListAdminAccountsForOrganization operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAdminAccountsForOrganization method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAdminAccountsForOrganization operation.
+//	pageNum := 0
+//	err := client.ListAdminAccountsForOrganizationPages(params,
+//	    func(page *fms.ListAdminAccountsForOrganizationOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FMS) ListAdminAccountsForOrganizationPages(input *ListAdminAccountsForOrganizationInput, fn func(*ListAdminAccountsForOrganizationOutput, bool) bool) error {
+	return c.ListAdminAccountsForOrganizationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAdminAccountsForOrganizationPagesWithContext same as ListAdminAccountsForOrganizationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListAdminAccountsForOrganizationPagesWithContext(ctx aws.Context, input *ListAdminAccountsForOrganizationInput, fn func(*ListAdminAccountsForOrganizationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAdminAccountsForOrganizationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAdminAccountsForOrganizationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAdminAccountsForOrganizationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAdminsManagingAccount = "ListAdminsManagingAccount"
+
+// ListAdminsManagingAccountRequest generates a "aws/request.Request" representing the
+// client's request for the ListAdminsManagingAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAdminsManagingAccount for more information on using the ListAdminsManagingAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAdminsManagingAccountRequest method.
+//	req, resp := client.ListAdminsManagingAccountRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListAdminsManagingAccount
+func (c *FMS) ListAdminsManagingAccountRequest(input *ListAdminsManagingAccountInput) (req *request.Request, output *ListAdminsManagingAccountOutput) {
+	op := &request.Operation{
+		Name:       opListAdminsManagingAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAdminsManagingAccountInput{}
+	}
+
+	output = &ListAdminsManagingAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAdminsManagingAccount API operation for Firewall Management Service.
+//
+// Lists the accounts that are managing the specified Organizations member account.
+// This is useful for any member account so that they can view the accounts
+// who are managing their account. This operation only returns the managing
+// administrators that have the requested account within their AdminScope.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation ListAdminsManagingAccount for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListAdminsManagingAccount
+func (c *FMS) ListAdminsManagingAccount(input *ListAdminsManagingAccountInput) (*ListAdminsManagingAccountOutput, error) {
+	req, out := c.ListAdminsManagingAccountRequest(input)
+	return out, req.Send()
+}
+
+// ListAdminsManagingAccountWithContext is the same as ListAdminsManagingAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAdminsManagingAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListAdminsManagingAccountWithContext(ctx aws.Context, input *ListAdminsManagingAccountInput, opts ...request.Option) (*ListAdminsManagingAccountOutput, error) {
+	req, out := c.ListAdminsManagingAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAdminsManagingAccountPages iterates over the pages of a ListAdminsManagingAccount operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAdminsManagingAccount method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAdminsManagingAccount operation.
+//	pageNum := 0
+//	err := client.ListAdminsManagingAccountPages(params,
+//	    func(page *fms.ListAdminsManagingAccountOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *FMS) ListAdminsManagingAccountPages(input *ListAdminsManagingAccountInput, fn func(*ListAdminsManagingAccountOutput, bool) bool) error {
+	return c.ListAdminsManagingAccountPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAdminsManagingAccountPagesWithContext same as ListAdminsManagingAccountPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListAdminsManagingAccountPagesWithContext(ctx aws.Context, input *ListAdminsManagingAccountInput, fn func(*ListAdminsManagingAccountOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAdminsManagingAccountInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAdminsManagingAccountRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAdminsManagingAccountOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListAppsLists = "ListAppsLists"
 
 // ListAppsListsRequest generates a "aws/request.Request" representing the
@@ -2453,8 +2854,8 @@ func (c *FMS) ListMemberAccountsRequest(input *ListMemberAccountsInput) (req *re
 // Returns a MemberAccounts object that lists the member accounts in the administrator's
 // Amazon Web Services organization.
 //
-// The ListMemberAccounts must be submitted by the account that is set as the
-// Firewall Manager administrator.
+// Either an Firewall Manager administrator or the organization's management
+// account can make this request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3279,6 +3680,113 @@ func (c *FMS) ListThirdPartyFirewallFirewallPoliciesPagesWithContext(ctx aws.Con
 	return p.Err()
 }
 
+const opPutAdminAccount = "PutAdminAccount"
+
+// PutAdminAccountRequest generates a "aws/request.Request" representing the
+// client's request for the PutAdminAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAdminAccount for more information on using the PutAdminAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutAdminAccountRequest method.
+//	req, resp := client.PutAdminAccountRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/PutAdminAccount
+func (c *FMS) PutAdminAccountRequest(input *PutAdminAccountInput) (req *request.Request, output *PutAdminAccountOutput) {
+	op := &request.Operation{
+		Name:       opPutAdminAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutAdminAccountInput{}
+	}
+
+	output = &PutAdminAccountOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutAdminAccount API operation for Firewall Management Service.
+//
+// Creates or updates an Firewall Manager administrator account. The account
+// must be a member of the organization that was onboarded to Firewall Manager
+// by AssociateAdminAccount. Only the organization's management account can
+// create an Firewall Manager administrator account. When you create an Firewall
+// Manager administrator account, the service checks to see if the account is
+// already a delegated administrator within Organizations. If the account isn't
+// a delegated administrator, Firewall Manager calls Organizations to delegate
+// the account within Organizations. For more information about administrator
+// accounts within Organizations, see Managing the Amazon Web Services Accounts
+// in Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation PutAdminAccount for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+//   - LimitExceededException
+//     The operation exceeds a resource limit, for example, the maximum number of
+//     policy objects that you can create for an Amazon Web Services account. For
+//     more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//     in the WAF Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/PutAdminAccount
+func (c *FMS) PutAdminAccount(input *PutAdminAccountInput) (*PutAdminAccountOutput, error) {
+	req, out := c.PutAdminAccountRequest(input)
+	return out, req.Send()
+}
+
+// PutAdminAccountWithContext is the same as PutAdminAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAdminAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) PutAdminAccountWithContext(ctx aws.Context, input *PutAdminAccountInput, opts ...request.Option) (*PutAdminAccountOutput, error) {
+	req, out := c.PutAdminAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutAppsList = "PutAppsList"
 
 // PutAppsListRequest generates a "aws/request.Request" representing the
@@ -3426,10 +3934,13 @@ func (c *FMS) PutNotificationChannelRequest(input *PutNotificationChannelInput) 
 // Designates the IAM role and Amazon Simple Notification Service (SNS) topic
 // that Firewall Manager uses to record SNS logs.
 //
-// To perform this action outside of the console, you must configure the SNS
-// topic to allow the Firewall Manager role AWSServiceRoleForFMS to publish
-// SNS logs. For more information, see Firewall Manager required permissions
-// for API actions (https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html)
+// To perform this action outside of the console, you must first configure the
+// SNS topic's access policy to allow the SnsRoleName to publish SNS logs. If
+// the SnsRoleName provided is a role other than the AWSServiceRoleForFMS service-linked
+// role, this role must have a trust relationship configured to allow the Firewall
+// Manager service principal fms.amazonaws.com to assume this role. For information
+// about configuring an SNS access policy, see Service roles for Firewall Manager
+// (https://docs.aws.amazon.com/waf/latest/developerguide/fms-security_iam_service-with-iam.html#fms-security_iam_service-with-iam-roles-service)
 // in the Firewall Manager Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4004,6 +4515,72 @@ func (c *FMS) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInpu
 	return out, req.Send()
 }
 
+// Configures the accounts within the administrator's Organizations organization
+// that the specified Firewall Manager administrator can apply policies to.
+type AccountScope struct {
+	_ struct{} `type:"structure"`
+
+	// The list of accounts within the organization that the specified Firewall
+	// Manager administrator either can or cannot apply policies to, based on the
+	// value of ExcludeSpecifiedAccounts. If ExcludeSpecifiedAccounts is set to
+	// true, then the Firewall Manager administrator can apply policies to all members
+	// of the organization except for the accounts in this list. If ExcludeSpecifiedAccounts
+	// is set to false, then the Firewall Manager administrator can only apply policies
+	// to the accounts in this list.
+	Accounts []*string `type:"list"`
+
+	// A boolean value that indicates if the administrator can apply policies to
+	// all accounts within an organization. If true, the administrator can apply
+	// policies to all accounts within the organization. You can either enable management
+	// of all accounts through this operation, or you can specify a list of accounts
+	// to manage in AccountScope$Accounts. You cannot specify both.
+	AllAccountsEnabled *bool `type:"boolean"`
+
+	// A boolean value that excludes the accounts in AccountScope$Accounts from
+	// the administrator's scope. If true, the Firewall Manager administrator can
+	// apply policies to all members of the organization except for the accounts
+	// listed in AccountScope$Accounts. You can either specify a list of accounts
+	// to exclude by AccountScope$Accounts, or you can enable management of all
+	// accounts by AccountScope$AllAccountsEnabled. You cannot specify both.
+	ExcludeSpecifiedAccounts *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountScope) GoString() string {
+	return s.String()
+}
+
+// SetAccounts sets the Accounts field's value.
+func (s *AccountScope) SetAccounts(v []*string) *AccountScope {
+	s.Accounts = v
+	return s
+}
+
+// SetAllAccountsEnabled sets the AllAccountsEnabled field's value.
+func (s *AccountScope) SetAllAccountsEnabled(v bool) *AccountScope {
+	s.AllAccountsEnabled = &v
+	return s
+}
+
+// SetExcludeSpecifiedAccounts sets the ExcludeSpecifiedAccounts field's value.
+func (s *AccountScope) SetExcludeSpecifiedAccounts(v bool) *AccountScope {
+	s.ExcludeSpecifiedAccounts = &v
+	return s
+}
+
 // Describes a remediation action target.
 type ActionTarget struct {
 	_ struct{} `type:"structure"`
@@ -4042,6 +4619,144 @@ func (s *ActionTarget) SetDescription(v string) *ActionTarget {
 // SetResourceId sets the ResourceId field's value.
 func (s *ActionTarget) SetResourceId(v string) *ActionTarget {
 	s.ResourceId = &v
+	return s
+}
+
+// Contains high level information about the Firewall Manager administrator
+// account.
+type AdminAccountSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the Firewall Manager administrator's
+	// account.
+	AdminAccount *string `min:"1" type:"string"`
+
+	// A boolean value that indicates if the administrator is the default administrator.
+	// If true, then this is the default administrator account. The default administrator
+	// can manage third-party firewalls and has full administrative scope. There
+	// is only one default administrator account per organization. For information
+	// about Firewall Manager default administrator accounts, see Managing Firewall
+	// Manager administrators (https://docs.aws.amazon.com/waf/latest/developerguide/fms-administrators.html)
+	// in the Firewall Manager Developer Guide.
+	DefaultAdmin *bool `type:"boolean"`
+
+	// The current status of the request to onboard a member account as an Firewall
+	// Manager administator.
+	//
+	//    * ONBOARDING - The account is onboarding to Firewall Manager as an administrator.
+	//
+	//    * ONBOARDING_COMPLETE - Firewall Manager The account is onboarded to Firewall
+	//    Manager as an administrator, and can perform actions on the resources
+	//    defined in their AdminScope.
+	//
+	//    * OFFBOARDING - The account is being removed as an Firewall Manager administrator.
+	//
+	//    * OFFBOARDING_COMPLETE - The account has been removed as an Firewall Manager
+	//    administrator.
+	Status *string `type:"string" enum:"OrganizationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdminAccountSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdminAccountSummary) GoString() string {
+	return s.String()
+}
+
+// SetAdminAccount sets the AdminAccount field's value.
+func (s *AdminAccountSummary) SetAdminAccount(v string) *AdminAccountSummary {
+	s.AdminAccount = &v
+	return s
+}
+
+// SetDefaultAdmin sets the DefaultAdmin field's value.
+func (s *AdminAccountSummary) SetDefaultAdmin(v bool) *AdminAccountSummary {
+	s.DefaultAdmin = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AdminAccountSummary) SetStatus(v string) *AdminAccountSummary {
+	s.Status = &v
+	return s
+}
+
+// Defines the resources that the Firewall Manager administrator can manage.
+// For more information about administrative scope, see Managing Firewall Manager
+// administrators (https://docs.aws.amazon.com/waf/latest/developerguide/fms-administrators.html)
+// in the Firewall Manager Developer Guide.
+type AdminScope struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the accounts that the specified Firewall Manager administrator can
+	// apply policies to.
+	AccountScope *AccountScope `type:"structure"`
+
+	// Defines the Organizations organizational units that the specified Firewall
+	// Manager administrator can apply policies to. For more information about OUs
+	// in Organizations, see Managing organizational units (OUs) (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_ous.html)
+	// in the Organizations User Guide.
+	OrganizationalUnitScope *OrganizationalUnitScope `type:"structure"`
+
+	// Defines the Firewall Manager policy types that the specified Firewall Manager
+	// administrator can create and manage.
+	PolicyTypeScope *PolicyTypeScope `type:"structure"`
+
+	// Defines the Amazon Web Services Regions that the specified Firewall Manager
+	// administrator can perform actions in.
+	RegionScope *RegionScope `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdminScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdminScope) GoString() string {
+	return s.String()
+}
+
+// SetAccountScope sets the AccountScope field's value.
+func (s *AdminScope) SetAccountScope(v *AccountScope) *AdminScope {
+	s.AccountScope = v
+	return s
+}
+
+// SetOrganizationalUnitScope sets the OrganizationalUnitScope field's value.
+func (s *AdminScope) SetOrganizationalUnitScope(v *OrganizationalUnitScope) *AdminScope {
+	s.OrganizationalUnitScope = v
+	return s
+}
+
+// SetPolicyTypeScope sets the PolicyTypeScope field's value.
+func (s *AdminScope) SetPolicyTypeScope(v *PolicyTypeScope) *AdminScope {
+	s.PolicyTypeScope = v
+	return s
+}
+
+// SetRegionScope sets the RegionScope field's value.
+func (s *AdminScope) SetRegionScope(v *RegionScope) *AdminScope {
+	s.RegionScope = v
 	return s
 }
 
@@ -4317,8 +5032,9 @@ type AssociateAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Web Services account ID to associate with Firewall Manager as
-	// the Firewall Manager administrator account. This must be an Organizations
-	// member account. For more information about Organizations, see Managing the
+	// the Firewall Manager default administrator account. This account must be
+	// a member account of the organization in Organizations whose resources you
+	// want to protect. For more information about Organizations, see Managing the
 	// Amazon Web Services Accounts in Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html).
 	//
 	// AdminAccount is a required field
@@ -4633,7 +5349,7 @@ type BatchAssociateResourceInput struct {
 	// Items is a required field
 	Items []*string `type:"list" required:"true"`
 
-	// A unique identifier for the resource set, used in a TODO to refer to the
+	// A unique identifier for the resource set, used in a request to refer to the
 	// resource set.
 	//
 	// ResourceSetIdentifier is a required field
@@ -4697,7 +5413,7 @@ type BatchAssociateResourceOutput struct {
 	// FailedItems is a required field
 	FailedItems []*FailedItem `type:"list" required:"true"`
 
-	// A unique identifier for the resource set, used in a TODO to refer to the
+	// A unique identifier for the resource set, used in a request to refer to the
 	// resource set.
 	//
 	// ResourceSetIdentifier is a required field
@@ -4743,7 +5459,7 @@ type BatchDisassociateResourceInput struct {
 	// Items is a required field
 	Items []*string `type:"list" required:"true"`
 
-	// A unique identifier for the resource set, used in a TODO to refer to the
+	// A unique identifier for the resource set, used in a request to refer to the
 	// resource set.
 	//
 	// ResourceSetIdentifier is a required field
@@ -4807,7 +5523,7 @@ type BatchDisassociateResourceOutput struct {
 	// FailedItems is a required field
 	FailedItems []*FailedItem `type:"list" required:"true"`
 
-	// A unique identifier for the resource set, used in a TODO to refer to the
+	// A unique identifier for the resource set, used in a request to refer to the
 	// resource set.
 	//
 	// ResourceSetIdentifier is a required field
@@ -5202,7 +5918,7 @@ func (s DeleteProtocolsListOutput) GoString() string {
 type DeleteResourceSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the resource set, used in a TODO to refer to the
+	// A unique identifier for the resource set, used in a request to refer to the
 	// resource set.
 	//
 	// Identifier is a required field
@@ -6462,11 +7178,10 @@ func (s GetAdminAccountInput) GoString() string {
 type GetAdminAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account that is set as the Firewall Manager administrator.
+	// The account that is set as the Firewall Manager default administrator.
 	AdminAccount *string `min:"1" type:"string"`
 
-	// The status of the Amazon Web Services account that you set as the Firewall
-	// Manager administrator.
+	// The status of the account that you set as the Firewall Manager default administrator.
 	RoleStatus *string `type:"string" enum:"AccountRoleStatus"`
 }
 
@@ -6497,6 +7212,107 @@ func (s *GetAdminAccountOutput) SetAdminAccount(v string) *GetAdminAccountOutput
 // SetRoleStatus sets the RoleStatus field's value.
 func (s *GetAdminAccountOutput) SetRoleStatus(v string) *GetAdminAccountOutput {
 	s.RoleStatus = &v
+	return s
+}
+
+type GetAdminScopeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The administator account that you want to get the details for.
+	//
+	// AdminAccount is a required field
+	AdminAccount *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdminScopeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdminScopeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAdminScopeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAdminScopeInput"}
+	if s.AdminAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdminAccount"))
+	}
+	if s.AdminAccount != nil && len(*s.AdminAccount) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdminAccount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdminAccount sets the AdminAccount field's value.
+func (s *GetAdminScopeInput) SetAdminAccount(v string) *GetAdminScopeInput {
+	s.AdminAccount = &v
+	return s
+}
+
+type GetAdminScopeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains details about the administrative scope of the requested account.
+	AdminScope *AdminScope `type:"structure"`
+
+	// The current status of the request to onboard a member account as an Firewall
+	// Manager administator.
+	//
+	//    * ONBOARDING - The account is onboarding to Firewall Manager as an administrator.
+	//
+	//    * ONBOARDING_COMPLETE - Firewall Manager The account is onboarded to Firewall
+	//    Manager as an administrator, and can perform actions on the resources
+	//    defined in their AdminScope.
+	//
+	//    * OFFBOARDING - The account is being removed as an Firewall Manager administrator.
+	//
+	//    * OFFBOARDING_COMPLETE - The account has been removed as an Firewall Manager
+	//    administrator.
+	Status *string `type:"string" enum:"OrganizationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdminScopeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAdminScopeOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdminScope sets the AdminScope field's value.
+func (s *GetAdminScopeOutput) SetAdminScope(v *AdminScope) *GetAdminScopeOutput {
+	s.AdminScope = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetAdminScopeOutput) SetStatus(v string) *GetAdminScopeOutput {
+	s.Status = &v
 	return s
 }
 
@@ -7150,7 +7966,7 @@ func (s *GetProtocolsListOutput) SetProtocolsListArn(v string) *GetProtocolsList
 type GetResourceSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the resource set, used in a TODO to refer to the
+	// A unique identifier for the resource set, used in a request to refer to the
 	// resource set.
 	//
 	// Identifier is a required field
@@ -7816,6 +8632,221 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListAdminAccountsForOrganizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Firewall Manager to return for
+	// this request. If more objects are available, in the response, Firewall Manager
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminAccountsForOrganizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminAccountsForOrganizationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAdminAccountsForOrganizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAdminAccountsForOrganizationInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAdminAccountsForOrganizationInput) SetMaxResults(v int64) *ListAdminAccountsForOrganizationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAdminAccountsForOrganizationInput) SetNextToken(v string) *ListAdminAccountsForOrganizationInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAdminAccountsForOrganizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Firewall Manager administrator accounts within the organization
+	// that were onboarded as administrators by AssociateAdminAccount or PutAdminAccount.
+	AdminAccounts []*AdminAccountSummary `type:"list"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminAccountsForOrganizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminAccountsForOrganizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdminAccounts sets the AdminAccounts field's value.
+func (s *ListAdminAccountsForOrganizationOutput) SetAdminAccounts(v []*AdminAccountSummary) *ListAdminAccountsForOrganizationOutput {
+	s.AdminAccounts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAdminAccountsForOrganizationOutput) SetNextToken(v string) *ListAdminAccountsForOrganizationOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAdminsManagingAccountInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Firewall Manager to return for
+	// this request. If more objects are available, in the response, Firewall Manager
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminsManagingAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminsManagingAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAdminsManagingAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAdminsManagingAccountInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAdminsManagingAccountInput) SetMaxResults(v int64) *ListAdminsManagingAccountInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAdminsManagingAccountInput) SetNextToken(v string) *ListAdminsManagingAccountInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAdminsManagingAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of accounts who manage member accounts within their AdminScope.
+	AdminAccounts []*string `type:"list"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminsManagingAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAdminsManagingAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdminAccounts sets the AdminAccounts field's value.
+func (s *ListAdminsManagingAccountOutput) SetAdminAccounts(v []*string) *ListAdminsManagingAccountOutput {
+	s.AdminAccounts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAdminsManagingAccountOutput) SetNextToken(v string) *ListAdminsManagingAccountOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListAppsListsInput struct {
@@ -8547,7 +9578,7 @@ func (s *ListProtocolsListsOutput) SetProtocolsLists(v []*ProtocolsListDataSumma
 type ListResourceSetResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the resource set, used in a TODO to refer to the
+	// A unique identifier for the resource set, used in a request to refer to the
 	// resource set.
 	//
 	// Identifier is a required field
@@ -9977,6 +11008,75 @@ func (s *NetworkFirewallUnexpectedGatewayRoutesViolation) SetVpcId(v string) *Ne
 	return s
 }
 
+// Defines the Organizations organizational units (OUs) that the specified Firewall
+// Manager administrator can apply policies to. For more information about OUs
+// in Organizations, see Managing organizational units (OUs) (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_ous.html)
+// in the Organizations User Guide.
+type OrganizationalUnitScope struct {
+	_ struct{} `type:"structure"`
+
+	// A boolean value that indicates if the administrator can apply policies to
+	// all OUs within an organization. If true, the administrator can manage all
+	// OUs within the organization. You can either enable management of all OUs
+	// through this operation, or you can specify OUs to manage in OrganizationalUnitScope$OrganizationalUnits.
+	// You cannot specify both.
+	AllOrganizationalUnitsEnabled *bool `type:"boolean"`
+
+	// A boolean value that excludes the OUs in OrganizationalUnitScope$OrganizationalUnits
+	// from the administrator's scope. If true, the Firewall Manager administrator
+	// can apply policies to all OUs in the organization except for the OUs listed
+	// in OrganizationalUnitScope$OrganizationalUnits. You can either specify a
+	// list of OUs to exclude by OrganizationalUnitScope$OrganizationalUnits, or
+	// you can enable management of all OUs by OrganizationalUnitScope$AllOrganizationalUnitsEnabled.
+	// You cannot specify both.
+	ExcludeSpecifiedOrganizationalUnits *bool `type:"boolean"`
+
+	// The list of OUs within the organization that the specified Firewall Manager
+	// administrator either can or cannot apply policies to, based on the value
+	// of OrganizationalUnitScope$ExcludeSpecifiedOrganizationalUnits. If OrganizationalUnitScope$ExcludeSpecifiedOrganizationalUnits
+	// is set to true, then the Firewall Manager administrator can apply policies
+	// to all OUs in the organization except for the OUs in this list. If OrganizationalUnitScope$ExcludeSpecifiedOrganizationalUnits
+	// is set to false, then the Firewall Manager administrator can only apply policies
+	// to the OUs in this list.
+	OrganizationalUnits []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationalUnitScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationalUnitScope) GoString() string {
+	return s.String()
+}
+
+// SetAllOrganizationalUnitsEnabled sets the AllOrganizationalUnitsEnabled field's value.
+func (s *OrganizationalUnitScope) SetAllOrganizationalUnitsEnabled(v bool) *OrganizationalUnitScope {
+	s.AllOrganizationalUnitsEnabled = &v
+	return s
+}
+
+// SetExcludeSpecifiedOrganizationalUnits sets the ExcludeSpecifiedOrganizationalUnits field's value.
+func (s *OrganizationalUnitScope) SetExcludeSpecifiedOrganizationalUnits(v bool) *OrganizationalUnitScope {
+	s.ExcludeSpecifiedOrganizationalUnits = &v
+	return s
+}
+
+// SetOrganizationalUnits sets the OrganizationalUnits field's value.
+func (s *OrganizationalUnitScope) SetOrganizationalUnits(v []*string) *OrganizationalUnitScope {
+	s.OrganizationalUnits = v
+	return s
+}
+
 // The reference rule that partially matches the ViolationTarget rule and violation
 // reason.
 type PartialMatch struct {
@@ -10103,6 +11203,16 @@ type Policy struct {
 	//
 	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
+
+	// Indicates whether the policy is in or out of an admin's policy or Region
+	// scope.
+	//
+	//    * ACTIVE - The administrator can manage and delete the policy.
+	//
+	//    * OUT_OF_ADMIN_SCOPE - The administrator can view the policy, but they
+	//    can't edit or delete the policy. Existing policy protections stay in place.
+	//    Any new resources that come into scope of the policy won't be protected.
+	PolicyStatus *string `type:"string" enum:"CustomerPolicyStatus"`
 
 	// A unique identifier for each update to the policy. When issuing a PutPolicy
 	// request, the PolicyUpdateToken in the request must match the PolicyUpdateToken
@@ -10256,6 +11366,12 @@ func (s *Policy) SetPolicyId(v string) *Policy {
 // SetPolicyName sets the PolicyName field's value.
 func (s *Policy) SetPolicyName(v string) *Policy {
 	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyStatus sets the PolicyStatus field's value.
+func (s *Policy) SetPolicyStatus(v string) *Policy {
+	s.PolicyStatus = &v
 	return s
 }
 
@@ -10551,6 +11667,16 @@ type PolicySummary struct {
 	// The name of the specified policy.
 	PolicyName *string `min:"1" type:"string"`
 
+	// Indicates whether the policy is in or out of an admin's policy or Region
+	// scope.
+	//
+	//    * ACTIVE - The administrator can manage and delete the policy.
+	//
+	//    * OUT_OF_ADMIN_SCOPE - The administrator can view the policy, but they
+	//    can't edit or delete the policy. Existing policy protections stay in place.
+	//    Any new resources that come into scope of the policy won't be protected.
+	PolicyStatus *string `type:"string" enum:"CustomerPolicyStatus"`
+
 	// Indicates if the policy should be automatically applied to new resources.
 	RemediationEnabled *bool `type:"boolean"`
 
@@ -10613,6 +11739,12 @@ func (s *PolicySummary) SetPolicyName(v string) *PolicySummary {
 	return s
 }
 
+// SetPolicyStatus sets the PolicyStatus field's value.
+func (s *PolicySummary) SetPolicyStatus(v string) *PolicySummary {
+	s.PolicyStatus = &v
+	return s
+}
+
 // SetRemediationEnabled sets the RemediationEnabled field's value.
 func (s *PolicySummary) SetRemediationEnabled(v bool) *PolicySummary {
 	s.RemediationEnabled = &v
@@ -10628,6 +11760,51 @@ func (s *PolicySummary) SetResourceType(v string) *PolicySummary {
 // SetSecurityServiceType sets the SecurityServiceType field's value.
 func (s *PolicySummary) SetSecurityServiceType(v string) *PolicySummary {
 	s.SecurityServiceType = &v
+	return s
+}
+
+// Defines the policy types that the specified Firewall Manager administrator
+// can manage.
+type PolicyTypeScope struct {
+	_ struct{} `type:"structure"`
+
+	// Allows the specified Firewall Manager administrator to manage all Firewall
+	// Manager policy types, except for third-party policy types. Third-party policy
+	// types can only be managed by the Firewall Manager default administrator.
+	AllPolicyTypesEnabled *bool `type:"boolean"`
+
+	// The list of policy types that the specified Firewall Manager administrator
+	// can manage.
+	PolicyTypes []*string `type:"list" enum:"SecurityServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PolicyTypeScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PolicyTypeScope) GoString() string {
+	return s.String()
+}
+
+// SetAllPolicyTypesEnabled sets the AllPolicyTypesEnabled field's value.
+func (s *PolicyTypeScope) SetAllPolicyTypesEnabled(v bool) *PolicyTypeScope {
+	s.AllPolicyTypesEnabled = &v
+	return s
+}
+
+// SetPolicyTypes sets the PolicyTypes field's value.
+func (s *PolicyTypeScope) SetPolicyTypes(v []*string) *PolicyTypeScope {
+	s.PolicyTypes = v
 	return s
 }
 
@@ -10899,6 +12076,93 @@ func (s *ProtocolsListDataSummary) SetListName(v string) *ProtocolsListDataSumma
 func (s *ProtocolsListDataSummary) SetProtocolsList(v []*string) *ProtocolsListDataSummary {
 	s.ProtocolsList = v
 	return s
+}
+
+type PutAdminAccountInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID to add as an Firewall Manager administrator
+	// account. The account must be a member of the organization that was onboarded
+	// to Firewall Manager by AssociateAdminAccount. For more information about
+	// Organizations, see Managing the Amazon Web Services Accounts in Your Organization
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html).
+	//
+	// AdminAccount is a required field
+	AdminAccount *string `min:"1" type:"string" required:"true"`
+
+	// Configures the resources that the specified Firewall Manager administrator
+	// can manage. As a best practice, set the administrative scope according to
+	// the principles of least privilege. Only grant the administrator the specific
+	// resources or permissions that they need to perform the duties of their role.
+	AdminScope *AdminScope `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAdminAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAdminAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAdminAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAdminAccountInput"}
+	if s.AdminAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdminAccount"))
+	}
+	if s.AdminAccount != nil && len(*s.AdminAccount) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdminAccount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdminAccount sets the AdminAccount field's value.
+func (s *PutAdminAccountInput) SetAdminAccount(v string) *PutAdminAccountInput {
+	s.AdminAccount = &v
+	return s
+}
+
+// SetAdminScope sets the AdminScope field's value.
+func (s *PutAdminAccountInput) SetAdminScope(v *AdminScope) *PutAdminAccountInput {
+	s.AdminScope = v
+	return s
+}
+
+type PutAdminAccountOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAdminAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAdminAccountOutput) GoString() string {
+	return s.String()
 }
 
 type PutAppsListInput struct {
@@ -11439,6 +12703,50 @@ func (s *PutResourceSetOutput) SetResourceSetArn(v string) *PutResourceSetOutput
 	return s
 }
 
+// Defines the Amazon Web Services Regions that the specified Firewall Manager
+// administrator can manage.
+type RegionScope struct {
+	_ struct{} `type:"structure"`
+
+	// Allows the specified Firewall Manager administrator to manage all Amazon
+	// Web Services Regions.
+	AllRegionsEnabled *bool `type:"boolean"`
+
+	// The Amazon Web Services Regions that the specified Firewall Manager administrator
+	// can perform actions in.
+	Regions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegionScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegionScope) GoString() string {
+	return s.String()
+}
+
+// SetAllRegionsEnabled sets the AllRegionsEnabled field's value.
+func (s *RegionScope) SetAllRegionsEnabled(v bool) *RegionScope {
+	s.AllRegionsEnabled = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *RegionScope) SetRegions(v []*string) *RegionScope {
+	s.Regions = v
+	return s
+}
+
 // Information about an individual action you can take to remediate a violation.
 type RemediationAction struct {
 	_ struct{} `type:"structure"`
@@ -11714,6 +13022,16 @@ type ResourceSet struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Indicates whether the resource set is in or out of an admin's Region scope.
+	//
+	//    * ACTIVE - The administrator can manage and delete the resource set.
+	//
+	//    * OUT_OF_ADMIN_SCOPE - The administrator can view the resource set, but
+	//    they can't edit or delete the resource set. Existing protections stay
+	//    in place. Any new resource that come into scope of the resource set won't
+	//    be protected.
+	ResourceSetStatus *string `type:"string" enum:"ResourceSetStatus"`
+
 	// Determines the resources that can be associated to the resource set. Depending
 	// on your setting for max results and the number of resource sets, a single
 	// call might not return the full list.
@@ -11808,6 +13126,12 @@ func (s *ResourceSet) SetName(v string) *ResourceSet {
 	return s
 }
 
+// SetResourceSetStatus sets the ResourceSetStatus field's value.
+func (s *ResourceSet) SetResourceSetStatus(v string) *ResourceSet {
+	s.ResourceSetStatus = &v
+	return s
+}
+
 // SetResourceTypeList sets the ResourceTypeList field's value.
 func (s *ResourceSet) SetResourceTypeList(v []*string) *ResourceSet {
 	s.ResourceTypeList = v
@@ -11838,6 +13162,16 @@ type ResourceSetSummary struct {
 	// The descriptive name of the resource set. You can't change the name of a
 	// resource set after you create it.
 	Name *string `min:"1" type:"string"`
+
+	// Indicates whether the resource set is in or out of an admin's Region scope.
+	//
+	//    * ACTIVE - The administrator can manage and delete the resource set.
+	//
+	//    * OUT_OF_ADMIN_SCOPE - The administrator can view the resource set, but
+	//    they can't edit or delete the resource set. Existing protections stay
+	//    in place. Any new resource that come into scope of the resource set won't
+	//    be protected.
+	ResourceSetStatus *string `type:"string" enum:"ResourceSetStatus"`
 }
 
 // String returns the string representation.
@@ -11879,6 +13213,12 @@ func (s *ResourceSetSummary) SetLastUpdateTime(v time.Time) *ResourceSetSummary 
 // SetName sets the Name field's value.
 func (s *ResourceSetSummary) SetName(v string) *ResourceSetSummary {
 	s.Name = &v
+	return s
+}
+
+// SetResourceSetStatus sets the ResourceSetStatus field's value.
+func (s *ResourceSetSummary) SetResourceSetStatus(v string) *ResourceSetSummary {
+	s.ResourceSetStatus = &v
 	return s
 }
 
@@ -12536,6 +13876,11 @@ type SecurityServicePolicyData struct {
 	//    Valid values for preProcessRuleGroups are between 1 and 99. Valid values
 	//    for postProcessRuleGroups are between 9901 and 10000.
 	//
+	//    * Example: IMPORT_NETWORK_FIREWALL "{\"type\":\"IMPORT_NETWORK_FIREWALL\",\"awsNetworkFirewallConfig\":{\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-2:000000000000:stateless-rulegroup\/rg1\",\"priority\":1}],\"networkFirewallStatelessDefaultActions\":[\"aws:drop\"],\"networkFirewallStatelessFragmentDefaultActions\":[\"aws:pass\"],\"networkFirewallStatelessCustomActions\":[],\"networkFirewallStatefulRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-2:aws-managed:stateful-rulegroup\/ThreatSignaturesEmergingEventsStrictOrder\",\"priority\":8}],\"networkFirewallStatefulEngineOptions\":{\"ruleOrder\":\"STRICT_ORDER\"},\"networkFirewallStatefulDefaultActions\":[\"aws:drop_strict\"]}}"
+	//    "{\"type\":\"DNS_FIREWALL\",\"preProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-1\",\"priority\":10}],\"postProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-2\",\"priority\":9911}]}"
+	//    Valid values for preProcessRuleGroups are between 1 and 99. Valid values
+	//    for postProcessRuleGroups are between 9901 and 10000.
+	//
 	//    * Example: NETWORK_FIREWALL - Centralized deployment model "{\"type\":\"NETWORK_FIREWALL\",\"awsNetworkFirewallConfig\":{\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\",\"priority\":1}],\"networkFirewallStatelessDefaultActions\":[\"aws:forward_to_sfe\",\"customActionName\"],\"networkFirewallStatelessFragmentDefaultActions\":[\"aws:forward_to_sfe\",\"customActionName\"],\"networkFirewallStatelessCustomActions\":[{\"actionName\":\"customActionName\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"metricdimensionvalue\"}]}}}],\"networkFirewallStatefulRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\"}],\"networkFirewallLoggingConfiguration\":{\"logDestinationConfigs\":[{\"logDestinationType\":\"S3\",\"logType\":\"ALERT\",\"logDestination\":{\"bucketName\":\"s3-bucket-name\"}},{\"logDestinationType\":\"S3\",\"logType\":\"FLOW\",\"logDestination\":{\"bucketName\":\"s3-bucket-name\"}}],\"overrideExistingConfig\":true}},\"firewallDeploymentModel\":{\"centralizedFirewallDeploymentModel\":{\"centralizedFirewallOrchestrationConfig\":{\"inspectionVpcIds\":[{\"resourceId\":\"vpc-1234\",\"accountId\":\"123456789011\"}],\"firewallCreationConfig\":{\"endpointLocation\":{\"availabilityZoneConfigList\":[{\"availabilityZoneId\":null,\"availabilityZoneName\":\"us-east-1a\",\"allowedIPV4CidrList\":[\"10.0.0.0/28\"]}]}},\"allowedIPV4CidrList\":[]}}}}"
 	//    To use the centralized deployment model, you must set PolicyOption (https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_PolicyOption.html)
 	//    to CENTRALIZED.
@@ -12617,10 +13962,29 @@ type SecurityServicePolicyData struct {
 	//    is false. For other resource types that you can protect with a Shield
 	//    Advanced policy, this ManagedServiceData configuration is an empty string.
 	//
-	//    * Example: WAFV2 "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAmazonIpReputationList\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
-	//    In the loggingConfiguration, you can specify one logDestinationConfigs,
-	//    you can optionally provide up to 20 redactedFields, and the RedactedFieldType
-	//    must be one of URI, QUERY_STRING, HEADER, or METHOD.
+	//    * Example: WAFV2 - Account takeover prevention and Bot Control managed
+	//    rule groups, and rule action override "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"versionEnabled\":null,\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesATPRuleSet\",\"managedRuleGroupConfigs\":[{\"awsmanagedRulesATPRuleSet\":{\"loginPath\":\"/loginpath\",\"requestInspection\":{\"payloadType\":\"FORM_ENCODED|JSON\",\"usernameField\":{\"identifier\":\"/form/username\"},\"passwordField\":{\"identifier\":\"/form/password\"}}}}]},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[],\"sampledRequestsEnabled\":true},{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"versionEnabled\":null,\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesBotControlRuleSet\",\"managedRuleGroupConfigs\":[{\"awsmanagedRulesBotControlRuleSet\":{\"inspectionLevel\":\"TARGETED|COMMON\"}}]},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[],\"sampledRequestsEnabled\":true,\"ruleActionOverrides\":[{\"name\":\"Rule1\",\"actionToUse\":{\"allow|block|count|captcha|challenge\":{}}},{\"name\":\"Rule2\",\"actionToUse\":{\"allow|block|count|captcha|challenge\":{}}}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"customRequestHandling\":null,\"customResponse\":null,\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":null,\"sampledRequestsEnabledForDefaultActions\":true}"
+	//    Fraud Control account takeover prevention (ATP) - For information about
+	//    the properties available for AWSManagedRulesATPRuleSet managed rule groups,
+	//    see AWSManagedRulesATPRuleSet (https://docs.aws.amazon.com/waf/latest/APIReference/API_AWSManagedRulesATPRuleSet.html)
+	//    in the WAF API Reference. Bot Control - For information about AWSManagedRulesBotControlRuleSet
+	//    managed rule groups, see AWSManagedRulesBotControlRuleSet (https://docs.aws.amazon.com/waf/latest/APIReference/API_AWSManagedRulesBotControlRuleSet.html)
+	//    in the WAF API Reference. Rule action overrides - Firewall Manager supports
+	//    rule action overrides only for managed rule groups. To configure a RuleActionOverrides
+	//    add the Name of the rule to override, and ActionToUse, which is the new
+	//    action to use for the rule. For information about using rule action override,
+	//    see RuleActionOverride (https://docs.aws.amazon.com/waf/latest/APIReference/API_RuleActionOverride.html)
+	//    in the WAF API Reference.
+	//
+	//    * Example: WAFV2 - CAPTCHA and Challenge configs "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"versionEnabled\":null,\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAdminProtectionRuleSet\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[],\"sampledRequestsEnabled\":true}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"customRequestHandling\":null,\"customResponse\":null,\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":null,\"sampledRequestsEnabledForDefaultActions\":true,\"captchaConfig\":{\"immunityTimeProperty\":{\"immunityTime\":500}},\"challengeConfig\":{\"immunityTimeProperty\":{\"immunityTime\":800}},\"tokenDomains\":[\"google.com\",\"amazon.com\"]}"
+	//    If you update the policy's values for captchaConfig, challengeConfig,
+	//    or tokenDomains, Firewall Manager will overwrite your local web ACLs to
+	//    contain the new value(s). However, if you don't update the policy's captchaConfig,
+	//    challengeConfig, or tokenDomains values, the values in your local web
+	//    ACLs will remain unchanged. For information about CAPTCHA and Challenge
+	//    configs, see CaptchaConfig (https://docs.aws.amazon.com/waf/latest/APIReference/API_CaptchaConfig.html)
+	//    and ChallengeConfig (https://docs.aws.amazon.com/waf/latest/APIReference/API_ChallengeConfig.html)
+	//    in the WAF API Reference.
 	//
 	//    * Example: WAFV2 - Firewall Manager support for WAF managed rule group
 	//    versioning "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"versionEnabled\":true,\"version\":\"Version_2.0\",\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesCommonRuleSet\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
@@ -12629,6 +13993,22 @@ type SecurityServicePolicyData struct {
 	//    the version you'd like to use. If you don't set versionEnabled to true,
 	//    or if you omit versionEnabled, then Firewall Manager uses the default
 	//    version of the WAF managed rule group.
+	//
+	//    * Example: WAFV2 - Logging configurations "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,
+	//    \"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":
+	//    {\"versionEnabled\":null,\"version\":null,\"vendorName\":\"AWS\", \"managedRuleGroupName\":\"AWSManagedRulesAdminProtectionRuleSet\"}
+	//    ,\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[], \"sampledRequestsEnabled\":true}],\"postProcessRuleGroups\":[],
+	//    \"defaultAction\":{\"type\":\"ALLOW\"},\"customRequestHandling\" :null,\"customResponse\":null,\"overrideCustomerWebACLAssociation\"
+	//    :false,\"loggingConfiguration\":{\"logDestinationConfigs\": [\"arn:aws:s3:::aws-waf-logs-example-bucket\"]
+	//    ,\"redactedFields\":[],\"loggingFilterConfigs\":{\"defaultBehavior\":\"KEEP\",
+	//    \"filters\":[{\"behavior\":\"KEEP\",\"requirement\":\"MEETS_ALL\", \"conditions\":[{\"actionCondition\":\"CAPTCHA\"},{\"actionCondition\":
+	//    \"CHALLENGE\"}, {\"actionCondition\":\"EXCLUDED_AS_COUNT\"}]}]}},\"sampledRequestsEnabledForDefaultActions\":true}"
+	//    Firewall Manager supports Amazon Kinesis Data Firehose and Amazon S3 as
+	//    the logDestinationConfigs in your loggingConfiguration. For information
+	//    about WAF logging configurations, see LoggingConfiguration (https://docs.aws.amazon.com/waf/latest/APIReference/API_LoggingConfiguration.html)
+	//    in the WAF API Reference In the loggingConfiguration, you can specify
+	//    one logDestinationConfigs. Optionally provide as many as 20 redactedFields.
+	//    The RedactedFieldType must be one of URI, QUERY_STRING, HEADER, or METHOD.
 	//
 	//    * Example: WAF Classic "{\"type\": \"WAF\", \"ruleGroups\": [{\"id\":\"12345678-1bcd-9012-efga-0987654321ab\",
 	//    \"overrideAction\" : {\"type\": \"COUNT\"}}], \"defaultAction\": {\"type\":
@@ -13525,6 +14905,22 @@ func CustomerPolicyScopeIdType_Values() []string {
 }
 
 const (
+	// CustomerPolicyStatusActive is a CustomerPolicyStatus enum value
+	CustomerPolicyStatusActive = "ACTIVE"
+
+	// CustomerPolicyStatusOutOfAdminScope is a CustomerPolicyStatus enum value
+	CustomerPolicyStatusOutOfAdminScope = "OUT_OF_ADMIN_SCOPE"
+)
+
+// CustomerPolicyStatus_Values returns all elements of the CustomerPolicyStatus enum
+func CustomerPolicyStatus_Values() []string {
+	return []string{
+		CustomerPolicyStatusActive,
+		CustomerPolicyStatusOutOfAdminScope,
+	}
+}
+
+const (
 	// DependentServiceNameAwsconfig is a DependentServiceName enum value
 	DependentServiceNameAwsconfig = "AWSCONFIG"
 
@@ -13649,6 +15045,30 @@ func NetworkFirewallOverrideAction_Values() []string {
 }
 
 const (
+	// OrganizationStatusOnboarding is a OrganizationStatus enum value
+	OrganizationStatusOnboarding = "ONBOARDING"
+
+	// OrganizationStatusOnboardingComplete is a OrganizationStatus enum value
+	OrganizationStatusOnboardingComplete = "ONBOARDING_COMPLETE"
+
+	// OrganizationStatusOffboarding is a OrganizationStatus enum value
+	OrganizationStatusOffboarding = "OFFBOARDING"
+
+	// OrganizationStatusOffboardingComplete is a OrganizationStatus enum value
+	OrganizationStatusOffboardingComplete = "OFFBOARDING_COMPLETE"
+)
+
+// OrganizationStatus_Values returns all elements of the OrganizationStatus enum
+func OrganizationStatus_Values() []string {
+	return []string{
+		OrganizationStatusOnboarding,
+		OrganizationStatusOnboardingComplete,
+		OrganizationStatusOffboarding,
+		OrganizationStatusOffboardingComplete,
+	}
+}
+
+const (
 	// PolicyComplianceStatusTypeCompliant is a PolicyComplianceStatusType enum value
 	PolicyComplianceStatusTypeCompliant = "COMPLIANT"
 
@@ -13677,6 +15097,22 @@ func RemediationActionType_Values() []string {
 	return []string{
 		RemediationActionTypeRemove,
 		RemediationActionTypeModify,
+	}
+}
+
+const (
+	// ResourceSetStatusActive is a ResourceSetStatus enum value
+	ResourceSetStatusActive = "ACTIVE"
+
+	// ResourceSetStatusOutOfAdminScope is a ResourceSetStatus enum value
+	ResourceSetStatusOutOfAdminScope = "OUT_OF_ADMIN_SCOPE"
+)
+
+// ResourceSetStatus_Values returns all elements of the ResourceSetStatus enum
+func ResourceSetStatus_Values() []string {
+	return []string{
+		ResourceSetStatusActive,
+		ResourceSetStatusOutOfAdminScope,
 	}
 }
 
