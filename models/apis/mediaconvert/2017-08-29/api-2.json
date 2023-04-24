@@ -1201,6 +1201,41 @@
         "NOT_ACCELERATED"
       ]
     },
+    "AdvancedInputFilter": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "AdvancedInputFilterAddTexture": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "AdvancedInputFilterSettings": {
+      "type": "structure",
+      "members": {
+        "AddTexture": {
+          "shape": "AdvancedInputFilterAddTexture",
+          "locationName": "addTexture"
+        },
+        "Sharpening": {
+          "shape": "AdvancedInputFilterSharpen",
+          "locationName": "sharpening"
+        }
+      }
+    },
+    "AdvancedInputFilterSharpen": {
+      "type": "string",
+      "enum": [
+        "OFF",
+        "LOW",
+        "HIGH"
+      ]
+    },
     "AfdSignaling": {
       "type": "string",
       "enum": [
@@ -1529,7 +1564,7 @@
           "locationName": "targetLkfs"
         },
         "TruePeakLimiterThreshold": {
-          "shape": "__doubleMinNegative20Max0",
+          "shape": "__doubleMinNegative8Max0",
           "locationName": "truePeakLimiterThreshold"
         }
       }
@@ -2276,6 +2311,13 @@
           "locationName": "sourceSettings"
         }
       }
+    },
+    "CaptionSourceConvertPaintOnToPopOn": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "CaptionSourceFramerate": {
       "type": "structure",
@@ -3462,7 +3504,8 @@
         "INTERPOLATE",
         "INTERPOLATE_TICKER",
         "BLEND",
-        "BLEND_TICKER"
+        "BLEND_TICKER",
+        "LINEAR_INTERPOLATION"
       ]
     },
     "Deinterlacer": {
@@ -4479,6 +4522,10 @@
         "Convert608To708": {
           "shape": "FileSourceConvert608To708",
           "locationName": "convert608To708"
+        },
+        "ConvertPaintToPop": {
+          "shape": "CaptionSourceConvertPaintOnToPopOn",
+          "locationName": "convertPaintToPop"
         },
         "Framerate": {
           "shape": "CaptionSourceFramerate",
@@ -6057,6 +6104,14 @@
     "Input": {
       "type": "structure",
       "members": {
+        "AdvancedInputFilter": {
+          "shape": "AdvancedInputFilter",
+          "locationName": "advancedInputFilter"
+        },
+        "AdvancedInputFilterSettings": {
+          "shape": "AdvancedInputFilterSettings",
+          "locationName": "advancedInputFilterSettings"
+        },
         "AudioSelectorGroups": {
           "shape": "__mapOfAudioSelectorGroup",
           "locationName": "audioSelectorGroups"
@@ -6245,6 +6300,14 @@
     "InputTemplate": {
       "type": "structure",
       "members": {
+        "AdvancedInputFilter": {
+          "shape": "AdvancedInputFilter",
+          "locationName": "advancedInputFilter"
+        },
+        "AdvancedInputFilterSettings": {
+          "shape": "AdvancedInputFilterSettings",
+          "locationName": "advancedInputFilterSettings"
+        },
         "AudioSelectorGroups": {
           "shape": "__mapOfAudioSelectorGroup",
           "locationName": "audioSelectorGroups"
@@ -6745,7 +6808,7 @@
           "locationName": "kantarLicenseId"
         },
         "KantarServerUrl": {
-          "shape": "__stringPatternHttpsKantarmediaCom",
+          "shape": "__stringPatternHttpsKantarmediaComFr",
           "locationName": "kantarServerUrl"
         },
         "LogDestination": {
@@ -9863,6 +9926,7 @@
         "H_264",
         "H_265",
         "MPEG2",
+        "PASSTHROUGH",
         "PRORES",
         "VC3",
         "VP8",
@@ -10740,9 +10804,6 @@
     "__doubleMin0Max2147483647": {
       "type": "double"
     },
-    "__doubleMinNegative20Max0": {
-      "type": "double"
-    },
     "__doubleMinNegative59Max0": {
       "type": "double"
     },
@@ -10756,6 +10817,9 @@
       "type": "double"
     },
     "__doubleMinNegative6Max3": {
+      "type": "double"
+    },
+    "__doubleMinNegative8Max0": {
       "type": "double"
     },
     "__integer": {
@@ -11705,9 +11769,9 @@
       "type": "string",
       "pattern": "^https:\\/\\/"
     },
-    "__stringPatternHttpsKantarmediaCom": {
+    "__stringPatternHttpsKantarmediaComFr": {
       "type": "string",
-      "pattern": "^https:\\/\\/.*.kantarmedia.com$"
+      "pattern": "^https:\\/\\/.*.kantarmedia.(com|fr)$"
     },
     "__stringPatternIdentityAZaZ26AZaZ09163": {
       "type": "string",

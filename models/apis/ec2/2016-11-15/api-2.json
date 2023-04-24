@@ -8824,6 +8824,10 @@
         }
       }
     },
+    "ClientSecretType":{
+      "type":"string",
+      "sensitive":true
+    },
     "ClientVpnAssociationId":{"type":"string"},
     "ClientVpnAuthentication":{
       "type":"structure",
@@ -11964,7 +11968,7 @@
         "TokenEndpoint":{"shape":"String"},
         "UserInfoEndpoint":{"shape":"String"},
         "ClientId":{"shape":"String"},
-        "ClientSecret":{"shape":"String"},
+        "ClientSecret":{"shape":"ClientSecretType"},
         "Scope":{"shape":"String"}
       }
     },
@@ -19601,7 +19605,7 @@
           "locationName":"format"
         },
         "ImportManifestUrl":{
-          "shape":"String",
+          "shape":"ImportManifestUrl",
           "locationName":"importManifestUrl"
         },
         "Size":{
@@ -31685,6 +31689,12 @@
     "ModifyVerifiedAccessTrustProviderOidcOptions":{
       "type":"structure",
       "members":{
+        "Issuer":{"shape":"String"},
+        "AuthorizationEndpoint":{"shape":"String"},
+        "TokenEndpoint":{"shape":"String"},
+        "UserInfoEndpoint":{"shape":"String"},
+        "ClientId":{"shape":"String"},
+        "ClientSecret":{"shape":"ClientSecretType"},
         "Scope":{"shape":"String"}
       }
     },
@@ -33319,7 +33329,7 @@
           "locationName":"clientId"
         },
         "ClientSecret":{
-          "shape":"String",
+          "shape":"ClientSecretType",
           "locationName":"clientSecret"
         },
         "Scope":{

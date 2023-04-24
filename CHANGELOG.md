@@ -1,3 +1,15 @@
+Release v1.44.249 (2023-04-24)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * API changes to AWS Verified Access related to identity providers' information.
+* `service/mediaconvert`: Updates service API and documentation
+  * This release introduces a noise reduction pre-filter, linear interpolation deinterlace mode, video pass-through, updated default job settings, and expanded LC-AAC Stereo audio bitrate ranges.
+* `service/rekognition`: Updates service API and documentation
+  * Added new status result to Liveness session status.
+
 Release v1.44.248 (2023-04-21)
 ===
 

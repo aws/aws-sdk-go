@@ -595,8 +595,9 @@ func (c *Rekognition) CreateFaceLivenessSessionRequest(input *CreateFaceLiveness
 // for a Face Liveness session. You can use the OutputConfig option in the Settings
 // parameter to provide an Amazon S3 bucket location. The Amazon S3 bucket stores
 // reference images and audit images. You can use AuditImagesLimit to limit
-// of audit images returned. This number is between 0 and 4. By default, it
-// is set to 0. The limit is best effort and based on the duration of the selfie-video.
+// the number of audit images returned. This number is between 0 and 4. By default,
+// it is set to 0. The limit is best effort and based on the duration of the
+// selfie-video.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10498,7 +10499,7 @@ type CreateFaceLivenessSessionOutput struct {
 	// A unique 128-bit UUID identifying a Face Liveness session.
 	//
 	// SessionId is a required field
-	SessionId *string `min:"1" type:"string" required:"true"`
+	SessionId *string `min:"36" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -15686,7 +15687,7 @@ type GetFaceLivenessSessionResultsInput struct {
 	// session.
 	//
 	// SessionId is a required field
-	SessionId *string `min:"1" type:"string" required:"true"`
+	SessionId *string `min:"36" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -15713,8 +15714,8 @@ func (s *GetFaceLivenessSessionResultsInput) Validate() error {
 	if s.SessionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SessionId"))
 	}
-	if s.SessionId != nil && len(*s.SessionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	if s.SessionId != nil && len(*s.SessionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 36))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15754,7 +15755,7 @@ type GetFaceLivenessSessionResultsOutput struct {
 	// The sessionId for which this request was called.
 	//
 	// SessionId is a required field
-	SessionId *string `min:"1" type:"string" required:"true"`
+	SessionId *string `min:"36" type:"string" required:"true"`
 
 	// Represents a status corresponding to the state of the session. Possible statuses
 	// are: CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED.
@@ -19210,7 +19211,7 @@ type LivenessOutputConfig struct {
 	// S3Bucket is a required field
 	S3Bucket *string `min:"3" type:"string" required:"true"`
 
-	// The prefix appended to the output files for the Face Liveness session results.
+	// The prefix prepended to the output files for the Face Liveness session results.
 	S3KeyPrefix *string `type:"string"`
 }
 
@@ -25909,6 +25910,9 @@ const (
 
 	// LivenessSessionStatusFailed is a LivenessSessionStatus enum value
 	LivenessSessionStatusFailed = "FAILED"
+
+	// LivenessSessionStatusExpired is a LivenessSessionStatus enum value
+	LivenessSessionStatusExpired = "EXPIRED"
 )
 
 // LivenessSessionStatus_Values returns all elements of the LivenessSessionStatus enum
@@ -25918,6 +25922,7 @@ func LivenessSessionStatus_Values() []string {
 		LivenessSessionStatusInProgress,
 		LivenessSessionStatusSucceeded,
 		LivenessSessionStatusFailed,
+		LivenessSessionStatusExpired,
 	}
 }
 
