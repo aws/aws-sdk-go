@@ -489,7 +489,7 @@
     },
     "AuthCode":{
       "type":"string",
-      "max":2048,
+      "max":4096,
       "pattern":"\\S+"
     },
     "AuthCodeUrl":{
@@ -2471,7 +2471,7 @@
     },
     "RefreshToken":{
       "type":"string",
-      "max":2048,
+      "max":4096,
       "pattern":"\\S+"
     },
     "Region":{

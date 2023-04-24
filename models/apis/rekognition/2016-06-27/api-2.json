@@ -3167,8 +3167,8 @@
     },
     "LivenessSessionId":{
       "type":"string",
-      "max":255,
-      "min":1,
+      "max":36,
+      "min":36,
       "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "LivenessSessionStatus":{
@@ -3177,7 +3177,8 @@
         "CREATED",
         "IN_PROGRESS",
         "SUCCEEDED",
-        "FAILED"
+        "FAILED",
+        "EXPIRED"
       ]
     },
     "MalformedPolicyDocumentException":{

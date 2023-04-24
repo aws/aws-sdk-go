@@ -35,7 +35,7 @@
     "AttachClassicLinkVpc": "<note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note> <p>Links an EC2-Classic instance to a ClassicLink-enabled VPC through one or more of the VPC's security groups. You cannot link an EC2-Classic instance to more than one VPC at a time. You can only link an instance that's in the <code>running</code> state. An instance is automatically unlinked from a VPC when it's stopped - you can link it to the VPC again when you restart it.</p> <p>After you've linked an instance, you cannot change the VPC security groups that are associated with it. To change the security groups, you must first unlink the instance, and then link it again.</p> <p>Linking your instance to a VPC is sometimes referred to as <i>attaching</i> your instance.</p>",
     "AttachInternetGateway": "<p>Attaches an internet gateway or a virtual private gateway to a VPC, enabling connectivity between the internet and the VPC. For more information about your VPC and internet gateway, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/\">Amazon Virtual Private Cloud User Guide</a>.</p>",
     "AttachNetworkInterface": "<p>Attaches a network interface to an instance.</p>",
-    "AttachVerifiedAccessTrustProvider": "<p>A trust provider is a third-party entity that creates, maintains, and manages identity information for users and devices. One or more trust providers can be attached to an Amazon Web Services Verified Access instance.</p>",
+    "AttachVerifiedAccessTrustProvider": "<p>Attaches the specified Amazon Web Services Verified Access trust provider to the specified Amazon Web Services Verified Access instance.</p>",
     "AttachVolume": "<p>Attaches an EBS volume to a running or stopped instance and exposes it to the instance with the specified device name.</p> <p>Encrypted EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>After you attach an EBS volume, you must make it available. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html\">Make an EBS volume available for use</a>.</p> <p>If a volume has an Amazon Web Services Marketplace product code:</p> <ul> <li> <p>The volume can be attached only to a stopped instance.</p> </li> <li> <p>Amazon Web Services Marketplace product codes are copied from the volume to the instance.</p> </li> <li> <p>You must be subscribed to the product.</p> </li> <li> <p>The instance type and operating system of the instance must support the product. For example, you can't detach a volume from a Windows instance and attach it to a Linux instance.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html\">Attach an Amazon EBS volume to an instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AttachVpnGateway": "<p>Attaches a virtual private gateway to a VPC. You can attach one virtual private gateway to one VPC at a time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">Amazon Web Services Site-to-Site VPN</a> in the <i>Amazon Web Services Site-to-Site VPN User Guide</i>.</p>",
     "AuthorizeClientVpnIngress": "<p>Adds an ingress authorization rule to a Client VPN endpoint. Ingress authorization rules act as firewall rules that grant access to networks. You must configure ingress authorization rules to enable clients to access resources in Amazon Web Services or on-premises networks.</p>",
@@ -125,9 +125,9 @@
     "CreateTransitGatewayRouteTableAnnouncement": "<p>Advertises a new transit gateway route table.</p>",
     "CreateTransitGatewayVpcAttachment": "<p>Attaches the specified VPC to the specified transit gateway.</p> <p>If you attach a VPC with a CIDR range that overlaps the CIDR range of a VPC that is already attached, the new VPC CIDR range is not propagated to the default propagation route table.</p> <p>To send VPC traffic to an attached transit gateway, add a route to the VPC route table using <a>CreateRoute</a>.</p>",
     "CreateVerifiedAccessEndpoint": "<p>An Amazon Web Services Verified Access endpoint is where you define your application along with an optional endpoint-level access policy.</p>",
-    "CreateVerifiedAccessGroup": "<p>An Amazon Web Services Verified Access group is a collection of Amazon Web Services Verified Access endpoints who's associated applications have similar security requirements. Each instance within an Amazon Web Services Verified Access group shares an Amazon Web Services Verified Access policy. For example, you can group all Amazon Web Services Verified Access instances associated with “sales” applications together and use one common Amazon Web Services Verified Access policy.</p>",
+    "CreateVerifiedAccessGroup": "<p>An Amazon Web Services Verified Access group is a collection of Amazon Web Services Verified Access endpoints who's associated applications have similar security requirements. Each instance within a Verified Access group shares an Verified Access policy. For example, you can group all Verified Access instances associated with \"sales\" applications together and use one common Verified Access policy.</p>",
     "CreateVerifiedAccessInstance": "<p>An Amazon Web Services Verified Access instance is a regional entity that evaluates application requests and grants access only when your security requirements are met.</p>",
-    "CreateVerifiedAccessTrustProvider": "<p>A trust provider is a third-party entity that creates, maintains, and manages identity information for users and devices. When an application request is made, the identity information sent by the trust provider will be evaluated by Amazon Web Services Verified Access, before allowing or denying the application request.</p>",
+    "CreateVerifiedAccessTrustProvider": "<p>A trust provider is a third-party entity that creates, maintains, and manages identity information for users and devices. When an application request is made, the identity information sent by the trust provider is evaluated by Verified Access before allowing or denying the application request.</p>",
     "CreateVolume": "<p>Creates an EBS volume that can be attached to an instance in the same Availability Zone.</p> <p>You can create a new empty volume or restore a volume from an EBS snapshot. Any Amazon Web Services Marketplace product codes from the snapshot are propagated to the volume.</p> <p>You can create encrypted volumes. Encrypted volumes must be attached to instances that support Amazon EBS encryption. Volumes that are created from encrypted snapshots are also automatically encrypted. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can tag your volumes during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html\">Create an Amazon EBS volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateVpc": "<p>Creates a VPC with the specified CIDR blocks. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html#vpc-cidr-blocks\">VPC CIDR blocks</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>You can optionally request an IPv6 CIDR block for the VPC. You can request an Amazon-provided IPv6 CIDR block from Amazon's pool of IPv6 addresses, or an IPv6 CIDR block from an IPv6 address pool that you provisioned through bring your own IP addresses (<a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">BYOIP</a>).</p> <p>By default, each instance that you launch in the VPC has the default DHCP options, which include only a default DNS server that we provide (AmazonProvidedDNS). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP option sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>You can specify the instance tenancy value for the VPC when you create it. You can't change this value for the VPC after you create it. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateVpcEndpoint": "<p>Creates a VPC endpoint for a specified service. An endpoint enables you to create a private connection between your VPC and the service. The service may be provided by Amazon Web Services, an Amazon Web Services Marketplace Partner, or another Amazon Web Services account. For more information, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/privatelink/\">Amazon Web Services PrivateLink Guide</a>.</p>",
@@ -339,11 +339,11 @@
     "DescribeTransitGatewayVpcAttachments": "<p>Describes one or more VPC attachments. By default, all VPC attachments are described. Alternatively, you can filter the results.</p>",
     "DescribeTransitGateways": "<p>Describes one or more transit gateways. By default, all transit gateways are described. Alternatively, you can filter the results.</p>",
     "DescribeTrunkInterfaceAssociations": "<note> <p>This API action is currently in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Describes one or more network interface trunk associations.</p>",
-    "DescribeVerifiedAccessEndpoints": "<p>Describe Amazon Web Services Verified Access endpoints.</p>",
-    "DescribeVerifiedAccessGroups": "<p>Describe details of existing Verified Access groups.</p>",
-    "DescribeVerifiedAccessInstanceLoggingConfigurations": "<p>Describes the current logging configuration for the Amazon Web Services Verified Access instances.</p>",
-    "DescribeVerifiedAccessInstances": "<p>Describe Verified Access instances.</p>",
-    "DescribeVerifiedAccessTrustProviders": "<p>Describe details of existing Verified Access trust providers.</p>",
+    "DescribeVerifiedAccessEndpoints": "<p>Describes the specified Amazon Web Services Verified Access endpoints.</p>",
+    "DescribeVerifiedAccessGroups": "<p>Describes the specified Verified Access groups.</p>",
+    "DescribeVerifiedAccessInstanceLoggingConfigurations": "<p>Describes the specified Amazon Web Services Verified Access instances.</p>",
+    "DescribeVerifiedAccessInstances": "<p>Describes the specified Amazon Web Services Verified Access instances.</p>",
+    "DescribeVerifiedAccessTrustProviders": "<p>Describes the specified Amazon Web Services Verified Access trust providers.</p>",
     "DescribeVolumeAttribute": "<p>Describes the specified attribute of the specified volume. You can specify only one attribute at a time.</p> <p>For more information about EBS volumes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html\">Amazon EBS volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeVolumeStatus": "<p>Describes the status of the specified volumes. Volume status provides the result of the checks performed on your volumes to determine events that can impair the performance of your volumes. The performance of a volume can be affected if an issue occurs on the volume's underlying host. If the volume's underlying host experiences a power outage or system issue, after the system is restored, there could be data inconsistencies on the volume. Volume events notify you if this occurs. Volume actions notify you if any action needs to be taken in response to the event.</p> <p>The <code>DescribeVolumeStatus</code> operation provides the following information about the specified volumes:</p> <p> <i>Status</i>: Reflects the current status of the volume. The possible values are <code>ok</code>, <code>impaired</code> , <code>warning</code>, or <code>insufficient-data</code>. If all checks pass, the overall status of the volume is <code>ok</code>. If the check fails, the overall status is <code>impaired</code>. If the status is <code>insufficient-data</code>, then the checks might still be taking place on your volume at the time. We recommend that you retry the request. For more information about volume status, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html\">Monitor the status of your volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p> <i>Events</i>: Reflect the cause of a volume status and might require you to take action. For example, if your volume returns an <code>impaired</code> status, then the volume event might be <code>potential-data-inconsistency</code>. This means that your volume has been affected by an issue with the underlying host, has all I/O operations disabled, and might have inconsistent data.</p> <p> <i>Actions</i>: Reflect the actions you might have to take in response to an event. For example, if the status of the volume is <code>impaired</code> and the volume event shows <code>potential-data-inconsistency</code>, then the action shows <code>enable-volume-io</code>. This means that you may want to enable the I/O operations for the volume by calling the <a>EnableVolumeIO</a> action and then check the volume for data consistency.</p> <p>Volume status is based on the volume status checks, and does not reflect the volume state. Therefore, volume status does not indicate volumes in the <code>error</code> state (for example, when a volume is incapable of accepting I/O.)</p>",
     "DescribeVolumes": "<p>Describes the specified EBS volumes or all of your EBS volumes.</p> <p>If you are describing a long list of volumes, we recommend that you paginate the output to make the list more manageable. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\">Pagination</a>.</p> <p>For more information about EBS volumes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html\">Amazon EBS volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -364,7 +364,7 @@
     "DetachClassicLinkVpc": "<note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note> <p>Unlinks (detaches) a linked EC2-Classic instance from a VPC. After the instance has been unlinked, the VPC security groups are no longer associated with it. An instance is automatically unlinked from a VPC when it's stopped.</p>",
     "DetachInternetGateway": "<p>Detaches an internet gateway from a VPC, disabling connectivity between the internet and the VPC. The VPC must not contain any running instances with Elastic IP addresses or public IPv4 addresses.</p>",
     "DetachNetworkInterface": "<p>Detaches a network interface from an instance.</p>",
-    "DetachVerifiedAccessTrustProvider": "<p>Detach a trust provider from an Amazon Web Services Verified Access instance.</p>",
+    "DetachVerifiedAccessTrustProvider": "<p>Detaches the specified Amazon Web Services Verified Access trust provider from the specified Amazon Web Services Verified Access instance.</p>",
     "DetachVolume": "<p>Detaches an EBS volume from an instance. Make sure to unmount any file systems on the device within your operating system before detaching the volume. Failure to do so can result in the volume becoming stuck in the <code>busy</code> state while detaching. If this happens, detachment can be delayed indefinitely until you unmount the volume, force detachment, reboot the instance, or all three. If an EBS volume is the root device of an instance, it can't be detached while the instance is running. To detach the root volume, stop the instance first.</p> <p>When a volume with an Amazon Web Services Marketplace product code is detached from an instance, the product code is no longer associated with the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html\">Detach an Amazon EBS volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DetachVpnGateway": "<p>Detaches a virtual private gateway from a VPC. You do this if you're planning to turn off the VPC and not use it anymore. You can confirm a virtual private gateway has been completely detached from a VPC by describing the virtual private gateway (any attachments to the virtual private gateway are also described).</p> <p>You must wait for the attachment's state to switch to <code>detached</code> before you can delete the VPC or attach a different VPC to the virtual private gateway.</p>",
     "DisableAddressTransfer": "<p>Disables Elastic IP address transfer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro\">Transfer Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -505,11 +505,11 @@
     "ModifyTransitGateway": "<p>Modifies the specified transit gateway. When you modify a transit gateway, the modified options are applied to new transit gateway attachments only. Your existing transit gateway attachments are not modified.</p>",
     "ModifyTransitGatewayPrefixListReference": "<p>Modifies a reference (route) to a prefix list in a specified transit gateway route table.</p>",
     "ModifyTransitGatewayVpcAttachment": "<p>Modifies the specified VPC attachment.</p>",
-    "ModifyVerifiedAccessEndpoint": "<p>Modifies the configuration of an Amazon Web Services Verified Access endpoint.</p>",
-    "ModifyVerifiedAccessEndpointPolicy": "<p>Modifies the specified Verified Access endpoint policy.</p>",
-    "ModifyVerifiedAccessGroup": "<p>Modifies the specified Verified Access group configuration.</p>",
-    "ModifyVerifiedAccessGroupPolicy": "<p>Modifies the specified Verified Access group policy.</p>",
-    "ModifyVerifiedAccessInstance": "<p>Modifies the configuration of the specified Verified Access instance.</p>",
+    "ModifyVerifiedAccessEndpoint": "<p>Modifies the configuration of the specified Amazon Web Services Verified Access endpoint.</p>",
+    "ModifyVerifiedAccessEndpointPolicy": "<p>Modifies the specified Amazon Web Services Verified Access endpoint policy.</p>",
+    "ModifyVerifiedAccessGroup": "<p>Modifies the specified Amazon Web Services Verified Access group configuration.</p>",
+    "ModifyVerifiedAccessGroupPolicy": "<p>Modifies the specified Amazon Web Services Verified Access group policy.</p>",
+    "ModifyVerifiedAccessInstance": "<p>Modifies the configuration of the specified Amazon Web Services Verified Access instance.</p>",
     "ModifyVerifiedAccessInstanceLoggingConfiguration": "<p>Modifies the logging configuration for the specified Amazon Web Services Verified Access instance.</p>",
     "ModifyVerifiedAccessTrustProvider": "<p>Modifies the configuration of the specified Amazon Web Services Verified Access trust provider.</p>",
     "ModifyVolume": "<p>You can modify several parameters of an existing EBS volume, including volume size, volume type, and IOPS capacity. If your EBS volume is attached to a current-generation EC2 instance type, you might be able to apply these changes without stopping the instance or detaching the volume from it. For more information about modifying EBS volumes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html\">Amazon EBS Elastic Volumes</a> (Linux instances) or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-modify-volume.html\">Amazon EBS Elastic Volumes</a> (Windows instances).</p> <p>When you complete a resize operation on your volume, you need to extend the volume's file-system size to take advantage of the new storage capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-expand-volume.html#recognize-expanded-volume-linux\">Extend a Linux file system</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-expand-volume.html#recognize-expanded-volume-windows\">Extend a Windows file system</a>.</p> <p> You can use CloudWatch Events to check the status of a modification to an EBS volume. For information about CloudWatch Events, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/\">Amazon CloudWatch Events User Guide</a>. You can also track the status of a modification using <a>DescribeVolumesModifications</a>. For information about tracking status changes using either method, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-modifications.html\">Monitor the progress of volume modifications</a>.</p> <p>With previous-generation instance types, resizing an EBS volume might require detaching and reattaching the volume or stopping and restarting the instance.</p> <p>After modifying a volume, you must wait at least six hours and ensure that the volume is in the <code>in-use</code> or <code>available</code> state before you can modify the same volume. This is sometimes referred to as a cooldown period.</p>",
@@ -3370,6 +3370,14 @@
         "ClientVpnEndpoint$ClientLoginBannerOptions": "<p>Options for enabling a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p>"
       }
     },
+    "ClientSecretType": {
+      "base": null,
+      "refs": {
+        "CreateVerifiedAccessTrustProviderOidcOptions$ClientSecret": "<p>The client secret.</p>",
+        "ModifyVerifiedAccessTrustProviderOidcOptions$ClientSecret": "<p>The client secret.</p>",
+        "OidcOptions$ClientSecret": "<p>The client secret.</p>"
+      }
+    },
     "ClientVpnAssociationId": {
       "base": null,
       "refs": {
@@ -4528,15 +4536,15 @@
       }
     },
     "CreateVerifiedAccessEndpointEniOptions": {
-      "base": "<p>Options for a network interface-type endpoint.</p>",
+      "base": "<p>Describes the network interface options when creating an Amazon Web Services Verified Access endpoint using the <code>network-interface</code> type.</p>",
       "refs": {
-        "CreateVerifiedAccessEndpointRequest$NetworkInterfaceOptions": "<p>The network interface details if creating the Amazon Web Services Verified Access endpoint as <code>network-interface</code>type.</p>"
+        "CreateVerifiedAccessEndpointRequest$NetworkInterfaceOptions": "<p>The network interface details. This parameter is required if the endpoint type is <code>network-interface</code>.</p>"
       }
     },
     "CreateVerifiedAccessEndpointLoadBalancerOptions": {
-      "base": "<p>Describes a load balancer when creating an Amazon Web Services Verified Access endpoint using the <code>load-balancer</code> type.</p>",
+      "base": "<p>Describes the load balancer options when creating an Amazon Web Services Verified Access endpoint using the <code>load-balancer</code> type.</p>",
       "refs": {
-        "CreateVerifiedAccessEndpointRequest$LoadBalancerOptions": "<p>The load balancer details if creating the Amazon Web Services Verified Access endpoint as <code>load-balancer</code>type.</p>"
+        "CreateVerifiedAccessEndpointRequest$LoadBalancerOptions": "<p>The load balancer details. This parameter is required if the endpoint type is <code>load-balancer</code>.</p>"
       }
     },
     "CreateVerifiedAccessEndpointRequest": {
@@ -4576,15 +4584,15 @@
       }
     },
     "CreateVerifiedAccessTrustProviderDeviceOptions": {
-      "base": "<p>Options for a device-identity type trust provider.</p>",
+      "base": "<p>Describes the options when creating an Amazon Web Services Verified Access trust provider using the <code>device</code> type.</p>",
       "refs": {
-        "CreateVerifiedAccessTrustProviderRequest$DeviceOptions": "<p>The options for device identity based trust providers.</p>"
+        "CreateVerifiedAccessTrustProviderRequest$DeviceOptions": "<p>The options for a device-based trust provider. This parameter is required when the provider type is <code>device</code>.</p>"
       }
     },
     "CreateVerifiedAccessTrustProviderOidcOptions": {
-      "base": "<p>Options for an OIDC-based, user-identity type trust provider.</p>",
+      "base": "<p>Describes the options when creating an Amazon Web Services Verified Access trust provider using the <code>user</code> type.</p>",
       "refs": {
-        "CreateVerifiedAccessTrustProviderRequest$OidcOptions": "<p>The OpenID Connect details for an <code>oidc</code>-type, user-identity based trust provider.</p>"
+        "CreateVerifiedAccessTrustProviderRequest$OidcOptions": "<p>The options for a OpenID Connect-compatible user-identity trust provider. This parameter is required when the provider type is <code>user</code>.</p>"
       }
     },
     "CreateVerifiedAccessTrustProviderRequest": {
@@ -7596,15 +7604,15 @@
       }
     },
     "DeviceOptions": {
-      "base": "<p>Options for an Amazon Web Services Verified Access device-identity based trust provider.</p>",
+      "base": "<p>Describes the options for an Amazon Web Services Verified Access device-identity based trust provider.</p>",
       "refs": {
-        "VerifiedAccessTrustProvider$DeviceOptions": "<p>The options for device-identity type trust provider.</p>"
+        "VerifiedAccessTrustProvider$DeviceOptions": "<p>The options for device-identity trust provider.</p>"
       }
     },
     "DeviceTrustProviderType": {
       "base": null,
       "refs": {
-        "CreateVerifiedAccessTrustProviderRequest$DeviceTrustProviderType": "<p>The type of device-based trust provider.</p>",
+        "CreateVerifiedAccessTrustProviderRequest$DeviceTrustProviderType": "<p>The type of device-based trust provider. This parameter is required when the provider type is <code>device</code>.</p>",
         "VerifiedAccessTrustProvider$DeviceTrustProviderType": "<p>The type of device-based trust provider.</p>",
         "VerifiedAccessTrustProviderCondensed$DeviceTrustProviderType": "<p>The type of device-based trust provider.</p>"
       }
@@ -10520,6 +10528,7 @@
     "ImportManifestUrl": {
       "base": null,
       "refs": {
+        "DiskImageDescription$ImportManifestUrl": "<p>A presigned URL for the import manifest stored in Amazon S3. For information about creating a presigned URL for an Amazon S3 object, read the \"Query String Request Authentication Alternative\" section of the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html\">Authenticating REST Requests</a> topic in the <i>Amazon Simple Storage Service Developer Guide</i>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
         "DiskImageDetail$ImportManifestUrl": "<p>A presigned URL for the import manifest stored in Amazon S3 and presented here as an Amazon S3 presigned URL. For information about creating a presigned URL for an Amazon S3 object, read the \"Query String Request Authentication Alternative\" section of the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html\">Authenticating REST Requests</a> topic in the <i>Amazon Simple Storage Service Developer Guide</i>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>"
       }
     },
@@ -14176,7 +14185,7 @@
       }
     },
     "ModifyVerifiedAccessEndpointEniOptions": {
-      "base": "<p>Options for a network-interface type Verified Access endpoint.</p>",
+      "base": "<p>Describes the options when modifying a Verified Access endpoint with the <code>network-interface</code> type.</p>",
       "refs": {
         "ModifyVerifiedAccessEndpointRequest$NetworkInterfaceOptions": "<p>The network interface options.</p>"
       }
@@ -14184,7 +14193,7 @@
     "ModifyVerifiedAccessEndpointLoadBalancerOptions": {
       "base": "<p>Describes a load balancer when creating an Amazon Web Services Verified Access endpoint using the <code>load-balancer</code> type.</p>",
       "refs": {
-        "ModifyVerifiedAccessEndpointRequest$LoadBalancerOptions": "<p>The load balancer details if creating the Amazon Web Services Verified Access endpoint as <code>load-balancer</code>type.</p>"
+        "ModifyVerifiedAccessEndpointRequest$LoadBalancerOptions": "<p>The load balancer details if creating the Verified Access endpoint as <code>load-balancer</code>type.</p>"
       }
     },
     "ModifyVerifiedAccessEndpointPolicyRequest": {
@@ -14254,9 +14263,9 @@
       }
     },
     "ModifyVerifiedAccessTrustProviderOidcOptions": {
-      "base": "<p>OpenID Connect options for an <code>oidc</code>-type, user-identity based trust provider.</p>",
+      "base": "<p>Options for an OpenID Connect-compatible user-identity trust provider.</p>",
       "refs": {
-        "ModifyVerifiedAccessTrustProviderRequest$OidcOptions": "<p>The OpenID Connect details for an <code>oidc</code>-type, user-identity based trust provider.</p>"
+        "ModifyVerifiedAccessTrustProviderRequest$OidcOptions": "<p>The options for an OpenID Connect-compatible user-identity trust provider.</p>"
       }
     },
     "ModifyVerifiedAccessTrustProviderRequest": {
@@ -15112,9 +15121,9 @@
       }
     },
     "OidcOptions": {
-      "base": "<p>Options for OIDC-based, user-identity type trust provider.</p>",
+      "base": "<p>Describes the options for an OpenID Connect-compatible user-identity trust provider.</p>",
       "refs": {
-        "VerifiedAccessTrustProvider$OidcOptions": "<p>The OpenID Connect details for an <code>oidc</code>-type, user-identity based trust provider.</p>"
+        "VerifiedAccessTrustProvider$OidcOptions": "<p>The options for an OpenID Connect-compatible user-identity trust provider.</p>"
       }
     },
     "OnDemandAllocationStrategy": {
@@ -17385,7 +17394,7 @@
     "SecurityGroupIdList": {
       "base": null,
       "refs": {
-        "CreateVerifiedAccessEndpointRequest$SecurityGroupIds": "<p>The Amazon EC2 security groups to associate with the Amazon Web Services Verified Access endpoint.</p>",
+        "CreateVerifiedAccessEndpointRequest$SecurityGroupIds": "<p>The IDs of the security groups to associate with the Verified Access endpoint.</p>",
         "VerifiedAccessEndpoint$SecurityGroupIds": "<p>The IDs of the security groups for the endpoint.</p>"
       }
     },
@@ -18484,14 +18493,14 @@
         "CreateTransitGatewayRequest$Description": "<p>A description of the transit gateway.</p>",
         "CreateTransitGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR range used for destination matches. Routing decisions are based on the most specific match.</p>",
         "CreateVerifiedAccessEndpointRequest$ApplicationDomain": "<p>The DNS name for users to reach your application.</p>",
-        "CreateVerifiedAccessEndpointRequest$EndpointDomainPrefix": "<p>A custom identifier that gets prepended to a DNS name that is generated for the endpoint.</p>",
-        "CreateVerifiedAccessEndpointRequest$Description": "<p>A description for the Amazon Web Services Verified Access endpoint.</p>",
-        "CreateVerifiedAccessEndpointRequest$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
+        "CreateVerifiedAccessEndpointRequest$EndpointDomainPrefix": "<p>A custom identifier that is prepended to the DNS name that is generated for the endpoint.</p>",
+        "CreateVerifiedAccessEndpointRequest$Description": "<p>A description for the Verified Access endpoint.</p>",
+        "CreateVerifiedAccessEndpointRequest$PolicyDocument": "<p>The Verified Access policy document.</p>",
         "CreateVerifiedAccessEndpointRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "CreateVerifiedAccessGroupRequest$Description": "<p>A description for the Amazon Web Services Verified Access group.</p>",
-        "CreateVerifiedAccessGroupRequest$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
+        "CreateVerifiedAccessGroupRequest$Description": "<p>A description for the Verified Access group.</p>",
+        "CreateVerifiedAccessGroupRequest$PolicyDocument": "<p>The Verified Access policy document.</p>",
         "CreateVerifiedAccessGroupRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "CreateVerifiedAccessInstanceRequest$Description": "<p>A description for the Amazon Web Services Verified Access instance.</p>",
+        "CreateVerifiedAccessInstanceRequest$Description": "<p>A description for the Verified Access instance.</p>",
         "CreateVerifiedAccessInstanceRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateVerifiedAccessTrustProviderDeviceOptions$TenantId": "<p>The ID of the tenant application with the device-identity provider.</p>",
         "CreateVerifiedAccessTrustProviderOidcOptions$Issuer": "<p>The OIDC issuer.</p>",
@@ -18499,10 +18508,9 @@
         "CreateVerifiedAccessTrustProviderOidcOptions$TokenEndpoint": "<p>The OIDC token endpoint.</p>",
         "CreateVerifiedAccessTrustProviderOidcOptions$UserInfoEndpoint": "<p>The OIDC user info endpoint.</p>",
         "CreateVerifiedAccessTrustProviderOidcOptions$ClientId": "<p>The client identifier.</p>",
-        "CreateVerifiedAccessTrustProviderOidcOptions$ClientSecret": "<p>The client secret.</p>",
         "CreateVerifiedAccessTrustProviderOidcOptions$Scope": "<p>OpenID Connect (OIDC) scopes are used by an application during authentication to authorize access to a user's details. Each scope returns a specific set of user attributes.</p>",
         "CreateVerifiedAccessTrustProviderRequest$PolicyReferenceName": "<p>The identifier to be used when working with policy rules.</p>",
-        "CreateVerifiedAccessTrustProviderRequest$Description": "<p>A description for the Amazon Web Services Verified Access trust provider.</p>",
+        "CreateVerifiedAccessTrustProviderRequest$Description": "<p>A description for the Verified Access trust provider.</p>",
         "CreateVerifiedAccessTrustProviderRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateVolumePermission$UserId": "<p>The ID of the Amazon Web Services account to be added or removed.</p>",
         "CreateVolumeRequest$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost.</p>",
@@ -18789,7 +18797,6 @@
         "DisassociateVpcCidrBlockResult$VpcId": "<p>The ID of the VPC.</p>",
         "DiskImage$Description": "<p>A description of the disk image.</p>",
         "DiskImageDescription$Checksum": "<p>The checksum computed for the disk image.</p>",
-        "DiskImageDescription$ImportManifestUrl": "<p>A presigned URL for the import manifest stored in Amazon S3. For information about creating a presigned URL for an Amazon S3 object, read the \"Query String Request Authentication Alternative\" section of the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html\">Authenticating REST Requests</a> topic in the <i>Amazon Simple Storage Service Developer Guide</i>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
         "DiskImageVolumeDescription$Id": "<p>The volume identifier.</p>",
         "DnsEntry$DnsName": "<p>The DNS name.</p>",
         "DnsEntry$HostedZoneId": "<p>The ID of the private hosted zone.</p>",
@@ -18966,8 +18973,8 @@
         "GetTransitGatewayRouteTableAssociationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetTransitGatewayRouteTablePropagationsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetTransitGatewayRouteTablePropagationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "GetVerifiedAccessEndpointPolicyResult$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
-        "GetVerifiedAccessGroupPolicyResult$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
+        "GetVerifiedAccessEndpointPolicyResult$PolicyDocument": "<p>The Verified Access policy document.</p>",
+        "GetVerifiedAccessGroupPolicyResult$PolicyDocument": "<p>The Verified Access policy document.</p>",
         "GetVpnConnectionDeviceSampleConfigurationRequest$InternetKeyExchangeVersion": "<p>The IKE version to be used in the sample configuration file for your customer gateway device. You can specify one of the following versions: <code>ikev1</code> or <code>ikev2</code>.</p>",
         "GetVpnTunnelReplacementStatusRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
         "GetVpnTunnelReplacementStatusResult$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
@@ -19363,21 +19370,26 @@
         "ModifyTrafficMirrorFilterRuleRequest$Description": "<p>The description to assign to the Traffic Mirror rule.</p>",
         "ModifyTrafficMirrorSessionRequest$Description": "<p>The description to assign to the Traffic Mirror session.</p>",
         "ModifyTransitGatewayRequest$Description": "<p>The description for the transit gateway.</p>",
-        "ModifyVerifiedAccessEndpointPolicyRequest$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
+        "ModifyVerifiedAccessEndpointPolicyRequest$PolicyDocument": "<p>The Verified Access policy document.</p>",
         "ModifyVerifiedAccessEndpointPolicyRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "ModifyVerifiedAccessEndpointPolicyResult$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
-        "ModifyVerifiedAccessEndpointRequest$Description": "<p>A description for the Amazon Web Services Verified Access endpoint.</p>",
+        "ModifyVerifiedAccessEndpointPolicyResult$PolicyDocument": "<p>The Verified Access policy document.</p>",
+        "ModifyVerifiedAccessEndpointRequest$Description": "<p>A description for the Verified Access endpoint.</p>",
         "ModifyVerifiedAccessEndpointRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "ModifyVerifiedAccessGroupPolicyRequest$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
+        "ModifyVerifiedAccessGroupPolicyRequest$PolicyDocument": "<p>The Verified Access policy document.</p>",
         "ModifyVerifiedAccessGroupPolicyRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "ModifyVerifiedAccessGroupPolicyResult$PolicyDocument": "<p>The Amazon Web Services Verified Access policy document.</p>",
-        "ModifyVerifiedAccessGroupRequest$Description": "<p>A description for the Amazon Web Services Verified Access group.</p>",
+        "ModifyVerifiedAccessGroupPolicyResult$PolicyDocument": "<p>The Verified Access policy document.</p>",
+        "ModifyVerifiedAccessGroupRequest$Description": "<p>A description for the Verified Access group.</p>",
         "ModifyVerifiedAccessGroupRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ModifyVerifiedAccessInstanceLoggingConfigurationRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "ModifyVerifiedAccessInstanceRequest$Description": "<p>A description for the Amazon Web Services Verified Access instance.</p>",
+        "ModifyVerifiedAccessInstanceRequest$Description": "<p>A description for the Verified Access instance.</p>",
         "ModifyVerifiedAccessInstanceRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
+        "ModifyVerifiedAccessTrustProviderOidcOptions$Issuer": "<p>The OIDC issuer.</p>",
+        "ModifyVerifiedAccessTrustProviderOidcOptions$AuthorizationEndpoint": "<p>The OIDC authorization endpoint.</p>",
+        "ModifyVerifiedAccessTrustProviderOidcOptions$TokenEndpoint": "<p>The OIDC token endpoint.</p>",
+        "ModifyVerifiedAccessTrustProviderOidcOptions$UserInfoEndpoint": "<p>The OIDC user info endpoint.</p>",
+        "ModifyVerifiedAccessTrustProviderOidcOptions$ClientId": "<p>The client identifier.</p>",
         "ModifyVerifiedAccessTrustProviderOidcOptions$Scope": "<p>OpenID Connect (OIDC) scopes are used by an application during authentication to authorize access to a user's details. Each scope returns a specific set of user attributes.</p>",
-        "ModifyVerifiedAccessTrustProviderRequest$Description": "<p>A description for the Amazon Web Services Verified Access trust provider.</p>",
+        "ModifyVerifiedAccessTrustProviderRequest$Description": "<p>A description for the Verified Access trust provider.</p>",
         "ModifyVerifiedAccessTrustProviderRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ModifyVpcEndpointConnectionNotificationRequest$ConnectionNotificationArn": "<p>The ARN for the SNS topic for the notification.</p>",
         "ModifyVpcEndpointRequest$PolicyDocument": "<p>(Interface and gateway endpoints) A policy to attach to the endpoint that controls access to the service. The policy must be in valid JSON format.</p>",
@@ -19460,7 +19472,6 @@
         "OidcOptions$TokenEndpoint": "<p>The OIDC token endpoint.</p>",
         "OidcOptions$UserInfoEndpoint": "<p>The OIDC user info endpoint.</p>",
         "OidcOptions$ClientId": "<p>The client identifier.</p>",
-        "OidcOptions$ClientSecret": "<p>The client secret.</p>",
         "OidcOptions$Scope": "<p>The OpenID Connect (OIDC) scope specified.</p>",
         "OnDemandOptions$MaxTotalPrice": "<p>The maximum amount per hour for On-Demand Instances that you're willing to pay.</p>",
         "OnDemandOptionsRequest$MaxTotalPrice": "<p>The maximum amount per hour for On-Demand Instances that you're willing to pay.</p>",
@@ -20523,10 +20534,10 @@
         "CreateTransitGatewayRouteTableAnnouncementRequest$TagSpecifications": "<p>The tags specifications applied to the transit gateway route table announcement.</p>",
         "CreateTransitGatewayRouteTableRequest$TagSpecifications": "<p>The tags to apply to the transit gateway route table.</p>",
         "CreateTransitGatewayVpcAttachmentRequest$TagSpecifications": "<p>The tags to apply to the VPC attachment.</p>",
-        "CreateVerifiedAccessEndpointRequest$TagSpecifications": "<p>The tags to assign to the Amazon Web Services Verified Access endpoint.</p>",
-        "CreateVerifiedAccessGroupRequest$TagSpecifications": "<p>The tags to assign to the Amazon Web Services Verified Access group.</p>",
-        "CreateVerifiedAccessInstanceRequest$TagSpecifications": "<p>The tags to assign to the Amazon Web Services Verified Access instance.</p>",
-        "CreateVerifiedAccessTrustProviderRequest$TagSpecifications": "<p>The tags to assign to the Amazon Web Services Verified Access trust provider.</p>",
+        "CreateVerifiedAccessEndpointRequest$TagSpecifications": "<p>The tags to assign to the Verified Access endpoint.</p>",
+        "CreateVerifiedAccessGroupRequest$TagSpecifications": "<p>The tags to assign to the Verified Access group.</p>",
+        "CreateVerifiedAccessInstanceRequest$TagSpecifications": "<p>The tags to assign to the Verified Access instance.</p>",
+        "CreateVerifiedAccessTrustProviderRequest$TagSpecifications": "<p>The tags to assign to the Verified Access trust provider.</p>",
         "CreateVolumeRequest$TagSpecifications": "<p>The tags to apply to the volume during creation.</p>",
         "CreateVpcEndpointRequest$TagSpecifications": "<p>The tags to associate with the endpoint.</p>",
         "CreateVpcEndpointServiceConfigurationRequest$TagSpecifications": "<p>The tags to associate with the service.</p>",
@@ -21756,7 +21767,7 @@
     "TrustProviderType": {
       "base": null,
       "refs": {
-        "CreateVerifiedAccessTrustProviderRequest$TrustProviderType": "<p>The type of trust provider can be either user or device-based.</p>",
+        "CreateVerifiedAccessTrustProviderRequest$TrustProviderType": "<p>The type of trust provider.</p>",
         "VerifiedAccessTrustProvider$TrustProviderType": "<p>The type of Verified Access trust provider.</p>",
         "VerifiedAccessTrustProviderCondensed$TrustProviderType": "<p>The type of trust provider (user- or device-based).</p>"
       }
@@ -21968,7 +21979,7 @@
     "UserTrustProviderType": {
       "base": null,
       "refs": {
-        "CreateVerifiedAccessTrustProviderRequest$UserTrustProviderType": "<p>The type of user-based trust provider.</p>",
+        "CreateVerifiedAccessTrustProviderRequest$UserTrustProviderType": "<p>The type of user-based trust provider. This parameter is required when the provider type is <code>user</code>.</p>",
         "VerifiedAccessTrustProvider$UserTrustProviderType": "<p>The type of user-based trust provider.</p>",
         "VerifiedAccessTrustProviderCondensed$UserTrustProviderType": "<p>The type of user-based trust provider.</p>"
       }
@@ -22098,16 +22109,16 @@
     "VerifiedAccessEndpoint": {
       "base": "<p>An Amazon Web Services Verified Access endpoint specifies the application that Amazon Web Services Verified Access provides access to. It must be attached to an Amazon Web Services Verified Access group. An Amazon Web Services Verified Access endpoint must also have an attached access policy before you attached it to a group.</p>",
       "refs": {
-        "CreateVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>",
-        "DeleteVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>",
-        "ModifyVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The Amazon Web Services Verified Access endpoint details.</p>",
+        "CreateVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The ID of the Verified Access endpoint.</p>",
+        "DeleteVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The ID of the Verified Access endpoint.</p>",
+        "ModifyVerifiedAccessEndpointResult$VerifiedAccessEndpoint": "<p>The Verified Access endpoint details.</p>",
         "VerifiedAccessEndpointList$member": null
       }
     },
     "VerifiedAccessEndpointAttachmentType": {
       "base": null,
       "refs": {
-        "CreateVerifiedAccessEndpointRequest$AttachmentType": "<p>The Amazon Web Services network component Verified Access attaches to.</p>",
+        "CreateVerifiedAccessEndpointRequest$AttachmentType": "<p>The type of attachment.</p>",
         "VerifiedAccessEndpoint$AttachmentType": "<p>The type of attachment used to provide connectivity between the Amazon Web Services Verified Access endpoint and the application.</p>"
       }
     },
@@ -22120,23 +22131,23 @@
     "VerifiedAccessEndpointId": {
       "base": null,
       "refs": {
-        "DeleteVerifiedAccessEndpointRequest$VerifiedAccessEndpointId": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>",
-        "GetVerifiedAccessEndpointPolicyRequest$VerifiedAccessEndpointId": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>",
-        "ModifyVerifiedAccessEndpointPolicyRequest$VerifiedAccessEndpointId": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>",
-        "ModifyVerifiedAccessEndpointRequest$VerifiedAccessEndpointId": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>",
+        "DeleteVerifiedAccessEndpointRequest$VerifiedAccessEndpointId": "<p>The ID of the Verified Access endpoint.</p>",
+        "GetVerifiedAccessEndpointPolicyRequest$VerifiedAccessEndpointId": "<p>The ID of the Verified Access endpoint.</p>",
+        "ModifyVerifiedAccessEndpointPolicyRequest$VerifiedAccessEndpointId": "<p>The ID of the Verified Access endpoint.</p>",
+        "ModifyVerifiedAccessEndpointRequest$VerifiedAccessEndpointId": "<p>The ID of the Verified Access endpoint.</p>",
         "VerifiedAccessEndpointIdList$member": null
       }
     },
     "VerifiedAccessEndpointIdList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessEndpointsRequest$VerifiedAccessEndpointIds": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>"
+        "DescribeVerifiedAccessEndpointsRequest$VerifiedAccessEndpointIds": "<p>The ID of the Verified Access endpoint.</p>"
       }
     },
     "VerifiedAccessEndpointList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessEndpointsResult$VerifiedAccessEndpoints": "<p>The ID of the Amazon Web Services Verified Access endpoint.</p>"
+        "DescribeVerifiedAccessEndpointsResult$VerifiedAccessEndpoints": "<p>The ID of the Verified Access endpoint.</p>"
       }
     },
     "VerifiedAccessEndpointLoadBalancerOptions": {
@@ -22188,7 +22199,7 @@
     "VerifiedAccessEndpointType": {
       "base": null,
       "refs": {
-        "CreateVerifiedAccessEndpointRequest$EndpointType": "<p>The type of Amazon Web Services Verified Access endpoint to create.</p>",
+        "CreateVerifiedAccessEndpointRequest$EndpointType": "<p>The type of Verified Access endpoint to create.</p>",
         "VerifiedAccessEndpoint$EndpointType": "<p>The type of Amazon Web Services Verified Access endpoint. Incoming application requests will be sent to an IP address, load balancer or a network interface depending on the endpoint type specified.</p>"
       }
     },
@@ -22196,8 +22207,8 @@
       "base": "<p>Describes a Verified Access group.</p>",
       "refs": {
         "CreateVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>The ID of the Verified Access group.</p>",
-        "DeleteVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>The ID of the Amazon Web Services Verified Access group.</p>",
-        "ModifyVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>Details of Amazon Web Services Verified Access group.</p>",
+        "DeleteVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>The ID of the Verified Access group.</p>",
+        "ModifyVerifiedAccessGroupResult$VerifiedAccessGroup": "<p>Details of Verified Access group.</p>",
         "VerifiedAccessGroupList$member": null
       }
     },
@@ -22205,19 +22216,19 @@
       "base": null,
       "refs": {
         "CreateVerifiedAccessEndpointRequest$VerifiedAccessGroupId": "<p>The ID of the Verified Access group to associate the endpoint with.</p>",
-        "DeleteVerifiedAccessGroupRequest$VerifiedAccessGroupId": "<p>The ID of the Amazon Web Services Verified Access group.</p>",
-        "DescribeVerifiedAccessEndpointsRequest$VerifiedAccessGroupId": "<p>The ID of the Amazon Web Services Verified Access group.</p>",
-        "GetVerifiedAccessGroupPolicyRequest$VerifiedAccessGroupId": "<p>The ID of the Amazon Web Services Verified Access group.</p>",
-        "ModifyVerifiedAccessEndpointRequest$VerifiedAccessGroupId": "<p>The ID of the Amazon Web Services Verified Access group.</p>",
-        "ModifyVerifiedAccessGroupPolicyRequest$VerifiedAccessGroupId": "<p>The ID of the Amazon Web Services Verified Access group.</p>",
-        "ModifyVerifiedAccessGroupRequest$VerifiedAccessGroupId": "<p>The ID of the Amazon Web Services Verified Access group.</p>",
+        "DeleteVerifiedAccessGroupRequest$VerifiedAccessGroupId": "<p>The ID of the Verified Access group.</p>",
+        "DescribeVerifiedAccessEndpointsRequest$VerifiedAccessGroupId": "<p>The ID of the Verified Access group.</p>",
+        "GetVerifiedAccessGroupPolicyRequest$VerifiedAccessGroupId": "<p>The ID of the Verified Access group.</p>",
+        "ModifyVerifiedAccessEndpointRequest$VerifiedAccessGroupId": "<p>The ID of the Verified Access group.</p>",
+        "ModifyVerifiedAccessGroupPolicyRequest$VerifiedAccessGroupId": "<p>The ID of the Verified Access group.</p>",
+        "ModifyVerifiedAccessGroupRequest$VerifiedAccessGroupId": "<p>The ID of the Verified Access group.</p>",
         "VerifiedAccessGroupIdList$member": null
       }
     },
     "VerifiedAccessGroupIdList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessGroupsRequest$VerifiedAccessGroupIds": "<p>The ID of the Amazon Web Services Verified Access groups.</p>"
+        "DescribeVerifiedAccessGroupsRequest$VerifiedAccessGroupIds": "<p>The ID of the Verified Access groups.</p>"
       }
     },
     "VerifiedAccessGroupList": {
@@ -22229,53 +22240,53 @@
     "VerifiedAccessInstance": {
       "base": "<p>Describes a Verified Access instance.</p>",
       "refs": {
-        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "CreateVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "DeleteVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "ModifyVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
+        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
+        "CreateVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
+        "DeleteVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
+        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
+        "ModifyVerifiedAccessInstanceResult$VerifiedAccessInstance": "<p>The ID of the Verified Access instance.</p>",
         "VerifiedAccessInstanceList$member": null
       }
     },
     "VerifiedAccessInstanceId": {
       "base": null,
       "refs": {
-        "AttachVerifiedAccessTrustProviderRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "CreateVerifiedAccessGroupRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "DeleteVerifiedAccessInstanceRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "DescribeVerifiedAccessEndpointsRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "DescribeVerifiedAccessGroupsRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "DetachVerifiedAccessTrustProviderRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "ModifyVerifiedAccessGroupRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "ModifyVerifiedAccessInstanceLoggingConfigurationRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
-        "ModifyVerifiedAccessInstanceRequest$VerifiedAccessInstanceId": "<p>The ID of the Amazon Web Services Verified Access instance.</p>",
+        "AttachVerifiedAccessTrustProviderRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "CreateVerifiedAccessGroupRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "DeleteVerifiedAccessInstanceRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "DescribeVerifiedAccessEndpointsRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "DescribeVerifiedAccessGroupsRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "DetachVerifiedAccessTrustProviderRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "ModifyVerifiedAccessGroupRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "ModifyVerifiedAccessInstanceLoggingConfigurationRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
+        "ModifyVerifiedAccessInstanceRequest$VerifiedAccessInstanceId": "<p>The ID of the Verified Access instance.</p>",
         "VerifiedAccessInstanceIdList$member": null
       }
     },
     "VerifiedAccessInstanceIdList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessInstanceLoggingConfigurationsRequest$VerifiedAccessInstanceIds": "<p>The IDs of the Amazon Web Services Verified Access instances.</p>",
-        "DescribeVerifiedAccessInstancesRequest$VerifiedAccessInstanceIds": "<p>The IDs of the Amazon Web Services Verified Access instances.</p>"
+        "DescribeVerifiedAccessInstanceLoggingConfigurationsRequest$VerifiedAccessInstanceIds": "<p>The IDs of the Verified Access instances.</p>",
+        "DescribeVerifiedAccessInstancesRequest$VerifiedAccessInstanceIds": "<p>The IDs of the Verified Access instances.</p>"
       }
     },
     "VerifiedAccessInstanceList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessInstancesResult$VerifiedAccessInstances": "<p>The IDs of the Amazon Web Services Verified Access instances.</p>"
+        "DescribeVerifiedAccessInstancesResult$VerifiedAccessInstances": "<p>The IDs of the Verified Access instances.</p>"
       }
     },
     "VerifiedAccessInstanceLoggingConfiguration": {
       "base": "<p>Describes logging options for an Amazon Web Services Verified Access instance.</p>",
       "refs": {
-        "ModifyVerifiedAccessInstanceLoggingConfigurationResult$LoggingConfiguration": "<p>The logging configuration for Amazon Web Services Verified Access instance.</p>",
+        "ModifyVerifiedAccessInstanceLoggingConfigurationResult$LoggingConfiguration": "<p>The logging configuration for the Verified Access instance.</p>",
         "VerifiedAccessInstanceLoggingConfigurationList$member": null
       }
     },
     "VerifiedAccessInstanceLoggingConfigurationList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessInstanceLoggingConfigurationsResult$LoggingConfigurations": "<p>The current logging configuration for the Amazon Web Services Verified Access instances.</p>"
+        "DescribeVerifiedAccessInstanceLoggingConfigurationsResult$LoggingConfigurations": "<p>The current logging configuration for the Verified Access instances.</p>"
       }
     },
     "VerifiedAccessLogCloudWatchLogsDestination": {
@@ -22319,7 +22330,7 @@
     "VerifiedAccessLogOptions": {
       "base": "<p>Describes the destinations for Verified Access logs.</p>",
       "refs": {
-        "ModifyVerifiedAccessInstanceLoggingConfigurationRequest$AccessLogs": "<p>The configuration options for Amazon Web Services Verified Access instances.</p>"
+        "ModifyVerifiedAccessInstanceLoggingConfigurationRequest$AccessLogs": "<p>The configuration options for Verified Access instances.</p>"
       }
     },
     "VerifiedAccessLogS3Destination": {
@@ -22343,11 +22354,11 @@
     "VerifiedAccessTrustProvider": {
       "base": "<p>Describes a Verified Access trust provider.</p>",
       "refs": {
-        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
-        "CreateVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
-        "DeleteVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
-        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
-        "ModifyVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
+        "AttachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
+        "CreateVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
+        "DeleteVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
+        "DetachVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
+        "ModifyVerifiedAccessTrustProviderResult$VerifiedAccessTrustProvider": "<p>The ID of the Verified Access trust provider.</p>",
         "VerifiedAccessTrustProviderList$member": null
       }
     },
@@ -22366,23 +22377,23 @@
     "VerifiedAccessTrustProviderId": {
       "base": null,
       "refs": {
-        "AttachVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
-        "DeleteVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
-        "DetachVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
-        "ModifyVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Amazon Web Services Verified Access trust provider.</p>",
+        "AttachVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Verified Access trust provider.</p>",
+        "DeleteVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Verified Access trust provider.</p>",
+        "DetachVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Verified Access trust provider.</p>",
+        "ModifyVerifiedAccessTrustProviderRequest$VerifiedAccessTrustProviderId": "<p>The ID of the Verified Access trust provider.</p>",
         "VerifiedAccessTrustProviderIdList$member": null
       }
     },
     "VerifiedAccessTrustProviderIdList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessTrustProvidersRequest$VerifiedAccessTrustProviderIds": "<p>The IDs of the Amazon Web Services Verified Access trust providers.</p>"
+        "DescribeVerifiedAccessTrustProvidersRequest$VerifiedAccessTrustProviderIds": "<p>The IDs of the Verified Access trust providers.</p>"
       }
     },
     "VerifiedAccessTrustProviderList": {
       "base": null,
       "refs": {
-        "DescribeVerifiedAccessTrustProvidersResult$VerifiedAccessTrustProviders": "<p>The IDs of the Amazon Web Services Verified Access trust providers.</p>"
+        "DescribeVerifiedAccessTrustProvidersResult$VerifiedAccessTrustProviders": "<p>The IDs of the Verified Access trust providers.</p>"
       }
     },
     "VersionDescription": {
