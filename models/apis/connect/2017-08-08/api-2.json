@@ -13,6 +13,22 @@
     "uid":"connect-2017-08-08"
   },
   "operations":{
+    "ActivateEvaluationForm":{
+      "name":"ActivateEvaluationForm",
+      "http":{
+        "method":"POST",
+        "requestUri":"/evaluation-forms/{InstanceId}/{EvaluationFormId}/activate"
+      },
+      "input":{"shape":"ActivateEvaluationFormRequest"},
+      "output":{"shape":"ActivateEvaluationFormResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"}
+      ]
+    },
     "AssociateApprovedOrigin":{
       "name":"AssociateApprovedOrigin",
       "http":{
@@ -252,6 +268,24 @@
         {"shape":"IdempotencyException"},
         {"shape":"InternalServiceException"}
       ]
+    },
+    "CreateEvaluationForm":{
+      "name":"CreateEvaluationForm",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/evaluation-forms/{InstanceId}"
+      },
+      "input":{"shape":"CreateEvaluationFormRequest"},
+      "output":{"shape":"CreateEvaluationFormResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceConflictException"}
+      ],
+      "idempotent":true
     },
     "CreateHoursOfOperation":{
       "name":"CreateHoursOfOperation",
@@ -516,6 +550,37 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "DeactivateEvaluationForm":{
+      "name":"DeactivateEvaluationForm",
+      "http":{
+        "method":"POST",
+        "requestUri":"/evaluation-forms/{InstanceId}/{EvaluationFormId}/deactivate"
+      },
+      "input":{"shape":"DeactivateEvaluationFormRequest"},
+      "output":{"shape":"DeactivateEvaluationFormResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"}
+      ]
+    },
+    "DeleteContactEvaluation":{
+      "name":"DeleteContactEvaluation",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/contact-evaluations/{InstanceId}/{EvaluationId}"
+      },
+      "input":{"shape":"DeleteContactEvaluationRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"}
+      ]
+    },
     "DeleteContactFlow":{
       "name":"DeleteContactFlow",
       "http":{
@@ -548,6 +613,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DeleteEvaluationForm":{
+      "name":"DeleteEvaluationForm",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/evaluation-forms/{InstanceId}/{EvaluationFormId}"
+      },
+      "input":{"shape":"DeleteEvaluationFormRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "DeleteHoursOfOperation":{
@@ -765,6 +845,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DescribeContactEvaluation":{
+      "name":"DescribeContactEvaluation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/contact-evaluations/{InstanceId}/{EvaluationId}"
+      },
+      "input":{"shape":"DescribeContactEvaluationRequest"},
+      "output":{"shape":"DescribeContactEvaluationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "DescribeContactFlow":{
       "name":"DescribeContactFlow",
       "http":{
@@ -793,6 +888,21 @@
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "DescribeEvaluationForm":{
+      "name":"DescribeEvaluationForm",
+      "http":{
+        "method":"GET",
+        "requestUri":"/evaluation-forms/{InstanceId}/{EvaluationFormId}"
+      },
+      "input":{"shape":"DescribeEvaluationFormRequest"},
+      "output":{"shape":"DescribeEvaluationFormResponse"},
+      "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -1362,6 +1472,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListContactEvaluations":{
+      "name":"ListContactEvaluations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/contact-evaluations/{InstanceId}"
+      },
+      "input":{"shape":"ListContactEvaluationsRequest"},
+      "output":{"shape":"ListContactEvaluationsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListContactFlowModules":{
       "name":"ListContactFlowModules",
       "http":{
@@ -1424,6 +1549,36 @@
         {"shape":"InternalServiceException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListEvaluationFormVersions":{
+      "name":"ListEvaluationFormVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/evaluation-forms/{InstanceId}/{EvaluationFormId}/versions"
+      },
+      "input":{"shape":"ListEvaluationFormVersionsRequest"},
+      "output":{"shape":"ListEvaluationFormVersionsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListEvaluationForms":{
+      "name":"ListEvaluationForms",
+      "http":{
+        "method":"GET",
+        "requestUri":"/evaluation-forms/{InstanceId}"
+      },
+      "input":{"shape":"ListEvaluationFormsRequest"},
+      "output":{"shape":"ListEvaluationFormsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "ListHoursOfOperations":{
@@ -2015,6 +2170,24 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "StartContactEvaluation":{
+      "name":"StartContactEvaluation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/contact-evaluations/{InstanceId}"
+      },
+      "input":{"shape":"StartContactEvaluationRequest"},
+      "output":{"shape":"StartContactEvaluationResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceConflictException"}
+      ],
+      "idempotent":true
+    },
     "StartContactRecording":{
       "name":"StartContactRecording",
       "http":{
@@ -2124,6 +2297,22 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "SubmitContactEvaluation":{
+      "name":"SubmitContactEvaluation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact-evaluations/{InstanceId}/{EvaluationId}/submit"
+      },
+      "input":{"shape":"SubmitContactEvaluationRequest"},
+      "output":{"shape":"SubmitContactEvaluationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "SuspendContactRecording":{
@@ -2236,6 +2425,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateContactEvaluation":{
+      "name":"UpdateContactEvaluation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact-evaluations/{InstanceId}/{EvaluationId}"
+      },
+      "input":{"shape":"UpdateContactEvaluationRequest"},
+      "output":{"shape":"UpdateContactEvaluationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"}
+      ]
+    },
     "UpdateContactFlowContent":{
       "name":"UpdateContactFlowContent",
       "http":{
@@ -2338,6 +2543,24 @@
         {"shape":"LimitExceededException"},
         {"shape":"InternalServiceException"}
       ]
+    },
+    "UpdateEvaluationForm":{
+      "name":"UpdateEvaluationForm",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/evaluation-forms/{InstanceId}/{EvaluationFormId}"
+      },
+      "input":{"shape":"UpdateEvaluationFormRequest"},
+      "output":{"shape":"UpdateEvaluationFormResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceConflictException"}
+      ],
+      "idempotent":true
     },
     "UpdateHoursOfOperation":{
       "name":"UpdateHoursOfOperation",
@@ -2790,6 +3013,40 @@
         "SEND_NOTIFICATION"
       ]
     },
+    "ActivateEvaluationFormRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationFormId",
+        "EvaluationFormVersion"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationFormId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationFormId"
+        },
+        "EvaluationFormVersion":{"shape":"VersionNumber"}
+      }
+    },
+    "ActivateEvaluationFormResponse":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormId",
+        "EvaluationFormArn",
+        "EvaluationFormVersion"
+      ],
+      "members":{
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormArn":{"shape":"ARN"},
+        "EvaluationFormVersion":{"shape":"VersionNumber"}
+      }
+    },
     "AfterContactWorkTimeLimit":{
       "type":"integer",
       "min":0
@@ -3197,6 +3454,10 @@
     "BotName":{
       "type":"string",
       "max":50
+    },
+    "BoxedBoolean":{
+      "type":"boolean",
+      "box":true
     },
     "BucketName":{
       "type":"string",
@@ -3636,6 +3897,40 @@
       "members":{
         "ContactFlowId":{"shape":"ContactFlowId"},
         "ContactFlowArn":{"shape":"ARN"}
+      }
+    },
+    "CreateEvaluationFormRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Title",
+        "Items"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Title":{"shape":"EvaluationFormTitle"},
+        "Description":{"shape":"EvaluationFormDescription"},
+        "Items":{"shape":"EvaluationFormItemsList"},
+        "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateEvaluationFormResponse":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormId",
+        "EvaluationFormArn"
+      ],
+      "members":{
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormArn":{"shape":"ARN"}
       }
     },
     "CreateHoursOfOperationRequest":{
@@ -4174,6 +4469,40 @@
         "Value":{"shape":"ReferenceValue"}
       }
     },
+    "DeactivateEvaluationFormRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationFormId",
+        "EvaluationFormVersion"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationFormId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationFormId"
+        },
+        "EvaluationFormVersion":{"shape":"VersionNumber"}
+      }
+    },
+    "DeactivateEvaluationFormResponse":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormId",
+        "EvaluationFormArn",
+        "EvaluationFormVersion"
+      ],
+      "members":{
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormArn":{"shape":"ARN"},
+        "EvaluationFormVersion":{"shape":"VersionNumber"}
+      }
+    },
     "DefaultVocabulary":{
       "type":"structure",
       "required":[
@@ -4197,6 +4526,25 @@
       "type":"integer",
       "max":9999,
       "min":0
+    },
+    "DeleteContactEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationId"
+        }
+      }
     },
     "DeleteContactFlowModuleRequest":{
       "type":"structure",
@@ -4244,6 +4592,30 @@
     "DeleteContactFlowResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteEvaluationFormRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationFormId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationFormId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationFormId"
+        },
+        "EvaluationFormVersion":{
+          "shape":"VersionNumber",
+          "location":"querystring",
+          "locationName":"version"
+        }
       }
     },
     "DeleteHoursOfOperationRequest":{
@@ -4512,6 +4884,36 @@
         "AgentStatus":{"shape":"AgentStatus"}
       }
     },
+    "DescribeContactEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationId"
+        }
+      }
+    },
+    "DescribeContactEvaluationResponse":{
+      "type":"structure",
+      "required":[
+        "Evaluation",
+        "EvaluationForm"
+      ],
+      "members":{
+        "Evaluation":{"shape":"Evaluation"},
+        "EvaluationForm":{"shape":"EvaluationFormContent"}
+      }
+    },
     "DescribeContactFlowModuleRequest":{
       "type":"structure",
       "required":[
@@ -4585,6 +4987,37 @@
       "type":"structure",
       "members":{
         "Contact":{"shape":"Contact"}
+      }
+    },
+    "DescribeEvaluationFormRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationFormId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationFormId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationFormId"
+        },
+        "EvaluationFormVersion":{
+          "shape":"VersionNumber",
+          "location":"querystring",
+          "locationName":"version"
+        }
+      }
+    },
+    "DescribeEvaluationFormResponse":{
+      "type":"structure",
+      "required":["EvaluationForm"],
+      "members":{
+        "EvaluationForm":{"shape":"EvaluationForm"}
       }
     },
     "DescribeHoursOfOperationRequest":{
@@ -5251,6 +5684,494 @@
     "EncryptionType":{
       "type":"string",
       "enum":["KMS"]
+    },
+    "Evaluation":{
+      "type":"structure",
+      "required":[
+        "EvaluationId",
+        "EvaluationArn",
+        "Metadata",
+        "Answers",
+        "Notes",
+        "Status",
+        "CreatedTime",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "EvaluationId":{"shape":"ResourceId"},
+        "EvaluationArn":{"shape":"ARN"},
+        "Metadata":{"shape":"EvaluationMetadata"},
+        "Answers":{"shape":"EvaluationAnswersOutputMap"},
+        "Notes":{"shape":"EvaluationNotesMap"},
+        "Status":{"shape":"EvaluationStatus"},
+        "Scores":{"shape":"EvaluationScoresMap"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "EvaluationAnswerData":{
+      "type":"structure",
+      "members":{
+        "StringValue":{"shape":"EvaluationAnswerDataStringValue"},
+        "NumericValue":{"shape":"EvaluationAnswerDataNumericValue"},
+        "NotApplicable":{"shape":"Boolean"}
+      },
+      "union":true
+    },
+    "EvaluationAnswerDataNumericValue":{"type":"double"},
+    "EvaluationAnswerDataStringValue":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "EvaluationAnswerInput":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"EvaluationAnswerData"}
+      }
+    },
+    "EvaluationAnswerOutput":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"EvaluationAnswerData"},
+        "SystemSuggestedValue":{"shape":"EvaluationAnswerData"}
+      }
+    },
+    "EvaluationAnswersInputMap":{
+      "type":"map",
+      "key":{"shape":"ResourceId"},
+      "value":{"shape":"EvaluationAnswerInput"},
+      "max":100
+    },
+    "EvaluationAnswersOutputMap":{
+      "type":"map",
+      "key":{"shape":"ResourceId"},
+      "value":{"shape":"EvaluationAnswerOutput"},
+      "max":100
+    },
+    "EvaluationForm":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormId",
+        "EvaluationFormVersion",
+        "Locked",
+        "EvaluationFormArn",
+        "Title",
+        "Status",
+        "Items",
+        "CreatedTime",
+        "CreatedBy",
+        "LastModifiedTime",
+        "LastModifiedBy"
+      ],
+      "members":{
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormVersion":{"shape":"VersionNumber"},
+        "Locked":{"shape":"EvaluationFormVersionIsLocked"},
+        "EvaluationFormArn":{"shape":"ARN"},
+        "Title":{"shape":"EvaluationFormTitle"},
+        "Description":{"shape":"EvaluationFormDescription"},
+        "Status":{"shape":"EvaluationFormVersionStatus"},
+        "Items":{"shape":"EvaluationFormItemsList"},
+        "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "CreatedBy":{"shape":"ARN"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedBy":{"shape":"ARN"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "EvaluationFormContent":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormVersion",
+        "EvaluationFormId",
+        "EvaluationFormArn",
+        "Title",
+        "Items"
+      ],
+      "members":{
+        "EvaluationFormVersion":{"shape":"VersionNumber"},
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormArn":{"shape":"ARN"},
+        "Title":{"shape":"EvaluationFormTitle"},
+        "Description":{"shape":"EvaluationFormDescription"},
+        "Items":{"shape":"EvaluationFormItemsList"},
+        "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"}
+      }
+    },
+    "EvaluationFormDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
+    "EvaluationFormItem":{
+      "type":"structure",
+      "members":{
+        "Section":{"shape":"EvaluationFormSection"},
+        "Question":{"shape":"EvaluationFormQuestion"}
+      },
+      "union":true
+    },
+    "EvaluationFormItemWeight":{
+      "type":"double",
+      "max":100,
+      "min":0
+    },
+    "EvaluationFormItemsList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormItem"},
+      "max":100,
+      "min":0
+    },
+    "EvaluationFormNumericQuestionAutomation":{
+      "type":"structure",
+      "members":{
+        "PropertyValue":{"shape":"NumericQuestionPropertyValueAutomation"}
+      },
+      "union":true
+    },
+    "EvaluationFormNumericQuestionOption":{
+      "type":"structure",
+      "required":[
+        "MinValue",
+        "MaxValue"
+      ],
+      "members":{
+        "MinValue":{"shape":"Integer"},
+        "MaxValue":{"shape":"Integer"},
+        "Score":{"shape":"EvaluationFormQuestionAnswerScore"},
+        "AutomaticFail":{"shape":"Boolean"}
+      }
+    },
+    "EvaluationFormNumericQuestionOptionList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormNumericQuestionOption"},
+      "max":10,
+      "min":1
+    },
+    "EvaluationFormNumericQuestionProperties":{
+      "type":"structure",
+      "required":[
+        "MinValue",
+        "MaxValue"
+      ],
+      "members":{
+        "MinValue":{"shape":"Integer"},
+        "MaxValue":{"shape":"Integer"},
+        "Options":{"shape":"EvaluationFormNumericQuestionOptionList"},
+        "Automation":{"shape":"EvaluationFormNumericQuestionAutomation"}
+      }
+    },
+    "EvaluationFormQuestion":{
+      "type":"structure",
+      "required":[
+        "Title",
+        "RefId",
+        "QuestionType"
+      ],
+      "members":{
+        "Title":{"shape":"EvaluationFormQuestionTitle"},
+        "Instructions":{"shape":"EvaluationFormQuestionInstructions"},
+        "RefId":{"shape":"ReferenceId"},
+        "NotApplicableEnabled":{"shape":"Boolean"},
+        "QuestionType":{"shape":"EvaluationFormQuestionType"},
+        "QuestionTypeProperties":{"shape":"EvaluationFormQuestionTypeProperties"},
+        "Weight":{"shape":"EvaluationFormItemWeight"}
+      }
+    },
+    "EvaluationFormQuestionAnswerScore":{
+      "type":"integer",
+      "max":10,
+      "min":0
+    },
+    "EvaluationFormQuestionInstructions":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
+    "EvaluationFormQuestionTitle":{
+      "type":"string",
+      "max":350,
+      "min":0
+    },
+    "EvaluationFormQuestionType":{
+      "type":"string",
+      "enum":[
+        "TEXT",
+        "SINGLESELECT",
+        "NUMERIC"
+      ]
+    },
+    "EvaluationFormQuestionTypeProperties":{
+      "type":"structure",
+      "members":{
+        "Numeric":{"shape":"EvaluationFormNumericQuestionProperties"},
+        "SingleSelect":{"shape":"EvaluationFormSingleSelectQuestionProperties"}
+      },
+      "union":true
+    },
+    "EvaluationFormScoringMode":{
+      "type":"string",
+      "enum":[
+        "QUESTION_ONLY",
+        "SECTION_ONLY"
+      ]
+    },
+    "EvaluationFormScoringStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "EvaluationFormScoringStrategy":{
+      "type":"structure",
+      "required":[
+        "Mode",
+        "Status"
+      ],
+      "members":{
+        "Mode":{"shape":"EvaluationFormScoringMode"},
+        "Status":{"shape":"EvaluationFormScoringStatus"}
+      }
+    },
+    "EvaluationFormSection":{
+      "type":"structure",
+      "required":[
+        "Title",
+        "RefId"
+      ],
+      "members":{
+        "Title":{"shape":"EvaluationFormSectionTitle"},
+        "RefId":{"shape":"ReferenceId"},
+        "Instructions":{"shape":"EvaluationFormQuestionInstructions"},
+        "Items":{"shape":"EvaluationFormItemsList"},
+        "Weight":{"shape":"EvaluationFormItemWeight"}
+      }
+    },
+    "EvaluationFormSectionTitle":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "EvaluationFormSingleSelectQuestionAutomation":{
+      "type":"structure",
+      "required":["Options"],
+      "members":{
+        "Options":{"shape":"EvaluationFormSingleSelectQuestionAutomationOptionList"},
+        "DefaultOptionRefId":{"shape":"ReferenceId"}
+      }
+    },
+    "EvaluationFormSingleSelectQuestionAutomationOption":{
+      "type":"structure",
+      "members":{
+        "RuleCategory":{"shape":"SingleSelectQuestionRuleCategoryAutomation"}
+      },
+      "union":true
+    },
+    "EvaluationFormSingleSelectQuestionAutomationOptionList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormSingleSelectQuestionAutomationOption"},
+      "max":20,
+      "min":1
+    },
+    "EvaluationFormSingleSelectQuestionDisplayMode":{
+      "type":"string",
+      "enum":[
+        "DROPDOWN",
+        "RADIO"
+      ]
+    },
+    "EvaluationFormSingleSelectQuestionOption":{
+      "type":"structure",
+      "required":[
+        "RefId",
+        "Text"
+      ],
+      "members":{
+        "RefId":{"shape":"ReferenceId"},
+        "Text":{"shape":"EvaluationFormSingleSelectQuestionOptionText"},
+        "Score":{"shape":"EvaluationFormQuestionAnswerScore"},
+        "AutomaticFail":{"shape":"Boolean"}
+      }
+    },
+    "EvaluationFormSingleSelectQuestionOptionList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormSingleSelectQuestionOption"},
+      "max":256,
+      "min":1
+    },
+    "EvaluationFormSingleSelectQuestionOptionText":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "EvaluationFormSingleSelectQuestionProperties":{
+      "type":"structure",
+      "required":["Options"],
+      "members":{
+        "Options":{"shape":"EvaluationFormSingleSelectQuestionOptionList"},
+        "DisplayAs":{"shape":"EvaluationFormSingleSelectQuestionDisplayMode"},
+        "Automation":{"shape":"EvaluationFormSingleSelectQuestionAutomation"}
+      }
+    },
+    "EvaluationFormSummary":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormId",
+        "EvaluationFormArn",
+        "Title",
+        "CreatedTime",
+        "CreatedBy",
+        "LastModifiedTime",
+        "LastModifiedBy",
+        "LatestVersion"
+      ],
+      "members":{
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormArn":{"shape":"ARN"},
+        "Title":{"shape":"EvaluationFormTitle"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "CreatedBy":{"shape":"ARN"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedBy":{"shape":"ARN"},
+        "LastActivatedTime":{"shape":"Timestamp"},
+        "LastActivatedBy":{"shape":"ARN"},
+        "LatestVersion":{"shape":"VersionNumber"},
+        "ActiveVersion":{"shape":"VersionNumber"}
+      }
+    },
+    "EvaluationFormSummaryList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormSummary"}
+    },
+    "EvaluationFormTitle":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "EvaluationFormVersionIsLocked":{"type":"boolean"},
+    "EvaluationFormVersionStatus":{
+      "type":"string",
+      "enum":[
+        "DRAFT",
+        "ACTIVE"
+      ]
+    },
+    "EvaluationFormVersionSummary":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormArn",
+        "EvaluationFormId",
+        "EvaluationFormVersion",
+        "Locked",
+        "Status",
+        "CreatedTime",
+        "CreatedBy",
+        "LastModifiedTime",
+        "LastModifiedBy"
+      ],
+      "members":{
+        "EvaluationFormArn":{"shape":"ARN"},
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormVersion":{"shape":"VersionNumber"},
+        "Locked":{"shape":"EvaluationFormVersionIsLocked"},
+        "Status":{"shape":"EvaluationFormVersionStatus"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "CreatedBy":{"shape":"ARN"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedBy":{"shape":"ARN"}
+      }
+    },
+    "EvaluationFormVersionSummaryList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormVersionSummary"}
+    },
+    "EvaluationMetadata":{
+      "type":"structure",
+      "required":[
+        "ContactId",
+        "EvaluatorArn"
+      ],
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "EvaluatorArn":{"shape":"ARN"},
+        "ContactAgentId":{"shape":"ResourceId"},
+        "Score":{"shape":"EvaluationScore"}
+      }
+    },
+    "EvaluationNote":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"EvaluationNoteString"}
+      }
+    },
+    "EvaluationNoteString":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
+    "EvaluationNotesMap":{
+      "type":"map",
+      "key":{"shape":"ResourceId"},
+      "value":{"shape":"EvaluationNote"},
+      "max":100
+    },
+    "EvaluationScore":{
+      "type":"structure",
+      "members":{
+        "Percentage":{"shape":"EvaluationScorePercentage"},
+        "NotApplicable":{"shape":"Boolean"},
+        "AutomaticFail":{"shape":"Boolean"}
+      }
+    },
+    "EvaluationScorePercentage":{
+      "type":"double",
+      "max":100,
+      "min":0
+    },
+    "EvaluationScoresMap":{
+      "type":"map",
+      "key":{"shape":"ResourceId"},
+      "value":{"shape":"EvaluationScore"},
+      "max":100
+    },
+    "EvaluationStatus":{
+      "type":"string",
+      "enum":[
+        "DRAFT",
+        "SUBMITTED"
+      ]
+    },
+    "EvaluationSummary":{
+      "type":"structure",
+      "required":[
+        "EvaluationId",
+        "EvaluationArn",
+        "EvaluationFormTitle",
+        "EvaluationFormId",
+        "Status",
+        "EvaluatorArn",
+        "CreatedTime",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "EvaluationId":{"shape":"ResourceId"},
+        "EvaluationArn":{"shape":"ARN"},
+        "EvaluationFormTitle":{"shape":"EvaluationFormTitle"},
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "Status":{"shape":"EvaluationStatus"},
+        "EvaluatorArn":{"shape":"ARN"},
+        "Score":{"shape":"EvaluationScore"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "EvaluationSummaryList":{
+      "type":"list",
+      "member":{"shape":"EvaluationSummary"}
     },
     "EventBridgeActionDefinition":{
       "type":"structure",
@@ -5951,6 +6872,7 @@
       "type":"list",
       "member":{"shape":"InstanceSummary"}
     },
+    "Integer":{"type":"integer"},
     "IntegerCount":{
       "type":"integer",
       "min":0
@@ -6226,6 +7148,38 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListContactEvaluationsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"querystring",
+          "locationName":"contactId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListContactEvaluationsResponse":{
+      "type":"structure",
+      "required":["EvaluationSummaryList"],
+      "members":{
+        "EvaluationSummaryList":{"shape":"EvaluationSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListContactFlowModulesRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -6350,6 +7304,74 @@
       "members":{
         "DefaultVocabularyList":{"shape":"DefaultVocabularyList"},
         "NextToken":{"shape":"VocabularyNextToken"}
+      }
+    },
+    "ListEvaluationFormVersionsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationFormId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationFormId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationFormId"
+        },
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListEvaluationFormVersionsResponse":{
+      "type":"structure",
+      "required":["EvaluationFormVersionSummaryList"],
+      "members":{
+        "EvaluationFormVersionSummaryList":{"shape":"EvaluationFormVersionSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListEvaluationFormsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListEvaluationFormsResponse":{
+      "type":"structure",
+      "required":["EvaluationFormSummaryList"],
+      "members":{
+        "EvaluationFormSummaryList":{"shape":"EvaluationFormSummaryList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "ListHoursOfOperationsRequest":{
@@ -7332,6 +8354,26 @@
         "Value":{"shape":"ReferenceValue"}
       }
     },
+    "NumericQuestionPropertyAutomationLabel":{
+      "type":"string",
+      "enum":[
+        "OVERALL_CUSTOMER_SENTIMENT_SCORE",
+        "OVERALL_AGENT_SENTIMENT_SCORE",
+        "NON_TALK_TIME",
+        "NON_TALK_TIME_PERCENTAGE",
+        "NUMBER_OF_INTERRUPTIONS",
+        "CONTACT_DURATION",
+        "AGENT_INTERACTION_DURATION",
+        "CUSTOMER_HOLD_TIME"
+      ]
+    },
+    "NumericQuestionPropertyValueAutomation":{
+      "type":"structure",
+      "required":["Label"],
+      "members":{
+        "Label":{"shape":"NumericQuestionPropertyAutomationLabel"}
+      }
+    },
     "Origin":{
       "type":"string",
       "max":267
@@ -8110,6 +9152,11 @@
         "Type":{"shape":"ReferenceType"}
       }
     },
+    "ReferenceId":{
+      "type":"string",
+      "max":40,
+      "min":0
+    },
     "ReferenceKey":{
       "type":"string",
       "max":4096,
@@ -8233,6 +9280,11 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ResourceId":{
+      "type":"string",
+      "max":50,
+      "min":1
     },
     "ResourceInUseException":{
       "type":"structure",
@@ -8803,6 +9855,31 @@
       "type":"list",
       "member":{"shape":"TaskTemplateSingleSelectOption"}
     },
+    "SingleSelectQuestionRuleCategoryAutomation":{
+      "type":"structure",
+      "required":[
+        "Category",
+        "Condition",
+        "OptionRefId"
+      ],
+      "members":{
+        "Category":{"shape":"SingleSelectQuestionRuleCategoryAutomationLabel"},
+        "Condition":{"shape":"SingleSelectQuestionRuleCategoryAutomationCondition"},
+        "OptionRefId":{"shape":"ReferenceId"}
+      }
+    },
+    "SingleSelectQuestionRuleCategoryAutomationCondition":{
+      "type":"string",
+      "enum":[
+        "PRESENT",
+        "NOT_PRESENT"
+      ]
+    },
+    "SingleSelectQuestionRuleCategoryAutomationLabel":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
     "SnapshotVersion":{"type":"string"},
     "SortOrder":{
       "type":"string",
@@ -8854,6 +9931,38 @@
         "ParticipantId":{"shape":"ParticipantId"},
         "ParticipantToken":{"shape":"ParticipantToken"},
         "ContinuedFromContactId":{"shape":"ContactId"}
+      }
+    },
+    "StartContactEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "EvaluationFormId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{"shape":"ContactId"},
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartContactEvaluationResponse":{
+      "type":"structure",
+      "required":[
+        "EvaluationId",
+        "EvaluationArn"
+      ],
+      "members":{
+        "EvaluationId":{"shape":"ResourceId"},
+        "EvaluationArn":{"shape":"ARN"}
       }
     },
     "StartContactRecordingRequest":{
@@ -9062,6 +10171,38 @@
       "type":"string",
       "max":200,
       "min":1
+    },
+    "SubmitContactEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationId"
+        },
+        "Answers":{"shape":"EvaluationAnswersInputMap"},
+        "Notes":{"shape":"EvaluationNotesMap"}
+      }
+    },
+    "SubmitContactEvaluationResponse":{
+      "type":"structure",
+      "required":[
+        "EvaluationId",
+        "EvaluationArn"
+      ],
+      "members":{
+        "EvaluationId":{"shape":"ResourceId"},
+        "EvaluationArn":{"shape":"ARN"}
+      }
     },
     "SupportedMessagingContentType":{
       "type":"string",
@@ -9517,6 +10658,38 @@
       "members":{
       }
     },
+    "UpdateContactEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationId"
+        },
+        "Answers":{"shape":"EvaluationAnswersInputMap"},
+        "Notes":{"shape":"EvaluationNotesMap"}
+      }
+    },
+    "UpdateContactEvaluationResponse":{
+      "type":"structure",
+      "required":[
+        "EvaluationId",
+        "EvaluationArn"
+      ],
+      "members":{
+        "EvaluationId":{"shape":"ResourceId"},
+        "EvaluationArn":{"shape":"ARN"}
+      }
+    },
     "UpdateContactFlowContentRequest":{
       "type":"structure",
       "required":[
@@ -9692,6 +10865,51 @@
     "UpdateContactScheduleResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateEvaluationFormRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "EvaluationFormId",
+        "EvaluationFormVersion",
+        "Title",
+        "Items"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "EvaluationFormId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"EvaluationFormId"
+        },
+        "EvaluationFormVersion":{"shape":"VersionNumber"},
+        "CreateNewVersion":{"shape":"BoxedBoolean"},
+        "Title":{"shape":"EvaluationFormTitle"},
+        "Description":{"shape":"EvaluationFormDescription"},
+        "Items":{"shape":"EvaluationFormItemsList"},
+        "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateEvaluationFormResponse":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormId",
+        "EvaluationFormArn",
+        "EvaluationFormVersion"
+      ],
+      "members":{
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormArn":{"shape":"ARN"},
+        "EvaluationFormVersion":{"shape":"VersionNumber"}
       }
     },
     "UpdateHoursOfOperationDescription":{
@@ -10512,6 +11730,11 @@
       "value":{"shape":"String"}
     },
     "Value":{"type":"double"},
+    "VersionNumber":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
     "Vocabulary":{
       "type":"structure",
       "required":[

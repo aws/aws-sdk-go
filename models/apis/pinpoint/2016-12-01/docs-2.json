@@ -69,6 +69,9 @@
     "GetJourneyDateRangeKpi" : "<p>Retrieves (queries) pre-aggregated data for a standard engagement metric that applies to a journey.</p>",
     "GetJourneyExecutionActivityMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey activity.</p>",
     "GetJourneyExecutionMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey.</p>",
+    "GetJourneyRunExecutionActivityMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard run execution metric that applies to a journey activity.</p>",
+    "GetJourneyRunExecutionMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard run execution metric that applies to a journey.</p>",
+    "GetJourneyRuns" : "<p>Provides information about the runs of a journey.</p>",
     "GetPushTemplate" : "<p>Retrieves the content and settings of a message template for messages that are sent through a push notification channel.</p>",
     "GetRecommenderConfiguration" : "<p>Retrieves information about an Amazon Pinpoint configuration for a recommender model.</p>",
     "GetRecommenderConfigurations" : "<p>Retrieves information about all the recommender model configurations that are associated with your Amazon Pinpoint account.</p>",
@@ -878,6 +881,30 @@
         "ListOfJourneyResponse$member" : null
       }
     },
+    "JourneyRunExecutionActivityMetricsResponse" : {
+      "base" : "<p>Provides the results of a query that retrieved the data for a standard execution metric that applies to a journey activity for a particular journey run, and provides information about that query.</p>",
+      "refs" : { }
+    },
+    "JourneyRunExecutionMetricsResponse" : {
+      "base" : "<p>Provides the results of a query that retrieved the data for a standard execution metric that applies to a journey run, and provides information about that query.</p>",
+      "refs" : { }
+    },
+    "JourneyRunResponse" : {
+      "base" : "<p>Provides information from a specified run of a journey.</p>",
+      "refs" : {
+        "ListOfJourneyRunResponse$member" : null
+      }
+    },
+    "JourneyRunsResponse" : {
+      "base" : "<p>Provides information from all runs of a journey.</p>",
+      "refs" : { }
+    },
+    "JourneyRunStatus" : {
+      "base" : null,
+      "refs" : {
+        "JourneyRunResponse$Status" : "<p>The current status of the journey run.</p>"
+      }
+    },
     "JourneySMSMessage" : {
       "base" : "<p>Specifies the sender ID and message type for an SMS message that's sent to participants in a journey.</p>",
       "refs" : {
@@ -1495,6 +1522,9 @@
         "ImportJobResource$DefineSegment" : "<p>Specifies whether the import job creates a segment that contains the endpoints, when the endpoint definitions are imported.</p>",
         "ImportJobResource$RegisterEndpoints" : "<p>Specifies whether the import job registers the endpoints with Amazon Pinpoint, when the endpoint definitions are imported.</p>",
         "JourneyResponse$LocalTime" : "<p>Specifies whether the journey's scheduled start and end times use each participant's local time. If this value is true, the schedule uses each participant's local time.</p>",
+        "JourneyResponse$RefreshOnSegmentUpdate" : "<p>Indicates whether the journey participants should be refreshed when a segment is updated.</p>",
+        "JourneyResponse$SendingSchedule" : "<p>Indicates if journey has Advance Quiet Time enabled. This flag should be set to true in order to allow using OpenHours and ClosedDays.</p>",
+        "JourneyResponse$WaitForQuietTime" : "<p>Indicates whether endpoints in quiet hours should enter a wait activity until quiet hours have elapsed.</p>",
         "Message$SilentPush" : "<p>Specifies whether the notification is a silent push notification, which is a push notification that doesn't display on a recipient's device. Silent push notifications can be used for cases such as updating an app's configuration, displaying messages in an in-app message center, or supporting phone home functionality.</p>",
         "SMSChannelRequest$Enabled" : "<p>Specifies whether to enable the SMS channel for the application.</p>",
         "SMSChannelResponse$Enabled" : "<p>Specifies whether the SMS channel is enabled for the application.</p>",
@@ -1510,8 +1540,9 @@
         "WriteApplicationSettingsRequest$EventTaggingEnabled" : null,
         "WriteCampaignRequest$IsPaused" : "<p>Specifies whether to pause the campaign. A paused campaign doesn't run unless you resume it by changing this value to false.</p>",
         "WriteJourneyRequest$LocalTime" : "<p>Specifies whether the journey's scheduled start and end times use each participant's local time. To base the schedule on each participant's local time, set this value to true.</p>",
-        "WriteJourneyRequest$SendingSchedule" : "<p>Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays). This flag should be set to true in order to allow (OpenHours and ClosedDays)</p>",
-        "JourneyResponse$SendingSchedule" : "<p>Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays). This flag should be set to true in order to allow (OpenHours and ClosedDays)</p>"
+        "WriteJourneyRequest$RefreshOnSegmentUpdate" : "<p>Indicates whether the journey participants should be refreshed when a segment is updated.</p>",
+        "WriteJourneyRequest$SendingSchedule" : "<p>Indicates if journey has Advance Quiet Time enabled. This flag should be set to true in order to allow using OpenHours and ClosedDays.</p>",
+        "WriteJourneyRequest$WaitForQuietTime" : "<p>Indicates whether endpoints in quiet hours should enter a wait activity until quiet hours have elapsed.</p>"
       }
     },
     "__double" : {
@@ -1667,6 +1698,12 @@
       "base" : null,
       "refs" : {
         "JourneysResponse$Item" : "<p>An array of responses, one for each journey that's associated with the application.</p>"
+      }
+    },
+    "ListOfJourneyRunResponse" : {
+      "base" : null,
+      "refs" : {
+        "JourneyRunsResponse$Item" : "<p>An array of responses, one for each run of the journey</p>"
       }
     },
     "ListOfMultiConditionalBranch" : {
@@ -1900,6 +1937,7 @@
       "refs" : {
         "ADMMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
         "APNSMessage$Data" : "<p>The JSON payload to use for a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
+        "ActivityResponse$ExecutionMetrics" : "<p>A JSON object that contains metrics relating to the campaign execution for this campaign activity. For information about the structure and contents of the results, see <a href=\"https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html\">Standard Amazon Pinpoint analytics metrics</a> in the <i>Amazon Pinpoint Developer Guide</i>.</p>",
         "AddressConfiguration$Context" : "<p>An object that maps custom attributes to attributes for the address and is attached to the message. Attribute names are case sensitive.</p> <p>For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "ApplicationResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the application. Each tag consists of a required tag key and an associated tag value.</p>",
         "BaiduMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
@@ -1921,6 +1959,8 @@
         "JourneyExecutionActivityMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. The results vary depending on the type of activity (ActivityType). For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "JourneyExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "JourneyResponse$tags" : "<p>This object is not used or supported.</p>",
+        "JourneyRunExecutionActivityMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see see <a href=\"https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html\">Standard Amazon Pinpoint analytics metrics</a> in the <i>Amazon Pinpoint Developer Guide</i>.</p>",
+        "JourneyRunExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html\">Standard Amazon Pinpoint analytics metrics</a> in the <i>Amazon Pinpoint Developer Guide</i>.</p>",
         "MessageRequest$Context" : "<p>A map of custom attributes to attach to the message. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "PushNotificationTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "PushNotificationTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
@@ -2324,7 +2364,7 @@
         "JourneyDateRangeKpiResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null for the Journey Engagement Metrics resource because the resource returns all results in a single page.</p>",
         "JourneyDateRangeKpiResponse$StartTime" : "<p>The first date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
         "JourneyEmailMessage$FromAddress" : "<p>The verified email address to send the email message from. The default address is the FromAddress specified for the email channel for the application.</p>",
-        "JourneyExecutionActivityMetricsResponse$ActivityType" : "<p>The type of activity that the metric applies to. Possible values are:</p> <ul><li><p>CONDITIONAL_SPLIT - For a yes/no split activity, which is an activity that sends participants down one of two paths in a journey.</p></li> <li><p>HOLDOUT - For a holdout activity, which is an activity that stops a journey for a specified percentage of participants.</p></li> <li><p>MESSAGE - For an email activity, which is an activity that sends an email message to participants.</p></li> <li><p>MULTI_CONDITIONAL_SPLIT - For a multivariate split activity, which is an activity that sends participants down one of as many as five paths in a journey.</p></li> <li><p>RANDOM_SPLIT - For a random split activity, which is an activity that sends specified percentages of participants down one of as many as five paths in a journey.</p></li> <li><p>WAIT - For a wait activity, which is an activity that waits for a certain amount of time or until a specific date and time before moving participants to the next activity in a journey.</p></li></ul>",
+        "JourneyExecutionActivityMetricsResponse$ActivityType" : "<p>The type of activity that the metric applies to. Possible values are:</p> <ul><li><p>CONDITIONAL_SPLIT – For a yes/no split activity, which is an activity that sends participants down one of two paths in a journey.</p></li> <li><p>HOLDOUT – For a holdout activity, which is an activity that stops a journey for a specified percentage of participants.</p></li> <li><p>MESSAGE – For an email activity, which is an activity that sends an email message to participants.</p></li> <li><p>MULTI_CONDITIONAL_SPLIT – For a multivariate split activity, which is an activity that sends participants down one of as many as five paths in a journey.</p></li> <li><p>RANDOM_SPLIT – For a random split activity, which is an activity that sends specified percentages of participants down one of as many as five paths in a journey.</p></li> <li><p>WAIT – For a wait activity, which is an activity that waits for a certain amount of time or until a specific date and time before moving participants to the next activity in a journey.</p></li></ul>",
         "JourneyExecutionActivityMetricsResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "JourneyExecutionActivityMetricsResponse$JourneyActivityId" : "<p>The unique identifier for the activity that the metric applies to.</p>",
         "JourneyExecutionActivityMetricsResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",
@@ -2332,7 +2372,8 @@
         "JourneyExecutionMetricsResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "JourneyExecutionMetricsResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",
         "JourneyExecutionMetricsResponse$LastEvaluatedTime" : "<p>The date and time, in ISO 8601 format, when Amazon Pinpoint last evaluated the journey and updated the data for the metric.</p>",
-        "JourneyPushMessage$TimeToLive" : "<p>The number of seconds that the push notification service should keep the message, if the service is unable to deliver the notification the first time. This value is converted to an expiration value when it's sent to a push-notification service. If this value is 0, the service treats the notification as if it expires immediately and the service doesn't store or try to deliver the notification again.</p> <p>This value doesn't apply to messages that are sent through the Amazon Device Messaging (ADM) service.</p>",
+        "JourneyLimits$EndpointReentryInterval" : "<p>Minimum time that must pass before an endpoint can re-enter a given journey.</p>",
+        "JourneyPushMessage$TimeToLive" : "<p>The number of seconds that the push notification service should keep the message, if the service is unable to deliver the notification the first time. This value is converted to an expiration value when it's sent to a push notification service. If this value is 0, the service treats the notification as if it expires immediately and the service doesn't store or try to deliver the notification again.</p> <p>This value doesn't apply to messages that are sent through the Amazon Device Messaging (ADM) service.</p>",
         "JourneyResponse$ApplicationId" : "<p>The unique identifier for the application that the journey applies to.</p>",
         "JourneyResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the journey was created.</p>",
         "JourneyResponse$Id" : "<p>The unique identifier for the journey.</p>",
@@ -2340,6 +2381,20 @@
         "JourneyResponse$Name" : "<p>The name of the journey.</p>",
         "JourneyResponse$RefreshFrequency" : "<p>The frequency with which Amazon Pinpoint evaluates segment and event data for the journey, as a duration in ISO 8601 format.</p>",
         "JourneyResponse$StartActivity" : "<p>The unique identifier for the first activity in the journey.</p>",
+        "JourneyRunExecutionActivityMetricsResponse$ActivityType" : "<p>The type of activity that the metric applies to. Possible values are:</p> <ul><li><p>CONDITIONAL_SPLIT – For a yes/no split activity, which is an activity that sends participants down one of two paths in a journey.</p></li> <li><p>HOLDOUT – For a holdout activity, which is an activity that stops a journey for a specified percentage of participants.</p></li> <li><p>MESSAGE – For an email activity, which is an activity that sends an email message to participants.</p></li> <li><p>MULTI_CONDITIONAL_SPLIT – For a multivariate split activity, which is an activity that sends participants down one of as many as five paths in a journey.</p></li> <li><p>RANDOM_SPLIT – For a random split activity, which is an activity that sends specified percentages of participants down one of as many as five paths in a journey.</p></li> <li><p>WAIT – For a wait activity, which is an activity that waits for a certain amount of time or until a specific date and time before moving participants to the next activity in a journey.</p></li></ul>",
+        "JourneyRunExecutionActivityMetricsResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
+        "JourneyRunExecutionActivityMetricsResponse$JourneyActivityId" : "<p>The unique identifier for the activity that the metric applies to.</p>",
+        "JourneyRunExecutionActivityMetricsResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",
+        "JourneyRunExecutionActivityMetricsResponse$LastEvaluatedTime" : "<p>The date and time, in ISO 8601 format, when Amazon Pinpoint last evaluated the execution status of the activity for this journey run and updated the data for the metric.</p>",
+        "JourneyRunExecutionActivityMetricsResponse$RunId" : "<p>The unique identifier for the journey run that the metric applies to.</p>",
+        "JourneyRunExecutionMetricsResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
+        "JourneyRunExecutionMetricsResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",
+        "JourneyRunExecutionMetricsResponse$LastEvaluatedTime" : "<p>The date and time, in ISO 8601 format, when Amazon Pinpoint last evaluated the journey run and updated the data for the metric.</p>",
+        "JourneyRunExecutionMetricsResponse$RunId" : "<p>The unique identifier for the journey run that the metric applies to.</p>",
+        "JourneyRunResponse$CreationTime" : "<p>The time when the journey run was created or scheduled, in ISO 8601 format.</p>",
+        "JourneyRunResponse$LastUpdateTime" : "<p>The last time the journey run was updated, in ISO 8601 format..</p>",
+        "JourneyRunResponse$RunId" : "<p>The unique identifier for the run.</p>",
+        "JourneyRunsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "JourneySMSMessage$OriginationNumber" : "<p>The long code to send the SMS message from. This value should be one of the dedicated long codes that's assigned to your AWS account. Although it isn't required, we recommend that you specify the long code using an E.164 format to ensure prompt and accurate delivery of the message. For example, +12065550100.</p>",
         "JourneySMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region. For more information, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html\">Supported Countries and Regions</a> in the Amazon Pinpoint User Guide.</p>",
         "JourneySMSMessage$EntityId" : "<p>The entity ID or Principal Entity (PE) id received from the regulatory body for sending SMS in your country.</p>",
@@ -2568,11 +2623,11 @@
         "WriteTreatmentResource$TreatmentName" : "<p>A custom name for the treatment.</p>",
         "ListOf__string$member" : null,
         "MapOf__string$member" : null,
-        "OpenHoursRule$StartTime" : "<p>Local start time in ISO 8601 format.</p>",
-        "OpenHoursRule$EndTime" : "<p>Local start time in ISO 8601 format.</p>",
-        "ClosedDaysRule$Name" : "<p>Name of the rule.</p>",
-        "ClosedDaysRule$StartDateTime" : "<p>Start Datetime in ISO 8601 format.</p>",
-        "ClosedDaysRule$EndDateTime" : "<p>End Datetime in ISO 8601 format.</p>"
+        "OpenHoursRule$StartTime" : "<p>The start of the scheduled time, in ISO 8601 format, when the channel can send messages.</p>",
+        "OpenHoursRule$EndTime" : "<p>The end of the scheduled time, in ISO 8601 format, when the channel can't send messages.</p>",
+        "ClosedDaysRule$Name" : "<p>The name of the closed day rule.</p>",
+        "ClosedDaysRule$StartDateTime" : "<p>Start DateTime ISO 8601 format</p>",
+        "ClosedDaysRule$EndDateTime" : "<p>End DateTime ISO 8601 format</p>"
       }
     },
     "DayOfWeek": {
@@ -2587,31 +2642,31 @@
             "MapOfOpenHoursRules$value" : "<p>Open Hour Rules.</p>"
         }
     },
-    "OpenHoursRule": {
-        "base" : "<p>Open Hour Rules.</p>",
+    "OpenHoursRule" : {
+        "base" : "<p>Specifies the start and end time for OpenHours.</p>",
         "refs" : {
             "ListOfOpenHoursRules$member" : "<p>Open Hour Rule Details.</p>"
         }
     },
-    "MapOfListOfOpenHoursRules": {
+    "MapOfListOfOpenHoursRules" : {
         "base" : "<p>OpenHours Rules for a channel</p>",
         "refs" : {
-            "OpenHours$EMAIL" : "<p>Rules for Email Channel.</p>",
-            "OpenHours$SMS" : "<p>Rules for SMS Channel.</p>",
-            "OpenHours$PUSH" : "<p>Rules for Push Channel.</p>",
-            "OpenHours$VOICE" : "<p>Rules for Email Channel.</p>",
-            "OpenHours$CUSTOM" : "<p>Rules for Custom Channel.</p>"
+            "OpenHours$EMAIL" : "<p>Specifies the schedule settings for the email channel.</p>",
+            "OpenHours$SMS" : "<p>Specifies the schedule settings for the SMS channel.</p>",
+            "OpenHours$PUSH" : "<p>Specifies the schedule settings for the push channel.</p>",
+            "OpenHours$VOICE" : "<p>Specifies the schedule settings for the voice channel.</p>",
+            "OpenHours$CUSTOM" : "<p>Specifies the schedule settings for the custom channel.</p>"
         }
     },
-    "OpenHours": {
-        "base" : "<p>The time when journey allow to send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>",
+    "OpenHours" : {
+        "base" : "<p>Specifies the times when message are allowed to be sent to endpoints.</p>",
         "refs" : {
             "WriteJourneyRequest$OpenHours" : "<p>The time when journey allow to send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>",
-            "JourneyResponse$OpenHours" : "<p>The time when journey allow to send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>"
+            "JourneyResponse$OpenHours" : "<p>The time when a journey can send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>"
         }
     },
     "ClosedDaysRule" : {
-        "base" : "<p>Closed Days Rule. Part of Journey sending schedule.</p>",
+        "base" : "<p>Specifies the rule settings for when messages can't be sent.</p>",
         "refs" : {
             "ListOfClosedDaysRules$member" : "<p>Closed Days Rule. Part of Journey sending schedule.</p>"
         }
@@ -2626,12 +2681,11 @@
             "OpenHours$CUSTOM" : "<p>Rules for Custom Channel.</p>"
         }
     },
-    "ClosedDays": {
-        "base" : "<p>The time when journey will stop sending messages.</p>",
+    "ClosedDays" : {
+        "base" : "<p>The time when a journey will not send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>",
         "refs" : {
             "WriteJourneyRequest$ClosedDays" : "<p>The time when journey will stop sending messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>",
-            "JourneyResponse$ClosedDays" : "<p>The time when journey will stop sending messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>"
-
+            "JourneyResponse$ClosedDays" : "<p>The time when a journey will not send messages. QuietTime should be configured first and SendingSchedule should be set to true.</p>"
         }
     }
   }

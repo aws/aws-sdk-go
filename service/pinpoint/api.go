@@ -6525,6 +6525,299 @@ func (c *Pinpoint) GetJourneyExecutionMetricsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opGetJourneyRunExecutionActivityMetrics = "GetJourneyRunExecutionActivityMetrics"
+
+// GetJourneyRunExecutionActivityMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the GetJourneyRunExecutionActivityMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetJourneyRunExecutionActivityMetrics for more information on using the GetJourneyRunExecutionActivityMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetJourneyRunExecutionActivityMetricsRequest method.
+//	req, resp := client.GetJourneyRunExecutionActivityMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetJourneyRunExecutionActivityMetrics
+func (c *Pinpoint) GetJourneyRunExecutionActivityMetricsRequest(input *GetJourneyRunExecutionActivityMetricsInput) (req *request.Request, output *GetJourneyRunExecutionActivityMetricsOutput) {
+	op := &request.Operation{
+		Name:       opGetJourneyRunExecutionActivityMetrics,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}/journeys/{journey-id}/runs/{run-id}/activities/{journey-activity-id}/execution-metrics",
+	}
+
+	if input == nil {
+		input = &GetJourneyRunExecutionActivityMetricsInput{}
+	}
+
+	output = &GetJourneyRunExecutionActivityMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetJourneyRunExecutionActivityMetrics API operation for Amazon Pinpoint.
+//
+// Retrieves (queries) pre-aggregated data for a standard run execution metric
+// that applies to a journey activity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetJourneyRunExecutionActivityMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Provides information about an API request or response.
+//
+//   - InternalServerErrorException
+//     Provides information about an API request or response.
+//
+//   - PayloadTooLargeException
+//     Provides information about an API request or response.
+//
+//   - ForbiddenException
+//     Provides information about an API request or response.
+//
+//   - NotFoundException
+//     Provides information about an API request or response.
+//
+//   - MethodNotAllowedException
+//     Provides information about an API request or response.
+//
+//   - TooManyRequestsException
+//     Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetJourneyRunExecutionActivityMetrics
+func (c *Pinpoint) GetJourneyRunExecutionActivityMetrics(input *GetJourneyRunExecutionActivityMetricsInput) (*GetJourneyRunExecutionActivityMetricsOutput, error) {
+	req, out := c.GetJourneyRunExecutionActivityMetricsRequest(input)
+	return out, req.Send()
+}
+
+// GetJourneyRunExecutionActivityMetricsWithContext is the same as GetJourneyRunExecutionActivityMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJourneyRunExecutionActivityMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetJourneyRunExecutionActivityMetricsWithContext(ctx aws.Context, input *GetJourneyRunExecutionActivityMetricsInput, opts ...request.Option) (*GetJourneyRunExecutionActivityMetricsOutput, error) {
+	req, out := c.GetJourneyRunExecutionActivityMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetJourneyRunExecutionMetrics = "GetJourneyRunExecutionMetrics"
+
+// GetJourneyRunExecutionMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the GetJourneyRunExecutionMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetJourneyRunExecutionMetrics for more information on using the GetJourneyRunExecutionMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetJourneyRunExecutionMetricsRequest method.
+//	req, resp := client.GetJourneyRunExecutionMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetJourneyRunExecutionMetrics
+func (c *Pinpoint) GetJourneyRunExecutionMetricsRequest(input *GetJourneyRunExecutionMetricsInput) (req *request.Request, output *GetJourneyRunExecutionMetricsOutput) {
+	op := &request.Operation{
+		Name:       opGetJourneyRunExecutionMetrics,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}/journeys/{journey-id}/runs/{run-id}/execution-metrics",
+	}
+
+	if input == nil {
+		input = &GetJourneyRunExecutionMetricsInput{}
+	}
+
+	output = &GetJourneyRunExecutionMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetJourneyRunExecutionMetrics API operation for Amazon Pinpoint.
+//
+// Retrieves (queries) pre-aggregated data for a standard run execution metric
+// that applies to a journey.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetJourneyRunExecutionMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Provides information about an API request or response.
+//
+//   - InternalServerErrorException
+//     Provides information about an API request or response.
+//
+//   - PayloadTooLargeException
+//     Provides information about an API request or response.
+//
+//   - ForbiddenException
+//     Provides information about an API request or response.
+//
+//   - NotFoundException
+//     Provides information about an API request or response.
+//
+//   - MethodNotAllowedException
+//     Provides information about an API request or response.
+//
+//   - TooManyRequestsException
+//     Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetJourneyRunExecutionMetrics
+func (c *Pinpoint) GetJourneyRunExecutionMetrics(input *GetJourneyRunExecutionMetricsInput) (*GetJourneyRunExecutionMetricsOutput, error) {
+	req, out := c.GetJourneyRunExecutionMetricsRequest(input)
+	return out, req.Send()
+}
+
+// GetJourneyRunExecutionMetricsWithContext is the same as GetJourneyRunExecutionMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJourneyRunExecutionMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetJourneyRunExecutionMetricsWithContext(ctx aws.Context, input *GetJourneyRunExecutionMetricsInput, opts ...request.Option) (*GetJourneyRunExecutionMetricsOutput, error) {
+	req, out := c.GetJourneyRunExecutionMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetJourneyRuns = "GetJourneyRuns"
+
+// GetJourneyRunsRequest generates a "aws/request.Request" representing the
+// client's request for the GetJourneyRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetJourneyRuns for more information on using the GetJourneyRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetJourneyRunsRequest method.
+//	req, resp := client.GetJourneyRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetJourneyRuns
+func (c *Pinpoint) GetJourneyRunsRequest(input *GetJourneyRunsInput) (req *request.Request, output *GetJourneyRunsOutput) {
+	op := &request.Operation{
+		Name:       opGetJourneyRuns,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}/journeys/{journey-id}/runs",
+	}
+
+	if input == nil {
+		input = &GetJourneyRunsInput{}
+	}
+
+	output = &GetJourneyRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetJourneyRuns API operation for Amazon Pinpoint.
+//
+// Provides information about the runs of a journey.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetJourneyRuns for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Provides information about an API request or response.
+//
+//   - InternalServerErrorException
+//     Provides information about an API request or response.
+//
+//   - PayloadTooLargeException
+//     Provides information about an API request or response.
+//
+//   - ForbiddenException
+//     Provides information about an API request or response.
+//
+//   - NotFoundException
+//     Provides information about an API request or response.
+//
+//   - MethodNotAllowedException
+//     Provides information about an API request or response.
+//
+//   - TooManyRequestsException
+//     Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetJourneyRuns
+func (c *Pinpoint) GetJourneyRuns(input *GetJourneyRunsInput) (*GetJourneyRunsOutput, error) {
+	req, out := c.GetJourneyRunsRequest(input)
+	return out, req.Send()
+}
+
+// GetJourneyRunsWithContext is the same as GetJourneyRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJourneyRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetJourneyRunsWithContext(ctx aws.Context, input *GetJourneyRunsInput, opts ...request.Option) (*GetJourneyRunsOutput, error) {
+	req, out := c.GetJourneyRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPushTemplate = "GetPushTemplate"
 
 // GetPushTemplateRequest generates a "aws/request.Request" representing the
@@ -13530,6 +13823,12 @@ type ActivityResponse struct {
 	// or COMPLETED.
 	End *string `type:"string"`
 
+	// A JSON object that contains metrics relating to the campaign execution for
+	// this campaign activity. For information about the structure and contents
+	// of the results, see Standard Amazon Pinpoint analytics metrics (https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html)
+	// in the Amazon Pinpoint Developer Guide.
+	ExecutionMetrics map[string]*string `type:"map"`
+
 	// The unique identifier for the activity.
 	//
 	// Id is a required field
@@ -13602,6 +13901,12 @@ func (s *ActivityResponse) SetCampaignId(v string) *ActivityResponse {
 // SetEnd sets the End field's value.
 func (s *ActivityResponse) SetEnd(v string) *ActivityResponse {
 	s.End = &v
+	return s
+}
+
+// SetExecutionMetrics sets the ExecutionMetrics field's value.
+func (s *ActivityResponse) SetExecutionMetrics(v map[string]*string) *ActivityResponse {
+	s.ExecutionMetrics = v
 	return s
 }
 
@@ -15865,7 +16170,8 @@ func (s *ChannelsResponse) SetChannels(v map[string]*ChannelResponse) *ChannelsR
 	return s
 }
 
-// The time when journey will stop sending messages.
+// The time when a journey will not send messages. QuietTime should be configured
+// first and SendingSchedule should be set to true.
 type ClosedDays struct {
 	_ struct{} `type:"structure"`
 
@@ -15933,17 +16239,17 @@ func (s *ClosedDays) SetVOICE(v []*ClosedDaysRule) *ClosedDays {
 	return s
 }
 
-// Closed Days Rule. Part of Journey sending schedule.
+// Specifies the rule settings for when messages can't be sent.
 type ClosedDaysRule struct {
 	_ struct{} `type:"structure"`
 
-	// End Datetime in ISO 8601 format.
+	// End DateTime ISO 8601 format
 	EndDateTime *string `type:"string"`
 
-	// Name of the rule.
+	// The name of the closed day rule.
 	Name *string `type:"string"`
 
-	// Start Datetime in ISO 8601 format.
+	// Start DateTime ISO 8601 format
 	StartDateTime *string `type:"string"`
 }
 
@@ -26793,6 +27099,388 @@ func (s *GetJourneyOutput) SetJourneyResponse(v *JourneyResponse) *GetJourneyOut
 	return s
 }
 
+type GetJourneyRunExecutionActivityMetricsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// JourneyActivityId is a required field
+	JourneyActivityId *string `location:"uri" locationName:"journey-activity-id" type:"string" required:"true"`
+
+	// JourneyId is a required field
+	JourneyId *string `location:"uri" locationName:"journey-id" type:"string" required:"true"`
+
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+
+	PageSize *string `location:"querystring" locationName:"page-size" type:"string"`
+
+	// RunId is a required field
+	RunId *string `location:"uri" locationName:"run-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionActivityMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionActivityMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJourneyRunExecutionActivityMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJourneyRunExecutionActivityMetricsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.JourneyActivityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JourneyActivityId"))
+	}
+	if s.JourneyActivityId != nil && len(*s.JourneyActivityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JourneyActivityId", 1))
+	}
+	if s.JourneyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JourneyId"))
+	}
+	if s.JourneyId != nil && len(*s.JourneyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JourneyId", 1))
+	}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetJourneyRunExecutionActivityMetricsInput) SetApplicationId(v string) *GetJourneyRunExecutionActivityMetricsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetJourneyActivityId sets the JourneyActivityId field's value.
+func (s *GetJourneyRunExecutionActivityMetricsInput) SetJourneyActivityId(v string) *GetJourneyRunExecutionActivityMetricsInput {
+	s.JourneyActivityId = &v
+	return s
+}
+
+// SetJourneyId sets the JourneyId field's value.
+func (s *GetJourneyRunExecutionActivityMetricsInput) SetJourneyId(v string) *GetJourneyRunExecutionActivityMetricsInput {
+	s.JourneyId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetJourneyRunExecutionActivityMetricsInput) SetNextToken(v string) *GetJourneyRunExecutionActivityMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetJourneyRunExecutionActivityMetricsInput) SetPageSize(v string) *GetJourneyRunExecutionActivityMetricsInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetJourneyRunExecutionActivityMetricsInput) SetRunId(v string) *GetJourneyRunExecutionActivityMetricsInput {
+	s.RunId = &v
+	return s
+}
+
+type GetJourneyRunExecutionActivityMetricsOutput struct {
+	_ struct{} `type:"structure" payload:"JourneyRunExecutionActivityMetricsResponse"`
+
+	// Provides the results of a query that retrieved the data for a standard execution
+	// metric that applies to a journey activity for a particular journey run, and
+	// provides information about that query.
+	//
+	// JourneyRunExecutionActivityMetricsResponse is a required field
+	JourneyRunExecutionActivityMetricsResponse *JourneyRunExecutionActivityMetricsResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionActivityMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionActivityMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJourneyRunExecutionActivityMetricsResponse sets the JourneyRunExecutionActivityMetricsResponse field's value.
+func (s *GetJourneyRunExecutionActivityMetricsOutput) SetJourneyRunExecutionActivityMetricsResponse(v *JourneyRunExecutionActivityMetricsResponse) *GetJourneyRunExecutionActivityMetricsOutput {
+	s.JourneyRunExecutionActivityMetricsResponse = v
+	return s
+}
+
+type GetJourneyRunExecutionMetricsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// JourneyId is a required field
+	JourneyId *string `location:"uri" locationName:"journey-id" type:"string" required:"true"`
+
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+
+	PageSize *string `location:"querystring" locationName:"page-size" type:"string"`
+
+	// RunId is a required field
+	RunId *string `location:"uri" locationName:"run-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJourneyRunExecutionMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJourneyRunExecutionMetricsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.JourneyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JourneyId"))
+	}
+	if s.JourneyId != nil && len(*s.JourneyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JourneyId", 1))
+	}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetJourneyRunExecutionMetricsInput) SetApplicationId(v string) *GetJourneyRunExecutionMetricsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetJourneyId sets the JourneyId field's value.
+func (s *GetJourneyRunExecutionMetricsInput) SetJourneyId(v string) *GetJourneyRunExecutionMetricsInput {
+	s.JourneyId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetJourneyRunExecutionMetricsInput) SetNextToken(v string) *GetJourneyRunExecutionMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetJourneyRunExecutionMetricsInput) SetPageSize(v string) *GetJourneyRunExecutionMetricsInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetJourneyRunExecutionMetricsInput) SetRunId(v string) *GetJourneyRunExecutionMetricsInput {
+	s.RunId = &v
+	return s
+}
+
+type GetJourneyRunExecutionMetricsOutput struct {
+	_ struct{} `type:"structure" payload:"JourneyRunExecutionMetricsResponse"`
+
+	// Provides the results of a query that retrieved the data for a standard execution
+	// metric that applies to a journey run, and provides information about that
+	// query.
+	//
+	// JourneyRunExecutionMetricsResponse is a required field
+	JourneyRunExecutionMetricsResponse *JourneyRunExecutionMetricsResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunExecutionMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJourneyRunExecutionMetricsResponse sets the JourneyRunExecutionMetricsResponse field's value.
+func (s *GetJourneyRunExecutionMetricsOutput) SetJourneyRunExecutionMetricsResponse(v *JourneyRunExecutionMetricsResponse) *GetJourneyRunExecutionMetricsOutput {
+	s.JourneyRunExecutionMetricsResponse = v
+	return s
+}
+
+type GetJourneyRunsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// JourneyId is a required field
+	JourneyId *string `location:"uri" locationName:"journey-id" type:"string" required:"true"`
+
+	PageSize *string `location:"querystring" locationName:"page-size" type:"string"`
+
+	Token *string `location:"querystring" locationName:"token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJourneyRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJourneyRunsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.JourneyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JourneyId"))
+	}
+	if s.JourneyId != nil && len(*s.JourneyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JourneyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetJourneyRunsInput) SetApplicationId(v string) *GetJourneyRunsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetJourneyId sets the JourneyId field's value.
+func (s *GetJourneyRunsInput) SetJourneyId(v string) *GetJourneyRunsInput {
+	s.JourneyId = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetJourneyRunsInput) SetPageSize(v string) *GetJourneyRunsInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *GetJourneyRunsInput) SetToken(v string) *GetJourneyRunsInput {
+	s.Token = &v
+	return s
+}
+
+type GetJourneyRunsOutput struct {
+	_ struct{} `type:"structure" payload:"JourneyRunsResponse"`
+
+	// Provides information from all runs of a journey.
+	//
+	// JourneyRunsResponse is a required field
+	JourneyRunsResponse *JourneyRunsResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJourneyRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJourneyRunsResponse sets the JourneyRunsResponse field's value.
+func (s *GetJourneyRunsOutput) SetJourneyRunsResponse(v *JourneyRunsResponse) *GetJourneyRunsOutput {
+	s.JourneyRunsResponse = v
+	return s
+}
+
 type GetPushTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -29783,26 +30471,26 @@ type JourneyExecutionActivityMetricsResponse struct {
 
 	// The type of activity that the metric applies to. Possible values are:
 	//
-	//    * CONDITIONAL_SPLIT - For a yes/no split activity, which is an activity
+	//    * CONDITIONAL_SPLIT – For a yes/no split activity, which is an activity
 	//    that sends participants down one of two paths in a journey.
 	//
-	//    * HOLDOUT - For a holdout activity, which is an activity that stops a
-	//    journey for a specified percentage of participants.
+	//    * HOLDOUT – For a holdout activity, which is an activity that stops
+	//    a journey for a specified percentage of participants.
 	//
-	//    * MESSAGE - For an email activity, which is an activity that sends an
+	//    * MESSAGE – For an email activity, which is an activity that sends an
 	//    email message to participants.
 	//
-	//    * MULTI_CONDITIONAL_SPLIT - For a multivariate split activity, which is
-	//    an activity that sends participants down one of as many as five paths
+	//    * MULTI_CONDITIONAL_SPLIT – For a multivariate split activity, which
+	//    is an activity that sends participants down one of as many as five paths
 	//    in a journey.
 	//
-	//    * RANDOM_SPLIT - For a random split activity, which is an activity that
+	//    * RANDOM_SPLIT – For a random split activity, which is an activity that
 	//    sends specified percentages of participants down one of as many as five
 	//    paths in a journey.
 	//
-	//    * WAIT - For a wait activity, which is an activity that waits for a certain
-	//    amount of time or until a specific date and time before moving participants
-	//    to the next activity in a journey.
+	//    * WAIT – For a wait activity, which is an activity that waits for a
+	//    certain amount of time or until a specific date and time before moving
+	//    participants to the next activity in a journey.
 	//
 	// ActivityType is a required field
 	ActivityType *string `type:"string" required:"true"`
@@ -29975,6 +30663,7 @@ type JourneyLimits struct {
 	// number of times, set this value to 0.
 	EndpointReentryCap *int64 `type:"integer"`
 
+	// Minimum time that must pass before an endpoint can re-enter a given journey.
 	EndpointReentryInterval *string `type:"string"`
 
 	// The maximum number of messages that the journey can send each second.
@@ -30030,7 +30719,7 @@ type JourneyPushMessage struct {
 
 	// The number of seconds that the push notification service should keep the
 	// message, if the service is unable to deliver the notification the first time.
-	// This value is converted to an expiration value when it's sent to a push-notification
+	// This value is converted to an expiration value when it's sent to a push notification
 	// service. If this value is 0, the service treats the notification as if it
 	// expires immediately and the service doesn't store or try to deliver the notification
 	// again.
@@ -30079,7 +30768,7 @@ type JourneyResponse struct {
 	// ApplicationId is a required field
 	ApplicationId *string `type:"string" required:"true"`
 
-	// The time when journey will stop sending messages. QuietTime should be configured
+	// The time when a journey will not send messages. QuietTime should be configured
 	// first and SendingSchedule should be set to true.
 	ClosedDays *ClosedDays `type:"structure"`
 
@@ -30110,7 +30799,7 @@ type JourneyResponse struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The time when journey allow to send messages. QuietTime should be configured
+	// The time when a journey can send messages. QuietTime should be configured
 	// first and SendingSchedule should be set to true.
 	OpenHours *OpenHours `type:"structure"`
 
@@ -30135,13 +30824,15 @@ type JourneyResponse struct {
 	// for the journey, as a duration in ISO 8601 format.
 	RefreshFrequency *string `type:"string"`
 
+	// Indicates whether the journey participants should be refreshed when a segment
+	// is updated.
 	RefreshOnSegmentUpdate *bool `type:"boolean"`
 
 	// The schedule settings for the journey.
 	Schedule *JourneySchedule `type:"structure"`
 
-	// Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays).
-	// This flag should be set to true in order to allow (OpenHours and ClosedDays)
+	// Indicates if journey has Advance Quiet Time enabled. This flag should be
+	// set to true in order to allow using OpenHours and ClosedDays.
 	SendingSchedule *bool `type:"boolean"`
 
 	// The unique identifier for the first activity in the journey.
@@ -30182,6 +30873,8 @@ type JourneyResponse struct {
 	// This object is not used or supported.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// Indicates whether endpoints in quiet hours should enter a wait activity until
+	// quiet hours have elapsed.
 	WaitForQuietTime *bool `type:"boolean"`
 }
 
@@ -30326,6 +31019,329 @@ func (s *JourneyResponse) SetTags(v map[string]*string) *JourneyResponse {
 // SetWaitForQuietTime sets the WaitForQuietTime field's value.
 func (s *JourneyResponse) SetWaitForQuietTime(v bool) *JourneyResponse {
 	s.WaitForQuietTime = &v
+	return s
+}
+
+// Provides the results of a query that retrieved the data for a standard execution
+// metric that applies to a journey activity for a particular journey run, and
+// provides information about that query.
+type JourneyRunExecutionActivityMetricsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The type of activity that the metric applies to. Possible values are:
+	//
+	//    * CONDITIONAL_SPLIT – For a yes/no split activity, which is an activity
+	//    that sends participants down one of two paths in a journey.
+	//
+	//    * HOLDOUT – For a holdout activity, which is an activity that stops
+	//    a journey for a specified percentage of participants.
+	//
+	//    * MESSAGE – For an email activity, which is an activity that sends an
+	//    email message to participants.
+	//
+	//    * MULTI_CONDITIONAL_SPLIT – For a multivariate split activity, which
+	//    is an activity that sends participants down one of as many as five paths
+	//    in a journey.
+	//
+	//    * RANDOM_SPLIT – For a random split activity, which is an activity that
+	//    sends specified percentages of participants down one of as many as five
+	//    paths in a journey.
+	//
+	//    * WAIT – For a wait activity, which is an activity that waits for a
+	//    certain amount of time or until a specific date and time before moving
+	//    participants to the next activity in a journey.
+	//
+	// ActivityType is a required field
+	ActivityType *string `type:"string" required:"true"`
+
+	// The unique identifier for the application that the metric applies to.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `type:"string" required:"true"`
+
+	// The unique identifier for the activity that the metric applies to.
+	//
+	// JourneyActivityId is a required field
+	JourneyActivityId *string `type:"string" required:"true"`
+
+	// The unique identifier for the journey that the metric applies to.
+	//
+	// JourneyId is a required field
+	JourneyId *string `type:"string" required:"true"`
+
+	// The date and time, in ISO 8601 format, when Amazon Pinpoint last evaluated
+	// the execution status of the activity for this journey run and updated the
+	// data for the metric.
+	//
+	// LastEvaluatedTime is a required field
+	LastEvaluatedTime *string `type:"string" required:"true"`
+
+	// A JSON object that contains the results of the query. For information about
+	// the structure and contents of the results, see see Standard Amazon Pinpoint
+	// analytics metrics (https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html)
+	// in the Amazon Pinpoint Developer Guide.
+	//
+	// Metrics is a required field
+	Metrics map[string]*string `type:"map" required:"true"`
+
+	// The unique identifier for the journey run that the metric applies to.
+	//
+	// RunId is a required field
+	RunId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunExecutionActivityMetricsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunExecutionActivityMetricsResponse) GoString() string {
+	return s.String()
+}
+
+// SetActivityType sets the ActivityType field's value.
+func (s *JourneyRunExecutionActivityMetricsResponse) SetActivityType(v string) *JourneyRunExecutionActivityMetricsResponse {
+	s.ActivityType = &v
+	return s
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *JourneyRunExecutionActivityMetricsResponse) SetApplicationId(v string) *JourneyRunExecutionActivityMetricsResponse {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetJourneyActivityId sets the JourneyActivityId field's value.
+func (s *JourneyRunExecutionActivityMetricsResponse) SetJourneyActivityId(v string) *JourneyRunExecutionActivityMetricsResponse {
+	s.JourneyActivityId = &v
+	return s
+}
+
+// SetJourneyId sets the JourneyId field's value.
+func (s *JourneyRunExecutionActivityMetricsResponse) SetJourneyId(v string) *JourneyRunExecutionActivityMetricsResponse {
+	s.JourneyId = &v
+	return s
+}
+
+// SetLastEvaluatedTime sets the LastEvaluatedTime field's value.
+func (s *JourneyRunExecutionActivityMetricsResponse) SetLastEvaluatedTime(v string) *JourneyRunExecutionActivityMetricsResponse {
+	s.LastEvaluatedTime = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *JourneyRunExecutionActivityMetricsResponse) SetMetrics(v map[string]*string) *JourneyRunExecutionActivityMetricsResponse {
+	s.Metrics = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *JourneyRunExecutionActivityMetricsResponse) SetRunId(v string) *JourneyRunExecutionActivityMetricsResponse {
+	s.RunId = &v
+	return s
+}
+
+// Provides the results of a query that retrieved the data for a standard execution
+// metric that applies to a journey run, and provides information about that
+// query.
+type JourneyRunExecutionMetricsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the application that the metric applies to.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `type:"string" required:"true"`
+
+	// The unique identifier for the journey that the metric applies to.
+	//
+	// JourneyId is a required field
+	JourneyId *string `type:"string" required:"true"`
+
+	// The date and time, in ISO 8601 format, when Amazon Pinpoint last evaluated
+	// the journey run and updated the data for the metric.
+	//
+	// LastEvaluatedTime is a required field
+	LastEvaluatedTime *string `type:"string" required:"true"`
+
+	// A JSON object that contains the results of the query. For information about
+	// the structure and contents of the results, see the Standard Amazon Pinpoint
+	// analytics metrics (https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html)
+	// in the Amazon Pinpoint Developer Guide.
+	//
+	// Metrics is a required field
+	Metrics map[string]*string `type:"map" required:"true"`
+
+	// The unique identifier for the journey run that the metric applies to.
+	//
+	// RunId is a required field
+	RunId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunExecutionMetricsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunExecutionMetricsResponse) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *JourneyRunExecutionMetricsResponse) SetApplicationId(v string) *JourneyRunExecutionMetricsResponse {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetJourneyId sets the JourneyId field's value.
+func (s *JourneyRunExecutionMetricsResponse) SetJourneyId(v string) *JourneyRunExecutionMetricsResponse {
+	s.JourneyId = &v
+	return s
+}
+
+// SetLastEvaluatedTime sets the LastEvaluatedTime field's value.
+func (s *JourneyRunExecutionMetricsResponse) SetLastEvaluatedTime(v string) *JourneyRunExecutionMetricsResponse {
+	s.LastEvaluatedTime = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *JourneyRunExecutionMetricsResponse) SetMetrics(v map[string]*string) *JourneyRunExecutionMetricsResponse {
+	s.Metrics = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *JourneyRunExecutionMetricsResponse) SetRunId(v string) *JourneyRunExecutionMetricsResponse {
+	s.RunId = &v
+	return s
+}
+
+// Provides information from a specified run of a journey.
+type JourneyRunResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the journey run was created or scheduled, in ISO 8601 format.
+	//
+	// CreationTime is a required field
+	CreationTime *string `type:"string" required:"true"`
+
+	// The last time the journey run was updated, in ISO 8601 format..
+	//
+	// LastUpdateTime is a required field
+	LastUpdateTime *string `type:"string" required:"true"`
+
+	// The unique identifier for the run.
+	//
+	// RunId is a required field
+	RunId *string `type:"string" required:"true"`
+
+	// The current status of the journey run.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"JourneyRunStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunResponse) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *JourneyRunResponse) SetCreationTime(v string) *JourneyRunResponse {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *JourneyRunResponse) SetLastUpdateTime(v string) *JourneyRunResponse {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *JourneyRunResponse) SetRunId(v string) *JourneyRunResponse {
+	s.RunId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *JourneyRunResponse) SetStatus(v string) *JourneyRunResponse {
+	s.Status = &v
+	return s
+}
+
+// Provides information from all runs of a journey.
+type JourneyRunsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// An array of responses, one for each run of the journey
+	//
+	// Item is a required field
+	Item []*JourneyRunResponse `type:"list" required:"true"`
+
+	// The string to use in a subsequent request to get the next page of results
+	// in a paginated response. This value is null if there are no additional pages.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyRunsResponse) GoString() string {
+	return s.String()
+}
+
+// SetItem sets the Item field's value.
+func (s *JourneyRunsResponse) SetItem(v []*JourneyRunResponse) *JourneyRunsResponse {
+	s.Item = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *JourneyRunsResponse) SetNextToken(v string) *JourneyRunsResponse {
+	s.NextToken = &v
 	return s
 }
 
@@ -32117,24 +33133,23 @@ func (s *NumberValidateResponse) SetZipCode(v string) *NumberValidateResponse {
 	return s
 }
 
-// The time when journey allow to send messages. QuietTime should be configured
-// first and SendingSchedule should be set to true.
+// Specifies the times when message are allowed to be sent to endpoints.
 type OpenHours struct {
 	_ struct{} `type:"structure"`
 
-	// Rules for Custom Channel.
+	// Specifies the schedule settings for the custom channel.
 	CUSTOM map[string][]*OpenHoursRule `type:"map"`
 
-	// Rules for Email Channel.
+	// Specifies the schedule settings for the email channel.
 	EMAIL map[string][]*OpenHoursRule `type:"map"`
 
-	// Rules for Push Channel.
+	// Specifies the schedule settings for the push channel.
 	PUSH map[string][]*OpenHoursRule `type:"map"`
 
-	// Rules for SMS Channel.
+	// Specifies the schedule settings for the SMS channel.
 	SMS map[string][]*OpenHoursRule `type:"map"`
 
-	// Rules for Email Channel.
+	// Specifies the schedule settings for the voice channel.
 	VOICE map[string][]*OpenHoursRule `type:"map"`
 }
 
@@ -32186,14 +33201,16 @@ func (s *OpenHours) SetVOICE(v map[string][]*OpenHoursRule) *OpenHours {
 	return s
 }
 
-// Open Hour Rules.
+// Specifies the start and end time for OpenHours.
 type OpenHoursRule struct {
 	_ struct{} `type:"structure"`
 
-	// Local start time in ISO 8601 format.
+	// The end of the scheduled time, in ISO 8601 format, when the channel can't
+	// send messages.
 	EndTime *string `type:"string"`
 
-	// Local start time in ISO 8601 format.
+	// The start of the scheduled time, in ISO 8601 format, when the channel can
+	// send messages.
 	StartTime *string `type:"string"`
 }
 
@@ -41341,13 +42358,15 @@ type WriteJourneyRequest struct {
 	// for the journey, as a duration in ISO 8601 format.
 	RefreshFrequency *string `type:"string"`
 
+	// Indicates whether the journey participants should be refreshed when a segment
+	// is updated.
 	RefreshOnSegmentUpdate *bool `type:"boolean"`
 
 	// The schedule settings for the journey.
 	Schedule *JourneySchedule `type:"structure"`
 
-	// Indicates if journey have Advance Quiet Time (OpenHours and ClosedDays).
-	// This flag should be set to true in order to allow (OpenHours and ClosedDays)
+	// Indicates if journey has Advance Quiet Time enabled. This flag should be
+	// set to true in order to allow using OpenHours and ClosedDays.
 	SendingSchedule *bool `type:"boolean"`
 
 	// The unique identifier for the first activity in the journey. The identifier
@@ -41372,6 +42391,8 @@ type WriteJourneyRequest struct {
 	// the Journey State resource.
 	State *string `type:"string" enum:"State"`
 
+	// Indicates whether endpoints in quiet hours should enter a wait activity until
+	// quiet hours have elapsed.
 	WaitForQuietTime *bool `type:"boolean"`
 }
 
@@ -42228,6 +43249,30 @@ func JobStatus_Values() []string {
 		JobStatusCompleted,
 		JobStatusFailing,
 		JobStatusFailed,
+	}
+}
+
+const (
+	// JourneyRunStatusScheduled is a JourneyRunStatus enum value
+	JourneyRunStatusScheduled = "SCHEDULED"
+
+	// JourneyRunStatusRunning is a JourneyRunStatus enum value
+	JourneyRunStatusRunning = "RUNNING"
+
+	// JourneyRunStatusCompleted is a JourneyRunStatus enum value
+	JourneyRunStatusCompleted = "COMPLETED"
+
+	// JourneyRunStatusCancelled is a JourneyRunStatus enum value
+	JourneyRunStatusCancelled = "CANCELLED"
+)
+
+// JourneyRunStatus_Values returns all elements of the JourneyRunStatus enum
+func JourneyRunStatus_Values() []string {
+	return []string{
+		JourneyRunStatusScheduled,
+		JourneyRunStatusRunning,
+		JourneyRunStatusCompleted,
+		JourneyRunStatusCancelled,
 	}
 }
 

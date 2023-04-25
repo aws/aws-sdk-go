@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Connect Service.
 //	func myFunc(svc connectiface.ConnectAPI) bool {
-//	    // Make svc.AssociateApprovedOrigin request
+//	    // Make svc.ActivateEvaluationForm request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockConnectClient struct {
 //	    connectiface.ConnectAPI
 //	}
-//	func (m *mockConnectClient) AssociateApprovedOrigin(input *connect.AssociateApprovedOriginInput) (*connect.AssociateApprovedOriginOutput, error) {
+//	func (m *mockConnectClient) ActivateEvaluationForm(input *connect.ActivateEvaluationFormInput) (*connect.ActivateEvaluationFormOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ConnectAPI interface {
+	ActivateEvaluationForm(*connect.ActivateEvaluationFormInput) (*connect.ActivateEvaluationFormOutput, error)
+	ActivateEvaluationFormWithContext(aws.Context, *connect.ActivateEvaluationFormInput, ...request.Option) (*connect.ActivateEvaluationFormOutput, error)
+	ActivateEvaluationFormRequest(*connect.ActivateEvaluationFormInput) (*request.Request, *connect.ActivateEvaluationFormOutput)
+
 	AssociateApprovedOrigin(*connect.AssociateApprovedOriginInput) (*connect.AssociateApprovedOriginOutput, error)
 	AssociateApprovedOriginWithContext(aws.Context, *connect.AssociateApprovedOriginInput, ...request.Option) (*connect.AssociateApprovedOriginOutput, error)
 	AssociateApprovedOriginRequest(*connect.AssociateApprovedOriginInput) (*request.Request, *connect.AssociateApprovedOriginOutput)
@@ -115,6 +119,10 @@ type ConnectAPI interface {
 	CreateContactFlowModule(*connect.CreateContactFlowModuleInput) (*connect.CreateContactFlowModuleOutput, error)
 	CreateContactFlowModuleWithContext(aws.Context, *connect.CreateContactFlowModuleInput, ...request.Option) (*connect.CreateContactFlowModuleOutput, error)
 	CreateContactFlowModuleRequest(*connect.CreateContactFlowModuleInput) (*request.Request, *connect.CreateContactFlowModuleOutput)
+
+	CreateEvaluationForm(*connect.CreateEvaluationFormInput) (*connect.CreateEvaluationFormOutput, error)
+	CreateEvaluationFormWithContext(aws.Context, *connect.CreateEvaluationFormInput, ...request.Option) (*connect.CreateEvaluationFormOutput, error)
+	CreateEvaluationFormRequest(*connect.CreateEvaluationFormInput) (*request.Request, *connect.CreateEvaluationFormOutput)
 
 	CreateHoursOfOperation(*connect.CreateHoursOfOperationInput) (*connect.CreateHoursOfOperationOutput, error)
 	CreateHoursOfOperationWithContext(aws.Context, *connect.CreateHoursOfOperationInput, ...request.Option) (*connect.CreateHoursOfOperationOutput, error)
@@ -176,6 +184,14 @@ type ConnectAPI interface {
 	CreateVocabularyWithContext(aws.Context, *connect.CreateVocabularyInput, ...request.Option) (*connect.CreateVocabularyOutput, error)
 	CreateVocabularyRequest(*connect.CreateVocabularyInput) (*request.Request, *connect.CreateVocabularyOutput)
 
+	DeactivateEvaluationForm(*connect.DeactivateEvaluationFormInput) (*connect.DeactivateEvaluationFormOutput, error)
+	DeactivateEvaluationFormWithContext(aws.Context, *connect.DeactivateEvaluationFormInput, ...request.Option) (*connect.DeactivateEvaluationFormOutput, error)
+	DeactivateEvaluationFormRequest(*connect.DeactivateEvaluationFormInput) (*request.Request, *connect.DeactivateEvaluationFormOutput)
+
+	DeleteContactEvaluation(*connect.DeleteContactEvaluationInput) (*connect.DeleteContactEvaluationOutput, error)
+	DeleteContactEvaluationWithContext(aws.Context, *connect.DeleteContactEvaluationInput, ...request.Option) (*connect.DeleteContactEvaluationOutput, error)
+	DeleteContactEvaluationRequest(*connect.DeleteContactEvaluationInput) (*request.Request, *connect.DeleteContactEvaluationOutput)
+
 	DeleteContactFlow(*connect.DeleteContactFlowInput) (*connect.DeleteContactFlowOutput, error)
 	DeleteContactFlowWithContext(aws.Context, *connect.DeleteContactFlowInput, ...request.Option) (*connect.DeleteContactFlowOutput, error)
 	DeleteContactFlowRequest(*connect.DeleteContactFlowInput) (*request.Request, *connect.DeleteContactFlowOutput)
@@ -183,6 +199,10 @@ type ConnectAPI interface {
 	DeleteContactFlowModule(*connect.DeleteContactFlowModuleInput) (*connect.DeleteContactFlowModuleOutput, error)
 	DeleteContactFlowModuleWithContext(aws.Context, *connect.DeleteContactFlowModuleInput, ...request.Option) (*connect.DeleteContactFlowModuleOutput, error)
 	DeleteContactFlowModuleRequest(*connect.DeleteContactFlowModuleInput) (*request.Request, *connect.DeleteContactFlowModuleOutput)
+
+	DeleteEvaluationForm(*connect.DeleteEvaluationFormInput) (*connect.DeleteEvaluationFormOutput, error)
+	DeleteEvaluationFormWithContext(aws.Context, *connect.DeleteEvaluationFormInput, ...request.Option) (*connect.DeleteEvaluationFormOutput, error)
+	DeleteEvaluationFormRequest(*connect.DeleteEvaluationFormInput) (*request.Request, *connect.DeleteEvaluationFormOutput)
 
 	DeleteHoursOfOperation(*connect.DeleteHoursOfOperationInput) (*connect.DeleteHoursOfOperationOutput, error)
 	DeleteHoursOfOperationWithContext(aws.Context, *connect.DeleteHoursOfOperationInput, ...request.Option) (*connect.DeleteHoursOfOperationOutput, error)
@@ -240,6 +260,10 @@ type ConnectAPI interface {
 	DescribeContactWithContext(aws.Context, *connect.DescribeContactInput, ...request.Option) (*connect.DescribeContactOutput, error)
 	DescribeContactRequest(*connect.DescribeContactInput) (*request.Request, *connect.DescribeContactOutput)
 
+	DescribeContactEvaluation(*connect.DescribeContactEvaluationInput) (*connect.DescribeContactEvaluationOutput, error)
+	DescribeContactEvaluationWithContext(aws.Context, *connect.DescribeContactEvaluationInput, ...request.Option) (*connect.DescribeContactEvaluationOutput, error)
+	DescribeContactEvaluationRequest(*connect.DescribeContactEvaluationInput) (*request.Request, *connect.DescribeContactEvaluationOutput)
+
 	DescribeContactFlow(*connect.DescribeContactFlowInput) (*connect.DescribeContactFlowOutput, error)
 	DescribeContactFlowWithContext(aws.Context, *connect.DescribeContactFlowInput, ...request.Option) (*connect.DescribeContactFlowOutput, error)
 	DescribeContactFlowRequest(*connect.DescribeContactFlowInput) (*request.Request, *connect.DescribeContactFlowOutput)
@@ -247,6 +271,10 @@ type ConnectAPI interface {
 	DescribeContactFlowModule(*connect.DescribeContactFlowModuleInput) (*connect.DescribeContactFlowModuleOutput, error)
 	DescribeContactFlowModuleWithContext(aws.Context, *connect.DescribeContactFlowModuleInput, ...request.Option) (*connect.DescribeContactFlowModuleOutput, error)
 	DescribeContactFlowModuleRequest(*connect.DescribeContactFlowModuleInput) (*request.Request, *connect.DescribeContactFlowModuleOutput)
+
+	DescribeEvaluationForm(*connect.DescribeEvaluationFormInput) (*connect.DescribeEvaluationFormOutput, error)
+	DescribeEvaluationFormWithContext(aws.Context, *connect.DescribeEvaluationFormInput, ...request.Option) (*connect.DescribeEvaluationFormOutput, error)
+	DescribeEvaluationFormRequest(*connect.DescribeEvaluationFormInput) (*request.Request, *connect.DescribeEvaluationFormOutput)
 
 	DescribeHoursOfOperation(*connect.DescribeHoursOfOperationInput) (*connect.DescribeHoursOfOperationOutput, error)
 	DescribeHoursOfOperationWithContext(aws.Context, *connect.DescribeHoursOfOperationInput, ...request.Option) (*connect.DescribeHoursOfOperationOutput, error)
@@ -413,6 +441,13 @@ type ConnectAPI interface {
 	ListBotsPages(*connect.ListBotsInput, func(*connect.ListBotsOutput, bool) bool) error
 	ListBotsPagesWithContext(aws.Context, *connect.ListBotsInput, func(*connect.ListBotsOutput, bool) bool, ...request.Option) error
 
+	ListContactEvaluations(*connect.ListContactEvaluationsInput) (*connect.ListContactEvaluationsOutput, error)
+	ListContactEvaluationsWithContext(aws.Context, *connect.ListContactEvaluationsInput, ...request.Option) (*connect.ListContactEvaluationsOutput, error)
+	ListContactEvaluationsRequest(*connect.ListContactEvaluationsInput) (*request.Request, *connect.ListContactEvaluationsOutput)
+
+	ListContactEvaluationsPages(*connect.ListContactEvaluationsInput, func(*connect.ListContactEvaluationsOutput, bool) bool) error
+	ListContactEvaluationsPagesWithContext(aws.Context, *connect.ListContactEvaluationsInput, func(*connect.ListContactEvaluationsOutput, bool) bool, ...request.Option) error
+
 	ListContactFlowModules(*connect.ListContactFlowModulesInput) (*connect.ListContactFlowModulesOutput, error)
 	ListContactFlowModulesWithContext(aws.Context, *connect.ListContactFlowModulesInput, ...request.Option) (*connect.ListContactFlowModulesOutput, error)
 	ListContactFlowModulesRequest(*connect.ListContactFlowModulesInput) (*request.Request, *connect.ListContactFlowModulesOutput)
@@ -440,6 +475,20 @@ type ConnectAPI interface {
 
 	ListDefaultVocabulariesPages(*connect.ListDefaultVocabulariesInput, func(*connect.ListDefaultVocabulariesOutput, bool) bool) error
 	ListDefaultVocabulariesPagesWithContext(aws.Context, *connect.ListDefaultVocabulariesInput, func(*connect.ListDefaultVocabulariesOutput, bool) bool, ...request.Option) error
+
+	ListEvaluationFormVersions(*connect.ListEvaluationFormVersionsInput) (*connect.ListEvaluationFormVersionsOutput, error)
+	ListEvaluationFormVersionsWithContext(aws.Context, *connect.ListEvaluationFormVersionsInput, ...request.Option) (*connect.ListEvaluationFormVersionsOutput, error)
+	ListEvaluationFormVersionsRequest(*connect.ListEvaluationFormVersionsInput) (*request.Request, *connect.ListEvaluationFormVersionsOutput)
+
+	ListEvaluationFormVersionsPages(*connect.ListEvaluationFormVersionsInput, func(*connect.ListEvaluationFormVersionsOutput, bool) bool) error
+	ListEvaluationFormVersionsPagesWithContext(aws.Context, *connect.ListEvaluationFormVersionsInput, func(*connect.ListEvaluationFormVersionsOutput, bool) bool, ...request.Option) error
+
+	ListEvaluationForms(*connect.ListEvaluationFormsInput) (*connect.ListEvaluationFormsOutput, error)
+	ListEvaluationFormsWithContext(aws.Context, *connect.ListEvaluationFormsInput, ...request.Option) (*connect.ListEvaluationFormsOutput, error)
+	ListEvaluationFormsRequest(*connect.ListEvaluationFormsInput) (*request.Request, *connect.ListEvaluationFormsOutput)
+
+	ListEvaluationFormsPages(*connect.ListEvaluationFormsInput, func(*connect.ListEvaluationFormsOutput, bool) bool) error
+	ListEvaluationFormsPagesWithContext(aws.Context, *connect.ListEvaluationFormsInput, func(*connect.ListEvaluationFormsOutput, bool) bool, ...request.Option) error
 
 	ListHoursOfOperations(*connect.ListHoursOfOperationsInput) (*connect.ListHoursOfOperationsOutput, error)
 	ListHoursOfOperationsWithContext(aws.Context, *connect.ListHoursOfOperationsInput, ...request.Option) (*connect.ListHoursOfOperationsOutput, error)
@@ -679,6 +728,10 @@ type ConnectAPI interface {
 	StartChatContactWithContext(aws.Context, *connect.StartChatContactInput, ...request.Option) (*connect.StartChatContactOutput, error)
 	StartChatContactRequest(*connect.StartChatContactInput) (*request.Request, *connect.StartChatContactOutput)
 
+	StartContactEvaluation(*connect.StartContactEvaluationInput) (*connect.StartContactEvaluationOutput, error)
+	StartContactEvaluationWithContext(aws.Context, *connect.StartContactEvaluationInput, ...request.Option) (*connect.StartContactEvaluationOutput, error)
+	StartContactEvaluationRequest(*connect.StartContactEvaluationInput) (*request.Request, *connect.StartContactEvaluationOutput)
+
 	StartContactRecording(*connect.StartContactRecordingInput) (*connect.StartContactRecordingOutput, error)
 	StartContactRecordingWithContext(aws.Context, *connect.StartContactRecordingInput, ...request.Option) (*connect.StartContactRecordingOutput, error)
 	StartContactRecordingRequest(*connect.StartContactRecordingInput) (*request.Request, *connect.StartContactRecordingOutput)
@@ -706,6 +759,10 @@ type ConnectAPI interface {
 	StopContactStreaming(*connect.StopContactStreamingInput) (*connect.StopContactStreamingOutput, error)
 	StopContactStreamingWithContext(aws.Context, *connect.StopContactStreamingInput, ...request.Option) (*connect.StopContactStreamingOutput, error)
 	StopContactStreamingRequest(*connect.StopContactStreamingInput) (*request.Request, *connect.StopContactStreamingOutput)
+
+	SubmitContactEvaluation(*connect.SubmitContactEvaluationInput) (*connect.SubmitContactEvaluationOutput, error)
+	SubmitContactEvaluationWithContext(aws.Context, *connect.SubmitContactEvaluationInput, ...request.Option) (*connect.SubmitContactEvaluationOutput, error)
+	SubmitContactEvaluationRequest(*connect.SubmitContactEvaluationInput) (*request.Request, *connect.SubmitContactEvaluationOutput)
 
 	SuspendContactRecording(*connect.SuspendContactRecordingInput) (*connect.SuspendContactRecordingOutput, error)
 	SuspendContactRecordingWithContext(aws.Context, *connect.SuspendContactRecordingInput, ...request.Option) (*connect.SuspendContactRecordingOutput, error)
@@ -735,6 +792,10 @@ type ConnectAPI interface {
 	UpdateContactAttributesWithContext(aws.Context, *connect.UpdateContactAttributesInput, ...request.Option) (*connect.UpdateContactAttributesOutput, error)
 	UpdateContactAttributesRequest(*connect.UpdateContactAttributesInput) (*request.Request, *connect.UpdateContactAttributesOutput)
 
+	UpdateContactEvaluation(*connect.UpdateContactEvaluationInput) (*connect.UpdateContactEvaluationOutput, error)
+	UpdateContactEvaluationWithContext(aws.Context, *connect.UpdateContactEvaluationInput, ...request.Option) (*connect.UpdateContactEvaluationOutput, error)
+	UpdateContactEvaluationRequest(*connect.UpdateContactEvaluationInput) (*request.Request, *connect.UpdateContactEvaluationOutput)
+
 	UpdateContactFlowContent(*connect.UpdateContactFlowContentInput) (*connect.UpdateContactFlowContentOutput, error)
 	UpdateContactFlowContentWithContext(aws.Context, *connect.UpdateContactFlowContentInput, ...request.Option) (*connect.UpdateContactFlowContentOutput, error)
 	UpdateContactFlowContentRequest(*connect.UpdateContactFlowContentInput) (*request.Request, *connect.UpdateContactFlowContentOutput)
@@ -758,6 +819,10 @@ type ConnectAPI interface {
 	UpdateContactSchedule(*connect.UpdateContactScheduleInput) (*connect.UpdateContactScheduleOutput, error)
 	UpdateContactScheduleWithContext(aws.Context, *connect.UpdateContactScheduleInput, ...request.Option) (*connect.UpdateContactScheduleOutput, error)
 	UpdateContactScheduleRequest(*connect.UpdateContactScheduleInput) (*request.Request, *connect.UpdateContactScheduleOutput)
+
+	UpdateEvaluationForm(*connect.UpdateEvaluationFormInput) (*connect.UpdateEvaluationFormOutput, error)
+	UpdateEvaluationFormWithContext(aws.Context, *connect.UpdateEvaluationFormInput, ...request.Option) (*connect.UpdateEvaluationFormOutput, error)
+	UpdateEvaluationFormRequest(*connect.UpdateEvaluationFormInput) (*request.Request, *connect.UpdateEvaluationFormOutput)
 
 	UpdateHoursOfOperation(*connect.UpdateHoursOfOperationInput) (*connect.UpdateHoursOfOperationOutput, error)
 	UpdateHoursOfOperationWithContext(aws.Context, *connect.UpdateHoursOfOperationInput, ...request.Option) (*connect.UpdateHoursOfOperationOutput, error)

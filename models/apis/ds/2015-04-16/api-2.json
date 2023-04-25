@@ -1970,6 +1970,7 @@
       "exception":true
     },
     "DirectoryConfigurationSettingAllowedValues":{"type":"string"},
+    "DirectoryConfigurationSettingDataType":{"type":"string"},
     "DirectoryConfigurationSettingLastRequestedDateTime":{"type":"timestamp"},
     "DirectoryConfigurationSettingLastUpdatedDateTime":{"type":"timestamp"},
     "DirectoryConfigurationSettingName":{
@@ -1989,7 +1990,7 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"^[a-zA-Z0-9]*$"
+      "pattern":"^[a-zA-Z0-9_]*$"
     },
     "DirectoryConfigurationStatus":{
       "type":"string",
@@ -2900,6 +2901,7 @@
     },
     "RemoteDomainName":{
       "type":"string",
+      "max":1024,
       "pattern":"^([a-zA-Z0-9]+[\\\\.-])+([a-zA-Z0-9])+[.]?$"
     },
     "RemoteDomainNames":{
@@ -3089,7 +3091,8 @@
         "RequestDetailedStatus":{"shape":"DirectoryConfigurationSettingRequestDetailedStatus"},
         "RequestStatusMessage":{"shape":"DirectoryConfigurationSettingRequestStatusMessage"},
         "LastUpdatedDateTime":{"shape":"DirectoryConfigurationSettingLastUpdatedDateTime"},
-        "LastRequestedDateTime":{"shape":"DirectoryConfigurationSettingLastRequestedDateTime"}
+        "LastRequestedDateTime":{"shape":"DirectoryConfigurationSettingLastRequestedDateTime"},
+        "DataType":{"shape":"DirectoryConfigurationSettingDataType"}
       }
     },
     "Settings":{
