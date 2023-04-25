@@ -16628,6 +16628,12 @@
             "deprecated" : true,
             "hostname" : "waf-regional-fips.eu-west-3.amazonaws.com"
           },
+          "fips-il-central-1" : {
+            "credentialScope" : {
+              "region" : "il-central-1"
+            },
+            "hostname" : "waf-regional-fips.il-central-1.amazonaws.com"
+          },
           "fips-me-central-1" : {
             "credentialScope" : {
               "region" : "me-central-1"
@@ -17090,6 +17096,12 @@
             },
             "deprecated" : true,
             "hostname" : "wafv2-fips.eu-west-3.amazonaws.com"
+          },
+          "fips-il-central-1" : {
+            "credentialScope" : {
+              "region" : "il-central-1"
+            },
+            "hostname" : "wafv2-fips.il-central-1.amazonaws.com"
           },
           "fips-me-central-1" : {
             "credentialScope" : {

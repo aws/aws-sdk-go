@@ -17213,11 +17213,17 @@ func (s *Setting) SetValue(v string) *Setting {
 type SettingEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The valid range of values for the directory setting.
+	// The valid range of values for the directory setting. These values depend
+	// on the DataType of your directory.
 	AllowedValues *string `type:"string"`
 
 	// The value of the directory setting that is applied to the directory.
 	AppliedValue *string `min:"1" type:"string"`
+
+	// The data type of a directory setting. This is used to define the AllowedValues
+	// of a setting. For example a data type can be Boolean, DurationInSeconds,
+	// or Enum.
+	DataType *string `type:"string"`
 
 	// The date and time when the request to update a directory setting was last
 	// submitted.
@@ -17247,7 +17253,8 @@ type SettingEntry struct {
 	// The value that was last requested for the directory setting.
 	RequestedValue *string `min:"1" type:"string"`
 
-	// The type of directory setting. For example, Protocol or Cipher.
+	// The type, or category, of a directory setting. Similar settings have the
+	// same type. For example, Protocol, Cipher, or Certificate-Based Authentication.
 	Type *string `type:"string"`
 }
 
@@ -17278,6 +17285,12 @@ func (s *SettingEntry) SetAllowedValues(v string) *SettingEntry {
 // SetAppliedValue sets the AppliedValue field's value.
 func (s *SettingEntry) SetAppliedValue(v string) *SettingEntry {
 	s.AppliedValue = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *SettingEntry) SetDataType(v string) *SettingEntry {
+	s.DataType = &v
 	return s
 }
 

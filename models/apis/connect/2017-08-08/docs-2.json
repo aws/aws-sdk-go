@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Amazon Connect is a cloud-based contact center solution that you use to set up and manage a customer contact center and provide reliable customer engagement at any scale.</p> <p>Amazon Connect provides metrics and real-time reporting that enable you to optimize contact routing. You can also resolve customer issues more efficiently by getting customers in touch with the appropriate agents.</p> <p>There are limits to the number of Amazon Connect resources that you can create. There are also limits to the number of requests that you can make per second. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <p>You can connect programmatically to an Amazon Web Services service by using an endpoint. For a list of Amazon Connect endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/connect_region.html\">Amazon Connect Endpoints</a>.</p>",
   "operations": {
+    "ActivateEvaluationForm": "<p>Activates an evaluation form in the specified Amazon Connect instance. After the evaluation form is activated, it is available to start new evaluations based on the form. </p>",
     "AssociateApprovedOrigin": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates an approved origin to an Amazon Connect instance.</p>",
     "AssociateBot": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Allows the specified Amazon Connect instance to access the specified Amazon Lex or Amazon Lex V2 bot.</p>",
     "AssociateDefaultVocabulary": "<p>Associates an existing vocabulary as the default. Contact Lens for Amazon Connect uses the vocabulary in post-call and real-time analysis sessions for the given language.</p>",
@@ -16,6 +17,7 @@
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a flow for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "CreateContactFlowModule": "<p>Creates a flow module for the specified Amazon Connect instance. </p>",
+    "CreateEvaluationForm": "<p>Creates an evaluation form in the specified Amazon Connect instance. The form can be used to define questions related to agent performance, and create sections to organize such questions. An evaluation form must have a unique title within an instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p>",
     "CreateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates hours of operation. </p>",
     "CreateInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect. </p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "CreateIntegrationAssociation": "<p>Creates an Amazon Web Services resource association with an Amazon Connect instance.</p>",
@@ -31,8 +33,11 @@
     "CreateUser": "<p>Creates a user account for the specified Amazon Connect instance.</p> <p>For information about how to create user accounts using the Amazon Connect console, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html\">Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "CreateUserHierarchyGroup": "<p>Creates a new user hierarchy group.</p>",
     "CreateVocabulary": "<p>Creates a custom vocabulary associated with your Amazon Connect instance. You can set a custom vocabulary to be your default vocabulary for a given language. Contact Lens for Amazon Connect uses the default vocabulary in post-call and real-time contact analysis sessions for that language.</p>",
+    "DeactivateEvaluationForm": "<p>Deactivates an evaluation form in the specified Amazon Connect instance. After a form is deactivated, it is no longer available for users to start new evaluations based on the form. </p>",
+    "DeleteContactEvaluation": "<p>Deletes a contact evaluation in the specified Amazon Connect instance.</p>",
     "DeleteContactFlow": "<p>Deletes a flow for the specified Amazon Connect instance.</p>",
     "DeleteContactFlowModule": "<p>Deletes the specified flow module.</p>",
+    "DeleteEvaluationForm": "<p>Deletes an evaluation form in the specified Amazon Connect instance. </p> <ul> <li> <p>If the version property is provided, only the specified version of the evaluation form is deleted.</p> </li> <li> <p>If no version is provided, then the full form (all versions) is deleted.</p> </li> </ul>",
     "DeleteHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes an hours of operation.</p>",
     "DeleteInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the Amazon Connect instance.</p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "DeleteIntegrationAssociation": "<p>Deletes an Amazon Web Services resource association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
@@ -47,8 +52,10 @@
     "DeleteVocabulary": "<p>Deletes the vocabulary that has the given identifier.</p>",
     "DescribeAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes an agent status.</p>",
     "DescribeContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified contact. </p> <important> <p>Contact information remains available in Amazon Connect for 24 months, and then it is deleted.</p> <p>Only data from November 12, 2021, and later is returned by this API.</p> </important>",
+    "DescribeContactEvaluation": "<p>Describes a contact evaluation in the specified Amazon Connect instance.</p>",
     "DescribeContactFlow": "<p>Describes the specified flow.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "DescribeContactFlowModule": "<p>Describes the specified flow module.</p>",
+    "DescribeEvaluationForm": "<p>Describes an evaluation form in the specified Amazon Connect instance. If the version property is not provided, the latest version of the evaluation form is described.</p>",
     "DescribeHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the hours of operation.</p>",
     "DescribeInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns the current state of the specified instance identifier. It tracks the instance while it is being created and returns an error status, if applicable. </p> <p>If an instance is not created successfully, the instance status reason field returns details relevant to the reason. The instance in a failed state is returned only for 24 hours after the CreateInstance API was invoked.</p>",
     "DescribeInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified instance attribute.</p>",
@@ -85,10 +92,13 @@
     "ListAgentStatuses": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists agent statuses.</p>",
     "ListApprovedOrigins": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all approved origins associated with the instance.</p>",
     "ListBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>For the specified version of Amazon Lex, returns a paginated list of all the Amazon Lex bots currently associated with the instance. Use this API to returns both Amazon Lex V1 and V2 bots.</p>",
+    "ListContactEvaluations": "<p>Lists contact evaluations in the specified Amazon Connect instance.</p>",
     "ListContactFlowModules": "<p>Provides information about the flow modules for the specified Amazon Connect instance.</p>",
     "ListContactFlows": "<p>Provides information about the flows for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p> <p>For more information about flows, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html\">Flows</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListContactReferences": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>For the specified <code>referenceTypes</code>, returns a list of references associated with the contact. </p>",
     "ListDefaultVocabularies": "<p>Lists the default vocabularies for the specified Amazon Connect instance.</p>",
+    "ListEvaluationFormVersions": "<p>Lists versions of an evaluation form in the specified Amazon Connect instance.</p>",
+    "ListEvaluationForms": "<p>Lists evaluation forms in the specified Amazon Connect instance.</p>",
     "ListHoursOfOperations": "<p>Provides information about the hours of operation for the specified Amazon Connect instance.</p> <p>For more information about hours of operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html\">Set the Hours of Operation for a Queue</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListInstanceAttributes": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all attribute types for the given instance.</p>",
     "ListInstanceStorageConfigs": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of storage configs for the identified instance and resource type.</p>",
@@ -126,6 +136,7 @@
     "SearchUsers": "<p>Searches users in an Amazon Connect instance, with optional filtering.</p> <note> <p> <code>AfterContactWorkTimeLimit</code> is returned in milliseconds. </p> </note>",
     "SearchVocabularies": "<p>Searches for vocabularies within a specific Amazon Connect instance using <code>State</code>, <code>NameStartsWith</code>, and <code>LanguageCode</code>.</p>",
     "StartChatContact": "<p>Initiates a flow to start a new chat for the customer. Response of this API provides a token required to obtain credentials from the <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> API in the Amazon Connect Participant Service.</p> <p>When a new chat contact is successfully created, clients must subscribe to the participant’s connection for the created chat within 5 minutes. This is achieved by invoking <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> with WEBSOCKET and CONNECTION_CREDENTIALS. </p> <p>A 429 error occurs in the following situations:</p> <ul> <li> <p>API rate limit is exceeded. API TPS throttling returns a <code>TooManyRequests</code> exception.</p> </li> <li> <p>The <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">quota for concurrent active chats</a> is exceeded. Active chat throttling returns a <code>LimitExceededException</code>.</p> </li> </ul> <p>If you use the <code>ChatDurationInMinutes</code> parameter and receive a 400 error, your account may not support the ability to configure custom chat durations. For more information, contact Amazon Web Services Support. </p> <p>For more information about chat, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat.html\">Chat</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "StartContactEvaluation": "<p>Starts an empty evaluation in the specified Amazon Connect instance, using the given evaluation form for the particular contact. The evaluation form version used for the contact evaluation corresponds to the currently activated version. If no version is activated for the evaluation form, the contact evaluation cannot be started. </p> <note> <p>Evaluations created through the public API do not contain answer values suggested from automation.</p> </note>",
     "StartContactRecording": "<p>Starts recording the contact: </p> <ul> <li> <p>If the API is called <i>before</i> the agent joins the call, recording starts when the agent joins the call.</p> </li> <li> <p>If the API is called <i>after</i> the agent joins the call, recording starts at the time of the API call.</p> </li> </ul> <p>StartContactRecording is a one-time action. For example, if you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend and resume it, such as when collecting sensitive information (for example, a credit card number), use SuspendContactRecording and ResumeContactRecording.</p> <p>You can use this API to override the recording behavior configured in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html\">Set recording behavior</a> block.</p> <p>Only voice recordings are supported at this time.</p>",
     "StartContactStreaming": "<p> Initiates real-time message streaming for a new chat contact.</p> <p> For more information about message streaming, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html\">Enable real-time chat message streaming</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "StartOutboundVoiceContact": "<p>Places an outbound call to a contact, and then initiates the flow. It performs the actions in the flow that's specified (in <code>ContactFlowId</code>).</p> <p>Agents do not initiate the outbound API, which means that they do not dial the contact. If the flow places an outbound call to a contact, and then puts the contact in queue, the call is then routed to the agent, like any other inbound case.</p> <p>There is a 60-second dialing timeout for this operation. If the call is not connected after 60 seconds, it fails.</p> <note> <p>UK numbers with a 447 prefix are not allowed by default. Before you can dial these UK mobile numbers, you must submit a service quota increase request. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>. </p> </note> <note> <p>Campaign calls are not allowed by default. Before you can make a call with <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a service quota increase request to the quota <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas\">Amazon Connect campaigns</a>. </p> </note>",
@@ -133,6 +144,7 @@
     "StopContact": "<p>Ends the specified contact. This call does not work for the following initiation methods:</p> <ul> <li> <p>DISCONNECT</p> </li> <li> <p>TRANSFER</p> </li> <li> <p>QUEUE_TRANSFER</p> </li> </ul>",
     "StopContactRecording": "<p>Stops recording a call when a contact is being recorded. StopContactRecording is a one-time action. If you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend it for sensitive information (for example, to collect a credit card number), and then restart it, use SuspendContactRecording and ResumeContactRecording.</p> <p>Only voice recordings are supported at this time.</p>",
     "StopContactStreaming": "<p> Ends message streaming on a specified contact. To restart message streaming on that contact, call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html\">StartContactStreaming</a> API. </p>",
+    "SubmitContactEvaluation": "<p>Submits a contact evaluation in the specified Amazon Connect instance. Answers included in the request are merged with existing answers for the given evaluation. If no answers or notes are passed, the evaluation is submitted with the existing answers and notes. You can delete an answer or note by passing an empty object (<code>{}</code>) to the question identifier. </p> <p>If a contact evaluation is already in submitted state, this operation will trigger a resubmission.</p>",
     "SuspendContactRecording": "<p>When a contact is being recorded, this API suspends recording the call. For example, you might suspend the call recording while collecting sensitive information, such as a credit card number. Then use ResumeContactRecording to restart recording. </p> <p>The period of time that the recording is suspended is filled with silence in the final recording. </p> <p>Only voice recordings are supported at this time.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource.</p> <p>Some of the supported resource types are agents, routing profiles, queues, quick connects, contact flows, agent statuses, hours of operation, phone numbers, security profiles, and task templates. For a complete list, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html\">Tagging resources in Amazon Connect</a>.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "TransferContact": "<p>Transfers contacts from one agent or queue to another agent or queue at any point after a contact is created. You can transfer a contact to another queue by providing the flow which orchestrates the contact to the destination queue. This gives you more control over contact handling and helps you adhere to the service level agreement (SLA) guaranteed to your customers.</p> <p>Note the following requirements:</p> <ul> <li> <p>Transfer is supported for only <code>TASK</code> contacts.</p> </li> <li> <p>Do not use both <code>QueueId</code> and <code>UserId</code> in the same call.</p> </li> <li> <p>The following flow types are supported: Inbound flow, Transfer to agent flow, and Transfer to queue flow.</p> </li> <li> <p>The <code>TransferContact</code> API can be called only on active contacts.</p> </li> <li> <p>A contact cannot be transferred more than 11 times.</p> </li> </ul>",
@@ -140,12 +152,14 @@
     "UpdateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates agent status.</p>",
     "UpdateContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Adds or updates user-defined contact information associated with the specified contact. At least one field to be updated must be present in the request.</p> <important> <p>You can add or update user-defined contact information for both ongoing and completed contacts.</p> </important>",
     "UpdateContactAttributes": "<p>Creates or updates user-defined contact attributes associated with the specified contact.</p> <p>You can create or update user-defined attributes for both ongoing and completed contacts. For example, while the call is active, you can update the customer's name or the reason the customer called. You can add notes about steps that the agent took during the call that display to the next agent that takes the call. You can also update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or to identify abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted. For information about contact record retention and the maximum size of the contact record attributes section, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits\">Feature specifications</a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
+    "UpdateContactEvaluation": "<p>Updates details about a contact evaluation in the specified Amazon Connect instance. A contact evaluation must be in draft state. Answers included in the request are merged with existing answers for the given evaluation. An answer or note can be deleted by passing an empty object (<code>{}</code>) to the question identifier. </p>",
     "UpdateContactFlowContent": "<p>Updates the specified flow.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "UpdateContactFlowMetadata": "<p>Updates metadata about specified flow.</p>",
     "UpdateContactFlowModuleContent": "<p>Updates specified flow module for the specified Amazon Connect instance. </p>",
     "UpdateContactFlowModuleMetadata": "<p>Updates metadata about specified flow module.</p>",
     "UpdateContactFlowName": "<p>The name of the flow.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "UpdateContactSchedule": "<p>Updates the scheduled time of a task contact that is already scheduled.</p>",
+    "UpdateEvaluationForm": "<p>Updates details about a specific evaluation form version in the specified Amazon Connect instance. An evaluation form must have a unique title within an instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p> <p>This operation does not support partial updates. Instead it does a full update of evaluation form content.</p>",
     "UpdateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation.</p>",
     "UpdateInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the value for the specified attribute type.</p>",
     "UpdateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates an existing configuration for a resource type. This API is idempotent.</p>",
@@ -178,6 +192,7 @@
     "ARN": {
       "base": null,
       "refs": {
+        "ActivateEvaluationFormResponse$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
         "AgentStatus$AgentStatusARN": "<p>The Amazon Resource Name (ARN) of the agent status.</p>",
         "AgentStatusReference$StatusArn": "<p>The Amazon Resource Name (ARN) of the agent's status.</p>",
         "AgentStatusSummary$Arn": "<p>The Amazon Resource Name (ARN) for the agent status.</p>",
@@ -193,6 +208,7 @@
         "CreateAgentStatusResponse$AgentStatusARN": "<p>The Amazon Resource Name (ARN) of the agent status.</p>",
         "CreateContactFlowModuleResponse$Arn": "<p>The Amazon Resource Name (ARN) of the flow module.</p>",
         "CreateContactFlowResponse$ContactFlowArn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "CreateEvaluationFormResponse$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
         "CreateHoursOfOperationResponse$HoursOfOperationArn": "<p>The Amazon Resource Name (ARN) for the hours of operation.</p>",
         "CreateInstanceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
         "CreateIntegrationAssociationRequest$IntegrationArn": "<p>The Amazon Resource Name (ARN) of the integration.</p> <note> <p>When integrating with Amazon Pinpoint, the Amazon Connect and Amazon Pinpoint instances must be in the same account.</p> </note>",
@@ -206,7 +222,23 @@
         "CreateUserHierarchyGroupResponse$HierarchyGroupArn": "<p>The Amazon Resource Name (ARN) of the hierarchy group. </p>",
         "CreateUserResponse$UserArn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
         "CreateVocabularyResponse$VocabularyArn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
+        "DeactivateEvaluationFormResponse$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
         "DeleteVocabularyResponse$VocabularyArn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
+        "Evaluation$EvaluationArn": "<p>The Amazon Resource Name (ARN) for the contact evaluation resource.</p>",
+        "EvaluationForm$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
+        "EvaluationForm$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the evaluation form.</p>",
+        "EvaluationForm$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last updated the evaluation form.</p>",
+        "EvaluationFormContent$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
+        "EvaluationFormSummary$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
+        "EvaluationFormSummary$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the evaluation form.</p>",
+        "EvaluationFormSummary$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last updated the evaluation form.</p>",
+        "EvaluationFormSummary$LastActivatedBy": "<p> The Amazon Resource Name (ARN) of the user who last activated the evaluation form.</p>",
+        "EvaluationFormVersionSummary$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
+        "EvaluationFormVersionSummary$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the evaluation form.</p>",
+        "EvaluationFormVersionSummary$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last updated the evaluation form.</p>",
+        "EvaluationMetadata$EvaluatorArn": "<p>The Amazon Resource Name (ARN) of the user who last updated the evaluation.</p>",
+        "EvaluationSummary$EvaluationArn": "<p>The Amazon Resource Name (ARN) for the contact evaluation resource.</p>",
+        "EvaluationSummary$EvaluatorArn": "<p>The Amazon Resource Name (ARN) of the user who last updated the evaluation.</p>",
         "GetFederationTokenResponse$UserArn": "<p>The Amazon Resource Name (ARN) of the user.</p>",
         "GetMetricDataV2Request$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource. This includes the <code>instanceId</code> an Amazon Connect instance.</p>",
         "HierarchyGroup$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy group.</p>",
@@ -248,9 +280,13 @@
         "SecurityProfile$Arn": "<p>The Amazon Resource Name (ARN) for the secruity profile.</p>",
         "SecurityProfileSearchSummary$Arn": "<p>The Amazon Resource Name (ARN) of the security profile.</p>",
         "SecurityProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the security profile.</p>",
+        "StartContactEvaluationResponse$EvaluationArn": "<p>The Amazon Resource Name (ARN) for the contact evaluation resource.</p>",
+        "SubmitContactEvaluationResponse$EvaluationArn": "<p>The Amazon Resource Name (ARN) for the contact evaluation resource.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "TransferContactResponse$ContactArn": "<p>The Amazon Resource Name (ARN) of the contact.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UpdateContactEvaluationResponse$EvaluationArn": "<p>The Amazon Resource Name (ARN) for the contact evaluation resource.</p>",
+        "UpdateEvaluationFormResponse$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the contact evaluation resource.</p>",
         "UpdatePhoneNumberRequest$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone numbers are claimed to.</p>",
         "UpdatePhoneNumberResponse$PhoneNumberArn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
         "UseCase$UseCaseArn": "<p>The Amazon Resource Name (ARN) for the use case.</p>",
@@ -285,6 +321,16 @@
       "refs": {
         "ActionSummary$ActionType": "<p>The action type.</p>",
         "RuleAction$ActionType": "<p>The type of action that creates a rule.</p>"
+      }
+    },
+    "ActivateEvaluationFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ActivateEvaluationFormResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "AfterContactWorkTimeLimit": {
@@ -630,6 +676,12 @@
       "refs": {
         "AnswerMachineDetectionConfig$EnableAnswerMachineDetection": "<p>The flag to indicate if answer machine detection analysis needs to be performed for a voice call. If set to <code>true</code>, <code>TrafficType</code> must be set as <code>CAMPAIGN</code>. </p>",
         "AnswerMachineDetectionConfig$AwaitAnswerMachinePrompt": "<p>Wait for the answering machine prompt.</p>",
+        "EvaluationAnswerData$NotApplicable": "<p>The flag to mark the question as not applicable.</p>",
+        "EvaluationFormNumericQuestionOption$AutomaticFail": "<p>The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0.</p>",
+        "EvaluationFormQuestion$NotApplicableEnabled": "<p>The flag to enable not applicable answers to the question.</p>",
+        "EvaluationFormSingleSelectQuestionOption$AutomaticFail": "<p>The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0.</p>",
+        "EvaluationScore$NotApplicable": "<p>The flag to mark the item as not applicable for scoring.</p>",
+        "EvaluationScore$AutomaticFail": "<p>The flag that marks the item as automatic fail. If the item or a child item gets an automatic fail answer, this flag will be true.</p>",
         "UpdateAgentStatusRequest$ResetOrderNumber": "<p>A number indicating the reset order of the agent status.</p>"
       }
     },
@@ -638,6 +690,12 @@
       "refs": {
         "DisassociateLexBotRequest$BotName": "<p>The name of the Amazon Lex bot. Maximum character limit of 50.</p>",
         "LexBot$Name": "<p>The name of the Amazon Lex bot.</p>"
+      }
+    },
+    "BoxedBoolean": {
+      "base": null,
+      "refs": {
+        "UpdateEvaluationFormRequest$CreateNewVersion": "<p>A flag indicating whether the operation must create a new version.</p>"
       }
     },
     "BucketName": {
@@ -742,6 +800,7 @@
       "refs": {
         "ClaimPhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p> <p>Pattern: <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code> </p>",
         "CreateContactFlowModuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
+        "CreateEvaluationFormRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateInstanceRequest$ClientToken": "<p>The idempotency token.</p>",
         "CreateParticipantRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateRuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
@@ -752,10 +811,12 @@
         "ReleasePhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "ReplicateInstanceRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "StartChatContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
+        "StartContactEvaluationRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "StartContactStreamingRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "StartOutboundVoiceContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>. The token is valid for 7 days after creation. If a contact is already started, the contact ID is returned. </p>",
         "StartTaskContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "TransferContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
+        "UpdateEvaluationFormRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "UpdatePhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>"
       }
     },
@@ -974,7 +1035,9 @@
         "CreateParticipantRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. Only contacts in the CHAT channel are supported.</p>",
         "DescribeContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "DismissUserContactRequest$ContactId": "<p>The identifier of the contact.</p>",
+        "EvaluationMetadata$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>",
         "GetContactAttributesRequest$InitialContactId": "<p>The identifier of the initial contact.</p>",
+        "ListContactEvaluationsRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>",
         "ListContactReferencesRequest$ContactId": "<p>The identifier of the initial contact.</p>",
         "MonitorContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "MonitorContactResponse$ContactId": "<p>The identifier of the contact.</p>",
@@ -984,6 +1047,7 @@
         "StartChatContactRequest$RelatedContactId": "<p>The unique identifier for an Amazon Connect contact. This identifier is related to the chat starting.</p> <note> <p>You cannot provide data for both RelatedContactId and PersistentChat. </p> </note>",
         "StartChatContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance. </p>",
         "StartChatContactResponse$ContinuedFromContactId": "<p>The contactId from which a persistent chat session is started. This field is populated only for persistent chats.</p>",
+        "StartContactEvaluationRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>",
         "StartContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "StartContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "StartContactStreamingRequest$ContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
@@ -1079,6 +1143,16 @@
       }
     },
     "CreateContactFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEvaluationFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEvaluationFormResponse": {
       "base": null,
       "refs": {
       }
@@ -1313,6 +1387,16 @@
         "ReferenceSummary$Date": "<p>Information about a reference when the <code>referenceType</code> is <code>DATE</code>. Otherwise, null.</p>"
       }
     },
+    "DeactivateEvaluationFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeactivateEvaluationFormResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DefaultVocabulary": {
       "base": "<p>Contains information about a default vocabulary.</p>",
       "refs": {
@@ -1332,6 +1416,11 @@
         "RoutingProfileQueueConfigSummary$Delay": "<p>The delay, in seconds, that a contact should be in the queue before they are routed to an available agent. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html\">Queues: priority and delay</a> in the <i>Amazon Connect Administrator Guide</i>.</p>"
       }
     },
+    "DeleteContactEvaluationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteContactFlowModuleRequest": {
       "base": null,
       "refs": {
@@ -1348,6 +1437,11 @@
       }
     },
     "DeleteContactFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEvaluationFormRequest": {
       "base": null,
       "refs": {
       }
@@ -1437,6 +1531,16 @@
       "refs": {
       }
     },
+    "DescribeContactEvaluationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeContactEvaluationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeContactFlowModuleRequest": {
       "base": null,
       "refs": {
@@ -1463,6 +1567,16 @@
       }
     },
     "DescribeContactResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEvaluationFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEvaluationFormResponse": {
       "base": null,
       "refs": {
       }
@@ -1796,6 +1910,358 @@
       "base": null,
       "refs": {
         "EncryptionConfig$EncryptionType": "<p>The type of encryption.</p>"
+      }
+    },
+    "Evaluation": {
+      "base": "<p>Information about a contact evaluation.</p>",
+      "refs": {
+        "DescribeContactEvaluationResponse$Evaluation": "<p>Information about the evaluation form completed for a specific contact.</p>"
+      }
+    },
+    "EvaluationAnswerData": {
+      "base": "<p>Information about answer data for a contact evaluation. Answer data must be either string, numeric, or not applicable.</p>",
+      "refs": {
+        "EvaluationAnswerInput$Value": "<p>The value for an answer in a contact evaluation.</p>",
+        "EvaluationAnswerOutput$Value": "<p>The value for an answer in a contact evaluation.</p>",
+        "EvaluationAnswerOutput$SystemSuggestedValue": "<p>The system suggested value for an answer in a contact evaluation.</p>"
+      }
+    },
+    "EvaluationAnswerDataNumericValue": {
+      "base": null,
+      "refs": {
+        "EvaluationAnswerData$NumericValue": "<p>The numeric value for an answer in a contact evaluation.</p>"
+      }
+    },
+    "EvaluationAnswerDataStringValue": {
+      "base": null,
+      "refs": {
+        "EvaluationAnswerData$StringValue": "<p>The string value for an answer in a contact evaluation.</p>"
+      }
+    },
+    "EvaluationAnswerInput": {
+      "base": "<p>Information about input answers for a contact evaluation.</p>",
+      "refs": {
+        "EvaluationAnswersInputMap$value": null
+      }
+    },
+    "EvaluationAnswerOutput": {
+      "base": "<p>Information about output answers for a contact evaluation.</p>",
+      "refs": {
+        "EvaluationAnswersOutputMap$value": null
+      }
+    },
+    "EvaluationAnswersInputMap": {
+      "base": null,
+      "refs": {
+        "SubmitContactEvaluationRequest$Answers": "<p>A map of question identifiers to answer value.</p>",
+        "UpdateContactEvaluationRequest$Answers": "<p>A map of question identifiers to answer value.</p>"
+      }
+    },
+    "EvaluationAnswersOutputMap": {
+      "base": null,
+      "refs": {
+        "Evaluation$Answers": "<p>A map of question identifiers to answer value.</p>"
+      }
+    },
+    "EvaluationForm": {
+      "base": "<p>Information about the evaluation form.</p>",
+      "refs": {
+        "DescribeEvaluationFormResponse$EvaluationForm": "<p>Information about the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormContent": {
+      "base": "<p>Information about an evaluation form used in a contact evaluation.</p>",
+      "refs": {
+        "DescribeContactEvaluationResponse$EvaluationForm": "<p>Information about the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormDescription": {
+      "base": null,
+      "refs": {
+        "CreateEvaluationFormRequest$Description": "<p>The description of the evaluation form.</p>",
+        "EvaluationForm$Description": "<p>The description of the evaluation form.</p>",
+        "EvaluationFormContent$Description": "<p>The description of the evaluation form.</p>",
+        "UpdateEvaluationFormRequest$Description": "<p>The description of the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormItem": {
+      "base": "<p>Information about an item from an evaluation form. The item must be either a section or a question.</p>",
+      "refs": {
+        "EvaluationFormItemsList$member": null
+      }
+    },
+    "EvaluationFormItemWeight": {
+      "base": null,
+      "refs": {
+        "EvaluationFormQuestion$Weight": "<p>The scoring weight of the section.</p>",
+        "EvaluationFormSection$Weight": "<p>The scoring weight of the section.</p>"
+      }
+    },
+    "EvaluationFormItemsList": {
+      "base": null,
+      "refs": {
+        "CreateEvaluationFormRequest$Items": "<p>Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.</p>",
+        "EvaluationForm$Items": "<p>Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.</p>",
+        "EvaluationFormContent$Items": "<p>Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.</p>",
+        "EvaluationFormSection$Items": "<p>The items of the section.</p>",
+        "UpdateEvaluationFormRequest$Items": "<p>Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.</p>"
+      }
+    },
+    "EvaluationFormNumericQuestionAutomation": {
+      "base": "<p>Information about the automation configuration in numeric questions.</p>",
+      "refs": {
+        "EvaluationFormNumericQuestionProperties$Automation": "<p>The automation properties of the numeric question.</p>"
+      }
+    },
+    "EvaluationFormNumericQuestionOption": {
+      "base": "<p>Information about the option range used for scoring in numeric questions.</p>",
+      "refs": {
+        "EvaluationFormNumericQuestionOptionList$member": null
+      }
+    },
+    "EvaluationFormNumericQuestionOptionList": {
+      "base": null,
+      "refs": {
+        "EvaluationFormNumericQuestionProperties$Options": "<p>The scoring options of the numeric question.</p>"
+      }
+    },
+    "EvaluationFormNumericQuestionProperties": {
+      "base": "<p>Information about properties for a numeric question in an evaluation form.</p>",
+      "refs": {
+        "EvaluationFormQuestionTypeProperties$Numeric": "<p>The properties of the numeric question.</p>"
+      }
+    },
+    "EvaluationFormQuestion": {
+      "base": "<p>Information about a question from an evaluation form.</p>",
+      "refs": {
+        "EvaluationFormItem$Question": "<p>The information of the question.</p>"
+      }
+    },
+    "EvaluationFormQuestionAnswerScore": {
+      "base": null,
+      "refs": {
+        "EvaluationFormNumericQuestionOption$Score": "<p>The score assigned to answer values within the range option.</p>",
+        "EvaluationFormSingleSelectQuestionOption$Score": "<p>The score assigned to the answer option.</p>"
+      }
+    },
+    "EvaluationFormQuestionInstructions": {
+      "base": null,
+      "refs": {
+        "EvaluationFormQuestion$Instructions": "<p>The instructions of the section.</p>",
+        "EvaluationFormSection$Instructions": "<p>The instructions of the section.</p>"
+      }
+    },
+    "EvaluationFormQuestionTitle": {
+      "base": null,
+      "refs": {
+        "EvaluationFormQuestion$Title": "<p>The title of the question.</p>"
+      }
+    },
+    "EvaluationFormQuestionType": {
+      "base": null,
+      "refs": {
+        "EvaluationFormQuestion$QuestionType": "<p>The type of the question.</p>"
+      }
+    },
+    "EvaluationFormQuestionTypeProperties": {
+      "base": "<p>Information about properties for a question in an evaluation form. The question type properties must be either for a numeric question or a single select question.</p>",
+      "refs": {
+        "EvaluationFormQuestion$QuestionTypeProperties": "<p>The properties of the type of question. Text questions do not have to define question type properties.</p>"
+      }
+    },
+    "EvaluationFormScoringMode": {
+      "base": null,
+      "refs": {
+        "EvaluationFormScoringStrategy$Mode": "<p>The scoring mode of the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormScoringStatus": {
+      "base": null,
+      "refs": {
+        "EvaluationFormScoringStrategy$Status": "<p>The scoring status of the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormScoringStrategy": {
+      "base": "<p>Information about scoring strategy for an evaluation form.</p>",
+      "refs": {
+        "CreateEvaluationFormRequest$ScoringStrategy": "<p>A scoring strategy of the evaluation form.</p>",
+        "EvaluationForm$ScoringStrategy": "<p>A scoring strategy of the evaluation form.</p>",
+        "EvaluationFormContent$ScoringStrategy": "<p>A scoring strategy of the evaluation form.</p>",
+        "UpdateEvaluationFormRequest$ScoringStrategy": "<p>A scoring strategy of the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormSection": {
+      "base": "<p>Information about a section from an evaluation form. A section can contain sections and/or questions. Evaluation forms can only contain sections and subsections (two level nesting).</p>",
+      "refs": {
+        "EvaluationFormItem$Section": "<p>The information of the section.</p>"
+      }
+    },
+    "EvaluationFormSectionTitle": {
+      "base": null,
+      "refs": {
+        "EvaluationFormSection$Title": "<p>The title of the section.</p>"
+      }
+    },
+    "EvaluationFormSingleSelectQuestionAutomation": {
+      "base": "<p>Information about the automation configuration in single select questions. Automation options are evaluated in order, and the first matched option is applied. If no automation option matches, and there is a default option, then the default option is applied.</p>",
+      "refs": {
+        "EvaluationFormSingleSelectQuestionProperties$Automation": "<p>The display mode of the single select question.</p>"
+      }
+    },
+    "EvaluationFormSingleSelectQuestionAutomationOption": {
+      "base": "<p>Information about the automation option of a single select question.</p>",
+      "refs": {
+        "EvaluationFormSingleSelectQuestionAutomationOptionList$member": null
+      }
+    },
+    "EvaluationFormSingleSelectQuestionAutomationOptionList": {
+      "base": null,
+      "refs": {
+        "EvaluationFormSingleSelectQuestionAutomation$Options": "<p>The automation options of the single select question.</p>"
+      }
+    },
+    "EvaluationFormSingleSelectQuestionDisplayMode": {
+      "base": null,
+      "refs": {
+        "EvaluationFormSingleSelectQuestionProperties$DisplayAs": "<p>The display mode of the single select question.</p>"
+      }
+    },
+    "EvaluationFormSingleSelectQuestionOption": {
+      "base": "<p>Information about the automation configuration in single select questions.</p>",
+      "refs": {
+        "EvaluationFormSingleSelectQuestionOptionList$member": null
+      }
+    },
+    "EvaluationFormSingleSelectQuestionOptionList": {
+      "base": null,
+      "refs": {
+        "EvaluationFormSingleSelectQuestionProperties$Options": "<p>The answer options of the single select question.</p>"
+      }
+    },
+    "EvaluationFormSingleSelectQuestionOptionText": {
+      "base": null,
+      "refs": {
+        "EvaluationFormSingleSelectQuestionOption$Text": "<p>The title of the answer option.</p>"
+      }
+    },
+    "EvaluationFormSingleSelectQuestionProperties": {
+      "base": "<p>Information about the options in single select questions.</p>",
+      "refs": {
+        "EvaluationFormQuestionTypeProperties$SingleSelect": "<p>The properties of the numeric question.</p>"
+      }
+    },
+    "EvaluationFormSummary": {
+      "base": "<p>Summary information about an evaluation form.</p>",
+      "refs": {
+        "EvaluationFormSummaryList$member": null
+      }
+    },
+    "EvaluationFormSummaryList": {
+      "base": null,
+      "refs": {
+        "ListEvaluationFormsResponse$EvaluationFormSummaryList": "<p>Provides details about a list of evaluation forms belonging to an instance.</p>"
+      }
+    },
+    "EvaluationFormTitle": {
+      "base": null,
+      "refs": {
+        "CreateEvaluationFormRequest$Title": "<p>A unique title of the evaluation form.</p>",
+        "EvaluationForm$Title": "<p>A unique title of the evaluation form.</p>",
+        "EvaluationFormContent$Title": "<p>A unique title of the evaluation form.</p>",
+        "EvaluationFormSummary$Title": "<p>A unique title of the evaluation form.</p>",
+        "EvaluationSummary$EvaluationFormTitle": "<p>A unique title of the evaluation form.</p>",
+        "UpdateEvaluationFormRequest$Title": "<p>A unique title of the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormVersionIsLocked": {
+      "base": null,
+      "refs": {
+        "EvaluationForm$Locked": "<p>The flag indicating whether the evaluation form is locked for changes.</p>",
+        "EvaluationFormVersionSummary$Locked": "<p>The flag indicating whether the evaluation form is locked for changes.</p>"
+      }
+    },
+    "EvaluationFormVersionStatus": {
+      "base": null,
+      "refs": {
+        "EvaluationForm$Status": "<p>The status of the evaluation form.</p>",
+        "EvaluationFormVersionSummary$Status": "<p>The status of the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormVersionSummary": {
+      "base": "<p>Summary information about an evaluation form.</p>",
+      "refs": {
+        "EvaluationFormVersionSummaryList$member": null
+      }
+    },
+    "EvaluationFormVersionSummaryList": {
+      "base": null,
+      "refs": {
+        "ListEvaluationFormVersionsResponse$EvaluationFormVersionSummaryList": "<p>Provides details about a list of evaluation forms belonging to an instance.</p>"
+      }
+    },
+    "EvaluationMetadata": {
+      "base": "<p>Metadata information about a contact evaluation.</p>",
+      "refs": {
+        "Evaluation$Metadata": "<p>Metadata about the contact evaluation.</p>"
+      }
+    },
+    "EvaluationNote": {
+      "base": "<p>Information about notes for a contact evaluation.</p>",
+      "refs": {
+        "EvaluationNotesMap$value": null
+      }
+    },
+    "EvaluationNoteString": {
+      "base": null,
+      "refs": {
+        "EvaluationNote$Value": "<p>The note for an item (section or question) in a contact evaluation.</p>"
+      }
+    },
+    "EvaluationNotesMap": {
+      "base": null,
+      "refs": {
+        "Evaluation$Notes": "<p>A map of question identifiers to note value.</p>",
+        "SubmitContactEvaluationRequest$Notes": "<p>A map of question identifiers to note value.</p>",
+        "UpdateContactEvaluationRequest$Notes": "<p>A map of question identifiers to note value.</p>"
+      }
+    },
+    "EvaluationScore": {
+      "base": "<p>Information about scores of a contact evaluation item (section or question).</p>",
+      "refs": {
+        "EvaluationMetadata$Score": "<p>The overall score of the contact evaluation.</p>",
+        "EvaluationScoresMap$value": null,
+        "EvaluationSummary$Score": "<p>The overall score of the contact evaluation.</p>"
+      }
+    },
+    "EvaluationScorePercentage": {
+      "base": null,
+      "refs": {
+        "EvaluationScore$Percentage": "<p>The score percentage for an item in a contact evaluation.</p>"
+      }
+    },
+    "EvaluationScoresMap": {
+      "base": null,
+      "refs": {
+        "Evaluation$Scores": "<p>A map of item (section or question) identifiers to score value.</p>"
+      }
+    },
+    "EvaluationStatus": {
+      "base": null,
+      "refs": {
+        "Evaluation$Status": "<p>The status of the contact evaluation.</p>",
+        "EvaluationSummary$Status": "<p>The status of the contact evaluation.</p>"
+      }
+    },
+    "EvaluationSummary": {
+      "base": "<p>Summary information about a contact evaluation.</p>",
+      "refs": {
+        "EvaluationSummaryList$member": null
+      }
+    },
+    "EvaluationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListContactEvaluationsResponse$EvaluationSummaryList": "<p>Provides details about a list of contact evaluations belonging to an instance.</p>"
       }
     },
     "EventBridgeActionDefinition": {
@@ -2269,6 +2735,7 @@
     "InstanceId": {
       "base": null,
       "refs": {
+        "ActivateEvaluationFormRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateApprovedOriginRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateBotRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateDefaultVocabularyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2282,6 +2749,7 @@
         "CreateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateContactFlowModuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "CreateEvaluationFormRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateInstanceResponse$Id": "<p>The identifier for the instance.</p>",
         "CreateIntegrationAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2296,9 +2764,12 @@
         "CreateUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateVocabularyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DeactivateEvaluationFormRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DefaultVocabulary$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DeleteContactEvaluationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteContactFlowModuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DeleteEvaluationFormRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteIntegrationAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2311,9 +2782,11 @@
         "DeleteUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteVocabularyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DescribeContactEvaluationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeContactFlowModuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DescribeEvaluationFormRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeInstanceAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2350,10 +2823,13 @@
         "ListAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListApprovedOriginsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListBotsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "ListContactEvaluationsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListContactFlowModulesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListContactFlowsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListContactReferencesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListDefaultVocabulariesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "ListEvaluationFormVersionsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "ListEvaluationFormsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListHoursOfOperationsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListInstanceAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListInstanceStorageConfigsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2388,6 +2864,7 @@
         "SecurityProfile$OrganizationResourceId": "<p>The organization resource identifier for the security profile.</p>",
         "SecurityProfileSearchSummary$OrganizationResourceId": "<p>The organization resource identifier.</p>",
         "StartChatContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "StartContactEvaluationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "StartContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "StartContactStreamingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "StartOutboundVoiceContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2395,10 +2872,12 @@
         "StopContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "StopContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "StopContactStreamingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "SubmitContactEvaluationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SuspendContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "TransferContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "UpdateContactEvaluationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateContactFlowContentRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateContactFlowMetadataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateContactFlowModuleContentRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2406,6 +2885,7 @@
         "UpdateContactFlowNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateContactScheduleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "UpdateEvaluationFormRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateInstanceAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -2490,6 +2970,15 @@
       "base": null,
       "refs": {
         "ListInstancesResponse$InstanceSummaryList": "<p>Information about the instances.</p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "EvaluationFormNumericQuestionOption$MinValue": "<p>The minimum answer value of the range option.</p>",
+        "EvaluationFormNumericQuestionOption$MaxValue": "<p>The maximum answer value of the range option.</p>",
+        "EvaluationFormNumericQuestionProperties$MinValue": "<p>The minimum answer value.</p>",
+        "EvaluationFormNumericQuestionProperties$MaxValue": "<p>The maximum answer value.</p>"
       }
     },
     "IntegerCount": {
@@ -2684,6 +3173,16 @@
       "refs": {
       }
     },
+    "ListContactEvaluationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContactEvaluationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListContactFlowModulesRequest": {
       "base": null,
       "refs": {
@@ -2720,6 +3219,26 @@
       }
     },
     "ListDefaultVocabulariesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEvaluationFormVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEvaluationFormVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEvaluationFormsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEvaluationFormsResponse": {
       "base": null,
       "refs": {
       }
@@ -3010,6 +3529,8 @@
         "GetMetricDataRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "GetMetricDataV2Request$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListDefaultVocabulariesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListEvaluationFormVersionsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListEvaluationFormsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListIntegrationAssociationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListQueueQuickConnectsRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListRoutingProfileQueuesRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
@@ -3221,12 +3742,18 @@
         "ListApprovedOriginsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListBotsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListBotsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListContactEvaluationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p> <important> <p>This is not expected to be set because the value returned in the previous response is always null.</p> </important>",
+        "ListContactEvaluationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p> <important> <p>This is always returned as null in the response.</p> </important>",
         "ListContactFlowModulesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListContactFlowModulesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListContactFlowsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListContactFlowsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListContactReferencesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p> <important> <p>This is not expected to be set, because the value returned in the previous response is always null.</p> </important>",
         "ListContactReferencesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p> <important> <p>This is always returned as null in the response.</p> </important>",
+        "ListEvaluationFormVersionsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListEvaluationFormVersionsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListEvaluationFormsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListEvaluationFormsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListHoursOfOperationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListHoursOfOperationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListInstanceAttributesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -3312,6 +3839,18 @@
       "base": "<p>Information about a reference when the <code>referenceType</code> is <code>NUMBER</code>. Otherwise, null.</p>",
       "refs": {
         "ReferenceSummary$Number": "<p>Information about a reference when the <code>referenceType</code> is <code>NUMBER</code>. Otherwise, null.</p>"
+      }
+    },
+    "NumericQuestionPropertyAutomationLabel": {
+      "base": null,
+      "refs": {
+        "NumericQuestionPropertyValueAutomation$Label": "<p>The property label of the automation.</p>"
+      }
+    },
+    "NumericQuestionPropertyValueAutomation": {
+      "base": "<p>Information about the property value used in automation of a numeric questions. Label values are associated with minimum and maximum values for the numeric question.</p> <ul> <li> <p>Sentiment scores have a minimum value of -5 and maximum value of 5.</p> </li> <li> <p> Duration labels, such as <code>NON_TALK_TIME</code>, <code>CONTACT_DURATION</code>, <code>AGENT_INTERACTION_DURATION</code>, <code>CUSTOMER_HOLD_TIME</code> have a minimum value of 0 and maximum value of 28800.</p> </li> <li> <p>Percantages have a minimum value of 0 and maximum value of 100. </p> </li> <li> <p> <code>NUMBER_OF_INTERRUPTIONS</code> has a minimum value of 0 and maximum value of 100.</p> </li> </ul>",
+      "refs": {
+        "EvaluationFormNumericQuestionAutomation$PropertyValue": "<p>The property value of the automation.</p>"
       }
     },
     "Origin": {
@@ -3914,6 +4453,16 @@
         "ContactReferences$value": null
       }
     },
+    "ReferenceId": {
+      "base": null,
+      "refs": {
+        "EvaluationFormQuestion$RefId": "<p>The identifier of the question. An identifier must be unique within the evaluation form.</p>",
+        "EvaluationFormSection$RefId": "<p>The identifier of the section. An identifier must be unique within the evaluation form.</p>",
+        "EvaluationFormSingleSelectQuestionAutomation$DefaultOptionRefId": "<p>The identifier of the default answer option, when none of the automation options match the criteria.</p>",
+        "EvaluationFormSingleSelectQuestionOption$RefId": "<p>The identifier of the answer option. An identifier must be unique within the question.</p>",
+        "SingleSelectQuestionRuleCategoryAutomation$OptionRefId": "<p>The identifier of the answer option tha</p>"
+      }
+    },
     "ReferenceKey": {
       "base": null,
       "refs": {
@@ -4013,6 +4562,41 @@
     "ResourceConflictException": {
       "base": "<p>A resource already has that name.</p>",
       "refs": {
+      }
+    },
+    "ResourceId": {
+      "base": null,
+      "refs": {
+        "ActivateEvaluationFormRequest$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "ActivateEvaluationFormResponse$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "CreateEvaluationFormResponse$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "DeactivateEvaluationFormRequest$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "DeactivateEvaluationFormResponse$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "DeleteContactEvaluationRequest$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "DeleteEvaluationFormRequest$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "DescribeContactEvaluationRequest$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "DescribeEvaluationFormRequest$EvaluationFormId": "<p>A unique identifier for the contact evaluation.</p>",
+        "Evaluation$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "EvaluationAnswersInputMap$key": null,
+        "EvaluationAnswersOutputMap$key": null,
+        "EvaluationForm$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "EvaluationFormContent$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "EvaluationFormSummary$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "EvaluationFormVersionSummary$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "EvaluationMetadata$ContactAgentId": "<p>The identifier of the agent who performed the contact.</p>",
+        "EvaluationNotesMap$key": null,
+        "EvaluationScoresMap$key": null,
+        "EvaluationSummary$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "EvaluationSummary$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "ListEvaluationFormVersionsRequest$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "StartContactEvaluationRequest$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "StartContactEvaluationResponse$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "SubmitContactEvaluationRequest$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "SubmitContactEvaluationResponse$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "UpdateContactEvaluationRequest$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "UpdateContactEvaluationResponse$EvaluationId": "<p>A unique identifier for the contact evaluation.</p>",
+        "UpdateEvaluationFormRequest$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>",
+        "UpdateEvaluationFormResponse$EvaluationFormId": "<p>The unique identifier for the evaluation form.</p>"
       }
     },
     "ResourceInUseException": {
@@ -4476,6 +5060,24 @@
         "TaskTemplateField$SingleSelectOptions": "<p>A list of options for a single select field.</p>"
       }
     },
+    "SingleSelectQuestionRuleCategoryAutomation": {
+      "base": "<p>Information about the automation option based on a rule category for a single select question.</p>",
+      "refs": {
+        "EvaluationFormSingleSelectQuestionAutomationOption$RuleCategory": "<p>The automation option based on a rule category for the single select question.</p>"
+      }
+    },
+    "SingleSelectQuestionRuleCategoryAutomationCondition": {
+      "base": null,
+      "refs": {
+        "SingleSelectQuestionRuleCategoryAutomation$Condition": "<p>The condition to apply for the automation option. If the condition is <code>PRESENT</code>, then the option is applied when the contact data includes the category. Similarly, if the condition is <code>NOT_PRESENT</code>, then the option is applied when the contact data does not include the category.</p>"
+      }
+    },
+    "SingleSelectQuestionRuleCategoryAutomationLabel": {
+      "base": null,
+      "refs": {
+        "SingleSelectQuestionRuleCategoryAutomation$Category": "<p> The category name, as defined in Rules.</p>"
+      }
+    },
     "SnapshotVersion": {
       "base": null,
       "refs": {
@@ -4508,6 +5110,16 @@
       }
     },
     "StartChatContactResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartContactEvaluationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartContactEvaluationResponse": {
       "base": null,
       "refs": {
       }
@@ -4644,6 +5256,16 @@
         "SendNotificationActionDefinition$Subject": "<p>The subject of the email if the delivery method is <code>EMAIL</code>. Supports variable injection. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html\">JSONPath reference</a> in the <i>Amazon Connect Administrators Guide</i>.</p>"
       }
     },
+    "SubmitContactEvaluationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SubmitContactEvaluationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SupportedMessagingContentType": {
       "base": null,
       "refs": {
@@ -4715,6 +5337,8 @@
         "CreateUserHierarchyGroupRequest$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "CreateUserRequest$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "CreateVocabularyRequest$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "Evaluation$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "EvaluationForm$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "GetTaskTemplateResponse$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "HierarchyGroup$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "HoursOfOperation$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
@@ -4989,6 +5613,17 @@
         "AgentContactReference$StateStartTimestamp": "<p>The epoch timestamp when the contact state started.</p>",
         "AgentContactReference$ConnectedToAgentTimestamp": "<p>The time at which the contact was connected to an agent.</p>",
         "AgentStatusReference$StatusStartTimestamp": "<p>The start timestamp of the agent's status.</p>",
+        "Evaluation$CreatedTime": "<p>The timestamp for when the evaluation was created.</p>",
+        "Evaluation$LastModifiedTime": "<p>The timestamp for when the evaluation was last updated.</p>",
+        "EvaluationForm$CreatedTime": "<p>The timestamp for when the evaluation form was created.</p>",
+        "EvaluationForm$LastModifiedTime": "<p>The timestamp for when the evaluation form was last updated.</p>",
+        "EvaluationFormSummary$CreatedTime": "<p>The timestamp for when the evaluation form was created.</p>",
+        "EvaluationFormSummary$LastModifiedTime": "<p>The timestamp for when the evaluation form was last updated.</p>",
+        "EvaluationFormSummary$LastActivatedTime": "<p>The timestamp for when the evaluation form was last activated.</p>",
+        "EvaluationFormVersionSummary$CreatedTime": "<p>The timestamp for when the evaluation form was created.</p>",
+        "EvaluationFormVersionSummary$LastModifiedTime": "<p>The timestamp for when the evaluation form was last updated.</p>",
+        "EvaluationSummary$CreatedTime": "<p>The timestamp for when the evaluation was created.</p>",
+        "EvaluationSummary$LastModifiedTime": "<p>The timestamp for when the evaluation was last updated.</p>",
         "GetMetricDataV2Request$StartTime": "<p>The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be before the end time timestamp. The time range between the start and end time must be less than 24 hours. The start time cannot be earlier than 14 days before the time of the request. Historical metrics are available for 14 days.</p>",
         "GetMetricDataV2Request$EndTime": "<p>The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be later than the start time timestamp. It cannot be later than the current timestamp.</p> <p>The time range between the start and end time must be less than 24 hours.</p>",
         "Instance$CreatedTime": "<p>When the instance was created.</p>",
@@ -5109,6 +5744,16 @@
       "refs": {
       }
     },
+    "UpdateContactEvaluationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactEvaluationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateContactFlowContentRequest": {
       "base": null,
       "refs": {
@@ -5175,6 +5820,16 @@
       }
     },
     "UpdateContactScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEvaluationFormRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEvaluationFormResponse": {
       "base": null,
       "refs": {
       }
@@ -5545,6 +6200,24 @@
         "CurrentMetricData$Value": "<p>The value of the metric.</p>",
         "HistoricalMetricData$Value": "<p>The value of the metric.</p>",
         "MetricDataV2$Value": "<p>The corresponding value of the metric returned in the response.</p>"
+      }
+    },
+    "VersionNumber": {
+      "base": null,
+      "refs": {
+        "ActivateEvaluationFormRequest$EvaluationFormVersion": "<p>The version of the evaluation form to activate. If the version property is not provided, the latest version of the evaluation form is activated.</p>",
+        "ActivateEvaluationFormResponse$EvaluationFormVersion": "<p>A version of the evaluation form.</p>",
+        "DeactivateEvaluationFormRequest$EvaluationFormVersion": "<p>A version of the evaluation form. If the version property is not provided, the latest version of the evaluation form is deactivated.</p>",
+        "DeactivateEvaluationFormResponse$EvaluationFormVersion": "<p>The version of the deactivated evaluation form resource.</p>",
+        "DeleteEvaluationFormRequest$EvaluationFormVersion": "<p>The unique identifier for the evaluation form.</p>",
+        "DescribeEvaluationFormRequest$EvaluationFormVersion": "<p>A version of the evaluation form.</p>",
+        "EvaluationForm$EvaluationFormVersion": "<p>A version of the evaluation form.</p>",
+        "EvaluationFormContent$EvaluationFormVersion": "<p>A version of the evaluation form.</p>",
+        "EvaluationFormSummary$LatestVersion": "<p>The version number of the latest evaluation form version.</p>",
+        "EvaluationFormSummary$ActiveVersion": "<p>The version of the active evaluation form version.</p>",
+        "EvaluationFormVersionSummary$EvaluationFormVersion": "<p>A version of the evaluation form.</p>",
+        "UpdateEvaluationFormRequest$EvaluationFormVersion": "<p>A version of the evaluation form to update.</p>",
+        "UpdateEvaluationFormResponse$EvaluationFormVersion": "<p>The version of the updated evaluation form resource.</p>"
       }
     },
     "Vocabulary": {

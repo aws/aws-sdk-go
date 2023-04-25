@@ -13,6 +13,91 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAddStorageSystem = "AddStorageSystem"
+
+// AddStorageSystemRequest generates a "aws/request.Request" representing the
+// client's request for the AddStorageSystem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddStorageSystem for more information on using the AddStorageSystem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AddStorageSystemRequest method.
+//	req, resp := client.AddStorageSystemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/AddStorageSystem
+func (c *DataSync) AddStorageSystemRequest(input *AddStorageSystemInput) (req *request.Request, output *AddStorageSystemOutput) {
+	op := &request.Operation{
+		Name:       opAddStorageSystem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddStorageSystemInput{}
+	}
+
+	output = &AddStorageSystemOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// AddStorageSystem API operation for AWS DataSync.
+//
+// Creates an Amazon Web Services resource for an on-premises storage system
+// that you want DataSync Discovery to collect information about.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation AddStorageSystem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/AddStorageSystem
+func (c *DataSync) AddStorageSystem(input *AddStorageSystemInput) (*AddStorageSystemOutput, error) {
+	req, out := c.AddStorageSystemRequest(input)
+	return out, req.Send()
+}
+
+// AddStorageSystemWithContext is the same as AddStorageSystem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddStorageSystem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) AddStorageSystemWithContext(ctx aws.Context, input *AddStorageSystemInput, opts ...request.Option) (*AddStorageSystemOutput, error) {
+	req, out := c.AddStorageSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelTaskExecution = "CancelTaskExecution"
 
 // CancelTaskExecutionRequest generates a "aws/request.Request" representing the
@@ -914,8 +999,16 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 
 // CreateLocationS3 API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon S3 bucket that DataSync can access for
-// a transfer. For more information, see Create an Amazon S3 location (https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli).
+// A location is an endpoint for an Amazon S3 bucket. DataSync can use the location
+// as a source or destination for copying data.
+//
+// Before you create your location, make sure that you read the following sections:
+//
+//   - Storage class considerations with Amazon S3 locations (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes)
+//
+//   - Evaluating S3 request costs when using DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests)
+//
+// For more information, see Creating an Amazon S3 location (https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1086,6 +1179,11 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 // A task includes a source location, a destination location, and the preferences
 // for how and when you want to transfer your data (such as bandwidth limits,
 // scheduling, among other options).
+//
+// If you're planning to transfer data to or from an Amazon S3 location, review
+// how DataSync can affect your S3 request charges (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests)
+// and the DataSync pricing page (http://aws.amazon.com/datasync/pricing/) before
+// you begin.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1454,6 +1552,90 @@ func (c *DataSync) DescribeAgent(input *DescribeAgentInput) (*DescribeAgentOutpu
 // for more information on using Contexts.
 func (c *DataSync) DescribeAgentWithContext(ctx aws.Context, input *DescribeAgentInput, opts ...request.Option) (*DescribeAgentOutput, error) {
 	req, out := c.DescribeAgentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDiscoveryJob = "DescribeDiscoveryJob"
+
+// DescribeDiscoveryJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDiscoveryJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDiscoveryJob for more information on using the DescribeDiscoveryJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDiscoveryJobRequest method.
+//	req, resp := client.DescribeDiscoveryJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeDiscoveryJob
+func (c *DataSync) DescribeDiscoveryJobRequest(input *DescribeDiscoveryJobInput) (req *request.Request, output *DescribeDiscoveryJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDiscoveryJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDiscoveryJobInput{}
+	}
+
+	output = &DescribeDiscoveryJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeDiscoveryJob API operation for AWS DataSync.
+//
+// Returns information about a DataSync discovery job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeDiscoveryJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeDiscoveryJob
+func (c *DataSync) DescribeDiscoveryJob(input *DescribeDiscoveryJobInput) (*DescribeDiscoveryJobOutput, error) {
+	req, out := c.DescribeDiscoveryJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDiscoveryJobWithContext is the same as DescribeDiscoveryJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDiscoveryJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeDiscoveryJobWithContext(ctx aws.Context, input *DescribeDiscoveryJobInput, opts ...request.Option) (*DescribeDiscoveryJobOutput, error) {
+	req, out := c.DescribeDiscoveryJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2290,6 +2472,376 @@ func (c *DataSync) DescribeLocationSmbWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opDescribeStorageSystem = "DescribeStorageSystem"
+
+// DescribeStorageSystemRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStorageSystem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStorageSystem for more information on using the DescribeStorageSystem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeStorageSystemRequest method.
+//	req, resp := client.DescribeStorageSystemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeStorageSystem
+func (c *DataSync) DescribeStorageSystemRequest(input *DescribeStorageSystemInput) (req *request.Request, output *DescribeStorageSystemOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStorageSystem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeStorageSystemInput{}
+	}
+
+	output = &DescribeStorageSystemOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeStorageSystem API operation for AWS DataSync.
+//
+// Returns information about an on-premises storage system that you're using
+// with DataSync Discovery.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeStorageSystem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeStorageSystem
+func (c *DataSync) DescribeStorageSystem(input *DescribeStorageSystemInput) (*DescribeStorageSystemOutput, error) {
+	req, out := c.DescribeStorageSystemRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStorageSystemWithContext is the same as DescribeStorageSystem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStorageSystem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeStorageSystemWithContext(ctx aws.Context, input *DescribeStorageSystemInput, opts ...request.Option) (*DescribeStorageSystemOutput, error) {
+	req, out := c.DescribeStorageSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeStorageSystemResourceMetrics = "DescribeStorageSystemResourceMetrics"
+
+// DescribeStorageSystemResourceMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStorageSystemResourceMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStorageSystemResourceMetrics for more information on using the DescribeStorageSystemResourceMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeStorageSystemResourceMetricsRequest method.
+//	req, resp := client.DescribeStorageSystemResourceMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeStorageSystemResourceMetrics
+func (c *DataSync) DescribeStorageSystemResourceMetricsRequest(input *DescribeStorageSystemResourceMetricsInput) (req *request.Request, output *DescribeStorageSystemResourceMetricsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStorageSystemResourceMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeStorageSystemResourceMetricsInput{}
+	}
+
+	output = &DescribeStorageSystemResourceMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeStorageSystemResourceMetrics API operation for AWS DataSync.
+//
+// Returns information, including performance data and capacity usage, which
+// DataSync Discovery collects about a specific resource in your-premises storage
+// system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeStorageSystemResourceMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeStorageSystemResourceMetrics
+func (c *DataSync) DescribeStorageSystemResourceMetrics(input *DescribeStorageSystemResourceMetricsInput) (*DescribeStorageSystemResourceMetricsOutput, error) {
+	req, out := c.DescribeStorageSystemResourceMetricsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStorageSystemResourceMetricsWithContext is the same as DescribeStorageSystemResourceMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStorageSystemResourceMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeStorageSystemResourceMetricsWithContext(ctx aws.Context, input *DescribeStorageSystemResourceMetricsInput, opts ...request.Option) (*DescribeStorageSystemResourceMetricsOutput, error) {
+	req, out := c.DescribeStorageSystemResourceMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeStorageSystemResourceMetricsPages iterates over the pages of a DescribeStorageSystemResourceMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStorageSystemResourceMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeStorageSystemResourceMetrics operation.
+//	pageNum := 0
+//	err := client.DescribeStorageSystemResourceMetricsPages(params,
+//	    func(page *datasync.DescribeStorageSystemResourceMetricsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataSync) DescribeStorageSystemResourceMetricsPages(input *DescribeStorageSystemResourceMetricsInput, fn func(*DescribeStorageSystemResourceMetricsOutput, bool) bool) error {
+	return c.DescribeStorageSystemResourceMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeStorageSystemResourceMetricsPagesWithContext same as DescribeStorageSystemResourceMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeStorageSystemResourceMetricsPagesWithContext(ctx aws.Context, input *DescribeStorageSystemResourceMetricsInput, fn func(*DescribeStorageSystemResourceMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeStorageSystemResourceMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeStorageSystemResourceMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeStorageSystemResourceMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeStorageSystemResources = "DescribeStorageSystemResources"
+
+// DescribeStorageSystemResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStorageSystemResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStorageSystemResources for more information on using the DescribeStorageSystemResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeStorageSystemResourcesRequest method.
+//	req, resp := client.DescribeStorageSystemResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeStorageSystemResources
+func (c *DataSync) DescribeStorageSystemResourcesRequest(input *DescribeStorageSystemResourcesInput) (req *request.Request, output *DescribeStorageSystemResourcesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStorageSystemResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeStorageSystemResourcesInput{}
+	}
+
+	output = &DescribeStorageSystemResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeStorageSystemResources API operation for AWS DataSync.
+//
+// Returns information that DataSync Discovery collects about resources in your
+// on-premises storage system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeStorageSystemResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeStorageSystemResources
+func (c *DataSync) DescribeStorageSystemResources(input *DescribeStorageSystemResourcesInput) (*DescribeStorageSystemResourcesOutput, error) {
+	req, out := c.DescribeStorageSystemResourcesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStorageSystemResourcesWithContext is the same as DescribeStorageSystemResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStorageSystemResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeStorageSystemResourcesWithContext(ctx aws.Context, input *DescribeStorageSystemResourcesInput, opts ...request.Option) (*DescribeStorageSystemResourcesOutput, error) {
+	req, out := c.DescribeStorageSystemResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeStorageSystemResourcesPages iterates over the pages of a DescribeStorageSystemResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStorageSystemResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeStorageSystemResources operation.
+//	pageNum := 0
+//	err := client.DescribeStorageSystemResourcesPages(params,
+//	    func(page *datasync.DescribeStorageSystemResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataSync) DescribeStorageSystemResourcesPages(input *DescribeStorageSystemResourcesInput, fn func(*DescribeStorageSystemResourcesOutput, bool) bool) error {
+	return c.DescribeStorageSystemResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeStorageSystemResourcesPagesWithContext same as DescribeStorageSystemResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeStorageSystemResourcesPagesWithContext(ctx aws.Context, input *DescribeStorageSystemResourcesInput, fn func(*DescribeStorageSystemResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeStorageSystemResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeStorageSystemResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeStorageSystemResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeTask = "DescribeTask"
 
 // DescribeTaskRequest generates a "aws/request.Request" representing the
@@ -2454,6 +3006,102 @@ func (c *DataSync) DescribeTaskExecutionWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opGenerateRecommendations = "GenerateRecommendations"
+
+// GenerateRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the GenerateRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GenerateRecommendations for more information on using the GenerateRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GenerateRecommendationsRequest method.
+//	req, resp := client.GenerateRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/GenerateRecommendations
+func (c *DataSync) GenerateRecommendationsRequest(input *GenerateRecommendationsInput) (req *request.Request, output *GenerateRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opGenerateRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GenerateRecommendationsInput{}
+	}
+
+	output = &GenerateRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GenerateRecommendations API operation for AWS DataSync.
+//
+// Creates recommendations about where to migrate your data to in Amazon Web
+// Services. Recommendations are generated based on information that DataSync
+// Discovery collects about your on-premises storage system's resources. For
+// more information, see Recommendations provided by DataSync Discovery (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-recommendations.html).
+//
+// Once generated, you can view your recommendations by using the DescribeStorageSystemResources
+// (https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeStorageSystemResources.html)
+// operation.
+//
+// If your discovery job completes successfully (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-job-statuses.html#discovery-job-statuses-table),
+// you don't need to use this operation. DataSync Discovery generates the recommendations
+// for you automatically.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation GenerateRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/GenerateRecommendations
+func (c *DataSync) GenerateRecommendations(input *GenerateRecommendationsInput) (*GenerateRecommendationsOutput, error) {
+	req, out := c.GenerateRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// GenerateRecommendationsWithContext is the same as GenerateRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GenerateRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) GenerateRecommendationsWithContext(ctx aws.Context, input *GenerateRecommendationsInput, opts ...request.Option) (*GenerateRecommendationsOutput, error) {
+	req, out := c.GenerateRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAgents = "ListAgents"
 
 // ListAgentsRequest generates a "aws/request.Request" representing the
@@ -2606,6 +3254,148 @@ func (c *DataSync) ListAgentsPagesWithContext(ctx aws.Context, input *ListAgents
 	return p.Err()
 }
 
+const opListDiscoveryJobs = "ListDiscoveryJobs"
+
+// ListDiscoveryJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDiscoveryJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDiscoveryJobs for more information on using the ListDiscoveryJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDiscoveryJobsRequest method.
+//	req, resp := client.ListDiscoveryJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListDiscoveryJobs
+func (c *DataSync) ListDiscoveryJobsRequest(input *ListDiscoveryJobsInput) (req *request.Request, output *ListDiscoveryJobsOutput) {
+	op := &request.Operation{
+		Name:       opListDiscoveryJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDiscoveryJobsInput{}
+	}
+
+	output = &ListDiscoveryJobsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListDiscoveryJobs API operation for AWS DataSync.
+//
+// Provides a list of the existing discovery jobs in the Amazon Web Services
+// Region and Amazon Web Services account where you're using DataSync Discovery.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation ListDiscoveryJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListDiscoveryJobs
+func (c *DataSync) ListDiscoveryJobs(input *ListDiscoveryJobsInput) (*ListDiscoveryJobsOutput, error) {
+	req, out := c.ListDiscoveryJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListDiscoveryJobsWithContext is the same as ListDiscoveryJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDiscoveryJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) ListDiscoveryJobsWithContext(ctx aws.Context, input *ListDiscoveryJobsInput, opts ...request.Option) (*ListDiscoveryJobsOutput, error) {
+	req, out := c.ListDiscoveryJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDiscoveryJobsPages iterates over the pages of a ListDiscoveryJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDiscoveryJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDiscoveryJobs operation.
+//	pageNum := 0
+//	err := client.ListDiscoveryJobsPages(params,
+//	    func(page *datasync.ListDiscoveryJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataSync) ListDiscoveryJobsPages(input *ListDiscoveryJobsInput, fn func(*ListDiscoveryJobsOutput, bool) bool) error {
+	return c.ListDiscoveryJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDiscoveryJobsPagesWithContext same as ListDiscoveryJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) ListDiscoveryJobsPagesWithContext(ctx aws.Context, input *ListDiscoveryJobsInput, fn func(*ListDiscoveryJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDiscoveryJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDiscoveryJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDiscoveryJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListLocations = "ListLocations"
 
 // ListLocationsRequest generates a "aws/request.Request" representing the
@@ -2743,6 +3533,147 @@ func (c *DataSync) ListLocationsPagesWithContext(ctx aws.Context, input *ListLoc
 
 	for p.Next() {
 		if !fn(p.Page().(*ListLocationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStorageSystems = "ListStorageSystems"
+
+// ListStorageSystemsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStorageSystems operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStorageSystems for more information on using the ListStorageSystems
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStorageSystemsRequest method.
+//	req, resp := client.ListStorageSystemsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListStorageSystems
+func (c *DataSync) ListStorageSystemsRequest(input *ListStorageSystemsInput) (req *request.Request, output *ListStorageSystemsOutput) {
+	op := &request.Operation{
+		Name:       opListStorageSystems,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStorageSystemsInput{}
+	}
+
+	output = &ListStorageSystemsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListStorageSystems API operation for AWS DataSync.
+//
+// Lists the on-premises storage systems that you're using with DataSync Discovery.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation ListStorageSystems for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListStorageSystems
+func (c *DataSync) ListStorageSystems(input *ListStorageSystemsInput) (*ListStorageSystemsOutput, error) {
+	req, out := c.ListStorageSystemsRequest(input)
+	return out, req.Send()
+}
+
+// ListStorageSystemsWithContext is the same as ListStorageSystems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStorageSystems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) ListStorageSystemsWithContext(ctx aws.Context, input *ListStorageSystemsInput, opts ...request.Option) (*ListStorageSystemsOutput, error) {
+	req, out := c.ListStorageSystemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStorageSystemsPages iterates over the pages of a ListStorageSystems operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStorageSystems method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListStorageSystems operation.
+//	pageNum := 0
+//	err := client.ListStorageSystemsPages(params,
+//	    func(page *datasync.ListStorageSystemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataSync) ListStorageSystemsPages(input *ListStorageSystemsInput, fn func(*ListStorageSystemsOutput, bool) bool) error {
+	return c.ListStorageSystemsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStorageSystemsPagesWithContext same as ListStorageSystemsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) ListStorageSystemsPagesWithContext(ctx aws.Context, input *ListStorageSystemsInput, fn func(*ListStorageSystemsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStorageSystemsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStorageSystemsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStorageSystemsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3167,6 +4098,179 @@ func (c *DataSync) ListTasksPagesWithContext(ctx aws.Context, input *ListTasksIn
 	return p.Err()
 }
 
+const opRemoveStorageSystem = "RemoveStorageSystem"
+
+// RemoveStorageSystemRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveStorageSystem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveStorageSystem for more information on using the RemoveStorageSystem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RemoveStorageSystemRequest method.
+//	req, resp := client.RemoveStorageSystemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/RemoveStorageSystem
+func (c *DataSync) RemoveStorageSystemRequest(input *RemoveStorageSystemInput) (req *request.Request, output *RemoveStorageSystemOutput) {
+	op := &request.Operation{
+		Name:       opRemoveStorageSystem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveStorageSystemInput{}
+	}
+
+	output = &RemoveStorageSystemOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// RemoveStorageSystem API operation for AWS DataSync.
+//
+// Permanently removes a storage system resource from DataSync Discovery, including
+// the associated discovery jobs, collected data, and recommendations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation RemoveStorageSystem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/RemoveStorageSystem
+func (c *DataSync) RemoveStorageSystem(input *RemoveStorageSystemInput) (*RemoveStorageSystemOutput, error) {
+	req, out := c.RemoveStorageSystemRequest(input)
+	return out, req.Send()
+}
+
+// RemoveStorageSystemWithContext is the same as RemoveStorageSystem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveStorageSystem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) RemoveStorageSystemWithContext(ctx aws.Context, input *RemoveStorageSystemInput, opts ...request.Option) (*RemoveStorageSystemOutput, error) {
+	req, out := c.RemoveStorageSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartDiscoveryJob = "StartDiscoveryJob"
+
+// StartDiscoveryJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartDiscoveryJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDiscoveryJob for more information on using the StartDiscoveryJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartDiscoveryJobRequest method.
+//	req, resp := client.StartDiscoveryJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/StartDiscoveryJob
+func (c *DataSync) StartDiscoveryJobRequest(input *StartDiscoveryJobInput) (req *request.Request, output *StartDiscoveryJobOutput) {
+	op := &request.Operation{
+		Name:       opStartDiscoveryJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartDiscoveryJobInput{}
+	}
+
+	output = &StartDiscoveryJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// StartDiscoveryJob API operation for AWS DataSync.
+//
+// Runs a DataSync discovery job on your on-premises storage system. If you
+// haven't added the storage system to DataSync Discovery yet, do this first
+// by using the AddStorageSystem (https://docs.aws.amazon.com/datasync/latest/userguide/API_AddStorageSystem.html)
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation StartDiscoveryJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/StartDiscoveryJob
+func (c *DataSync) StartDiscoveryJob(input *StartDiscoveryJobInput) (*StartDiscoveryJobOutput, error) {
+	req, out := c.StartDiscoveryJobRequest(input)
+	return out, req.Send()
+}
+
+// StartDiscoveryJobWithContext is the same as StartDiscoveryJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDiscoveryJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) StartDiscoveryJobWithContext(ctx aws.Context, input *StartDiscoveryJobInput, opts ...request.Option) (*StartDiscoveryJobOutput, error) {
+	req, out := c.StartDiscoveryJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartTaskExecution = "StartTaskExecution"
 
 // StartTaskExecutionRequest generates a "aws/request.Request" representing the
@@ -3216,6 +4320,11 @@ func (c *DataSync) StartTaskExecutionRequest(input *StartTaskExecutionInput) (re
 // There are several phases to a task execution. For more information, see Task
 // execution statuses (https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#understand-task-execution-statuses).
 //
+// If you're planning to transfer data to or from an Amazon S3 location, review
+// how DataSync can affect your S3 request charges (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests)
+// and the DataSync pricing page (http://aws.amazon.com/datasync/pricing/) before
+// you begin.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3248,6 +4357,97 @@ func (c *DataSync) StartTaskExecution(input *StartTaskExecutionInput) (*StartTas
 // for more information on using Contexts.
 func (c *DataSync) StartTaskExecutionWithContext(ctx aws.Context, input *StartTaskExecutionInput, opts ...request.Option) (*StartTaskExecutionOutput, error) {
 	req, out := c.StartTaskExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopDiscoveryJob = "StopDiscoveryJob"
+
+// StopDiscoveryJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopDiscoveryJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopDiscoveryJob for more information on using the StopDiscoveryJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopDiscoveryJobRequest method.
+//	req, resp := client.StopDiscoveryJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/StopDiscoveryJob
+func (c *DataSync) StopDiscoveryJobRequest(input *StopDiscoveryJobInput) (req *request.Request, output *StopDiscoveryJobOutput) {
+	op := &request.Operation{
+		Name:       opStopDiscoveryJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopDiscoveryJobInput{}
+	}
+
+	output = &StopDiscoveryJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// StopDiscoveryJob API operation for AWS DataSync.
+//
+// Stops a running DataSync discovery job.
+//
+// You can stop a discovery job anytime. A job that's stopped before it's scheduled
+// to end likely will provide you some information about your on-premises storage
+// system resources. To get recommendations for a stopped job, you must use
+// the GenerateRecommendations (https://docs.aws.amazon.com/datasync/latest/userguide/API_GenerateRecommendations.html)
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation StopDiscoveryJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/StopDiscoveryJob
+func (c *DataSync) StopDiscoveryJob(input *StopDiscoveryJobInput) (*StopDiscoveryJobOutput, error) {
+	req, out := c.StopDiscoveryJobRequest(input)
+	return out, req.Send()
+}
+
+// StopDiscoveryJobWithContext is the same as StopDiscoveryJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopDiscoveryJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) StopDiscoveryJobWithContext(ctx aws.Context, input *StopDiscoveryJobInput, opts ...request.Option) (*StopDiscoveryJobOutput, error) {
+	req, out := c.StopDiscoveryJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3500,6 +4700,91 @@ func (c *DataSync) UpdateAgent(input *UpdateAgentInput) (*UpdateAgentOutput, err
 // for more information on using Contexts.
 func (c *DataSync) UpdateAgentWithContext(ctx aws.Context, input *UpdateAgentInput, opts ...request.Option) (*UpdateAgentOutput, error) {
 	req, out := c.UpdateAgentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateDiscoveryJob = "UpdateDiscoveryJob"
+
+// UpdateDiscoveryJobRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDiscoveryJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDiscoveryJob for more information on using the UpdateDiscoveryJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDiscoveryJobRequest method.
+//	req, resp := client.UpdateDiscoveryJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateDiscoveryJob
+func (c *DataSync) UpdateDiscoveryJobRequest(input *UpdateDiscoveryJobInput) (req *request.Request, output *UpdateDiscoveryJobOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDiscoveryJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDiscoveryJobInput{}
+	}
+
+	output = &UpdateDiscoveryJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateDiscoveryJob API operation for AWS DataSync.
+//
+// Edits a DataSync discovery job configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateDiscoveryJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateDiscoveryJob
+func (c *DataSync) UpdateDiscoveryJob(input *UpdateDiscoveryJobInput) (*UpdateDiscoveryJobOutput, error) {
+	req, out := c.UpdateDiscoveryJobRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDiscoveryJobWithContext is the same as UpdateDiscoveryJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDiscoveryJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateDiscoveryJobWithContext(ctx aws.Context, input *UpdateDiscoveryJobInput, opts ...request.Option) (*UpdateDiscoveryJobOutput, error) {
+	req, out := c.UpdateDiscoveryJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3844,6 +5129,92 @@ func (c *DataSync) UpdateLocationSmbWithContext(ctx aws.Context, input *UpdateLo
 	return out, req.Send()
 }
 
+const opUpdateStorageSystem = "UpdateStorageSystem"
+
+// UpdateStorageSystemRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStorageSystem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStorageSystem for more information on using the UpdateStorageSystem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateStorageSystemRequest method.
+//	req, resp := client.UpdateStorageSystemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateStorageSystem
+func (c *DataSync) UpdateStorageSystemRequest(input *UpdateStorageSystemInput) (req *request.Request, output *UpdateStorageSystemOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStorageSystem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStorageSystemInput{}
+	}
+
+	output = &UpdateStorageSystemOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("discovery-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateStorageSystem API operation for AWS DataSync.
+//
+// Modifies some configurations of an on-premises storage system resource that
+// you're using with DataSync Discovery.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateStorageSystem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateStorageSystem
+func (c *DataSync) UpdateStorageSystem(input *UpdateStorageSystemInput) (*UpdateStorageSystemOutput, error) {
+	req, out := c.UpdateStorageSystemRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStorageSystemWithContext is the same as UpdateStorageSystem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStorageSystem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateStorageSystemWithContext(ctx aws.Context, input *UpdateStorageSystemInput, opts ...request.Option) (*UpdateStorageSystemOutput, error) {
+	req, out := c.UpdateStorageSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTask = "UpdateTask"
 
 // UpdateTaskRequest generates a "aws/request.Request" representing the
@@ -3971,14 +5342,11 @@ func (c *DataSync) UpdateTaskExecutionRequest(input *UpdateTaskExecutionInput) (
 
 // UpdateTaskExecution API operation for AWS DataSync.
 //
-// Updates execution of a task.
+// Modifies a running DataSync task.
 //
-// You can modify bandwidth throttling for a task execution that is running
-// or queued. For more information, see Adjusting Bandwidth Throttling for a
-// Task Execution (https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#adjust-bandwidth-throttling).
-//
-// The only Option that can be modified by UpdateTaskExecution is BytesPerSecond
-// (https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond) .
+// Currently, the only Option that you can modify with UpdateTaskExecution is
+// BytesPerSecond (https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond)
+// , which throttles bandwidth for a running or queued task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4015,6 +5383,202 @@ func (c *DataSync) UpdateTaskExecutionWithContext(ctx aws.Context, input *Update
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+type AddStorageSystemInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that connects
+	// to and reads from your on-premises storage system's management interface.
+	//
+	// AgentArns is a required field
+	AgentArns []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies a client token to make sure requests with this API operation are
+	// idempotent. If you don't specify a client token, DataSync generates one for
+	// you automatically.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// Specifies the ARN of the Amazon CloudWatch log group for monitoring and logging
+	// discovery job events.
+	CloudWatchLogGroupArn *string `type:"string"`
+
+	// Specifies the user name and password for accessing your on-premises storage
+	// system's management interface.
+	//
+	// Credentials is a required field
+	Credentials *Credentials `type:"structure" required:"true"`
+
+	// Specifies a familiar name for your on-premises storage system.
+	Name *string `min:"1" type:"string"`
+
+	// Specifies the server name and network port required to connect with the management
+	// interface of your on-premises storage system.
+	//
+	// ServerConfiguration is a required field
+	ServerConfiguration *DiscoveryServerConfiguration `type:"structure" required:"true"`
+
+	// Specifies the type of on-premises storage system that you want DataSync Discovery
+	// to collect information about.
+	//
+	// DataSync Discovery currently supports NetApp Fabric-Attached Storage (FAS)
+	// and All Flash FAS (AFF) systems running ONTAP 9.7 or later.
+	//
+	// SystemType is a required field
+	SystemType *string `type:"string" required:"true" enum:"DiscoverySystemType"`
+
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
+	// on-premises storage system.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddStorageSystemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddStorageSystemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddStorageSystemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddStorageSystemInput"}
+	if s.AgentArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.Credentials == nil {
+		invalidParams.Add(request.NewErrParamRequired("Credentials"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ServerConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerConfiguration"))
+	}
+	if s.SystemType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SystemType"))
+	}
+	if s.Credentials != nil {
+		if err := s.Credentials.Validate(); err != nil {
+			invalidParams.AddNested("Credentials", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServerConfiguration != nil {
+		if err := s.ServerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *AddStorageSystemInput) SetAgentArns(v []*string) *AddStorageSystemInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *AddStorageSystemInput) SetClientToken(v string) *AddStorageSystemInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCloudWatchLogGroupArn sets the CloudWatchLogGroupArn field's value.
+func (s *AddStorageSystemInput) SetCloudWatchLogGroupArn(v string) *AddStorageSystemInput {
+	s.CloudWatchLogGroupArn = &v
+	return s
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *AddStorageSystemInput) SetCredentials(v *Credentials) *AddStorageSystemInput {
+	s.Credentials = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AddStorageSystemInput) SetName(v string) *AddStorageSystemInput {
+	s.Name = &v
+	return s
+}
+
+// SetServerConfiguration sets the ServerConfiguration field's value.
+func (s *AddStorageSystemInput) SetServerConfiguration(v *DiscoveryServerConfiguration) *AddStorageSystemInput {
+	s.ServerConfiguration = v
+	return s
+}
+
+// SetSystemType sets the SystemType field's value.
+func (s *AddStorageSystemInput) SetSystemType(v string) *AddStorageSystemInput {
+	s.SystemType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddStorageSystemInput) SetTags(v []*TagListEntry) *AddStorageSystemInput {
+	s.Tags = v
+	return s
+}
+
+type AddStorageSystemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the on-premises storage system that you can use with DataSync
+	// Discovery.
+	//
+	// StorageSystemArn is a required field
+	StorageSystemArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddStorageSystemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddStorageSystemOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *AddStorageSystemOutput) SetStorageSystemArn(v string) *AddStorageSystemOutput {
+	s.StorageSystemArn = &v
+	return s
 }
 
 // Represents a single entry in a list (or array) of DataSync agents when you
@@ -4137,6 +5701,58 @@ func (s CancelTaskExecutionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CancelTaskExecutionOutput) GoString() string {
 	return s.String()
+}
+
+// The storage capacity of an on-premises storage system resource (for example,
+// a volume).
+type Capacity struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of space that's being used in a storage system resource without
+	// accounting for compression or deduplication.
+	LogicalUsed *int64 `type:"long"`
+
+	// The total amount of space available in a storage system resource.
+	Provisioned *int64 `type:"long"`
+
+	// The amount of space that's being used in a storage system resource.
+	Used *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Capacity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Capacity) GoString() string {
+	return s.String()
+}
+
+// SetLogicalUsed sets the LogicalUsed field's value.
+func (s *Capacity) SetLogicalUsed(v int64) *Capacity {
+	s.LogicalUsed = &v
+	return s
+}
+
+// SetProvisioned sets the Provisioned field's value.
+func (s *Capacity) SetProvisioned(v int64) *Capacity {
+	s.Provisioned = &v
+	return s
+}
+
+// SetUsed sets the Used field's value.
+func (s *Capacity) SetUsed(v int64) *Capacity {
+	s.Used = &v
+	return s
 }
 
 // CreateAgentRequest
@@ -6330,6 +7946,79 @@ func (s *CreateTaskOutput) SetTaskArn(v string) *CreateTaskOutput {
 	return s
 }
 
+// The credentials that provide DataSync Discovery read access to your on-premises
+// storage system's management interface.
+//
+// DataSync Discovery stores these credentials in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
+// For more information, see Accessing your on-premises storage system (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-configure-storage.html).
+type Credentials struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the password for your storage system's management interface.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	//
+	// Password is a required field
+	Password *string `type:"string" required:"true" sensitive:"true"`
+
+	// Specifies the user name for your storage system's management interface.
+	//
+	// Username is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	//
+	// Username is a required field
+	Username *string `type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Credentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Credentials"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPassword sets the Password field's value.
+func (s *Credentials) SetPassword(v string) *Credentials {
+	s.Password = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *Credentials) SetUsername(v string) *Credentials {
+	s.Username = &v
+	return s
+}
+
 // DeleteAgentRequest
 type DeleteAgentInput struct {
 	_ struct{} `type:"structure"`
@@ -6674,6 +8363,131 @@ func (s *DescribeAgentOutput) SetPrivateLinkConfig(v *PrivateLinkConfig) *Descri
 // SetStatus sets the Status field's value.
 func (s *DescribeAgentOutput) SetStatus(v string) *DescribeAgentOutput {
 	s.Status = &v
+	return s
+}
+
+type DescribeDiscoveryJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the discovery job that you want
+	// information about.
+	//
+	// DiscoveryJobArn is a required field
+	DiscoveryJobArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDiscoveryJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDiscoveryJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDiscoveryJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDiscoveryJobInput"}
+	if s.DiscoveryJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiscoveryJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *DescribeDiscoveryJobInput) SetDiscoveryJobArn(v string) *DescribeDiscoveryJobInput {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+type DescribeDiscoveryJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of minutes that the discovery job runs.
+	CollectionDurationMinutes *int64 `min:"60" type:"integer"`
+
+	// The ARN of the discovery job.
+	DiscoveryJobArn *string `type:"string"`
+
+	// The time when the discovery job ended.
+	JobEndTime *time.Time `type:"timestamp"`
+
+	// The time when the discovery job started.
+	JobStartTime *time.Time `type:"timestamp"`
+
+	// Indicates the status of a discovery job. For more information, see Discovery
+	// job statuses (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-job-statuses.html#discovery-job-statuses-table).
+	Status *string `type:"string" enum:"DiscoveryJobStatus"`
+
+	// The ARN of the on-premises storage system you're running the discovery job
+	// on.
+	StorageSystemArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDiscoveryJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDiscoveryJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollectionDurationMinutes sets the CollectionDurationMinutes field's value.
+func (s *DescribeDiscoveryJobOutput) SetCollectionDurationMinutes(v int64) *DescribeDiscoveryJobOutput {
+	s.CollectionDurationMinutes = &v
+	return s
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *DescribeDiscoveryJobOutput) SetDiscoveryJobArn(v string) *DescribeDiscoveryJobOutput {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+// SetJobEndTime sets the JobEndTime field's value.
+func (s *DescribeDiscoveryJobOutput) SetJobEndTime(v time.Time) *DescribeDiscoveryJobOutput {
+	s.JobEndTime = &v
+	return s
+}
+
+// SetJobStartTime sets the JobStartTime field's value.
+func (s *DescribeDiscoveryJobOutput) SetJobStartTime(v time.Time) *DescribeDiscoveryJobOutput {
+	s.JobStartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeDiscoveryJobOutput) SetStatus(v string) *DescribeDiscoveryJobOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *DescribeDiscoveryJobOutput) SetStorageSystemArn(v string) *DescribeDiscoveryJobOutput {
+	s.StorageSystemArn = &v
 	return s
 }
 
@@ -8015,6 +9829,492 @@ func (s *DescribeLocationSmbOutput) SetUser(v string) *DescribeLocationSmbOutput
 	return s
 }
 
+type DescribeStorageSystemInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of an on-premises storage system
+	// that you're using with DataSync Discovery.
+	//
+	// StorageSystemArn is a required field
+	StorageSystemArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStorageSystemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStorageSystemInput"}
+	if s.StorageSystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageSystemArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *DescribeStorageSystemInput) SetStorageSystemArn(v string) *DescribeStorageSystemInput {
+	s.StorageSystemArn = &v
+	return s
+}
+
+type DescribeStorageSystemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the DataSync agent that connects to and reads from your on-premises
+	// storage system.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The ARN of the Amazon CloudWatch log group that's used to monitor and log
+	// discovery job events.
+	CloudWatchLogGroupArn *string `type:"string"`
+
+	// Indicates whether your DataSync agent can connect to your on-premises storage
+	// system.
+	ConnectivityStatus *string `type:"string" enum:"StorageSystemConnectivityStatus"`
+
+	// The time when you added the on-premises storage system to DataSync Discovery.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// Describes the connectivity error that the DataSync agent is encountering
+	// with your on-premises storage system.
+	ErrorMessage *string `type:"string"`
+
+	// The name that you gave your on-premises storage system when adding it to
+	// DataSync Discovery.
+	Name *string `min:"1" type:"string"`
+
+	// The ARN of the secret that stores your on-premises storage system's credentials.
+	// DataSync Discovery stores these credentials in Secrets Manager (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-configure-storage.html#discovery-add-storage).
+	SecretsManagerArn *string `type:"string"`
+
+	// The server name and network port required to connect with your on-premises
+	// storage system's management interface.
+	ServerConfiguration *DiscoveryServerConfiguration `type:"structure"`
+
+	// The ARN of the on-premises storage system that the discovery job looked at.
+	StorageSystemArn *string `type:"string"`
+
+	// The type of on-premises storage system.
+	//
+	// DataSync Discovery currently only supports NetApp Fabric-Attached Storage
+	// (FAS) and All Flash FAS (AFF) systems running ONTAP 9.7 or later.
+	SystemType *string `type:"string" enum:"DiscoverySystemType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeStorageSystemOutput) SetAgentArns(v []*string) *DescribeStorageSystemOutput {
+	s.AgentArns = v
+	return s
+}
+
+// SetCloudWatchLogGroupArn sets the CloudWatchLogGroupArn field's value.
+func (s *DescribeStorageSystemOutput) SetCloudWatchLogGroupArn(v string) *DescribeStorageSystemOutput {
+	s.CloudWatchLogGroupArn = &v
+	return s
+}
+
+// SetConnectivityStatus sets the ConnectivityStatus field's value.
+func (s *DescribeStorageSystemOutput) SetConnectivityStatus(v string) *DescribeStorageSystemOutput {
+	s.ConnectivityStatus = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeStorageSystemOutput) SetCreationTime(v time.Time) *DescribeStorageSystemOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *DescribeStorageSystemOutput) SetErrorMessage(v string) *DescribeStorageSystemOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeStorageSystemOutput) SetName(v string) *DescribeStorageSystemOutput {
+	s.Name = &v
+	return s
+}
+
+// SetSecretsManagerArn sets the SecretsManagerArn field's value.
+func (s *DescribeStorageSystemOutput) SetSecretsManagerArn(v string) *DescribeStorageSystemOutput {
+	s.SecretsManagerArn = &v
+	return s
+}
+
+// SetServerConfiguration sets the ServerConfiguration field's value.
+func (s *DescribeStorageSystemOutput) SetServerConfiguration(v *DiscoveryServerConfiguration) *DescribeStorageSystemOutput {
+	s.ServerConfiguration = v
+	return s
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *DescribeStorageSystemOutput) SetStorageSystemArn(v string) *DescribeStorageSystemOutput {
+	s.StorageSystemArn = &v
+	return s
+}
+
+// SetSystemType sets the SystemType field's value.
+func (s *DescribeStorageSystemOutput) SetSystemType(v string) *DescribeStorageSystemOutput {
+	s.SystemType = &v
+	return s
+}
+
+type DescribeStorageSystemResourceMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the discovery job that collects
+	// information about your on-premises storage system.
+	//
+	// DiscoveryJobArn is a required field
+	DiscoveryJobArn *string `type:"string" required:"true"`
+
+	// Specifies a time within the total duration that the discovery job ran. To
+	// see information gathered during a certain time frame, use this parameter
+	// with StartTime.
+	EndTime *time.Time `type:"timestamp"`
+
+	// Specifies how many results that you want in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specifies an opaque string that indicates the position to begin the next
+	// list of results in the response.
+	NextToken *string `type:"string"`
+
+	// Specifies the universally unique identifier (UUID) of the storage system
+	// resource that you want information about.
+	//
+	// ResourceId is a required field
+	ResourceId *string `type:"string" required:"true"`
+
+	// Specifies the kind of storage system resource that you want information about.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"DiscoveryResourceType"`
+
+	// Specifies a time within the total duration that the discovery job ran. To
+	// see information gathered during a certain time frame, use this parameter
+	// with EndTime.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourceMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourceMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStorageSystemResourceMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStorageSystemResourceMetricsInput"}
+	if s.DiscoveryJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiscoveryJobArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *DescribeStorageSystemResourceMetricsInput) SetDiscoveryJobArn(v string) *DescribeStorageSystemResourceMetricsInput {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeStorageSystemResourceMetricsInput) SetEndTime(v time.Time) *DescribeStorageSystemResourceMetricsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeStorageSystemResourceMetricsInput) SetMaxResults(v int64) *DescribeStorageSystemResourceMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageSystemResourceMetricsInput) SetNextToken(v string) *DescribeStorageSystemResourceMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DescribeStorageSystemResourceMetricsInput) SetResourceId(v string) *DescribeStorageSystemResourceMetricsInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DescribeStorageSystemResourceMetricsInput) SetResourceType(v string) *DescribeStorageSystemResourceMetricsInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeStorageSystemResourceMetricsInput) SetStartTime(v time.Time) *DescribeStorageSystemResourceMetricsInput {
+	s.StartTime = &v
+	return s
+}
+
+type DescribeStorageSystemResourceMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details that your discovery job collected about your storage system resource.
+	Metrics []*ResourceMetrics `type:"list"`
+
+	// The opaque string that indicates the position to begin the next list of results
+	// in the response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourceMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourceMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *DescribeStorageSystemResourceMetricsOutput) SetMetrics(v []*ResourceMetrics) *DescribeStorageSystemResourceMetricsOutput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageSystemResourceMetricsOutput) SetNextToken(v string) *DescribeStorageSystemResourceMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeStorageSystemResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the discovery job that's collecting
+	// data from your on-premises storage system.
+	//
+	// DiscoveryJobArn is a required field
+	DiscoveryJobArn *string `type:"string" required:"true"`
+
+	// Filters the storage system resources that you want returned. For example,
+	// this might be volumes associated with a specific storage virtual machine
+	// (SVM).
+	Filter map[string][]*string `type:"map"`
+
+	// Specifies the maximum number of storage system resources that you want to
+	// list in a response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specifies an opaque string that indicates the position to begin the next
+	// list of results in the response.
+	NextToken *string `type:"string"`
+
+	// Specifies the universally unique identifiers (UUIDs) of the storage system
+	// resources that you want information about. You can't use this parameter in
+	// combination with the Filter parameter.
+	ResourceIds []*string `min:"1" type:"list"`
+
+	// Specifies what kind of storage system resources that you want information
+	// about.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"DiscoveryResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStorageSystemResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStorageSystemResourcesInput"}
+	if s.DiscoveryJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiscoveryJobArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceIds != nil && len(s.ResourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIds", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *DescribeStorageSystemResourcesInput) SetDiscoveryJobArn(v string) *DescribeStorageSystemResourcesInput {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *DescribeStorageSystemResourcesInput) SetFilter(v map[string][]*string) *DescribeStorageSystemResourcesInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeStorageSystemResourcesInput) SetMaxResults(v int64) *DescribeStorageSystemResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageSystemResourcesInput) SetNextToken(v string) *DescribeStorageSystemResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *DescribeStorageSystemResourcesInput) SetResourceIds(v []*string) *DescribeStorageSystemResourcesInput {
+	s.ResourceIds = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DescribeStorageSystemResourcesInput) SetResourceType(v string) *DescribeStorageSystemResourcesInput {
+	s.ResourceType = &v
+	return s
+}
+
+type DescribeStorageSystemResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The opaque string that indicates the position to begin the next list of results
+	// in the response.
+	NextToken *string `type:"string"`
+
+	// The information collected about your storage system's resources. A response
+	// can also include Amazon Web Services storage service recommendations.
+	//
+	// For more information, see storage resource information (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-findings.html)
+	// collected by and recommendations (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-recommendations.html)
+	// provided by DataSync Discovery.
+	ResourceDetails *ResourceDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStorageSystemResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageSystemResourcesOutput) SetNextToken(v string) *DescribeStorageSystemResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceDetails sets the ResourceDetails field's value.
+func (s *DescribeStorageSystemResourcesOutput) SetResourceDetails(v *ResourceDetails) *DescribeStorageSystemResourcesOutput {
+	s.ResourceDetails = v
+	return s
+}
+
 // DescribeTaskExecutionRequest
 type DescribeTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
@@ -8477,6 +10777,108 @@ func (s *DescribeTaskOutput) SetTaskArn(v string) *DescribeTaskOutput {
 	return s
 }
 
+// The details about a specific DataSync discovery job.
+type DiscoveryJobListEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a discovery job.
+	DiscoveryJobArn *string `type:"string"`
+
+	// The status of a discovery job. For more information, see Discovery job statuses
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-job-statuses.html#discovery-job-statuses-table).
+	Status *string `type:"string" enum:"DiscoveryJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoveryJobListEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoveryJobListEntry) GoString() string {
+	return s.String()
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *DiscoveryJobListEntry) SetDiscoveryJobArn(v string) *DiscoveryJobListEntry {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DiscoveryJobListEntry) SetStatus(v string) *DiscoveryJobListEntry {
+	s.Status = &v
+	return s
+}
+
+// The network settings that DataSync Discovery uses to connect with your on-premises
+// storage system's management interface.
+type DiscoveryServerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The domain name or IP address of your storage system's management interface.
+	//
+	// ServerHostname is a required field
+	ServerHostname *string `type:"string" required:"true"`
+
+	// The network port for accessing the storage system's management interface.
+	ServerPort *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoveryServerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoveryServerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DiscoveryServerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DiscoveryServerConfiguration"}
+	if s.ServerHostname == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerHostname"))
+	}
+	if s.ServerPort != nil && *s.ServerPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ServerPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServerHostname sets the ServerHostname field's value.
+func (s *DiscoveryServerConfiguration) SetServerHostname(v string) *DiscoveryServerConfiguration {
+	s.ServerHostname = &v
+	return s
+}
+
+// SetServerPort sets the ServerPort field's value.
+func (s *DiscoveryServerConfiguration) SetServerPort(v int64) *DiscoveryServerConfiguration {
+	s.ServerPort = &v
+	return s
+}
+
 // The subnet and security groups that DataSync uses to access your Amazon EFS
 // file system.
 type Ec2Config struct {
@@ -8803,6 +11205,108 @@ func (s *FsxProtocolSmb) SetUser(v string) *FsxProtocolSmb {
 	return s
 }
 
+type GenerateRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the discovery job that collects
+	// information about your on-premises storage system.
+	//
+	// DiscoveryJobArn is a required field
+	DiscoveryJobArn *string `type:"string" required:"true"`
+
+	// Specifies the universally unique identifiers (UUIDs) of the resources in
+	// your storage system that you want recommendations on.
+	//
+	// ResourceIds is a required field
+	ResourceIds []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies the type of resource in your storage system that you want recommendations
+	// on.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"DiscoveryResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerateRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerateRecommendationsInput"}
+	if s.DiscoveryJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiscoveryJobArn"))
+	}
+	if s.ResourceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIds"))
+	}
+	if s.ResourceIds != nil && len(s.ResourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIds", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *GenerateRecommendationsInput) SetDiscoveryJobArn(v string) *GenerateRecommendationsInput {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *GenerateRecommendationsInput) SetResourceIds(v []*string) *GenerateRecommendationsInput {
+	s.ResourceIds = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GenerateRecommendationsInput) SetResourceType(v string) *GenerateRecommendationsInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GenerateRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
 // The NameNode of the Hadoop Distributed File System (HDFS). The NameNode manages
 // the file system's namespace. The NameNode performs operations such as opening,
 // closing, and renaming files and directories. The NameNode contains the information
@@ -8872,6 +11376,66 @@ func (s *HdfsNameNode) SetHostname(v string) *HdfsNameNode {
 // SetPort sets the Port field's value.
 func (s *HdfsNameNode) SetPort(v int64) *HdfsNameNode {
 	s.Port = &v
+	return s
+}
+
+// The IOPS peaks for an on-premises storage system resource. Each data point
+// represents the 95th percentile peak value during a 1-hour interval.
+type IOPS struct {
+	_ struct{} `type:"structure"`
+
+	// Peak IOPS unrelated to read and write operations.
+	Other *float64 `type:"double"`
+
+	// Peak IOPS related to read operations.
+	Read *float64 `type:"double"`
+
+	// Peak total IOPS on your on-premises storage system resource.
+	Total *float64 `type:"double"`
+
+	// Peak IOPS related to write operations.
+	Write *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IOPS) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IOPS) GoString() string {
+	return s.String()
+}
+
+// SetOther sets the Other field's value.
+func (s *IOPS) SetOther(v float64) *IOPS {
+	s.Other = &v
+	return s
+}
+
+// SetRead sets the Read field's value.
+func (s *IOPS) SetRead(v float64) *IOPS {
+	s.Read = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *IOPS) SetTotal(v float64) *IOPS {
+	s.Total = &v
+	return s
+}
+
+// SetWrite sets the Write field's value.
+func (s *IOPS) SetWrite(v float64) *IOPS {
+	s.Write = &v
 	return s
 }
 
@@ -9009,6 +11573,57 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The latency peaks for an on-premises storage system resource. Each data point
+// represents the 95th percentile peak value during a 1-hour interval.
+type Latency struct {
+	_ struct{} `type:"structure"`
+
+	// Peak latency for operations unrelated to read and write operations.
+	Other *float64 `type:"double"`
+
+	// Peak latency for read operations.
+	Read *float64 `type:"double"`
+
+	// Peak latency for write operations.
+	Write *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Latency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Latency) GoString() string {
+	return s.String()
+}
+
+// SetOther sets the Other field's value.
+func (s *Latency) SetOther(v float64) *Latency {
+	s.Other = &v
+	return s
+}
+
+// SetRead sets the Read field's value.
+func (s *Latency) SetRead(v float64) *Latency {
+	s.Read = &v
+	return s
+}
+
+// SetWrite sets the Write field's value.
+func (s *Latency) SetWrite(v float64) *Latency {
+	s.Write = &v
+	return s
+}
+
 // ListAgentsRequest
 type ListAgentsInput struct {
 	_ struct{} `type:"structure"`
@@ -9092,6 +11707,112 @@ func (s *ListAgentsOutput) SetAgents(v []*AgentListEntry) *ListAgentsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAgentsOutput) SetNextToken(v string) *ListAgentsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDiscoveryJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how many results you want in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specifies an opaque string that indicates the position to begin the next
+	// list of results in the response.
+	NextToken *string `type:"string"`
+
+	// Specifies the Amazon Resource Name (ARN) of an on-premises storage system.
+	// Use this parameter if you only want to list the discovery jobs that are associated
+	// with a specific storage system.
+	StorageSystemArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveryJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveryJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDiscoveryJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDiscoveryJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDiscoveryJobsInput) SetMaxResults(v int64) *ListDiscoveryJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDiscoveryJobsInput) SetNextToken(v string) *ListDiscoveryJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *ListDiscoveryJobsInput) SetStorageSystemArn(v string) *ListDiscoveryJobsInput {
+	s.StorageSystemArn = &v
+	return s
+}
+
+type ListDiscoveryJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The discovery jobs that you've run.
+	DiscoveryJobs []*DiscoveryJobListEntry `type:"list"`
+
+	// The opaque string that indicates the position to begin the next list of results
+	// in the response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveryJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveryJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDiscoveryJobs sets the DiscoveryJobs field's value.
+func (s *ListDiscoveryJobsOutput) SetDiscoveryJobs(v []*DiscoveryJobListEntry) *ListDiscoveryJobsOutput {
+	s.DiscoveryJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDiscoveryJobsOutput) SetNextToken(v string) *ListDiscoveryJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -9208,6 +11929,102 @@ func (s *ListLocationsOutput) SetLocations(v []*LocationListEntry) *ListLocation
 // SetNextToken sets the NextToken field's value.
 func (s *ListLocationsOutput) SetNextToken(v string) *ListLocationsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListStorageSystemsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how many results you want in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specifies an opaque string that indicates the position to begin the next
+	// list of results in the response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageSystemsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageSystemsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStorageSystemsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStorageSystemsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStorageSystemsInput) SetMaxResults(v int64) *ListStorageSystemsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageSystemsInput) SetNextToken(v string) *ListStorageSystemsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListStorageSystemsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The opaque string that indicates the position to begin the next list of results
+	// in the response.
+	NextToken *string `type:"string"`
+
+	// The Amazon Resource Names ARNs) of the on-premises storage systems that you're
+	// using with DataSync Discovery.
+	StorageSystems []*StorageSystemListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageSystemsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStorageSystemsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageSystemsOutput) SetNextToken(v string) *ListStorageSystemsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageSystems sets the StorageSystems field's value.
+func (s *ListStorageSystemsOutput) SetStorageSystems(v []*StorageSystemListEntry) *ListStorageSystemsOutput {
+	s.StorageSystems = v
 	return s
 }
 
@@ -9672,6 +12489,553 @@ func (s *LocationListEntry) SetLocationUri(v string) *LocationListEntry {
 	return s
 }
 
+// The performance data that DataSync Discovery collects about an on-premises
+// storage system resource.
+type MaxP95Performance struct {
+	_ struct{} `type:"structure"`
+
+	// Peak IOPS unrelated to read and write operations.
+	IopsOther *float64 `type:"double"`
+
+	// Peak IOPS related to read operations.
+	IopsRead *float64 `type:"double"`
+
+	// Peak total IOPS on your on-premises storage system resource.
+	IopsTotal *float64 `type:"double"`
+
+	// Peak IOPS related to write operations.
+	IopsWrite *float64 `type:"double"`
+
+	// Peak latency for operations unrelated to read and write operations.
+	LatencyOther *float64 `type:"double"`
+
+	// Peak latency for read operations.
+	LatencyRead *float64 `type:"double"`
+
+	// Peak latency for write operations.
+	LatencyWrite *float64 `type:"double"`
+
+	// Peak throughput unrelated to read and write operations.
+	ThroughputOther *float64 `type:"double"`
+
+	// Peak throughput related to read operations.
+	ThroughputRead *float64 `type:"double"`
+
+	// Peak total throughput on your on-premises storage system resource.
+	ThroughputTotal *float64 `type:"double"`
+
+	// Peak throughput related to write operations.
+	ThroughputWrite *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaxP95Performance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaxP95Performance) GoString() string {
+	return s.String()
+}
+
+// SetIopsOther sets the IopsOther field's value.
+func (s *MaxP95Performance) SetIopsOther(v float64) *MaxP95Performance {
+	s.IopsOther = &v
+	return s
+}
+
+// SetIopsRead sets the IopsRead field's value.
+func (s *MaxP95Performance) SetIopsRead(v float64) *MaxP95Performance {
+	s.IopsRead = &v
+	return s
+}
+
+// SetIopsTotal sets the IopsTotal field's value.
+func (s *MaxP95Performance) SetIopsTotal(v float64) *MaxP95Performance {
+	s.IopsTotal = &v
+	return s
+}
+
+// SetIopsWrite sets the IopsWrite field's value.
+func (s *MaxP95Performance) SetIopsWrite(v float64) *MaxP95Performance {
+	s.IopsWrite = &v
+	return s
+}
+
+// SetLatencyOther sets the LatencyOther field's value.
+func (s *MaxP95Performance) SetLatencyOther(v float64) *MaxP95Performance {
+	s.LatencyOther = &v
+	return s
+}
+
+// SetLatencyRead sets the LatencyRead field's value.
+func (s *MaxP95Performance) SetLatencyRead(v float64) *MaxP95Performance {
+	s.LatencyRead = &v
+	return s
+}
+
+// SetLatencyWrite sets the LatencyWrite field's value.
+func (s *MaxP95Performance) SetLatencyWrite(v float64) *MaxP95Performance {
+	s.LatencyWrite = &v
+	return s
+}
+
+// SetThroughputOther sets the ThroughputOther field's value.
+func (s *MaxP95Performance) SetThroughputOther(v float64) *MaxP95Performance {
+	s.ThroughputOther = &v
+	return s
+}
+
+// SetThroughputRead sets the ThroughputRead field's value.
+func (s *MaxP95Performance) SetThroughputRead(v float64) *MaxP95Performance {
+	s.ThroughputRead = &v
+	return s
+}
+
+// SetThroughputTotal sets the ThroughputTotal field's value.
+func (s *MaxP95Performance) SetThroughputTotal(v float64) *MaxP95Performance {
+	s.ThroughputTotal = &v
+	return s
+}
+
+// SetThroughputWrite sets the ThroughputWrite field's value.
+func (s *MaxP95Performance) SetThroughputWrite(v float64) *MaxP95Performance {
+	s.ThroughputWrite = &v
+	return s
+}
+
+// The information that DataSync Discovery collects about an on-premises storage
+// system cluster.
+type NetAppONTAPCluster struct {
+	_ struct{} `type:"structure"`
+
+	// The number of CIFS shares in the cluster.
+	CifsShareCount *int64 `type:"long"`
+
+	// The storage space that's being used in the cluster without accounting for
+	// compression or deduplication.
+	ClusterBlockStorageLogicalUsed *int64 `type:"long"`
+
+	// The total storage space that's available in the cluster.
+	ClusterBlockStorageSize *int64 `type:"long"`
+
+	// The storage space that's being used in a cluster.
+	ClusterBlockStorageUsed *int64 `type:"long"`
+
+	// The name of the cluster.
+	ClusterName *string `type:"string"`
+
+	// The performance data that DataSync Discovery collects about the cluster.
+	MaxP95Performance *MaxP95Performance `type:"structure"`
+
+	// The number of NFS volumes in the cluster.
+	NfsExportedVolumes *int64 `type:"long"`
+
+	// Indicates whether DataSync Discovery recommendations for the cluster are
+	// ready to view, incomplete, or can't be determined.
+	//
+	// For more information, see Recommendation statuses (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-job-statuses.html#recommendation-statuses-table).
+	RecommendationStatus *string `type:"string" enum:"RecommendationStatus"`
+
+	// The Amazon Web Services storage services that DataSync Discovery recommends
+	// for the cluster. For more information, see Recommendations provided by DataSync
+	// Discovery (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-recommendations.html).
+	Recommendations []*Recommendation `type:"list"`
+
+	// The universally unique identifier (UUID) of the cluster.
+	ResourceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetAppONTAPCluster) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetAppONTAPCluster) GoString() string {
+	return s.String()
+}
+
+// SetCifsShareCount sets the CifsShareCount field's value.
+func (s *NetAppONTAPCluster) SetCifsShareCount(v int64) *NetAppONTAPCluster {
+	s.CifsShareCount = &v
+	return s
+}
+
+// SetClusterBlockStorageLogicalUsed sets the ClusterBlockStorageLogicalUsed field's value.
+func (s *NetAppONTAPCluster) SetClusterBlockStorageLogicalUsed(v int64) *NetAppONTAPCluster {
+	s.ClusterBlockStorageLogicalUsed = &v
+	return s
+}
+
+// SetClusterBlockStorageSize sets the ClusterBlockStorageSize field's value.
+func (s *NetAppONTAPCluster) SetClusterBlockStorageSize(v int64) *NetAppONTAPCluster {
+	s.ClusterBlockStorageSize = &v
+	return s
+}
+
+// SetClusterBlockStorageUsed sets the ClusterBlockStorageUsed field's value.
+func (s *NetAppONTAPCluster) SetClusterBlockStorageUsed(v int64) *NetAppONTAPCluster {
+	s.ClusterBlockStorageUsed = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *NetAppONTAPCluster) SetClusterName(v string) *NetAppONTAPCluster {
+	s.ClusterName = &v
+	return s
+}
+
+// SetMaxP95Performance sets the MaxP95Performance field's value.
+func (s *NetAppONTAPCluster) SetMaxP95Performance(v *MaxP95Performance) *NetAppONTAPCluster {
+	s.MaxP95Performance = v
+	return s
+}
+
+// SetNfsExportedVolumes sets the NfsExportedVolumes field's value.
+func (s *NetAppONTAPCluster) SetNfsExportedVolumes(v int64) *NetAppONTAPCluster {
+	s.NfsExportedVolumes = &v
+	return s
+}
+
+// SetRecommendationStatus sets the RecommendationStatus field's value.
+func (s *NetAppONTAPCluster) SetRecommendationStatus(v string) *NetAppONTAPCluster {
+	s.RecommendationStatus = &v
+	return s
+}
+
+// SetRecommendations sets the Recommendations field's value.
+func (s *NetAppONTAPCluster) SetRecommendations(v []*Recommendation) *NetAppONTAPCluster {
+	s.Recommendations = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *NetAppONTAPCluster) SetResourceId(v string) *NetAppONTAPCluster {
+	s.ResourceId = &v
+	return s
+}
+
+// The information that DataSync Discovery collects about a storage virtual
+// machine (SVM) in your on-premises storage system.
+type NetAppONTAPSVM struct {
+	_ struct{} `type:"structure"`
+
+	// The number of CIFS shares in the SVM.
+	CifsShareCount *int64 `type:"long"`
+
+	// The universally unique identifier (UUID) of the cluster associated with the
+	// SVM.
+	ClusterUuid *string `type:"string"`
+
+	// The data transfer protocols (such as NFS) configured for the SVM.
+	EnabledProtocols []*string `type:"list"`
+
+	// The performance data that DataSync Discovery collects about the SVM.
+	MaxP95Performance *MaxP95Performance `type:"structure"`
+
+	// The number of NFS volumes in the SVM.
+	NfsExportedVolumes *int64 `type:"long"`
+
+	// Indicates whether DataSync Discovery recommendations for the SVM are ready
+	// to view, incomplete, or can't be determined.
+	//
+	// For more information, see Recommendation statuses (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-job-statuses.html#recommendation-statuses-table).
+	RecommendationStatus *string `type:"string" enum:"RecommendationStatus"`
+
+	// The Amazon Web Services storage services that DataSync Discovery recommends
+	// for the SVM. For more information, see Recommendations provided by DataSync
+	// Discovery (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-recommendations.html).
+	Recommendations []*Recommendation `type:"list"`
+
+	// The UUID of the SVM.
+	ResourceId *string `type:"string"`
+
+	// The name of the SVM
+	SvmName *string `type:"string"`
+
+	// The total storage space that's available in the SVM.
+	TotalCapacityProvisioned *int64 `type:"long"`
+
+	// The storage space that's being used in the SVM.
+	TotalCapacityUsed *int64 `type:"long"`
+
+	// The storage space that's being used in the SVM without accounting for compression
+	// or deduplication.
+	TotalLogicalCapacityUsed *int64 `type:"long"`
+
+	// The amount of storage in the SVM that's being used for snapshots.
+	TotalSnapshotCapacityUsed *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetAppONTAPSVM) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetAppONTAPSVM) GoString() string {
+	return s.String()
+}
+
+// SetCifsShareCount sets the CifsShareCount field's value.
+func (s *NetAppONTAPSVM) SetCifsShareCount(v int64) *NetAppONTAPSVM {
+	s.CifsShareCount = &v
+	return s
+}
+
+// SetClusterUuid sets the ClusterUuid field's value.
+func (s *NetAppONTAPSVM) SetClusterUuid(v string) *NetAppONTAPSVM {
+	s.ClusterUuid = &v
+	return s
+}
+
+// SetEnabledProtocols sets the EnabledProtocols field's value.
+func (s *NetAppONTAPSVM) SetEnabledProtocols(v []*string) *NetAppONTAPSVM {
+	s.EnabledProtocols = v
+	return s
+}
+
+// SetMaxP95Performance sets the MaxP95Performance field's value.
+func (s *NetAppONTAPSVM) SetMaxP95Performance(v *MaxP95Performance) *NetAppONTAPSVM {
+	s.MaxP95Performance = v
+	return s
+}
+
+// SetNfsExportedVolumes sets the NfsExportedVolumes field's value.
+func (s *NetAppONTAPSVM) SetNfsExportedVolumes(v int64) *NetAppONTAPSVM {
+	s.NfsExportedVolumes = &v
+	return s
+}
+
+// SetRecommendationStatus sets the RecommendationStatus field's value.
+func (s *NetAppONTAPSVM) SetRecommendationStatus(v string) *NetAppONTAPSVM {
+	s.RecommendationStatus = &v
+	return s
+}
+
+// SetRecommendations sets the Recommendations field's value.
+func (s *NetAppONTAPSVM) SetRecommendations(v []*Recommendation) *NetAppONTAPSVM {
+	s.Recommendations = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *NetAppONTAPSVM) SetResourceId(v string) *NetAppONTAPSVM {
+	s.ResourceId = &v
+	return s
+}
+
+// SetSvmName sets the SvmName field's value.
+func (s *NetAppONTAPSVM) SetSvmName(v string) *NetAppONTAPSVM {
+	s.SvmName = &v
+	return s
+}
+
+// SetTotalCapacityProvisioned sets the TotalCapacityProvisioned field's value.
+func (s *NetAppONTAPSVM) SetTotalCapacityProvisioned(v int64) *NetAppONTAPSVM {
+	s.TotalCapacityProvisioned = &v
+	return s
+}
+
+// SetTotalCapacityUsed sets the TotalCapacityUsed field's value.
+func (s *NetAppONTAPSVM) SetTotalCapacityUsed(v int64) *NetAppONTAPSVM {
+	s.TotalCapacityUsed = &v
+	return s
+}
+
+// SetTotalLogicalCapacityUsed sets the TotalLogicalCapacityUsed field's value.
+func (s *NetAppONTAPSVM) SetTotalLogicalCapacityUsed(v int64) *NetAppONTAPSVM {
+	s.TotalLogicalCapacityUsed = &v
+	return s
+}
+
+// SetTotalSnapshotCapacityUsed sets the TotalSnapshotCapacityUsed field's value.
+func (s *NetAppONTAPSVM) SetTotalSnapshotCapacityUsed(v int64) *NetAppONTAPSVM {
+	s.TotalSnapshotCapacityUsed = &v
+	return s
+}
+
+// The information that DataSync Discovery collects about a volume in your on-premises
+// storage system.
+type NetAppONTAPVolume struct {
+	_ struct{} `type:"structure"`
+
+	// The total storage space that's available in the volume.
+	CapacityProvisioned *int64 `type:"long"`
+
+	// The storage space that's being used in the volume.
+	CapacityUsed *int64 `type:"long"`
+
+	// The number of CIFS shares in the volume.
+	CifsShareCount *int64 `type:"long"`
+
+	// The storage space that's being used in the volume without accounting for
+	// compression or deduplication.
+	LogicalCapacityUsed *int64 `type:"long"`
+
+	// The performance data that DataSync Discovery collects about the volume.
+	MaxP95Performance *MaxP95Performance `type:"structure"`
+
+	// The number of NFS volumes in the volume.
+	NfsExported *bool `type:"boolean"`
+
+	// Indicates whether DataSync Discovery recommendations for the volume are ready
+	// to view, incomplete, or can't be determined.
+	//
+	// For more information, see Recommendation statuses (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-job-statuses.html#recommendation-statuses-table).
+	RecommendationStatus *string `type:"string" enum:"RecommendationStatus"`
+
+	// The Amazon Web Services storage services that DataSync Discovery recommends
+	// for the volume. For more information, see Recommendations provided by DataSync
+	// Discovery (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-recommendations.html).
+	Recommendations []*Recommendation `type:"list"`
+
+	// The universally unique identifier (UUID) of the volume.
+	ResourceId *string `type:"string"`
+
+	// The volume's security style (such as Unix or NTFS).
+	SecurityStyle *string `type:"string"`
+
+	// The amount of storage in the volume that's being used for snapshots.
+	SnapshotCapacityUsed *int64 `type:"long"`
+
+	// The name of the SVM associated with the volume.
+	SvmName *string `type:"string"`
+
+	// The UUID of the storage virtual machine (SVM) associated with the volume.
+	SvmUuid *string `type:"string"`
+
+	// The name of the volume.
+	VolumeName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetAppONTAPVolume) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetAppONTAPVolume) GoString() string {
+	return s.String()
+}
+
+// SetCapacityProvisioned sets the CapacityProvisioned field's value.
+func (s *NetAppONTAPVolume) SetCapacityProvisioned(v int64) *NetAppONTAPVolume {
+	s.CapacityProvisioned = &v
+	return s
+}
+
+// SetCapacityUsed sets the CapacityUsed field's value.
+func (s *NetAppONTAPVolume) SetCapacityUsed(v int64) *NetAppONTAPVolume {
+	s.CapacityUsed = &v
+	return s
+}
+
+// SetCifsShareCount sets the CifsShareCount field's value.
+func (s *NetAppONTAPVolume) SetCifsShareCount(v int64) *NetAppONTAPVolume {
+	s.CifsShareCount = &v
+	return s
+}
+
+// SetLogicalCapacityUsed sets the LogicalCapacityUsed field's value.
+func (s *NetAppONTAPVolume) SetLogicalCapacityUsed(v int64) *NetAppONTAPVolume {
+	s.LogicalCapacityUsed = &v
+	return s
+}
+
+// SetMaxP95Performance sets the MaxP95Performance field's value.
+func (s *NetAppONTAPVolume) SetMaxP95Performance(v *MaxP95Performance) *NetAppONTAPVolume {
+	s.MaxP95Performance = v
+	return s
+}
+
+// SetNfsExported sets the NfsExported field's value.
+func (s *NetAppONTAPVolume) SetNfsExported(v bool) *NetAppONTAPVolume {
+	s.NfsExported = &v
+	return s
+}
+
+// SetRecommendationStatus sets the RecommendationStatus field's value.
+func (s *NetAppONTAPVolume) SetRecommendationStatus(v string) *NetAppONTAPVolume {
+	s.RecommendationStatus = &v
+	return s
+}
+
+// SetRecommendations sets the Recommendations field's value.
+func (s *NetAppONTAPVolume) SetRecommendations(v []*Recommendation) *NetAppONTAPVolume {
+	s.Recommendations = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *NetAppONTAPVolume) SetResourceId(v string) *NetAppONTAPVolume {
+	s.ResourceId = &v
+	return s
+}
+
+// SetSecurityStyle sets the SecurityStyle field's value.
+func (s *NetAppONTAPVolume) SetSecurityStyle(v string) *NetAppONTAPVolume {
+	s.SecurityStyle = &v
+	return s
+}
+
+// SetSnapshotCapacityUsed sets the SnapshotCapacityUsed field's value.
+func (s *NetAppONTAPVolume) SetSnapshotCapacityUsed(v int64) *NetAppONTAPVolume {
+	s.SnapshotCapacityUsed = &v
+	return s
+}
+
+// SetSvmName sets the SvmName field's value.
+func (s *NetAppONTAPVolume) SetSvmName(v string) *NetAppONTAPVolume {
+	s.SvmName = &v
+	return s
+}
+
+// SetSvmUuid sets the SvmUuid field's value.
+func (s *NetAppONTAPVolume) SetSvmUuid(v string) *NetAppONTAPVolume {
+	s.SvmUuid = &v
+	return s
+}
+
+// SetVolumeName sets the VolumeName field's value.
+func (s *NetAppONTAPVolume) SetVolumeName(v string) *NetAppONTAPVolume {
+	s.VolumeName = &v
+	return s
+}
+
 // Specifies how DataSync can access a location using the NFS protocol.
 type NfsMountOptions struct {
 	_ struct{} `type:"structure"`
@@ -10117,6 +13481,60 @@ func (s *Options) SetVerifyMode(v string) *Options {
 	return s
 }
 
+// The types of performance data that DataSync Discovery collects about an on-premises
+// storage system resource.
+type P95Metrics struct {
+	_ struct{} `type:"structure"`
+
+	// The IOPS peaks for an on-premises storage system resource. Each data point
+	// represents the 95th percentile peak value during a 1-hour interval.
+	IOPS *IOPS `type:"structure"`
+
+	// The latency peaks for an on-premises storage system resource. Each data point
+	// represents the 95th percentile peak value during a 1-hour interval.
+	Latency *Latency `type:"structure"`
+
+	// The throughput peaks for an on-premises storage system resource. Each data
+	// point represents the 95th percentile peak value during a 1-hour interval.
+	Throughput *Throughput `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s P95Metrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s P95Metrics) GoString() string {
+	return s.String()
+}
+
+// SetIOPS sets the IOPS field's value.
+func (s *P95Metrics) SetIOPS(v *IOPS) *P95Metrics {
+	s.IOPS = v
+	return s
+}
+
+// SetLatency sets the Latency field's value.
+func (s *P95Metrics) SetLatency(v *Latency) *P95Metrics {
+	s.Latency = v
+	return s
+}
+
+// SetThroughput sets the Throughput field's value.
+func (s *P95Metrics) SetThroughput(v *Throughput) *P95Metrics {
+	s.Throughput = v
+	return s
+}
+
 // The VPC endpoint, subnet, and security group that an agent uses to access
 // IP addresses in a VPC (Virtual Private Cloud).
 type PrivateLinkConfig struct {
@@ -10232,6 +13650,258 @@ func (s *QopConfiguration) SetRpcProtection(v string) *QopConfiguration {
 	return s
 }
 
+// The details about an Amazon Web Services storage service that DataSync Discovery
+// recommends for a resource in your on-premises storage system.
+//
+// For more information, see Recommendations provided by DataSync Discovery
+// (https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-recommendations.html).
+type Recommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated monthly cost of the recommended Amazon Web Services storage
+	// service.
+	EstimatedMonthlyStorageCost *string `type:"string"`
+
+	// Information about how you can set up a recommended Amazon Web Services storage
+	// service.
+	StorageConfiguration map[string]*string `type:"map"`
+
+	// A recommended Amazon Web Services storage service that you can migrate data
+	// to based on information that DataSync Discovery collects about your on-premises
+	// storage system.
+	StorageType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlyStorageCost sets the EstimatedMonthlyStorageCost field's value.
+func (s *Recommendation) SetEstimatedMonthlyStorageCost(v string) *Recommendation {
+	s.EstimatedMonthlyStorageCost = &v
+	return s
+}
+
+// SetStorageConfiguration sets the StorageConfiguration field's value.
+func (s *Recommendation) SetStorageConfiguration(v map[string]*string) *Recommendation {
+	s.StorageConfiguration = v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *Recommendation) SetStorageType(v string) *Recommendation {
+	s.StorageType = &v
+	return s
+}
+
+type RemoveStorageSystemInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the storage system that you want
+	// to permanently remove from DataSync Discovery.
+	//
+	// StorageSystemArn is a required field
+	StorageSystemArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveStorageSystemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveStorageSystemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveStorageSystemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveStorageSystemInput"}
+	if s.StorageSystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageSystemArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *RemoveStorageSystemInput) SetStorageSystemArn(v string) *RemoveStorageSystemInput {
+	s.StorageSystemArn = &v
+	return s
+}
+
+type RemoveStorageSystemOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveStorageSystemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveStorageSystemOutput) GoString() string {
+	return s.String()
+}
+
+// Information provided by DataSync Discovery about the resources in your on-premises
+// storage system.
+type ResourceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The information that DataSync Discovery collects about the cluster in your
+	// on-premises storage system.
+	NetAppONTAPClusters []*NetAppONTAPCluster `type:"list"`
+
+	// The information that DataSync Discovery collects about storage virtual machines
+	// (SVMs) in your on-premises storage system.
+	NetAppONTAPSVMs []*NetAppONTAPSVM `type:"list"`
+
+	// The information that DataSync Discovery collects about volumes in your on-premises
+	// storage system.
+	NetAppONTAPVolumes []*NetAppONTAPVolume `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDetails) GoString() string {
+	return s.String()
+}
+
+// SetNetAppONTAPClusters sets the NetAppONTAPClusters field's value.
+func (s *ResourceDetails) SetNetAppONTAPClusters(v []*NetAppONTAPCluster) *ResourceDetails {
+	s.NetAppONTAPClusters = v
+	return s
+}
+
+// SetNetAppONTAPSVMs sets the NetAppONTAPSVMs field's value.
+func (s *ResourceDetails) SetNetAppONTAPSVMs(v []*NetAppONTAPSVM) *ResourceDetails {
+	s.NetAppONTAPSVMs = v
+	return s
+}
+
+// SetNetAppONTAPVolumes sets the NetAppONTAPVolumes field's value.
+func (s *ResourceDetails) SetNetAppONTAPVolumes(v []*NetAppONTAPVolume) *ResourceDetails {
+	s.NetAppONTAPVolumes = v
+	return s
+}
+
+// Information, including performance data and capacity usage, provided by DataSync
+// Discovery about a resource in your on-premises storage system.
+type ResourceMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The storage capacity of the on-premises storage system resource.
+	Capacity *Capacity `type:"structure"`
+
+	// The types of performance data that DataSync Discovery collects about the
+	// on-premises storage system resource.
+	P95Metrics *P95Metrics `type:"structure"`
+
+	// The universally unique identifier (UUID) of the on-premises storage system
+	// resource.
+	ResourceId *string `type:"string"`
+
+	// The type of on-premises storage system resource.
+	ResourceType *string `type:"string" enum:"DiscoveryResourceType"`
+
+	// The time when DataSync Discovery collected this information from the resource.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceMetrics) GoString() string {
+	return s.String()
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *ResourceMetrics) SetCapacity(v *Capacity) *ResourceMetrics {
+	s.Capacity = v
+	return s
+}
+
+// SetP95Metrics sets the P95Metrics field's value.
+func (s *ResourceMetrics) SetP95Metrics(v *P95Metrics) *ResourceMetrics {
+	s.P95Metrics = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ResourceMetrics) SetResourceId(v string) *ResourceMetrics {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceMetrics) SetResourceType(v string) *ResourceMetrics {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *ResourceMetrics) SetTimestamp(v time.Time) *ResourceMetrics {
+	s.Timestamp = &v
+	return s
+}
+
 // The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
 // role used to access an Amazon S3 bucket.
 //
@@ -10295,11 +13965,11 @@ type SmbMountOptions struct {
 	//
 	// These are the following options for configuring the SMB version:
 	//
-	//    * AUTOMATIC (default): DataSync and the SMB file server negotiate a protocol
-	//    version that they mutually support. (DataSync supports SMB versions 1.0
-	//    and later.) This is the recommended option. If you instead choose a specific
-	//    version that your file server doesn't support, you may get an Operation
-	//    Not Supported error.
+	//    * AUTOMATIC (default): DataSync and the SMB file server negotiate the
+	//    highest version of SMB that they mutually support between 2.1 and 3.1.1.
+	//    This is the recommended option. If you instead choose a specific version
+	//    that your file server doesn't support, you may get an Operation Not Supported
+	//    error.
 	//
 	//    * SMB3: Restricts the protocol negotiation to only SMB version 3.0.2.
 	//
@@ -10334,6 +14004,137 @@ func (s SmbMountOptions) GoString() string {
 // SetVersion sets the Version field's value.
 func (s *SmbMountOptions) SetVersion(v string) *SmbMountOptions {
 	s.Version = &v
+	return s
+}
+
+type StartDiscoveryJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a client token to make sure requests with this API operation are
+	// idempotent. If you don't specify a client token, DataSync generates one for
+	// you automatically.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// Specifies in minutes how long you want the discovery job to run.
+	//
+	// For more accurate recommendations, we recommend a duration of at least 14
+	// days. Longer durations allow time to collect a sufficient number of data
+	// points and provide a realistic representation of storage performance and
+	// utilization.
+	//
+	// CollectionDurationMinutes is a required field
+	CollectionDurationMinutes *int64 `min:"60" type:"integer" required:"true"`
+
+	// Specifies the Amazon Resource Name (ARN) of the on-premises storage system
+	// that you want to run the discovery job on.
+	//
+	// StorageSystemArn is a required field
+	StorageSystemArn *string `type:"string" required:"true"`
+
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDiscoveryJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDiscoveryJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDiscoveryJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDiscoveryJobInput"}
+	if s.CollectionDurationMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionDurationMinutes"))
+	}
+	if s.CollectionDurationMinutes != nil && *s.CollectionDurationMinutes < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("CollectionDurationMinutes", 60))
+	}
+	if s.StorageSystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageSystemArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartDiscoveryJobInput) SetClientToken(v string) *StartDiscoveryJobInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCollectionDurationMinutes sets the CollectionDurationMinutes field's value.
+func (s *StartDiscoveryJobInput) SetCollectionDurationMinutes(v int64) *StartDiscoveryJobInput {
+	s.CollectionDurationMinutes = &v
+	return s
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *StartDiscoveryJobInput) SetStorageSystemArn(v string) *StartDiscoveryJobInput {
+	s.StorageSystemArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartDiscoveryJobInput) SetTags(v []*TagListEntry) *StartDiscoveryJobInput {
+	s.Tags = v
+	return s
+}
+
+type StartDiscoveryJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the discovery job that you started.
+	DiscoveryJobArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDiscoveryJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDiscoveryJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *StartDiscoveryJobOutput) SetDiscoveryJobArn(v string) *StartDiscoveryJobOutput {
+	s.DiscoveryJobArn = &v
 	return s
 }
 
@@ -10480,6 +14281,118 @@ func (s StartTaskExecutionOutput) GoString() string {
 // SetTaskExecutionArn sets the TaskExecutionArn field's value.
 func (s *StartTaskExecutionOutput) SetTaskExecutionArn(v string) *StartTaskExecutionOutput {
 	s.TaskExecutionArn = &v
+	return s
+}
+
+type StopDiscoveryJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the discovery job that you want
+	// to stop.
+	//
+	// DiscoveryJobArn is a required field
+	DiscoveryJobArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopDiscoveryJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopDiscoveryJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopDiscoveryJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopDiscoveryJobInput"}
+	if s.DiscoveryJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiscoveryJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *StopDiscoveryJobInput) SetDiscoveryJobArn(v string) *StopDiscoveryJobInput {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+type StopDiscoveryJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopDiscoveryJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopDiscoveryJobOutput) GoString() string {
+	return s.String()
+}
+
+// Information that identifies an on-premises storage system that you're using
+// with DataSync Discovery.
+type StorageSystemListEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an on-premises storage system that you added to DataSync Discovery.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Names (ARN) of an on-premises storage system that you
+	// added to DataSync Discovery.
+	StorageSystemArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageSystemListEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageSystemListEntry) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *StorageSystemListEntry) SetName(v string) *StorageSystemListEntry {
+	s.Name = &v
+	return s
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *StorageSystemListEntry) SetStorageSystemArn(v string) *StorageSystemListEntry {
+	s.StorageSystemArn = &v
 	return s
 }
 
@@ -10978,6 +14891,66 @@ func (s *TaskSchedule) SetScheduleExpression(v string) *TaskSchedule {
 	return s
 }
 
+// The throughput peaks for an on-premises storage system volume. Each data
+// point represents the 95th percentile peak value during a 1-hour interval.
+type Throughput struct {
+	_ struct{} `type:"structure"`
+
+	// Peak throughput unrelated to read and write operations.
+	Other *float64 `type:"double"`
+
+	// Peak throughput related to read operations.
+	Read *float64 `type:"double"`
+
+	// Peak total throughput on your on-premises storage system resource.
+	Total *float64 `type:"double"`
+
+	// Peak throughput related to write operations.
+	Write *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Throughput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Throughput) GoString() string {
+	return s.String()
+}
+
+// SetOther sets the Other field's value.
+func (s *Throughput) SetOther(v float64) *Throughput {
+	s.Other = &v
+	return s
+}
+
+// SetRead sets the Read field's value.
+func (s *Throughput) SetRead(v float64) *Throughput {
+	s.Read = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *Throughput) SetTotal(v float64) *Throughput {
+	s.Total = &v
+	return s
+}
+
+// SetWrite sets the Write field's value.
+func (s *Throughput) SetWrite(v float64) *Throughput {
+	s.Write = &v
+	return s
+}
+
 // UntagResourceRequest
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
@@ -11143,6 +15116,94 @@ func (s UpdateAgentOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateAgentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateDiscoveryJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies in minutes how long that you want the discovery job to run. (You
+	// can't set this parameter to less than the number of minutes that the job
+	// has already run for.)
+	//
+	// CollectionDurationMinutes is a required field
+	CollectionDurationMinutes *int64 `min:"60" type:"integer" required:"true"`
+
+	// Specifies the Amazon Resource Name (ARN) of the discovery job that you want
+	// to update.
+	//
+	// DiscoveryJobArn is a required field
+	DiscoveryJobArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDiscoveryJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDiscoveryJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDiscoveryJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDiscoveryJobInput"}
+	if s.CollectionDurationMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionDurationMinutes"))
+	}
+	if s.CollectionDurationMinutes != nil && *s.CollectionDurationMinutes < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("CollectionDurationMinutes", 60))
+	}
+	if s.DiscoveryJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiscoveryJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionDurationMinutes sets the CollectionDurationMinutes field's value.
+func (s *UpdateDiscoveryJobInput) SetCollectionDurationMinutes(v int64) *UpdateDiscoveryJobInput {
+	s.CollectionDurationMinutes = &v
+	return s
+}
+
+// SetDiscoveryJobArn sets the DiscoveryJobArn field's value.
+func (s *UpdateDiscoveryJobInput) SetDiscoveryJobArn(v string) *UpdateDiscoveryJobInput {
+	s.DiscoveryJobArn = &v
+	return s
+}
+
+type UpdateDiscoveryJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDiscoveryJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDiscoveryJobOutput) GoString() string {
 	return s.String()
 }
 
@@ -11806,6 +15867,139 @@ func (s UpdateLocationSmbOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateStorageSystemInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the DataSync agent that connects
+	// to and reads your on-premises storage system.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// Specifies the ARN of the Amazon CloudWatch log group for monitoring and logging
+	// discovery job events.
+	CloudWatchLogGroupArn *string `type:"string"`
+
+	// Specifies the user name and password for accessing your on-premises storage
+	// system's management interface.
+	Credentials *Credentials `type:"structure"`
+
+	// Specifies a familiar name for your on-premises storage system.
+	Name *string `min:"1" type:"string"`
+
+	// Specifies the server name and network port required to connect with your
+	// on-premises storage system's management interface.
+	ServerConfiguration *DiscoveryServerConfiguration `type:"structure"`
+
+	// Specifies the ARN of the on-premises storage system that you want reconfigure.
+	//
+	// StorageSystemArn is a required field
+	StorageSystemArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageSystemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageSystemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStorageSystemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStorageSystemInput"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.StorageSystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageSystemArn"))
+	}
+	if s.Credentials != nil {
+		if err := s.Credentials.Validate(); err != nil {
+			invalidParams.AddNested("Credentials", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServerConfiguration != nil {
+		if err := s.ServerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateStorageSystemInput) SetAgentArns(v []*string) *UpdateStorageSystemInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetCloudWatchLogGroupArn sets the CloudWatchLogGroupArn field's value.
+func (s *UpdateStorageSystemInput) SetCloudWatchLogGroupArn(v string) *UpdateStorageSystemInput {
+	s.CloudWatchLogGroupArn = &v
+	return s
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *UpdateStorageSystemInput) SetCredentials(v *Credentials) *UpdateStorageSystemInput {
+	s.Credentials = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateStorageSystemInput) SetName(v string) *UpdateStorageSystemInput {
+	s.Name = &v
+	return s
+}
+
+// SetServerConfiguration sets the ServerConfiguration field's value.
+func (s *UpdateStorageSystemInput) SetServerConfiguration(v *DiscoveryServerConfiguration) *UpdateStorageSystemInput {
+	s.ServerConfiguration = v
+	return s
+}
+
+// SetStorageSystemArn sets the StorageSystemArn field's value.
+func (s *UpdateStorageSystemInput) SetStorageSystemArn(v string) *UpdateStorageSystemInput {
+	s.StorageSystemArn = &v
+	return s
+}
+
+type UpdateStorageSystemOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageSystemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageSystemOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11820,8 +16014,8 @@ type UpdateTaskExecutionInput struct {
 	// Options is a required field
 	Options *Options `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the specific task execution that is being
-	// updated.
+	// Specifies the Amazon Resource Name (ARN) of the task execution that you're
+	// updating.
 	//
 	// TaskExecutionArn is a required field
 	TaskExecutionArn *string `type:"string" required:"true"`
@@ -12080,6 +16274,86 @@ func Atime_Values() []string {
 	return []string{
 		AtimeNone,
 		AtimeBestEffort,
+	}
+}
+
+const (
+	// DiscoveryJobStatusRunning is a DiscoveryJobStatus enum value
+	DiscoveryJobStatusRunning = "RUNNING"
+
+	// DiscoveryJobStatusWarning is a DiscoveryJobStatus enum value
+	DiscoveryJobStatusWarning = "WARNING"
+
+	// DiscoveryJobStatusTerminated is a DiscoveryJobStatus enum value
+	DiscoveryJobStatusTerminated = "TERMINATED"
+
+	// DiscoveryJobStatusFailed is a DiscoveryJobStatus enum value
+	DiscoveryJobStatusFailed = "FAILED"
+
+	// DiscoveryJobStatusStopped is a DiscoveryJobStatus enum value
+	DiscoveryJobStatusStopped = "STOPPED"
+
+	// DiscoveryJobStatusCompleted is a DiscoveryJobStatus enum value
+	DiscoveryJobStatusCompleted = "COMPLETED"
+
+	// DiscoveryJobStatusCompletedWithIssues is a DiscoveryJobStatus enum value
+	DiscoveryJobStatusCompletedWithIssues = "COMPLETED_WITH_ISSUES"
+)
+
+// DiscoveryJobStatus_Values returns all elements of the DiscoveryJobStatus enum
+func DiscoveryJobStatus_Values() []string {
+	return []string{
+		DiscoveryJobStatusRunning,
+		DiscoveryJobStatusWarning,
+		DiscoveryJobStatusTerminated,
+		DiscoveryJobStatusFailed,
+		DiscoveryJobStatusStopped,
+		DiscoveryJobStatusCompleted,
+		DiscoveryJobStatusCompletedWithIssues,
+	}
+}
+
+const (
+	// DiscoveryResourceFilterSvm is a DiscoveryResourceFilter enum value
+	DiscoveryResourceFilterSvm = "SVM"
+)
+
+// DiscoveryResourceFilter_Values returns all elements of the DiscoveryResourceFilter enum
+func DiscoveryResourceFilter_Values() []string {
+	return []string{
+		DiscoveryResourceFilterSvm,
+	}
+}
+
+const (
+	// DiscoveryResourceTypeSvm is a DiscoveryResourceType enum value
+	DiscoveryResourceTypeSvm = "SVM"
+
+	// DiscoveryResourceTypeVolume is a DiscoveryResourceType enum value
+	DiscoveryResourceTypeVolume = "VOLUME"
+
+	// DiscoveryResourceTypeCluster is a DiscoveryResourceType enum value
+	DiscoveryResourceTypeCluster = "CLUSTER"
+)
+
+// DiscoveryResourceType_Values returns all elements of the DiscoveryResourceType enum
+func DiscoveryResourceType_Values() []string {
+	return []string{
+		DiscoveryResourceTypeSvm,
+		DiscoveryResourceTypeVolume,
+		DiscoveryResourceTypeCluster,
+	}
+}
+
+const (
+	// DiscoverySystemTypeNetAppOntap is a DiscoverySystemType enum value
+	DiscoverySystemTypeNetAppOntap = "NetAppONTAP"
+)
+
+// DiscoverySystemType_Values returns all elements of the DiscoverySystemType enum
+func DiscoverySystemType_Values() []string {
+	return []string{
+		DiscoverySystemTypeNetAppOntap,
 	}
 }
 
@@ -12464,6 +16738,30 @@ func PreserveDevices_Values() []string {
 }
 
 const (
+	// RecommendationStatusNone is a RecommendationStatus enum value
+	RecommendationStatusNone = "NONE"
+
+	// RecommendationStatusInProgress is a RecommendationStatus enum value
+	RecommendationStatusInProgress = "IN_PROGRESS"
+
+	// RecommendationStatusCompleted is a RecommendationStatus enum value
+	RecommendationStatusCompleted = "COMPLETED"
+
+	// RecommendationStatusFailed is a RecommendationStatus enum value
+	RecommendationStatusFailed = "FAILED"
+)
+
+// RecommendationStatus_Values returns all elements of the RecommendationStatus enum
+func RecommendationStatus_Values() []string {
+	return []string{
+		RecommendationStatusNone,
+		RecommendationStatusInProgress,
+		RecommendationStatusCompleted,
+		RecommendationStatusFailed,
+	}
+}
+
+const (
 	// S3StorageClassStandard is a S3StorageClass enum value
 	S3StorageClassStandard = "STANDARD"
 
@@ -12548,6 +16846,26 @@ func SmbVersion_Values() []string {
 		SmbVersionSmb3,
 		SmbVersionSmb1,
 		SmbVersionSmb20,
+	}
+}
+
+const (
+	// StorageSystemConnectivityStatusPass is a StorageSystemConnectivityStatus enum value
+	StorageSystemConnectivityStatusPass = "PASS"
+
+	// StorageSystemConnectivityStatusFail is a StorageSystemConnectivityStatus enum value
+	StorageSystemConnectivityStatusFail = "FAIL"
+
+	// StorageSystemConnectivityStatusUnknown is a StorageSystemConnectivityStatus enum value
+	StorageSystemConnectivityStatusUnknown = "UNKNOWN"
+)
+
+// StorageSystemConnectivityStatus_Values returns all elements of the StorageSystemConnectivityStatus enum
+func StorageSystemConnectivityStatus_Values() []string {
+	return []string{
+		StorageSystemConnectivityStatusPass,
+		StorageSystemConnectivityStatusFail,
+		StorageSystemConnectivityStatusUnknown,
 	}
 }
 

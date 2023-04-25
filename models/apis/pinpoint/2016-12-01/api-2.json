@@ -2460,6 +2460,117 @@
         }
       ]
     },
+    "GetJourneyRunExecutionActivityMetrics": {
+      "name": "GetJourneyRunExecutionActivityMetrics",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/apps/{application-id}/journeys/{journey-id}/runs/{run-id}/activities/{journey-activity-id}/execution-metrics",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetJourneyRunExecutionActivityMetricsRequest"
+      },
+      "output": {
+        "shape": "GetJourneyRunExecutionActivityMetricsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "GetJourneyRunExecutionMetrics": {
+      "name": "GetJourneyRunExecutionMetrics",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/apps/{application-id}/journeys/{journey-id}/runs/{run-id}/execution-metrics",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetJourneyRunExecutionMetricsRequest"
+      },
+      "output": {
+        "shape": "GetJourneyRunExecutionMetricsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "GetJourneyRuns": {
+      "name": "GetJourneyRuns",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/apps/{application-id}/journeys/{journey-id}/runs",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetJourneyRunsRequest"
+      },
+      "output": {
+        "shape": "GetJourneyRunsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "GetPushTemplate": {
       "name": "GetPushTemplate",
       "http": {
@@ -4898,6 +5009,9 @@
         },
         "TreatmentId": {
           "shape": "__string"
+        },
+        "ExecutionMetrics": {
+          "shape": "MapOf__string"
         }
       },
       "required": [
@@ -8825,6 +8939,147 @@
       ],
       "payload": "JourneyResponse"
     },
+    "GetJourneyRunExecutionActivityMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "ApplicationId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "application-id"
+        },
+        "JourneyActivityId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "journey-activity-id"
+        },
+        "JourneyId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "journey-id"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "next-token"
+        },
+        "PageSize": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "page-size"
+        },
+        "RunId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "run-id"
+        }
+      },
+      "required": [
+        "RunId",
+        "JourneyActivityId",
+        "JourneyId",
+        "ApplicationId"
+      ]
+    },
+    "GetJourneyRunExecutionActivityMetricsResponse": {
+      "type": "structure",
+      "members": {
+        "JourneyRunExecutionActivityMetricsResponse": {
+          "shape": "JourneyRunExecutionActivityMetricsResponse"
+        }
+      },
+      "required": [
+        "JourneyRunExecutionActivityMetricsResponse"
+      ],
+      "payload": "JourneyRunExecutionActivityMetricsResponse"
+    },
+    "GetJourneyRunExecutionMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "ApplicationId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "application-id"
+        },
+        "JourneyId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "journey-id"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "next-token"
+        },
+        "PageSize": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "page-size"
+        },
+        "RunId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "run-id"
+        }
+      },
+      "required": [
+        "RunId",
+        "ApplicationId",
+        "JourneyId"
+      ]
+    },
+    "GetJourneyRunExecutionMetricsResponse": {
+      "type": "structure",
+      "members": {
+        "JourneyRunExecutionMetricsResponse": {
+          "shape": "JourneyRunExecutionMetricsResponse"
+        }
+      },
+      "required": [
+        "JourneyRunExecutionMetricsResponse"
+      ],
+      "payload": "JourneyRunExecutionMetricsResponse"
+    },
+    "GetJourneyRunsRequest": {
+      "type": "structure",
+      "members": {
+        "ApplicationId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "application-id"
+        },
+        "JourneyId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "journey-id"
+        },
+        "PageSize": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "page-size"
+        },
+        "Token": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "token"
+        }
+      },
+      "required": [
+        "ApplicationId",
+        "JourneyId"
+      ]
+    },
+    "GetJourneyRunsResponse": {
+      "type": "structure",
+      "members": {
+        "JourneyRunsResponse": {
+          "shape": "JourneyRunsResponse"
+        }
+      },
+      "required": [
+        "JourneyRunsResponse"
+      ],
+      "payload": "JourneyRunsResponse"
+    },
     "GetPushTemplateRequest": {
       "type": "structure",
       "members": {
@@ -9891,6 +10146,114 @@
         "Name",
         "Id",
         "ApplicationId"
+      ]
+    },
+    "JourneyRunExecutionActivityMetricsResponse": {
+      "type": "structure",
+      "members": {
+        "ActivityType": {
+          "shape": "__string"
+        },
+        "ApplicationId": {
+          "shape": "__string"
+        },
+        "JourneyActivityId": {
+          "shape": "__string"
+        },
+        "JourneyId": {
+          "shape": "__string"
+        },
+        "LastEvaluatedTime": {
+          "shape": "__string"
+        },
+        "Metrics": {
+          "shape": "MapOf__string"
+        },
+        "RunId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Metrics",
+        "JourneyId",
+        "LastEvaluatedTime",
+        "JourneyActivityId",
+        "ActivityType",
+        "RunId",
+        "ApplicationId"
+      ]
+    },
+    "JourneyRunExecutionMetricsResponse": {
+      "type": "structure",
+      "members": {
+        "ApplicationId": {
+          "shape": "__string"
+        },
+        "JourneyId": {
+          "shape": "__string"
+        },
+        "LastEvaluatedTime": {
+          "shape": "__string"
+        },
+        "Metrics": {
+          "shape": "MapOf__string"
+        },
+        "RunId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Metrics",
+        "JourneyId",
+        "LastEvaluatedTime",
+        "RunId",
+        "ApplicationId"
+      ]
+    },
+    "JourneyRunResponse": {
+      "type": "structure",
+      "members": {
+        "CreationTime": {
+          "shape": "__string"
+        },
+        "LastUpdateTime": {
+          "shape": "__string"
+        },
+        "RunId": {
+          "shape": "__string"
+        },
+        "Status": {
+          "shape": "JourneyRunStatus"
+        }
+      },
+      "required": [
+        "Status",
+        "LastUpdateTime",
+        "CreationTime",
+        "RunId"
+      ]
+    },
+    "JourneyRunsResponse": {
+      "type": "structure",
+      "members": {
+        "Item": {
+          "shape": "ListOfJourneyRunResponse"
+        },
+        "NextToken": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Item"
+      ]
+    },
+    "JourneyRunStatus": {
+      "type": "string",
+      "enum": [
+        "SCHEDULED",
+        "RUNNING",
+        "COMPLETED",
+        "CANCELLED"
       ]
     },
     "JourneySMSMessage": {
@@ -13189,6 +13552,12 @@
         "shape": "JourneyResponse"
       }
     },
+    "ListOfJourneyRunResponse": {
+      "type": "list",
+      "member": {
+        "shape": "JourneyRunResponse"
+      }
+    },
     "ListOfMultiConditionalBranch": {
       "type": "list",
       "member": {
@@ -13523,7 +13892,7 @@
                 "shape": "__string"
             }
         }
-    },  
+    },
     "ListOfClosedDaysRules": {
         "type": "list",
         "member": {
@@ -13549,6 +13918,6 @@
                 "shape": "ListOfClosedDaysRules"
             }
         }
-    }
+      }
   }
 }

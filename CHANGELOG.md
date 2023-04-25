@@ -1,3 +1,15 @@
+Release v1.44.250 (2023-04-25)
+===
+
+### Service Client Updates
+* `service/chime-sdk-messaging`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/datasync`: Updates service API, documentation, and paginators
+* `service/ds`: Updates service API and documentation
+  * New field added in AWS Managed Microsoft AD DescribeSettings response and regex pattern update for UpdateSettings value.  Added length validation to RemoteDomainName.
+* `service/pinpoint`: Updates service API, documentation, and examples
+  * Adds support for journey runs and querying journey execution metrics based on journey runs. Adds execution metrics to campaign activities. Updates docs for Advanced Quiet Time.
+
 Release v1.44.249 (2023-04-24)
 ===
 

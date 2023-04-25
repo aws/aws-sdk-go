@@ -14,6 +14,20 @@
     "uid":"datasync-2018-11-09"
   },
   "operations":{
+    "AddStorageSystem":{
+      "name":"AddStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddStorageSystemRequest"},
+      "output":{"shape":"AddStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "CancelTaskExecution":{
       "name":"CancelTaskExecution",
       "http":{
@@ -235,6 +249,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "DescribeDiscoveryJob":{
+      "name":"DescribeDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDiscoveryJobRequest"},
+      "output":{"shape":"DescribeDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "DescribeLocationEfs":{
       "name":"DescribeLocationEfs",
       "http":{
@@ -365,6 +393,48 @@
         {"shape":"InternalException"}
       ]
     },
+    "DescribeStorageSystem":{
+      "name":"DescribeStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStorageSystemRequest"},
+      "output":{"shape":"DescribeStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "DescribeStorageSystemResourceMetrics":{
+      "name":"DescribeStorageSystemResourceMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStorageSystemResourceMetricsRequest"},
+      "output":{"shape":"DescribeStorageSystemResourceMetricsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "DescribeStorageSystemResources":{
+      "name":"DescribeStorageSystemResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStorageSystemResourcesRequest"},
+      "output":{"shape":"DescribeStorageSystemResourcesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "DescribeTask":{
       "name":"DescribeTask",
       "http":{
@@ -391,6 +461,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "GenerateRecommendations":{
+      "name":"GenerateRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GenerateRecommendationsRequest"},
+      "output":{"shape":"GenerateRecommendationsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "ListAgents":{
       "name":"ListAgents",
       "http":{
@@ -404,6 +488,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "ListDiscoveryJobs":{
+      "name":"ListDiscoveryJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDiscoveryJobsRequest"},
+      "output":{"shape":"ListDiscoveryJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "ListLocations":{
       "name":"ListLocations",
       "http":{
@@ -416,6 +514,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
       ]
+    },
+    "ListStorageSystems":{
+      "name":"ListStorageSystems",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStorageSystemsRequest"},
+      "output":{"shape":"ListStorageSystemsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -456,6 +568,34 @@
         {"shape":"InternalException"}
       ]
     },
+    "RemoveStorageSystem":{
+      "name":"RemoveStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveStorageSystemRequest"},
+      "output":{"shape":"RemoveStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
+    "StartDiscoveryJob":{
+      "name":"StartDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartDiscoveryJobRequest"},
+      "output":{"shape":"StartDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "StartTaskExecution":{
       "name":"StartTaskExecution",
       "http":{
@@ -468,6 +608,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
       ]
+    },
+    "StopDiscoveryJob":{
+      "name":"StopDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopDiscoveryJobRequest"},
+      "output":{"shape":"StopDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
     },
     "TagResource":{
       "name":"TagResource",
@@ -507,6 +661,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
       ]
+    },
+    "UpdateDiscoveryJob":{
+      "name":"UpdateDiscoveryJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDiscoveryJobRequest"},
+      "output":{"shape":"UpdateDiscoveryJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
     },
     "UpdateLocationHdfs":{
       "name":"UpdateLocationHdfs",
@@ -560,6 +728,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "UpdateStorageSystem":{
+      "name":"UpdateStorageSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateStorageSystemRequest"},
+      "output":{"shape":"UpdateStorageSystemResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ],
+      "endpoint":{"hostPrefix":"discovery-"}
+    },
     "UpdateTask":{
       "name":"UpdateTask",
       "http":{
@@ -592,6 +774,36 @@
       "type":"string",
       "max":29,
       "pattern":"[A-Z0-9]{5}(-[A-Z0-9]{5}){4}"
+    },
+    "AddStorageSystemRequest":{
+      "type":"structure",
+      "required":[
+        "ServerConfiguration",
+        "SystemType",
+        "AgentArns",
+        "ClientToken",
+        "Credentials"
+      ],
+      "members":{
+        "ServerConfiguration":{"shape":"DiscoveryServerConfiguration"},
+        "SystemType":{"shape":"DiscoverySystemType"},
+        "AgentArns":{"shape":"DiscoveryAgentArnList"},
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "Tags":{"shape":"InputTagList"},
+        "Name":{"shape":"Name"},
+        "ClientToken":{
+          "shape":"PtolemyUUID",
+          "idempotencyToken":true
+        },
+        "Credentials":{"shape":"Credentials"}
+      }
+    },
+    "AddStorageSystemResponse":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"}
+      }
     },
     "AgentArn":{
       "type":"string",
@@ -645,6 +857,19 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Capacity":{
+      "type":"structure",
+      "members":{
+        "Used":{"shape":"NonNegativeLong"},
+        "Provisioned":{"shape":"NonNegativeLong"},
+        "LogicalUsed":{"shape":"NonNegativeLong"}
+      }
+    },
+    "CollectionDurationMinutes":{
+      "type":"integer",
+      "max":44640,
+      "min":60
     },
     "CreateAgentRequest":{
       "type":"structure",
@@ -918,6 +1143,17 @@
         "TaskArn":{"shape":"TaskArn"}
       }
     },
+    "Credentials":{
+      "type":"structure",
+      "required":[
+        "Username",
+        "Password"
+      ],
+      "members":{
+        "Username":{"shape":"PtolemyUsername"},
+        "Password":{"shape":"PtolemyPassword"}
+      }
+    },
     "DeleteAgentRequest":{
       "type":"structure",
       "required":["AgentArn"],
@@ -971,6 +1207,24 @@
         "CreationTime":{"shape":"Time"},
         "EndpointType":{"shape":"EndpointType"},
         "PrivateLinkConfig":{"shape":"PrivateLinkConfig"}
+      }
+    },
+    "DescribeDiscoveryJobRequest":{
+      "type":"structure",
+      "required":["DiscoveryJobArn"],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"}
+      }
+    },
+    "DescribeDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "CollectionDurationMinutes":{"shape":"CollectionDurationMinutes"},
+        "Status":{"shape":"DiscoveryJobStatus"},
+        "JobStartTime":{"shape":"DiscoveryTime"},
+        "JobEndTime":{"shape":"DiscoveryTime"}
       }
     },
     "DescribeLocationEfsRequest":{
@@ -1160,6 +1414,74 @@
         "CreationTime":{"shape":"Time"}
       }
     },
+    "DescribeStorageSystemRequest":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"}
+      }
+    },
+    "DescribeStorageSystemResourceMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "ResourceType",
+        "ResourceId"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "ResourceType":{"shape":"DiscoveryResourceType"},
+        "ResourceId":{"shape":"ResourceId"},
+        "StartTime":{"shape":"DiscoveryTime"},
+        "EndTime":{"shape":"DiscoveryTime"},
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResourceMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "Metrics":{"shape":"Metrics"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResourcesRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "ResourceType"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "ResourceType":{"shape":"DiscoveryResourceType"},
+        "ResourceIds":{"shape":"ResourceIds"},
+        "Filter":{"shape":"ResourceFilters"},
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceDetails":{"shape":"ResourceDetails"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "DescribeStorageSystemResponse":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "ServerConfiguration":{"shape":"DiscoveryServerConfiguration"},
+        "SystemType":{"shape":"DiscoverySystemType"},
+        "AgentArns":{"shape":"DiscoveryAgentArnList"},
+        "Name":{"shape":"Name"},
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "ConnectivityStatus":{"shape":"StorageSystemConnectivityStatus"},
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "CreationTime":{"shape":"Timestamp"},
+        "SecretsManagerArn":{"shape":"SecretsManagerArn"}
+      }
+    },
     "DescribeTaskExecutionRequest":{
       "type":"structure",
       "required":["TaskExecutionArn"],
@@ -1217,6 +1539,86 @@
       "type":"list",
       "member":{"shape":"NetworkInterfaceArn"}
     },
+    "DiscoveryAgentArnList":{
+      "type":"list",
+      "member":{"shape":"AgentArn"},
+      "max":1,
+      "min":1
+    },
+    "DiscoveryJobArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:system/storage-system-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/job/discovery-job-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "DiscoveryJobList":{
+      "type":"list",
+      "member":{"shape":"DiscoveryJobListEntry"}
+    },
+    "DiscoveryJobListEntry":{
+      "type":"structure",
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "Status":{"shape":"DiscoveryJobStatus"}
+      }
+    },
+    "DiscoveryJobStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "WARNING",
+        "TERMINATED",
+        "FAILED",
+        "STOPPED",
+        "COMPLETED",
+        "COMPLETED_WITH_ISSUES"
+      ]
+    },
+    "DiscoveryMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "DiscoveryNextToken":{
+      "type":"string",
+      "max":65535,
+      "pattern":"[a-zA-Z0-9=_-]+"
+    },
+    "DiscoveryResourceFilter":{
+      "type":"string",
+      "enum":["SVM"]
+    },
+    "DiscoveryResourceType":{
+      "type":"string",
+      "enum":[
+        "SVM",
+        "VOLUME",
+        "CLUSTER"
+      ]
+    },
+    "DiscoveryServerConfiguration":{
+      "type":"structure",
+      "required":["ServerHostname"],
+      "members":{
+        "ServerHostname":{"shape":"DiscoveryServerHostname"},
+        "ServerPort":{"shape":"DiscoveryServerPort"}
+      }
+    },
+    "DiscoveryServerHostname":{
+      "type":"string",
+      "max":255,
+      "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
+    "DiscoveryServerPort":{
+      "type":"integer",
+      "box":true,
+      "max":65535,
+      "min":1
+    },
+    "DiscoverySystemType":{
+      "type":"string",
+      "enum":["NetAppONTAP"]
+    },
+    "DiscoveryTime":{"type":"timestamp"},
     "Duration":{
       "type":"long",
       "min":0
@@ -1235,7 +1637,7 @@
     "Ec2SecurityGroupArn":{
       "type":"string",
       "max":128,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):ec2:[a-z\\-0-9]*:[0-9]{12}:security-group/.*$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):ec2:[a-z\\-0-9]*:[0-9]{12}:security-group/sg-[a-f0-9]+$"
     },
     "Ec2SecurityGroupArnList":{
       "type":"list",
@@ -1270,6 +1672,10 @@
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
     },
+    "EnabledProtocols":{
+      "type":"list",
+      "member":{"shape":"PtolemyString"}
+    },
     "Endpoint":{
       "type":"string",
       "max":15,
@@ -1284,6 +1690,11 @@
         "FIPS"
       ]
     },
+    "ErrorMessage":{
+      "type":"string",
+      "max":128,
+      "pattern":".*"
+    },
     "FilterAttributeValue":{
       "type":"string",
       "max":255,
@@ -1295,6 +1706,10 @@
       "member":{"shape":"FilterRule"},
       "max":1,
       "min":0
+    },
+    "FilterMembers":{
+      "type":"list",
+      "member":{"shape":"PtolemyString"}
     },
     "FilterRule":{
       "type":"structure",
@@ -1368,6 +1783,24 @@
       "type":"string",
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
+    "GenerateRecommendationsRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "ResourceIds",
+        "ResourceType"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "ResourceIds":{"shape":"ResourceIds"},
+        "ResourceType":{"shape":"DiscoveryResourceType"}
+      }
+    },
+    "GenerateRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Gid":{
       "type":"string",
@@ -1454,6 +1887,15 @@
       "min":1,
       "pattern":"^[_.A-Za-z0-9][-_.A-Za-z0-9]*$"
     },
+    "IOPS":{
+      "type":"structure",
+      "members":{
+        "Read":{"shape":"NonNegativeDouble"},
+        "Write":{"shape":"NonNegativeDouble"},
+        "Other":{"shape":"NonNegativeDouble"},
+        "Total":{"shape":"NonNegativeDouble"}
+      }
+    },
     "IamRoleArn":{
       "type":"string",
       "max":2048,
@@ -1503,6 +1945,14 @@
       "min":1,
       "pattern":"^kms:\\/\\/http[s]?@(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])(;(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9]))*:[0-9]{1,5}\\/kms$"
     },
+    "Latency":{
+      "type":"structure",
+      "members":{
+        "Read":{"shape":"NonNegativeDouble"},
+        "Write":{"shape":"NonNegativeDouble"},
+        "Other":{"shape":"NonNegativeDouble"}
+      }
+    },
     "ListAgentsRequest":{
       "type":"structure",
       "members":{
@@ -1515,6 +1965,21 @@
       "members":{
         "Agents":{"shape":"AgentList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDiscoveryJobsRequest":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "ListDiscoveryJobsResponse":{
+      "type":"structure",
+      "members":{
+        "DiscoveryJobs":{"shape":"DiscoveryJobList"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
       }
     },
     "ListLocationsRequest":{
@@ -1530,6 +1995,20 @@
       "members":{
         "Locations":{"shape":"LocationList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListStorageSystemsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"DiscoveryMaxResults"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
+      }
+    },
+    "ListStorageSystemsResponse":{
+      "type":"structure",
+      "members":{
+        "StorageSystems":{"shape":"StorageSystemList"},
+        "NextToken":{"shape":"DiscoveryNextToken"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1627,7 +2106,7 @@
     "LogGroupArn":{
       "type":"string",
       "max":562,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):logs:[a-z\\-0-9]*:[0-9]{12}:log-group:([^:\\*]*)(:\\*)?$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):logs:[a-z\\-0-9]+:[0-9]{12}:log-group:([^:\\*]*)(:\\*)?$"
     },
     "LogLevel":{
       "type":"string",
@@ -1637,10 +2116,30 @@
         "TRANSFER"
       ]
     },
+    "MaxP95Performance":{
+      "type":"structure",
+      "members":{
+        "IopsRead":{"shape":"NonNegativeDouble"},
+        "IopsWrite":{"shape":"NonNegativeDouble"},
+        "IopsOther":{"shape":"NonNegativeDouble"},
+        "IopsTotal":{"shape":"NonNegativeDouble"},
+        "ThroughputRead":{"shape":"NonNegativeDouble"},
+        "ThroughputWrite":{"shape":"NonNegativeDouble"},
+        "ThroughputOther":{"shape":"NonNegativeDouble"},
+        "ThroughputTotal":{"shape":"NonNegativeDouble"},
+        "LatencyRead":{"shape":"NonNegativeDouble"},
+        "LatencyWrite":{"shape":"NonNegativeDouble"},
+        "LatencyOther":{"shape":"NonNegativeDouble"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
       "min":0
+    },
+    "Metrics":{
+      "type":"list",
+      "member":{"shape":"ResourceMetrics"}
     },
     "Mtime":{
       "type":"string",
@@ -1648,6 +2147,76 @@
         "NONE",
         "PRESERVE"
       ]
+    },
+    "Name":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[\\p{L}\\p{M}\\p{N}\\s+=._:@\\/-]+$"
+    },
+    "NetAppONTAPCluster":{
+      "type":"structure",
+      "members":{
+        "CifsShareCount":{"shape":"NonNegativeLong"},
+        "NfsExportedVolumes":{"shape":"NonNegativeLong"},
+        "ResourceId":{"shape":"PtolemyUUID"},
+        "ClusterName":{"shape":"PtolemyString"},
+        "MaxP95Performance":{"shape":"MaxP95Performance"},
+        "ClusterBlockStorageSize":{"shape":"NonNegativeLong"},
+        "ClusterBlockStorageUsed":{"shape":"NonNegativeLong"},
+        "ClusterBlockStorageLogicalUsed":{"shape":"NonNegativeLong"},
+        "Recommendations":{"shape":"Recommendations"},
+        "RecommendationStatus":{"shape":"RecommendationStatus"}
+      }
+    },
+    "NetAppONTAPClusters":{
+      "type":"list",
+      "member":{"shape":"NetAppONTAPCluster"}
+    },
+    "NetAppONTAPSVM":{
+      "type":"structure",
+      "members":{
+        "ClusterUuid":{"shape":"PtolemyUUID"},
+        "ResourceId":{"shape":"PtolemyUUID"},
+        "SvmName":{"shape":"PtolemyString"},
+        "CifsShareCount":{"shape":"NonNegativeLong"},
+        "EnabledProtocols":{"shape":"EnabledProtocols"},
+        "TotalCapacityUsed":{"shape":"NonNegativeLong"},
+        "TotalCapacityProvisioned":{"shape":"NonNegativeLong"},
+        "TotalLogicalCapacityUsed":{"shape":"NonNegativeLong"},
+        "MaxP95Performance":{"shape":"MaxP95Performance"},
+        "Recommendations":{"shape":"Recommendations"},
+        "NfsExportedVolumes":{"shape":"NonNegativeLong"},
+        "RecommendationStatus":{"shape":"RecommendationStatus"},
+        "TotalSnapshotCapacityUsed":{"shape":"NonNegativeLong"}
+      }
+    },
+    "NetAppONTAPSVMs":{
+      "type":"list",
+      "member":{"shape":"NetAppONTAPSVM"}
+    },
+    "NetAppONTAPVolume":{
+      "type":"structure",
+      "members":{
+        "VolumeName":{"shape":"PtolemyString"},
+        "ResourceId":{"shape":"PtolemyUUID"},
+        "CifsShareCount":{"shape":"NonNegativeLong"},
+        "SecurityStyle":{"shape":"PtolemyString"},
+        "SvmUuid":{"shape":"PtolemyUUID"},
+        "SvmName":{"shape":"PtolemyString"},
+        "CapacityUsed":{"shape":"NonNegativeLong"},
+        "CapacityProvisioned":{"shape":"NonNegativeLong"},
+        "LogicalCapacityUsed":{"shape":"NonNegativeLong"},
+        "NfsExported":{"shape":"PtolemyBoolean"},
+        "SnapshotCapacityUsed":{"shape":"NonNegativeLong"},
+        "MaxP95Performance":{"shape":"MaxP95Performance"},
+        "Recommendations":{"shape":"Recommendations"},
+        "RecommendationStatus":{"shape":"RecommendationStatus"}
+      }
+    },
+    "NetAppONTAPVolumes":{
+      "type":"list",
+      "member":{"shape":"NetAppONTAPVolume"}
     },
     "NetworkInterfaceArn":{
       "type":"string",
@@ -1678,6 +2247,16 @@
         "NFS4_0",
         "NFS4_1"
       ]
+    },
+    "NonNegativeDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "NonNegativeLong":{
+      "type":"long",
+      "box":true,
+      "min":0
     },
     "ObjectStorageAccessKey":{
       "type":"string",
@@ -1777,6 +2356,14 @@
         "NEVER"
       ]
     },
+    "P95Metrics":{
+      "type":"structure",
+      "members":{
+        "IOPS":{"shape":"IOPS"},
+        "Throughput":{"shape":"Throughput"},
+        "Latency":{"shape":"Latency"}
+      }
+    },
     "PLSecurityGroupArnList":{
       "type":"list",
       "member":{"shape":"Ec2SecurityGroupArn"},
@@ -1827,11 +2414,104 @@
         "SecurityGroupArns":{"shape":"PLSecurityGroupArnList"}
       }
     },
+    "PtolemyBoolean":{"type":"boolean"},
+    "PtolemyPassword":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^(?!.*[:\\\"][^:\"]*$).+$",
+      "sensitive":true
+    },
+    "PtolemyString":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^.{0,1024}$"
+    },
+    "PtolemyUUID":{
+      "type":"string",
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "PtolemyUsername":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^(?!.*[:\\\"][^:\"]*$).+$",
+      "sensitive":true
+    },
     "QopConfiguration":{
       "type":"structure",
       "members":{
         "RpcProtection":{"shape":"HdfsRpcProtection"},
         "DataTransferProtection":{"shape":"HdfsDataTransferProtection"}
+      }
+    },
+    "Recommendation":{
+      "type":"structure",
+      "members":{
+        "StorageType":{"shape":"PtolemyString"},
+        "StorageConfiguration":{"shape":"RecommendationsConfigMap"},
+        "EstimatedMonthlyStorageCost":{"shape":"PtolemyString"}
+      }
+    },
+    "RecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "Recommendations":{
+      "type":"list",
+      "member":{"shape":"Recommendation"}
+    },
+    "RecommendationsConfigMap":{
+      "type":"map",
+      "key":{"shape":"PtolemyString"},
+      "value":{"shape":"PtolemyString"}
+    },
+    "RemoveStorageSystemRequest":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"}
+      }
+    },
+    "RemoveStorageSystemResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "NetAppONTAPSVMs":{"shape":"NetAppONTAPSVMs"},
+        "NetAppONTAPVolumes":{"shape":"NetAppONTAPVolumes"},
+        "NetAppONTAPClusters":{"shape":"NetAppONTAPClusters"}
+      }
+    },
+    "ResourceFilters":{
+      "type":"map",
+      "key":{"shape":"DiscoveryResourceFilter"},
+      "value":{"shape":"FilterMembers"}
+    },
+    "ResourceId":{
+      "type":"string",
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "ResourceIds":{
+      "type":"list",
+      "member":{"shape":"ResourceId"},
+      "max":100,
+      "min":1
+    },
+    "ResourceMetrics":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Timestamp"},
+        "P95Metrics":{"shape":"P95Metrics"},
+        "Capacity":{"shape":"Capacity"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ResourceType":{"shape":"DiscoveryResourceType"}
       }
     },
     "S3BucketArn":{
@@ -1868,6 +2548,11 @@
       "type":"string",
       "max":256,
       "pattern":"^[a-zA-Z0-9\\ \\_\\*\\?\\,\\|\\^\\-\\/\\#\\s\\(\\)\\+]*$"
+    },
+    "SecretsManagerArn":{
+      "type":"string",
+      "max":2048,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):secretsmanager:[a-z\\-0-9]+:[0-9]{12}:secret:.*"
     },
     "ServerHostname":{
       "type":"string",
@@ -1923,6 +2608,29 @@
       "type":"list",
       "member":{"shape":"NetworkInterfaceArn"}
     },
+    "StartDiscoveryJobRequest":{
+      "type":"structure",
+      "required":[
+        "StorageSystemArn",
+        "CollectionDurationMinutes",
+        "ClientToken"
+      ],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "CollectionDurationMinutes":{"shape":"CollectionDurationMinutes"},
+        "ClientToken":{
+          "shape":"PtolemyUUID",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "StartDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"}
+      }
+    },
     "StartTaskExecutionRequest":{
       "type":"structure",
       "required":["TaskArn"],
@@ -1938,6 +2646,42 @@
       "type":"structure",
       "members":{
         "TaskExecutionArn":{"shape":"TaskExecutionArn"}
+      }
+    },
+    "StopDiscoveryJobRequest":{
+      "type":"structure",
+      "required":["DiscoveryJobArn"],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"}
+      }
+    },
+    "StopDiscoveryJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "StorageSystemArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:system/storage-system-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "StorageSystemConnectivityStatus":{
+      "type":"string",
+      "enum":[
+        "PASS",
+        "FAIL",
+        "UNKNOWN"
+      ]
+    },
+    "StorageSystemList":{
+      "type":"list",
+      "member":{"shape":"StorageSystemListEntry"}
+    },
+    "StorageSystemListEntry":{
+      "type":"structure",
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "Name":{"shape":"Name"}
       }
     },
     "StorageVirtualMachineArn":{
@@ -1990,7 +2734,7 @@
     "TaggableResourceArn":{
       "type":"string",
       "max":128,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:(agent|task|location)/(agent|task|loc)-[a-f0-9]{17}(/execution/exec-[a-f0-9]{17})?$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:(agent|task|location|system)/((agent|task|loc)-[a-f0-9]{17}|storage-system-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})(/execution/exec-[a-f0-9]{17})?$"
     },
     "TaskArn":{
       "type":"string",
@@ -2099,7 +2843,17 @@
         "UNAVAILABLE"
       ]
     },
+    "Throughput":{
+      "type":"structure",
+      "members":{
+        "Read":{"shape":"NonNegativeDouble"},
+        "Write":{"shape":"NonNegativeDouble"},
+        "Other":{"shape":"NonNegativeDouble"},
+        "Total":{"shape":"NonNegativeDouble"}
+      }
+    },
     "Time":{"type":"timestamp"},
+    "Timestamp":{"type":"timestamp"},
     "TransferMode":{
       "type":"string",
       "enum":[
@@ -2141,6 +2895,22 @@
       }
     },
     "UpdateAgentResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateDiscoveryJobRequest":{
+      "type":"structure",
+      "required":[
+        "DiscoveryJobArn",
+        "CollectionDurationMinutes"
+      ],
+      "members":{
+        "DiscoveryJobArn":{"shape":"DiscoveryJobArn"},
+        "CollectionDurationMinutes":{"shape":"CollectionDurationMinutes"}
+      }
+    },
+    "UpdateDiscoveryJobResponse":{
       "type":"structure",
       "members":{
       }
@@ -2217,6 +2987,23 @@
       }
     },
     "UpdateLocationSmbResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateStorageSystemRequest":{
+      "type":"structure",
+      "required":["StorageSystemArn"],
+      "members":{
+        "StorageSystemArn":{"shape":"StorageSystemArn"},
+        "ServerConfiguration":{"shape":"DiscoveryServerConfiguration"},
+        "AgentArns":{"shape":"DiscoveryAgentArnList"},
+        "Name":{"shape":"Name"},
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "Credentials":{"shape":"Credentials"}
+      }
+    },
+    "UpdateStorageSystemResponse":{
       "type":"structure",
       "members":{
       }

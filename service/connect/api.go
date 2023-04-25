@@ -13,6 +13,99 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opActivateEvaluationForm = "ActivateEvaluationForm"
+
+// ActivateEvaluationFormRequest generates a "aws/request.Request" representing the
+// client's request for the ActivateEvaluationForm operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ActivateEvaluationForm for more information on using the ActivateEvaluationForm
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ActivateEvaluationFormRequest method.
+//	req, resp := client.ActivateEvaluationFormRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ActivateEvaluationForm
+func (c *Connect) ActivateEvaluationFormRequest(input *ActivateEvaluationFormInput) (req *request.Request, output *ActivateEvaluationFormOutput) {
+	op := &request.Operation{
+		Name:       opActivateEvaluationForm,
+		HTTPMethod: "POST",
+		HTTPPath:   "/evaluation-forms/{InstanceId}/{EvaluationFormId}/activate",
+	}
+
+	if input == nil {
+		input = &ActivateEvaluationFormInput{}
+	}
+
+	output = &ActivateEvaluationFormOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ActivateEvaluationForm API operation for Amazon Connect Service.
+//
+// Activates an evaluation form in the specified Amazon Connect instance. After
+// the evaluation form is activated, it is available to start new evaluations
+// based on the form.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ActivateEvaluationForm for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ActivateEvaluationForm
+func (c *Connect) ActivateEvaluationForm(input *ActivateEvaluationFormInput) (*ActivateEvaluationFormOutput, error) {
+	req, out := c.ActivateEvaluationFormRequest(input)
+	return out, req.Send()
+}
+
+// ActivateEvaluationFormWithContext is the same as ActivateEvaluationForm with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ActivateEvaluationForm for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ActivateEvaluationFormWithContext(ctx aws.Context, input *ActivateEvaluationFormInput, opts ...request.Option) (*ActivateEvaluationFormOutput, error) {
+	req, out := c.ActivateEvaluationFormRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateApprovedOrigin = "AssociateApprovedOrigin"
 
 // AssociateApprovedOriginRequest generates a "aws/request.Request" representing the
@@ -1413,6 +1506,104 @@ func (c *Connect) CreateContactFlowModule(input *CreateContactFlowModuleInput) (
 // for more information on using Contexts.
 func (c *Connect) CreateContactFlowModuleWithContext(ctx aws.Context, input *CreateContactFlowModuleInput, opts ...request.Option) (*CreateContactFlowModuleOutput, error) {
 	req, out := c.CreateContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEvaluationForm = "CreateEvaluationForm"
+
+// CreateEvaluationFormRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEvaluationForm operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEvaluationForm for more information on using the CreateEvaluationForm
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEvaluationFormRequest method.
+//	req, resp := client.CreateEvaluationFormRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateEvaluationForm
+func (c *Connect) CreateEvaluationFormRequest(input *CreateEvaluationFormInput) (req *request.Request, output *CreateEvaluationFormOutput) {
+	op := &request.Operation{
+		Name:       opCreateEvaluationForm,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/evaluation-forms/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateEvaluationFormInput{}
+	}
+
+	output = &CreateEvaluationFormOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEvaluationForm API operation for Amazon Connect Service.
+//
+// Creates an evaluation form in the specified Amazon Connect instance. The
+// form can be used to define questions related to agent performance, and create
+// sections to organize such questions. An evaluation form must have a unique
+// title within an instance. Question and section identifiers cannot be duplicated
+// within the same evaluation form.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateEvaluationForm for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateEvaluationForm
+func (c *Connect) CreateEvaluationForm(input *CreateEvaluationFormInput) (*CreateEvaluationFormOutput, error) {
+	req, out := c.CreateEvaluationFormRequest(input)
+	return out, req.Send()
+}
+
+// CreateEvaluationFormWithContext is the same as CreateEvaluationForm with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEvaluationForm for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateEvaluationFormWithContext(ctx aws.Context, input *CreateEvaluationFormInput, opts ...request.Option) (*CreateEvaluationFormOutput, error) {
+	req, out := c.CreateEvaluationFormRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2897,6 +3088,191 @@ func (c *Connect) CreateVocabularyWithContext(ctx aws.Context, input *CreateVoca
 	return out, req.Send()
 }
 
+const opDeactivateEvaluationForm = "DeactivateEvaluationForm"
+
+// DeactivateEvaluationFormRequest generates a "aws/request.Request" representing the
+// client's request for the DeactivateEvaluationForm operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeactivateEvaluationForm for more information on using the DeactivateEvaluationForm
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeactivateEvaluationFormRequest method.
+//	req, resp := client.DeactivateEvaluationFormRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeactivateEvaluationForm
+func (c *Connect) DeactivateEvaluationFormRequest(input *DeactivateEvaluationFormInput) (req *request.Request, output *DeactivateEvaluationFormOutput) {
+	op := &request.Operation{
+		Name:       opDeactivateEvaluationForm,
+		HTTPMethod: "POST",
+		HTTPPath:   "/evaluation-forms/{InstanceId}/{EvaluationFormId}/deactivate",
+	}
+
+	if input == nil {
+		input = &DeactivateEvaluationFormInput{}
+	}
+
+	output = &DeactivateEvaluationFormOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeactivateEvaluationForm API operation for Amazon Connect Service.
+//
+// Deactivates an evaluation form in the specified Amazon Connect instance.
+// After a form is deactivated, it is no longer available for users to start
+// new evaluations based on the form.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeactivateEvaluationForm for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeactivateEvaluationForm
+func (c *Connect) DeactivateEvaluationForm(input *DeactivateEvaluationFormInput) (*DeactivateEvaluationFormOutput, error) {
+	req, out := c.DeactivateEvaluationFormRequest(input)
+	return out, req.Send()
+}
+
+// DeactivateEvaluationFormWithContext is the same as DeactivateEvaluationForm with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeactivateEvaluationForm for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeactivateEvaluationFormWithContext(ctx aws.Context, input *DeactivateEvaluationFormInput, opts ...request.Option) (*DeactivateEvaluationFormOutput, error) {
+	req, out := c.DeactivateEvaluationFormRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContactEvaluation = "DeleteContactEvaluation"
+
+// DeleteContactEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContactEvaluation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContactEvaluation for more information on using the DeleteContactEvaluation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteContactEvaluationRequest method.
+//	req, resp := client.DeleteContactEvaluationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactEvaluation
+func (c *Connect) DeleteContactEvaluationRequest(input *DeleteContactEvaluationInput) (req *request.Request, output *DeleteContactEvaluationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContactEvaluation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/contact-evaluations/{InstanceId}/{EvaluationId}",
+	}
+
+	if input == nil {
+		input = &DeleteContactEvaluationInput{}
+	}
+
+	output = &DeleteContactEvaluationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContactEvaluation API operation for Amazon Connect Service.
+//
+// Deletes a contact evaluation in the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteContactEvaluation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactEvaluation
+func (c *Connect) DeleteContactEvaluation(input *DeleteContactEvaluationInput) (*DeleteContactEvaluationOutput, error) {
+	req, out := c.DeleteContactEvaluationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContactEvaluationWithContext is the same as DeleteContactEvaluation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContactEvaluation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteContactEvaluationWithContext(ctx aws.Context, input *DeleteContactEvaluationInput, opts ...request.Option) (*DeleteContactEvaluationOutput, error) {
+	req, out := c.DeleteContactEvaluationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteContactFlow = "DeleteContactFlow"
 
 // DeleteContactFlowRequest generates a "aws/request.Request" representing the
@@ -3082,6 +3458,103 @@ func (c *Connect) DeleteContactFlowModule(input *DeleteContactFlowModuleInput) (
 // for more information on using Contexts.
 func (c *Connect) DeleteContactFlowModuleWithContext(ctx aws.Context, input *DeleteContactFlowModuleInput, opts ...request.Option) (*DeleteContactFlowModuleOutput, error) {
 	req, out := c.DeleteContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEvaluationForm = "DeleteEvaluationForm"
+
+// DeleteEvaluationFormRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEvaluationForm operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEvaluationForm for more information on using the DeleteEvaluationForm
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEvaluationFormRequest method.
+//	req, resp := client.DeleteEvaluationFormRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteEvaluationForm
+func (c *Connect) DeleteEvaluationFormRequest(input *DeleteEvaluationFormInput) (req *request.Request, output *DeleteEvaluationFormOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEvaluationForm,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+	}
+
+	if input == nil {
+		input = &DeleteEvaluationFormInput{}
+	}
+
+	output = &DeleteEvaluationFormOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEvaluationForm API operation for Amazon Connect Service.
+//
+// Deletes an evaluation form in the specified Amazon Connect instance.
+//
+//   - If the version property is provided, only the specified version of the
+//     evaluation form is deleted.
+//
+//   - If no version is provided, then the full form (all versions) is deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteEvaluationForm for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteEvaluationForm
+func (c *Connect) DeleteEvaluationForm(input *DeleteEvaluationFormInput) (*DeleteEvaluationFormOutput, error) {
+	req, out := c.DeleteEvaluationFormRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEvaluationFormWithContext is the same as DeleteEvaluationForm with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEvaluationForm for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteEvaluationFormWithContext(ctx aws.Context, input *DeleteEvaluationFormInput, opts ...request.Option) (*DeleteEvaluationFormOutput, error) {
+	req, out := c.DeleteEvaluationFormRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4404,6 +4877,94 @@ func (c *Connect) DescribeContactWithContext(ctx aws.Context, input *DescribeCon
 	return out, req.Send()
 }
 
+const opDescribeContactEvaluation = "DescribeContactEvaluation"
+
+// DescribeContactEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeContactEvaluation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeContactEvaluation for more information on using the DescribeContactEvaluation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeContactEvaluationRequest method.
+//	req, resp := client.DescribeContactEvaluationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactEvaluation
+func (c *Connect) DescribeContactEvaluationRequest(input *DescribeContactEvaluationInput) (req *request.Request, output *DescribeContactEvaluationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeContactEvaluation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact-evaluations/{InstanceId}/{EvaluationId}",
+	}
+
+	if input == nil {
+		input = &DescribeContactEvaluationInput{}
+	}
+
+	output = &DescribeContactEvaluationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeContactEvaluation API operation for Amazon Connect Service.
+//
+// Describes a contact evaluation in the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeContactEvaluation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactEvaluation
+func (c *Connect) DescribeContactEvaluation(input *DescribeContactEvaluationInput) (*DescribeContactEvaluationOutput, error) {
+	req, out := c.DescribeContactEvaluationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeContactEvaluationWithContext is the same as DescribeContactEvaluation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeContactEvaluation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeContactEvaluationWithContext(ctx aws.Context, input *DescribeContactEvaluationInput, opts ...request.Option) (*DescribeContactEvaluationOutput, error) {
+	req, out := c.DescribeContactEvaluationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeContactFlow = "DescribeContactFlow"
 
 // DescribeContactFlowRequest generates a "aws/request.Request" representing the
@@ -4590,6 +5151,96 @@ func (c *Connect) DescribeContactFlowModule(input *DescribeContactFlowModuleInpu
 // for more information on using Contexts.
 func (c *Connect) DescribeContactFlowModuleWithContext(ctx aws.Context, input *DescribeContactFlowModuleInput, opts ...request.Option) (*DescribeContactFlowModuleOutput, error) {
 	req, out := c.DescribeContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEvaluationForm = "DescribeEvaluationForm"
+
+// DescribeEvaluationFormRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEvaluationForm operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEvaluationForm for more information on using the DescribeEvaluationForm
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeEvaluationFormRequest method.
+//	req, resp := client.DescribeEvaluationFormRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeEvaluationForm
+func (c *Connect) DescribeEvaluationFormRequest(input *DescribeEvaluationFormInput) (req *request.Request, output *DescribeEvaluationFormOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEvaluationForm,
+		HTTPMethod: "GET",
+		HTTPPath:   "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+	}
+
+	if input == nil {
+		input = &DescribeEvaluationFormInput{}
+	}
+
+	output = &DescribeEvaluationFormOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEvaluationForm API operation for Amazon Connect Service.
+//
+// Describes an evaluation form in the specified Amazon Connect instance. If
+// the version property is not provided, the latest version of the evaluation
+// form is described.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeEvaluationForm for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeEvaluationForm
+func (c *Connect) DescribeEvaluationForm(input *DescribeEvaluationFormInput) (*DescribeEvaluationFormOutput, error) {
+	req, out := c.DescribeEvaluationFormRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEvaluationFormWithContext is the same as DescribeEvaluationForm with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEvaluationForm for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeEvaluationFormWithContext(ctx aws.Context, input *DescribeEvaluationFormInput, opts ...request.Option) (*DescribeEvaluationFormOutput, error) {
+	req, out := c.DescribeEvaluationFormRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8364,6 +9015,151 @@ func (c *Connect) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput
 	return p.Err()
 }
 
+const opListContactEvaluations = "ListContactEvaluations"
+
+// ListContactEvaluationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListContactEvaluations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContactEvaluations for more information on using the ListContactEvaluations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListContactEvaluationsRequest method.
+//	req, resp := client.ListContactEvaluationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactEvaluations
+func (c *Connect) ListContactEvaluationsRequest(input *ListContactEvaluationsInput) (req *request.Request, output *ListContactEvaluationsOutput) {
+	op := &request.Operation{
+		Name:       opListContactEvaluations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact-evaluations/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContactEvaluationsInput{}
+	}
+
+	output = &ListContactEvaluationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContactEvaluations API operation for Amazon Connect Service.
+//
+// Lists contact evaluations in the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListContactEvaluations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactEvaluations
+func (c *Connect) ListContactEvaluations(input *ListContactEvaluationsInput) (*ListContactEvaluationsOutput, error) {
+	req, out := c.ListContactEvaluationsRequest(input)
+	return out, req.Send()
+}
+
+// ListContactEvaluationsWithContext is the same as ListContactEvaluations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContactEvaluations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactEvaluationsWithContext(ctx aws.Context, input *ListContactEvaluationsInput, opts ...request.Option) (*ListContactEvaluationsOutput, error) {
+	req, out := c.ListContactEvaluationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContactEvaluationsPages iterates over the pages of a ListContactEvaluations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContactEvaluations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListContactEvaluations operation.
+//	pageNum := 0
+//	err := client.ListContactEvaluationsPages(params,
+//	    func(page *connect.ListContactEvaluationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListContactEvaluationsPages(input *ListContactEvaluationsInput, fn func(*ListContactEvaluationsOutput, bool) bool) error {
+	return c.ListContactEvaluationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContactEvaluationsPagesWithContext same as ListContactEvaluationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactEvaluationsPagesWithContext(ctx aws.Context, input *ListContactEvaluationsInput, fn func(*ListContactEvaluationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContactEvaluationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContactEvaluationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContactEvaluationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListContactFlowModules = "ListContactFlowModules"
 
 // ListContactFlowModulesRequest generates a "aws/request.Request" representing the
@@ -8959,6 +9755,296 @@ func (c *Connect) ListDefaultVocabulariesPagesWithContext(ctx aws.Context, input
 
 	for p.Next() {
 		if !fn(p.Page().(*ListDefaultVocabulariesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEvaluationFormVersions = "ListEvaluationFormVersions"
+
+// ListEvaluationFormVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEvaluationFormVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEvaluationFormVersions for more information on using the ListEvaluationFormVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEvaluationFormVersionsRequest method.
+//	req, resp := client.ListEvaluationFormVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListEvaluationFormVersions
+func (c *Connect) ListEvaluationFormVersionsRequest(input *ListEvaluationFormVersionsInput) (req *request.Request, output *ListEvaluationFormVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListEvaluationFormVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/evaluation-forms/{InstanceId}/{EvaluationFormId}/versions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEvaluationFormVersionsInput{}
+	}
+
+	output = &ListEvaluationFormVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEvaluationFormVersions API operation for Amazon Connect Service.
+//
+// Lists versions of an evaluation form in the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListEvaluationFormVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListEvaluationFormVersions
+func (c *Connect) ListEvaluationFormVersions(input *ListEvaluationFormVersionsInput) (*ListEvaluationFormVersionsOutput, error) {
+	req, out := c.ListEvaluationFormVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListEvaluationFormVersionsWithContext is the same as ListEvaluationFormVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEvaluationFormVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListEvaluationFormVersionsWithContext(ctx aws.Context, input *ListEvaluationFormVersionsInput, opts ...request.Option) (*ListEvaluationFormVersionsOutput, error) {
+	req, out := c.ListEvaluationFormVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEvaluationFormVersionsPages iterates over the pages of a ListEvaluationFormVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEvaluationFormVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEvaluationFormVersions operation.
+//	pageNum := 0
+//	err := client.ListEvaluationFormVersionsPages(params,
+//	    func(page *connect.ListEvaluationFormVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListEvaluationFormVersionsPages(input *ListEvaluationFormVersionsInput, fn func(*ListEvaluationFormVersionsOutput, bool) bool) error {
+	return c.ListEvaluationFormVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEvaluationFormVersionsPagesWithContext same as ListEvaluationFormVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListEvaluationFormVersionsPagesWithContext(ctx aws.Context, input *ListEvaluationFormVersionsInput, fn func(*ListEvaluationFormVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEvaluationFormVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEvaluationFormVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEvaluationFormVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEvaluationForms = "ListEvaluationForms"
+
+// ListEvaluationFormsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEvaluationForms operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEvaluationForms for more information on using the ListEvaluationForms
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEvaluationFormsRequest method.
+//	req, resp := client.ListEvaluationFormsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListEvaluationForms
+func (c *Connect) ListEvaluationFormsRequest(input *ListEvaluationFormsInput) (req *request.Request, output *ListEvaluationFormsOutput) {
+	op := &request.Operation{
+		Name:       opListEvaluationForms,
+		HTTPMethod: "GET",
+		HTTPPath:   "/evaluation-forms/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEvaluationFormsInput{}
+	}
+
+	output = &ListEvaluationFormsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEvaluationForms API operation for Amazon Connect Service.
+//
+// Lists evaluation forms in the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListEvaluationForms for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListEvaluationForms
+func (c *Connect) ListEvaluationForms(input *ListEvaluationFormsInput) (*ListEvaluationFormsOutput, error) {
+	req, out := c.ListEvaluationFormsRequest(input)
+	return out, req.Send()
+}
+
+// ListEvaluationFormsWithContext is the same as ListEvaluationForms with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEvaluationForms for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListEvaluationFormsWithContext(ctx aws.Context, input *ListEvaluationFormsInput, opts ...request.Option) (*ListEvaluationFormsOutput, error) {
+	req, out := c.ListEvaluationFormsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEvaluationFormsPages iterates over the pages of a ListEvaluationForms operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEvaluationForms method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEvaluationForms operation.
+//	pageNum := 0
+//	err := client.ListEvaluationFormsPages(params,
+//	    func(page *connect.ListEvaluationFormsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListEvaluationFormsPages(input *ListEvaluationFormsInput, fn func(*ListEvaluationFormsOutput, bool) bool) error {
+	return c.ListEvaluationFormsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEvaluationFormsPagesWithContext same as ListEvaluationFormsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListEvaluationFormsPagesWithContext(ctx aws.Context, input *ListEvaluationFormsInput, fn func(*ListEvaluationFormsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEvaluationFormsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEvaluationFormsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEvaluationFormsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -14177,6 +15263,107 @@ func (c *Connect) StartChatContactWithContext(ctx aws.Context, input *StartChatC
 	return out, req.Send()
 }
 
+const opStartContactEvaluation = "StartContactEvaluation"
+
+// StartContactEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the StartContactEvaluation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartContactEvaluation for more information on using the StartContactEvaluation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartContactEvaluationRequest method.
+//	req, resp := client.StartContactEvaluationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactEvaluation
+func (c *Connect) StartContactEvaluationRequest(input *StartContactEvaluationInput) (req *request.Request, output *StartContactEvaluationOutput) {
+	op := &request.Operation{
+		Name:       opStartContactEvaluation,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact-evaluations/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &StartContactEvaluationInput{}
+	}
+
+	output = &StartContactEvaluationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartContactEvaluation API operation for Amazon Connect Service.
+//
+// Starts an empty evaluation in the specified Amazon Connect instance, using
+// the given evaluation form for the particular contact. The evaluation form
+// version used for the contact evaluation corresponds to the currently activated
+// version. If no version is activated for the evaluation form, the contact
+// evaluation cannot be started.
+//
+// Evaluations created through the public API do not contain answer values suggested
+// from automation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StartContactEvaluation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactEvaluation
+func (c *Connect) StartContactEvaluation(input *StartContactEvaluationInput) (*StartContactEvaluationOutput, error) {
+	req, out := c.StartContactEvaluationRequest(input)
+	return out, req.Send()
+}
+
+// StartContactEvaluationWithContext is the same as StartContactEvaluation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartContactEvaluation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StartContactEvaluationWithContext(ctx aws.Context, input *StartContactEvaluationInput, opts ...request.Option) (*StartContactEvaluationOutput, error) {
+	req, out := c.StartContactEvaluationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartContactRecording = "StartContactRecording"
 
 // StartContactRecordingRequest generates a "aws/request.Request" representing the
@@ -14867,6 +16054,104 @@ func (c *Connect) StopContactStreaming(input *StopContactStreamingInput) (*StopC
 // for more information on using Contexts.
 func (c *Connect) StopContactStreamingWithContext(ctx aws.Context, input *StopContactStreamingInput, opts ...request.Option) (*StopContactStreamingOutput, error) {
 	req, out := c.StopContactStreamingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSubmitContactEvaluation = "SubmitContactEvaluation"
+
+// SubmitContactEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the SubmitContactEvaluation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SubmitContactEvaluation for more information on using the SubmitContactEvaluation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SubmitContactEvaluationRequest method.
+//	req, resp := client.SubmitContactEvaluationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SubmitContactEvaluation
+func (c *Connect) SubmitContactEvaluationRequest(input *SubmitContactEvaluationInput) (req *request.Request, output *SubmitContactEvaluationOutput) {
+	op := &request.Operation{
+		Name:       opSubmitContactEvaluation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-evaluations/{InstanceId}/{EvaluationId}/submit",
+	}
+
+	if input == nil {
+		input = &SubmitContactEvaluationInput{}
+	}
+
+	output = &SubmitContactEvaluationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SubmitContactEvaluation API operation for Amazon Connect Service.
+//
+// Submits a contact evaluation in the specified Amazon Connect instance. Answers
+// included in the request are merged with existing answers for the given evaluation.
+// If no answers or notes are passed, the evaluation is submitted with the existing
+// answers and notes. You can delete an answer or note by passing an empty object
+// ({}) to the question identifier.
+//
+// If a contact evaluation is already in submitted state, this operation will
+// trigger a resubmission.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SubmitContactEvaluation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SubmitContactEvaluation
+func (c *Connect) SubmitContactEvaluation(input *SubmitContactEvaluationInput) (*SubmitContactEvaluationOutput, error) {
+	req, out := c.SubmitContactEvaluationRequest(input)
+	return out, req.Send()
+}
+
+// SubmitContactEvaluationWithContext is the same as SubmitContactEvaluation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SubmitContactEvaluation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SubmitContactEvaluationWithContext(ctx aws.Context, input *SubmitContactEvaluationInput, opts ...request.Option) (*SubmitContactEvaluationOutput, error) {
+	req, out := c.SubmitContactEvaluationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -15576,6 +16861,101 @@ func (c *Connect) UpdateContactAttributesWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
+const opUpdateContactEvaluation = "UpdateContactEvaluation"
+
+// UpdateContactEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactEvaluation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactEvaluation for more information on using the UpdateContactEvaluation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateContactEvaluationRequest method.
+//	req, resp := client.UpdateContactEvaluationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactEvaluation
+func (c *Connect) UpdateContactEvaluationRequest(input *UpdateContactEvaluationInput) (req *request.Request, output *UpdateContactEvaluationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactEvaluation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-evaluations/{InstanceId}/{EvaluationId}",
+	}
+
+	if input == nil {
+		input = &UpdateContactEvaluationInput{}
+	}
+
+	output = &UpdateContactEvaluationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateContactEvaluation API operation for Amazon Connect Service.
+//
+// Updates details about a contact evaluation in the specified Amazon Connect
+// instance. A contact evaluation must be in draft state. Answers included in
+// the request are merged with existing answers for the given evaluation. An
+// answer or note can be deleted by passing an empty object ({}) to the question
+// identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactEvaluation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactEvaluation
+func (c *Connect) UpdateContactEvaluation(input *UpdateContactEvaluationInput) (*UpdateContactEvaluationOutput, error) {
+	req, out := c.UpdateContactEvaluationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactEvaluationWithContext is the same as UpdateContactEvaluation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactEvaluation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactEvaluationWithContext(ctx aws.Context, input *UpdateContactEvaluationInput, opts ...request.Option) (*UpdateContactEvaluationOutput, error) {
+	req, out := c.UpdateContactEvaluationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateContactFlowContent = "UpdateContactFlowContent"
 
 // UpdateContactFlowContentRequest generates a "aws/request.Request" representing the
@@ -16150,6 +17530,106 @@ func (c *Connect) UpdateContactSchedule(input *UpdateContactScheduleInput) (*Upd
 // for more information on using Contexts.
 func (c *Connect) UpdateContactScheduleWithContext(ctx aws.Context, input *UpdateContactScheduleInput, opts ...request.Option) (*UpdateContactScheduleOutput, error) {
 	req, out := c.UpdateContactScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateEvaluationForm = "UpdateEvaluationForm"
+
+// UpdateEvaluationFormRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEvaluationForm operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEvaluationForm for more information on using the UpdateEvaluationForm
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEvaluationFormRequest method.
+//	req, resp := client.UpdateEvaluationFormRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateEvaluationForm
+func (c *Connect) UpdateEvaluationFormRequest(input *UpdateEvaluationFormInput) (req *request.Request, output *UpdateEvaluationFormOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEvaluationForm,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+	}
+
+	if input == nil {
+		input = &UpdateEvaluationFormInput{}
+	}
+
+	output = &UpdateEvaluationFormOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEvaluationForm API operation for Amazon Connect Service.
+//
+// Updates details about a specific evaluation form version in the specified
+// Amazon Connect instance. An evaluation form must have a unique title within
+// an instance. Question and section identifiers cannot be duplicated within
+// the same evaluation form.
+//
+// This operation does not support partial updates. Instead it does a full update
+// of evaluation form content.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateEvaluationForm for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateEvaluationForm
+func (c *Connect) UpdateEvaluationForm(input *UpdateEvaluationFormInput) (*UpdateEvaluationFormOutput, error) {
+	req, out := c.UpdateEvaluationFormRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEvaluationFormWithContext is the same as UpdateEvaluationForm with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEvaluationForm for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateEvaluationFormWithContext(ctx aws.Context, input *UpdateEvaluationFormInput, opts ...request.Option) (*UpdateEvaluationFormOutput, error) {
+	req, out := c.UpdateEvaluationFormRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -18837,6 +20317,147 @@ func (s ActionSummary) GoString() string {
 // SetActionType sets the ActionType field's value.
 func (s *ActionSummary) SetActionType(v string) *ActionSummary {
 	s.ActionType = &v
+	return s
+}
+
+type ActivateEvaluationFormInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `location:"uri" locationName:"EvaluationFormId" min:"1" type:"string" required:"true"`
+
+	// The version of the evaluation form to activate. If the version property is
+	// not provided, the latest version of the evaluation form is activated.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActivateEvaluationFormInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActivateEvaluationFormInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActivateEvaluationFormInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActivateEvaluationFormInput"}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+	if s.EvaluationFormVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormVersion"))
+	}
+	if s.EvaluationFormVersion != nil && *s.EvaluationFormVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationFormVersion", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *ActivateEvaluationFormInput) SetEvaluationFormId(v string) *ActivateEvaluationFormInput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *ActivateEvaluationFormInput) SetEvaluationFormVersion(v int64) *ActivateEvaluationFormInput {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ActivateEvaluationFormInput) SetInstanceId(v string) *ActivateEvaluationFormInput {
+	s.InstanceId = &v
+	return s
+}
+
+type ActivateEvaluationFormOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the evaluation form resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// A version of the evaluation form.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActivateEvaluationFormOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActivateEvaluationFormOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *ActivateEvaluationFormOutput) SetEvaluationFormArn(v string) *ActivateEvaluationFormOutput {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *ActivateEvaluationFormOutput) SetEvaluationFormId(v string) *ActivateEvaluationFormOutput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *ActivateEvaluationFormOutput) SetEvaluationFormVersion(v int64) *ActivateEvaluationFormOutput {
+	s.EvaluationFormVersion = &v
 	return s
 }
 
@@ -22056,6 +23677,176 @@ func (s *CreateContactFlowOutput) SetContactFlowId(v string) *CreateContactFlowO
 	return s
 }
 
+type CreateEvaluationFormInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The description of the evaluation form.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Items that are part of the evaluation form. The total number of sections
+	// and questions must not exceed 100 each. Questions must be contained in a
+	// section.
+	//
+	// Items is a required field
+	Items []*EvaluationFormItem `type:"list" required:"true"`
+
+	// A scoring strategy of the evaluation form.
+	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
+
+	// A unique title of the evaluation form.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationFormInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationFormInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEvaluationFormInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEvaluationFormInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Title == nil {
+		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.Items != nil {
+		for i, v := range s.Items {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Items", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScoringStrategy != nil {
+		if err := s.ScoringStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ScoringStrategy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateEvaluationFormInput) SetClientToken(v string) *CreateEvaluationFormInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEvaluationFormInput) SetDescription(v string) *CreateEvaluationFormInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateEvaluationFormInput) SetInstanceId(v string) *CreateEvaluationFormInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *CreateEvaluationFormInput) SetItems(v []*EvaluationFormItem) *CreateEvaluationFormInput {
+	s.Items = v
+	return s
+}
+
+// SetScoringStrategy sets the ScoringStrategy field's value.
+func (s *CreateEvaluationFormInput) SetScoringStrategy(v *EvaluationFormScoringStrategy) *CreateEvaluationFormInput {
+	s.ScoringStrategy = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *CreateEvaluationFormInput) SetTitle(v string) *CreateEvaluationFormInput {
+	s.Title = &v
+	return s
+}
+
+type CreateEvaluationFormOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the evaluation form resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationFormOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationFormOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *CreateEvaluationFormOutput) SetEvaluationFormArn(v string) *CreateEvaluationFormOutput {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *CreateEvaluationFormOutput) SetEvaluationFormId(v string) *CreateEvaluationFormOutput {
+	s.EvaluationFormId = &v
+	return s
+}
+
 type CreateHoursOfOperationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24952,6 +26743,147 @@ func (s *DateReference) SetValue(v string) *DateReference {
 	return s
 }
 
+type DeactivateEvaluationFormInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `location:"uri" locationName:"EvaluationFormId" min:"1" type:"string" required:"true"`
+
+	// A version of the evaluation form. If the version property is not provided,
+	// the latest version of the evaluation form is deactivated.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateEvaluationFormInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateEvaluationFormInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeactivateEvaluationFormInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeactivateEvaluationFormInput"}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+	if s.EvaluationFormVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormVersion"))
+	}
+	if s.EvaluationFormVersion != nil && *s.EvaluationFormVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationFormVersion", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *DeactivateEvaluationFormInput) SetEvaluationFormId(v string) *DeactivateEvaluationFormInput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *DeactivateEvaluationFormInput) SetEvaluationFormVersion(v int64) *DeactivateEvaluationFormInput {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeactivateEvaluationFormInput) SetInstanceId(v string) *DeactivateEvaluationFormInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeactivateEvaluationFormOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the evaluation form resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// The version of the deactivated evaluation form resource.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateEvaluationFormOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateEvaluationFormOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *DeactivateEvaluationFormOutput) SetEvaluationFormArn(v string) *DeactivateEvaluationFormOutput {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *DeactivateEvaluationFormOutput) SetEvaluationFormId(v string) *DeactivateEvaluationFormOutput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *DeactivateEvaluationFormOutput) SetEvaluationFormVersion(v int64) *DeactivateEvaluationFormOutput {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
 // Contains information about a default vocabulary.
 type DefaultVocabulary struct {
 	_ struct{} `type:"structure"`
@@ -25020,6 +26952,96 @@ func (s *DefaultVocabulary) SetVocabularyId(v string) *DefaultVocabulary {
 func (s *DefaultVocabulary) SetVocabularyName(v string) *DefaultVocabulary {
 	s.VocabularyName = &v
 	return s
+}
+
+type DeleteContactEvaluationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `location:"uri" locationName:"EvaluationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactEvaluationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactEvaluationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContactEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContactEvaluationInput"}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *DeleteContactEvaluationInput) SetEvaluationId(v string) *DeleteContactEvaluationInput {
+	s.EvaluationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteContactEvaluationInput) SetInstanceId(v string) *DeleteContactEvaluationInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteContactEvaluationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactEvaluationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactEvaluationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteContactFlowInput struct {
@@ -25199,6 +27221,108 @@ func (s DeleteContactFlowOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteContactFlowOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEvaluationFormInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `location:"uri" locationName:"EvaluationFormId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	EvaluationFormVersion *int64 `location:"querystring" locationName:"version" min:"1" type:"integer"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEvaluationFormInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEvaluationFormInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEvaluationFormInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEvaluationFormInput"}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+	if s.EvaluationFormVersion != nil && *s.EvaluationFormVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationFormVersion", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *DeleteEvaluationFormInput) SetEvaluationFormId(v string) *DeleteEvaluationFormInput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *DeleteEvaluationFormInput) SetEvaluationFormVersion(v int64) *DeleteEvaluationFormInput {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteEvaluationFormInput) SetInstanceId(v string) *DeleteEvaluationFormInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteEvaluationFormOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEvaluationFormOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEvaluationFormOutput) GoString() string {
 	return s.String()
 }
 
@@ -26398,6 +28522,118 @@ func (s *DescribeAgentStatusOutput) SetAgentStatus(v *AgentStatus) *DescribeAgen
 	return s
 }
 
+type DescribeContactEvaluationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `location:"uri" locationName:"EvaluationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactEvaluationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactEvaluationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeContactEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeContactEvaluationInput"}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *DescribeContactEvaluationInput) SetEvaluationId(v string) *DescribeContactEvaluationInput {
+	s.EvaluationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeContactEvaluationInput) SetInstanceId(v string) *DescribeContactEvaluationInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeContactEvaluationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the evaluation form completed for a specific contact.
+	//
+	// Evaluation is a required field
+	Evaluation *Evaluation `type:"structure" required:"true"`
+
+	// Information about the evaluation form.
+	//
+	// EvaluationForm is a required field
+	EvaluationForm *EvaluationFormContent `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactEvaluationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactEvaluationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluation sets the Evaluation field's value.
+func (s *DescribeContactEvaluationOutput) SetEvaluation(v *Evaluation) *DescribeContactEvaluationOutput {
+	s.Evaluation = v
+	return s
+}
+
+// SetEvaluationForm sets the EvaluationForm field's value.
+func (s *DescribeContactEvaluationOutput) SetEvaluationForm(v *EvaluationFormContent) *DescribeContactEvaluationOutput {
+	s.EvaluationForm = v
+	return s
+}
+
 type DescribeContactFlowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -26690,6 +28926,119 @@ func (s DescribeContactOutput) GoString() string {
 // SetContact sets the Contact field's value.
 func (s *DescribeContactOutput) SetContact(v *Contact) *DescribeContactOutput {
 	s.Contact = v
+	return s
+}
+
+type DescribeEvaluationFormInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `location:"uri" locationName:"EvaluationFormId" min:"1" type:"string" required:"true"`
+
+	// A version of the evaluation form.
+	EvaluationFormVersion *int64 `location:"querystring" locationName:"version" min:"1" type:"integer"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEvaluationFormInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEvaluationFormInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEvaluationFormInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEvaluationFormInput"}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+	if s.EvaluationFormVersion != nil && *s.EvaluationFormVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationFormVersion", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *DescribeEvaluationFormInput) SetEvaluationFormId(v string) *DescribeEvaluationFormInput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *DescribeEvaluationFormInput) SetEvaluationFormVersion(v int64) *DescribeEvaluationFormInput {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeEvaluationFormInput) SetInstanceId(v string) *DescribeEvaluationFormInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeEvaluationFormOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the evaluation form.
+	//
+	// EvaluationForm is a required field
+	EvaluationForm *EvaluationForm `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEvaluationFormOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEvaluationFormOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationForm sets the EvaluationForm field's value.
+func (s *DescribeEvaluationFormOutput) SetEvaluationForm(v *EvaluationForm) *DescribeEvaluationFormOutput {
+	s.EvaluationForm = v
 	return s
 }
 
@@ -29474,6 +31823,1975 @@ func (s *EncryptionConfig) SetEncryptionType(v string) *EncryptionConfig {
 // SetKeyId sets the KeyId field's value.
 func (s *EncryptionConfig) SetKeyId(v string) *EncryptionConfig {
 	s.KeyId = &v
+	return s
+}
+
+// Information about a contact evaluation.
+type Evaluation struct {
+	_ struct{} `type:"structure"`
+
+	// A map of question identifiers to answer value.
+	//
+	// Answers is a required field
+	Answers map[string]*EvaluationAnswerOutput_ `type:"map" required:"true"`
+
+	// The timestamp for when the evaluation was created.
+	//
+	// CreatedTime is a required field
+	CreatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the contact evaluation resource.
+	//
+	// EvaluationArn is a required field
+	EvaluationArn *string `type:"string" required:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `min:"1" type:"string" required:"true"`
+
+	// The timestamp for when the evaluation was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// Metadata about the contact evaluation.
+	//
+	// Metadata is a required field
+	Metadata *EvaluationMetadata `type:"structure" required:"true"`
+
+	// A map of question identifiers to note value.
+	//
+	// Notes is a required field
+	Notes map[string]*EvaluationNote `type:"map" required:"true"`
+
+	// A map of item (section or question) identifiers to score value.
+	Scores map[string]*EvaluationScore `type:"map"`
+
+	// The status of the contact evaluation.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EvaluationStatus"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Evaluation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Evaluation) GoString() string {
+	return s.String()
+}
+
+// SetAnswers sets the Answers field's value.
+func (s *Evaluation) SetAnswers(v map[string]*EvaluationAnswerOutput_) *Evaluation {
+	s.Answers = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Evaluation) SetCreatedTime(v time.Time) *Evaluation {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetEvaluationArn sets the EvaluationArn field's value.
+func (s *Evaluation) SetEvaluationArn(v string) *Evaluation {
+	s.EvaluationArn = &v
+	return s
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *Evaluation) SetEvaluationId(v string) *Evaluation {
+	s.EvaluationId = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Evaluation) SetLastModifiedTime(v time.Time) *Evaluation {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *Evaluation) SetMetadata(v *EvaluationMetadata) *Evaluation {
+	s.Metadata = v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *Evaluation) SetNotes(v map[string]*EvaluationNote) *Evaluation {
+	s.Notes = v
+	return s
+}
+
+// SetScores sets the Scores field's value.
+func (s *Evaluation) SetScores(v map[string]*EvaluationScore) *Evaluation {
+	s.Scores = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Evaluation) SetStatus(v string) *Evaluation {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Evaluation) SetTags(v map[string]*string) *Evaluation {
+	s.Tags = v
+	return s
+}
+
+// Information about answer data for a contact evaluation. Answer data must
+// be either string, numeric, or not applicable.
+type EvaluationAnswerData struct {
+	_ struct{} `type:"structure"`
+
+	// The flag to mark the question as not applicable.
+	NotApplicable *bool `type:"boolean"`
+
+	// The numeric value for an answer in a contact evaluation.
+	NumericValue *float64 `type:"double"`
+
+	// The string value for an answer in a contact evaluation.
+	StringValue *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationAnswerData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationAnswerData) GoString() string {
+	return s.String()
+}
+
+// SetNotApplicable sets the NotApplicable field's value.
+func (s *EvaluationAnswerData) SetNotApplicable(v bool) *EvaluationAnswerData {
+	s.NotApplicable = &v
+	return s
+}
+
+// SetNumericValue sets the NumericValue field's value.
+func (s *EvaluationAnswerData) SetNumericValue(v float64) *EvaluationAnswerData {
+	s.NumericValue = &v
+	return s
+}
+
+// SetStringValue sets the StringValue field's value.
+func (s *EvaluationAnswerData) SetStringValue(v string) *EvaluationAnswerData {
+	s.StringValue = &v
+	return s
+}
+
+// Information about input answers for a contact evaluation.
+type EvaluationAnswerInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The value for an answer in a contact evaluation.
+	Value *EvaluationAnswerData `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationAnswerInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationAnswerInput_) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *EvaluationAnswerInput_) SetValue(v *EvaluationAnswerData) *EvaluationAnswerInput_ {
+	s.Value = v
+	return s
+}
+
+// Information about output answers for a contact evaluation.
+type EvaluationAnswerOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The system suggested value for an answer in a contact evaluation.
+	SystemSuggestedValue *EvaluationAnswerData `type:"structure"`
+
+	// The value for an answer in a contact evaluation.
+	Value *EvaluationAnswerData `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationAnswerOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationAnswerOutput_) GoString() string {
+	return s.String()
+}
+
+// SetSystemSuggestedValue sets the SystemSuggestedValue field's value.
+func (s *EvaluationAnswerOutput_) SetSystemSuggestedValue(v *EvaluationAnswerData) *EvaluationAnswerOutput_ {
+	s.SystemSuggestedValue = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *EvaluationAnswerOutput_) SetValue(v *EvaluationAnswerData) *EvaluationAnswerOutput_ {
+	s.Value = v
+	return s
+}
+
+// Information about the evaluation form.
+type EvaluationForm struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user who created the evaluation form.
+	//
+	// CreatedBy is a required field
+	CreatedBy *string `type:"string" required:"true"`
+
+	// The timestamp for when the evaluation form was created.
+	//
+	// CreatedTime is a required field
+	CreatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The description of the evaluation form.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the evaluation form resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// A version of the evaluation form.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	// Items that are part of the evaluation form. The total number of sections
+	// and questions must not exceed 100 each. Questions must be contained in a
+	// section.
+	//
+	// Items is a required field
+	Items []*EvaluationFormItem `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the user who last updated the evaluation
+	// form.
+	//
+	// LastModifiedBy is a required field
+	LastModifiedBy *string `type:"string" required:"true"`
+
+	// The timestamp for when the evaluation form was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The flag indicating whether the evaluation form is locked for changes.
+	//
+	// Locked is a required field
+	Locked *bool `type:"boolean" required:"true"`
+
+	// A scoring strategy of the evaluation form.
+	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
+
+	// The status of the evaluation form.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EvaluationFormVersionStatus"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// A unique title of the evaluation form.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationForm) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationForm) GoString() string {
+	return s.String()
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *EvaluationForm) SetCreatedBy(v string) *EvaluationForm {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *EvaluationForm) SetCreatedTime(v time.Time) *EvaluationForm {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EvaluationForm) SetDescription(v string) *EvaluationForm {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *EvaluationForm) SetEvaluationFormArn(v string) *EvaluationForm {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *EvaluationForm) SetEvaluationFormId(v string) *EvaluationForm {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *EvaluationForm) SetEvaluationFormVersion(v int64) *EvaluationForm {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *EvaluationForm) SetItems(v []*EvaluationFormItem) *EvaluationForm {
+	s.Items = v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *EvaluationForm) SetLastModifiedBy(v string) *EvaluationForm {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EvaluationForm) SetLastModifiedTime(v time.Time) *EvaluationForm {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLocked sets the Locked field's value.
+func (s *EvaluationForm) SetLocked(v bool) *EvaluationForm {
+	s.Locked = &v
+	return s
+}
+
+// SetScoringStrategy sets the ScoringStrategy field's value.
+func (s *EvaluationForm) SetScoringStrategy(v *EvaluationFormScoringStrategy) *EvaluationForm {
+	s.ScoringStrategy = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EvaluationForm) SetStatus(v string) *EvaluationForm {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EvaluationForm) SetTags(v map[string]*string) *EvaluationForm {
+	s.Tags = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *EvaluationForm) SetTitle(v string) *EvaluationForm {
+	s.Title = &v
+	return s
+}
+
+// Information about an evaluation form used in a contact evaluation.
+type EvaluationFormContent struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the evaluation form.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the evaluation form resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// A version of the evaluation form.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	// Items that are part of the evaluation form. The total number of sections
+	// and questions must not exceed 100 each. Questions must be contained in a
+	// section.
+	//
+	// Items is a required field
+	Items []*EvaluationFormItem `type:"list" required:"true"`
+
+	// A scoring strategy of the evaluation form.
+	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
+
+	// A unique title of the evaluation form.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormContent) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *EvaluationFormContent) SetDescription(v string) *EvaluationFormContent {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *EvaluationFormContent) SetEvaluationFormArn(v string) *EvaluationFormContent {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *EvaluationFormContent) SetEvaluationFormId(v string) *EvaluationFormContent {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *EvaluationFormContent) SetEvaluationFormVersion(v int64) *EvaluationFormContent {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *EvaluationFormContent) SetItems(v []*EvaluationFormItem) *EvaluationFormContent {
+	s.Items = v
+	return s
+}
+
+// SetScoringStrategy sets the ScoringStrategy field's value.
+func (s *EvaluationFormContent) SetScoringStrategy(v *EvaluationFormScoringStrategy) *EvaluationFormContent {
+	s.ScoringStrategy = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *EvaluationFormContent) SetTitle(v string) *EvaluationFormContent {
+	s.Title = &v
+	return s
+}
+
+// Information about an item from an evaluation form. The item must be either
+// a section or a question.
+type EvaluationFormItem struct {
+	_ struct{} `type:"structure"`
+
+	// The information of the question.
+	Question *EvaluationFormQuestion `type:"structure"`
+
+	// The information of the section.
+	Section *EvaluationFormSection `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormItem"}
+	if s.Question != nil {
+		if err := s.Question.Validate(); err != nil {
+			invalidParams.AddNested("Question", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Section != nil {
+		if err := s.Section.Validate(); err != nil {
+			invalidParams.AddNested("Section", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQuestion sets the Question field's value.
+func (s *EvaluationFormItem) SetQuestion(v *EvaluationFormQuestion) *EvaluationFormItem {
+	s.Question = v
+	return s
+}
+
+// SetSection sets the Section field's value.
+func (s *EvaluationFormItem) SetSection(v *EvaluationFormSection) *EvaluationFormItem {
+	s.Section = v
+	return s
+}
+
+// Information about the automation configuration in numeric questions.
+type EvaluationFormNumericQuestionAutomation struct {
+	_ struct{} `type:"structure"`
+
+	// The property value of the automation.
+	PropertyValue *NumericQuestionPropertyValueAutomation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormNumericQuestionAutomation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormNumericQuestionAutomation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormNumericQuestionAutomation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormNumericQuestionAutomation"}
+	if s.PropertyValue != nil {
+		if err := s.PropertyValue.Validate(); err != nil {
+			invalidParams.AddNested("PropertyValue", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPropertyValue sets the PropertyValue field's value.
+func (s *EvaluationFormNumericQuestionAutomation) SetPropertyValue(v *NumericQuestionPropertyValueAutomation) *EvaluationFormNumericQuestionAutomation {
+	s.PropertyValue = v
+	return s
+}
+
+// Information about the option range used for scoring in numeric questions.
+type EvaluationFormNumericQuestionOption struct {
+	_ struct{} `type:"structure"`
+
+	// The flag to mark the option as automatic fail. If an automatic fail answer
+	// is provided, the overall evaluation gets a score of 0.
+	AutomaticFail *bool `type:"boolean"`
+
+	// The maximum answer value of the range option.
+	//
+	// MaxValue is a required field
+	MaxValue *int64 `type:"integer" required:"true"`
+
+	// The minimum answer value of the range option.
+	//
+	// MinValue is a required field
+	MinValue *int64 `type:"integer" required:"true"`
+
+	// The score assigned to answer values within the range option.
+	Score *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormNumericQuestionOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormNumericQuestionOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormNumericQuestionOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormNumericQuestionOption"}
+	if s.MaxValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxValue"))
+	}
+	if s.MinValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticFail sets the AutomaticFail field's value.
+func (s *EvaluationFormNumericQuestionOption) SetAutomaticFail(v bool) *EvaluationFormNumericQuestionOption {
+	s.AutomaticFail = &v
+	return s
+}
+
+// SetMaxValue sets the MaxValue field's value.
+func (s *EvaluationFormNumericQuestionOption) SetMaxValue(v int64) *EvaluationFormNumericQuestionOption {
+	s.MaxValue = &v
+	return s
+}
+
+// SetMinValue sets the MinValue field's value.
+func (s *EvaluationFormNumericQuestionOption) SetMinValue(v int64) *EvaluationFormNumericQuestionOption {
+	s.MinValue = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *EvaluationFormNumericQuestionOption) SetScore(v int64) *EvaluationFormNumericQuestionOption {
+	s.Score = &v
+	return s
+}
+
+// Information about properties for a numeric question in an evaluation form.
+type EvaluationFormNumericQuestionProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The automation properties of the numeric question.
+	Automation *EvaluationFormNumericQuestionAutomation `type:"structure"`
+
+	// The maximum answer value.
+	//
+	// MaxValue is a required field
+	MaxValue *int64 `type:"integer" required:"true"`
+
+	// The minimum answer value.
+	//
+	// MinValue is a required field
+	MinValue *int64 `type:"integer" required:"true"`
+
+	// The scoring options of the numeric question.
+	Options []*EvaluationFormNumericQuestionOption `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormNumericQuestionProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormNumericQuestionProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormNumericQuestionProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormNumericQuestionProperties"}
+	if s.MaxValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxValue"))
+	}
+	if s.MinValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinValue"))
+	}
+	if s.Options != nil && len(s.Options) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Options", 1))
+	}
+	if s.Automation != nil {
+		if err := s.Automation.Validate(); err != nil {
+			invalidParams.AddNested("Automation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Options != nil {
+		for i, v := range s.Options {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Options", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomation sets the Automation field's value.
+func (s *EvaluationFormNumericQuestionProperties) SetAutomation(v *EvaluationFormNumericQuestionAutomation) *EvaluationFormNumericQuestionProperties {
+	s.Automation = v
+	return s
+}
+
+// SetMaxValue sets the MaxValue field's value.
+func (s *EvaluationFormNumericQuestionProperties) SetMaxValue(v int64) *EvaluationFormNumericQuestionProperties {
+	s.MaxValue = &v
+	return s
+}
+
+// SetMinValue sets the MinValue field's value.
+func (s *EvaluationFormNumericQuestionProperties) SetMinValue(v int64) *EvaluationFormNumericQuestionProperties {
+	s.MinValue = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *EvaluationFormNumericQuestionProperties) SetOptions(v []*EvaluationFormNumericQuestionOption) *EvaluationFormNumericQuestionProperties {
+	s.Options = v
+	return s
+}
+
+// Information about a question from an evaluation form.
+type EvaluationFormQuestion struct {
+	_ struct{} `type:"structure"`
+
+	// The instructions of the section.
+	Instructions *string `type:"string"`
+
+	// The flag to enable not applicable answers to the question.
+	NotApplicableEnabled *bool `type:"boolean"`
+
+	// The type of the question.
+	//
+	// QuestionType is a required field
+	QuestionType *string `type:"string" required:"true" enum:"EvaluationFormQuestionType"`
+
+	// The properties of the type of question. Text questions do not have to define
+	// question type properties.
+	QuestionTypeProperties *EvaluationFormQuestionTypeProperties `type:"structure"`
+
+	// The identifier of the question. An identifier must be unique within the evaluation
+	// form.
+	//
+	// RefId is a required field
+	RefId *string `type:"string" required:"true"`
+
+	// The title of the question.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+
+	// The scoring weight of the section.
+	Weight *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormQuestion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormQuestion) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormQuestion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormQuestion"}
+	if s.QuestionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuestionType"))
+	}
+	if s.RefId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefId"))
+	}
+	if s.Title == nil {
+		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.QuestionTypeProperties != nil {
+		if err := s.QuestionTypeProperties.Validate(); err != nil {
+			invalidParams.AddNested("QuestionTypeProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstructions sets the Instructions field's value.
+func (s *EvaluationFormQuestion) SetInstructions(v string) *EvaluationFormQuestion {
+	s.Instructions = &v
+	return s
+}
+
+// SetNotApplicableEnabled sets the NotApplicableEnabled field's value.
+func (s *EvaluationFormQuestion) SetNotApplicableEnabled(v bool) *EvaluationFormQuestion {
+	s.NotApplicableEnabled = &v
+	return s
+}
+
+// SetQuestionType sets the QuestionType field's value.
+func (s *EvaluationFormQuestion) SetQuestionType(v string) *EvaluationFormQuestion {
+	s.QuestionType = &v
+	return s
+}
+
+// SetQuestionTypeProperties sets the QuestionTypeProperties field's value.
+func (s *EvaluationFormQuestion) SetQuestionTypeProperties(v *EvaluationFormQuestionTypeProperties) *EvaluationFormQuestion {
+	s.QuestionTypeProperties = v
+	return s
+}
+
+// SetRefId sets the RefId field's value.
+func (s *EvaluationFormQuestion) SetRefId(v string) *EvaluationFormQuestion {
+	s.RefId = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *EvaluationFormQuestion) SetTitle(v string) *EvaluationFormQuestion {
+	s.Title = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *EvaluationFormQuestion) SetWeight(v float64) *EvaluationFormQuestion {
+	s.Weight = &v
+	return s
+}
+
+// Information about properties for a question in an evaluation form. The question
+// type properties must be either for a numeric question or a single select
+// question.
+type EvaluationFormQuestionTypeProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the numeric question.
+	Numeric *EvaluationFormNumericQuestionProperties `type:"structure"`
+
+	// The properties of the numeric question.
+	SingleSelect *EvaluationFormSingleSelectQuestionProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormQuestionTypeProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormQuestionTypeProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormQuestionTypeProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormQuestionTypeProperties"}
+	if s.Numeric != nil {
+		if err := s.Numeric.Validate(); err != nil {
+			invalidParams.AddNested("Numeric", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SingleSelect != nil {
+		if err := s.SingleSelect.Validate(); err != nil {
+			invalidParams.AddNested("SingleSelect", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNumeric sets the Numeric field's value.
+func (s *EvaluationFormQuestionTypeProperties) SetNumeric(v *EvaluationFormNumericQuestionProperties) *EvaluationFormQuestionTypeProperties {
+	s.Numeric = v
+	return s
+}
+
+// SetSingleSelect sets the SingleSelect field's value.
+func (s *EvaluationFormQuestionTypeProperties) SetSingleSelect(v *EvaluationFormSingleSelectQuestionProperties) *EvaluationFormQuestionTypeProperties {
+	s.SingleSelect = v
+	return s
+}
+
+// Information about scoring strategy for an evaluation form.
+type EvaluationFormScoringStrategy struct {
+	_ struct{} `type:"structure"`
+
+	// The scoring mode of the evaluation form.
+	//
+	// Mode is a required field
+	Mode *string `type:"string" required:"true" enum:"EvaluationFormScoringMode"`
+
+	// The scoring status of the evaluation form.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EvaluationFormScoringStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormScoringStrategy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormScoringStrategy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormScoringStrategy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormScoringStrategy"}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMode sets the Mode field's value.
+func (s *EvaluationFormScoringStrategy) SetMode(v string) *EvaluationFormScoringStrategy {
+	s.Mode = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EvaluationFormScoringStrategy) SetStatus(v string) *EvaluationFormScoringStrategy {
+	s.Status = &v
+	return s
+}
+
+// Information about a section from an evaluation form. A section can contain
+// sections and/or questions. Evaluation forms can only contain sections and
+// subsections (two level nesting).
+type EvaluationFormSection struct {
+	_ struct{} `type:"structure"`
+
+	// The instructions of the section.
+	Instructions *string `type:"string"`
+
+	// The items of the section.
+	Items []*EvaluationFormItem `type:"list"`
+
+	// The identifier of the section. An identifier must be unique within the evaluation
+	// form.
+	//
+	// RefId is a required field
+	RefId *string `type:"string" required:"true"`
+
+	// The title of the section.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+
+	// The scoring weight of the section.
+	Weight *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormSection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSection"}
+	if s.RefId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefId"))
+	}
+	if s.Title == nil {
+		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.Items != nil {
+		for i, v := range s.Items {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Items", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstructions sets the Instructions field's value.
+func (s *EvaluationFormSection) SetInstructions(v string) *EvaluationFormSection {
+	s.Instructions = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *EvaluationFormSection) SetItems(v []*EvaluationFormItem) *EvaluationFormSection {
+	s.Items = v
+	return s
+}
+
+// SetRefId sets the RefId field's value.
+func (s *EvaluationFormSection) SetRefId(v string) *EvaluationFormSection {
+	s.RefId = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *EvaluationFormSection) SetTitle(v string) *EvaluationFormSection {
+	s.Title = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *EvaluationFormSection) SetWeight(v float64) *EvaluationFormSection {
+	s.Weight = &v
+	return s
+}
+
+// Information about the automation configuration in single select questions.
+// Automation options are evaluated in order, and the first matched option is
+// applied. If no automation option matches, and there is a default option,
+// then the default option is applied.
+type EvaluationFormSingleSelectQuestionAutomation struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the default answer option, when none of the automation
+	// options match the criteria.
+	DefaultOptionRefId *string `type:"string"`
+
+	// The automation options of the single select question.
+	//
+	// Options is a required field
+	Options []*EvaluationFormSingleSelectQuestionAutomationOption `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionAutomation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionAutomation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormSingleSelectQuestionAutomation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSingleSelectQuestionAutomation"}
+	if s.Options == nil {
+		invalidParams.Add(request.NewErrParamRequired("Options"))
+	}
+	if s.Options != nil && len(s.Options) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Options", 1))
+	}
+	if s.Options != nil {
+		for i, v := range s.Options {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Options", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultOptionRefId sets the DefaultOptionRefId field's value.
+func (s *EvaluationFormSingleSelectQuestionAutomation) SetDefaultOptionRefId(v string) *EvaluationFormSingleSelectQuestionAutomation {
+	s.DefaultOptionRefId = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *EvaluationFormSingleSelectQuestionAutomation) SetOptions(v []*EvaluationFormSingleSelectQuestionAutomationOption) *EvaluationFormSingleSelectQuestionAutomation {
+	s.Options = v
+	return s
+}
+
+// Information about the automation option of a single select question.
+type EvaluationFormSingleSelectQuestionAutomationOption struct {
+	_ struct{} `type:"structure"`
+
+	// The automation option based on a rule category for the single select question.
+	RuleCategory *SingleSelectQuestionRuleCategoryAutomation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionAutomationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionAutomationOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormSingleSelectQuestionAutomationOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSingleSelectQuestionAutomationOption"}
+	if s.RuleCategory != nil {
+		if err := s.RuleCategory.Validate(); err != nil {
+			invalidParams.AddNested("RuleCategory", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRuleCategory sets the RuleCategory field's value.
+func (s *EvaluationFormSingleSelectQuestionAutomationOption) SetRuleCategory(v *SingleSelectQuestionRuleCategoryAutomation) *EvaluationFormSingleSelectQuestionAutomationOption {
+	s.RuleCategory = v
+	return s
+}
+
+// Information about the automation configuration in single select questions.
+type EvaluationFormSingleSelectQuestionOption struct {
+	_ struct{} `type:"structure"`
+
+	// The flag to mark the option as automatic fail. If an automatic fail answer
+	// is provided, the overall evaluation gets a score of 0.
+	AutomaticFail *bool `type:"boolean"`
+
+	// The identifier of the answer option. An identifier must be unique within
+	// the question.
+	//
+	// RefId is a required field
+	RefId *string `type:"string" required:"true"`
+
+	// The score assigned to the answer option.
+	Score *int64 `type:"integer"`
+
+	// The title of the answer option.
+	//
+	// Text is a required field
+	Text *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormSingleSelectQuestionOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSingleSelectQuestionOption"}
+	if s.RefId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefId"))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticFail sets the AutomaticFail field's value.
+func (s *EvaluationFormSingleSelectQuestionOption) SetAutomaticFail(v bool) *EvaluationFormSingleSelectQuestionOption {
+	s.AutomaticFail = &v
+	return s
+}
+
+// SetRefId sets the RefId field's value.
+func (s *EvaluationFormSingleSelectQuestionOption) SetRefId(v string) *EvaluationFormSingleSelectQuestionOption {
+	s.RefId = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *EvaluationFormSingleSelectQuestionOption) SetScore(v int64) *EvaluationFormSingleSelectQuestionOption {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *EvaluationFormSingleSelectQuestionOption) SetText(v string) *EvaluationFormSingleSelectQuestionOption {
+	s.Text = &v
+	return s
+}
+
+// Information about the options in single select questions.
+type EvaluationFormSingleSelectQuestionProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The display mode of the single select question.
+	Automation *EvaluationFormSingleSelectQuestionAutomation `type:"structure"`
+
+	// The display mode of the single select question.
+	DisplayAs *string `type:"string" enum:"EvaluationFormSingleSelectQuestionDisplayMode"`
+
+	// The answer options of the single select question.
+	//
+	// Options is a required field
+	Options []*EvaluationFormSingleSelectQuestionOption `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSingleSelectQuestionProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationFormSingleSelectQuestionProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationFormSingleSelectQuestionProperties"}
+	if s.Options == nil {
+		invalidParams.Add(request.NewErrParamRequired("Options"))
+	}
+	if s.Options != nil && len(s.Options) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Options", 1))
+	}
+	if s.Automation != nil {
+		if err := s.Automation.Validate(); err != nil {
+			invalidParams.AddNested("Automation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Options != nil {
+		for i, v := range s.Options {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Options", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomation sets the Automation field's value.
+func (s *EvaluationFormSingleSelectQuestionProperties) SetAutomation(v *EvaluationFormSingleSelectQuestionAutomation) *EvaluationFormSingleSelectQuestionProperties {
+	s.Automation = v
+	return s
+}
+
+// SetDisplayAs sets the DisplayAs field's value.
+func (s *EvaluationFormSingleSelectQuestionProperties) SetDisplayAs(v string) *EvaluationFormSingleSelectQuestionProperties {
+	s.DisplayAs = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *EvaluationFormSingleSelectQuestionProperties) SetOptions(v []*EvaluationFormSingleSelectQuestionOption) *EvaluationFormSingleSelectQuestionProperties {
+	s.Options = v
+	return s
+}
+
+// Summary information about an evaluation form.
+type EvaluationFormSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The version of the active evaluation form version.
+	ActiveVersion *int64 `min:"1" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the user who created the evaluation form.
+	//
+	// CreatedBy is a required field
+	CreatedBy *string `type:"string" required:"true"`
+
+	// The timestamp for when the evaluation form was created.
+	//
+	// CreatedTime is a required field
+	CreatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the evaluation form resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the user who last activated the evaluation
+	// form.
+	LastActivatedBy *string `type:"string"`
+
+	// The timestamp for when the evaluation form was last activated.
+	LastActivatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the user who last updated the evaluation
+	// form.
+	//
+	// LastModifiedBy is a required field
+	LastModifiedBy *string `type:"string" required:"true"`
+
+	// The timestamp for when the evaluation form was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The version number of the latest evaluation form version.
+	//
+	// LatestVersion is a required field
+	LatestVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	// A unique title of the evaluation form.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormSummary) GoString() string {
+	return s.String()
+}
+
+// SetActiveVersion sets the ActiveVersion field's value.
+func (s *EvaluationFormSummary) SetActiveVersion(v int64) *EvaluationFormSummary {
+	s.ActiveVersion = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *EvaluationFormSummary) SetCreatedBy(v string) *EvaluationFormSummary {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *EvaluationFormSummary) SetCreatedTime(v time.Time) *EvaluationFormSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *EvaluationFormSummary) SetEvaluationFormArn(v string) *EvaluationFormSummary {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *EvaluationFormSummary) SetEvaluationFormId(v string) *EvaluationFormSummary {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetLastActivatedBy sets the LastActivatedBy field's value.
+func (s *EvaluationFormSummary) SetLastActivatedBy(v string) *EvaluationFormSummary {
+	s.LastActivatedBy = &v
+	return s
+}
+
+// SetLastActivatedTime sets the LastActivatedTime field's value.
+func (s *EvaluationFormSummary) SetLastActivatedTime(v time.Time) *EvaluationFormSummary {
+	s.LastActivatedTime = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *EvaluationFormSummary) SetLastModifiedBy(v string) *EvaluationFormSummary {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EvaluationFormSummary) SetLastModifiedTime(v time.Time) *EvaluationFormSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLatestVersion sets the LatestVersion field's value.
+func (s *EvaluationFormSummary) SetLatestVersion(v int64) *EvaluationFormSummary {
+	s.LatestVersion = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *EvaluationFormSummary) SetTitle(v string) *EvaluationFormSummary {
+	s.Title = &v
+	return s
+}
+
+// Summary information about an evaluation form.
+type EvaluationFormVersionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user who created the evaluation form.
+	//
+	// CreatedBy is a required field
+	CreatedBy *string `type:"string" required:"true"`
+
+	// The timestamp for when the evaluation form was created.
+	//
+	// CreatedTime is a required field
+	CreatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the evaluation form resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// A version of the evaluation form.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the user who last updated the evaluation
+	// form.
+	//
+	// LastModifiedBy is a required field
+	LastModifiedBy *string `type:"string" required:"true"`
+
+	// The timestamp for when the evaluation form was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The flag indicating whether the evaluation form is locked for changes.
+	//
+	// Locked is a required field
+	Locked *bool `type:"boolean" required:"true"`
+
+	// The status of the evaluation form.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EvaluationFormVersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormVersionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationFormVersionSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *EvaluationFormVersionSummary) SetCreatedBy(v string) *EvaluationFormVersionSummary {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *EvaluationFormVersionSummary) SetCreatedTime(v time.Time) *EvaluationFormVersionSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *EvaluationFormVersionSummary) SetEvaluationFormArn(v string) *EvaluationFormVersionSummary {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *EvaluationFormVersionSummary) SetEvaluationFormId(v string) *EvaluationFormVersionSummary {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *EvaluationFormVersionSummary) SetEvaluationFormVersion(v int64) *EvaluationFormVersionSummary {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *EvaluationFormVersionSummary) SetLastModifiedBy(v string) *EvaluationFormVersionSummary {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EvaluationFormVersionSummary) SetLastModifiedTime(v time.Time) *EvaluationFormVersionSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLocked sets the Locked field's value.
+func (s *EvaluationFormVersionSummary) SetLocked(v bool) *EvaluationFormVersionSummary {
+	s.Locked = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EvaluationFormVersionSummary) SetStatus(v string) *EvaluationFormVersionSummary {
+	s.Status = &v
+	return s
+}
+
+// Metadata information about a contact evaluation.
+type EvaluationMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the agent who performed the contact.
+	ContactAgentId *string `min:"1" type:"string"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the user who last updated the evaluation.
+	//
+	// EvaluatorArn is a required field
+	EvaluatorArn *string `type:"string" required:"true"`
+
+	// The overall score of the contact evaluation.
+	Score *EvaluationScore `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationMetadata) GoString() string {
+	return s.String()
+}
+
+// SetContactAgentId sets the ContactAgentId field's value.
+func (s *EvaluationMetadata) SetContactAgentId(v string) *EvaluationMetadata {
+	s.ContactAgentId = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *EvaluationMetadata) SetContactId(v string) *EvaluationMetadata {
+	s.ContactId = &v
+	return s
+}
+
+// SetEvaluatorArn sets the EvaluatorArn field's value.
+func (s *EvaluationMetadata) SetEvaluatorArn(v string) *EvaluationMetadata {
+	s.EvaluatorArn = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *EvaluationMetadata) SetScore(v *EvaluationScore) *EvaluationMetadata {
+	s.Score = v
+	return s
+}
+
+// Information about notes for a contact evaluation.
+type EvaluationNote struct {
+	_ struct{} `type:"structure"`
+
+	// The note for an item (section or question) in a contact evaluation.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationNote) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationNote) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *EvaluationNote) SetValue(v string) *EvaluationNote {
+	s.Value = &v
+	return s
+}
+
+// Information about scores of a contact evaluation item (section or question).
+type EvaluationScore struct {
+	_ struct{} `type:"structure"`
+
+	// The flag that marks the item as automatic fail. If the item or a child item
+	// gets an automatic fail answer, this flag will be true.
+	AutomaticFail *bool `type:"boolean"`
+
+	// The flag to mark the item as not applicable for scoring.
+	NotApplicable *bool `type:"boolean"`
+
+	// The score percentage for an item in a contact evaluation.
+	Percentage *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationScore) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationScore) GoString() string {
+	return s.String()
+}
+
+// SetAutomaticFail sets the AutomaticFail field's value.
+func (s *EvaluationScore) SetAutomaticFail(v bool) *EvaluationScore {
+	s.AutomaticFail = &v
+	return s
+}
+
+// SetNotApplicable sets the NotApplicable field's value.
+func (s *EvaluationScore) SetNotApplicable(v bool) *EvaluationScore {
+	s.NotApplicable = &v
+	return s
+}
+
+// SetPercentage sets the Percentage field's value.
+func (s *EvaluationScore) SetPercentage(v float64) *EvaluationScore {
+	s.Percentage = &v
+	return s
+}
+
+// Summary information about a contact evaluation.
+type EvaluationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp for when the evaluation was created.
+	//
+	// CreatedTime is a required field
+	CreatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the contact evaluation resource.
+	//
+	// EvaluationArn is a required field
+	EvaluationArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// A unique title of the evaluation form.
+	//
+	// EvaluationFormTitle is a required field
+	EvaluationFormTitle *string `type:"string" required:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the user who last updated the evaluation.
+	//
+	// EvaluatorArn is a required field
+	EvaluatorArn *string `type:"string" required:"true"`
+
+	// The timestamp for when the evaluation was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The overall score of the contact evaluation.
+	Score *EvaluationScore `type:"structure"`
+
+	// The status of the contact evaluation.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EvaluationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *EvaluationSummary) SetCreatedTime(v time.Time) *EvaluationSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetEvaluationArn sets the EvaluationArn field's value.
+func (s *EvaluationSummary) SetEvaluationArn(v string) *EvaluationSummary {
+	s.EvaluationArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *EvaluationSummary) SetEvaluationFormId(v string) *EvaluationSummary {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormTitle sets the EvaluationFormTitle field's value.
+func (s *EvaluationSummary) SetEvaluationFormTitle(v string) *EvaluationSummary {
+	s.EvaluationFormTitle = &v
+	return s
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *EvaluationSummary) SetEvaluationId(v string) *EvaluationSummary {
+	s.EvaluationId = &v
+	return s
+}
+
+// SetEvaluatorArn sets the EvaluatorArn field's value.
+func (s *EvaluationSummary) SetEvaluatorArn(v string) *EvaluationSummary {
+	s.EvaluatorArn = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EvaluationSummary) SetLastModifiedTime(v time.Time) *EvaluationSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *EvaluationSummary) SetScore(v *EvaluationScore) *EvaluationSummary {
+	s.Score = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EvaluationSummary) SetStatus(v string) *EvaluationSummary {
+	s.Status = &v
 	return s
 }
 
@@ -34204,6 +38522,131 @@ func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 	return s
 }
 
+type ListContactEvaluationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	//
+	// ContactId is a required field
+	ContactId *string `location:"querystring" locationName:"contactId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	//
+	// This is not expected to be set because the value returned in the previous
+	// response is always null.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactEvaluationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactEvaluationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContactEvaluationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContactEvaluationsInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *ListContactEvaluationsInput) SetContactId(v string) *ListContactEvaluationsInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListContactEvaluationsInput) SetInstanceId(v string) *ListContactEvaluationsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactEvaluationsInput) SetNextToken(v string) *ListContactEvaluationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListContactEvaluationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides details about a list of contact evaluations belonging to an instance.
+	//
+	// EvaluationSummaryList is a required field
+	EvaluationSummaryList []*EvaluationSummary `type:"list" required:"true"`
+
+	// If there are additional results, this is the token for the next set of results.
+	//
+	// This is always returned as null in the response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactEvaluationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactEvaluationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationSummaryList sets the EvaluationSummaryList field's value.
+func (s *ListContactEvaluationsOutput) SetEvaluationSummaryList(v []*EvaluationSummary) *ListContactEvaluationsOutput {
+	s.EvaluationSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactEvaluationsOutput) SetNextToken(v string) *ListContactEvaluationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListContactFlowModulesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -34710,6 +39153,253 @@ func (s *ListDefaultVocabulariesOutput) SetDefaultVocabularyList(v []*DefaultVoc
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDefaultVocabulariesOutput) SetNextToken(v string) *ListDefaultVocabulariesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEvaluationFormVersionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `location:"uri" locationName:"EvaluationFormId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEvaluationFormVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEvaluationFormVersionsInput"}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *ListEvaluationFormVersionsInput) SetEvaluationFormId(v string) *ListEvaluationFormVersionsInput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListEvaluationFormVersionsInput) SetInstanceId(v string) *ListEvaluationFormVersionsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEvaluationFormVersionsInput) SetMaxResults(v int64) *ListEvaluationFormVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEvaluationFormVersionsInput) SetNextToken(v string) *ListEvaluationFormVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEvaluationFormVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides details about a list of evaluation forms belonging to an instance.
+	//
+	// EvaluationFormVersionSummaryList is a required field
+	EvaluationFormVersionSummaryList []*EvaluationFormVersionSummary `type:"list" required:"true"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationFormVersionSummaryList sets the EvaluationFormVersionSummaryList field's value.
+func (s *ListEvaluationFormVersionsOutput) SetEvaluationFormVersionSummaryList(v []*EvaluationFormVersionSummary) *ListEvaluationFormVersionsOutput {
+	s.EvaluationFormVersionSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEvaluationFormVersionsOutput) SetNextToken(v string) *ListEvaluationFormVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEvaluationFormsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEvaluationFormsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEvaluationFormsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListEvaluationFormsInput) SetInstanceId(v string) *ListEvaluationFormsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEvaluationFormsInput) SetMaxResults(v int64) *ListEvaluationFormsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEvaluationFormsInput) SetNextToken(v string) *ListEvaluationFormsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEvaluationFormsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides details about a list of evaluation forms belonging to an instance.
+	//
+	// EvaluationFormSummaryList is a required field
+	EvaluationFormSummaryList []*EvaluationFormSummary `type:"list" required:"true"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationFormsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationFormSummaryList sets the EvaluationFormSummaryList field's value.
+func (s *ListEvaluationFormsOutput) SetEvaluationFormSummaryList(v []*EvaluationFormSummary) *ListEvaluationFormsOutput {
+	s.EvaluationFormSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEvaluationFormsOutput) SetNextToken(v string) *ListEvaluationFormsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -38329,6 +43019,65 @@ func (s *NumberReference) SetName(v string) *NumberReference {
 // SetValue sets the Value field's value.
 func (s *NumberReference) SetValue(v string) *NumberReference {
 	s.Value = &v
+	return s
+}
+
+// Information about the property value used in automation of a numeric questions.
+// Label values are associated with minimum and maximum values for the numeric
+// question.
+//
+//   - Sentiment scores have a minimum value of -5 and maximum value of 5.
+//
+//   - Duration labels, such as NON_TALK_TIME, CONTACT_DURATION, AGENT_INTERACTION_DURATION,
+//     CUSTOMER_HOLD_TIME have a minimum value of 0 and maximum value of 28800.
+//
+//   - Percantages have a minimum value of 0 and maximum value of 100.
+//
+//   - NUMBER_OF_INTERRUPTIONS has a minimum value of 0 and maximum value of
+//     100.
+type NumericQuestionPropertyValueAutomation struct {
+	_ struct{} `type:"structure"`
+
+	// The property label of the automation.
+	//
+	// Label is a required field
+	Label *string `type:"string" required:"true" enum:"NumericQuestionPropertyAutomationLabel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumericQuestionPropertyValueAutomation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumericQuestionPropertyValueAutomation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NumericQuestionPropertyValueAutomation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NumericQuestionPropertyValueAutomation"}
+	if s.Label == nil {
+		invalidParams.Add(request.NewErrParamRequired("Label"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabel sets the Label field's value.
+func (s *NumericQuestionPropertyValueAutomation) SetLabel(v string) *NumericQuestionPropertyValueAutomation {
+	s.Label = &v
 	return s
 }
 
@@ -43257,6 +48006,88 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about the automation option based on a rule category for a single
+// select question.
+type SingleSelectQuestionRuleCategoryAutomation struct {
+	_ struct{} `type:"structure"`
+
+	// The category name, as defined in Rules.
+	//
+	// Category is a required field
+	Category *string `min:"1" type:"string" required:"true"`
+
+	// The condition to apply for the automation option. If the condition is PRESENT,
+	// then the option is applied when the contact data includes the category. Similarly,
+	// if the condition is NOT_PRESENT, then the option is applied when the contact
+	// data does not include the category.
+	//
+	// Condition is a required field
+	Condition *string `type:"string" required:"true" enum:"SingleSelectQuestionRuleCategoryAutomationCondition"`
+
+	// The identifier of the answer option tha
+	//
+	// OptionRefId is a required field
+	OptionRefId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleSelectQuestionRuleCategoryAutomation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleSelectQuestionRuleCategoryAutomation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SingleSelectQuestionRuleCategoryAutomation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SingleSelectQuestionRuleCategoryAutomation"}
+	if s.Category == nil {
+		invalidParams.Add(request.NewErrParamRequired("Category"))
+	}
+	if s.Category != nil && len(*s.Category) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Category", 1))
+	}
+	if s.Condition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Condition"))
+	}
+	if s.OptionRefId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OptionRefId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategory sets the Category field's value.
+func (s *SingleSelectQuestionRuleCategoryAutomation) SetCategory(v string) *SingleSelectQuestionRuleCategoryAutomation {
+	s.Category = &v
+	return s
+}
+
+// SetCondition sets the Condition field's value.
+func (s *SingleSelectQuestionRuleCategoryAutomation) SetCondition(v string) *SingleSelectQuestionRuleCategoryAutomation {
+	s.Condition = &v
+	return s
+}
+
+// SetOptionRefId sets the OptionRefId field's value.
+func (s *SingleSelectQuestionRuleCategoryAutomation) SetOptionRefId(v string) *SingleSelectQuestionRuleCategoryAutomation {
+	s.OptionRefId = &v
+	return s
+}
+
 type StartChatContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -43511,6 +48342,147 @@ func (s *StartChatContactOutput) SetParticipantId(v string) *StartChatContactOut
 // SetParticipantToken sets the ParticipantToken field's value.
 func (s *StartChatContactOutput) SetParticipantToken(v string) *StartChatContactOutput {
 	s.ParticipantToken = &v
+	return s
+}
+
+type StartContactEvaluationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactEvaluationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactEvaluationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartContactEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartContactEvaluationInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartContactEvaluationInput) SetClientToken(v string) *StartContactEvaluationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StartContactEvaluationInput) SetContactId(v string) *StartContactEvaluationInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *StartContactEvaluationInput) SetEvaluationFormId(v string) *StartContactEvaluationInput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StartContactEvaluationInput) SetInstanceId(v string) *StartContactEvaluationInput {
+	s.InstanceId = &v
+	return s
+}
+
+type StartContactEvaluationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the contact evaluation resource.
+	//
+	// EvaluationArn is a required field
+	EvaluationArn *string `type:"string" required:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactEvaluationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactEvaluationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationArn sets the EvaluationArn field's value.
+func (s *StartContactEvaluationOutput) SetEvaluationArn(v string) *StartContactEvaluationOutput {
+	s.EvaluationArn = &v
+	return s
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *StartContactEvaluationOutput) SetEvaluationId(v string) *StartContactEvaluationOutput {
+	s.EvaluationId = &v
 	return s
 }
 
@@ -44589,6 +49561,136 @@ func (s *StringReference) SetName(v string) *StringReference {
 // SetValue sets the Value field's value.
 func (s *StringReference) SetValue(v string) *StringReference {
 	s.Value = &v
+	return s
+}
+
+type SubmitContactEvaluationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of question identifiers to answer value.
+	Answers map[string]*EvaluationAnswerInput_ `type:"map"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `location:"uri" locationName:"EvaluationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A map of question identifiers to note value.
+	Notes map[string]*EvaluationNote `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitContactEvaluationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitContactEvaluationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubmitContactEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubmitContactEvaluationInput"}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnswers sets the Answers field's value.
+func (s *SubmitContactEvaluationInput) SetAnswers(v map[string]*EvaluationAnswerInput_) *SubmitContactEvaluationInput {
+	s.Answers = v
+	return s
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *SubmitContactEvaluationInput) SetEvaluationId(v string) *SubmitContactEvaluationInput {
+	s.EvaluationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SubmitContactEvaluationInput) SetInstanceId(v string) *SubmitContactEvaluationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *SubmitContactEvaluationInput) SetNotes(v map[string]*EvaluationNote) *SubmitContactEvaluationInput {
+	s.Notes = v
+	return s
+}
+
+type SubmitContactEvaluationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the contact evaluation resource.
+	//
+	// EvaluationArn is a required field
+	EvaluationArn *string `type:"string" required:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitContactEvaluationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitContactEvaluationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationArn sets the EvaluationArn field's value.
+func (s *SubmitContactEvaluationOutput) SetEvaluationArn(v string) *SubmitContactEvaluationOutput {
+	s.EvaluationArn = &v
+	return s
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *SubmitContactEvaluationOutput) SetEvaluationId(v string) *SubmitContactEvaluationOutput {
+	s.EvaluationId = &v
 	return s
 }
 
@@ -46253,6 +51355,136 @@ func (s UpdateContactAttributesOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateContactEvaluationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of question identifiers to answer value.
+	Answers map[string]*EvaluationAnswerInput_ `type:"map"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `location:"uri" locationName:"EvaluationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A map of question identifiers to note value.
+	Notes map[string]*EvaluationNote `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactEvaluationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactEvaluationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactEvaluationInput"}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnswers sets the Answers field's value.
+func (s *UpdateContactEvaluationInput) SetAnswers(v map[string]*EvaluationAnswerInput_) *UpdateContactEvaluationInput {
+	s.Answers = v
+	return s
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *UpdateContactEvaluationInput) SetEvaluationId(v string) *UpdateContactEvaluationInput {
+	s.EvaluationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactEvaluationInput) SetInstanceId(v string) *UpdateContactEvaluationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *UpdateContactEvaluationInput) SetNotes(v map[string]*EvaluationNote) *UpdateContactEvaluationInput {
+	s.Notes = v
+	return s
+}
+
+type UpdateContactEvaluationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the contact evaluation resource.
+	//
+	// EvaluationArn is a required field
+	EvaluationArn *string `type:"string" required:"true"`
+
+	// A unique identifier for the contact evaluation.
+	//
+	// EvaluationId is a required field
+	EvaluationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactEvaluationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactEvaluationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationArn sets the EvaluationArn field's value.
+func (s *UpdateContactEvaluationOutput) SetEvaluationArn(v string) *UpdateContactEvaluationOutput {
+	s.EvaluationArn = &v
+	return s
+}
+
+// SetEvaluationId sets the EvaluationId field's value.
+func (s *UpdateContactEvaluationOutput) SetEvaluationId(v string) *UpdateContactEvaluationOutput {
+	s.EvaluationId = &v
+	return s
+}
+
 type UpdateContactFlowContentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -47044,6 +52276,230 @@ func (s UpdateContactScheduleOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateContactScheduleOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateEvaluationFormInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A flag indicating whether the operation must create a new version.
+	CreateNewVersion *bool `type:"boolean"`
+
+	// The description of the evaluation form.
+	Description *string `type:"string"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `location:"uri" locationName:"EvaluationFormId" min:"1" type:"string" required:"true"`
+
+	// A version of the evaluation form to update.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Items that are part of the evaluation form. The total number of sections
+	// and questions must not exceed 100 each. Questions must be contained in a
+	// section.
+	//
+	// Items is a required field
+	Items []*EvaluationFormItem `type:"list" required:"true"`
+
+	// A scoring strategy of the evaluation form.
+	ScoringStrategy *EvaluationFormScoringStrategy `type:"structure"`
+
+	// A unique title of the evaluation form.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEvaluationFormInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEvaluationFormInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEvaluationFormInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEvaluationFormInput"}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+	if s.EvaluationFormVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormVersion"))
+	}
+	if s.EvaluationFormVersion != nil && *s.EvaluationFormVersion < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationFormVersion", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Title == nil {
+		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.Items != nil {
+		for i, v := range s.Items {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Items", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScoringStrategy != nil {
+		if err := s.ScoringStrategy.Validate(); err != nil {
+			invalidParams.AddNested("ScoringStrategy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateEvaluationFormInput) SetClientToken(v string) *UpdateEvaluationFormInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCreateNewVersion sets the CreateNewVersion field's value.
+func (s *UpdateEvaluationFormInput) SetCreateNewVersion(v bool) *UpdateEvaluationFormInput {
+	s.CreateNewVersion = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEvaluationFormInput) SetDescription(v string) *UpdateEvaluationFormInput {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *UpdateEvaluationFormInput) SetEvaluationFormId(v string) *UpdateEvaluationFormInput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *UpdateEvaluationFormInput) SetEvaluationFormVersion(v int64) *UpdateEvaluationFormInput {
+	s.EvaluationFormVersion = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateEvaluationFormInput) SetInstanceId(v string) *UpdateEvaluationFormInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *UpdateEvaluationFormInput) SetItems(v []*EvaluationFormItem) *UpdateEvaluationFormInput {
+	s.Items = v
+	return s
+}
+
+// SetScoringStrategy sets the ScoringStrategy field's value.
+func (s *UpdateEvaluationFormInput) SetScoringStrategy(v *EvaluationFormScoringStrategy) *UpdateEvaluationFormInput {
+	s.ScoringStrategy = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *UpdateEvaluationFormInput) SetTitle(v string) *UpdateEvaluationFormInput {
+	s.Title = &v
+	return s
+}
+
+type UpdateEvaluationFormOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the contact evaluation resource.
+	//
+	// EvaluationFormArn is a required field
+	EvaluationFormArn *string `type:"string" required:"true"`
+
+	// The unique identifier for the evaluation form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+
+	// The version of the updated evaluation form resource.
+	//
+	// EvaluationFormVersion is a required field
+	EvaluationFormVersion *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEvaluationFormOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEvaluationFormOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationFormArn sets the EvaluationFormArn field's value.
+func (s *UpdateEvaluationFormOutput) SetEvaluationFormArn(v string) *UpdateEvaluationFormOutput {
+	s.EvaluationFormArn = &v
+	return s
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *UpdateEvaluationFormOutput) SetEvaluationFormId(v string) *UpdateEvaluationFormOutput {
+	s.EvaluationFormId = &v
+	return s
+}
+
+// SetEvaluationFormVersion sets the EvaluationFormVersion field's value.
+func (s *UpdateEvaluationFormOutput) SetEvaluationFormVersion(v int64) *UpdateEvaluationFormOutput {
+	s.EvaluationFormVersion = &v
+	return s
 }
 
 type UpdateHoursOfOperationInput struct {
@@ -52003,6 +57459,106 @@ func EncryptionType_Values() []string {
 }
 
 const (
+	// EvaluationFormQuestionTypeText is a EvaluationFormQuestionType enum value
+	EvaluationFormQuestionTypeText = "TEXT"
+
+	// EvaluationFormQuestionTypeSingleselect is a EvaluationFormQuestionType enum value
+	EvaluationFormQuestionTypeSingleselect = "SINGLESELECT"
+
+	// EvaluationFormQuestionTypeNumeric is a EvaluationFormQuestionType enum value
+	EvaluationFormQuestionTypeNumeric = "NUMERIC"
+)
+
+// EvaluationFormQuestionType_Values returns all elements of the EvaluationFormQuestionType enum
+func EvaluationFormQuestionType_Values() []string {
+	return []string{
+		EvaluationFormQuestionTypeText,
+		EvaluationFormQuestionTypeSingleselect,
+		EvaluationFormQuestionTypeNumeric,
+	}
+}
+
+const (
+	// EvaluationFormScoringModeQuestionOnly is a EvaluationFormScoringMode enum value
+	EvaluationFormScoringModeQuestionOnly = "QUESTION_ONLY"
+
+	// EvaluationFormScoringModeSectionOnly is a EvaluationFormScoringMode enum value
+	EvaluationFormScoringModeSectionOnly = "SECTION_ONLY"
+)
+
+// EvaluationFormScoringMode_Values returns all elements of the EvaluationFormScoringMode enum
+func EvaluationFormScoringMode_Values() []string {
+	return []string{
+		EvaluationFormScoringModeQuestionOnly,
+		EvaluationFormScoringModeSectionOnly,
+	}
+}
+
+const (
+	// EvaluationFormScoringStatusEnabled is a EvaluationFormScoringStatus enum value
+	EvaluationFormScoringStatusEnabled = "ENABLED"
+
+	// EvaluationFormScoringStatusDisabled is a EvaluationFormScoringStatus enum value
+	EvaluationFormScoringStatusDisabled = "DISABLED"
+)
+
+// EvaluationFormScoringStatus_Values returns all elements of the EvaluationFormScoringStatus enum
+func EvaluationFormScoringStatus_Values() []string {
+	return []string{
+		EvaluationFormScoringStatusEnabled,
+		EvaluationFormScoringStatusDisabled,
+	}
+}
+
+const (
+	// EvaluationFormSingleSelectQuestionDisplayModeDropdown is a EvaluationFormSingleSelectQuestionDisplayMode enum value
+	EvaluationFormSingleSelectQuestionDisplayModeDropdown = "DROPDOWN"
+
+	// EvaluationFormSingleSelectQuestionDisplayModeRadio is a EvaluationFormSingleSelectQuestionDisplayMode enum value
+	EvaluationFormSingleSelectQuestionDisplayModeRadio = "RADIO"
+)
+
+// EvaluationFormSingleSelectQuestionDisplayMode_Values returns all elements of the EvaluationFormSingleSelectQuestionDisplayMode enum
+func EvaluationFormSingleSelectQuestionDisplayMode_Values() []string {
+	return []string{
+		EvaluationFormSingleSelectQuestionDisplayModeDropdown,
+		EvaluationFormSingleSelectQuestionDisplayModeRadio,
+	}
+}
+
+const (
+	// EvaluationFormVersionStatusDraft is a EvaluationFormVersionStatus enum value
+	EvaluationFormVersionStatusDraft = "DRAFT"
+
+	// EvaluationFormVersionStatusActive is a EvaluationFormVersionStatus enum value
+	EvaluationFormVersionStatusActive = "ACTIVE"
+)
+
+// EvaluationFormVersionStatus_Values returns all elements of the EvaluationFormVersionStatus enum
+func EvaluationFormVersionStatus_Values() []string {
+	return []string{
+		EvaluationFormVersionStatusDraft,
+		EvaluationFormVersionStatusActive,
+	}
+}
+
+const (
+	// EvaluationStatusDraft is a EvaluationStatus enum value
+	EvaluationStatusDraft = "DRAFT"
+
+	// EvaluationStatusSubmitted is a EvaluationStatus enum value
+	EvaluationStatusSubmitted = "SUBMITTED"
+)
+
+// EvaluationStatus_Values returns all elements of the EvaluationStatus enum
+func EvaluationStatus_Values() []string {
+	return []string{
+		EvaluationStatusDraft,
+		EvaluationStatusSubmitted,
+	}
+}
+
+const (
 	// EventSourceNameOnPostCallAnalysisAvailable is a EventSourceName enum value
 	EventSourceNameOnPostCallAnalysisAvailable = "OnPostCallAnalysisAvailable"
 
@@ -52412,6 +57968,46 @@ const (
 func NotificationDeliveryType_Values() []string {
 	return []string{
 		NotificationDeliveryTypeEmail,
+	}
+}
+
+const (
+	// NumericQuestionPropertyAutomationLabelOverallCustomerSentimentScore is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelOverallCustomerSentimentScore = "OVERALL_CUSTOMER_SENTIMENT_SCORE"
+
+	// NumericQuestionPropertyAutomationLabelOverallAgentSentimentScore is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelOverallAgentSentimentScore = "OVERALL_AGENT_SENTIMENT_SCORE"
+
+	// NumericQuestionPropertyAutomationLabelNonTalkTime is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelNonTalkTime = "NON_TALK_TIME"
+
+	// NumericQuestionPropertyAutomationLabelNonTalkTimePercentage is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelNonTalkTimePercentage = "NON_TALK_TIME_PERCENTAGE"
+
+	// NumericQuestionPropertyAutomationLabelNumberOfInterruptions is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelNumberOfInterruptions = "NUMBER_OF_INTERRUPTIONS"
+
+	// NumericQuestionPropertyAutomationLabelContactDuration is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelContactDuration = "CONTACT_DURATION"
+
+	// NumericQuestionPropertyAutomationLabelAgentInteractionDuration is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelAgentInteractionDuration = "AGENT_INTERACTION_DURATION"
+
+	// NumericQuestionPropertyAutomationLabelCustomerHoldTime is a NumericQuestionPropertyAutomationLabel enum value
+	NumericQuestionPropertyAutomationLabelCustomerHoldTime = "CUSTOMER_HOLD_TIME"
+)
+
+// NumericQuestionPropertyAutomationLabel_Values returns all elements of the NumericQuestionPropertyAutomationLabel enum
+func NumericQuestionPropertyAutomationLabel_Values() []string {
+	return []string{
+		NumericQuestionPropertyAutomationLabelOverallCustomerSentimentScore,
+		NumericQuestionPropertyAutomationLabelOverallAgentSentimentScore,
+		NumericQuestionPropertyAutomationLabelNonTalkTime,
+		NumericQuestionPropertyAutomationLabelNonTalkTimePercentage,
+		NumericQuestionPropertyAutomationLabelNumberOfInterruptions,
+		NumericQuestionPropertyAutomationLabelContactDuration,
+		NumericQuestionPropertyAutomationLabelAgentInteractionDuration,
+		NumericQuestionPropertyAutomationLabelCustomerHoldTime,
 	}
 }
 
@@ -53684,6 +59280,22 @@ const (
 func SearchableQueueType_Values() []string {
 	return []string{
 		SearchableQueueTypeStandard,
+	}
+}
+
+const (
+	// SingleSelectQuestionRuleCategoryAutomationConditionPresent is a SingleSelectQuestionRuleCategoryAutomationCondition enum value
+	SingleSelectQuestionRuleCategoryAutomationConditionPresent = "PRESENT"
+
+	// SingleSelectQuestionRuleCategoryAutomationConditionNotPresent is a SingleSelectQuestionRuleCategoryAutomationCondition enum value
+	SingleSelectQuestionRuleCategoryAutomationConditionNotPresent = "NOT_PRESENT"
+)
+
+// SingleSelectQuestionRuleCategoryAutomationCondition_Values returns all elements of the SingleSelectQuestionRuleCategoryAutomationCondition enum
+func SingleSelectQuestionRuleCategoryAutomationCondition_Values() []string {
+	return []string{
+		SingleSelectQuestionRuleCategoryAutomationConditionPresent,
+		SingleSelectQuestionRuleCategoryAutomationConditionNotPresent,
 	}
 }
 

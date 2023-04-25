@@ -1374,7 +1374,6 @@
         "CreateChannelMembershipResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>",
         "DeleteChannelMembershipRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only for use by moderators.</p> </note>",
         "DeleteChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when deleting messages in a SubChannel that the user belongs to.</p> </note>",
-        "DeleteChannelRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p>",
         "DescribeChannelMembershipRequest$SubChannelId": "<p>The ID of the SubChannel in the request. The response contains an <code>ElasticChannelConfiguration</code> object.</p> <note> <p>Only required to get a user’s SubChannel membership details.</p> </note>",
         "GetChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when getting messages in a SubChannel that the user belongs to.</p> </note>",
         "GetChannelMessageStatusRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when getting message status in a SubChannel that the user belongs to.</p> </note>",
@@ -1387,9 +1386,7 @@
         "SendChannelMessageResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>",
         "SubChannelSummary$SubChannelId": "<p>The unique ID of a SubChannel.</p>",
         "UpdateChannelMessageRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p> <note> <p>Only required when updating messages in a SubChannel that the user belongs to.</p> </note>",
-        "UpdateChannelMessageResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>",
-        "UpdateChannelReadMarkerRequest$SubChannelId": "<p>The ID of the SubChannel in the request.</p>",
-        "UpdateChannelReadMarkerResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>"
+        "UpdateChannelMessageResponse$SubChannelId": "<p>The ID of the SubChannel in the response.</p>"
       }
     },
     "SubChannelSummary": {

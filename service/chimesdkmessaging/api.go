@@ -966,6 +966,10 @@ func (c *ChimeSDKMessaging) DeleteChannelRequest(input *DeleteChannelInput) (req
 //   - ForbiddenException
 //     The client is permanently forbidden from making the request.
 //
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource.
+//
 //   - UnauthorizedClientException
 //     The client is not currently authorized to make the request.
 //
@@ -1558,6 +1562,9 @@ func (c *ChimeSDKMessaging) DeleteMessagingStreamingConfigurationsRequest(input 
 // API operation DeleteMessagingStreamingConfigurations for usage and error information.
 //
 // Returned Error Types:
+//
+//   - BadRequestException
+//     The input parameters don't match the service's restrictions.
 //
 //   - ForbiddenException
 //     The client is permanently forbidden from making the request.
@@ -7992,9 +7999,7 @@ type CreateChannelFlowInput struct {
 	// ClientRequestToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateChannelFlowInput's
 	// String and GoString methods.
-	//
-	// ClientRequestToken is a required field
-	ClientRequestToken *string `min:"2" type:"string" required:"true" sensitive:"true"`
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
 	// The name of the channel flow.
 	//
@@ -8040,9 +8045,6 @@ func (s *CreateChannelFlowInput) Validate() error {
 	}
 	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
-	}
-	if s.ClientRequestToken == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClientRequestToken"))
 	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
@@ -8887,9 +8889,6 @@ type DeleteChannelInput struct {
 	//
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
-
-	// The ID of the SubChannel in the request.
-	SubChannelId *string `location:"querystring" locationName:"sub-channel-id" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8925,9 +8924,6 @@ func (s *DeleteChannelInput) Validate() error {
 	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
 	}
-	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8944,12 +8940,6 @@ func (s *DeleteChannelInput) SetChannelArn(v string) *DeleteChannelInput {
 // SetChimeBearer sets the ChimeBearer field's value.
 func (s *DeleteChannelInput) SetChimeBearer(v string) *DeleteChannelInput {
 	s.ChimeBearer = &v
-	return s
-}
-
-// SetSubChannelId sets the SubChannelId field's value.
-func (s *DeleteChannelInput) SetSubChannelId(v string) *DeleteChannelInput {
-	s.SubChannelId = &v
 	return s
 }
 
@@ -15237,7 +15227,7 @@ func (s *UpdateChannelOutput) SetChannelArn(v string) *UpdateChannelOutput {
 }
 
 type UpdateChannelReadMarkerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -15248,9 +15238,6 @@ type UpdateChannelReadMarkerInput struct {
 	//
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
-
-	// The ID of the SubChannel in the request.
-	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -15286,9 +15273,6 @@ func (s *UpdateChannelReadMarkerInput) Validate() error {
 	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
 	}
-	if s.SubChannelId != nil && len(*s.SubChannelId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SubChannelId", 1))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15308,20 +15292,11 @@ func (s *UpdateChannelReadMarkerInput) SetChimeBearer(v string) *UpdateChannelRe
 	return s
 }
 
-// SetSubChannelId sets the SubChannelId field's value.
-func (s *UpdateChannelReadMarkerInput) SetSubChannelId(v string) *UpdateChannelReadMarkerInput {
-	s.SubChannelId = &v
-	return s
-}
-
 type UpdateChannelReadMarkerOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the channel.
 	ChannelArn *string `min:"5" type:"string"`
-
-	// The ID of the SubChannel in the response.
-	SubChannelId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -15345,12 +15320,6 @@ func (s UpdateChannelReadMarkerOutput) GoString() string {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *UpdateChannelReadMarkerOutput) SetChannelArn(v string) *UpdateChannelReadMarkerOutput {
 	s.ChannelArn = &v
-	return s
-}
-
-// SetSubChannelId sets the SubChannelId field's value.
-func (s *UpdateChannelReadMarkerOutput) SetSubChannelId(v string) *UpdateChannelReadMarkerOutput {
-	s.SubChannelId = &v
 	return s
 }
 

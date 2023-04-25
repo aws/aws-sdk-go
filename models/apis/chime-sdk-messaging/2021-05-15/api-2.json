@@ -181,6 +181,7 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
@@ -283,6 +284,7 @@
       },
       "input":{"shape":"DeleteMessagingStreamingConfigurationsRequest"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ThrottledClientException"},
@@ -1446,7 +1448,10 @@
         "Processors":{"shape":"ProcessorList"},
         "Name":{"shape":"NonEmptyResourceName"},
         "Tags":{"shape":"TagList"},
-        "ClientRequestToken":{"shape":"ClientRequestToken"}
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateChannelFlowResponse":{
@@ -1689,11 +1694,6 @@
           "shape":"ChimeArn",
           "location":"header",
           "locationName":"x-amz-chime-bearer"
-        },
-        "SubChannelId":{
-          "shape":"SubChannelId",
-          "location":"querystring",
-          "locationName":"sub-channel-id"
         }
       }
     },
@@ -3216,15 +3216,13 @@
           "shape":"ChimeArn",
           "location":"header",
           "locationName":"x-amz-chime-bearer"
-        },
-        "SubChannelId":{"shape":"SubChannelId"}
+        }
       }
     },
     "UpdateChannelReadMarkerResponse":{
       "type":"structure",
       "members":{
-        "ChannelArn":{"shape":"ChimeArn"},
-        "SubChannelId":{"shape":"SubChannelId"}
+        "ChannelArn":{"shape":"ChimeArn"}
       }
     },
     "UpdateChannelRequest":{

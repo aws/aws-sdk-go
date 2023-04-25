@@ -38,6 +38,11 @@
       "output_token": "NextToken",
       "result_key": "LexBots"
     },
+    "ListContactEvaluations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "EvaluationSummaryList"
+    },
     "ListContactFlowModules": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -60,6 +65,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "DefaultVocabularyList"
+    },
+    "ListEvaluationFormVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "EvaluationFormVersionSummaryList"
+    },
+    "ListEvaluationForms": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "EvaluationFormSummaryList"
     },
     "ListHoursOfOperations": {
       "input_token": "NextToken",
