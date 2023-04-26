@@ -1,3 +1,9 @@
+Release v1.44.251 (2023-04-26)
+===
+
+### Service Client Updates
+* `service/osis`: Updates service API, documentation, paginators, and examples
+
 Release v1.44.250 (2023-04-25)
 ===
 
