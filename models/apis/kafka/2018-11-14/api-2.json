@@ -152,6 +152,43 @@
         }
       ]
     },
+    "CreateVpcConnection": {
+      "name": "CreateVpcConnection",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/vpc-connection",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateVpcConnectionRequest"
+      },
+      "output": {
+        "shape": "CreateVpcConnectionResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "DeleteCluster": {
       "name": "DeleteCluster",
       "http": {
@@ -192,6 +229,34 @@
       },
       "output": {
         "shape": "DeleteConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "DeleteVpcConnection": {
+      "name": "DeleteVpcConnection",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/vpc-connection/{arn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteVpcConnectionRequest"
+      },
+      "output": {
+        "shape": "DeleteVpcConnectionResponse"
       },
       "errors": [
         {
@@ -369,6 +434,40 @@
         }
       ]
     },
+    "DescribeVpcConnection": {
+      "name": "DescribeVpcConnection",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/vpc-connection/{arn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeVpcConnectionRequest"
+      },
+      "output": {
+        "shape": "DescribeVpcConnectionResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        }
+      ]
+    },
     "BatchDisassociateScramSecret" : {
       "name" : "BatchDisassociateScramSecret",
       "http" : {
@@ -442,28 +541,28 @@
       "output" : {
         "shape" : "GetCompatibleKafkaVersionsResponse"
       },
-      "errors" : [ 
+      "errors" : [
         {
           "shape" : "BadRequestException"
-        }, 
+        },
         {
           "shape" : "UnauthorizedException"
-        }, 
+        },
         {
           "shape" : "InternalServerErrorException"
-        }, 
+        },
         {
           "shape" : "ForbiddenException"
-        }, 
+        },
         {
           "shape" : "NotFoundException"
-        }, 
+        },
         {
           "shape" : "ServiceUnavailableException"
-        }, 
+        },
         {
           "shape" : "TooManyRequestsException"
-        } 
+        }
       ]
     },
     "ListClusterOperations": {
@@ -725,6 +824,192 @@
         }
       ]
     },
+    "ListClientVpcConnections": {
+      "name": "ListClientVpcConnections",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/clusters/{clusterArn}/client-vpc-connections",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListClientVpcConnectionsRequest"
+      },
+      "output": {
+        "shape": "ListClientVpcConnectionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "ListVpcConnections": {
+      "name": "ListVpcConnections",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/vpc-connections",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListVpcConnectionsRequest"
+      },
+      "output": {
+        "shape": "ListVpcConnectionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "RejectClientVpcConnection": {
+      "name": "RejectClientVpcConnection",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/clusters/{clusterArn}/client-vpc-connection",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "RejectClientVpcConnectionRequest"
+      },
+      "output": {
+        "shape": "RejectClientVpcConnectionResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "DeleteClusterPolicy": {
+      "name": "DeleteClusterPolicy",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/clusters/{clusterArn}/policy",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteClusterPolicyRequest"
+      },
+      "output": {
+        "shape": "DeleteClusterPolicyResponse"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape" : "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "GetClusterPolicy": {
+      "name": "GetClusterPolicy",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/clusters/{clusterArn}/policy",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetClusterPolicyRequest"
+      },
+      "output": {
+        "shape": "GetClusterPolicyResponse"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape" : "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
+    "PutClusterPolicy": {
+      "name": "PutClusterPolicy",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/clusters/{clusterArn}/policy",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "PutClusterPolicyRequest"
+      },
+      "output": {
+        "shape": "PutClusterPolicyResponse"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape" : "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "RebootBroker": {
       "name": "RebootBroker",
       "http": {
@@ -740,7 +1025,7 @@
       },
       "errors": [
         {
-        "shape": "BadRequestException"
+          "shape": "BadRequestException"
         },
         {
           "shape": "UnauthorizedException"
@@ -758,7 +1043,7 @@
           "shape": "ServiceUnavailableException"
         },
         {
-        "shape": "TooManyRequestsException"
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -983,28 +1268,28 @@
       "output" : {
         "shape" : "UpdateClusterKafkaVersionResponse"
       },
-      "errors" : [ 
+      "errors" : [
         {
           "shape" : "BadRequestException"
-        }, 
+        },
         {
           "shape" : "UnauthorizedException"
-        }, 
+        },
         {
           "shape" : "InternalServerErrorException"
-        }, 
+        },
         {
           "shape" : "ForbiddenException"
-        }, 
+        },
         {
           "shape" : "NotFoundException"
-        }, 
+        },
         {
           "shape" : "ServiceUnavailableException"
-        }, 
+        },
         {
           "shape" : "TooManyRequestsException"
-        } 
+        }
       ]
     },
     "UpdateConnectivity":{
@@ -1243,6 +1528,10 @@
         "ConnectivityInfo":{
           "shape":"ConnectivityInfo",
           "locationName":"connectivityInfo"
+        },
+        "ZoneIds": {
+          "shape": "__listOf__string",
+          "locationName": "zoneIds"
         }
       },
       "required": [
@@ -1310,6 +1599,19 @@
         "Unauthenticated" : {
           "shape" : "Unauthenticated",
           "locationName" : "unauthenticated"
+        }
+      }
+    },
+    "VpcConnectivityClientAuthentication" : {
+      "type" : "structure",
+      "members" : {
+        "Sasl" : {
+          "shape" : "VpcConnectivitySasl",
+          "locationName" : "sasl"
+        },
+        "Tls" : {
+          "shape" : "VpcConnectivityTls",
+          "locationName" : "tls"
         }
       }
     },
@@ -1462,6 +1764,10 @@
         "TargetClusterInfo": {
           "shape": "MutableClusterInfo",
           "locationName": "targetClusterInfo"
+        },
+        "VpcConnectionInfo": {
+          "shape": "VpcConnectionInfo",
+          "locationName": "vpcConnectionInfo"
         }
       }
     },
@@ -1498,6 +1804,67 @@
         "MAINTENANCE",
         "REBOOTING_BROKER",
         "UPDATING"
+      ]
+    },
+    "ClientVpcConnection": {
+      "type": "structure",
+      "members": {
+        "Authentication": {
+          "shape": "__string",
+          "locationName": "authentication"
+        },
+        "CreationTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "creationTime"
+        },
+        "State": {
+          "shape": "VpcConnectionState",
+          "locationName": "state"
+        },
+        "VpcConnectionArn": {
+          "shape": "__string",
+          "locationName": "vpcConnectionArn"
+        },
+        "Owner": {
+          "shape": "__string",
+          "locationName": "owner"
+        }
+      },
+      "required": [
+        "VpcConnectionArn"
+      ]
+    },
+    "VpcConnection": {
+      "type": "structure",
+      "members": {
+        "VpcConnectionArn": {
+          "shape": "__string",
+          "locationName": "vpcConnectionArn"
+        },
+        "TargetClusterArn": {
+          "shape": "__string",
+          "locationName": "targetClusterArn"
+        },
+        "CreationTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "creationTime"
+        },
+        "Authentication": {
+          "shape": "__string",
+          "locationName": "authentication"
+        },
+        "VpcId": {
+          "shape": "__string",
+          "locationName": "vpcId"
+        },
+        "State": {
+          "shape": "VpcConnectionState",
+          "locationName": "state"
+        }
+      },
+      "required": [
+        "VpcConnectionArn",
+        "TargetClusterArn"
       ]
     },
     "CompatibleKafkaVersion" : {
@@ -1624,6 +1991,10 @@
         "PublicAccess":{
           "shape":"PublicAccess",
           "locationName":"publicAccess"
+        },
+        "VpcConnectivity": {
+          "shape":"VpcConnectivity",
+          "locationName":"vpcConnectivity"
         }
       }
     },
@@ -1753,6 +2124,81 @@
         }
       }
     },
+    "CreateVpcConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "TargetClusterArn": {
+          "shape": "__string",
+          "locationName": "targetClusterArn"
+        },
+        "Authentication": {
+          "shape": "__string",
+          "locationName": "authentication"
+        },
+        "VpcId": {
+          "shape": "__string",
+          "locationName": "vpcId"
+        },
+        "ClientSubnets": {
+          "shape": "__listOf__string",
+          "locationName": "clientSubnets"
+        },
+        "SecurityGroups": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroups"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags",
+          "documentation": "\n            <p>A map of tags for the VPC connection.</p>\n         "
+        }
+      },
+      "required": [
+        "TargetClusterArn",
+        "Authentication",
+        "VpcId",
+        "ClientSubnets",
+        "SecurityGroups"
+      ]
+    },
+    "CreateVpcConnectionResponse": {
+      "type": "structure",
+      "members": {
+        "VpcConnectionArn": {
+          "shape": "__string",
+          "locationName": "vpcConnectionArn"
+        },
+        "State": {
+          "shape": "VpcConnectionState",
+          "locationName": "state"
+        },
+        "Authentication": {
+          "shape": "__string",
+          "locationName": "authentication"
+        },
+        "VpcId": {
+          "shape": "__string",
+          "locationName": "vpcId"
+        },
+        "ClientSubnets": {
+          "shape": "__listOf__string",
+          "locationName": "clientSubnets"
+        },
+        "SecurityGroups": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroups"
+        },
+        "CreationTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "creationTime"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags",
+          "documentation": "\n            <p>A map of tags that you want the vpc connection to have.</p>\n         "
+        }
+      }
+    },
     "DeleteClusterRequest": {
       "type": "structure",
       "members": {
@@ -1806,6 +2252,32 @@
         },
         "State": {
           "shape": "ConfigurationState",
+          "locationName": "state"
+        }
+      }
+    },
+    "DeleteVpcConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "arn"
+        }
+      },
+      "required": [
+        "Arn"
+      ]
+    },
+    "DeleteVpcConnectionResponse": {
+      "type": "structure",
+      "members": {
+        "VpcConnectionArn": {
+          "shape": "__string",
+          "locationName": "vpcConnectionArn"
+        },
+        "State": {
+          "shape": "VpcConnectionState",
           "locationName": "state"
         }
       }
@@ -1941,6 +2413,61 @@
         "ServerProperties": {
           "shape": "__blob",
           "locationName": "serverProperties"
+        }
+      }
+    },
+    "DescribeVpcConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "arn"
+        }
+      },
+      "required": [
+        "Arn"
+      ]
+    },
+    "DescribeVpcConnectionResponse": {
+      "type": "structure",
+      "members": {
+        "VpcConnectionArn": {
+          "shape": "__string",
+          "locationName": "vpcConnectionArn"
+        },
+        "TargetClusterArn": {
+          "shape": "__string",
+          "locationName": "targetClusterArn"
+        },
+        "State": {
+          "shape": "VpcConnectionState",
+          "locationName": "state"
+        },
+        "Authentication": {
+          "shape": "__string",
+          "locationName": "authentication"
+        },
+        "VpcId": {
+          "shape": "__string",
+          "locationName": "vpcId"
+        },
+        "Subnets": {
+          "shape": "__listOf__string",
+          "locationName": "subnets"
+        },
+        "SecurityGroups": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroups"
+        },
+        "CreationTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "creationTime"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags",
+          "documentation": "\n            <p>A map of tags that you want the vpc connection to have.</p>\n         "
         }
       }
     },
@@ -2132,6 +2659,18 @@
         "BootstrapBrokerStringSaslIam": {
           "shape": "__string",
           "locationName": "bootstrapBrokerStringSaslIam"
+        },
+        "BootstrapBrokerStringVpcConnectivityTls": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringVpcConnectivityTls"
+        },
+        "BootstrapBrokerStringVpcConnectivitySaslScram": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringVpcConnectivitySaslScram"
+        },
+        "BootstrapBrokerStringVpcConnectivitySaslIam": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringVpcConnectivitySaslIam"
         }
       }
     },
@@ -2345,6 +2884,81 @@
           "shape": "Cluster",
           "locationName": "clusterInfo",
           "documentation": "\n            <p>The cluster information.</p>\n         "
+        }
+      }
+    },
+    "DeleteClusterPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        }
+      },
+      "required": [
+        "ClusterArn"
+      ]
+    },
+    "DeleteClusterPolicyResponse": {
+      "type": "structure",
+      "members": {
+      }
+    },
+    "GetClusterPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        }
+      },
+      "required": [
+        "ClusterArn"
+      ]
+    },
+    "GetClusterPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
+        },
+        "Policy": {
+          "shape": "__string",
+          "locationName": "policy"
+        }
+      }
+    },
+    "PutClusterPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
+        },
+        "Policy": {
+          "shape": "__string",
+          "locationName": "policy"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "Policy"
+      ]
+    },
+    "PutClusterPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
         }
       }
     },
@@ -2852,7 +3466,89 @@
           "locationName": "brokerLogs"
         }
       },
-     "required": [ "BrokerLogs" ]
+      "required": [ "BrokerLogs" ]
+    },
+    "ListClientVpcConnectionsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterArn"
+        },
+        "MaxResults" : {
+          "shape" : "MaxResults",
+          "location" : "querystring",
+          "locationName" : "maxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "nextToken"
+        }
+      },
+      "required" : [ "ClusterArn" ]
+    },
+    "ListClientVpcConnectionsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
+        },
+        "ClientVpcConnections" : {
+          "shape" : "__listOfClientVpcConnection",
+          "locationName" : "clientVpcConnections"
+        }
+      }
+    },
+    "ListVpcConnectionsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "MaxResults" : {
+          "shape" : "MaxResults",
+          "location" : "querystring",
+          "locationName" : "maxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "nextToken"
+        }
+      }
+    },
+    "ListVpcConnectionsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
+        },
+        "VpcConnections" : {
+          "shape" : "__listOfVpcConnection",
+          "locationName" : "vpcConnections"
+        }
+      }
+    },
+    "RejectClientVpcConnectionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "VpcConnectionArn": {
+          "shape": "__string",
+          "locationName": "vpcConnectionArn"
+        }
+      },
+      "required" : [ "VpcConnectionArn" ]
+    },
+    "RejectClientVpcConnectionResponse" : {
+      "type": "structure",
+      "members": {
+      }
     },
     "MutableClusterInfo" : {
       "type" : "structure",
@@ -2972,6 +3668,19 @@
         }
       }
     },
+    "VpcConnectivitySasl" : {
+      "type" : "structure",
+      "members" : {
+        "Scram" : {
+          "shape" : "VpcConnectivityScram",
+          "locationName" : "scram"
+        },
+        "Iam" : {
+          "shape" : "VpcConnectivityIam",
+          "locationName" : "iam"
+        }
+      }
+    },
     "Scram" : {
       "type" : "structure",
       "members" : {
@@ -2981,7 +3690,25 @@
         }
       }
     },
+    "VpcConnectivityScram" : {
+      "type" : "structure",
+      "members" : {
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        }
+      }
+    },
     "Iam" : {
+      "type" : "structure",
+      "members" : {
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        }
+      }
+    },
+    "VpcConnectivityIam" : {
       "type" : "structure",
       "members" : {
         "Enabled" : {
@@ -3058,6 +3785,15 @@
           "shape" : "__listOf__string",
           "locationName" : "certificateAuthorityArnList"
         },
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        }
+      }
+    },
+    "VpcConnectivityTls" : {
+      "type" : "structure",
+      "members" : {
         "Enabled" : {
           "shape" : "__boolean",
           "locationName" : "enabled"
@@ -3510,6 +4246,26 @@
         }
       }
     },
+    "UserIdentity": {
+      "type": "structure",
+      "members": {
+        "Type": {
+          "shape": "UserIdentityType",
+          "locationName": "type"
+        },
+        "PrincipalId": {
+          "shape": "__string",
+          "locationName": "principalId"
+        }
+      }
+    },
+    "UserIdentityType": {
+      "type": "string",
+      "enum": [
+        "AWSACCOUNT",
+        "AWSSERVICE"
+      ]
+    },
     "ZookeeperNodeInfo": {
       "type": "structure",
       "members": {
@@ -3602,6 +4358,49 @@
           "locationName":"type"
         }
       }
+    },
+    "VpcConnectivity":{
+      "type":"structure",
+      "members":{
+        "ClientAuthentication":{
+          "shape":"VpcConnectivityClientAuthentication",
+          "locationName":"clientAuthentication"
+        }
+      }
+    },
+    "VpcConnectionInfo": {
+      "type": "structure",
+      "members": {
+        "VpcConnectionArn": {
+          "shape": "__string",
+          "locationName": "vpcConnectionArn"
+        },
+        "Owner": {
+          "shape": "__string",
+          "locationName": "owner"
+        },
+        "UserIdentity": {
+          "shape": "UserIdentity",
+          "locationName": "userIdentity"
+        },
+        "CreationTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "creationTime"
+        }
+      }
+    },
+    "VpcConnectionState":{
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "AVAILABLE",
+        "INACTIVE",
+        "DEACTIVATING",
+        "DELETING",
+        "FAILED",
+        "REJECTED",
+        "REJECTING"
+      ]
     },
     "RebootBrokerRequest": {
       "type": "structure",
@@ -3775,6 +4574,18 @@
       "type": "list",
       "member": {
         "shape": "NodeInfo"
+      }
+    },
+    "__listOfClientVpcConnection": {
+      "type": "list",
+      "member": {
+        "shape": "ClientVpcConnection"
+      }
+    },
+    "__listOfVpcConnection": {
+      "type": "list",
+      "member": {
+        "shape": "VpcConnection"
       }
     },
     "__listOfUnprocessedScramSecret" : {

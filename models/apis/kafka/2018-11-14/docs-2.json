@@ -6,16 +6,22 @@
     "CreateCluster" : "<p>Creates a new MSK cluster.</p>",
     "CreateClusterV2" : "<p>Creates a new Amazon MSK cluster of either the provisioned or the serverless type.</p>",
     "CreateConfiguration" : "<p>Creates a new MSK configuration.</p>",
+    "CreateVpcConnection" : "<p>Creates a new Amazon MSK VPC connection.</p>",
     "DeleteCluster" : "<p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>",
+    "DeleteClusterPolicy" : "<p>Deletes the MSK cluster policy specified by the Amazon Resource Name (ARN) in your request.</p>",
     "DeleteConfiguration" : "<p>Deletes the specified MSK configuration. The configuration must be in the ACTIVE or DELETE_FAILED state.</p>",
+    "DeleteVpcConnection" : "<p>Deletes the Amazon MSK VPC connection specified in your request.</p>",
     "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeClusterV2" : "<p>Returns a description of the MSK cluster of either the provisioned or the serverless type whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeClusterOperation" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
     "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
     "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
+    "DescribeVpcConnection" : "<p>Displays information about the specified Amazon MSK VPC connection.</p>",
     "BatchDisassociateScramSecret" : "<p>Disassociates one or more Scram Secrets from an Amazon MSK cluster.</p>",
     "GetBootstrapBrokers" : "<p>A list of brokers that a client application can use to bootstrap.</p>",
     "GetCompatibleKafkaVersions" : "<p>Gets the Apache Kafka versions to which you can update the MSK cluster.</p>",
+    "GetClusterPolicy" : "<p>Retrieves the contents of the specified MSK cluster policy.</p>",
+    "ListClientVpcConnections" : "<p>Displays a list of client VPC connections.</p>",
     "ListClusterOperations" : "<p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>",
     "ListClusters" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
     "ListClustersV2" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
@@ -25,14 +31,17 @@
     "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
     "ListScramSecrets" : "<p>Returns a list of the Scram Secrets associated with an Amazon MSK cluster.</p>",
     "ListTagsForResource" : "<p>Returns a list of the tags associated with the specified resource.</p>",
+    "ListVpcConnections" : "<p>Displays a list of Amazon MSK VPC connections.</p>",
+    "PutClusterPolicy" : "<p>Creates or updates the specified MSK cluster policy. If updating the policy, the currentVersion field is required in the request payload.</p>",
     "RebootBroker" : "<p>Executes a reboot on a broker.</p>",
+    "RejectClientVpcConnections" : "<p>Rejects a client VPC connection.</p>",
     "TagResource" : "<p>Adds tags to the specified MSK resource.</p>",
     "UntagResource" : "<p>Removes the tags associated with the keys that are provided in the query.</p>",
     "UpdateBrokerCount" : "<p>Updates the number of broker nodes in the cluster. You can use this operation to increase the number of brokers in an existing cluster. You can't decrease the number of brokers.</p>",
     "UpdateBrokerType": "<p>Updates all the brokers in the cluster to the specified type.</p>",
     "UpdateBrokerStorage" : "<p>Updates the EBS storage associated with MSK brokers.</p>",
     "UpdateConfiguration" : "<p>Updates an existing MSK configuration. The configuration must be in the Active state.</p>",
-    "UpdateConnectivity" : "<p>Updates the connectivity configuration for the cluster.</p>",
+    "UpdateConnectivity" : "<p>Updates the connectivity configuration for the MSK cluster.</p>",
     "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
     "UpdateClusterKafkaVersion" : "<p>Updates the Apache Kafka version for the cluster.</p>",
     "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>",
@@ -270,8 +279,24 @@
       "base" : "<p>Response body for CreateConfiguration</p>",
       "refs" : { }
     },
+    "CreateVpcConnectionRequest" : {
+      "base" : "<p>Request body for CreateVpcConnection.</p>",
+      "refs" : { }
+    },
+    "CreateVpcConnectionResponse" : {
+      "base" : "<p>Response body for CreateVpcConnection</p>",
+      "refs" : { }
+    },
     "DeleteClusterResponse" : {
       "base" : "<p>Returns information about the deleted cluster.</p>",
+      "refs" : { }
+    },
+    "DeleteClusterPolicyRequest" : {
+      "base" : "<p>Request body for DeleteClusterPolicy.</p>",
+      "refs" : { }
+    },
+    "DeleteClusterPolicyResponse" : {
+      "base" : "<p>Response body for DeleteClusterPolicy.</p>",
       "refs" : { }
     },
     "DeleteConfigurationRequest" : {
@@ -280,6 +305,14 @@
     },
     "DeleteConfigurationResponse" : {
       "base" : "<p>Response body for DeleteConfiguration.</p>",
+      "refs" : { }
+    },
+    "DeleteVpcConnectionRequest" : {
+      "base" : "<p>Request body for DeleteVpcConnection.</p>",
+      "refs" : { }
+    },
+    "DeleteVpcConnectionResponse" : {
+      "base" : "<p>Response body for DeleteVpcConnection.</p>",
       "refs" : { }
     },
     "DescribeClusterOperationResponse" : {
@@ -300,6 +333,10 @@
     },
     "DescribeConfigurationRevisionResponse" : {
       "base" : "<p>Response body for DescribeConfigurationRevision.</p>",
+      "refs" : { }
+    },
+    "DescribeVpcConnectionResponse" : {
+      "base" : "<p>Response body for DescribeVpcConnection.</p>",
       "refs" : { }
     },
     "BatchDisassociateScramSecretRequest" : {
@@ -378,6 +415,14 @@
       "base" : "<p>Response body for GetCompatibleKafkaVersions.</p>",
       "refs" : { }
     },
+    "GetClusterPolicyRequest" : {
+      "base" : "<p>Request body for GetClusterPolicy.</p>",
+      "refs" : { }
+    },
+    "GetClusterPolicyResponse" : {
+      "base" : "<p>Returns information about the specified cluster policy.</p>",
+      "refs" : { }
+    },
     "InternalServerErrorException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
@@ -440,6 +485,30 @@
     },
     "ListTagsForResourceResponse" : {
       "base" : "<p>Response of listing tags for a resource.</p>",
+      "refs" : { }
+    },
+    "ListClientVpcConnectionsRequest" : {
+      "base" : "<p>Request body for ListClientVpcConnections.</p>",
+      "refs" : { }
+    },
+    "ListClientVpcConnectionsResponse" : {
+      "base" : "<p>The response contains an array of client VPC connections and a next token if the response is truncated.</p>",
+      "refs" : { }
+    },
+    "ListVpcConnectionsRequest" : {
+      "base" : "<p>Request body for ListVpcConnections.</p>",
+      "refs" : { }
+    },
+    "ListVpcConnectionsResponse" : {
+      "base" : "<p>The response contains an array of MSK VPC connections and a next token if the response is truncated.</p>",
+      "refs" : { }
+    },
+    "RejectClientVpcConnectionRequest" : {
+      "base" : "<p>Request body for RejectClientVpcConnection.</p>",
+      "refs" : { }
+    },
+    "RejectClientVpcConnectionResponse" : {
+      "base" : "<p>Response body for RejectClientVpcConnection.</p>",
       "refs" : { }
     },
     "LoggingInfo" : {
@@ -529,6 +598,14 @@
       "refs" : {
         "ConnectivityInfo$PublicAccess" : "<p>Public access control for brokers.</p>"
       }
+    },
+    "PutClusterPolicyRequest" : {
+      "base" : "<p>Request body for PutClusterPolicy.</p>",
+      "refs" : { }
+    },
+    "PutClusterPolicyResponse" : {
+      "base" : "<p>Response body for PutClusterPolicy.</p>",
+      "refs" : { }
     },
     "RebootBrokerRequest" : {
       "base" : "<p>Request body for RebootBrokerNode action.</p>",
@@ -675,6 +752,18 @@
       "base" : "<p>Response body for UpdateStorageResponse Api.</p>",
       "refs" : { }
     },
+    "UserIdentity" : {
+      "base" : "<p>Description of the requester that calls the API operation.</p>",
+      "refs" : {
+        "VpcConnectionInfo$UserIdentity" : "<p>Description of the requester that calls the API operation.</p>"
+      }
+    },
+    "UserIdentityType" : {
+      "base" : "<p>The identity type of the requester that calls the API operation.</p>",
+      "refs" : {
+        "UserIdentity$Type" : "<p>The identity type of the requester that calls the API operation.</p>"
+      }
+    },
     "ZookeeperNodeInfo" : {
       "base" : "<p>Zookeeper node information.</p>",
       "refs" : {
@@ -684,6 +773,38 @@
     "VpcConfig" : {
       "base" : "<p>The configuration of the Amazon VPCs for the cluster.</p>",
       "refs" : { }
+    },
+    "VpcConnectivity" : {
+      "base" : "<p>Broker VPC connectivity access control.</p>",
+      "refs" : {
+        "ConnectivityInfo$VpcConnectivity" : "<p>VpcConnectivity control for brokers.</p>"
+      }
+    },
+    "ClientVpcConnection" : {
+      "base" : "<p>The client VPC connection object.</p>",
+      "refs" : {
+        "__listOfClientVpcConnections$member" : null
+      }
+    },
+    "VpcConnection" : {
+      "base" : "<p>The VPC connection object.</p>",
+      "refs" : {
+        "__listOfVpcConnections$member" : null
+      }
+    },
+    "VpcConnectionInfo" : {
+      "base" : "<p>Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection operations.</p>",
+      "refs" : {
+        "ClusterOperationInfo$VpcConnectionInfo" : "<p>Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection operations.</p>"
+      }
+    },
+    "VpcConnectionState" : {
+      "base" : "<p>The state of a configuration.</p>",
+      "refs" : {
+        "DescribeVpcConnectionResponse$State" : "<p>The state of the VPC connection. The possible states are AVAILABLE, INACTIVE, DEACTIVATING, DELETING, CREATING, REJECTING, REJECTED and FAILED.</p>",
+        "CreateVpcConnectionResponse$State" : "<p>The state of the VPC connection. The only possible state is CREATING.</p>",
+        "DeleteVpcConnectionResponse$State" : "<p>The state of the VPC connection. The only possible state is DELETING.</p>"
+      }
     },
     "__boolean" : {
       "base" : null,
@@ -700,7 +821,10 @@
         "S3$Enabled" : "<p>Specifies whether broker logs get sent to the specified Amazon S3 destination.</p>",
         "Scram$Enabled" : "<p>SASL/SCRAM authentication is enabled or not.</p>",
         "Tls$Enabled" : "<p>TLS authentication is enabled or not.</p>",
-        "Unauthenticated$Enabled" : "<p>Specifies whether you want to enable or disable unauthenticated traffic to your cluster.</p>"
+        "Unauthenticated$Enabled" : "<p>Specifies whether you want to enable or disable unauthenticated traffic to your cluster.</p>",
+        "VpcConnectivityIAM$Enabled" : "<p>SASL/IAM authentication for VPC connectivity is on or off.</p>",
+        "VpcConnectivityScram$Enabled" : "<p>SASL/SCRAM authentication for VPC connectivity is on or off.</p>",
+        "VpcConnectivityTls$Enabled" : "<p>TLS authentication for VPC connectivity is on or off.</p>"
       }
     },
     "__double" : {
@@ -802,6 +926,18 @@
         "ListNodesResponse$NodeInfoList" : "<p>List containing a NodeInfo object.</p>"
       }
     },
+    "__listOfClientVpcConnection" : {
+      "base" : null,
+      "refs" : {
+        "ListClientVpcConnectionsResponse$ClientVpcConnections" : "<p>List containing a ClientVpcConnection object.</p>"
+      }
+    },
+    "__listOfVpcConnection" : {
+      "base" : null,
+      "refs" : {
+        "ListVpcConnectionsResponse$VpcConnections" : "<p>List containing a VpcConnection object.</p>"
+      }
+    },
     "__listOfUnprocessedScramSecret" : {
       "base" : null,
       "refs" : {
@@ -813,13 +949,20 @@
       "base" : null,
       "refs" : {
         "BatchAssociateScramSecretRequest$SecretArnList" : "<p>List of AWS Secrets Manager secret ARNs.</p>",
+        "BatchDisassociateScramSecretRequest$SecretArnList" : "<p>List of AWS Secrets Manager secret ARNs.</p>",
         "BrokerNodeGroupInfo$ClientSubnets" : "<p>The list of subnets to connect to in the client virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets. Client applications use elastic network interfaces to produce and consume data. Client subnets can't occupy the Availability Zone with ID use use1-az3.</p>",
         "BrokerNodeGroupInfo$SecurityGroups" : "<p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster. If you don't specify a security group, Amazon MSK uses the default security group associated with the VPC. If you specify security groups that were shared with you, you must ensure that you have permissions to them. Specifically, you need the ec2:DescribeSecurityGroups permission.</p>",
+        "BrokerNodeGroupInfo$ZoneIds" : "<p>The zoneIds for the cluster.</p>",
         "BrokerNodeInfo$Endpoints" : "<p>Endpoints for accessing the broker.</p>",
         "Configuration$KafkaVersions" : "<p>An array of the versions of Apache Kafka with which you can use this MSK configuration. You can use this configuration for an MSK cluster only if the Apache Kafka version specified for the cluster appears in this array.</p>",
         "CreateConfigurationRequest$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
+        "CreateVpcConnectionRequest$ClientSubnets" : "<p>The list of subnets in the client VPC.</p>",
+        "CreateVpcConnectionRequest$SecurityGroups" : "<p>The list of security groups to attach to the VPC connection.</p>",
+        "CreateVpcConnectionResponse$ClientSubnets" : "<p>The list of subnets in the client VPC.</p>",
+        "CreateVpcConnectionResponse$SecurityGroups" : "<p>The list of security groups attached to the VPC connection.</p>",
         "DescribeConfigurationResponse$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
-        "BatchDisassociateScramSecretRequest$SecretArnList" : "<p>List of AWS Secrets Manager secret ARNs.</p>",
+        "DescribeVpcConnectionResponse$SecurityGroups" : "<p>The list of security groups attached to the VPC connection.</p>",
+        "DescribeVpcConnectionResponse$Subnets" : "<p>The list of subnets in the client VPC.</p>",
         "ListScramSecretsResponse$SecretArnList" : "<p>The list of scram secrets associated with the cluster.</p>",
         "RebootBrokerRequest$BrokerIds" : "<p>The list of broker ids to be rebooted.</p>",
         "Tls$CertificateAuthorityArnList" : "<p>List of ACM Certificate Authority ARNs.</p>",
@@ -840,20 +983,28 @@
       "refs" : {
         "ClusterInfo$Tags" : "<p>Tags attached to the cluster.</p>",
         "CreateClusterRequest$Tags" : "<p>Create tags when creating the cluster.</p>",
+        "CreateVpcConnectionRequest$Tags" : "<p>Create tags when creating the VPC connection.</p>",
+        "CreateVpcConnectionResponse$Tags" : "<p>Tags attached to the VPC connection.</p>",
+        "DescribeVpcConnectionResponse$Tags" : "<p>Tags attached to the VPC connection.</p>",
         "ListTagsForResourceResponse$Tags" : "<p>The key-value pair for the resource tag.</p>",
-        "TagResourceRequest$Tags" : "<p>The key-value pair for the resource tag.</p>"
+        "TagResourceRequest$Tags" : "<p>The key-value pair for the resource tag.</p>",
+        "VpcConnection$Tags" : "<p>Tags attached to the VPC connection.</p>"
       }
     },
     "__string" : {
       "base" : null,
       "refs" : {
         "BatchAssociateScramSecretResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "BatchDisassociateScramSecretResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "BrokerEBSVolumeInfo$KafkaBrokerNodeId" : "<p>The ID of the broker to update.</p>",
         "BrokerNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
         "BrokerNodeInfo$ClientSubnet" : "<p>The client subnet to which this broker node belongs.</p>",
         "BrokerNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) of the client.</p>",
         "BrokerSoftwareInfo$ConfigurationArn" : "<p>The Amazon Resource Name (ARN) of the configuration used for the cluster. This field isn't visible in this preview release.</p>",
         "BrokerSoftwareInfo$KafkaVersion" : "<p>The version of Apache Kafka.</p>",
+        "ClientVpcConnection$Authentication" : "<p>The VPC connection authentication type.</p>",
+        "ClientVpcConnection$Owner" : "<p>The owner of the VPC connection.</p>",
+        "ClientVpcConnection$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "CloudWatchLogs$LogGroup" : "<p>The CloudWatch log group that is the destination for broker logs.</p>",
         "ClusterInfo$ActiveOperationArn" : "<p>Arn of active cluster operation.</p>",
         "ClusterInfo$ClusterArn" : "<p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>",
@@ -879,15 +1030,23 @@
         "CreateConfigurationRequest$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
         "CreateConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "CreateConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
+        "CreateVpcConnectionRequest$TargetClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "CreateVpcConnectionRequest$VpcId" : "<p>The VPC ID of the VPC connection.</p>",
+        "CreateVpcConnectionResponse$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
+        "CreateVpcConnectionResponse$VpcId" : "<p>The VPC ID of the VPC connection.</p>",
         "DeleteClusterResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "DeleteConfigurationRequest$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DeleteConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "DeleteVpcConnectionResponse$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "DescribeConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DescribeConfigurationResponse$Description" : "<p>The description of the configuration.</p>",
         "DescribeConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
         "DescribeConfigurationRevisionResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DescribeConfigurationRevisionResponse$Description" : "<p>The description of the configuration.</p>",
-        "BatchDisassociateScramSecretResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "DescribeVpcConnectionResponse$Authentication" : "<p>The authentication type of the VPC connection.</p>",
+        "DescribeVpcConnectionResponse$TargetClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "DescribeVpcConnectionResponse$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
+        "DescribeVpcConnectionResponse$VpcId" : "<p>The VPC ID of the VPC connection.</p>",
         "EncryptionAtRest$DataVolumeKMSKeyId" : "<p>The ARN of the AWS KMS key for encrypting data at rest. If you don't specify a KMS key, MSK creates one for you and uses it.</p>",
         "Error$InvalidParameter" : "<p>The parameter that caused the error.</p>",
         "Error$Message" : "<p>The description of the error.</p>",
@@ -901,7 +1060,13 @@
         "GetBootstrapBrokersResponse$BootstrapBrokerStringPublicTls" : "<p>A string containing one or more DNS names (or IP addresses) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194\"\n}</programlisting>",
         "GetBootstrapBrokersResponse$BootstrapBrokerStringPublicSaslScram" : "<p>A string containing one or more DNS names (or IP addresses) and SASL SCRAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslScram\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196\"\n}</programlisting>",
         "GetBootstrapBrokersResponse$BootstrapBrokerStringPublicSaslIam" : "<p>A string that contains one or more DNS names (or IP addresses) and SASL IAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslIam\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198\"\n}</programlisting>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringVpcConnectivitySaslIam" : "<p>A string containing one or more dns name (or IP) and SASL IAM port pairs for VPC connectivity.</p>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringVpcConnectivitySaslScram" : "<p>A string containing one or more dns name (or IP) and SASL SCRAM port pairs for VPC connectivity.</p>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringVpcConnectivityTls" : "<p>A string containing one or more dns name (or IP) and Tls port pairs for VPC connectivity.</p>",
+        "GetClusterPolicyResponse$CurrentVersion" : "<p>Cluster policy version.</p>",
+        "GetClusterPolicyResponse$Policy" : "<p>Cluster policy attached to the MSK cluster.</p>",
         "KafkaVersion$Version" : "<p>The Apache Kafka version.</p>",
+        "ListClientVpcConnectionsResponse$NextToken" : "<p>If the response of ListClientVpcConnections is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClientVpcConnections.</p>",
         "ListClusterOperationsResponse$NextToken" : "<p>If the response of ListClusterOperations is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClusterOperations.</p>",
         "ListClustersResponse$NextToken" : "<p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. To get another batch of clusters, provide this token in your next request.</p>",
         "ListConfigurationRevisionsResponse$NextToken" : "<p>Paginated results marker.</p>",
@@ -909,10 +1074,13 @@
         "ListKafkaVersionsResponse$NextToken" : "<p>Paginated results marker.</p>",
         "ListNodesResponse$NextToken" : "<p>The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response. To get another batch of nodes, provide this token in your next request.</p>",
         "ListScramSecretsResponse$NextToken" : "<p>Paginated results marker.</p>",
+        "ListVpcConnectionsResponse$NextToken" : "<p>If the response of ListVpcConnections is truncated, it returns a NextToken in the response. This NextToken should be sent in the subsequent request to ListVpcConnections.</p>",
+        "MutableClusterInfo$KafkaVersion" : "<p>The Apache Kafka version.</p>",
         "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
         "NodeInfo$InstanceType" : "<p>The instance type.</p>",
         "NodeInfo$NodeARN" : "<p>The Amazon Resource Name (ARN) of the node.</p>",
         "PublicAccess$Type" : "<p>The value DISABLED indicates that public access is disabled. SERVICE_PROVIDED_EIPS indicates that public access is enabled.</p>",
+        "PutClusterPolicyResponse$CurrentVersion" : "<p>Cluster policy version.</p>",
         "RebootBrokerResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "RebootBrokerResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "S3$Bucket" : "<p>The name of the S3 bucket that is the destination for broker logs.</p>",
@@ -951,11 +1119,22 @@
         "UpdateStorageRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
         "UpdateStorageResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateStorageResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "VpcConnection$Authentication" : "<p>The authentication type for the VPC connection.</p>",
+        "VpcConnection$TargetClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "VpcConnection$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
+        "VpcConnection$VpcId" : "<p>The VPC ID of the VPC connection.</p>",
         "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
         "ZookeeperNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) IP address of the client.</p>",
         "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",
         "__listOf__string$member" : null,
         "__mapOf__string$member" : null
+      }
+    },
+    "__stringMin1" : {
+      "base" : null,
+      "refs" : {
+        "PutClusterPolicyRequest$CurrentVersion" : "<p>Current cluster policy version.</p>",
+        "RejectClientVpcConnectionRequest$VpcConnectionArn" : "<p>VPC connection ARN.</p>"
       }
     },
     "__stringMin1Max128" : {
@@ -964,10 +1143,23 @@
         "CreateClusterRequest$KafkaVersion" : "<p>The version of Apache Kafka.</p>"
       }
     },
+    "__stringMin1Max20480" : {
+      "base" : null,
+      "refs" : {
+        "PutClusterPolicyRequest$Policy" : "<p>Cluster policy for cluster.</p>"
+      }
+    },
     "__stringMin1Max64" : {
       "base" : null,
       "refs" : {
         "CreateClusterRequest$ClusterName" : "<p>The name of the cluster.</p>"
+      }
+    },
+    "__stringMin3Max10" : {
+      "base" : null,
+      "refs" : {
+        "CreateVpcConnectionRequest$Authentication" : null,
+        "CreateVpcConnectionResponse$Authentication" : "<p>The authentication type for the VPC connection.</p>"
       }
     },
     "__stringMin5Max32" : {
@@ -980,13 +1172,18 @@
     "__timestampIso8601" : {
       "base" : null,
       "refs" : {
+        "ClientVpcConnection$CreationTime" : "<p>The creation time of the VPC connection.</p>",
         "ClusterInfo$CreationTime" : "<p>The time when the cluster was created.</p>",
+        "ClusterOperationInfo$CreationTime" : "<p>The time at which operation was created.</p>",
+        "ClusterOperationInfo$EndTime" : "<p>The time at which the operation finished.</p>",
+        "Configuration$CreationTime" : "<p>The time when the configuration was created.</p>",
         "ConfigurationRevision$CreationTime" : "<p>The time when the configuration revision was created.</p>",
         "CreateConfigurationResponse$CreationTime" : "<p>The time when the configuration was created.</p>",
+        "CreateVpcConnectionResponse$CreationTime" : "<p>The time when the VPC connection was created.</p>",
         "DescribeConfigurationResponse$CreationTime" : "<p>The time when the configuration was created.</p>",
         "DescribeConfigurationRevisionResponse$CreationTime" : "<p>The time when the configuration was created.</p>",
-        "ClusterOperationInfo$CreationTime" : "<p>The time at which operation was created.</p>",
-        "ClusterOperationInfo$EndTime" : "<p>The time at which the operation finished.</p>"
+        "DescribeVpcConnectionResponse$CreationTime" : "<p>The creation time of the VPC connection.</p>",
+        "VpcConnection$CreationTime" : "<p>The creation time of the VPC connection.</p>"
       }
     }
   }

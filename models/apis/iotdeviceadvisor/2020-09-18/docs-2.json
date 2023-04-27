@@ -22,10 +22,12 @@
       "base": null,
       "refs": {
         "CreateSuiteDefinitionResponse$suiteDefinitionArn": "<p>The Amazon Resource Name (ARN) of the test suite.</p>",
-        "DeviceUnderTest$thingArn": "<p>Lists devices thing ARN.</p>",
-        "DeviceUnderTest$certificateArn": "<p>Lists devices certificate ARN.</p>",
+        "DeviceUnderTest$thingArn": "<p>Lists device's thing ARN.</p>",
+        "DeviceUnderTest$certificateArn": "<p>Lists device's certificate ARN.</p>",
+        "DeviceUnderTest$deviceRoleArn": "<p>Lists device's role ARN.</p>",
         "GetEndpointRequest$thingArn": "<p>The thing ARN of the device. This is an optional parameter.</p>",
         "GetEndpointRequest$certificateArn": "<p>The certificate ARN of the device. This is an optional parameter.</p>",
+        "GetEndpointRequest$deviceRoleArn": "<p>The device role ARN of the device. This is an optional parameter.</p>",
         "GetSuiteDefinitionResponse$suiteDefinitionArn": "<p>The ARN of the suite definition.</p>",
         "GetSuiteRunResponse$suiteRunArn": "<p>The ARN of the suite run.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The resource ARN of the IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN.</p>",
@@ -34,6 +36,12 @@
         "TagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN.</p>",
         "UntagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN.</p>",
         "UpdateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Amazon Resource Name (ARN) of the updated test suite.</p>"
+      }
+    },
+    "AuthenticationMethod": {
+      "base": null,
+      "refs": {
+        "GetEndpointRequest$authenticationMethod": "<p>The authentication method used during the device connection.</p>"
       }
     },
     "ConflictException": {
@@ -62,7 +70,7 @@
       }
     },
     "DeviceUnderTest": {
-      "base": "<p>Information of a test device. A thing ARN or a certificate ARN is required.</p>",
+      "base": "<p>Information of a test device. A thing ARN, certificate ARN or device role ARN is required.</p>",
       "refs": {
         "DeviceUnderTestList$member": null,
         "SuiteRunConfiguration$primaryDevice": "<p>Sets the primary device for the test suite run. This requires a thing ARN or a certificate ARN.</p>"

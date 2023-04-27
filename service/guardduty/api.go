@@ -5250,6 +5250,93 @@ func (c *GuardDuty) ListThreatIntelSetsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opStartMalwareScan = "StartMalwareScan"
+
+// StartMalwareScanRequest generates a "aws/request.Request" representing the
+// client's request for the StartMalwareScan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMalwareScan for more information on using the StartMalwareScan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartMalwareScanRequest method.
+//	req, resp := client.StartMalwareScanRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/StartMalwareScan
+func (c *GuardDuty) StartMalwareScanRequest(input *StartMalwareScanInput) (req *request.Request, output *StartMalwareScanOutput) {
+	op := &request.Operation{
+		Name:       opStartMalwareScan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/malware-scan/start",
+	}
+
+	if input == nil {
+		input = &StartMalwareScanInput{}
+	}
+
+	output = &StartMalwareScanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartMalwareScan API operation for Amazon GuardDuty.
+//
+// Initiates the malware scan. Invoking this API will automatically create the
+// Service-linked role (https://docs.aws.amazon.com/guardduty/latest/ug/slr-permissions-malware-protection.html)
+// in the corresponding account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GuardDuty's
+// API operation StartMalwareScan for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     A bad request exception object.
+//
+//   - ConflictException
+//     A request conflict exception object.
+//
+//   - InternalServerErrorException
+//     An internal server error exception object.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/StartMalwareScan
+func (c *GuardDuty) StartMalwareScan(input *StartMalwareScanInput) (*StartMalwareScanOutput, error) {
+	req, out := c.StartMalwareScanRequest(input)
+	return out, req.Send()
+}
+
+// StartMalwareScanWithContext is the same as StartMalwareScan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMalwareScan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GuardDuty) StartMalwareScanWithContext(ctx aws.Context, input *StartMalwareScanInput, opts ...request.Option) (*StartMalwareScanOutput, error) {
+	req, out := c.StartMalwareScanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartMonitoringMembers = "StartMonitoringMembers"
 
 // StartMonitoringMembersRequest generates a "aws/request.Request" representing the
@@ -7755,6 +7842,74 @@ func (s *Condition) SetNeq(v []*string) *Condition {
 func (s *Condition) SetNotEquals(v []*string) *Condition {
 	s.NotEquals = v
 	return s
+}
+
+// A request conflict exception object.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message.
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The error type.
+	Type *string `locationName:"__type" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Details of a container.
@@ -11634,6 +11789,9 @@ type EbsVolumeScanDetails struct {
 	// Returns the start date and time of the malware scan.
 	ScanStartedAt *time.Time `locationName:"scanStartedAt" type:"timestamp"`
 
+	// Specifies the scan type that invoked the malware scan.
+	ScanType *string `locationName:"scanType" type:"string" enum:"ScanType"`
+
 	// Contains list of threat intelligence sources used to detect threats.
 	Sources []*string `locationName:"sources" type:"list"`
 
@@ -11680,6 +11838,12 @@ func (s *EbsVolumeScanDetails) SetScanId(v string) *EbsVolumeScanDetails {
 // SetScanStartedAt sets the ScanStartedAt field's value.
 func (s *EbsVolumeScanDetails) SetScanStartedAt(v time.Time) *EbsVolumeScanDetails {
 	s.ScanStartedAt = &v
+	return s
+}
+
+// SetScanType sets the ScanType field's value.
+func (s *EbsVolumeScanDetails) SetScanType(v string) *EbsVolumeScanDetails {
+	s.ScanType = &v
 	return s
 }
 
@@ -20013,6 +20177,9 @@ type Scan struct {
 	// An enum value representing possible scan statuses.
 	ScanStatus *string `locationName:"scanStatus" type:"string" enum:"ScanStatus"`
 
+	// Specifies the scan type that invoked the malware scan.
+	ScanType *string `locationName:"scanType" type:"string" enum:"ScanType"`
+
 	// Represents total bytes that were scanned.
 	TotalBytes *int64 `locationName:"totalBytes" type:"long"`
 
@@ -20107,6 +20274,12 @@ func (s *Scan) SetScanStartTime(v time.Time) *Scan {
 // SetScanStatus sets the ScanStatus field's value.
 func (s *Scan) SetScanStatus(v string) *Scan {
 	s.ScanStatus = &v
+	return s
+}
+
+// SetScanType sets the ScanType field's value.
+func (s *Scan) SetScanType(v string) *Scan {
+	s.ScanType = &v
 	return s
 }
 
@@ -20946,6 +21119,85 @@ func (s *SortCriteria) SetAttributeName(v string) *SortCriteria {
 // SetOrderBy sets the OrderBy field's value.
 func (s *SortCriteria) SetOrderBy(v string) *SortCriteria {
 	s.OrderBy = &v
+	return s
+}
+
+type StartMalwareScanInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the resource for which you invoked the API.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMalwareScanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMalwareScanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMalwareScanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMalwareScanInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *StartMalwareScanInput) SetResourceArn(v string) *StartMalwareScanInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type StartMalwareScanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that gets generated when you invoke the API without any
+	// error. Each malware scan has a corresponding scan ID. Using this scan ID,
+	// you can monitor the status of your malware scan.
+	ScanId *string `locationName:"scanId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMalwareScanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMalwareScanOutput) GoString() string {
+	return s.String()
+}
+
+// SetScanId sets the ScanId field's value.
+func (s *StartMalwareScanOutput) SetScanId(v string) *StartMalwareScanOutput {
+	s.ScanId = &v
 	return s
 }
 
@@ -23497,6 +23749,9 @@ const (
 
 	// CriterionKeyScanStatus is a CriterionKey enum value
 	CriterionKeyScanStatus = "SCAN_STATUS"
+
+	// CriterionKeyScanType is a CriterionKey enum value
+	CriterionKeyScanType = "SCAN_TYPE"
 )
 
 // CriterionKey_Values returns all elements of the CriterionKey enum
@@ -23508,6 +23763,7 @@ func CriterionKey_Values() []string {
 		CriterionKeyGuarddutyFindingId,
 		CriterionKeyScanStartTime,
 		CriterionKeyScanStatus,
+		CriterionKeyScanType,
 	}
 }
 
@@ -24034,6 +24290,9 @@ const (
 
 	// ScanStatusFailed is a ScanStatus enum value
 	ScanStatusFailed = "FAILED"
+
+	// ScanStatusSkipped is a ScanStatus enum value
+	ScanStatusSkipped = "SKIPPED"
 )
 
 // ScanStatus_Values returns all elements of the ScanStatus enum
@@ -24042,6 +24301,23 @@ func ScanStatus_Values() []string {
 		ScanStatusRunning,
 		ScanStatusCompleted,
 		ScanStatusFailed,
+		ScanStatusSkipped,
+	}
+}
+
+const (
+	// ScanTypeGuarddutyInitiated is a ScanType enum value
+	ScanTypeGuarddutyInitiated = "GUARDDUTY_INITIATED"
+
+	// ScanTypeOnDemand is a ScanType enum value
+	ScanTypeOnDemand = "ON_DEMAND"
+)
+
+// ScanType_Values returns all elements of the ScanType enum
+func ScanType_Values() []string {
+	return []string{
+		ScanTypeGuarddutyInitiated,
+		ScanTypeOnDemand,
 	}
 }
 

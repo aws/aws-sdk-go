@@ -311,6 +311,10 @@ type GuardDutyAPI interface {
 	ListThreatIntelSetsPages(*guardduty.ListThreatIntelSetsInput, func(*guardduty.ListThreatIntelSetsOutput, bool) bool) error
 	ListThreatIntelSetsPagesWithContext(aws.Context, *guardduty.ListThreatIntelSetsInput, func(*guardduty.ListThreatIntelSetsOutput, bool) bool, ...request.Option) error
 
+	StartMalwareScan(*guardduty.StartMalwareScanInput) (*guardduty.StartMalwareScanOutput, error)
+	StartMalwareScanWithContext(aws.Context, *guardduty.StartMalwareScanInput, ...request.Option) (*guardduty.StartMalwareScanOutput, error)
+	StartMalwareScanRequest(*guardduty.StartMalwareScanInput) (*request.Request, *guardduty.StartMalwareScanOutput)
+
 	StartMonitoringMembers(*guardduty.StartMonitoringMembersInput) (*guardduty.StartMonitoringMembersOutput, error)
 	StartMonitoringMembersWithContext(aws.Context, *guardduty.StartMonitoringMembersInput, ...request.Option) (*guardduty.StartMonitoringMembersOutput, error)
 	StartMonitoringMembersRequest(*guardduty.StartMonitoringMembersInput) (*request.Request, *guardduty.StartMonitoringMembersOutput)

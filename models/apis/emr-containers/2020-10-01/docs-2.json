@@ -13,6 +13,7 @@
     "DescribeJobTemplate": "<p>Displays detailed information about a specified job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
     "DescribeManagedEndpoint": "<p>Displays detailed information about a managed endpoint. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.</p>",
     "DescribeVirtualCluster": "<p>Displays detailed information about a specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
+    "GetManagedEndpointSessionCredentials": "<p>Generate a session token to connect to a managed endpoint. </p>",
     "ListJobRuns": "<p>Lists job runs based on a set of parameters. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
     "ListJobTemplates": "<p>Lists job templates based on a set of parameters. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
     "ListManagedEndpoints": "<p>Lists managed endpoints based on a set of parameters. A managed endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on EKS so that Amazon EMR Studio can communicate with your virtual cluster.</p>",
@@ -59,6 +60,7 @@
         "CreateJobTemplateRequest$clientToken": "<p>The client token of the job template.</p>",
         "CreateManagedEndpointRequest$clientToken": "<p>The client idempotency token for this create call.</p>",
         "CreateVirtualClusterRequest$clientToken": "<p>The client token of the virtual cluster.</p>",
+        "GetManagedEndpointSessionCredentialsRequest$clientToken": "<p>The client idempotency token of the job run request.</p>",
         "JobRun$clientToken": "<p>The client token used to start a job run.</p>",
         "StartJobRunRequest$clientToken": "<p>The client idempotency token of the job run request. </p>"
       }
@@ -148,11 +150,24 @@
       "refs": {
       }
     },
+    "CredentialType": {
+      "base": null,
+      "refs": {
+        "GetManagedEndpointSessionCredentialsRequest$credentialType": "<p>Type of the token requested. Currently supported and default value of this field is “TOKEN.”</p>"
+      }
+    },
+    "Credentials": {
+      "base": "<p>The structure containing the session token being returned.</p>",
+      "refs": {
+        "GetManagedEndpointSessionCredentialsResponse$credentials": "<p>The structure containing the session credentials.</p>"
+      }
+    },
     "Date": {
       "base": null,
       "refs": {
         "CreateJobTemplateResponse$createdAt": "<p>This output displays the date and time when the job template was created.</p>",
         "Endpoint$createdAt": "<p>The date and time when the endpoint was created.</p>",
+        "GetManagedEndpointSessionCredentialsResponse$expiresAt": "<p>The date and time when the session token will expire.</p>",
         "JobRun$createdAt": "<p>The date and time when the job run was created.</p>",
         "JobRun$finishedAt": "<p>The date and time when the job run has finished.</p>",
         "JobTemplate$createdAt": "<p> The date and time when the job template was created.</p>",
@@ -316,11 +331,22 @@
         "JobRun$failureReason": "<p>The reasons why the job run has failed.</p>"
       }
     },
+    "GetManagedEndpointSessionCredentialsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetManagedEndpointSessionCredentialsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "IAMRoleArn": {
       "base": null,
       "refs": {
         "CreateManagedEndpointRequest$executionRoleArn": "<p>The ARN of the execution role.</p>",
         "Endpoint$executionRoleArn": "<p>The execution role ARN of the endpoint.</p>",
+        "GetManagedEndpointSessionCredentialsRequest$executionRoleArn": "<p>The IAM Execution Role ARN that will be used by the job run. </p>",
         "JobRun$executionRoleArn": "<p>The execution role ARN of the job run.</p>",
         "StartJobRunRequest$executionRoleArn": "<p>The execution role ARN for the job run.</p>"
       }
@@ -333,6 +359,7 @@
     "JavaInteger": {
       "base": null,
       "refs": {
+        "GetManagedEndpointSessionCredentialsRequest$durationInSeconds": "<p>Duration in seconds for which the session token is valid. The default duration is 15 minutes and the maximum is 12 hours.</p>",
         "ListJobRunsRequest$maxResults": "<p>The maximum number of job runs that can be listed.</p>",
         "ListJobTemplatesRequest$maxResults": "<p> The maximum number of job templates that can be listed.</p>",
         "ListManagedEndpointsRequest$maxResults": "<p>The maximum number of managed endpoints that can be listed.</p>",
@@ -472,6 +499,12 @@
       "refs": {
       }
     },
+    "LogContext": {
+      "base": null,
+      "refs": {
+        "GetManagedEndpointSessionCredentialsRequest$logContext": "<p>String identifier used to separate sections of the execution logs uploaded to S3.</p>"
+      }
+    },
     "LogGroupName": {
       "base": null,
       "refs": {
@@ -555,6 +588,11 @@
         "JobTemplate$createdBy": "<p> The user who created the job template.</p>"
       }
     },
+    "RequestThrottledException": {
+      "base": "<p>The request throttled.</p>",
+      "refs": {
+      }
+    },
     "ResourceIdString": {
       "base": null,
       "refs": {
@@ -583,6 +621,7 @@
         "DescribeVirtualClusterRequest$id": "<p>The ID of the virtual cluster that will be described.</p>",
         "Endpoint$id": "<p>The ID of the endpoint.</p>",
         "Endpoint$virtualClusterId": "<p>The ID of the endpoint's virtual cluster.</p>",
+        "GetManagedEndpointSessionCredentialsResponse$id": "<p>The identifier of the session token returned.</p>",
         "JobRun$id": "<p>The ID of the job run.</p>",
         "JobRun$virtualClusterId": "<p>The ID of the job run's virtual cluster.</p>",
         "JobTemplate$id": "<p>The ID of the job template.</p>",
@@ -691,6 +730,7 @@
         "Configuration$classification": "<p>The classification within a configuration.</p>",
         "InternalServerException$message": null,
         "ListVirtualClustersRequest$containerProviderId": "<p>The container provider ID of the virtual cluster.</p>",
+        "RequestThrottledException$message": null,
         "ResourceNotFoundException$message": null,
         "SensitivePropertiesMap$key": null,
         "SensitivePropertiesMap$value": null,
@@ -709,6 +749,8 @@
     "String2048": {
       "base": null,
       "refs": {
+        "GetManagedEndpointSessionCredentialsRequest$endpointIdentifier": "<p>The ARN of the managed endpoint for which the request is submitted. </p>",
+        "GetManagedEndpointSessionCredentialsRequest$virtualClusterIdentifier": "<p>The ARN of the Virtual Cluster which the Managed Endpoint belongs to. </p>",
         "JobTemplate$decryptionError": "<p>The error message in case the decryption of job template fails.</p>"
       }
     },
@@ -803,6 +845,12 @@
       "refs": {
         "TemplateParameterConfigurationMap$key": null,
         "TemplateParameterInputMap$key": null
+      }
+    },
+    "Token": {
+      "base": null,
+      "refs": {
+        "Credentials$token": "<p>The actual session token being returned.</p>"
       }
     },
     "UntagResourceRequest": {

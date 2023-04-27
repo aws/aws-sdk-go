@@ -57,7 +57,7 @@ func (c *OSIS) CreatePipelineRequest(input *CreatePipelineInput) (req *request.R
 // CreatePipeline API operation for Amazon OpenSearch Ingestion.
 //
 // Creates an OpenSearch Ingestion pipeline. For more information, see Creating
-// and managing OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html).
+// Amazon OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -151,7 +151,7 @@ func (c *OSIS) DeletePipelineRequest(input *DeletePipelineInput) (req *request.R
 // DeletePipeline API operation for Amazon OpenSearch Ingestion.
 //
 // Deletes an OpenSearch Ingestion pipeline. For more information, see Deleting
-// pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html#delete-pipeline).
+// Amazon OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/delete-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -334,7 +334,8 @@ func (c *OSIS) GetPipelineBlueprintRequest(input *GetPipelineBlueprintInput) (re
 //
 // Retrieves information about a specific blueprint for OpenSearch Ingestion.
 // Blueprints are templates for the configuration needed for a CreatePipeline
-// request.
+// request. For more information, see Using blueprints to create a pipeline
+// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html#pipeline-blueprint).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -427,8 +428,7 @@ func (c *OSIS) GetPipelineChangeProgressRequest(input *GetPipelineChangeProgress
 // Ingestion pipeline. Currently, this operation only returns information when
 // a pipeline is being created.
 //
-// For more information, see Creating and managing OpenSearch Ingestion pipelines
-// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html).
+// For more information, see Tracking the status of pipeline creation (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html#get-pipeline-progress).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -517,7 +517,8 @@ func (c *OSIS) ListPipelineBlueprintsRequest(input *ListPipelineBlueprintsInput)
 
 // ListPipelineBlueprints API operation for Amazon OpenSearch Ingestion.
 //
-// Retrieves a list of all available blueprints for Data Prepper.
+// Retrieves a list of all available blueprints for Data Prepper. For more information,
+// see Using blueprints to create a pipeline (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html#pipeline-blueprint).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -613,8 +614,8 @@ func (c *OSIS) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Req
 // ListPipelines API operation for Amazon OpenSearch Ingestion.
 //
 // Lists all OpenSearch Ingestion pipelines in the current Amazon Web Services
-// account and Region. For more information, see Creating and managing OpenSearch
-// Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html).
+// account and Region. For more information, see Viewing Amazon OpenSearch Ingestion
+// pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/list-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -755,7 +756,7 @@ func (c *OSIS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req 
 // ListTagsForResource API operation for Amazon OpenSearch Ingestion.
 //
 // Lists all resource tags associated with an OpenSearch Ingestion pipeline.
-// For more information, see Tagging OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-pipeline.html).
+// For more information, see Tagging Amazon OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -845,7 +846,7 @@ func (c *OSIS) StartPipelineRequest(input *StartPipelineInput) (req *request.Req
 // StartPipeline API operation for Amazon OpenSearch Ingestion.
 //
 // Starts an OpenSearch Ingestion pipeline. For more information, see Starting
-// pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html#start-pipeline).
+// an OpenSearch Ingestion pipeline (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/pipeline--stop-start.html#pipeline--start).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -938,7 +939,7 @@ func (c *OSIS) StopPipelineRequest(input *StopPipelineInput) (req *request.Reque
 // StopPipeline API operation for Amazon OpenSearch Ingestion.
 //
 // Stops an OpenSearch Ingestion pipeline. For more information, see Stopping
-// pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html#stop-pipeline).
+// an OpenSearch Ingestion pipeline (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/pipeline--stop-start.html#pipeline--stop).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1032,7 +1033,7 @@ func (c *OSIS) TagResourceRequest(input *TagResourceInput) (req *request.Request
 // TagResource API operation for Amazon OpenSearch Ingestion.
 //
 // Tags an OpenSearch Ingestion pipeline. For more information, see Tagging
-// OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-pipeline.html).
+// Amazon OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1126,7 +1127,7 @@ func (c *OSIS) UntagResourceRequest(input *UntagResourceInput) (req *request.Req
 // UntagResource API operation for Amazon OpenSearch Ingestion.
 //
 // Removes one or more tags from an OpenSearch Ingestion pipeline. For more
-// information, see Tagging OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-pipeline.html).
+// information, see Tagging Amazon OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/tag-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1215,8 +1216,8 @@ func (c *OSIS) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.R
 
 // UpdatePipeline API operation for Amazon OpenSearch Ingestion.
 //
-// Updates an OpenSearch Ingestion pipeline. For more information, see Creating
-// and managing OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html).
+// Updates an OpenSearch Ingestion pipeline. For more information, see Updating
+// Amazon OpenSearch Ingestion pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/update-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1309,8 +1310,8 @@ func (c *OSIS) ValidatePipelineRequest(input *ValidatePipelineInput) (req *reque
 // ValidatePipeline API operation for Amazon OpenSearch Ingestion.
 //
 // Checks whether an OpenSearch Ingestion pipeline configuration is valid prior
-// to creation. For more information, see Creating and managing OpenSearch Ingestion
-// pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/manage-pipeline.html).
+// to creation. For more information, see Creating Amazon OpenSearch Ingestion
+// pipelines (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/creating-pipeline.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

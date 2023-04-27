@@ -499,6 +499,103 @@ func (c *Kafka) CreateConfigurationWithContext(ctx aws.Context, input *CreateCon
 	return out, req.Send()
 }
 
+const opCreateVpcConnection = "CreateVpcConnection"
+
+// CreateVpcConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVpcConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVpcConnection for more information on using the CreateVpcConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVpcConnectionRequest method.
+//	req, resp := client.CreateVpcConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateVpcConnection
+func (c *Kafka) CreateVpcConnectionRequest(input *CreateVpcConnectionInput) (req *request.Request, output *CreateVpcConnectionOutput) {
+	op := &request.Operation{
+		Name:       opCreateVpcConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/vpc-connection",
+	}
+
+	if input == nil {
+		input = &CreateVpcConnectionInput{}
+	}
+
+	output = &CreateVpcConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVpcConnection API operation for Managed Streaming for Kafka.
+//
+// Creates a new Amazon MSK VPC connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation CreateVpcConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+//   - ConflictException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateVpcConnection
+func (c *Kafka) CreateVpcConnection(input *CreateVpcConnectionInput) (*CreateVpcConnectionOutput, error) {
+	req, out := c.CreateVpcConnectionRequest(input)
+	return out, req.Send()
+}
+
+// CreateVpcConnectionWithContext is the same as CreateVpcConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVpcConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) CreateVpcConnectionWithContext(ctx aws.Context, input *CreateVpcConnectionInput, opts ...request.Option) (*CreateVpcConnectionOutput, error) {
+	req, out := c.CreateVpcConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteCluster = "DeleteCluster"
 
 // DeleteClusterRequest generates a "aws/request.Request" representing the
@@ -588,6 +685,99 @@ func (c *Kafka) DeleteClusterWithContext(ctx aws.Context, input *DeleteClusterIn
 	return out, req.Send()
 }
 
+const opDeleteClusterPolicy = "DeleteClusterPolicy"
+
+// DeleteClusterPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteClusterPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteClusterPolicy for more information on using the DeleteClusterPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteClusterPolicyRequest method.
+//	req, resp := client.DeleteClusterPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteClusterPolicy
+func (c *Kafka) DeleteClusterPolicyRequest(input *DeleteClusterPolicyInput) (req *request.Request, output *DeleteClusterPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteClusterPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/clusters/{clusterArn}/policy",
+	}
+
+	if input == nil {
+		input = &DeleteClusterPolicyInput{}
+	}
+
+	output = &DeleteClusterPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteClusterPolicy API operation for Managed Streaming for Kafka.
+//
+// Deletes the MSK cluster policy specified by the Amazon Resource Name (ARN)
+// in your request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation DeleteClusterPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteClusterPolicy
+func (c *Kafka) DeleteClusterPolicy(input *DeleteClusterPolicyInput) (*DeleteClusterPolicyOutput, error) {
+	req, out := c.DeleteClusterPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteClusterPolicyWithContext is the same as DeleteClusterPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteClusterPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) DeleteClusterPolicyWithContext(ctx aws.Context, input *DeleteClusterPolicyInput, opts ...request.Option) (*DeleteClusterPolicyOutput, error) {
+	req, out := c.DeleteClusterPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteConfiguration = "DeleteConfiguration"
 
 // DeleteConfigurationRequest generates a "aws/request.Request" representing the
@@ -672,6 +862,94 @@ func (c *Kafka) DeleteConfiguration(input *DeleteConfigurationInput) (*DeleteCon
 // for more information on using Contexts.
 func (c *Kafka) DeleteConfigurationWithContext(ctx aws.Context, input *DeleteConfigurationInput, opts ...request.Option) (*DeleteConfigurationOutput, error) {
 	req, out := c.DeleteConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVpcConnection = "DeleteVpcConnection"
+
+// DeleteVpcConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVpcConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVpcConnection for more information on using the DeleteVpcConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteVpcConnectionRequest method.
+//	req, resp := client.DeleteVpcConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteVpcConnection
+func (c *Kafka) DeleteVpcConnectionRequest(input *DeleteVpcConnectionInput) (req *request.Request, output *DeleteVpcConnectionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVpcConnection,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/vpc-connection/{arn}",
+	}
+
+	if input == nil {
+		input = &DeleteVpcConnectionInput{}
+	}
+
+	output = &DeleteVpcConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVpcConnection API operation for Managed Streaming for Kafka.
+//
+// Deletes the Amazon MSK VPC connection specified in your request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation DeleteVpcConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DeleteVpcConnection
+func (c *Kafka) DeleteVpcConnection(input *DeleteVpcConnectionInput) (*DeleteVpcConnectionOutput, error) {
+	req, out := c.DeleteVpcConnectionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVpcConnectionWithContext is the same as DeleteVpcConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVpcConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) DeleteVpcConnectionWithContext(ctx aws.Context, input *DeleteVpcConnectionInput, opts ...request.Option) (*DeleteVpcConnectionOutput, error) {
+	req, out := c.DeleteVpcConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1140,6 +1418,100 @@ func (c *Kafka) DescribeConfigurationRevisionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opDescribeVpcConnection = "DescribeVpcConnection"
+
+// DescribeVpcConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVpcConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVpcConnection for more information on using the DescribeVpcConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeVpcConnectionRequest method.
+//	req, resp := client.DescribeVpcConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeVpcConnection
+func (c *Kafka) DescribeVpcConnectionRequest(input *DescribeVpcConnectionInput) (req *request.Request, output *DescribeVpcConnectionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVpcConnection,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/vpc-connection/{arn}",
+	}
+
+	if input == nil {
+		input = &DescribeVpcConnectionInput{}
+	}
+
+	output = &DescribeVpcConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVpcConnection API operation for Managed Streaming for Kafka.
+//
+// Displays information about the specified Amazon MSK VPC connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation DescribeVpcConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeVpcConnection
+func (c *Kafka) DescribeVpcConnection(input *DescribeVpcConnectionInput) (*DescribeVpcConnectionOutput, error) {
+	req, out := c.DescribeVpcConnectionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVpcConnectionWithContext is the same as DescribeVpcConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVpcConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) DescribeVpcConnectionWithContext(ctx aws.Context, input *DescribeVpcConnectionInput, opts ...request.Option) (*DescribeVpcConnectionOutput, error) {
+	req, out := c.DescribeVpcConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetBootstrapBrokers = "GetBootstrapBrokers"
 
 // GetBootstrapBrokersRequest generates a "aws/request.Request" representing the
@@ -1226,6 +1598,97 @@ func (c *Kafka) GetBootstrapBrokers(input *GetBootstrapBrokersInput) (*GetBootst
 // for more information on using Contexts.
 func (c *Kafka) GetBootstrapBrokersWithContext(ctx aws.Context, input *GetBootstrapBrokersInput, opts ...request.Option) (*GetBootstrapBrokersOutput, error) {
 	req, out := c.GetBootstrapBrokersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetClusterPolicy = "GetClusterPolicy"
+
+// GetClusterPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetClusterPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetClusterPolicy for more information on using the GetClusterPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetClusterPolicyRequest method.
+//	req, resp := client.GetClusterPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/GetClusterPolicy
+func (c *Kafka) GetClusterPolicyRequest(input *GetClusterPolicyInput) (req *request.Request, output *GetClusterPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetClusterPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/clusters/{clusterArn}/policy",
+	}
+
+	if input == nil {
+		input = &GetClusterPolicyInput{}
+	}
+
+	output = &GetClusterPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetClusterPolicy API operation for Managed Streaming for Kafka.
+//
+// Retrieves the contents of the specified MSK cluster policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation GetClusterPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/GetClusterPolicy
+func (c *Kafka) GetClusterPolicy(input *GetClusterPolicyInput) (*GetClusterPolicyOutput, error) {
+	req, out := c.GetClusterPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetClusterPolicyWithContext is the same as GetClusterPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetClusterPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) GetClusterPolicyWithContext(ctx aws.Context, input *GetClusterPolicyInput, opts ...request.Option) (*GetClusterPolicyOutput, error) {
+	req, out := c.GetClusterPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1326,6 +1789,154 @@ func (c *Kafka) GetCompatibleKafkaVersionsWithContext(ctx aws.Context, input *Ge
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListClientVpcConnections = "ListClientVpcConnections"
+
+// ListClientVpcConnectionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListClientVpcConnections operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClientVpcConnections for more information on using the ListClientVpcConnections
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListClientVpcConnectionsRequest method.
+//	req, resp := client.ListClientVpcConnectionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListClientVpcConnections
+func (c *Kafka) ListClientVpcConnectionsRequest(input *ListClientVpcConnectionsInput) (req *request.Request, output *ListClientVpcConnectionsOutput) {
+	op := &request.Operation{
+		Name:       opListClientVpcConnections,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/clusters/{clusterArn}/client-vpc-connections",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListClientVpcConnectionsInput{}
+	}
+
+	output = &ListClientVpcConnectionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClientVpcConnections API operation for Managed Streaming for Kafka.
+//
+// Displays a list of client VPC connections.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation ListClientVpcConnections for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListClientVpcConnections
+func (c *Kafka) ListClientVpcConnections(input *ListClientVpcConnectionsInput) (*ListClientVpcConnectionsOutput, error) {
+	req, out := c.ListClientVpcConnectionsRequest(input)
+	return out, req.Send()
+}
+
+// ListClientVpcConnectionsWithContext is the same as ListClientVpcConnections with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClientVpcConnections for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListClientVpcConnectionsWithContext(ctx aws.Context, input *ListClientVpcConnectionsInput, opts ...request.Option) (*ListClientVpcConnectionsOutput, error) {
+	req, out := c.ListClientVpcConnectionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListClientVpcConnectionsPages iterates over the pages of a ListClientVpcConnections operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClientVpcConnections method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListClientVpcConnections operation.
+//	pageNum := 0
+//	err := client.ListClientVpcConnectionsPages(params,
+//	    func(page *kafka.ListClientVpcConnectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Kafka) ListClientVpcConnectionsPages(input *ListClientVpcConnectionsInput, fn func(*ListClientVpcConnectionsOutput, bool) bool) error {
+	return c.ListClientVpcConnectionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClientVpcConnectionsPagesWithContext same as ListClientVpcConnectionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListClientVpcConnectionsPagesWithContext(ctx aws.Context, input *ListClientVpcConnectionsInput, fn func(*ListClientVpcConnectionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClientVpcConnectionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClientVpcConnectionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListClientVpcConnectionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListClusterOperations = "ListClusterOperations"
@@ -2592,6 +3203,246 @@ func (c *Kafka) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsF
 	return out, req.Send()
 }
 
+const opListVpcConnections = "ListVpcConnections"
+
+// ListVpcConnectionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVpcConnections operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVpcConnections for more information on using the ListVpcConnections
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVpcConnectionsRequest method.
+//	req, resp := client.ListVpcConnectionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListVpcConnections
+func (c *Kafka) ListVpcConnectionsRequest(input *ListVpcConnectionsInput) (req *request.Request, output *ListVpcConnectionsOutput) {
+	op := &request.Operation{
+		Name:       opListVpcConnections,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/vpc-connections",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVpcConnectionsInput{}
+	}
+
+	output = &ListVpcConnectionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVpcConnections API operation for Managed Streaming for Kafka.
+//
+// Displays a list of Amazon MSK VPC connections.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation ListVpcConnections for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListVpcConnections
+func (c *Kafka) ListVpcConnections(input *ListVpcConnectionsInput) (*ListVpcConnectionsOutput, error) {
+	req, out := c.ListVpcConnectionsRequest(input)
+	return out, req.Send()
+}
+
+// ListVpcConnectionsWithContext is the same as ListVpcConnections with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVpcConnections for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListVpcConnectionsWithContext(ctx aws.Context, input *ListVpcConnectionsInput, opts ...request.Option) (*ListVpcConnectionsOutput, error) {
+	req, out := c.ListVpcConnectionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVpcConnectionsPages iterates over the pages of a ListVpcConnections operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVpcConnections method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListVpcConnections operation.
+//	pageNum := 0
+//	err := client.ListVpcConnectionsPages(params,
+//	    func(page *kafka.ListVpcConnectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Kafka) ListVpcConnectionsPages(input *ListVpcConnectionsInput, fn func(*ListVpcConnectionsOutput, bool) bool) error {
+	return c.ListVpcConnectionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVpcConnectionsPagesWithContext same as ListVpcConnectionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListVpcConnectionsPagesWithContext(ctx aws.Context, input *ListVpcConnectionsInput, fn func(*ListVpcConnectionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVpcConnectionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVpcConnectionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVpcConnectionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opPutClusterPolicy = "PutClusterPolicy"
+
+// PutClusterPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutClusterPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutClusterPolicy for more information on using the PutClusterPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutClusterPolicyRequest method.
+//	req, resp := client.PutClusterPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/PutClusterPolicy
+func (c *Kafka) PutClusterPolicyRequest(input *PutClusterPolicyInput) (req *request.Request, output *PutClusterPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutClusterPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/clusters/{clusterArn}/policy",
+	}
+
+	if input == nil {
+		input = &PutClusterPolicyInput{}
+	}
+
+	output = &PutClusterPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutClusterPolicy API operation for Managed Streaming for Kafka.
+//
+// Creates or updates the specified MSK cluster policy. If updating the policy,
+// the currentVersion field is required in the request payload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation PutClusterPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/PutClusterPolicy
+func (c *Kafka) PutClusterPolicy(input *PutClusterPolicyInput) (*PutClusterPolicyOutput, error) {
+	req, out := c.PutClusterPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutClusterPolicyWithContext is the same as PutClusterPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutClusterPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) PutClusterPolicyWithContext(ctx aws.Context, input *PutClusterPolicyInput, opts ...request.Option) (*PutClusterPolicyOutput, error) {
+	req, out := c.PutClusterPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRebootBroker = "RebootBroker"
 
 // RebootBrokerRequest generates a "aws/request.Request" representing the
@@ -2684,6 +3535,96 @@ func (c *Kafka) RebootBroker(input *RebootBrokerInput) (*RebootBrokerOutput, err
 // for more information on using Contexts.
 func (c *Kafka) RebootBrokerWithContext(ctx aws.Context, input *RebootBrokerInput, opts ...request.Option) (*RebootBrokerOutput, error) {
 	req, out := c.RebootBrokerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRejectClientVpcConnection = "RejectClientVpcConnection"
+
+// RejectClientVpcConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the RejectClientVpcConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RejectClientVpcConnection for more information on using the RejectClientVpcConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RejectClientVpcConnectionRequest method.
+//	req, resp := client.RejectClientVpcConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/RejectClientVpcConnection
+func (c *Kafka) RejectClientVpcConnectionRequest(input *RejectClientVpcConnectionInput) (req *request.Request, output *RejectClientVpcConnectionOutput) {
+	op := &request.Operation{
+		Name:       opRejectClientVpcConnection,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/clusters/{clusterArn}/client-vpc-connection",
+	}
+
+	if input == nil {
+		input = &RejectClientVpcConnectionInput{}
+	}
+
+	output = &RejectClientVpcConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RejectClientVpcConnection API operation for Managed Streaming for Kafka.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation RejectClientVpcConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/RejectClientVpcConnection
+func (c *Kafka) RejectClientVpcConnection(input *RejectClientVpcConnectionInput) (*RejectClientVpcConnectionOutput, error) {
+	req, out := c.RejectClientVpcConnectionRequest(input)
+	return out, req.Send()
+}
+
+// RejectClientVpcConnectionWithContext is the same as RejectClientVpcConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RejectClientVpcConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) RejectClientVpcConnectionWithContext(ctx aws.Context, input *RejectClientVpcConnectionInput, opts ...request.Option) (*RejectClientVpcConnectionOutput, error) {
+	req, out := c.RejectClientVpcConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3469,7 +4410,7 @@ func (c *Kafka) UpdateConnectivityRequest(input *UpdateConnectivityInput) (req *
 
 // UpdateConnectivity API operation for Managed Streaming for Kafka.
 //
-// Updates the connectivity configuration for the cluster.
+// Updates the connectivity configuration for the MSK cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4259,6 +5200,9 @@ type BrokerNodeGroupInfo struct {
 
 	// Contains information about storage volumes attached to MSK broker nodes.
 	StorageInfo *StorageInfo `locationName:"storageInfo" type:"structure"`
+
+	// The zoneIds for the cluster.
+	ZoneIds []*string `locationName:"zoneIds" type:"list"`
 }
 
 // String returns the string representation.
@@ -4336,6 +5280,12 @@ func (s *BrokerNodeGroupInfo) SetSecurityGroups(v []*string) *BrokerNodeGroupInf
 // SetStorageInfo sets the StorageInfo field's value.
 func (s *BrokerNodeGroupInfo) SetStorageInfo(v *StorageInfo) *BrokerNodeGroupInfo {
 	s.StorageInfo = v
+	return s
+}
+
+// SetZoneIds sets the ZoneIds field's value.
+func (s *BrokerNodeGroupInfo) SetZoneIds(v []*string) *BrokerNodeGroupInfo {
+	s.ZoneIds = v
 	return s
 }
 
@@ -4515,6 +5465,76 @@ func (s *ClientAuthentication) SetTls(v *Tls) *ClientAuthentication {
 // SetUnauthenticated sets the Unauthenticated field's value.
 func (s *ClientAuthentication) SetUnauthenticated(v *Unauthenticated) *ClientAuthentication {
 	s.Unauthenticated = v
+	return s
+}
+
+// The client VPC connection object.
+type ClientVpcConnection struct {
+	_ struct{} `type:"structure"`
+
+	// The VPC connection authentication type.
+	Authentication *string `locationName:"authentication" type:"string"`
+
+	// The creation time of the VPC connection.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The owner of the VPC connection.
+	Owner *string `locationName:"owner" type:"string"`
+
+	// The state of a configuration.
+	State *string `locationName:"state" type:"string" enum:"VpcConnectionState"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	//
+	// VpcConnectionArn is a required field
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClientVpcConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClientVpcConnection) GoString() string {
+	return s.String()
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *ClientVpcConnection) SetAuthentication(v string) *ClientVpcConnection {
+	s.Authentication = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ClientVpcConnection) SetCreationTime(v time.Time) *ClientVpcConnection {
+	s.CreationTime = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ClientVpcConnection) SetOwner(v string) *ClientVpcConnection {
+	s.Owner = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ClientVpcConnection) SetState(v string) *ClientVpcConnection {
+	s.State = &v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *ClientVpcConnection) SetVpcConnectionArn(v string) *ClientVpcConnection {
+	s.VpcConnectionArn = &v
 	return s
 }
 
@@ -4929,6 +5949,10 @@ type ClusterOperationInfo struct {
 
 	// Information about cluster attributes after a cluster is updated.
 	TargetClusterInfo *MutableClusterInfo `locationName:"targetClusterInfo" type:"structure"`
+
+	// Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection
+	// operations.
+	VpcConnectionInfo *VpcConnectionInfo `locationName:"vpcConnectionInfo" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5012,6 +6036,12 @@ func (s *ClusterOperationInfo) SetSourceClusterInfo(v *MutableClusterInfo) *Clus
 // SetTargetClusterInfo sets the TargetClusterInfo field's value.
 func (s *ClusterOperationInfo) SetTargetClusterInfo(v *MutableClusterInfo) *ClusterOperationInfo {
 	s.TargetClusterInfo = v
+	return s
+}
+
+// SetVpcConnectionInfo sets the VpcConnectionInfo field's value.
+func (s *ClusterOperationInfo) SetVpcConnectionInfo(v *VpcConnectionInfo) *ClusterOperationInfo {
+	s.VpcConnectionInfo = v
 	return s
 }
 
@@ -5137,6 +6167,8 @@ type Configuration struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
+	// The time when the configuration was created.
+	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
@@ -5416,6 +6448,9 @@ type ConnectivityInfo struct {
 
 	// Public access control for brokers.
 	PublicAccess *PublicAccess `locationName:"publicAccess" type:"structure"`
+
+	// VpcConnectivity control for brokers.
+	VpcConnectivity *VpcConnectivity `locationName:"vpcConnectivity" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5439,6 +6474,12 @@ func (s ConnectivityInfo) GoString() string {
 // SetPublicAccess sets the PublicAccess field's value.
 func (s *ConnectivityInfo) SetPublicAccess(v *PublicAccess) *ConnectivityInfo {
 	s.PublicAccess = v
+	return s
+}
+
+// SetVpcConnectivity sets the VpcConnectivity field's value.
+func (s *ConnectivityInfo) SetVpcConnectivity(v *VpcConnectivity) *ConnectivityInfo {
+	s.VpcConnectivity = v
 	return s
 }
 
@@ -5982,6 +7023,210 @@ func (s *CreateConfigurationOutput) SetState(v string) *CreateConfigurationOutpu
 	return s
 }
 
+// Request body for CreateVpcConnection.
+type CreateVpcConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Authentication is a required field
+	Authentication *string `locationName:"authentication" type:"string" required:"true"`
+
+	// The list of subnets in the client VPC.
+	//
+	// ClientSubnets is a required field
+	ClientSubnets []*string `locationName:"clientSubnets" type:"list" required:"true"`
+
+	// The list of security groups to attach to the VPC connection.
+	//
+	// SecurityGroups is a required field
+	SecurityGroups []*string `locationName:"securityGroups" type:"list" required:"true"`
+
+	// Create tags when creating the VPC connection.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The Amazon Resource Name (ARN) of the cluster.
+	//
+	// TargetClusterArn is a required field
+	TargetClusterArn *string `locationName:"targetClusterArn" type:"string" required:"true"`
+
+	// The VPC ID of the VPC connection.
+	//
+	// VpcId is a required field
+	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVpcConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVpcConnectionInput"}
+	if s.Authentication == nil {
+		invalidParams.Add(request.NewErrParamRequired("Authentication"))
+	}
+	if s.ClientSubnets == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientSubnets"))
+	}
+	if s.SecurityGroups == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroups"))
+	}
+	if s.TargetClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetClusterArn"))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *CreateVpcConnectionInput) SetAuthentication(v string) *CreateVpcConnectionInput {
+	s.Authentication = &v
+	return s
+}
+
+// SetClientSubnets sets the ClientSubnets field's value.
+func (s *CreateVpcConnectionInput) SetClientSubnets(v []*string) *CreateVpcConnectionInput {
+	s.ClientSubnets = v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *CreateVpcConnectionInput) SetSecurityGroups(v []*string) *CreateVpcConnectionInput {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVpcConnectionInput) SetTags(v map[string]*string) *CreateVpcConnectionInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetClusterArn sets the TargetClusterArn field's value.
+func (s *CreateVpcConnectionInput) SetTargetClusterArn(v string) *CreateVpcConnectionInput {
+	s.TargetClusterArn = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateVpcConnectionInput) SetVpcId(v string) *CreateVpcConnectionInput {
+	s.VpcId = &v
+	return s
+}
+
+// Response body for CreateVpcConnection
+type CreateVpcConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Authentication *string `locationName:"authentication" type:"string"`
+
+	// The list of subnets in the client VPC.
+	ClientSubnets []*string `locationName:"clientSubnets" type:"list"`
+
+	// The time when the VPC connection was created.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The list of security groups attached to the VPC connection.
+	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
+
+	// The state of the VPC connection. The only possible state is CREATING.
+	State *string `locationName:"state" type:"string" enum:"VpcConnectionState"`
+
+	// Tags attached to the VPC connection.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string"`
+
+	// The VPC ID of the VPC connection.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *CreateVpcConnectionOutput) SetAuthentication(v string) *CreateVpcConnectionOutput {
+	s.Authentication = &v
+	return s
+}
+
+// SetClientSubnets sets the ClientSubnets field's value.
+func (s *CreateVpcConnectionOutput) SetClientSubnets(v []*string) *CreateVpcConnectionOutput {
+	s.ClientSubnets = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateVpcConnectionOutput) SetCreationTime(v time.Time) *CreateVpcConnectionOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *CreateVpcConnectionOutput) SetSecurityGroups(v []*string) *CreateVpcConnectionOutput {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CreateVpcConnectionOutput) SetState(v string) *CreateVpcConnectionOutput {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVpcConnectionOutput) SetTags(v map[string]*string) *CreateVpcConnectionOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *CreateVpcConnectionOutput) SetVpcConnectionArn(v string) *CreateVpcConnectionOutput {
+	s.VpcConnectionArn = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateVpcConnectionOutput) SetVpcId(v string) *CreateVpcConnectionOutput {
+	s.VpcId = &v
+	return s
+}
+
 type DeleteClusterInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6079,6 +7324,77 @@ func (s *DeleteClusterOutput) SetState(v string) *DeleteClusterOutput {
 	return s
 }
 
+// Request body for DeleteClusterPolicy.
+type DeleteClusterPolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClusterPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClusterPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteClusterPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteClusterPolicyInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *DeleteClusterPolicyInput) SetClusterArn(v string) *DeleteClusterPolicyInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// Response body for DeleteClusterPolicy.
+type DeleteClusterPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClusterPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClusterPolicyOutput) GoString() string {
+	return s.String()
+}
+
 // Request body for DeleteConfiguration.
 type DeleteConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -6168,6 +7484,95 @@ func (s *DeleteConfigurationOutput) SetArn(v string) *DeleteConfigurationOutput 
 // SetState sets the State field's value.
 func (s *DeleteConfigurationOutput) SetState(v string) *DeleteConfigurationOutput {
 	s.State = &v
+	return s
+}
+
+// Request body for DeleteVpcConnection.
+type DeleteVpcConnectionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Arn is a required field
+	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVpcConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVpcConnectionInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteVpcConnectionInput) SetArn(v string) *DeleteVpcConnectionInput {
+	s.Arn = &v
+	return s
+}
+
+// Response body for DeleteVpcConnection.
+type DeleteVpcConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the VPC connection. The only possible state is DELETING.
+	State *string `locationName:"state" type:"string" enum:"VpcConnectionState"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *DeleteVpcConnectionOutput) SetState(v string) *DeleteVpcConnectionOutput {
+	s.State = &v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *DeleteVpcConnectionOutput) SetVpcConnectionArn(v string) *DeleteVpcConnectionOutput {
+	s.VpcConnectionArn = &v
 	return s
 }
 
@@ -6671,6 +8076,158 @@ func (s *DescribeConfigurationRevisionOutput) SetServerProperties(v []byte) *Des
 	return s
 }
 
+type DescribeVpcConnectionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Arn is a required field
+	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVpcConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVpcConnectionInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeVpcConnectionInput) SetArn(v string) *DescribeVpcConnectionInput {
+	s.Arn = &v
+	return s
+}
+
+// Response body for DescribeVpcConnection.
+type DescribeVpcConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication type of the VPC connection.
+	Authentication *string `locationName:"authentication" type:"string"`
+
+	// The creation time of the VPC connection.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The list of security groups attached to the VPC connection.
+	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
+
+	// The state of the VPC connection. The possible states are AVAILABLE, INACTIVE,
+	// DEACTIVATING, DELETING, CREATING, REJECTING, REJECTED and FAILED.
+	State *string `locationName:"state" type:"string" enum:"VpcConnectionState"`
+
+	// The list of subnets in the client VPC.
+	Subnets []*string `locationName:"subnets" type:"list"`
+
+	// Tags attached to the VPC connection.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The Amazon Resource Name (ARN) of the cluster.
+	TargetClusterArn *string `locationName:"targetClusterArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string"`
+
+	// The VPC ID of the VPC connection.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *DescribeVpcConnectionOutput) SetAuthentication(v string) *DescribeVpcConnectionOutput {
+	s.Authentication = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeVpcConnectionOutput) SetCreationTime(v time.Time) *DescribeVpcConnectionOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *DescribeVpcConnectionOutput) SetSecurityGroups(v []*string) *DescribeVpcConnectionOutput {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *DescribeVpcConnectionOutput) SetState(v string) *DescribeVpcConnectionOutput {
+	s.State = &v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *DescribeVpcConnectionOutput) SetSubnets(v []*string) *DescribeVpcConnectionOutput {
+	s.Subnets = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeVpcConnectionOutput) SetTags(v map[string]*string) *DescribeVpcConnectionOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetClusterArn sets the TargetClusterArn field's value.
+func (s *DescribeVpcConnectionOutput) SetTargetClusterArn(v string) *DescribeVpcConnectionOutput {
+	s.TargetClusterArn = &v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *DescribeVpcConnectionOutput) SetVpcConnectionArn(v string) *DescribeVpcConnectionOutput {
+	s.VpcConnectionArn = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DescribeVpcConnectionOutput) SetVpcId(v string) *DescribeVpcConnectionOutput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains information about the EBS storage volumes attached to Apache Kafka
 // broker nodes.
 type EBSStorageInfo struct {
@@ -7136,6 +8693,18 @@ type GetBootstrapBrokersOutput struct {
 	// pairs. The following is an example.
 	//  { "BootstrapBrokerStringTls": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094"}
 	BootstrapBrokerStringTls *string `locationName:"bootstrapBrokerStringTls" type:"string"`
+
+	// A string containing one or more dns name (or IP) and SASL IAM port pairs
+	// for VPC connectivity.
+	BootstrapBrokerStringVpcConnectivitySaslIam *string `locationName:"bootstrapBrokerStringVpcConnectivitySaslIam" type:"string"`
+
+	// A string containing one or more dns name (or IP) and SASL SCRAM port pairs
+	// for VPC connectivity.
+	BootstrapBrokerStringVpcConnectivitySaslScram *string `locationName:"bootstrapBrokerStringVpcConnectivitySaslScram" type:"string"`
+
+	// A string containing one or more dns name (or IP) and Tls port pairs for VPC
+	// connectivity.
+	BootstrapBrokerStringVpcConnectivityTls *string `locationName:"bootstrapBrokerStringVpcConnectivityTls" type:"string"`
 }
 
 // String returns the string representation.
@@ -7195,6 +8764,113 @@ func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringSaslScram(v string) 
 // SetBootstrapBrokerStringTls sets the BootstrapBrokerStringTls field's value.
 func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringTls(v string) *GetBootstrapBrokersOutput {
 	s.BootstrapBrokerStringTls = &v
+	return s
+}
+
+// SetBootstrapBrokerStringVpcConnectivitySaslIam sets the BootstrapBrokerStringVpcConnectivitySaslIam field's value.
+func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringVpcConnectivitySaslIam(v string) *GetBootstrapBrokersOutput {
+	s.BootstrapBrokerStringVpcConnectivitySaslIam = &v
+	return s
+}
+
+// SetBootstrapBrokerStringVpcConnectivitySaslScram sets the BootstrapBrokerStringVpcConnectivitySaslScram field's value.
+func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringVpcConnectivitySaslScram(v string) *GetBootstrapBrokersOutput {
+	s.BootstrapBrokerStringVpcConnectivitySaslScram = &v
+	return s
+}
+
+// SetBootstrapBrokerStringVpcConnectivityTls sets the BootstrapBrokerStringVpcConnectivityTls field's value.
+func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringVpcConnectivityTls(v string) *GetBootstrapBrokersOutput {
+	s.BootstrapBrokerStringVpcConnectivityTls = &v
+	return s
+}
+
+// Request body for GetClusterPolicy.
+type GetClusterPolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetClusterPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetClusterPolicyInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *GetClusterPolicyInput) SetClusterArn(v string) *GetClusterPolicyInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// Returns information about the specified cluster policy.
+type GetClusterPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Cluster policy version.
+	CurrentVersion *string `locationName:"currentVersion" type:"string"`
+
+	// Cluster policy attached to the MSK cluster.
+	Policy *string `locationName:"policy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *GetClusterPolicyOutput) SetCurrentVersion(v string) *GetClusterPolicyOutput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetClusterPolicyOutput) SetPolicy(v string) *GetClusterPolicyOutput {
+	s.Policy = &v
 	return s
 }
 
@@ -7475,6 +9151,117 @@ func (s *KafkaVersion) SetStatus(v string) *KafkaVersion {
 // SetVersion sets the Version field's value.
 func (s *KafkaVersion) SetVersion(v string) *KafkaVersion {
 	s.Version = &v
+	return s
+}
+
+// Request body for ListClientVpcConnections.
+type ListClientVpcConnectionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClientVpcConnectionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClientVpcConnectionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClientVpcConnectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClientVpcConnectionsInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *ListClientVpcConnectionsInput) SetClusterArn(v string) *ListClientVpcConnectionsInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListClientVpcConnectionsInput) SetMaxResults(v int64) *ListClientVpcConnectionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClientVpcConnectionsInput) SetNextToken(v string) *ListClientVpcConnectionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// The response contains an array of client VPC connections and a next token
+// if the response is truncated.
+type ListClientVpcConnectionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List containing a ClientVpcConnection object.
+	ClientVpcConnections []*ClientVpcConnection `locationName:"clientVpcConnections" type:"list"`
+
+	// If the response of ListClientVpcConnections is truncated, it returns a NextToken
+	// in the response. This Nexttoken should be sent in the subsequent request
+	// to ListClientVpcConnections.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClientVpcConnectionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClientVpcConnectionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetClientVpcConnections sets the ClientVpcConnections field's value.
+func (s *ListClientVpcConnectionsOutput) SetClientVpcConnections(v []*ClientVpcConnection) *ListClientVpcConnectionsOutput {
+	s.ClientVpcConnections = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClientVpcConnectionsOutput) SetNextToken(v string) *ListClientVpcConnectionsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -8388,6 +10175,102 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Request body for ListVpcConnections.
+type ListVpcConnectionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVpcConnectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVpcConnectionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVpcConnectionsInput) SetMaxResults(v int64) *ListVpcConnectionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcConnectionsInput) SetNextToken(v string) *ListVpcConnectionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// The response contains an array of MSK VPC connections and a next token if
+// the response is truncated.
+type ListVpcConnectionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response of ListVpcConnections is truncated, it returns a NextToken
+	// in the response. This NextToken should be sent in the subsequent request
+	// to ListVpcConnections.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List containing a VpcConnection object.
+	VpcConnections []*VpcConnection `locationName:"vpcConnections" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcConnectionsOutput) SetNextToken(v string) *ListVpcConnectionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcConnections sets the VpcConnections field's value.
+func (s *ListVpcConnectionsOutput) SetVpcConnections(v []*VpcConnection) *ListVpcConnectionsOutput {
+	s.VpcConnections = v
+	return s
+}
+
 // You can configure your MSK cluster to send broker logs to different destination
 // types. This is a container for the configuration details related to broker
 // logs.
@@ -8468,6 +10351,7 @@ type MutableClusterInfo struct {
 
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
+	// The Apache Kafka version.
 	KafkaVersion *string `locationName:"kafkaVersion" type:"string"`
 
 	// LoggingInfo details.
@@ -9355,6 +11239,106 @@ func (s *PublicAccess) SetType(v string) *PublicAccess {
 	return s
 }
 
+// Request body for PutClusterPolicy.
+type PutClusterPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	CurrentVersion *string `locationName:"currentVersion" type:"string"`
+
+	// Policy is a required field
+	Policy *string `locationName:"policy" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutClusterPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutClusterPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutClusterPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutClusterPolicyInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *PutClusterPolicyInput) SetClusterArn(v string) *PutClusterPolicyInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *PutClusterPolicyInput) SetCurrentVersion(v string) *PutClusterPolicyInput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutClusterPolicyInput) SetPolicy(v string) *PutClusterPolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// Response body for PutClusterPolicy.
+type PutClusterPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Cluster policy version.
+	CurrentVersion *string `locationName:"currentVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutClusterPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutClusterPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *PutClusterPolicyOutput) SetCurrentVersion(v string) *PutClusterPolicyOutput {
+	s.CurrentVersion = &v
+	return s
+}
+
 // Request body for RebootBrokerNode action.
 type RebootBrokerInput struct {
 	_ struct{} `type:"structure"`
@@ -9456,6 +11440,89 @@ func (s *RebootBrokerOutput) SetClusterArn(v string) *RebootBrokerOutput {
 func (s *RebootBrokerOutput) SetClusterOperationArn(v string) *RebootBrokerOutput {
 	s.ClusterOperationArn = &v
 	return s
+}
+
+// Request body for RejectClientVpcConnection.
+type RejectClientVpcConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	// VpcConnectionArn is a required field
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectClientVpcConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectClientVpcConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RejectClientVpcConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RejectClientVpcConnectionInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+	if s.VpcConnectionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcConnectionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *RejectClientVpcConnectionInput) SetClusterArn(v string) *RejectClientVpcConnectionInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *RejectClientVpcConnectionInput) SetVpcConnectionArn(v string) *RejectClientVpcConnectionInput {
+	s.VpcConnectionArn = &v
+	return s
+}
+
+// Response body for RejectClientVpcConnection.
+type RejectClientVpcConnectionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectClientVpcConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectClientVpcConnectionOutput) GoString() string {
+	return s.String()
 }
 
 // The details of the Amazon S3 destination for broker logs.
@@ -11595,6 +13662,46 @@ func (s *UpdateStorageOutput) SetClusterOperationArn(v string) *UpdateStorageOut
 	return s
 }
 
+// Description of the requester that calls the API operation.
+type UserIdentity struct {
+	_ struct{} `type:"structure"`
+
+	PrincipalId *string `locationName:"principalId" type:"string"`
+
+	// The identity type of the requester that calls the API operation.
+	Type *string `locationName:"type" type:"string" enum:"UserIdentityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserIdentity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserIdentity) GoString() string {
+	return s.String()
+}
+
+// SetPrincipalId sets the PrincipalId field's value.
+func (s *UserIdentity) SetPrincipalId(v string) *UserIdentity {
+	s.PrincipalId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UserIdentity) SetType(v string) *UserIdentity {
+	s.Type = &v
+	return s
+}
+
 // The configuration of the Amazon VPCs for the cluster.
 type VpcConfig struct {
 	_ struct{} `type:"structure"`
@@ -11645,6 +13752,343 @@ func (s *VpcConfig) SetSecurityGroupIds(v []*string) *VpcConfig {
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
 	s.SubnetIds = v
+	return s
+}
+
+// The VPC connection object.
+type VpcConnection struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication type for the VPC connection.
+	Authentication *string `locationName:"authentication" type:"string"`
+
+	// The creation time of the VPC connection.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The state of a configuration.
+	State *string `locationName:"state" type:"string" enum:"VpcConnectionState"`
+
+	// The Amazon Resource Name (ARN) of the cluster.
+	//
+	// TargetClusterArn is a required field
+	TargetClusterArn *string `locationName:"targetClusterArn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	//
+	// VpcConnectionArn is a required field
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string" required:"true"`
+
+	// The VPC ID of the VPC connection.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnection) GoString() string {
+	return s.String()
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *VpcConnection) SetAuthentication(v string) *VpcConnection {
+	s.Authentication = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *VpcConnection) SetCreationTime(v time.Time) *VpcConnection {
+	s.CreationTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VpcConnection) SetState(v string) *VpcConnection {
+	s.State = &v
+	return s
+}
+
+// SetTargetClusterArn sets the TargetClusterArn field's value.
+func (s *VpcConnection) SetTargetClusterArn(v string) *VpcConnection {
+	s.TargetClusterArn = &v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *VpcConnection) SetVpcConnectionArn(v string) *VpcConnection {
+	s.VpcConnectionArn = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcConnection) SetVpcId(v string) *VpcConnection {
+	s.VpcId = &v
+	return s
+}
+
+// Description of the VPC connection for CreateVpcConnection and DeleteVpcConnection
+// operations.
+type VpcConnectionInfo struct {
+	_ struct{} `type:"structure"`
+
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	Owner *string `locationName:"owner" type:"string"`
+
+	// Description of the requester that calls the API operation.
+	UserIdentity *UserIdentity `locationName:"userIdentity" type:"structure"`
+
+	VpcConnectionArn *string `locationName:"vpcConnectionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectionInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectionInfo) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *VpcConnectionInfo) SetCreationTime(v time.Time) *VpcConnectionInfo {
+	s.CreationTime = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *VpcConnectionInfo) SetOwner(v string) *VpcConnectionInfo {
+	s.Owner = &v
+	return s
+}
+
+// SetUserIdentity sets the UserIdentity field's value.
+func (s *VpcConnectionInfo) SetUserIdentity(v *UserIdentity) *VpcConnectionInfo {
+	s.UserIdentity = v
+	return s
+}
+
+// SetVpcConnectionArn sets the VpcConnectionArn field's value.
+func (s *VpcConnectionInfo) SetVpcConnectionArn(v string) *VpcConnectionInfo {
+	s.VpcConnectionArn = &v
+	return s
+}
+
+// Broker VPC connectivity access control.
+type VpcConnectivity struct {
+	_ struct{} `type:"structure"`
+
+	ClientAuthentication *VpcConnectivityClientAuthentication `locationName:"clientAuthentication" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivity) GoString() string {
+	return s.String()
+}
+
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *VpcConnectivity) SetClientAuthentication(v *VpcConnectivityClientAuthentication) *VpcConnectivity {
+	s.ClientAuthentication = v
+	return s
+}
+
+type VpcConnectivityClientAuthentication struct {
+	_ struct{} `type:"structure"`
+
+	Sasl *VpcConnectivitySasl `locationName:"sasl" type:"structure"`
+
+	Tls *VpcConnectivityTls `locationName:"tls" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityClientAuthentication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityClientAuthentication) GoString() string {
+	return s.String()
+}
+
+// SetSasl sets the Sasl field's value.
+func (s *VpcConnectivityClientAuthentication) SetSasl(v *VpcConnectivitySasl) *VpcConnectivityClientAuthentication {
+	s.Sasl = v
+	return s
+}
+
+// SetTls sets the Tls field's value.
+func (s *VpcConnectivityClientAuthentication) SetTls(v *VpcConnectivityTls) *VpcConnectivityClientAuthentication {
+	s.Tls = v
+	return s
+}
+
+type VpcConnectivityIam struct {
+	_ struct{} `type:"structure"`
+
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityIam) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityIam) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *VpcConnectivityIam) SetEnabled(v bool) *VpcConnectivityIam {
+	s.Enabled = &v
+	return s
+}
+
+type VpcConnectivitySasl struct {
+	_ struct{} `type:"structure"`
+
+	Iam *VpcConnectivityIam `locationName:"iam" type:"structure"`
+
+	Scram *VpcConnectivityScram `locationName:"scram" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivitySasl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivitySasl) GoString() string {
+	return s.String()
+}
+
+// SetIam sets the Iam field's value.
+func (s *VpcConnectivitySasl) SetIam(v *VpcConnectivityIam) *VpcConnectivitySasl {
+	s.Iam = v
+	return s
+}
+
+// SetScram sets the Scram field's value.
+func (s *VpcConnectivitySasl) SetScram(v *VpcConnectivityScram) *VpcConnectivitySasl {
+	s.Scram = v
+	return s
+}
+
+type VpcConnectivityScram struct {
+	_ struct{} `type:"structure"`
+
+	// SASL/SCRAM authentication for VPC connectivity is on or off.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityScram) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityScram) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *VpcConnectivityScram) SetEnabled(v bool) *VpcConnectivityScram {
+	s.Enabled = &v
+	return s
+}
+
+type VpcConnectivityTls struct {
+	_ struct{} `type:"structure"`
+
+	// TLS authentication for VPC connectivity is on or off.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityTls) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnectivityTls) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *VpcConnectivityTls) SetEnabled(v bool) *VpcConnectivityTls {
+	s.Enabled = &v
 	return s
 }
 
@@ -11903,5 +14347,63 @@ func StorageMode_Values() []string {
 	return []string{
 		StorageModeLocal,
 		StorageModeTiered,
+	}
+}
+
+// The identity type of the requester that calls the API operation.
+const (
+	// UserIdentityTypeAwsaccount is a UserIdentityType enum value
+	UserIdentityTypeAwsaccount = "AWSACCOUNT"
+
+	// UserIdentityTypeAwsservice is a UserIdentityType enum value
+	UserIdentityTypeAwsservice = "AWSSERVICE"
+)
+
+// UserIdentityType_Values returns all elements of the UserIdentityType enum
+func UserIdentityType_Values() []string {
+	return []string{
+		UserIdentityTypeAwsaccount,
+		UserIdentityTypeAwsservice,
+	}
+}
+
+// The state of a configuration.
+const (
+	// VpcConnectionStateCreating is a VpcConnectionState enum value
+	VpcConnectionStateCreating = "CREATING"
+
+	// VpcConnectionStateAvailable is a VpcConnectionState enum value
+	VpcConnectionStateAvailable = "AVAILABLE"
+
+	// VpcConnectionStateInactive is a VpcConnectionState enum value
+	VpcConnectionStateInactive = "INACTIVE"
+
+	// VpcConnectionStateDeactivating is a VpcConnectionState enum value
+	VpcConnectionStateDeactivating = "DEACTIVATING"
+
+	// VpcConnectionStateDeleting is a VpcConnectionState enum value
+	VpcConnectionStateDeleting = "DELETING"
+
+	// VpcConnectionStateFailed is a VpcConnectionState enum value
+	VpcConnectionStateFailed = "FAILED"
+
+	// VpcConnectionStateRejected is a VpcConnectionState enum value
+	VpcConnectionStateRejected = "REJECTED"
+
+	// VpcConnectionStateRejecting is a VpcConnectionState enum value
+	VpcConnectionStateRejecting = "REJECTING"
+)
+
+// VpcConnectionState_Values returns all elements of the VpcConnectionState enum
+func VpcConnectionState_Values() []string {
+	return []string{
+		VpcConnectionStateCreating,
+		VpcConnectionStateAvailable,
+		VpcConnectionStateInactive,
+		VpcConnectionStateDeactivating,
+		VpcConnectionStateDeleting,
+		VpcConnectionStateFailed,
+		VpcConnectionStateRejected,
+		VpcConnectionStateRejecting,
 	}
 }

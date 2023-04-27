@@ -14,6 +14,12 @@ const (
 	// A bad request exception object.
 	ErrCodeBadRequestException = "BadRequestException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// A request conflict exception object.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServerErrorException for service response error code
 	// "InternalServerErrorException".
 	//
@@ -23,5 +29,6 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"BadRequestException":          newErrorBadRequestException,
+	"ConflictException":            newErrorConflictException,
 	"InternalServerErrorException": newErrorInternalServerErrorException,
 }

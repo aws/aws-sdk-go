@@ -6192,6 +6192,13 @@
         "locationName":"item"
       }
     },
+    "AmdSevSnpSpecification":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled"
+      ]
+    },
     "AnalysisAclRule":{
       "type":"structure",
       "members":{
@@ -9650,6 +9657,10 @@
         "ThreadsPerCore":{
           "shape":"Integer",
           "locationName":"threadsPerCore"
+        },
+        "AmdSevSnp":{
+          "shape":"AmdSevSnpSpecification",
+          "locationName":"amdSevSnp"
         }
       }
     },
@@ -9657,7 +9668,8 @@
       "type":"structure",
       "members":{
         "CoreCount":{"shape":"Integer"},
-        "ThreadsPerCore":{"shape":"Integer"}
+        "ThreadsPerCore":{"shape":"Integer"},
+        "AmdSevSnp":{"shape":"AmdSevSnpSpecification"}
       }
     },
     "CreateCapacityReservationFleetRequest":{
@@ -28903,6 +28915,10 @@
         "ThreadsPerCore":{
           "shape":"Integer",
           "locationName":"threadsPerCore"
+        },
+        "AmdSevSnp":{
+          "shape":"AmdSevSnpSpecification",
+          "locationName":"amdSevSnp"
         }
       }
     },
@@ -28910,7 +28926,8 @@
       "type":"structure",
       "members":{
         "CoreCount":{"shape":"Integer"},
-        "ThreadsPerCore":{"shape":"Integer"}
+        "ThreadsPerCore":{"shape":"Integer"},
+        "AmdSevSnp":{"shape":"AmdSevSnpSpecification"}
       }
     },
     "LaunchTemplateEbsBlockDevice":{
@@ -34462,6 +34479,10 @@
         "SustainedClockSpeedInGhz":{
           "shape":"ProcessorSustainedClockSpeed",
           "locationName":"sustainedClockSpeedInGhz"
+        },
+        "SupportedFeatures":{
+          "shape":"SupportedAdditionalProcessorFeatureList",
+          "locationName":"supportedFeatures"
         }
       }
     },
@@ -40084,6 +40105,17 @@
         "not-applicable",
         "initializing"
       ]
+    },
+    "SupportedAdditionalProcessorFeature":{
+      "type":"string",
+      "enum":["amd-sev-snp"]
+    },
+    "SupportedAdditionalProcessorFeatureList":{
+      "type":"list",
+      "member":{
+        "shape":"SupportedAdditionalProcessorFeature",
+        "locationName":"item"
+      }
     },
     "SupportedIpAddressTypes":{
       "type":"list",

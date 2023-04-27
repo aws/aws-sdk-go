@@ -162,6 +162,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetManagedEndpointSessionCredentials":{
+      "name":"GetManagedEndpointSessionCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/virtualclusters/{virtualClusterId}/endpoints/{endpointId}/credentials"
+      },
+      "input":{"shape":"GetManagedEndpointSessionCredentialsRequest"},
+      "output":{"shape":"GetManagedEndpointSessionCredentialsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"RequestThrottledException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListJobRuns":{
       "name":"ListJobRuns",
       "http":{
@@ -474,6 +489,19 @@
         "arn":{"shape":"VirtualClusterArn"}
       }
     },
+    "CredentialType":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^.*\\S.*$"
+    },
+    "Credentials":{
+      "type":"structure",
+      "members":{
+        "token":{"shape":"Token"}
+      },
+      "union":true
+    },
     "Date":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
@@ -717,6 +745,43 @@
         "VALIDATION_ERROR",
         "CLUSTER_UNAVAILABLE"
       ]
+    },
+    "GetManagedEndpointSessionCredentialsRequest":{
+      "type":"structure",
+      "required":[
+        "executionRoleArn",
+        "credentialType",
+        "endpointIdentifier",
+        "virtualClusterIdentifier"
+      ],
+      "members":{
+        "endpointIdentifier":{
+          "shape":"String2048",
+          "location":"uri",
+          "locationName":"endpointId"
+        },
+        "virtualClusterIdentifier":{
+          "shape":"String2048",
+          "location":"uri",
+          "locationName":"virtualClusterId"
+        },
+        "executionRoleArn":{"shape":"IAMRoleArn"},
+        "credentialType":{"shape":"CredentialType"},
+        "durationInSeconds":{"shape":"JavaInteger"},
+        "logContext":{"shape":"LogContext"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "GetManagedEndpointSessionCredentialsResponse":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ResourceIdString"},
+        "credentials":{"shape":"Credentials"},
+        "expiresAt":{"shape":"Date"}
+      }
     },
     "IAMRoleArn":{
       "type":"string",
@@ -1035,6 +1100,12 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "LogContext":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^((?!.*-s3alias)(?!xn--.*)[a-z0-9][-a-z0-9.]*)?[a-z0-9]$"
+    },
     "LogGroupName":{
       "type":"string",
       "max":512,
@@ -1113,6 +1184,14 @@
       "max":2048,
       "min":20,
       "pattern":"^arn:(aws[a-zA-Z0-9-]*):(iam|sts)::(\\d{12})?:[\\w/+=,.@-]+$"
+    },
+    "RequestThrottledException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String1024"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "ResourceIdString":{
       "type":"string",
@@ -1338,6 +1417,12 @@
       "max":512,
       "min":1,
       "pattern":"[\\.\\-_\\#A-Za-z0-9]+"
+    },
+    "Token":{
+      "type":"string",
+      "min":1,
+      "pattern":"^.*\\S.*$",
+      "sensitive":true
     },
     "UntagResourceRequest":{
       "type":"structure",

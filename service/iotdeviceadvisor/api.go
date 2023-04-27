@@ -1601,14 +1601,18 @@ func (s DeleteSuiteDefinitionOutput) GoString() string {
 	return s.String()
 }
 
-// Information of a test device. A thing ARN or a certificate ARN is required.
+// Information of a test device. A thing ARN, certificate ARN or device role
+// ARN is required.
 type DeviceUnderTest struct {
 	_ struct{} `type:"structure"`
 
-	// Lists devices certificate ARN.
+	// Lists device's certificate ARN.
 	CertificateArn *string `locationName:"certificateArn" min:"20" type:"string"`
 
-	// Lists devices thing ARN.
+	// Lists device's role ARN.
+	DeviceRoleArn *string `locationName:"deviceRoleArn" min:"20" type:"string"`
+
+	// Lists device's thing ARN.
 	ThingArn *string `locationName:"thingArn" min:"20" type:"string"`
 }
 
@@ -1636,6 +1640,9 @@ func (s *DeviceUnderTest) Validate() error {
 	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
 	}
+	if s.DeviceRoleArn != nil && len(*s.DeviceRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceRoleArn", 20))
+	}
 	if s.ThingArn != nil && len(*s.ThingArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingArn", 20))
 	}
@@ -1652,6 +1659,12 @@ func (s *DeviceUnderTest) SetCertificateArn(v string) *DeviceUnderTest {
 	return s
 }
 
+// SetDeviceRoleArn sets the DeviceRoleArn field's value.
+func (s *DeviceUnderTest) SetDeviceRoleArn(v string) *DeviceUnderTest {
+	s.DeviceRoleArn = &v
+	return s
+}
+
 // SetThingArn sets the ThingArn field's value.
 func (s *DeviceUnderTest) SetThingArn(v string) *DeviceUnderTest {
 	s.ThingArn = &v
@@ -1661,8 +1674,14 @@ func (s *DeviceUnderTest) SetThingArn(v string) *DeviceUnderTest {
 type GetEndpointInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The authentication method used during the device connection.
+	AuthenticationMethod *string `location:"querystring" locationName:"authenticationMethod" type:"string" enum:"AuthenticationMethod"`
+
 	// The certificate ARN of the device. This is an optional parameter.
 	CertificateArn *string `location:"querystring" locationName:"certificateArn" min:"20" type:"string"`
+
+	// The device role ARN of the device. This is an optional parameter.
+	DeviceRoleArn *string `location:"querystring" locationName:"deviceRoleArn" min:"20" type:"string"`
 
 	// The thing ARN of the device. This is an optional parameter.
 	ThingArn *string `location:"querystring" locationName:"thingArn" min:"20" type:"string"`
@@ -1692,6 +1711,9 @@ func (s *GetEndpointInput) Validate() error {
 	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
 	}
+	if s.DeviceRoleArn != nil && len(*s.DeviceRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceRoleArn", 20))
+	}
 	if s.ThingArn != nil && len(*s.ThingArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingArn", 20))
 	}
@@ -1702,9 +1724,21 @@ func (s *GetEndpointInput) Validate() error {
 	return nil
 }
 
+// SetAuthenticationMethod sets the AuthenticationMethod field's value.
+func (s *GetEndpointInput) SetAuthenticationMethod(v string) *GetEndpointInput {
+	s.AuthenticationMethod = &v
+	return s
+}
+
 // SetCertificateArn sets the CertificateArn field's value.
 func (s *GetEndpointInput) SetCertificateArn(v string) *GetEndpointInput {
 	s.CertificateArn = &v
+	return s
+}
+
+// SetDeviceRoleArn sets the DeviceRoleArn field's value.
+func (s *GetEndpointInput) SetDeviceRoleArn(v string) *GetEndpointInput {
+	s.DeviceRoleArn = &v
 	return s
 }
 
@@ -3931,11 +3965,33 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AuthenticationMethodX509clientCertificate is a AuthenticationMethod enum value
+	AuthenticationMethodX509clientCertificate = "X509ClientCertificate"
+
+	// AuthenticationMethodSignatureVersion4 is a AuthenticationMethod enum value
+	AuthenticationMethodSignatureVersion4 = "SignatureVersion4"
+)
+
+// AuthenticationMethod_Values returns all elements of the AuthenticationMethod enum
+func AuthenticationMethod_Values() []string {
+	return []string{
+		AuthenticationMethodX509clientCertificate,
+		AuthenticationMethodSignatureVersion4,
+	}
+}
+
+const (
 	// ProtocolMqttV311 is a Protocol enum value
 	ProtocolMqttV311 = "MqttV3_1_1"
 
 	// ProtocolMqttV5 is a Protocol enum value
 	ProtocolMqttV5 = "MqttV5"
+
+	// ProtocolMqttV311OverWebSocket is a Protocol enum value
+	ProtocolMqttV311OverWebSocket = "MqttV3_1_1_OverWebSocket"
+
+	// ProtocolMqttV5OverWebSocket is a Protocol enum value
+	ProtocolMqttV5OverWebSocket = "MqttV5_OverWebSocket"
 )
 
 // Protocol_Values returns all elements of the Protocol enum
@@ -3943,6 +3999,8 @@ func Protocol_Values() []string {
 	return []string{
 		ProtocolMqttV311,
 		ProtocolMqttV5,
+		ProtocolMqttV311OverWebSocket,
+		ProtocolMqttV5OverWebSocket,
 	}
 }
 
