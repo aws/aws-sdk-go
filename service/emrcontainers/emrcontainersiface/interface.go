@@ -104,6 +104,10 @@ type EMRContainersAPI interface {
 	DescribeVirtualClusterWithContext(aws.Context, *emrcontainers.DescribeVirtualClusterInput, ...request.Option) (*emrcontainers.DescribeVirtualClusterOutput, error)
 	DescribeVirtualClusterRequest(*emrcontainers.DescribeVirtualClusterInput) (*request.Request, *emrcontainers.DescribeVirtualClusterOutput)
 
+	GetManagedEndpointSessionCredentials(*emrcontainers.GetManagedEndpointSessionCredentialsInput) (*emrcontainers.GetManagedEndpointSessionCredentialsOutput, error)
+	GetManagedEndpointSessionCredentialsWithContext(aws.Context, *emrcontainers.GetManagedEndpointSessionCredentialsInput, ...request.Option) (*emrcontainers.GetManagedEndpointSessionCredentialsOutput, error)
+	GetManagedEndpointSessionCredentialsRequest(*emrcontainers.GetManagedEndpointSessionCredentialsInput) (*request.Request, *emrcontainers.GetManagedEndpointSessionCredentialsOutput)
+
 	ListJobRuns(*emrcontainers.ListJobRunsInput) (*emrcontainers.ListJobRunsOutput, error)
 	ListJobRunsWithContext(aws.Context, *emrcontainers.ListJobRunsInput, ...request.Option) (*emrcontainers.ListJobRunsOutput, error)
 	ListJobRunsRequest(*emrcontainers.ListJobRunsInput) (*request.Request, *emrcontainers.ListJobRunsOutput)

@@ -970,6 +970,94 @@ func (c *EMRContainers) DescribeVirtualClusterWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetManagedEndpointSessionCredentials = "GetManagedEndpointSessionCredentials"
+
+// GetManagedEndpointSessionCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the GetManagedEndpointSessionCredentials operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetManagedEndpointSessionCredentials for more information on using the GetManagedEndpointSessionCredentials
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetManagedEndpointSessionCredentialsRequest method.
+//	req, resp := client.GetManagedEndpointSessionCredentialsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/GetManagedEndpointSessionCredentials
+func (c *EMRContainers) GetManagedEndpointSessionCredentialsRequest(input *GetManagedEndpointSessionCredentialsInput) (req *request.Request, output *GetManagedEndpointSessionCredentialsOutput) {
+	op := &request.Operation{
+		Name:       opGetManagedEndpointSessionCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/virtualclusters/{virtualClusterId}/endpoints/{endpointId}/credentials",
+	}
+
+	if input == nil {
+		input = &GetManagedEndpointSessionCredentialsInput{}
+	}
+
+	output = &GetManagedEndpointSessionCredentialsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetManagedEndpointSessionCredentials API operation for Amazon EMR Containers.
+//
+// Generate a session token to connect to a managed endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation GetManagedEndpointSessionCredentials for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - RequestThrottledException
+//     The request throttled.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/GetManagedEndpointSessionCredentials
+func (c *EMRContainers) GetManagedEndpointSessionCredentials(input *GetManagedEndpointSessionCredentialsInput) (*GetManagedEndpointSessionCredentialsOutput, error) {
+	req, out := c.GetManagedEndpointSessionCredentialsRequest(input)
+	return out, req.Send()
+}
+
+// GetManagedEndpointSessionCredentialsWithContext is the same as GetManagedEndpointSessionCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetManagedEndpointSessionCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) GetManagedEndpointSessionCredentialsWithContext(ctx aws.Context, input *GetManagedEndpointSessionCredentialsInput, opts ...request.Option) (*GetManagedEndpointSessionCredentialsOutput, error) {
+	req, out := c.GetManagedEndpointSessionCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListJobRuns = "ListJobRuns"
 
 // ListJobRunsRequest generates a "aws/request.Request" representing the
@@ -2901,6 +2989,42 @@ func (s *CreateVirtualClusterOutput) SetName(v string) *CreateVirtualClusterOutp
 	return s
 }
 
+// The structure containing the session token being returned.
+type Credentials struct {
+	_ struct{} `type:"structure"`
+
+	// The actual session token being returned.
+	//
+	// Token is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	Token *string `locationName:"token" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) GoString() string {
+	return s.String()
+}
+
+// SetToken sets the Token field's value.
+func (s *Credentials) SetToken(v string) *Credentials {
+	s.Token = &v
+	return s
+}
+
 type DeleteJobTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3753,6 +3877,191 @@ func (s *Endpoint) SetType(v string) *Endpoint {
 // SetVirtualClusterId sets the VirtualClusterId field's value.
 func (s *Endpoint) SetVirtualClusterId(v string) *Endpoint {
 	s.VirtualClusterId = &v
+	return s
+}
+
+type GetManagedEndpointSessionCredentialsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The client idempotency token of the job run request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Type of the token requested. Currently supported and default value of this
+	// field is “TOKEN.”
+	//
+	// CredentialType is a required field
+	CredentialType *string `locationName:"credentialType" min:"1" type:"string" required:"true"`
+
+	// Duration in seconds for which the session token is valid. The default duration
+	// is 15 minutes and the maximum is 12 hours.
+	DurationInSeconds *int64 `locationName:"durationInSeconds" type:"integer"`
+
+	// The ARN of the managed endpoint for which the request is submitted.
+	//
+	// EndpointIdentifier is a required field
+	EndpointIdentifier *string `location:"uri" locationName:"endpointId" min:"1" type:"string" required:"true"`
+
+	// The IAM Execution Role ARN that will be used by the job run.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"20" type:"string" required:"true"`
+
+	// String identifier used to separate sections of the execution logs uploaded
+	// to S3.
+	LogContext *string `locationName:"logContext" min:"3" type:"string"`
+
+	// The ARN of the Virtual Cluster which the Managed Endpoint belongs to.
+	//
+	// VirtualClusterIdentifier is a required field
+	VirtualClusterIdentifier *string `location:"uri" locationName:"virtualClusterId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedEndpointSessionCredentialsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedEndpointSessionCredentialsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetManagedEndpointSessionCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetManagedEndpointSessionCredentialsInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.CredentialType == nil {
+		invalidParams.Add(request.NewErrParamRequired("CredentialType"))
+	}
+	if s.CredentialType != nil && len(*s.CredentialType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CredentialType", 1))
+	}
+	if s.EndpointIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointIdentifier"))
+	}
+	if s.EndpointIdentifier != nil && len(*s.EndpointIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointIdentifier", 1))
+	}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
+	if s.LogContext != nil && len(*s.LogContext) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("LogContext", 3))
+	}
+	if s.VirtualClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualClusterIdentifier"))
+	}
+	if s.VirtualClusterIdentifier != nil && len(*s.VirtualClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VirtualClusterIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *GetManagedEndpointSessionCredentialsInput) SetClientToken(v string) *GetManagedEndpointSessionCredentialsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCredentialType sets the CredentialType field's value.
+func (s *GetManagedEndpointSessionCredentialsInput) SetCredentialType(v string) *GetManagedEndpointSessionCredentialsInput {
+	s.CredentialType = &v
+	return s
+}
+
+// SetDurationInSeconds sets the DurationInSeconds field's value.
+func (s *GetManagedEndpointSessionCredentialsInput) SetDurationInSeconds(v int64) *GetManagedEndpointSessionCredentialsInput {
+	s.DurationInSeconds = &v
+	return s
+}
+
+// SetEndpointIdentifier sets the EndpointIdentifier field's value.
+func (s *GetManagedEndpointSessionCredentialsInput) SetEndpointIdentifier(v string) *GetManagedEndpointSessionCredentialsInput {
+	s.EndpointIdentifier = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *GetManagedEndpointSessionCredentialsInput) SetExecutionRoleArn(v string) *GetManagedEndpointSessionCredentialsInput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetLogContext sets the LogContext field's value.
+func (s *GetManagedEndpointSessionCredentialsInput) SetLogContext(v string) *GetManagedEndpointSessionCredentialsInput {
+	s.LogContext = &v
+	return s
+}
+
+// SetVirtualClusterIdentifier sets the VirtualClusterIdentifier field's value.
+func (s *GetManagedEndpointSessionCredentialsInput) SetVirtualClusterIdentifier(v string) *GetManagedEndpointSessionCredentialsInput {
+	s.VirtualClusterIdentifier = &v
+	return s
+}
+
+type GetManagedEndpointSessionCredentialsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure containing the session credentials.
+	Credentials *Credentials `locationName:"credentials" type:"structure"`
+
+	// The date and time when the session token will expire.
+	ExpiresAt *time.Time `locationName:"expiresAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The identifier of the session token returned.
+	Id *string `locationName:"id" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedEndpointSessionCredentialsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedEndpointSessionCredentialsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *GetManagedEndpointSessionCredentialsOutput) SetCredentials(v *Credentials) *GetManagedEndpointSessionCredentialsOutput {
+	s.Credentials = v
+	return s
+}
+
+// SetExpiresAt sets the ExpiresAt field's value.
+func (s *GetManagedEndpointSessionCredentialsOutput) SetExpiresAt(v time.Time) *GetManagedEndpointSessionCredentialsOutput {
+	s.ExpiresAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetManagedEndpointSessionCredentialsOutput) SetId(v string) *GetManagedEndpointSessionCredentialsOutput {
+	s.Id = &v
 	return s
 }
 
@@ -5251,6 +5560,70 @@ func (s *ParametricS3MonitoringConfiguration) Validate() error {
 func (s *ParametricS3MonitoringConfiguration) SetLogUri(v string) *ParametricS3MonitoringConfiguration {
 	s.LogUri = &v
 	return s
+}
+
+// The request throttled.
+type RequestThrottledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestThrottledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestThrottledException) GoString() string {
+	return s.String()
+}
+
+func newErrorRequestThrottledException(v protocol.ResponseMetadata) error {
+	return &RequestThrottledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RequestThrottledException) Code() string {
+	return "RequestThrottledException"
+}
+
+// Message returns the exception's message.
+func (s *RequestThrottledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RequestThrottledException) OrigErr() error {
+	return nil
+}
+
+func (s *RequestThrottledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RequestThrottledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RequestThrottledException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource was not found.

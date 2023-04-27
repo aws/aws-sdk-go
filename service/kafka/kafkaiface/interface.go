@@ -80,13 +80,25 @@ type KafkaAPI interface {
 	CreateConfigurationWithContext(aws.Context, *kafka.CreateConfigurationInput, ...request.Option) (*kafka.CreateConfigurationOutput, error)
 	CreateConfigurationRequest(*kafka.CreateConfigurationInput) (*request.Request, *kafka.CreateConfigurationOutput)
 
+	CreateVpcConnection(*kafka.CreateVpcConnectionInput) (*kafka.CreateVpcConnectionOutput, error)
+	CreateVpcConnectionWithContext(aws.Context, *kafka.CreateVpcConnectionInput, ...request.Option) (*kafka.CreateVpcConnectionOutput, error)
+	CreateVpcConnectionRequest(*kafka.CreateVpcConnectionInput) (*request.Request, *kafka.CreateVpcConnectionOutput)
+
 	DeleteCluster(*kafka.DeleteClusterInput) (*kafka.DeleteClusterOutput, error)
 	DeleteClusterWithContext(aws.Context, *kafka.DeleteClusterInput, ...request.Option) (*kafka.DeleteClusterOutput, error)
 	DeleteClusterRequest(*kafka.DeleteClusterInput) (*request.Request, *kafka.DeleteClusterOutput)
 
+	DeleteClusterPolicy(*kafka.DeleteClusterPolicyInput) (*kafka.DeleteClusterPolicyOutput, error)
+	DeleteClusterPolicyWithContext(aws.Context, *kafka.DeleteClusterPolicyInput, ...request.Option) (*kafka.DeleteClusterPolicyOutput, error)
+	DeleteClusterPolicyRequest(*kafka.DeleteClusterPolicyInput) (*request.Request, *kafka.DeleteClusterPolicyOutput)
+
 	DeleteConfiguration(*kafka.DeleteConfigurationInput) (*kafka.DeleteConfigurationOutput, error)
 	DeleteConfigurationWithContext(aws.Context, *kafka.DeleteConfigurationInput, ...request.Option) (*kafka.DeleteConfigurationOutput, error)
 	DeleteConfigurationRequest(*kafka.DeleteConfigurationInput) (*request.Request, *kafka.DeleteConfigurationOutput)
+
+	DeleteVpcConnection(*kafka.DeleteVpcConnectionInput) (*kafka.DeleteVpcConnectionOutput, error)
+	DeleteVpcConnectionWithContext(aws.Context, *kafka.DeleteVpcConnectionInput, ...request.Option) (*kafka.DeleteVpcConnectionOutput, error)
+	DeleteVpcConnectionRequest(*kafka.DeleteVpcConnectionInput) (*request.Request, *kafka.DeleteVpcConnectionOutput)
 
 	DescribeCluster(*kafka.DescribeClusterInput) (*kafka.DescribeClusterOutput, error)
 	DescribeClusterWithContext(aws.Context, *kafka.DescribeClusterInput, ...request.Option) (*kafka.DescribeClusterOutput, error)
@@ -108,13 +120,28 @@ type KafkaAPI interface {
 	DescribeConfigurationRevisionWithContext(aws.Context, *kafka.DescribeConfigurationRevisionInput, ...request.Option) (*kafka.DescribeConfigurationRevisionOutput, error)
 	DescribeConfigurationRevisionRequest(*kafka.DescribeConfigurationRevisionInput) (*request.Request, *kafka.DescribeConfigurationRevisionOutput)
 
+	DescribeVpcConnection(*kafka.DescribeVpcConnectionInput) (*kafka.DescribeVpcConnectionOutput, error)
+	DescribeVpcConnectionWithContext(aws.Context, *kafka.DescribeVpcConnectionInput, ...request.Option) (*kafka.DescribeVpcConnectionOutput, error)
+	DescribeVpcConnectionRequest(*kafka.DescribeVpcConnectionInput) (*request.Request, *kafka.DescribeVpcConnectionOutput)
+
 	GetBootstrapBrokers(*kafka.GetBootstrapBrokersInput) (*kafka.GetBootstrapBrokersOutput, error)
 	GetBootstrapBrokersWithContext(aws.Context, *kafka.GetBootstrapBrokersInput, ...request.Option) (*kafka.GetBootstrapBrokersOutput, error)
 	GetBootstrapBrokersRequest(*kafka.GetBootstrapBrokersInput) (*request.Request, *kafka.GetBootstrapBrokersOutput)
 
+	GetClusterPolicy(*kafka.GetClusterPolicyInput) (*kafka.GetClusterPolicyOutput, error)
+	GetClusterPolicyWithContext(aws.Context, *kafka.GetClusterPolicyInput, ...request.Option) (*kafka.GetClusterPolicyOutput, error)
+	GetClusterPolicyRequest(*kafka.GetClusterPolicyInput) (*request.Request, *kafka.GetClusterPolicyOutput)
+
 	GetCompatibleKafkaVersions(*kafka.GetCompatibleKafkaVersionsInput) (*kafka.GetCompatibleKafkaVersionsOutput, error)
 	GetCompatibleKafkaVersionsWithContext(aws.Context, *kafka.GetCompatibleKafkaVersionsInput, ...request.Option) (*kafka.GetCompatibleKafkaVersionsOutput, error)
 	GetCompatibleKafkaVersionsRequest(*kafka.GetCompatibleKafkaVersionsInput) (*request.Request, *kafka.GetCompatibleKafkaVersionsOutput)
+
+	ListClientVpcConnections(*kafka.ListClientVpcConnectionsInput) (*kafka.ListClientVpcConnectionsOutput, error)
+	ListClientVpcConnectionsWithContext(aws.Context, *kafka.ListClientVpcConnectionsInput, ...request.Option) (*kafka.ListClientVpcConnectionsOutput, error)
+	ListClientVpcConnectionsRequest(*kafka.ListClientVpcConnectionsInput) (*request.Request, *kafka.ListClientVpcConnectionsOutput)
+
+	ListClientVpcConnectionsPages(*kafka.ListClientVpcConnectionsInput, func(*kafka.ListClientVpcConnectionsOutput, bool) bool) error
+	ListClientVpcConnectionsPagesWithContext(aws.Context, *kafka.ListClientVpcConnectionsInput, func(*kafka.ListClientVpcConnectionsOutput, bool) bool, ...request.Option) error
 
 	ListClusterOperations(*kafka.ListClusterOperationsInput) (*kafka.ListClusterOperationsOutput, error)
 	ListClusterOperationsWithContext(aws.Context, *kafka.ListClusterOperationsInput, ...request.Option) (*kafka.ListClusterOperationsOutput, error)
@@ -176,9 +203,24 @@ type KafkaAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *kafka.ListTagsForResourceInput, ...request.Option) (*kafka.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*kafka.ListTagsForResourceInput) (*request.Request, *kafka.ListTagsForResourceOutput)
 
+	ListVpcConnections(*kafka.ListVpcConnectionsInput) (*kafka.ListVpcConnectionsOutput, error)
+	ListVpcConnectionsWithContext(aws.Context, *kafka.ListVpcConnectionsInput, ...request.Option) (*kafka.ListVpcConnectionsOutput, error)
+	ListVpcConnectionsRequest(*kafka.ListVpcConnectionsInput) (*request.Request, *kafka.ListVpcConnectionsOutput)
+
+	ListVpcConnectionsPages(*kafka.ListVpcConnectionsInput, func(*kafka.ListVpcConnectionsOutput, bool) bool) error
+	ListVpcConnectionsPagesWithContext(aws.Context, *kafka.ListVpcConnectionsInput, func(*kafka.ListVpcConnectionsOutput, bool) bool, ...request.Option) error
+
+	PutClusterPolicy(*kafka.PutClusterPolicyInput) (*kafka.PutClusterPolicyOutput, error)
+	PutClusterPolicyWithContext(aws.Context, *kafka.PutClusterPolicyInput, ...request.Option) (*kafka.PutClusterPolicyOutput, error)
+	PutClusterPolicyRequest(*kafka.PutClusterPolicyInput) (*request.Request, *kafka.PutClusterPolicyOutput)
+
 	RebootBroker(*kafka.RebootBrokerInput) (*kafka.RebootBrokerOutput, error)
 	RebootBrokerWithContext(aws.Context, *kafka.RebootBrokerInput, ...request.Option) (*kafka.RebootBrokerOutput, error)
 	RebootBrokerRequest(*kafka.RebootBrokerInput) (*request.Request, *kafka.RebootBrokerOutput)
+
+	RejectClientVpcConnection(*kafka.RejectClientVpcConnectionInput) (*kafka.RejectClientVpcConnectionOutput, error)
+	RejectClientVpcConnectionWithContext(aws.Context, *kafka.RejectClientVpcConnectionInput, ...request.Option) (*kafka.RejectClientVpcConnectionOutput, error)
+	RejectClientVpcConnectionRequest(*kafka.RejectClientVpcConnectionInput) (*request.Request, *kafka.RejectClientVpcConnectionOutput)
 
 	TagResource(*kafka.TagResourceInput) (*kafka.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *kafka.TagResourceInput, ...request.Option) (*kafka.TagResourceOutput, error)

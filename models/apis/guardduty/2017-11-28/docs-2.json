@@ -55,6 +55,7 @@
     "ListPublishingDestinations": "<p>Returns a list of publishing destinations associated with the specified <code>detectorId</code>.</p>",
     "ListTagsForResource": "<p>Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, and threat intel sets, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.</p>",
     "ListThreatIntelSets": "<p>Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the ThreatIntelSets associated with the administrator account are returned.</p>",
+    "StartMalwareScan": "<p>Initiates the malware scan. Invoking this API will automatically create the <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/slr-permissions-malware-protection.html\">Service-linked role </a> in the corresponding account.</p>",
     "StartMonitoringMembers": "<p>Turns on GuardDuty monitoring of the specified member accounts. Use this operation to restart monitoring of accounts that you stopped monitoring with the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_StopMonitoringMembers.html\">StopMonitoringMembers</a> operation.</p>",
     "StopMonitoringMembers": "<p>Stops GuardDuty monitoring for the specified member accounts. Use the <code>StartMonitoringMembers</code> operation to restart monitoring for those accounts.</p> <p>With <code>autoEnableOrganizationMembers</code> configuration for your organization set to <code>ALL</code>, you'll receive an error if you attempt to stop monitoring the member accounts in your organization.</p>",
     "TagResource": "<p>Adds tags to a resource.</p>",
@@ -321,6 +322,11 @@
       "base": "<p>Contains information about the condition.</p>",
       "refs": {
         "Criterion$value": null
+      }
+    },
+    "ConflictException": {
+      "base": "<p>A request conflict exception object.</p>",
+      "refs": {
       }
     },
     "Container": {
@@ -1930,6 +1936,7 @@
         "FilterCondition$EqualsValue": "<p>Represents an <i>equal</i> <b/> condition to be applied to a single field when querying for scan entries.</p>",
         "Scan$ScanId": "<p>The unique scan ID associated with a scan entry.</p>",
         "Scan$FailureReason": "<p>Represents the reason for FAILED scan status.</p>",
+        "StartMalwareScanResponse$ScanId": "<p>A unique identifier that gets generated when you invoke the API without any error. Each malware scan has a corresponding scan ID. Using this scan ID, you can monitor the status of your malware scan.</p>",
         "TriggerDetails$GuardDutyFindingId": "<p>The ID of the GuardDuty finding that triggered the malware scan.</p>",
         "TriggerDetails$Description": "<p>The description of the scan trigger.</p>"
       }
@@ -2241,6 +2248,12 @@
         "Finding$Resource": null
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "StartMalwareScanRequest$ResourceArn": "<p>Amazon Resource Name (ARN) of the resource for which you invoked the API.</p>"
+      }
+    },
     "ResourceDetails": {
       "base": "<p>Represents the resources that were scanned in the scan entry.</p>",
       "refs": {
@@ -2388,6 +2401,13 @@
         "ThreatDetectedByName$ThreatNames": "<p>List of identified threats with details, organized by threat name.</p>"
       }
     },
+    "ScanType": {
+      "base": null,
+      "refs": {
+        "EbsVolumeScanDetails$ScanType": "<p>Specifies the scan type that invoked the malware scan.</p>",
+        "Scan$ScanType": "<p>Specifies the scan type that invoked the malware scan.</p>"
+      }
+    },
     "ScannedItemCount": {
       "base": "<p>Total number of scanned files.</p>",
       "refs": {
@@ -2451,6 +2471,16 @@
         "EbsVolumeScanDetails$Sources": "<p>Contains list of threat intelligence sources used to detect threats.</p>"
       }
     },
+    "StartMalwareScanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMalwareScanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartMonitoringMembersRequest": {
       "base": null,
       "refs": {
@@ -2500,6 +2530,8 @@
         "BadRequestException$Message": "<p>The error message.</p>",
         "BadRequestException$Type": "<p>The error type.</p>",
         "City$CityName": "<p>The city name of the remote IP address.</p>",
+        "ConflictException$Message": "<p>The error message.</p>",
+        "ConflictException$Type": "<p>The error type.</p>",
         "Container$ContainerRuntime": "<p>The container runtime (such as, Docker or containerd) used to run the container.</p>",
         "Container$Id": "<p>Container ID.</p>",
         "Container$Name": "<p>Container name.</p>",

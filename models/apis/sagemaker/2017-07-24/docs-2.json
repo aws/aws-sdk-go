@@ -11651,7 +11651,7 @@
         "InferenceRecommendationsJob$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "Model$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the model.</p>",
         "ModelPackageValidationSpecification$ValidationRole": "<p>The IAM roles to be used for the validation of the model package.</p>",
-        "ModelRegisterSettings$CrossAccountModelRegisterRoleArn": "<p>The Amazon Resource Name (ARN) of the SageMaker model registry account. Required only to register model versions created by a different SageMaker Canvas AWS account than the AWS account in which SageMaker model registry is set up.</p>",
+        "ModelRegisterSettings$CrossAccountModelRegisterRoleArn": "<p>The Amazon Resource Name (ARN) of the SageMaker model registry account. Required only to register model versions created by a different SageMaker Canvas Amazon Web Services account than the Amazon Web Services account in which SageMaker model registry is set up.</p>",
         "MonitoringJobDefinition$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "Pipeline$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that created the pipeline.</p>",
         "PipelineSummary$RoleArn": "<p>The Amazon Resource Name (ARN) that the pipeline used to execute.</p>",

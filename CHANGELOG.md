@@ -1,3 +1,24 @@
+Release v1.44.252 (2023-04-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for AMD SEV-SNP on EC2 instances.
+* `service/emr-containers`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Added API support to initiate on-demand malware scan on specific resources.
+* `service/iotdeviceadvisor`: Updates service API and documentation
+* `service/kafka`: Updates service API, documentation, and paginators
+* `service/lambda`: Updates service API
+  * Add Java 17 (java17) support to AWS Lambda
+* `service/marketplace-catalog`: Updates service paginators
+* `service/osis`: Updates service documentation
+* `service/qldb`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Added ml.p4d.24xlarge and ml.p4de.24xlarge as supported instances for SageMaker Studio
+* `service/xray`: Adds new service
+  * Updated X-Ray documentation with Resource Policy API descriptions.
+
 Release v1.44.251 (2023-04-26)
 ===
 

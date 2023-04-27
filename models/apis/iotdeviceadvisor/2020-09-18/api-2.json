@@ -211,6 +211,13 @@
       "max":2048,
       "min":20
     },
+    "AuthenticationMethod":{
+      "type":"string",
+      "enum":[
+        "X509ClientCertificate",
+        "SignatureVersion4"
+      ]
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -256,7 +263,8 @@
       "type":"structure",
       "members":{
         "thingArn":{"shape":"AmazonResourceName"},
-        "certificateArn":{"shape":"AmazonResourceName"}
+        "certificateArn":{"shape":"AmazonResourceName"},
+        "deviceRoleArn":{"shape":"AmazonResourceName"}
       }
     },
     "DeviceUnderTestList":{
@@ -284,6 +292,16 @@
           "shape":"AmazonResourceName",
           "location":"querystring",
           "locationName":"certificateArn"
+        },
+        "deviceRoleArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"deviceRoleArn"
+        },
+        "authenticationMethod":{
+          "shape":"AuthenticationMethod",
+          "location":"querystring",
+          "locationName":"authenticationMethod"
         }
       }
     },
@@ -493,7 +511,9 @@
       "type":"string",
       "enum":[
         "MqttV3_1_1",
-        "MqttV5"
+        "MqttV5",
+        "MqttV3_1_1_OverWebSocket",
+        "MqttV5_OverWebSocket"
       ]
     },
     "QualificationReportDownloadUrl":{"type":"string"},
