@@ -51,6 +51,34 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "CancelCapacityReservation":{
+      "name":"CancelCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelCapacityReservationInput"},
+      "output":{"shape":"CancelCapacityReservationOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "CreateCapacityReservation":{
+      "name":"CreateCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCapacityReservationInput"},
+      "output":{"shape":"CreateCapacityReservationOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ],
+      "idempotent":true
+    },
     "CreateDataCatalog":{
       "name":"CreateDataCatalog",
       "http":{
@@ -255,6 +283,32 @@
         {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetCapacityAssignmentConfiguration":{
+      "name":"GetCapacityAssignmentConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCapacityAssignmentConfigurationInput"},
+      "output":{"shape":"GetCapacityAssignmentConfigurationOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetCapacityReservation":{
+      "name":"GetCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCapacityReservationInput"},
+      "output":{"shape":"GetCapacityReservationOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetDataCatalog":{
@@ -462,6 +516,19 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ListCapacityReservations":{
+      "name":"ListCapacityReservations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCapacityReservationsInput"},
+      "output":{"shape":"ListCapacityReservationsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ListDataCatalogs":{
       "name":"ListDataCatalogs",
       "http":{
@@ -638,6 +705,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "PutCapacityAssignmentConfiguration":{
+      "name":"PutCapacityAssignmentConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutCapacityAssignmentConfigurationInput"},
+      "output":{"shape":"PutCapacityAssignmentConfigurationOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "StartCalculationExecution":{
       "name":"StartCalculationExecution",
       "http":{
@@ -753,6 +834,19 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateCapacityReservation":{
+      "name":"UpdateCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateCapacityReservationInput"},
+      "output":{"shape":"UpdateCapacityReservationOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateDataCatalog":{
       "name":"UpdateDataCatalog",
       "http":{
@@ -847,6 +941,11 @@
     "Age":{
       "type":"integer",
       "max":10080,
+      "min":0
+    },
+    "AllocatedDpusInteger":{
+      "type":"integer",
+      "box":true,
       "min":0
     },
     "AmazonResourceName":{
@@ -1005,6 +1104,96 @@
       "max":100,
       "min":0
     },
+    "CancelCapacityReservationInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"CapacityReservationName"}
+      }
+    },
+    "CancelCapacityReservationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CapacityAllocation":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "RequestTime"
+      ],
+      "members":{
+        "Status":{"shape":"CapacityAllocationStatus"},
+        "StatusMessage":{"shape":"String"},
+        "RequestTime":{"shape":"Timestamp"},
+        "RequestCompletionTime":{"shape":"Timestamp"}
+      }
+    },
+    "CapacityAllocationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "CapacityAssignment":{
+      "type":"structure",
+      "members":{
+        "WorkGroupNames":{"shape":"WorkGroupNamesList"}
+      }
+    },
+    "CapacityAssignmentConfiguration":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationName":{"shape":"CapacityReservationName"},
+        "CapacityAssignments":{"shape":"CapacityAssignmentsList"}
+      }
+    },
+    "CapacityAssignmentsList":{
+      "type":"list",
+      "member":{"shape":"CapacityAssignment"}
+    },
+    "CapacityReservation":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Status",
+        "TargetDpus",
+        "AllocatedDpus",
+        "CreationTime"
+      ],
+      "members":{
+        "Name":{"shape":"CapacityReservationName"},
+        "Status":{"shape":"CapacityReservationStatus"},
+        "TargetDpus":{"shape":"TargetDpusInteger"},
+        "AllocatedDpus":{"shape":"AllocatedDpusInteger"},
+        "LastAllocation":{"shape":"CapacityAllocation"},
+        "LastSuccessfulAllocationTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"Timestamp"}
+      }
+    },
+    "CapacityReservationName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9._-]+"
+    },
+    "CapacityReservationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "ACTIVE",
+        "CANCELLING",
+        "CANCELLED",
+        "FAILED",
+        "UPDATE_PENDING"
+      ]
+    },
+    "CapacityReservationsList":{
+      "type":"list",
+      "member":{"shape":"CapacityReservation"}
+    },
     "CatalogNameString":{
       "type":"string",
       "max":256,
@@ -1076,6 +1265,23 @@
       "box":true,
       "max":1,
       "min":1
+    },
+    "CreateCapacityReservationInput":{
+      "type":"structure",
+      "required":[
+        "TargetDpus",
+        "Name"
+      ],
+      "members":{
+        "TargetDpus":{"shape":"TargetDpusInteger"},
+        "Name":{"shape":"CapacityReservationName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateCapacityReservationOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "CreateDataCatalogInput":{
       "type":"structure",
@@ -1514,6 +1720,34 @@
         "Statistics":{"shape":"CalculationStatistics"}
       }
     },
+    "GetCapacityAssignmentConfigurationInput":{
+      "type":"structure",
+      "required":["CapacityReservationName"],
+      "members":{
+        "CapacityReservationName":{"shape":"CapacityReservationName"}
+      }
+    },
+    "GetCapacityAssignmentConfigurationOutput":{
+      "type":"structure",
+      "required":["CapacityAssignmentConfiguration"],
+      "members":{
+        "CapacityAssignmentConfiguration":{"shape":"CapacityAssignmentConfiguration"}
+      }
+    },
+    "GetCapacityReservationInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"CapacityReservationName"}
+      }
+    },
+    "GetCapacityReservationOutput":{
+      "type":"structure",
+      "required":["CapacityReservation"],
+      "members":{
+        "CapacityReservation":{"shape":"CapacityReservation"}
+      }
+    },
     "GetDataCatalogInput":{
       "type":"structure",
       "required":["Name"],
@@ -1784,6 +2018,21 @@
         "Calculations":{"shape":"CalculationsList"}
       }
     },
+    "ListCapacityReservationsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"MaxCapacityReservationsCount"}
+      }
+    },
+    "ListCapacityReservationsOutput":{
+      "type":"structure",
+      "required":["CapacityReservations"],
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "CapacityReservations":{"shape":"CapacityReservationsList"}
+      }
+    },
     "ListDataCatalogsInput":{
       "type":"structure",
       "members":{
@@ -2007,6 +2256,12 @@
       "max":100,
       "min":1
     },
+    "MaxCapacityReservationsCount":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
     "MaxConcurrentDpus":{
       "type":"integer",
       "max":5000,
@@ -2226,6 +2481,22 @@
       "member":{"shape":"PreparedStatementSummary"},
       "max":50,
       "min":0
+    },
+    "PutCapacityAssignmentConfigurationInput":{
+      "type":"structure",
+      "required":[
+        "CapacityReservationName",
+        "CapacityAssignments"
+      ],
+      "members":{
+        "CapacityReservationName":{"shape":"CapacityReservationName"},
+        "CapacityAssignments":{"shape":"CapacityAssignmentsList"}
+      }
+    },
+    "PutCapacityAssignmentConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "QueryExecution":{
       "type":"structure",
@@ -2709,6 +2980,11 @@
       "max":256,
       "min":0
     },
+    "TargetDpusInteger":{
+      "type":"integer",
+      "box":true,
+      "min":24
+    },
     "TerminateSessionRequest":{
       "type":"structure",
       "required":["SessionId"],
@@ -2794,6 +3070,22 @@
       }
     },
     "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateCapacityReservationInput":{
+      "type":"structure",
+      "required":[
+        "TargetDpus",
+        "Name"
+      ],
+      "members":{
+        "TargetDpus":{"shape":"TargetDpusInteger"},
+        "Name":{"shape":"CapacityReservationName"}
+      }
+    },
+    "UpdateCapacityReservationOutput":{
       "type":"structure",
       "members":{
       }
@@ -2957,6 +3249,10 @@
     "WorkGroupName":{
       "type":"string",
       "pattern":"[a-zA-Z0-9._-]{1,128}"
+    },
+    "WorkGroupNamesList":{
+      "type":"list",
+      "member":{"shape":"WorkGroupName"}
     },
     "WorkGroupState":{
       "type":"string",

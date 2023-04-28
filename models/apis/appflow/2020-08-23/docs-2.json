@@ -1410,6 +1410,12 @@
         "S3OutputFormatConfig$preserveSourceDataTyping": "<p>If your file output format is Parquet, use this parameter to set whether Amazon AppFlow preserves the data types in your source data when it writes the output to Amazon S3. </p> <ul> <li> <p> <code>true</code>: Amazon AppFlow preserves the data types when it writes to Amazon S3. For example, an integer or <code>1</code> in your source data is still an integer in your output.</p> </li> <li> <p> <code>false</code>: Amazon AppFlow converts all of the source data into strings when it writes to Amazon S3. For example, an integer of <code>1</code> in your source data becomes the string <code>\"1\"</code> in the output.</p> </li> </ul>"
       }
     },
+    "JwtToken": {
+      "base": null,
+      "refs": {
+        "SalesforceConnectorProfileCredentials$jwtToken": "<p>A JSON web token (JWT) that authorizes Amazon AppFlow to access your Salesforce records.</p>"
+      }
+    },
     "KMSArn": {
       "base": null,
       "refs": {
@@ -1650,13 +1656,15 @@
       "base": null,
       "refs": {
         "OAuth2GrantTypeSupportedList$member": null,
-        "OAuth2Properties$oAuth2GrantType": "<p>The OAuth 2.0 grant type used by connector for OAuth 2.0 authentication.</p>"
+        "OAuth2Properties$oAuth2GrantType": "<p>The OAuth 2.0 grant type used by connector for OAuth 2.0 authentication.</p>",
+        "SalesforceConnectorProfileCredentials$oAuth2GrantType": "<p>Specifies the OAuth 2.0 grant type that Amazon AppFlow uses when it requests an access token from Salesforce. Amazon AppFlow requires an access token each time it attempts to access your Salesforce records.</p> <p>You can specify one of the following values:</p> <dl> <dt>AUTHORIZATION_CODE</dt> <dd> <p>Amazon AppFlow passes an authorization code when it requests the access token from Salesforce. Amazon AppFlow receives the authorization code from Salesforce after you log in to your Salesforce account and authorize Amazon AppFlow to access your records.</p> </dd> <dt>CLIENT_CREDENTIALS</dt> <dd> <p>Amazon AppFlow passes client credentials (a client ID and client secret) when it requests the access token from Salesforce. You provide these credentials to Amazon AppFlow when you define the connection to your Salesforce account.</p> </dd> <dt>JWT_BEARER</dt> <dd> <p>Amazon AppFlow passes a JSON web token (JWT) when it requests the access token from Salesforce. You provide the JWT to Amazon AppFlow when you define the connection to your Salesforce account. When you use this grant type, you don't need to log in to your Salesforce account to authorize Amazon AppFlow to access your records.</p> </dd> </dl>"
       }
     },
     "OAuth2GrantTypeSupportedList": {
       "base": null,
       "refs": {
-        "OAuth2Defaults$oauth2GrantTypesSupported": "<p>OAuth 2.0 grant types supported by the connector.</p>"
+        "OAuth2Defaults$oauth2GrantTypesSupported": "<p>OAuth 2.0 grant types supported by the connector.</p>",
+        "SalesforceMetadata$oauth2GrantTypesSupported": "<p>The OAuth 2.0 grant types that Amazon AppFlow can use when it requests an access token from Salesforce. Amazon AppFlow requires an access token each time it attempts to access your Salesforce records.</p> <dl> <dt>AUTHORIZATION_CODE</dt> <dd> <p>Amazon AppFlow passes an authorization code when it requests the access token from Salesforce. Amazon AppFlow receives the authorization code from Salesforce after you log in to your Salesforce account and authorize Amazon AppFlow to access your records.</p> </dd> <dt>CLIENT_CREDENTIALS</dt> <dd> <p>Amazon AppFlow passes client credentials (a client ID and client secret) when it requests the access token from Salesforce. You provide these credentials to Amazon AppFlow when you define the connection to your Salesforce account.</p> </dd> <dt>JWT_BEARER</dt> <dd> <p>Amazon AppFlow passes a JSON web token (JWT) when it requests the access token from Salesforce. You provide the JWT to Amazon AppFlow when you define the connection to your Salesforce account. When you use this grant type, you don't need to log in to your Salesforce account to authorize Amazon AppFlow to access your records.</p> </dd> </dl>"
       }
     },
     "OAuth2Properties": {

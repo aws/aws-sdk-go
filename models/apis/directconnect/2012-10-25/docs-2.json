@@ -454,7 +454,7 @@
     "Count": {
       "base": null,
       "refs": {
-        "CreateLagRequest$numberOfConnections": "<p>The number of physical dedicated connections initially provisioned and bundled by the LAG.</p>",
+        "CreateLagRequest$numberOfConnections": "<p>The number of physical dedicated connections initially provisioned and bundled by the LAG. You can have a maximum of four connections when the port speed is 1G or 10G, or two when the port speed is 100G. </p>",
         "Lag$numberOfConnections": "<p>The number of physical dedicated connections bundled by the LAG, up to a maximum of 10.</p>",
         "Lag$minimumLinks": "<p>The minimum number of physical dedicated connections that must be operational for the LAG itself to be operational.</p>",
         "UpdateLagRequest$minimumLinks": "<p>The minimum number of physical connections that must be operational for the LAG itself to be operational.</p>"
@@ -1162,7 +1162,7 @@
       "refs": {
         "NewPrivateVirtualInterface$mtu": "<p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 9001. The default value is 1500.</p>",
         "NewPrivateVirtualInterfaceAllocation$mtu": "<p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 9001. The default value is 1500.</p>",
-        "NewTransitVirtualInterface$mtu": "<p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 9001. The default value is 1500.</p>",
+        "NewTransitVirtualInterface$mtu": "<p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 8500. The default value is 1500.</p>",
         "NewTransitVirtualInterfaceAllocation$mtu": "<p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 9001. The default value is 1500. </p>",
         "UpdateVirtualInterfaceAttributesRequest$mtu": "<p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 9001. The default value is 1500.</p>",
         "VirtualInterface$mtu": "<p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 9001. The default value is 1500.</p>"

@@ -5,6 +5,8 @@
     "BatchGetNamedQuery": "<p>Returns the details of a single named query or a list of up to 50 queries, which you provide as an array of query ID strings. Requires you to have access to the workgroup in which the queries were saved. Use <a>ListNamedQueriesInput</a> to get the list of named query IDs in the specified workgroup. If information could not be retrieved for a submitted query ID, information about the query ID submitted is listed under <a>UnprocessedNamedQueryId</a>. Named queries differ from executed queries. Use <a>BatchGetQueryExecutionInput</a> to get details about each unique query execution, and <a>ListQueryExecutionsInput</a> to get a list of query execution IDs.</p>",
     "BatchGetPreparedStatement": "<p>Returns the details of a single prepared statement or a list of up to 256 prepared statements for the array of prepared statement names that you provide. Requires you to have access to the workgroup to which the prepared statements belong. If a prepared statement cannot be retrieved for the name specified, the statement is listed in <code>UnprocessedPreparedStatementNames</code>.</p>",
     "BatchGetQueryExecution": "<p>Returns the details of a single query execution or a list of up to 50 query executions, which you provide as an array of query execution ID strings. Requires you to have access to the workgroup in which the queries ran. To get a list of query execution IDs, use <a>ListQueryExecutionsInput$WorkGroup</a>. Query executions differ from named (saved) queries. Use <a>BatchGetNamedQueryInput</a> to get details about named queries.</p>",
+    "CancelCapacityReservation": "<p>Cancels the capacity reservation with the specified name.</p>",
+    "CreateCapacityReservation": "<p>Creates a capacity reservation with the specified name and number of requested data processing units.</p>",
     "CreateDataCatalog": "<p>Creates (registers) a data catalog with the specified name and properties. Catalogs created are visible to all users of the same Amazon Web Services account.</p>",
     "CreateNamedQuery": "<p>Creates a named query in the specified workgroup. Requires that you have access to the workgroup.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "CreateNotebook": "<p>Creates an empty <code>ipynb</code> file in the specified Apache Spark enabled workgroup. Throws an error if a file in the workgroup with the same name already exists.</p>",
@@ -20,6 +22,8 @@
     "GetCalculationExecution": "<p>Describes a previously submitted calculation execution.</p>",
     "GetCalculationExecutionCode": "<p>Retrieves the unencrypted code that was executed for the calculation.</p>",
     "GetCalculationExecutionStatus": "<p>Gets the status of a current calculation.</p>",
+    "GetCapacityAssignmentConfiguration": "<p>Gets the capacity assignment configuration for a capacity reservation, if one exists.</p>",
+    "GetCapacityReservation": "<p>Returns information about the capacity reservation with the specified name.</p>",
     "GetDataCatalog": "<p>Returns the specified data catalog.</p>",
     "GetDatabase": "<p>Returns a database object for the specified database and data catalog.</p>",
     "GetNamedQuery": "<p>Returns information about a single query. Requires that you have access to the workgroup in which the query was saved.</p>",
@@ -35,6 +39,7 @@
     "ImportNotebook": "<p>Imports a single <code>ipynb</code> file to a Spark enabled workgroup. The maximum file size that can be imported is 10 megabytes. If an <code>ipynb</code> file with the same name already exists in the workgroup, throws an error.</p>",
     "ListApplicationDPUSizes": "<p>Returns the supported DPU sizes for the supported application runtimes (for example, <code>Athena notebook version 1</code>). </p>",
     "ListCalculationExecutions": "<p>Lists the calculations that have been submitted to a session in descending order. Newer calculations are listed first; older calculations are listed later.</p>",
+    "ListCapacityReservations": "<p>Lists the capacity reservations for the current account.</p>",
     "ListDataCatalogs": "<p>Lists the data catalogs in the current Amazon Web Services account.</p> <note> <p>In the Athena console, data catalogs are listed as \"data sources\" on the <b>Data sources</b> page under the <b>Data source name</b> column.</p> </note>",
     "ListDatabases": "<p>Lists the databases in the specified data catalog.</p>",
     "ListEngineVersions": "<p>Returns a list of engine versions that are available to choose from, including the Auto option.</p>",
@@ -46,16 +51,18 @@
     "ListQueryExecutions": "<p>Provides a list of available query execution IDs for the queries in the specified workgroup. If a workgroup is not specified, returns a list of query execution IDs for the primary workgroup. Requires you to have access to the workgroup in which the queries ran.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "ListSessions": "<p>Lists the sessions in a workgroup that are in an active state like <code>CREATING</code>, <code>CREATED</code>, <code>IDLE</code>, or <code>BUSY</code>. Newer sessions are listed first; older sessions are listed later.</p>",
     "ListTableMetadata": "<p>Lists the metadata for the tables in the specified data catalog database.</p>",
-    "ListTagsForResource": "<p>Lists the tags associated with an Athena workgroup or data catalog resource.</p>",
+    "ListTagsForResource": "<p>Lists the tags associated with an Athena resource.</p>",
     "ListWorkGroups": "<p>Lists available workgroups for the account.</p>",
+    "PutCapacityAssignmentConfiguration": "<p>Puts a new capacity assignment configuration for a specified capacity reservation. If a capacity assignment configuration already exists for the capacity reservation, replaces the existing capacity assignment configuration.</p>",
     "StartCalculationExecution": "<p>Submits calculations for execution within a session. You can supply the code to run as an inline code block within the request.</p>",
     "StartQueryExecution": "<p>Runs the SQL query statements contained in the <code>Query</code>. Requires you to have access to the workgroup in which the query ran. Running queries against an external catalog requires <a>GetDataCatalog</a> permission to the catalog. For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "StartSession": "<p>Creates a session for running calculations within a workgroup. The session is ready when it reaches an <code>IDLE</code> state.</p>",
     "StopCalculationExecution": "<p>Requests the cancellation of a calculation. A <code>StopCalculationExecution</code> call on a calculation that is already in a terminal state (for example, <code>STOPPED</code>, <code>FAILED</code>, or <code>COMPLETED</code>) succeeds but has no effect.</p> <note> <p>Cancelling a calculation is done on a best effort basis. If a calculation cannot be cancelled, you can be charged for its completion. If you are concerned about being charged for a calculation that cannot be cancelled, consider terminating the session in which the calculation is running.</p> </note>",
     "StopQueryExecution": "<p>Stops a query execution. Requires you to have access to the workgroup in which the query ran.</p> <p>For code samples using the Amazon Web Services SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
-    "TagResource": "<p>Adds one or more tags to an Athena resource. A tag is a label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas.</p>",
+    "TagResource": "<p>Adds one or more tags to an Athena resource. A tag is a label that you assign to a resource. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups, data catalogs, or capacity reservations by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter the resources in your account. For best practices, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas.</p>",
     "TerminateSession": "<p>Terminates an active session. A <code>TerminateSession</code> call on a session that is already inactive (for example, in a <code>FAILED</code>, <code>TERMINATED</code> or <code>TERMINATING</code> state) succeeds but has no effect. Calculations running in the session when <code>TerminateSession</code> is called are forcefully stopped, but may display as <code>FAILED</code> instead of <code>STOPPED</code>.</p>",
-    "UntagResource": "<p>Removes one or more tags from a data catalog or workgroup resource.</p>",
+    "UntagResource": "<p>Removes one or more tags from an Athena resource.</p>",
+    "UpdateCapacityReservation": "<p>Updates the number of requested data processing units for the capacity reservation with the specified name.</p>",
     "UpdateDataCatalog": "<p>Updates the data catalog that has the specified name.</p>",
     "UpdateNamedQuery": "<p>Updates a <a>NamedQuery</a> object. The database or workgroup cannot be updated.</p>",
     "UpdateNotebook": "<p>Updates the contents of a Spark notebook.</p>",
@@ -77,12 +84,18 @@
         "ResultReuseByAgeConfiguration$MaxAgeInMinutes": "<p>Specifies, in minutes, the maximum age of a previous query result that Athena should consider for reuse. The default is 60.</p>"
       }
     },
+    "AllocatedDpusInteger": {
+      "base": null,
+      "refs": {
+        "CapacityReservation$AllocatedDpus": "<p>The number of data processing units currently allocated.</p>"
+      }
+    },
     "AmazonResourceName": {
       "base": null,
       "refs": {
         "ListTagsForResourceInput$ResourceARN": "<p>Lists the tags for the resource with the specified ARN.</p>",
         "ResourceNotFoundException$ResourceName": "<p>The name of the Amazon resource.</p>",
-        "TagResourceInput$ResourceARN": "<p>Specifies the ARN of the Athena resource (workgroup or data catalog) to which tags are to be added.</p>",
+        "TagResourceInput$ResourceARN": "<p>Specifies the ARN of the Athena resource to which tags are to be added.</p>",
         "UntagResourceInput$ResourceARN": "<p>Specifies the ARN of the resource from which tags are to be removed.</p>"
       }
     },
@@ -249,6 +262,79 @@
         "ListCalculationExecutionsResponse$Calculations": "<p>A list of <a>CalculationSummary</a> objects.</p>"
       }
     },
+    "CancelCapacityReservationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelCapacityReservationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CapacityAllocation": {
+      "base": "<p>Contains the submission time of a single allocation request for a capacity reservation and the most recent status of the attempted allocation.</p>",
+      "refs": {
+        "CapacityReservation$LastAllocation": null
+      }
+    },
+    "CapacityAllocationStatus": {
+      "base": null,
+      "refs": {
+        "CapacityAllocation$Status": "<p>The status of the capacity allocation.</p>"
+      }
+    },
+    "CapacityAssignment": {
+      "base": "<p>A mapping between one or more workgroups and a capacity reservation.</p>",
+      "refs": {
+        "CapacityAssignmentsList$member": null
+      }
+    },
+    "CapacityAssignmentConfiguration": {
+      "base": "<p>Assigns Athena workgroups (and hence their queries) to capacity reservations. A capacity reservation can have only one capacity assignment configuration, but the capacity assignment configuration can be made up of multiple individual assignments. Each assignment specifies how Athena queries can consume capacity from the capacity reservation that their workgroup is mapped to.</p>",
+      "refs": {
+        "GetCapacityAssignmentConfigurationOutput$CapacityAssignmentConfiguration": "<p>The requested capacity assignment configuration for the specified capacity reservation.</p>"
+      }
+    },
+    "CapacityAssignmentsList": {
+      "base": null,
+      "refs": {
+        "CapacityAssignmentConfiguration$CapacityAssignments": "<p>The list of assignments that make up the capacity assignment configuration.</p>",
+        "PutCapacityAssignmentConfigurationInput$CapacityAssignments": "<p>The list of assignments for the capacity assignment configuration.</p>"
+      }
+    },
+    "CapacityReservation": {
+      "base": "<p>A reservation for a specified number of data processing units (DPUs). When a reservation is initially created, it has no DPUs. Athena allocates DPUs until the allocated amount equals the requested amount.</p>",
+      "refs": {
+        "CapacityReservationsList$member": null,
+        "GetCapacityReservationOutput$CapacityReservation": "<p>The requested capacity reservation structure.</p>"
+      }
+    },
+    "CapacityReservationName": {
+      "base": null,
+      "refs": {
+        "CancelCapacityReservationInput$Name": "<p>The name of the capacity reservation to cancel.</p>",
+        "CapacityAssignmentConfiguration$CapacityReservationName": "<p>The name of the reservation that the capacity assignment configuration is for.</p>",
+        "CapacityReservation$Name": "<p>The name of the capacity reservation.</p>",
+        "CreateCapacityReservationInput$Name": "<p>The name of the capacity reservation to create.</p>",
+        "GetCapacityAssignmentConfigurationInput$CapacityReservationName": "<p>The name of the capacity reservation to retrieve the capacity assignment configuration for.</p>",
+        "GetCapacityReservationInput$Name": "<p>The name of the capacity reservation.</p>",
+        "PutCapacityAssignmentConfigurationInput$CapacityReservationName": "<p>The name of the capacity reservation to put a capacity assignment configuration for.</p>",
+        "UpdateCapacityReservationInput$Name": "<p>The name of the capacity reservation.</p>"
+      }
+    },
+    "CapacityReservationStatus": {
+      "base": null,
+      "refs": {
+        "CapacityReservation$Status": "<p>The status of the capacity reservation.</p>"
+      }
+    },
+    "CapacityReservationsList": {
+      "base": null,
+      "refs": {
+        "ListCapacityReservationsOutput$CapacityReservations": "<p>The capacity reservations for the current account.</p>"
+      }
+    },
     "CatalogNameString": {
       "base": null,
       "refs": {
@@ -322,7 +408,17 @@
     "CoordinatorDpuSize": {
       "base": null,
       "refs": {
-        "EngineConfiguration$CoordinatorDpuSize": "<p>The number of DPUs to use for the coordinator. A coordinator is a special executor that orchestrates processing work and manages other executors in a notebook session.</p>"
+        "EngineConfiguration$CoordinatorDpuSize": "<p>The number of DPUs to use for the coordinator. A coordinator is a special executor that orchestrates processing work and manages other executors in a notebook session. The default is 1.</p>"
+      }
+    },
+    "CreateCapacityReservationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCapacityReservationOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateDataCatalogInput": {
@@ -469,7 +565,7 @@
     "DefaultExecutorDpuSize": {
       "base": null,
       "refs": {
-        "EngineConfiguration$DefaultExecutorDpuSize": "<p>The default number of DPUs to use for executors. An executor is the smallest unit of compute that a notebook session can request from Athena.</p>"
+        "EngineConfiguration$DefaultExecutorDpuSize": "<p>The default number of DPUs to use for executors. An executor is the smallest unit of compute that a notebook session can request from Athena. The default is 1.</p>"
       }
     },
     "DeleteDataCatalogInput": {
@@ -714,6 +810,26 @@
       "refs": {
       }
     },
+    "GetCapacityAssignmentConfigurationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCapacityAssignmentConfigurationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCapacityReservationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCapacityReservationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDataCatalogInput": {
       "base": null,
       "refs": {
@@ -903,6 +1019,16 @@
       "refs": {
       }
     },
+    "ListCapacityReservationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCapacityReservationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDataCatalogsInput": {
       "base": null,
       "refs": {
@@ -1077,6 +1203,12 @@
       "base": null,
       "refs": {
         "ListCalculationExecutionsRequest$MaxResults": "<p>The maximum number of calculation executions to return.</p>"
+      }
+    },
+    "MaxCapacityReservationsCount": {
+      "base": null,
+      "refs": {
+        "ListCapacityReservationsInput$MaxResults": "<p>Specifies the maximum number of results to return.</p>"
       }
     },
     "MaxConcurrentDpus": {
@@ -1343,6 +1475,16 @@
       "base": null,
       "refs": {
         "ListPreparedStatementsOutput$PreparedStatements": "<p>The list of prepared statements for the workgroup.</p>"
+      }
+    },
+    "PutCapacityAssignmentConfigurationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutCapacityAssignmentConfigurationOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "QueryExecution": {
@@ -1709,6 +1851,7 @@
       "base": null,
       "refs": {
         "AthenaError$ErrorMessage": "<p>Contains a short description of the error that occurred.</p>",
+        "CapacityAllocation$StatusMessage": "<p>The status message of the capacity allocation.</p>",
         "ColumnInfo$CatalogName": "<p>The catalog to which the query results belong.</p>",
         "ColumnInfo$SchemaName": "<p>The schema name (database name) to which the query results belong.</p>",
         "ColumnInfo$TableName": "<p>The table name for the query results.</p>",
@@ -1758,7 +1901,7 @@
       }
     },
     "Tag": {
-      "base": "<p>A label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas. </p>",
+      "base": "<p>A label that you assign to a resource. Athena resources include workgroups, data catalogs, and capacity reservations. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena resources by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter the resources in your account. For best practices, see <a href=\"https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas. </p>",
       "refs": {
         "TagList$member": null
       }
@@ -1779,10 +1922,11 @@
     "TagList": {
       "base": null,
       "refs": {
+        "CreateCapacityReservationInput$Tags": "<p>The tags for the capacity reservation.</p>",
         "CreateDataCatalogInput$Tags": "<p>A list of comma separated tags to add to the data catalog that is created.</p>",
         "CreateWorkGroupInput$Tags": "<p>A list of comma separated tags to add to the workgroup that is created.</p>",
         "ListTagsForResourceOutput$Tags": "<p>The list of tags associated with the specified resource.</p>",
-        "TagResourceInput$Tags": "<p>A collection of one or more tags, separated by commas, to be added to an Athena workgroup or data catalog resource.</p>"
+        "TagResourceInput$Tags": "<p>A collection of one or more tags, separated by commas, to be added to an Athena resource.</p>"
       }
     },
     "TagResourceInput": {
@@ -1799,6 +1943,14 @@
       "base": null,
       "refs": {
         "Tag$Value": "<p>A tag value. The tag value length is from 0 to 256 Unicode characters in UTF-8. You can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag values are case-sensitive. </p>"
+      }
+    },
+    "TargetDpusInteger": {
+      "base": null,
+      "refs": {
+        "CapacityReservation$TargetDpus": "<p>The number of data processing units requested.</p>",
+        "CreateCapacityReservationInput$TargetDpus": "<p>The number of requested data processing units.</p>",
+        "UpdateCapacityReservationInput$TargetDpus": "<p>The new number of requested data processing units.</p>"
       }
     },
     "TerminateSessionRequest": {
@@ -1820,6 +1972,10 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "CapacityAllocation$RequestTime": "<p>The time when the capacity allocation was requested.</p>",
+        "CapacityAllocation$RequestCompletionTime": "<p>The time when the capacity allocation request was completed.</p>",
+        "CapacityReservation$LastSuccessfulAllocationTime": "<p>The time of the most recent capacity allocation that succeeded.</p>",
+        "CapacityReservation$CreationTime": "<p>The time in UTC epoch millis when the capacity reservation was created.</p>",
         "TableMetadata$CreateTime": "<p>The time that the table was created.</p>",
         "TableMetadata$LastAccessTime": "<p>The last time the table was accessed.</p>"
       }
@@ -1831,6 +1987,8 @@
         "GetQueryResultsOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
         "ListApplicationDPUSizesInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated.</p>",
         "ListApplicationDPUSizesOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
+        "ListCapacityReservationsInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated.</p>",
+        "ListCapacityReservationsOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.</p>",
         "ListDataCatalogsInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.</p>",
         "ListDataCatalogsOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.</p>",
         "ListDatabasesInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
@@ -1908,6 +2066,16 @@
       }
     },
     "UntagResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCapacityReservationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCapacityReservationOutput": {
       "base": null,
       "refs": {
       }
@@ -2028,7 +2196,14 @@
         "UpdatePreparedStatementInput$WorkGroup": "<p>The workgroup for the prepared statement.</p>",
         "UpdateWorkGroupInput$WorkGroup": "<p>The specified workgroup that will be updated.</p>",
         "WorkGroup$Name": "<p>The workgroup name.</p>",
+        "WorkGroupNamesList$member": null,
         "WorkGroupSummary$Name": "<p>The name of the workgroup.</p>"
+      }
+    },
+    "WorkGroupNamesList": {
+      "base": null,
+      "refs": {
+        "CapacityAssignment$WorkGroupNames": "<p>The list of workgroup names for the capacity assignment.</p>"
       }
     },
     "WorkGroupState": {

@@ -12032,6 +12032,42 @@ type SalesforceConnectorProfileCredentials struct {
 	// String and GoString methods.
 	ClientCredentialsArn *string `locationName:"clientCredentialsArn" min:"20" type:"string" sensitive:"true"`
 
+	// A JSON web token (JWT) that authorizes Amazon AppFlow to access your Salesforce
+	// records.
+	//
+	// JwtToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SalesforceConnectorProfileCredentials's
+	// String and GoString methods.
+	JwtToken *string `locationName:"jwtToken" type:"string" sensitive:"true"`
+
+	// Specifies the OAuth 2.0 grant type that Amazon AppFlow uses when it requests
+	// an access token from Salesforce. Amazon AppFlow requires an access token
+	// each time it attempts to access your Salesforce records.
+	//
+	// You can specify one of the following values:
+	//
+	// AUTHORIZATION_CODE
+	//
+	// Amazon AppFlow passes an authorization code when it requests the access token
+	// from Salesforce. Amazon AppFlow receives the authorization code from Salesforce
+	// after you log in to your Salesforce account and authorize Amazon AppFlow
+	// to access your records.
+	//
+	// CLIENT_CREDENTIALS
+	//
+	// Amazon AppFlow passes client credentials (a client ID and client secret)
+	// when it requests the access token from Salesforce. You provide these credentials
+	// to Amazon AppFlow when you define the connection to your Salesforce account.
+	//
+	// JWT_BEARER
+	//
+	// Amazon AppFlow passes a JSON web token (JWT) when it requests the access
+	// token from Salesforce. You provide the JWT to Amazon AppFlow when you define
+	// the connection to your Salesforce account. When you use this grant type,
+	// you don't need to log in to your Salesforce account to authorize Amazon AppFlow
+	// to access your records.
+	OAuth2GrantType *string `locationName:"oAuth2GrantType" type:"string" enum:"OAuth2GrantType"`
+
 	// The OAuth requirement needed to request security tokens from the connector
 	// endpoint.
 	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
@@ -12080,6 +12116,18 @@ func (s *SalesforceConnectorProfileCredentials) SetAccessToken(v string) *Salesf
 // SetClientCredentialsArn sets the ClientCredentialsArn field's value.
 func (s *SalesforceConnectorProfileCredentials) SetClientCredentialsArn(v string) *SalesforceConnectorProfileCredentials {
 	s.ClientCredentialsArn = &v
+	return s
+}
+
+// SetJwtToken sets the JwtToken field's value.
+func (s *SalesforceConnectorProfileCredentials) SetJwtToken(v string) *SalesforceConnectorProfileCredentials {
+	s.JwtToken = &v
+	return s
+}
+
+// SetOAuth2GrantType sets the OAuth2GrantType field's value.
+func (s *SalesforceConnectorProfileCredentials) SetOAuth2GrantType(v string) *SalesforceConnectorProfileCredentials {
+	s.OAuth2GrantType = &v
 	return s
 }
 
@@ -12324,6 +12372,32 @@ type SalesforceMetadata struct {
 
 	// The desired authorization scope for the Salesforce account.
 	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
+
+	// The OAuth 2.0 grant types that Amazon AppFlow can use when it requests an
+	// access token from Salesforce. Amazon AppFlow requires an access token each
+	// time it attempts to access your Salesforce records.
+	//
+	// AUTHORIZATION_CODE
+	//
+	// Amazon AppFlow passes an authorization code when it requests the access token
+	// from Salesforce. Amazon AppFlow receives the authorization code from Salesforce
+	// after you log in to your Salesforce account and authorize Amazon AppFlow
+	// to access your records.
+	//
+	// CLIENT_CREDENTIALS
+	//
+	// Amazon AppFlow passes client credentials (a client ID and client secret)
+	// when it requests the access token from Salesforce. You provide these credentials
+	// to Amazon AppFlow when you define the connection to your Salesforce account.
+	//
+	// JWT_BEARER
+	//
+	// Amazon AppFlow passes a JSON web token (JWT) when it requests the access
+	// token from Salesforce. You provide the JWT to Amazon AppFlow when you define
+	// the connection to your Salesforce account. When you use this grant type,
+	// you don't need to log in to your Salesforce account to authorize Amazon AppFlow
+	// to access your records.
+	Oauth2GrantTypesSupported []*string `locationName:"oauth2GrantTypesSupported" type:"list" enum:"OAuth2GrantType"`
 }
 
 // String returns the string representation.
@@ -12353,6 +12427,12 @@ func (s *SalesforceMetadata) SetDataTransferApis(v []*string) *SalesforceMetadat
 // SetOAuthScopes sets the OAuthScopes field's value.
 func (s *SalesforceMetadata) SetOAuthScopes(v []*string) *SalesforceMetadata {
 	s.OAuthScopes = v
+	return s
+}
+
+// SetOauth2GrantTypesSupported sets the Oauth2GrantTypesSupported field's value.
+func (s *SalesforceMetadata) SetOauth2GrantTypesSupported(v []*string) *SalesforceMetadata {
+	s.Oauth2GrantTypesSupported = v
 	return s
 }
 
@@ -16791,6 +16871,9 @@ const (
 
 	// OAuth2GrantTypeAuthorizationCode is a OAuth2GrantType enum value
 	OAuth2GrantTypeAuthorizationCode = "AUTHORIZATION_CODE"
+
+	// OAuth2GrantTypeJwtBearer is a OAuth2GrantType enum value
+	OAuth2GrantTypeJwtBearer = "JWT_BEARER"
 )
 
 // OAuth2GrantType_Values returns all elements of the OAuth2GrantType enum
@@ -16798,6 +16881,7 @@ func OAuth2GrantType_Values() []string {
 	return []string{
 		OAuth2GrantTypeClientCredentials,
 		OAuth2GrantTypeAuthorizationCode,
+		OAuth2GrantTypeJwtBearer,
 	}
 }
 

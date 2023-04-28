@@ -2500,6 +2500,11 @@ type CreateWorkspaceInput struct {
 	// Grafana workspace (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html).
 	Configuration *string `locationName:"configuration" min:"2" type:"string"`
 
+	// Specifies the version of Grafana to support in the new workspace.
+	//
+	// Supported values are 8.4 and 9.4.
+	GrafanaVersion *string `locationName:"grafanaVersion" min:"1" type:"string"`
+
 	// Configuration for network access to your workspace.
 	//
 	// When this is configured, only listed IP addresses and VPC endpoints will
@@ -2629,6 +2634,9 @@ func (s *CreateWorkspaceInput) Validate() error {
 	if s.Configuration != nil && len(*s.Configuration) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("Configuration", 2))
 	}
+	if s.GrafanaVersion != nil && len(*s.GrafanaVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GrafanaVersion", 1))
+	}
 	if s.OrganizationRoleName != nil && len(*s.OrganizationRoleName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OrganizationRoleName", 1))
 	}
@@ -2676,6 +2684,12 @@ func (s *CreateWorkspaceInput) SetClientToken(v string) *CreateWorkspaceInput {
 // SetConfiguration sets the Configuration field's value.
 func (s *CreateWorkspaceInput) SetConfiguration(v string) *CreateWorkspaceInput {
 	s.Configuration = &v
+	return s
+}
+
+// SetGrafanaVersion sets the GrafanaVersion field's value.
+func (s *CreateWorkspaceInput) SetGrafanaVersion(v string) *CreateWorkspaceInput {
+	s.GrafanaVersion = &v
 	return s
 }
 

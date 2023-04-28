@@ -60,7 +60,8 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 // Associates a web ACL with a regional application resource, to protect the
 // resource. A regional application can be an Application Load Balancer (ALB),
 // an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito
-// user pool, or an App Runner service.
+// user pool, an App Runner service, or an Amazon Web Services Verified Access
+// instance.
 //
 // For Amazon CloudFront, don't use this call. Instead, use your CloudFront
 // distribution configuration. To associate a web ACL, in the CloudFront call
@@ -331,16 +332,16 @@ func (c *WAFV2) CreateAPIKeyRequest(input *CreateAPIKeyInput) (req *request.Requ
 
 // CreateAPIKey API operation for AWS WAFV2.
 //
-// Creates an API key for use in the integration of the CAPTCHA API in your
-// JavaScript client applications. The integration lets you customize the placement
-// and characteristics of the CAPTCHA puzzle for your end users. For more information
-// about the CAPTCHA JavaScript integration, see WAF client application integration
-// (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// Creates an API key that contains a set of token domains.
+//
+// API keys are required for the integration of the CAPTCHA API in your JavaScript
+// client applications. The API lets you customize the placement and characteristics
+// of the CAPTCHA puzzle for your end users. For more information about the
+// CAPTCHA JavaScript integration, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
 // in the WAF Developer Guide.
 //
-// The CAPTCHA API requires a key that authorizes CAPTCHA use from the client
-// application domain. You can use a single key for up to 5 domains. After you
-// generate a key, you can copy it for use in your JavaScript integration.
+// You can use a single key for up to 5 domains. After you generate a key, you
+// can copy it for use in your JavaScript integration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -841,8 +842,8 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 // RuleGroup, and managed rule group. You can associate a web ACL with one or
 // more Amazon Web Services resources to protect. The resources can be an Amazon
 // CloudFront distribution, an Amazon API Gateway REST API, an Application Load
-// Balancer, an AppSync GraphQL API, an Amazon Cognito user pool, or an App
-// Runner service.
+// Balancer, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner
+// service, or an Amazon Web Services Verified Access instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1949,7 +1950,7 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 // web ACL association. A resource can have at most one web ACL association.
 // A regional application can be an Application Load Balancer (ALB), an Amazon
 // API Gateway REST API, an AppSync GraphQL API, an Amazon Cognito user pool,
-// or an App Runner service.
+// an App Runner service, or an Amazon Web Services Verified Access instance.
 //
 // For Amazon CloudFront, don't use this call. Instead, use your CloudFront
 // distribution configuration. To disassociate a web ACL, provide an empty web
@@ -2172,6 +2173,12 @@ func (c *WAFV2) GetDecryptedAPIKeyRequest(input *GetDecryptedAPIKeyInput) (req *
 //
 // Returns your API key in decrypted form. Use this to check the token domains
 // that you have defined for the key.
+//
+// API keys are required for the integration of the CAPTCHA API in your JavaScript
+// client applications. The API lets you customize the placement and characteristics
+// of the CAPTCHA puzzle for your end users. For more information about the
+// CAPTCHA JavaScript integration, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3461,6 +3468,12 @@ func (c *WAFV2) ListAPIKeysRequest(input *ListAPIKeysInput) (req *request.Reques
 // ListAPIKeys API operation for AWS WAFV2.
 //
 // Retrieves a list of the API keys that you've defined for the specified scope.
+//
+// API keys are required for the integration of the CAPTCHA API in your JavaScript
+// client applications. The API lets you customize the placement and characteristics
+// of the CAPTCHA puzzle for your end users. For more information about the
+// CAPTCHA JavaScript integration, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5986,8 +5999,8 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 // RuleGroup, and managed rule group. You can associate a web ACL with one or
 // more Amazon Web Services resources to protect. The resources can be an Amazon
 // CloudFront distribution, an Amazon API Gateway REST API, an Application Load
-// Balancer, an AppSync GraphQL API, an Amazon Cognito user pool, or an App
-// Runner service.
+// Balancer, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner
+// service, or an Amazon Web Services Verified Access instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6098,15 +6111,17 @@ func (c *WAFV2) UpdateWebACLWithContext(ctx aws.Context, input *UpdateWebACLInpu
 }
 
 // Information for a single API key.
+//
+// API keys are required for the integration of the CAPTCHA API in your JavaScript
+// client applications. The API lets you customize the placement and characteristics
+// of the CAPTCHA puzzle for your end users. For more information about the
+// CAPTCHA JavaScript integration, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
 type APIKeySummary struct {
 	_ struct{} `type:"structure"`
 
 	// The generated, encrypted API key. You can copy this for use in your JavaScript
 	// CAPTCHA integration.
-	//
-	// For information about how to use this in your CAPTCHA JavaScript integration,
-	// see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
-	// in the WAF Developer Guide.
 	APIKey *string `min:"1" type:"string"`
 
 	// The date and time that the key was created.
@@ -6535,6 +6550,8 @@ type AssociateWebACLInput struct {
 	//    * For an Amazon Cognito user pool: arn:partition:cognito-idp:region:account-id:userpool/user-pool-id
 	//
 	//    * For an App Runner service: arn:partition:apprunner:region:account-id:service/apprunner-service-name/apprunner-service-id
+	//
+	//    * For an Amazon Web Services Verified Access instance: arn:partition:ec2:region:account-id:verified-access-instance/instance-id
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`
@@ -7350,7 +7367,8 @@ type CheckCapacityInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -7758,7 +7776,8 @@ type CreateAPIKeyInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -7772,6 +7791,11 @@ type CreateAPIKeyInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 
 	// The client application domains that you want to use this API key for.
+	//
+	// Example JSON: "TokenDomains": ["abc.com", "store.abc.com"]
+	//
+	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// as token domains.
 	//
 	// TokenDomains is a required field
 	TokenDomains []*string `min:"1" type:"list" required:"true"`
@@ -7831,10 +7855,6 @@ type CreateAPIKeyOutput struct {
 
 	// The generated, encrypted API key. You can copy this for use in your JavaScript
 	// CAPTCHA integration.
-	//
-	// For information about how to use this in your CAPTCHA JavaScript integration,
-	// see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
-	// in the WAF Developer Guide.
 	APIKey *string `min:"1" type:"string"`
 }
 
@@ -7919,7 +7939,8 @@ type CreateIPSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8084,7 +8105,8 @@ type CreateRegexPatternSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8285,7 +8307,8 @@ type CreateRuleGroupInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8541,7 +8564,8 @@ type CreateWebACLInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -9312,7 +9336,8 @@ type DeleteIPSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -9596,7 +9621,8 @@ type DeleteRegexPatternSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -9736,7 +9762,8 @@ type DeleteRuleGroupInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -9876,7 +9903,8 @@ type DeleteWebACLInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -9997,7 +10025,8 @@ type DescribeManagedRuleGroupInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -10220,6 +10249,8 @@ type DisassociateWebACLInput struct {
 	//    * For an Amazon Cognito user pool: arn:partition:cognito-idp:region:account-id:userpool/user-pool-id
 	//
 	//    * For an App Runner service: arn:partition:apprunner:region:account-id:service/apprunner-service-name/apprunner-service-id
+	//
+	//    * For an Amazon Web Services Verified Access instance: arn:partition:ec2:region:account-id:verified-access-instance/instance-id
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`
@@ -11080,7 +11111,8 @@ type GetDecryptedAPIKeyInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -11201,7 +11233,8 @@ type GetIPSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -11431,7 +11464,8 @@ type GetManagedRuleSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -11745,7 +11779,8 @@ type GetRateBasedStatementManagedKeysInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -11911,7 +11946,8 @@ type GetRegexPatternSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -12054,7 +12090,8 @@ type GetRuleGroupInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -12198,7 +12235,8 @@ type GetSampledRequestsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -12390,6 +12428,8 @@ type GetWebACLForResourceInput struct {
 	//
 	//    * For an App Runner service: arn:partition:apprunner:region:account-id:service/apprunner-service-name/apprunner-service-id
 	//
+	//    * For an Amazon Web Services Verified Access instance: arn:partition:ec2:region:account-id:verified-access-instance/instance-id
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
@@ -12485,7 +12525,8 @@ type GetWebACLInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -13862,7 +13903,8 @@ type ListAPIKeysInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -13939,10 +13981,6 @@ type ListAPIKeysOutput struct {
 	APIKeySummaries []*APIKeySummary `type:"list"`
 
 	// The CAPTCHA application integration URL, for use in your JavaScript implementation.
-	//
-	// For information about how to use this in your CAPTCHA JavaScript integration,
-	// see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
-	// in the WAF Developer Guide.
 	ApplicationIntegrationURL *string `type:"string"`
 
 	// When you request a list of objects with a Limit setting, if the number of
@@ -14011,7 +14049,8 @@ type ListAvailableManagedRuleGroupVersionsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -14181,7 +14220,8 @@ type ListAvailableManagedRuleGroupsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -14311,7 +14351,8 @@ type ListIPSetsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -14441,7 +14482,8 @@ type ListLoggingConfigurationsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -14571,7 +14613,8 @@ type ListManagedRuleSetsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -14820,7 +14863,8 @@ type ListRegexPatternSetsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -14938,7 +14982,8 @@ type ListResourcesForWebACLInput struct {
 
 	// Used for web ACLs that are scoped for regional applications. A regional application
 	// can be an Application Load Balancer (ALB), an Amazon API Gateway REST API,
-	// an AppSync GraphQL API, an Amazon Cognito user pool, or an App Runner service.
+	// an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner service,
+	// or an Amazon Web Services Verified Access instance.
 	//
 	// If you don't provide a resource type, the call uses the resource type APPLICATION_LOAD_BALANCER.
 	//
@@ -15045,7 +15090,8 @@ type ListRuleGroupsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -15297,7 +15343,8 @@ type ListWebACLsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -16978,7 +17025,8 @@ type PutManagedRuleSetVersionsInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -20909,7 +20957,8 @@ type UpdateIPSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -21087,7 +21136,8 @@ type UpdateManagedRuleSetVersionExpiryDateInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -21295,7 +21345,8 @@ type UpdateRegexPatternSetInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -21496,7 +21547,8 @@ type UpdateRuleGroupInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -21759,7 +21811,8 @@ type UpdateWebACLInput struct {
 	// Specifies whether this is for an Amazon CloudFront distribution or for a
 	// regional application. A regional application can be an Application Load Balancer
 	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
-	// Cognito user pool, or an App Runner service.
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -23478,8 +23531,8 @@ func (s *WAFUnavailableEntityException) RequestID() string {
 // RuleGroup, and managed rule group. You can associate a web ACL with one or
 // more Amazon Web Services resources to protect. The resources can be an Amazon
 // CloudFront distribution, an Amazon API Gateway REST API, an Application Load
-// Balancer, an AppSync GraphQL API, an Amazon Cognito user pool, or an App
-// Runner service.
+// Balancer, an AppSync GraphQL API, an Amazon Cognito user pool, an App Runner
+// service, or an Amazon Web Services Verified Access instance.
 type WebACL struct {
 	_ struct{} `type:"structure"`
 
@@ -25575,6 +25628,9 @@ const (
 
 	// ResourceTypeAppRunnerService is a ResourceType enum value
 	ResourceTypeAppRunnerService = "APP_RUNNER_SERVICE"
+
+	// ResourceTypeVerifiedAccessInstance is a ResourceType enum value
+	ResourceTypeVerifiedAccessInstance = "VERIFIED_ACCESS_INSTANCE"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -25585,6 +25641,7 @@ func ResourceType_Values() []string {
 		ResourceTypeAppsync,
 		ResourceTypeCognitoUserPool,
 		ResourceTypeAppRunnerService,
+		ResourceTypeVerifiedAccessInstance,
 	}
 }
 

@@ -9923,8 +9923,20 @@ func (s *ConnectedHomeSettingsForUpdate) SetMinConfidence(v float64) *ConnectedH
 type ContentModerationDetection struct {
 	_ struct{} `type:"structure"`
 
+	// The time duration of a segment in milliseconds, I.e. time elapsed from StartTimestampMillis
+	// to EndTimestampMillis.
+	DurationMillis *int64 `type:"long"`
+
+	// The time in milliseconds defining the end of the timeline segment containing
+	// a continuously detected moderation label.
+	EndTimestampMillis *int64 `type:"long"`
+
 	// The content moderation label detected by in the stored video.
 	ModerationLabel *ModerationLabel `type:"structure"`
+
+	// The time in milliseconds defining the start of the timeline segment containing
+	// a continuously detected moderation label.
+	StartTimestampMillis *int64 `type:"long"`
 
 	// Time, in milliseconds from the beginning of the video, that the content moderation
 	// label was detected. Note that Timestamp is not guaranteed to be accurate
@@ -9950,9 +9962,27 @@ func (s ContentModerationDetection) GoString() string {
 	return s.String()
 }
 
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *ContentModerationDetection) SetDurationMillis(v int64) *ContentModerationDetection {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetEndTimestampMillis sets the EndTimestampMillis field's value.
+func (s *ContentModerationDetection) SetEndTimestampMillis(v int64) *ContentModerationDetection {
+	s.EndTimestampMillis = &v
+	return s
+}
+
 // SetModerationLabel sets the ModerationLabel field's value.
 func (s *ContentModerationDetection) SetModerationLabel(v *ModerationLabel) *ContentModerationDetection {
 	s.ModerationLabel = v
+	return s
+}
+
+// SetStartTimestampMillis sets the StartTimestampMillis field's value.
+func (s *ContentModerationDetection) SetStartTimestampMillis(v int64) *ContentModerationDetection {
+	s.StartTimestampMillis = &v
 	return s
 }
 
@@ -15300,8 +15330,17 @@ type GetCelebrityRecognitionOutput struct {
 	// Array of celebrities recognized in the video.
 	Celebrities []*CelebrityRecognition `type:"list"`
 
+	// Job identifier for the celebrity recognition operation for which you want
+	// to obtain results. The job identifer is returned by an initial call to StartCelebrityRecognition.
+	JobId *string `min:"1" type:"string"`
+
 	// The current status of the celebrity recognition job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartCelebrityRecognition and returned
+	// in the job completion notification sent to your Amazon Simple Notification
+	// Service topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// If the response is truncated, Amazon Rekognition Video returns this token
 	// that you can use in the subsequent request to retrieve the next set of celebrities.
@@ -15309,6 +15348,11 @@ type GetCelebrityRecognitionOutput struct {
 
 	// If the job fails, StatusMessage provides a descriptive error message.
 	StatusMessage *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Information about a video that Amazon Rekognition Video analyzed. Videometadata
 	// is returned in every page of paginated responses from a Amazon Rekognition
@@ -15340,9 +15384,21 @@ func (s *GetCelebrityRecognitionOutput) SetCelebrities(v []*CelebrityRecognition
 	return s
 }
 
+// SetJobId sets the JobId field's value.
+func (s *GetCelebrityRecognitionOutput) SetJobId(v string) *GetCelebrityRecognitionOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetCelebrityRecognitionOutput) SetJobStatus(v string) *GetCelebrityRecognitionOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetCelebrityRecognitionOutput) SetJobTag(v string) *GetCelebrityRecognitionOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -15358,6 +15414,12 @@ func (s *GetCelebrityRecognitionOutput) SetStatusMessage(v string) *GetCelebrity
 	return s
 }
 
+// SetVideo sets the Video field's value.
+func (s *GetCelebrityRecognitionOutput) SetVideo(v *Video) *GetCelebrityRecognitionOutput {
+	s.Video = v
+	return s
+}
+
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetCelebrityRecognitionOutput) SetVideoMetadata(v *VideoMetadata) *GetCelebrityRecognitionOutput {
 	s.VideoMetadata = v
@@ -15366,6 +15428,11 @@ func (s *GetCelebrityRecognitionOutput) SetVideoMetadata(v *VideoMetadata) *GetC
 
 type GetContentModerationInput struct {
 	_ struct{} `type:"structure"`
+
+	// Defines how to aggregate results of the StartContentModeration request. Default
+	// aggregation option is TIMESTAMPS. SEGMENTS mode aggregates moderation labels
+	// over time.
+	AggregateBy *string `type:"string" enum:"ContentModerationAggregateBy"`
 
 	// The identifier for the inappropriate, unwanted, or offensive content moderation
 	// job. Use JobId to identify the job in a subsequent call to GetContentModeration.
@@ -15427,6 +15494,12 @@ func (s *GetContentModerationInput) Validate() error {
 	return nil
 }
 
+// SetAggregateBy sets the AggregateBy field's value.
+func (s *GetContentModerationInput) SetAggregateBy(v string) *GetContentModerationInput {
+	s.AggregateBy = &v
+	return s
+}
+
 // SetJobId sets the JobId field's value.
 func (s *GetContentModerationInput) SetJobId(v string) *GetContentModerationInput {
 	s.JobId = &v
@@ -15454,8 +15527,21 @@ func (s *GetContentModerationInput) SetSortBy(v string) *GetContentModerationInp
 type GetContentModerationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the paramters used when getting a response. Includes information
+	// on aggregation and sorting methods.
+	GetRequestMetadata *GetContentModerationRequestMetadata `type:"structure"`
+
+	// Job identifier for the content moderation operation for which you want to
+	// obtain results. The job identifer is returned by an initial call to StartContentModeration.
+	JobId *string `min:"1" type:"string"`
+
 	// The current status of the content moderation analysis job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartContentModeration and returned
+	// in the job completion notification sent to your Amazon Simple Notification
+	// Service topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// The detected inappropriate, unwanted, or offensive content moderation labels
 	// and the time(s) they were detected.
@@ -15472,6 +15558,11 @@ type GetContentModerationOutput struct {
 
 	// If the job fails, StatusMessage provides a descriptive error message.
 	StatusMessage *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Information about a video that Amazon Rekognition analyzed. Videometadata
 	// is returned in every page of paginated responses from GetContentModeration.
@@ -15496,9 +15587,27 @@ func (s GetContentModerationOutput) GoString() string {
 	return s.String()
 }
 
+// SetGetRequestMetadata sets the GetRequestMetadata field's value.
+func (s *GetContentModerationOutput) SetGetRequestMetadata(v *GetContentModerationRequestMetadata) *GetContentModerationOutput {
+	s.GetRequestMetadata = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetContentModerationOutput) SetJobId(v string) *GetContentModerationOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetContentModerationOutput) SetJobStatus(v string) *GetContentModerationOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetContentModerationOutput) SetJobTag(v string) *GetContentModerationOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -15526,9 +15635,57 @@ func (s *GetContentModerationOutput) SetStatusMessage(v string) *GetContentModer
 	return s
 }
 
+// SetVideo sets the Video field's value.
+func (s *GetContentModerationOutput) SetVideo(v *Video) *GetContentModerationOutput {
+	s.Video = v
+	return s
+}
+
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetContentModerationOutput) SetVideoMetadata(v *VideoMetadata) *GetContentModerationOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// Contains metadata about a content moderation request, including the SortBy
+// and AggregateBy options.
+type GetContentModerationRequestMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation method chosen for a GetContentModeration request.
+	AggregateBy *string `type:"string" enum:"ContentModerationAggregateBy"`
+
+	// The sorting method chosen for a GetContentModeration request.
+	SortBy *string `type:"string" enum:"ContentModerationSortBy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContentModerationRequestMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContentModerationRequestMetadata) GoString() string {
+	return s.String()
+}
+
+// SetAggregateBy sets the AggregateBy field's value.
+func (s *GetContentModerationRequestMetadata) SetAggregateBy(v string) *GetContentModerationRequestMetadata {
+	s.AggregateBy = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetContentModerationRequestMetadata) SetSortBy(v string) *GetContentModerationRequestMetadata {
+	s.SortBy = &v
 	return s
 }
 
@@ -15615,8 +15772,17 @@ type GetFaceDetectionOutput struct {
 	// the face was detected.
 	Faces []*FaceDetection `type:"list"`
 
+	// Job identifier for the face detection operation for which you want to obtain
+	// results. The job identifer is returned by an initial call to StartFaceDetection.
+	JobId *string `min:"1" type:"string"`
+
 	// The current status of the face detection job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartFaceDetection and returned
+	// in the job completion notification sent to your Amazon Simple Notification
+	// Service topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// If the response is truncated, Amazon Rekognition returns this token that
 	// you can use in the subsequent request to retrieve the next set of faces.
@@ -15624,6 +15790,11 @@ type GetFaceDetectionOutput struct {
 
 	// If the job fails, StatusMessage provides a descriptive error message.
 	StatusMessage *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Information about a video that Amazon Rekognition Video analyzed. Videometadata
 	// is returned in every page of paginated responses from a Amazon Rekognition
@@ -15655,9 +15826,21 @@ func (s *GetFaceDetectionOutput) SetFaces(v []*FaceDetection) *GetFaceDetectionO
 	return s
 }
 
+// SetJobId sets the JobId field's value.
+func (s *GetFaceDetectionOutput) SetJobId(v string) *GetFaceDetectionOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetFaceDetectionOutput) SetJobStatus(v string) *GetFaceDetectionOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetFaceDetectionOutput) SetJobTag(v string) *GetFaceDetectionOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -15670,6 +15853,12 @@ func (s *GetFaceDetectionOutput) SetNextToken(v string) *GetFaceDetectionOutput 
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *GetFaceDetectionOutput) SetStatusMessage(v string) *GetFaceDetectionOutput {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *GetFaceDetectionOutput) SetVideo(v *Video) *GetFaceDetectionOutput {
+	s.Video = v
 	return s
 }
 
@@ -15901,8 +16090,17 @@ func (s *GetFaceSearchInput) SetSortBy(v string) *GetFaceSearchInput {
 type GetFaceSearchOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Job identifier for the face search operation for which you want to obtain
+	// results. The job identifer is returned by an initial call to StartFaceSearch.
+	JobId *string `min:"1" type:"string"`
+
 	// The current status of the face search job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartFaceSearch and returned in
+	// the job completion notification sent to your Amazon Simple Notification Service
+	// topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// If the response is truncated, Amazon Rekognition Video returns this token
 	// that you can use in the subsequent request to retrieve the next set of search
@@ -15919,6 +16117,11 @@ type GetFaceSearchOutput struct {
 
 	// If the job fails, StatusMessage provides a descriptive error message.
 	StatusMessage *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Information about a video that Amazon Rekognition analyzed. Videometadata
 	// is returned in every page of paginated responses from a Amazon Rekognition
@@ -15944,9 +16147,21 @@ func (s GetFaceSearchOutput) GoString() string {
 	return s.String()
 }
 
+// SetJobId sets the JobId field's value.
+func (s *GetFaceSearchOutput) SetJobId(v string) *GetFaceSearchOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetFaceSearchOutput) SetJobStatus(v string) *GetFaceSearchOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetFaceSearchOutput) SetJobTag(v string) *GetFaceSearchOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -15965,6 +16180,12 @@ func (s *GetFaceSearchOutput) SetPersons(v []*PersonMatch) *GetFaceSearchOutput 
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *GetFaceSearchOutput) SetStatusMessage(v string) *GetFaceSearchOutput {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *GetFaceSearchOutput) SetVideo(v *Video) *GetFaceSearchOutput {
+	s.Video = v
 	return s
 }
 
@@ -16074,8 +16295,21 @@ func (s *GetLabelDetectionInput) SetSortBy(v string) *GetLabelDetectionInput {
 type GetLabelDetectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the paramters used when getting a response. Includes information
+	// on aggregation and sorting methods.
+	GetRequestMetadata *GetLabelDetectionRequestMetadata `type:"structure"`
+
+	// Job identifier for the label detection operation for which you want to obtain
+	// results. The job identifer is returned by an initial call to StartLabelDetection.
+	JobId *string `min:"1" type:"string"`
+
 	// The current status of the label detection job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartLabelDetection and returned
+	// in the job completion notification sent to your Amazon Simple Notification
+	// Service topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// Version number of the label detection model that was used to detect labels.
 	LabelModelVersion *string `type:"string"`
@@ -16091,6 +16325,11 @@ type GetLabelDetectionOutput struct {
 
 	// If the job fails, StatusMessage provides a descriptive error message.
 	StatusMessage *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Information about a video that Amazon Rekognition Video analyzed. Videometadata
 	// is returned in every page of paginated responses from a Amazon Rekognition
@@ -16116,9 +16355,27 @@ func (s GetLabelDetectionOutput) GoString() string {
 	return s.String()
 }
 
+// SetGetRequestMetadata sets the GetRequestMetadata field's value.
+func (s *GetLabelDetectionOutput) SetGetRequestMetadata(v *GetLabelDetectionRequestMetadata) *GetLabelDetectionOutput {
+	s.GetRequestMetadata = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetLabelDetectionOutput) SetJobId(v string) *GetLabelDetectionOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetLabelDetectionOutput) SetJobStatus(v string) *GetLabelDetectionOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetLabelDetectionOutput) SetJobTag(v string) *GetLabelDetectionOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -16146,9 +16403,57 @@ func (s *GetLabelDetectionOutput) SetStatusMessage(v string) *GetLabelDetectionO
 	return s
 }
 
+// SetVideo sets the Video field's value.
+func (s *GetLabelDetectionOutput) SetVideo(v *Video) *GetLabelDetectionOutput {
+	s.Video = v
+	return s
+}
+
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetLabelDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetLabelDetectionOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// Contains metadata about a label detection request, including the SortBy and
+// AggregateBy options.
+type GetLabelDetectionRequestMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation method chosen for a GetLabelDetection request.
+	AggregateBy *string `type:"string" enum:"LabelDetectionAggregateBy"`
+
+	// The sorting method chosen for a GetLabelDetection request.
+	SortBy *string `type:"string" enum:"LabelDetectionSortBy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLabelDetectionRequestMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLabelDetectionRequestMetadata) GoString() string {
+	return s.String()
+}
+
+// SetAggregateBy sets the AggregateBy field's value.
+func (s *GetLabelDetectionRequestMetadata) SetAggregateBy(v string) *GetLabelDetectionRequestMetadata {
+	s.AggregateBy = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetLabelDetectionRequestMetadata) SetSortBy(v string) *GetLabelDetectionRequestMetadata {
+	s.SortBy = &v
 	return s
 }
 
@@ -16242,8 +16547,17 @@ func (s *GetPersonTrackingInput) SetSortBy(v string) *GetPersonTrackingInput {
 type GetPersonTrackingOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Job identifier for the person tracking operation for which you want to obtain
+	// results. The job identifer is returned by an initial call to StartPersonTracking.
+	JobId *string `min:"1" type:"string"`
+
 	// The current status of the person tracking job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartCelebrityRecognition and returned
+	// in the job completion notification sent to your Amazon Simple Notification
+	// Service topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// If the response is truncated, Amazon Rekognition Video returns this token
 	// that you can use in the subsequent request to retrieve the next set of persons.
@@ -16256,6 +16570,11 @@ type GetPersonTrackingOutput struct {
 
 	// If the job fails, StatusMessage provides a descriptive error message.
 	StatusMessage *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Information about a video that Amazon Rekognition Video analyzed. Videometadata
 	// is returned in every page of paginated responses from a Amazon Rekognition
@@ -16281,9 +16600,21 @@ func (s GetPersonTrackingOutput) GoString() string {
 	return s.String()
 }
 
+// SetJobId sets the JobId field's value.
+func (s *GetPersonTrackingOutput) SetJobId(v string) *GetPersonTrackingOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetPersonTrackingOutput) SetJobStatus(v string) *GetPersonTrackingOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetPersonTrackingOutput) SetJobTag(v string) *GetPersonTrackingOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -16302,6 +16633,12 @@ func (s *GetPersonTrackingOutput) SetPersons(v []*PersonDetection) *GetPersonTra
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *GetPersonTrackingOutput) SetStatusMessage(v string) *GetPersonTrackingOutput {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *GetPersonTrackingOutput) SetVideo(v *Video) *GetPersonTrackingOutput {
+	s.Video = v
 	return s
 }
 
@@ -16394,8 +16731,17 @@ type GetSegmentDetectionOutput struct {
 	// returned in each page of information returned by GetSegmentDetection.
 	AudioMetadata []*AudioMetadata `type:"list"`
 
+	// Job identifier for the segment detection operation for which you want to
+	// obtain results. The job identifer is returned by an initial call to StartSegmentDetection.
+	JobId *string `min:"1" type:"string"`
+
 	// Current status of the segment detection job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartSegmentDetection and returned
+	// in the job completion notification sent to your Amazon Simple Notification
+	// Service topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// If the previous response was incomplete (because there are more labels to
 	// retrieve), Amazon Rekognition Video returns a pagination token in the response.
@@ -16413,6 +16759,11 @@ type GetSegmentDetectionOutput struct {
 
 	// If the job fails, StatusMessage provides a descriptive error message.
 	StatusMessage *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Currently, Amazon Rekognition Video returns a single object in the VideoMetadata
 	// array. The object contains information about the video stream in the input
@@ -16446,9 +16797,21 @@ func (s *GetSegmentDetectionOutput) SetAudioMetadata(v []*AudioMetadata) *GetSeg
 	return s
 }
 
+// SetJobId sets the JobId field's value.
+func (s *GetSegmentDetectionOutput) SetJobId(v string) *GetSegmentDetectionOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetSegmentDetectionOutput) SetJobStatus(v string) *GetSegmentDetectionOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetSegmentDetectionOutput) SetJobTag(v string) *GetSegmentDetectionOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -16473,6 +16836,12 @@ func (s *GetSegmentDetectionOutput) SetSelectedSegmentTypes(v []*SegmentTypeInfo
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *GetSegmentDetectionOutput) SetStatusMessage(v string) *GetSegmentDetectionOutput {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *GetSegmentDetectionOutput) SetVideo(v *Video) *GetSegmentDetectionOutput {
+	s.Video = v
 	return s
 }
 
@@ -16559,8 +16928,17 @@ func (s *GetTextDetectionInput) SetNextToken(v string) *GetTextDetectionInput {
 type GetTextDetectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Job identifier for the text detection operation for which you want to obtain
+	// results. The job identifer is returned by an initial call to StartTextDetection.
+	JobId *string `min:"1" type:"string"`
+
 	// Current status of the text detection job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// A job identifier specified in the call to StartTextDetection and returned
+	// in the job completion notification sent to your Amazon Simple Notification
+	// Service topic.
+	JobTag *string `min:"1" type:"string"`
 
 	// If the response is truncated, Amazon Rekognition Video returns this token
 	// that you can use in the subsequent request to retrieve the next set of text.
@@ -16576,6 +16954,11 @@ type GetTextDetectionOutput struct {
 
 	// Version number of the text detection model that was used to detect text.
 	TextModelVersion *string `type:"string"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	Video *Video `type:"structure"`
 
 	// Information about a video that Amazon Rekognition analyzed. Videometadata
 	// is returned in every page of paginated responses from a Amazon Rekognition
@@ -16601,9 +16984,21 @@ func (s GetTextDetectionOutput) GoString() string {
 	return s.String()
 }
 
+// SetJobId sets the JobId field's value.
+func (s *GetTextDetectionOutput) SetJobId(v string) *GetTextDetectionOutput {
+	s.JobId = &v
+	return s
+}
+
 // SetJobStatus sets the JobStatus field's value.
 func (s *GetTextDetectionOutput) SetJobStatus(v string) *GetTextDetectionOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *GetTextDetectionOutput) SetJobTag(v string) *GetTextDetectionOutput {
+	s.JobTag = &v
 	return s
 }
 
@@ -16628,6 +17023,12 @@ func (s *GetTextDetectionOutput) SetTextDetections(v []*TextDetectionResult) *Ge
 // SetTextModelVersion sets the TextModelVersion field's value.
 func (s *GetTextDetectionOutput) SetTextModelVersion(v string) *GetTextDetectionOutput {
 	s.TextModelVersion = &v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *GetTextDetectionOutput) SetVideo(v *Video) *GetTextDetectionOutput {
+	s.Video = v
 	return s
 }
 
@@ -25502,6 +25903,22 @@ func ContentClassifier_Values() []string {
 	return []string{
 		ContentClassifierFreeOfPersonallyIdentifiableInformation,
 		ContentClassifierFreeOfAdultContent,
+	}
+}
+
+const (
+	// ContentModerationAggregateByTimestamps is a ContentModerationAggregateBy enum value
+	ContentModerationAggregateByTimestamps = "TIMESTAMPS"
+
+	// ContentModerationAggregateBySegments is a ContentModerationAggregateBy enum value
+	ContentModerationAggregateBySegments = "SEGMENTS"
+)
+
+// ContentModerationAggregateBy_Values returns all elements of the ContentModerationAggregateBy enum
+func ContentModerationAggregateBy_Values() []string {
+	return []string{
+		ContentModerationAggregateByTimestamps,
+		ContentModerationAggregateBySegments,
 	}
 }
 

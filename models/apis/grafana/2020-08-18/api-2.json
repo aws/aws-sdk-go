@@ -523,6 +523,7 @@
           "shape":"OverridableConfigurationJson",
           "jsonvalue":true
         },
+        "grafanaVersion":{"shape":"GrafanaVersion"},
         "networkAccessControl":{"shape":"NetworkAccessConfiguration"},
         "organizationRoleName":{"shape":"OrganizationRoleName"},
         "permissionType":{"shape":"PermissionType"},

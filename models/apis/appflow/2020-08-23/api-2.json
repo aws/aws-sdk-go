@@ -1865,6 +1865,12 @@
       "exception":true
     },
     "JavaBoolean":{"type":"boolean"},
+    "JwtToken":{
+      "type":"string",
+      "max":8000,
+      "pattern":"^([a-zA-Z0-9_=]+)\\.([a-zA-Z0-9_=]+)\\.([a-zA-Z0-9_\\-\\+\\/=]*)",
+      "sensitive":true
+    },
     "KMSArn":{
       "type":"string",
       "max":2048,
@@ -2120,7 +2126,8 @@
       "type":"string",
       "enum":[
         "CLIENT_CREDENTIALS",
-        "AUTHORIZATION_CODE"
+        "AUTHORIZATION_CODE",
+        "JWT_BEARER"
       ]
     },
     "OAuth2GrantTypeSupportedList":{
@@ -2706,7 +2713,9 @@
         "accessToken":{"shape":"AccessToken"},
         "refreshToken":{"shape":"RefreshToken"},
         "oAuthRequest":{"shape":"ConnectorOAuthRequest"},
-        "clientCredentialsArn":{"shape":"ClientCredentialsArn"}
+        "clientCredentialsArn":{"shape":"ClientCredentialsArn"},
+        "oAuth2GrantType":{"shape":"OAuth2GrantType"},
+        "jwtToken":{"shape":"JwtToken"}
       }
     },
     "SalesforceConnectorProfileProperties":{
@@ -2744,7 +2753,8 @@
       "type":"structure",
       "members":{
         "oAuthScopes":{"shape":"OAuthScopeList"},
-        "dataTransferApis":{"shape":"SalesforceDataTransferApiList"}
+        "dataTransferApis":{"shape":"SalesforceDataTransferApiList"},
+        "oauth2GrantTypesSupported":{"shape":"OAuth2GrantTypeSupportedList"}
       }
     },
     "SalesforceSourceProperties":{

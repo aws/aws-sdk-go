@@ -262,6 +262,7 @@
     "GrafanaVersion": {
       "base": null,
       "refs": {
+        "CreateWorkspaceRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace.</p> <p>Supported values are <code>8.4</code> and <code>9.4</code>.</p>",
         "WorkspaceDescription$grafanaVersion": "<p>The version of Grafana supported in this workspace.</p>",
         "WorkspaceSummary$grafanaVersion": "<p>The Grafana version that the workspace is running.</p>"
       }

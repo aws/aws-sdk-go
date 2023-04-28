@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS SimSpace Weaver.
 //	func myFunc(svc simspaceweaveriface.SimSpaceWeaverAPI) bool {
-//	    // Make svc.DeleteApp request
+//	    // Make svc.CreateSnapshot request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockSimSpaceWeaverClient struct {
 //	    simspaceweaveriface.SimSpaceWeaverAPI
 //	}
-//	func (m *mockSimSpaceWeaverClient) DeleteApp(input *simspaceweaver.DeleteAppInput) (*simspaceweaver.DeleteAppOutput, error) {
+//	func (m *mockSimSpaceWeaverClient) CreateSnapshot(input *simspaceweaver.CreateSnapshotInput) (*simspaceweaver.CreateSnapshotOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type SimSpaceWeaverAPI interface {
+	CreateSnapshot(*simspaceweaver.CreateSnapshotInput) (*simspaceweaver.CreateSnapshotOutput, error)
+	CreateSnapshotWithContext(aws.Context, *simspaceweaver.CreateSnapshotInput, ...request.Option) (*simspaceweaver.CreateSnapshotOutput, error)
+	CreateSnapshotRequest(*simspaceweaver.CreateSnapshotInput) (*request.Request, *simspaceweaver.CreateSnapshotOutput)
+
 	DeleteApp(*simspaceweaver.DeleteAppInput) (*simspaceweaver.DeleteAppOutput, error)
 	DeleteAppWithContext(aws.Context, *simspaceweaver.DeleteAppInput, ...request.Option) (*simspaceweaver.DeleteAppOutput, error)
 	DeleteAppRequest(*simspaceweaver.DeleteAppInput) (*request.Request, *simspaceweaver.DeleteAppOutput)
