@@ -12,6 +12,23 @@
     "uid":"simspaceweaver-2022-10-28"
   },
   "operations":{
+    "CreateSnapshot":{
+      "name":"CreateSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/createsnapshot",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateSnapshotInput"},
+      "output":{"shape":"CreateSnapshotOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "DeleteApp":{
       "name":"DeleteApp",
       "http":{
@@ -320,6 +337,22 @@
       },
       "exception":true
     },
+    "CreateSnapshotInput":{
+      "type":"structure",
+      "required":[
+        "Destination",
+        "Simulation"
+      ],
+      "members":{
+        "Destination":{"shape":"S3Destination"},
+        "Simulation":{"shape":"SimSpaceWeaverResourceName"}
+      }
+    },
+    "CreateSnapshotOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteAppInput":{
       "type":"structure",
       "required":[
@@ -375,7 +408,7 @@
       ],
       "members":{
         "App":{
-          "shape":"SimSpaceWeaverResourceName",
+          "shape":"SimSpaceWeaverLongResourceName",
           "location":"querystring",
           "locationName":"app"
         },
@@ -398,7 +431,7 @@
         "Domain":{"shape":"SimSpaceWeaverResourceName"},
         "EndpointInfo":{"shape":"SimulationAppEndpointInfo"},
         "LaunchOverrides":{"shape":"LaunchOverrides"},
-        "Name":{"shape":"SimSpaceWeaverResourceName"},
+        "Name":{"shape":"SimSpaceWeaverLongResourceName"},
         "Simulation":{"shape":"SimSpaceWeaverResourceName"},
         "Status":{"shape":"SimulationAppStatus"},
         "TargetStatus":{"shape":"SimulationAppTargetStatus"}
@@ -427,8 +460,14 @@
         "MaximumDuration":{"shape":"TimeToLiveString"},
         "Name":{"shape":"SimSpaceWeaverResourceName"},
         "RoleArn":{"shape":"RoleArn"},
-        "SchemaError":{"shape":"OptionalString"},
+        "SchemaError":{
+          "shape":"OptionalString",
+          "deprecated":true,
+          "deprecatedMessage":"SchemaError is no longer used, check StartError instead."
+        },
         "SchemaS3Location":{"shape":"S3Location"},
+        "SnapshotS3Location":{"shape":"S3Location"},
+        "StartError":{"shape":"OptionalString"},
         "Status":{"shape":"SimulationStatus"},
         "TargetStatus":{"shape":"SimulationTargetStatus"}
       }
@@ -588,6 +627,11 @@
       "max":1024,
       "min":1
     },
+    "ObjectKeyPrefix":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
     "OptionalString":{"type":"string"},
     "PortNumber":{
       "type":"integer",
@@ -617,6 +661,13 @@
       "min":0,
       "pattern":"^arn:(?:aws|aws-cn):iam::(\\d{12})?:role\\/(.+)$"
     },
+    "S3Destination":{
+      "type":"structure",
+      "members":{
+        "BucketName":{"shape":"BucketName"},
+        "ObjectKeyPrefix":{"shape":"ObjectKeyPrefix"}
+      }
+    },
     "S3Location":{
       "type":"structure",
       "members":{
@@ -641,6 +692,12 @@
       "min":0,
       "pattern":"^arn:(?:aws|aws-cn):simspaceweaver:([a-z]{2}-[a-z]+-\\d{1}):(\\d{12})?:([a-z]+)\\/(.+)$"
     },
+    "SimSpaceWeaverLongResourceName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_.-]+$"
+    },
     "SimSpaceWeaverResourceName":{
       "type":"string",
       "max":64,
@@ -662,7 +719,7 @@
       "type":"structure",
       "members":{
         "Domain":{"shape":"SimSpaceWeaverResourceName"},
-        "Name":{"shape":"SimSpaceWeaverResourceName"},
+        "Name":{"shape":"SimSpaceWeaverLongResourceName"},
         "Simulation":{"shape":"SimSpaceWeaverResourceName"},
         "Status":{"shape":"SimulationAppStatus"},
         "TargetStatus":{"shape":"SimulationAppTargetStatus"}
@@ -729,7 +786,8 @@
         "STOPPED",
         "FAILED",
         "DELETING",
-        "DELETED"
+        "DELETED",
+        "SNAPSHOT_IN_PROGRESS"
       ]
     },
     "SimulationTargetStatus":{
@@ -784,8 +842,7 @@
       "type":"structure",
       "required":[
         "Name",
-        "RoleArn",
-        "SchemaS3Location"
+        "RoleArn"
       ],
       "members":{
         "ClientToken":{
@@ -797,6 +854,7 @@
         "Name":{"shape":"SimSpaceWeaverResourceName"},
         "RoleArn":{"shape":"RoleArn"},
         "SchemaS3Location":{"shape":"S3Location"},
+        "SnapshotS3Location":{"shape":"S3Location"},
         "Tags":{"shape":"TagMap"}
       }
     },

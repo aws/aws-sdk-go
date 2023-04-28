@@ -31852,6 +31852,9 @@ type CreateDomainConfigurationInput struct {
 	// For the cli-input-json file use format: "tags": "key1=value1&key2=value2..."
 	Tags []*Tag `locationName:"tags" type:"list"`
 
+	// An object that specifies the TLS configuration for a domain.
+	TlsConfig *TlsConfig `locationName:"tlsConfig" type:"structure"`
+
 	// The certificate used to validate the server certificate and prove domain
 	// name ownership. This certificate must be signed by a public certificate authority.
 	// This value is not required for Amazon Web Services-managed domains.
@@ -31946,6 +31949,12 @@ func (s *CreateDomainConfigurationInput) SetServiceType(v string) *CreateDomainC
 // SetTags sets the Tags field's value.
 func (s *CreateDomainConfigurationInput) SetTags(v []*Tag) *CreateDomainConfigurationInput {
 	s.Tags = v
+	return s
+}
+
+// SetTlsConfig sets the TlsConfig field's value.
+func (s *CreateDomainConfigurationInput) SetTlsConfig(v *TlsConfig) *CreateDomainConfigurationInput {
+	s.TlsConfig = v
 	return s
 }
 
@@ -32434,18 +32443,12 @@ type CreateJobInput struct {
 	// or to create jobs from them.
 	DocumentParameters map[string]*string `locationName:"documentParameters" type:"map"`
 
-	// An S3 link to the job document. Required if you don't specify a value for
-	// document.
+	// An S3 link, or S3 object URL, to the job document. The link is an Amazon
+	// S3 object URL and is required if you don't specify a value for document.
 	//
-	// If the job document resides in an S3 bucket, you must use a placeholder link
-	// when specifying the document.
+	// For example, --document-source https://s3.region-code.amazonaws.com/example-firmware/device-firmware.1.0.
 	//
-	// The placeholder link is of the following form:
-	//
-	// ${aws:iot:s3-presigned-url:https://s3.amazonaws.com/bucket/key}
-	//
-	// where bucket is your bucket name and key is the object in the bucket to which
-	// you are linking.
+	// For more information, see Methods for accessing a bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html).
 	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
 
 	// Allows you to create the criteria to retry a job.
@@ -39605,6 +39608,9 @@ type DescribeDomainConfigurationOutput struct {
 
 	// The type of service delivered by the endpoint.
 	ServiceType *string `locationName:"serviceType" type:"string" enum:"ServiceType"`
+
+	// An object that specifies the TLS configuration for a domain.
+	TlsConfig *TlsConfig `locationName:"tlsConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -39676,6 +39682,12 @@ func (s *DescribeDomainConfigurationOutput) SetServerCertificates(v []*ServerCer
 // SetServiceType sets the ServiceType field's value.
 func (s *DescribeDomainConfigurationOutput) SetServiceType(v string) *DescribeDomainConfigurationOutput {
 	s.ServiceType = &v
+	return s
+}
+
+// SetTlsConfig sets the TlsConfig field's value.
+func (s *DescribeDomainConfigurationOutput) SetTlsConfig(v *TlsConfig) *DescribeDomainConfigurationOutput {
+	s.TlsConfig = v
 	return s
 }
 
@@ -57122,8 +57134,8 @@ type PresignedUrlConfig struct {
 	// receives an MQTT request for the job document.
 	ExpiresInSec *int64 `locationName:"expiresInSec" min:"60" type:"long"`
 
-	// The ARN of an IAM role that grants grants permission to download files from
-	// the S3 bucket where the job data/updates are stored. The role must also grant
+	// The ARN of an IAM role that grants permission to download files from the
+	// S3 bucket where the job data/updates are stored. The role must also grant
 	// permission for IoT to download the files.
 	//
 	// For information about addressing the confused deputy problem, see cross-service
@@ -63982,6 +63994,40 @@ func (s *TimestreamTimestamp) SetValue(v string) *TimestreamTimestamp {
 	return s
 }
 
+// An object that specifies the TLS configuration for a domain.
+type TlsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The security policy for a domain configuration. For more information, see
+	// Security policies (https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html#tls-policy-table)
+	// in the Amazon Web Services IoT Core developer guide.
+	SecurityPolicy *string `locationName:"securityPolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TlsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TlsConfig) GoString() string {
+	return s.String()
+}
+
+// SetSecurityPolicy sets the SecurityPolicy field's value.
+func (s *TlsConfig) SetSecurityPolicy(v string) *TlsConfig {
+	s.SecurityPolicy = &v
+	return s
+}
+
 // Specifies the TLS context to use for the test authorizer request.
 type TlsContext struct {
 	_ struct{} `type:"structure"`
@@ -66133,6 +66179,9 @@ type UpdateDomainConfigurationInput struct {
 
 	// Removes the authorization configuration from a domain.
 	RemoveAuthorizerConfig *bool `locationName:"removeAuthorizerConfig" type:"boolean"`
+
+	// An object that specifies the TLS configuration for a domain.
+	TlsConfig *TlsConfig `locationName:"tlsConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -66195,6 +66244,12 @@ func (s *UpdateDomainConfigurationInput) SetDomainConfigurationStatus(v string) 
 // SetRemoveAuthorizerConfig sets the RemoveAuthorizerConfig field's value.
 func (s *UpdateDomainConfigurationInput) SetRemoveAuthorizerConfig(v bool) *UpdateDomainConfigurationInput {
 	s.RemoveAuthorizerConfig = &v
+	return s
+}
+
+// SetTlsConfig sets the TlsConfig field's value.
+func (s *UpdateDomainConfigurationInput) SetTlsConfig(v *TlsConfig) *UpdateDomainConfigurationInput {
+	s.TlsConfig = v
 	return s
 }
 

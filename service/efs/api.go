@@ -10594,6 +10594,12 @@ const (
 
 	// ReplicationStatusError is a ReplicationStatus enum value
 	ReplicationStatusError = "ERROR"
+
+	// ReplicationStatusPaused is a ReplicationStatus enum value
+	ReplicationStatusPaused = "PAUSED"
+
+	// ReplicationStatusPausing is a ReplicationStatus enum value
+	ReplicationStatusPausing = "PAUSING"
 )
 
 // ReplicationStatus_Values returns all elements of the ReplicationStatus enum
@@ -10603,6 +10609,8 @@ func ReplicationStatus_Values() []string {
 		ReplicationStatusEnabling,
 		ReplicationStatusDeleting,
 		ReplicationStatusError,
+		ReplicationStatusPaused,
+		ReplicationStatusPausing,
 	}
 }
 

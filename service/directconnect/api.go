@@ -8312,7 +8312,8 @@ type CreateLagInput struct {
 	Location *string `locationName:"location" type:"string" required:"true"`
 
 	// The number of physical dedicated connections initially provisioned and bundled
-	// by the LAG.
+	// by the LAG. You can have a maximum of four connections when the port speed
+	// is 1G or 10G, or two when the port speed is 100G.
 	//
 	// NumberOfConnections is a required field
 	NumberOfConnections *int64 `locationName:"numberOfConnections" type:"integer" required:"true"`
@@ -12792,7 +12793,7 @@ type NewTransitVirtualInterface struct {
 	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
 
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
-	// and 9001. The default value is 1500.
+	// and 8500. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
 	// The tags associated with the transitive virtual interface.

@@ -72,6 +72,14 @@ type AthenaAPI interface {
 	BatchGetQueryExecutionWithContext(aws.Context, *athena.BatchGetQueryExecutionInput, ...request.Option) (*athena.BatchGetQueryExecutionOutput, error)
 	BatchGetQueryExecutionRequest(*athena.BatchGetQueryExecutionInput) (*request.Request, *athena.BatchGetQueryExecutionOutput)
 
+	CancelCapacityReservation(*athena.CancelCapacityReservationInput) (*athena.CancelCapacityReservationOutput, error)
+	CancelCapacityReservationWithContext(aws.Context, *athena.CancelCapacityReservationInput, ...request.Option) (*athena.CancelCapacityReservationOutput, error)
+	CancelCapacityReservationRequest(*athena.CancelCapacityReservationInput) (*request.Request, *athena.CancelCapacityReservationOutput)
+
+	CreateCapacityReservation(*athena.CreateCapacityReservationInput) (*athena.CreateCapacityReservationOutput, error)
+	CreateCapacityReservationWithContext(aws.Context, *athena.CreateCapacityReservationInput, ...request.Option) (*athena.CreateCapacityReservationOutput, error)
+	CreateCapacityReservationRequest(*athena.CreateCapacityReservationInput) (*request.Request, *athena.CreateCapacityReservationOutput)
+
 	CreateDataCatalog(*athena.CreateDataCatalogInput) (*athena.CreateDataCatalogOutput, error)
 	CreateDataCatalogWithContext(aws.Context, *athena.CreateDataCatalogInput, ...request.Option) (*athena.CreateDataCatalogOutput, error)
 	CreateDataCatalogRequest(*athena.CreateDataCatalogInput) (*request.Request, *athena.CreateDataCatalogOutput)
@@ -131,6 +139,14 @@ type AthenaAPI interface {
 	GetCalculationExecutionStatus(*athena.GetCalculationExecutionStatusInput) (*athena.GetCalculationExecutionStatusOutput, error)
 	GetCalculationExecutionStatusWithContext(aws.Context, *athena.GetCalculationExecutionStatusInput, ...request.Option) (*athena.GetCalculationExecutionStatusOutput, error)
 	GetCalculationExecutionStatusRequest(*athena.GetCalculationExecutionStatusInput) (*request.Request, *athena.GetCalculationExecutionStatusOutput)
+
+	GetCapacityAssignmentConfiguration(*athena.GetCapacityAssignmentConfigurationInput) (*athena.GetCapacityAssignmentConfigurationOutput, error)
+	GetCapacityAssignmentConfigurationWithContext(aws.Context, *athena.GetCapacityAssignmentConfigurationInput, ...request.Option) (*athena.GetCapacityAssignmentConfigurationOutput, error)
+	GetCapacityAssignmentConfigurationRequest(*athena.GetCapacityAssignmentConfigurationInput) (*request.Request, *athena.GetCapacityAssignmentConfigurationOutput)
+
+	GetCapacityReservation(*athena.GetCapacityReservationInput) (*athena.GetCapacityReservationOutput, error)
+	GetCapacityReservationWithContext(aws.Context, *athena.GetCapacityReservationInput, ...request.Option) (*athena.GetCapacityReservationOutput, error)
+	GetCapacityReservationRequest(*athena.GetCapacityReservationInput) (*request.Request, *athena.GetCapacityReservationOutput)
 
 	GetDataCatalog(*athena.GetDataCatalogInput) (*athena.GetDataCatalogOutput, error)
 	GetDataCatalogWithContext(aws.Context, *athena.GetDataCatalogInput, ...request.Option) (*athena.GetDataCatalogOutput, error)
@@ -200,6 +216,13 @@ type AthenaAPI interface {
 
 	ListCalculationExecutionsPages(*athena.ListCalculationExecutionsInput, func(*athena.ListCalculationExecutionsOutput, bool) bool) error
 	ListCalculationExecutionsPagesWithContext(aws.Context, *athena.ListCalculationExecutionsInput, func(*athena.ListCalculationExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListCapacityReservations(*athena.ListCapacityReservationsInput) (*athena.ListCapacityReservationsOutput, error)
+	ListCapacityReservationsWithContext(aws.Context, *athena.ListCapacityReservationsInput, ...request.Option) (*athena.ListCapacityReservationsOutput, error)
+	ListCapacityReservationsRequest(*athena.ListCapacityReservationsInput) (*request.Request, *athena.ListCapacityReservationsOutput)
+
+	ListCapacityReservationsPages(*athena.ListCapacityReservationsInput, func(*athena.ListCapacityReservationsOutput, bool) bool) error
+	ListCapacityReservationsPagesWithContext(aws.Context, *athena.ListCapacityReservationsInput, func(*athena.ListCapacityReservationsOutput, bool) bool, ...request.Option) error
 
 	ListDataCatalogs(*athena.ListDataCatalogsInput) (*athena.ListDataCatalogsOutput, error)
 	ListDataCatalogsWithContext(aws.Context, *athena.ListDataCatalogsInput, ...request.Option) (*athena.ListDataCatalogsOutput, error)
@@ -286,6 +309,10 @@ type AthenaAPI interface {
 	ListWorkGroupsPages(*athena.ListWorkGroupsInput, func(*athena.ListWorkGroupsOutput, bool) bool) error
 	ListWorkGroupsPagesWithContext(aws.Context, *athena.ListWorkGroupsInput, func(*athena.ListWorkGroupsOutput, bool) bool, ...request.Option) error
 
+	PutCapacityAssignmentConfiguration(*athena.PutCapacityAssignmentConfigurationInput) (*athena.PutCapacityAssignmentConfigurationOutput, error)
+	PutCapacityAssignmentConfigurationWithContext(aws.Context, *athena.PutCapacityAssignmentConfigurationInput, ...request.Option) (*athena.PutCapacityAssignmentConfigurationOutput, error)
+	PutCapacityAssignmentConfigurationRequest(*athena.PutCapacityAssignmentConfigurationInput) (*request.Request, *athena.PutCapacityAssignmentConfigurationOutput)
+
 	StartCalculationExecution(*athena.StartCalculationExecutionInput) (*athena.StartCalculationExecutionOutput, error)
 	StartCalculationExecutionWithContext(aws.Context, *athena.StartCalculationExecutionInput, ...request.Option) (*athena.StartCalculationExecutionOutput, error)
 	StartCalculationExecutionRequest(*athena.StartCalculationExecutionInput) (*request.Request, *athena.StartCalculationExecutionOutput)
@@ -317,6 +344,10 @@ type AthenaAPI interface {
 	UntagResource(*athena.UntagResourceInput) (*athena.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *athena.UntagResourceInput, ...request.Option) (*athena.UntagResourceOutput, error)
 	UntagResourceRequest(*athena.UntagResourceInput) (*request.Request, *athena.UntagResourceOutput)
+
+	UpdateCapacityReservation(*athena.UpdateCapacityReservationInput) (*athena.UpdateCapacityReservationOutput, error)
+	UpdateCapacityReservationWithContext(aws.Context, *athena.UpdateCapacityReservationInput, ...request.Option) (*athena.UpdateCapacityReservationOutput, error)
+	UpdateCapacityReservationRequest(*athena.UpdateCapacityReservationInput) (*request.Request, *athena.UpdateCapacityReservationOutput)
 
 	UpdateDataCatalog(*athena.UpdateDataCatalogInput) (*athena.UpdateDataCatalogOutput, error)
 	UpdateDataCatalogWithContext(aws.Context, *athena.UpdateDataCatalogInput, ...request.Option) (*athena.UpdateDataCatalogOutput, error)

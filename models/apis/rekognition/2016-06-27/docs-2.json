@@ -365,6 +365,13 @@
         "HumanLoopDataAttributes$ContentClassifiers": "<p>Sets whether the input image is free of personally identifiable information.</p>"
       }
     },
+    "ContentModerationAggregateBy": {
+      "base": null,
+      "refs": {
+        "GetContentModerationRequest$AggregateBy": "<p>Defines how to aggregate results of the StartContentModeration request. Default aggregation option is TIMESTAMPS. SEGMENTS mode aggregates moderation labels over time.</p>",
+        "GetContentModerationRequestMetadata$AggregateBy": "<p>The aggregation method chosen for a GetContentModeration request.</p>"
+      }
+    },
     "ContentModerationDetection": {
       "base": "<p>Information about an inappropriate, unwanted, or offensive content label detection in a stored video.</p>",
       "refs": {
@@ -380,7 +387,8 @@
     "ContentModerationSortBy": {
       "base": null,
       "refs": {
-        "GetContentModerationRequest$SortBy": "<p>Sort to use for elements in the <code>ModerationLabelDetections</code> array. Use <code>TIMESTAMP</code> to sort array elements by the time labels are detected. Use <code>NAME</code> to alphabetically group elements for a label together. Within each label group, the array element are sorted by detection confidence. The default sort is by <code>TIMESTAMP</code>.</p>"
+        "GetContentModerationRequest$SortBy": "<p>Sort to use for elements in the <code>ModerationLabelDetections</code> array. Use <code>TIMESTAMP</code> to sort array elements by the time labels are detected. Use <code>NAME</code> to alphabetically group elements for a label together. Within each label group, the array element are sorted by detection confidence. The default sort is by <code>TIMESTAMP</code>.</p>",
+        "GetContentModerationRequestMetadata$SortBy": "<p>The sorting method chosen for a GetContentModeration request.</p>"
       }
     },
     "CopyProjectVersionRequest": {
@@ -1173,6 +1181,12 @@
       "refs": {
       }
     },
+    "GetContentModerationRequestMetadata": {
+      "base": "<p>Contains metadata about a content moderation request, including the SortBy and AggregateBy options.</p>",
+      "refs": {
+        "GetContentModerationResponse$GetRequestMetadata": "<p>Information about the paramters used when getting a response. Includes information on aggregation and sorting methods.</p>"
+      }
+    },
     "GetContentModerationResponse": {
       "base": null,
       "refs": {
@@ -1211,6 +1225,12 @@
     "GetLabelDetectionRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "GetLabelDetectionRequestMetadata": {
+      "base": "<p>Contains metadata about a label detection request, including the SortBy and AggregateBy options.</p>",
+      "refs": {
+        "GetLabelDetectionResponse$GetRequestMetadata": "<p>Information about the paramters used when getting a response. Includes information on aggregation and sorting methods.</p>"
       }
     },
     "GetLabelDetectionResponse": {
@@ -1443,13 +1463,21 @@
       "base": null,
       "refs": {
         "GetCelebrityRecognitionRequest$JobId": "<p>Job identifier for the required celebrity recognition analysis. You can get the job identifer from a call to <code>StartCelebrityRecognition</code>.</p>",
+        "GetCelebrityRecognitionResponse$JobId": "<p>Job identifier for the celebrity recognition operation for which you want to obtain results. The job identifer is returned by an initial call to StartCelebrityRecognition.</p>",
         "GetContentModerationRequest$JobId": "<p>The identifier for the inappropriate, unwanted, or offensive content moderation job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetContentModeration</code>.</p>",
+        "GetContentModerationResponse$JobId": "<p>Job identifier for the content moderation operation for which you want to obtain results. The job identifer is returned by an initial call to StartContentModeration.</p>",
         "GetFaceDetectionRequest$JobId": "<p>Unique identifier for the face detection job. The <code>JobId</code> is returned from <code>StartFaceDetection</code>.</p>",
+        "GetFaceDetectionResponse$JobId": "<p>Job identifier for the face detection operation for which you want to obtain results. The job identifer is returned by an initial call to StartFaceDetection.</p>",
         "GetFaceSearchRequest$JobId": "<p>The job identifer for the search request. You get the job identifier from an initial call to <code>StartFaceSearch</code>.</p>",
+        "GetFaceSearchResponse$JobId": "<p>Job identifier for the face search operation for which you want to obtain results. The job identifer is returned by an initial call to StartFaceSearch.</p>",
         "GetLabelDetectionRequest$JobId": "<p>Job identifier for the label detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartlabelDetection</code>.</p>",
+        "GetLabelDetectionResponse$JobId": "<p>Job identifier for the label detection operation for which you want to obtain results. The job identifer is returned by an initial call to StartLabelDetection.</p>",
         "GetPersonTrackingRequest$JobId": "<p>The identifier for a job that tracks persons in a video. You get the <code>JobId</code> from a call to <code>StartPersonTracking</code>. </p>",
+        "GetPersonTrackingResponse$JobId": "<p>Job identifier for the person tracking operation for which you want to obtain results. The job identifer is returned by an initial call to StartPersonTracking.</p>",
         "GetSegmentDetectionRequest$JobId": "<p>Job identifier for the text detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartSegmentDetection</code>.</p>",
+        "GetSegmentDetectionResponse$JobId": "<p>Job identifier for the segment detection operation for which you want to obtain results. The job identifer is returned by an initial call to StartSegmentDetection.</p>",
         "GetTextDetectionRequest$JobId": "<p>Job identifier for the text detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartTextDetection</code>.</p>",
+        "GetTextDetectionResponse$JobId": "<p>Job identifier for the text detection operation for which you want to obtain results. The job identifer is returned by an initial call to StartTextDetection.</p>",
         "StartCelebrityRecognitionResponse$JobId": "<p>The identifier for the celebrity recognition analysis job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetCelebrityRecognition</code>.</p>",
         "StartContentModerationResponse$JobId": "<p>The identifier for the content analysis job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetContentModeration</code>.</p>",
         "StartFaceDetectionResponse$JobId": "<p>The identifier for the face detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetFaceDetection</code>.</p>",
@@ -1463,6 +1491,14 @@
     "JobTag": {
       "base": null,
       "refs": {
+        "GetCelebrityRecognitionResponse$JobTag": "<p>A job identifier specified in the call to StartCelebrityRecognition and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
+        "GetContentModerationResponse$JobTag": "<p>A job identifier specified in the call to StartContentModeration and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
+        "GetFaceDetectionResponse$JobTag": "<p>A job identifier specified in the call to StartFaceDetection and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
+        "GetFaceSearchResponse$JobTag": "<p>A job identifier specified in the call to StartFaceSearch and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
+        "GetLabelDetectionResponse$JobTag": "<p>A job identifier specified in the call to StartLabelDetection and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
+        "GetPersonTrackingResponse$JobTag": "<p>A job identifier specified in the call to StartCelebrityRecognition and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
+        "GetSegmentDetectionResponse$JobTag": "<p>A job identifier specified in the call to StartSegmentDetection and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
+        "GetTextDetectionResponse$JobTag": "<p>A job identifier specified in the call to StartTextDetection and returned in the job completion notification sent to your Amazon Simple Notification Service topic.</p>",
         "StartCelebrityRecognitionRequest$JobTag": "<p>An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>",
         "StartContentModerationRequest$JobTag": "<p>An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>",
         "StartFaceDetectionRequest$JobTag": "<p>An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>",
@@ -1574,7 +1610,8 @@
     "LabelDetectionAggregateBy": {
       "base": null,
       "refs": {
-        "GetLabelDetectionRequest$AggregateBy": "<p>Defines how to aggregate the returned results. Results can be aggregated by timestamps or segments.</p>"
+        "GetLabelDetectionRequest$AggregateBy": "<p>Defines how to aggregate the returned results. Results can be aggregated by timestamps or segments.</p>",
+        "GetLabelDetectionRequestMetadata$AggregateBy": "<p>The aggregation method chosen for a GetLabelDetection request.</p>"
       }
     },
     "LabelDetectionFeatureList": {
@@ -1598,7 +1635,8 @@
     "LabelDetectionSortBy": {
       "base": null,
       "refs": {
-        "GetLabelDetectionRequest$SortBy": "<p>Sort to use for elements in the <code>Labels</code> array. Use <code>TIMESTAMP</code> to sort array elements by the time labels are detected. Use <code>NAME</code> to alphabetically group elements for a label together. Within each label group, the array element are sorted by detection confidence. The default sort is by <code>TIMESTAMP</code>.</p>"
+        "GetLabelDetectionRequest$SortBy": "<p>Sort to use for elements in the <code>Labels</code> array. Use <code>TIMESTAMP</code> to sort array elements by the time labels are detected. Use <code>NAME</code> to alphabetically group elements for a label together. Within each label group, the array element are sorted by detection confidence. The default sort is by <code>TIMESTAMP</code>.</p>",
+        "GetLabelDetectionRequestMetadata$SortBy": "<p>The sorting method chosen for a GetLabelDetection request.</p>"
       }
     },
     "LabelDetections": {
@@ -2950,6 +2988,9 @@
         "AudioMetadata$DurationMillis": "<p>The duration of the audio stream in milliseconds.</p>",
         "AudioMetadata$SampleRate": "<p>The sample rate for the audio stream.</p>",
         "AudioMetadata$NumberOfChannels": "<p>The number of audio channels in the segment.</p>",
+        "ContentModerationDetection$StartTimestampMillis": "<p>The time in milliseconds defining the start of the timeline segment containing a continuously detected moderation label.</p>",
+        "ContentModerationDetection$EndTimestampMillis": "<p> The time in milliseconds defining the end of the timeline segment containing a continuously detected moderation label. </p>",
+        "ContentModerationDetection$DurationMillis": "<p> The time duration of a segment in milliseconds, I.e. time elapsed from StartTimestampMillis to EndTimestampMillis. </p>",
         "DescribeCollectionResponse$FaceCount": "<p>The number of faces that are indexed into the collection. To index faces into a collection, use <a>IndexFaces</a>.</p>",
         "KinesisVideoStreamStartSelector$ProducerTimestamp": "<p> The timestamp from the producer corresponding to the fragment, in milliseconds, expressed in unix time format. </p>",
         "LabelDetection$StartTimestampMillis": "<p>The time in milliseconds defining the start of the timeline segment containing a continuously detected label.</p>",
@@ -3046,6 +3087,14 @@
     "Video": {
       "base": "<p>Video file stored in an Amazon S3 bucket. Amazon Rekognition video start operations such as <a>StartLabelDetection</a> use <code>Video</code> to specify a video for analysis. The supported file formats are .mp4, .mov and .avi.</p>",
       "refs": {
+        "GetCelebrityRecognitionResponse$Video": null,
+        "GetContentModerationResponse$Video": null,
+        "GetFaceDetectionResponse$Video": null,
+        "GetFaceSearchResponse$Video": null,
+        "GetLabelDetectionResponse$Video": null,
+        "GetPersonTrackingResponse$Video": null,
+        "GetSegmentDetectionResponse$Video": null,
+        "GetTextDetectionResponse$Video": null,
         "StartCelebrityRecognitionRequest$Video": "<p>The video in which you want to recognize celebrities. The video must be stored in an Amazon S3 bucket.</p>",
         "StartContentModerationRequest$Video": "<p>The video in which you want to detect inappropriate, unwanted, or offensive content. The video must be stored in an Amazon S3 bucket.</p>",
         "StartFaceDetectionRequest$Video": "<p>The video in which you want to detect faces. The video must be stored in an Amazon S3 bucket.</p>",

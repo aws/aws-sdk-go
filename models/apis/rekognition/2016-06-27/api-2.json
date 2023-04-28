@@ -1499,11 +1499,21 @@
       "member":{"shape":"ContentClassifier"},
       "max":256
     },
+    "ContentModerationAggregateBy":{
+      "type":"string",
+      "enum":[
+        "TIMESTAMPS",
+        "SEGMENTS"
+      ]
+    },
     "ContentModerationDetection":{
       "type":"structure",
       "members":{
         "Timestamp":{"shape":"Timestamp"},
-        "ModerationLabel":{"shape":"ModerationLabel"}
+        "ModerationLabel":{"shape":"ModerationLabel"},
+        "StartTimestampMillis":{"shape":"ULong"},
+        "EndTimestampMillis":{"shape":"ULong"},
+        "DurationMillis":{"shape":"ULong"}
       }
     },
     "ContentModerationDetections":{
@@ -2468,7 +2478,10 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Celebrities":{"shape":"CelebrityRecognitions"}
+        "Celebrities":{"shape":"CelebrityRecognitions"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"}
       }
     },
     "GetContentModerationRequest":{
@@ -2478,7 +2491,15 @@
         "JobId":{"shape":"JobId"},
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"PaginationToken"},
-        "SortBy":{"shape":"ContentModerationSortBy"}
+        "SortBy":{"shape":"ContentModerationSortBy"},
+        "AggregateBy":{"shape":"ContentModerationAggregateBy"}
+      }
+    },
+    "GetContentModerationRequestMetadata":{
+      "type":"structure",
+      "members":{
+        "SortBy":{"shape":"ContentModerationSortBy"},
+        "AggregateBy":{"shape":"ContentModerationAggregateBy"}
       }
     },
     "GetContentModerationResponse":{
@@ -2489,7 +2510,11 @@
         "VideoMetadata":{"shape":"VideoMetadata"},
         "ModerationLabels":{"shape":"ContentModerationDetections"},
         "NextToken":{"shape":"PaginationToken"},
-        "ModerationModelVersion":{"shape":"String"}
+        "ModerationModelVersion":{"shape":"String"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"},
+        "GetRequestMetadata":{"shape":"GetContentModerationRequestMetadata"}
       }
     },
     "GetFaceDetectionRequest":{
@@ -2508,7 +2533,10 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Faces":{"shape":"FaceDetections"}
+        "Faces":{"shape":"FaceDetections"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"}
       }
     },
     "GetFaceLivenessSessionResultsRequest":{
@@ -2549,7 +2577,10 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "NextToken":{"shape":"PaginationToken"},
         "VideoMetadata":{"shape":"VideoMetadata"},
-        "Persons":{"shape":"PersonMatches"}
+        "Persons":{"shape":"PersonMatches"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"}
       }
     },
     "GetLabelDetectionRequest":{
@@ -2563,6 +2594,13 @@
         "AggregateBy":{"shape":"LabelDetectionAggregateBy"}
       }
     },
+    "GetLabelDetectionRequestMetadata":{
+      "type":"structure",
+      "members":{
+        "SortBy":{"shape":"LabelDetectionSortBy"},
+        "AggregateBy":{"shape":"LabelDetectionAggregateBy"}
+      }
+    },
     "GetLabelDetectionResponse":{
       "type":"structure",
       "members":{
@@ -2571,7 +2609,11 @@
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
         "Labels":{"shape":"LabelDetections"},
-        "LabelModelVersion":{"shape":"String"}
+        "LabelModelVersion":{"shape":"String"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"},
+        "GetRequestMetadata":{"shape":"GetLabelDetectionRequestMetadata"}
       }
     },
     "GetPersonTrackingRequest":{
@@ -2591,7 +2633,10 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Persons":{"shape":"PersonDetections"}
+        "Persons":{"shape":"PersonDetections"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"}
       }
     },
     "GetSegmentDetectionRequest":{
@@ -2612,7 +2657,10 @@
         "AudioMetadata":{"shape":"AudioMetadataList"},
         "NextToken":{"shape":"PaginationToken"},
         "Segments":{"shape":"SegmentDetections"},
-        "SelectedSegmentTypes":{"shape":"SegmentTypesInfo"}
+        "SelectedSegmentTypes":{"shape":"SegmentTypesInfo"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"}
       }
     },
     "GetTextDetectionRequest":{
@@ -2632,7 +2680,10 @@
         "VideoMetadata":{"shape":"VideoMetadata"},
         "TextDetections":{"shape":"TextDetectionResults"},
         "NextToken":{"shape":"PaginationToken"},
-        "TextModelVersion":{"shape":"String"}
+        "TextModelVersion":{"shape":"String"},
+        "JobId":{"shape":"JobId"},
+        "Video":{"shape":"Video"},
+        "JobTag":{"shape":"JobTag"}
       }
     },
     "GroundTruthBlob":{
@@ -2830,9 +2881,9 @@
     },
     "JobTag":{
       "type":"string",
-      "max":256,
+      "max":1024,
       "min":1,
-      "pattern":"[a-zA-Z0-9_.\\-:]+"
+      "pattern":"[a-zA-Z0-9_.\\-:+=\\/]+"
     },
     "KinesisDataArn":{
       "type":"string",

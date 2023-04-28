@@ -3852,9 +3852,9 @@ func (c *WorkSpaces) ImportWorkspaceImageRequest(input *ImportWorkspaceImageInpu
 
 // ImportWorkspaceImage API operation for Amazon WorkSpaces.
 //
-// Imports the specified Windows 10 Bring Your Own License (BYOL) image into
-// Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image
-// that is in your Amazon Web Services account, and you must own the image.
+// Imports the specified Windows 10 or 11 Bring Your Own License (BYOL) image
+// into Amazon WorkSpaces. The image must be an already licensed Amazon EC2
+// image that is in your Amazon Web Services account, and you must own the image.
 // For more information about creating BYOL images, see Bring Your Own Windows
 // Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 //
@@ -11462,10 +11462,13 @@ type ImportWorkspaceImageInput struct {
 	_ struct{} `type:"structure"`
 
 	// If specified, the version of Microsoft Office to subscribe to. Valid only
-	// for Windows 10 BYOL images. For more information about subscribing to Office
-	// for BYOL images, see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
+	// for Windows 10 and 11 BYOL images. For more information about subscribing
+	// to Office for BYOL images, see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 	//
-	// Although this parameter is an array, only one item is allowed at this time.
+	//    * Although this parameter is an array, only one item is allowed at this
+	//    time.
+	//
+	//    * Windows 11 only supports Microsoft_Office_2019.
 	Applications []*string `min:"1" type:"list" enum:"Application"`
 
 	// The identifier of the EC2 image.

@@ -5438,7 +5438,8 @@
         "validationCertificateArn":{"shape":"AcmCertificateArn"},
         "authorizerConfig":{"shape":"AuthorizerConfig"},
         "serviceType":{"shape":"ServiceType"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "tlsConfig":{"shape":"TlsConfig"}
       }
     },
     "CreateDomainConfigurationResponse":{
@@ -6908,7 +6909,8 @@
         "domainConfigurationStatus":{"shape":"DomainConfigurationStatus"},
         "serviceType":{"shape":"ServiceType"},
         "domainType":{"shape":"DomainType"},
-        "lastStatusChangeDate":{"shape":"DateType"}
+        "lastStatusChangeDate":{"shape":"DateType"},
+        "tlsConfig":{"shape":"TlsConfig"}
       }
     },
     "DescribeEndpointRequest":{
@@ -11964,6 +11966,11 @@
       "type":"list",
       "member":{"shape":"SecurityGroupId"}
     },
+    "SecurityPolicy":{
+      "type":"string",
+      "max":128,
+      "pattern":"[\\s\\S]*"
+    },
     "SecurityProfileArn":{"type":"string"},
     "SecurityProfileDescription":{
       "type":"string",
@@ -12937,6 +12944,12 @@
       "max":10,
       "min":1
     },
+    "TlsConfig":{
+      "type":"structure",
+      "members":{
+        "securityPolicy":{"shape":"SecurityPolicy"}
+      }
+    },
     "TlsContext":{
       "type":"structure",
       "members":{
@@ -13340,7 +13353,8 @@
         },
         "authorizerConfig":{"shape":"AuthorizerConfig"},
         "domainConfigurationStatus":{"shape":"DomainConfigurationStatus"},
-        "removeAuthorizerConfig":{"shape":"RemoveAuthorizerConfig"}
+        "removeAuthorizerConfig":{"shape":"RemoveAuthorizerConfig"},
+        "tlsConfig":{"shape":"TlsConfig"}
       }
     },
     "UpdateDomainConfigurationResponse":{

@@ -13,6 +13,119 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateSnapshot = "CreateSnapshot"
+
+// CreateSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSnapshot for more information on using the CreateSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateSnapshotRequest method.
+//	req, resp := client.CreateSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/simspaceweaver-2022-10-28/CreateSnapshot
+func (c *SimSpaceWeaver) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Request, output *CreateSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opCreateSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/createsnapshot",
+	}
+
+	if input == nil {
+		input = &CreateSnapshotInput{}
+	}
+
+	output = &CreateSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateSnapshot API operation for AWS SimSpace Weaver.
+//
+// Creates a snapshot of the specified simulation. A snapshot is a file that
+// contains simulation state data at a specific time. The state data saved in
+// a snapshot includes entity data from the State Fabric, the simulation configuration
+// specified in the schema, and the clock tick number. You can use the snapshot
+// to initialize a new simulation. For more information about snapshots, see
+// Snapshots (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/working-with_snapshots.html)
+// in the SimSpace Weaver User Guide.
+//
+// You specify a Destination when you create a snapshot. The Destination is
+// the name of an Amazon S3 bucket and an optional ObjectKeyPrefix. The ObjectKeyPrefix
+// is usually the name of a folder in the bucket. SimSpace Weaver creates a
+// snapshot folder inside the Destination and places the snapshot file there.
+//
+// The snapshot file is an Amazon S3 object. It has an object key with the form:
+// object-key-prefix/snapshot/simulation-name-YYMMdd-HHmm-ss.zip, where:
+//
+//   - YY is the 2-digit year
+//
+//   - MM is the 2-digit month
+//
+//   - dd is the 2-digit day of the month
+//
+//   - HH is the 2-digit hour (24-hour clock)
+//
+//   - mm is the 2-digit minutes
+//
+//   - ss is the 2-digit seconds
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SimSpace Weaver's
+// API operation CreateSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - InternalServerException
+//
+//   - AccessDeniedException
+//
+//   - ValidationException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/simspaceweaver-2022-10-28/CreateSnapshot
+func (c *SimSpaceWeaver) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
+	req, out := c.CreateSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// CreateSnapshotWithContext is the same as CreateSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimSpaceWeaver) CreateSnapshotWithContext(ctx aws.Context, input *CreateSnapshotInput, opts ...request.Option) (*CreateSnapshotOutput, error) {
+	req, out := c.CreateSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteApp = "DeleteApp"
 
 // DeleteAppRequest generates a "aws/request.Request" representing the
@@ -146,8 +259,8 @@ func (c *SimSpaceWeaver) DeleteSimulationRequest(input *DeleteSimulationInput) (
 //
 // Deletes all SimSpace Weaver resources assigned to the given simulation.
 //
-// Your simulation uses resources in other Amazon Web Services services. This
-// API operation doesn't delete resources in other Amazon Web Services services.
+// Your simulation uses resources in other Amazon Web Services. This API operation
+// doesn't delete resources in other Amazon Web Services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -935,7 +1048,12 @@ func (c *SimSpaceWeaver) StartSimulationRequest(input *StartSimulationInput) (re
 
 // StartSimulation API operation for AWS SimSpace Weaver.
 //
-// Starts a simulation with the given name and schema.
+// Starts a simulation with the given name. You must choose to start your simulation
+// from a schema or from a snapshot. For more information about the schema,
+// see the schema reference (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/schema-reference.html)
+// in the SimSpace Weaver User Guide. For more information about snapshots,
+// see Snapshots (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/working-with_snapshots.html)
+// in the SimSpace Weaver User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1198,8 +1316,9 @@ func (c *SimSpaceWeaver) StopSimulationRequest(input *StopSimulationInput) (req 
 //
 // Stops the given simulation.
 //
-// You can't restart a simulation after you stop it. If you need to restart
-// a simulation, you must stop it, delete it, and start a new instance of it.
+// You can't restart a simulation after you stop it. If you want to restart
+// a simulation, then you must stop it, delete it, and start a new instance
+// of it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1575,6 +1694,97 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket and optional folder (object key prefix) where SimSpace
+	// Weaver creates the snapshot file.
+	//
+	// Destination is a required field
+	Destination *S3Destination `type:"structure" required:"true"`
+
+	// The name of the simulation.
+	//
+	// Simulation is a required field
+	Simulation *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSnapshotInput"}
+	if s.Destination == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destination"))
+	}
+	if s.Simulation == nil {
+		invalidParams.Add(request.NewErrParamRequired("Simulation"))
+	}
+	if s.Simulation != nil && len(*s.Simulation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Simulation", 1))
+	}
+	if s.Destination != nil {
+		if err := s.Destination.Validate(); err != nil {
+			invalidParams.AddNested("Destination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *CreateSnapshotInput) SetDestination(v *S3Destination) *CreateSnapshotInput {
+	s.Destination = v
+	return s
+}
+
+// SetSimulation sets the Simulation field's value.
+func (s *CreateSnapshotInput) SetSimulation(v string) *CreateSnapshotInput {
+	s.Simulation = &v
+	return s
+}
+
+type CreateSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSnapshotOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteAppInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -1847,7 +2057,7 @@ type DescribeAppOutput struct {
 	// endpoint to connect to the custom app.
 	EndpointInfo *SimulationAppEndpointInfo `type:"structure"`
 
-	// Options that apply when the app starts. These optiAons override default behavior.
+	// Options that apply when the app starts. These options override default behavior.
 	LaunchOverrides *LaunchOverrides `type:"structure"`
 
 	// The name of the app.
@@ -2002,9 +2212,11 @@ type DescribeSimulationOutput struct {
 	// Settings that control how SimSpace Weaver handles your simulation log data.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 
-	// The maximum running time of the simulation, specified as a number of months
+	// The maximum running time of the simulation, specified as a number of minutes
 	// (m or M), hours (h or H), or days (d or D). The simulation stops when it
-	// reaches this limit.
+	// reaches this limit. The maximum value is 14D, or its equivalent in the other
+	// units. The default value is 14D. A value equivalent to 0 makes the simulation
+	// immediately transition to Stopping as soon as it reaches Started.
 	MaximumDuration *string `min:"2" type:"string"`
 
 	// The name of the simulation.
@@ -2020,12 +2232,24 @@ type DescribeSimulationOutput struct {
 
 	// An error message that SimSpace Weaver returns only if there is a problem
 	// with the simulation schema.
-	SchemaError *string `type:"string"`
+	//
+	// Deprecated: SchemaError is no longer used, check StartError instead.
+	SchemaError *string `deprecated:"true" type:"string"`
 
 	// The location of the simulation schema in Amazon Simple Storage Service (Amazon
 	// S3). For more information about Amazon S3, see the Amazon Simple Storage
 	// Service User Guide (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
 	SchemaS3Location *S3Location `type:"structure"`
+
+	// A location in Amazon Simple Storage Service (Amazon S3) where SimSpace Weaver
+	// stores simulation data, such as your app .zip files and schema file. For
+	// more information about Amazon S3, see the Amazon Simple Storage Service User
+	// Guide (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
+	SnapshotS3Location *S3Location `type:"structure"`
+
+	// An error message that SimSpace Weaver returns only if a problem occurs when
+	// the simulation is in the STARTING state.
+	StartError *string `type:"string"`
 
 	// The current lifecycle state of the simulation.
 	Status *string `type:"string" enum:"SimulationStatus"`
@@ -2118,6 +2342,18 @@ func (s *DescribeSimulationOutput) SetSchemaS3Location(v *S3Location) *DescribeS
 	return s
 }
 
+// SetSnapshotS3Location sets the SnapshotS3Location field's value.
+func (s *DescribeSimulationOutput) SetSnapshotS3Location(v *S3Location) *DescribeSimulationOutput {
+	s.SnapshotS3Location = v
+	return s
+}
+
+// SetStartError sets the StartError field's value.
+func (s *DescribeSimulationOutput) SetStartError(v string) *DescribeSimulationOutput {
+	s.StartError = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *DescribeSimulationOutput) SetStatus(v string) *DescribeSimulationOutput {
 	s.Status = &v
@@ -2133,27 +2369,24 @@ func (s *DescribeSimulationOutput) SetTargetStatus(v string) *DescribeSimulation
 // A collection of app instances that run the same executable app code and have
 // the same launch options and commands.
 //
-// For more information about domains, see Key concepts (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/what-is_key-concepts.html)
-// in the Amazon Web Services SimSpace Weaver User Guide.
+// For more information about domains, see Key concepts: Domains (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/what-is_key-concepts.html#what-is_key-concepts_domains)
+// in the SimSpace Weaver User Guide.
 type Domain struct {
 	_ struct{} `type:"structure"`
 
-	// The type of lifecycle management for apps in the domain. This value indicates
-	// whether apps in this domain are managed (SimSpace Weaver starts and stops
-	// the apps) or unmanaged (you must start and stop the apps).
+	// The type of lifecycle management for apps in the domain. Indicates whether
+	// apps in this domain are managed (SimSpace Weaver starts and stops the apps)
+	// or unmanaged (you must start and stop the apps).
 	//
 	// Lifecycle types
 	//
-	//    * PerWorker – Managed: SimSpace Weaver starts 1 app on each worker
+	//    * PerWorker – Managed: SimSpace Weaver starts one app on each worker.
 	//
-	//    * BySpatialSubdivision – Managed: SimSpace Weaver starts 1 app for each
-	//    spatial partition
+	//    * BySpatialSubdivision – Managed: SimSpace Weaver starts one app for
+	//    each spatial partition.
 	//
 	//    * ByRequest – Unmanaged: You use the StartApp API to start the apps
 	//    and use the StopApp API to stop the apps.
-	//
-	// The lifecycle types will change when the service is released for general
-	// availability (GA).
 	Lifecycle *string `type:"string" enum:"LifecycleManagementStrategy"`
 
 	// The name of the domain.
@@ -2253,7 +2486,7 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Options that apply when the app starts. These optiAons override default behavior.
+// Options that apply when the app starts. These options override default behavior.
 type LaunchOverrides struct {
 	_ struct{} `type:"structure"`
 
@@ -2295,12 +2528,12 @@ type ListAppsInput struct {
 	// The maximum number of apps to list.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// If SimSpace Weaver returns nextToken, there are more results available. The
-	// value of nextToken is a unique pagination token for each page. To retrieve
+	// If SimSpace Weaver returns nextToken, then there are more results available.
+	// The value of nextToken is a unique pagination token for each page. To retrieve
 	// the next page, call the operation again using the returned token. Keep all
-	// other arguments unchanged. If no results remain, nextToken is set to null.
-	// Each pagination token expires after 24 hours. If you provide a token that
-	// isn't valid, you receive an HTTP 400 ValidationException error.
+	// other arguments unchanged. If no results remain, then nextToken is set to
+	// null. Each pagination token expires after 24 hours. If you provide a token
+	// that isn't valid, then you receive an HTTP 400 ValidationException error.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The name of the simulation that you want to list apps for.
@@ -2379,12 +2612,12 @@ type ListAppsOutput struct {
 	// The list of apps for the given simulation and domain.
 	Apps []*SimulationAppMetadata `type:"list"`
 
-	// If SimSpace Weaver returns nextToken, there are more results available. The
-	// value of nextToken is a unique pagination token for each page. To retrieve
+	// If SimSpace Weaver returns nextToken, then there are more results available.
+	// The value of nextToken is a unique pagination token for each page. To retrieve
 	// the next page, call the operation again using the returned token. Keep all
-	// other arguments unchanged. If no results remain, nextToken is set to null.
-	// Each pagination token expires after 24 hours. If you provide a token that
-	// isn't valid, you receive an HTTP 400 ValidationException error.
+	// other arguments unchanged. If no results remain, then nextToken is set to
+	// null. Each pagination token expires after 24 hours. If you provide a token
+	// that isn't valid, then you receive an HTTP 400 ValidationException error.
 	NextToken *string `type:"string"`
 }
 
@@ -2424,12 +2657,12 @@ type ListSimulationsInput struct {
 	// The maximum number of simulations to list.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// If SimSpace Weaver returns nextToken, there are more results available. The
-	// value of nextToken is a unique pagination token for each page. To retrieve
+	// If SimSpace Weaver returns nextToken, then there are more results available.
+	// The value of nextToken is a unique pagination token for each page. To retrieve
 	// the next page, call the operation again using the returned token. Keep all
-	// other arguments unchanged. If no results remain, nextToken is set to null.
-	// Each pagination token expires after 24 hours. If you provide a token that
-	// isn't valid, you receive an HTTP 400 ValidationException error.
+	// other arguments unchanged. If no results remain, then nextToken is set to
+	// null. Each pagination token expires after 24 hours. If you provide a token
+	// that isn't valid, then you receive an HTTP 400 ValidationException error.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -2479,12 +2712,12 @@ func (s *ListSimulationsInput) SetNextToken(v string) *ListSimulationsInput {
 type ListSimulationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If SimSpace Weaver returns nextToken, there are more results available. The
-	// value of nextToken is a unique pagination token for each page. To retrieve
+	// If SimSpace Weaver returns nextToken, then there are more results available.
+	// The value of nextToken is a unique pagination token for each page. To retrieve
 	// the next page, call the operation again using the returned token. Keep all
-	// other arguments unchanged. If no results remain, nextToken is set to null.
-	// Each pagination token expires after 24 hours. If you provide a token that
-	// isn't valid, you receive an HTTP 400 ValidationException error.
+	// other arguments unchanged. If no results remain, then nextToken is set to
+	// null. Each pagination token expires after 24 hours. If you provide a token
+	// that isn't valid, then you receive an HTTP 400 ValidationException error.
 	NextToken *string `type:"string"`
 
 	// The list of simulations.
@@ -2613,8 +2846,8 @@ type LiveSimulationState struct {
 	Clocks []*SimulationClock `type:"list"`
 
 	// A list of domains for the simulation. For more information about domains,
-	// see Key concepts (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/what-is_key-concepts.html)
-	// in the Amazon Web Services SimSpace Weaver User Guide.
+	// see Key concepts: Domains (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/what-is_key-concepts.html#what-is_key-concepts_domains)
+	// in the SimSpace Weaver User Guide.
 	Domains []*Domain `type:"list"`
 }
 
@@ -2778,10 +3011,70 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An Amazon S3 bucket and optional folder (object key prefix) where SimSpace
+// Weaver creates a file.
+type S3Destination struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an Amazon S3 bucket. For more information about buckets, see
+	// Creating, configuring, and working with Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html)
+	// in the Amazon Simple Storage Service User Guide.
+	BucketName *string `min:"3" type:"string"`
+
+	// A string prefix for an Amazon S3 object key. It's usually a folder name.
+	// For more information about folders in Amazon S3, see Organizing objects in
+	// the Amazon S3 console using folders (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-folders.html)
+	// in the Amazon Simple Storage Service User Guide.
+	ObjectKeyPrefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Destination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Destination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Destination"}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3Destination) SetBucketName(v string) *S3Destination {
+	s.BucketName = &v
+	return s
+}
+
+// SetObjectKeyPrefix sets the ObjectKeyPrefix field's value.
+func (s *S3Destination) SetObjectKeyPrefix(v string) *S3Destination {
+	s.ObjectKeyPrefix = &v
+	return s
+}
+
 // A location in Amazon Simple Storage Service (Amazon S3) where SimSpace Weaver
-// stores simulation data, such as your app zip files and schema file. For more
-// information about Amazon S3, see the Amazon Simple Storage Service User Guide
-// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
+// stores simulation data, such as your app .zip files and schema file. For
+// more information about Amazon S3, see the Amazon Simple Storage Service User
+// Guide (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
 type S3Location struct {
 	_ struct{} `type:"structure"`
 
@@ -2907,7 +3200,9 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 }
 
 // Information about the network endpoint that you can use to connect to your
-// custom or service app.
+// custom or service app. For more information about SimSpace Weaver apps, see
+// Key concepts: Apps (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/what-is_key-concepts.html#what-is_key-concepts_apps)
+// in the SimSpace Weaver User Guide..
 type SimulationAppEndpointInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -2950,13 +3245,13 @@ func (s *SimulationAppEndpointInfo) SetIngressPortMappings(v []*SimulationAppPor
 	return s
 }
 
-// A collection of metadata about an app.
+// A collection of metadata about the app.
 type SimulationAppMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The domain of the app. For more information about domains, see Key concepts
-	// (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/what-is_key-concepts.html)
-	// in the Amazon Web Services SimSpace Weaver User Guide.
+	// The domain of the app. For more information about domains, see Key concepts:
+	// Domains (https://docs.aws.amazon.com/simspaceweaver/latest/userguide/what-is_key-concepts.html#what-is_key-concepts_domains)
+	// in the SimSpace Weaver User Guide.
 	Domain *string `min:"1" type:"string"`
 
 	// The name of the app.
@@ -3198,7 +3493,7 @@ type StartAppInput struct {
 	// Domain is a required field
 	Domain *string `min:"1" type:"string" required:"true"`
 
-	// Options that apply when the app starts. These optiAons override default behavior.
+	// Options that apply when the app starts. These options override default behavior.
 	LaunchOverrides *LaunchOverrides `type:"structure"`
 
 	// The name of the app.
@@ -3432,9 +3727,11 @@ type StartSimulationInput struct {
 	// The description of the simulation.
 	Description *string `type:"string"`
 
-	// The maximum running time of the simulation, specified as a number of months
+	// The maximum running time of the simulation, specified as a number of minutes
 	// (m or M), hours (h or H), or days (d or D). The simulation stops when it
-	// reaches this limit.
+	// reaches this limit. The maximum value is 14D, or its equivalent in the other
+	// units. The default value is 14D. A value equivalent to 0 makes the simulation
+	// immediately transition to Stopping as soon as it reaches Started.
 	MaximumDuration *string `min:"2" type:"string"`
 
 	// The name of the simulation.
@@ -3456,8 +3753,19 @@ type StartSimulationInput struct {
 	// S3). For more information about Amazon S3, see the Amazon Simple Storage
 	// Service User Guide (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
 	//
-	// SchemaS3Location is a required field
-	SchemaS3Location *S3Location `type:"structure" required:"true"`
+	// Provide a SchemaS3Location to start your simulation from a schema.
+	//
+	// If you provide a SchemaS3Location then you can't provide a SnapshotS3Location.
+	SchemaS3Location *S3Location `type:"structure"`
+
+	// The location of the snapshot .zip file in Amazon Simple Storage Service (Amazon
+	// S3). For more information about Amazon S3, see the Amazon Simple Storage
+	// Service User Guide (https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
+	//
+	// Provide a SnapshotS3Location to start your simulation from a snapshot.
+	//
+	// If you provide a SnapshotS3Location then you can't provide a SchemaS3Location.
+	SnapshotS3Location *S3Location `type:"structure"`
 
 	// A list of tags for the simulation. For more information about tags, see Tagging
 	// Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
@@ -3501,15 +3809,17 @@ func (s *StartSimulationInput) Validate() error {
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
-	if s.SchemaS3Location == nil {
-		invalidParams.Add(request.NewErrParamRequired("SchemaS3Location"))
-	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 	if s.SchemaS3Location != nil {
 		if err := s.SchemaS3Location.Validate(); err != nil {
 			invalidParams.AddNested("SchemaS3Location", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnapshotS3Location != nil {
+		if err := s.SnapshotS3Location.Validate(); err != nil {
+			invalidParams.AddNested("SnapshotS3Location", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -3552,6 +3862,12 @@ func (s *StartSimulationInput) SetRoleArn(v string) *StartSimulationInput {
 // SetSchemaS3Location sets the SchemaS3Location field's value.
 func (s *StartSimulationInput) SetSchemaS3Location(v *S3Location) *StartSimulationInput {
 	s.SchemaS3Location = v
+	return s
+}
+
+// SetSnapshotS3Location sets the SnapshotS3Location field's value.
+func (s *StartSimulationInput) SetSnapshotS3Location(v *S3Location) *StartSimulationInput {
+	s.SnapshotS3Location = v
 	return s
 }
 
@@ -4314,6 +4630,9 @@ const (
 
 	// SimulationStatusDeleted is a SimulationStatus enum value
 	SimulationStatusDeleted = "DELETED"
+
+	// SimulationStatusSnapshotInProgress is a SimulationStatus enum value
+	SimulationStatusSnapshotInProgress = "SNAPSHOT_IN_PROGRESS"
 )
 
 // SimulationStatus_Values returns all elements of the SimulationStatus enum
@@ -4327,6 +4646,7 @@ func SimulationStatus_Values() []string {
 		SimulationStatusFailed,
 		SimulationStatusDeleting,
 		SimulationStatusDeleted,
+		SimulationStatusSnapshotInProgress,
 	}
 }
 

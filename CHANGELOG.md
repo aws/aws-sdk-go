@@ -1,3 +1,24 @@
+Release v1.44.253 (2023-04-28)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/athena`: Updates service API, documentation, and paginators
+  * You can now use capacity reservations on Amazon Athena to run SQL queries on fully-managed compute capacity.
+* `service/directconnect`: Updates service documentation
+  * This release corrects the jumbo frames MTU from 9100 to 8500.
+* `service/elasticfilesystem`: Updates service API
+  * This release adds PAUSED and PAUSING state as a returned value for DescribeReplicationConfigurations response.
+* `service/grafana`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * This release allows AWS IoT Core users to specify a TLS security policy when creating and updating AWS IoT Domain Configurations.
+* `service/rekognition`: Updates service API and documentation
+  * Added support for aggregating moderation labels by video segment timestamps for Stored Video Content Moderation APIs and added additional information about the job to all Stored Video Get API responses.
+* `service/simspaceweaver`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+* `service/workspaces`: Updates service documentation
+  * Added Windows 11 to support Microsoft_Office_2019
+
 Release v1.44.252 (2023-04-27)
 ===
 

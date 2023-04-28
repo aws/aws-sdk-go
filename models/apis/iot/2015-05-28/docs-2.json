@@ -4149,7 +4149,7 @@
     "JobDocumentSource": {
       "base": null,
       "refs": {
-        "CreateJobRequest$documentSource": "<p>An S3 link to the job document. Required if you don't specify a value for <code>document</code>.</p> <note> <p>If the job document resides in an S3 bucket, you must use a placeholder link when specifying the document.</p> <p>The placeholder link is of the following form:</p> <p> <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code> </p> <p>where <i>bucket</i> is your bucket name and <i>key</i> is the object in the bucket to which you are linking.</p> </note>",
+        "CreateJobRequest$documentSource": "<p>An S3 link, or S3 object URL, to the job document. The link is an Amazon S3 object URL and is required if you don't specify a value for <code>document</code>.</p> <p>For example, <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html\">Methods for accessing a bucket</a>.</p>",
         "CreateJobTemplateRequest$documentSource": "<p>An S3 link to the job document to use in the template. Required if you don't specify a value for <code>document</code>.</p> <note> <p>If the job document resides in an S3 bucket, you must use a placeholder link when specifying the document.</p> <p>The placeholder link is of the following form:</p> <p> <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code> </p> <p>where <i>bucket</i> is your bucket name and <i>key</i> is the object in the bucket to which you are linking.</p> </note>",
         "DescribeJobResponse$documentSource": "<p>An S3 link to the job document.</p>",
         "DescribeJobTemplateResponse$documentSource": "<p>An S3 link to the job document.</p>"
@@ -6644,7 +6644,7 @@
         "DescribeThingRegistrationTaskResponse$roleArn": "<p>The role ARN that grants access to the input file bucket.</p>",
         "EnableIoTLoggingParams$roleArnForLogging": "<p>The Amazon Resource Name (ARN) of the IAM role used for logging.</p>",
         "MitigationAction$roleArn": "<p>The IAM role ARN used to apply this mitigation action.</p>",
-        "PresignedUrlConfig$roleArn": "<p>The ARN of an IAM role that grants grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p> <important> <p>For information about addressing the confused deputy problem, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html\">cross-service confused deputy prevention</a> in the <i>Amazon Web Services IoT Core developer guide</i>.</p> </important>",
+        "PresignedUrlConfig$roleArn": "<p>The ARN of an IAM role that grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p> <important> <p>For information about addressing the confused deputy problem, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html\">cross-service confused deputy prevention</a> in the <i>Amazon Web Services IoT Core developer guide</i>.</p> </important>",
         "RegistrationConfig$roleArn": "<p>The ARN of the role.</p>",
         "ResourceIdentifier$iamRoleArn": "<p>The ARN of the IAM role that has overly permissive actions.</p>",
         "RoleAliasDescription$roleArn": "<p>The role ARN.</p>",
@@ -6845,6 +6845,12 @@
         "VpcDestinationConfiguration$securityGroups": "<p>The security groups of the VPC destination.</p>",
         "VpcDestinationProperties$securityGroups": "<p>The security groups of the VPC destination.</p>",
         "VpcDestinationSummary$securityGroups": "<p>The security groups of the VPC destination.</p>"
+      }
+    },
+    "SecurityPolicy": {
+      "base": null,
+      "refs": {
+        "TlsConfig$securityPolicy": "<p>The security policy for a domain configuration. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html#tls-policy-table\">Security policies </a> in the <i>Amazon Web Services IoT Core developer guide</i>.</p>"
       }
     },
     "SecurityProfileArn": {
@@ -8115,6 +8121,14 @@
       "base": null,
       "refs": {
         "GetBehaviorModelTrainingSummariesRequest$maxResults": "<p> The maximum number of results to return at one time. The default is 10. </p>"
+      }
+    },
+    "TlsConfig": {
+      "base": "<p>An object that specifies the TLS configuration for a domain.</p>",
+      "refs": {
+        "CreateDomainConfigurationRequest$tlsConfig": "<p>An object that specifies the TLS configuration for a domain.</p>",
+        "DescribeDomainConfigurationResponse$tlsConfig": "<p>An object that specifies the TLS configuration for a domain.</p>",
+        "UpdateDomainConfigurationRequest$tlsConfig": "<p>An object that specifies the TLS configuration for a domain.</p>"
       }
     },
     "TlsContext": {

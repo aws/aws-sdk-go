@@ -282,6 +282,177 @@ func (c *Athena) BatchGetQueryExecutionWithContext(ctx aws.Context, input *Batch
 	return out, req.Send()
 }
 
+const opCancelCapacityReservation = "CancelCapacityReservation"
+
+// CancelCapacityReservationRequest generates a "aws/request.Request" representing the
+// client's request for the CancelCapacityReservation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelCapacityReservation for more information on using the CancelCapacityReservation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelCapacityReservationRequest method.
+//	req, resp := client.CancelCapacityReservationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CancelCapacityReservation
+func (c *Athena) CancelCapacityReservationRequest(input *CancelCapacityReservationInput) (req *request.Request, output *CancelCapacityReservationOutput) {
+	op := &request.Operation{
+		Name:       opCancelCapacityReservation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelCapacityReservationInput{}
+	}
+
+	output = &CancelCapacityReservationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelCapacityReservation API operation for Amazon Athena.
+//
+// Cancels the capacity reservation with the specified name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation CancelCapacityReservation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CancelCapacityReservation
+func (c *Athena) CancelCapacityReservation(input *CancelCapacityReservationInput) (*CancelCapacityReservationOutput, error) {
+	req, out := c.CancelCapacityReservationRequest(input)
+	return out, req.Send()
+}
+
+// CancelCapacityReservationWithContext is the same as CancelCapacityReservation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelCapacityReservation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) CancelCapacityReservationWithContext(ctx aws.Context, input *CancelCapacityReservationInput, opts ...request.Option) (*CancelCapacityReservationOutput, error) {
+	req, out := c.CancelCapacityReservationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCapacityReservation = "CreateCapacityReservation"
+
+// CreateCapacityReservationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCapacityReservation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCapacityReservation for more information on using the CreateCapacityReservation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCapacityReservationRequest method.
+//	req, resp := client.CreateCapacityReservationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreateCapacityReservation
+func (c *Athena) CreateCapacityReservationRequest(input *CreateCapacityReservationInput) (req *request.Request, output *CreateCapacityReservationOutput) {
+	op := &request.Operation{
+		Name:       opCreateCapacityReservation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCapacityReservationInput{}
+	}
+
+	output = &CreateCapacityReservationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateCapacityReservation API operation for Amazon Athena.
+//
+// Creates a capacity reservation with the specified name and number of requested
+// data processing units.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation CreateCapacityReservation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreateCapacityReservation
+func (c *Athena) CreateCapacityReservation(input *CreateCapacityReservationInput) (*CreateCapacityReservationOutput, error) {
+	req, out := c.CreateCapacityReservationRequest(input)
+	return out, req.Send()
+}
+
+// CreateCapacityReservationWithContext is the same as CreateCapacityReservation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCapacityReservation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) CreateCapacityReservationWithContext(ctx aws.Context, input *CreateCapacityReservationInput, opts ...request.Option) (*CreateCapacityReservationOutput, error) {
+	req, out := c.CreateCapacityReservationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDataCatalog = "CreateDataCatalog"
 
 // CreateDataCatalogRequest generates a "aws/request.Request" representing the
@@ -1588,6 +1759,175 @@ func (c *Athena) GetCalculationExecutionStatus(input *GetCalculationExecutionSta
 // for more information on using Contexts.
 func (c *Athena) GetCalculationExecutionStatusWithContext(ctx aws.Context, input *GetCalculationExecutionStatusInput, opts ...request.Option) (*GetCalculationExecutionStatusOutput, error) {
 	req, out := c.GetCalculationExecutionStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCapacityAssignmentConfiguration = "GetCapacityAssignmentConfiguration"
+
+// GetCapacityAssignmentConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetCapacityAssignmentConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCapacityAssignmentConfiguration for more information on using the GetCapacityAssignmentConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCapacityAssignmentConfigurationRequest method.
+//	req, resp := client.GetCapacityAssignmentConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCapacityAssignmentConfiguration
+func (c *Athena) GetCapacityAssignmentConfigurationRequest(input *GetCapacityAssignmentConfigurationInput) (req *request.Request, output *GetCapacityAssignmentConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetCapacityAssignmentConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCapacityAssignmentConfigurationInput{}
+	}
+
+	output = &GetCapacityAssignmentConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCapacityAssignmentConfiguration API operation for Amazon Athena.
+//
+// Gets the capacity assignment configuration for a capacity reservation, if
+// one exists.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetCapacityAssignmentConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCapacityAssignmentConfiguration
+func (c *Athena) GetCapacityAssignmentConfiguration(input *GetCapacityAssignmentConfigurationInput) (*GetCapacityAssignmentConfigurationOutput, error) {
+	req, out := c.GetCapacityAssignmentConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetCapacityAssignmentConfigurationWithContext is the same as GetCapacityAssignmentConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCapacityAssignmentConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetCapacityAssignmentConfigurationWithContext(ctx aws.Context, input *GetCapacityAssignmentConfigurationInput, opts ...request.Option) (*GetCapacityAssignmentConfigurationOutput, error) {
+	req, out := c.GetCapacityAssignmentConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCapacityReservation = "GetCapacityReservation"
+
+// GetCapacityReservationRequest generates a "aws/request.Request" representing the
+// client's request for the GetCapacityReservation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCapacityReservation for more information on using the GetCapacityReservation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCapacityReservationRequest method.
+//	req, resp := client.GetCapacityReservationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCapacityReservation
+func (c *Athena) GetCapacityReservationRequest(input *GetCapacityReservationInput) (req *request.Request, output *GetCapacityReservationOutput) {
+	op := &request.Operation{
+		Name:       opGetCapacityReservation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCapacityReservationInput{}
+	}
+
+	output = &GetCapacityReservationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCapacityReservation API operation for Amazon Athena.
+//
+// Returns information about the capacity reservation with the specified name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetCapacityReservation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCapacityReservation
+func (c *Athena) GetCapacityReservation(input *GetCapacityReservationInput) (*GetCapacityReservationOutput, error) {
+	req, out := c.GetCapacityReservationRequest(input)
+	return out, req.Send()
+}
+
+// GetCapacityReservationWithContext is the same as GetCapacityReservation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCapacityReservation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetCapacityReservationWithContext(ctx aws.Context, input *GetCapacityReservationInput, opts ...request.Option) (*GetCapacityReservationOutput, error) {
+	req, out := c.GetCapacityReservationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3084,6 +3424,147 @@ func (c *Athena) ListCalculationExecutionsPagesWithContext(ctx aws.Context, inpu
 
 	for p.Next() {
 		if !fn(p.Page().(*ListCalculationExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCapacityReservations = "ListCapacityReservations"
+
+// ListCapacityReservationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCapacityReservations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCapacityReservations for more information on using the ListCapacityReservations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCapacityReservationsRequest method.
+//	req, resp := client.ListCapacityReservationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListCapacityReservations
+func (c *Athena) ListCapacityReservationsRequest(input *ListCapacityReservationsInput) (req *request.Request, output *ListCapacityReservationsOutput) {
+	op := &request.Operation{
+		Name:       opListCapacityReservations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCapacityReservationsInput{}
+	}
+
+	output = &ListCapacityReservationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCapacityReservations API operation for Amazon Athena.
+//
+// Lists the capacity reservations for the current account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListCapacityReservations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListCapacityReservations
+func (c *Athena) ListCapacityReservations(input *ListCapacityReservationsInput) (*ListCapacityReservationsOutput, error) {
+	req, out := c.ListCapacityReservationsRequest(input)
+	return out, req.Send()
+}
+
+// ListCapacityReservationsWithContext is the same as ListCapacityReservations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCapacityReservations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListCapacityReservationsWithContext(ctx aws.Context, input *ListCapacityReservationsInput, opts ...request.Option) (*ListCapacityReservationsOutput, error) {
+	req, out := c.ListCapacityReservationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCapacityReservationsPages iterates over the pages of a ListCapacityReservations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCapacityReservations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCapacityReservations operation.
+//	pageNum := 0
+//	err := client.ListCapacityReservationsPages(params,
+//	    func(page *athena.ListCapacityReservationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Athena) ListCapacityReservationsPages(input *ListCapacityReservationsInput, fn func(*ListCapacityReservationsOutput, bool) bool) error {
+	return c.ListCapacityReservationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCapacityReservationsPagesWithContext same as ListCapacityReservationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListCapacityReservationsPagesWithContext(ctx aws.Context, input *ListCapacityReservationsInput, fn func(*ListCapacityReservationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCapacityReservationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCapacityReservationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCapacityReservationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4626,7 +5107,7 @@ func (c *Athena) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 
 // ListTagsForResource API operation for Amazon Athena.
 //
-// Lists the tags associated with an Athena workgroup or data catalog resource.
+// Lists the tags associated with an Athena resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4860,6 +5341,93 @@ func (c *Athena) ListWorkGroupsPagesWithContext(ctx aws.Context, input *ListWork
 	}
 
 	return p.Err()
+}
+
+const opPutCapacityAssignmentConfiguration = "PutCapacityAssignmentConfiguration"
+
+// PutCapacityAssignmentConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutCapacityAssignmentConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutCapacityAssignmentConfiguration for more information on using the PutCapacityAssignmentConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutCapacityAssignmentConfigurationRequest method.
+//	req, resp := client.PutCapacityAssignmentConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/PutCapacityAssignmentConfiguration
+func (c *Athena) PutCapacityAssignmentConfigurationRequest(input *PutCapacityAssignmentConfigurationInput) (req *request.Request, output *PutCapacityAssignmentConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutCapacityAssignmentConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutCapacityAssignmentConfigurationInput{}
+	}
+
+	output = &PutCapacityAssignmentConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutCapacityAssignmentConfiguration API operation for Amazon Athena.
+//
+// Puts a new capacity assignment configuration for a specified capacity reservation.
+// If a capacity assignment configuration already exists for the capacity reservation,
+// replaces the existing capacity assignment configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation PutCapacityAssignmentConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/PutCapacityAssignmentConfiguration
+func (c *Athena) PutCapacityAssignmentConfiguration(input *PutCapacityAssignmentConfigurationInput) (*PutCapacityAssignmentConfigurationOutput, error) {
+	req, out := c.PutCapacityAssignmentConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutCapacityAssignmentConfigurationWithContext is the same as PutCapacityAssignmentConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutCapacityAssignmentConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) PutCapacityAssignmentConfigurationWithContext(ctx aws.Context, input *PutCapacityAssignmentConfigurationInput, opts ...request.Option) (*PutCapacityAssignmentConfigurationOutput, error) {
+	req, out := c.PutCapacityAssignmentConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStartCalculationExecution = "StartCalculationExecution"
@@ -5365,12 +5933,12 @@ func (c *Athena) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // TagResource API operation for Amazon Athena.
 //
 // Adds one or more tags to an Athena resource. A tag is a label that you assign
-// to a resource. In Athena, a resource can be a workgroup or data catalog.
-// Each tag consists of a key and an optional value, both of which you define.
-// For example, you can use tags to categorize Athena workgroups or data catalogs
-// by purpose, owner, or environment. Use a consistent set of tag keys to make
-// it easier to search and filter workgroups or data catalogs in your account.
-// For best practices, see Tagging Best Practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html).
+// to a resource. Each tag consists of a key and an optional value, both of
+// which you define. For example, you can use tags to categorize Athena workgroups,
+// data catalogs, or capacity reservations by purpose, owner, or environment.
+// Use a consistent set of tag keys to make it easier to search and filter the
+// resources in your account. For best practices, see Tagging Best Practices
+// (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html).
 // Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can
 // be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers
 // representable in UTF-8, and the following characters: + - = . _ : / @. Tag
@@ -5553,7 +6121,7 @@ func (c *Athena) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for Amazon Athena.
 //
-// Removes one or more tags from a data catalog or workgroup resource.
+// Removes one or more tags from an Athena resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5592,6 +6160,92 @@ func (c *Athena) UntagResource(input *UntagResourceInput) (*UntagResourceOutput,
 // for more information on using Contexts.
 func (c *Athena) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCapacityReservation = "UpdateCapacityReservation"
+
+// UpdateCapacityReservationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCapacityReservation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCapacityReservation for more information on using the UpdateCapacityReservation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCapacityReservationRequest method.
+//	req, resp := client.UpdateCapacityReservationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdateCapacityReservation
+func (c *Athena) UpdateCapacityReservationRequest(input *UpdateCapacityReservationInput) (req *request.Request, output *UpdateCapacityReservationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCapacityReservation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCapacityReservationInput{}
+	}
+
+	output = &UpdateCapacityReservationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateCapacityReservation API operation for Amazon Athena.
+//
+// Updates the number of requested data processing units for the capacity reservation
+// with the specified name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation UpdateCapacityReservation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdateCapacityReservation
+func (c *Athena) UpdateCapacityReservation(input *UpdateCapacityReservationInput) (*UpdateCapacityReservationOutput, error) {
+	req, out := c.UpdateCapacityReservationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCapacityReservationWithContext is the same as UpdateCapacityReservation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCapacityReservation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) UpdateCapacityReservationWithContext(ctx aws.Context, input *UpdateCapacityReservationInput, opts ...request.Option) (*UpdateCapacityReservationOutput, error) {
+	req, out := c.UpdateCapacityReservationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6829,6 +7483,318 @@ func (s *CalculationSummary) SetStatus(v *CalculationStatus) *CalculationSummary
 	return s
 }
 
+type CancelCapacityReservationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the capacity reservation to cancel.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityReservationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityReservationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelCapacityReservationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelCapacityReservationInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CancelCapacityReservationInput) SetName(v string) *CancelCapacityReservationInput {
+	s.Name = &v
+	return s
+}
+
+type CancelCapacityReservationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityReservationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityReservationOutput) GoString() string {
+	return s.String()
+}
+
+// Contains the submission time of a single allocation request for a capacity
+// reservation and the most recent status of the attempted allocation.
+type CapacityAllocation struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the capacity allocation request was completed.
+	RequestCompletionTime *time.Time `type:"timestamp"`
+
+	// The time when the capacity allocation was requested.
+	//
+	// RequestTime is a required field
+	RequestTime *time.Time `type:"timestamp" required:"true"`
+
+	// The status of the capacity allocation.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"CapacityAllocationStatus"`
+
+	// The status message of the capacity allocation.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityAllocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityAllocation) GoString() string {
+	return s.String()
+}
+
+// SetRequestCompletionTime sets the RequestCompletionTime field's value.
+func (s *CapacityAllocation) SetRequestCompletionTime(v time.Time) *CapacityAllocation {
+	s.RequestCompletionTime = &v
+	return s
+}
+
+// SetRequestTime sets the RequestTime field's value.
+func (s *CapacityAllocation) SetRequestTime(v time.Time) *CapacityAllocation {
+	s.RequestTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CapacityAllocation) SetStatus(v string) *CapacityAllocation {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *CapacityAllocation) SetStatusMessage(v string) *CapacityAllocation {
+	s.StatusMessage = &v
+	return s
+}
+
+// A mapping between one or more workgroups and a capacity reservation.
+type CapacityAssignment struct {
+	_ struct{} `type:"structure"`
+
+	// The list of workgroup names for the capacity assignment.
+	WorkGroupNames []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityAssignment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityAssignment) GoString() string {
+	return s.String()
+}
+
+// SetWorkGroupNames sets the WorkGroupNames field's value.
+func (s *CapacityAssignment) SetWorkGroupNames(v []*string) *CapacityAssignment {
+	s.WorkGroupNames = v
+	return s
+}
+
+// Assigns Athena workgroups (and hence their queries) to capacity reservations.
+// A capacity reservation can have only one capacity assignment configuration,
+// but the capacity assignment configuration can be made up of multiple individual
+// assignments. Each assignment specifies how Athena queries can consume capacity
+// from the capacity reservation that their workgroup is mapped to.
+type CapacityAssignmentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of assignments that make up the capacity assignment configuration.
+	CapacityAssignments []*CapacityAssignment `type:"list"`
+
+	// The name of the reservation that the capacity assignment configuration is
+	// for.
+	CapacityReservationName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityAssignmentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityAssignmentConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCapacityAssignments sets the CapacityAssignments field's value.
+func (s *CapacityAssignmentConfiguration) SetCapacityAssignments(v []*CapacityAssignment) *CapacityAssignmentConfiguration {
+	s.CapacityAssignments = v
+	return s
+}
+
+// SetCapacityReservationName sets the CapacityReservationName field's value.
+func (s *CapacityAssignmentConfiguration) SetCapacityReservationName(v string) *CapacityAssignmentConfiguration {
+	s.CapacityReservationName = &v
+	return s
+}
+
+// A reservation for a specified number of data processing units (DPUs). When
+// a reservation is initially created, it has no DPUs. Athena allocates DPUs
+// until the allocated amount equals the requested amount.
+type CapacityReservation struct {
+	_ struct{} `type:"structure"`
+
+	// The number of data processing units currently allocated.
+	//
+	// AllocatedDpus is a required field
+	AllocatedDpus *int64 `type:"integer" required:"true"`
+
+	// The time in UTC epoch millis when the capacity reservation was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// Contains the submission time of a single allocation request for a capacity
+	// reservation and the most recent status of the attempted allocation.
+	LastAllocation *CapacityAllocation `type:"structure"`
+
+	// The time of the most recent capacity allocation that succeeded.
+	LastSuccessfulAllocationTime *time.Time `type:"timestamp"`
+
+	// The name of the capacity reservation.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The status of the capacity reservation.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"CapacityReservationStatus"`
+
+	// The number of data processing units requested.
+	//
+	// TargetDpus is a required field
+	TargetDpus *int64 `min:"24" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityReservation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityReservation) GoString() string {
+	return s.String()
+}
+
+// SetAllocatedDpus sets the AllocatedDpus field's value.
+func (s *CapacityReservation) SetAllocatedDpus(v int64) *CapacityReservation {
+	s.AllocatedDpus = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CapacityReservation) SetCreationTime(v time.Time) *CapacityReservation {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastAllocation sets the LastAllocation field's value.
+func (s *CapacityReservation) SetLastAllocation(v *CapacityAllocation) *CapacityReservation {
+	s.LastAllocation = v
+	return s
+}
+
+// SetLastSuccessfulAllocationTime sets the LastSuccessfulAllocationTime field's value.
+func (s *CapacityReservation) SetLastSuccessfulAllocationTime(v time.Time) *CapacityReservation {
+	s.LastSuccessfulAllocationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CapacityReservation) SetName(v string) *CapacityReservation {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CapacityReservation) SetStatus(v string) *CapacityReservation {
+	s.Status = &v
+	return s
+}
+
+// SetTargetDpus sets the TargetDpus field's value.
+func (s *CapacityReservation) SetTargetDpus(v int64) *CapacityReservation {
+	s.TargetDpus = &v
+	return s
+}
+
 // Contains metadata for a column in a table.
 type Column struct {
 	_ struct{} `type:"structure"`
@@ -6998,6 +7964,113 @@ func (s *ColumnInfo) SetTableName(v string) *ColumnInfo {
 func (s *ColumnInfo) SetType(v string) *ColumnInfo {
 	s.Type = &v
 	return s
+}
+
+type CreateCapacityReservationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the capacity reservation to create.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags for the capacity reservation.
+	Tags []*Tag `type:"list"`
+
+	// The number of requested data processing units.
+	//
+	// TargetDpus is a required field
+	TargetDpus *int64 `min:"24" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCapacityReservationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCapacityReservationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCapacityReservationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCapacityReservationInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TargetDpus == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDpus"))
+	}
+	if s.TargetDpus != nil && *s.TargetDpus < 24 {
+		invalidParams.Add(request.NewErrParamMinValue("TargetDpus", 24))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCapacityReservationInput) SetName(v string) *CreateCapacityReservationInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCapacityReservationInput) SetTags(v []*Tag) *CreateCapacityReservationInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDpus sets the TargetDpus field's value.
+func (s *CreateCapacityReservationInput) SetTargetDpus(v int64) *CreateCapacityReservationInput {
+	s.TargetDpus = &v
+	return s
+}
+
+type CreateCapacityReservationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCapacityReservationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCapacityReservationOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDataCatalogInput struct {
@@ -8472,11 +9545,12 @@ type EngineConfiguration struct {
 
 	// The number of DPUs to use for the coordinator. A coordinator is a special
 	// executor that orchestrates processing work and manages other executors in
-	// a notebook session.
+	// a notebook session. The default is 1.
 	CoordinatorDpuSize *int64 `min:"1" type:"integer"`
 
 	// The default number of DPUs to use for executors. An executor is the smallest
-	// unit of compute that a notebook session can request from Athena.
+	// unit of compute that a notebook session can request from Athena. The default
+	// is 1.
 	DefaultExecutorDpuSize *int64 `min:"1" type:"integer"`
 
 	// The maximum number of DPUs that can run concurrently.
@@ -9143,6 +10217,172 @@ func (s *GetCalculationExecutionStatusOutput) SetStatistics(v *CalculationStatis
 // SetStatus sets the Status field's value.
 func (s *GetCalculationExecutionStatusOutput) SetStatus(v *CalculationStatus) *GetCalculationExecutionStatusOutput {
 	s.Status = v
+	return s
+}
+
+type GetCapacityAssignmentConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the capacity reservation to retrieve the capacity assignment
+	// configuration for.
+	//
+	// CapacityReservationName is a required field
+	CapacityReservationName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityAssignmentConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityAssignmentConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCapacityAssignmentConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCapacityAssignmentConfigurationInput"}
+	if s.CapacityReservationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CapacityReservationName"))
+	}
+	if s.CapacityReservationName != nil && len(*s.CapacityReservationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CapacityReservationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapacityReservationName sets the CapacityReservationName field's value.
+func (s *GetCapacityAssignmentConfigurationInput) SetCapacityReservationName(v string) *GetCapacityAssignmentConfigurationInput {
+	s.CapacityReservationName = &v
+	return s
+}
+
+type GetCapacityAssignmentConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The requested capacity assignment configuration for the specified capacity
+	// reservation.
+	//
+	// CapacityAssignmentConfiguration is a required field
+	CapacityAssignmentConfiguration *CapacityAssignmentConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityAssignmentConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityAssignmentConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacityAssignmentConfiguration sets the CapacityAssignmentConfiguration field's value.
+func (s *GetCapacityAssignmentConfigurationOutput) SetCapacityAssignmentConfiguration(v *CapacityAssignmentConfiguration) *GetCapacityAssignmentConfigurationOutput {
+	s.CapacityAssignmentConfiguration = v
+	return s
+}
+
+type GetCapacityReservationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the capacity reservation.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityReservationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityReservationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCapacityReservationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCapacityReservationInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetCapacityReservationInput) SetName(v string) *GetCapacityReservationInput {
+	s.Name = &v
+	return s
+}
+
+type GetCapacityReservationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The requested capacity reservation structure.
+	//
+	// CapacityReservation is a required field
+	CapacityReservation *CapacityReservation `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityReservationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityReservationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacityReservation sets the CapacityReservation field's value.
+func (s *GetCapacityReservationOutput) SetCapacityReservation(v *CapacityReservation) *GetCapacityReservationOutput {
+	s.CapacityReservation = v
 	return s
 }
 
@@ -10816,6 +12056,108 @@ func (s *ListCalculationExecutionsOutput) SetCalculations(v []*CalculationSummar
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListCalculationExecutionsOutput) SetNextToken(v string) *ListCalculationExecutionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCapacityReservationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityReservationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityReservationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCapacityReservationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCapacityReservationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCapacityReservationsInput) SetMaxResults(v int64) *ListCapacityReservationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCapacityReservationsInput) SetNextToken(v string) *ListCapacityReservationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCapacityReservationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The capacity reservations for the current account.
+	//
+	// CapacityReservations is a required field
+	CapacityReservations []*CapacityReservation `type:"list" required:"true"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityReservationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityReservationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacityReservations sets the CapacityReservations field's value.
+func (s *ListCapacityReservationsOutput) SetCapacityReservations(v []*CapacityReservation) *ListCapacityReservationsOutput {
+	s.CapacityReservations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCapacityReservationsOutput) SetNextToken(v string) *ListCapacityReservationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -12753,6 +14095,92 @@ func (s *PreparedStatementSummary) SetLastModifiedTime(v time.Time) *PreparedSta
 func (s *PreparedStatementSummary) SetStatementName(v string) *PreparedStatementSummary {
 	s.StatementName = &v
 	return s
+}
+
+type PutCapacityAssignmentConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of assignments for the capacity assignment configuration.
+	//
+	// CapacityAssignments is a required field
+	CapacityAssignments []*CapacityAssignment `type:"list" required:"true"`
+
+	// The name of the capacity reservation to put a capacity assignment configuration
+	// for.
+	//
+	// CapacityReservationName is a required field
+	CapacityReservationName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutCapacityAssignmentConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutCapacityAssignmentConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutCapacityAssignmentConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutCapacityAssignmentConfigurationInput"}
+	if s.CapacityAssignments == nil {
+		invalidParams.Add(request.NewErrParamRequired("CapacityAssignments"))
+	}
+	if s.CapacityReservationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CapacityReservationName"))
+	}
+	if s.CapacityReservationName != nil && len(*s.CapacityReservationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CapacityReservationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapacityAssignments sets the CapacityAssignments field's value.
+func (s *PutCapacityAssignmentConfigurationInput) SetCapacityAssignments(v []*CapacityAssignment) *PutCapacityAssignmentConfigurationInput {
+	s.CapacityAssignments = v
+	return s
+}
+
+// SetCapacityReservationName sets the CapacityReservationName field's value.
+func (s *PutCapacityAssignmentConfigurationInput) SetCapacityReservationName(v string) *PutCapacityAssignmentConfigurationInput {
+	s.CapacityReservationName = &v
+	return s
+}
+
+type PutCapacityAssignmentConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutCapacityAssignmentConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutCapacityAssignmentConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 // Information about a single instance of a query execution.
@@ -15169,12 +16597,12 @@ func (s *TableMetadata) SetTableType(v string) *TableMetadata {
 	return s
 }
 
-// A label that you assign to a resource. In Athena, a resource can be a workgroup
-// or data catalog. Each tag consists of a key and an optional value, both of
-// which you define. For example, you can use tags to categorize Athena workgroups
-// or data catalogs by purpose, owner, or environment. Use a consistent set
-// of tag keys to make it easier to search and filter workgroups or data catalogs
-// in your account. For best practices, see Tagging Best Practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html).
+// A label that you assign to a resource. Athena resources include workgroups,
+// data catalogs, and capacity reservations. Each tag consists of a key and
+// an optional value, both of which you define. For example, you can use tags
+// to categorize Athena resources by purpose, owner, or environment. Use a consistent
+// set of tag keys to make it easier to search and filter the resources in your
+// account. For best practices, see Tagging Best Practices (https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html).
 // Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can
 // be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers
 // representable in UTF-8, and the following characters: + - = . _ : / @. Tag
@@ -15241,14 +16669,13 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the ARN of the Athena resource (workgroup or data catalog) to which
-	// tags are to be added.
+	// Specifies the ARN of the Athena resource to which tags are to be added.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// A collection of one or more tags, separated by commas, to be added to an
-	// Athena workgroup or data catalog resource.
+	// Athena resource.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -15745,6 +17172,94 @@ func (s UntagResourceOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateCapacityReservationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the capacity reservation.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The new number of requested data processing units.
+	//
+	// TargetDpus is a required field
+	TargetDpus *int64 `min:"24" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCapacityReservationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCapacityReservationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCapacityReservationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCapacityReservationInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TargetDpus == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDpus"))
+	}
+	if s.TargetDpus != nil && *s.TargetDpus < 24 {
+		invalidParams.Add(request.NewErrParamMinValue("TargetDpus", 24))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateCapacityReservationInput) SetName(v string) *UpdateCapacityReservationInput {
+	s.Name = &v
+	return s
+}
+
+// SetTargetDpus sets the TargetDpus field's value.
+func (s *UpdateCapacityReservationInput) SetTargetDpus(v int64) *UpdateCapacityReservationInput {
+	s.TargetDpus = &v
+	return s
+}
+
+type UpdateCapacityReservationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCapacityReservationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCapacityReservationOutput) GoString() string {
 	return s.String()
 }
 
@@ -16999,6 +18514,58 @@ func CalculationExecutionState_Values() []string {
 		CalculationExecutionStateCanceled,
 		CalculationExecutionStateCompleted,
 		CalculationExecutionStateFailed,
+	}
+}
+
+const (
+	// CapacityAllocationStatusPending is a CapacityAllocationStatus enum value
+	CapacityAllocationStatusPending = "PENDING"
+
+	// CapacityAllocationStatusSucceeded is a CapacityAllocationStatus enum value
+	CapacityAllocationStatusSucceeded = "SUCCEEDED"
+
+	// CapacityAllocationStatusFailed is a CapacityAllocationStatus enum value
+	CapacityAllocationStatusFailed = "FAILED"
+)
+
+// CapacityAllocationStatus_Values returns all elements of the CapacityAllocationStatus enum
+func CapacityAllocationStatus_Values() []string {
+	return []string{
+		CapacityAllocationStatusPending,
+		CapacityAllocationStatusSucceeded,
+		CapacityAllocationStatusFailed,
+	}
+}
+
+const (
+	// CapacityReservationStatusPending is a CapacityReservationStatus enum value
+	CapacityReservationStatusPending = "PENDING"
+
+	// CapacityReservationStatusActive is a CapacityReservationStatus enum value
+	CapacityReservationStatusActive = "ACTIVE"
+
+	// CapacityReservationStatusCancelling is a CapacityReservationStatus enum value
+	CapacityReservationStatusCancelling = "CANCELLING"
+
+	// CapacityReservationStatusCancelled is a CapacityReservationStatus enum value
+	CapacityReservationStatusCancelled = "CANCELLED"
+
+	// CapacityReservationStatusFailed is a CapacityReservationStatus enum value
+	CapacityReservationStatusFailed = "FAILED"
+
+	// CapacityReservationStatusUpdatePending is a CapacityReservationStatus enum value
+	CapacityReservationStatusUpdatePending = "UPDATE_PENDING"
+)
+
+// CapacityReservationStatus_Values returns all elements of the CapacityReservationStatus enum
+func CapacityReservationStatus_Values() []string {
+	return []string{
+		CapacityReservationStatusPending,
+		CapacityReservationStatusActive,
+		CapacityReservationStatusCancelling,
+		CapacityReservationStatusCancelled,
+		CapacityReservationStatusFailed,
+		CapacityReservationStatusUpdatePending,
 	}
 }
 
