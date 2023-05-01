@@ -1,3 +1,11 @@
+Release v1.44.254 (2023-05-01)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/kms`: Updates service API, documentation, and examples
+  * This release makes the NitroEnclave request parameter Recipient and the response field for CiphertextForRecipient available in AWS SDKs. It also adds the regex pattern for CloudHsmClusterId validation.
+
 Release v1.44.253 (2023-04-28)
 ===
 
