@@ -2785,6 +2785,10 @@ type AutoScalingGroupRecommendation struct {
 	//    * PostgreSql - Infers that PostgreSQL might be running on the instances.
 	//
 	//    * Redis - Infers that Redis might be running on the instances.
+	//
+	//    * Kafka - Infers that Kafka might be running on the instance.
+	//
+	//    * SQLServer - Infers that SQLServer might be running on the instance.
 	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list" enum:"InferredWorkloadType"`
 
 	// The timestamp of when the Auto Scaling group recommendation was last generated.
@@ -3396,6 +3400,21 @@ type EBSFilter struct {
 	//
 	// Specify Finding to return recommendations with a specific finding classification
 	// (for example, NotOptimized).
+	//
+	// You can filter your Amazon EBS volume recommendations by tag:key and tag-key
+	// tags.
+	//
+	// A tag:key is a key and value combination of a tag assigned to your Amazon
+	// EBS volume recommendations. Use the tag key in the filter name and the tag
+	// value as the filter value. For example, to find all Amazon EBS volume recommendations
+	// that have a tag with the key of Owner and the value of TeamA, specify tag:Owner
+	// for the filter name and TeamA for the filter value.
+	//
+	// A tag-key is the key of a tag assigned to your Amazon EBS volume recommendations.
+	// Use this filter to find all of your Amazon EBS volume recommendations that
+	// have a tag with a specific key. This doesn’t consider the tag value. For
+	// example, you can find your Amazon EBS volume recommendations with a tag key
+	// value of Owner or without any tag keys assigned.
 	Name *string `locationName:"name" type:"string" enum:"EBSFilterName"`
 
 	// The value of the filter.
@@ -3749,6 +3768,9 @@ type ECSServiceRecommendation struct {
 	// ECS service.
 	ServiceRecommendationOptions []*ECSServiceRecommendationOption `locationName:"serviceRecommendationOptions" type:"list"`
 
+	// A list of tags assigned to your Amazon ECS service recommendations.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// An array of objects that describe the utilization metrics of the Amazon ECS
 	// service.
 	UtilizationMetrics []*ECSServiceUtilizationMetric `locationName:"utilizationMetrics" type:"list"`
@@ -3832,6 +3854,12 @@ func (s *ECSServiceRecommendation) SetServiceRecommendationOptions(v []*ECSServi
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *ECSServiceRecommendation) SetTags(v []*Tag) *ECSServiceRecommendation {
+	s.Tags = v
+	return s
+}
+
 // SetUtilizationMetrics sets the UtilizationMetrics field's value.
 func (s *ECSServiceRecommendation) SetUtilizationMetrics(v []*ECSServiceUtilizationMetric) *ECSServiceRecommendation {
 	s.UtilizationMetrics = v
@@ -3849,6 +3877,21 @@ type ECSServiceRecommendationFilter struct {
 	//
 	// Specify FindingReasonCode to return recommendations with a specific finding
 	// reason code.
+	//
+	// You can filter your Amazon ECS service recommendations by tag:key and tag-key
+	// tags.
+	//
+	// A tag:key is a key and value combination of a tag assigned to your Amazon
+	// ECS service recommendations. Use the tag key in the filter name and the tag
+	// value as the filter value. For example, to find all Amazon ECS service recommendations
+	// that have a tag with the key of Owner and the value of TeamA, specify tag:Owner
+	// for the filter name and TeamA for the filter value.
+	//
+	// A tag-key is the key of a tag assigned to your Amazon ECS service recommendations.
+	// Use this filter to find all of your Amazon ECS service recommendations that
+	// have a tag with a specific key. This doesn’t consider the tag value. For
+	// example, you can find your Amazon ECS service recommendations with a tag
+	// key value of Owner or without any tag keys assigned.
 	Name *string `locationName:"name" type:"string" enum:"ECSServiceRecommendationFilterName"`
 
 	// The value of the filter.
@@ -5283,14 +5326,30 @@ type Filter struct {
 
 	// The name of the filter.
 	//
-	// Specify Finding to return recommendations with a specific finding classification
-	// (for example, Underprovisioned).
+	// Specify Finding to return recommendations with a specific finding classification.
+	// For example, Underprovisioned.
 	//
 	// Specify RecommendationSourceType to return recommendations of a specific
-	// resource type (for example, Ec2Instance).
+	// resource type. For example, Ec2Instance.
 	//
 	// Specify FindingReasonCodes to return recommendations with a specific finding
-	// reason code (for example, CPUUnderprovisioned).
+	// reason code. For example, CPUUnderprovisioned.
+	//
+	// Specify InferredWorkloadTypes to return recommendations of a specific inferred
+	// workload. For example, Redis.
+	//
+	// You can filter your EC2 instance recommendations by tag:key and tag-key tags.
+	//
+	// A tag:key is a key and value combination of a tag assigned to your recommendations.
+	// Use the tag key in the filter name and the tag value as the filter value.
+	// For example, to find all recommendations that have a tag with the key of
+	// Owner and the value of TeamA, specify tag:Owner for the filter name and TeamA
+	// for the filter value.
+	//
+	// A tag-key is the key of a tag assigned to your recommendations. Use this
+	// filter to find all of your recommendations that have a tag with a specific
+	// key. This doesn’t consider the tag value. For example, you can find your
+	// recommendations with a tag key value of Owner or without any tag keys assigned.
 	Name *string `locationName:"name" type:"string" enum:"FilterName"`
 
 	// The value of the filter.
@@ -6939,6 +6998,76 @@ func (s *GetRecommendationSummariesOutput) SetRecommendationSummaries(v []*Recom
 	return s
 }
 
+// The estimated monthly savings after you adjust the configurations of your
+// instances running on the inferred workload types to the recommended configurations.
+// If the inferredWorkloadTypes list contains multiple entries, then the savings
+// are the sum of the monthly savings from instances that run the exact combination
+// of the inferred workload types.
+type InferredWorkloadSaving struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the estimated monthly savings amount possible by
+	// adopting Compute Optimizer recommendations for a given resource. This is
+	// based on the On-Demand instance pricing.
+	EstimatedMonthlySavings *EstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The applications that might be running on the instance as inferred by Compute
+	// Optimizer.
+	//
+	// Compute Optimizer can infer if one of the following applications might be
+	// running on the instance:
+	//
+	//    * AmazonEmr - Infers that Amazon EMR might be running on the instance.
+	//
+	//    * ApacheCassandra - Infers that Apache Cassandra might be running on the
+	//    instance.
+	//
+	//    * ApacheHadoop - Infers that Apache Hadoop might be running on the instance.
+	//
+	//    * Memcached - Infers that Memcached might be running on the instance.
+	//
+	//    * NGINX - Infers that NGINX might be running on the instance.
+	//
+	//    * PostgreSql - Infers that PostgreSQL might be running on the instance.
+	//
+	//    * Redis - Infers that Redis might be running on the instance.
+	//
+	//    * Kafka - Infers that Kafka might be running on the instance.
+	//
+	//    * SQLServer - Infers that SQLServer might be running on the instance.
+	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list" enum:"InferredWorkloadType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferredWorkloadSaving) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferredWorkloadSaving) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *InferredWorkloadSaving) SetEstimatedMonthlySavings(v *EstimatedMonthlySavings) *InferredWorkloadSaving {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetInferredWorkloadTypes sets the InferredWorkloadTypes field's value.
+func (s *InferredWorkloadSaving) SetInferredWorkloadTypes(v []*string) *InferredWorkloadSaving {
+	s.InferredWorkloadTypes = v
+	return s
+}
+
 // Describes an Amazon EC2 instance recommendation.
 type InstanceRecommendation struct {
 	_ struct{} `type:"structure"`
@@ -7022,7 +7151,7 @@ type InstanceRecommendation struct {
 	//    * EBSThroughputUnderprovisioned — The instance’s EBS throughput configuration
 	//    doesn't meet the performance requirements of your workload and there is
 	//    an alternative instance type that provides better EBS throughput performance.
-	//    This is identified by analyzing the VolumeReadBytes and VolumeWriteBytes>
+	//    This is identified by analyzing the VolumeReadBytes and VolumeWriteBytes
 	//    metrics of EBS volumes attached to the current instance during the look-back
 	//    period.
 	//
@@ -7115,6 +7244,8 @@ type InstanceRecommendation struct {
 	//    * Redis - Infers that Redis might be running on the instance.
 	//
 	//    * Kafka - Infers that Kafka might be running on the instance.
+	//
+	//    * SQLServer - Infers that SQLServer might be running on the instance.
 	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list" enum:"InferredWorkloadType"`
 
 	// The Amazon Resource Name (ARN) of the current instance.
@@ -7137,6 +7268,9 @@ type InstanceRecommendation struct {
 
 	// An array of objects that describe the source resource of the recommendation.
 	RecommendationSources []*RecommendationSource `locationName:"recommendationSources" type:"list"`
+
+	// A list of tags assigned to your Amazon EC2 instance recommendations.
+	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// An array of objects that describe the utilization metrics of the instance.
 	UtilizationMetrics []*UtilizationMetric `locationName:"utilizationMetrics" type:"list"`
@@ -7241,6 +7375,12 @@ func (s *InstanceRecommendation) SetRecommendationOptions(v []*InstanceRecommend
 // SetRecommendationSources sets the RecommendationSources field's value.
 func (s *InstanceRecommendation) SetRecommendationSources(v []*RecommendationSource) *InstanceRecommendation {
 	s.RecommendationSources = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *InstanceRecommendation) SetTags(v []*Tag) *InstanceRecommendation {
+	s.Tags = v
 	return s
 }
 
@@ -7836,6 +7976,9 @@ type LambdaFunctionRecommendation struct {
 	// The number of times your function code was applied during the look-back period.
 	NumberOfInvocations *int64 `locationName:"numberOfInvocations" type:"long"`
 
+	// A list of tags assigned to your Lambda function recommendations.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// An array of objects that describe the utilization metrics of the function.
 	UtilizationMetrics []*LambdaFunctionUtilizationMetric `locationName:"utilizationMetrics" type:"list"`
 }
@@ -7924,6 +8067,12 @@ func (s *LambdaFunctionRecommendation) SetNumberOfInvocations(v int64) *LambdaFu
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *LambdaFunctionRecommendation) SetTags(v []*Tag) *LambdaFunctionRecommendation {
+	s.Tags = v
+	return s
+}
+
 // SetUtilizationMetrics sets the UtilizationMetrics field's value.
 func (s *LambdaFunctionRecommendation) SetUtilizationMetrics(v []*LambdaFunctionUtilizationMetric) *LambdaFunctionRecommendation {
 	s.UtilizationMetrics = v
@@ -7946,6 +8095,21 @@ type LambdaFunctionRecommendationFilter struct {
 	//
 	// Specify FindingReasonCode to return recommendations with a specific finding
 	// reason code (for example, MemoryUnderprovisioned).
+	//
+	// You can filter your Lambda function recommendations by tag:key and tag-key
+	// tags.
+	//
+	// A tag:key is a key and value combination of a tag assigned to your Lambda
+	// function recommendations. Use the tag key in the filter name and the tag
+	// value as the filter value. For example, to find all Lambda function recommendations
+	// that have a tag with the key of Owner and the value of TeamA, specify tag:Owner
+	// for the filter name and TeamA for the filter value.
+	//
+	// A tag-key is the key of a tag assigned to your Lambda function recommendations.
+	// Use this filter to find all of your Lambda function recommendations that
+	// have a tag with a specific key. This doesn’t consider the tag value. For
+	// example, you can find your Lambda function recommendations with a tag key
+	// value of Owner or without any tag keys assigned.
 	Name *string `locationName:"name" type:"string" enum:"LambdaFunctionRecommendationFilterName"`
 
 	// The value of the filter.
@@ -8854,6 +9018,12 @@ type RecommendationSummary struct {
 	// type.
 	CurrentPerformanceRiskRatings *CurrentPerformanceRiskRatings `locationName:"currentPerformanceRiskRatings" type:"structure"`
 
+	// An array of objects that describes the estimated monthly saving amounts for
+	// the instances running on the specified inferredWorkloadTypes. The array contains
+	// the top three savings opportunites for the instances running inferred workload
+	// types.
+	InferredWorkloadSavings []*InferredWorkloadSaving `locationName:"inferredWorkloadSavings" type:"list"`
+
 	// The resource type that the recommendation summary applies to.
 	RecommendationResourceType *string `locationName:"recommendationResourceType" type:"string" enum:"RecommendationSourceType"`
 
@@ -8892,6 +9062,12 @@ func (s *RecommendationSummary) SetAccountId(v string) *RecommendationSummary {
 // SetCurrentPerformanceRiskRatings sets the CurrentPerformanceRiskRatings field's value.
 func (s *RecommendationSummary) SetCurrentPerformanceRiskRatings(v *CurrentPerformanceRiskRatings) *RecommendationSummary {
 	s.CurrentPerformanceRiskRatings = v
+	return s
+}
+
+// SetInferredWorkloadSavings sets the InferredWorkloadSavings field's value.
+func (s *RecommendationSummary) SetInferredWorkloadSavings(v []*InferredWorkloadSaving) *RecommendationSummary {
+	s.InferredWorkloadSavings = v
 	return s
 }
 
@@ -9167,9 +9343,9 @@ func (s *S3DestinationConfig) SetKeyPrefix(v string) *S3DestinationConfig {
 type SavingsOpportunity struct {
 	_ struct{} `type:"structure"`
 
-	// An object that describes the estimated monthly savings amount possible, based
-	// on On-Demand instance pricing, by adopting Compute Optimizer recommendations
-	// for a given resource.
+	// An object that describes the estimated monthly savings amount possible by
+	// adopting Compute Optimizer recommendations for a given resource. This is
+	// based on the On-Demand instance pricing..
 	EstimatedMonthlySavings *EstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
 
 	// The estimated monthly savings possible as a percentage of monthly cost by
@@ -9482,6 +9658,49 @@ func (s *Summary) SetReasonCodeSummaries(v []*ReasonCodeSummary) *Summary {
 
 // SetValue sets the Value field's value.
 func (s *Summary) SetValue(v float64) *Summary {
+	s.Value = &v
+	return s
+}
+
+// A list of tag key and value pairs that you define.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// One part of a key-value pair that makes up a tag. A key is a general label
+	// that acts like a category for more specific tag values.
+	Key *string `locationName:"key" type:"string"`
+
+	// One part of a key-value pair that make up a tag. A value acts as a descriptor
+	// within a tag category (key). The value can be empty or null.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
 	s.Value = &v
 	return s
 }
@@ -9925,6 +10144,9 @@ type VolumeRecommendation struct {
 	// The number of days for which utilization metrics were analyzed for the volume.
 	LookBackPeriodInDays *float64 `locationName:"lookBackPeriodInDays" type:"double"`
 
+	// A list of tags assigned to your Amazon EBS volume recommendations.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// An array of objects that describe the utilization metrics of the volume.
 	UtilizationMetrics []*EBSUtilizationMetric `locationName:"utilizationMetrics" type:"list"`
 
@@ -9986,6 +10208,12 @@ func (s *VolumeRecommendation) SetLastRefreshTimestamp(v time.Time) *VolumeRecom
 // SetLookBackPeriodInDays sets the LookBackPeriodInDays field's value.
 func (s *VolumeRecommendation) SetLookBackPeriodInDays(v float64) *VolumeRecommendation {
 	s.LookBackPeriodInDays = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *VolumeRecommendation) SetTags(v []*Tag) *VolumeRecommendation {
+	s.Tags = v
 	return s
 }
 
@@ -10633,6 +10861,9 @@ const (
 
 	// ExportableECSServiceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum is a ExportableECSServiceField enum value
 	ExportableECSServiceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum = "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum"
+
+	// ExportableECSServiceFieldTags is a ExportableECSServiceField enum value
+	ExportableECSServiceFieldTags = "Tags"
 )
 
 // ExportableECSServiceField_Values returns all elements of the ExportableECSServiceField enum
@@ -10661,6 +10892,7 @@ func ExportableECSServiceField_Values() []string {
 		ExportableECSServiceFieldRecommendationOptionsContainerRecommendations,
 		ExportableECSServiceFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
 		ExportableECSServiceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
+		ExportableECSServiceFieldTags,
 	}
 }
 
@@ -10826,6 +11058,9 @@ const (
 
 	// ExportableInstanceFieldInstanceState is a ExportableInstanceField enum value
 	ExportableInstanceFieldInstanceState = "InstanceState"
+
+	// ExportableInstanceFieldTags is a ExportableInstanceField enum value
+	ExportableInstanceFieldTags = "Tags"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -10885,6 +11120,7 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldRecommendationOptionsMigrationEffort,
 		ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource,
 		ExportableInstanceFieldInstanceState,
+		ExportableInstanceFieldTags,
 	}
 }
 
@@ -10966,6 +11202,9 @@ const (
 
 	// ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableLambdaFunctionField enum value
 	ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
+
+	// ExportableLambdaFunctionFieldTags is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldTags = "Tags"
 )
 
 // ExportableLambdaFunctionField_Values returns all elements of the ExportableLambdaFunctionField enum
@@ -10997,6 +11236,7 @@ func ExportableLambdaFunctionField_Values() []string {
 		ExportableLambdaFunctionFieldRecommendationOptionsSavingsOpportunityPercentage,
 		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
 		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValue,
+		ExportableLambdaFunctionFieldTags,
 	}
 }
 
@@ -11087,6 +11327,9 @@ const (
 
 	// ExportableVolumeFieldRootVolume is a ExportableVolumeField enum value
 	ExportableVolumeFieldRootVolume = "RootVolume"
+
+	// ExportableVolumeFieldTags is a ExportableVolumeField enum value
+	ExportableVolumeFieldTags = "Tags"
 )
 
 // ExportableVolumeField_Values returns all elements of the ExportableVolumeField enum
@@ -11121,6 +11364,7 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 		ExportableVolumeFieldRootVolume,
+		ExportableVolumeFieldTags,
 	}
 }
 
@@ -11169,6 +11413,9 @@ const (
 
 	// FilterNameRecommendationSourceType is a FilterName enum value
 	FilterNameRecommendationSourceType = "RecommendationSourceType"
+
+	// FilterNameInferredWorkloadTypes is a FilterName enum value
+	FilterNameInferredWorkloadTypes = "InferredWorkloadTypes"
 )
 
 // FilterName_Values returns all elements of the FilterName enum
@@ -11177,6 +11424,7 @@ func FilterName_Values() []string {
 		FilterNameFinding,
 		FilterNameFindingReasonCodes,
 		FilterNameRecommendationSourceType,
+		FilterNameInferredWorkloadTypes,
 	}
 }
 
@@ -11244,6 +11492,9 @@ const (
 
 	// InferredWorkloadTypeKafka is a InferredWorkloadType enum value
 	InferredWorkloadTypeKafka = "Kafka"
+
+	// InferredWorkloadTypeSqlserver is a InferredWorkloadType enum value
+	InferredWorkloadTypeSqlserver = "SQLServer"
 )
 
 // InferredWorkloadType_Values returns all elements of the InferredWorkloadType enum
@@ -11257,6 +11508,7 @@ func InferredWorkloadType_Values() []string {
 		InferredWorkloadTypePostgreSql,
 		InferredWorkloadTypeRedis,
 		InferredWorkloadTypeKafka,
+		InferredWorkloadTypeSqlserver,
 	}
 }
 

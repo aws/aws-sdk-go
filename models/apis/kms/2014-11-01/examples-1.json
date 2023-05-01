@@ -61,7 +61,7 @@
     "CreateCustomKeyStore": [
       {
         "input": {
-          "CloudHsmClusterId": "cluster-1a23b4cdefg",
+          "CloudHsmClusterId": "cluster-234abcdefABC",
           "CustomKeyStoreName": "ExampleKeyStore",
           "KeyStorePassword": "kmsPswd",
           "TrustAnchorCertificate": "<certificate-goes-here>"
@@ -423,7 +423,7 @@
           "KeyMetadata": {
             "AWSAccountId": "111122223333",
             "Arn": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
-            "CloudHsmClusterId": "cluster-1a23b4cdefg",
+            "CloudHsmClusterId": "cluster-234abcdefABC",
             "CreationDate": "2019-12-02T07:48:55-07:00",
             "CustomKeyStoreId": "cks-1234567890abcdef0",
             "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
@@ -506,6 +506,7 @@
           "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
         },
         "output": {
+          "EncryptionAlgorithm": "SYMMETRIC_DEFAULT",
           "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
           "Plaintext": "<binary data>"
         },
@@ -515,13 +516,71 @@
             "KeyId": "A key identifier for the KMS key to use to decrypt the data."
           },
           "output": {
+            "EncryptionAlgorithm": "The encryption algorithm that was used to decrypt the ciphertext. SYMMETRIC_DEFAULT is the only valid value for symmetric encryption in AWS KMS.",
             "KeyId": "The Amazon Resource Name (ARN) of the KMS key that was used to decrypt the data.",
             "Plaintext": "The decrypted (plaintext) data."
           }
         },
-        "description": "The following example decrypts data that was encrypted with a KMS key.",
-        "id": "to-decrypt-data-1478281622886",
-        "title": "To decrypt data"
+        "description": "The following example decrypts data that was encrypted with a symmetric encryption KMS key. The KeyId is not required when decrypting with a symmetric encryption key, but it is a best practice.",
+        "id": "to-decrypt-data-1",
+        "title": "To decrypt data with a symmetric encryption KMS key"
+      },
+      {
+        "input": {
+          "CiphertextBlob": "<binary data>",
+          "EncryptionAlgorithm": "RSAES_OAEP_SHA_256",
+          "KeyId": "0987dcba-09fe-87dc-65ba-ab0987654321"
+        },
+        "output": {
+          "EncryptionAlgorithm": "RSAES_OAEP_SHA_256",
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321",
+          "Plaintext": "<binary data>"
+        },
+        "comments": {
+          "input": {
+            "CiphertextBlob": "The encrypted data (ciphertext).",
+            "EncryptionAlgorithm": "The encryption algorithm that was used to encrypt the data. This parameter is required to decrypt with an asymmetric KMS key.",
+            "KeyId": "A key identifier for the KMS key to use to decrypt the data. This parameter is required to decrypt with an asymmetric KMS key."
+          },
+          "output": {
+            "EncryptionAlgorithm": "The encryption algorithm that was used to decrypt the ciphertext.",
+            "KeyId": "The Amazon Resource Name (ARN) of the KMS key that was used to decrypt the data.",
+            "Plaintext": "The decrypted (plaintext) data."
+          }
+        },
+        "description": "The following example decrypts data that was encrypted with an asymmetric encryption KMS key. When the KMS encryption key is asymmetric, you must specify the KMS key ID and the encryption algorithm that was used to encrypt the data.",
+        "id": "to-decrypt-data-2",
+        "title": "To decrypt data with an asymmetric encryption KMS key"
+      },
+      {
+        "input": {
+          "CiphertextBlob": "<binary data>",
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "Recipient": {
+            "AttestationDocument": "<attestation document>",
+            "KeyEncryptionAlgorithm": "RSAES_OAEP_SHA_256"
+          }
+        },
+        "output": {
+          "CiphertextForRecipient": "<binary data>",
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "Plaintext": ""
+        },
+        "comments": {
+          "input": {
+            "CiphertextBlob": "The encrypted data. This ciphertext was encrypted with the KMS key",
+            "KeyId": "The KMS key to use to decrypt the ciphertext",
+            "Recipient": "Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document"
+          },
+          "output": {
+            "CiphertextForRecipient": "The decrypted CiphertextBlob encrypted with the public key from the attestation document",
+            "KeyId": "The KMS key that was used to decrypt the encrypted data (CiphertextBlob)",
+            "Plaintext": "This field is null or empty"
+          }
+        },
+        "description": "The following Decrypt example includes the Recipient parameter with a signed attestation document from an AWS Nitro enclave. Instead of returning the decrypted data in plaintext (Plaintext), the operation returns the decrypted data encrypted by the public key from the attestation document (CiphertextForRecipient).",
+        "id": "to-decrypt-data-for-a-nitro-enclave-2",
+        "title": "To decrypt data for a Nitro enclave"
       }
     ],
     "DeleteAlias": [
@@ -600,7 +659,7 @@
         "output": {
           "CustomKeyStores": [
             {
-              "CloudHsmClusterId": "cluster-1a23b4cdefg",
+              "CloudHsmClusterId": "cluster-234abcdefABC",
               "ConnectionState": "CONNECTED",
               "CreationDate": "1.499288695918E9",
               "CustomKeyStoreId": "cks-1234567890abcdef0",
@@ -867,7 +926,7 @@
           "KeyMetadata": {
             "AWSAccountId": "123456789012",
             "Arn": "arn:aws:kms:us-west-2:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab",
-            "CloudHsmClusterId": "cluster-1a23b4cdefg",
+            "CloudHsmClusterId": "cluster-234abcdefABC",
             "CreationDate": 1646160362.664,
             "CustomKeyStoreId": "cks-1234567890abcdef0",
             "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
@@ -983,7 +1042,7 @@
           }
         },
         "description": "This example disconnects an AWS KMS custom key store from its backing key store. For an AWS CloudHSM key store, it disconnects the key store from its AWS CloudHSM cluster. For an external key store, it disconnects the key store from the external key store proxy that communicates with your external key manager. This operation doesn't return any data. To verify that the custom key store is disconnected, use the <code>DescribeCustomKeyStores</code> operation.",
-        "id": "to-disconnect-a-custom-key-store-from-its-cloudhsm-cluster-1628627955156",
+        "id": "to-disconnect-a-custom-key-store-from-its-cloudhsm-cluster-234abcdefABC",
         "title": "To disconnect a custom key store from its CloudHSM cluster"
       }
     ],
@@ -1025,6 +1084,7 @@
         },
         "output": {
           "CiphertextBlob": "<binary data>",
+          "EncryptionAlgorithm": "SYMMETRIC_DEFAULT",
           "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
         },
         "comments": {
@@ -1034,12 +1094,40 @@
           },
           "output": {
             "CiphertextBlob": "The encrypted data (ciphertext).",
+            "EncryptionAlgorithm": "The encryption algorithm that was used in the operation. For symmetric encryption keys, the encryption algorithm is always SYMMETRIC_DEFAULT.",
             "KeyId": "The ARN of the KMS key that was used to encrypt the data."
           }
         },
-        "description": "The following example encrypts data with the specified KMS key.",
-        "id": "to-encrypt-data-1478906026012",
-        "title": "To encrypt data"
+        "description": "The following example encrypts data with the specified symmetric encryption KMS key.",
+        "id": "to-encrypt-data-1",
+        "title": "To encrypt data with a symmetric encryption KMS key"
+      },
+      {
+        "input": {
+          "EncryptionAlgorithm": "RSAES_OAEP_SHA_256",
+          "KeyId": "0987dcba-09fe-87dc-65ba-ab0987654321",
+          "Plaintext": "<binary data>"
+        },
+        "output": {
+          "CiphertextBlob": "<binary data>",
+          "EncryptionAlgorithm": "RSAES_OAEP_SHA_256",
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321"
+        },
+        "comments": {
+          "input": {
+            "EncryptionAlgorithm": "The encryption algorithm to use in the operation.",
+            "KeyId": "The identifier of the KMS key to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the KMS key, or the name or ARN of an alias that refers to the KMS key.",
+            "Plaintext": "The data to encrypt."
+          },
+          "output": {
+            "CiphertextBlob": "The encrypted data (ciphertext).",
+            "EncryptionAlgorithm": "The encryption algorithm that was used in the operation.",
+            "KeyId": "The ARN of the KMS key that was used to encrypt the data."
+          }
+        },
+        "description": "The following example encrypts data with the specified RSA asymmetric KMS key. When you encrypt with an asymmetric key, you must specify the encryption algorithm.",
+        "id": "to-encrypt-data-2",
+        "title": "To encrypt data with an asymmetric encryption KMS key"
       }
     ],
     "GenerateDataKey": [
@@ -1065,8 +1153,40 @@
           }
         },
         "description": "The following example generates a 256-bit symmetric data encryption key (data key) in two formats. One is the unencrypted (plainext) data key, and the other is the data key encrypted with the specified KMS key.",
-        "id": "to-generate-a-data-key-1478912956062",
+        "id": "to-generate-a-data-key-1",
         "title": "To generate a data key"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "KeySpec": "AES_256",
+          "Recipient": {
+            "AttestationDocument": "<attestation document>",
+            "KeyEncryptionAlgorithm": "RSAES_OAEP_SHA_256"
+          }
+        },
+        "output": {
+          "CiphertextBlob": "<binary data>",
+          "CiphertextForRecipient": "<binary data>",
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "Plaintext": ""
+        },
+        "comments": {
+          "input": {
+            "KeyId": "Identifies the KMS key used to encrypt the encrypted data key (CiphertextBlob)",
+            "KeySpec": "Specifies the type of data key to return",
+            "Recipient": "Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document"
+          },
+          "output": {
+            "CiphertextBlob": "The data key encrypted by the specified KMS key",
+            "CiphertextForRecipient": "The plaintext data key encrypted by the public key from the attestation document",
+            "KeyId": "The KMS key used to encrypt the CiphertextBlob (encrypted data key)",
+            "Plaintext": "This field is null or empty"
+          }
+        },
+        "description": "The following example includes the Recipient parameter with a signed attestation document from an AWS Nitro enclave. Instead of returning a copy of the data key encrypted by the KMS key and a plaintext copy of the data key, GenerateDataKey returns one copy of the data key encrypted by the KMS key (CiphertextBlob) and one copy of the data key encrypted by the public key from the attestation document (CiphertextForRecipient). The operation doesn't return a plaintext data key. ",
+        "id": "to-generate-a-data-key-for-a-nitro-enclave-2",
+        "title": "To generate a data key pair for a Nitro enclave"
       }
     ],
     "GenerateDataKeyPair": [
@@ -1096,8 +1216,44 @@
           }
         },
         "description": "This example generates an RSA data key pair for encryption and decryption. The operation returns a plaintext public key and private key, and a copy of the private key that is encrypted under a symmetric encryption KMS key that you specify.",
-        "id": "to-generate-an-rsa-key-pair-for-encryption-and-decryption-1628619376878",
+        "id": "to-generate-an-rsa-key-pair-for-encryption-and-decryption-1",
         "title": "To generate an RSA key pair for encryption and decryption"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "KeyPairSpec": "RSA_3072",
+          "Recipient": {
+            "AttestationDocument": "<attestation document>",
+            "KeyEncryptionAlgorithm": "RSAES_OAEP_SHA_256"
+          }
+        },
+        "output": {
+          "CiphertextForRecipient": "<binary data>",
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "KeyPairSpec": "RSA_3072",
+          "PrivateKeyCiphertextBlob": "<binary data>",
+          "PrivateKeyPlaintext": "",
+          "PublicKey": "<binary data>"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The key ID of the symmetric encryption KMS key that encrypts the private RSA key in the data key pair.",
+            "KeyPairSpec": "The requested key spec of the RSA data key pair.",
+            "Recipient": "Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document."
+          },
+          "output": {
+            "CiphertextForRecipient": "The private key of the RSA data key pair encrypted by the public key from the attestation document",
+            "KeyId": "The key ARN of the symmetric encryption KMS key that was used to encrypt the PrivateKeyCiphertextBlob.",
+            "KeyPairSpec": "The actual key spec of the RSA data key pair.",
+            "PrivateKeyCiphertextBlob": "The private key of the RSA data key pair encrypted by the KMS key.",
+            "PrivateKeyPlaintext": "This field is null or empty",
+            "PublicKey": "The public key (plaintext) of the RSA data key pair."
+          }
+        },
+        "description": "The following example includes the Recipient parameter with a signed attestation document from an AWS Nitro enclave. Instead of returning a plaintext copy of the private data key, GenerateDataKeyPair returns a copy of the private data key encrypted by the public key from the attestation document (CiphertextForRecipient). It returns the public data key (PublicKey) and a copy of private data key encrypted under the specified KMS key (PrivateKeyCiphertextBlob), as usual, but plaintext private data key field (PrivateKeyPlaintext) is null or empty. ",
+        "id": "to-generate-a-data-key-pair-for-a-nitro-enclave-2",
+        "title": "To generate a data key pair for a Nitro enclave"
       }
     ],
     "GenerateDataKeyPairWithoutPlaintext": [
@@ -1200,7 +1356,33 @@
           }
         },
         "description": "The following example generates 32 bytes of random data.",
-        "id": "to-generate-random-data-1479163645600",
+        "id": "to-generate-random-data-1",
+        "title": "To generate random data"
+      },
+      {
+        "input": {
+          "NumberOfBytes": 1024,
+          "Recipient": {
+            "AttestationDocument": "<attestation document>",
+            "KeyEncryptionAlgorithm": "RSAES_OAEP_SHA_256"
+          }
+        },
+        "output": {
+          "CiphertextForRecipient": "<binary data>",
+          "Plaintext": ""
+        },
+        "comments": {
+          "input": {
+            "NumberOfBytes": "The length of the random byte string",
+            "Recipient": "Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document"
+          },
+          "output": {
+            "CiphertextForRecipient": "The random data encrypted under the public key from the attestation document",
+            "Plaintext": "This field is null or empty"
+          }
+        },
+        "description": "The following example includes the Recipient parameter with a signed attestation document from an AWS Nitro enclave. Instead of returning a plaintext (unencrypted) byte string, GenerateRandom returns the byte string encrypted by the public key from the enclave's attestation document.",
+        "id": "to-generate-random-data-2",
         "title": "To generate random data"
       }
     ],
@@ -1932,7 +2114,7 @@
       },
       {
         "input": {
-          "CloudHsmClusterId": "cluster-1a23b4cdefg",
+          "CloudHsmClusterId": "cluster-234abcdefABC",
           "CustomKeyStoreId": "cks-1234567890abcdef0"
         },
         "output": {

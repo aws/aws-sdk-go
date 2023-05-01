@@ -940,6 +940,11 @@
       "max":2048,
       "min":20
     },
+    "AttestationDocumentType":{
+      "type":"blob",
+      "max":262144,
+      "min":1
+    },
     "BooleanType":{"type":"boolean"},
     "CancelKeyDeletionRequest":{
       "type":"structure",
@@ -962,7 +967,8 @@
     "CloudHsmClusterIdType":{
       "type":"string",
       "max":24,
-      "min":19
+      "min":19,
+      "pattern":"cluster-[2-7a-zA-Z]{11,16}"
     },
     "CloudHsmClusterInUseException":{
       "type":"structure",
@@ -1239,7 +1245,8 @@
         "EncryptionContext":{"shape":"EncryptionContextType"},
         "GrantTokens":{"shape":"GrantTokenList"},
         "KeyId":{"shape":"KeyIdType"},
-        "EncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"}
+        "EncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"},
+        "Recipient":{"shape":"RecipientInfo"}
       }
     },
     "DecryptResponse":{
@@ -1247,7 +1254,8 @@
       "members":{
         "KeyId":{"shape":"KeyIdType"},
         "Plaintext":{"shape":"PlaintextType"},
-        "EncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"}
+        "EncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"},
+        "CiphertextForRecipient":{"shape":"CiphertextType"}
       }
     },
     "DeleteAliasRequest":{
@@ -1434,7 +1442,8 @@
         "EncryptionContext":{"shape":"EncryptionContextType"},
         "KeyId":{"shape":"KeyIdType"},
         "KeyPairSpec":{"shape":"DataKeyPairSpec"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "Recipient":{"shape":"RecipientInfo"}
       }
     },
     "GenerateDataKeyPairResponse":{
@@ -1444,7 +1453,8 @@
         "PrivateKeyPlaintext":{"shape":"PlaintextType"},
         "PublicKey":{"shape":"PublicKeyType"},
         "KeyId":{"shape":"KeyIdType"},
-        "KeyPairSpec":{"shape":"DataKeyPairSpec"}
+        "KeyPairSpec":{"shape":"DataKeyPairSpec"},
+        "CiphertextForRecipient":{"shape":"CiphertextType"}
       }
     },
     "GenerateDataKeyPairWithoutPlaintextRequest":{
@@ -1477,7 +1487,8 @@
         "EncryptionContext":{"shape":"EncryptionContextType"},
         "NumberOfBytes":{"shape":"NumberOfBytesType"},
         "KeySpec":{"shape":"DataKeySpec"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "Recipient":{"shape":"RecipientInfo"}
       }
     },
     "GenerateDataKeyResponse":{
@@ -1485,7 +1496,8 @@
       "members":{
         "CiphertextBlob":{"shape":"CiphertextType"},
         "Plaintext":{"shape":"PlaintextType"},
-        "KeyId":{"shape":"KeyIdType"}
+        "KeyId":{"shape":"KeyIdType"},
+        "CiphertextForRecipient":{"shape":"CiphertextType"}
       }
     },
     "GenerateDataKeyWithoutPlaintextRequest":{
@@ -1532,13 +1544,15 @@
       "type":"structure",
       "members":{
         "NumberOfBytes":{"shape":"NumberOfBytesType"},
-        "CustomKeyStoreId":{"shape":"CustomKeyStoreIdType"}
+        "CustomKeyStoreId":{"shape":"CustomKeyStoreIdType"},
+        "Recipient":{"shape":"RecipientInfo"}
       }
     },
     "GenerateRandomResponse":{
       "type":"structure",
       "members":{
-        "Plaintext":{"shape":"PlaintextType"}
+        "Plaintext":{"shape":"PlaintextType"},
+        "CiphertextForRecipient":{"shape":"CiphertextType"}
       }
     },
     "GetKeyPolicyRequest":{
@@ -1814,6 +1828,10 @@
         "message":{"shape":"ErrorMessageType"}
       },
       "exception":true
+    },
+    "KeyEncryptionMechanism":{
+      "type":"string",
+      "enum":["RSAES_OAEP_SHA_256"]
     },
     "KeyIdType":{
       "type":"string",
@@ -2188,6 +2206,13 @@
         "KeyId":{"shape":"KeyIdType"},
         "SourceEncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"},
         "DestinationEncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"}
+      }
+    },
+    "RecipientInfo":{
+      "type":"structure",
+      "members":{
+        "KeyEncryptionAlgorithm":{"shape":"KeyEncryptionMechanism"},
+        "AttestationDocument":{"shape":"AttestationDocumentType"}
       }
     },
     "RegionType":{

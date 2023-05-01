@@ -148,7 +148,7 @@ func ExampleKMS_CreateAlias_shared00() {
 func ExampleKMS_CreateCustomKeyStore_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.CreateCustomKeyStoreInput{
-		CloudHsmClusterId:      aws.String("cluster-1a23b4cdefg"),
+		CloudHsmClusterId:      aws.String("cluster-234abcdefABC"),
 		CustomKeyStoreName:     aws.String("ExampleKeyStore"),
 		KeyStorePassword:       aws.String("kmsPswd"),
 		TrustAnchorCertificate: aws.String("<certificate-goes-here>"),
@@ -829,13 +829,119 @@ func ExampleKMS_CreateKey_shared07() {
 	fmt.Println(result)
 }
 
-// To decrypt data
-// The following example decrypts data that was encrypted with a KMS key.
+// To decrypt data with a symmetric encryption KMS key
+// The following example decrypts data that was encrypted with a symmetric encryption
+// KMS key. The KeyId is not required when decrypting with a symmetric encryption key,
+// but it is a best practice.
 func ExampleKMS_Decrypt_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.DecryptInput{
 		CiphertextBlob: []byte("<binary data>"),
 		KeyId:          aws.String("arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
+	}
+
+	result, err := svc.Decrypt(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeInvalidCiphertextException:
+				fmt.Println(kms.ErrCodeInvalidCiphertextException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeIncorrectKeyException:
+				fmt.Println(kms.ErrCodeIncorrectKeyException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To decrypt data with an asymmetric encryption KMS key
+// The following example decrypts data that was encrypted with an asymmetric encryption
+// KMS key. When the KMS encryption key is asymmetric, you must specify the KMS key
+// ID and the encryption algorithm that was used to encrypt the data.
+func ExampleKMS_Decrypt_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.DecryptInput{
+		CiphertextBlob:      []byte("<binary data>"),
+		EncryptionAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		KeyId:               aws.String("0987dcba-09fe-87dc-65ba-ab0987654321"),
+	}
+
+	result, err := svc.Decrypt(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeInvalidCiphertextException:
+				fmt.Println(kms.ErrCodeInvalidCiphertextException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeIncorrectKeyException:
+				fmt.Println(kms.ErrCodeIncorrectKeyException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To decrypt data for a Nitro enclave
+// The following Decrypt example includes the Recipient parameter with a signed attestation
+// document from an AWS Nitro enclave. Instead of returning the decrypted data in plaintext
+// (Plaintext), the operation returns the decrypted data encrypted by the public key
+// from the attestation document (CiphertextForRecipient).
+func ExampleKMS_Decrypt_shared02() {
+	svc := kms.New(session.New())
+	input := &kms.DecryptInput{
+		CiphertextBlob: []byte("<binary data>"),
+		KeyId:          aws.String("arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
+		Recipient: &kms.RecipientInfo{
+			AttestationDocument:    []byte("<attestation document>"),
+			KeyEncryptionAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		},
 	}
 
 	result, err := svc.Decrypt(input)
@@ -1525,13 +1631,58 @@ func ExampleKMS_EnableKeyRotation_shared00() {
 	fmt.Println(result)
 }
 
-// To encrypt data
-// The following example encrypts data with the specified KMS key.
+// To encrypt data with a symmetric encryption KMS key
+// The following example encrypts data with the specified symmetric encryption KMS key.
 func ExampleKMS_Encrypt_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.EncryptInput{
 		KeyId:     aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		Plaintext: []byte("<binary data>"),
+	}
+
+	result, err := svc.Encrypt(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To encrypt data with an asymmetric encryption KMS key
+// The following example encrypts data with the specified RSA asymmetric KMS key. When
+// you encrypt with an asymmetric key, you must specify the encryption algorithm.
+func ExampleKMS_Encrypt_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.EncryptInput{
+		EncryptionAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		KeyId:               aws.String("0987dcba-09fe-87dc-65ba-ab0987654321"),
+		Plaintext:           []byte("<binary data>"),
 	}
 
 	result, err := svc.Encrypt(input)
@@ -1613,6 +1764,58 @@ func ExampleKMS_GenerateDataKey_shared00() {
 	fmt.Println(result)
 }
 
+// To generate a data key pair for a Nitro enclave
+// The following example includes the Recipient parameter with a signed attestation
+// document from an AWS Nitro enclave. Instead of returning a copy of the data key encrypted
+// by the KMS key and a plaintext copy of the data key, GenerateDataKey returns one
+// copy of the data key encrypted by the KMS key (CiphertextBlob) and one copy of the
+// data key encrypted by the public key from the attestation document (CiphertextForRecipient).
+// The operation doesn't return a plaintext data key.
+func ExampleKMS_GenerateDataKey_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.GenerateDataKeyInput{
+		KeyId:   aws.String("arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
+		KeySpec: aws.String("AES_256"),
+		Recipient: &kms.RecipientInfo{
+			AttestationDocument:    []byte("<attestation document>"),
+			KeyEncryptionAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		},
+	}
+
+	result, err := svc.GenerateDataKey(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To generate an RSA key pair for encryption and decryption
 // This example generates an RSA data key pair for encryption and decryption. The operation
 // returns a plaintext public key and private key, and a copy of the private key that
@@ -1622,6 +1825,61 @@ func ExampleKMS_GenerateDataKeyPair_shared00() {
 	input := &kms.GenerateDataKeyPairInput{
 		KeyId:       aws.String("arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
 		KeyPairSpec: aws.String("RSA_3072"),
+	}
+
+	result, err := svc.GenerateDataKeyPair(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeUnsupportedOperationException:
+				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To generate a data key pair for a Nitro enclave
+// The following example includes the Recipient parameter with a signed attestation
+// document from an AWS Nitro enclave. Instead of returning a plaintext copy of the
+// private data key, GenerateDataKeyPair returns a copy of the private data key encrypted
+// by the public key from the attestation document (CiphertextForRecipient). It returns
+// the public data key (PublicKey) and a copy of private data key encrypted under the
+// specified KMS key (PrivateKeyCiphertextBlob), as usual, but plaintext private data
+// key field (PrivateKeyPlaintext) is null or empty.
+func ExampleKMS_GenerateDataKeyPair_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.GenerateDataKeyPairInput{
+		KeyId:       aws.String("arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
+		KeyPairSpec: aws.String("RSA_3072"),
+		Recipient: &kms.RecipientInfo{
+			AttestationDocument:    []byte("<attestation document>"),
+			KeyEncryptionAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		},
 	}
 
 	result, err := svc.GenerateDataKeyPair(input)
@@ -1800,6 +2058,49 @@ func ExampleKMS_GenerateRandom_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.GenerateRandomInput{
 		NumberOfBytes: aws.Int64(32),
+	}
+
+	result, err := svc.GenerateRandom(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeUnsupportedOperationException:
+				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeCustomKeyStoreNotFoundException:
+				fmt.Println(kms.ErrCodeCustomKeyStoreNotFoundException, aerr.Error())
+			case kms.ErrCodeCustomKeyStoreInvalidStateException:
+				fmt.Println(kms.ErrCodeCustomKeyStoreInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To generate random data
+// The following example includes the Recipient parameter with a signed attestation
+// document from an AWS Nitro enclave. Instead of returning a plaintext (unencrypted)
+// byte string, GenerateRandom returns the byte string encrypted by the public key from
+// the enclave's attestation document.
+func ExampleKMS_GenerateRandom_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.GenerateRandomInput{
+		NumberOfBytes: aws.Int64(1024),
+		Recipient: &kms.RecipientInfo{
+			AttestationDocument:    []byte("<attestation document>"),
+			KeyEncryptionAlgorithm: aws.String("RSAES_OAEP_SHA_256"),
+		},
 	}
 
 	result, err := svc.GenerateRandom(input)
@@ -2860,7 +3161,7 @@ func ExampleKMS_UpdateCustomKeyStore_shared01() {
 func ExampleKMS_UpdateCustomKeyStore_shared02() {
 	svc := kms.New(session.New())
 	input := &kms.UpdateCustomKeyStoreInput{
-		CloudHsmClusterId: aws.String("cluster-1a23b4cdefg"),
+		CloudHsmClusterId: aws.String("cluster-234abcdefABC"),
 		CustomKeyStoreId:  aws.String("cks-1234567890abcdef0"),
 	}
 
