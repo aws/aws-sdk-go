@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Appflow.
 //	func myFunc(svc appflowiface.AppflowAPI) bool {
-//	    // Make svc.CreateConnectorProfile request
+//	    // Make svc.CancelFlowExecutions request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockAppflowClient struct {
 //	    appflowiface.AppflowAPI
 //	}
-//	func (m *mockAppflowClient) CreateConnectorProfile(input *appflow.CreateConnectorProfileInput) (*appflow.CreateConnectorProfileOutput, error) {
+//	func (m *mockAppflowClient) CancelFlowExecutions(input *appflow.CancelFlowExecutionsInput) (*appflow.CancelFlowExecutionsOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type AppflowAPI interface {
+	CancelFlowExecutions(*appflow.CancelFlowExecutionsInput) (*appflow.CancelFlowExecutionsOutput, error)
+	CancelFlowExecutionsWithContext(aws.Context, *appflow.CancelFlowExecutionsInput, ...request.Option) (*appflow.CancelFlowExecutionsOutput, error)
+	CancelFlowExecutionsRequest(*appflow.CancelFlowExecutionsInput) (*request.Request, *appflow.CancelFlowExecutionsOutput)
+
 	CreateConnectorProfile(*appflow.CreateConnectorProfileInput) (*appflow.CreateConnectorProfileOutput, error)
 	CreateConnectorProfileWithContext(aws.Context, *appflow.CreateConnectorProfileInput, ...request.Option) (*appflow.CreateConnectorProfileOutput, error)
 	CreateConnectorProfileRequest(*appflow.CreateConnectorProfileInput) (*request.Request, *appflow.CreateConnectorProfileOutput)

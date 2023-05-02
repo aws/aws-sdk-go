@@ -1183,7 +1183,7 @@
     },
     "AppTemplateBody":{
       "type":"string",
-      "max":204800,
+      "max":409600,
       "min":0,
       "pattern":"^[\\w\\s:,-\\.'\\/{}\\[\\]:\"\\\\]+$"
     },
@@ -1405,7 +1405,6 @@
         "appComponents",
         "logicalResourceId",
         "physicalResourceId",
-        "resourceName",
         "resourceType"
       ],
       "members":{
@@ -2490,9 +2489,11 @@
         "appComponents":{"shape":"AppComponentList"},
         "excluded":{"shape":"BooleanOptional"},
         "logicalResourceId":{"shape":"LogicalResourceId"},
+        "parentResourceName":{"shape":"EntityName"},
         "physicalResourceId":{"shape":"PhysicalResourceId"},
         "resourceName":{"shape":"EntityName"},
-        "resourceType":{"shape":"String255"}
+        "resourceType":{"shape":"String255"},
+        "sourceType":{"shape":"ResourceSourceType"}
       }
     },
     "PhysicalResourceId":{
@@ -2824,6 +2825,13 @@
         "InProgress",
         "Failed",
         "Success"
+      ]
+    },
+    "ResourceSourceType":{
+      "type":"string",
+      "enum":[
+        "AppTemplate",
+        "Discovered"
       ]
     },
     "ResourceType":{

@@ -57576,6 +57576,9 @@ const (
 
 	// EventSourceNameOnSalesforceCaseCreate is a EventSourceName enum value
 	EventSourceNameOnSalesforceCaseCreate = "OnSalesforceCaseCreate"
+
+	// EventSourceNameOnContactEvaluationSubmit is a EventSourceName enum value
+	EventSourceNameOnContactEvaluationSubmit = "OnContactEvaluationSubmit"
 )
 
 // EventSourceName_Values returns all elements of the EventSourceName enum
@@ -57587,6 +57590,7 @@ func EventSourceName_Values() []string {
 		EventSourceNameOnZendeskTicketCreate,
 		EventSourceNameOnZendeskTicketStatusUpdate,
 		EventSourceNameOnSalesforceCaseCreate,
+		EventSourceNameOnContactEvaluationSubmit,
 	}
 }
 

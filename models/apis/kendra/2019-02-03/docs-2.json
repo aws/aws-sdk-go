@@ -15,7 +15,7 @@
     "CreateFaq": "<p>Creates a set of frequently ask questions (FAQs) using a specified FAQ file stored in an Amazon S3 bucket.</p> <p>Adding FAQs to an index is an asynchronous operation.</p> <p>For an example of adding an FAQ to an index using Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html#using-faq-file\">Using your FAQ file</a>.</p>",
     "CreateFeaturedResultsSet": "<p>Creates a set of featured results to display at the top of the search results page. Featured results are placed above all other results for certain queries. You map specific queries to specific documents for featuring in the results. If a query contains an exact match, then one or more specific documents are featured in the search results.</p> <p>You can create up to 50 sets of featured results per index. You can request to increase this limit by contacting <a href=\"http://aws.amazon.com/contact-us/\">Support</a>.</p>",
     "CreateIndex": "<p>Creates an Amazon Kendra index. Index creation is an asynchronous API. To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the <code>BatchPutDocument</code> API or using one of the supported data sources.</p> <p>For an example of creating an index and data source using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-python.html\">Getting started with Python SDK</a>. For an example of creating an index and data source using the Java SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/gs-java.html\">Getting started with Java SDK</a>.</p>",
-    "CreateQuerySuggestionsBlockList": "<p>Creates a block list to exlcude certain queries from suggestions.</p> <p>Any query that contains words or phrases specified in the block list is blocked or filtered out from being shown as a suggestion.</p> <p>You need to provide the file location of your block list text file in your S3 bucket. In your text file, enter each block word or phrase on a separate line.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>CreateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p> <p>For an example of creating a block list for query suggestions using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#suggestions-block-list\">Query suggestions block list</a>.</p>",
+    "CreateQuerySuggestionsBlockList": "<p>Creates a block list to exlcude certain queries from suggestions.</p> <p>Any query that contains words or phrases specified in the block list is blocked or filtered out from being shown as a suggestion.</p> <p>You need to provide the file location of your block list text file in your S3 bucket. In your text file, enter each block word or phrase on a separate line.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>CreateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p> <p>For an example of creating a block list for query suggestions using the Python SDK, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#query-suggestions-blocklist\">Query suggestions block list</a>.</p>",
     "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p> <p>For an example of adding a thesaurus file to an index, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/index-synonyms-adding-thesaurus-file.html\">Adding custom synonyms to an index</a>.</p>",
     "DeleteAccessControlConfiguration": "<p>Deletes an access control configuration that you created for your documents in an index. This includes user and group access information for your documents. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents.</p>",
     "DeleteDataSource": "<p>Deletes an Amazon Kendra data source connector. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the <code>Status</code> field returned by a call to the <code>DescribeDataSource</code> API is set to <code>DELETING</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html\">Deleting Data Sources</a>.</p>",
@@ -65,7 +65,7 @@
     "UpdateFeaturedResultsSet": "<p>Updates a set of featured results. Features results are placed above all other results for certain queries. You map specific queries to specific documents for featuring in the results. If a query contains an exact match of a query, then one or more specific documents are featured in the search results.</p>",
     "UpdateIndex": "<p>Updates an existing Amazon Kendra index.</p>",
     "UpdateQuerySuggestionsBlockList": "<p>Updates a block list used for query suggestions for an index.</p> <p>Updates to a block list might not take effect right away. Amazon Kendra needs to refresh the entire suggestions list to apply any updates to the block list. Other changes not related to the block list apply immediately.</p> <p>If a block list is updating, then you need to wait for the first update to finish before submitting another update.</p> <p>Amazon Kendra supports partial updates, so you only need to provide the fields you want to update.</p> <p> <code>UpdateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
-    "UpdateQuerySuggestionsConfig": "<p>Updates the settings of query suggestions for an index.</p> <p>Amazon Kendra supports partial updates, so you only need to provide the fields you want to update.</p> <p>If an update is currently processing (i.e. 'happening'), you need to wait for the update to finish before making another update.</p> <p>Updates to query suggestions settings might not take effect right away. The time for your updated settings to take effect depends on the updates made and the number of search queries in your index.</p> <p>You can still enable/disable query suggestions at any time.</p> <p> <code>UpdateQuerySuggestionsConfig</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
+    "UpdateQuerySuggestionsConfig": "<p>Updates the settings of query suggestions for an index.</p> <p>Amazon Kendra supports partial updates, so you only need to provide the fields you want to update.</p> <p>If an update is currently processing, you need to wait for the update to finish before making another update.</p> <p>Updates to query suggestions settings might not take effect right away. The time for your updated settings to take effect depends on the updates made and the number of search queries in your index.</p> <p>You can still enable/disable query suggestions at any time.</p> <p> <code>UpdateQuerySuggestionsConfig</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "UpdateThesaurus": "<p>Updates a thesaurus for an index.</p>"
   },
   "shapes": {
@@ -199,6 +199,7 @@
       "refs": {
         "AttributeFilter$NotFilter": "<p>Performs a logical <code>NOT</code> operation on all supplied filters.</p>",
         "AttributeFilterList$member": null,
+        "AttributeSuggestionsGetConfig$AttributeFilter": "<p>Filters the search results based on document fields/attributes.</p>",
         "QueryRequest$AttributeFilter": "<p>Enables filtered searches based on document attributes. You can only provide one attribute filter; however, the <code>AndAllFilters</code>, <code>NotFilter</code>, and <code>OrAllFilters</code> parameters contain a list of other filters.</p> <p>The <code>AttributeFilter</code> parameter enables you to create a set of filtering rules that a document must satisfy to be included in the query results.</p>"
       }
     },
@@ -207,6 +208,31 @@
       "refs": {
         "AttributeFilter$AndAllFilters": "<p>Performs a logical <code>AND</code> operation on all supplied filters.</p>",
         "AttributeFilter$OrAllFilters": "<p>Performs a logical <code>OR</code> operation on all supplied filters.</p>"
+      }
+    },
+    "AttributeSuggestionsDescribeConfig": {
+      "base": "<p>Gets information on the configuration of document fields/attributes that you want to base query suggestions on. To change your configuration, use <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_AttributeSuggestionsUpdateConfig.html\">AttributeSuggestionsUpdateConfig</a> and then call <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html\">UpdateQuerySuggestionsConfig</a>.</p>",
+      "refs": {
+        "DescribeQuerySuggestionsConfigResponse$AttributeSuggestionsConfig": "<p>Configuration information for the document fields/attributes that you want to base query suggestions on.</p>"
+      }
+    },
+    "AttributeSuggestionsGetConfig": {
+      "base": "<p>Provides the configuration information for the document fields/attributes that you want to base query suggestions on.</p>",
+      "refs": {
+        "GetQuerySuggestionsRequest$AttributeSuggestionsConfig": "<p>Configuration information for the document fields/attributes that you want to base query suggestions on.</p>"
+      }
+    },
+    "AttributeSuggestionsMode": {
+      "base": null,
+      "refs": {
+        "AttributeSuggestionsDescribeConfig$AttributeSuggestionsMode": "<p>The mode is set to either <code>ACTIVE</code> or <code>INACTIVE</code>. If the <code>Mode</code> for query history is set to <code>ENABLED</code> when calling <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html\">UpdateQuerySuggestionsConfig</a> and <code>AttributeSuggestionsMode</code> to use fields/attributes is set to <code>ACTIVE</code>, and you haven't set your <code>SuggestionTypes</code> preference to <code>DOCUMENT_ATTRIBUTES</code>, then Amazon Kendra uses the query history.</p>",
+        "AttributeSuggestionsUpdateConfig$AttributeSuggestionsMode": "<p>You can set the mode to <code>ACTIVE</code> or <code>INACTIVE</code>. You must also set <code>SuggestionTypes</code> as either <code>QUERY</code> or <code>DOCUMENT_ATTRIBUTES</code> and then call <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html\">GetQuerySuggestions</a>. If <code>Mode</code> to use query history is set to <code>ENABLED</code> when calling <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html\">UpdateQuerySuggestionsConfig</a> and <code>AttributeSuggestionsMode</code> to use fields/attributes is set to <code>ACTIVE</code>, and you haven't set your <code>SuggestionTypes</code> preference to <code>DOCUMENT_ATTRIBUTES</code>, then Amazon Kendra uses the query history.</p>"
+      }
+    },
+    "AttributeSuggestionsUpdateConfig": {
+      "base": "<p>Updates the configuration information for the document fields/attributes that you want to base query suggestions on.</p> <p>To deactivate using documents fields for query suggestions, set the mode to <code>INACTIVE</code>. You must also set <code>SuggestionTypes</code> as either <code>QUERY</code> or <code>DOCUMENT_ATTRIBUTES</code> and then call <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html\">GetQuerySuggestions</a>. If you set to <code>QUERY</code>, then Amazon Kendra uses the query history to base suggestions on. If you set to <code>DOCUMENT_ATTRIBUTES</code>, then Amazon Kendra uses the contents of document fields to base suggestions on.</p>",
+      "refs": {
+        "UpdateQuerySuggestionsConfigRequest$AttributeSuggestionsConfig": "<p>Configuration information for the document fields/attributes that you want to base query suggestions on.</p>"
       }
     },
     "AuthenticationConfiguration": {
@@ -1246,13 +1272,17 @@
         "DocumentAttributeTarget$TargetDocumentAttributeKey": "<p>The identifier of the target document attribute or metadata field.</p> <p>For example, 'Department' could be an identifier for the target attribute or metadata field that includes the department names associated with the documents.</p>",
         "Facet$DocumentAttributeKey": "<p>The unique key for the document attribute.</p>",
         "FacetResult$DocumentAttributeKey": "<p>The key for the facet values. This is the same as the <code>DocumentAttributeKey</code> provided in the query.</p>",
-        "SortingConfiguration$DocumentAttributeKey": "<p>The name of the document attribute used to sort the response. You can use any field that has the <code>Sortable</code> flag set to true.</p> <p>You can also sort by any of the following built-in attributes:</p> <ul> <li> <p>_category</p> </li> <li> <p>_created_at</p> </li> <li> <p>_last_updated_at</p> </li> <li> <p>_version</p> </li> <li> <p>_view_count</p> </li> </ul>"
+        "SortingConfiguration$DocumentAttributeKey": "<p>The name of the document attribute used to sort the response. You can use any field that has the <code>Sortable</code> flag set to true.</p> <p>You can also sort by any of the following built-in attributes:</p> <ul> <li> <p>_category</p> </li> <li> <p>_created_at</p> </li> <li> <p>_last_updated_at</p> </li> <li> <p>_version</p> </li> <li> <p>_view_count</p> </li> </ul>",
+        "SuggestableConfig$AttributeName": "<p>The name of the document field/attribute.</p>"
       }
     },
     "DocumentAttributeKeyList": {
       "base": null,
       "refs": {
-        "QueryRequest$RequestedDocumentAttributes": "<p>An array of document attributes to include in the response. You can limit the response to include certain document attributes. By default all document attributes are included in the response.</p>"
+        "AttributeSuggestionsGetConfig$SuggestionAttributes": "<p>The list of document field/attribute keys or field names to use for query suggestions. If the content within any of the fields match what your user starts typing as their query, then the field content is returned as a query suggestion.</p>",
+        "AttributeSuggestionsGetConfig$AdditionalResponseAttributes": "<p>The list of additional document field/attribute keys or field names to include in the response. You can use additional fields to provide extra information in the response. Additional fields are not used to based suggestions on.</p>",
+        "QueryRequest$RequestedDocumentAttributes": "<p>An array of document attributes to include in the response. You can limit the response to include certain document attributes. By default all document attributes are included in the response.</p>",
+        "SourceDocument$SuggestionAttributes": "<p>The document fields/attributes used for a query suggestion.</p>"
       }
     },
     "DocumentAttributeList": {
@@ -1261,7 +1291,8 @@
         "Document$Attributes": "<p>Custom attributes to apply to the document. Use the custom attributes to provide additional information for searching, to provide facets for refining searches, and to provide additional information in the query response.</p> <p>For example, 'DataSourceId' and 'DataSourceSyncJobId' are custom attributes that provide information on the synchronization of documents running on a data source. Note, 'DataSourceSyncJobId' could be an optional custom attribute as Amazon Kendra will use the ID of a running sync job.</p>",
         "DocumentInfo$Attributes": "<p>Attributes that identify a specific version of a document to check.</p> <p>The only valid attributes are:</p> <ul> <li> <p>version</p> </li> <li> <p>datasourceId</p> </li> <li> <p>jobExecutionId</p> </li> </ul> <p>The attributes follow these rules:</p> <ul> <li> <p> <code>dataSourceId</code> and <code>jobExecutionId</code> must be used together.</p> </li> <li> <p> <code>version</code> is ignored if <code>dataSourceId</code> and <code>jobExecutionId</code> are not provided.</p> </li> <li> <p>If <code>dataSourceId</code> and <code>jobExecutionId</code> are provided, but <code>version</code> is not, the version defaults to \"0\".</p> </li> </ul>",
         "FeaturedResultsItem$DocumentAttributes": "<p>An array of document attributes assigned to a featured document in the search results. For example, the document author (<code>_author</code>) or the source URI (<code>_source_uri</code>) of the document.</p>",
-        "QueryResultItem$DocumentAttributes": "<p>An array of document attributes assigned to a document in the search results. For example, the document author (<code>_author</code>) or the source URI (<code>_source_uri</code>) of the document.</p>"
+        "QueryResultItem$DocumentAttributes": "<p>An array of document attributes assigned to a document in the search results. For example, the document author (<code>_author</code>) or the source URI (<code>_source_uri</code>) of the document.</p>",
+        "SourceDocument$AdditionalAttributes": "<p>The additional fields/attributes to include in the response. You can use additional fields to provide extra information in the response. Additional fields are not used to based suggestions on.</p>"
       }
     },
     "DocumentAttributeStringListValue": {
@@ -1812,7 +1843,7 @@
         "FeaturedResultsSet$FeaturedResultsSetId": "<p>The identifier of the set of featured results.</p>",
         "FeaturedResultsSetIdList$member": null,
         "FeaturedResultsSetSummary$FeaturedResultsSetId": "<p>The identifier of the set of featured results.</p>",
-        "UpdateFeaturedResultsSetRequest$FeaturedResultsSetId": "<p>The identifier of the index used for featuring results.</p>"
+        "UpdateFeaturedResultsSetRequest$FeaturedResultsSetId": "<p>The identifier of the set of featured results that you want to update.</p>"
       }
     },
     "FeaturedResultsSetIdList": {
@@ -2198,7 +2229,7 @@
         "Correction$EndOffset": "<p>The zero-based location in the response string or text where the corrected word ends.</p>",
         "DescribeQuerySuggestionsBlockListResponse$ItemCount": "<p>The current number of valid, non-empty words or phrases in the block list text file.</p>",
         "DescribeQuerySuggestionsConfigResponse$QueryLogLookBackWindowInDays": "<p>How recent your queries are in your query log time window (in days).</p>",
-        "DescribeQuerySuggestionsConfigResponse$TotalSuggestionsCount": "<p>The current total count of query suggestions for an index.</p> <p>This count can change when you update your query suggestions settings, if you filter out certain queries from suggestions using a block list, and as the query log accumulates more queries for Amazon Kendra to learn from.</p>",
+        "DescribeQuerySuggestionsConfigResponse$TotalSuggestionsCount": "<p>The current total count of query suggestions for an index.</p> <p>This count can change when you update your query suggestions settings, if you filter out certain queries from suggestions using a block list, and as the query log accumulates more queries for Amazon Kendra to learn from.</p> <p>If the count is much lower than you expected, it could be because Amazon Kendra needs more queries in the query history to learn from or your current query suggestions settings are too strict.</p>",
         "DocumentAttributeValueCountPair$Count": "<p>The number of documents in the response that have the attribute value for the key.</p>",
         "GetQuerySuggestionsRequest$MaxSuggestionsCount": "<p>The maximum number of query suggestions you want to show to your users.</p>",
         "GetSnapshotsRequest$MaxResults": "<p>The maximum number of returned data for the metric.</p>",
@@ -2666,6 +2697,7 @@
       "base": null,
       "refs": {
         "DescribeQuerySuggestionsConfigResponse$IncludeQueriesWithoutUserInformation": "<p> <code>TRUE</code> to use all queries, otherwise use only queries that include user information to generate the query suggestions.</p>",
+        "SuggestableConfig$Suggestable": "<p> <code>TRUE</code> means the document field/attribute is suggestible, so the contents within the field can be used for query suggestions.</p>",
         "UpdateQuerySuggestionsConfigRequest$IncludeQueriesWithoutUserInformation": "<p> <code>TRUE</code> to include queries without user information (i.e. all queries, irrespective of the user), otherwise <code>FALSE</code> to only include queries with user information.</p> <p>If you pass user information to Amazon Kendra along with the queries, you can set this flag to <code>FALSE</code> and instruct Amazon Kendra to only consider queries with user information.</p> <p>If you set to <code>FALSE</code>, Amazon Kendra only considers queries searched at least <code>MinimumQueryCount</code> times across <code>MinimumNumberOfQueryingUsers</code> unique users for suggestions.</p> <p>If you set to <code>TRUE</code>, Amazon Kendra ignores all user information and learns from all queries.</p>"
       }
     },
@@ -3426,6 +3458,18 @@
         "QueryRequest$SortingConfiguration": "<p>Provides information that determines how the results of the query are sorted. You can set the field that Amazon Kendra should sort the results on, and specify whether the results should be sorted in ascending or descending order. In the case of ties in sorting the results, the results are sorted by relevance.</p> <p>If you don't provide sorting configuration, the results are sorted by the relevance that Amazon Kendra determines for the result.</p>"
       }
     },
+    "SourceDocument": {
+      "base": "<p>The document ID and its fields/attributes that are used for a query suggestion, if document fields set to use for query suggestions.</p>",
+      "refs": {
+        "SourceDocuments$member": null
+      }
+    },
+    "SourceDocuments": {
+      "base": null,
+      "refs": {
+        "Suggestion$SourceDocuments": "<p>The list of document IDs and their fields/attributes that are used for a single query suggestion, if document fields set to use for query suggestions.</p>"
+      }
+    },
     "SpellCorrectedQuery": {
       "base": "<p>A query with suggested spell corrections. </p>",
       "refs": {
@@ -3501,6 +3545,7 @@
         "PublicChannelFilter$member": null,
         "SnapshotsDataHeaderFields$member": null,
         "SnapshotsDataRecord$member": null,
+        "SourceDocument$DocumentId": "<p>The identifier of the document used for a query suggestion.</p>",
         "StartDataSourceSyncJobResponse$ExecutionId": "<p>Identifies a particular synchronization job.</p>",
         "Status$FailureCode": "<p>Indicates the source of the error.</p>",
         "Status$FailureReason": "<p>Provides detailed information about why the document couldn't be indexed. Use this information to correct the error before you resubmit the document for indexing.</p>",
@@ -3536,6 +3581,19 @@
       "base": null,
       "refs": {
         "DataSourceVpcConfiguration$SubnetIds": "<p>A list of identifiers for subnets within your Amazon VPC. The subnets should be able to connect to each other in the VPC, and they should have outgoing access to the Internet through a NAT device.</p>"
+      }
+    },
+    "SuggestableConfig": {
+      "base": "<p>Provides the configuration information for a document field/attribute that you want to base query suggestions on.</p>",
+      "refs": {
+        "SuggestableConfigList$member": null
+      }
+    },
+    "SuggestableConfigList": {
+      "base": null,
+      "refs": {
+        "AttributeSuggestionsDescribeConfig$SuggestableConfigList": "<p>The list of fields/attributes that you want to set as suggestible for query suggestions.</p>",
+        "AttributeSuggestionsUpdateConfig$SuggestableConfigList": "<p>The list of fields/attributes that you want to set as suggestible for query suggestions.</p>"
       }
     },
     "SuggestedQueryText": {
@@ -3578,6 +3636,18 @@
       "base": "<p>Provides text and information about where to highlight the query suggestion text.</p>",
       "refs": {
         "SuggestionValue$Text": "<p>The <code>SuggestionTextWithHighlights</code> structure that contains the query suggestion text and highlights.</p>"
+      }
+    },
+    "SuggestionType": {
+      "base": null,
+      "refs": {
+        "SuggestionTypes$member": null
+      }
+    },
+    "SuggestionTypes": {
+      "base": null,
+      "refs": {
+        "GetQuerySuggestionsRequest$SuggestionTypes": "<p>The suggestions type to base query suggestions on. The suggestion types are query history or document fields/attributes. You can set one type or the other.</p> <p>If you set query history as your suggestions type, Amazon Kendra suggests queries relevant to your users based on popular queries in the query history.</p> <p>If you set document fields/attributes as your suggestions type, Amazon Kendra suggests queries relevant to your users based on the contents of document fields.</p>"
       }
     },
     "SuggestionValue": {
@@ -3779,7 +3849,7 @@
         "DescribeIndexResponse$UpdatedAt": "<p>The Unix when the index was last updated.</p>",
         "DescribeQuerySuggestionsBlockListResponse$CreatedAt": "<p>The Unix timestamp when a block list for query suggestions was created.</p>",
         "DescribeQuerySuggestionsBlockListResponse$UpdatedAt": "<p>The Unix timestamp when a block list for query suggestions was last updated.</p>",
-        "DescribeQuerySuggestionsConfigResponse$LastSuggestionsBuildTime": "<p>The Unix timestamp when query suggestions for an index was last updated.</p>",
+        "DescribeQuerySuggestionsConfigResponse$LastSuggestionsBuildTime": "<p>The Unix timestamp when query suggestions for an index was last updated.</p> <p>Amazon Kendra automatically updates suggestions every 24 hours, after you change a setting or after you apply a <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#query-suggestions-blocklist\">block list</a>.</p>",
         "DescribeQuerySuggestionsConfigResponse$LastClearTime": "<p>The Unix timestamp when query suggestions for an index was last cleared.</p> <p>After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. Amazon Kendra only considers re-occurences of a query from the time you cleared suggestions. </p>",
         "DescribeThesaurusResponse$CreatedAt": "<p>The Unix timestamp when the thesaurus was created.</p>",
         "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix timestamp when the thesaurus was last updated.</p>",
@@ -3914,6 +3984,7 @@
     "UserContext": {
       "base": "<p>Provides information about the user context for an Amazon Kendra index.</p> <p>User context filtering is a kind of personalized search with the benefit of controlling access to documents. For example, not all teams that search the company portal for information should access top-secret company documents, nor are these documents relevant to all users. Only specific users or groups of teams given access to top-secret documents should see these documents in their search results.</p> <p>You provide one of the following:</p> <ul> <li> <p>User token</p> </li> <li> <p>User ID, the groups the user belongs to, and any data sources the groups can access.</p> </li> </ul> <p>If you provide both, an exception is thrown.</p>",
       "refs": {
+        "AttributeSuggestionsGetConfig$UserContext": "<p>Applies user context filtering so that only users who are given access to certain documents see these document in their search results.</p>",
         "QueryRequest$UserContext": "<p>The user context token or user and group information.</p>"
       }
     },

@@ -18427,7 +18427,7 @@ type PutAccountSettingDefaultInput struct {
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
 
 	// The account setting value for the specified principal ARN. Accepted values
-	// are enabled and disabled.
+	// are enabled, disabled, on, and off.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -18541,7 +18541,7 @@ type PutAccountSettingInput struct {
 	PrincipalArn *string `locationName:"principalArn" type:"string"`
 
 	// The account setting value for the specified principal ARN. Accepted values
-	// are enabled and disabled.
+	// are enabled, disabled, on, and off.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`

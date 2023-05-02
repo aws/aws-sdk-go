@@ -4157,7 +4157,8 @@
         "CompressionType":{"shape":"CompressionType"},
         "TargetAttributeName":{"shape":"TargetAttributeName"},
         "ContentType":{"shape":"ContentType"},
-        "ChannelType":{"shape":"AutoMLChannelType"}
+        "ChannelType":{"shape":"AutoMLChannelType"},
+        "SampleWeightAttributeName":{"shape":"SampleWeightAttributeName"}
       }
     },
     "AutoMLChannelType":{
@@ -17993,6 +17994,12 @@
         "Enabled",
         "Disabled"
       ]
+    },
+    "SampleWeightAttributeName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_-]+$"
     },
     "SamplingPercentage":{
       "type":"integer",
