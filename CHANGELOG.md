@@ -1,3 +1,17 @@
+Release v1.44.255 (2023-05-02)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/connect`: Updates service API
+* `service/ecs`: Updates service documentation
+  * Documentation only update to address Amazon ECS tickets.
+* `service/kendra`: Updates service API and documentation
+  * AWS Kendra now supports configuring document fields/attributes via the GetQuerySuggestions API. You can now base query suggestions on the contents of document fields.
+* `service/resiliencehub`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon Sagemaker Autopilot supports training models with sample weights and additional objective metrics.
+
 Release v1.44.254 (2023-05-01)
 ===
 

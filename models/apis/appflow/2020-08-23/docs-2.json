@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Welcome to the Amazon AppFlow API reference. This guide is for developers who need detailed information about the Amazon AppFlow API operations, data types, and errors. </p> <p>Amazon AppFlow is a fully managed integration service that enables you to securely transfer data between software as a service (SaaS) applications like Salesforce, Marketo, Slack, and ServiceNow, and Amazon Web Services like Amazon S3 and Amazon Redshift. </p> <p>Use the following links to get started on the Amazon AppFlow API:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/appflow/1.0/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all Amazon AppFlow API operations.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/appflow/1.0/APIReference/API_Types.html\">Data types</a>: An alphabetical list of all Amazon AppFlow data types.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/appflow/1.0/APIReference/CommonParameters.html\">Common parameters</a>: Parameters that all Query operations can use.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/appflow/1.0/APIReference/CommonErrors.html\">Common errors</a>: Client and server errors that all operations can return.</p> </li> </ul> <p>If you're new to Amazon AppFlow, we recommend that you review the <a href=\"https://docs.aws.amazon.com/appflow/latest/userguide/what-is-appflow.html\">Amazon AppFlow User Guide</a>.</p> <p>Amazon AppFlow API users can use vendor-specific mechanisms for OAuth, and include applicable OAuth attributes (such as <code>auth-code</code> and <code>redirecturi</code>) with the connector-specific <code>ConnectorProfileProperties</code> when creating a new connector profile using Amazon AppFlow API operations. For example, Salesforce users can refer to the <a href=\"https://help.salesforce.com/articleView?id=remoteaccess_authenticate.htm\"> <i>Authorize Apps with OAuth</i> </a> documentation.</p>",
   "operations": {
+    "CancelFlowExecutions": "<p>Cancels active runs for a flow.</p> <p>You can cancel all of the active runs for a flow, or you can cancel specific runs by providing their IDs.</p> <p>You can cancel a flow run only when the run is in progress. You can't cancel a run that has already completed or failed. You also can't cancel a run that's scheduled to occur but hasn't started yet. To prevent a scheduled run, you can deactivate the flow with the <code>StopFlow</code> action.</p> <p>You cannot resume a run after you cancel it.</p> <p>When you send your request, the status for each run becomes <code>CancelStarted</code>. When the cancellation completes, the status becomes <code>Canceled</code>.</p> <note> <p>When you cancel a run, you still incur charges for any data that the run already processed before the cancellation. If the run had already written some data to the flow destination, then that data remains in the destination. If you configured the flow to use a batch API (such as the Salesforce Bulk API 2.0), then the run will finish reading or writing its entire batch of data after the cancellation. For these operations, the data processing charges for Amazon AppFlow apply. For the pricing information, see <a href=\"http://aws.amazon.com/appflow/pricing/\">Amazon AppFlow pricing</a>.</p> </note>",
     "CreateConnectorProfile": "<p> Creates a new connector profile associated with your Amazon Web Services account. There is a soft quota of 100 connector profiles per Amazon Web Services account. If you need more connector profiles than this quota allows, you can submit a request to the Amazon AppFlow team through the Amazon AppFlow support channel. In each connector profile that you create, you can provide the credentials and properties for only one connector.</p>",
     "CreateFlow": "<p> Enables your application to create a new flow using Amazon AppFlow. You must create a connector profile before calling this API. Please note that the Request Syntax below shows syntax for multiple destinations, however, you can only transfer data to one item in this list at a time. Amazon AppFlow does not currently support flows to multiple destinations at once. </p>",
     "DeleteConnectorProfile": "<p> Enables you to delete an existing connector profile. </p>",
@@ -298,6 +299,16 @@
       "base": null,
       "refs": {
         "PardotConnectorProfileProperties$businessUnitId": "<p>The business unit id of Salesforce Pardot instance.</p>"
+      }
+    },
+    "CancelFlowExecutionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelFlowExecutionsResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CatalogType": {
@@ -1119,8 +1130,16 @@
     "ExecutionId": {
       "base": null,
       "refs": {
+        "ExecutionIds$member": null,
         "ExecutionRecord$executionId": "<p> Specifies the identifier of the given flow run. </p>",
         "StartFlowResponse$executionId": "<p> Returns the internal execution ID of an on-demand flow when the flow is started. For scheduled or event-triggered flows, this value is null. </p>"
+      }
+    },
+    "ExecutionIds": {
+      "base": null,
+      "refs": {
+        "CancelFlowExecutionsRequest$executionIds": "<p>The ID of each active run to cancel. These runs must belong to the flow you specify in your request.</p> <p>If you omit this parameter, your request ends all active runs that belong to the flow.</p>",
+        "CancelFlowExecutionsResponse$invalidExecutions": "<p>The IDs of runs that Amazon AppFlow couldn't cancel. These runs might be ineligible for canceling because they haven't started yet or have already completed.</p>"
       }
     },
     "ExecutionMessage": {
@@ -1220,6 +1239,7 @@
     "FlowName": {
       "base": null,
       "refs": {
+        "CancelFlowExecutionsRequest$flowName": "<p>The name of a flow with active runs that you want to cancel.</p>",
         "CreateFlowRequest$flowName": "<p> The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only. </p>",
         "DeleteFlowRequest$flowName": "<p> The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only. </p>",
         "DescribeFlowExecutionRecordsRequest$flowName": "<p> The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only. </p>",

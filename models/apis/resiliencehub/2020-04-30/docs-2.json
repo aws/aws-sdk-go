@@ -3,7 +3,7 @@
   "service": "<p>Resilience Hub helps you proactively prepare and protect your Amazon Web Services applications from disruptions. It offers continual resiliency assessment and validation that integrates into your software development lifecycle. This enables you to uncover resiliency weaknesses, ensure recovery time objective (RTO) and recovery point objective (RPO) targets for your applications are met, and resolve issues before they are released into production. </p>",
   "operations": {
     "AddDraftAppVersionResourceMappings": "<p>Adds the resource mapping for the draft application version. You can also update an existing resource mapping to a new physical resource.</p>",
-    "CreateApp": "<p>Creates an Resilience Hub application. An Resilience Hub application is a collection of Amazon Web Services resources structured to prevent and recover Amazon Web Services application disruptions. To describe a Resilience Hub application, you provide an application name, resources from one or more–up to 20–CloudFormation stacks, and an appropriate resiliency policy.</p> <p>After you create an Resilience Hub application, you publish it so that you can run a resiliency assessment on it. You can then use recommendations from the assessment to improve resiliency by running another assessment, comparing results, and then iterating the process until you achieve your goals for recovery time objective (RTO) and recovery point objective (RPO).</p>",
+    "CreateApp": "<p>Creates an Resilience Hub application. An Resilience Hub application is a collection of Amazon Web Services resources structured to prevent and recover Amazon Web Services application disruptions. To describe an Resilience Hub application, you provide an application name, resources from one or more CloudFormation stacks, Resource Groups, Terraform state files, AppRegistry applications, and an appropriate resiliency policy. For more information about the number of resources supported per application, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/resiliencehub.html#limits_resiliencehub\">Service Quotas</a>.</p> <p>After you create an Resilience Hub application, you publish it so that you can run a resiliency assessment on it. You can then use recommendations from the assessment to improve resiliency by running another assessment, comparing results, and then iterating the process until you achieve your goals for recovery time objective (RTO) and recovery point objective (RPO).</p>",
     "CreateAppVersionAppComponent": "<p>Creates a new Application Component in the Resilience Hub application.</p> <note> <p>This API updates the Resilience Hub application draft version. To use this Application Component for running assessments, you must publish the Resilience Hub application using the <code>PublishAppVersion</code> API.</p> </note>",
     "CreateAppVersionResource": "<p>Adds a resource to the Resilience Hub application and assigns it to the specified Application Components. If you specify a new Application Component, Resilience Hub will automatically create the Application Component.</p> <note> <ul> <li> <p>This action has no effect outside Resilience Hub.</p> </li> <li> <p>This API updates the Resilience Hub application draft version. To use this resource for running resiliency assessments, you must publish the Resilience Hub application using the <code>PublishAppVersion</code> API.</p> </li> <li> <p>To update application version with new <code>physicalResourceID</code>, you must call <code>ResolveAppVersionResources</code> API.</p> </li> </ul> </note>",
     "CreateRecommendationTemplate": "<p>Creates a new recommendation template for the Resilience Hub application.</p>",
@@ -847,6 +847,7 @@
         "ListRecommendationTemplatesRequest$name": "<p>The name for one of the listed recommendation templates.</p>",
         "ListResiliencyPoliciesRequest$policyName": "<p>The name of the policy</p>",
         "LogicalResourceId$resourceGroupName": "<p>The name of the resource group that this resource belongs to.</p>",
+        "PhysicalResource$parentResourceName": "<p>The name of the parent resource.</p>",
         "PhysicalResource$resourceName": "<p>The name of the resource.</p>",
         "RecommendationTemplate$name": "<p>The name for the recommendation template.</p>",
         "ResiliencyPolicy$policyName": "<p>The name of the policy</p>",
@@ -1440,6 +1441,12 @@
       "refs": {
         "DescribeAppVersionResourcesResolutionStatusResponse$status": "<p>The status of the action.</p>",
         "ResolveAppVersionResourcesResponse$status": "<p>The status of the action.</p>"
+      }
+    },
+    "ResourceSourceType": {
+      "base": null,
+      "refs": {
+        "PhysicalResource$sourceType": "<p>The type of input source.</p>"
       }
     },
     "ResourceType": {

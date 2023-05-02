@@ -160,9 +160,12 @@ func (c *ResilienceHub) CreateAppRequest(input *CreateAppInput) (req *request.Re
 //
 // Creates an Resilience Hub application. An Resilience Hub application is a
 // collection of Amazon Web Services resources structured to prevent and recover
-// Amazon Web Services application disruptions. To describe a Resilience Hub
-// application, you provide an application name, resources from one or more–up
-// to 20–CloudFormation stacks, and an appropriate resiliency policy.
+// Amazon Web Services application disruptions. To describe an Resilience Hub
+// application, you provide an application name, resources from one or more
+// CloudFormation stacks, Resource Groups, Terraform state files, AppRegistry
+// applications, and an appropriate resiliency policy. For more information
+// about the number of resources supported per application, see Service Quotas
+// (https://docs.aws.amazon.com/general/latest/gr/resiliencehub.html#limits_resiliencehub).
 //
 // After you create an Resilience Hub application, you publish it so that you
 // can run a resiliency assessment on it. You can then use recommendations from
@@ -7982,9 +7985,7 @@ type CreateAppVersionResourceInput struct {
 	PhysicalResourceId *string `locationName:"physicalResourceId" min:"1" type:"string" required:"true"`
 
 	// The name of the resource.
-	//
-	// ResourceName is a required field
-	ResourceName *string `locationName:"resourceName" type:"string" required:"true"`
+	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The type of resource.
 	//
@@ -8030,9 +8031,6 @@ func (s *CreateAppVersionResourceInput) Validate() error {
 	}
 	if s.PhysicalResourceId != nil && len(*s.PhysicalResourceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PhysicalResourceId", 1))
-	}
-	if s.ResourceName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResourceName"))
 	}
 	if s.ResourceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
@@ -13381,6 +13379,9 @@ type PhysicalResource struct {
 	// LogicalResourceId is a required field
 	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure" required:"true"`
 
+	// The name of the parent resource.
+	ParentResourceName *string `locationName:"parentResourceName" type:"string"`
+
 	// The physical identifier of the resource.
 	//
 	// PhysicalResourceId is a required field
@@ -13393,6 +13394,9 @@ type PhysicalResource struct {
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
+
+	// The type of input source.
+	SourceType *string `locationName:"sourceType" type:"string" enum:"ResourceSourceType"`
 }
 
 // String returns the string representation.
@@ -13437,6 +13441,12 @@ func (s *PhysicalResource) SetLogicalResourceId(v *LogicalResourceId) *PhysicalR
 	return s
 }
 
+// SetParentResourceName sets the ParentResourceName field's value.
+func (s *PhysicalResource) SetParentResourceName(v string) *PhysicalResource {
+	s.ParentResourceName = &v
+	return s
+}
+
 // SetPhysicalResourceId sets the PhysicalResourceId field's value.
 func (s *PhysicalResource) SetPhysicalResourceId(v *PhysicalResourceId) *PhysicalResource {
 	s.PhysicalResourceId = v
@@ -13452,6 +13462,12 @@ func (s *PhysicalResource) SetResourceName(v string) *PhysicalResource {
 // SetResourceType sets the ResourceType field's value.
 func (s *PhysicalResource) SetResourceType(v string) *PhysicalResource {
 	s.ResourceType = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *PhysicalResource) SetSourceType(v string) *PhysicalResource {
+	s.SourceType = &v
 	return s
 }
 
@@ -17039,6 +17055,22 @@ func ResourceResolutionStatusType_Values() []string {
 		ResourceResolutionStatusTypeInProgress,
 		ResourceResolutionStatusTypeFailed,
 		ResourceResolutionStatusTypeSuccess,
+	}
+}
+
+const (
+	// ResourceSourceTypeAppTemplate is a ResourceSourceType enum value
+	ResourceSourceTypeAppTemplate = "AppTemplate"
+
+	// ResourceSourceTypeDiscovered is a ResourceSourceType enum value
+	ResourceSourceTypeDiscovered = "Discovered"
+)
+
+// ResourceSourceType_Values returns all elements of the ResourceSourceType enum
+func ResourceSourceType_Values() []string {
+	return []string{
+		ResourceSourceTypeAppTemplate,
+		ResourceSourceTypeDiscovered,
 	}
 }
 

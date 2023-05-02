@@ -1536,7 +1536,7 @@ func (c *Kendra) CreateQuerySuggestionsBlockListRequest(input *CreateQuerySugges
 // Web Services GovCloud (US-West) region.
 //
 // For an example of creating a block list for query suggestions using the Python
-// SDK, see Query suggestions block list (https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#suggestions-block-list).
+// SDK, see Query suggestions block list (https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#query-suggestions-blocklist).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7404,8 +7404,8 @@ func (c *Kendra) UpdateQuerySuggestionsConfigRequest(input *UpdateQuerySuggestio
 // Amazon Kendra supports partial updates, so you only need to provide the fields
 // you want to update.
 //
-// If an update is currently processing (i.e. 'happening'), you need to wait
-// for the update to finish before making another update.
+// If an update is currently processing, you need to wait for the update to
+// finish before making another update.
 //
 // Updates to query suggestions settings might not take effect right away. The
 // time for your updated settings to take effect depends on the updates made
@@ -8577,6 +8577,224 @@ func (s *AttributeFilter) SetNotFilter(v *AttributeFilter) *AttributeFilter {
 // SetOrAllFilters sets the OrAllFilters field's value.
 func (s *AttributeFilter) SetOrAllFilters(v []*AttributeFilter) *AttributeFilter {
 	s.OrAllFilters = v
+	return s
+}
+
+// Gets information on the configuration of document fields/attributes that
+// you want to base query suggestions on. To change your configuration, use
+// AttributeSuggestionsUpdateConfig (https://docs.aws.amazon.com/kendra/latest/dg/API_AttributeSuggestionsUpdateConfig.html)
+// and then call UpdateQuerySuggestionsConfig (https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html).
+type AttributeSuggestionsDescribeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The mode is set to either ACTIVE or INACTIVE. If the Mode for query history
+	// is set to ENABLED when calling UpdateQuerySuggestionsConfig (https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html)
+	// and AttributeSuggestionsMode to use fields/attributes is set to ACTIVE, and
+	// you haven't set your SuggestionTypes preference to DOCUMENT_ATTRIBUTES, then
+	// Amazon Kendra uses the query history.
+	AttributeSuggestionsMode *string `type:"string" enum:"AttributeSuggestionsMode"`
+
+	// The list of fields/attributes that you want to set as suggestible for query
+	// suggestions.
+	SuggestableConfigList []*SuggestableConfig `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeSuggestionsDescribeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeSuggestionsDescribeConfig) GoString() string {
+	return s.String()
+}
+
+// SetAttributeSuggestionsMode sets the AttributeSuggestionsMode field's value.
+func (s *AttributeSuggestionsDescribeConfig) SetAttributeSuggestionsMode(v string) *AttributeSuggestionsDescribeConfig {
+	s.AttributeSuggestionsMode = &v
+	return s
+}
+
+// SetSuggestableConfigList sets the SuggestableConfigList field's value.
+func (s *AttributeSuggestionsDescribeConfig) SetSuggestableConfigList(v []*SuggestableConfig) *AttributeSuggestionsDescribeConfig {
+	s.SuggestableConfigList = v
+	return s
+}
+
+// Provides the configuration information for the document fields/attributes
+// that you want to base query suggestions on.
+type AttributeSuggestionsGetConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The list of additional document field/attribute keys or field names to include
+	// in the response. You can use additional fields to provide extra information
+	// in the response. Additional fields are not used to based suggestions on.
+	AdditionalResponseAttributes []*string `min:"1" type:"list"`
+
+	// Filters the search results based on document fields/attributes.
+	AttributeFilter *AttributeFilter `type:"structure"`
+
+	// The list of document field/attribute keys or field names to use for query
+	// suggestions. If the content within any of the fields match what your user
+	// starts typing as their query, then the field content is returned as a query
+	// suggestion.
+	SuggestionAttributes []*string `min:"1" type:"list"`
+
+	// Applies user context filtering so that only users who are given access to
+	// certain documents see these document in their search results.
+	UserContext *UserContext `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeSuggestionsGetConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeSuggestionsGetConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttributeSuggestionsGetConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttributeSuggestionsGetConfig"}
+	if s.AdditionalResponseAttributes != nil && len(s.AdditionalResponseAttributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalResponseAttributes", 1))
+	}
+	if s.SuggestionAttributes != nil && len(s.SuggestionAttributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SuggestionAttributes", 1))
+	}
+	if s.AttributeFilter != nil {
+		if err := s.AttributeFilter.Validate(); err != nil {
+			invalidParams.AddNested("AttributeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UserContext != nil {
+		if err := s.UserContext.Validate(); err != nil {
+			invalidParams.AddNested("UserContext", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalResponseAttributes sets the AdditionalResponseAttributes field's value.
+func (s *AttributeSuggestionsGetConfig) SetAdditionalResponseAttributes(v []*string) *AttributeSuggestionsGetConfig {
+	s.AdditionalResponseAttributes = v
+	return s
+}
+
+// SetAttributeFilter sets the AttributeFilter field's value.
+func (s *AttributeSuggestionsGetConfig) SetAttributeFilter(v *AttributeFilter) *AttributeSuggestionsGetConfig {
+	s.AttributeFilter = v
+	return s
+}
+
+// SetSuggestionAttributes sets the SuggestionAttributes field's value.
+func (s *AttributeSuggestionsGetConfig) SetSuggestionAttributes(v []*string) *AttributeSuggestionsGetConfig {
+	s.SuggestionAttributes = v
+	return s
+}
+
+// SetUserContext sets the UserContext field's value.
+func (s *AttributeSuggestionsGetConfig) SetUserContext(v *UserContext) *AttributeSuggestionsGetConfig {
+	s.UserContext = v
+	return s
+}
+
+// Updates the configuration information for the document fields/attributes
+// that you want to base query suggestions on.
+//
+// To deactivate using documents fields for query suggestions, set the mode
+// to INACTIVE. You must also set SuggestionTypes as either QUERY or DOCUMENT_ATTRIBUTES
+// and then call GetQuerySuggestions (https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html).
+// If you set to QUERY, then Amazon Kendra uses the query history to base suggestions
+// on. If you set to DOCUMENT_ATTRIBUTES, then Amazon Kendra uses the contents
+// of document fields to base suggestions on.
+type AttributeSuggestionsUpdateConfig struct {
+	_ struct{} `type:"structure"`
+
+	// You can set the mode to ACTIVE or INACTIVE. You must also set SuggestionTypes
+	// as either QUERY or DOCUMENT_ATTRIBUTES and then call GetQuerySuggestions
+	// (https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html).
+	// If Mode to use query history is set to ENABLED when calling UpdateQuerySuggestionsConfig
+	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html)
+	// and AttributeSuggestionsMode to use fields/attributes is set to ACTIVE, and
+	// you haven't set your SuggestionTypes preference to DOCUMENT_ATTRIBUTES, then
+	// Amazon Kendra uses the query history.
+	AttributeSuggestionsMode *string `type:"string" enum:"AttributeSuggestionsMode"`
+
+	// The list of fields/attributes that you want to set as suggestible for query
+	// suggestions.
+	SuggestableConfigList []*SuggestableConfig `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeSuggestionsUpdateConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeSuggestionsUpdateConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttributeSuggestionsUpdateConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttributeSuggestionsUpdateConfig"}
+	if s.SuggestableConfigList != nil {
+		for i, v := range s.SuggestableConfigList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SuggestableConfigList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeSuggestionsMode sets the AttributeSuggestionsMode field's value.
+func (s *AttributeSuggestionsUpdateConfig) SetAttributeSuggestionsMode(v string) *AttributeSuggestionsUpdateConfig {
+	s.AttributeSuggestionsMode = &v
+	return s
+}
+
+// SetSuggestableConfigList sets the SuggestableConfigList field's value.
+func (s *AttributeSuggestionsUpdateConfig) SetSuggestableConfigList(v []*SuggestableConfig) *AttributeSuggestionsUpdateConfig {
+	s.SuggestableConfigList = v
 	return s
 }
 
@@ -16233,6 +16451,10 @@ func (s *DescribeQuerySuggestionsConfigInput) SetIndexId(v string) *DescribeQuer
 type DescribeQuerySuggestionsConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration information for the document fields/attributes that you want
+	// to base query suggestions on.
+	AttributeSuggestionsConfig *AttributeSuggestionsDescribeConfig `type:"structure"`
+
 	// TRUE to use all queries, otherwise use only queries that include user information
 	// to generate the query suggestions.
 	IncludeQueriesWithoutUserInformation *bool `type:"boolean"`
@@ -16246,6 +16468,9 @@ type DescribeQuerySuggestionsConfigOutput struct {
 	LastClearTime *time.Time `type:"timestamp"`
 
 	// The Unix timestamp when query suggestions for an index was last updated.
+	//
+	// Amazon Kendra automatically updates suggestions every 24 hours, after you
+	// change a setting or after you apply a block list (https://docs.aws.amazon.com/kendra/latest/dg/query-suggestions.html#query-suggestions-blocklist).
 	LastSuggestionsBuildTime *time.Time `type:"timestamp"`
 
 	// The minimum number of unique users who must search a query in order for the
@@ -16278,6 +16503,10 @@ type DescribeQuerySuggestionsConfigOutput struct {
 	// This count can change when you update your query suggestions settings, if
 	// you filter out certain queries from suggestions using a block list, and as
 	// the query log accumulates more queries for Amazon Kendra to learn from.
+	//
+	// If the count is much lower than you expected, it could be because Amazon
+	// Kendra needs more queries in the query history to learn from or your current
+	// query suggestions settings are too strict.
 	TotalSuggestionsCount *int64 `type:"integer"`
 }
 
@@ -16297,6 +16526,12 @@ func (s DescribeQuerySuggestionsConfigOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeQuerySuggestionsConfigOutput) GoString() string {
 	return s.String()
+}
+
+// SetAttributeSuggestionsConfig sets the AttributeSuggestionsConfig field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetAttributeSuggestionsConfig(v *AttributeSuggestionsDescribeConfig) *DescribeQuerySuggestionsConfigOutput {
+	s.AttributeSuggestionsConfig = v
+	return s
 }
 
 // SetIncludeQueriesWithoutUserInformation sets the IncludeQueriesWithoutUserInformation field's value.
@@ -19167,6 +19402,10 @@ func (s *FsxConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *F
 type GetQuerySuggestionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration information for the document fields/attributes that you want
+	// to base query suggestions on.
+	AttributeSuggestionsConfig *AttributeSuggestionsGetConfig `type:"structure"`
+
 	// The identifier of the index you want to get query suggestions from.
 	//
 	// IndexId is a required field
@@ -19186,6 +19425,18 @@ type GetQuerySuggestionsInput struct {
 	//
 	// QueryText is a required field
 	QueryText *string `type:"string" required:"true"`
+
+	// The suggestions type to base query suggestions on. The suggestion types are
+	// query history or document fields/attributes. You can set one type or the
+	// other.
+	//
+	// If you set query history as your suggestions type, Amazon Kendra suggests
+	// queries relevant to your users based on popular queries in the query history.
+	//
+	// If you set document fields/attributes as your suggestions type, Amazon Kendra
+	// suggests queries relevant to your users based on the contents of document
+	// fields.
+	SuggestionTypes []*string `type:"list" enum:"SuggestionType"`
 }
 
 // String returns the string representation.
@@ -19218,11 +19469,22 @@ func (s *GetQuerySuggestionsInput) Validate() error {
 	if s.QueryText == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueryText"))
 	}
+	if s.AttributeSuggestionsConfig != nil {
+		if err := s.AttributeSuggestionsConfig.Validate(); err != nil {
+			invalidParams.AddNested("AttributeSuggestionsConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttributeSuggestionsConfig sets the AttributeSuggestionsConfig field's value.
+func (s *GetQuerySuggestionsInput) SetAttributeSuggestionsConfig(v *AttributeSuggestionsGetConfig) *GetQuerySuggestionsInput {
+	s.AttributeSuggestionsConfig = v
+	return s
 }
 
 // SetIndexId sets the IndexId field's value.
@@ -19240,6 +19502,12 @@ func (s *GetQuerySuggestionsInput) SetMaxSuggestionsCount(v int64) *GetQuerySugg
 // SetQueryText sets the QueryText field's value.
 func (s *GetQuerySuggestionsInput) SetQueryText(v string) *GetQuerySuggestionsInput {
 	s.QueryText = &v
+	return s
+}
+
+// SetSuggestionTypes sets the SuggestionTypes field's value.
+func (s *GetQuerySuggestionsInput) SetSuggestionTypes(v []*string) *GetQuerySuggestionsInput {
+	s.SuggestionTypes = v
 	return s
 }
 
@@ -27448,6 +27716,59 @@ func (s *SortingConfiguration) SetSortOrder(v string) *SortingConfiguration {
 	return s
 }
 
+// The document ID and its fields/attributes that are used for a query suggestion,
+// if document fields set to use for query suggestions.
+type SourceDocument struct {
+	_ struct{} `type:"structure"`
+
+	// The additional fields/attributes to include in the response. You can use
+	// additional fields to provide extra information in the response. Additional
+	// fields are not used to based suggestions on.
+	AdditionalAttributes []*DocumentAttribute `type:"list"`
+
+	// The identifier of the document used for a query suggestion.
+	DocumentId *string `min:"1" type:"string"`
+
+	// The document fields/attributes used for a query suggestion.
+	SuggestionAttributes []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceDocument) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalAttributes sets the AdditionalAttributes field's value.
+func (s *SourceDocument) SetAdditionalAttributes(v []*DocumentAttribute) *SourceDocument {
+	s.AdditionalAttributes = v
+	return s
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *SourceDocument) SetDocumentId(v string) *SourceDocument {
+	s.DocumentId = &v
+	return s
+}
+
+// SetSuggestionAttributes sets the SuggestionAttributes field's value.
+func (s *SourceDocument) SetSuggestionAttributes(v []*string) *SourceDocument {
+	s.SuggestionAttributes = v
+	return s
+}
+
 // A query with suggested spell corrections.
 type SpellCorrectedQuery struct {
 	_ struct{} `type:"structure"`
@@ -27966,12 +28287,72 @@ func (s SubmitFeedbackOutput) GoString() string {
 	return s.String()
 }
 
+// Provides the configuration information for a document field/attribute that
+// you want to base query suggestions on.
+type SuggestableConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the document field/attribute.
+	AttributeName *string `min:"1" type:"string"`
+
+	// TRUE means the document field/attribute is suggestible, so the contents within
+	// the field can be used for query suggestions.
+	Suggestable *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuggestableConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuggestableConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SuggestableConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SuggestableConfig"}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *SuggestableConfig) SetAttributeName(v string) *SuggestableConfig {
+	s.AttributeName = &v
+	return s
+}
+
+// SetSuggestable sets the Suggestable field's value.
+func (s *SuggestableConfig) SetSuggestable(v bool) *SuggestableConfig {
+	s.Suggestable = &v
+	return s
+}
+
 // A single query suggestion.
 type Suggestion struct {
 	_ struct{} `type:"structure"`
 
 	// The UUID (universally unique identifier) of a single query suggestion.
 	Id *string `min:"1" type:"string"`
+
+	// The list of document IDs and their fields/attributes that are used for a
+	// single query suggestion, if document fields set to use for query suggestions.
+	SourceDocuments []*SourceDocument `type:"list"`
 
 	// The value for the UUID (universally unique identifier) of a single query
 	// suggestion.
@@ -28001,6 +28382,12 @@ func (s Suggestion) GoString() string {
 // SetId sets the Id field's value.
 func (s *Suggestion) SetId(v string) *Suggestion {
 	s.Id = &v
+	return s
+}
+
+// SetSourceDocuments sets the SourceDocuments field's value.
+func (s *Suggestion) SetSourceDocuments(v []*SourceDocument) *Suggestion {
+	s.SourceDocuments = v
 	return s
 }
 
@@ -29295,7 +29682,7 @@ type UpdateFeaturedResultsSetInput struct {
 	// see FeaturedResultsSet (https://docs.aws.amazon.com/kendra/latest/dg/API_FeaturedResultsSet.html).
 	FeaturedDocuments []*FeaturedDocument `type:"list"`
 
-	// The identifier of the index used for featuring results.
+	// The identifier of the set of featured results that you want to update.
 	//
 	// FeaturedResultsSetId is a required field
 	FeaturedResultsSetId *string `min:"36" type:"string" required:"true"`
@@ -29779,6 +30166,10 @@ func (s UpdateQuerySuggestionsBlockListOutput) GoString() string {
 type UpdateQuerySuggestionsConfigInput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration information for the document fields/attributes that you want
+	// to base query suggestions on.
+	AttributeSuggestionsConfig *AttributeSuggestionsUpdateConfig `type:"structure"`
+
 	// TRUE to include queries without user information (i.e. all queries, irrespective
 	// of the user), otherwise FALSE to only include queries with user information.
 	//
@@ -29870,11 +30261,22 @@ func (s *UpdateQuerySuggestionsConfigInput) Validate() error {
 	if s.MinimumQueryCount != nil && *s.MinimumQueryCount < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MinimumQueryCount", 1))
 	}
+	if s.AttributeSuggestionsConfig != nil {
+		if err := s.AttributeSuggestionsConfig.Validate(); err != nil {
+			invalidParams.AddNested("AttributeSuggestionsConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttributeSuggestionsConfig sets the AttributeSuggestionsConfig field's value.
+func (s *UpdateQuerySuggestionsConfigInput) SetAttributeSuggestionsConfig(v *AttributeSuggestionsUpdateConfig) *UpdateQuerySuggestionsConfigInput {
+	s.AttributeSuggestionsConfig = v
+	return s
 }
 
 // SetIncludeQueriesWithoutUserInformation sets the IncludeQueriesWithoutUserInformation field's value.
@@ -30915,6 +31317,22 @@ func AlfrescoEntity_Values() []string {
 		AlfrescoEntityWiki,
 		AlfrescoEntityBlog,
 		AlfrescoEntityDocumentLibrary,
+	}
+}
+
+const (
+	// AttributeSuggestionsModeActive is a AttributeSuggestionsMode enum value
+	AttributeSuggestionsModeActive = "ACTIVE"
+
+	// AttributeSuggestionsModeInactive is a AttributeSuggestionsMode enum value
+	AttributeSuggestionsModeInactive = "INACTIVE"
+)
+
+// AttributeSuggestionsMode_Values returns all elements of the AttributeSuggestionsMode enum
+func AttributeSuggestionsMode_Values() []string {
+	return []string{
+		AttributeSuggestionsModeActive,
+		AttributeSuggestionsModeInactive,
 	}
 }
 
@@ -32244,6 +32662,22 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderDesc,
 		SortOrderAsc,
+	}
+}
+
+const (
+	// SuggestionTypeQuery is a SuggestionType enum value
+	SuggestionTypeQuery = "QUERY"
+
+	// SuggestionTypeDocumentAttributes is a SuggestionType enum value
+	SuggestionTypeDocumentAttributes = "DOCUMENT_ATTRIBUTES"
+)
+
+// SuggestionType_Values returns all elements of the SuggestionType enum
+func SuggestionType_Values() []string {
+	return []string{
+		SuggestionTypeQuery,
+		SuggestionTypeDocumentAttributes,
 	}
 }
 

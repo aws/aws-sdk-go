@@ -13,6 +13,122 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCancelFlowExecutions = "CancelFlowExecutions"
+
+// CancelFlowExecutionsRequest generates a "aws/request.Request" representing the
+// client's request for the CancelFlowExecutions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelFlowExecutions for more information on using the CancelFlowExecutions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelFlowExecutionsRequest method.
+//	req, resp := client.CancelFlowExecutionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/CancelFlowExecutions
+func (c *Appflow) CancelFlowExecutionsRequest(input *CancelFlowExecutionsInput) (req *request.Request, output *CancelFlowExecutionsOutput) {
+	op := &request.Operation{
+		Name:       opCancelFlowExecutions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cancel-flow-executions",
+	}
+
+	if input == nil {
+		input = &CancelFlowExecutionsInput{}
+	}
+
+	output = &CancelFlowExecutionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CancelFlowExecutions API operation for Amazon Appflow.
+//
+// Cancels active runs for a flow.
+//
+// You can cancel all of the active runs for a flow, or you can cancel specific
+// runs by providing their IDs.
+//
+// You can cancel a flow run only when the run is in progress. You can't cancel
+// a run that has already completed or failed. You also can't cancel a run that's
+// scheduled to occur but hasn't started yet. To prevent a scheduled run, you
+// can deactivate the flow with the StopFlow action.
+//
+// You cannot resume a run after you cancel it.
+//
+// When you send your request, the status for each run becomes CancelStarted.
+// When the cancellation completes, the status becomes Canceled.
+//
+// When you cancel a run, you still incur charges for any data that the run
+// already processed before the cancellation. If the run had already written
+// some data to the flow destination, then that data remains in the destination.
+// If you configured the flow to use a batch API (such as the Salesforce Bulk
+// API 2.0), then the run will finish reading or writing its entire batch of
+// data after the cancellation. For these operations, the data processing charges
+// for Amazon AppFlow apply. For the pricing information, see Amazon AppFlow
+// pricing (http://aws.amazon.com/appflow/pricing/).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Appflow's
+// API operation CancelFlowExecutions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has invalid or missing parameters.
+//
+//   - AccessDeniedException
+//     AppFlow/Requester has invalid or missing permissions.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request (such as the source or destination
+//     connector profile) is not found.
+//
+//   - ThrottlingException
+//     API calls have exceeded the maximum allowed API request rate per account
+//     and per Region.
+//
+//   - InternalServerException
+//     An internal service error occurred during the processing of your request.
+//     Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/CancelFlowExecutions
+func (c *Appflow) CancelFlowExecutions(input *CancelFlowExecutionsInput) (*CancelFlowExecutionsOutput, error) {
+	req, out := c.CancelFlowExecutionsRequest(input)
+	return out, req.Send()
+}
+
+// CancelFlowExecutionsWithContext is the same as CancelFlowExecutions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelFlowExecutions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Appflow) CancelFlowExecutionsWithContext(ctx aws.Context, input *CancelFlowExecutionsInput, opts ...request.Option) (*CancelFlowExecutionsOutput, error) {
+	req, out := c.CancelFlowExecutionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateConnectorProfile = "CreateConnectorProfile"
 
 // CreateConnectorProfileRequest generates a "aws/request.Request" representing the
@@ -3000,6 +3116,98 @@ func (s *BasicAuthCredentials) SetPassword(v string) *BasicAuthCredentials {
 // SetUsername sets the Username field's value.
 func (s *BasicAuthCredentials) SetUsername(v string) *BasicAuthCredentials {
 	s.Username = &v
+	return s
+}
+
+type CancelFlowExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of each active run to cancel. These runs must belong to the flow you
+	// specify in your request.
+	//
+	// If you omit this parameter, your request ends all active runs that belong
+	// to the flow.
+	ExecutionIds []*string `locationName:"executionIds" type:"list"`
+
+	// The name of a flow with active runs that you want to cancel.
+	//
+	// FlowName is a required field
+	FlowName *string `locationName:"flowName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelFlowExecutionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelFlowExecutionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelFlowExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelFlowExecutionsInput"}
+	if s.FlowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutionIds sets the ExecutionIds field's value.
+func (s *CancelFlowExecutionsInput) SetExecutionIds(v []*string) *CancelFlowExecutionsInput {
+	s.ExecutionIds = v
+	return s
+}
+
+// SetFlowName sets the FlowName field's value.
+func (s *CancelFlowExecutionsInput) SetFlowName(v string) *CancelFlowExecutionsInput {
+	s.FlowName = &v
+	return s
+}
+
+type CancelFlowExecutionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of runs that Amazon AppFlow couldn't cancel. These runs might be
+	// ineligible for canceling because they haven't started yet or have already
+	// completed.
+	InvalidExecutions []*string `locationName:"invalidExecutions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelFlowExecutionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelFlowExecutionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInvalidExecutions sets the InvalidExecutions field's value.
+func (s *CancelFlowExecutionsOutput) SetInvalidExecutions(v []*string) *CancelFlowExecutionsOutput {
+	s.InvalidExecutions = v
 	return s
 }
 
@@ -16630,6 +16838,12 @@ const (
 
 	// ExecutionStatusError is a ExecutionStatus enum value
 	ExecutionStatusError = "Error"
+
+	// ExecutionStatusCancelStarted is a ExecutionStatus enum value
+	ExecutionStatusCancelStarted = "CancelStarted"
+
+	// ExecutionStatusCanceled is a ExecutionStatus enum value
+	ExecutionStatusCanceled = "Canceled"
 )
 
 // ExecutionStatus_Values returns all elements of the ExecutionStatus enum
@@ -16638,6 +16852,8 @@ func ExecutionStatus_Values() []string {
 		ExecutionStatusInProgress,
 		ExecutionStatusSuccessful,
 		ExecutionStatusError,
+		ExecutionStatusCancelStarted,
+		ExecutionStatusCanceled,
 	}
 }
 
