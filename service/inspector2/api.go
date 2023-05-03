@@ -57,7 +57,11 @@ func (c *Inspector2) AssociateMemberRequest(input *AssociateMemberInput) (req *r
 // AssociateMember API operation for Inspector2.
 //
 // Associates an Amazon Web Services account with an Amazon Inspector delegated
-// administrator.
+// administrator. An HTTP 200 response indicates the association was successfully
+// started, but doesn’t indicate whether it was completed. You can check if
+// the association completed by using ListMembers (https://docs.aws.amazon.com/inspector/v2/APIReference/API_ListMembers.html)
+// for multiple accounts or GetMembers (https://docs.aws.amazon.com/inspector/v2/APIReference/API_GetMember.html)
+// for a single account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -284,6 +288,190 @@ func (c *Inspector2) BatchGetFreeTrialInfo(input *BatchGetFreeTrialInfoInput) (*
 // for more information on using Contexts.
 func (c *Inspector2) BatchGetFreeTrialInfoWithContext(ctx aws.Context, input *BatchGetFreeTrialInfoInput, opts ...request.Option) (*BatchGetFreeTrialInfoOutput, error) {
 	req, out := c.BatchGetFreeTrialInfoRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchGetMemberEc2DeepInspectionStatus = "BatchGetMemberEc2DeepInspectionStatus"
+
+// BatchGetMemberEc2DeepInspectionStatusRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetMemberEc2DeepInspectionStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetMemberEc2DeepInspectionStatus for more information on using the BatchGetMemberEc2DeepInspectionStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetMemberEc2DeepInspectionStatusRequest method.
+//	req, resp := client.BatchGetMemberEc2DeepInspectionStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/BatchGetMemberEc2DeepInspectionStatus
+func (c *Inspector2) BatchGetMemberEc2DeepInspectionStatusRequest(input *BatchGetMemberEc2DeepInspectionStatusInput) (req *request.Request, output *BatchGetMemberEc2DeepInspectionStatusOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetMemberEc2DeepInspectionStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ec2deepinspectionstatus/member/batch/get",
+	}
+
+	if input == nil {
+		input = &BatchGetMemberEc2DeepInspectionStatusInput{}
+	}
+
+	output = &BatchGetMemberEc2DeepInspectionStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetMemberEc2DeepInspectionStatus API operation for Inspector2.
+//
+// Retrieves Amazon Inspector deep inspection activation status of multiple
+// member accounts within your organization. You must be the delegated administrator
+// of an organization in Amazon Inspector to use this API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation BatchGetMemberEc2DeepInspectionStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/BatchGetMemberEc2DeepInspectionStatus
+func (c *Inspector2) BatchGetMemberEc2DeepInspectionStatus(input *BatchGetMemberEc2DeepInspectionStatusInput) (*BatchGetMemberEc2DeepInspectionStatusOutput, error) {
+	req, out := c.BatchGetMemberEc2DeepInspectionStatusRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetMemberEc2DeepInspectionStatusWithContext is the same as BatchGetMemberEc2DeepInspectionStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetMemberEc2DeepInspectionStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) BatchGetMemberEc2DeepInspectionStatusWithContext(ctx aws.Context, input *BatchGetMemberEc2DeepInspectionStatusInput, opts ...request.Option) (*BatchGetMemberEc2DeepInspectionStatusOutput, error) {
+	req, out := c.BatchGetMemberEc2DeepInspectionStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchUpdateMemberEc2DeepInspectionStatus = "BatchUpdateMemberEc2DeepInspectionStatus"
+
+// BatchUpdateMemberEc2DeepInspectionStatusRequest generates a "aws/request.Request" representing the
+// client's request for the BatchUpdateMemberEc2DeepInspectionStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchUpdateMemberEc2DeepInspectionStatus for more information on using the BatchUpdateMemberEc2DeepInspectionStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchUpdateMemberEc2DeepInspectionStatusRequest method.
+//	req, resp := client.BatchUpdateMemberEc2DeepInspectionStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/BatchUpdateMemberEc2DeepInspectionStatus
+func (c *Inspector2) BatchUpdateMemberEc2DeepInspectionStatusRequest(input *BatchUpdateMemberEc2DeepInspectionStatusInput) (req *request.Request, output *BatchUpdateMemberEc2DeepInspectionStatusOutput) {
+	op := &request.Operation{
+		Name:       opBatchUpdateMemberEc2DeepInspectionStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ec2deepinspectionstatus/member/batch/update",
+	}
+
+	if input == nil {
+		input = &BatchUpdateMemberEc2DeepInspectionStatusInput{}
+	}
+
+	output = &BatchUpdateMemberEc2DeepInspectionStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchUpdateMemberEc2DeepInspectionStatus API operation for Inspector2.
+//
+// Activates or deactivates Amazon Inspector deep inspection for the provided
+// member accounts in your organization. You must be the delegated administrator
+// of an organization in Amazon Inspector to use this API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation BatchUpdateMemberEc2DeepInspectionStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/BatchUpdateMemberEc2DeepInspectionStatus
+func (c *Inspector2) BatchUpdateMemberEc2DeepInspectionStatus(input *BatchUpdateMemberEc2DeepInspectionStatusInput) (*BatchUpdateMemberEc2DeepInspectionStatusOutput, error) {
+	req, out := c.BatchUpdateMemberEc2DeepInspectionStatusRequest(input)
+	return out, req.Send()
+}
+
+// BatchUpdateMemberEc2DeepInspectionStatusWithContext is the same as BatchUpdateMemberEc2DeepInspectionStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchUpdateMemberEc2DeepInspectionStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) BatchUpdateMemberEc2DeepInspectionStatusWithContext(ctx aws.Context, input *BatchUpdateMemberEc2DeepInspectionStatusInput, opts ...request.Option) (*BatchUpdateMemberEc2DeepInspectionStatusOutput, error) {
+	req, out := c.BatchUpdateMemberEc2DeepInspectionStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -524,7 +712,9 @@ func (c *Inspector2) CreateFindingsReportRequest(input *CreateFindingsReportInpu
 
 // CreateFindingsReport API operation for Inspector2.
 //
-// Creates a finding report.
+// Creates a finding report. By default only ACTIVE findings are returned in
+// the report. To see SUPRESSED or CLOSED findings you must specify a value
+// for the findingStatus filter criteria.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1411,6 +1601,97 @@ func (c *Inspector2) GetDelegatedAdminAccount(input *GetDelegatedAdminAccountInp
 // for more information on using Contexts.
 func (c *Inspector2) GetDelegatedAdminAccountWithContext(ctx aws.Context, input *GetDelegatedAdminAccountInput, opts ...request.Option) (*GetDelegatedAdminAccountOutput, error) {
 	req, out := c.GetDelegatedAdminAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEc2DeepInspectionConfiguration = "GetEc2DeepInspectionConfiguration"
+
+// GetEc2DeepInspectionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetEc2DeepInspectionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEc2DeepInspectionConfiguration for more information on using the GetEc2DeepInspectionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEc2DeepInspectionConfigurationRequest method.
+//	req, resp := client.GetEc2DeepInspectionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetEc2DeepInspectionConfiguration
+func (c *Inspector2) GetEc2DeepInspectionConfigurationRequest(input *GetEc2DeepInspectionConfigurationInput) (req *request.Request, output *GetEc2DeepInspectionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetEc2DeepInspectionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ec2deepinspectionconfiguration/get",
+	}
+
+	if input == nil {
+		input = &GetEc2DeepInspectionConfigurationInput{}
+	}
+
+	output = &GetEc2DeepInspectionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEc2DeepInspectionConfiguration API operation for Inspector2.
+//
+// Retrieves the activation status of Amazon Inspector deep inspection and custom
+// paths associated with your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation GetEc2DeepInspectionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access an invalid resource. Make sure the resource
+//     is specified correctly.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetEc2DeepInspectionConfiguration
+func (c *Inspector2) GetEc2DeepInspectionConfiguration(input *GetEc2DeepInspectionConfigurationInput) (*GetEc2DeepInspectionConfigurationOutput, error) {
+	req, out := c.GetEc2DeepInspectionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetEc2DeepInspectionConfigurationWithContext is the same as GetEc2DeepInspectionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEc2DeepInspectionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) GetEc2DeepInspectionConfigurationWithContext(ctx aws.Context, input *GetEc2DeepInspectionConfigurationInput, opts ...request.Option) (*GetEc2DeepInspectionConfigurationOutput, error) {
+	req, out := c.GetEc2DeepInspectionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3289,6 +3570,97 @@ func (c *Inspector2) UpdateConfigurationWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdateEc2DeepInspectionConfiguration = "UpdateEc2DeepInspectionConfiguration"
+
+// UpdateEc2DeepInspectionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEc2DeepInspectionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEc2DeepInspectionConfiguration for more information on using the UpdateEc2DeepInspectionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEc2DeepInspectionConfigurationRequest method.
+//	req, resp := client.UpdateEc2DeepInspectionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateEc2DeepInspectionConfiguration
+func (c *Inspector2) UpdateEc2DeepInspectionConfigurationRequest(input *UpdateEc2DeepInspectionConfigurationInput) (req *request.Request, output *UpdateEc2DeepInspectionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEc2DeepInspectionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ec2deepinspectionconfiguration/update",
+	}
+
+	if input == nil {
+		input = &UpdateEc2DeepInspectionConfigurationInput{}
+	}
+
+	output = &UpdateEc2DeepInspectionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEc2DeepInspectionConfiguration API operation for Inspector2.
+//
+// Activates, deactivates Amazon Inspector deep inspection, or updates custom
+// paths for your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation UpdateEc2DeepInspectionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateEc2DeepInspectionConfiguration
+func (c *Inspector2) UpdateEc2DeepInspectionConfiguration(input *UpdateEc2DeepInspectionConfigurationInput) (*UpdateEc2DeepInspectionConfigurationOutput, error) {
+	req, out := c.UpdateEc2DeepInspectionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEc2DeepInspectionConfigurationWithContext is the same as UpdateEc2DeepInspectionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEc2DeepInspectionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) UpdateEc2DeepInspectionConfigurationWithContext(ctx aws.Context, input *UpdateEc2DeepInspectionConfigurationInput, opts ...request.Option) (*UpdateEc2DeepInspectionConfigurationOutput, error) {
+	req, out := c.UpdateEc2DeepInspectionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFilter = "UpdateFilter"
 
 // UpdateFilterRequest generates a "aws/request.Request" representing the
@@ -3379,6 +3751,98 @@ func (c *Inspector2) UpdateFilter(input *UpdateFilterInput) (*UpdateFilterOutput
 // for more information on using Contexts.
 func (c *Inspector2) UpdateFilterWithContext(ctx aws.Context, input *UpdateFilterInput, opts ...request.Option) (*UpdateFilterOutput, error) {
 	req, out := c.UpdateFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateOrgEc2DeepInspectionConfiguration = "UpdateOrgEc2DeepInspectionConfiguration"
+
+// UpdateOrgEc2DeepInspectionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateOrgEc2DeepInspectionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateOrgEc2DeepInspectionConfiguration for more information on using the UpdateOrgEc2DeepInspectionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateOrgEc2DeepInspectionConfigurationRequest method.
+//	req, resp := client.UpdateOrgEc2DeepInspectionConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateOrgEc2DeepInspectionConfiguration
+func (c *Inspector2) UpdateOrgEc2DeepInspectionConfigurationRequest(input *UpdateOrgEc2DeepInspectionConfigurationInput) (req *request.Request, output *UpdateOrgEc2DeepInspectionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateOrgEc2DeepInspectionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ec2deepinspectionconfiguration/org/update",
+	}
+
+	if input == nil {
+		input = &UpdateOrgEc2DeepInspectionConfigurationInput{}
+	}
+
+	output = &UpdateOrgEc2DeepInspectionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateOrgEc2DeepInspectionConfiguration API operation for Inspector2.
+//
+// Updates the Amazon Inspector deep inspection custom paths for your organization.
+// You must be an Amazon Inspector delegated administrator to use this API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation UpdateOrgEc2DeepInspectionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateOrgEc2DeepInspectionConfiguration
+func (c *Inspector2) UpdateOrgEc2DeepInspectionConfiguration(input *UpdateOrgEc2DeepInspectionConfigurationInput) (*UpdateOrgEc2DeepInspectionConfigurationOutput, error) {
+	req, out := c.UpdateOrgEc2DeepInspectionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateOrgEc2DeepInspectionConfigurationWithContext is the same as UpdateOrgEc2DeepInspectionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateOrgEc2DeepInspectionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) UpdateOrgEc2DeepInspectionConfigurationWithContext(ctx aws.Context, input *UpdateOrgEc2DeepInspectionConfigurationInput, opts ...request.Option) (*UpdateOrgEc2DeepInspectionConfigurationOutput, error) {
+	req, out := c.UpdateOrgEc2DeepInspectionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4305,8 +4769,8 @@ type AutoEnable struct {
 	// Ecr is a required field
 	Ecr *bool `locationName:"ecr" type:"boolean" required:"true"`
 
-	// Represents whether AWS Lambda scans are automatically enabled for new members
-	// of your Amazon Inspector organization.
+	// Represents whether AWS Lambda standard scans are automatically enabled for
+	// new members of your Amazon Inspector organization.
 	Lambda *bool `locationName:"lambda" type:"boolean"`
 }
 
@@ -5185,6 +5649,173 @@ func (s *BatchGetFreeTrialInfoOutput) SetAccounts(v []*FreeTrialAccountInfo) *Ba
 // SetFailedAccounts sets the FailedAccounts field's value.
 func (s *BatchGetFreeTrialInfoOutput) SetFailedAccounts(v []*FreeTrialInfoError) *BatchGetFreeTrialInfoOutput {
 	s.FailedAccounts = v
+	return s
+}
+
+type BatchGetMemberEc2DeepInspectionStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMemberEc2DeepInspectionStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMemberEc2DeepInspectionStatusInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *BatchGetMemberEc2DeepInspectionStatusInput) SetAccountIds(v []*string) *BatchGetMemberEc2DeepInspectionStatusInput {
+	s.AccountIds = v
+	return s
+}
+
+type BatchGetMemberEc2DeepInspectionStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	AccountIds []*MemberAccountEc2DeepInspectionStatusState `locationName:"accountIds" type:"list"`
+
+	FailedAccountIds []*FailedMemberAccountEc2DeepInspectionStatusState `locationName:"failedAccountIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMemberEc2DeepInspectionStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMemberEc2DeepInspectionStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *BatchGetMemberEc2DeepInspectionStatusOutput) SetAccountIds(v []*MemberAccountEc2DeepInspectionStatusState) *BatchGetMemberEc2DeepInspectionStatusOutput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFailedAccountIds sets the FailedAccountIds field's value.
+func (s *BatchGetMemberEc2DeepInspectionStatusOutput) SetFailedAccountIds(v []*FailedMemberAccountEc2DeepInspectionStatusState) *BatchGetMemberEc2DeepInspectionStatusOutput {
+	s.FailedAccountIds = v
+	return s
+}
+
+type BatchUpdateMemberEc2DeepInspectionStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifiers for the Amazon Web Services accounts to change Amazon
+	// Inspector deep inspection status for.
+	//
+	// AccountIds is a required field
+	AccountIds []*MemberAccountEc2DeepInspectionStatus `locationName:"accountIds" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateMemberEc2DeepInspectionStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateMemberEc2DeepInspectionStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchUpdateMemberEc2DeepInspectionStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateMemberEc2DeepInspectionStatusInput"}
+	if s.AccountIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountIds"))
+	}
+	if s.AccountIds != nil {
+		for i, v := range s.AccountIds {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AccountIds", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *BatchUpdateMemberEc2DeepInspectionStatusInput) SetAccountIds(v []*MemberAccountEc2DeepInspectionStatus) *BatchUpdateMemberEc2DeepInspectionStatusInput {
+	s.AccountIds = v
+	return s
+}
+
+type BatchUpdateMemberEc2DeepInspectionStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that provide details for each of the accounts that Amazon
+	// Inspector deep inspection status was successfully changed for.
+	AccountIds []*MemberAccountEc2DeepInspectionStatusState `locationName:"accountIds" type:"list"`
+
+	// An array of objects that provide details for each of the accounts that Amazon
+	// Inspector deep inspection status could not be successfully changed for.
+	FailedAccountIds []*FailedMemberAccountEc2DeepInspectionStatusState `locationName:"failedAccountIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateMemberEc2DeepInspectionStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateMemberEc2DeepInspectionStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *BatchUpdateMemberEc2DeepInspectionStatusOutput) SetAccountIds(v []*MemberAccountEc2DeepInspectionStatusState) *BatchUpdateMemberEc2DeepInspectionStatusOutput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFailedAccountIds sets the FailedAccountIds field's value.
+func (s *BatchUpdateMemberEc2DeepInspectionStatusOutput) SetFailedAccountIds(v []*FailedMemberAccountEc2DeepInspectionStatusState) *BatchUpdateMemberEc2DeepInspectionStatusOutput {
+	s.FailedAccountIds = v
 	return s
 }
 
@@ -6646,7 +7277,7 @@ type Destination struct {
 	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
-	// The prefix of the KMS key used to export findings.
+	// The prefix of the Amazon S3 bucket used to export findings.
 	KeyPrefix *string `locationName:"keyPrefix" type:"string"`
 
 	// The ARN of the KMS key used to encrypt data when exporting findings.
@@ -7764,6 +8395,62 @@ func (s *FailedAccount) SetResourceStatus(v *ResourceStatus) *FailedAccount {
 // SetStatus sets the Status field's value.
 func (s *FailedAccount) SetStatus(v string) *FailedAccount {
 	s.Status = &v
+	return s
+}
+
+// An object that contains details about a member account in your organization
+// that failed to activate Amazon Inspector deep inspection.
+type FailedMemberAccountEc2DeepInspectionStatusState struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the Amazon Web Services account of the organization
+	// member that failed to activate Amazon Inspector deep inspection.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The status of EC2 scanning in the account that failed to activate Amazon
+	// Inspector deep inspection.
+	Ec2ScanStatus *string `locationName:"ec2ScanStatus" type:"string" enum:"Status"`
+
+	// The error message explaining why the account failed to activate Amazon Inspector
+	// deep inspection.
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedMemberAccountEc2DeepInspectionStatusState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedMemberAccountEc2DeepInspectionStatusState) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *FailedMemberAccountEc2DeepInspectionStatusState) SetAccountId(v string) *FailedMemberAccountEc2DeepInspectionStatusState {
+	s.AccountId = &v
+	return s
+}
+
+// SetEc2ScanStatus sets the Ec2ScanStatus field's value.
+func (s *FailedMemberAccountEc2DeepInspectionStatusState) SetEc2ScanStatus(v string) *FailedMemberAccountEc2DeepInspectionStatusState {
+	s.Ec2ScanStatus = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedMemberAccountEc2DeepInspectionStatusState) SetErrorMessage(v string) *FailedMemberAccountEc2DeepInspectionStatusState {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -9292,6 +9979,87 @@ func (s GetDelegatedAdminAccountOutput) GoString() string {
 // SetDelegatedAdmin sets the DelegatedAdmin field's value.
 func (s *GetDelegatedAdminAccountOutput) SetDelegatedAdmin(v *DelegatedAdmin) *GetDelegatedAdminAccountOutput {
 	s.DelegatedAdmin = v
+	return s
+}
+
+type GetEc2DeepInspectionConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEc2DeepInspectionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEc2DeepInspectionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetEc2DeepInspectionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An error message explaining why Amazon Inspector deep inspection configurations
+	// could not be retrieved for your account.
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	// The Amazon Inspector deep inspection custom paths for your organization.
+	OrgPackagePaths []*string `locationName:"orgPackagePaths" type:"list"`
+
+	// The Amazon Inspector deep inspection custom paths for your account.
+	PackagePaths []*string `locationName:"packagePaths" type:"list"`
+
+	// The activation status of Amazon Inspector deep inspection in your account.
+	Status *string `locationName:"status" type:"string" enum:"Ec2DeepInspectionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEc2DeepInspectionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEc2DeepInspectionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *GetEc2DeepInspectionConfigurationOutput) SetErrorMessage(v string) *GetEc2DeepInspectionConfigurationOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetOrgPackagePaths sets the OrgPackagePaths field's value.
+func (s *GetEc2DeepInspectionConfigurationOutput) SetOrgPackagePaths(v []*string) *GetEc2DeepInspectionConfigurationOutput {
+	s.OrgPackagePaths = v
+	return s
+}
+
+// SetPackagePaths sets the PackagePaths field's value.
+func (s *GetEc2DeepInspectionConfigurationOutput) SetPackagePaths(v []*string) *GetEc2DeepInspectionConfigurationOutput {
+	s.PackagePaths = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetEc2DeepInspectionConfigurationOutput) SetStatus(v string) *GetEc2DeepInspectionConfigurationOutput {
+	s.Status = &v
 	return s
 }
 
@@ -11597,6 +12365,128 @@ func (s *Member) SetUpdatedAt(v time.Time) *Member {
 	return s
 }
 
+// An object that contains details about the status of Amazon Inspector deep
+// inspection for a member account in your organization.
+type MemberAccountEc2DeepInspectionStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the Amazon Web Services account of the organization
+	// member.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// Whether Amazon Inspector deep inspection is active in the account. If TRUE
+	// Amazon Inspector deep inspection is active, if FALSE it is not active.
+	//
+	// ActivateDeepInspection is a required field
+	ActivateDeepInspection *bool `locationName:"activateDeepInspection" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemberAccountEc2DeepInspectionStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemberAccountEc2DeepInspectionStatus) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MemberAccountEc2DeepInspectionStatus) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MemberAccountEc2DeepInspectionStatus"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ActivateDeepInspection == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivateDeepInspection"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *MemberAccountEc2DeepInspectionStatus) SetAccountId(v string) *MemberAccountEc2DeepInspectionStatus {
+	s.AccountId = &v
+	return s
+}
+
+// SetActivateDeepInspection sets the ActivateDeepInspection field's value.
+func (s *MemberAccountEc2DeepInspectionStatus) SetActivateDeepInspection(v bool) *MemberAccountEc2DeepInspectionStatus {
+	s.ActivateDeepInspection = &v
+	return s
+}
+
+// An object that contains details about the state of Amazon Inspector deep
+// inspection for a member account.
+type MemberAccountEc2DeepInspectionStatusState struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the Amazon Web Services account of the organization
+	// member
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The error message explaining why the account failed to activate Amazon Inspector
+	// deep inspection.
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	// The state of Amazon Inspector deep inspection in the member account.
+	Status *string `locationName:"status" type:"string" enum:"Ec2DeepInspectionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemberAccountEc2DeepInspectionStatusState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemberAccountEc2DeepInspectionStatusState) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *MemberAccountEc2DeepInspectionStatusState) SetAccountId(v string) *MemberAccountEc2DeepInspectionStatusState {
+	s.AccountId = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *MemberAccountEc2DeepInspectionStatusState) SetErrorMessage(v string) *MemberAccountEc2DeepInspectionStatusState {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MemberAccountEc2DeepInspectionStatusState) SetStatus(v string) *MemberAccountEc2DeepInspectionStatusState {
+	s.Status = &v
+	return s
+}
+
 // Information on the network path associated with a finding.
 type NetworkPath struct {
 	_ struct{} `type:"structure"`
@@ -12770,7 +13660,7 @@ type ResourceStatus struct {
 	// Ecr is a required field
 	Ecr *string `locationName:"ecr" type:"string" required:"true" enum:"Status"`
 
-	// The status of Amazon Inspector scanning for AWS Lambda function resources.
+	// The status of Amazon Inspector scanning for AWS Lambda function.
 	Lambda *string `locationName:"lambda" type:"string" enum:"Status"`
 }
 
@@ -13687,6 +14577,110 @@ func (s UpdateConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateEc2DeepInspectionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify TRUE to activate Amazon Inspector deep inspection in your account,
+	// or FALSE to deactivate. Member accounts in an organization cannot deactivate
+	// deep inspection, instead the delegated administrator for the organization
+	// can deactivate a member account using BatchUpdateMemberEc2DeepInspectionStatus
+	// (https://docs.aws.amazon.com/inspector/v2/APIReference/API_BatchUpdateMemberEc2DeepInspectionStatus.html).
+	ActivateDeepInspection *bool `locationName:"activateDeepInspection" type:"boolean"`
+
+	// The Amazon Inspector deep inspection custom paths you are adding for your
+	// account.
+	PackagePaths []*string `locationName:"packagePaths" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEc2DeepInspectionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEc2DeepInspectionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// SetActivateDeepInspection sets the ActivateDeepInspection field's value.
+func (s *UpdateEc2DeepInspectionConfigurationInput) SetActivateDeepInspection(v bool) *UpdateEc2DeepInspectionConfigurationInput {
+	s.ActivateDeepInspection = &v
+	return s
+}
+
+// SetPackagePaths sets the PackagePaths field's value.
+func (s *UpdateEc2DeepInspectionConfigurationInput) SetPackagePaths(v []*string) *UpdateEc2DeepInspectionConfigurationInput {
+	s.PackagePaths = v
+	return s
+}
+
+type UpdateEc2DeepInspectionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An error message explaining why new Amazon Inspector deep inspection custom
+	// paths could not be added.
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	// The current Amazon Inspector deep inspection custom paths for the organization.
+	OrgPackagePaths []*string `locationName:"orgPackagePaths" type:"list"`
+
+	// The current Amazon Inspector deep inspection custom paths for your account.
+	PackagePaths []*string `locationName:"packagePaths" type:"list"`
+
+	// The status of Amazon Inspector deep inspection in your account.
+	Status *string `locationName:"status" type:"string" enum:"Ec2DeepInspectionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEc2DeepInspectionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEc2DeepInspectionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *UpdateEc2DeepInspectionConfigurationOutput) SetErrorMessage(v string) *UpdateEc2DeepInspectionConfigurationOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetOrgPackagePaths sets the OrgPackagePaths field's value.
+func (s *UpdateEc2DeepInspectionConfigurationOutput) SetOrgPackagePaths(v []*string) *UpdateEc2DeepInspectionConfigurationOutput {
+	s.OrgPackagePaths = v
+	return s
+}
+
+// SetPackagePaths sets the PackagePaths field's value.
+func (s *UpdateEc2DeepInspectionConfigurationOutput) SetPackagePaths(v []*string) *UpdateEc2DeepInspectionConfigurationOutput {
+	s.PackagePaths = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateEc2DeepInspectionConfigurationOutput) SetStatus(v string) *UpdateEc2DeepInspectionConfigurationOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateFilterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13827,6 +14821,75 @@ func (s UpdateFilterOutput) GoString() string {
 func (s *UpdateFilterOutput) SetArn(v string) *UpdateFilterOutput {
 	s.Arn = &v
 	return s
+}
+
+type UpdateOrgEc2DeepInspectionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Inspector deep inspection custom paths you are adding for your
+	// organization.
+	//
+	// OrgPackagePaths is a required field
+	OrgPackagePaths []*string `locationName:"orgPackagePaths" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOrgEc2DeepInspectionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOrgEc2DeepInspectionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOrgEc2DeepInspectionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOrgEc2DeepInspectionConfigurationInput"}
+	if s.OrgPackagePaths == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrgPackagePaths"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrgPackagePaths sets the OrgPackagePaths field's value.
+func (s *UpdateOrgEc2DeepInspectionConfigurationInput) SetOrgPackagePaths(v []*string) *UpdateOrgEc2DeepInspectionConfigurationInput {
+	s.OrgPackagePaths = v
+	return s
+}
+
+type UpdateOrgEc2DeepInspectionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOrgEc2DeepInspectionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOrgEc2DeepInspectionConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateOrganizationConfigurationInput struct {
@@ -14509,6 +15572,30 @@ func DelegatedAdminStatus_Values() []string {
 }
 
 const (
+	// Ec2DeepInspectionStatusActivated is a Ec2DeepInspectionStatus enum value
+	Ec2DeepInspectionStatusActivated = "ACTIVATED"
+
+	// Ec2DeepInspectionStatusDeactivated is a Ec2DeepInspectionStatus enum value
+	Ec2DeepInspectionStatusDeactivated = "DEACTIVATED"
+
+	// Ec2DeepInspectionStatusPending is a Ec2DeepInspectionStatus enum value
+	Ec2DeepInspectionStatusPending = "PENDING"
+
+	// Ec2DeepInspectionStatusFailed is a Ec2DeepInspectionStatus enum value
+	Ec2DeepInspectionStatusFailed = "FAILED"
+)
+
+// Ec2DeepInspectionStatus_Values returns all elements of the Ec2DeepInspectionStatus enum
+func Ec2DeepInspectionStatus_Values() []string {
+	return []string{
+		Ec2DeepInspectionStatusActivated,
+		Ec2DeepInspectionStatusDeactivated,
+		Ec2DeepInspectionStatusPending,
+		Ec2DeepInspectionStatusFailed,
+	}
+}
+
+const (
 	// Ec2InstanceSortByNetworkFindings is a Ec2InstanceSortBy enum value
 	Ec2InstanceSortByNetworkFindings = "NETWORK_FINDINGS"
 
@@ -15048,6 +16135,9 @@ const (
 
 	// PackageManagerPom is a PackageManager enum value
 	PackageManagerPom = "POM"
+
+	// PackageManagerGemspec is a PackageManager enum value
+	PackageManagerGemspec = "GEMSPEC"
 )
 
 // PackageManager_Values returns all elements of the PackageManager enum
@@ -15069,6 +16159,7 @@ func PackageManager_Values() []string {
 		PackageManagerPythonpkg,
 		PackageManagerNodepkg,
 		PackageManagerPom,
+		PackageManagerGemspec,
 	}
 }
 
@@ -15410,6 +16501,24 @@ const (
 
 	// ScanStatusReasonUnsupportedRuntime is a ScanStatusReason enum value
 	ScanStatusReasonUnsupportedRuntime = "UNSUPPORTED_RUNTIME"
+
+	// ScanStatusReasonUnsupportedMediaType is a ScanStatusReason enum value
+	ScanStatusReasonUnsupportedMediaType = "UNSUPPORTED_MEDIA_TYPE"
+
+	// ScanStatusReasonUnsupportedConfigFile is a ScanStatusReason enum value
+	ScanStatusReasonUnsupportedConfigFile = "UNSUPPORTED_CONFIG_FILE"
+
+	// ScanStatusReasonDeepInspectionPackageCollectionLimitExceeded is a ScanStatusReason enum value
+	ScanStatusReasonDeepInspectionPackageCollectionLimitExceeded = "DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED"
+
+	// ScanStatusReasonDeepInspectionDailySsmInventoryLimitExceeded is a ScanStatusReason enum value
+	ScanStatusReasonDeepInspectionDailySsmInventoryLimitExceeded = "DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED"
+
+	// ScanStatusReasonDeepInspectionCollectionTimeLimitExceeded is a ScanStatusReason enum value
+	ScanStatusReasonDeepInspectionCollectionTimeLimitExceeded = "DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED"
+
+	// ScanStatusReasonDeepInspectionNoInventory is a ScanStatusReason enum value
+	ScanStatusReasonDeepInspectionNoInventory = "DEEP_INSPECTION_NO_INVENTORY"
 )
 
 // ScanStatusReason_Values returns all elements of the ScanStatusReason enum
@@ -15433,6 +16542,12 @@ func ScanStatusReason_Values() []string {
 		ScanStatusReasonStaleInventory,
 		ScanStatusReasonExcludedByTag,
 		ScanStatusReasonUnsupportedRuntime,
+		ScanStatusReasonUnsupportedMediaType,
+		ScanStatusReasonUnsupportedConfigFile,
+		ScanStatusReasonDeepInspectionPackageCollectionLimitExceeded,
+		ScanStatusReasonDeepInspectionDailySsmInventoryLimitExceeded,
+		ScanStatusReasonDeepInspectionCollectionTimeLimitExceeded,
+		ScanStatusReasonDeepInspectionNoInventory,
 	}
 }
 

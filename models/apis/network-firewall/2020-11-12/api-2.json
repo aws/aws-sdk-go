@@ -667,7 +667,9 @@
         "CREATING",
         "DELETING",
         "SCALING",
-        "READY"
+        "READY",
+        "FAILED",
+        "ERROR"
       ]
     },
     "AvailabilityZone":{"type":"string"},
@@ -1146,7 +1148,8 @@
         "StatefulRuleGroupReferences":{"shape":"StatefulRuleGroupReferences"},
         "StatefulDefaultActions":{"shape":"StatefulActions"},
         "StatefulEngineOptions":{"shape":"StatefulEngineOptions"},
-        "TLSInspectionConfigurationArn":{"shape":"ResourceArn"}
+        "TLSInspectionConfigurationArn":{"shape":"ResourceArn"},
+        "PolicyVariables":{"shape":"PolicyVariables"}
       }
     },
     "FirewallPolicyMetadata":{
@@ -1534,6 +1537,12 @@
       "max":395000,
       "min":1,
       "pattern":".*\\S.*"
+    },
+    "PolicyVariables":{
+      "type":"structure",
+      "members":{
+        "RuleVariables":{"shape":"IPSets"}
+      }
     },
     "Port":{
       "type":"string",

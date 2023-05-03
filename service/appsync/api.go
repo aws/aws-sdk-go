@@ -5471,7 +5471,7 @@ func (s *AppSyncRuntime) SetRuntimeVersion(v string) *AppSyncRuntime {
 type AssociateApiInput struct {
 	_ struct{} `type:"structure"`
 
-	// The API ID.
+	// The API ID. Private APIs can not be associated with custom domains.
 	//
 	// ApiId is a required field
 	ApiId *string `locationName:"apiId" type:"string" required:"true"`
@@ -6933,6 +6933,11 @@ type CreateGraphqlApiInput struct {
 	// The Amazon Cognito user pool configuration.
 	UserPoolConfig *UserPoolConfig `locationName:"userPoolConfig" type:"structure"`
 
+	// Sets the value of the GraphQL API to public (GLOBAL) or private (PRIVATE).
+	// If no value is provided, the visibility will be set to GLOBAL by default.
+	// This value cannot be changed once the API has been created.
+	Visibility *string `locationName:"visibility" type:"string" enum:"GraphQLApiVisibility"`
+
 	// A flag indicating whether to use X-Ray tracing for the GraphqlApi.
 	XrayEnabled *bool `locationName:"xrayEnabled" type:"boolean"`
 }
@@ -7049,6 +7054,12 @@ func (s *CreateGraphqlApiInput) SetTags(v map[string]*string) *CreateGraphqlApiI
 // SetUserPoolConfig sets the UserPoolConfig field's value.
 func (s *CreateGraphqlApiInput) SetUserPoolConfig(v *UserPoolConfig) *CreateGraphqlApiInput {
 	s.UserPoolConfig = v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *CreateGraphqlApiInput) SetVisibility(v string) *CreateGraphqlApiInput {
+	s.Visibility = &v
 	return s
 }
 
@@ -10234,6 +10245,9 @@ type GraphqlApi struct {
 	// The authentication type.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
+	// The DNS records for the API.
+	Dns map[string]*string `locationName:"dns" type:"map"`
+
 	// Configuration for Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
@@ -10254,6 +10268,11 @@ type GraphqlApi struct {
 
 	// The Amazon Cognito user pool configuration.
 	UserPoolConfig *UserPoolConfig `locationName:"userPoolConfig" type:"structure"`
+
+	// Sets the value of the GraphQL API to public (GLOBAL) or private (PRIVATE).
+	// If no value is provided, the visibility will be set to GLOBAL by default.
+	// This value cannot be changed once the API has been created.
+	Visibility *string `locationName:"visibility" type:"string" enum:"GraphQLApiVisibility"`
 
 	// The ARN of the WAF access control list (ACL) associated with this GraphqlApi,
 	// if one exists.
@@ -10305,6 +10324,12 @@ func (s *GraphqlApi) SetAuthenticationType(v string) *GraphqlApi {
 	return s
 }
 
+// SetDns sets the Dns field's value.
+func (s *GraphqlApi) SetDns(v map[string]*string) *GraphqlApi {
+	s.Dns = v
+	return s
+}
+
 // SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
 func (s *GraphqlApi) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *GraphqlApi {
 	s.LambdaAuthorizerConfig = v
@@ -10344,6 +10369,12 @@ func (s *GraphqlApi) SetUris(v map[string]*string) *GraphqlApi {
 // SetUserPoolConfig sets the UserPoolConfig field's value.
 func (s *GraphqlApi) SetUserPoolConfig(v *UserPoolConfig) *GraphqlApi {
 	s.UserPoolConfig = v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *GraphqlApi) SetVisibility(v string) *GraphqlApi {
+	s.Visibility = &v
 	return s
 }
 
@@ -10488,9 +10519,11 @@ func (s *InternalFailureException) RequestID() string {
 type LambdaAuthorizerConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The number of seconds a response should be cached for. The default is 5 minutes
-	// (300 seconds). The Lambda function can override this by returning a ttlOverride
-	// key in its response. A value of 0 disables caching of responses.
+	// The number of seconds a response should be cached for. The default is 0 seconds,
+	// which disables caching. If you don't specify a value for authorizerResultTtlInSeconds,
+	// the default value is used. The maximum value is one hour (3600 seconds).
+	// The Lambda function can override this by returning a ttlOverride key in its
+	// response.
 	AuthorizerResultTtlInSeconds *int64 `locationName:"authorizerResultTtlInSeconds" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function to be called for authorization.
@@ -14507,6 +14540,22 @@ func FieldLogLevel_Values() []string {
 		FieldLogLevelNone,
 		FieldLogLevelError,
 		FieldLogLevelAll,
+	}
+}
+
+const (
+	// GraphQLApiVisibilityGlobal is a GraphQLApiVisibility enum value
+	GraphQLApiVisibilityGlobal = "GLOBAL"
+
+	// GraphQLApiVisibilityPrivate is a GraphQLApiVisibility enum value
+	GraphQLApiVisibilityPrivate = "PRIVATE"
+)
+
+// GraphQLApiVisibility_Values returns all elements of the GraphQLApiVisibility enum
+func GraphQLApiVisibility_Values() []string {
+	return []string{
+		GraphQLApiVisibilityGlobal,
+		GraphQLApiVisibilityPrivate,
 	}
 }
 

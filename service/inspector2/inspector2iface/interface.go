@@ -72,6 +72,14 @@ type Inspector2API interface {
 	BatchGetFreeTrialInfoWithContext(aws.Context, *inspector2.BatchGetFreeTrialInfoInput, ...request.Option) (*inspector2.BatchGetFreeTrialInfoOutput, error)
 	BatchGetFreeTrialInfoRequest(*inspector2.BatchGetFreeTrialInfoInput) (*request.Request, *inspector2.BatchGetFreeTrialInfoOutput)
 
+	BatchGetMemberEc2DeepInspectionStatus(*inspector2.BatchGetMemberEc2DeepInspectionStatusInput) (*inspector2.BatchGetMemberEc2DeepInspectionStatusOutput, error)
+	BatchGetMemberEc2DeepInspectionStatusWithContext(aws.Context, *inspector2.BatchGetMemberEc2DeepInspectionStatusInput, ...request.Option) (*inspector2.BatchGetMemberEc2DeepInspectionStatusOutput, error)
+	BatchGetMemberEc2DeepInspectionStatusRequest(*inspector2.BatchGetMemberEc2DeepInspectionStatusInput) (*request.Request, *inspector2.BatchGetMemberEc2DeepInspectionStatusOutput)
+
+	BatchUpdateMemberEc2DeepInspectionStatus(*inspector2.BatchUpdateMemberEc2DeepInspectionStatusInput) (*inspector2.BatchUpdateMemberEc2DeepInspectionStatusOutput, error)
+	BatchUpdateMemberEc2DeepInspectionStatusWithContext(aws.Context, *inspector2.BatchUpdateMemberEc2DeepInspectionStatusInput, ...request.Option) (*inspector2.BatchUpdateMemberEc2DeepInspectionStatusOutput, error)
+	BatchUpdateMemberEc2DeepInspectionStatusRequest(*inspector2.BatchUpdateMemberEc2DeepInspectionStatusInput) (*request.Request, *inspector2.BatchUpdateMemberEc2DeepInspectionStatusOutput)
+
 	CancelFindingsReport(*inspector2.CancelFindingsReportInput) (*inspector2.CancelFindingsReportOutput, error)
 	CancelFindingsReportWithContext(aws.Context, *inspector2.CancelFindingsReportInput, ...request.Option) (*inspector2.CancelFindingsReportOutput, error)
 	CancelFindingsReportRequest(*inspector2.CancelFindingsReportInput) (*request.Request, *inspector2.CancelFindingsReportOutput)
@@ -119,6 +127,10 @@ type Inspector2API interface {
 	GetDelegatedAdminAccount(*inspector2.GetDelegatedAdminAccountInput) (*inspector2.GetDelegatedAdminAccountOutput, error)
 	GetDelegatedAdminAccountWithContext(aws.Context, *inspector2.GetDelegatedAdminAccountInput, ...request.Option) (*inspector2.GetDelegatedAdminAccountOutput, error)
 	GetDelegatedAdminAccountRequest(*inspector2.GetDelegatedAdminAccountInput) (*request.Request, *inspector2.GetDelegatedAdminAccountOutput)
+
+	GetEc2DeepInspectionConfiguration(*inspector2.GetEc2DeepInspectionConfigurationInput) (*inspector2.GetEc2DeepInspectionConfigurationOutput, error)
+	GetEc2DeepInspectionConfigurationWithContext(aws.Context, *inspector2.GetEc2DeepInspectionConfigurationInput, ...request.Option) (*inspector2.GetEc2DeepInspectionConfigurationOutput, error)
+	GetEc2DeepInspectionConfigurationRequest(*inspector2.GetEc2DeepInspectionConfigurationInput) (*request.Request, *inspector2.GetEc2DeepInspectionConfigurationOutput)
 
 	GetFindingsReportStatus(*inspector2.GetFindingsReportStatusInput) (*inspector2.GetFindingsReportStatusOutput, error)
 	GetFindingsReportStatusWithContext(aws.Context, *inspector2.GetFindingsReportStatusInput, ...request.Option) (*inspector2.GetFindingsReportStatusOutput, error)
@@ -207,9 +219,17 @@ type Inspector2API interface {
 	UpdateConfigurationWithContext(aws.Context, *inspector2.UpdateConfigurationInput, ...request.Option) (*inspector2.UpdateConfigurationOutput, error)
 	UpdateConfigurationRequest(*inspector2.UpdateConfigurationInput) (*request.Request, *inspector2.UpdateConfigurationOutput)
 
+	UpdateEc2DeepInspectionConfiguration(*inspector2.UpdateEc2DeepInspectionConfigurationInput) (*inspector2.UpdateEc2DeepInspectionConfigurationOutput, error)
+	UpdateEc2DeepInspectionConfigurationWithContext(aws.Context, *inspector2.UpdateEc2DeepInspectionConfigurationInput, ...request.Option) (*inspector2.UpdateEc2DeepInspectionConfigurationOutput, error)
+	UpdateEc2DeepInspectionConfigurationRequest(*inspector2.UpdateEc2DeepInspectionConfigurationInput) (*request.Request, *inspector2.UpdateEc2DeepInspectionConfigurationOutput)
+
 	UpdateFilter(*inspector2.UpdateFilterInput) (*inspector2.UpdateFilterOutput, error)
 	UpdateFilterWithContext(aws.Context, *inspector2.UpdateFilterInput, ...request.Option) (*inspector2.UpdateFilterOutput, error)
 	UpdateFilterRequest(*inspector2.UpdateFilterInput) (*request.Request, *inspector2.UpdateFilterOutput)
+
+	UpdateOrgEc2DeepInspectionConfiguration(*inspector2.UpdateOrgEc2DeepInspectionConfigurationInput) (*inspector2.UpdateOrgEc2DeepInspectionConfigurationOutput, error)
+	UpdateOrgEc2DeepInspectionConfigurationWithContext(aws.Context, *inspector2.UpdateOrgEc2DeepInspectionConfigurationInput, ...request.Option) (*inspector2.UpdateOrgEc2DeepInspectionConfigurationOutput, error)
+	UpdateOrgEc2DeepInspectionConfigurationRequest(*inspector2.UpdateOrgEc2DeepInspectionConfigurationInput) (*request.Request, *inspector2.UpdateOrgEc2DeepInspectionConfigurationOutput)
 
 	UpdateOrganizationConfiguration(*inspector2.UpdateOrganizationConfigurationInput) (*inspector2.UpdateOrganizationConfigurationOutput, error)
 	UpdateOrganizationConfigurationWithContext(aws.Context, *inspector2.UpdateOrganizationConfigurationInput, ...request.Option) (*inspector2.UpdateOrganizationConfigurationOutput, error)

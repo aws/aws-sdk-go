@@ -4335,7 +4335,7 @@ func (c *WellArchitected) UpdateGlobalSettingsRequest(input *UpdateGlobalSetting
 // UpdateGlobalSettings API operation for AWS Well-Architected Tool.
 //
 // Updates whether the Amazon Web Services account is opted into organization
-// sharing features.
+// sharing and discovery integration features.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12868,6 +12868,9 @@ func (s *UpdateAnswerOutput) SetWorkloadId(v string) *UpdateAnswerOutput {
 type UpdateGlobalSettingsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The status of discovery support settings.
+	DiscoveryIntegrationStatus *string `type:"string" enum:"DiscoveryIntegrationStatus"`
+
 	// The status of organization sharing settings.
 	OrganizationSharingStatus *string `type:"string" enum:"OrganizationSharingStatus"`
 }
@@ -12888,6 +12891,12 @@ func (s UpdateGlobalSettingsInput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateGlobalSettingsInput) GoString() string {
 	return s.String()
+}
+
+// SetDiscoveryIntegrationStatus sets the DiscoveryIntegrationStatus field's value.
+func (s *UpdateGlobalSettingsInput) SetDiscoveryIntegrationStatus(v string) *UpdateGlobalSettingsInput {
+	s.DiscoveryIntegrationStatus = &v
+	return s
 }
 
 // SetOrganizationSharingStatus sets the OrganizationSharingStatus field's value.
@@ -14184,6 +14193,11 @@ type WorkloadDiscoveryConfig struct {
 
 	// Discovery integration status in respect to Trusted Advisor for the workload.
 	TrustedAdvisorIntegrationStatus *string `type:"string" enum:"TrustedAdvisorIntegrationStatus"`
+
+	// The mode to use for identifying resources associated with the workload.
+	//
+	// You can specify WORKLOAD_METADATA, APP_REGISTRY, or both.
+	WorkloadResourceDefinition []*string `type:"list" enum:"DefinitionType"`
 }
 
 // String returns the string representation.
@@ -14207,6 +14221,12 @@ func (s WorkloadDiscoveryConfig) GoString() string {
 // SetTrustedAdvisorIntegrationStatus sets the TrustedAdvisorIntegrationStatus field's value.
 func (s *WorkloadDiscoveryConfig) SetTrustedAdvisorIntegrationStatus(v string) *WorkloadDiscoveryConfig {
 	s.TrustedAdvisorIntegrationStatus = &v
+	return s
+}
+
+// SetWorkloadResourceDefinition sets the WorkloadResourceDefinition field's value.
+func (s *WorkloadDiscoveryConfig) SetWorkloadResourceDefinition(v []*string) *WorkloadDiscoveryConfig {
+	s.WorkloadResourceDefinition = v
 	return s
 }
 
@@ -14627,6 +14647,22 @@ func ChoiceStatus_Values() []string {
 }
 
 const (
+	// DefinitionTypeWorkloadMetadata is a DefinitionType enum value
+	DefinitionTypeWorkloadMetadata = "WORKLOAD_METADATA"
+
+	// DefinitionTypeAppRegistry is a DefinitionType enum value
+	DefinitionTypeAppRegistry = "APP_REGISTRY"
+)
+
+// DefinitionType_Values returns all elements of the DefinitionType enum
+func DefinitionType_Values() []string {
+	return []string{
+		DefinitionTypeWorkloadMetadata,
+		DefinitionTypeAppRegistry,
+	}
+}
+
+const (
 	// DifferenceStatusUpdated is a DifferenceStatus enum value
 	DifferenceStatusUpdated = "UPDATED"
 
@@ -14643,6 +14679,22 @@ func DifferenceStatus_Values() []string {
 		DifferenceStatusUpdated,
 		DifferenceStatusNew,
 		DifferenceStatusDeleted,
+	}
+}
+
+const (
+	// DiscoveryIntegrationStatusEnabled is a DiscoveryIntegrationStatus enum value
+	DiscoveryIntegrationStatusEnabled = "ENABLED"
+
+	// DiscoveryIntegrationStatusDisabled is a DiscoveryIntegrationStatus enum value
+	DiscoveryIntegrationStatusDisabled = "DISABLED"
+)
+
+// DiscoveryIntegrationStatus_Values returns all elements of the DiscoveryIntegrationStatus enum
+func DiscoveryIntegrationStatus_Values() []string {
+	return []string{
+		DiscoveryIntegrationStatusEnabled,
+		DiscoveryIntegrationStatusDisabled,
 	}
 }
 

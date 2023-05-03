@@ -288,6 +288,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeDomainHealth":{
+      "name":"DescribeDomainHealth",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/health"
+      },
+      "input":{"shape":"DescribeDomainHealthRequest"},
+      "output":{"shape":"DescribeDomainHealthResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "DescribeDomains":{
       "name":"DescribeDomains",
       "http":{
@@ -1127,6 +1143,30 @@
       "type":"string",
       "enum":["SCHEDULED_ACTION"]
     },
+    "AvailabilityZone":{
+      "type":"string",
+      "max":15,
+      "min":1
+    },
+    "AvailabilityZoneInfo":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZoneName":{"shape":"AvailabilityZone"},
+        "ZoneStatus":{"shape":"ZoneStatus"},
+        "ConfiguredDataNodeCount":{"shape":"NumberOfNodes"},
+        "AvailableDataNodeCount":{"shape":"NumberOfNodes"},
+        "TotalShards":{"shape":"NumberOfShards"},
+        "TotalUnAssignedShards":{"shape":"NumberOfShards"}
+      }
+    },
+    "AvailabilityZoneInfoList":{
+      "type":"list",
+      "member":{"shape":"AvailabilityZoneInfo"}
+    },
+    "AvailabilityZoneList":{
+      "type":"list",
+      "member":{"shape":"AvailabilityZone"}
+    },
     "BackendRole":{
       "type":"string",
       "max":256,
@@ -1219,7 +1259,8 @@
         "WarmEnabled":{"shape":"Boolean"},
         "WarmType":{"shape":"OpenSearchWarmPartitionInstanceType"},
         "WarmCount":{"shape":"IntegerClass"},
-        "ColdStorageOptions":{"shape":"ColdStorageOptions"}
+        "ColdStorageOptions":{"shape":"ColdStorageOptions"},
+        "MultiAZWithStandbyEnabled":{"shape":"Boolean"}
       }
     },
     "ClusterConfigStatus":{
@@ -1566,6 +1607,35 @@
         "DomainConfig":{"shape":"DomainConfig"}
       }
     },
+    "DescribeDomainHealthRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      }
+    },
+    "DescribeDomainHealthResponse":{
+      "type":"structure",
+      "members":{
+        "DomainState":{"shape":"DomainState"},
+        "AvailabilityZoneCount":{"shape":"NumberOfAZs"},
+        "ActiveAvailabilityZoneCount":{"shape":"NumberOfAZs"},
+        "StandByAvailabilityZoneCount":{"shape":"NumberOfAZs"},
+        "DataNodeCount":{"shape":"NumberOfNodes"},
+        "DedicatedMaster":{"shape":"Boolean"},
+        "MasterEligibleNodeCount":{"shape":"NumberOfNodes"},
+        "WarmNodeCount":{"shape":"NumberOfNodes"},
+        "MasterNode":{"shape":"MasterNodeStatus"},
+        "ClusterHealth":{"shape":"DomainHealth"},
+        "TotalShards":{"shape":"NumberOfShards"},
+        "TotalUnAssignedShards":{"shape":"NumberOfShards"},
+        "EnvironmentInformation":{"shape":"EnvironmentInfoList"}
+      }
+    },
     "DescribeDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1884,6 +1954,15 @@
         "Status":{"shape":"OptionStatus"}
       }
     },
+    "DomainHealth":{
+      "type":"string",
+      "enum":[
+        "Red",
+        "Yellow",
+        "Green",
+        "NotAvailable"
+      ]
+    },
     "DomainId":{
       "type":"string",
       "max":64,
@@ -1948,6 +2027,14 @@
         "ACTIVE",
         "DISSOCIATING",
         "DISSOCIATION_FAILED"
+      ]
+    },
+    "DomainState":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "Processing",
+        "NotAvailable"
       ]
     },
     "DomainStatus":{
@@ -2090,6 +2177,16 @@
         "OpenSearch",
         "Elasticsearch"
       ]
+    },
+    "EnvironmentInfo":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZoneInformation":{"shape":"AvailabilityZoneInfoList"}
+      }
+    },
+    "EnvironmentInfoList":{
+      "type":"list",
+      "member":{"shape":"EnvironmentInfo"}
     },
     "ErrorDetails":{
       "type":"structure",
@@ -2280,12 +2377,19 @@
         "AppLogsEnabled":{"shape":"Boolean"},
         "AdvancedSecurityEnabled":{"shape":"Boolean"},
         "WarmEnabled":{"shape":"Boolean"},
-        "InstanceRole":{"shape":"InstanceRoleList"}
+        "InstanceRole":{"shape":"InstanceRoleList"},
+        "AvailabilityZones":{"shape":"AvailabilityZoneList"}
       }
     },
     "InstanceTypeDetailsList":{
       "type":"list",
       "member":{"shape":"InstanceTypeDetails"}
+    },
+    "InstanceTypeString":{
+      "type":"string",
+      "max":40,
+      "min":10,
+      "pattern":"^.*\\..*\\.search$"
     },
     "Integer":{"type":"integer"},
     "IntegerClass":{"type":"integer"},
@@ -2415,6 +2519,16 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "RetrieveAZs":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"retrieveAZs"
+        },
+        "InstanceType":{
+          "shape":"InstanceTypeString",
+          "location":"querystring",
+          "locationName":"instanceType"
         }
       }
     },
@@ -2624,6 +2738,13 @@
       ]
     },
     "Long":{"type":"long"},
+    "MasterNodeStatus":{
+      "type":"string",
+      "enum":[
+        "Available",
+        "UnAvailable"
+      ]
+    },
     "MasterUserOptions":{
       "type":"structure",
       "members":{
@@ -2666,6 +2787,18 @@
       "max":100,
       "min":1,
       "pattern":"[a-zA-Z0-9\\-\\_\\.]+"
+    },
+    "NumberOfAZs":{
+      "type":"string",
+      "pattern":"^((\\d+)|(NotAvailable))$"
+    },
+    "NumberOfNodes":{
+      "type":"string",
+      "pattern":"^((\\d+)|(NotAvailable))$"
+    },
+    "NumberOfShards":{
+      "type":"string",
+      "pattern":"^((\\d+)|(NotAvailable))$"
     },
     "OffPeakWindow":{
       "type":"structure",
@@ -3743,6 +3876,14 @@
       "members":{
         "AvailabilityZoneCount":{"shape":"IntegerClass"}
       }
+    },
+    "ZoneStatus":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "StandBy",
+        "NotAvailable"
+      ]
     }
   }
 }

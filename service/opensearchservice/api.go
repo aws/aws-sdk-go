@@ -70,14 +70,14 @@ func (c *OpenSearchService) AcceptInboundConnectionRequest(input *AcceptInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - LimitExceededException
 //     An exception for trying to create more than the allowed number of resources
 //     or sub-resources.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AcceptInboundConnection
 func (c *OpenSearchService) AcceptInboundConnection(input *AcceptInboundConnectionInput) (*AcceptInboundConnectionOutput, error) {
@@ -257,7 +257,7 @@ func (c *OpenSearchService) AssociatePackageRequest(input *AssociatePackageInput
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -347,10 +347,10 @@ func (c *OpenSearchService) AuthorizeVpcEndpointAccessRequest(input *AuthorizeVp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - LimitExceededException
 //     An exception for trying to create more than the allowed number of resources
@@ -453,7 +453,7 @@ func (c *OpenSearchService) CancelServiceSoftwareUpdateRequest(input *CancelServ
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -539,7 +539,7 @@ func (c *OpenSearchService) CreateDomainRequest(input *CreateDomainInput) (req *
 //     An error occurred while processing the request.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -649,7 +649,7 @@ func (c *OpenSearchService) CreateOutboundConnectionRequest(input *CreateOutboun
 //     An exception for creating a resource that already exists.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateOutboundConnection
 func (c *OpenSearchService) CreateOutboundConnection(input *CreateOutboundConnectionInput) (*CreateOutboundConnectionOutput, error) {
@@ -844,7 +844,7 @@ func (c *OpenSearchService) CreateVpcEndpointRequest(input *CreateVpcEndpointInp
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -934,7 +934,7 @@ func (c *OpenSearchService) DeleteDomainRequest(input *DeleteDomainInput) (req *
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -1018,10 +1018,10 @@ func (c *OpenSearchService) DeleteInboundConnectionRequest(input *DeleteInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteInboundConnection
 func (c *OpenSearchService) DeleteInboundConnection(input *DeleteInboundConnectionInput) (*DeleteInboundConnectionOutput, error) {
@@ -1102,10 +1102,10 @@ func (c *OpenSearchService) DeleteOutboundConnectionRequest(input *DeleteOutboun
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteOutboundConnection
 func (c *OpenSearchService) DeleteOutboundConnection(input *DeleteOutboundConnectionInput) (*DeleteOutboundConnectionOutput, error) {
@@ -1192,7 +1192,7 @@ func (c *OpenSearchService) DeletePackageRequest(input *DeletePackageInput) (req
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -1281,10 +1281,10 @@ func (c *OpenSearchService) DeleteVpcEndpointRequest(input *DeleteVpcEndpointInp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -1378,7 +1378,7 @@ func (c *OpenSearchService) DescribeDomainRequest(input *DescribeDomainInput) (r
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -1475,7 +1475,7 @@ func (c *OpenSearchService) DescribeDomainAutoTunesRequest(input *DescribeDomain
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -1617,7 +1617,7 @@ func (c *OpenSearchService) DescribeDomainChangeProgressRequest(input *DescribeD
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -1706,7 +1706,7 @@ func (c *OpenSearchService) DescribeDomainConfigRequest(input *DescribeDomainCon
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -1728,6 +1728,99 @@ func (c *OpenSearchService) DescribeDomainConfig(input *DescribeDomainConfigInpu
 // for more information on using Contexts.
 func (c *OpenSearchService) DescribeDomainConfigWithContext(ctx aws.Context, input *DescribeDomainConfigInput, opts ...request.Option) (*DescribeDomainConfigOutput, error) {
 	req, out := c.DescribeDomainConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDomainHealth = "DescribeDomainHealth"
+
+// DescribeDomainHealthRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDomainHealth operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDomainHealth for more information on using the DescribeDomainHealth
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDomainHealthRequest method.
+//	req, resp := client.DescribeDomainHealthRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainHealth
+func (c *OpenSearchService) DescribeDomainHealthRequest(input *DescribeDomainHealthInput) (req *request.Request, output *DescribeDomainHealthOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDomainHealth,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/health",
+	}
+
+	if input == nil {
+		input = &DescribeDomainHealthInput{}
+	}
+
+	output = &DescribeDomainHealthOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDomainHealth API operation for Amazon OpenSearch Service.
+//
+// Returns information about domain and node health, the standby Availability
+// Zone, number of nodes per Availability Zone, and shard count per node.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation DescribeDomainHealth for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+//   - InternalException
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+//   - ValidationException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access an unsupported operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainHealth
+func (c *OpenSearchService) DescribeDomainHealth(input *DescribeDomainHealthInput) (*DescribeDomainHealthOutput, error) {
+	req, out := c.DescribeDomainHealthRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDomainHealthWithContext is the same as DescribeDomainHealth with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDomainHealth for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) DescribeDomainHealthWithContext(ctx aws.Context, input *DescribeDomainHealthInput, opts ...request.Option) (*DescribeDomainHealthOutput, error) {
+	req, out := c.DescribeDomainHealthRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1884,13 +1977,13 @@ func (c *OpenSearchService) DescribeDryRunProgressRequest(input *DescribeDryRunP
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDryRunProgress
 func (c *OpenSearchService) DescribeDryRunProgress(input *DescribeDryRunProgressInput) (*DescribeDryRunProgressOutput, error) {
@@ -1977,11 +2070,10 @@ func (c *OpenSearchService) DescribeInboundConnectionsRequest(input *DescribeInb
 // Returned Error Types:
 //
 //   - InvalidPaginationTokenException
-//     The request processing has failed because you provided an invalid pagination
-//     token.
+//     Request processing failed because you provided an invalid pagination token.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeInboundConnections
 func (c *OpenSearchService) DescribeInboundConnections(input *DescribeInboundConnectionsInput) (*DescribeInboundConnectionsOutput, error) {
@@ -2127,7 +2219,7 @@ func (c *OpenSearchService) DescribeInstanceTypeLimitsRequest(input *DescribeIns
 //     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -2217,11 +2309,10 @@ func (c *OpenSearchService) DescribeOutboundConnectionsRequest(input *DescribeOu
 // Returned Error Types:
 //
 //   - InvalidPaginationTokenException
-//     The request processing has failed because you provided an invalid pagination
-//     token.
+//     Request processing failed because you provided an invalid pagination token.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeOutboundConnections
 func (c *OpenSearchService) DescribeOutboundConnections(input *DescribeOutboundConnectionsInput) (*DescribeOutboundConnectionsOutput, error) {
@@ -2365,7 +2456,7 @@ func (c *OpenSearchService) DescribePackagesRequest(input *DescribePackagesInput
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -2509,13 +2600,13 @@ func (c *OpenSearchService) DescribeReservedInstanceOfferingsRequest(input *Desc
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -2657,7 +2748,7 @@ func (c *OpenSearchService) DescribeReservedInstancesRequest(input *DescribeRese
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -2667,7 +2758,7 @@ func (c *OpenSearchService) DescribeReservedInstancesRequest(input *DescribeRese
 //     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeReservedInstances
 func (c *OpenSearchService) DescribeReservedInstances(input *DescribeReservedInstancesInput) (*DescribeReservedInstancesOutput, error) {
@@ -2804,7 +2895,7 @@ func (c *OpenSearchService) DescribeVpcEndpointsRequest(input *DescribeVpcEndpoi
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -2897,7 +2988,7 @@ func (c *OpenSearchService) DissociatePackageRequest(input *DissociatePackageInp
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -2990,10 +3081,10 @@ func (c *OpenSearchService) GetCompatibleVersionsRequest(input *GetCompatibleVer
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -3074,8 +3165,9 @@ func (c *OpenSearchService) GetPackageVersionHistoryRequest(input *GetPackageVer
 // GetPackageVersionHistory API operation for Amazon OpenSearch Service.
 //
 // Returns a list of Amazon OpenSearch Service package versions, along with
-// their creation time and commit message. For more information, see Custom
-// packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
+// their creation time, commit message, and plugin properties (if the package
+// is a zip plugin package). For more information, see Custom packages for Amazon
+// OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3094,7 +3186,7 @@ func (c *OpenSearchService) GetPackageVersionHistoryRequest(input *GetPackageVer
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -3240,10 +3332,10 @@ func (c *OpenSearchService) GetUpgradeHistoryRequest(input *GetUpgradeHistoryInp
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -3384,10 +3476,10 @@ func (c *OpenSearchService) GetUpgradeStatusRequest(input *GetUpgradeStatusInput
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -3570,7 +3662,7 @@ func (c *OpenSearchService) ListDomainsForPackageRequest(input *ListDomainsForPa
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -3720,7 +3812,7 @@ func (c *OpenSearchService) ListInstanceTypeDetailsRequest(input *ListInstanceTy
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -3867,7 +3959,7 @@ func (c *OpenSearchService) ListPackagesForDomainRequest(input *ListPackagesForD
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -4018,11 +4110,10 @@ func (c *OpenSearchService) ListScheduledActionsRequest(input *ListScheduledActi
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - InvalidPaginationTokenException
-//     The request processing has failed because you provided an invalid pagination
-//     token.
+//     Request processing failed because you provided an invalid pagination token.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -4159,7 +4250,7 @@ func (c *OpenSearchService) ListTagsRequest(input *ListTagsInput) (req *request.
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -4259,7 +4350,7 @@ func (c *OpenSearchService) ListVersionsRequest(input *ListVersionsInput) (req *
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -4394,10 +4485,10 @@ func (c *OpenSearchService) ListVpcEndpointAccessRequest(input *ListVpcEndpointA
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -4488,7 +4579,7 @@ func (c *OpenSearchService) ListVpcEndpointsRequest(input *ListVpcEndpointsInput
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -4575,10 +4666,10 @@ func (c *OpenSearchService) ListVpcEndpointsForDomainRequest(input *ListVpcEndpo
 //     failure.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - BaseException
 //     An error occurred while processing the request.
@@ -4660,7 +4751,7 @@ func (c *OpenSearchService) PurchaseReservedInstanceOfferingRequest(input *Purch
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ResourceAlreadyExistsException
 //     An exception for creating a resource that already exists.
@@ -4670,7 +4761,7 @@ func (c *OpenSearchService) PurchaseReservedInstanceOfferingRequest(input *Purch
 //     or sub-resources.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -4757,10 +4848,10 @@ func (c *OpenSearchService) RejectInboundConnectionRequest(input *RejectInboundC
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/RejectInboundConnection
 func (c *OpenSearchService) RejectInboundConnection(input *RejectInboundConnectionInput) (*RejectInboundConnectionOutput, error) {
@@ -4929,13 +5020,13 @@ func (c *OpenSearchService) RevokeVpcEndpointAccessRequest(input *RevokeVpcEndpo
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -5030,7 +5121,7 @@ func (c *OpenSearchService) StartServiceSoftwareUpdateRequest(input *StartServic
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -5128,7 +5219,7 @@ func (c *OpenSearchService) UpdateDomainConfigRequest(input *UpdateDomainConfigI
 //     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -5222,7 +5313,7 @@ func (c *OpenSearchService) UpdatePackageRequest(input *UpdatePackageInput) (req
 //     or sub-resources.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - AccessDeniedException
 //     An error occurred because you don't have permissions to access the resource.
@@ -5316,7 +5407,7 @@ func (c *OpenSearchService) UpdateScheduledActionRequest(input *UpdateScheduledA
 //     failure.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - SlotNotAvailableException
 //     An exception for attempting to schedule a domain action during an unavailable
@@ -5410,10 +5501,10 @@ func (c *OpenSearchService) UpdateVpcEndpointRequest(input *UpdateVpcEndpointInp
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - InternalException
 //     Request processing failed because of an unknown error, exception, or internal
@@ -5510,13 +5601,13 @@ func (c *OpenSearchService) UpgradeDomainRequest(input *UpgradeDomainInput) (req
 //     An error occurred while processing the request.
 //
 //   - ResourceNotFoundException
-//     An exception for accessing or deleting a resource that does not exist..
+//     An exception for accessing or deleting a resource that doesn't exist.
 //
 //   - ResourceAlreadyExistsException
 //     An exception for creating a resource that already exists.
 //
 //   - DisabledOperationException
-//     An error occured because the client wanted to access a not supported operation.
+//     An error occured because the client wanted to access an unsupported operation.
 //
 //   - ValidationException
 //     An exception for accessing or deleting a resource that doesn't exist.
@@ -6963,6 +7054,91 @@ func (s *AutoTuneStatus) SetUpdateVersion(v int64) *AutoTuneStatus {
 	return s
 }
 
+// Information about an Availability Zone on a domain.
+type AvailabilityZoneInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Availability Zone.
+	AvailabilityZoneName *string `min:"1" type:"string"`
+
+	// The number of data nodes active in the Availability Zone.
+	AvailableDataNodeCount *string `type:"string"`
+
+	// The total number of data nodes configured in the Availability Zone.
+	ConfiguredDataNodeCount *string `type:"string"`
+
+	// The total number of primary and replica shards in the Availability Zone.
+	TotalShards *string `type:"string"`
+
+	// The total number of primary and replica shards that aren't allocated to any
+	// of the nodes in the Availability Zone.
+	TotalUnAssignedShards *string `type:"string"`
+
+	// The current state of the Availability Zone. Current options are Active and
+	// StandBy.
+	//
+	//    * Active - Data nodes in the Availability Zone are in use.
+	//
+	//    * StandBy - Data nodes in the Availability Zone are in a standby state.
+	//
+	//    * NotAvailable - Unable to retrieve information.
+	ZoneStatus *string `type:"string" enum:"ZoneStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailabilityZoneInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailabilityZoneInfo) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZoneName sets the AvailabilityZoneName field's value.
+func (s *AvailabilityZoneInfo) SetAvailabilityZoneName(v string) *AvailabilityZoneInfo {
+	s.AvailabilityZoneName = &v
+	return s
+}
+
+// SetAvailableDataNodeCount sets the AvailableDataNodeCount field's value.
+func (s *AvailabilityZoneInfo) SetAvailableDataNodeCount(v string) *AvailabilityZoneInfo {
+	s.AvailableDataNodeCount = &v
+	return s
+}
+
+// SetConfiguredDataNodeCount sets the ConfiguredDataNodeCount field's value.
+func (s *AvailabilityZoneInfo) SetConfiguredDataNodeCount(v string) *AvailabilityZoneInfo {
+	s.ConfiguredDataNodeCount = &v
+	return s
+}
+
+// SetTotalShards sets the TotalShards field's value.
+func (s *AvailabilityZoneInfo) SetTotalShards(v string) *AvailabilityZoneInfo {
+	s.TotalShards = &v
+	return s
+}
+
+// SetTotalUnAssignedShards sets the TotalUnAssignedShards field's value.
+func (s *AvailabilityZoneInfo) SetTotalUnAssignedShards(v string) *AvailabilityZoneInfo {
+	s.TotalUnAssignedShards = &v
+	return s
+}
+
+// SetZoneStatus sets the ZoneStatus field's value.
+func (s *AvailabilityZoneInfo) SetZoneStatus(v string) *AvailabilityZoneInfo {
+	s.ZoneStatus = &v
+	return s
+}
+
 // An error occurred while processing the request.
 type BaseException struct {
 	_            struct{}                  `type:"structure"`
@@ -7311,7 +7487,7 @@ type ClusterConfig struct {
 	ColdStorageOptions *ColdStorageOptions `type:"structure"`
 
 	// Number of dedicated master nodes in the cluster. This number must be greater
-	// than 1, otherwise you receive a validation exception.
+	// than 2 and not 4, otherwise you receive a validation exception.
 	DedicatedMasterCount *int64 `type:"integer"`
 
 	// Indicates whether dedicated master nodes are enabled for the cluster.True
@@ -7328,6 +7504,11 @@ type ClusterConfig struct {
 
 	// Instance type of data nodes in the cluster.
 	InstanceType *string `type:"string" enum:"OpenSearchPartitionInstanceType"`
+
+	// A boolean that indicates whether a multi-AZ domain is turned on with a standby
+	// AZ. For more information, see Configuring a multi-AZ domain in Amazon OpenSearch
+	// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html).
+	MultiAZWithStandbyEnabled *bool `type:"boolean"`
 
 	// The number of warm nodes in the cluster.
 	WarmCount *int64 `type:"integer"`
@@ -7413,6 +7594,12 @@ func (s *ClusterConfig) SetInstanceCount(v int64) *ClusterConfig {
 // SetInstanceType sets the InstanceType field's value.
 func (s *ClusterConfig) SetInstanceType(v string) *ClusterConfig {
 	s.InstanceType = &v
+	return s
+}
+
+// SetMultiAZWithStandbyEnabled sets the MultiAZWithStandbyEnabled field's value.
+func (s *ClusterConfig) SetMultiAZWithStandbyEnabled(v bool) *ClusterConfig {
+	s.MultiAZWithStandbyEnabled = &v
 	return s
 }
 
@@ -8343,7 +8530,7 @@ type CreatePackageInput struct {
 	// PackageSource is a required field
 	PackageSource *PackageSource `type:"structure" required:"true"`
 
-	// Type of package.
+	// The type of package.
 	//
 	// PackageType is a required field
 	PackageType *string `type:"string" required:"true" enum:"PackageType"`
@@ -9267,6 +9454,224 @@ func (s DescribeDomainConfigOutput) GoString() string {
 // SetDomainConfig sets the DomainConfig field's value.
 func (s *DescribeDomainConfigOutput) SetDomainConfig(v *DomainConfig) *DescribeDomainConfigOutput {
 	s.DomainConfig = v
+	return s
+}
+
+// Container for the parameters to the DescribeDomainHealth operation.
+type DescribeDomainHealthInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainHealthInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDomainHealthInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDomainHealthInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DescribeDomainHealthInput) SetDomainName(v string) *DescribeDomainHealthInput {
+	s.DomainName = &v
+	return s
+}
+
+// The result of a DescribeDomainHealth request. Contains health information
+// for the requested domain.
+type DescribeDomainHealthOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of active Availability Zones configured for the domain. If the
+	// service is unable to fetch this information, it will return NotAvailable.
+	ActiveAvailabilityZoneCount *string `type:"string"`
+
+	// The number of Availability Zones configured for the domain. If the service
+	// is unable to fetch this information, it will return NotAvailable.
+	AvailabilityZoneCount *string `type:"string"`
+
+	// The current health status of your cluster.
+	//
+	//    * Red - At least one primary shard is not allocated to any node.
+	//
+	//    * Yellow - All primary shards are allocated to nodes, but some replicas
+	//    aren’t.
+	//
+	//    * Green - All primary shards and their replicas are allocated to nodes.
+	//
+	//    * NotAvailable - Unable to retrieve cluster health.
+	ClusterHealth *string `type:"string" enum:"DomainHealth"`
+
+	// The number of data nodes configured for the domain. If the service is unable
+	// to fetch this information, it will return NotAvailable.
+	DataNodeCount *string `type:"string"`
+
+	// A boolean that indicates if dedicated master nodes are activated for the
+	// domain.
+	DedicatedMaster *bool `type:"boolean"`
+
+	// The current state of the domain.
+	//
+	//    * Processing - The domain has updates in progress.
+	//
+	//    * Active - Requested changes have been processed and deployed to the domain.
+	DomainState *string `type:"string" enum:"DomainState"`
+
+	// A list of EnvironmentInfo for the domain.
+	EnvironmentInformation []*EnvironmentInfo `type:"list"`
+
+	// The number of nodes that can be elected as a master node. If dedicated master
+	// nodes is turned on, this value is the number of dedicated master nodes configured
+	// for the domain. If the service is unable to fetch this information, it will
+	// return NotAvailable.
+	MasterEligibleNodeCount *string `type:"string"`
+
+	// Indicates whether the domain has an elected master node.
+	//
+	//    * Available - The domain has an elected master node.
+	//
+	//    * UnAvailable - The master node hasn't yet been elected, and a quorum
+	//    to elect a new master node hasn't been reached.
+	MasterNode *string `type:"string" enum:"MasterNodeStatus"`
+
+	// The number of standby Availability Zones configured for the domain. If the
+	// service is unable to fetch this information, it will return NotAvailable.
+	StandByAvailabilityZoneCount *string `type:"string"`
+
+	// The total number of primary and replica shards for the domain.
+	TotalShards *string `type:"string"`
+
+	// The total number of primary and replica shards not allocated to any of the
+	// nodes for the cluster.
+	TotalUnAssignedShards *string `type:"string"`
+
+	// The number of warm nodes configured for the domain.
+	WarmNodeCount *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainHealthOutput) GoString() string {
+	return s.String()
+}
+
+// SetActiveAvailabilityZoneCount sets the ActiveAvailabilityZoneCount field's value.
+func (s *DescribeDomainHealthOutput) SetActiveAvailabilityZoneCount(v string) *DescribeDomainHealthOutput {
+	s.ActiveAvailabilityZoneCount = &v
+	return s
+}
+
+// SetAvailabilityZoneCount sets the AvailabilityZoneCount field's value.
+func (s *DescribeDomainHealthOutput) SetAvailabilityZoneCount(v string) *DescribeDomainHealthOutput {
+	s.AvailabilityZoneCount = &v
+	return s
+}
+
+// SetClusterHealth sets the ClusterHealth field's value.
+func (s *DescribeDomainHealthOutput) SetClusterHealth(v string) *DescribeDomainHealthOutput {
+	s.ClusterHealth = &v
+	return s
+}
+
+// SetDataNodeCount sets the DataNodeCount field's value.
+func (s *DescribeDomainHealthOutput) SetDataNodeCount(v string) *DescribeDomainHealthOutput {
+	s.DataNodeCount = &v
+	return s
+}
+
+// SetDedicatedMaster sets the DedicatedMaster field's value.
+func (s *DescribeDomainHealthOutput) SetDedicatedMaster(v bool) *DescribeDomainHealthOutput {
+	s.DedicatedMaster = &v
+	return s
+}
+
+// SetDomainState sets the DomainState field's value.
+func (s *DescribeDomainHealthOutput) SetDomainState(v string) *DescribeDomainHealthOutput {
+	s.DomainState = &v
+	return s
+}
+
+// SetEnvironmentInformation sets the EnvironmentInformation field's value.
+func (s *DescribeDomainHealthOutput) SetEnvironmentInformation(v []*EnvironmentInfo) *DescribeDomainHealthOutput {
+	s.EnvironmentInformation = v
+	return s
+}
+
+// SetMasterEligibleNodeCount sets the MasterEligibleNodeCount field's value.
+func (s *DescribeDomainHealthOutput) SetMasterEligibleNodeCount(v string) *DescribeDomainHealthOutput {
+	s.MasterEligibleNodeCount = &v
+	return s
+}
+
+// SetMasterNode sets the MasterNode field's value.
+func (s *DescribeDomainHealthOutput) SetMasterNode(v string) *DescribeDomainHealthOutput {
+	s.MasterNode = &v
+	return s
+}
+
+// SetStandByAvailabilityZoneCount sets the StandByAvailabilityZoneCount field's value.
+func (s *DescribeDomainHealthOutput) SetStandByAvailabilityZoneCount(v string) *DescribeDomainHealthOutput {
+	s.StandByAvailabilityZoneCount = &v
+	return s
+}
+
+// SetTotalShards sets the TotalShards field's value.
+func (s *DescribeDomainHealthOutput) SetTotalShards(v string) *DescribeDomainHealthOutput {
+	s.TotalShards = &v
+	return s
+}
+
+// SetTotalUnAssignedShards sets the TotalUnAssignedShards field's value.
+func (s *DescribeDomainHealthOutput) SetTotalUnAssignedShards(v string) *DescribeDomainHealthOutput {
+	s.TotalUnAssignedShards = &v
+	return s
+}
+
+// SetWarmNodeCount sets the WarmNodeCount field's value.
+func (s *DescribeDomainHealthOutput) SetWarmNodeCount(v string) *DescribeDomainHealthOutput {
+	s.WarmNodeCount = &v
 	return s
 }
 
@@ -10354,7 +10759,7 @@ func (s *DescribeVpcEndpointsOutput) SetVpcEndpoints(v []*VpcEndpoint) *Describe
 	return s
 }
 
-// An error occured because the client wanted to access a not supported operation.
+// An error occured because the client wanted to access an unsupported operation.
 type DisabledOperationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10955,8 +11360,8 @@ type DomainPackageDetails struct {
 	// The current version of the package.
 	PackageVersion *string `type:"string"`
 
-	// Denotes the location of the package on the OpenSearch Service cluster nodes.
-	// It's the same as synonym_path for dictionary files.
+	// The relative path of the package on the OpenSearch Service cluster nodes.
+	// This is synonym_path when the package is for synonym files.
 	ReferencePath *string `type:"string"`
 }
 
@@ -11725,6 +12130,38 @@ func (s *EncryptionAtRestOptionsStatus) SetStatus(v *OptionStatus) *EncryptionAt
 	return s
 }
 
+// Information about the active domain environment.
+type EnvironmentInfo struct {
+	_ struct{} `type:"structure"`
+
+	// A list of AvailabilityZoneInfo for the domain.
+	AvailabilityZoneInformation []*AvailabilityZoneInfo `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentInfo) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZoneInformation sets the AvailabilityZoneInformation field's value.
+func (s *EnvironmentInfo) SetAvailabilityZoneInformation(v []*AvailabilityZoneInfo) *EnvironmentInfo {
+	s.AvailabilityZoneInformation = v
+	return s
+}
+
 // Additional information if the package is in an error state. Null otherwise.
 type ErrorDetails struct {
 	_ struct{} `type:"structure"`
@@ -12458,6 +12895,9 @@ type InstanceTypeDetails struct {
 	// Whether logging is supported for the instance type.
 	AppLogsEnabled *bool `type:"boolean"`
 
+	// The supported Availability Zones for the instance type.
+	AvailabilityZones []*string `type:"list"`
+
 	// Whether Amazon Cognito access is supported for the instance type.
 	CognitoEnabled *bool `type:"boolean"`
 
@@ -12503,6 +12943,12 @@ func (s *InstanceTypeDetails) SetAdvancedSecurityEnabled(v bool) *InstanceTypeDe
 // SetAppLogsEnabled sets the AppLogsEnabled field's value.
 func (s *InstanceTypeDetails) SetAppLogsEnabled(v bool) *InstanceTypeDetails {
 	s.AppLogsEnabled = &v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *InstanceTypeDetails) SetAvailabilityZones(v []*string) *InstanceTypeDetails {
+	s.AvailabilityZones = v
 	return s
 }
 
@@ -12601,8 +13047,7 @@ func (s *InternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request processing has failed because you provided an invalid pagination
-// token.
+// Request processing failed because you provided an invalid pagination token.
 type InvalidPaginationTokenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13030,14 +13475,17 @@ func (s *ListDomainsForPackageOutput) SetNextToken(v string) *ListDomainsForPack
 type ListInstanceTypeDetailsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Name of the domain to list instance type details for.
+	// The name of the domain.
 	DomainName *string `location:"querystring" locationName:"domainName" min:"3" type:"string"`
 
-	// Version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y or
-	// OpenSearch_X.Y. Defaults to the latest version of OpenSearch.
+	// The version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y
+	// or OpenSearch_X.Y. Defaults to the latest version of OpenSearch.
 	//
 	// EngineVersion is a required field
 	EngineVersion *string `location:"uri" locationName:"EngineVersion" min:"14" type:"string" required:"true"`
+
+	// An optional parameter that lists information for a given instance type.
+	InstanceType *string `location:"querystring" locationName:"instanceType" min:"10" type:"string"`
 
 	// An optional parameter that specifies the maximum number of results to return.
 	// You can use nextToken to get the next page of results.
@@ -13047,6 +13495,9 @@ type ListInstanceTypeDetailsInput struct {
 	// can include the returned nextToken in subsequent ListInstanceTypeDetails
 	// operations, which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// An optional parameter that specifies the Availability Zones for the domain.
+	RetrieveAZs *bool `location:"querystring" locationName:"retrieveAZs" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -13079,6 +13530,9 @@ func (s *ListInstanceTypeDetailsInput) Validate() error {
 	if s.EngineVersion != nil && len(*s.EngineVersion) < 14 {
 		invalidParams.Add(request.NewErrParamMinLen("EngineVersion", 14))
 	}
+	if s.InstanceType != nil && len(*s.InstanceType) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceType", 10))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13098,6 +13552,12 @@ func (s *ListInstanceTypeDetailsInput) SetEngineVersion(v string) *ListInstanceT
 	return s
 }
 
+// SetInstanceType sets the InstanceType field's value.
+func (s *ListInstanceTypeDetailsInput) SetInstanceType(v string) *ListInstanceTypeDetailsInput {
+	s.InstanceType = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListInstanceTypeDetailsInput) SetMaxResults(v int64) *ListInstanceTypeDetailsInput {
 	s.MaxResults = &v
@@ -13107,6 +13567,12 @@ func (s *ListInstanceTypeDetailsInput) SetMaxResults(v int64) *ListInstanceTypeD
 // SetNextToken sets the NextToken field's value.
 func (s *ListInstanceTypeDetailsInput) SetNextToken(v string) *ListInstanceTypeDetailsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetRetrieveAZs sets the RetrieveAZs field's value.
+func (s *ListInstanceTypeDetailsInput) SetRetrieveAZs(v bool) *ListInstanceTypeDetailsInput {
+	s.RetrieveAZs = &v
 	return s
 }
 
@@ -14171,7 +14637,7 @@ type OffPeakWindowOptions struct {
 	// Whether to enable an off-peak window.
 	//
 	// This option is only available when modifying a domain created prior to February
-	// 13, 2023, not when creating a new domain. All domains created after this
+	// 16, 2023, not when creating a new domain. All domains created after this
 	// date have the off-peak window enabled by default. You can't disable the off-peak
 	// window after it's enabled for a domain.
 	Enabled *bool `type:"boolean"`
@@ -14514,10 +14980,11 @@ type PackageDetails struct {
 	// The unique identifier of the package.
 	PackageID *string `type:"string"`
 
-	// User-specified name of the package.
+	// The user-specified name of the package.
 	PackageName *string `min:"3" type:"string"`
 
-	// Current status of the package.
+	// The current status of the package. The available options are AVAILABLE, COPYING,
+	// COPY_FAILED, VALIDATNG, VALIDATION_FAILED, DELETING, and DELETE_FAILED.
 	PackageStatus *string `type:"string" enum:"PackageStatus"`
 
 	// The type of package.
@@ -15350,7 +15817,7 @@ func (s *ResourceAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An exception for accessing or deleting a resource that does not exist..
+// An exception for accessing or deleting a resource that doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16564,12 +17031,6 @@ type UpdateDomainConfigInput struct {
 	//    rather than a boolean. Specifies the maximum number of clauses allowed
 	//    in a Lucene boolean query. Default is 1,024. Queries with more than the
 	//    permitted number of clauses result in a TooManyClauses error.
-	//
-	//    * "override_main_response_version": "true" | "false" - Note the use of
-	//    a string rather than a boolean. Specifies whether the domain reports its
-	//    version as 7.10 to allow Elasticsearch OSS clients and plugins to continue
-	//    working with it. Default is false when creating a domain and true when
-	//    upgrading a domain.
 	//
 	// For more information, see Advanced cluster parameters (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
 	AdvancedOptions map[string]*string `type:"map"`
@@ -18364,6 +18825,30 @@ func DescribePackagesFilterName_Values() []string {
 }
 
 const (
+	// DomainHealthRed is a DomainHealth enum value
+	DomainHealthRed = "Red"
+
+	// DomainHealthYellow is a DomainHealth enum value
+	DomainHealthYellow = "Yellow"
+
+	// DomainHealthGreen is a DomainHealth enum value
+	DomainHealthGreen = "Green"
+
+	// DomainHealthNotAvailable is a DomainHealth enum value
+	DomainHealthNotAvailable = "NotAvailable"
+)
+
+// DomainHealth_Values returns all elements of the DomainHealth enum
+func DomainHealth_Values() []string {
+	return []string{
+		DomainHealthRed,
+		DomainHealthYellow,
+		DomainHealthGreen,
+		DomainHealthNotAvailable,
+	}
+}
+
+const (
 	// DomainPackageStatusAssociating is a DomainPackageStatus enum value
 	DomainPackageStatusAssociating = "ASSOCIATING"
 
@@ -18388,6 +18873,26 @@ func DomainPackageStatus_Values() []string {
 		DomainPackageStatusActive,
 		DomainPackageStatusDissociating,
 		DomainPackageStatusDissociationFailed,
+	}
+}
+
+const (
+	// DomainStateActive is a DomainState enum value
+	DomainStateActive = "Active"
+
+	// DomainStateProcessing is a DomainState enum value
+	DomainStateProcessing = "Processing"
+
+	// DomainStateNotAvailable is a DomainState enum value
+	DomainStateNotAvailable = "NotAvailable"
+)
+
+// DomainState_Values returns all elements of the DomainState enum
+func DomainState_Values() []string {
+	return []string{
+		DomainStateActive,
+		DomainStateProcessing,
+		DomainStateNotAvailable,
 	}
 }
 
@@ -18498,6 +19003,22 @@ func LogType_Values() []string {
 		LogTypeSearchSlowLogs,
 		LogTypeEsApplicationLogs,
 		LogTypeAuditLogs,
+	}
+}
+
+const (
+	// MasterNodeStatusAvailable is a MasterNodeStatus enum value
+	MasterNodeStatusAvailable = "Available"
+
+	// MasterNodeStatusUnAvailable is a MasterNodeStatus enum value
+	MasterNodeStatusUnAvailable = "UnAvailable"
+)
+
+// MasterNodeStatus_Values returns all elements of the MasterNodeStatus enum
+func MasterNodeStatus_Values() []string {
+	return []string{
+		MasterNodeStatusAvailable,
+		MasterNodeStatusUnAvailable,
 	}
 }
 
@@ -19334,5 +19855,25 @@ func VpcEndpointStatus_Values() []string {
 		VpcEndpointStatusUpdateFailed,
 		VpcEndpointStatusDeleting,
 		VpcEndpointStatusDeleteFailed,
+	}
+}
+
+const (
+	// ZoneStatusActive is a ZoneStatus enum value
+	ZoneStatusActive = "Active"
+
+	// ZoneStatusStandBy is a ZoneStatus enum value
+	ZoneStatusStandBy = "StandBy"
+
+	// ZoneStatusNotAvailable is a ZoneStatus enum value
+	ZoneStatusNotAvailable = "NotAvailable"
+)
+
+// ZoneStatus_Values returns all elements of the ZoneStatus enum
+func ZoneStatus_Values() []string {
+	return []string{
+		ZoneStatusActive,
+		ZoneStatusStandBy,
+		ZoneStatusNotAvailable,
 	}
 }
