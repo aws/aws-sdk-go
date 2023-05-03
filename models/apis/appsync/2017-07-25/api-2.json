@@ -1250,7 +1250,8 @@
         "tags":{"shape":"TagMap"},
         "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
         "xrayEnabled":{"shape":"Boolean"},
-        "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"}
+        "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"},
+        "visibility":{"shape":"GraphQLApiVisibility"}
       }
     },
     "CreateGraphqlApiResponse":{
@@ -1955,6 +1956,13 @@
         "type":{"shape":"Type"}
       }
     },
+    "GraphQLApiVisibility":{
+      "type":"string",
+      "enum":[
+        "GLOBAL",
+        "PRIVATE"
+      ]
+    },
     "GraphQLSchemaException":{
       "type":"structure",
       "members":{
@@ -1978,7 +1986,9 @@
         "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
         "xrayEnabled":{"shape":"Boolean"},
         "wafWebAclArn":{"shape":"String"},
-        "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"}
+        "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"},
+        "dns":{"shape":"MapOfStringToString"},
+        "visibility":{"shape":"GraphQLApiVisibility"}
       }
     },
     "GraphqlApis":{

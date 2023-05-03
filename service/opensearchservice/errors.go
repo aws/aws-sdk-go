@@ -30,7 +30,7 @@ const (
 	// ErrCodeDisabledOperationException for service response error code
 	// "DisabledOperationException".
 	//
-	// An error occured because the client wanted to access a not supported operation.
+	// An error occured because the client wanted to access an unsupported operation.
 	ErrCodeDisabledOperationException = "DisabledOperationException"
 
 	// ErrCodeInternalException for service response error code
@@ -43,8 +43,7 @@ const (
 	// ErrCodeInvalidPaginationTokenException for service response error code
 	// "InvalidPaginationTokenException".
 	//
-	// The request processing has failed because you provided an invalid pagination
-	// token.
+	// Request processing failed because you provided an invalid pagination token.
 	ErrCodeInvalidPaginationTokenException = "InvalidPaginationTokenException"
 
 	// ErrCodeInvalidTypeException for service response error code
@@ -70,7 +69,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// An exception for accessing or deleting a resource that does not exist..
+	// An exception for accessing or deleting a resource that doesn't exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeSlotNotAvailableException for service response error code

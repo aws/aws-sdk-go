@@ -2,12 +2,14 @@
   "version": "2.0",
   "service": "<p>Amazon Inspector is a vulnerability discovery service that automates continuous scanning for security vulnerabilities within your Amazon EC2 and Amazon ECR environments.</p>",
   "operations": {
-    "AssociateMember": "<p>Associates an Amazon Web Services account with an Amazon Inspector delegated administrator.</p>",
+    "AssociateMember": "<p>Associates an Amazon Web Services account with an Amazon Inspector delegated administrator. An HTTP 200 response indicates the association was successfully started, but doesn’t indicate whether it was completed. You can check if the association completed by using <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_ListMembers.html\">ListMembers</a> for multiple accounts or <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_GetMember.html\">GetMembers</a> for a single account.</p>",
     "BatchGetAccountStatus": "<p>Retrieves the Amazon Inspector status of multiple Amazon Web Services accounts within your environment.</p>",
     "BatchGetFreeTrialInfo": "<p>Gets free trial status for multiple Amazon Web Services accounts.</p>",
+    "BatchGetMemberEc2DeepInspectionStatus": "<p>Retrieves Amazon Inspector deep inspection activation status of multiple member accounts within your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
+    "BatchUpdateMemberEc2DeepInspectionStatus": "<p>Activates or deactivates Amazon Inspector deep inspection for the provided member accounts in your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
     "CancelFindingsReport": "<p>Cancels the given findings report.</p>",
     "CreateFilter": "<p>Creates a filter resource using specified filter criteria.</p>",
-    "CreateFindingsReport": "<p>Creates a finding report.</p>",
+    "CreateFindingsReport": "<p>Creates a finding report. By default only <code>ACTIVE</code> findings are returned in the report. To see <code>SUPRESSED</code> or <code>CLOSED</code> findings you must specify a value for the <code>findingStatus</code> filter criteria. </p>",
     "DeleteFilter": "<p>Deletes a filter resource.</p>",
     "DescribeOrganizationConfiguration": "<p>Describe Amazon Inspector configuration settings for an Amazon Web Services organization.</p>",
     "Disable": "<p>Disables Amazon Inspector scans for one or more Amazon Web Services accounts. Disabling all scan types in an account disables the Amazon Inspector service.</p>",
@@ -17,6 +19,7 @@
     "EnableDelegatedAdminAccount": "<p>Enables the Amazon Inspector delegated administrator for your Organizations organization.</p>",
     "GetConfiguration": "<p>Retrieves setting configurations for Inspector scans.</p>",
     "GetDelegatedAdminAccount": "<p>Retrieves information about the Amazon Inspector delegated administrator for your organization.</p>",
+    "GetEc2DeepInspectionConfiguration": "<p>Retrieves the activation status of Amazon Inspector deep inspection and custom paths associated with your account. </p>",
     "GetFindingsReportStatus": "<p>Gets the status of a findings report.</p>",
     "GetMember": "<p>Gets member information for your organization.</p>",
     "ListAccountPermissions": "<p>Lists the permissions an account has to configure Amazon Inspector.</p>",
@@ -32,7 +35,9 @@
     "TagResource": "<p>Adds tags to a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateConfiguration": "<p>Updates setting configurations for your Amazon Inspector account. When you use this API as an Amazon Inspector delegated administrator this updates the setting for all accounts you manage. Member accounts in an organization cannot update this setting.</p>",
+    "UpdateEc2DeepInspectionConfiguration": "<p>Activates, deactivates Amazon Inspector deep inspection, or updates custom paths for your account. </p>",
     "UpdateFilter": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>",
+    "UpdateOrgEc2DeepInspectionConfiguration": "<p>Updates the Amazon Inspector deep inspection custom paths for your organization. You must be an Amazon Inspector delegated administrator to use this API.</p>",
     "UpdateOrganizationConfiguration": "<p>Updates the configurations for your Amazon Inspector organization.</p>"
   },
   "shapes": {
@@ -80,6 +85,7 @@
         "EnableDelegatedAdminAccountRequest$delegatedAdminAccountId": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator.</p>",
         "EnableDelegatedAdminAccountResponse$delegatedAdminAccountId": "<p>The Amazon Web Services account ID of the successfully Amazon Inspector delegated administrator.</p>",
         "FailedAccount$accountId": "<p>The Amazon Web Services account ID.</p>",
+        "FailedMemberAccountEc2DeepInspectionStatusState$accountId": "<p>The unique identifier for the Amazon Web Services account of the organization member that failed to activate Amazon Inspector deep inspection.</p>",
         "Finding$awsAccountId": "<p>The Amazon Web Services account ID associated with the finding.</p>",
         "FindingTypeAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
         "GetMemberRequest$accountId": "<p>The Amazon Web Services account ID of the member account to retrieve information on.</p>",
@@ -88,6 +94,8 @@
         "LambdaLayerAggregationResponse$accountId": "<p>The account ID of the AWS Lambda function layer.</p>",
         "Member$accountId": "<p>The Amazon Web Services account ID of the member account.</p>",
         "Member$delegatedAdminAccountId": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator for this member account.</p>",
+        "MemberAccountEc2DeepInspectionStatus$accountId": "<p>The unique identifier for the Amazon Web Services account of the organization member.</p>",
+        "MemberAccountEc2DeepInspectionStatusState$accountId": "<p>The unique identifier for the Amazon Web Services account of the organization member</p>",
         "PackageAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
         "RepositoryAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
         "TitleAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>"
@@ -97,6 +105,7 @@
       "base": null,
       "refs": {
         "BatchGetAccountStatusRequest$accountIds": "<p>The 12-digit Amazon Web Services account IDs of the accounts to retrieve Amazon Inspector status for.</p>",
+        "BatchGetMemberEc2DeepInspectionStatusRequest$accountIds": "<p>The unique identifiers for the Amazon Web Services accounts to retrieve Amazon Inspector deep inspection activation status for. <pre><code> &lt;/p&gt; </code></pre>",
         "DisableRequest$accountIds": "<p>An array of account IDs you want to disable Amazon Inspector scans for.</p>",
         "EnableRequest$accountIds": "<p>A list of account IDs you want to enable Amazon Inspector scans for.</p>"
       }
@@ -303,14 +312,36 @@
       "refs": {
       }
     },
+    "BatchGetMemberEc2DeepInspectionStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetMemberEc2DeepInspectionStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdateMemberEc2DeepInspectionStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdateMemberEc2DeepInspectionStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
         "AutoEnable$ec2": "<p>Represents whether Amazon EC2 scans are automatically enabled for new members of your Amazon Inspector organization.</p>",
         "AutoEnable$ecr": "<p>Represents whether Amazon ECR scans are automatically enabled for new members of your Amazon Inspector organization.</p>",
-        "AutoEnable$lambda": "<p>Represents whether AWS Lambda scans are automatically enabled for new members of your Amazon Inspector organization. </p>",
+        "AutoEnable$lambda": "<p>Represents whether AWS Lambda standard scans are automatically enabled for new members of your Amazon Inspector organization. </p>",
         "DescribeOrganizationConfigurationResponse$maxAccountLimitReached": "<p>Represents whether your organization has reached the maximum Amazon Web Services account limit for Amazon Inspector.</p>",
-        "ListMembersRequest$onlyAssociated": "<p>Specifies whether to list only currently associated members if <code>True</code> or to list all members within the organization if <code>False</code>.</p>"
+        "ListMembersRequest$onlyAssociated": "<p>Specifies whether to list only currently associated members if <code>True</code> or to list all members within the organization if <code>False</code>.</p>",
+        "MemberAccountEc2DeepInspectionStatus$activateDeepInspection": "<p>Whether Amazon Inspector deep inspection is active in the account. If <code>TRUE</code> Amazon Inspector deep inspection is active, if <code>FALSE</code> it is not active.</p>",
+        "UpdateEc2DeepInspectionConfigurationRequest$activateDeepInspection": "<p>Specify <code>TRUE</code> to activate Amazon Inspector deep inspection in your account, or <code>FALSE</code> to deactivate. Member accounts in an organization cannot deactivate deep inspection, instead the delegated administrator for the organization can deactivate a member account using <a href=\"https://docs.aws.amazon.com/inspector/v2/APIReference/API_BatchUpdateMemberEc2DeepInspectionStatus.html\">BatchUpdateMemberEc2DeepInspectionStatus</a>.</p>"
       }
     },
     "CancelFindingsReportRequest": {
@@ -623,6 +654,14 @@
         "NumberFilter$upperInclusive": "<p>The highest number to be included in the filter.</p>"
       }
     },
+    "Ec2DeepInspectionStatus": {
+      "base": null,
+      "refs": {
+        "GetEc2DeepInspectionConfigurationResponse$status": "<p>The activation status of Amazon Inspector deep inspection in your account.</p>",
+        "MemberAccountEc2DeepInspectionStatusState$status": "<p>The state of Amazon Inspector deep inspection in the member account.</p>",
+        "UpdateEc2DeepInspectionConfigurationResponse$status": "<p>The status of Amazon Inspector deep inspection in your account.</p>"
+      }
+    },
     "Ec2InstanceAggregation": {
       "base": "<p>The details that define an aggregation based on Amazon EC2 instances.</p>",
       "refs": {
@@ -777,6 +816,19 @@
         "BatchGetAccountStatusResponse$failedAccounts": "<p>An array of objects detailing any accounts that failed to enable Amazon Inspector and why.</p>",
         "DisableResponse$failedAccounts": "<p>Information on any accounts for which Amazon Inspector scans could not be disabled. Details are provided for each account.</p>",
         "EnableResponse$failedAccounts": "<p>Information on any accounts for which Amazon Inspector scans could not be enabled. Details are provided for each account.</p>"
+      }
+    },
+    "FailedMemberAccountEc2DeepInspectionStatusState": {
+      "base": "<p>An object that contains details about a member account in your organization that failed to activate Amazon Inspector deep inspection.</p>",
+      "refs": {
+        "FailedMemberAccountEc2DeepInspectionStatusStateList$member": null
+      }
+    },
+    "FailedMemberAccountEc2DeepInspectionStatusStateList": {
+      "base": null,
+      "refs": {
+        "BatchGetMemberEc2DeepInspectionStatusResponse$failedAccountIds": "<p>An array of objects that provide details on any accounts that failed to activate Amazon Inspector deep inspection and why. <pre><code> &lt;/p&gt; </code></pre>",
+        "BatchUpdateMemberEc2DeepInspectionStatusResponse$failedAccountIds": "<p>An array of objects that provide details for each of the accounts that Amazon Inspector deep inspection status could not be successfully changed for. </p>"
       }
     },
     "FilePath": {
@@ -1001,6 +1053,16 @@
       }
     },
     "GetDelegatedAdminAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEc2DeepInspectionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEc2DeepInspectionConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1380,6 +1442,31 @@
         "MemberList$member": null
       }
     },
+    "MemberAccountEc2DeepInspectionStatus": {
+      "base": "<p>An object that contains details about the status of Amazon Inspector deep inspection for a member account in your organization.</p>",
+      "refs": {
+        "MemberAccountEc2DeepInspectionStatusList$member": null
+      }
+    },
+    "MemberAccountEc2DeepInspectionStatusList": {
+      "base": null,
+      "refs": {
+        "BatchUpdateMemberEc2DeepInspectionStatusRequest$accountIds": "<p>The unique identifiers for the Amazon Web Services accounts to change Amazon Inspector deep inspection status for.</p>"
+      }
+    },
+    "MemberAccountEc2DeepInspectionStatusState": {
+      "base": "<p>An object that contains details about the state of Amazon Inspector deep inspection for a member account.</p>",
+      "refs": {
+        "MemberAccountEc2DeepInspectionStatusStateList$member": null
+      }
+    },
+    "MemberAccountEc2DeepInspectionStatusStateList": {
+      "base": null,
+      "refs": {
+        "BatchGetMemberEc2DeepInspectionStatusResponse$accountIds": "<p>An array of objects that provide details on the activation status of Amazon Inspector deep inspection for each of the requested accounts. <pre><code> &lt;/p&gt; </code></pre>",
+        "BatchUpdateMemberEc2DeepInspectionStatusResponse$accountIds": "<p>An array of objects that provide details for each of the accounts that Amazon Inspector deep inspection status was successfully changed for. </p>"
+      }
+    },
     "MemberList": {
       "base": null,
       "refs": {
@@ -1467,6 +1554,8 @@
         "CvssScoreDetails$version": "<p>The CVSS version used in scoring.</p>",
         "Ec2InstanceAggregationResponse$instanceId": "<p>The Amazon EC2 instance ID.</p>",
         "FailedAccount$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
+        "FailedMemberAccountEc2DeepInspectionStatusState$errorMessage": "<p>The error message explaining why the account failed to activate Amazon Inspector deep inspection.</p>",
+        "GetEc2DeepInspectionConfigurationResponse$errorMessage": "<p>An error message explaining why Amazon Inspector deep inspection configurations could not be retrieved for your account.</p>",
         "ImageLayerAggregationResponse$layerHash": "<p>The layer hash.</p>",
         "ImageLayerAggregationResponse$repository": "<p>The repository the layer resides in.</p>",
         "ImageLayerAggregationResponse$resourceId": "<p>The resource ID of the container image layer.</p>",
@@ -1475,6 +1564,7 @@
         "LambdaLayerAggregationResponse$functionName": "<p>The names of the AWS Lambda functions associated with the layers.</p>",
         "LambdaLayerAggregationResponse$layerArn": "<p>The Amazon Resource Name (ARN) of the AWS Lambda function layer.</p>",
         "LambdaLayerAggregationResponse$resourceId": "<p>The Resource ID of the AWS Lambda function layer.</p>",
+        "MemberAccountEc2DeepInspectionStatusState$errorMessage": "<p>The error message explaining why the account failed to activate Amazon Inspector deep inspection.</p>",
         "NonEmptyStringList$member": null,
         "PackageAggregationResponse$packageName": "<p>The name of the operating system package.</p>",
         "PackageVulnerabilityDetails$source": "<p>The source of the vulnerability information.</p>",
@@ -1488,7 +1578,8 @@
         "Resource$region": "<p>The Amazon Web Services Region the impacted resource is located in.</p>",
         "State$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
         "StringList$member": null,
-        "TitleAggregationResponse$title": "<p>The title that the findings were aggregated on.</p>"
+        "TitleAggregationResponse$title": "<p>The title that the findings were aggregated on.</p>",
+        "UpdateEc2DeepInspectionConfigurationResponse$errorMessage": "<p>An error message explaining why new Amazon Inspector deep inspection custom paths could not be added.</p>"
       }
     },
     "NonEmptyStringList": {
@@ -1599,6 +1690,23 @@
       "base": "<p>Information about a package vulnerability finding.</p>",
       "refs": {
         "Finding$packageVulnerabilityDetails": "<p>An object that contains the details of a package vulnerability finding.</p>"
+      }
+    },
+    "Path": {
+      "base": null,
+      "refs": {
+        "PathList$member": null
+      }
+    },
+    "PathList": {
+      "base": null,
+      "refs": {
+        "GetEc2DeepInspectionConfigurationResponse$orgPackagePaths": "<p>The Amazon Inspector deep inspection custom paths for your organization.</p>",
+        "GetEc2DeepInspectionConfigurationResponse$packagePaths": "<p>The Amazon Inspector deep inspection custom paths for your account.</p>",
+        "UpdateEc2DeepInspectionConfigurationRequest$packagePaths": "<p>The Amazon Inspector deep inspection custom paths you are adding for your account.</p>",
+        "UpdateEc2DeepInspectionConfigurationResponse$orgPackagePaths": "<p>The current Amazon Inspector deep inspection custom paths for the organization.</p>",
+        "UpdateEc2DeepInspectionConfigurationResponse$packagePaths": "<p>The current Amazon Inspector deep inspection custom paths for your account.</p>",
+        "UpdateOrgEc2DeepInspectionConfigurationRequest$orgPackagePaths": "<p>The Amazon Inspector deep inspection custom paths you are adding for your organization.</p>"
       }
     },
     "Permission": {
@@ -1893,9 +2001,10 @@
       "refs": {
         "Account$status": "<p>The status of Amazon Inspector for the account.</p>",
         "FailedAccount$status": "<p>The status of Amazon Inspector for the account.</p>",
+        "FailedMemberAccountEc2DeepInspectionStatusState$ec2ScanStatus": "<p>The status of EC2 scanning in the account that failed to activate Amazon Inspector deep inspection.</p>",
         "ResourceStatus$ec2": "<p>The status of Amazon Inspector scanning for Amazon EC2 resources.</p>",
         "ResourceStatus$ecr": "<p>The status of Amazon Inspector scanning for Amazon ECR resources.</p>",
-        "ResourceStatus$lambda": "<p>The status of Amazon Inspector scanning for AWS Lambda function resources.</p>",
+        "ResourceStatus$lambda": "<p>The status of Amazon Inspector scanning for AWS Lambda function.</p>",
         "State$status": "<p>The status of Amazon Inspector for the account.</p>"
       }
     },
@@ -1924,7 +2033,7 @@
         "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
         "ConflictException$resourceType": "<p>The type of the conflicting resource.</p>",
         "Destination$bucketName": "<p>The name of the Amazon S3 bucket to export findings to.</p>",
-        "Destination$keyPrefix": "<p>The prefix of the KMS key used to export findings.</p>",
+        "Destination$keyPrefix": "<p>The prefix of the Amazon S3 bucket used to export findings.</p>",
         "Destination$kmsKeyArn": "<p>The ARN of the KMS key used to encrypt data when exporting findings.</p>",
         "Ec2InstanceAggregationResponse$accountId": "<p>The Amazon Web Services account for the Amazon EC2 instance.</p>",
         "Ec2InstanceAggregationResponse$operatingSystem": "<p>The operating system of the Amazon EC2 instance.</p>",
@@ -2140,12 +2249,32 @@
       "refs": {
       }
     },
+    "UpdateEc2DeepInspectionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEc2DeepInspectionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateFilterRequest": {
       "base": null,
       "refs": {
       }
     },
     "UpdateFilterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOrgEc2DeepInspectionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOrgEc2DeepInspectionConfigurationResponse": {
       "base": null,
       "refs": {
       }

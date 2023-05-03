@@ -517,6 +517,7 @@
         "InternalServerException$message": null,
         "QueryTimeoutException$message": null,
         "ResourceNotFoundException$message": null,
+        "SceneError$message": "<p>The SceneError message.</p>",
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
         "ValidationException$message": null
@@ -1301,6 +1302,18 @@
       "base": null,
       "refs": {
         "SceneCapabilities$member": null
+      }
+    },
+    "SceneError": {
+      "base": "<p>The scene error.</p>",
+      "refs": {
+        "GetSceneResponse$error": "<p>The SceneResponse error.</p>"
+      }
+    },
+    "SceneErrorCode": {
+      "base": null,
+      "refs": {
+        "SceneError$code": "<p>The SceneError code.</p>"
       }
     },
     "SceneMetadataMap": {

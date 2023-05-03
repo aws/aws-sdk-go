@@ -1,3 +1,16 @@
+Release v1.44.256 (2023-05-03)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/ec2`: Updates service paginators
+  * Adds an SDK paginator for GetNetworkInsightsAccessScopeAnalysisFindings
+* `service/inspector2`: Updates service API and documentation
+* `service/iottwinmaker`: Updates service API and documentation
+* `service/network-firewall`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/wellarchitected`: Updates service API and documentation
+
 Release v1.44.255 (2023-05-02)
 ===
 

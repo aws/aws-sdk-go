@@ -4560,10 +4560,12 @@ type Attachment struct {
 	Status *string `type:"string" enum:"AttachmentStatus"`
 
 	// If Network Firewall fails to create or delete the firewall endpoint in the
-	// subnet, it populates this with the reason for the failure and how to resolve
-	// it. Depending on the error, it can take as many as 15 minutes to populate
-	// this field. For more information about the errors and solutions available
-	// for this field, see Troubleshooting firewall endpoint failures (https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html)
+	// subnet, it populates this with the reason for the error or failure and how
+	// to resolve it. A FAILED status indicates a non-recoverable state, and a ERROR
+	// status indicates an issue that you can fix. Depending on the error, it can
+	// take as many as 15 minutes to populate this field. For more information about
+	// the causes for failiure or errors and solutions available for this field,
+	// see Troubleshooting firewall endpoint failures (https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html)
 	// in the Network Firewall Developer Guide.
 	StatusMessage *string `type:"string"`
 
@@ -7605,6 +7607,10 @@ func (s *FirewallMetadata) SetFirewallName(v string) *FirewallMetadata {
 type FirewallPolicy struct {
 	_ struct{} `type:"structure"`
 
+	// Contains variables that you can use to override default Suricata settings
+	// in your firewall policy.
+	PolicyVariables *PolicyVariables `type:"structure"`
+
 	// The default actions to take on a packet that doesn't match any stateful rules.
 	// The stateful default action is optional, and is only valid when using the
 	// strict rule order.
@@ -7707,6 +7713,11 @@ func (s *FirewallPolicy) Validate() error {
 	if s.TLSInspectionConfigurationArn != nil && len(*s.TLSInspectionConfigurationArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TLSInspectionConfigurationArn", 1))
 	}
+	if s.PolicyVariables != nil {
+		if err := s.PolicyVariables.Validate(); err != nil {
+			invalidParams.AddNested("PolicyVariables", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.StatefulRuleGroupReferences != nil {
 		for i, v := range s.StatefulRuleGroupReferences {
 			if v == nil {
@@ -7742,6 +7753,12 @@ func (s *FirewallPolicy) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPolicyVariables sets the PolicyVariables field's value.
+func (s *FirewallPolicy) SetPolicyVariables(v *PolicyVariables) *FirewallPolicy {
+	s.PolicyVariables = v
+	return s
 }
 
 // SetStatefulDefaultActions sets the StatefulDefaultActions field's value.
@@ -9870,6 +9887,63 @@ func (s *PerObjectStatus) SetUpdateToken(v string) *PerObjectStatus {
 	return s
 }
 
+// Contains variables that you can use to override default Suricata settings
+// in your firewall policy.
+type PolicyVariables struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv4 or IPv6 addresses in CIDR notation to use for the Suricata HOME_NET
+	// variable. If your firewall uses an inspection VPC, you might want to override
+	// the HOME_NET variable with the CIDRs of your home networks. If you don't
+	// override HOME_NET with your own CIDRs, Network Firewall by default uses the
+	// CIDR of your inspection VPC.
+	RuleVariables map[string]*IPSet `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PolicyVariables) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PolicyVariables) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PolicyVariables) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PolicyVariables"}
+	if s.RuleVariables != nil {
+		for i, v := range s.RuleVariables {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuleVariables", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRuleVariables sets the RuleVariables field's value.
+func (s *PolicyVariables) SetRuleVariables(v map[string]*IPSet) *PolicyVariables {
+	s.RuleVariables = v
+	return s
+}
+
 // A single port range specification. This is used for source and destination
 // port ranges in the stateless rule MatchAttributes, SourcePorts, and DestinationPorts
 // settings.
@@ -10045,10 +10119,6 @@ type PutResourcePolicyInput struct {
 	//
 	// For a firewall policy resource, you can specify the following operations
 	// in the Actions section of the statement:
-	//
-	//    * network-firewall:CreateFirewall
-	//
-	//    * network-firewall:UpdateFirewall
 	//
 	//    * network-firewall:AssociateFirewallPolicy
 	//
@@ -10883,7 +10953,7 @@ type RulesSource struct {
 	// An array of individual stateful rules inspection criteria to be used together
 	// in a stateful rule group. Use this option to specify simple Suricata rules
 	// with protocol, source and destination, ports, direction, and rule options.
-	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.iorules/intro.html#).
+	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html).
 	StatefulRules []*StatefulRule `type:"list"`
 
 	// Stateless inspection criteria to be used in a stateless rule group.
@@ -11453,7 +11523,7 @@ func (s *StatefulEngineOptions) SetStreamExceptionPolicy(v string) *StatefulEngi
 // A single Suricata rules specification, for use in a stateful rule group.
 // Use this option to specify a simple Suricata rule with protocol, source and
 // destination, ports, direction, and rule options. For information about the
-// Suricata Rules format, see Rules Format (https://suricata.readthedocs.iorules/intro.html#).
+// Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html).
 type StatefulRule struct {
 	_ struct{} `type:"structure"`
 
@@ -11475,13 +11545,6 @@ type StatefulRule struct {
 	//    You can use this action to test a rule that you intend to use to drop
 	//    traffic. You can enable the rule with ALERT action, verify in the logs
 	//    that the rule is filtering as you want, then change the action to DROP.
-	//
-	//    * REJECT - Drops TCP traffic that matches the conditions of the stateful
-	//    rule, and sends a TCP reset packet back to sender of the packet. A TCP
-	//    reset packet is a packet with no payload and a RST bit contained in the
-	//    TCP header flags. Also sends an alert log mesage if alert logging is configured
-	//    in the Firewall LoggingConfiguration. REJECT isn't currently available
-	//    for use with IMAP and FTP protocols.
 	//
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"StatefulAction"`
@@ -14504,6 +14567,12 @@ const (
 
 	// AttachmentStatusReady is a AttachmentStatus enum value
 	AttachmentStatusReady = "READY"
+
+	// AttachmentStatusFailed is a AttachmentStatus enum value
+	AttachmentStatusFailed = "FAILED"
+
+	// AttachmentStatusError is a AttachmentStatus enum value
+	AttachmentStatusError = "ERROR"
 )
 
 // AttachmentStatus_Values returns all elements of the AttachmentStatus enum
@@ -14513,6 +14582,8 @@ func AttachmentStatus_Values() []string {
 		AttachmentStatusDeleting,
 		AttachmentStatusScaling,
 		AttachmentStatusReady,
+		AttachmentStatusFailed,
+		AttachmentStatusError,
 	}
 }
 

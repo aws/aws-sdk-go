@@ -7933,6 +7933,9 @@ type GetSceneOutput struct {
 	// The description of the scene.
 	Description *string `locationName:"description" type:"string"`
 
+	// The SceneResponse error.
+	Error *SceneError `locationName:"error" type:"structure"`
+
 	// The generated scene metadata.
 	GeneratedSceneMetadata map[string]*string `locationName:"generatedSceneMetadata" type:"map"`
 
@@ -8000,6 +8003,12 @@ func (s *GetSceneOutput) SetCreationDateTime(v time.Time) *GetSceneOutput {
 // SetDescription sets the Description field's value.
 func (s *GetSceneOutput) SetDescription(v string) *GetSceneOutput {
 	s.Description = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *GetSceneOutput) SetError(v *SceneError) *GetSceneOutput {
+	s.Error = v
 	return s
 }
 
@@ -10750,6 +10759,47 @@ func (s Row) GoString() string {
 	return s.String()
 }
 
+// The scene error.
+type SceneError struct {
+	_ struct{} `type:"structure"`
+
+	// The SceneError code.
+	Code *string `locationName:"code" type:"string" enum:"SceneErrorCode"`
+
+	// The SceneError message.
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SceneError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SceneError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *SceneError) SetCode(v string) *SceneError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *SceneError) SetMessage(v string) *SceneError {
+	s.Message = &v
+	return s
+}
+
 // An object that contains information about a scene.
 type SceneSummary struct {
 	_ struct{} `type:"structure"`
@@ -12707,6 +12757,18 @@ func PropertyUpdateType_Values() []string {
 		PropertyUpdateTypeUpdate,
 		PropertyUpdateTypeDelete,
 		PropertyUpdateTypeCreate,
+	}
+}
+
+const (
+	// SceneErrorCodeMatterportError is a SceneErrorCode enum value
+	SceneErrorCodeMatterportError = "MATTERPORT_ERROR"
+)
+
+// SceneErrorCode_Values returns all elements of the SceneErrorCode enum
+func SceneErrorCode_Values() []string {
+	return []string{
+		SceneErrorCodeMatterportError,
 	}
 }
 

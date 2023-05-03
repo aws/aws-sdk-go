@@ -2602,6 +2602,9 @@
         "description": {
           "shape": "Description"
         },
+        "error": {
+          "shape": "SceneError"
+        },
         "generatedSceneMetadata": {
           "shape": "GeneratedSceneMetadataMap"
         },
@@ -3645,6 +3648,23 @@
       "max": 256,
       "min": 0,
       "pattern": ".*",
+      "type": "string"
+    },
+    "SceneError": {
+      "members": {
+        "code": {
+          "shape": "SceneErrorCode"
+        },
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "SceneErrorCode": {
+      "enum": [
+        "MATTERPORT_ERROR"
+      ],
       "type": "string"
     },
     "SceneMetadataMap": {

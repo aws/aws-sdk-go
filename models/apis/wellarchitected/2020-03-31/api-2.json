@@ -1204,6 +1204,13 @@
         "ShareId":{"shape":"ShareId"}
       }
     },
+    "DefinitionType":{
+      "type":"string",
+      "enum":[
+        "WORKLOAD_METADATA",
+        "APP_REGISTRY"
+      ]
+    },
     "DeleteLensInput":{
       "type":"structure",
       "required":[
@@ -1324,6 +1331,13 @@
         },
         "LensAliases":{"shape":"LensAliases"}
       }
+    },
+    "DiscoveryIntegrationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "DisplayText":{
       "type":"string",
@@ -2721,7 +2735,8 @@
     "UpdateGlobalSettingsInput":{
       "type":"structure",
       "members":{
-        "OrganizationSharingStatus":{"shape":"OrganizationSharingStatus"}
+        "OrganizationSharingStatus":{"shape":"OrganizationSharingStatus"},
+        "DiscoveryIntegrationStatus":{"shape":"DiscoveryIntegrationStatus"}
       }
     },
     "UpdateLensReviewInput":{
@@ -2961,7 +2976,8 @@
     "WorkloadDiscoveryConfig":{
       "type":"structure",
       "members":{
-        "TrustedAdvisorIntegrationStatus":{"shape":"TrustedAdvisorIntegrationStatus"}
+        "TrustedAdvisorIntegrationStatus":{"shape":"TrustedAdvisorIntegrationStatus"},
+        "WorkloadResourceDefinition":{"shape":"WorkloadResourceDefinition"}
       }
     },
     "WorkloadEnvironment":{
@@ -3019,6 +3035,10 @@
     "WorkloadPillarPriorities":{
       "type":"list",
       "member":{"shape":"PillarId"}
+    },
+    "WorkloadResourceDefinition":{
+      "type":"list",
+      "member":{"shape":"DefinitionType"}
     },
     "WorkloadReviewOwner":{
       "type":"string",

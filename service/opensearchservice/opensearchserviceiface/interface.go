@@ -135,6 +135,10 @@ type OpenSearchServiceAPI interface {
 	DescribeDomainConfigWithContext(aws.Context, *opensearchservice.DescribeDomainConfigInput, ...request.Option) (*opensearchservice.DescribeDomainConfigOutput, error)
 	DescribeDomainConfigRequest(*opensearchservice.DescribeDomainConfigInput) (*request.Request, *opensearchservice.DescribeDomainConfigOutput)
 
+	DescribeDomainHealth(*opensearchservice.DescribeDomainHealthInput) (*opensearchservice.DescribeDomainHealthOutput, error)
+	DescribeDomainHealthWithContext(aws.Context, *opensearchservice.DescribeDomainHealthInput, ...request.Option) (*opensearchservice.DescribeDomainHealthOutput, error)
+	DescribeDomainHealthRequest(*opensearchservice.DescribeDomainHealthInput) (*request.Request, *opensearchservice.DescribeDomainHealthOutput)
+
 	DescribeDomains(*opensearchservice.DescribeDomainsInput) (*opensearchservice.DescribeDomainsOutput, error)
 	DescribeDomainsWithContext(aws.Context, *opensearchservice.DescribeDomainsInput, ...request.Option) (*opensearchservice.DescribeDomainsOutput, error)
 	DescribeDomainsRequest(*opensearchservice.DescribeDomainsInput) (*request.Request, *opensearchservice.DescribeDomainsOutput)
