@@ -10953,7 +10953,7 @@ type RulesSource struct {
 	// An array of individual stateful rules inspection criteria to be used together
 	// in a stateful rule group. Use this option to specify simple Suricata rules
 	// with protocol, source and destination, ports, direction, and rule options.
-	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html).
+	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.iorules/intro.html#).
 	StatefulRules []*StatefulRule `type:"list"`
 
 	// Stateless inspection criteria to be used in a stateless rule group.
@@ -11487,6 +11487,12 @@ type StatefulEngineOptions struct {
 	//    session initialization defining the application layer protocol as HTTP.
 	//    However, this behavior is rule dependent—a TCP-layer rule using a flow:stateless
 	//    rule would still match, as would the aws:drop_strict default action.
+	//
+	//    * REJECT - Network Firewall fails closed and drops all subsequent traffic
+	//    going to the firewall. Network Firewall also sends a TCP reject packet
+	//    back to your client so that the client can immediately establish a new
+	//    session. Network Firewall will have context about the new session and
+	//    will apply rules to the subsequent traffic.
 	StreamExceptionPolicy *string `type:"string" enum:"StreamExceptionPolicy"`
 }
 
@@ -11523,7 +11529,7 @@ func (s *StatefulEngineOptions) SetStreamExceptionPolicy(v string) *StatefulEngi
 // A single Suricata rules specification, for use in a stateful rule group.
 // Use this option to specify a simple Suricata rule with protocol, source and
 // destination, ports, direction, and rule options. For information about the
-// Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-6.0.9/rules/intro.html).
+// Suricata Rules format, see Rules Format (https://suricata.readthedocs.iorules/intro.html#).
 type StatefulRule struct {
 	_ struct{} `type:"structure"`
 
@@ -11545,6 +11551,13 @@ type StatefulRule struct {
 	//    You can use this action to test a rule that you intend to use to drop
 	//    traffic. You can enable the rule with ALERT action, verify in the logs
 	//    that the rule is filtering as you want, then change the action to DROP.
+	//
+	//    * REJECT - Drops TCP traffic that matches the conditions of the stateful
+	//    rule, and sends a TCP reset packet back to sender of the packet. A TCP
+	//    reset packet is a packet with no payload and a RST bit contained in the
+	//    TCP header flags. Also sends an alert log mesage if alert logging is configured
+	//    in the Firewall LoggingConfiguration. REJECT isn't currently available
+	//    for use with IMAP and FTP protocols.
 	//
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"StatefulAction"`
@@ -14562,17 +14575,17 @@ const (
 	// AttachmentStatusDeleting is a AttachmentStatus enum value
 	AttachmentStatusDeleting = "DELETING"
 
-	// AttachmentStatusScaling is a AttachmentStatus enum value
-	AttachmentStatusScaling = "SCALING"
-
-	// AttachmentStatusReady is a AttachmentStatus enum value
-	AttachmentStatusReady = "READY"
-
 	// AttachmentStatusFailed is a AttachmentStatus enum value
 	AttachmentStatusFailed = "FAILED"
 
 	// AttachmentStatusError is a AttachmentStatus enum value
 	AttachmentStatusError = "ERROR"
+
+	// AttachmentStatusScaling is a AttachmentStatus enum value
+	AttachmentStatusScaling = "SCALING"
+
+	// AttachmentStatusReady is a AttachmentStatus enum value
+	AttachmentStatusReady = "READY"
 )
 
 // AttachmentStatus_Values returns all elements of the AttachmentStatus enum
@@ -14580,10 +14593,10 @@ func AttachmentStatus_Values() []string {
 	return []string{
 		AttachmentStatusCreating,
 		AttachmentStatusDeleting,
-		AttachmentStatusScaling,
-		AttachmentStatusReady,
 		AttachmentStatusFailed,
 		AttachmentStatusError,
+		AttachmentStatusScaling,
+		AttachmentStatusReady,
 	}
 }
 
@@ -14957,6 +14970,9 @@ const (
 
 	// StreamExceptionPolicyContinue is a StreamExceptionPolicy enum value
 	StreamExceptionPolicyContinue = "CONTINUE"
+
+	// StreamExceptionPolicyReject is a StreamExceptionPolicy enum value
+	StreamExceptionPolicyReject = "REJECT"
 )
 
 // StreamExceptionPolicy_Values returns all elements of the StreamExceptionPolicy enum
@@ -14964,6 +14980,7 @@ func StreamExceptionPolicy_Values() []string {
 	return []string{
 		StreamExceptionPolicyDrop,
 		StreamExceptionPolicyContinue,
+		StreamExceptionPolicyReject,
 	}
 }
 

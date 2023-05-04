@@ -40,7 +40,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"ClientException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"NamespaceNotFoundException"}
       ]
     },
     "CreateService":{
@@ -765,7 +766,8 @@
         {"shape":"ServerException"},
         {"shape":"ClientException"},
         {"shape":"ClusterNotFoundException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"NamespaceNotFoundException"}
       ]
     },
     "UpdateClusterSettings":{

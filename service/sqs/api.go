@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/query"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAddPermission = "AddPermission"
@@ -50,7 +50,7 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Requ
 
 	output = &AddPermissionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -70,22 +70,16 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Requ
 //     with the Amazon SQS Access Policy Language (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-creating-custom-policies.html)
 //     in the Amazon SQS Developer Guide.
 //
-//   - An Amazon SQS policy can have a maximum of 7 actions.
+//   - An Amazon SQS policy can have a maximum of seven actions per statement.
 //
 //   - To remove the ability to change queue permissions, you must deny permission
 //     to the AddPermission, RemovePermission, and SetQueueAttributes actions
 //     in your IAM policy.
 //
-// Some actions take lists of parameters. These lists are specified using the
-// param.n notation. Values of n are integers starting from 1. For example,
-// a parameter list with two elements looks like this:
-//
-// &AttributeName.1=first
-//
-// &AttributeName.2=second
+//   - Amazon SQS AddPermission does not support adding a non-account principal.
 //
 // Cross-account permissions don't apply to this action. For more information,
-// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 // in the Amazon SQS Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -95,12 +89,40 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation AddPermission for usage and error information.
 //
-// Returned Error Codes:
-//   - ErrCodeOverLimit "OverLimit"
+// Returned Error Types:
+//
+//   - OverLimit
 //     The specified action violates a limit. For example, ReceiveMessage returns
-//     this error if the maximum number of inflight messages is reached and AddPermission
+//     this error if the maximum number of in flight messages is reached and AddPermission
 //     returns this error if the maximum number of permissions for the queue is
 //     reached.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/AddPermission
 func (c *SQS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, error) {
@@ -162,7 +184,7 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 
 	output = &ChangeMessageVisibilityOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -174,11 +196,13 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 // Timeout (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
 // in the Amazon SQS Developer Guide.
 //
-// For example, you have a message with a visibility timeout of 5 minutes. After
-// 3 minutes, you call ChangeMessageVisibility with a timeout of 10 minutes.
-// You can continue to call ChangeMessageVisibility to extend the visibility
-// timeout to the maximum allowed time. If you try to extend the visibility
-// timeout beyond the maximum, your request is rejected.
+// For example, if the default timeout for a queue is 60 seconds, 15 seconds
+// have elapsed since you received the message, and you send a ChangeMessageVisibility
+// call with VisibilityTimeout set to 10 seconds, the 10 seconds begin to count
+// from the time that you make the ChangeMessageVisibility call. Thus, any attempt
+// to change the visibility timeout or to delete that message 10 seconds after
+// you initially change the visibility timeout (a total of 25 seconds) might
+// result in an error.
 //
 // An Amazon SQS message has three basic states:
 //
@@ -193,20 +217,20 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 // 1 and 2). There is no limit to the number of stored messages. A message is
 // considered to be in flight after it is received from a queue by a consumer,
 // but not yet deleted from the queue (that is, between states 2 and 3). There
-// is a limit to the number of inflight messages.
+// is a limit to the number of in flight messages.
 //
-// Limits that apply to inflight messages are unrelated to the unlimited number
+// Limits that apply to in flight messages are unrelated to the unlimited number
 // of stored messages.
 //
 // For most standard queues (depending on queue traffic and message backlog),
-// there can be a maximum of approximately 120,000 inflight messages (received
+// there can be a maximum of approximately 120,000 in flight messages (received
 // from a queue by a consumer, but not yet deleted from the queue). If you reach
 // this limit, Amazon SQS returns the OverLimit error message. To avoid reaching
 // the limit, you should delete messages from the queue after they're processed.
 // You can also increase the number of queues you use to process your messages.
 // To request a limit increase, file a support request (https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-sqs).
 //
-// For FIFO queues, there can be a maximum of 20,000 inflight messages (received
+// For FIFO queues, there can be a maximum of 20,000 in flight messages (received
 // from a queue by a consumer, but not yet deleted from the queue). If you reach
 // this limit, Amazon SQS returns no error messages.
 //
@@ -228,13 +252,34 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation ChangeMessageVisibility for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeMessageNotInflight "AWS.SimpleQueueService.MessageNotInflight"
+//   - MessageNotInflight
 //     The specified message isn't in flight.
 //
-//   - ErrCodeReceiptHandleIsInvalid "ReceiptHandleIsInvalid"
+//   - ReceiptHandleIsInvalid
 //     The specified receipt handle isn't valid.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibility
 func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (*ChangeMessageVisibilityOutput, error) {
@@ -310,14 +355,6 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 // actions, you should check for batch errors even when the call returns an
 // HTTP status code of 200.
 //
-// Some actions take lists of parameters. These lists are specified using the
-// param.n notation. Values of n are integers starting from 1. For example,
-// a parameter list with two elements looks like this:
-//
-// &AttributeName.1=first
-//
-// &AttributeName.2=second
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -325,19 +362,40 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation ChangeMessageVisibilityBatch for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeTooManyEntriesInBatchRequest "AWS.SimpleQueueService.TooManyEntriesInBatchRequest"
+//   - TooManyEntriesInBatchRequest
 //     The batch request contains more entries than permissible.
 //
-//   - ErrCodeEmptyBatchRequest "AWS.SimpleQueueService.EmptyBatchRequest"
+//   - EmptyBatchRequest
 //     The batch request doesn't contain any entries.
 //
-//   - ErrCodeBatchEntryIdsNotDistinct "AWS.SimpleQueueService.BatchEntryIdsNotDistinct"
+//   - BatchEntryIdsNotDistinct
 //     Two or more batch entries in the request have the same Id.
 //
-//   - ErrCodeInvalidBatchEntryId "AWS.SimpleQueueService.InvalidBatchEntryId"
+//   - InvalidBatchEntryId
 //     The Id of a batch entry in a batch request doesn't abide by the specification.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityBatch
 func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchInput) (*ChangeMessageVisibilityBatchOutput, error) {
@@ -438,16 +496,8 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request,
 //   - If the queue name, attribute names, or attribute values don't match
 //     an existing queue, CreateQueue returns an error.
 //
-// Some actions take lists of parameters. These lists are specified using the
-// param.n notation. Values of n are integers starting from 1. For example,
-// a parameter list with two elements looks like this:
-//
-// &AttributeName.1=first
-//
-// &AttributeName.2=second
-//
 // Cross-account permissions don't apply to this action. For more information,
-// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 // in the Amazon SQS Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -457,16 +507,46 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation CreateQueue for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeQueueDeletedRecently "AWS.SimpleQueueService.QueueDeletedRecently"
+//   - QueueDeletedRecently
 //     You must wait 60 seconds after deleting a queue before you can create another
 //     queue with the same name.
 //
-//   - ErrCodeQueueNameExists "QueueAlreadyExists"
+//   - QueueNameExists
 //     A queue with this name already exists. Amazon SQS returns this error only
 //     if the request includes attributes whose values differ from those of the
 //     existing queue.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - InvalidAttributeName
+//     The specified attribute doesn't exist.
+//
+//   - InvalidAttributeValue
+//     A queue attribute value is invalid.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/CreateQueue
 func (c *SQS) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {
@@ -528,7 +608,7 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Requ
 
 	output = &DeleteMessageOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -545,7 +625,7 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Requ
 // If you receive a message more than once, the ReceiptHandle is different each
 // time you receive a message. When you use the DeleteMessage action, you must
 // provide the most recently received ReceiptHandle for the message (otherwise,
-// the request succeeds, but the message might not be deleted).
+// the request succeeds, but the message will not be deleted).
 //
 // For standard queues, it is possible to receive a message even after you delete
 // it. This might happen on rare occasions if one of the servers which stores
@@ -562,13 +642,37 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation DeleteMessage for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeInvalidIdFormat "InvalidIdFormat"
+//   - InvalidIdFormat
 //     The specified receipt handle isn't valid for the current version.
 //
-//   - ErrCodeReceiptHandleIsInvalid "ReceiptHandleIsInvalid"
+//   - ReceiptHandleIsInvalid
 //     The specified receipt handle isn't valid.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessage
 func (c *SQS) DeleteMessage(input *DeleteMessageInput) (*DeleteMessageOutput, error) {
@@ -643,14 +747,6 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *re
 // actions, you should check for batch errors even when the call returns an
 // HTTP status code of 200.
 //
-// Some actions take lists of parameters. These lists are specified using the
-// param.n notation. Values of n are integers starting from 1. For example,
-// a parameter list with two elements looks like this:
-//
-// &AttributeName.1=first
-//
-// &AttributeName.2=second
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -658,19 +754,40 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *re
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation DeleteMessageBatch for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeTooManyEntriesInBatchRequest "AWS.SimpleQueueService.TooManyEntriesInBatchRequest"
+//   - TooManyEntriesInBatchRequest
 //     The batch request contains more entries than permissible.
 //
-//   - ErrCodeEmptyBatchRequest "AWS.SimpleQueueService.EmptyBatchRequest"
+//   - EmptyBatchRequest
 //     The batch request doesn't contain any entries.
 //
-//   - ErrCodeBatchEntryIdsNotDistinct "AWS.SimpleQueueService.BatchEntryIdsNotDistinct"
+//   - BatchEntryIdsNotDistinct
 //     Two or more batch entries in the request have the same Id.
 //
-//   - ErrCodeInvalidBatchEntryId "AWS.SimpleQueueService.InvalidBatchEntryId"
+//   - InvalidBatchEntryId
 //     The Id of a batch entry in a batch request doesn't abide by the specification.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageBatch
 func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (*DeleteMessageBatchOutput, error) {
@@ -732,7 +849,7 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request,
 
 	output = &DeleteQueueOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -752,8 +869,10 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request,
 // a queue with the same name.
 //
 // Cross-account permissions don't apply to this action. For more information,
-// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 // in the Amazon SQS Developer Guide.
+//
+// The delete operation uses the HTTP GET verb.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -761,6 +880,36 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request,
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation DeleteQueue for usage and error information.
+//
+// Returned Error Types:
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue
 func (c *SQS) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, error) {
 	req, out := c.DeleteQueueRequest(input)
@@ -838,9 +987,34 @@ func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *re
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation GetQueueAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   - ErrCodeInvalidAttributeName "InvalidAttributeName"
+// Returned Error Types:
+//
+//   - InvalidAttributeName
 //     The specified attribute doesn't exist.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributes
 func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (*GetQueueAttributesOutput, error) {
@@ -923,9 +1097,34 @@ func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation GetQueueUrl for usage and error information.
 //
-// Returned Error Codes:
-//   - ErrCodeQueueDoesNotExist "AWS.SimpleQueueService.NonExistentQueue"
+// Returned Error Types:
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
 //     The specified queue doesn't exist.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueUrl
 func (c *SQS) GetQueueUrl(input *GetQueueUrlInput) (*GetQueueUrlOutput, error) {
@@ -1020,9 +1219,34 @@ func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueue
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation ListDeadLetterSourceQueues for usage and error information.
 //
-// Returned Error Codes:
-//   - ErrCodeQueueDoesNotExist "AWS.SimpleQueueService.NonExistentQueue"
+// Returned Error Types:
+//
+//   - QueueDoesNotExist
 //     The specified queue doesn't exist.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueues
 func (c *SQS) ListDeadLetterSourceQueues(input *ListDeadLetterSourceQueuesInput) (*ListDeadLetterSourceQueuesOutput, error) {
@@ -1145,7 +1369,7 @@ func (c *SQS) ListQueueTagsRequest(input *ListQueueTagsInput) (req *request.Requ
 // in the Amazon SQS Developer Guide.
 //
 // Cross-account permissions don't apply to this action. For more information,
-// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 // in the Amazon SQS Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1154,6 +1378,36 @@ func (c *SQS) ListQueueTagsRequest(input *ListQueueTagsInput) (req *request.Requ
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation ListQueueTags for usage and error information.
+//
+// Returned Error Types:
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListQueueTags
 func (c *SQS) ListQueueTags(input *ListQueueTagsInput) (*ListQueueTagsOutput, error) {
 	req, out := c.ListQueueTagsRequest(input)
@@ -1238,7 +1492,7 @@ func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, o
 // request to listQueues to receive the next page of results.
 //
 // Cross-account permissions don't apply to this action. For more information,
-// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 // in the Amazon SQS Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1247,6 +1501,33 @@ func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, o
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation ListQueues for usage and error information.
+//
+// Returned Error Types:
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListQueues
 func (c *SQS) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
 	req, out := c.ListQueuesRequest(input)
@@ -1358,7 +1639,7 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, o
 
 	output = &PurgeQueueOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1385,15 +1666,39 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation PurgeQueue for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeQueueDoesNotExist "AWS.SimpleQueueService.NonExistentQueue"
+//   - QueueDoesNotExist
 //     The specified queue doesn't exist.
 //
-//   - ErrCodePurgeQueueInProgress "AWS.SimpleQueueService.PurgeQueueInProgress"
+//   - PurgeQueueInProgress
 //     Indicates that the specified queue previously received a PurgeQueue request
 //     within the last 60 seconds (the time it can take to delete the messages in
 //     the queue).
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/PurgeQueue
 func (c *SQS) PurgeQueue(input *PurgeQueueInput) (*PurgeQueueOutput, error) {
@@ -1515,12 +1820,66 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Re
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation ReceiveMessage for usage and error information.
 //
-// Returned Error Codes:
-//   - ErrCodeOverLimit "OverLimit"
+// Returned Error Types:
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
+//   - OverLimit
 //     The specified action violates a limit. For example, ReceiveMessage returns
-//     this error if the maximum number of inflight messages is reached and AddPermission
+//     this error if the maximum number of in flight messages is reached and AddPermission
 //     returns this error if the maximum number of permissions for the queue is
 //     reached.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - KmsDisabled
+//     The request was denied due to request throttling.
+//
+//   - KmsInvalidState
+//     The request was rejected because the state of the specified resource is not
+//     valid for this request.
+//
+//   - KmsNotFound
+//     The request was rejected because the specified entity or resource could not
+//     be found.
+//
+//   - KmsOptInRequired
+//     The request was rejected because the specified key policy isn't syntactically
+//     or semantically correct.
+//
+//   - KmsThrottled
+//     Amazon Web Services KMS throttles requests for the following conditions.
+//
+//   - KmsAccessDenied
+//     The caller doesn't have the required KMS access.
+//
+//   - KmsInvalidKeyUsage
+//     The request was rejected for one of the following reasons:
+//
+//   - The KeyUsage value of the KMS key is incompatible with the API operation.
+//
+//   - The encryption algorithm or signing algorithm specified for the operation
+//     is incompatible with the type of key material in the KMS key (KeySpec).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ReceiveMessage
 func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (*ReceiveMessageOutput, error) {
@@ -1582,7 +1941,7 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *reques
 
 	output = &RemovePermissionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1594,7 +1953,7 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *reques
 //   - Only the owner of a queue can remove permissions from it.
 //
 //   - Cross-account permissions don't apply to this action. For more information,
-//     see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+//     see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 //     in the Amazon SQS Developer Guide.
 //
 //   - To remove the ability to change queue permissions, you must deny permission
@@ -1607,6 +1966,36 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *reques
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation RemovePermission for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/RemovePermission
 func (c *SQS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
 	req, out := c.RemovePermissionRequest(input)
@@ -1689,13 +2078,63 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation SendMessage for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeInvalidMessageContents "InvalidMessageContents"
+//   - InvalidMessageContents
 //     The message contains characters outside the allowed set.
 //
-//   - ErrCodeUnsupportedOperation "AWS.SimpleQueueService.UnsupportedOperation"
+//   - UnsupportedOperation
 //     Error code 400. Unsupported operation.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - KmsDisabled
+//     The request was denied due to request throttling.
+//
+//   - KmsInvalidState
+//     The request was rejected because the state of the specified resource is not
+//     valid for this request.
+//
+//   - KmsNotFound
+//     The request was rejected because the specified entity or resource could not
+//     be found.
+//
+//   - KmsOptInRequired
+//     The request was rejected because the specified key policy isn't syntactically
+//     or semantically correct.
+//
+//   - KmsThrottled
+//     Amazon Web Services KMS throttles requests for the following conditions.
+//
+//   - KmsAccessDenied
+//     The caller doesn't have the required KMS access.
+//
+//   - KmsInvalidKeyUsage
+//     The request was rejected for one of the following reasons:
+//
+//   - The KeyUsage value of the KMS key is incompatible with the API operation.
+//
+//   - The encryption algorithm or signing algorithm specified for the operation
+//     is incompatible with the type of key material in the KMS key (KeySpec).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessage
 func (c *SQS) SendMessage(input *SendMessageInput) (*SendMessageOutput, error) {
@@ -1762,9 +2201,11 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 
 // SendMessageBatch API operation for Amazon Simple Queue Service.
 //
-// Delivers up to ten messages to the specified queue. This is a batch version
-// of SendMessage. For a FIFO queue, multiple messages within a single batch
-// are enqueued in the order they are sent.
+// You can use SendMessageBatch to send up to 10 messages to the specified queue
+// by assigning either identical or different values to each message (or by
+// not assigning values at all). This is a batch version of SendMessage. For
+// a FIFO queue, multiple messages within a single batch are enqueued in the
+// order they are sent.
 //
 // The result of sending each message is reported individually in the response.
 // Because the batch request can result in a combination of successful and unsuccessful
@@ -1773,7 +2214,7 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 //
 // The maximum allowed individual message size and the maximum total payload
 // size (the sum of the individual lengths of all of the batched messages) are
-// both 256 KB (262,144 bytes).
+// both 256 KiB (262,144 bytes).
 //
 // A message can include only XML, JSON, and unformatted text. The following
 // Unicode characters are allowed:
@@ -1786,14 +2227,6 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 // If you don't specify the DelaySeconds parameter for an entry, Amazon SQS
 // uses the default value for the queue.
 //
-// Some actions take lists of parameters. These lists are specified using the
-// param.n notation. Values of n are integers starting from 1. For example,
-// a parameter list with two elements looks like this:
-//
-// &AttributeName.1=first
-//
-// &AttributeName.2=second
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1801,25 +2234,75 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation SendMessageBatch for usage and error information.
 //
-// Returned Error Codes:
+// Returned Error Types:
 //
-//   - ErrCodeTooManyEntriesInBatchRequest "AWS.SimpleQueueService.TooManyEntriesInBatchRequest"
+//   - TooManyEntriesInBatchRequest
 //     The batch request contains more entries than permissible.
 //
-//   - ErrCodeEmptyBatchRequest "AWS.SimpleQueueService.EmptyBatchRequest"
+//   - EmptyBatchRequest
 //     The batch request doesn't contain any entries.
 //
-//   - ErrCodeBatchEntryIdsNotDistinct "AWS.SimpleQueueService.BatchEntryIdsNotDistinct"
+//   - BatchEntryIdsNotDistinct
 //     Two or more batch entries in the request have the same Id.
 //
-//   - ErrCodeBatchRequestTooLong "AWS.SimpleQueueService.BatchRequestTooLong"
+//   - BatchRequestTooLong
 //     The length of all the messages put together is more than the limit.
 //
-//   - ErrCodeInvalidBatchEntryId "AWS.SimpleQueueService.InvalidBatchEntryId"
+//   - InvalidBatchEntryId
 //     The Id of a batch entry in a batch request doesn't abide by the specification.
 //
-//   - ErrCodeUnsupportedOperation "AWS.SimpleQueueService.UnsupportedOperation"
+//   - UnsupportedOperation
 //     Error code 400. Unsupported operation.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - KmsDisabled
+//     The request was denied due to request throttling.
+//
+//   - KmsInvalidState
+//     The request was rejected because the state of the specified resource is not
+//     valid for this request.
+//
+//   - KmsNotFound
+//     The request was rejected because the specified entity or resource could not
+//     be found.
+//
+//   - KmsOptInRequired
+//     The request was rejected because the specified key policy isn't syntactically
+//     or semantically correct.
+//
+//   - KmsThrottled
+//     Amazon Web Services KMS throttles requests for the following conditions.
+//
+//   - KmsAccessDenied
+//     The caller doesn't have the required KMS access.
+//
+//   - KmsInvalidKeyUsage
+//     The request was rejected for one of the following reasons:
+//
+//   - The KeyUsage value of the KMS key is incompatible with the API operation.
+//
+//   - The encryption algorithm or signing algorithm specified for the operation
+//     is incompatible with the type of key material in the KMS key (KeySpec).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatch
 func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (*SendMessageBatchOutput, error) {
@@ -1881,7 +2364,7 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *re
 
 	output = &SetQueueAttributesOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1890,14 +2373,16 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *re
 // Sets the value of one or more queue attributes. When you change a queue's
 // attributes, the change can take up to 60 seconds for most of the attributes
 // to propagate throughout the Amazon SQS system. Changes made to the MessageRetentionPeriod
-// attribute can take up to 15 minutes.
+// attribute can take up to 15 minutes and will impact existing messages in
+// the queue potentially causing them to be expired and deleted if the MessageRetentionPeriod
+// is reduced below the age of existing messages.
 //
 //   - In the future, new attributes might be added. If you write code that
 //     calls this action, we recommend that you structure your code so that it
 //     can handle new attributes gracefully.
 //
 //   - Cross-account permissions don't apply to this action. For more information,
-//     see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+//     see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 //     in the Amazon SQS Developer Guide.
 //
 //   - To remove the ability to change queue permissions, you must deny permission
@@ -1911,9 +2396,46 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *re
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation SetQueueAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   - ErrCodeInvalidAttributeName "InvalidAttributeName"
+// Returned Error Types:
+//
+//   - InvalidAttributeName
 //     The specified attribute doesn't exist.
+//
+//   - InvalidAttributeValue
+//     A queue attribute value is invalid.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
+//   - OverLimit
+//     The specified action violates a limit. For example, ReceiveMessage returns
+//     this error if the maximum number of in flight messages is reached and AddPermission
+//     returns this error if the maximum number of permissions for the queue is
+//     reached.
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SetQueueAttributes
 func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (*SetQueueAttributesOutput, error) {
@@ -1975,7 +2497,7 @@ func (c *SQS) TagQueueRequest(input *TagQueueInput) (req *request.Request, outpu
 
 	output = &TagQueueOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2001,7 +2523,7 @@ func (c *SQS) TagQueueRequest(input *TagQueueInput) (req *request.Request, outpu
 // in the Amazon SQS Developer Guide.
 //
 // Cross-account permissions don't apply to this action. For more information,
-// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 // in the Amazon SQS Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2010,6 +2532,36 @@ func (c *SQS) TagQueueRequest(input *TagQueueInput) (req *request.Request, outpu
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation TagQueue for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/TagQueue
 func (c *SQS) TagQueue(input *TagQueueInput) (*TagQueueOutput, error) {
 	req, out := c.TagQueueRequest(input)
@@ -2070,7 +2622,7 @@ func (c *SQS) UntagQueueRequest(input *UntagQueueInput) (req *request.Request, o
 
 	output = &UntagQueueOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2081,7 +2633,7 @@ func (c *SQS) UntagQueueRequest(input *UntagQueueInput) (req *request.Request, o
 // in the Amazon SQS Developer Guide.
 //
 // Cross-account permissions don't apply to this action. For more information,
-// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 // in the Amazon SQS Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2090,6 +2642,36 @@ func (c *SQS) UntagQueueRequest(input *UntagQueueInput) (req *request.Request, o
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation UntagQueue for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidAddress
+//     The accountId is invalid.
+//
+//   - RequestThrottled
+//     The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+//
+//   - QueueDoesNotExist
+//     The specified queue doesn't exist.
+//
+//   - InvalidSecurity
+//     When the request to a queue is not HTTPS and SigV4.
+//
+//   - UnsupportedOperation
+//     Error code 400. Unsupported operation.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/UntagQueue
 func (c *SQS) UntagQueue(input *UntagQueueInput) (*UntagQueueOutput, error) {
 	req, out := c.UntagQueueRequest(input)
@@ -2122,7 +2704,7 @@ type AddPermissionInput struct {
 	// in the Amazon SQS Developer Guide.
 	//
 	// AWSAccountIds is a required field
-	AWSAccountIds []*string `locationNameList:"AWSAccountId" type:"list" flattened:"true" required:"true"`
+	AWSAccountIds []*string `type:"list" flattened:"true" required:"true"`
 
 	// The action the client wants to allow for the specified principal. Valid values:
 	// the name of any action or *.
@@ -2136,7 +2718,7 @@ type AddPermissionInput struct {
 	// SendMessageBatch, DeleteMessageBatch, and ChangeMessageVisibilityBatch.
 	//
 	// Actions is a required field
-	Actions []*string `locationNameList:"ActionName" type:"list" flattened:"true" required:"true"`
+	Actions []*string `type:"list" flattened:"true" required:"true"`
 
 	// The unique identification of the permission you're setting (for example,
 	// AliceSendMessage). Maximum 80 characters. Allowed characters include alphanumeric
@@ -2239,6 +2821,154 @@ func (s AddPermissionOutput) GoString() string {
 	return s.String()
 }
 
+// Two or more batch entries in the request have the same Id.
+type BatchEntryIdsNotDistinct struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchEntryIdsNotDistinct) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchEntryIdsNotDistinct) GoString() string {
+	return s.String()
+}
+
+func newErrorBatchEntryIdsNotDistinct(v protocol.ResponseMetadata) error {
+	return &BatchEntryIdsNotDistinct{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorBatchEntryIdsNotDistinct(v protocol.ResponseMetadata, code string) error {
+	return &BatchEntryIdsNotDistinct{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *BatchEntryIdsNotDistinct) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "BatchEntryIdsNotDistinct"
+}
+
+// Message returns the exception's message.
+func (s *BatchEntryIdsNotDistinct) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *BatchEntryIdsNotDistinct) OrigErr() error {
+	return nil
+}
+
+func (s *BatchEntryIdsNotDistinct) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *BatchEntryIdsNotDistinct) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *BatchEntryIdsNotDistinct) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The length of all the messages put together is more than the limit.
+type BatchRequestTooLong struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchRequestTooLong) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchRequestTooLong) GoString() string {
+	return s.String()
+}
+
+func newErrorBatchRequestTooLong(v protocol.ResponseMetadata) error {
+	return &BatchRequestTooLong{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorBatchRequestTooLong(v protocol.ResponseMetadata, code string) error {
+	return &BatchRequestTooLong{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *BatchRequestTooLong) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "BatchRequestTooLong"
+}
+
+// Message returns the exception's message.
+func (s *BatchRequestTooLong) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *BatchRequestTooLong) OrigErr() error {
+	return nil
+}
+
+func (s *BatchRequestTooLong) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *BatchRequestTooLong) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *BatchRequestTooLong) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Gives a detailed description of the result of an action on each entry in
 // the request.
 type BatchResultErrorEntry struct {
@@ -2312,7 +3042,7 @@ type ChangeMessageVisibilityBatchInput struct {
 	// must be changed.
 	//
 	// Entries is a required field
-	Entries []*ChangeMessageVisibilityBatchRequestEntry `locationNameList:"ChangeMessageVisibilityBatchRequestEntry" type:"list" flattened:"true" required:"true"`
+	Entries []*ChangeMessageVisibilityBatchRequestEntry `type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue whose messages' visibility is changed.
 	//
@@ -2387,12 +3117,12 @@ type ChangeMessageVisibilityBatchOutput struct {
 	// A list of BatchResultErrorEntry items.
 	//
 	// Failed is a required field
-	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
+	Failed []*BatchResultErrorEntry `type:"list" flattened:"true" required:"true"`
 
 	// A list of ChangeMessageVisibilityBatchResultEntry items.
 	//
 	// Successful is a required field
-	Successful []*ChangeMessageVisibilityBatchResultEntry `locationNameList:"ChangeMessageVisibilityBatchResultEntry" type:"list" flattened:"true" required:"true"`
+	Successful []*ChangeMessageVisibilityBatchResultEntry `type:"list" flattened:"true" required:"true"`
 }
 
 // String returns the string representation.
@@ -2426,16 +3156,6 @@ func (s *ChangeMessageVisibilityBatchOutput) SetSuccessful(v []*ChangeMessageVis
 }
 
 // Encloses a receipt handle and an entry id for each message in ChangeMessageVisibilityBatch.
-//
-// All of the following list parameters must be prefixed with ChangeMessageVisibilityBatchRequestEntry.n,
-// where n is an integer value starting with 1. For example, a parameter list
-// for this action might look like this:
-//
-// &ChangeMessageVisibilityBatchRequestEntry.1.Id=change_visibility_msg_2
-//
-// &ChangeMessageVisibilityBatchRequestEntry.1.ReceiptHandle=your_receipt_handle
-//
-// &ChangeMessageVisibilityBatchRequestEntry.1.VisibilityTimeout=45
 type ChangeMessageVisibilityBatchRequestEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2664,35 +3384,59 @@ type CreateQueueInput struct {
 	//    * MessageRetentionPeriod – The length of time, in seconds, for which
 	//    Amazon SQS retains a message. Valid values: An integer from 60 seconds
 	//    (1 minute) to 1,209,600 seconds (14 days). Default: 345,600 (4 days).
+	//    When you change a queue's attributes, the change can take up to 60 seconds
+	//    for most of the attributes to propagate throughout the Amazon SQS system.
+	//    Changes made to the MessageRetentionPeriod attribute can take up to 15
+	//    minutes and will impact existing messages in the queue potentially causing
+	//    them to be expired and deleted if the MessageRetentionPeriod is reduced
+	//    below the age of existing messages.
 	//
 	//    * Policy – The queue's policy. A valid Amazon Web Services policy. For
 	//    more information about policy structure, see Overview of Amazon Web Services
 	//    IAM Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/PoliciesOverview.html)
-	//    in the Amazon IAM User Guide.
+	//    in the IAM User Guide.
 	//
 	//    * ReceiveMessageWaitTimeSeconds – The length of time, in seconds, for
 	//    which a ReceiveMessage action waits for a message to arrive. Valid values:
 	//    An integer from 0 to 20 (seconds). Default: 0.
-	//
-	//    * RedrivePolicy – The string that includes the parameters for the dead-letter
-	//    queue functionality of the source queue as a JSON object. For more information
-	//    about the redrive policy and dead-letter queues, see Using Amazon SQS
-	//    Dead-Letter Queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
-	//    in the Amazon SQS Developer Guide. deadLetterTargetArn – The Amazon
-	//    Resource Name (ARN) of the dead-letter queue to which Amazon SQS moves
-	//    messages after the value of maxReceiveCount is exceeded. maxReceiveCount
-	//    – The number of times a message is delivered to the source queue before
-	//    being moved to the dead-letter queue. When the ReceiveCount for a message
-	//    exceeds the maxReceiveCount for a queue, Amazon SQS moves the message
-	//    to the dead-letter-queue. The dead-letter queue of a FIFO queue must also
-	//    be a FIFO queue. Similarly, the dead-letter queue of a standard queue
-	//    must also be a standard queue.
 	//
 	//    * VisibilityTimeout – The visibility timeout for the queue, in seconds.
 	//    Valid values: An integer from 0 to 43,200 (12 hours). Default: 30. For
 	//    more information about the visibility timeout, see Visibility Timeout
 	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
 	//    in the Amazon SQS Developer Guide.
+	//
+	// The following attributes apply only to dead-letter queues: (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
+	//
+	//    * RedrivePolicy – The string that includes the parameters for the dead-letter
+	//    queue functionality of the source queue as a JSON object. The parameters
+	//    are as follows: deadLetterTargetArn – The Amazon Resource Name (ARN)
+	//    of the dead-letter queue to which Amazon SQS moves messages after the
+	//    value of maxReceiveCount is exceeded. maxReceiveCount – The number of
+	//    times a message is delivered to the source queue before being moved to
+	//    the dead-letter queue. Default: 10. When the ReceiveCount for a message
+	//    exceeds the maxReceiveCount for a queue, Amazon SQS moves the message
+	//    to the dead-letter-queue.
+	//
+	//    * RedriveAllowPolicy – The string that includes the parameters for the
+	//    permissions for the dead-letter queue redrive permission and which source
+	//    queues can specify dead-letter queues as a JSON object. The parameters
+	//    are as follows: redrivePermission – The permission type that defines
+	//    which source queues can specify the current queue as the dead-letter queue.
+	//    Valid values are: allowAll – (Default) Any source queues in this Amazon
+	//    Web Services account in the same Region can specify this queue as the
+	//    dead-letter queue. denyAll – No source queues can specify this queue
+	//    as the dead-letter queue. byQueue – Only queues specified by the sourceQueueArns
+	//    parameter can specify this queue as the dead-letter queue. sourceQueueArns
+	//    – The Amazon Resource Names (ARN)s of the source queues that can specify
+	//    this queue as the dead-letter queue and redrive messages. You can specify
+	//    this parameter only when the redrivePermission parameter is set to byQueue.
+	//    You can specify up to 10 source queue ARNs. To allow more than 10 source
+	//    queues to specify dead-letter queues, set the redrivePermission parameter
+	//    to allowAll.
+	//
+	// The dead-letter queue of a FIFO queue must also be a FIFO queue. Similarly,
+	// the dead-letter queue of a standard queue must also be a standard queue.
 	//
 	// The following attributes apply only to server-side-encryption (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html):
 	//
@@ -2711,11 +3455,11 @@ type CreateQueueInput struct {
 	//    Default: 300 (5 minutes). A shorter time period provides better security
 	//    but results in more calls to KMS which might incur charges after Free
 	//    Tier. For more information, see How Does the Data Key Reuse Period Work?
-	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work).
+	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work)
 	//
 	//    * SqsManagedSseEnabled – Enables server-side queue encryption using
 	//    SQS owned encryption keys. Only one server-side encryption option is supported
-	//    per queue (e.g. SSE-KMS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
+	//    per queue (for example, SSE-KMS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
 	//    or SSE-SQS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html)).
 	//
 	// The following attributes apply only to FIFO (first-in-first-out) queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html):
@@ -2770,7 +3514,7 @@ type CreateQueueInput struct {
 	//
 	// For information on throughput quotas, see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
 	// in the Amazon SQS Developer Guide.
-	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	Attributes map[string]*string `type:"map" flattened:"true"`
 
 	// The name of the new queue. The following limits apply to this name:
 	//
@@ -2809,9 +3553,9 @@ type CreateQueueInput struct {
 	// and sqs:TagQueue permissions.
 	//
 	// Cross-account permissions don't apply to this action. For more information,
-	// see Grant cross-account permissions to a role and a user name (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
+	// see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)
 	// in the Amazon SQS Developer Guide.
-	Tags map[string]*string `locationName:"Tag" locationNameKey:"Key" locationNameValue:"Value" type:"map" flattened:"true"`
+	Tags map[string]*string `locationName:"tags" type:"map" flattened:"true"`
 }
 
 // String returns the string representation.
@@ -2901,7 +3645,7 @@ type DeleteMessageBatchInput struct {
 	// A list of receipt handles for the messages to be deleted.
 	//
 	// Entries is a required field
-	Entries []*DeleteMessageBatchRequestEntry `locationNameList:"DeleteMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
+	Entries []*DeleteMessageBatchRequestEntry `type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue from which messages are deleted.
 	//
@@ -2976,12 +3720,12 @@ type DeleteMessageBatchOutput struct {
 	// A list of BatchResultErrorEntry items.
 	//
 	// Failed is a required field
-	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
+	Failed []*BatchResultErrorEntry `type:"list" flattened:"true" required:"true"`
 
 	// A list of DeleteMessageBatchResultEntry items.
 	//
 	// Successful is a required field
-	Successful []*DeleteMessageBatchResultEntry `locationNameList:"DeleteMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
+	Successful []*DeleteMessageBatchResultEntry `type:"list" flattened:"true" required:"true"`
 }
 
 // String returns the string representation.
@@ -3269,12 +4013,86 @@ func (s DeleteQueueOutput) GoString() string {
 	return s.String()
 }
 
+// The batch request doesn't contain any entries.
+type EmptyBatchRequest struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmptyBatchRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmptyBatchRequest) GoString() string {
+	return s.String()
+}
+
+func newErrorEmptyBatchRequest(v protocol.ResponseMetadata) error {
+	return &EmptyBatchRequest{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorEmptyBatchRequest(v protocol.ResponseMetadata, code string) error {
+	return &EmptyBatchRequest{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EmptyBatchRequest) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "EmptyBatchRequest"
+}
+
+// Message returns the exception's message.
+func (s *EmptyBatchRequest) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EmptyBatchRequest) OrigErr() error {
+	return nil
+}
+
+func (s *EmptyBatchRequest) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EmptyBatchRequest) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EmptyBatchRequest) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type GetQueueAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of attributes for which to retrieve information.
 	//
-	// The AttributeName.N parameter is optional, but if you don't specify values
+	// The AttributeNames parameter is optional, but if you don't specify values
 	// for this parameter, the request returns empty results.
 	//
 	// In the future, new attributes might be added. If you write code that calls
@@ -3284,8 +4102,8 @@ type GetQueueAttributesInput struct {
 	// The following attributes are supported:
 	//
 	// The ApproximateNumberOfMessagesDelayed, ApproximateNumberOfMessagesNotVisible,
-	// and ApproximateNumberOfMessagesVisible metrics may not achieve consistency
-	// until at least 1 minute after the producers stop sending messages. This period
+	// and ApproximateNumberOfMessages metrics may not achieve consistency until
+	// at least 1 minute after the producers stop sending messages. This period
 	// is required for the queue metadata to reach eventual consistency.
 	//
 	//    * All – Returns all values.
@@ -3315,7 +4133,12 @@ type GetQueueAttributesInput struct {
 	//    can contain before Amazon SQS rejects it.
 	//
 	//    * MessageRetentionPeriod – Returns the length of time, in seconds, for
-	//    which Amazon SQS retains a message.
+	//    which Amazon SQS retains a message. When you change a queue's attributes,
+	//    the change can take up to 60 seconds for most of the attributes to propagate
+	//    throughout the Amazon SQS system. Changes made to the MessageRetentionPeriod
+	//    attribute can take up to 15 minutes and will impact existing messages
+	//    in the queue potentially causing them to be expired and deleted if the
+	//    MessageRetentionPeriod is reduced below the age of existing messages.
 	//
 	//    * Policy – Returns the policy of the queue.
 	//
@@ -3324,22 +4147,42 @@ type GetQueueAttributesInput struct {
 	//    * ReceiveMessageWaitTimeSeconds – Returns the length of time, in seconds,
 	//    for which the ReceiveMessage action waits for a message to arrive.
 	//
-	//    * RedrivePolicy – The string that includes the parameters for the dead-letter
-	//    queue functionality of the source queue as a JSON object. For more information
-	//    about the redrive policy and dead-letter queues, see Using Amazon SQS
-	//    Dead-Letter Queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
-	//    in the Amazon SQS Developer Guide. deadLetterTargetArn – The Amazon
-	//    Resource Name (ARN) of the dead-letter queue to which Amazon SQS moves
-	//    messages after the value of maxReceiveCount is exceeded. maxReceiveCount
-	//    – The number of times a message is delivered to the source queue before
-	//    being moved to the dead-letter queue. When the ReceiveCount for a message
-	//    exceeds the maxReceiveCount for a queue, Amazon SQS moves the message
-	//    to the dead-letter-queue.
-	//
 	//    * VisibilityTimeout – Returns the visibility timeout for the queue.
 	//    For more information about the visibility timeout, see Visibility Timeout
 	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
 	//    in the Amazon SQS Developer Guide.
+	//
+	// The following attributes apply only to dead-letter queues: (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
+	//
+	//    * RedrivePolicy – The string that includes the parameters for the dead-letter
+	//    queue functionality of the source queue as a JSON object. The parameters
+	//    are as follows: deadLetterTargetArn – The Amazon Resource Name (ARN)
+	//    of the dead-letter queue to which Amazon SQS moves messages after the
+	//    value of maxReceiveCount is exceeded. maxReceiveCount – The number of
+	//    times a message is delivered to the source queue before being moved to
+	//    the dead-letter queue. Default: 10. When the ReceiveCount for a message
+	//    exceeds the maxReceiveCount for a queue, Amazon SQS moves the message
+	//    to the dead-letter-queue.
+	//
+	//    * RedriveAllowPolicy – The string that includes the parameters for the
+	//    permissions for the dead-letter queue redrive permission and which source
+	//    queues can specify dead-letter queues as a JSON object. The parameters
+	//    are as follows: redrivePermission – The permission type that defines
+	//    which source queues can specify the current queue as the dead-letter queue.
+	//    Valid values are: allowAll – (Default) Any source queues in this Amazon
+	//    Web Services account in the same Region can specify this queue as the
+	//    dead-letter queue. denyAll – No source queues can specify this queue
+	//    as the dead-letter queue. byQueue – Only queues specified by the sourceQueueArns
+	//    parameter can specify this queue as the dead-letter queue. sourceQueueArns
+	//    – The Amazon Resource Names (ARN)s of the source queues that can specify
+	//    this queue as the dead-letter queue and redrive messages. You can specify
+	//    this parameter only when the redrivePermission parameter is set to byQueue.
+	//    You can specify up to 10 source queue ARNs. To allow more than 10 source
+	//    queues to specify dead-letter queues, set the redrivePermission parameter
+	//    to allowAll.
+	//
+	// The dead-letter queue of a FIFO queue must also be a FIFO queue. Similarly,
+	// the dead-letter queue of a standard queue must also be a standard queue.
 	//
 	// The following attributes apply only to server-side-encryption (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html):
 	//
@@ -3354,7 +4197,8 @@ type GetQueueAttributesInput struct {
 	//
 	//    * SqsManagedSseEnabled – Returns information about whether the queue
 	//    is using SSE-SQS encryption using SQS owned encryption keys. Only one
-	//    server-side encryption option is supported per queue (e.g. SSE-KMS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
+	//    server-side encryption option is supported per queue (for example, SSE-KMS
+	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
 	//    or SSE-SQS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html)).
 	//
 	// The following attributes apply only to FIFO (first-in-first-out) queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html):
@@ -3393,7 +4237,7 @@ type GetQueueAttributesInput struct {
 	//
 	// For information on throughput quotas, see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
 	// in the Amazon SQS Developer Guide.
-	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true" enum:"QueueAttributeName"`
+	AttributeNames []*string `type:"list" flattened:"true" enum:"QueueAttributeName"`
 
 	// The URL of the Amazon SQS queue whose attribute information is retrieved.
 	//
@@ -3451,7 +4295,7 @@ type GetQueueAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A map of attributes to their respective values.
-	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	Attributes map[string]*string `type:"map" flattened:"true"`
 }
 
 // String returns the string representation.
@@ -3569,6 +4413,1052 @@ func (s *GetQueueUrlOutput) SetQueueUrl(v string) *GetQueueUrlOutput {
 	return s
 }
 
+// The accountId is invalid.
+type InvalidAddress struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidAddress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidAddress) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidAddress(v protocol.ResponseMetadata) error {
+	return &InvalidAddress{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorInvalidAddress(v protocol.ResponseMetadata, code string) error {
+	return &InvalidAddress{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidAddress) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "InvalidAddress"
+}
+
+// Message returns the exception's message.
+func (s *InvalidAddress) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidAddress) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidAddress) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidAddress) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidAddress) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The specified attribute doesn't exist.
+type InvalidAttributeName struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidAttributeName) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidAttributeName) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidAttributeName(v protocol.ResponseMetadata) error {
+	return &InvalidAttributeName{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorInvalidAttributeName(v protocol.ResponseMetadata, code string) error {
+	return &InvalidAttributeName{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidAttributeName) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "InvalidAttributeName"
+}
+
+// Message returns the exception's message.
+func (s *InvalidAttributeName) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidAttributeName) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidAttributeName) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidAttributeName) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidAttributeName) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A queue attribute value is invalid.
+type InvalidAttributeValue struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidAttributeValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidAttributeValue) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidAttributeValue(v protocol.ResponseMetadata) error {
+	return &InvalidAttributeValue{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorInvalidAttributeValue(v protocol.ResponseMetadata, code string) error {
+	return &InvalidAttributeValue{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidAttributeValue) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "InvalidAttributeValue"
+}
+
+// Message returns the exception's message.
+func (s *InvalidAttributeValue) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidAttributeValue) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidAttributeValue) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidAttributeValue) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidAttributeValue) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The Id of a batch entry in a batch request doesn't abide by the specification.
+type InvalidBatchEntryId struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidBatchEntryId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidBatchEntryId) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidBatchEntryId(v protocol.ResponseMetadata) error {
+	return &InvalidBatchEntryId{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorInvalidBatchEntryId(v protocol.ResponseMetadata, code string) error {
+	return &InvalidBatchEntryId{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidBatchEntryId) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "InvalidBatchEntryId"
+}
+
+// Message returns the exception's message.
+func (s *InvalidBatchEntryId) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidBatchEntryId) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidBatchEntryId) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidBatchEntryId) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidBatchEntryId) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The specified receipt handle isn't valid for the current version.
+//
+// Deprecated: exception has been included in ReceiptHandleIsInvalid
+type InvalidIdFormat struct {
+	_            struct{}                  `deprecated:"true" type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidIdFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidIdFormat) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidIdFormat(v protocol.ResponseMetadata) error {
+	return &InvalidIdFormat{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorInvalidIdFormat(v protocol.ResponseMetadata, code string) error {
+	return &InvalidIdFormat{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidIdFormat) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "InvalidIdFormat"
+}
+
+// Message returns the exception's message.
+func (s *InvalidIdFormat) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidIdFormat) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidIdFormat) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidIdFormat) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidIdFormat) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The message contains characters outside the allowed set.
+type InvalidMessageContents struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidMessageContents) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidMessageContents) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidMessageContents(v protocol.ResponseMetadata) error {
+	return &InvalidMessageContents{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorInvalidMessageContents(v protocol.ResponseMetadata, code string) error {
+	return &InvalidMessageContents{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidMessageContents) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "InvalidMessageContents"
+}
+
+// Message returns the exception's message.
+func (s *InvalidMessageContents) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidMessageContents) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidMessageContents) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidMessageContents) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidMessageContents) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// When the request to a queue is not HTTPS and SigV4.
+type InvalidSecurity struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSecurity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSecurity) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidSecurity(v protocol.ResponseMetadata) error {
+	return &InvalidSecurity{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorInvalidSecurity(v protocol.ResponseMetadata, code string) error {
+	return &InvalidSecurity{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidSecurity) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "InvalidSecurity"
+}
+
+// Message returns the exception's message.
+func (s *InvalidSecurity) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidSecurity) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidSecurity) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidSecurity) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidSecurity) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The caller doesn't have the required KMS access.
+type KmsAccessDenied struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsAccessDenied) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsAccessDenied) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsAccessDenied(v protocol.ResponseMetadata) error {
+	return &KmsAccessDenied{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorKmsAccessDenied(v protocol.ResponseMetadata, code string) error {
+	return &KmsAccessDenied{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsAccessDenied) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "KmsAccessDenied"
+}
+
+// Message returns the exception's message.
+func (s *KmsAccessDenied) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsAccessDenied) OrigErr() error {
+	return nil
+}
+
+func (s *KmsAccessDenied) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsAccessDenied) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsAccessDenied) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request was denied due to request throttling.
+type KmsDisabled struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsDisabled) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsDisabled) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsDisabled(v protocol.ResponseMetadata) error {
+	return &KmsDisabled{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorKmsDisabled(v protocol.ResponseMetadata, code string) error {
+	return &KmsDisabled{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsDisabled) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "KmsDisabled"
+}
+
+// Message returns the exception's message.
+func (s *KmsDisabled) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsDisabled) OrigErr() error {
+	return nil
+}
+
+func (s *KmsDisabled) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsDisabled) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsDisabled) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request was rejected for one of the following reasons:
+//
+//   - The KeyUsage value of the KMS key is incompatible with the API operation.
+//
+//   - The encryption algorithm or signing algorithm specified for the operation
+//     is incompatible with the type of key material in the KMS key (KeySpec).
+type KmsInvalidKeyUsage struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsInvalidKeyUsage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsInvalidKeyUsage) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsInvalidKeyUsage(v protocol.ResponseMetadata) error {
+	return &KmsInvalidKeyUsage{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorKmsInvalidKeyUsage(v protocol.ResponseMetadata, code string) error {
+	return &KmsInvalidKeyUsage{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsInvalidKeyUsage) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "KmsInvalidKeyUsage"
+}
+
+// Message returns the exception's message.
+func (s *KmsInvalidKeyUsage) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsInvalidKeyUsage) OrigErr() error {
+	return nil
+}
+
+func (s *KmsInvalidKeyUsage) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsInvalidKeyUsage) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsInvalidKeyUsage) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request was rejected because the state of the specified resource is not
+// valid for this request.
+type KmsInvalidState struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsInvalidState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsInvalidState) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsInvalidState(v protocol.ResponseMetadata) error {
+	return &KmsInvalidState{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorKmsInvalidState(v protocol.ResponseMetadata, code string) error {
+	return &KmsInvalidState{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsInvalidState) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "KmsInvalidState"
+}
+
+// Message returns the exception's message.
+func (s *KmsInvalidState) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsInvalidState) OrigErr() error {
+	return nil
+}
+
+func (s *KmsInvalidState) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsInvalidState) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsInvalidState) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request was rejected because the specified entity or resource could not
+// be found.
+type KmsNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsNotFound(v protocol.ResponseMetadata) error {
+	return &KmsNotFound{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorKmsNotFound(v protocol.ResponseMetadata, code string) error {
+	return &KmsNotFound{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsNotFound) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "KmsNotFound"
+}
+
+// Message returns the exception's message.
+func (s *KmsNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *KmsNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request was rejected because the specified key policy isn't syntactically
+// or semantically correct.
+type KmsOptInRequired struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsOptInRequired) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsOptInRequired) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsOptInRequired(v protocol.ResponseMetadata) error {
+	return &KmsOptInRequired{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorKmsOptInRequired(v protocol.ResponseMetadata, code string) error {
+	return &KmsOptInRequired{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsOptInRequired) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "KmsOptInRequired"
+}
+
+// Message returns the exception's message.
+func (s *KmsOptInRequired) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsOptInRequired) OrigErr() error {
+	return nil
+}
+
+func (s *KmsOptInRequired) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsOptInRequired) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsOptInRequired) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Amazon Web Services KMS throttles requests for the following conditions.
+type KmsThrottled struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsThrottled) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsThrottled) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsThrottled(v protocol.ResponseMetadata) error {
+	return &KmsThrottled{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorKmsThrottled(v protocol.ResponseMetadata, code string) error {
+	return &KmsThrottled{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsThrottled) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "KmsThrottled"
+}
+
+// Message returns the exception's message.
+func (s *KmsThrottled) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsThrottled) OrigErr() error {
+	return nil
+}
+
+func (s *KmsThrottled) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsThrottled) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsThrottled) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type ListDeadLetterSourceQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3649,7 +5539,7 @@ type ListDeadLetterSourceQueuesOutput struct {
 	// with a dead-letter queue.
 	//
 	// QueueUrls is a required field
-	QueueUrls []*string `locationName:"queueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true" required:"true"`
+	QueueUrls []*string `locationName:"queueUrls" type:"list" flattened:"true" required:"true"`
 }
 
 // String returns the string representation.
@@ -3732,7 +5622,7 @@ type ListQueueTagsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of all tags added to the specified queue.
-	Tags map[string]*string `locationName:"Tag" locationNameKey:"Key" locationNameValue:"Value" type:"map" flattened:"true"`
+	Tags map[string]*string `type:"map" flattened:"true"`
 }
 
 // String returns the string representation.
@@ -3823,7 +5713,7 @@ type ListQueuesOutput struct {
 
 	// A list of queue URLs, up to 1,000 entries, or the value of MaxResults that
 	// you sent in the request.
-	QueueUrls []*string `locationNameList:"QueueUrl" type:"list" flattened:"true"`
+	QueueUrls []*string `type:"list" flattened:"true"`
 }
 
 // String returns the string representation.
@@ -3880,7 +5770,7 @@ type Message struct {
 	// ApproximateFirstReceiveTimestamp and SentTimestamp are each returned as an
 	// integer representing the epoch time (http://en.wikipedia.org/wiki/Unix_time)
 	// in milliseconds.
-	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	Attributes map[string]*string `type:"map" flattened:"true"`
 
 	// The message's contents (not URL-encoded).
 	Body *string `type:"string"`
@@ -3897,7 +5787,7 @@ type Message struct {
 	// Each message attribute consists of a Name, Type, and Value. For more information,
 	// see Amazon SQS message attributes (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes)
 	// in the Amazon SQS Developer Guide.
-	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageAttributes map[string]*MessageAttributeValue `type:"map" flattened:"true"`
 
 	// A unique identifier for the message. A MessageIdis considered unique across
 	// all Amazon Web Services accounts for an extended period of time.
@@ -3975,12 +5865,12 @@ func (s *Message) SetReceiptHandle(v string) *Message {
 //
 // Name, type, value and the message body must not be empty or null. All parts
 // of the message attribute, including Name, Type, and Value, are part of the
-// message size restriction (256 KB or 262,144 bytes).
+// message size restriction (256 KiB or 262,144 bytes).
 type MessageAttributeValue struct {
 	_ struct{} `type:"structure"`
 
 	// Not implemented. Reserved for future use.
-	BinaryListValues [][]byte `locationName:"BinaryListValue" locationNameList:"BinaryListValue" type:"list" flattened:"true"`
+	BinaryListValues [][]byte `type:"list" flattened:"true"`
 
 	// Binary type attributes can store any binary data, such as compressed data,
 	// encrypted data, or images.
@@ -3998,7 +5888,7 @@ type MessageAttributeValue struct {
 	DataType *string `type:"string" required:"true"`
 
 	// Not implemented. Reserved for future use.
-	StringListValues []*string `locationName:"StringListValue" locationNameList:"StringListValue" type:"list" flattened:"true"`
+	StringListValues []*string `type:"list" flattened:"true"`
 
 	// Strings are Unicode with UTF-8 binary encoding. For a list of code values,
 	// see ASCII Printable Characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
@@ -4066,6 +5956,80 @@ func (s *MessageAttributeValue) SetStringValue(v string) *MessageAttributeValue 
 	return s
 }
 
+// The specified message isn't in flight.
+type MessageNotInflight struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageNotInflight) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageNotInflight) GoString() string {
+	return s.String()
+}
+
+func newErrorMessageNotInflight(v protocol.ResponseMetadata) error {
+	return &MessageNotInflight{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorMessageNotInflight(v protocol.ResponseMetadata, code string) error {
+	return &MessageNotInflight{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MessageNotInflight) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "MessageNotInflight"
+}
+
+// Message returns the exception's message.
+func (s *MessageNotInflight) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MessageNotInflight) OrigErr() error {
+	return nil
+}
+
+func (s *MessageNotInflight) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MessageNotInflight) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MessageNotInflight) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The user-specified message system attribute value. For string data types,
 // the Value attribute has the same restrictions on the content as the message
 // body. For more information, see SendMessage.
@@ -4075,7 +6039,7 @@ type MessageSystemAttributeValue struct {
 	_ struct{} `type:"structure"`
 
 	// Not implemented. Reserved for future use.
-	BinaryListValues [][]byte `locationName:"BinaryListValue" locationNameList:"BinaryListValue" type:"list" flattened:"true"`
+	BinaryListValues [][]byte `type:"list" flattened:"true"`
 
 	// Binary type attributes can store any binary data, such as compressed data,
 	// encrypted data, or images.
@@ -4093,7 +6057,7 @@ type MessageSystemAttributeValue struct {
 	DataType *string `type:"string" required:"true"`
 
 	// Not implemented. Reserved for future use.
-	StringListValues []*string `locationName:"StringListValue" locationNameList:"StringListValue" type:"list" flattened:"true"`
+	StringListValues []*string `type:"list" flattened:"true"`
 
 	// Strings are Unicode with UTF-8 binary encoding. For a list of code values,
 	// see ASCII Printable Characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
@@ -4159,6 +6123,159 @@ func (s *MessageSystemAttributeValue) SetStringListValues(v []*string) *MessageS
 func (s *MessageSystemAttributeValue) SetStringValue(v string) *MessageSystemAttributeValue {
 	s.StringValue = &v
 	return s
+}
+
+// The specified action violates a limit. For example, ReceiveMessage returns
+// this error if the maximum number of in flight messages is reached and AddPermission
+// returns this error if the maximum number of permissions for the queue is
+// reached.
+type OverLimit struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverLimit) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverLimit) GoString() string {
+	return s.String()
+}
+
+func newErrorOverLimit(v protocol.ResponseMetadata) error {
+	return &OverLimit{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorOverLimit(v protocol.ResponseMetadata, code string) error {
+	return &OverLimit{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *OverLimit) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "OverLimit"
+}
+
+// Message returns the exception's message.
+func (s *OverLimit) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *OverLimit) OrigErr() error {
+	return nil
+}
+
+func (s *OverLimit) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *OverLimit) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *OverLimit) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Indicates that the specified queue previously received a PurgeQueue request
+// within the last 60 seconds (the time it can take to delete the messages in
+// the queue).
+type PurgeQueueInProgress struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PurgeQueueInProgress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PurgeQueueInProgress) GoString() string {
+	return s.String()
+}
+
+func newErrorPurgeQueueInProgress(v protocol.ResponseMetadata) error {
+	return &PurgeQueueInProgress{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorPurgeQueueInProgress(v protocol.ResponseMetadata, code string) error {
+	return &PurgeQueueInProgress{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PurgeQueueInProgress) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "PurgeQueueInProgress"
+}
+
+// Message returns the exception's message.
+func (s *PurgeQueueInProgress) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PurgeQueueInProgress) OrigErr() error {
+	return nil
+}
+
+func (s *PurgeQueueInProgress) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PurgeQueueInProgress) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PurgeQueueInProgress) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type PurgeQueueInput struct {
@@ -4231,6 +6348,305 @@ func (s PurgeQueueOutput) GoString() string {
 	return s.String()
 }
 
+// You must wait 60 seconds after deleting a queue before you can create another
+// queue with the same name.
+type QueueDeletedRecently struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueDeletedRecently) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueDeletedRecently) GoString() string {
+	return s.String()
+}
+
+func newErrorQueueDeletedRecently(v protocol.ResponseMetadata) error {
+	return &QueueDeletedRecently{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorQueueDeletedRecently(v protocol.ResponseMetadata, code string) error {
+	return &QueueDeletedRecently{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *QueueDeletedRecently) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "QueueDeletedRecently"
+}
+
+// Message returns the exception's message.
+func (s *QueueDeletedRecently) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *QueueDeletedRecently) OrigErr() error {
+	return nil
+}
+
+func (s *QueueDeletedRecently) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *QueueDeletedRecently) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *QueueDeletedRecently) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The specified queue doesn't exist.
+type QueueDoesNotExist struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueDoesNotExist) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueDoesNotExist) GoString() string {
+	return s.String()
+}
+
+func newErrorQueueDoesNotExist(v protocol.ResponseMetadata) error {
+	return &QueueDoesNotExist{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorQueueDoesNotExist(v protocol.ResponseMetadata, code string) error {
+	return &QueueDoesNotExist{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *QueueDoesNotExist) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "QueueDoesNotExist"
+}
+
+// Message returns the exception's message.
+func (s *QueueDoesNotExist) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *QueueDoesNotExist) OrigErr() error {
+	return nil
+}
+
+func (s *QueueDoesNotExist) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *QueueDoesNotExist) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *QueueDoesNotExist) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A queue with this name already exists. Amazon SQS returns this error only
+// if the request includes attributes whose values differ from those of the
+// existing queue.
+type QueueNameExists struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueNameExists) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueNameExists) GoString() string {
+	return s.String()
+}
+
+func newErrorQueueNameExists(v protocol.ResponseMetadata) error {
+	return &QueueNameExists{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorQueueNameExists(v protocol.ResponseMetadata, code string) error {
+	return &QueueNameExists{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *QueueNameExists) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "QueueNameExists"
+}
+
+// Message returns the exception's message.
+func (s *QueueNameExists) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *QueueNameExists) OrigErr() error {
+	return nil
+}
+
+func (s *QueueNameExists) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *QueueNameExists) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *QueueNameExists) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The specified receipt handle isn't valid.
+type ReceiptHandleIsInvalid struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReceiptHandleIsInvalid) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReceiptHandleIsInvalid) GoString() string {
+	return s.String()
+}
+
+func newErrorReceiptHandleIsInvalid(v protocol.ResponseMetadata) error {
+	return &ReceiptHandleIsInvalid{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorReceiptHandleIsInvalid(v protocol.ResponseMetadata, code string) error {
+	return &ReceiptHandleIsInvalid{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ReceiptHandleIsInvalid) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "ReceiptHandleIsInvalid"
+}
+
+// Message returns the exception's message.
+func (s *ReceiptHandleIsInvalid) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ReceiptHandleIsInvalid) OrigErr() error {
+	return nil
+}
+
+func (s *ReceiptHandleIsInvalid) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ReceiptHandleIsInvalid) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ReceiptHandleIsInvalid) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type ReceiveMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4248,7 +6664,7 @@ type ReceiveMessageInput struct {
 	//
 	//    * AWSTraceHeader – Returns the X-Ray trace header string.
 	//
-	//    * SenderId For an IAM user, returns the IAM user ID, for example ABCDEFGHI1JKLMNOPQ23R.
+	//    * SenderId For a user, returns the user ID, for example ABCDEFGHI1JKLMNOPQ23R.
 	//    For an IAM role, returns the IAM role ID, for example ABCDE1F2GH3I4JK5LMNOP:i-a123b456.
 	//
 	//    * SentTimestamp – Returns the time the message was sent to the queue
@@ -4256,7 +6672,7 @@ type ReceiveMessageInput struct {
 	//
 	//    * SqsManagedSseEnabled – Enables server-side queue encryption using
 	//    SQS owned encryption keys. Only one server-side encryption option is supported
-	//    per queue (e.g. SSE-KMS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
+	//    per queue (for example, SSE-KMS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
 	//    or SSE-SQS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html)).
 	//
 	//    * MessageDeduplicationId – Returns the value provided by the producer
@@ -4267,7 +6683,7 @@ type ReceiveMessageInput struct {
 	//    in sequence.
 	//
 	//    * SequenceNumber – Returns the value provided by Amazon SQS.
-	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true" enum:"QueueAttributeName"`
+	AttributeNames []*string `type:"list" flattened:"true" enum:"QueueAttributeName"`
 
 	// The maximum number of messages to return. Amazon SQS never returns more messages
 	// than this value (however, fewer messages might be returned). Valid values:
@@ -4294,7 +6710,7 @@ type ReceiveMessageInput struct {
 	// or you can return all of the attributes by specifying All or .* in your request.
 	// You can also use all message attributes starting with a prefix, for example
 	// bar.*.
-	MessageAttributeNames []*string `locationNameList:"MessageAttributeName" type:"list" flattened:"true"`
+	MessageAttributeNames []*string `type:"list" flattened:"true"`
 
 	// The URL of the Amazon SQS queue from which messages are received.
 	//
@@ -4450,7 +6866,7 @@ type ReceiveMessageOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of messages.
-	Messages []*Message `locationNameList:"Message" type:"list" flattened:"true"`
+	Messages []*Message `type:"list" flattened:"true"`
 }
 
 // String returns the string representation.
@@ -4562,13 +6978,99 @@ func (s RemovePermissionOutput) GoString() string {
 	return s.String()
 }
 
+// The request was denied due to request throttling.
+//
+//   - The rate of requests per second exceeds the AWS KMS request quota for
+//     an account and Region.
+//
+//   - A burst or sustained high rate of requests to change the state of the
+//     same KMS key. This condition is often known as a "hot key."
+//
+//   - Requests for operations on KMS keys in a Amazon Web Services CloudHSM
+//     key store might be throttled at a lower-than-expected rate when the Amazon
+//     Web Services CloudHSM cluster associated with the Amazon Web Services
+//     CloudHSM key store is processing numerous commands, including those unrelated
+//     to the Amazon Web Services CloudHSM key store.
+type RequestThrottled struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestThrottled) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestThrottled) GoString() string {
+	return s.String()
+}
+
+func newErrorRequestThrottled(v protocol.ResponseMetadata) error {
+	return &RequestThrottled{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorRequestThrottled(v protocol.ResponseMetadata, code string) error {
+	return &RequestThrottled{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RequestThrottled) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "RequestThrottled"
+}
+
+// Message returns the exception's message.
+func (s *RequestThrottled) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RequestThrottled) OrigErr() error {
+	return nil
+}
+
+func (s *RequestThrottled) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RequestThrottled) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RequestThrottled) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type SendMessageBatchInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of SendMessageBatchRequestEntry items.
 	//
 	// Entries is a required field
-	Entries []*SendMessageBatchRequestEntry `locationNameList:"SendMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
+	Entries []*SendMessageBatchRequestEntry `type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to which batched messages are sent.
 	//
@@ -4644,12 +7146,12 @@ type SendMessageBatchOutput struct {
 	// that can't be enqueued.
 	//
 	// Failed is a required field
-	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
+	Failed []*BatchResultErrorEntry `type:"list" flattened:"true" required:"true"`
 
 	// A list of SendMessageBatchResultEntry items.
 	//
 	// Successful is a required field
-	Successful []*SendMessageBatchResultEntry `locationNameList:"SendMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
+	Successful []*SendMessageBatchResultEntry `type:"list" flattened:"true" required:"true"`
 }
 
 // String returns the string representation.
@@ -4708,7 +7210,7 @@ type SendMessageBatchRequestEntry struct {
 	// Each message attribute consists of a Name, Type, and Value. For more information,
 	// see Amazon SQS message attributes (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes)
 	// in the Amazon SQS Developer Guide.
-	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageAttributes map[string]*MessageAttributeValue `type:"map" flattened:"true"`
 
 	// The body of the message.
 	//
@@ -4796,7 +7298,7 @@ type SendMessageBatchRequestEntry struct {
 	//
 	//    * The size of a message system attribute doesn't count towards the total
 	//    size of a message.
-	MessageSystemAttributes map[string]*MessageSystemAttributeValue `locationName:"MessageSystemAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageSystemAttributes map[string]*MessageSystemAttributeValue `type:"map" flattened:"true"`
 }
 
 // String returns the string representation.
@@ -5007,10 +7509,10 @@ type SendMessageInput struct {
 	// Each message attribute consists of a Name, Type, and Value. For more information,
 	// see Amazon SQS message attributes (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes)
 	// in the Amazon SQS Developer Guide.
-	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageAttributes map[string]*MessageAttributeValue `type:"map" flattened:"true"`
 
 	// The message to send. The minimum size is one character. The maximum size
-	// is 256 KB.
+	// is 256 KiB.
 	//
 	// A message can include only XML, JSON, and unformatted text. The following
 	// Unicode characters are allowed:
@@ -5105,7 +7607,7 @@ type SendMessageInput struct {
 	//
 	//    * The size of a message system attribute doesn't count towards the total
 	//    size of a message.
-	MessageSystemAttributes map[string]*MessageSystemAttributeValue `locationName:"MessageSystemAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageSystemAttributes map[string]*MessageSystemAttributeValue `type:"map" flattened:"true"`
 
 	// The URL of the Amazon SQS queue to which a message is sent.
 	//
@@ -5313,6 +7815,12 @@ type SetQueueAttributesInput struct {
 	//    * MessageRetentionPeriod – The length of time, in seconds, for which
 	//    Amazon SQS retains a message. Valid values: An integer representing seconds,
 	//    from 60 (1 minute) to 1,209,600 (14 days). Default: 345,600 (4 days).
+	//    When you change a queue's attributes, the change can take up to 60 seconds
+	//    for most of the attributes to propagate throughout the Amazon SQS system.
+	//    Changes made to the MessageRetentionPeriod attribute can take up to 15
+	//    minutes and will impact existing messages in the queue potentially causing
+	//    them to be expired and deleted if the MessageRetentionPeriod is reduced
+	//    below the age of existing messages.
 	//
 	//    * Policy – The queue's policy. A valid Amazon Web Services policy. For
 	//    more information about policy structure, see Overview of Amazon Web Services
@@ -5323,25 +7831,43 @@ type SetQueueAttributesInput struct {
 	//    which a ReceiveMessage action waits for a message to arrive. Valid values:
 	//    An integer from 0 to 20 (seconds). Default: 0.
 	//
-	//    * RedrivePolicy – The string that includes the parameters for the dead-letter
-	//    queue functionality of the source queue as a JSON object. For more information
-	//    about the redrive policy and dead-letter queues, see Using Amazon SQS
-	//    Dead-Letter Queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
-	//    in the Amazon SQS Developer Guide. deadLetterTargetArn – The Amazon
-	//    Resource Name (ARN) of the dead-letter queue to which Amazon SQS moves
-	//    messages after the value of maxReceiveCount is exceeded. maxReceiveCount
-	//    – The number of times a message is delivered to the source queue before
-	//    being moved to the dead-letter queue. When the ReceiveCount for a message
-	//    exceeds the maxReceiveCount for a queue, Amazon SQS moves the message
-	//    to the dead-letter-queue. The dead-letter queue of a FIFO queue must also
-	//    be a FIFO queue. Similarly, the dead-letter queue of a standard queue
-	//    must also be a standard queue.
-	//
 	//    * VisibilityTimeout – The visibility timeout for the queue, in seconds.
 	//    Valid values: An integer from 0 to 43,200 (12 hours). Default: 30. For
 	//    more information about the visibility timeout, see Visibility Timeout
 	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
 	//    in the Amazon SQS Developer Guide.
+	//
+	// The following attributes apply only to dead-letter queues: (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
+	//
+	//    * RedrivePolicy – The string that includes the parameters for the dead-letter
+	//    queue functionality of the source queue as a JSON object. The parameters
+	//    are as follows: deadLetterTargetArn – The Amazon Resource Name (ARN)
+	//    of the dead-letter queue to which Amazon SQS moves messages after the
+	//    value of maxReceiveCount is exceeded. maxReceiveCount – The number of
+	//    times a message is delivered to the source queue before being moved to
+	//    the dead-letter queue. Default: 10. When the ReceiveCount for a message
+	//    exceeds the maxReceiveCount for a queue, Amazon SQS moves the message
+	//    to the dead-letter-queue.
+	//
+	//    * RedriveAllowPolicy – The string that includes the parameters for the
+	//    permissions for the dead-letter queue redrive permission and which source
+	//    queues can specify dead-letter queues as a JSON object. The parameters
+	//    are as follows: redrivePermission – The permission type that defines
+	//    which source queues can specify the current queue as the dead-letter queue.
+	//    Valid values are: allowAll – (Default) Any source queues in this Amazon
+	//    Web Services account in the same Region can specify this queue as the
+	//    dead-letter queue. denyAll – No source queues can specify this queue
+	//    as the dead-letter queue. byQueue – Only queues specified by the sourceQueueArns
+	//    parameter can specify this queue as the dead-letter queue. sourceQueueArns
+	//    – The Amazon Resource Names (ARN)s of the source queues that can specify
+	//    this queue as the dead-letter queue and redrive messages. You can specify
+	//    this parameter only when the redrivePermission parameter is set to byQueue.
+	//    You can specify up to 10 source queue ARNs. To allow more than 10 source
+	//    queues to specify dead-letter queues, set the redrivePermission parameter
+	//    to allowAll.
+	//
+	// The dead-letter queue of a FIFO queue must also be a FIFO queue. Similarly,
+	// the dead-letter queue of a standard queue must also be a standard queue.
 	//
 	// The following attributes apply only to server-side-encryption (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html):
 	//
@@ -5364,7 +7890,7 @@ type SetQueueAttributesInput struct {
 	//
 	//    * SqsManagedSseEnabled – Enables server-side queue encryption using
 	//    SQS owned encryption keys. Only one server-side encryption option is supported
-	//    per queue (e.g. SSE-KMS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
+	//    per queue (for example, SSE-KMS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html)
 	//    or SSE-SQS (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html)).
 	//
 	// The following attribute applies only to FIFO (first-in-first-out) queues
@@ -5413,7 +7939,7 @@ type SetQueueAttributesInput struct {
 	// in the Amazon SQS Developer Guide.
 	//
 	// Attributes is a required field
-	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true" required:"true"`
+	Attributes map[string]*string `type:"map" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue whose attributes are set.
 	//
@@ -5502,7 +8028,7 @@ type TagQueueInput struct {
 	// The list of tags to be added to the specified queue.
 	//
 	// Tags is a required field
-	Tags map[string]*string `locationName:"Tag" locationNameKey:"Key" locationNameValue:"Value" type:"map" flattened:"true" required:"true"`
+	Tags map[string]*string `type:"map" flattened:"true" required:"true"`
 }
 
 // String returns the string representation.
@@ -5573,6 +8099,154 @@ func (s TagQueueOutput) GoString() string {
 	return s.String()
 }
 
+// The batch request contains more entries than permissible.
+type TooManyEntriesInBatchRequest struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyEntriesInBatchRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyEntriesInBatchRequest) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyEntriesInBatchRequest(v protocol.ResponseMetadata) error {
+	return &TooManyEntriesInBatchRequest{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorTooManyEntriesInBatchRequest(v protocol.ResponseMetadata, code string) error {
+	return &TooManyEntriesInBatchRequest{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyEntriesInBatchRequest) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "TooManyEntriesInBatchRequest"
+}
+
+// Message returns the exception's message.
+func (s *TooManyEntriesInBatchRequest) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyEntriesInBatchRequest) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyEntriesInBatchRequest) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyEntriesInBatchRequest) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyEntriesInBatchRequest) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Error code 400. Unsupported operation.
+type UnsupportedOperation struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	Code_        *string
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedOperation) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedOperation(v protocol.ResponseMetadata) error {
+	return &UnsupportedOperation{
+		RespMetadata: v,
+	}
+}
+func newQueryCompatibleErrorUnsupportedOperation(v protocol.ResponseMetadata, code string) error {
+	return &UnsupportedOperation{
+		RespMetadata: v,
+		Code_:        &code,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedOperation) Code() string {
+	if s.Code_ != nil {
+		return *s.Code_
+	}
+	return "UnsupportedOperation"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedOperation) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedOperation) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedOperation) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedOperation) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedOperation) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type UntagQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5584,7 +8258,7 @@ type UntagQueueInput struct {
 	// The list of tags to be removed from the specified queue.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `locationNameList:"TagKey" type:"list" flattened:"true" required:"true"`
+	TagKeys []*string `type:"list" flattened:"true" required:"true"`
 }
 
 // String returns the string representation.

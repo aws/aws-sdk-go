@@ -1259,7 +1259,18 @@
       "type":"string",
       "enum":[
         "DEFAULT",
-        "ALL"
+        "ALL",
+        "AGE_RANGE",
+        "BEARD",
+        "EMOTIONS",
+        "EYEGLASSES",
+        "EYES_OPEN",
+        "GENDER",
+        "MOUTH_OPEN",
+        "MUSTACHE",
+        "FACE_OCCLUDED",
+        "SMILE",
+        "SUNGLASSES"
       ]
     },
     "Attributes":{
@@ -2327,7 +2338,8 @@
         "Landmarks":{"shape":"Landmarks"},
         "Pose":{"shape":"Pose"},
         "Quality":{"shape":"ImageQuality"},
-        "Confidence":{"shape":"Percent"}
+        "Confidence":{"shape":"Percent"},
+        "FaceOccluded":{"shape":"FaceOccluded"}
       }
     },
     "FaceDetailList":{
@@ -2373,6 +2385,13 @@
     "FaceModelVersionList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "FaceOccluded":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"Boolean"},
+        "Confidence":{"shape":"Percent"}
+      }
     },
     "FaceRecord":{
       "type":"structure",

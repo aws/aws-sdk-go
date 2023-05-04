@@ -4016,6 +4016,156 @@ func (c *SecurityHub) GetFindingAggregatorWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opGetFindingHistory = "GetFindingHistory"
+
+// GetFindingHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the GetFindingHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFindingHistory for more information on using the GetFindingHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetFindingHistoryRequest method.
+//	req, resp := client.GetFindingHistoryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetFindingHistory
+func (c *SecurityHub) GetFindingHistoryRequest(input *GetFindingHistoryInput) (req *request.Request, output *GetFindingHistoryOutput) {
+	op := &request.Operation{
+		Name:       opGetFindingHistory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/findingHistory/get",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetFindingHistoryInput{}
+	}
+
+	output = &GetFindingHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFindingHistory API operation for AWS SecurityHub.
+//
+// Returns history for a Security Hub finding in the last 90 days. The history
+// includes changes made to any fields in the Amazon Web Services Security Finding
+// Format (ASFF).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation GetFindingHistory for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetFindingHistory
+func (c *SecurityHub) GetFindingHistory(input *GetFindingHistoryInput) (*GetFindingHistoryOutput, error) {
+	req, out := c.GetFindingHistoryRequest(input)
+	return out, req.Send()
+}
+
+// GetFindingHistoryWithContext is the same as GetFindingHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFindingHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) GetFindingHistoryWithContext(ctx aws.Context, input *GetFindingHistoryInput, opts ...request.Option) (*GetFindingHistoryOutput, error) {
+	req, out := c.GetFindingHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetFindingHistoryPages iterates over the pages of a GetFindingHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetFindingHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetFindingHistory operation.
+//	pageNum := 0
+//	err := client.GetFindingHistoryPages(params,
+//	    func(page *securityhub.GetFindingHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SecurityHub) GetFindingHistoryPages(input *GetFindingHistoryInput, fn func(*GetFindingHistoryOutput, bool) bool) error {
+	return c.GetFindingHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetFindingHistoryPagesWithContext same as GetFindingHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) GetFindingHistoryPagesWithContext(ctx aws.Context, input *GetFindingHistoryInput, fn func(*GetFindingHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetFindingHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetFindingHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetFindingHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetFindings = "GetFindings"
 
 // GetFindingsRequest generates a "aws/request.Request" representing the
@@ -35188,7 +35338,7 @@ type AwsSecurityFinding struct {
 	// zero percent confidence and 100 means 100 percent confidence.
 	Confidence *int64 `type:"integer"`
 
-	// Indicates when the security-findings provider created the potential security
+	// Indicates when the security findings provider created the potential security
 	// issue that a finding captured.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
@@ -35217,7 +35367,7 @@ type AwsSecurityFinding struct {
 	// findings, severity, and types.
 	FindingProviderFields *FindingProviderFields `type:"structure"`
 
-	// Indicates when the security-findings provider first observed the potential
+	// Indicates when the security findings provider first observed the potential
 	// security issue that a finding captured.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
@@ -35227,7 +35377,7 @@ type AwsSecurityFinding struct {
 	FirstObservedAt *string `type:"string"`
 
 	// The identifier for the solution-specific component (a discrete unit of logic)
-	// that generated a finding. In various security-findings providers' solutions,
+	// that generated a finding. In various security findings providers' solutions,
 	// this generator can be called a rule, a check, a detector, a plugin, etc.
 	//
 	// GeneratorId is a required field
@@ -35238,7 +35388,7 @@ type AwsSecurityFinding struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// Indicates when the security-findings provider most recently observed the
+	// Indicates when the security findings provider most recently observed the
 	// potential security issue that a finding captured.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
@@ -35274,7 +35424,7 @@ type AwsSecurityFinding struct {
 	// ProductArn is a required field
 	ProductArn *string `type:"string" required:"true"`
 
-	// A data type where security-findings providers can include additional solution-specific
+	// A data type where security findings providers can include additional solution-specific
 	// details that aren't part of the defined AwsSecurityFinding format.
 	//
 	// Can contain up to 50 key-value pairs. For each key-value pair, the key can
@@ -35323,7 +35473,7 @@ type AwsSecurityFinding struct {
 	// A finding's severity.
 	Severity *Severity `type:"structure"`
 
-	// A URL that links to a page about the current finding in the security-findings
+	// A URL that links to a page about the current finding in the security findings
 	// provider's solution.
 	SourceUrl *string `type:"string"`
 
@@ -35348,7 +35498,7 @@ type AwsSecurityFinding struct {
 	// | Unusual Behaviors | Sensitive Data Identifications
 	Types []*string `type:"list"`
 
-	// Indicates when the security-findings provider last updated the finding record.
+	// Indicates when the security findings provider last updated the finding record.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
 	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
@@ -35777,7 +35927,7 @@ type AwsSecurityFindingFilters struct {
 	// zero percent confidence and 100 means 100 percent confidence.
 	Confidence []*NumberFilter `type:"list"`
 
-	// An ISO8601-formatted timestamp that indicates when the security-findings
+	// An ISO8601-formatted timestamp that indicates when the security findings
 	// provider captured the potential security issue that a finding captured.
 	//
 	// A correctly formatted example is 2020-05-21T20:16:34.724Z. The value cannot
@@ -35830,7 +35980,7 @@ type AwsSecurityFindingFilters struct {
 	// | Unusual Behaviors | Sensitive Data Identifications
 	FindingProviderFieldsTypes []*StringFilter `type:"list"`
 
-	// An ISO8601-formatted timestamp that indicates when the security-findings
+	// An ISO8601-formatted timestamp that indicates when the security findings
 	// provider first observed the potential security issue that a finding captured.
 	//
 	// A correctly formatted example is 2020-05-21T20:16:34.724Z. The value cannot
@@ -35839,7 +35989,7 @@ type AwsSecurityFindingFilters struct {
 	FirstObservedAt []*DateFilter `type:"list"`
 
 	// The identifier for the solution-specific component (a discrete unit of logic)
-	// that generated a finding. In various security-findings providers' solutions,
+	// that generated a finding. In various security findings providers' solutions,
 	// this generator can be called a rule, a check, a detector, a plugin, etc.
 	GeneratorId []*StringFilter `type:"list"`
 
@@ -35851,7 +36001,7 @@ type AwsSecurityFindingFilters struct {
 	// Deprecated: The Keyword property is deprecated.
 	Keyword []*KeywordFilter `deprecated:"true" type:"list"`
 
-	// An ISO8601-formatted timestamp that indicates when the security-findings
+	// An ISO8601-formatted timestamp that indicates when the security findings
 	// provider most recently observed the potential security issue that a finding
 	// captured.
 	//
@@ -35947,7 +36097,7 @@ type AwsSecurityFindingFilters struct {
 	// that generates findings) is registered with Security Hub.
 	ProductArn []*StringFilter `type:"list"`
 
-	// A data type where security-findings providers can include additional solution-specific
+	// A data type where security findings providers can include additional solution-specific
 	// details that aren't part of the defined AwsSecurityFinding format.
 	ProductFields []*MapFilter `type:"list"`
 
@@ -36068,13 +36218,13 @@ type AwsSecurityFindingFilters struct {
 	// Deprecated: This filter is deprecated. Instead, use SeverityLabel or FindingProviderFieldsSeverityLabel.
 	SeverityNormalized []*NumberFilter `deprecated:"true" type:"list"`
 
-	// The native severity as defined by the security-findings provider's solution
+	// The native severity as defined by the security findings provider's solution
 	// that generated the finding.
 	//
 	// Deprecated: This filter is deprecated. Instead, use FindingProviderSeverityOriginal.
 	SeverityProduct []*NumberFilter `deprecated:"true" type:"list"`
 
-	// A URL that links to a page about the current finding in the security-findings
+	// A URL that links to a page about the current finding in the security findings
 	// provider's solution.
 	SourceUrl []*StringFilter `type:"list"`
 
@@ -36104,7 +36254,7 @@ type AwsSecurityFindingFilters struct {
 	// a finding.
 	Type []*StringFilter `type:"list"`
 
-	// An ISO8601-formatted timestamp that indicates when the security-findings
+	// An ISO8601-formatted timestamp that indicates when the security findings
 	// provider last updated the finding record.
 	//
 	// A correctly formatted example is 2020-05-21T20:16:34.724Z. The value cannot
@@ -36753,7 +36903,7 @@ func (s *AwsSecurityFindingFilters) SetWorkflowStatus(v []*StringFilter) *AwsSec
 	return s
 }
 
-// Identifies a finding to update using BatchUpdateFindings.
+// Identifies which finding to get the finding history for.
 type AwsSecurityFindingIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -43416,6 +43566,201 @@ func (s *FindingAggregator) SetFindingAggregatorArn(v string) *FindingAggregator
 	return s
 }
 
+// A list of events that changed the specified finding during the specified
+// time period. Each record represents a single finding change event.
+type FindingHistoryRecord struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies whether the event marks the creation of a new finding. A value
+	// of True means that the finding is newly created. A value of False means that
+	// the finding isn’t newly created.
+	FindingCreated *bool `type:"boolean"`
+
+	// Identifies which finding to get the finding history for.
+	FindingIdentifier *AwsSecurityFindingIdentifier `type:"structure"`
+
+	// A token for pagination purposes. Provide this token in the subsequent request
+	// to GetFindingsHistory (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_GetFindingsHistory.html)
+	// to get up to an additional 100 results of history for the same finding that
+	// you specified in your initial request.
+	NextToken *string `type:"string"`
+
+	// Identifies the source of the event that changed the finding. For example,
+	// an integrated Amazon Web Service or third-party partner integration may call
+	// BatchImportFindings (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html),
+	// or an Security Hub customer may call BatchUpdateFindings (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html).
+	UpdateSource *FindingHistoryUpdateSource `type:"structure"`
+
+	// An ISO 8601-formatted timestamp that indicates when the security findings
+	// provider last updated the finding record. A correctly formatted example is
+	// 2020-05-21T20:16:34.724Z. The value cannot contain spaces, and date and time
+	// should be separated by T. For more information, see RFC 3339 section 5.6,
+	// Internet Date/Time Format (https://www.rfc-editor.org/rfc/rfc3339#section-5.6).
+	UpdateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// An array of objects that provides details about the finding change event,
+	// including the Amazon Web Services Security Finding Format (ASFF) field that
+	// changed, the value of the field before the change, and the value of the field
+	// after the change.
+	Updates []*FindingHistoryUpdate `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingHistoryRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingHistoryRecord) GoString() string {
+	return s.String()
+}
+
+// SetFindingCreated sets the FindingCreated field's value.
+func (s *FindingHistoryRecord) SetFindingCreated(v bool) *FindingHistoryRecord {
+	s.FindingCreated = &v
+	return s
+}
+
+// SetFindingIdentifier sets the FindingIdentifier field's value.
+func (s *FindingHistoryRecord) SetFindingIdentifier(v *AwsSecurityFindingIdentifier) *FindingHistoryRecord {
+	s.FindingIdentifier = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *FindingHistoryRecord) SetNextToken(v string) *FindingHistoryRecord {
+	s.NextToken = &v
+	return s
+}
+
+// SetUpdateSource sets the UpdateSource field's value.
+func (s *FindingHistoryRecord) SetUpdateSource(v *FindingHistoryUpdateSource) *FindingHistoryRecord {
+	s.UpdateSource = v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *FindingHistoryRecord) SetUpdateTime(v time.Time) *FindingHistoryRecord {
+	s.UpdateTime = &v
+	return s
+}
+
+// SetUpdates sets the Updates field's value.
+func (s *FindingHistoryRecord) SetUpdates(v []*FindingHistoryUpdate) *FindingHistoryRecord {
+	s.Updates = v
+	return s
+}
+
+// An array of objects that provides details about a change to a finding, including
+// the Amazon Web Services Security Finding Format (ASFF) field that changed,
+// the value of the field before the change, and the value of the field after
+// the change.
+type FindingHistoryUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the ASFF field after the finding change event. To preserve storage
+	// and readability, Security Hub omits this value if FindingHistoryRecord (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_FindingHistoryRecord.html)
+	// exceeds database limits.
+	NewValue *string `type:"string"`
+
+	// The value of the ASFF field before the finding change event.
+	OldValue *string `type:"string"`
+
+	// The ASFF field that changed during the finding change event.
+	UpdatedField *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingHistoryUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingHistoryUpdate) GoString() string {
+	return s.String()
+}
+
+// SetNewValue sets the NewValue field's value.
+func (s *FindingHistoryUpdate) SetNewValue(v string) *FindingHistoryUpdate {
+	s.NewValue = &v
+	return s
+}
+
+// SetOldValue sets the OldValue field's value.
+func (s *FindingHistoryUpdate) SetOldValue(v string) *FindingHistoryUpdate {
+	s.OldValue = &v
+	return s
+}
+
+// SetUpdatedField sets the UpdatedField field's value.
+func (s *FindingHistoryUpdate) SetUpdatedField(v string) *FindingHistoryUpdate {
+	s.UpdatedField = &v
+	return s
+}
+
+// Identifies the source of the finding change event.
+type FindingHistoryUpdateSource struct {
+	_ struct{} `type:"structure"`
+
+	// The identity of the source that initiated the finding change event. For example,
+	// the Amazon Resource Name (ARN) of a partner that calls BatchImportFindings
+	// or of a customer that calls BatchUpdateFindings.
+	Identity *string `type:"string"`
+
+	// Describes the type of finding change event, such as a call to BatchImportFindings
+	// (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html)
+	// (by an integrated Amazon Web Service or third party partner integration)
+	// or BatchUpdateFindings (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html)
+	// (by a Security Hub customer).
+	Type *string `type:"string" enum:"FindingHistoryUpdateSourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingHistoryUpdateSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingHistoryUpdateSource) GoString() string {
+	return s.String()
+}
+
+// SetIdentity sets the Identity field's value.
+func (s *FindingHistoryUpdateSource) SetIdentity(v string) *FindingHistoryUpdateSource {
+	s.Identity = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FindingHistoryUpdateSource) SetType(v string) *FindingHistoryUpdateSource {
+	s.Type = &v
+	return s
+}
+
 // In a BatchImportFindings request, finding providers use FindingProviderFields
 // to provide and update values for confidence, criticality, related findings,
 // severity, and types.
@@ -44059,6 +44404,175 @@ func (s *GetFindingAggregatorOutput) SetRegionLinkingMode(v string) *GetFindingA
 // SetRegions sets the Regions field's value.
 func (s *GetFindingAggregatorOutput) SetRegions(v []*string) *GetFindingAggregatorOutput {
 	s.Regions = v
+	return s
+}
+
+type GetFindingHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// An ISO 8601-formatted timestamp that indicates the end time of the requested
+	// finding history. A correctly formatted example is 2020-05-21T20:16:34.724Z.
+	// The value cannot contain spaces, and date and time should be separated by
+	// T. For more information, see RFC 3339 section 5.6, Internet Date/Time Format
+	// (https://www.rfc-editor.org/rfc/rfc3339#section-5.6).
+	//
+	// If you provide values for both StartTime and EndTime, Security Hub returns
+	// finding history for the specified time period. If you provide a value for
+	// StartTime but not for EndTime, Security Hub returns finding history from
+	// the StartTime to the time at which the API is called. If you provide a value
+	// for EndTime but not for StartTime, Security Hub returns finding history from
+	// the CreatedAt (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_AwsSecurityFindingFilters.html#securityhub-Type-AwsSecurityFindingFilters-CreatedAt)
+	// timestamp of the finding to the EndTime. If you provide neither StartTime
+	// nor EndTime, Security Hub returns finding history from the CreatedAt timestamp
+	// of the finding to the time at which the API is called. In all of these scenarios,
+	// the response is limited to 100 results, and the maximum time period is limited
+	// to 90 days.
+	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Identifies which finding to get the finding history for.
+	//
+	// FindingIdentifier is a required field
+	FindingIdentifier *AwsSecurityFindingIdentifier `type:"structure" required:"true"`
+
+	// The maximum number of results to be returned. If you don’t provide it,
+	// Security Hub returns up to 100 results of finding history.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token for pagination purposes. Provide NULL as the initial value. In subsequent
+	// requests, provide the token included in the response to get up to an additional
+	// 100 results of finding history. If you don’t provide NextToken, Security
+	// Hub returns up to 100 results of finding history for each request.
+	NextToken *string `type:"string"`
+
+	// An ISO 8601-formatted timestamp that indicates the start time of the requested
+	// finding history. A correctly formatted example is 2020-05-21T20:16:34.724Z.
+	// The value cannot contain spaces, and date and time should be separated by
+	// T. For more information, see RFC 3339 section 5.6, Internet Date/Time Format
+	// (https://www.rfc-editor.org/rfc/rfc3339#section-5.6).
+	//
+	// If you provide values for both StartTime and EndTime, Security Hub returns
+	// finding history for the specified time period. If you provide a value for
+	// StartTime but not for EndTime, Security Hub returns finding history from
+	// the StartTime to the time at which the API is called. If you provide a value
+	// for EndTime but not for StartTime, Security Hub returns finding history from
+	// the CreatedAt (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_AwsSecurityFindingFilters.html#securityhub-Type-AwsSecurityFindingFilters-CreatedAt)
+	// timestamp of the finding to the EndTime. If you provide neither StartTime
+	// nor EndTime, Security Hub returns finding history from the CreatedAt timestamp
+	// of the finding to the time at which the API is called. In all of these scenarios,
+	// the response is limited to 100 results, and the maximum time period is limited
+	// to 90 days.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFindingHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFindingHistoryInput"}
+	if s.FindingIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingIdentifier"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.FindingIdentifier != nil {
+		if err := s.FindingIdentifier.Validate(); err != nil {
+			invalidParams.AddNested("FindingIdentifier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetFindingHistoryInput) SetEndTime(v time.Time) *GetFindingHistoryInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetFindingIdentifier sets the FindingIdentifier field's value.
+func (s *GetFindingHistoryInput) SetFindingIdentifier(v *AwsSecurityFindingIdentifier) *GetFindingHistoryInput {
+	s.FindingIdentifier = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetFindingHistoryInput) SetMaxResults(v int64) *GetFindingHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetFindingHistoryInput) SetNextToken(v string) *GetFindingHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetFindingHistoryInput) SetStartTime(v time.Time) *GetFindingHistoryInput {
+	s.StartTime = &v
+	return s
+}
+
+type GetFindingHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token for pagination purposes. Provide this token in the subsequent request
+	// to GetFindingsHistory to get up to an additional 100 results of history for
+	// the same finding that you specified in your initial request.
+	NextToken *string `type:"string"`
+
+	// A list of events that altered the specified finding during the specified
+	// time period.
+	Records []*FindingHistoryRecord `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetFindingHistoryOutput) SetNextToken(v string) *GetFindingHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *GetFindingHistoryOutput) SetRecords(v []*FindingHistoryRecord) *GetFindingHistoryOutput {
+	s.Records = v
 	return s
 }
 
@@ -53886,6 +54400,22 @@ const (
 func DateRangeUnit_Values() []string {
 	return []string{
 		DateRangeUnitDays,
+	}
+}
+
+const (
+	// FindingHistoryUpdateSourceTypeBatchUpdateFindings is a FindingHistoryUpdateSourceType enum value
+	FindingHistoryUpdateSourceTypeBatchUpdateFindings = "BATCH_UPDATE_FINDINGS"
+
+	// FindingHistoryUpdateSourceTypeBatchImportFindings is a FindingHistoryUpdateSourceType enum value
+	FindingHistoryUpdateSourceTypeBatchImportFindings = "BATCH_IMPORT_FINDINGS"
+)
+
+// FindingHistoryUpdateSourceType_Values returns all elements of the FindingHistoryUpdateSourceType enum
+func FindingHistoryUpdateSourceType_Values() []string {
+	return []string{
+		FindingHistoryUpdateSourceTypeBatchUpdateFindings,
+		FindingHistoryUpdateSourceTypeBatchImportFindings,
 	}
 }
 

@@ -666,10 +666,10 @@
       "enum":[
         "CREATING",
         "DELETING",
-        "SCALING",
-        "READY",
         "FAILED",
-        "ERROR"
+        "ERROR",
+        "SCALING",
+        "READY"
       ]
     },
     "AvailabilityZone":{"type":"string"},
@@ -2011,7 +2011,8 @@
       "type":"string",
       "enum":[
         "DROP",
-        "CONTINUE"
+        "CONTINUE",
+        "REJECT"
       ]
     },
     "SubnetMapping":{

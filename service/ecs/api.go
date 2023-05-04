@@ -196,6 +196,9 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 //     The specified parameter isn't valid. Review the available parameters for
 //     the API request.
 //
+//   - NamespaceNotFoundException
+//     The specified namespace wasn't found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/CreateCluster
 func (c *ECS) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
@@ -5554,6 +5557,9 @@ func (c *ECS) UpdateClusterRequest(input *UpdateClusterInput) (req *request.Requ
 //   - InvalidParameterException
 //     The specified parameter isn't valid. Review the available parameters for
 //     the API request.
+//
+//   - NamespaceNotFoundException
+//     The specified namespace wasn't found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateCluster
 func (c *ECS) UpdateCluster(input *UpdateClusterInput) (*UpdateClusterOutput, error) {

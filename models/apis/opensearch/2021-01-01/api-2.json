@@ -304,6 +304,23 @@
         {"shape":"DisabledOperationException"}
       ]
     },
+    "DescribeDomainNodes":{
+      "name":"DescribeDomainNodes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/nodes"
+      },
+      "input":{"shape":"DescribeDomainNodesRequest"},
+      "output":{"shape":"DescribeDomainNodesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"}
+      ]
+    },
     "DescribeDomains":{
       "name":"DescribeDomains",
       "http":{
@@ -1531,6 +1548,13 @@
         "VpcEndpointSummary":{"shape":"VpcEndpointSummary"}
       }
     },
+    "DependencyFailureException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":424},
+      "exception":true
+    },
     "DeploymentCloseDateTimeStamp":{"type":"timestamp"},
     "DeploymentStatus":{
       "type":"string",
@@ -1634,6 +1658,23 @@
         "TotalShards":{"shape":"NumberOfShards"},
         "TotalUnAssignedShards":{"shape":"NumberOfShards"},
         "EnvironmentInformation":{"shape":"EnvironmentInfoList"}
+      }
+    },
+    "DescribeDomainNodesRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      }
+    },
+    "DescribeDomainNodesResponse":{
+      "type":"structure",
+      "members":{
+        "DomainNodesStatusList":{"shape":"DomainNodesStatusList"}
       }
     },
     "DescribeDomainRequest":{
@@ -2000,6 +2041,23 @@
     "DomainNameList":{
       "type":"list",
       "member":{"shape":"DomainName"}
+    },
+    "DomainNodesStatus":{
+      "type":"structure",
+      "members":{
+        "NodeId":{"shape":"NodeId"},
+        "NodeType":{"shape":"NodeType"},
+        "AvailabilityZone":{"shape":"AvailabilityZone"},
+        "InstanceType":{"shape":"OpenSearchPartitionInstanceType"},
+        "NodeStatus":{"shape":"NodeStatus"},
+        "StorageType":{"shape":"StorageTypeName"},
+        "StorageVolumeType":{"shape":"VolumeType"},
+        "StorageSize":{"shape":"VolumeSize"}
+      }
+    },
+    "DomainNodesStatusList":{
+      "type":"list",
+      "member":{"shape":"DomainNodesStatus"}
     },
     "DomainPackageDetails":{
       "type":"structure",
@@ -2765,6 +2823,19 @@
     },
     "MinimumInstanceCount":{"type":"integer"},
     "NextToken":{"type":"string"},
+    "NodeId":{
+      "type":"string",
+      "max":40,
+      "min":10
+    },
+    "NodeStatus":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "StandBy",
+        "NotAvailable"
+      ]
+    },
     "NodeToNodeEncryptionOptions":{
       "type":"structure",
       "members":{
@@ -2781,6 +2852,14 @@
         "Options":{"shape":"NodeToNodeEncryptionOptions"},
         "Status":{"shape":"OptionStatus"}
       }
+    },
+    "NodeType":{
+      "type":"string",
+      "enum":[
+        "Data",
+        "Ultrawarm",
+        "Master"
+      ]
     },
     "NonEmptyString":{
       "type":"string",
@@ -3782,6 +3861,7 @@
       "min":14,
       "pattern":"^Elasticsearch_[0-9]{1}\\.[0-9]{1,2}$|^OpenSearch_[0-9]{1,2}\\.[0-9]{1,2}$"
     },
+    "VolumeSize":{"type":"string"},
     "VolumeType":{
       "type":"string",
       "enum":[

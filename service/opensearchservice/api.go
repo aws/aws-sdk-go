@@ -1826,6 +1826,104 @@ func (c *OpenSearchService) DescribeDomainHealthWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDescribeDomainNodes = "DescribeDomainNodes"
+
+// DescribeDomainNodesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDomainNodes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDomainNodes for more information on using the DescribeDomainNodes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDomainNodesRequest method.
+//	req, resp := client.DescribeDomainNodesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainNodes
+func (c *OpenSearchService) DescribeDomainNodesRequest(input *DescribeDomainNodesInput) (req *request.Request, output *DescribeDomainNodesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDomainNodes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/nodes",
+	}
+
+	if input == nil {
+		input = &DescribeDomainNodesInput{}
+	}
+
+	output = &DescribeDomainNodesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDomainNodes API operation for Amazon OpenSearch Service.
+//
+// Returns information about domain and nodes, including data nodes, master
+// nodes, ultrawarm nodes, Availability Zone(s), standby nodes, node configurations,
+// and node states.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation DescribeDomainNodes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+//   - InternalException
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+//   - ValidationException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access an unsupported operation.
+//
+//   - DependencyFailureException
+//     An exception for when a failure in one of the dependencies results in the
+//     service being unable to fetch details about the resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeDomainNodes
+func (c *OpenSearchService) DescribeDomainNodes(input *DescribeDomainNodesInput) (*DescribeDomainNodesOutput, error) {
+	req, out := c.DescribeDomainNodesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDomainNodesWithContext is the same as DescribeDomainNodes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDomainNodes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) DescribeDomainNodesWithContext(ctx aws.Context, input *DescribeDomainNodesInput, opts ...request.Option) (*DescribeDomainNodesOutput, error) {
+	req, out := c.DescribeDomainNodesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDomains = "DescribeDomains"
 
 // DescribeDomainsRequest generates a "aws/request.Request" representing the
@@ -5192,7 +5290,7 @@ func (c *OpenSearchService) UpdateDomainConfigRequest(input *UpdateDomainConfigI
 // UpdateDomainConfig API operation for Amazon OpenSearch Service.
 //
 // Modifies the cluster configuration of the specified Amazon OpenSearch Service
-// domain.
+// domain.sl
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8065,7 +8163,7 @@ type CreateDomainInput struct {
 	// OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
 	EngineVersion *string `min:"14" type:"string"`
 
-	// Key-value pairs to configure slow log publishing.
+	// Key-value pairs to configure log publishing.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
 	// Enables node-to-node encryption.
@@ -9161,6 +9259,71 @@ func (s *DeleteVpcEndpointOutput) SetVpcEndpointSummary(v *VpcEndpointSummary) *
 	return s
 }
 
+// An exception for when a failure in one of the dependencies results in the
+// service being unable to fetch details about the resource.
+type DependencyFailureException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DependencyFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DependencyFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorDependencyFailureException(v protocol.ResponseMetadata) error {
+	return &DependencyFailureException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DependencyFailureException) Code() string {
+	return "DependencyFailureException"
+}
+
+// Message returns the exception's message.
+func (s *DependencyFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DependencyFailureException) OrigErr() error {
+	return nil
+}
+
+func (s *DependencyFailureException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DependencyFailureException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DependencyFailureException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Container for the parameters to the DescribeDomainAutoTunes operation.
 type DescribeDomainAutoTunesInput struct {
 	_ struct{} `type:"structure"`
@@ -9722,6 +9885,90 @@ func (s *DescribeDomainInput) Validate() error {
 // SetDomainName sets the DomainName field's value.
 func (s *DescribeDomainInput) SetDomainName(v string) *DescribeDomainInput {
 	s.DomainName = &v
+	return s
+}
+
+// Container for the parameters to the DescribeDomainNodes operation.
+type DescribeDomainNodesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainNodesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainNodesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDomainNodesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDomainNodesInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DescribeDomainNodesInput) SetDomainName(v string) *DescribeDomainNodesInput {
+	s.DomainName = &v
+	return s
+}
+
+// The result of a DescribeDomainNodes request. Contains information about the
+// nodes on the requested domain.
+type DescribeDomainNodesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains nodes information list DomainNodesStatusList with details about
+	// the all nodes on the requested domain.
+	DomainNodesStatusList []*DomainNodesStatus `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainNodesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainNodesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDomainNodesStatusList sets the DomainNodesStatusList field's value.
+func (s *DescribeDomainNodesOutput) SetDomainNodesStatusList(v []*DomainNodesStatus) *DescribeDomainNodesOutput {
+	s.DomainNodesStatusList = v
 	return s
 }
 
@@ -10317,7 +10564,7 @@ type DescribePackagesFilter struct {
 	// Any field from PackageDetails.
 	Name *string `type:"string" enum:"DescribePackagesFilterName"`
 
-	// A list of values for the specified filter field.
+	// A non-empty list of values for the specified filter field.
 	Value []*string `type:"list"`
 }
 
@@ -10963,7 +11210,7 @@ type DomainConfig struct {
 	// The OpenSearch or Elasticsearch version that the domain is running.
 	EngineVersion *VersionStatus `type:"structure"`
 
-	// Key-value pairs to configure slow log publishing.
+	// Key-value pairs to configure log publishing.
 	LogPublishingOptions *LogPublishingOptionsStatus `type:"structure"`
 
 	// Whether node-to-node encryption is enabled or disabled.
@@ -11328,6 +11575,102 @@ func (s *DomainInformationContainer) Validate() error {
 // SetAWSDomainInformation sets the AWSDomainInformation field's value.
 func (s *DomainInformationContainer) SetAWSDomainInformation(v *AWSDomainInformation) *DomainInformationContainer {
 	s.AWSDomainInformation = v
+	return s
+}
+
+// Container for information about nodes on the domain.
+type DomainNodesStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zone of the node.
+	AvailabilityZone *string `min:"1" type:"string"`
+
+	// The instance type information of the node.
+	InstanceType *string `type:"string" enum:"OpenSearchPartitionInstanceType"`
+
+	// The ID of the node.
+	NodeId *string `min:"10" type:"string"`
+
+	// Indicates if the node is active or in standby.
+	NodeStatus *string `type:"string" enum:"NodeStatus"`
+
+	// Indicates whether the nodes is a data, master, or ultrawarm node.
+	NodeType *string `type:"string" enum:"NodeType"`
+
+	// The storage size of the node, in GiB.
+	StorageSize *string `type:"string"`
+
+	// Indicates if the node has EBS or instance storage.
+	StorageType *string `type:"string"`
+
+	// If the nodes has EBS storage, indicates if the volume type is GP2 or GP3.
+	// Only applicable for data nodes.
+	StorageVolumeType *string `type:"string" enum:"VolumeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainNodesStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainNodesStatus) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *DomainNodesStatus) SetAvailabilityZone(v string) *DomainNodesStatus {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *DomainNodesStatus) SetInstanceType(v string) *DomainNodesStatus {
+	s.InstanceType = &v
+	return s
+}
+
+// SetNodeId sets the NodeId field's value.
+func (s *DomainNodesStatus) SetNodeId(v string) *DomainNodesStatus {
+	s.NodeId = &v
+	return s
+}
+
+// SetNodeStatus sets the NodeStatus field's value.
+func (s *DomainNodesStatus) SetNodeStatus(v string) *DomainNodesStatus {
+	s.NodeStatus = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *DomainNodesStatus) SetNodeType(v string) *DomainNodesStatus {
+	s.NodeType = &v
+	return s
+}
+
+// SetStorageSize sets the StorageSize field's value.
+func (s *DomainNodesStatus) SetStorageSize(v string) *DomainNodesStatus {
+	s.StorageSize = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DomainNodesStatus) SetStorageType(v string) *DomainNodesStatus {
+	s.StorageType = &v
+	return s
+}
+
+// SetStorageVolumeType sets the StorageVolumeType field's value.
+func (s *DomainNodesStatus) SetStorageVolumeType(v string) *DomainNodesStatus {
+	s.StorageVolumeType = &v
 	return s
 }
 
@@ -19019,6 +19362,46 @@ func MasterNodeStatus_Values() []string {
 	return []string{
 		MasterNodeStatusAvailable,
 		MasterNodeStatusUnAvailable,
+	}
+}
+
+const (
+	// NodeStatusActive is a NodeStatus enum value
+	NodeStatusActive = "Active"
+
+	// NodeStatusStandBy is a NodeStatus enum value
+	NodeStatusStandBy = "StandBy"
+
+	// NodeStatusNotAvailable is a NodeStatus enum value
+	NodeStatusNotAvailable = "NotAvailable"
+)
+
+// NodeStatus_Values returns all elements of the NodeStatus enum
+func NodeStatus_Values() []string {
+	return []string{
+		NodeStatusActive,
+		NodeStatusStandBy,
+		NodeStatusNotAvailable,
+	}
+}
+
+const (
+	// NodeTypeData is a NodeType enum value
+	NodeTypeData = "Data"
+
+	// NodeTypeUltrawarm is a NodeType enum value
+	NodeTypeUltrawarm = "Ultrawarm"
+
+	// NodeTypeMaster is a NodeType enum value
+	NodeTypeMaster = "Master"
+)
+
+// NodeType_Values returns all elements of the NodeType enum
+func NodeType_Values() []string {
+	return []string{
+		NodeTypeData,
+		NodeTypeUltrawarm,
+		NodeTypeMaster,
 	}
 }
 

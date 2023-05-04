@@ -21,6 +21,7 @@
     "DescribeDomainChangeProgress": "<p>Returns information about the current blue/green deployment happening on an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-configuration-changes.html\">Making configuration changes in Amazon OpenSearch Service</a>.</p>",
     "DescribeDomainConfig": "<p>Returns the configuration of an Amazon OpenSearch Service domain.</p>",
     "DescribeDomainHealth": "<p>Returns information about domain and node health, the standby Availability Zone, number of nodes per Availability Zone, and shard count per node.</p>",
+    "DescribeDomainNodes": "<p>Returns information about domain and nodes, including data nodes, master nodes, ultrawarm nodes, Availability Zone(s), standby nodes, node configurations, and node states.</p>",
     "DescribeDomains": "<p>Returns domain configuration information about the specified Amazon OpenSearch Service domains.</p>",
     "DescribeDryRunProgress": "<p>Describes the progress of a pre-update dry run analysis on an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-configuration-changes#dryrun\">Determining whether a change will cause a blue/green deployment</a>.</p>",
     "DescribeInboundConnections": "<p>Lists all the inbound cross-cluster search connections for a destination (remote) Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html\">Cross-cluster search for Amazon OpenSearch Service</a>.</p>",
@@ -50,7 +51,7 @@
     "RemoveTags": "<p>Removes the specified set of tags from an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging\"> Tagging Amazon OpenSearch Service domains</a>.</p>",
     "RevokeVpcEndpointAccess": "<p>Revokes access to an Amazon OpenSearch Service domain that was provided through an interface VPC endpoint.</p>",
     "StartServiceSoftwareUpdate": "<p>Schedules a service software update for an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>",
-    "UpdateDomainConfig": "<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.</p>",
+    "UpdateDomainConfig": "<p>Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.sl</p>",
     "UpdatePackage": "<p>Updates a package for use with Amazon OpenSearch Service domains. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
     "UpdateScheduledAction": "<p>Reschedules a planned domain configuration change for a later time. This change can be a scheduled <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">service software update</a> or a <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html#auto-tune-types\">blue/green Auto-Tune enhancement</a>.</p>",
     "UpdateVpcEndpoint": "<p>Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.</p>",
@@ -301,7 +302,8 @@
       "base": null,
       "refs": {
         "AvailabilityZoneInfo$AvailabilityZoneName": "<p>The name of the Availability Zone.</p>",
-        "AvailabilityZoneList$member": null
+        "AvailabilityZoneList$member": null,
+        "DomainNodesStatus$AvailabilityZone": "<p>The Availability Zone of the node.</p>"
       }
     },
     "AvailabilityZoneInfo": {
@@ -644,6 +646,11 @@
       "refs": {
       }
     },
+    "DependencyFailureException": {
+      "base": "<p>An exception for when a failure in one of the dependencies results in the service being unable to fetch details about the resource.</p>",
+      "refs": {
+      }
+    },
     "DeploymentCloseDateTimeStamp": {
       "base": null,
       "refs": {
@@ -699,6 +706,16 @@
     },
     "DescribeDomainHealthResponse": {
       "base": "<p>The result of a <code>DescribeDomainHealth</code> request. Contains health information for the requested domain.</p>",
+      "refs": {
+      }
+    },
+    "DescribeDomainNodesRequest": {
+      "base": "<p>Container for the parameters to the <code>DescribeDomainNodes</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeDomainNodesResponse": {
+      "base": "<p>The result of a <code>DescribeDomainNodes</code> request. Contains information about the nodes on the requested domain. </p>",
       "refs": {
       }
     },
@@ -789,7 +806,7 @@
     "DescribePackagesFilterValues": {
       "base": null,
       "refs": {
-        "DescribePackagesFilter$Value": "<p>A list of values for the specified filter field.</p>"
+        "DescribePackagesFilter$Value": "<p>A non-empty list of values for the specified filter field.</p>"
       }
     },
     "DescribePackagesRequest": {
@@ -939,6 +956,7 @@
         "DescribeDomainChangeProgressRequest$DomainName": "<p>The name of the domain to get progress information for.</p>",
         "DescribeDomainConfigRequest$DomainName": "<p>Name of the OpenSearch Service domain configuration that you want to describe.</p>",
         "DescribeDomainHealthRequest$DomainName": "<p>The name of the domain.</p>",
+        "DescribeDomainNodesRequest$DomainName": "<p>The name of the domain.</p>",
         "DescribeDomainRequest$DomainName": "<p>The name of the domain that you want information about.</p>",
         "DescribeDryRunProgressRequest$DomainName": "<p>The name of the domain.</p>",
         "DescribeInstanceTypeLimitsRequest$DomainName": "<p>The name of the domain. Only specify if you need the limits for an existing domain.</p>",
@@ -973,6 +991,18 @@
       "base": "<p>A list of OpenSearch Service domain names.</p>",
       "refs": {
         "DescribeDomainsRequest$DomainNames": "<p>Array of OpenSearch Service domain names that you want information about. If you don't specify any domains, OpenSearch Service returns information about all domains owned by the account.</p>"
+      }
+    },
+    "DomainNodesStatus": {
+      "base": "<p>Container for information about nodes on the domain.</p>",
+      "refs": {
+        "DomainNodesStatusList$member": null
+      }
+    },
+    "DomainNodesStatusList": {
+      "base": "<p>List of <code>DomainNodesStatus</code> with details about nodes on the requested domain.</p>",
+      "refs": {
+        "DescribeDomainNodesResponse$DomainNodesStatusList": "<p>Contains nodes information list <code>DomainNodesStatusList</code> with details about the all nodes on the requested domain.</p>"
       }
     },
     "DomainPackageDetails": {
@@ -1510,7 +1540,7 @@
     "LogPublishingOptions": {
       "base": null,
       "refs": {
-        "CreateDomainRequest$LogPublishingOptions": "<p>Key-value pairs to configure slow log publishing.</p>",
+        "CreateDomainRequest$LogPublishingOptions": "<p>Key-value pairs to configure log publishing.</p>",
         "DomainStatus$LogPublishingOptions": "<p>Log publishing options for the domain.</p>",
         "LogPublishingOptionsStatus$Options": "<p>The log publishing options configured for the domain.</p>",
         "UpdateDomainConfigRequest$LogPublishingOptions": "<p>Options to publish OpenSearch logs to Amazon CloudWatch Logs.</p>"
@@ -1519,7 +1549,7 @@
     "LogPublishingOptionsStatus": {
       "base": "<p>The configured log publishing options for the domain and their current status.</p>",
       "refs": {
-        "DomainConfig$LogPublishingOptions": "<p>Key-value pairs to configure slow log publishing.</p>"
+        "DomainConfig$LogPublishingOptions": "<p>Key-value pairs to configure log publishing.</p>"
       }
     },
     "LogType": {
@@ -1618,6 +1648,18 @@
         "ListVpcEndpointsResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
       }
     },
+    "NodeId": {
+      "base": null,
+      "refs": {
+        "DomainNodesStatus$NodeId": "<p>The ID of the node.</p>"
+      }
+    },
+    "NodeStatus": {
+      "base": null,
+      "refs": {
+        "DomainNodesStatus$NodeStatus": "<p>Indicates if the node is active or in standby.</p>"
+      }
+    },
     "NodeToNodeEncryptionOptions": {
       "base": "<p>Enables or disables node-to-node encryption. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ntn.html\">Node-to-node encryption for Amazon OpenSearch Service</a>.</p>",
       "refs": {
@@ -1631,6 +1673,12 @@
       "base": "<p>Status of the node-to-node encryption options for the specified domain.</p>",
       "refs": {
         "DomainConfig$NodeToNodeEncryptionOptions": "<p>Whether node-to-node encryption is enabled or disabled.</p>"
+      }
+    },
+    "NodeType": {
+      "base": null,
+      "refs": {
+        "DomainNodesStatus$NodeType": "<p>Indicates whether the nodes is a data, master, or ultrawarm node.</p>"
       }
     },
     "NonEmptyString": {
@@ -1694,6 +1742,7 @@
         "ClusterConfig$InstanceType": "<p>Instance type of data nodes in the cluster.</p>",
         "ClusterConfig$DedicatedMasterType": "<p>OpenSearch Service instance type of the dedicated master nodes in the cluster.</p>",
         "DescribeInstanceTypeLimitsRequest$InstanceType": "<p>The OpenSearch Service instance type for which you need limit information.</p>",
+        "DomainNodesStatus$InstanceType": "<p>The instance type information of the node.</p>",
         "InstanceTypeDetails$InstanceType": "<p>The instance type.</p>",
         "ReservedInstance$InstanceType": "<p>The OpenSearch instance type offered by theReserved Instance offering.</p>",
         "ReservedInstanceOffering$InstanceType": "<p>The OpenSearch instance type offered by the Reserved Instance offering.</p>"
@@ -2213,6 +2262,7 @@
     "StorageTypeName": {
       "base": "<p>The type of storage that the domain uses. Can be one of the following:</p> <dl> <dt>instance</dt> <dd> <p>Built-in storage available for the instance.</p> </dd> <dt>ebs</dt> <dd> <p>Elastic Block Storage (EBS) attached to the instance.</p> </dd> </dl>",
       "refs": {
+        "DomainNodesStatus$StorageType": "<p>Indicates if the node has EBS or instance storage. </p>",
         "StorageType$StorageTypeName": "<p>The name of the storage type.</p>"
       }
     },
@@ -2516,9 +2566,16 @@
         "VersionStatus$Options": "<p>The OpenSearch or Elasticsearch version for the specified domain.</p>"
       }
     },
+    "VolumeSize": {
+      "base": null,
+      "refs": {
+        "DomainNodesStatus$StorageSize": "<p>The storage size of the node, in GiB.</p>"
+      }
+    },
     "VolumeType": {
       "base": "<p>The type of EBS volume that a domain uses. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs\">Configuring EBS-based storage</a>.</p>",
       "refs": {
+        "DomainNodesStatus$StorageVolumeType": "<p>If the nodes has EBS storage, indicates if the volume type is GP2 or GP3. Only applicable for data nodes. </p>",
         "EBSOptions$VolumeType": "<p>Specifies the type of EBS volumes attached to data nodes.</p>"
       }
     },

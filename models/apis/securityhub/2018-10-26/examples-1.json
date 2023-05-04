@@ -841,6 +841,51 @@
         "title": "To get cross-Region aggregation details"
       }
     ],
+    "GetFindingHistory": [
+      {
+        "input": {
+          "EndTime": "2021-09-31T15:53:35.573Z",
+          "FindingIdentifier": {
+            "Id": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+            "ProductArn": "arn:aws:securityhub:us-west-2:123456789012:product/123456789012/default"
+          },
+          "MaxResults": 2,
+          "StartTime": "2021-09-30T15:53:35.573Z"
+        },
+        "output": {
+          "Records": [
+            {
+              "FindingCreated": false,
+              "FindingIdentifier": {
+                "Id": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+                "ProductArn": "arn:aws:securityhub:us-west-2:123456789012:product/123456789012/default"
+              },
+              "UpdateSource": {
+                "Identity": "arn:aws:iam::444455556666:role/Admin",
+                "Type": "BATCH_UPDATE_FINDINGS"
+              },
+              "UpdateTime": "2021-09-31T15:52:25.573Z",
+              "Updates": [
+                {
+                  "NewValue": "MEDIUM",
+                  "OldValue": "HIGH",
+                  "UpdatedField": "Severity"
+                }
+              ]
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example retrieves the history of the specified finding during the specified time frame. If the time frame permits, Security Hub returns finding history for the last 90 days.",
+        "id": "to-get-finding-history-1680270012186",
+        "title": "To get finding history"
+      }
+    ],
     "GetFindings": [
       {
         "input": {

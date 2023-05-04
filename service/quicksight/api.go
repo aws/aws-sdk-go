@@ -2111,6 +2111,321 @@ func (c *QuickSight) CreateThemeAliasWithContext(ctx aws.Context, input *CreateT
 	return out, req.Send()
 }
 
+const opCreateTopic = "CreateTopic"
+
+// CreateTopicRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTopic operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTopic for more information on using the CreateTopic
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTopicRequest method.
+//	req, resp := client.CreateTopicRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateTopic
+func (c *QuickSight) CreateTopicRequest(input *CreateTopicInput) (req *request.Request, output *CreateTopicOutput) {
+	op := &request.Operation{
+		Name:       opCreateTopic,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics",
+	}
+
+	if input == nil {
+		input = &CreateTopicInput{}
+	}
+
+	output = &CreateTopicOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTopic API operation for Amazon QuickSight.
+//
+// Creates a new Q topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateTopic for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateTopic
+func (c *QuickSight) CreateTopic(input *CreateTopicInput) (*CreateTopicOutput, error) {
+	req, out := c.CreateTopicRequest(input)
+	return out, req.Send()
+}
+
+// CreateTopicWithContext is the same as CreateTopic with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTopic for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateTopicWithContext(ctx aws.Context, input *CreateTopicInput, opts ...request.Option) (*CreateTopicOutput, error) {
+	req, out := c.CreateTopicRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateTopicRefreshSchedule = "CreateTopicRefreshSchedule"
+
+// CreateTopicRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTopicRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTopicRefreshSchedule for more information on using the CreateTopicRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTopicRefreshScheduleRequest method.
+//	req, resp := client.CreateTopicRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateTopicRefreshSchedule
+func (c *QuickSight) CreateTopicRefreshScheduleRequest(input *CreateTopicRefreshScheduleInput) (req *request.Request, output *CreateTopicRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opCreateTopicRefreshSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/schedules",
+	}
+
+	if input == nil {
+		input = &CreateTopicRefreshScheduleInput{}
+	}
+
+	output = &CreateTopicRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTopicRefreshSchedule API operation for Amazon QuickSight.
+//
+// Creates a topic refresh schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateTopicRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateTopicRefreshSchedule
+func (c *QuickSight) CreateTopicRefreshSchedule(input *CreateTopicRefreshScheduleInput) (*CreateTopicRefreshScheduleOutput, error) {
+	req, out := c.CreateTopicRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// CreateTopicRefreshScheduleWithContext is the same as CreateTopicRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTopicRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateTopicRefreshScheduleWithContext(ctx aws.Context, input *CreateTopicRefreshScheduleInput, opts ...request.Option) (*CreateTopicRefreshScheduleOutput, error) {
+	req, out := c.CreateTopicRefreshScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVPCConnection = "CreateVPCConnection"
+
+// CreateVPCConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVPCConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVPCConnection for more information on using the CreateVPCConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVPCConnectionRequest method.
+//	req, resp := client.CreateVPCConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateVPCConnection
+func (c *QuickSight) CreateVPCConnectionRequest(input *CreateVPCConnectionInput) (req *request.Request, output *CreateVPCConnectionOutput) {
+	op := &request.Operation{
+		Name:       opCreateVPCConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/vpc-connections",
+	}
+
+	if input == nil {
+		input = &CreateVPCConnectionInput{}
+	}
+
+	output = &CreateVPCConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVPCConnection API operation for Amazon QuickSight.
+//
+// Creates a new VPC connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateVPCConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateVPCConnection
+func (c *QuickSight) CreateVPCConnection(input *CreateVPCConnectionInput) (*CreateVPCConnectionOutput, error) {
+	req, out := c.CreateVPCConnectionRequest(input)
+	return out, req.Send()
+}
+
+// CreateVPCConnectionWithContext is the same as CreateVPCConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVPCConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateVPCConnectionWithContext(ctx aws.Context, input *CreateVPCConnectionInput, opts ...request.Option) (*CreateVPCConnectionOutput, error) {
+	req, out := c.CreateVPCConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAccountCustomization = "DeleteAccountCustomization"
 
 // DeleteAccountCustomizationRequest generates a "aws/request.Request" representing the
@@ -3934,6 +4249,208 @@ func (c *QuickSight) DeleteThemeAliasWithContext(ctx aws.Context, input *DeleteT
 	return out, req.Send()
 }
 
+const opDeleteTopic = "DeleteTopic"
+
+// DeleteTopicRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTopic operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTopic for more information on using the DeleteTopic
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTopicRequest method.
+//	req, resp := client.DeleteTopicRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteTopic
+func (c *QuickSight) DeleteTopicRequest(input *DeleteTopicInput) (req *request.Request, output *DeleteTopicOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTopic,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}",
+	}
+
+	if input == nil {
+		input = &DeleteTopicInput{}
+	}
+
+	output = &DeleteTopicOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteTopic API operation for Amazon QuickSight.
+//
+// Deletes a topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteTopic for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteTopic
+func (c *QuickSight) DeleteTopic(input *DeleteTopicInput) (*DeleteTopicOutput, error) {
+	req, out := c.DeleteTopicRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTopicWithContext is the same as DeleteTopic with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTopic for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteTopicWithContext(ctx aws.Context, input *DeleteTopicInput, opts ...request.Option) (*DeleteTopicOutput, error) {
+	req, out := c.DeleteTopicRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTopicRefreshSchedule = "DeleteTopicRefreshSchedule"
+
+// DeleteTopicRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTopicRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTopicRefreshSchedule for more information on using the DeleteTopicRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTopicRefreshScheduleRequest method.
+//	req, resp := client.DeleteTopicRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteTopicRefreshSchedule
+func (c *QuickSight) DeleteTopicRefreshScheduleRequest(input *DeleteTopicRefreshScheduleInput) (req *request.Request, output *DeleteTopicRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTopicRefreshSchedule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}",
+	}
+
+	if input == nil {
+		input = &DeleteTopicRefreshScheduleInput{}
+	}
+
+	output = &DeleteTopicRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteTopicRefreshSchedule API operation for Amazon QuickSight.
+//
+// Deletes a topic refresh schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteTopicRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteTopicRefreshSchedule
+func (c *QuickSight) DeleteTopicRefreshSchedule(input *DeleteTopicRefreshScheduleInput) (*DeleteTopicRefreshScheduleOutput, error) {
+	req, out := c.DeleteTopicRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTopicRefreshScheduleWithContext is the same as DeleteTopicRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTopicRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteTopicRefreshScheduleWithContext(ctx aws.Context, input *DeleteTopicRefreshScheduleInput, opts ...request.Option) (*DeleteTopicRefreshScheduleOutput, error) {
+	req, out := c.DeleteTopicRefreshScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUser = "DeleteUser"
 
 // DeleteUserRequest generates a "aws/request.Request" representing the
@@ -4133,6 +4650,110 @@ func (c *QuickSight) DeleteUserByPrincipalId(input *DeleteUserByPrincipalIdInput
 // for more information on using Contexts.
 func (c *QuickSight) DeleteUserByPrincipalIdWithContext(ctx aws.Context, input *DeleteUserByPrincipalIdInput, opts ...request.Option) (*DeleteUserByPrincipalIdOutput, error) {
 	req, out := c.DeleteUserByPrincipalIdRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVPCConnection = "DeleteVPCConnection"
+
+// DeleteVPCConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVPCConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVPCConnection for more information on using the DeleteVPCConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteVPCConnectionRequest method.
+//	req, resp := client.DeleteVPCConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteVPCConnection
+func (c *QuickSight) DeleteVPCConnectionRequest(input *DeleteVPCConnectionInput) (req *request.Request, output *DeleteVPCConnectionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVPCConnection,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/vpc-connections/{VPCConnectionId}",
+	}
+
+	if input == nil {
+		input = &DeleteVPCConnectionInput{}
+	}
+
+	output = &DeleteVPCConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVPCConnection API operation for Amazon QuickSight.
+//
+// Deletes a VPC connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteVPCConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteVPCConnection
+func (c *QuickSight) DeleteVPCConnection(input *DeleteVPCConnectionInput) (*DeleteVPCConnectionOutput, error) {
+	req, out := c.DeleteVPCConnectionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVPCConnectionWithContext is the same as DeleteVPCConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVPCConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteVPCConnectionWithContext(ctx aws.Context, input *DeleteVPCConnectionInput, opts ...request.Option) (*DeleteVPCConnectionOutput, error) {
+	req, out := c.DeleteVPCConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7283,6 +7904,395 @@ func (c *QuickSight) DescribeThemePermissionsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opDescribeTopic = "DescribeTopic"
+
+// DescribeTopicRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTopic operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTopic for more information on using the DescribeTopic
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTopicRequest method.
+//	req, resp := client.DescribeTopicRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopic
+func (c *QuickSight) DescribeTopicRequest(input *DescribeTopicInput) (req *request.Request, output *DescribeTopicOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTopic,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}",
+	}
+
+	if input == nil {
+		input = &DescribeTopicInput{}
+	}
+
+	output = &DescribeTopicOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTopic API operation for Amazon QuickSight.
+//
+// Describes a topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeTopic for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopic
+func (c *QuickSight) DescribeTopic(input *DescribeTopicInput) (*DescribeTopicOutput, error) {
+	req, out := c.DescribeTopicRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTopicWithContext is the same as DescribeTopic with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTopic for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeTopicWithContext(ctx aws.Context, input *DescribeTopicInput, opts ...request.Option) (*DescribeTopicOutput, error) {
+	req, out := c.DescribeTopicRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeTopicPermissions = "DescribeTopicPermissions"
+
+// DescribeTopicPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTopicPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTopicPermissions for more information on using the DescribeTopicPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTopicPermissionsRequest method.
+//	req, resp := client.DescribeTopicPermissionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopicPermissions
+func (c *QuickSight) DescribeTopicPermissionsRequest(input *DescribeTopicPermissionsInput) (req *request.Request, output *DescribeTopicPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTopicPermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/permissions",
+	}
+
+	if input == nil {
+		input = &DescribeTopicPermissionsInput{}
+	}
+
+	output = &DescribeTopicPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTopicPermissions API operation for Amazon QuickSight.
+//
+// Describes the permissions of a topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeTopicPermissions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopicPermissions
+func (c *QuickSight) DescribeTopicPermissions(input *DescribeTopicPermissionsInput) (*DescribeTopicPermissionsOutput, error) {
+	req, out := c.DescribeTopicPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTopicPermissionsWithContext is the same as DescribeTopicPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTopicPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeTopicPermissionsWithContext(ctx aws.Context, input *DescribeTopicPermissionsInput, opts ...request.Option) (*DescribeTopicPermissionsOutput, error) {
+	req, out := c.DescribeTopicPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeTopicRefresh = "DescribeTopicRefresh"
+
+// DescribeTopicRefreshRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTopicRefresh operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTopicRefresh for more information on using the DescribeTopicRefresh
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTopicRefreshRequest method.
+//	req, resp := client.DescribeTopicRefreshRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopicRefresh
+func (c *QuickSight) DescribeTopicRefreshRequest(input *DescribeTopicRefreshInput) (req *request.Request, output *DescribeTopicRefreshOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTopicRefresh,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/refresh/{RefreshId}",
+	}
+
+	if input == nil {
+		input = &DescribeTopicRefreshInput{}
+	}
+
+	output = &DescribeTopicRefreshOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTopicRefresh API operation for Amazon QuickSight.
+//
+// Describes the status of a topic refresh.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeTopicRefresh for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopicRefresh
+func (c *QuickSight) DescribeTopicRefresh(input *DescribeTopicRefreshInput) (*DescribeTopicRefreshOutput, error) {
+	req, out := c.DescribeTopicRefreshRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTopicRefreshWithContext is the same as DescribeTopicRefresh with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTopicRefresh for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeTopicRefreshWithContext(ctx aws.Context, input *DescribeTopicRefreshInput, opts ...request.Option) (*DescribeTopicRefreshOutput, error) {
+	req, out := c.DescribeTopicRefreshRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeTopicRefreshSchedule = "DescribeTopicRefreshSchedule"
+
+// DescribeTopicRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTopicRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTopicRefreshSchedule for more information on using the DescribeTopicRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeTopicRefreshScheduleRequest method.
+//	req, resp := client.DescribeTopicRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopicRefreshSchedule
+func (c *QuickSight) DescribeTopicRefreshScheduleRequest(input *DescribeTopicRefreshScheduleInput) (req *request.Request, output *DescribeTopicRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTopicRefreshSchedule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}",
+	}
+
+	if input == nil {
+		input = &DescribeTopicRefreshScheduleInput{}
+	}
+
+	output = &DescribeTopicRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTopicRefreshSchedule API operation for Amazon QuickSight.
+//
+// Deletes a topic refresh schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeTopicRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeTopicRefreshSchedule
+func (c *QuickSight) DescribeTopicRefreshSchedule(input *DescribeTopicRefreshScheduleInput) (*DescribeTopicRefreshScheduleOutput, error) {
+	req, out := c.DescribeTopicRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTopicRefreshScheduleWithContext is the same as DescribeTopicRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTopicRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeTopicRefreshScheduleWithContext(ctx aws.Context, input *DescribeTopicRefreshScheduleInput, opts ...request.Option) (*DescribeTopicRefreshScheduleOutput, error) {
+	req, out := c.DescribeTopicRefreshScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeUser = "DescribeUser"
 
 // DescribeUserRequest generates a "aws/request.Request" representing the
@@ -7379,6 +8389,107 @@ func (c *QuickSight) DescribeUser(input *DescribeUserInput) (*DescribeUserOutput
 // for more information on using Contexts.
 func (c *QuickSight) DescribeUserWithContext(ctx aws.Context, input *DescribeUserInput, opts ...request.Option) (*DescribeUserOutput, error) {
 	req, out := c.DescribeUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeVPCConnection = "DescribeVPCConnection"
+
+// DescribeVPCConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVPCConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVPCConnection for more information on using the DescribeVPCConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeVPCConnectionRequest method.
+//	req, resp := client.DescribeVPCConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeVPCConnection
+func (c *QuickSight) DescribeVPCConnectionRequest(input *DescribeVPCConnectionInput) (req *request.Request, output *DescribeVPCConnectionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVPCConnection,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/vpc-connections/{VPCConnectionId}",
+	}
+
+	if input == nil {
+		input = &DescribeVPCConnectionInput{}
+	}
+
+	output = &DescribeVPCConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVPCConnection API operation for Amazon QuickSight.
+//
+// Describes a VPC connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeVPCConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeVPCConnection
+func (c *QuickSight) DescribeVPCConnection(input *DescribeVPCConnectionInput) (*DescribeVPCConnectionOutput, error) {
+	req, out := c.DescribeVPCConnectionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVPCConnectionWithContext is the same as DescribeVPCConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVPCConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeVPCConnectionWithContext(ctx aws.Context, input *DescribeVPCConnectionInput, opts ...request.Option) (*DescribeVPCConnectionOutput, error) {
+	req, out := c.DescribeVPCConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9156,7 +10267,7 @@ func (c *QuickSight) ListIAMPolicyAssignmentsRequest(input *ListIAMPolicyAssignm
 	op := &request.Operation{
 		Name:       opListIAMPolicyAssignments,
 		HTTPMethod: "GET",
-		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/iam-policy-assignments",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/v2/iam-policy-assignments",
 	}
 
 	if input == nil {
@@ -9170,7 +10281,7 @@ func (c *QuickSight) ListIAMPolicyAssignmentsRequest(input *ListIAMPolicyAssignm
 
 // ListIAMPolicyAssignments API operation for Amazon QuickSight.
 //
-// Lists IAM policy assignments in the current Amazon QuickSight account.
+// Lists the IAM policy assignments in the current Amazon QuickSight account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9268,9 +10379,9 @@ func (c *QuickSight) ListIAMPolicyAssignmentsForUserRequest(input *ListIAMPolicy
 
 // ListIAMPolicyAssignmentsForUser API operation for Amazon QuickSight.
 //
-// Lists all the IAM policy assignments, including the Amazon Resource Names
-// (ARNs) for the IAM policies assigned to the specified user and group or groups
-// that the user belongs to.
+// Lists all of the IAM policy assignments, including the Amazon Resource Names
+// (ARNs), for the IAM policies assigned to the specified user and group, or
+// groups that the user belongs to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10724,6 +11835,262 @@ func (c *QuickSight) ListThemesPagesWithContext(ctx aws.Context, input *ListThem
 	return p.Err()
 }
 
+const opListTopicRefreshSchedules = "ListTopicRefreshSchedules"
+
+// ListTopicRefreshSchedulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListTopicRefreshSchedules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTopicRefreshSchedules for more information on using the ListTopicRefreshSchedules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTopicRefreshSchedulesRequest method.
+//	req, resp := client.ListTopicRefreshSchedulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListTopicRefreshSchedules
+func (c *QuickSight) ListTopicRefreshSchedulesRequest(input *ListTopicRefreshSchedulesInput) (req *request.Request, output *ListTopicRefreshSchedulesOutput) {
+	op := &request.Operation{
+		Name:       opListTopicRefreshSchedules,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/schedules",
+	}
+
+	if input == nil {
+		input = &ListTopicRefreshSchedulesInput{}
+	}
+
+	output = &ListTopicRefreshSchedulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTopicRefreshSchedules API operation for Amazon QuickSight.
+//
+// Lists all of the refresh schedules for a topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListTopicRefreshSchedules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListTopicRefreshSchedules
+func (c *QuickSight) ListTopicRefreshSchedules(input *ListTopicRefreshSchedulesInput) (*ListTopicRefreshSchedulesOutput, error) {
+	req, out := c.ListTopicRefreshSchedulesRequest(input)
+	return out, req.Send()
+}
+
+// ListTopicRefreshSchedulesWithContext is the same as ListTopicRefreshSchedules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTopicRefreshSchedules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListTopicRefreshSchedulesWithContext(ctx aws.Context, input *ListTopicRefreshSchedulesInput, opts ...request.Option) (*ListTopicRefreshSchedulesOutput, error) {
+	req, out := c.ListTopicRefreshSchedulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListTopics = "ListTopics"
+
+// ListTopicsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTopics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTopics for more information on using the ListTopics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTopicsRequest method.
+//	req, resp := client.ListTopicsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListTopics
+func (c *QuickSight) ListTopicsRequest(input *ListTopicsInput) (req *request.Request, output *ListTopicsOutput) {
+	op := &request.Operation{
+		Name:       opListTopics,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTopicsInput{}
+	}
+
+	output = &ListTopicsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTopics API operation for Amazon QuickSight.
+//
+// Lists all of the topics within an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListTopics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListTopics
+func (c *QuickSight) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
+	req, out := c.ListTopicsRequest(input)
+	return out, req.Send()
+}
+
+// ListTopicsWithContext is the same as ListTopics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTopics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListTopicsWithContext(ctx aws.Context, input *ListTopicsInput, opts ...request.Option) (*ListTopicsOutput, error) {
+	req, out := c.ListTopicsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTopicsPages iterates over the pages of a ListTopics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTopics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTopics operation.
+//	pageNum := 0
+//	err := client.ListTopicsPages(params,
+//	    func(page *quicksight.ListTopicsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListTopicsPages(input *ListTopicsInput, fn func(*ListTopicsOutput, bool) bool) error {
+	return c.ListTopicsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTopicsPagesWithContext same as ListTopicsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListTopicsPagesWithContext(ctx aws.Context, input *ListTopicsInput, fn func(*ListTopicsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTopicsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTopicsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTopicsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListUserGroups = "ListUserGroups"
 
 // ListUserGroupsRequest generates a "aws/request.Request" representing the
@@ -10928,6 +12295,165 @@ func (c *QuickSight) ListUsersWithContext(ctx aws.Context, input *ListUsersInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListVPCConnections = "ListVPCConnections"
+
+// ListVPCConnectionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVPCConnections operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVPCConnections for more information on using the ListVPCConnections
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVPCConnectionsRequest method.
+//	req, resp := client.ListVPCConnectionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListVPCConnections
+func (c *QuickSight) ListVPCConnectionsRequest(input *ListVPCConnectionsInput) (req *request.Request, output *ListVPCConnectionsOutput) {
+	op := &request.Operation{
+		Name:       opListVPCConnections,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/vpc-connections",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVPCConnectionsInput{}
+	}
+
+	output = &ListVPCConnectionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVPCConnections API operation for Amazon QuickSight.
+//
+// Lists all of the VPC connections in the current set Amazon Web Services Region
+// of an Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListVPCConnections for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListVPCConnections
+func (c *QuickSight) ListVPCConnections(input *ListVPCConnectionsInput) (*ListVPCConnectionsOutput, error) {
+	req, out := c.ListVPCConnectionsRequest(input)
+	return out, req.Send()
+}
+
+// ListVPCConnectionsWithContext is the same as ListVPCConnections with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVPCConnections for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListVPCConnectionsWithContext(ctx aws.Context, input *ListVPCConnectionsInput, opts ...request.Option) (*ListVPCConnectionsOutput, error) {
+	req, out := c.ListVPCConnectionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVPCConnectionsPages iterates over the pages of a ListVPCConnections operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVPCConnections method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListVPCConnections operation.
+//	pageNum := 0
+//	err := client.ListVPCConnectionsPages(params,
+//	    func(page *quicksight.ListVPCConnectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) ListVPCConnectionsPages(input *ListVPCConnectionsInput, fn func(*ListVPCConnectionsOutput, bool) bool) error {
+	return c.ListVPCConnectionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVPCConnectionsPagesWithContext same as ListVPCConnectionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListVPCConnectionsPagesWithContext(ctx aws.Context, input *ListVPCConnectionsInput, fn func(*ListVPCConnectionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVPCConnectionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVPCConnectionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVPCConnectionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPutDataSetRefreshProperties = "PutDataSetRefreshProperties"
@@ -12142,7 +13668,7 @@ func (c *QuickSight) TagResourceRequest(input *TagResourceInput) (req *request.R
 // for that tag.
 //
 // You can associate as many as 50 tags with a resource. Amazon QuickSight supports
-// tagging on data set, data source, dashboard, and template.
+// tagging on data set, data source, dashboard, template, and topic.
 //
 // Tagging for Amazon QuickSight works in a similar way to tagging for other
 // Amazon Web Services services, except for the following:
@@ -13874,9 +15400,9 @@ func (c *QuickSight) UpdateIpRestrictionRequest(input *UpdateIpRestrictionInput)
 
 // UpdateIpRestriction API operation for Amazon QuickSight.
 //
-// Updates the content and status of IP rules. To use this operation, you need
-// to provide the entire map of rules. You can use the DescribeIpRestriction
-// operation to get the current rule map.
+// Updates the content and status of IP rules. To use this operation, you must
+// provide the entire map of rules. You can use the DescribeIpRestriction operation
+// to get the current rule map.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14773,6 +16299,321 @@ func (c *QuickSight) UpdateThemePermissionsWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
+const opUpdateTopic = "UpdateTopic"
+
+// UpdateTopicRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTopic operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTopic for more information on using the UpdateTopic
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTopicRequest method.
+//	req, resp := client.UpdateTopicRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateTopic
+func (c *QuickSight) UpdateTopicRequest(input *UpdateTopicInput) (req *request.Request, output *UpdateTopicOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTopic,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}",
+	}
+
+	if input == nil {
+		input = &UpdateTopicInput{}
+	}
+
+	output = &UpdateTopicOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTopic API operation for Amazon QuickSight.
+//
+// Updates a topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateTopic for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateTopic
+func (c *QuickSight) UpdateTopic(input *UpdateTopicInput) (*UpdateTopicOutput, error) {
+	req, out := c.UpdateTopicRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTopicWithContext is the same as UpdateTopic with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTopic for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateTopicWithContext(ctx aws.Context, input *UpdateTopicInput, opts ...request.Option) (*UpdateTopicOutput, error) {
+	req, out := c.UpdateTopicRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateTopicPermissions = "UpdateTopicPermissions"
+
+// UpdateTopicPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTopicPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTopicPermissions for more information on using the UpdateTopicPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTopicPermissionsRequest method.
+//	req, resp := client.UpdateTopicPermissionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateTopicPermissions
+func (c *QuickSight) UpdateTopicPermissionsRequest(input *UpdateTopicPermissionsInput) (req *request.Request, output *UpdateTopicPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTopicPermissions,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/permissions",
+	}
+
+	if input == nil {
+		input = &UpdateTopicPermissionsInput{}
+	}
+
+	output = &UpdateTopicPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTopicPermissions API operation for Amazon QuickSight.
+//
+// Updates the permissions of a topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateTopicPermissions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateTopicPermissions
+func (c *QuickSight) UpdateTopicPermissions(input *UpdateTopicPermissionsInput) (*UpdateTopicPermissionsOutput, error) {
+	req, out := c.UpdateTopicPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTopicPermissionsWithContext is the same as UpdateTopicPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTopicPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateTopicPermissionsWithContext(ctx aws.Context, input *UpdateTopicPermissionsInput, opts ...request.Option) (*UpdateTopicPermissionsOutput, error) {
+	req, out := c.UpdateTopicPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateTopicRefreshSchedule = "UpdateTopicRefreshSchedule"
+
+// UpdateTopicRefreshScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTopicRefreshSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTopicRefreshSchedule for more information on using the UpdateTopicRefreshSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTopicRefreshScheduleRequest method.
+//	req, resp := client.UpdateTopicRefreshScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateTopicRefreshSchedule
+func (c *QuickSight) UpdateTopicRefreshScheduleRequest(input *UpdateTopicRefreshScheduleInput) (req *request.Request, output *UpdateTopicRefreshScheduleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTopicRefreshSchedule,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}",
+	}
+
+	if input == nil {
+		input = &UpdateTopicRefreshScheduleInput{}
+	}
+
+	output = &UpdateTopicRefreshScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTopicRefreshSchedule API operation for Amazon QuickSight.
+//
+// Updates a topic refresh schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateTopicRefreshSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ResourceExistsException
+//     The resource specified already exists.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateTopicRefreshSchedule
+func (c *QuickSight) UpdateTopicRefreshSchedule(input *UpdateTopicRefreshScheduleInput) (*UpdateTopicRefreshScheduleOutput, error) {
+	req, out := c.UpdateTopicRefreshScheduleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTopicRefreshScheduleWithContext is the same as UpdateTopicRefreshSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTopicRefreshSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateTopicRefreshScheduleWithContext(ctx aws.Context, input *UpdateTopicRefreshScheduleInput, opts ...request.Option) (*UpdateTopicRefreshScheduleOutput, error) {
+	req, out := c.UpdateTopicRefreshScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUser = "UpdateUser"
 
 // UpdateUserRequest generates a "aws/request.Request" representing the
@@ -14869,6 +16710,113 @@ func (c *QuickSight) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, erro
 // for more information on using Contexts.
 func (c *QuickSight) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput, opts ...request.Option) (*UpdateUserOutput, error) {
 	req, out := c.UpdateUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateVPCConnection = "UpdateVPCConnection"
+
+// UpdateVPCConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVPCConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVPCConnection for more information on using the UpdateVPCConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateVPCConnectionRequest method.
+//	req, resp := client.UpdateVPCConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateVPCConnection
+func (c *QuickSight) UpdateVPCConnectionRequest(input *UpdateVPCConnectionInput) (req *request.Request, output *UpdateVPCConnectionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVPCConnection,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/vpc-connections/{VPCConnectionId}",
+	}
+
+	if input == nil {
+		input = &UpdateVPCConnectionInput{}
+	}
+
+	output = &UpdateVPCConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVPCConnection API operation for Amazon QuickSight.
+//
+// Updates a VPC connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateVPCConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - LimitExceededException
+//     A limit is exceeded.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateVPCConnection
+func (c *QuickSight) UpdateVPCConnection(input *UpdateVPCConnectionInput) (*UpdateVPCConnectionOutput, error) {
+	req, out := c.UpdateVPCConnectionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVPCConnectionWithContext is the same as UpdateVPCConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVPCConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateVPCConnectionWithContext(ctx aws.Context, input *UpdateVPCConnectionInput, opts ...request.Option) (*UpdateVPCConnectionOutput, error) {
+	req, out := c.UpdateVPCConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -18318,6 +20266,53 @@ func (s *BodySectionContent) SetLayout(v *SectionLayoutConfiguration) *BodySecti
 	return s
 }
 
+// The bookmarks configuration of an embedded dashboard.
+type BookmarksConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that determines whether a user can bookmark an embedded dashboard.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BookmarksConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BookmarksConfigurations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BookmarksConfigurations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BookmarksConfigurations"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *BookmarksConfigurations) SetEnabled(v bool) *BookmarksConfigurations {
+	s.Enabled = &v
+	return s
+}
+
 // The display options for tile borders for visuals.
 type BorderStyle struct {
 	_ struct{} `type:"structure"`
@@ -19934,6 +21929,47 @@ func (s *CategoryFilterConfiguration) SetFilterListConfiguration(v *FilterListCo
 	return s
 }
 
+// A structure that represents the cell value synonym.
+type CellValueSynonym struct {
+	_ struct{} `type:"structure"`
+
+	// The cell value.
+	CellValue *string `type:"string"`
+
+	// Other names or aliases for the cell value.
+	Synonyms []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CellValueSynonym) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CellValueSynonym) GoString() string {
+	return s.String()
+}
+
+// SetCellValue sets the CellValue field's value.
+func (s *CellValueSynonym) SetCellValue(v string) *CellValueSynonym {
+	s.CellValue = &v
+	return s
+}
+
+// SetSynonyms sets the Synonyms field's value.
+func (s *CellValueSynonym) SetSynonyms(v []*string) *CellValueSynonym {
+	s.Synonyms = v
+	return s
+}
+
 // The label options for an axis on a chart.
 type ChartAxisLabelOptions struct {
 	_ struct{} `type:"structure"`
@@ -20069,6 +22105,38 @@ func (s ClusterMarkerConfiguration) GoString() string {
 // SetClusterMarker sets the ClusterMarker field's value.
 func (s *ClusterMarkerConfiguration) SetClusterMarker(v *ClusterMarker) *ClusterMarkerConfiguration {
 	s.ClusterMarker = v
+	return s
+}
+
+// A structure that represents a collective constant.
+type CollectiveConstant struct {
+	_ struct{} `type:"structure"`
+
+	// A list of values for the collective constant.
+	ValueList []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectiveConstant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectiveConstant) GoString() string {
+	return s.String()
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *CollectiveConstant) SetValueList(v []*string) *CollectiveConstant {
+	s.ValueList = v
 	return s
 }
 
@@ -21466,6 +23534,58 @@ func (s *ComboChartVisual) SetTitle(v *VisualTitleLabelOptions) *ComboChartVisua
 // SetVisualId sets the VisualId field's value.
 func (s *ComboChartVisual) SetVisualId(v string) *ComboChartVisual {
 	s.VisualId = &v
+	return s
+}
+
+// A structure that represents a comparative order.
+type ComparativeOrder struct {
+	_ struct{} `type:"structure"`
+
+	// The list of columns to be used in the ordering.
+	SpecifedOrder []*string `type:"list"`
+
+	// The treat of undefined specified values. Valid values for this structure
+	// are LEAST and MOST.
+	TreatUndefinedSpecifiedValues *string `type:"string" enum:"UndefinedSpecifiedValueType"`
+
+	// The ordering type for a column. Valid values for this structure are GREATER_IS_BETTER,
+	// LESSER_IS_BETTER and SPECIFIED.
+	UseOrdering *string `type:"string" enum:"ColumnOrderingType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComparativeOrder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComparativeOrder) GoString() string {
+	return s.String()
+}
+
+// SetSpecifedOrder sets the SpecifedOrder field's value.
+func (s *ComparativeOrder) SetSpecifedOrder(v []*string) *ComparativeOrder {
+	s.SpecifedOrder = v
+	return s
+}
+
+// SetTreatUndefinedSpecifiedValues sets the TreatUndefinedSpecifiedValues field's value.
+func (s *ComparativeOrder) SetTreatUndefinedSpecifiedValues(v string) *ComparativeOrder {
+	s.TreatUndefinedSpecifiedValues = &v
+	return s
+}
+
+// SetUseOrdering sets the UseOrdering field's value.
+func (s *ComparativeOrder) SetUseOrdering(v string) *ComparativeOrder {
+	s.UseOrdering = &v
 	return s
 }
 
@@ -23607,6 +25727,9 @@ type CreateDataSetInput struct {
 	// as a source.
 	DataSetUsageConfiguration *DataSetUsageConfiguration `type:"structure"`
 
+	// The parameter declarations of the dataset.
+	DatasetParameters []*DatasetParameter `min:"1" type:"list"`
+
 	// The folder that contains fields and nested subfolders for your dataset.
 	FieldFolders map[string]*FieldFolder `type:"map"`
 
@@ -23680,6 +25803,9 @@ func (s *CreateDataSetInput) Validate() error {
 	if s.DataSetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
 	}
+	if s.DatasetParameters != nil && len(s.DatasetParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetParameters", 1))
+	}
 	if s.ImportMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImportMode"))
 	}
@@ -23718,6 +25844,16 @@ func (s *CreateDataSetInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnLevelPermissionRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DatasetParameters != nil {
+		for i, v := range s.DatasetParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DatasetParameters", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -23805,6 +25941,12 @@ func (s *CreateDataSetInput) SetDataSetId(v string) *CreateDataSetInput {
 // SetDataSetUsageConfiguration sets the DataSetUsageConfiguration field's value.
 func (s *CreateDataSetInput) SetDataSetUsageConfiguration(v *DataSetUsageConfiguration) *CreateDataSetInput {
 	s.DataSetUsageConfiguration = v
+	return s
+}
+
+// SetDatasetParameters sets the DatasetParameters field's value.
+func (s *CreateDataSetInput) SetDatasetParameters(v []*DatasetParameter) *CreateDataSetInput {
+	s.DatasetParameters = v
 	return s
 }
 
@@ -24865,8 +27007,8 @@ func (s *CreateGroupOutput) SetStatus(v int64) *CreateGroupOutput {
 type CreateIAMPolicyAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the assignment, also called a rule. It must be unique within
-	// an Amazon Web Services account.
+	// The name of the assignment, also called a rule. The name must be unique within
+	// the Amazon Web Services account.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `min:"1" type:"string" required:"true"`
@@ -24995,7 +27137,7 @@ type CreateIAMPolicyAssignmentOutput struct {
 	// The ID for the assignment.
 	AssignmentId *string `type:"string"`
 
-	// The name of the assignment. This name must be unique within the Amazon Web
+	// The name of the assignment. The name must be unique within the Amazon Web
 	// Services account.
 	AssignmentName *string `min:"1" type:"string"`
 
@@ -26398,6 +28540,604 @@ func (s *CreateThemeOutput) SetThemeId(v string) *CreateThemeOutput {
 // SetVersionArn sets the VersionArn field's value.
 func (s *CreateThemeOutput) SetVersionArn(v string) *CreateThemeOutput {
 	s.VersionArn = &v
+	return s
+}
+
+type CreateTopicInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that you want to create a topic
+	// in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// Contains a map of the key-value pairs for the resource tag or tags that are
+	// assigned to the dataset.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The definition of a topic to create.
+	//
+	// Topic is a required field
+	Topic *TopicDetails `type:"structure" required:"true"`
+
+	// The ID for the topic that you want to create. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTopicInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTopicInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Topic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Topic"))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Topic != nil {
+		if err := s.Topic.Validate(); err != nil {
+			invalidParams.AddNested("Topic", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateTopicInput) SetAwsAccountId(v string) *CreateTopicInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTopicInput) SetTags(v []*Tag) *CreateTopicInput {
+	s.Tags = v
+	return s
+}
+
+// SetTopic sets the Topic field's value.
+func (s *CreateTopicInput) SetTopic(v *TopicDetails) *CreateTopicInput {
+	s.Topic = v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *CreateTopicInput) SetTopicId(v string) *CreateTopicInput {
+	s.TopicId = &v
+	return s
+}
+
+type CreateTopicOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	Arn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the topic refresh.
+	RefreshArn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The ID for the topic that you want to create. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateTopicOutput) SetArn(v string) *CreateTopicOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRefreshArn sets the RefreshArn field's value.
+func (s *CreateTopicOutput) SetRefreshArn(v string) *CreateTopicOutput {
+	s.RefreshArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateTopicOutput) SetRequestId(v string) *CreateTopicOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateTopicOutput) SetStatus(v int64) *CreateTopicOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *CreateTopicOutput) SetTopicId(v string) *CreateTopicOutput {
+	s.TopicId = &v
+	return s
+}
+
+type CreateTopicRefreshScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the topic you're
+	// creating a refresh schedule for.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the dataset.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `type:"string" required:"true"`
+
+	// The name of the dataset.
+	DatasetName *string `type:"string"`
+
+	// The definition of a refresh schedule.
+	//
+	// RefreshSchedule is a required field
+	RefreshSchedule *TopicRefreshSchedule `type:"structure" required:"true"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTopicRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTopicRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.RefreshSchedule == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefreshSchedule"))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+	if s.RefreshSchedule != nil {
+		if err := s.RefreshSchedule.Validate(); err != nil {
+			invalidParams.AddNested("RefreshSchedule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateTopicRefreshScheduleInput) SetAwsAccountId(v string) *CreateTopicRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *CreateTopicRefreshScheduleInput) SetDatasetArn(v string) *CreateTopicRefreshScheduleInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *CreateTopicRefreshScheduleInput) SetDatasetName(v string) *CreateTopicRefreshScheduleInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetRefreshSchedule sets the RefreshSchedule field's value.
+func (s *CreateTopicRefreshScheduleInput) SetRefreshSchedule(v *TopicRefreshSchedule) *CreateTopicRefreshScheduleInput {
+	s.RefreshSchedule = v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *CreateTopicRefreshScheduleInput) SetTopicId(v string) *CreateTopicRefreshScheduleInput {
+	s.TopicId = &v
+	return s
+}
+
+type CreateTopicRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset.
+	DatasetArn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *CreateTopicRefreshScheduleOutput) SetDatasetArn(v string) *CreateTopicRefreshScheduleOutput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateTopicRefreshScheduleOutput) SetRequestId(v string) *CreateTopicRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateTopicRefreshScheduleOutput) SetStatus(v int64) *CreateTopicRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *CreateTopicRefreshScheduleOutput) SetTopicArn(v string) *CreateTopicRefreshScheduleOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *CreateTopicRefreshScheduleOutput) SetTopicId(v string) *CreateTopicRefreshScheduleOutput {
+	s.TopicId = &v
+	return s
+}
+
+type CreateVPCConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the account where you want to create
+	// a new VPC connection.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// A list of IP addresses of DNS resolver endpoints for the VPC connection.
+	DnsResolvers []*string `type:"list"`
+
+	// The display name for the VPC connection.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The IAM role to associate with the VPC connection.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A list of security group IDs for the VPC connection.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of subnet IDs for the VPC connection.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `min:"2" type:"list" required:"true"`
+
+	// A map of the key-value pairs for the resource tag or tags assigned to the
+	// VPC connection.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The ID of the VPC connection that you're creating. This ID is a unique identifier
+	// for each Amazon Web Services Region in an Amazon Web Services account.
+	//
+	// VPCConnectionId is a required field
+	VPCConnectionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVPCConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVPCConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVPCConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVPCConnectionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.SubnetIds != nil && len(s.SubnetIds) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 2))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VPCConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VPCConnectionId"))
+	}
+	if s.VPCConnectionId != nil && len(*s.VPCConnectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnectionId", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateVPCConnectionInput) SetAwsAccountId(v string) *CreateVPCConnectionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDnsResolvers sets the DnsResolvers field's value.
+func (s *CreateVPCConnectionInput) SetDnsResolvers(v []*string) *CreateVPCConnectionInput {
+	s.DnsResolvers = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateVPCConnectionInput) SetName(v string) *CreateVPCConnectionInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateVPCConnectionInput) SetRoleArn(v string) *CreateVPCConnectionInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *CreateVPCConnectionInput) SetSecurityGroupIds(v []*string) *CreateVPCConnectionInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *CreateVPCConnectionInput) SetSubnetIds(v []*string) *CreateVPCConnectionInput {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVPCConnectionInput) SetTags(v []*Tag) *CreateVPCConnectionInput {
+	s.Tags = v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *CreateVPCConnectionInput) SetVPCConnectionId(v string) *CreateVPCConnectionInput {
+	s.VPCConnectionId = &v
+	return s
+}
+
+type CreateVPCConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	Arn *string `type:"string"`
+
+	// The availability status of the VPC connection.
+	AvailabilityStatus *string `type:"string" enum:"VPCConnectionAvailabilityStatus"`
+
+	// The status of the creation of the VPC connection.
+	CreationStatus *string `type:"string" enum:"VPCConnectionResourceStatus"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The ID for the VPC connection that you're creating. This ID is unique per
+	// Amazon Web Services Region for each Amazon Web Services account.
+	VPCConnectionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVPCConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVPCConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateVPCConnectionOutput) SetArn(v string) *CreateVPCConnectionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *CreateVPCConnectionOutput) SetAvailabilityStatus(v string) *CreateVPCConnectionOutput {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// SetCreationStatus sets the CreationStatus field's value.
+func (s *CreateVPCConnectionOutput) SetCreationStatus(v string) *CreateVPCConnectionOutput {
+	s.CreationStatus = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateVPCConnectionOutput) SetRequestId(v string) *CreateVPCConnectionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateVPCConnectionOutput) SetStatus(v int64) *CreateVPCConnectionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *CreateVPCConnectionOutput) SetVPCConnectionId(v string) *CreateVPCConnectionOutput {
+	s.VPCConnectionId = &v
 	return s
 }
 
@@ -28627,6 +31367,47 @@ func (s *DashboardVisualPublishOptions) SetExportHiddenFieldsOption(v *ExportHid
 	return s
 }
 
+// A structure that represents a data aggregation.
+type DataAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The level of time precision that is used to aggregate DateTime values.
+	DatasetRowDateGranularity *string `type:"string" enum:"TopicTimeGranularity"`
+
+	// The column name for the default date.
+	DefaultDateColumnName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataAggregation) GoString() string {
+	return s.String()
+}
+
+// SetDatasetRowDateGranularity sets the DatasetRowDateGranularity field's value.
+func (s *DataAggregation) SetDatasetRowDateGranularity(v string) *DataAggregation {
+	s.DatasetRowDateGranularity = &v
+	return s
+}
+
+// SetDefaultDateColumnName sets the DefaultDateColumnName field's value.
+func (s *DataAggregation) SetDefaultDateColumnName(v string) *DataAggregation {
+	s.DefaultDateColumnName = &v
+	return s
+}
+
 // The options for data bars.
 type DataBarsOptions struct {
 	_ struct{} `type:"structure"`
@@ -28904,6 +31685,9 @@ type DataLabelOptions struct {
 	// Determines the position of the data labels.
 	Position *string `type:"string" enum:"DataLabelPosition"`
 
+	// Determines the visibility of the total.
+	TotalsVisibility *string `type:"string" enum:"Visibility"`
+
 	// Determines the visibility of the data labels.
 	Visibility *string `type:"string" enum:"Visibility"`
 }
@@ -28991,6 +31775,12 @@ func (s *DataLabelOptions) SetOverlap(v string) *DataLabelOptions {
 // SetPosition sets the Position field's value.
 func (s *DataLabelOptions) SetPosition(v string) *DataLabelOptions {
 	s.Position = &v
+	return s
+}
+
+// SetTotalsVisibility sets the TotalsVisibility field's value.
+func (s *DataLabelOptions) SetTotalsVisibility(v string) *DataLabelOptions {
+	s.TotalsVisibility = &v
 	return s
 }
 
@@ -29496,6 +32286,9 @@ type DataSet struct {
 	// as a source.
 	DataSetUsageConfiguration *DataSetUsageConfiguration `type:"structure"`
 
+	// The parameters that are declared in a dataset.
+	DatasetParameters []*DatasetParameter `min:"1" type:"list"`
+
 	// The folder that contains fields and nested subfolders for your dataset.
 	FieldFolders map[string]*FieldFolder `type:"map"`
 
@@ -29583,6 +32376,12 @@ func (s *DataSet) SetDataSetId(v string) *DataSet {
 // SetDataSetUsageConfiguration sets the DataSetUsageConfiguration field's value.
 func (s *DataSet) SetDataSetUsageConfiguration(v *DataSetUsageConfiguration) *DataSet {
 	s.DataSetUsageConfiguration = v
+	return s
+}
+
+// SetDatasetParameters sets the DatasetParameters field's value.
+func (s *DataSet) SetDatasetParameters(v []*DatasetParameter) *DataSet {
+	s.DatasetParameters = v
 	return s
 }
 
@@ -31057,6 +33856,245 @@ func (s *DatabricksParameters) SetSqlEndpointPath(v string) *DatabricksParameter
 	return s
 }
 
+// A structure that represents a dataset.
+type DatasetMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The list of calculated field definitions.
+	CalculatedFields []*TopicCalculatedField `type:"list"`
+
+	// The list of column definitions.
+	Columns []*TopicColumn `type:"list"`
+
+	// The definition of a data aggregation.
+	DataAggregation *DataAggregation `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `type:"string" required:"true"`
+
+	// The description of the dataset.
+	DatasetDescription *string `type:"string"`
+
+	// The name of the dataset.
+	DatasetName *string `type:"string"`
+
+	// The list of filter definitions.
+	Filters []*TopicFilter `type:"list"`
+
+	// The list of named entities definitions.
+	NamedEntities []*TopicNamedEntity `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetMetadata) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetMetadata) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetMetadata"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.CalculatedFields != nil {
+		for i, v := range s.CalculatedFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CalculatedFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Columns != nil {
+		for i, v := range s.Columns {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Columns", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.NamedEntities != nil {
+		for i, v := range s.NamedEntities {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NamedEntities", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatedFields sets the CalculatedFields field's value.
+func (s *DatasetMetadata) SetCalculatedFields(v []*TopicCalculatedField) *DatasetMetadata {
+	s.CalculatedFields = v
+	return s
+}
+
+// SetColumns sets the Columns field's value.
+func (s *DatasetMetadata) SetColumns(v []*TopicColumn) *DatasetMetadata {
+	s.Columns = v
+	return s
+}
+
+// SetDataAggregation sets the DataAggregation field's value.
+func (s *DatasetMetadata) SetDataAggregation(v *DataAggregation) *DatasetMetadata {
+	s.DataAggregation = v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DatasetMetadata) SetDatasetArn(v string) *DatasetMetadata {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetDescription sets the DatasetDescription field's value.
+func (s *DatasetMetadata) SetDatasetDescription(v string) *DatasetMetadata {
+	s.DatasetDescription = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *DatasetMetadata) SetDatasetName(v string) *DatasetMetadata {
+	s.DatasetName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DatasetMetadata) SetFilters(v []*TopicFilter) *DatasetMetadata {
+	s.Filters = v
+	return s
+}
+
+// SetNamedEntities sets the NamedEntities field's value.
+func (s *DatasetMetadata) SetNamedEntities(v []*TopicNamedEntity) *DatasetMetadata {
+	s.NamedEntities = v
+	return s
+}
+
+// A dataset parameter.
+type DatasetParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A date time parameter that is created in the dataset.
+	DateTimeDatasetParameter *DateTimeDatasetParameter `type:"structure"`
+
+	// A decimal parameter that is created in the dataset.
+	DecimalDatasetParameter *DecimalDatasetParameter `type:"structure"`
+
+	// An integer parameter that is created in the dataset.
+	IntegerDatasetParameter *IntegerDatasetParameter `type:"structure"`
+
+	// A string parameter that is created in the dataset.
+	StringDatasetParameter *StringDatasetParameter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetParameter"}
+	if s.DateTimeDatasetParameter != nil {
+		if err := s.DateTimeDatasetParameter.Validate(); err != nil {
+			invalidParams.AddNested("DateTimeDatasetParameter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DecimalDatasetParameter != nil {
+		if err := s.DecimalDatasetParameter.Validate(); err != nil {
+			invalidParams.AddNested("DecimalDatasetParameter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.IntegerDatasetParameter != nil {
+		if err := s.IntegerDatasetParameter.Validate(); err != nil {
+			invalidParams.AddNested("IntegerDatasetParameter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StringDatasetParameter != nil {
+		if err := s.StringDatasetParameter.Validate(); err != nil {
+			invalidParams.AddNested("StringDatasetParameter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateTimeDatasetParameter sets the DateTimeDatasetParameter field's value.
+func (s *DatasetParameter) SetDateTimeDatasetParameter(v *DateTimeDatasetParameter) *DatasetParameter {
+	s.DateTimeDatasetParameter = v
+	return s
+}
+
+// SetDecimalDatasetParameter sets the DecimalDatasetParameter field's value.
+func (s *DatasetParameter) SetDecimalDatasetParameter(v *DecimalDatasetParameter) *DatasetParameter {
+	s.DecimalDatasetParameter = v
+	return s
+}
+
+// SetIntegerDatasetParameter sets the IntegerDatasetParameter field's value.
+func (s *DatasetParameter) SetIntegerDatasetParameter(v *IntegerDatasetParameter) *DatasetParameter {
+	s.IntegerDatasetParameter = v
+	return s
+}
+
+// SetStringDatasetParameter sets the StringDatasetParameter field's value.
+func (s *DatasetParameter) SetStringDatasetParameter(v *StringDatasetParameter) *DatasetParameter {
+	s.StringDatasetParameter = v
+	return s
+}
+
 // The options that determine how a date axis is displayed.
 type DateAxisOptions struct {
 	_ struct{} `type:"structure"`
@@ -31301,6 +34339,157 @@ func (s *DateMeasureField) SetFieldId(v string) *DateMeasureField {
 // SetFormatConfiguration sets the FormatConfiguration field's value.
 func (s *DateMeasureField) SetFormatConfiguration(v *DateTimeFormatConfiguration) *DateMeasureField {
 	s.FormatConfiguration = v
+	return s
+}
+
+// A date time parameter for a dataset.
+type DateTimeDatasetParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of default values for a given date time parameter. This structure
+	// only accepts static values.
+	DefaultValues *DateTimeDatasetParameterDefaultValues `type:"structure"`
+
+	// An identifier for the parameter that is created in the dataset.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The name of the date time parameter that is created in the dataset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The time granularity of the date time parameter.
+	TimeGranularity *string `type:"string" enum:"TimeGranularity"`
+
+	// The value type of the dataset parameter. Valid values are single value or
+	// multi value.
+	//
+	// ValueType is a required field
+	ValueType *string `type:"string" required:"true" enum:"DatasetParameterValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateTimeDatasetParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateTimeDatasetParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DateTimeDatasetParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DateTimeDatasetParameter"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueType"))
+	}
+	if s.DefaultValues != nil {
+		if err := s.DefaultValues.Validate(); err != nil {
+			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValues sets the DefaultValues field's value.
+func (s *DateTimeDatasetParameter) SetDefaultValues(v *DateTimeDatasetParameterDefaultValues) *DateTimeDatasetParameter {
+	s.DefaultValues = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DateTimeDatasetParameter) SetId(v string) *DateTimeDatasetParameter {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DateTimeDatasetParameter) SetName(v string) *DateTimeDatasetParameter {
+	s.Name = &v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *DateTimeDatasetParameter) SetTimeGranularity(v string) *DateTimeDatasetParameter {
+	s.TimeGranularity = &v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *DateTimeDatasetParameter) SetValueType(v string) *DateTimeDatasetParameter {
+	s.ValueType = &v
+	return s
+}
+
+// The default values of a date time parameter.
+type DateTimeDatasetParameterDefaultValues struct {
+	_ struct{} `type:"structure"`
+
+	// A list of static default values for a given date time parameter.
+	StaticValues []*time.Time `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateTimeDatasetParameterDefaultValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateTimeDatasetParameterDefaultValues) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DateTimeDatasetParameterDefaultValues) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DateTimeDatasetParameterDefaultValues"}
+	if s.StaticValues != nil && len(s.StaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StaticValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStaticValues sets the StaticValues field's value.
+func (s *DateTimeDatasetParameterDefaultValues) SetStaticValues(v []*time.Time) *DateTimeDatasetParameterDefaultValues {
+	s.StaticValues = v
 	return s
 }
 
@@ -31587,6 +34776,9 @@ type DateTimeParameterDeclaration struct {
 	// a maximum of one default value can be provided.
 	DefaultValues *DateTimeDefaultValues `type:"structure"`
 
+	// A list of dataset parameters that are mapped to an analysis parameter.
+	MappedDataSetParameters []*MappedDataSetParameter `type:"list"`
+
 	// The name of the parameter that is being declared.
 	//
 	// Name is a required field
@@ -31632,6 +34824,16 @@ func (s *DateTimeParameterDeclaration) Validate() error {
 			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MappedDataSetParameters != nil {
+		for i, v := range s.MappedDataSetParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MappedDataSetParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -31642,6 +34844,12 @@ func (s *DateTimeParameterDeclaration) Validate() error {
 // SetDefaultValues sets the DefaultValues field's value.
 func (s *DateTimeParameterDeclaration) SetDefaultValues(v *DateTimeDefaultValues) *DateTimeParameterDeclaration {
 	s.DefaultValues = v
+	return s
+}
+
+// SetMappedDataSetParameters sets the MappedDataSetParameters field's value.
+func (s *DateTimeParameterDeclaration) SetMappedDataSetParameters(v []*MappedDataSetParameter) *DateTimeParameterDeclaration {
+	s.MappedDataSetParameters = v
 	return s
 }
 
@@ -31764,6 +34972,148 @@ func (s *DateTimeValueWhenUnsetConfiguration) SetCustomValue(v time.Time) *DateT
 // SetValueWhenUnsetOption sets the ValueWhenUnsetOption field's value.
 func (s *DateTimeValueWhenUnsetConfiguration) SetValueWhenUnsetOption(v string) *DateTimeValueWhenUnsetConfiguration {
 	s.ValueWhenUnsetOption = &v
+	return s
+}
+
+// A decimal parameter for a dataset.
+type DecimalDatasetParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of default values for a given decimal parameter. This structure only
+	// accepts static values.
+	DefaultValues *DecimalDatasetParameterDefaultValues `type:"structure"`
+
+	// An identifier for the decimal parameter created in the dataset.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The name of the decimal parameter that is created in the dataset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value type of the dataset parameter. Valid values are single value or
+	// multi value.
+	//
+	// ValueType is a required field
+	ValueType *string `type:"string" required:"true" enum:"DatasetParameterValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DecimalDatasetParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DecimalDatasetParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DecimalDatasetParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DecimalDatasetParameter"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueType"))
+	}
+	if s.DefaultValues != nil {
+		if err := s.DefaultValues.Validate(); err != nil {
+			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValues sets the DefaultValues field's value.
+func (s *DecimalDatasetParameter) SetDefaultValues(v *DecimalDatasetParameterDefaultValues) *DecimalDatasetParameter {
+	s.DefaultValues = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DecimalDatasetParameter) SetId(v string) *DecimalDatasetParameter {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DecimalDatasetParameter) SetName(v string) *DecimalDatasetParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *DecimalDatasetParameter) SetValueType(v string) *DecimalDatasetParameter {
+	s.ValueType = &v
+	return s
+}
+
+// The default values of a decimal parameter.
+type DecimalDatasetParameterDefaultValues struct {
+	_ struct{} `type:"structure"`
+
+	// A list of static default values for a given decimal parameter.
+	StaticValues []*float64 `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DecimalDatasetParameterDefaultValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DecimalDatasetParameterDefaultValues) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DecimalDatasetParameterDefaultValues) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DecimalDatasetParameterDefaultValues"}
+	if s.StaticValues != nil && len(s.StaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StaticValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStaticValues sets the StaticValues field's value.
+func (s *DecimalDatasetParameterDefaultValues) SetStaticValues(v []*float64) *DecimalDatasetParameterDefaultValues {
+	s.StaticValues = v
 	return s
 }
 
@@ -31893,6 +35243,9 @@ type DecimalParameterDeclaration struct {
 	// a maximum of one default value can be provided.
 	DefaultValues *DecimalDefaultValues `type:"structure"`
 
+	// A list of dataset parameters that are mapped to an analysis parameter.
+	MappedDataSetParameters []*MappedDataSetParameter `type:"list"`
+
 	// The name of the parameter that is being declared.
 	//
 	// Name is a required field
@@ -31944,6 +35297,16 @@ func (s *DecimalParameterDeclaration) Validate() error {
 			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MappedDataSetParameters != nil {
+		for i, v := range s.MappedDataSetParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MappedDataSetParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -31954,6 +35317,12 @@ func (s *DecimalParameterDeclaration) Validate() error {
 // SetDefaultValues sets the DefaultValues field's value.
 func (s *DecimalParameterDeclaration) SetDefaultValues(v *DecimalDefaultValues) *DecimalParameterDeclaration {
 	s.DefaultValues = v
+	return s
+}
+
+// SetMappedDataSetParameters sets the MappedDataSetParameters field's value.
+func (s *DecimalParameterDeclaration) SetMappedDataSetParameters(v []*MappedDataSetParameter) *DecimalParameterDeclaration {
+	s.MappedDataSetParameters = v
 	return s
 }
 
@@ -32069,6 +35438,48 @@ func (s *DecimalValueWhenUnsetConfiguration) SetCustomValue(v float64) *DecimalV
 // SetValueWhenUnsetOption sets the ValueWhenUnsetOption field's value.
 func (s *DecimalValueWhenUnsetConfiguration) SetValueWhenUnsetOption(v string) *DecimalValueWhenUnsetConfiguration {
 	s.ValueWhenUnsetOption = &v
+	return s
+}
+
+// A structure that represents a default formatting definition.
+type DefaultFormatting struct {
+	_ struct{} `type:"structure"`
+
+	// The display format. Valid values for this structure are AUTO, PERCENT, CURRENCY,
+	// NUMBER, DATE, and STRING.
+	DisplayFormat *string `type:"string" enum:"DisplayFormat"`
+
+	// The additional options for display formatting.
+	DisplayFormatOptions *DisplayFormatOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFormatting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFormatting) GoString() string {
+	return s.String()
+}
+
+// SetDisplayFormat sets the DisplayFormat field's value.
+func (s *DefaultFormatting) SetDisplayFormat(v string) *DefaultFormatting {
+	s.DisplayFormat = &v
+	return s
+}
+
+// SetDisplayFormatOptions sets the DisplayFormatOptions field's value.
+func (s *DefaultFormatting) SetDisplayFormatOptions(v *DisplayFormatOptions) *DefaultFormatting {
+	s.DisplayFormatOptions = v
 	return s
 }
 
@@ -34740,6 +38151,285 @@ func (s *DeleteThemeOutput) SetThemeId(v string) *DeleteThemeOutput {
 	return s
 }
 
+type DeleteTopicInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the topic that you
+	// want to delete.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the topic that you want to delete. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTopicInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTopicInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteTopicInput) SetAwsAccountId(v string) *DeleteTopicInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DeleteTopicInput) SetTopicId(v string) *DeleteTopicInput {
+	s.TopicId = &v
+	return s
+}
+
+type DeleteTopicOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	Arn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The ID of the topic that you want to delete. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteTopicOutput) SetArn(v string) *DeleteTopicOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteTopicOutput) SetRequestId(v string) *DeleteTopicOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteTopicOutput) SetStatus(v int64) *DeleteTopicOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DeleteTopicOutput) SetTopicId(v string) *DeleteTopicOutput {
+	s.TopicId = &v
+	return s
+}
+
+type DeleteTopicRefreshScheduleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"DatasetId" type:"string" required:"true"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTopicRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTopicRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteTopicRefreshScheduleInput) SetAwsAccountId(v string) *DeleteTopicRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *DeleteTopicRefreshScheduleInput) SetDatasetId(v string) *DeleteTopicRefreshScheduleInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DeleteTopicRefreshScheduleInput) SetTopicId(v string) *DeleteTopicRefreshScheduleInput {
+	s.TopicId = &v
+	return s
+}
+
+type DeleteTopicRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset.
+	DatasetArn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTopicRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DeleteTopicRefreshScheduleOutput) SetDatasetArn(v string) *DeleteTopicRefreshScheduleOutput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteTopicRefreshScheduleOutput) SetRequestId(v string) *DeleteTopicRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteTopicRefreshScheduleOutput) SetStatus(v int64) *DeleteTopicRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *DeleteTopicRefreshScheduleOutput) SetTopicArn(v string) *DeleteTopicRefreshScheduleOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DeleteTopicRefreshScheduleOutput) SetTopicId(v string) *DeleteTopicRefreshScheduleOutput {
+	s.TopicId = &v
+	return s
+}
+
 type DeleteUserByPrincipalIdInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -34987,6 +38677,151 @@ func (s *DeleteUserOutput) SetRequestId(v string) *DeleteUserOutput {
 // SetStatus sets the Status field's value.
 func (s *DeleteUserOutput) SetStatus(v int64) *DeleteUserOutput {
 	s.Status = &v
+	return s
+}
+
+type DeleteVPCConnectionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID of the account where you want to delete
+	// a VPC connection.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the VPC connection that you're creating. This ID is a unique identifier
+	// for each Amazon Web Services Region in an Amazon Web Services account.
+	//
+	// VPCConnectionId is a required field
+	VPCConnectionId *string `location:"uri" locationName:"VPCConnectionId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVPCConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVPCConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVPCConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVPCConnectionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.VPCConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VPCConnectionId"))
+	}
+	if s.VPCConnectionId != nil && len(*s.VPCConnectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnectionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteVPCConnectionInput) SetAwsAccountId(v string) *DeleteVPCConnectionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *DeleteVPCConnectionInput) SetVPCConnectionId(v string) *DeleteVPCConnectionInput {
+	s.VPCConnectionId = &v
+	return s
+}
+
+type DeleteVPCConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the deleted VPC connection.
+	Arn *string `type:"string"`
+
+	// The availability status of the VPC connection.
+	AvailabilityStatus *string `type:"string" enum:"VPCConnectionAvailabilityStatus"`
+
+	// The deletion status of the VPC connection.
+	DeletionStatus *string `type:"string" enum:"VPCConnectionResourceStatus"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The ID of the VPC connection that you're creating. This ID is a unique identifier
+	// for each Amazon Web Services Region in an Amazon Web Services account.
+	VPCConnectionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVPCConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVPCConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteVPCConnectionOutput) SetArn(v string) *DeleteVPCConnectionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *DeleteVPCConnectionOutput) SetAvailabilityStatus(v string) *DeleteVPCConnectionOutput {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// SetDeletionStatus sets the DeletionStatus field's value.
+func (s *DeleteVPCConnectionOutput) SetDeletionStatus(v string) *DeleteVPCConnectionOutput {
+	s.DeletionStatus = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteVPCConnectionOutput) SetRequestId(v string) *DeleteVPCConnectionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteVPCConnectionOutput) SetStatus(v int64) *DeleteVPCConnectionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *DeleteVPCConnectionOutput) SetVPCConnectionId(v string) *DeleteVPCConnectionOutput {
+	s.VPCConnectionId = &v
 	return s
 }
 
@@ -39262,6 +43097,574 @@ func (s *DescribeThemePermissionsOutput) SetThemeId(v string) *DescribeThemePerm
 	return s
 }
 
+type DescribeTopicInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the topic that you want to describe. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTopicInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTopicInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeTopicInput) SetAwsAccountId(v string) *DescribeTopicInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DescribeTopicInput) SetTopicId(v string) *DescribeTopicInput {
+	s.TopicId = &v
+	return s
+}
+
+type DescribeTopicOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	Arn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The definition of a topic.
+	Topic *TopicDetails `type:"structure"`
+
+	// The ID of the topic that you want to describe. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeTopicOutput) SetArn(v string) *DescribeTopicOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeTopicOutput) SetRequestId(v string) *DescribeTopicOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeTopicOutput) SetStatus(v int64) *DescribeTopicOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopic sets the Topic field's value.
+func (s *DescribeTopicOutput) SetTopic(v *TopicDetails) *DescribeTopicOutput {
+	s.Topic = v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DescribeTopicOutput) SetTopicId(v string) *DescribeTopicOutput {
+	s.TopicId = &v
+	return s
+}
+
+type DescribeTopicPermissionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the topic that you
+	// want described.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the topic that you want to describe. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTopicPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTopicPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeTopicPermissionsInput) SetAwsAccountId(v string) *DescribeTopicPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DescribeTopicPermissionsInput) SetTopicId(v string) *DescribeTopicPermissionsInput {
+	s.TopicId = &v
+	return s
+}
+
+type DescribeTopicPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of resource permissions that are configured to the topic.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID of the topic that you want to describe. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *DescribeTopicPermissionsOutput) SetPermissions(v []*ResourcePermission) *DescribeTopicPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeTopicPermissionsOutput) SetRequestId(v string) *DescribeTopicPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeTopicPermissionsOutput) SetStatus(v int64) *DescribeTopicPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *DescribeTopicPermissionsOutput) SetTopicArn(v string) *DescribeTopicPermissionsOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DescribeTopicPermissionsOutput) SetTopicId(v string) *DescribeTopicPermissionsOutput {
+	s.TopicId = &v
+	return s
+}
+
+type DescribeTopicRefreshInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the topic whose refresh
+	// you want to describe.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the refresh, which is performed when the topic is created or updated.
+	//
+	// RefreshId is a required field
+	RefreshId *string `location:"uri" locationName:"RefreshId" type:"string" required:"true"`
+
+	// The ID of the topic that you want to describe. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTopicRefreshInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTopicRefreshInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.RefreshId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefreshId"))
+	}
+	if s.RefreshId != nil && len(*s.RefreshId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RefreshId", 1))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeTopicRefreshInput) SetAwsAccountId(v string) *DescribeTopicRefreshInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetRefreshId sets the RefreshId field's value.
+func (s *DescribeTopicRefreshInput) SetRefreshId(v string) *DescribeTopicRefreshInput {
+	s.RefreshId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DescribeTopicRefreshInput) SetTopicId(v string) *DescribeTopicRefreshInput {
+	s.TopicId = &v
+	return s
+}
+
+type DescribeTopicRefreshOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details of the refresh, which is performed when the topic is created or updated.
+	RefreshDetails *TopicRefreshDetails `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshOutput) GoString() string {
+	return s.String()
+}
+
+// SetRefreshDetails sets the RefreshDetails field's value.
+func (s *DescribeTopicRefreshOutput) SetRefreshDetails(v *TopicRefreshDetails) *DescribeTopicRefreshOutput {
+	s.RefreshDetails = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeTopicRefreshOutput) SetRequestId(v string) *DescribeTopicRefreshOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeTopicRefreshOutput) SetStatus(v int64) *DescribeTopicRefreshOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeTopicRefreshScheduleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"DatasetId" type:"string" required:"true"`
+
+	// The ID of the topic that contains the refresh schedule that you want to describe.
+	// This ID is unique per Amazon Web Services Region for each Amazon Web Services
+	// account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTopicRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTopicRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeTopicRefreshScheduleInput) SetAwsAccountId(v string) *DescribeTopicRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *DescribeTopicRefreshScheduleInput) SetDatasetId(v string) *DescribeTopicRefreshScheduleInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DescribeTopicRefreshScheduleInput) SetTopicId(v string) *DescribeTopicRefreshScheduleInput {
+	s.TopicId = &v
+	return s
+}
+
+type DescribeTopicRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset.
+	DatasetArn *string `type:"string"`
+
+	// The definition of a refresh schedule.
+	RefreshSchedule *TopicRefreshSchedule `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID of the topic that contains the refresh schedule that you want to describe.
+	// This ID is unique per Amazon Web Services Region for each Amazon Web Services
+	// account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTopicRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DescribeTopicRefreshScheduleOutput) SetDatasetArn(v string) *DescribeTopicRefreshScheduleOutput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetRefreshSchedule sets the RefreshSchedule field's value.
+func (s *DescribeTopicRefreshScheduleOutput) SetRefreshSchedule(v *TopicRefreshSchedule) *DescribeTopicRefreshScheduleOutput {
+	s.RefreshSchedule = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeTopicRefreshScheduleOutput) SetRequestId(v string) *DescribeTopicRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeTopicRefreshScheduleOutput) SetStatus(v int64) *DescribeTopicRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *DescribeTopicRefreshScheduleOutput) SetTopicArn(v string) *DescribeTopicRefreshScheduleOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *DescribeTopicRefreshScheduleOutput) SetTopicId(v string) *DescribeTopicRefreshScheduleOutput {
+	s.TopicId = &v
+	return s
+}
+
 type DescribeUserInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -39396,6 +43799,123 @@ func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 	return s
 }
 
+type DescribeVPCConnectionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID of the account that contains the VPC connection
+	// that you want described.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the VPC connection that you're creating. This ID is a unique identifier
+	// for each Amazon Web Services Region in an Amazon Web Services account.
+	//
+	// VPCConnectionId is a required field
+	VPCConnectionId *string `location:"uri" locationName:"VPCConnectionId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVPCConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVPCConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVPCConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVPCConnectionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.VPCConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VPCConnectionId"))
+	}
+	if s.VPCConnectionId != nil && len(*s.VPCConnectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnectionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeVPCConnectionInput) SetAwsAccountId(v string) *DescribeVPCConnectionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *DescribeVPCConnectionInput) SetVPCConnectionId(v string) *DescribeVPCConnectionInput {
+	s.VPCConnectionId = &v
+	return s
+}
+
+type DescribeVPCConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `type:"integer"`
+
+	// A response object that provides information for the specified VPC connection.
+	VPCConnection *VPCConnection `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVPCConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVPCConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeVPCConnectionOutput) SetRequestId(v string) *DescribeVPCConnectionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeVPCConnectionOutput) SetStatus(v int64) *DescribeVPCConnectionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVPCConnection sets the VPCConnection field's value.
+func (s *DescribeVPCConnectionOutput) SetVPCConnection(v *VPCConnection) *DescribeVPCConnectionOutput {
+	s.VPCConnection = v
+	return s
+}
+
 // The configuration of destination parameter values.
 //
 // This is a union type structure. For this structure to be valid, only one
@@ -39408,6 +43928,9 @@ type DestinationParameterValueConfiguration struct {
 
 	// The configuration that selects all options.
 	SelectAllValueOptions *string `type:"string" enum:"SelectAllValueOptions"`
+
+	// A column of a data set.
+	SourceColumn *ColumnIdentifier `type:"structure"`
 
 	// The source field ID of the destination parameter.
 	SourceField *string `min:"1" type:"string"`
@@ -39445,6 +43968,11 @@ func (s *DestinationParameterValueConfiguration) Validate() error {
 			invalidParams.AddNested("CustomValuesConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SourceColumn != nil {
+		if err := s.SourceColumn.Validate(); err != nil {
+			invalidParams.AddNested("SourceColumn", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -39461,6 +43989,12 @@ func (s *DestinationParameterValueConfiguration) SetCustomValuesConfiguration(v 
 // SetSelectAllValueOptions sets the SelectAllValueOptions field's value.
 func (s *DestinationParameterValueConfiguration) SetSelectAllValueOptions(v string) *DestinationParameterValueConfiguration {
 	s.SelectAllValueOptions = &v
+	return s
+}
+
+// SetSourceColumn sets the SourceColumn field's value.
+func (s *DestinationParameterValueConfiguration) SetSourceColumn(v *ColumnIdentifier) *DestinationParameterValueConfiguration {
+	s.SourceColumn = v
 	return s
 }
 
@@ -39548,6 +44082,138 @@ func (s *DimensionField) SetDateDimensionField(v *DateDimensionField) *Dimension
 // SetNumericalDimensionField sets the NumericalDimensionField field's value.
 func (s *DimensionField) SetNumericalDimensionField(v *NumericalDimensionField) *DimensionField {
 	s.NumericalDimensionField = v
+	return s
+}
+
+// A structure that represents additional options for display formatting.
+type DisplayFormatOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Determines the blank cell format.
+	BlankCellFormat *string `type:"string"`
+
+	// The currency symbol, such as USD.
+	CurrencySymbol *string `type:"string"`
+
+	// Determines the DateTime format.
+	DateFormat *string `type:"string"`
+
+	// Determines the decimal separator.
+	DecimalSeparator *string `type:"string" enum:"TopicNumericSeparatorSymbol"`
+
+	// Determines the number of fraction digits.
+	FractionDigits *int64 `type:"integer"`
+
+	// Determines the grouping separator.
+	GroupingSeparator *string `type:"string"`
+
+	// The negative format.
+	NegativeFormat *NegativeFormat `type:"structure"`
+
+	// The prefix value for a display format.
+	Prefix *string `type:"string"`
+
+	// The suffix value for a display format.
+	Suffix *string `type:"string"`
+
+	// The unit scaler. Valid values for this structure are: NONE, AUTO, THOUSANDS,
+	// MILLIONS, BILLIONS, and TRILLIONS.
+	UnitScaler *string `type:"string" enum:"NumberScale"`
+
+	// A Boolean value that indicates whether to use blank cell format.
+	UseBlankCellFormat *bool `type:"boolean"`
+
+	// A Boolean value that indicates whether to use grouping.
+	UseGrouping *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisplayFormatOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisplayFormatOptions) GoString() string {
+	return s.String()
+}
+
+// SetBlankCellFormat sets the BlankCellFormat field's value.
+func (s *DisplayFormatOptions) SetBlankCellFormat(v string) *DisplayFormatOptions {
+	s.BlankCellFormat = &v
+	return s
+}
+
+// SetCurrencySymbol sets the CurrencySymbol field's value.
+func (s *DisplayFormatOptions) SetCurrencySymbol(v string) *DisplayFormatOptions {
+	s.CurrencySymbol = &v
+	return s
+}
+
+// SetDateFormat sets the DateFormat field's value.
+func (s *DisplayFormatOptions) SetDateFormat(v string) *DisplayFormatOptions {
+	s.DateFormat = &v
+	return s
+}
+
+// SetDecimalSeparator sets the DecimalSeparator field's value.
+func (s *DisplayFormatOptions) SetDecimalSeparator(v string) *DisplayFormatOptions {
+	s.DecimalSeparator = &v
+	return s
+}
+
+// SetFractionDigits sets the FractionDigits field's value.
+func (s *DisplayFormatOptions) SetFractionDigits(v int64) *DisplayFormatOptions {
+	s.FractionDigits = &v
+	return s
+}
+
+// SetGroupingSeparator sets the GroupingSeparator field's value.
+func (s *DisplayFormatOptions) SetGroupingSeparator(v string) *DisplayFormatOptions {
+	s.GroupingSeparator = &v
+	return s
+}
+
+// SetNegativeFormat sets the NegativeFormat field's value.
+func (s *DisplayFormatOptions) SetNegativeFormat(v *NegativeFormat) *DisplayFormatOptions {
+	s.NegativeFormat = v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *DisplayFormatOptions) SetPrefix(v string) *DisplayFormatOptions {
+	s.Prefix = &v
+	return s
+}
+
+// SetSuffix sets the Suffix field's value.
+func (s *DisplayFormatOptions) SetSuffix(v string) *DisplayFormatOptions {
+	s.Suffix = &v
+	return s
+}
+
+// SetUnitScaler sets the UnitScaler field's value.
+func (s *DisplayFormatOptions) SetUnitScaler(v string) *DisplayFormatOptions {
+	s.UnitScaler = &v
+	return s
+}
+
+// SetUseBlankCellFormat sets the UseBlankCellFormat field's value.
+func (s *DisplayFormatOptions) SetUseBlankCellFormat(v bool) *DisplayFormatOptions {
+	s.UseBlankCellFormat = &v
+	return s
+}
+
+// SetUseGrouping sets the UseGrouping field's value.
+func (s *DisplayFormatOptions) SetUseGrouping(v bool) *DisplayFormatOptions {
+	s.UseGrouping = &v
 	return s
 }
 
@@ -42362,6 +47028,9 @@ func (s *FilterOperation) SetConditionExpression(v string) *FilterOperation {
 type FilterOperationSelectedFieldsConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The selected columns of a dataset.
+	SelectedColumns []*ColumnIdentifier `type:"list"`
+
 	// A structure that contains the options that choose which fields are filtered
 	// in the CustomActionFilterOperation.
 	//
@@ -42398,11 +47067,27 @@ func (s *FilterOperationSelectedFieldsConfiguration) Validate() error {
 	if s.SelectedFields != nil && len(s.SelectedFields) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SelectedFields", 1))
 	}
+	if s.SelectedColumns != nil {
+		for i, v := range s.SelectedColumns {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SelectedColumns", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetSelectedColumns sets the SelectedColumns field's value.
+func (s *FilterOperationSelectedFieldsConfiguration) SetSelectedColumns(v []*ColumnIdentifier) *FilterOperationSelectedFieldsConfiguration {
+	s.SelectedColumns = v
+	return s
 }
 
 // SetSelectedFieldOptions sets the SelectedFieldOptions field's value.
@@ -49373,6 +54058,148 @@ func (s *InsightVisual) SetVisualId(v string) *InsightVisual {
 	return s
 }
 
+// An integer parameter for a dataset.
+type IntegerDatasetParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of default values for a given integer parameter. This structure only
+	// accepts static values.
+	DefaultValues *IntegerDatasetParameterDefaultValues `type:"structure"`
+
+	// An identifier for the integer parameter created in the dataset.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The name of the integer parameter that is created in the dataset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value type of the dataset parameter. Valid values are single value or
+	// multi value.
+	//
+	// ValueType is a required field
+	ValueType *string `type:"string" required:"true" enum:"DatasetParameterValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntegerDatasetParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntegerDatasetParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IntegerDatasetParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IntegerDatasetParameter"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueType"))
+	}
+	if s.DefaultValues != nil {
+		if err := s.DefaultValues.Validate(); err != nil {
+			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValues sets the DefaultValues field's value.
+func (s *IntegerDatasetParameter) SetDefaultValues(v *IntegerDatasetParameterDefaultValues) *IntegerDatasetParameter {
+	s.DefaultValues = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *IntegerDatasetParameter) SetId(v string) *IntegerDatasetParameter {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *IntegerDatasetParameter) SetName(v string) *IntegerDatasetParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *IntegerDatasetParameter) SetValueType(v string) *IntegerDatasetParameter {
+	s.ValueType = &v
+	return s
+}
+
+// The default values of an integer parameter.
+type IntegerDatasetParameterDefaultValues struct {
+	_ struct{} `type:"structure"`
+
+	// A list of static default values for a given integer parameter.
+	StaticValues []*int64 `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntegerDatasetParameterDefaultValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntegerDatasetParameterDefaultValues) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IntegerDatasetParameterDefaultValues) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IntegerDatasetParameterDefaultValues"}
+	if s.StaticValues != nil && len(s.StaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StaticValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStaticValues sets the StaticValues field's value.
+func (s *IntegerDatasetParameterDefaultValues) SetStaticValues(v []*int64) *IntegerDatasetParameterDefaultValues {
+	s.StaticValues = v
+	return s
+}
+
 // The default values of the IntegerParameterDeclaration.
 type IntegerDefaultValues struct {
 	_ struct{} `type:"structure"`
@@ -49499,6 +54326,9 @@ type IntegerParameterDeclaration struct {
 	// a maximum of one default value can be provided.
 	DefaultValues *IntegerDefaultValues `type:"structure"`
 
+	// A list of dataset parameters that are mapped to an analysis parameter.
+	MappedDataSetParameters []*MappedDataSetParameter `type:"list"`
+
 	// The name of the parameter that is being declared.
 	//
 	// Name is a required field
@@ -49549,6 +54379,16 @@ func (s *IntegerParameterDeclaration) Validate() error {
 			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MappedDataSetParameters != nil {
+		for i, v := range s.MappedDataSetParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MappedDataSetParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -49559,6 +54399,12 @@ func (s *IntegerParameterDeclaration) Validate() error {
 // SetDefaultValues sets the DefaultValues field's value.
 func (s *IntegerParameterDeclaration) SetDefaultValues(v *IntegerDefaultValues) *IntegerParameterDeclaration {
 	s.DefaultValues = v
+	return s
+}
+
+// SetMappedDataSetParameters sets the MappedDataSetParameters field's value.
+func (s *IntegerParameterDeclaration) SetMappedDataSetParameters(v []*MappedDataSetParameter) *IntegerParameterDeclaration {
+	s.MappedDataSetParameters = v
 	return s
 }
 
@@ -53690,10 +58536,10 @@ func (s *ListIAMPolicyAssignmentsForUserOutput) SetStatus(v int64) *ListIAMPolic
 }
 
 type ListIAMPolicyAssignmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The status of the assignments.
-	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
+	AssignmentStatus *string `location:"querystring" locationName:"assignment-status" type:"string" enum:"AssignmentStatus"`
 
 	// The ID of the Amazon Web Services account that contains these IAM policy
 	// assignments.
@@ -55203,6 +60049,271 @@ func (s *ListThemesOutput) SetThemeSummaryList(v []*ThemeSummary) *ListThemesOut
 	return s
 }
 
+type ListTopicRefreshSchedulesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the topic whose refresh
+	// schedule you want described.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID for the topic that you want to describe. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicRefreshSchedulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicRefreshSchedulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTopicRefreshSchedulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTopicRefreshSchedulesInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListTopicRefreshSchedulesInput) SetAwsAccountId(v string) *ListTopicRefreshSchedulesInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *ListTopicRefreshSchedulesInput) SetTopicId(v string) *ListTopicRefreshSchedulesInput {
+	s.TopicId = &v
+	return s
+}
+
+type ListTopicRefreshSchedulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of topic refresh schedules.
+	RefreshSchedules []*TopicRefreshScheduleSummary `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID for the topic that you want to describe. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicRefreshSchedulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicRefreshSchedulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRefreshSchedules sets the RefreshSchedules field's value.
+func (s *ListTopicRefreshSchedulesOutput) SetRefreshSchedules(v []*TopicRefreshScheduleSummary) *ListTopicRefreshSchedulesOutput {
+	s.RefreshSchedules = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListTopicRefreshSchedulesOutput) SetRequestId(v string) *ListTopicRefreshSchedulesOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListTopicRefreshSchedulesOutput) SetStatus(v int64) *ListTopicRefreshSchedulesOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *ListTopicRefreshSchedulesOutput) SetTopicArn(v string) *ListTopicRefreshSchedulesOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *ListTopicRefreshSchedulesOutput) SetTopicId(v string) *ListTopicRefreshSchedulesOutput {
+	s.TopicId = &v
+	return s
+}
+
+type ListTopicsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the topics that you
+	// want to list.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTopicsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTopicsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListTopicsInput) SetAwsAccountId(v string) *ListTopicsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTopicsInput) SetMaxResults(v int64) *ListTopicsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTopicsInput) SetNextToken(v string) *ListTopicsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTopicsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// A list of topic summaries.
+	TopicsSummaries []*TopicSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTopicsOutput) SetNextToken(v string) *ListTopicsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListTopicsOutput) SetRequestId(v string) *ListTopicsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListTopicsOutput) SetStatus(v int64) *ListTopicsOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicsSummaries sets the TopicsSummaries field's value.
+func (s *ListTopicsOutput) SetTopicsSummaries(v []*TopicSummary) *ListTopicsOutput {
+	s.TopicsSummaries = v
+	return s
+}
+
 type ListUserGroupsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -55511,6 +60622,136 @@ func (s *ListUsersOutput) SetStatus(v int64) *ListUsersOutput {
 // SetUserList sets the UserList field's value.
 func (s *ListUsersOutput) SetUserList(v []*User) *ListUsersOutput {
 	s.UserList = v
+	return s
+}
+
+type ListVPCConnectionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID of the account that contains the VPC connections
+	// that you want to list.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVPCConnectionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVPCConnectionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVPCConnectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVPCConnectionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListVPCConnectionsInput) SetAwsAccountId(v string) *ListVPCConnectionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVPCConnectionsInput) SetMaxResults(v int64) *ListVPCConnectionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVPCConnectionsInput) SetNextToken(v string) *ListVPCConnectionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVPCConnectionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// A VPCConnectionSummaries object that returns a summary of VPC connection
+	// objects.
+	VPCConnectionSummaries []*VPCConnectionSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVPCConnectionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVPCConnectionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVPCConnectionsOutput) SetNextToken(v string) *ListVPCConnectionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListVPCConnectionsOutput) SetRequestId(v string) *ListVPCConnectionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListVPCConnectionsOutput) SetStatus(v int64) *ListVPCConnectionsOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVPCConnectionSummaries sets the VPCConnectionSummaries field's value.
+func (s *ListVPCConnectionsOutput) SetVPCConnectionSummaries(v []*VPCConnectionSummary) *ListVPCConnectionsOutput {
+	s.VPCConnectionSummaries = v
 	return s
 }
 
@@ -55963,6 +61204,73 @@ func (s *ManifestFileLocation) SetBucket(v string) *ManifestFileLocation {
 // SetKey sets the Key field's value.
 func (s *ManifestFileLocation) SetKey(v string) *ManifestFileLocation {
 	s.Key = &v
+	return s
+}
+
+// A dataset parameter that is mapped to an analysis parameter.
+type MappedDataSetParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A unique name that identifies a dataset within the analysis or dashboard.
+	//
+	// DataSetIdentifier is a required field
+	DataSetIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The name of the dataset parameter.
+	//
+	// DataSetParameterName is a required field
+	DataSetParameterName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappedDataSetParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappedDataSetParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MappedDataSetParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MappedDataSetParameter"}
+	if s.DataSetIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetIdentifier"))
+	}
+	if s.DataSetIdentifier != nil && len(*s.DataSetIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetIdentifier", 1))
+	}
+	if s.DataSetParameterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetParameterName"))
+	}
+	if s.DataSetParameterName != nil && len(*s.DataSetParameterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetParameterName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetIdentifier sets the DataSetIdentifier field's value.
+func (s *MappedDataSetParameter) SetDataSetIdentifier(v string) *MappedDataSetParameter {
+	s.DataSetIdentifier = &v
+	return s
+}
+
+// SetDataSetParameterName sets the DataSetParameterName field's value.
+func (s *MappedDataSetParameter) SetDataSetParameterName(v string) *MappedDataSetParameter {
+	s.DataSetParameterName = &v
 	return s
 }
 
@@ -56628,6 +61936,118 @@ func (s *MySqlParameters) SetPort(v int64) *MySqlParameters {
 	return s
 }
 
+// A structure that represents a named entity.
+type NamedEntityDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the entity.
+	FieldName *string `type:"string"`
+
+	// The definition of a metric.
+	Metric *NamedEntityDefinitionMetric `type:"structure"`
+
+	// The property name to be used for the named entity.
+	PropertyName *string `type:"string"`
+
+	// The property role. Valid values for this structure are PRIMARY and ID.
+	PropertyRole *string `type:"string" enum:"PropertyRole"`
+
+	// The property usage. Valid values for this structure are INHERIT, DIMENSION,
+	// and MEASURE.
+	PropertyUsage *string `type:"string" enum:"PropertyUsage"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamedEntityDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamedEntityDefinition) GoString() string {
+	return s.String()
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *NamedEntityDefinition) SetFieldName(v string) *NamedEntityDefinition {
+	s.FieldName = &v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *NamedEntityDefinition) SetMetric(v *NamedEntityDefinitionMetric) *NamedEntityDefinition {
+	s.Metric = v
+	return s
+}
+
+// SetPropertyName sets the PropertyName field's value.
+func (s *NamedEntityDefinition) SetPropertyName(v string) *NamedEntityDefinition {
+	s.PropertyName = &v
+	return s
+}
+
+// SetPropertyRole sets the PropertyRole field's value.
+func (s *NamedEntityDefinition) SetPropertyRole(v string) *NamedEntityDefinition {
+	s.PropertyRole = &v
+	return s
+}
+
+// SetPropertyUsage sets the PropertyUsage field's value.
+func (s *NamedEntityDefinition) SetPropertyUsage(v string) *NamedEntityDefinition {
+	s.PropertyUsage = &v
+	return s
+}
+
+// A structure that represents a metric.
+type NamedEntityDefinitionMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation of a named entity. Valid values for this structure are SUM,
+	// MIN, MAX, COUNT, AVERAGE, DISTINCT_COUNT, STDEV, STDEVP, VAR, VARP, PERCENTILE,
+	// MEDIAN, and CUSTOM.
+	Aggregation *string `type:"string" enum:"NamedEntityAggType"`
+
+	// The additional parameters for an aggregation function.
+	AggregationFunctionParameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamedEntityDefinitionMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamedEntityDefinitionMetric) GoString() string {
+	return s.String()
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *NamedEntityDefinitionMetric) SetAggregation(v string) *NamedEntityDefinitionMetric {
+	s.Aggregation = &v
+	return s
+}
+
+// SetAggregationFunctionParameters sets the AggregationFunctionParameters field's value.
+func (s *NamedEntityDefinitionMetric) SetAggregationFunctionParameters(v map[string]*string) *NamedEntityDefinitionMetric {
+	s.AggregationFunctionParameters = v
+	return s
+}
+
 // Errors that occur during namespace creation.
 type NamespaceError struct {
 	_ struct{} `type:"structure"`
@@ -56746,6 +62166,47 @@ func (s *NamespaceInfoV2) SetNamespaceError(v *NamespaceError) *NamespaceInfoV2 
 	return s
 }
 
+// A structure that represents a negative format.
+type NegativeFormat struct {
+	_ struct{} `type:"structure"`
+
+	// The prefix for a negative format.
+	Prefix *string `type:"string"`
+
+	// The suffix for a negative format.
+	Suffix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NegativeFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NegativeFormat) GoString() string {
+	return s.String()
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *NegativeFormat) SetPrefix(v string) *NegativeFormat {
+	s.Prefix = &v
+	return s
+}
+
+// SetSuffix sets the Suffix field's value.
+func (s *NegativeFormat) SetSuffix(v string) *NegativeFormat {
+	s.Suffix = &v
+	return s
+}
+
 // The options that determine the negative value configuration.
 type NegativeValueConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -56790,6 +62251,156 @@ func (s *NegativeValueConfiguration) Validate() error {
 // SetDisplayMode sets the DisplayMode field's value.
 func (s *NegativeValueConfiguration) SetDisplayMode(v string) *NegativeValueConfiguration {
 	s.DisplayMode = &v
+	return s
+}
+
+// The structure that contains information about a network interface.
+type NetworkInterface struct {
+	_ struct{} `type:"structure"`
+
+	// The availability zone that the network interface resides in.
+	AvailabilityZone *string `type:"string"`
+
+	// An error message.
+	ErrorMessage *string `type:"string"`
+
+	// The network interface ID.
+	NetworkInterfaceId *string `type:"string"`
+
+	// The status of the network interface.
+	Status *string `type:"string" enum:"NetworkInterfaceStatus"`
+
+	// The subnet ID associated with the network interface.
+	SubnetId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkInterface) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkInterface) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *NetworkInterface) SetAvailabilityZone(v string) *NetworkInterface {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *NetworkInterface) SetErrorMessage(v string) *NetworkInterface {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *NetworkInterface) SetNetworkInterfaceId(v string) *NetworkInterface {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NetworkInterface) SetStatus(v string) *NetworkInterface {
+	s.Status = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *NetworkInterface) SetSubnetId(v string) *NetworkInterface {
+	s.SubnetId = &v
+	return s
+}
+
+// The configuration that overrides the existing default values for a dataset
+// parameter that is inherited from another dataset.
+type NewDefaultValues struct {
+	_ struct{} `type:"structure"`
+
+	// A list of static default values for a given date time parameter.
+	DateTimeStaticValues []*time.Time `min:"1" type:"list"`
+
+	// A list of static default values for a given decimal parameter.
+	DecimalStaticValues []*float64 `min:"1" type:"list"`
+
+	// A list of static default values for a given integer parameter.
+	IntegerStaticValues []*int64 `min:"1" type:"list"`
+
+	// A list of static default values for a given string parameter.
+	StringStaticValues []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NewDefaultValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NewDefaultValues) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NewDefaultValues) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NewDefaultValues"}
+	if s.DateTimeStaticValues != nil && len(s.DateTimeStaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DateTimeStaticValues", 1))
+	}
+	if s.DecimalStaticValues != nil && len(s.DecimalStaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DecimalStaticValues", 1))
+	}
+	if s.IntegerStaticValues != nil && len(s.IntegerStaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntegerStaticValues", 1))
+	}
+	if s.StringStaticValues != nil && len(s.StringStaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StringStaticValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateTimeStaticValues sets the DateTimeStaticValues field's value.
+func (s *NewDefaultValues) SetDateTimeStaticValues(v []*time.Time) *NewDefaultValues {
+	s.DateTimeStaticValues = v
+	return s
+}
+
+// SetDecimalStaticValues sets the DecimalStaticValues field's value.
+func (s *NewDefaultValues) SetDecimalStaticValues(v []*float64) *NewDefaultValues {
+	s.DecimalStaticValues = v
+	return s
+}
+
+// SetIntegerStaticValues sets the IntegerStaticValues field's value.
+func (s *NewDefaultValues) SetIntegerStaticValues(v []*int64) *NewDefaultValues {
+	s.IntegerStaticValues = v
+	return s
+}
+
+// SetStringStaticValues sets the StringStaticValues field's value.
+func (s *NewDefaultValues) SetStringStaticValues(v []*string) *NewDefaultValues {
+	s.StringStaticValues = v
 	return s
 }
 
@@ -57856,7 +63467,7 @@ func (s *NumericalMeasureField) SetFormatConfiguration(v *NumberFormatConfigurat
 type OracleParameters struct {
 	_ struct{} `type:"structure"`
 
-	// Database.
+	// The database.
 	//
 	// Database is a required field
 	Database *string `min:"1" type:"string" required:"true"`
@@ -57866,7 +63477,7 @@ type OracleParameters struct {
 	// Host is a required field
 	Host *string `min:"1" type:"string" required:"true"`
 
-	// Port.
+	// The port.
 	//
 	// Port is a required field
 	Port *int64 `min:"1" type:"integer" required:"true"`
@@ -57946,7 +63557,7 @@ type OutputColumn struct {
 	// A display name for the dataset.
 	Name *string `min:"1" type:"string"`
 
-	// Type.
+	// The type.
 	Type *string `type:"string" enum:"ColumnDataType"`
 }
 
@@ -57983,6 +63594,83 @@ func (s *OutputColumn) SetName(v string) *OutputColumn {
 // SetType sets the Type field's value.
 func (s *OutputColumn) SetType(v string) *OutputColumn {
 	s.Type = &v
+	return s
+}
+
+// A transform operation that overrides the dataset parameter values that are
+// defined in another dataset.
+type OverrideDatasetParameterOperation struct {
+	_ struct{} `type:"structure"`
+
+	// The new default values for the parameter.
+	NewDefaultValues *NewDefaultValues `type:"structure"`
+
+	// The new name for the parameter.
+	NewParameterName *string `min:"1" type:"string"`
+
+	// The name of the parameter to be overridden with different values.
+	//
+	// ParameterName is a required field
+	ParameterName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideDatasetParameterOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideDatasetParameterOperation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OverrideDatasetParameterOperation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OverrideDatasetParameterOperation"}
+	if s.NewParameterName != nil && len(*s.NewParameterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NewParameterName", 1))
+	}
+	if s.ParameterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParameterName"))
+	}
+	if s.ParameterName != nil && len(*s.ParameterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ParameterName", 1))
+	}
+	if s.NewDefaultValues != nil {
+		if err := s.NewDefaultValues.Validate(); err != nil {
+			invalidParams.AddNested("NewDefaultValues", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNewDefaultValues sets the NewDefaultValues field's value.
+func (s *OverrideDatasetParameterOperation) SetNewDefaultValues(v *NewDefaultValues) *OverrideDatasetParameterOperation {
+	s.NewDefaultValues = v
+	return s
+}
+
+// SetNewParameterName sets the NewParameterName field's value.
+func (s *OverrideDatasetParameterOperation) SetNewParameterName(v string) *OverrideDatasetParameterOperation {
+	s.NewParameterName = &v
+	return s
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *OverrideDatasetParameterOperation) SetParameterName(v string) *OverrideDatasetParameterOperation {
+	s.ParameterName = &v
 	return s
 }
 
@@ -62927,6 +68615,47 @@ func (s *RadarChartVisual) SetVisualId(v string) *RadarChartVisual {
 	return s
 }
 
+// A structure that represents a range constant.
+type RangeConstant struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum value for a range constant.
+	Maximum *string `type:"string"`
+
+	// The minimum value for a range constant.
+	Minimum *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RangeConstant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RangeConstant) GoString() string {
+	return s.String()
+}
+
+// SetMaximum sets the Maximum field's value.
+func (s *RangeConstant) SetMaximum(v string) *RangeConstant {
+	s.Maximum = &v
+	return s
+}
+
+// SetMinimum sets the Minimum field's value.
+func (s *RangeConstant) SetMinimum(v string) *RangeConstant {
+	s.Minimum = &v
+	return s
+}
+
 // The range ends label type of a data path label.
 type RangeEndsLabelType struct {
 	_ struct{} `type:"structure"`
@@ -63336,9 +69065,7 @@ type ReferenceLineDynamicDataConfiguration struct {
 	Column *ColumnIdentifier `type:"structure" required:"true"`
 
 	// The aggregation function that is used in the dynamic data.
-	//
-	// MeasureAggregationFunction is a required field
-	MeasureAggregationFunction *AggregationFunction `type:"structure" required:"true"`
+	MeasureAggregationFunction *AggregationFunction `type:"structure"`
 }
 
 // String returns the string representation.
@@ -63367,9 +69094,6 @@ func (s *ReferenceLineDynamicDataConfiguration) Validate() error {
 	}
 	if s.Column == nil {
 		invalidParams.Add(request.NewErrParamRequired("Column"))
-	}
-	if s.MeasureAggregationFunction == nil {
-		invalidParams.Add(request.NewErrParamRequired("MeasureAggregationFunction"))
 	}
 	if s.Column != nil {
 		if err := s.Column.Validate(); err != nil {
@@ -64353,6 +70077,9 @@ func (s *RegisteredUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v 
 type RegisteredUserDashboardFeatureConfigurations struct {
 	_ struct{} `type:"structure"`
 
+	// The bookmarks configuration for an embedded dashboard in Amazon QuickSight.
+	Bookmarks *BookmarksConfigurations `type:"structure"`
+
 	// The state persistence settings of an embedded dashboard.
 	StatePersistence *StatePersistenceConfigurations `type:"structure"`
 }
@@ -64378,6 +70105,11 @@ func (s RegisteredUserDashboardFeatureConfigurations) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RegisteredUserDashboardFeatureConfigurations) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RegisteredUserDashboardFeatureConfigurations"}
+	if s.Bookmarks != nil {
+		if err := s.Bookmarks.Validate(); err != nil {
+			invalidParams.AddNested("Bookmarks", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.StatePersistence != nil {
 		if err := s.StatePersistence.Validate(); err != nil {
 			invalidParams.AddNested("StatePersistence", err.(request.ErrInvalidParams))
@@ -64388,6 +70120,12 @@ func (s *RegisteredUserDashboardFeatureConfigurations) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBookmarks sets the Bookmarks field's value.
+func (s *RegisteredUserDashboardFeatureConfigurations) SetBookmarks(v *BookmarksConfigurations) *RegisteredUserDashboardFeatureConfigurations {
+	s.Bookmarks = v
+	return s
 }
 
 // SetStatePersistence sets the StatePersistence field's value.
@@ -66604,6 +72342,9 @@ type ScatterPlotCategoricallyAggregatedFieldWells struct {
 	// The category field well of a scatter plot.
 	Category []*DimensionField `type:"list"`
 
+	// The label field well of a scatter plot.
+	Label []*DimensionField `type:"list"`
+
 	// The size field well of a scatter plot.
 	Size []*MeasureField `type:"list"`
 
@@ -66649,6 +72390,16 @@ func (s *ScatterPlotCategoricallyAggregatedFieldWells) Validate() error {
 			}
 		}
 	}
+	if s.Label != nil {
+		for i, v := range s.Label {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Label", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Size != nil {
 		for i, v := range s.Size {
 			if v == nil {
@@ -66689,6 +72440,12 @@ func (s *ScatterPlotCategoricallyAggregatedFieldWells) Validate() error {
 // SetCategory sets the Category field's value.
 func (s *ScatterPlotCategoricallyAggregatedFieldWells) SetCategory(v []*DimensionField) *ScatterPlotCategoricallyAggregatedFieldWells {
 	s.Category = v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *ScatterPlotCategoricallyAggregatedFieldWells) SetLabel(v []*DimensionField) *ScatterPlotCategoricallyAggregatedFieldWells {
+	s.Label = v
 	return s
 }
 
@@ -66865,14 +72622,12 @@ func (s *ScatterPlotConfiguration) SetYAxisLabelOptions(v *ChartAxisLabelOptions
 type ScatterPlotFieldWells struct {
 	_ struct{} `type:"structure"`
 
-	// The aggregated field wells of a scatter plot. Scatter plots that have a field
-	// in the category (group/color) field will have aggregated field wells. The
-	// x and y-axes of these scatter plots are aggregated by category.
+	// The aggregated field wells of a scatter plot. The x and y-axes of scatter
+	// plots with aggregated field wells are aggregated by category, label, or both.
 	ScatterPlotCategoricallyAggregatedFieldWells *ScatterPlotCategoricallyAggregatedFieldWells `type:"structure"`
 
-	// The unaggregated field wells of a scatter plot. Scatter plots without a category
-	// field well have unaggregated field wells. The x and y-axes of these scatter
-	// plots are unaggregated.
+	// The unaggregated field wells of a scatter plot. The x and y-axes of these
+	// scatter plots are unaggregated.
 	ScatterPlotUnaggregatedFieldWells *ScatterPlotUnaggregatedFieldWells `type:"structure"`
 }
 
@@ -66930,6 +72685,12 @@ func (s *ScatterPlotFieldWells) SetScatterPlotUnaggregatedFieldWells(v *ScatterP
 type ScatterPlotUnaggregatedFieldWells struct {
 	_ struct{} `type:"structure"`
 
+	// The category field well of a scatter plot.
+	Category []*DimensionField `type:"list"`
+
+	// The label field well of a scatter plot.
+	Label []*DimensionField `type:"list"`
+
 	// The size field well of a scatter plot.
 	Size []*MeasureField `type:"list"`
 
@@ -66965,6 +72726,26 @@ func (s ScatterPlotUnaggregatedFieldWells) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ScatterPlotUnaggregatedFieldWells) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ScatterPlotUnaggregatedFieldWells"}
+	if s.Category != nil {
+		for i, v := range s.Category {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Category", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Label != nil {
+		for i, v := range s.Label {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Label", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Size != nil {
 		for i, v := range s.Size {
 			if v == nil {
@@ -67000,6 +72781,18 @@ func (s *ScatterPlotUnaggregatedFieldWells) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCategory sets the Category field's value.
+func (s *ScatterPlotUnaggregatedFieldWells) SetCategory(v []*DimensionField) *ScatterPlotUnaggregatedFieldWells {
+	s.Category = v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *ScatterPlotUnaggregatedFieldWells) SetLabel(v []*DimensionField) *ScatterPlotUnaggregatedFieldWells {
+	s.Label = v
+	return s
 }
 
 // SetSize sets the Size field's value.
@@ -68647,6 +74440,150 @@ func (s *SelectedSheetsFilterScopeConfiguration) Validate() error {
 // SetSheetVisualScopingConfigurations sets the SheetVisualScopingConfigurations field's value.
 func (s *SelectedSheetsFilterScopeConfiguration) SetSheetVisualScopingConfigurations(v []*SheetVisualScopingConfiguration) *SelectedSheetsFilterScopeConfiguration {
 	s.SheetVisualScopingConfigurations = v
+	return s
+}
+
+// A structure that represents a semantic entity type.
+type SemanticEntityType struct {
+	_ struct{} `type:"structure"`
+
+	// The semantic entity sub type name.
+	SubTypeName *string `type:"string"`
+
+	// The semantic entity type name.
+	TypeName *string `type:"string"`
+
+	// The semantic entity type parameters.
+	TypeParameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemanticEntityType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemanticEntityType) GoString() string {
+	return s.String()
+}
+
+// SetSubTypeName sets the SubTypeName field's value.
+func (s *SemanticEntityType) SetSubTypeName(v string) *SemanticEntityType {
+	s.SubTypeName = &v
+	return s
+}
+
+// SetTypeName sets the TypeName field's value.
+func (s *SemanticEntityType) SetTypeName(v string) *SemanticEntityType {
+	s.TypeName = &v
+	return s
+}
+
+// SetTypeParameters sets the TypeParameters field's value.
+func (s *SemanticEntityType) SetTypeParameters(v map[string]*string) *SemanticEntityType {
+	s.TypeParameters = v
+	return s
+}
+
+// A structure that represents a semantic type.
+type SemanticType struct {
+	_ struct{} `type:"structure"`
+
+	// The semantic type falsey cell value.
+	//
+	// FalseyCellValue is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SemanticType's
+	// String and GoString methods.
+	FalseyCellValue *string `type:"string" sensitive:"true"`
+
+	// The other names or aliases for the false cell value.
+	FalseyCellValueSynonyms []*string `type:"list"`
+
+	// The semantic type sub type name.
+	SubTypeName *string `type:"string"`
+
+	// The semantic type truthy cell value.
+	//
+	// TruthyCellValue is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SemanticType's
+	// String and GoString methods.
+	TruthyCellValue *string `type:"string" sensitive:"true"`
+
+	// The other names or aliases for the true cell value.
+	TruthyCellValueSynonyms []*string `type:"list"`
+
+	// The semantic type name.
+	TypeName *string `type:"string"`
+
+	// The semantic type parameters.
+	TypeParameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemanticType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemanticType) GoString() string {
+	return s.String()
+}
+
+// SetFalseyCellValue sets the FalseyCellValue field's value.
+func (s *SemanticType) SetFalseyCellValue(v string) *SemanticType {
+	s.FalseyCellValue = &v
+	return s
+}
+
+// SetFalseyCellValueSynonyms sets the FalseyCellValueSynonyms field's value.
+func (s *SemanticType) SetFalseyCellValueSynonyms(v []*string) *SemanticType {
+	s.FalseyCellValueSynonyms = v
+	return s
+}
+
+// SetSubTypeName sets the SubTypeName field's value.
+func (s *SemanticType) SetSubTypeName(v string) *SemanticType {
+	s.SubTypeName = &v
+	return s
+}
+
+// SetTruthyCellValue sets the TruthyCellValue field's value.
+func (s *SemanticType) SetTruthyCellValue(v string) *SemanticType {
+	s.TruthyCellValue = &v
+	return s
+}
+
+// SetTruthyCellValueSynonyms sets the TruthyCellValueSynonyms field's value.
+func (s *SemanticType) SetTruthyCellValueSynonyms(v []*string) *SemanticType {
+	s.TruthyCellValueSynonyms = v
+	return s
+}
+
+// SetTypeName sets the TypeName field's value.
+func (s *SemanticType) SetTypeName(v string) *SemanticType {
+	s.TypeName = &v
+	return s
+}
+
+// SetTypeParameters sets the TypeParameters field's value.
+func (s *SemanticType) SetTypeParameters(v map[string]*string) *SemanticType {
+	s.TypeParameters = v
 	return s
 }
 
@@ -70386,6 +76323,148 @@ func (s *StatePersistenceConfigurations) SetEnabled(v bool) *StatePersistenceCon
 	return s
 }
 
+// A string parameter for a dataset.
+type StringDatasetParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of default values for a given string dataset parameter type. This
+	// structure only accepts static values.
+	DefaultValues *StringDatasetParameterDefaultValues `type:"structure"`
+
+	// An identifier for the string parameter that is created in the dataset.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The name of the string parameter that is created in the dataset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value type of the dataset parameter. Valid values are single value or
+	// multi value.
+	//
+	// ValueType is a required field
+	ValueType *string `type:"string" required:"true" enum:"DatasetParameterValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringDatasetParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringDatasetParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StringDatasetParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StringDatasetParameter"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueType"))
+	}
+	if s.DefaultValues != nil {
+		if err := s.DefaultValues.Validate(); err != nil {
+			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValues sets the DefaultValues field's value.
+func (s *StringDatasetParameter) SetDefaultValues(v *StringDatasetParameterDefaultValues) *StringDatasetParameter {
+	s.DefaultValues = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StringDatasetParameter) SetId(v string) *StringDatasetParameter {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StringDatasetParameter) SetName(v string) *StringDatasetParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *StringDatasetParameter) SetValueType(v string) *StringDatasetParameter {
+	s.ValueType = &v
+	return s
+}
+
+// The default values of a string parameter.
+type StringDatasetParameterDefaultValues struct {
+	_ struct{} `type:"structure"`
+
+	// A list of static default values for a given string parameter.
+	StaticValues []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringDatasetParameterDefaultValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringDatasetParameterDefaultValues) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StringDatasetParameterDefaultValues) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StringDatasetParameterDefaultValues"}
+	if s.StaticValues != nil && len(s.StaticValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StaticValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStaticValues sets the StaticValues field's value.
+func (s *StringDatasetParameterDefaultValues) SetStaticValues(v []*string) *StringDatasetParameterDefaultValues {
+	s.StaticValues = v
+	return s
+}
+
 // The default values of the StringParameterDeclaration.
 type StringDefaultValues struct {
 	_ struct{} `type:"structure"`
@@ -70573,6 +76652,9 @@ type StringParameterDeclaration struct {
 	// a maximum of one default value can be provided.
 	DefaultValues *StringDefaultValues `type:"structure"`
 
+	// A list of dataset parameters that are mapped to an analysis parameter.
+	MappedDataSetParameters []*MappedDataSetParameter `type:"list"`
+
 	// The name of the parameter that is being declared.
 	//
 	// Name is a required field
@@ -70624,6 +76706,16 @@ func (s *StringParameterDeclaration) Validate() error {
 			invalidParams.AddNested("DefaultValues", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MappedDataSetParameters != nil {
+		for i, v := range s.MappedDataSetParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MappedDataSetParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -70634,6 +76726,12 @@ func (s *StringParameterDeclaration) Validate() error {
 // SetDefaultValues sets the DefaultValues field's value.
 func (s *StringParameterDeclaration) SetDefaultValues(v *StringDefaultValues) *StringParameterDeclaration {
 	s.DefaultValues = v
+	return s
+}
+
+// SetMappedDataSetParameters sets the MappedDataSetParameters field's value.
+func (s *StringParameterDeclaration) SetMappedDataSetParameters(v []*MappedDataSetParameter) *StringParameterDeclaration {
+	s.MappedDataSetParameters = v
 	return s
 }
 
@@ -75588,6 +81686,1382 @@ func (s *TopBottomRankedComputation) SetValue(v *MeasureField) *TopBottomRankedC
 	return s
 }
 
+// A structure that represents a calculated field.
+type TopicCalculatedField struct {
+	_ struct{} `type:"structure"`
+
+	// The default aggregation. Valid values for this structure are SUM, MAX, MIN,
+	// COUNT, DISTINCT_COUNT, and AVERAGE.
+	Aggregation *string `type:"string" enum:"DefaultAggregation"`
+
+	// The list of aggregation types that are allowed for the calculated field.
+	// Valid values for this structure are COUNT, DISTINCT_COUNT, MIN, MAX, MEDIAN,
+	// SUM, AVERAGE, STDEV, STDEVP, VAR, VARP, and PERCENTILE.
+	AllowedAggregations []*string `type:"list" enum:"AuthorSpecifiedAggregation"`
+
+	// The calculated field description.
+	CalculatedFieldDescription *string `type:"string"`
+
+	// The calculated field name.
+	//
+	// CalculatedFieldName is a required field
+	CalculatedFieldName *string `type:"string" required:"true"`
+
+	// The other names or aliases for the calculated field.
+	CalculatedFieldSynonyms []*string `type:"list"`
+
+	// The other names or aliases for the calculated field cell value.
+	CellValueSynonyms []*CellValueSynonym `type:"list"`
+
+	// The column data role for a calculated field. Valid values for this structure
+	// are DIMENSION and MEASURE.
+	ColumnDataRole *string `type:"string" enum:"ColumnDataRole"`
+
+	// The order in which data is displayed for the calculated field when it's used
+	// in a comparative context.
+	ComparativeOrder *ComparativeOrder `type:"structure"`
+
+	// The default formatting definition.
+	DefaultFormatting *DefaultFormatting `type:"structure"`
+
+	// A Boolean value that indicates if a calculated field is visible in the autocomplete.
+	DisableIndexing *bool `type:"boolean"`
+
+	// The calculated field expression.
+	//
+	// Expression is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TopicCalculatedField's
+	// String and GoString methods.
+	//
+	// Expression is a required field
+	Expression *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A boolean value that indicates if a calculated field is included in the topic.
+	IsIncludedInTopic *bool `type:"boolean"`
+
+	// A Boolean value that indicates whether to never aggregate calculated field
+	// in filters.
+	NeverAggregateInFilter *bool `type:"boolean"`
+
+	// The list of aggregation types that are not allowed for the calculated field.
+	// Valid values for this structure are COUNT, DISTINCT_COUNT, MIN, MAX, MEDIAN,
+	// SUM, AVERAGE, STDEV, STDEVP, VAR, VARP, and PERCENTILE.
+	NotAllowedAggregations []*string `type:"list" enum:"AuthorSpecifiedAggregation"`
+
+	// The semantic type.
+	SemanticType *SemanticType `type:"structure"`
+
+	// The level of time precision that is used to aggregate DateTime values.
+	TimeGranularity *string `type:"string" enum:"TopicTimeGranularity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicCalculatedField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicCalculatedField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicCalculatedField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicCalculatedField"}
+	if s.CalculatedFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatedFieldName"))
+	}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *TopicCalculatedField) SetAggregation(v string) *TopicCalculatedField {
+	s.Aggregation = &v
+	return s
+}
+
+// SetAllowedAggregations sets the AllowedAggregations field's value.
+func (s *TopicCalculatedField) SetAllowedAggregations(v []*string) *TopicCalculatedField {
+	s.AllowedAggregations = v
+	return s
+}
+
+// SetCalculatedFieldDescription sets the CalculatedFieldDescription field's value.
+func (s *TopicCalculatedField) SetCalculatedFieldDescription(v string) *TopicCalculatedField {
+	s.CalculatedFieldDescription = &v
+	return s
+}
+
+// SetCalculatedFieldName sets the CalculatedFieldName field's value.
+func (s *TopicCalculatedField) SetCalculatedFieldName(v string) *TopicCalculatedField {
+	s.CalculatedFieldName = &v
+	return s
+}
+
+// SetCalculatedFieldSynonyms sets the CalculatedFieldSynonyms field's value.
+func (s *TopicCalculatedField) SetCalculatedFieldSynonyms(v []*string) *TopicCalculatedField {
+	s.CalculatedFieldSynonyms = v
+	return s
+}
+
+// SetCellValueSynonyms sets the CellValueSynonyms field's value.
+func (s *TopicCalculatedField) SetCellValueSynonyms(v []*CellValueSynonym) *TopicCalculatedField {
+	s.CellValueSynonyms = v
+	return s
+}
+
+// SetColumnDataRole sets the ColumnDataRole field's value.
+func (s *TopicCalculatedField) SetColumnDataRole(v string) *TopicCalculatedField {
+	s.ColumnDataRole = &v
+	return s
+}
+
+// SetComparativeOrder sets the ComparativeOrder field's value.
+func (s *TopicCalculatedField) SetComparativeOrder(v *ComparativeOrder) *TopicCalculatedField {
+	s.ComparativeOrder = v
+	return s
+}
+
+// SetDefaultFormatting sets the DefaultFormatting field's value.
+func (s *TopicCalculatedField) SetDefaultFormatting(v *DefaultFormatting) *TopicCalculatedField {
+	s.DefaultFormatting = v
+	return s
+}
+
+// SetDisableIndexing sets the DisableIndexing field's value.
+func (s *TopicCalculatedField) SetDisableIndexing(v bool) *TopicCalculatedField {
+	s.DisableIndexing = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TopicCalculatedField) SetExpression(v string) *TopicCalculatedField {
+	s.Expression = &v
+	return s
+}
+
+// SetIsIncludedInTopic sets the IsIncludedInTopic field's value.
+func (s *TopicCalculatedField) SetIsIncludedInTopic(v bool) *TopicCalculatedField {
+	s.IsIncludedInTopic = &v
+	return s
+}
+
+// SetNeverAggregateInFilter sets the NeverAggregateInFilter field's value.
+func (s *TopicCalculatedField) SetNeverAggregateInFilter(v bool) *TopicCalculatedField {
+	s.NeverAggregateInFilter = &v
+	return s
+}
+
+// SetNotAllowedAggregations sets the NotAllowedAggregations field's value.
+func (s *TopicCalculatedField) SetNotAllowedAggregations(v []*string) *TopicCalculatedField {
+	s.NotAllowedAggregations = v
+	return s
+}
+
+// SetSemanticType sets the SemanticType field's value.
+func (s *TopicCalculatedField) SetSemanticType(v *SemanticType) *TopicCalculatedField {
+	s.SemanticType = v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *TopicCalculatedField) SetTimeGranularity(v string) *TopicCalculatedField {
+	s.TimeGranularity = &v
+	return s
+}
+
+// A structure that represents a category filter.
+type TopicCategoryFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The category filter function. Valid values for this structure are EXACT and
+	// CONTAINS.
+	CategoryFilterFunction *string `type:"string" enum:"CategoryFilterFunction"`
+
+	// The category filter type. This element is used to specify whether a filter
+	// is a simple category filter or an inverse category filter.
+	CategoryFilterType *string `type:"string" enum:"CategoryFilterType"`
+
+	// The constant used in a category filter.
+	//
+	// Constant is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TopicCategoryFilter's
+	// String and GoString methods.
+	Constant *TopicCategoryFilterConstant `type:"structure" sensitive:"true"`
+
+	// A Boolean value that indicates if the filter is inverse.
+	Inverse *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicCategoryFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicCategoryFilter) GoString() string {
+	return s.String()
+}
+
+// SetCategoryFilterFunction sets the CategoryFilterFunction field's value.
+func (s *TopicCategoryFilter) SetCategoryFilterFunction(v string) *TopicCategoryFilter {
+	s.CategoryFilterFunction = &v
+	return s
+}
+
+// SetCategoryFilterType sets the CategoryFilterType field's value.
+func (s *TopicCategoryFilter) SetCategoryFilterType(v string) *TopicCategoryFilter {
+	s.CategoryFilterType = &v
+	return s
+}
+
+// SetConstant sets the Constant field's value.
+func (s *TopicCategoryFilter) SetConstant(v *TopicCategoryFilterConstant) *TopicCategoryFilter {
+	s.Constant = v
+	return s
+}
+
+// SetInverse sets the Inverse field's value.
+func (s *TopicCategoryFilter) SetInverse(v bool) *TopicCategoryFilter {
+	s.Inverse = &v
+	return s
+}
+
+// A constant used in a category filter.
+type TopicCategoryFilterConstant struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// A collective constant used in a category filter. This element is used to
+	// specify a list of values for the constant.
+	CollectiveConstant *CollectiveConstant `type:"structure"`
+
+	// The type of category filter constant. This element is used to specify whether
+	// a constant is a singular or collective. Valid values are SINGULAR and COLLECTIVE.
+	ConstantType *string `type:"string" enum:"ConstantType"`
+
+	// A singular constant used in a category filter. This element is used to specify
+	// a single value for the constant.
+	SingularConstant *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicCategoryFilterConstant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicCategoryFilterConstant) GoString() string {
+	return s.String()
+}
+
+// SetCollectiveConstant sets the CollectiveConstant field's value.
+func (s *TopicCategoryFilterConstant) SetCollectiveConstant(v *CollectiveConstant) *TopicCategoryFilterConstant {
+	s.CollectiveConstant = v
+	return s
+}
+
+// SetConstantType sets the ConstantType field's value.
+func (s *TopicCategoryFilterConstant) SetConstantType(v string) *TopicCategoryFilterConstant {
+	s.ConstantType = &v
+	return s
+}
+
+// SetSingularConstant sets the SingularConstant field's value.
+func (s *TopicCategoryFilterConstant) SetSingularConstant(v string) *TopicCategoryFilterConstant {
+	s.SingularConstant = &v
+	return s
+}
+
+// Represents a column in a dataset.
+type TopicColumn struct {
+	_ struct{} `type:"structure"`
+
+	// The type of aggregation that is performed on the column data when it's queried.
+	// Valid values for this structure are SUM, MAX, MIN, COUNT, DISTINCT_COUNT,
+	// and AVERAGE.
+	Aggregation *string `type:"string" enum:"DefaultAggregation"`
+
+	// The list of aggregation types that are allowed for the column. Valid values
+	// for this structure are COUNT, DISTINCT_COUNT, MIN, MAX, MEDIAN, SUM, AVERAGE,
+	// STDEV, STDEVP, VAR, VARP, and PERCENTILE.
+	AllowedAggregations []*string `type:"list" enum:"AuthorSpecifiedAggregation"`
+
+	// The other names or aliases for the column cell value.
+	CellValueSynonyms []*CellValueSynonym `type:"list"`
+
+	// The role of the column in the data. Valid values are DIMENSION and MEASURE.
+	ColumnDataRole *string `type:"string" enum:"ColumnDataRole"`
+
+	// A description of the column and its contents.
+	ColumnDescription *string `type:"string"`
+
+	// A user-friendly name for the column.
+	ColumnFriendlyName *string `type:"string"`
+
+	// The name of the column.
+	//
+	// ColumnName is a required field
+	ColumnName *string `type:"string" required:"true"`
+
+	// The other names or aliases for the column.
+	ColumnSynonyms []*string `type:"list"`
+
+	// The order in which data is displayed for the column when it's used in a comparative
+	// context.
+	ComparativeOrder *ComparativeOrder `type:"structure"`
+
+	// The default formatting used for values in the column.
+	DefaultFormatting *DefaultFormatting `type:"structure"`
+
+	// A Boolean value that indicates whether the column shows in the autocomplete
+	// functionality.
+	DisableIndexing *bool `type:"boolean"`
+
+	// A Boolean value that indicates whether the column is included in the query
+	// results.
+	IsIncludedInTopic *bool `type:"boolean"`
+
+	// A Boolean value that indicates whether to aggregate the column data when
+	// it's used in a filter context.
+	NeverAggregateInFilter *bool `type:"boolean"`
+
+	// The list of aggregation types that are not allowed for the column. Valid
+	// values for this structure are COUNT, DISTINCT_COUNT, MIN, MAX, MEDIAN, SUM,
+	// AVERAGE, STDEV, STDEVP, VAR, VARP, and PERCENTILE.
+	NotAllowedAggregations []*string `type:"list" enum:"AuthorSpecifiedAggregation"`
+
+	// The semantic type of data contained in the column.
+	SemanticType *SemanticType `type:"structure"`
+
+	// The level of time precision that is used to aggregate DateTime values.
+	TimeGranularity *string `type:"string" enum:"TopicTimeGranularity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicColumn) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicColumn) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicColumn) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicColumn"}
+	if s.ColumnName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ColumnName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *TopicColumn) SetAggregation(v string) *TopicColumn {
+	s.Aggregation = &v
+	return s
+}
+
+// SetAllowedAggregations sets the AllowedAggregations field's value.
+func (s *TopicColumn) SetAllowedAggregations(v []*string) *TopicColumn {
+	s.AllowedAggregations = v
+	return s
+}
+
+// SetCellValueSynonyms sets the CellValueSynonyms field's value.
+func (s *TopicColumn) SetCellValueSynonyms(v []*CellValueSynonym) *TopicColumn {
+	s.CellValueSynonyms = v
+	return s
+}
+
+// SetColumnDataRole sets the ColumnDataRole field's value.
+func (s *TopicColumn) SetColumnDataRole(v string) *TopicColumn {
+	s.ColumnDataRole = &v
+	return s
+}
+
+// SetColumnDescription sets the ColumnDescription field's value.
+func (s *TopicColumn) SetColumnDescription(v string) *TopicColumn {
+	s.ColumnDescription = &v
+	return s
+}
+
+// SetColumnFriendlyName sets the ColumnFriendlyName field's value.
+func (s *TopicColumn) SetColumnFriendlyName(v string) *TopicColumn {
+	s.ColumnFriendlyName = &v
+	return s
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *TopicColumn) SetColumnName(v string) *TopicColumn {
+	s.ColumnName = &v
+	return s
+}
+
+// SetColumnSynonyms sets the ColumnSynonyms field's value.
+func (s *TopicColumn) SetColumnSynonyms(v []*string) *TopicColumn {
+	s.ColumnSynonyms = v
+	return s
+}
+
+// SetComparativeOrder sets the ComparativeOrder field's value.
+func (s *TopicColumn) SetComparativeOrder(v *ComparativeOrder) *TopicColumn {
+	s.ComparativeOrder = v
+	return s
+}
+
+// SetDefaultFormatting sets the DefaultFormatting field's value.
+func (s *TopicColumn) SetDefaultFormatting(v *DefaultFormatting) *TopicColumn {
+	s.DefaultFormatting = v
+	return s
+}
+
+// SetDisableIndexing sets the DisableIndexing field's value.
+func (s *TopicColumn) SetDisableIndexing(v bool) *TopicColumn {
+	s.DisableIndexing = &v
+	return s
+}
+
+// SetIsIncludedInTopic sets the IsIncludedInTopic field's value.
+func (s *TopicColumn) SetIsIncludedInTopic(v bool) *TopicColumn {
+	s.IsIncludedInTopic = &v
+	return s
+}
+
+// SetNeverAggregateInFilter sets the NeverAggregateInFilter field's value.
+func (s *TopicColumn) SetNeverAggregateInFilter(v bool) *TopicColumn {
+	s.NeverAggregateInFilter = &v
+	return s
+}
+
+// SetNotAllowedAggregations sets the NotAllowedAggregations field's value.
+func (s *TopicColumn) SetNotAllowedAggregations(v []*string) *TopicColumn {
+	s.NotAllowedAggregations = v
+	return s
+}
+
+// SetSemanticType sets the SemanticType field's value.
+func (s *TopicColumn) SetSemanticType(v *SemanticType) *TopicColumn {
+	s.SemanticType = v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *TopicColumn) SetTimeGranularity(v string) *TopicColumn {
+	s.TimeGranularity = &v
+	return s
+}
+
+// A filter used to restrict data based on a range of dates or times.
+type TopicDateRangeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The constant used in a date range filter.
+	//
+	// Constant is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TopicDateRangeFilter's
+	// String and GoString methods.
+	Constant *TopicRangeFilterConstant `type:"structure" sensitive:"true"`
+
+	// A Boolean value that indicates whether the date range filter should include
+	// the boundary values. If set to true, the filter includes the start and end
+	// dates. If set to false, the filter excludes them.
+	Inclusive *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicDateRangeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicDateRangeFilter) GoString() string {
+	return s.String()
+}
+
+// SetConstant sets the Constant field's value.
+func (s *TopicDateRangeFilter) SetConstant(v *TopicRangeFilterConstant) *TopicDateRangeFilter {
+	s.Constant = v
+	return s
+}
+
+// SetInclusive sets the Inclusive field's value.
+func (s *TopicDateRangeFilter) SetInclusive(v bool) *TopicDateRangeFilter {
+	s.Inclusive = &v
+	return s
+}
+
+// A structure that describes the details of a topic, such as its name, description,
+// and associated data sets.
+type TopicDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The data sets that the topic is associated with.
+	DataSets []*DatasetMetadata `type:"list"`
+
+	// The description of the topic.
+	Description *string `type:"string"`
+
+	// The name of the topic.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicDetails"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.DataSets != nil {
+		for i, v := range s.DataSets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSets sets the DataSets field's value.
+func (s *TopicDetails) SetDataSets(v []*DatasetMetadata) *TopicDetails {
+	s.DataSets = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TopicDetails) SetDescription(v string) *TopicDetails {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TopicDetails) SetName(v string) *TopicDetails {
+	s.Name = &v
+	return s
+}
+
+// A structure that represents a filter used to select items for a topic.
+type TopicFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The category filter that is associated with this filter.
+	CategoryFilter *TopicCategoryFilter `type:"structure"`
+
+	// The date range filter.
+	DateRangeFilter *TopicDateRangeFilter `type:"structure"`
+
+	// The class of the filter. Valid values for this structure are ENFORCED_VALUE_FILTER,
+	// CONDITIONAL_VALUE_FILTER, and NAMED_VALUE_FILTER.
+	FilterClass *string `type:"string" enum:"FilterClass"`
+
+	// A description of the filter used to select items for a topic.
+	FilterDescription *string `type:"string"`
+
+	// The name of the filter.
+	//
+	// FilterName is a required field
+	FilterName *string `type:"string" required:"true"`
+
+	// The other names or aliases for the filter.
+	FilterSynonyms []*string `type:"list"`
+
+	// The type of the filter. Valid values for this structure are CATEGORY_FILTER,
+	// NUMERIC_EQUALITY_FILTER, NUMERIC_RANGE_FILTER, DATE_RANGE_FILTER, and RELATIVE_DATE_FILTER.
+	FilterType *string `type:"string" enum:"NamedFilterType"`
+
+	// The numeric equality filter.
+	NumericEqualityFilter *TopicNumericEqualityFilter `type:"structure"`
+
+	// The numeric range filter.
+	NumericRangeFilter *TopicNumericRangeFilter `type:"structure"`
+
+	// The name of the field that the filter operates on.
+	//
+	// OperandFieldName is a required field
+	OperandFieldName *string `type:"string" required:"true"`
+
+	// The relative date filter.
+	RelativeDateFilter *TopicRelativeDateFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicFilter"}
+	if s.FilterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterName"))
+	}
+	if s.OperandFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperandFieldName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoryFilter sets the CategoryFilter field's value.
+func (s *TopicFilter) SetCategoryFilter(v *TopicCategoryFilter) *TopicFilter {
+	s.CategoryFilter = v
+	return s
+}
+
+// SetDateRangeFilter sets the DateRangeFilter field's value.
+func (s *TopicFilter) SetDateRangeFilter(v *TopicDateRangeFilter) *TopicFilter {
+	s.DateRangeFilter = v
+	return s
+}
+
+// SetFilterClass sets the FilterClass field's value.
+func (s *TopicFilter) SetFilterClass(v string) *TopicFilter {
+	s.FilterClass = &v
+	return s
+}
+
+// SetFilterDescription sets the FilterDescription field's value.
+func (s *TopicFilter) SetFilterDescription(v string) *TopicFilter {
+	s.FilterDescription = &v
+	return s
+}
+
+// SetFilterName sets the FilterName field's value.
+func (s *TopicFilter) SetFilterName(v string) *TopicFilter {
+	s.FilterName = &v
+	return s
+}
+
+// SetFilterSynonyms sets the FilterSynonyms field's value.
+func (s *TopicFilter) SetFilterSynonyms(v []*string) *TopicFilter {
+	s.FilterSynonyms = v
+	return s
+}
+
+// SetFilterType sets the FilterType field's value.
+func (s *TopicFilter) SetFilterType(v string) *TopicFilter {
+	s.FilterType = &v
+	return s
+}
+
+// SetNumericEqualityFilter sets the NumericEqualityFilter field's value.
+func (s *TopicFilter) SetNumericEqualityFilter(v *TopicNumericEqualityFilter) *TopicFilter {
+	s.NumericEqualityFilter = v
+	return s
+}
+
+// SetNumericRangeFilter sets the NumericRangeFilter field's value.
+func (s *TopicFilter) SetNumericRangeFilter(v *TopicNumericRangeFilter) *TopicFilter {
+	s.NumericRangeFilter = v
+	return s
+}
+
+// SetOperandFieldName sets the OperandFieldName field's value.
+func (s *TopicFilter) SetOperandFieldName(v string) *TopicFilter {
+	s.OperandFieldName = &v
+	return s
+}
+
+// SetRelativeDateFilter sets the RelativeDateFilter field's value.
+func (s *TopicFilter) SetRelativeDateFilter(v *TopicRelativeDateFilter) *TopicFilter {
+	s.RelativeDateFilter = v
+	return s
+}
+
+// A structure that represents a named entity.
+type TopicNamedEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The definition of a named entity.
+	Definition []*NamedEntityDefinition `type:"list"`
+
+	// The description of the named entity.
+	EntityDescription *string `type:"string"`
+
+	// The name of the named entity.
+	//
+	// EntityName is a required field
+	EntityName *string `type:"string" required:"true"`
+
+	// The other names or aliases for the named entity.
+	EntitySynonyms []*string `type:"list"`
+
+	// The type of named entity that a topic represents.
+	SemanticEntityType *SemanticEntityType `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicNamedEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicNamedEntity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicNamedEntity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicNamedEntity"}
+	if s.EntityName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *TopicNamedEntity) SetDefinition(v []*NamedEntityDefinition) *TopicNamedEntity {
+	s.Definition = v
+	return s
+}
+
+// SetEntityDescription sets the EntityDescription field's value.
+func (s *TopicNamedEntity) SetEntityDescription(v string) *TopicNamedEntity {
+	s.EntityDescription = &v
+	return s
+}
+
+// SetEntityName sets the EntityName field's value.
+func (s *TopicNamedEntity) SetEntityName(v string) *TopicNamedEntity {
+	s.EntityName = &v
+	return s
+}
+
+// SetEntitySynonyms sets the EntitySynonyms field's value.
+func (s *TopicNamedEntity) SetEntitySynonyms(v []*string) *TopicNamedEntity {
+	s.EntitySynonyms = v
+	return s
+}
+
+// SetSemanticEntityType sets the SemanticEntityType field's value.
+func (s *TopicNamedEntity) SetSemanticEntityType(v *SemanticEntityType) *TopicNamedEntity {
+	s.SemanticEntityType = v
+	return s
+}
+
+// A filter that filters topics based on the value of a numeric field. The filter
+// includes only topics whose numeric field value matches the specified value.
+type TopicNumericEqualityFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An aggregation function that specifies how to calculate the value of a numeric
+	// field for a topic. Valid values for this structure are NO_AGGREGATION, SUM,
+	// AVERAGE, COUNT, DISTINCT_COUNT, MAX, MEDIAN, MIN, STDEV, STDEVP, VAR, and
+	// VARP.
+	Aggregation *string `type:"string" enum:"NamedFilterAggType"`
+
+	// The constant used in a numeric equality filter.
+	//
+	// Constant is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TopicNumericEqualityFilter's
+	// String and GoString methods.
+	Constant *TopicSingularFilterConstant `type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicNumericEqualityFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicNumericEqualityFilter) GoString() string {
+	return s.String()
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *TopicNumericEqualityFilter) SetAggregation(v string) *TopicNumericEqualityFilter {
+	s.Aggregation = &v
+	return s
+}
+
+// SetConstant sets the Constant field's value.
+func (s *TopicNumericEqualityFilter) SetConstant(v *TopicSingularFilterConstant) *TopicNumericEqualityFilter {
+	s.Constant = v
+	return s
+}
+
+// A filter that filters topics based on the value of a numeric field. The filter
+// includes only topics whose numeric field value falls within the specified
+// range.
+type TopicNumericRangeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An aggregation function that specifies how to calculate the value of a numeric
+	// field for a topic, Valid values for this structure are NO_AGGREGATION, SUM,
+	// AVERAGE, COUNT, DISTINCT_COUNT, MAX, MEDIAN, MIN, STDEV, STDEVP, VAR, and
+	// VARP.
+	Aggregation *string `type:"string" enum:"NamedFilterAggType"`
+
+	// The constant used in a numeric range filter.
+	//
+	// Constant is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TopicNumericRangeFilter's
+	// String and GoString methods.
+	Constant *TopicRangeFilterConstant `type:"structure" sensitive:"true"`
+
+	// A Boolean value that indicates whether the endpoints of the numeric range
+	// are included in the filter. If set to true, topics whose numeric field value
+	// is equal to the endpoint values will be included in the filter. If set to
+	// false, topics whose numeric field value is equal to the endpoint values will
+	// be excluded from the filter.
+	Inclusive *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicNumericRangeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicNumericRangeFilter) GoString() string {
+	return s.String()
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *TopicNumericRangeFilter) SetAggregation(v string) *TopicNumericRangeFilter {
+	s.Aggregation = &v
+	return s
+}
+
+// SetConstant sets the Constant field's value.
+func (s *TopicNumericRangeFilter) SetConstant(v *TopicRangeFilterConstant) *TopicNumericRangeFilter {
+	s.Constant = v
+	return s
+}
+
+// SetInclusive sets the Inclusive field's value.
+func (s *TopicNumericRangeFilter) SetInclusive(v bool) *TopicNumericRangeFilter {
+	s.Inclusive = &v
+	return s
+}
+
+// A constant value that is used in a range filter to specify the endpoints
+// of the range.
+type TopicRangeFilterConstant struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The data type of the constant value that is used in a range filter. Valid
+	// values for this structure are RANGE.
+	ConstantType *string `type:"string" enum:"ConstantType"`
+
+	// The value of the constant that is used to specify the endpoints of a range
+	// filter.
+	RangeConstant *RangeConstant `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRangeFilterConstant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRangeFilterConstant) GoString() string {
+	return s.String()
+}
+
+// SetConstantType sets the ConstantType field's value.
+func (s *TopicRangeFilterConstant) SetConstantType(v string) *TopicRangeFilterConstant {
+	s.ConstantType = &v
+	return s
+}
+
+// SetRangeConstant sets the RangeConstant field's value.
+func (s *TopicRangeFilterConstant) SetRangeConstant(v *RangeConstant) *TopicRangeFilterConstant {
+	s.RangeConstant = v
+	return s
+}
+
+// The details about the refresh of a topic.
+type TopicRefreshDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the topic refresh.
+	RefreshArn *string `type:"string"`
+
+	// The ID of the refresh, which occurs as a result of topic creation or topic
+	// update.
+	RefreshId *string `type:"string"`
+
+	// The status of the refresh job that indicates whether the job is still running,
+	// completed successfully, or failed.
+	RefreshStatus *string `type:"string" enum:"TopicRefreshStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRefreshDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRefreshDetails) GoString() string {
+	return s.String()
+}
+
+// SetRefreshArn sets the RefreshArn field's value.
+func (s *TopicRefreshDetails) SetRefreshArn(v string) *TopicRefreshDetails {
+	s.RefreshArn = &v
+	return s
+}
+
+// SetRefreshId sets the RefreshId field's value.
+func (s *TopicRefreshDetails) SetRefreshId(v string) *TopicRefreshDetails {
+	s.RefreshId = &v
+	return s
+}
+
+// SetRefreshStatus sets the RefreshStatus field's value.
+func (s *TopicRefreshDetails) SetRefreshStatus(v string) *TopicRefreshDetails {
+	s.RefreshStatus = &v
+	return s
+}
+
+// A structure that represents a topic refresh schedule.
+type TopicRefreshSchedule struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that controls whether to schedule runs at the same schedule
+	// that is specified in SPICE dataset.
+	//
+	// BasedOnSpiceSchedule is a required field
+	BasedOnSpiceSchedule *bool `type:"boolean" required:"true"`
+
+	// A Boolean value that controls whether to schedule is enabled.
+	//
+	// IsEnabled is a required field
+	IsEnabled *bool `type:"boolean" required:"true"`
+
+	// The time of day when the refresh should run, for example, Monday-Sunday.
+	RepeatAt *string `type:"string"`
+
+	// The starting date and time for the refresh schedule.
+	StartingAt *time.Time `type:"timestamp"`
+
+	// The timezone that you want the refresh schedule to use.
+	Timezone *string `type:"string"`
+
+	// The type of refresh schedule. Valid values for this structure are HOURLY,
+	// DAILY, WEEKLY, and MONTHLY.
+	TopicScheduleType *string `type:"string" enum:"TopicScheduleType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRefreshSchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRefreshSchedule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicRefreshSchedule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicRefreshSchedule"}
+	if s.BasedOnSpiceSchedule == nil {
+		invalidParams.Add(request.NewErrParamRequired("BasedOnSpiceSchedule"))
+	}
+	if s.IsEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBasedOnSpiceSchedule sets the BasedOnSpiceSchedule field's value.
+func (s *TopicRefreshSchedule) SetBasedOnSpiceSchedule(v bool) *TopicRefreshSchedule {
+	s.BasedOnSpiceSchedule = &v
+	return s
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *TopicRefreshSchedule) SetIsEnabled(v bool) *TopicRefreshSchedule {
+	s.IsEnabled = &v
+	return s
+}
+
+// SetRepeatAt sets the RepeatAt field's value.
+func (s *TopicRefreshSchedule) SetRepeatAt(v string) *TopicRefreshSchedule {
+	s.RepeatAt = &v
+	return s
+}
+
+// SetStartingAt sets the StartingAt field's value.
+func (s *TopicRefreshSchedule) SetStartingAt(v time.Time) *TopicRefreshSchedule {
+	s.StartingAt = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *TopicRefreshSchedule) SetTimezone(v string) *TopicRefreshSchedule {
+	s.Timezone = &v
+	return s
+}
+
+// SetTopicScheduleType sets the TopicScheduleType field's value.
+func (s *TopicRefreshSchedule) SetTopicScheduleType(v string) *TopicRefreshSchedule {
+	s.TopicScheduleType = &v
+	return s
+}
+
+// A summary of the refresh schedule details for a dataset.
+type TopicRefreshScheduleSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset.
+	DatasetArn *string `type:"string"`
+
+	// The ID of the dataset.
+	DatasetId *string `type:"string"`
+
+	// The name of the dataset.
+	DatasetName *string `type:"string"`
+
+	// The definition of a refresh schedule.
+	RefreshSchedule *TopicRefreshSchedule `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRefreshScheduleSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRefreshScheduleSummary) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *TopicRefreshScheduleSummary) SetDatasetArn(v string) *TopicRefreshScheduleSummary {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *TopicRefreshScheduleSummary) SetDatasetId(v string) *TopicRefreshScheduleSummary {
+	s.DatasetId = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *TopicRefreshScheduleSummary) SetDatasetName(v string) *TopicRefreshScheduleSummary {
+	s.DatasetName = &v
+	return s
+}
+
+// SetRefreshSchedule sets the RefreshSchedule field's value.
+func (s *TopicRefreshScheduleSummary) SetRefreshSchedule(v *TopicRefreshSchedule) *TopicRefreshScheduleSummary {
+	s.RefreshSchedule = v
+	return s
+}
+
+// A structure that represents a relative date filter.
+type TopicRelativeDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The constant used in a relative date filter.
+	//
+	// Constant is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TopicRelativeDateFilter's
+	// String and GoString methods.
+	Constant *TopicSingularFilterConstant `type:"structure" sensitive:"true"`
+
+	// The function to be used in a relative date filter to determine the range
+	// of dates to include in the results. Valid values for this structure are BEFORE,
+	// AFTER, and BETWEEN.
+	RelativeDateFilterFunction *string `type:"string" enum:"TopicRelativeDateFilterFunction"`
+
+	// The level of time precision that is used to aggregate DateTime values.
+	TimeGranularity *string `type:"string" enum:"TopicTimeGranularity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRelativeDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicRelativeDateFilter) GoString() string {
+	return s.String()
+}
+
+// SetConstant sets the Constant field's value.
+func (s *TopicRelativeDateFilter) SetConstant(v *TopicSingularFilterConstant) *TopicRelativeDateFilter {
+	s.Constant = v
+	return s
+}
+
+// SetRelativeDateFilterFunction sets the RelativeDateFilterFunction field's value.
+func (s *TopicRelativeDateFilter) SetRelativeDateFilterFunction(v string) *TopicRelativeDateFilter {
+	s.RelativeDateFilterFunction = &v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *TopicRelativeDateFilter) SetTimeGranularity(v string) *TopicRelativeDateFilter {
+	s.TimeGranularity = &v
+	return s
+}
+
+// A structure that represents a singular filter constant, used in filters to
+// specify a single value to match against.
+type TopicSingularFilterConstant struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The type of the singular filter constant. Valid values for this structure
+	// are SINGULAR.
+	ConstantType *string `type:"string" enum:"ConstantType"`
+
+	// The value of the singular filter constant.
+	SingularConstant *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicSingularFilterConstant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicSingularFilterConstant) GoString() string {
+	return s.String()
+}
+
+// SetConstantType sets the ConstantType field's value.
+func (s *TopicSingularFilterConstant) SetConstantType(v string) *TopicSingularFilterConstant {
+	s.ConstantType = &v
+	return s
+}
+
+// SetSingularConstant sets the SingularConstant field's value.
+func (s *TopicSingularFilterConstant) SetSingularConstant(v string) *TopicSingularFilterConstant {
+	s.SingularConstant = &v
+	return s
+}
+
+// A topic summary.
+type TopicSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	Arn *string `type:"string"`
+
+	// The name of the topic.
+	Name *string `min:"1" type:"string"`
+
+	// The ID for the topic. This ID is unique per Amazon Web Services Region for
+	// each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *TopicSummary) SetArn(v string) *TopicSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TopicSummary) SetName(v string) *TopicSummary {
+	s.Name = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *TopicSummary) SetTopicId(v string) *TopicSummary {
+	s.TopicId = &v
+	return s
+}
+
 // The total aggregation computation configuration.
 type TotalAggregationComputation struct {
 	_ struct{} `type:"structure"`
@@ -75764,6 +83238,10 @@ type TransformOperation struct {
 	// An operation that filters rows based on some condition.
 	FilterOperation *FilterOperation `type:"structure"`
 
+	// A transform operation that overrides the dataset parameter values that are
+	// defined in another dataset.
+	OverrideDatasetParameterOperation *OverrideDatasetParameterOperation `type:"structure"`
+
 	// An operation that projects columns. Operations that come after a projection
 	// can only refer to projected columns.
 	ProjectOperation *ProjectOperation `type:"structure"`
@@ -75814,6 +83292,11 @@ func (s *TransformOperation) Validate() error {
 			invalidParams.AddNested("FilterOperation", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OverrideDatasetParameterOperation != nil {
+		if err := s.OverrideDatasetParameterOperation.Validate(); err != nil {
+			invalidParams.AddNested("OverrideDatasetParameterOperation", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProjectOperation != nil {
 		if err := s.ProjectOperation.Validate(); err != nil {
 			invalidParams.AddNested("ProjectOperation", err.(request.ErrInvalidParams))
@@ -75856,6 +83339,12 @@ func (s *TransformOperation) SetCreateColumnsOperation(v *CreateColumnsOperation
 // SetFilterOperation sets the FilterOperation field's value.
 func (s *TransformOperation) SetFilterOperation(v *FilterOperation) *TransformOperation {
 	s.FilterOperation = v
+	return s
+}
+
+// SetOverrideDatasetParameterOperation sets the OverrideDatasetParameterOperation field's value.
+func (s *TransformOperation) SetOverrideDatasetParameterOperation(v *OverrideDatasetParameterOperation) *TransformOperation {
+	s.OverrideDatasetParameterOperation = v
 	return s
 }
 
@@ -78488,6 +85977,9 @@ type UpdateDataSetInput struct {
 	// as a source.
 	DataSetUsageConfiguration *DataSetUsageConfiguration `type:"structure"`
 
+	// The parameter declarations of the dataset.
+	DatasetParameters []*DatasetParameter `min:"1" type:"list"`
+
 	// The folder that contains fields and nested subfolders for your dataset.
 	FieldFolders map[string]*FieldFolder `type:"map"`
 
@@ -78557,6 +86049,9 @@ func (s *UpdateDataSetInput) Validate() error {
 	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
 	}
+	if s.DatasetParameters != nil && len(s.DatasetParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetParameters", 1))
+	}
 	if s.ImportMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImportMode"))
 	}
@@ -78589,6 +86084,16 @@ func (s *UpdateDataSetInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnLevelPermissionRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DatasetParameters != nil {
+		for i, v := range s.DatasetParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DatasetParameters", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -78656,6 +86161,12 @@ func (s *UpdateDataSetInput) SetDataSetId(v string) *UpdateDataSetInput {
 // SetDataSetUsageConfiguration sets the DataSetUsageConfiguration field's value.
 func (s *UpdateDataSetInput) SetDataSetUsageConfiguration(v *DataSetUsageConfiguration) *UpdateDataSetInput {
 	s.DataSetUsageConfiguration = v
+	return s
+}
+
+// SetDatasetParameters sets the DatasetParameters field's value.
+func (s *UpdateDataSetInput) SetDatasetParameters(v []*DatasetParameter) *UpdateDataSetInput {
+	s.DatasetParameters = v
 	return s
 }
 
@@ -79798,8 +87309,8 @@ func (s *UpdateGroupOutput) SetStatus(v int64) *UpdateGroupOutput {
 type UpdateIAMPolicyAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the assignment, also called a rule. This name must be unique
-	// within an Amazon Web Services account.
+	// The name of the assignment, also called a rule. The name must be unique within
+	// the Amazon Web Services account.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `location:"uri" locationName:"AssignmentName" min:"1" type:"string" required:"true"`
@@ -81423,6 +88934,507 @@ func (s *UpdateThemePermissionsOutput) SetThemeId(v string) *UpdateThemePermissi
 	return s
 }
 
+type UpdateTopicInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the topic that you
+	// want to update.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The definition of the topic that you want to update.
+	//
+	// Topic is a required field
+	Topic *TopicDetails `type:"structure" required:"true"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTopicInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTopicInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Topic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Topic"))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+	if s.Topic != nil {
+		if err := s.Topic.Validate(); err != nil {
+			invalidParams.AddNested("Topic", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateTopicInput) SetAwsAccountId(v string) *UpdateTopicInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopic sets the Topic field's value.
+func (s *UpdateTopicInput) SetTopic(v *TopicDetails) *UpdateTopicInput {
+	s.Topic = v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *UpdateTopicInput) SetTopicId(v string) *UpdateTopicInput {
+	s.TopicId = &v
+	return s
+}
+
+type UpdateTopicOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	Arn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the topic refresh.
+	RefreshArn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateTopicOutput) SetArn(v string) *UpdateTopicOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetRefreshArn sets the RefreshArn field's value.
+func (s *UpdateTopicOutput) SetRefreshArn(v string) *UpdateTopicOutput {
+	s.RefreshArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateTopicOutput) SetRequestId(v string) *UpdateTopicOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateTopicOutput) SetStatus(v int64) *UpdateTopicOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *UpdateTopicOutput) SetTopicId(v string) *UpdateTopicOutput {
+	s.TopicId = &v
+	return s
+}
+
+type UpdateTopicPermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the topic that you
+	// want to update the permissions for.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The resource permissions that you want to grant to the topic.
+	GrantPermissions []*ResourcePermission `type:"list"`
+
+	// The resource permissions that you want to revoke from the topic.
+	RevokePermissions []*ResourcePermission `type:"list"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTopicPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTopicPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+	if s.GrantPermissions != nil {
+		for i, v := range s.GrantPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GrantPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RevokePermissions != nil {
+		for i, v := range s.RevokePermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RevokePermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateTopicPermissionsInput) SetAwsAccountId(v string) *UpdateTopicPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetGrantPermissions sets the GrantPermissions field's value.
+func (s *UpdateTopicPermissionsInput) SetGrantPermissions(v []*ResourcePermission) *UpdateTopicPermissionsInput {
+	s.GrantPermissions = v
+	return s
+}
+
+// SetRevokePermissions sets the RevokePermissions field's value.
+func (s *UpdateTopicPermissionsInput) SetRevokePermissions(v []*ResourcePermission) *UpdateTopicPermissionsInput {
+	s.RevokePermissions = v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *UpdateTopicPermissionsInput) SetTopicId(v string) *UpdateTopicPermissionsInput {
+	s.TopicId = &v
+	return s
+}
+
+type UpdateTopicPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of resource permissions on the topic.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *UpdateTopicPermissionsOutput) SetPermissions(v []*ResourcePermission) *UpdateTopicPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateTopicPermissionsOutput) SetRequestId(v string) *UpdateTopicPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateTopicPermissionsOutput) SetStatus(v int64) *UpdateTopicPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *UpdateTopicPermissionsOutput) SetTopicArn(v string) *UpdateTopicPermissionsOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *UpdateTopicPermissionsOutput) SetTopicId(v string) *UpdateTopicPermissionsOutput {
+	s.TopicId = &v
+	return s
+}
+
+type UpdateTopicRefreshScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the topic whose refresh
+	// schedule you want to update.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID of the dataset.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"DatasetId" type:"string" required:"true"`
+
+	// The definition of a refresh schedule.
+	//
+	// RefreshSchedule is a required field
+	RefreshSchedule *TopicRefreshSchedule `type:"structure" required:"true"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicRefreshScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicRefreshScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTopicRefreshScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTopicRefreshScheduleInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.RefreshSchedule == nil {
+		invalidParams.Add(request.NewErrParamRequired("RefreshSchedule"))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+	if s.RefreshSchedule != nil {
+		if err := s.RefreshSchedule.Validate(); err != nil {
+			invalidParams.AddNested("RefreshSchedule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateTopicRefreshScheduleInput) SetAwsAccountId(v string) *UpdateTopicRefreshScheduleInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *UpdateTopicRefreshScheduleInput) SetDatasetId(v string) *UpdateTopicRefreshScheduleInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetRefreshSchedule sets the RefreshSchedule field's value.
+func (s *UpdateTopicRefreshScheduleInput) SetRefreshSchedule(v *TopicRefreshSchedule) *UpdateTopicRefreshScheduleInput {
+	s.RefreshSchedule = v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *UpdateTopicRefreshScheduleInput) SetTopicId(v string) *UpdateTopicRefreshScheduleInput {
+	s.TopicId = &v
+	return s
+}
+
+type UpdateTopicRefreshScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset.
+	DatasetArn *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID of the topic that you want to modify. This ID is unique per Amazon
+	// Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicRefreshScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTopicRefreshScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *UpdateTopicRefreshScheduleOutput) SetDatasetArn(v string) *UpdateTopicRefreshScheduleOutput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateTopicRefreshScheduleOutput) SetRequestId(v string) *UpdateTopicRefreshScheduleOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateTopicRefreshScheduleOutput) SetStatus(v int64) *UpdateTopicRefreshScheduleOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *UpdateTopicRefreshScheduleOutput) SetTopicArn(v string) *UpdateTopicRefreshScheduleOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *UpdateTopicRefreshScheduleOutput) SetTopicId(v string) *UpdateTopicRefreshScheduleOutput {
+	s.TopicId = &v
+	return s
+}
+
 type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -81685,6 +89697,228 @@ func (s *UpdateUserOutput) SetStatus(v int64) *UpdateUserOutput {
 // SetUser sets the User field's value.
 func (s *UpdateUserOutput) SetUser(v *User) *UpdateUserOutput {
 	s.User = v
+	return s
+}
+
+type UpdateVPCConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the account that contains the VPC connection
+	// that you want to update.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// A list of IP addresses of DNS resolver endpoints for the VPC connection.
+	DnsResolvers []*string `type:"list"`
+
+	// The display name for the VPC connection.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// An IAM role associated with the VPC connection.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A list of security group IDs for the VPC connection.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `min:"1" type:"list" required:"true"`
+
+	// A list of subnet IDs for the VPC connection.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `min:"2" type:"list" required:"true"`
+
+	// The ID of the VPC connection that you're updating. This ID is a unique identifier
+	// for each Amazon Web Services Region in an Amazon Web Services account.
+	//
+	// VPCConnectionId is a required field
+	VPCConnectionId *string `location:"uri" locationName:"VPCConnectionId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVPCConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVPCConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVPCConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVPCConnectionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.SubnetIds != nil && len(s.SubnetIds) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 2))
+	}
+	if s.VPCConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VPCConnectionId"))
+	}
+	if s.VPCConnectionId != nil && len(*s.VPCConnectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VPCConnectionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateVPCConnectionInput) SetAwsAccountId(v string) *UpdateVPCConnectionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDnsResolvers sets the DnsResolvers field's value.
+func (s *UpdateVPCConnectionInput) SetDnsResolvers(v []*string) *UpdateVPCConnectionInput {
+	s.DnsResolvers = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateVPCConnectionInput) SetName(v string) *UpdateVPCConnectionInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateVPCConnectionInput) SetRoleArn(v string) *UpdateVPCConnectionInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *UpdateVPCConnectionInput) SetSecurityGroupIds(v []*string) *UpdateVPCConnectionInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *UpdateVPCConnectionInput) SetSubnetIds(v []*string) *UpdateVPCConnectionInput {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *UpdateVPCConnectionInput) SetVPCConnectionId(v string) *UpdateVPCConnectionInput {
+	s.VPCConnectionId = &v
+	return s
+}
+
+type UpdateVPCConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	Arn *string `type:"string"`
+
+	// The availability status of the VPC connection.
+	AvailabilityStatus *string `type:"string" enum:"VPCConnectionAvailabilityStatus"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The update status of the VPC connection's last update.
+	UpdateStatus *string `type:"string" enum:"VPCConnectionResourceStatus"`
+
+	// The ID of the VPC connection that you are updating. This ID is a unique identifier
+	// for each Amazon Web Services Region in anAmazon Web Services account.
+	VPCConnectionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVPCConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVPCConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateVPCConnectionOutput) SetArn(v string) *UpdateVPCConnectionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *UpdateVPCConnectionOutput) SetAvailabilityStatus(v string) *UpdateVPCConnectionOutput {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateVPCConnectionOutput) SetRequestId(v string) *UpdateVPCConnectionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateVPCConnectionOutput) SetStatus(v int64) *UpdateVPCConnectionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *UpdateVPCConnectionOutput) SetUpdateStatus(v string) *UpdateVPCConnectionOutput {
+	s.UpdateStatus = &v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *UpdateVPCConnectionOutput) SetVPCConnectionId(v string) *UpdateVPCConnectionOutput {
+	s.VPCConnectionId = &v
 	return s
 }
 
@@ -81985,6 +90219,270 @@ func (s *UserNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UserNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The structure of a VPC connection.
+type VPCConnection struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	Arn *string `type:"string"`
+
+	// The availability status of the VPC connection.
+	AvailabilityStatus *string `type:"string" enum:"VPCConnectionAvailabilityStatus"`
+
+	// The time that the VPC connection was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// A list of IP addresses of DNS resolver endpoints for the VPC connection.
+	DnsResolvers []*string `type:"list"`
+
+	// The time that the VPC connection was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The display name for the VPC connection.
+	Name *string `min:"1" type:"string"`
+
+	// A list of network interfaces.
+	NetworkInterfaces []*NetworkInterface `type:"list"`
+
+	// The ARN of the IAM role associated with the VPC connection.
+	RoleArn *string `type:"string"`
+
+	// The Amazon EC2 security group IDs associated with the VPC connection.
+	SecurityGroupIds []*string `min:"1" type:"list"`
+
+	// The status of the VPC connection.
+	Status *string `type:"string" enum:"VPCConnectionResourceStatus"`
+
+	// The ID of the VPC connection that you're creating. This ID is a unique identifier
+	// for each Amazon Web Services Region in an Amazon Web Services account.
+	VPCConnectionId *string `min:"1" type:"string"`
+
+	// The Amazon EC2 VPC ID associated with the VPC connection.
+	VPCId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VPCConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VPCConnection) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *VPCConnection) SetArn(v string) *VPCConnection {
+	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *VPCConnection) SetAvailabilityStatus(v string) *VPCConnection {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *VPCConnection) SetCreatedTime(v time.Time) *VPCConnection {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDnsResolvers sets the DnsResolvers field's value.
+func (s *VPCConnection) SetDnsResolvers(v []*string) *VPCConnection {
+	s.DnsResolvers = v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *VPCConnection) SetLastUpdatedTime(v time.Time) *VPCConnection {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VPCConnection) SetName(v string) *VPCConnection {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *VPCConnection) SetNetworkInterfaces(v []*NetworkInterface) *VPCConnection {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VPCConnection) SetRoleArn(v string) *VPCConnection {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VPCConnection) SetSecurityGroupIds(v []*string) *VPCConnection {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VPCConnection) SetStatus(v string) *VPCConnection {
+	s.Status = &v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *VPCConnection) SetVPCConnectionId(v string) *VPCConnection {
+	s.VPCConnectionId = &v
+	return s
+}
+
+// SetVPCId sets the VPCId field's value.
+func (s *VPCConnection) SetVPCId(v string) *VPCConnection {
+	s.VPCId = &v
+	return s
+}
+
+// The summary metadata that describes a VPC connection.
+type VPCConnectionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the VPC connection.
+	Arn *string `type:"string"`
+
+	// The availability status of the VPC connection.
+	AvailabilityStatus *string `type:"string" enum:"VPCConnectionAvailabilityStatus"`
+
+	// The time that the VPC connection was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// A list of IP addresses of DNS resolver endpoints for the VPC connection.
+	DnsResolvers []*string `type:"list"`
+
+	// The time that the VPC connection was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The display name for the VPC connection.
+	Name *string `min:"1" type:"string"`
+
+	// A list of network interfaces.
+	NetworkInterfaces []*NetworkInterface `type:"list"`
+
+	// The ARN of the IAM role associated with the VPC connection.
+	RoleArn *string `type:"string"`
+
+	// The Amazon EC2 security group IDs associated with the VPC connection.
+	SecurityGroupIds []*string `min:"1" type:"list"`
+
+	// The status of the VPC connection.
+	Status *string `type:"string" enum:"VPCConnectionResourceStatus"`
+
+	// The ID of the VPC connection that you're creating. This ID is a unique identifier
+	// for each Amazon Web Services Region in an Amazon Web Services account.
+	VPCConnectionId *string `min:"1" type:"string"`
+
+	// The Amazon EC2 VPC ID associated with the VPC connection.
+	VPCId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VPCConnectionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VPCConnectionSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *VPCConnectionSummary) SetArn(v string) *VPCConnectionSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *VPCConnectionSummary) SetAvailabilityStatus(v string) *VPCConnectionSummary {
+	s.AvailabilityStatus = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *VPCConnectionSummary) SetCreatedTime(v time.Time) *VPCConnectionSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDnsResolvers sets the DnsResolvers field's value.
+func (s *VPCConnectionSummary) SetDnsResolvers(v []*string) *VPCConnectionSummary {
+	s.DnsResolvers = v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *VPCConnectionSummary) SetLastUpdatedTime(v time.Time) *VPCConnectionSummary {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VPCConnectionSummary) SetName(v string) *VPCConnectionSummary {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *VPCConnectionSummary) SetNetworkInterfaces(v []*NetworkInterface) *VPCConnectionSummary {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VPCConnectionSummary) SetRoleArn(v string) *VPCConnectionSummary {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VPCConnectionSummary) SetSecurityGroupIds(v []*string) *VPCConnectionSummary {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VPCConnectionSummary) SetStatus(v string) *VPCConnectionSummary {
+	s.Status = &v
+	return s
+}
+
+// SetVPCConnectionId sets the VPCConnectionId field's value.
+func (s *VPCConnectionSummary) SetVPCConnectionId(v string) *VPCConnectionSummary {
+	s.VPCConnectionId = &v
+	return s
+}
+
+// SetVPCId sets the VPCId field's value.
+func (s *VPCConnectionSummary) SetVPCId(v string) *VPCConnectionSummary {
+	s.VPCId = &v
+	return s
 }
 
 // The range options for the data zoom scroll bar.
@@ -84285,6 +92783,62 @@ func AuthenticationMethodOption_Values() []string {
 }
 
 const (
+	// AuthorSpecifiedAggregationCount is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationCount = "COUNT"
+
+	// AuthorSpecifiedAggregationDistinctCount is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationDistinctCount = "DISTINCT_COUNT"
+
+	// AuthorSpecifiedAggregationMin is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationMin = "MIN"
+
+	// AuthorSpecifiedAggregationMax is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationMax = "MAX"
+
+	// AuthorSpecifiedAggregationMedian is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationMedian = "MEDIAN"
+
+	// AuthorSpecifiedAggregationSum is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationSum = "SUM"
+
+	// AuthorSpecifiedAggregationAverage is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationAverage = "AVERAGE"
+
+	// AuthorSpecifiedAggregationStdev is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationStdev = "STDEV"
+
+	// AuthorSpecifiedAggregationStdevp is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationStdevp = "STDEVP"
+
+	// AuthorSpecifiedAggregationVar is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationVar = "VAR"
+
+	// AuthorSpecifiedAggregationVarp is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationVarp = "VARP"
+
+	// AuthorSpecifiedAggregationPercentile is a AuthorSpecifiedAggregation enum value
+	AuthorSpecifiedAggregationPercentile = "PERCENTILE"
+)
+
+// AuthorSpecifiedAggregation_Values returns all elements of the AuthorSpecifiedAggregation enum
+func AuthorSpecifiedAggregation_Values() []string {
+	return []string{
+		AuthorSpecifiedAggregationCount,
+		AuthorSpecifiedAggregationDistinctCount,
+		AuthorSpecifiedAggregationMin,
+		AuthorSpecifiedAggregationMax,
+		AuthorSpecifiedAggregationMedian,
+		AuthorSpecifiedAggregationSum,
+		AuthorSpecifiedAggregationAverage,
+		AuthorSpecifiedAggregationStdev,
+		AuthorSpecifiedAggregationStdevp,
+		AuthorSpecifiedAggregationVar,
+		AuthorSpecifiedAggregationVarp,
+		AuthorSpecifiedAggregationPercentile,
+	}
+}
+
+const (
 	// AxisBindingPrimaryYaxis is a AxisBinding enum value
 	AxisBindingPrimaryYaxis = "PRIMARY_YAXIS"
 
@@ -84393,6 +92947,22 @@ func CategoricalAggregationFunction_Values() []string {
 }
 
 const (
+	// CategoryFilterFunctionExact is a CategoryFilterFunction enum value
+	CategoryFilterFunctionExact = "EXACT"
+
+	// CategoryFilterFunctionContains is a CategoryFilterFunction enum value
+	CategoryFilterFunctionContains = "CONTAINS"
+)
+
+// CategoryFilterFunction_Values returns all elements of the CategoryFilterFunction enum
+func CategoryFilterFunction_Values() []string {
+	return []string{
+		CategoryFilterFunctionExact,
+		CategoryFilterFunctionContains,
+	}
+}
+
+const (
 	// CategoryFilterMatchOperatorEquals is a CategoryFilterMatchOperator enum value
 	CategoryFilterMatchOperatorEquals = "EQUALS"
 
@@ -84437,6 +93007,26 @@ func CategoryFilterSelectAllOptions_Values() []string {
 }
 
 const (
+	// CategoryFilterTypeCustomFilter is a CategoryFilterType enum value
+	CategoryFilterTypeCustomFilter = "CUSTOM_FILTER"
+
+	// CategoryFilterTypeCustomFilterList is a CategoryFilterType enum value
+	CategoryFilterTypeCustomFilterList = "CUSTOM_FILTER_LIST"
+
+	// CategoryFilterTypeFilterList is a CategoryFilterType enum value
+	CategoryFilterTypeFilterList = "FILTER_LIST"
+)
+
+// CategoryFilterType_Values returns all elements of the CategoryFilterType enum
+func CategoryFilterType_Values() []string {
+	return []string{
+		CategoryFilterTypeCustomFilter,
+		CategoryFilterTypeCustomFilterList,
+		CategoryFilterTypeFilterList,
+	}
+}
+
+const (
 	// ColorFillTypeDiscrete is a ColorFillType enum value
 	ColorFillTypeDiscrete = "DISCRETE"
 
@@ -84449,6 +93039,22 @@ func ColorFillType_Values() []string {
 	return []string{
 		ColorFillTypeDiscrete,
 		ColorFillTypeGradient,
+	}
+}
+
+const (
+	// ColumnDataRoleDimension is a ColumnDataRole enum value
+	ColumnDataRoleDimension = "DIMENSION"
+
+	// ColumnDataRoleMeasure is a ColumnDataRole enum value
+	ColumnDataRoleMeasure = "MEASURE"
+)
+
+// ColumnDataRole_Values returns all elements of the ColumnDataRole enum
+func ColumnDataRole_Values() []string {
+	return []string{
+		ColumnDataRoleDimension,
+		ColumnDataRoleMeasure,
 	}
 }
 
@@ -84473,6 +93079,26 @@ func ColumnDataType_Values() []string {
 		ColumnDataTypeInteger,
 		ColumnDataTypeDecimal,
 		ColumnDataTypeDatetime,
+	}
+}
+
+const (
+	// ColumnOrderingTypeGreaterIsBetter is a ColumnOrderingType enum value
+	ColumnOrderingTypeGreaterIsBetter = "GREATER_IS_BETTER"
+
+	// ColumnOrderingTypeLesserIsBetter is a ColumnOrderingType enum value
+	ColumnOrderingTypeLesserIsBetter = "LESSER_IS_BETTER"
+
+	// ColumnOrderingTypeSpecified is a ColumnOrderingType enum value
+	ColumnOrderingTypeSpecified = "SPECIFIED"
+)
+
+// ColumnOrderingType_Values returns all elements of the ColumnOrderingType enum
+func ColumnOrderingType_Values() []string {
+	return []string{
+		ColumnOrderingTypeGreaterIsBetter,
+		ColumnOrderingTypeLesserIsBetter,
+		ColumnOrderingTypeSpecified,
 	}
 }
 
@@ -84589,6 +93215,26 @@ func ConditionalFormattingIconSetType_Values() []string {
 		ConditionalFormattingIconSetTypeBars,
 		ConditionalFormattingIconSetTypeFourColorArrow,
 		ConditionalFormattingIconSetTypeFourGrayArrow,
+	}
+}
+
+const (
+	// ConstantTypeSingular is a ConstantType enum value
+	ConstantTypeSingular = "SINGULAR"
+
+	// ConstantTypeRange is a ConstantType enum value
+	ConstantTypeRange = "RANGE"
+
+	// ConstantTypeCollective is a ConstantType enum value
+	ConstantTypeCollective = "COLLECTIVE"
+)
+
+// ConstantType_Values returns all elements of the ConstantType enum
+func ConstantType_Values() []string {
+	return []string{
+		ConstantTypeSingular,
+		ConstantTypeRange,
+		ConstantTypeCollective,
 	}
 }
 
@@ -85057,6 +93703,22 @@ func DataSourceType_Values() []string {
 }
 
 const (
+	// DatasetParameterValueTypeMultiValued is a DatasetParameterValueType enum value
+	DatasetParameterValueTypeMultiValued = "MULTI_VALUED"
+
+	// DatasetParameterValueTypeSingleValued is a DatasetParameterValueType enum value
+	DatasetParameterValueTypeSingleValued = "SINGLE_VALUED"
+)
+
+// DatasetParameterValueType_Values returns all elements of the DatasetParameterValueType enum
+func DatasetParameterValueType_Values() []string {
+	return []string{
+		DatasetParameterValueTypeMultiValued,
+		DatasetParameterValueTypeSingleValued,
+	}
+}
+
+const (
 	// DateAggregationFunctionCount is a DateAggregationFunction enum value
 	DateAggregationFunctionCount = "COUNT"
 
@@ -85113,6 +93775,70 @@ func DayOfWeek_Values() []string {
 		DayOfWeekThursday,
 		DayOfWeekFriday,
 		DayOfWeekSaturday,
+	}
+}
+
+const (
+	// DefaultAggregationSum is a DefaultAggregation enum value
+	DefaultAggregationSum = "SUM"
+
+	// DefaultAggregationMax is a DefaultAggregation enum value
+	DefaultAggregationMax = "MAX"
+
+	// DefaultAggregationMin is a DefaultAggregation enum value
+	DefaultAggregationMin = "MIN"
+
+	// DefaultAggregationCount is a DefaultAggregation enum value
+	DefaultAggregationCount = "COUNT"
+
+	// DefaultAggregationDistinctCount is a DefaultAggregation enum value
+	DefaultAggregationDistinctCount = "DISTINCT_COUNT"
+
+	// DefaultAggregationAverage is a DefaultAggregation enum value
+	DefaultAggregationAverage = "AVERAGE"
+)
+
+// DefaultAggregation_Values returns all elements of the DefaultAggregation enum
+func DefaultAggregation_Values() []string {
+	return []string{
+		DefaultAggregationSum,
+		DefaultAggregationMax,
+		DefaultAggregationMin,
+		DefaultAggregationCount,
+		DefaultAggregationDistinctCount,
+		DefaultAggregationAverage,
+	}
+}
+
+const (
+	// DisplayFormatAuto is a DisplayFormat enum value
+	DisplayFormatAuto = "AUTO"
+
+	// DisplayFormatPercent is a DisplayFormat enum value
+	DisplayFormatPercent = "PERCENT"
+
+	// DisplayFormatCurrency is a DisplayFormat enum value
+	DisplayFormatCurrency = "CURRENCY"
+
+	// DisplayFormatNumber is a DisplayFormat enum value
+	DisplayFormatNumber = "NUMBER"
+
+	// DisplayFormatDate is a DisplayFormat enum value
+	DisplayFormatDate = "DATE"
+
+	// DisplayFormatString is a DisplayFormat enum value
+	DisplayFormatString = "STRING"
+)
+
+// DisplayFormat_Values returns all elements of the DisplayFormat enum
+func DisplayFormat_Values() []string {
+	return []string{
+		DisplayFormatAuto,
+		DisplayFormatPercent,
+		DisplayFormatCurrency,
+		DisplayFormatNumber,
+		DisplayFormatDate,
+		DisplayFormatString,
 	}
 }
 
@@ -85229,6 +93955,26 @@ func FileFormat_Values() []string {
 		FileFormatElf,
 		FileFormatXlsx,
 		FileFormatJson,
+	}
+}
+
+const (
+	// FilterClassEnforcedValueFilter is a FilterClass enum value
+	FilterClassEnforcedValueFilter = "ENFORCED_VALUE_FILTER"
+
+	// FilterClassConditionalValueFilter is a FilterClass enum value
+	FilterClassConditionalValueFilter = "CONDITIONAL_VALUE_FILTER"
+
+	// FilterClassNamedValueFilter is a FilterClass enum value
+	FilterClassNamedValueFilter = "NAMED_VALUE_FILTER"
+)
+
+// FilterClass_Values returns all elements of the FilterClass enum
+func FilterClass_Values() []string {
+	return []string{
+		FilterClassEnforcedValueFilter,
+		FilterClassConditionalValueFilter,
+		FilterClassNamedValueFilter,
 	}
 }
 
@@ -86261,6 +95007,150 @@ func MissingDataTreatmentOption_Values() []string {
 }
 
 const (
+	// NamedEntityAggTypeSum is a NamedEntityAggType enum value
+	NamedEntityAggTypeSum = "SUM"
+
+	// NamedEntityAggTypeMin is a NamedEntityAggType enum value
+	NamedEntityAggTypeMin = "MIN"
+
+	// NamedEntityAggTypeMax is a NamedEntityAggType enum value
+	NamedEntityAggTypeMax = "MAX"
+
+	// NamedEntityAggTypeCount is a NamedEntityAggType enum value
+	NamedEntityAggTypeCount = "COUNT"
+
+	// NamedEntityAggTypeAverage is a NamedEntityAggType enum value
+	NamedEntityAggTypeAverage = "AVERAGE"
+
+	// NamedEntityAggTypeDistinctCount is a NamedEntityAggType enum value
+	NamedEntityAggTypeDistinctCount = "DISTINCT_COUNT"
+
+	// NamedEntityAggTypeStdev is a NamedEntityAggType enum value
+	NamedEntityAggTypeStdev = "STDEV"
+
+	// NamedEntityAggTypeStdevp is a NamedEntityAggType enum value
+	NamedEntityAggTypeStdevp = "STDEVP"
+
+	// NamedEntityAggTypeVar is a NamedEntityAggType enum value
+	NamedEntityAggTypeVar = "VAR"
+
+	// NamedEntityAggTypeVarp is a NamedEntityAggType enum value
+	NamedEntityAggTypeVarp = "VARP"
+
+	// NamedEntityAggTypePercentile is a NamedEntityAggType enum value
+	NamedEntityAggTypePercentile = "PERCENTILE"
+
+	// NamedEntityAggTypeMedian is a NamedEntityAggType enum value
+	NamedEntityAggTypeMedian = "MEDIAN"
+
+	// NamedEntityAggTypeCustom is a NamedEntityAggType enum value
+	NamedEntityAggTypeCustom = "CUSTOM"
+)
+
+// NamedEntityAggType_Values returns all elements of the NamedEntityAggType enum
+func NamedEntityAggType_Values() []string {
+	return []string{
+		NamedEntityAggTypeSum,
+		NamedEntityAggTypeMin,
+		NamedEntityAggTypeMax,
+		NamedEntityAggTypeCount,
+		NamedEntityAggTypeAverage,
+		NamedEntityAggTypeDistinctCount,
+		NamedEntityAggTypeStdev,
+		NamedEntityAggTypeStdevp,
+		NamedEntityAggTypeVar,
+		NamedEntityAggTypeVarp,
+		NamedEntityAggTypePercentile,
+		NamedEntityAggTypeMedian,
+		NamedEntityAggTypeCustom,
+	}
+}
+
+const (
+	// NamedFilterAggTypeNoAggregation is a NamedFilterAggType enum value
+	NamedFilterAggTypeNoAggregation = "NO_AGGREGATION"
+
+	// NamedFilterAggTypeSum is a NamedFilterAggType enum value
+	NamedFilterAggTypeSum = "SUM"
+
+	// NamedFilterAggTypeAverage is a NamedFilterAggType enum value
+	NamedFilterAggTypeAverage = "AVERAGE"
+
+	// NamedFilterAggTypeCount is a NamedFilterAggType enum value
+	NamedFilterAggTypeCount = "COUNT"
+
+	// NamedFilterAggTypeDistinctCount is a NamedFilterAggType enum value
+	NamedFilterAggTypeDistinctCount = "DISTINCT_COUNT"
+
+	// NamedFilterAggTypeMax is a NamedFilterAggType enum value
+	NamedFilterAggTypeMax = "MAX"
+
+	// NamedFilterAggTypeMedian is a NamedFilterAggType enum value
+	NamedFilterAggTypeMedian = "MEDIAN"
+
+	// NamedFilterAggTypeMin is a NamedFilterAggType enum value
+	NamedFilterAggTypeMin = "MIN"
+
+	// NamedFilterAggTypeStdev is a NamedFilterAggType enum value
+	NamedFilterAggTypeStdev = "STDEV"
+
+	// NamedFilterAggTypeStdevp is a NamedFilterAggType enum value
+	NamedFilterAggTypeStdevp = "STDEVP"
+
+	// NamedFilterAggTypeVar is a NamedFilterAggType enum value
+	NamedFilterAggTypeVar = "VAR"
+
+	// NamedFilterAggTypeVarp is a NamedFilterAggType enum value
+	NamedFilterAggTypeVarp = "VARP"
+)
+
+// NamedFilterAggType_Values returns all elements of the NamedFilterAggType enum
+func NamedFilterAggType_Values() []string {
+	return []string{
+		NamedFilterAggTypeNoAggregation,
+		NamedFilterAggTypeSum,
+		NamedFilterAggTypeAverage,
+		NamedFilterAggTypeCount,
+		NamedFilterAggTypeDistinctCount,
+		NamedFilterAggTypeMax,
+		NamedFilterAggTypeMedian,
+		NamedFilterAggTypeMin,
+		NamedFilterAggTypeStdev,
+		NamedFilterAggTypeStdevp,
+		NamedFilterAggTypeVar,
+		NamedFilterAggTypeVarp,
+	}
+}
+
+const (
+	// NamedFilterTypeCategoryFilter is a NamedFilterType enum value
+	NamedFilterTypeCategoryFilter = "CATEGORY_FILTER"
+
+	// NamedFilterTypeNumericEqualityFilter is a NamedFilterType enum value
+	NamedFilterTypeNumericEqualityFilter = "NUMERIC_EQUALITY_FILTER"
+
+	// NamedFilterTypeNumericRangeFilter is a NamedFilterType enum value
+	NamedFilterTypeNumericRangeFilter = "NUMERIC_RANGE_FILTER"
+
+	// NamedFilterTypeDateRangeFilter is a NamedFilterType enum value
+	NamedFilterTypeDateRangeFilter = "DATE_RANGE_FILTER"
+
+	// NamedFilterTypeRelativeDateFilter is a NamedFilterType enum value
+	NamedFilterTypeRelativeDateFilter = "RELATIVE_DATE_FILTER"
+)
+
+// NamedFilterType_Values returns all elements of the NamedFilterType enum
+func NamedFilterType_Values() []string {
+	return []string{
+		NamedFilterTypeCategoryFilter,
+		NamedFilterTypeNumericEqualityFilter,
+		NamedFilterTypeNumericRangeFilter,
+		NamedFilterTypeDateRangeFilter,
+		NamedFilterTypeRelativeDateFilter,
+	}
+}
+
+const (
 	// NamespaceErrorTypePermissionDenied is a NamespaceErrorType enum value
 	NamespaceErrorTypePermissionDenied = "PERMISSION_DENIED"
 
@@ -86317,6 +95207,54 @@ func NegativeValueDisplayMode_Values() []string {
 	return []string{
 		NegativeValueDisplayModePositive,
 		NegativeValueDisplayModeNegative,
+	}
+}
+
+const (
+	// NetworkInterfaceStatusCreating is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusCreating = "CREATING"
+
+	// NetworkInterfaceStatusAvailable is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusAvailable = "AVAILABLE"
+
+	// NetworkInterfaceStatusCreationFailed is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusCreationFailed = "CREATION_FAILED"
+
+	// NetworkInterfaceStatusUpdating is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusUpdating = "UPDATING"
+
+	// NetworkInterfaceStatusUpdateFailed is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusUpdateFailed = "UPDATE_FAILED"
+
+	// NetworkInterfaceStatusDeleting is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusDeleting = "DELETING"
+
+	// NetworkInterfaceStatusDeleted is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusDeleted = "DELETED"
+
+	// NetworkInterfaceStatusDeletionFailed is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusDeletionFailed = "DELETION_FAILED"
+
+	// NetworkInterfaceStatusDeletionScheduled is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusDeletionScheduled = "DELETION_SCHEDULED"
+
+	// NetworkInterfaceStatusAttachmentFailedRollbackFailed is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusAttachmentFailedRollbackFailed = "ATTACHMENT_FAILED_ROLLBACK_FAILED"
+)
+
+// NetworkInterfaceStatus_Values returns all elements of the NetworkInterfaceStatus enum
+func NetworkInterfaceStatus_Values() []string {
+	return []string{
+		NetworkInterfaceStatusCreating,
+		NetworkInterfaceStatusAvailable,
+		NetworkInterfaceStatusCreationFailed,
+		NetworkInterfaceStatusUpdating,
+		NetworkInterfaceStatusUpdateFailed,
+		NetworkInterfaceStatusDeleting,
+		NetworkInterfaceStatusDeleted,
+		NetworkInterfaceStatusDeletionFailed,
+		NetworkInterfaceStatusDeletionScheduled,
+		NetworkInterfaceStatusAttachmentFailedRollbackFailed,
 	}
 }
 
@@ -86593,6 +95531,42 @@ func PrimaryValueDisplayType_Values() []string {
 		PrimaryValueDisplayTypeHidden,
 		PrimaryValueDisplayTypeComparison,
 		PrimaryValueDisplayTypeActual,
+	}
+}
+
+const (
+	// PropertyRolePrimary is a PropertyRole enum value
+	PropertyRolePrimary = "PRIMARY"
+
+	// PropertyRoleId is a PropertyRole enum value
+	PropertyRoleId = "ID"
+)
+
+// PropertyRole_Values returns all elements of the PropertyRole enum
+func PropertyRole_Values() []string {
+	return []string{
+		PropertyRolePrimary,
+		PropertyRoleId,
+	}
+}
+
+const (
+	// PropertyUsageInherit is a PropertyUsage enum value
+	PropertyUsageInherit = "INHERIT"
+
+	// PropertyUsageDimension is a PropertyUsage enum value
+	PropertyUsageDimension = "DIMENSION"
+
+	// PropertyUsageMeasure is a PropertyUsage enum value
+	PropertyUsageMeasure = "MEASURE"
+)
+
+// PropertyUsage_Values returns all elements of the PropertyUsage enum
+func PropertyUsage_Values() []string {
+	return []string{
+		PropertyUsageInherit,
+		PropertyUsageDimension,
+		PropertyUsageMeasure,
 	}
 }
 
@@ -87349,6 +96323,142 @@ func TopBottomSortOrder_Values() []string {
 }
 
 const (
+	// TopicNumericSeparatorSymbolComma is a TopicNumericSeparatorSymbol enum value
+	TopicNumericSeparatorSymbolComma = "COMMA"
+
+	// TopicNumericSeparatorSymbolDot is a TopicNumericSeparatorSymbol enum value
+	TopicNumericSeparatorSymbolDot = "DOT"
+)
+
+// TopicNumericSeparatorSymbol_Values returns all elements of the TopicNumericSeparatorSymbol enum
+func TopicNumericSeparatorSymbol_Values() []string {
+	return []string{
+		TopicNumericSeparatorSymbolComma,
+		TopicNumericSeparatorSymbolDot,
+	}
+}
+
+const (
+	// TopicRefreshStatusInitialized is a TopicRefreshStatus enum value
+	TopicRefreshStatusInitialized = "INITIALIZED"
+
+	// TopicRefreshStatusRunning is a TopicRefreshStatus enum value
+	TopicRefreshStatusRunning = "RUNNING"
+
+	// TopicRefreshStatusFailed is a TopicRefreshStatus enum value
+	TopicRefreshStatusFailed = "FAILED"
+
+	// TopicRefreshStatusCompleted is a TopicRefreshStatus enum value
+	TopicRefreshStatusCompleted = "COMPLETED"
+
+	// TopicRefreshStatusCancelled is a TopicRefreshStatus enum value
+	TopicRefreshStatusCancelled = "CANCELLED"
+)
+
+// TopicRefreshStatus_Values returns all elements of the TopicRefreshStatus enum
+func TopicRefreshStatus_Values() []string {
+	return []string{
+		TopicRefreshStatusInitialized,
+		TopicRefreshStatusRunning,
+		TopicRefreshStatusFailed,
+		TopicRefreshStatusCompleted,
+		TopicRefreshStatusCancelled,
+	}
+}
+
+const (
+	// TopicRelativeDateFilterFunctionPrevious is a TopicRelativeDateFilterFunction enum value
+	TopicRelativeDateFilterFunctionPrevious = "PREVIOUS"
+
+	// TopicRelativeDateFilterFunctionThis is a TopicRelativeDateFilterFunction enum value
+	TopicRelativeDateFilterFunctionThis = "THIS"
+
+	// TopicRelativeDateFilterFunctionLast is a TopicRelativeDateFilterFunction enum value
+	TopicRelativeDateFilterFunctionLast = "LAST"
+
+	// TopicRelativeDateFilterFunctionNext is a TopicRelativeDateFilterFunction enum value
+	TopicRelativeDateFilterFunctionNext = "NEXT"
+
+	// TopicRelativeDateFilterFunctionNow is a TopicRelativeDateFilterFunction enum value
+	TopicRelativeDateFilterFunctionNow = "NOW"
+)
+
+// TopicRelativeDateFilterFunction_Values returns all elements of the TopicRelativeDateFilterFunction enum
+func TopicRelativeDateFilterFunction_Values() []string {
+	return []string{
+		TopicRelativeDateFilterFunctionPrevious,
+		TopicRelativeDateFilterFunctionThis,
+		TopicRelativeDateFilterFunctionLast,
+		TopicRelativeDateFilterFunctionNext,
+		TopicRelativeDateFilterFunctionNow,
+	}
+}
+
+const (
+	// TopicScheduleTypeHourly is a TopicScheduleType enum value
+	TopicScheduleTypeHourly = "HOURLY"
+
+	// TopicScheduleTypeDaily is a TopicScheduleType enum value
+	TopicScheduleTypeDaily = "DAILY"
+
+	// TopicScheduleTypeWeekly is a TopicScheduleType enum value
+	TopicScheduleTypeWeekly = "WEEKLY"
+
+	// TopicScheduleTypeMonthly is a TopicScheduleType enum value
+	TopicScheduleTypeMonthly = "MONTHLY"
+)
+
+// TopicScheduleType_Values returns all elements of the TopicScheduleType enum
+func TopicScheduleType_Values() []string {
+	return []string{
+		TopicScheduleTypeHourly,
+		TopicScheduleTypeDaily,
+		TopicScheduleTypeWeekly,
+		TopicScheduleTypeMonthly,
+	}
+}
+
+const (
+	// TopicTimeGranularitySecond is a TopicTimeGranularity enum value
+	TopicTimeGranularitySecond = "SECOND"
+
+	// TopicTimeGranularityMinute is a TopicTimeGranularity enum value
+	TopicTimeGranularityMinute = "MINUTE"
+
+	// TopicTimeGranularityHour is a TopicTimeGranularity enum value
+	TopicTimeGranularityHour = "HOUR"
+
+	// TopicTimeGranularityDay is a TopicTimeGranularity enum value
+	TopicTimeGranularityDay = "DAY"
+
+	// TopicTimeGranularityWeek is a TopicTimeGranularity enum value
+	TopicTimeGranularityWeek = "WEEK"
+
+	// TopicTimeGranularityMonth is a TopicTimeGranularity enum value
+	TopicTimeGranularityMonth = "MONTH"
+
+	// TopicTimeGranularityQuarter is a TopicTimeGranularity enum value
+	TopicTimeGranularityQuarter = "QUARTER"
+
+	// TopicTimeGranularityYear is a TopicTimeGranularity enum value
+	TopicTimeGranularityYear = "YEAR"
+)
+
+// TopicTimeGranularity_Values returns all elements of the TopicTimeGranularity enum
+func TopicTimeGranularity_Values() []string {
+	return []string{
+		TopicTimeGranularitySecond,
+		TopicTimeGranularityMinute,
+		TopicTimeGranularityHour,
+		TopicTimeGranularityDay,
+		TopicTimeGranularityWeek,
+		TopicTimeGranularityMonth,
+		TopicTimeGranularityQuarter,
+		TopicTimeGranularityYear,
+	}
+}
+
+const (
 	// URLTargetConfigurationNewTab is a URLTargetConfiguration enum value
 	URLTargetConfigurationNewTab = "NEW_TAB"
 
@@ -87365,6 +96475,22 @@ func URLTargetConfiguration_Values() []string {
 		URLTargetConfigurationNewTab,
 		URLTargetConfigurationNewWindow,
 		URLTargetConfigurationSameTab,
+	}
+}
+
+const (
+	// UndefinedSpecifiedValueTypeLeast is a UndefinedSpecifiedValueType enum value
+	UndefinedSpecifiedValueTypeLeast = "LEAST"
+
+	// UndefinedSpecifiedValueTypeMost is a UndefinedSpecifiedValueType enum value
+	UndefinedSpecifiedValueTypeMost = "MOST"
+)
+
+// UndefinedSpecifiedValueType_Values returns all elements of the UndefinedSpecifiedValueType enum
+func UndefinedSpecifiedValueType_Values() []string {
+	return []string{
+		UndefinedSpecifiedValueTypeLeast,
+		UndefinedSpecifiedValueTypeMost,
 	}
 }
 
@@ -87393,6 +96519,70 @@ func UserRole_Values() []string {
 		UserRoleReader,
 		UserRoleRestrictedAuthor,
 		UserRoleRestrictedReader,
+	}
+}
+
+const (
+	// VPCConnectionAvailabilityStatusAvailable is a VPCConnectionAvailabilityStatus enum value
+	VPCConnectionAvailabilityStatusAvailable = "AVAILABLE"
+
+	// VPCConnectionAvailabilityStatusUnavailable is a VPCConnectionAvailabilityStatus enum value
+	VPCConnectionAvailabilityStatusUnavailable = "UNAVAILABLE"
+
+	// VPCConnectionAvailabilityStatusPartiallyAvailable is a VPCConnectionAvailabilityStatus enum value
+	VPCConnectionAvailabilityStatusPartiallyAvailable = "PARTIALLY_AVAILABLE"
+)
+
+// VPCConnectionAvailabilityStatus_Values returns all elements of the VPCConnectionAvailabilityStatus enum
+func VPCConnectionAvailabilityStatus_Values() []string {
+	return []string{
+		VPCConnectionAvailabilityStatusAvailable,
+		VPCConnectionAvailabilityStatusUnavailable,
+		VPCConnectionAvailabilityStatusPartiallyAvailable,
+	}
+}
+
+const (
+	// VPCConnectionResourceStatusCreationInProgress is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusCreationInProgress = "CREATION_IN_PROGRESS"
+
+	// VPCConnectionResourceStatusCreationSuccessful is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusCreationSuccessful = "CREATION_SUCCESSFUL"
+
+	// VPCConnectionResourceStatusCreationFailed is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusCreationFailed = "CREATION_FAILED"
+
+	// VPCConnectionResourceStatusUpdateInProgress is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// VPCConnectionResourceStatusUpdateSuccessful is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusUpdateSuccessful = "UPDATE_SUCCESSFUL"
+
+	// VPCConnectionResourceStatusUpdateFailed is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusUpdateFailed = "UPDATE_FAILED"
+
+	// VPCConnectionResourceStatusDeletionInProgress is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusDeletionInProgress = "DELETION_IN_PROGRESS"
+
+	// VPCConnectionResourceStatusDeletionFailed is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusDeletionFailed = "DELETION_FAILED"
+
+	// VPCConnectionResourceStatusDeleted is a VPCConnectionResourceStatus enum value
+	VPCConnectionResourceStatusDeleted = "DELETED"
+)
+
+// VPCConnectionResourceStatus_Values returns all elements of the VPCConnectionResourceStatus enum
+func VPCConnectionResourceStatus_Values() []string {
+	return []string{
+		VPCConnectionResourceStatusCreationInProgress,
+		VPCConnectionResourceStatusCreationSuccessful,
+		VPCConnectionResourceStatusCreationFailed,
+		VPCConnectionResourceStatusUpdateInProgress,
+		VPCConnectionResourceStatusUpdateSuccessful,
+		VPCConnectionResourceStatusUpdateFailed,
+		VPCConnectionResourceStatusDeletionInProgress,
+		VPCConnectionResourceStatusDeletionFailed,
+		VPCConnectionResourceStatusDeleted,
 	}
 }
 

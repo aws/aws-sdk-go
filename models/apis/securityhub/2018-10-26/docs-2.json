@@ -39,6 +39,7 @@
     "GetAdministratorAccount": "<p>Provides the details for the Security Hub administrator account for the current member account.</p> <p>Can be used by both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "GetEnabledStandards": "<p>Returns a list of the standards that are currently enabled.</p>",
     "GetFindingAggregator": "<p>Returns the current finding aggregation configuration.</p>",
+    "GetFindingHistory": "<p> Returns history for a Security Hub finding in the last 90 days. The history includes changes made to any fields in the Amazon Web Services Security Finding Format (ASFF). </p>",
     "GetFindings": "<p>Returns a list of findings that match the specified criteria.</p> <p>If finding aggregation is enabled, then when you call <code>GetFindings</code> from the aggregation Region, the results include all of the matching findings from both the aggregation Region and the linked Regions.</p>",
     "GetInsightResults": "<p>Lists the results of the Security Hub insight specified by the insight ARN.</p>",
     "GetInsights": "<p>Lists and describes insights for the specified insight ARNs.</p>",
@@ -3342,10 +3343,12 @@
       }
     },
     "AwsSecurityFindingIdentifier": {
-      "base": "<p>Identifies a finding to update using <code>BatchUpdateFindings</code>.</p>",
+      "base": "<p>Identifies which finding to get the finding history for.</p>",
       "refs": {
         "AwsSecurityFindingIdentifierList$member": null,
-        "BatchUpdateFindingsUnprocessedFinding$FindingIdentifier": "<p>The identifier of the finding that was not updated.</p>"
+        "BatchUpdateFindingsUnprocessedFinding$FindingIdentifier": "<p>The identifier of the finding that was not updated.</p>",
+        "FindingHistoryRecord$FindingIdentifier": null,
+        "GetFindingHistoryRequest$FindingIdentifier": null
       }
     },
     "AwsSecurityFindingIdentifierList": {
@@ -3954,6 +3957,7 @@
         "DescribeOrganizationConfigurationResponse$MemberAccountLimitReached": "<p>Whether the maximum number of allowed member accounts are already associated with the Security Hub administrator account.</p>",
         "DnsRequestAction$Blocked": "<p>Indicates whether the DNS request was blocked.</p>",
         "EnableSecurityHubRequest$EnableDefaultStandards": "<p>Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for <code>EnableDefaultStandards</code>, it is set to <code>true</code>. To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p>",
+        "FindingHistoryRecord$FindingCreated": "<p> Identifies whether the event marks the creation of a new finding. A value of <code>True</code> means that the finding is newly created. A value of <code>False</code> means that the finding isn’t newly created. </p>",
         "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the administrator account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the administrator account is set to <code>ENABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
         "NetworkConnectionAction$Blocked": "<p>Indicates whether the network connection attempt was blocked.</p>",
         "PortProbeAction$Blocked": "<p>Indicates whether the port probe was blocked.</p>",
@@ -4157,10 +4161,10 @@
     "DateFilterList": {
       "base": null,
       "refs": {
-        "AwsSecurityFindingFilters$FirstObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider first observed the potential security issue that a finding captured.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
-        "AwsSecurityFindingFilters$LastObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider most recently observed the potential security issue that a finding captured.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
-        "AwsSecurityFindingFilters$CreatedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider captured the potential security issue that a finding captured.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
-        "AwsSecurityFindingFilters$UpdatedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider last updated the finding record. </p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
+        "AwsSecurityFindingFilters$FirstObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security findings provider first observed the potential security issue that a finding captured.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
+        "AwsSecurityFindingFilters$LastObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security findings provider most recently observed the potential security issue that a finding captured.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
+        "AwsSecurityFindingFilters$CreatedAt": "<p>An ISO8601-formatted timestamp that indicates when the security findings provider captured the potential security issue that a finding captured.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
+        "AwsSecurityFindingFilters$UpdatedAt": "<p>An ISO8601-formatted timestamp that indicates when the security findings provider last updated the finding record. </p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
         "AwsSecurityFindingFilters$ProcessLaunchedAt": "<p>A timestamp that identifies when the process was launched.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
         "AwsSecurityFindingFilters$ProcessTerminatedAt": "<p>A timestamp that identifies when the process was terminated.</p> <p>A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p>",
         "AwsSecurityFindingFilters$ThreatIntelIndicatorLastObservedAt": "<p>A timestamp that identifies the last observation of a threat intelligence indicator.</p>",
@@ -4437,7 +4441,7 @@
         "AwsElasticsearchDomainDetails$Endpoints": "<p>The key-value pair that exists if the Elasticsearch domain uses VPC endpoints.</p>",
         "AwsLambdaFunctionEnvironment$Variables": "<p>Environment variable key-value pairs.</p>",
         "AwsOpenSearchServiceDomainDetails$DomainEndpoints": "<p>The domain endpoints. Used if the OpenSearch domain resides in a VPC.</p> <p>This is a map of key-value pairs. The key is always <code>vpc</code>. The value is the endpoint.</p>",
-        "AwsSecurityFinding$ProductFields": "<p>A data type where security-findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p> <p>Can contain up to 50 key-value pairs. For each key-value pair, the key can contain up to 128 characters, and the value can contain up to 2048 characters.</p>",
+        "AwsSecurityFinding$ProductFields": "<p>A data type where security findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p> <p>Can contain up to 50 key-value pairs. For each key-value pair, the key can contain up to 128 characters, and the value can contain up to 2048 characters.</p>",
         "AwsSecurityFinding$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding. </p>",
         "BatchUpdateFindingsRequest$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p>",
         "Resource$Tags": "<p>A list of Amazon Web Services tags associated with a resource at the time the finding was processed.</p>",
@@ -4466,6 +4470,42 @@
       "base": null,
       "refs": {
         "ListFindingAggregatorsResponse$FindingAggregators": "<p>The list of finding aggregators. This operation currently only returns a single result.</p>"
+      }
+    },
+    "FindingHistoryRecord": {
+      "base": "<p> A list of events that changed the specified finding during the specified time period. Each record represents a single finding change event. </p>",
+      "refs": {
+        "FindingHistoryRecordList$member": null
+      }
+    },
+    "FindingHistoryRecordList": {
+      "base": null,
+      "refs": {
+        "GetFindingHistoryResponse$Records": "<p> A list of events that altered the specified finding during the specified time period. </p>"
+      }
+    },
+    "FindingHistoryUpdate": {
+      "base": "<p> An array of objects that provides details about a change to a finding, including the Amazon Web Services Security Finding Format (ASFF) field that changed, the value of the field before the change, and the value of the field after the change. </p>",
+      "refs": {
+        "FindingHistoryUpdatesList$member": null
+      }
+    },
+    "FindingHistoryUpdateSource": {
+      "base": "<p> Identifies the source of the finding change event. </p>",
+      "refs": {
+        "FindingHistoryRecord$UpdateSource": "<p> Identifies the source of the event that changed the finding. For example, an integrated Amazon Web Service or third-party partner integration may call <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html\"> <code>BatchImportFindings</code> </a>, or an Security Hub customer may call <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html\"> <code>BatchUpdateFindings</code> </a>. </p>"
+      }
+    },
+    "FindingHistoryUpdateSourceType": {
+      "base": null,
+      "refs": {
+        "FindingHistoryUpdateSource$Type": "<p> Describes the type of finding change event, such as a call to <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchImportFindings.html\"> <code>BatchImportFindings</code> </a> (by an integrated Amazon Web Service or third party partner integration) or <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateFindings.html\"> <code>BatchUpdateFindings</code> </a> (by a Security Hub customer). </p>"
+      }
+    },
+    "FindingHistoryUpdatesList": {
+      "base": null,
+      "refs": {
+        "FindingHistoryRecord$Updates": "<p> An array of objects that provides details about the finding change event, including the Amazon Web Services Security Finding Format (ASFF) field that changed, the value of the field before the change, and the value of the field after the change. </p>"
       }
     },
     "FindingProviderFields": {
@@ -4554,6 +4594,16 @@
       }
     },
     "GetFindingAggregatorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFindingHistoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFindingHistoryResponse": {
       "base": null,
       "refs": {
       }
@@ -5171,7 +5221,7 @@
     "MapFilterList": {
       "base": null,
       "refs": {
-        "AwsSecurityFindingFilters$ProductFields": "<p>A data type where security-findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p>",
+        "AwsSecurityFindingFilters$ProductFields": "<p>A data type where security findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p>",
         "AwsSecurityFindingFilters$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding. </p>",
         "AwsSecurityFindingFilters$ResourceTags": "<p>A list of Amazon Web Services tags associated with a resource at the time the finding was processed.</p>",
         "AwsSecurityFindingFilters$ResourceDetailsOther": "<p>The details of a resource that doesn't have a specific subfield for the resource type defined.</p>"
@@ -5185,6 +5235,7 @@
         "DescribeStandardsControlsRequest$MaxResults": "<p>The maximum number of security standard controls to return.</p>",
         "DescribeStandardsRequest$MaxResults": "<p>The maximum number of standards to return.</p>",
         "GetEnabledStandardsRequest$MaxResults": "<p>The maximum number of results to return in the response.</p>",
+        "GetFindingHistoryRequest$MaxResults": "<p> The maximum number of results to be returned. If you don’t provide it, Security Hub returns up to 100 results of finding history. </p>",
         "GetFindingsRequest$MaxResults": "<p>The maximum number of findings to return.</p>",
         "GetInsightsRequest$MaxResults": "<p>The maximum number of items to return in the response.</p>",
         "ListEnabledProductsForImportRequest$MaxResults": "<p>The maximum number of items to return in the response.</p>",
@@ -5261,8 +5312,11 @@
         "DescribeStandardsControlsResponse$NextToken": "<p>The pagination token to use to request the next page of results.</p>",
         "DescribeStandardsRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>DescribeStandards</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>",
         "DescribeStandardsResponse$NextToken": "<p>The pagination token to use to request the next page of results.</p>",
+        "FindingHistoryRecord$NextToken": "<p> A token for pagination purposes. Provide this token in the subsequent request to <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_GetFindingsHistory.html\"> <code>GetFindingsHistory</code> </a> to get up to an additional 100 results of history for the same finding that you specified in your initial request. </p>",
         "GetEnabledStandardsRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>GetEnabledStandards</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>",
         "GetEnabledStandardsResponse$NextToken": "<p>The pagination token to use to request the next page of results.</p>",
+        "GetFindingHistoryRequest$NextToken": "<p> A token for pagination purposes. Provide <code>NULL</code> as the initial value. In subsequent requests, provide the token included in the response to get up to an additional 100 results of finding history. If you don’t provide <code>NextToken</code>, Security Hub returns up to 100 results of finding history for each request. </p>",
+        "GetFindingHistoryResponse$NextToken": "<p> A token for pagination purposes. Provide this token in the subsequent request to <code>GetFindingsHistory</code> to get up to an additional 100 results of history for the same finding that you specified in your initial request. </p>",
         "GetFindingsRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>GetFindings</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>",
         "GetFindingsResponse$NextToken": "<p>The pagination token to use to request the next page of results.</p>",
         "GetInsightsRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>GetInsights</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>",
@@ -6346,15 +6400,15 @@
         "AwsSecurityFinding$ProductName": "<p>The name of the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is a custom integration.</p> <p>When you use the Security Hub console or API to filter findings by product name, you use this attribute.</p>",
         "AwsSecurityFinding$CompanyName": "<p>The name of the company for the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is a custom integration.</p> <p>When you use the Security Hub console or API to filter findings by company name, you use this attribute.</p>",
         "AwsSecurityFinding$Region": "<p>The Region from which the finding was generated.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update it using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>.</p>",
-        "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc. </p>",
+        "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc. </p>",
         "AwsSecurityFinding$AwsAccountId": "<p>The Amazon Web Services account ID that a finding is generated in.</p>",
-        "AwsSecurityFinding$FirstObservedAt": "<p>Indicates when the security-findings provider first observed the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
-        "AwsSecurityFinding$LastObservedAt": "<p>Indicates when the security-findings provider most recently observed the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
-        "AwsSecurityFinding$CreatedAt": "<p>Indicates when the security-findings provider created the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
-        "AwsSecurityFinding$UpdatedAt": "<p>Indicates when the security-findings provider last updated the finding record.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsSecurityFinding$FirstObservedAt": "<p>Indicates when the security findings provider first observed the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsSecurityFinding$LastObservedAt": "<p>Indicates when the security findings provider most recently observed the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsSecurityFinding$CreatedAt": "<p>Indicates when the security findings provider created the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsSecurityFinding$UpdatedAt": "<p>Indicates when the security findings provider last updated the finding record.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsSecurityFinding$Title": "<p>A finding's title.</p> <note> <p>In this release, <code>Title</code> is a required property.</p> </note>",
         "AwsSecurityFinding$Description": "<p>A finding's description.</p> <note> <p>In this release, <code>Description</code> is a required property.</p> </note>",
-        "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security-findings provider's solution.</p>",
+        "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security findings provider's solution.</p>",
         "AwsSecurityFindingIdentifier$Id": "<p>The identifier of the finding that was specified by the finding provider.</p>",
         "AwsSecurityFindingIdentifier$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
         "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed key for Amazon SNS or a customer managed key.</p>",
@@ -6506,6 +6560,10 @@
         "FilePaths$ResourceId": "<p>The Amazon Resource Name (ARN) of the resource on which the threat was detected. </p>",
         "FilePaths$Hash": "<p>The hash value for the infected or suspicious file. </p>",
         "FindingAggregator$FindingAggregatorArn": "<p>The ARN of the finding aggregator. You use the finding aggregator ARN to retrieve details for, update, and delete the finding aggregator.</p>",
+        "FindingHistoryUpdate$UpdatedField": "<p> The ASFF field that changed during the finding change event. </p>",
+        "FindingHistoryUpdate$OldValue": "<p> The value of the ASFF field before the finding change event. </p>",
+        "FindingHistoryUpdate$NewValue": "<p> The value of the ASFF field after the finding change event. To preserve storage and readability, Security Hub omits this value if <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_FindingHistoryRecord.html\"> <code>FindingHistoryRecord</code> </a> exceeds database limits. </p>",
+        "FindingHistoryUpdateSource$Identity": "<p> The identity of the source that initiated the finding change event. For example, the Amazon Resource Name (ARN) of a partner that calls BatchImportFindings or of a customer that calls BatchUpdateFindings. </p>",
         "FindingProviderSeverity$Original": "<p>The finding provider's original value for the severity.</p>",
         "FirewallPolicyStatefulRuleGroupReferencesDetails$ResourceArn": "<p>The ARN of the stateful rule group.</p>",
         "FirewallPolicyStatelessCustomActionsDetails$ActionName": "<p>The name of the custom action.</p>",
@@ -6849,7 +6907,7 @@
     "NumberFilterList": {
       "base": null,
       "refs": {
-        "AwsSecurityFindingFilters$SeverityProduct": "<p>The native severity as defined by the security-findings provider's solution that generated the finding.</p>",
+        "AwsSecurityFindingFilters$SeverityProduct": "<p>The native severity as defined by the security findings provider's solution that generated the finding.</p>",
         "AwsSecurityFindingFilters$SeverityNormalized": "<p>The normalized severity of a finding.</p>",
         "AwsSecurityFindingFilters$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFindingFilters$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
@@ -7613,14 +7671,14 @@
         "AwsSecurityFindingFilters$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a third-party company (security findings provider) after this provider's product (solution that generates findings) is registered with Security Hub.</p>",
         "AwsSecurityFindingFilters$AwsAccountId": "<p>The Amazon Web Services account ID that a finding is generated in.</p>",
         "AwsSecurityFindingFilters$Id": "<p>The security findings provider-specific identifier for a finding.</p>",
-        "AwsSecurityFindingFilters$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc.</p>",
+        "AwsSecurityFindingFilters$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc.</p>",
         "AwsSecurityFindingFilters$Region": "<p>The Region from which the finding was generated.</p>",
         "AwsSecurityFindingFilters$Type": "<p>A finding type in the format of <code>namespace/category/classifier</code> that classifies a finding.</p>",
         "AwsSecurityFindingFilters$SeverityLabel": "<p>The label of a finding's severity.</p>",
         "AwsSecurityFindingFilters$Title": "<p>A finding's title.</p>",
         "AwsSecurityFindingFilters$Description": "<p>A finding's description.</p>",
         "AwsSecurityFindingFilters$RecommendationText": "<p>The recommendation of what to do about the issue described in a finding.</p>",
-        "AwsSecurityFindingFilters$SourceUrl": "<p>A URL that links to a page about the current finding in the security-findings provider's solution.</p>",
+        "AwsSecurityFindingFilters$SourceUrl": "<p>A URL that links to a page about the current finding in the security findings provider's solution.</p>",
         "AwsSecurityFindingFilters$ProductName": "<p>The name of the solution (product) that generates findings.</p>",
         "AwsSecurityFindingFilters$CompanyName": "<p>The name of the findings provider (company) that owns the solution (product) that generates findings.</p>",
         "AwsSecurityFindingFilters$MalwareName": "<p>The name of the malware that was observed.</p>",
@@ -7792,6 +7850,9 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "FindingHistoryRecord$UpdateTime": "<p> An ISO 8601-formatted timestamp that indicates when the security findings provider last updated the finding record. A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. </p>",
+        "GetFindingHistoryRequest$StartTime": "<p> An ISO 8601-formatted timestamp that indicates the start time of the requested finding history. A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p> <p>If you provide values for both <code>StartTime</code> and <code>EndTime</code>, Security Hub returns finding history for the specified time period. If you provide a value for <code>StartTime</code> but not for <code>EndTime</code>, Security Hub returns finding history from the <code>StartTime</code> to the time at which the API is called. If you provide a value for <code>EndTime</code> but not for <code>StartTime</code>, Security Hub returns finding history from the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_AwsSecurityFindingFilters.html#securityhub-Type-AwsSecurityFindingFilters-CreatedAt\">CreatedAt</a> timestamp of the finding to the <code>EndTime</code>. If you provide neither <code>StartTime</code> nor <code>EndTime</code>, Security Hub returns finding history from the CreatedAt timestamp of the finding to the time at which the API is called. In all of these scenarios, the response is limited to 100 results, and the maximum time period is limited to 90 days. </p>",
+        "GetFindingHistoryRequest$EndTime": "<p> An ISO 8601-formatted timestamp that indicates the end time of the requested finding history. A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>.</p> <p>If you provide values for both <code>StartTime</code> and <code>EndTime</code>, Security Hub returns finding history for the specified time period. If you provide a value for <code>StartTime</code> but not for <code>EndTime</code>, Security Hub returns finding history from the <code>StartTime</code> to the time at which the API is called. If you provide a value for <code>EndTime</code> but not for <code>StartTime</code>, Security Hub returns finding history from the <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_AwsSecurityFindingFilters.html#securityhub-Type-AwsSecurityFindingFilters-CreatedAt\">CreatedAt</a> timestamp of the finding to the <code>EndTime</code>. If you provide neither <code>StartTime</code> nor <code>EndTime</code>, Security Hub returns finding history from the CreatedAt timestamp of the finding to the time at which the API is called. In all of these scenarios, the response is limited to 100 results, and the maximum time period is limited to 90 days.</p>",
         "Invitation$InvitedAt": "<p>The timestamp of when the invitation was sent.</p>",
         "Member$InvitedAt": "<p>A timestamp for the date and time when the invitation was sent to the member account.</p>",
         "Member$UpdatedAt": "<p>The timestamp for the date and time when the member account was updated.</p>",
